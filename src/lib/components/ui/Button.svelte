@@ -1,10 +1,5 @@
 <script lang="ts">
-	import type {
-		HTMLAnchorAttributes,
-		HTMLAttributes,
-		HTMLButtonAttributes,
-		SvelteHTMLElements
-	} from "svelte/elements";
+	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 	import { type VariantProps, cva } from "class-variance-authority";
 	import { cn } from "$lib/utils";
 
@@ -33,10 +28,10 @@
 		}
 	);
 
-	export let href: HTMLAnchorAttributes["href"] = undefined;
-	export let type: HTMLButtonAttributes["type"] = undefined;
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	export let href: HTMLAnchorAttributes["href"] = undefined;
+	export let type: HTMLButtonAttributes["type"] = undefined;
 	export let variant: VariantProps<typeof buttonVariants>["variant"] = "default";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
 
