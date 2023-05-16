@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Badge from "$components/ui/Badge.svelte";
-	import Button from "$components/ui/Button.svelte";
+	import Button from "$components/ui/Button/Button.svelte";
 	import Separator from "$components/ui/Separator.svelte";
 </script>
 

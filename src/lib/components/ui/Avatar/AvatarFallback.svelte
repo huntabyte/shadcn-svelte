@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Avatar, type AvatarFallbackProps } from "radix-svelte";
+	import { Avatar as AvatarPrimitive, type AvatarFallbackProps } from "radix-svelte";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;
@@ -7,10 +7,10 @@
 	export let delayMs: AvatarFallbackProps["delayMs"] = 0;
 </script>
 
-<Avatar.Fallback
+<AvatarPrimitive.Fallback
 	{delayMs}
 	class={cn("flex h-full w-full items-center justify-center rounded-full bg-muted", className)}
 	{...$$restProps}
 >
 	<slot />
-</Avatar.Fallback>
+</AvatarPrimitive.Fallback>

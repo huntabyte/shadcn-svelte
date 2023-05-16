@@ -9,7 +9,7 @@ import AvatarImage from "./Avatar/AvatarImage.svelte";
 import AvatarFallback from "./Avatar/AvatarFallback.svelte";
 
 import Badge from "./Badge.svelte";
-import Button from "./Button.svelte";
+import Button from "./Button/Button.svelte";
 
 import Card from "./Card/Card.svelte";
 import CardContent from "./Card/CardContent.svelte";
