@@ -7,6 +7,9 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
+  lucide-svelte:
+    specifier: ^0.216.0
+    version: 0.216.0(svelte@3.59.1)
   radix-svelte:
     specifier: ^0.5.0
     version: 0.5.0(svelte@3.59.1)
@@ -1458,6 +1461,14 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucide-svelte@0.216.0(svelte@3.59.1):
+    resolution: {integrity: sha512-e7uFIf3H1Tpoq+RRvAXLBCEe1YgZwOu1LEZY8lkdja3djJBHNsk2/Pgkec/ptT9nzU9oLK/D5lrVxtyvMua0BQ==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      svelte: 3.59.1
+    dev: false
 
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
