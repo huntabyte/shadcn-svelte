@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Badge from "$components/ui/Badge.svelte";
-	import Button from "$components/ui/Button/Button.svelte";
-	import Separator from "$components/ui/Separator.svelte";
+	import { Badge, Button, Separator } from "$components/ui";
 </script>
 
 <div class="bg-white px-4 py-8">
