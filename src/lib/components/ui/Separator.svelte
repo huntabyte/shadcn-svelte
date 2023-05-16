@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "$lib/utils";
 	import { Separator, type SeparatorRootProps } from "radix-svelte";
+	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

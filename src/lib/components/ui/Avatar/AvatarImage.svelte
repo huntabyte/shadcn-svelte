@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Avatar } from "radix-svelte";
+	import { Avatar, type AvatarImageProps } from "radix-svelte";
 	import { cn } from "$lib/utils";
-	import type { AvatarImageProps } from "radix-svelte";
 
 	let className: string | undefined | null = undefined;
 	export let src: AvatarImageProps["src"] = undefined;

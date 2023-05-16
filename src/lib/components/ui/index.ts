@@ -2,6 +2,8 @@ import Alert from "./Alert/Alert.svelte";
 import AlertDescription from "./Alert/AlertDescription.svelte";
 import AlertTitle from "./Alert/AlertTitle.svelte";
 
+import AspectRatio from "./AspectRatio.svelte";
+
 import Avatar from "./Avatar/Avatar.svelte";
 import AvatarImage from "./Avatar/AvatarImage.svelte";
 import AvatarFallback from "./Avatar/AvatarFallback.svelte";
@@ -23,6 +25,7 @@ export {
 	Alert,
 	AlertDescription,
 	AlertTitle,
+	AspectRatio,
 	Avatar,
 	AvatarImage,
 	AvatarFallback,

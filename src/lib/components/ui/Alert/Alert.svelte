@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { type VariantProps, cva } from "class-variance-authority";
-
 	import { cn } from "$lib/utils";
 
 	const alertVariants = cva(
