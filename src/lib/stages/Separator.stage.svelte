@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
-	import Separator from "$ui/Separator.svelte";
+	import { Separator } from "$components/ui";
 </script>
 
 <Stage component="Separator">
