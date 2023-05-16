@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
 	import Badge from "$components/ui/Badge.svelte";
+	import StageBox from "./StageBox.svelte";
 </script>
 
 <Stage component="Button">
-	<Badge>Hello</Badge>
+	<StageBox>
+		<Badge>Hello</Badge>
+	</StageBox>
 </Stage>

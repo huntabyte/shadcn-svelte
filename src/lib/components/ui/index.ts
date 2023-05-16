@@ -1,3 +1,7 @@
+import Alert from "./Alert/Alert.svelte";
+import AlertDescription from "./Alert/AlertDescription.svelte";
+import AlertTitle from "./Alert/AlertTitle.svelte";
+
 import Avatar from "./Avatar/Avatar.svelte";
 import AvatarImage from "./Avatar/AvatarImage.svelte";
 import AvatarFallback from "./Avatar/AvatarFallback.svelte";
@@ -16,6 +20,9 @@ import Separator from "./Separator.svelte";
 import Switch from "./Switch.svelte";
 
 export {
+	Alert,
+	AlertDescription,
+	AlertTitle,
 	Avatar,
 	AvatarImage,
 	AvatarFallback,

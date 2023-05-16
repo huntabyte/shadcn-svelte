@@ -1,4 +1,3 @@
+import { loadStageData } from "svelte-stage";
 
-import { loadStageData } from 'svelte-stage'
-
-export const load = loadStageData
+export const load = loadStageData;
