@@ -8,6 +8,10 @@
 	export let delayMs: AvatarFallbackProps["delayMs"] = 0;
 </script>
 
-<Avatar.Fallback {delayMs} class={cn("aspect-square h-full w-full", className)} {...$$restProps}>
+<Avatar.Fallback
+	{delayMs}
+	class={cn("flex h-full w-full items-center justify-center rounded-full bg-muted", className)}
+	{...$$restProps}
+>
 	<slot />
 </Avatar.Fallback>
