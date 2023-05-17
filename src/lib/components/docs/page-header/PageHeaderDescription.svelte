@@ -8,7 +8,7 @@
 
 <p
 	use:balancer
-	class={cn("flex max-w-[980px] flex-col items-start gap-2 px-4 pt-8 md:pt-12", className)}
+	class={cn("max-w-[750px] text-lg text-muted-foreground sm:text-xl", className)}
 	{...$$restProps}
 >
 	<slot />
