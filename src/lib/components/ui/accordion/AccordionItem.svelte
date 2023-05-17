@@ -7,10 +7,6 @@
 	export let value: AccordionItemProps["value"];
 </script>
 
-<AccordionPrimitive.Item
-	{value}
-	class={cn("text-sm [&_p]:leading-relaxed", className)}
-	{...$$restProps}
->
+<AccordionPrimitive.Item {value} class={cn("border-b", className)} {...$$restProps}>
 	<slot />
 </AccordionPrimitive.Item>
