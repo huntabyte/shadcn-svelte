@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from "$components/ui/tabs";
 	import { cn } from "$lib/utils";
-	import type { SvelteComponentTyped } from "svelte";
 	import CopyButton from "./CopyButton.svelte";
 
 	let codeString: string;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let align: "start" | "center" | "end" = "center";
+	export let src: string | undefined = undefined;
 
-	type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;
-	export let example: Component;
+	function getExampleCode(src: string) {}
 </script>
 
 <div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...$$restProps}>
@@ -41,7 +40,7 @@
 					"items-end": align === "end"
 				})}
 			>
-				<svelte:component this={example} />
+				<slot />
 			</div>
 		</TabsContent>
 		<TabsContent value="code">

@@ -26,3 +26,20 @@ export type Metadata = {
 		creator: string;
 	};
 };
+
+export type FrontMatter = {
+	title: string;
+	description: string;
+	component: boolean;
+	radix: {
+		link: string;
+		api: string;
+	} | null;
+};
+
+export type DocFile = {
+	default: import("svelte/internal").SvelteComponent;
+	metadata: FrontMatter;
+};
+
+export type DocResolver = () => Promise<DocFile>;
