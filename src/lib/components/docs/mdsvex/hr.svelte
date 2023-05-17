@@ -4,12 +4,7 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	type $$Props = HTMLAttributes<HTMLHeadingElement>;
+	type $$Props = HTMLAttributes<HTMLHRElement>;
 </script>
 
-<h6
-	class={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight", className)}
-	{...$$restProps}
->
-	<slot />
-</h6>
+<hr class={cn("my-4 md:my-8", className)} {...$$restProps} />

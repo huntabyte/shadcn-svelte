@@ -4,12 +4,9 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	type $$Props = HTMLAttributes<HTMLHeadingElement>;
+	type $$Props = HTMLAttributes<HTMLOListElement>;
 </script>
 
-<h6
-	class={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight", className)}
-	{...$$restProps}
->
+<ol class={cn("my-6 ml-6 list-decimal", className)} {...$$restProps}>
 	<slot />
-</h6>
+</ol>

@@ -4,12 +4,9 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	type $$Props = HTMLAttributes<HTMLHeadingElement>;
+	type $$Props = HTMLAttributes<HTMLParagraphElement>;
 </script>
 
-<h6
-	class={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight", className)}
-	{...$$restProps}
->
+<p class={cn("leading-7 [&:not(:first-child)]:mt-6", className)} {...$$restProps}>
 	<slot />
-</h6>
+</p>

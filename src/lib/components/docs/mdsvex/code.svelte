@@ -4,12 +4,12 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	type $$Props = HTMLAttributes<HTMLHeadingElement>;
+	type $$Props = HTMLAttributes<HTMLElement>;
 </script>
 
-<h6
-	class={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight", className)}
+<code
+	class={cn("relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm", className)}
 	{...$$restProps}
 >
 	<slot />
-</h6>
+</code>
