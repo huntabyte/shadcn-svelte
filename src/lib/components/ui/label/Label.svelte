@@ -11,4 +11,6 @@
 	export { className as class };
 </script>
 
-<LabelPrimitive.Root class={cn(labelVariants(), className)} {...$$restProps} />
+<LabelPrimitive.Root class={cn(labelVariants(), className)} {...$$restProps}>
+	<slot />
+</LabelPrimitive.Root>

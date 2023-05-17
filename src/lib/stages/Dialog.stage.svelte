@@ -11,7 +11,8 @@
 		DialogTitle,
 		DialogTrigger
 	} from "$components/ui/dialog";
-	import Label from "radix-svelte/dist/components/Select/label.svelte";
+	import { Label } from "$components/ui/label";
+	import { Input } from "$components/ui/input";
 </script>
 
 <Stage component="Dialog">
@@ -30,11 +31,11 @@
 				<div class="grid gap-4 py-4">
 					<div class="grid grid-cols-4 items-center gap-4">
 						<Label class="text-right">Name</Label>
-						<!-- <Input id="name" value="Pedro Duarte" class="col-span-3" /> -->
+						<Input id="name" value="Pedro Duarte" class="col-span-3" />
 					</div>
 					<div class="grid grid-cols-4 items-center gap-4">
 						<Label class="text-right">Username</Label>
-						<!-- <Input id="username" value="@peduarte" class="col-span-3" /> -->
+						<Input id="username" value="@peduarte" class="col-span-3" />
 					</div>
 				</div>
 				<DialogFooter>
