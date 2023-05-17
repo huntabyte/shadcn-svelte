@@ -1,12 +1,7 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
 	import StageBox from "./StageBox.svelte";
-	import {
-		Accordion,
-		AccordionContent,
-		AccordionItem,
-		AccordionTrigger
-	} from "$components/ui/accordion";
+	import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "$ui/accordion";
 </script>
 
 <Stage component="Alert">

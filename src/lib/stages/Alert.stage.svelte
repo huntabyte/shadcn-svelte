@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Terminal } from "lucide-svelte";
 	import { Stage } from "svelte-stage";
-	import { Alert, AlertDescription, AlertTitle } from "$components/ui";
+	import { Alert, AlertDescription, AlertTitle } from "$ui/alert";
 	import StageBox from "./StageBox.svelte";
 </script>
 

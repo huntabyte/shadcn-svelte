@@ -1,16 +1,9 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
 	import { BellRing, Check } from "lucide-svelte";
-	import {
-		Card,
-		CardHeader,
-		CardContent,
-		CardTitle,
-		CardDescription,
-		CardFooter,
-		Switch,
-		Button
-	} from "$ui";
+	import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from "$ui/card";
+	import { Switch } from "$ui/switch";
+	import { Button } from "$ui/button";
 	import StageBox from "./StageBox.svelte";
 
 	const notifications = [

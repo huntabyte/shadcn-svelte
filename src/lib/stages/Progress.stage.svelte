@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
 	import StageBox from "./StageBox.svelte";
-	import { Progress } from "$components/ui/progress";
+	import { Progress } from "$ui/progress";
 </script>
 
 <Stage component="Progress">

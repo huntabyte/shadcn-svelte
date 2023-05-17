@@ -10,9 +10,9 @@
 		AlertDialogFooter,
 		AlertDialogHeader,
 		AlertDialogTitle,
-		AlertDialogTrigger,
-		Button
-	} from "$components/ui";
+		AlertDialogTrigger
+	} from "$ui/alert-dialog";
+	import { Button } from "$ui/button";
 </script>
 
 <Stage component="Alert Dialog">

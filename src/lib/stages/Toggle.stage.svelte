@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
-	import { Toggle } from "$components/ui/toggle";
+	import { Toggle } from "$ui/toggle";
 	import StageBox from "./StageBox.svelte";
 	import { Bold } from "lucide-svelte";
 </script>

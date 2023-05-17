@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
-	import { Button } from "$components/ui";
+	import { Button } from "$ui/button";
 	import StageBox from "./StageBox.svelte";
 </script>
 

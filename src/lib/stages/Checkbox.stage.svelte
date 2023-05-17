@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Stage } from "svelte-stage";
 	import StageBox from "./StageBox.svelte";
-	import { Checkbox } from "$components/ui/checkbox";
+	import { Checkbox } from "$ui/checkbox";
 </script>
 
 <Stage component="Checkbox">
