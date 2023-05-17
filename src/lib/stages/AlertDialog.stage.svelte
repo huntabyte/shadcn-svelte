@@ -15,7 +15,7 @@
 	} from "$components/ui";
 </script>
 
-<Stage component="Alert">
+<Stage component="Alert Dialog">
 	<StageBox>
 		<AlertDialog>
 			<AlertDialogTrigger>

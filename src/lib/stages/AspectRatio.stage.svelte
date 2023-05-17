@@ -4,7 +4,7 @@
 	import StageBox from "./StageBox.svelte";
 </script>
 
-<Stage component="Avatar">
+<Stage component="Aspect Ratio">
 	<StageBox>
 		<AspectRatio ratio={3 / 2}>
 			<img

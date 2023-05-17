@@ -4,7 +4,7 @@
 	import { Checkbox } from "$components/ui/checkbox";
 </script>
 
-<Stage component="Alert">
+<Stage component="Checkbox">
 	<StageBox>
 		<div class="flex items-center space-x-2">
 			<Checkbox id="terms" />

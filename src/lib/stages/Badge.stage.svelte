@@ -4,7 +4,7 @@
 	import StageBox from "./StageBox.svelte";
 </script>
 
-<Stage component="Button">
+<Stage component="Badge">
 	<StageBox>
 		<Badge>Hello</Badge>
 	</StageBox>

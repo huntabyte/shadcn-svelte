@@ -5,11 +5,8 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: CheckboxRootProps["value"] = undefined;
-	export let disabled: CheckboxRootProps["disabled"] = undefined;
-	export let name: CheckboxRootProps["name"] = undefined;
-	export let required: CheckboxRootProps["required"] = undefined;
 	export let checked: CheckboxRootProps["checked"] = undefined;
+	type $$Props = CheckboxRootProps;
 </script>
 
 <CheckboxPrimitive.Root
@@ -18,10 +15,6 @@
 		className
 	)}
 	bind:checked
-	{value}
-	{disabled}
-	{name}
-	{required}
 	{...$$restProps}
 >
 	<CheckboxPrimitive.Indicator class={cn("flex items-center justify-center text-current")}>
