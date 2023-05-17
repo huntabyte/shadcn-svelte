@@ -25,11 +25,11 @@
 					</CardHeader>
 					<CardContent class="space-y-2">
 						<div class="space-y-1">
-							<Label htmlFor="name">Name</Label>
+							<Label for="name">Name</Label>
 							<Input id="name" value="Pedro Duarte" />
 						</div>
 						<div class="space-y-1">
-							<Label htmlFor="username">Username</Label>
+							<Label for="username">Username</Label>
 							<Input id="username" value="@peduarte" />
 						</div>
 					</CardContent>
