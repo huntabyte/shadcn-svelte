@@ -17,7 +17,7 @@
 
 <Stage component="Dialog">
 	<StageBox>
-		<Dialog>
+		<Dialog modal={true}>
 			<DialogTrigger>
 				<Button variant="outline">Edit Profile</Button>
 			</DialogTrigger>
