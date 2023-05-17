@@ -13,6 +13,9 @@ dependencies:
   radix-svelte:
     specifier: ^0.5.0
     version: 0.5.0(svelte@3.59.1)
+  svelte-action-balancer:
+    specifier: ^1.0.4
+    version: 1.0.4
   tailwind-merge:
     specifier: ^1.12.0
     version: 1.12.0
@@ -2002,6 +2005,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /svelte-action-balancer@1.0.4:
+    resolution: {integrity: sha512-QEJ/UJ576/wt+Sr3Uhswg/6k1s98034QZQBbO3WuNeyPYKa+9w2z/W5SFlusdAi8H7IF+s8BaMptEsUZINfxbw==}
+    dev: false
 
   /svelte-check@3.3.2(postcss-load-config@4.0.1)(postcss@8.4.23)(svelte@3.59.1):
     resolution: {integrity: sha512-67j3rI0LDc2DvL0ON/2pvCasVVD3nHDrTkZNr4eITNfo2oFXdw7SIyMOiFj4swu+pjmFQAigytBK1IWyik8dBw==}
