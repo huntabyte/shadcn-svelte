@@ -43,7 +43,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
 						<Icons.radix class="mr-1 h-3 w-3" />
-						Radix UI
+						Radix Svelte
 					</a>
 				{/if}
 				{#if doc.radix?.api}
@@ -59,16 +59,16 @@
 			</div>
 		{/if}
 		<Separator class="my-4 md:my-6" />
-		<svelte:component this={component} />
+		<div class="mdsvex">
+			<div class="mdsvex">
+				<svelte:component this={component} />
+			</div>
+		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
 		<Separator class="my-4 md:my-6" />
 		<!-- <DocsPager {doc} /> -->
 	</div>
 	<div class="hidden text-sm xl:block">
-		<div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-6">
-			<!-- <ScrollArea class="pb-10">
-				<DashboardTableOfContents {toc} />
-			</ScrollArea> -->
-		</div>
+		<div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-6">(TOC HERE)</div>
 	</div>
 </main>

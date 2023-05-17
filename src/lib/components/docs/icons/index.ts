@@ -36,6 +36,7 @@ import Tailwind from "./Tailwind.svelte";
 import Google from "./Google.svelte";
 import Apple from "./Apple.svelte";
 import PayPal from "./PayPal.svelte";
+import RadixSvelte from "./RadixSvelte.svelte";
 
 export type Icon = LucideIcon;
 
@@ -66,7 +67,7 @@ export const Icons = {
 	moon: Moon,
 	laptop: Laptop,
 	gitHub: GitHub,
-	radix: Radix,
+	radix: RadixSvelte,
 	aria: Aria,
 	npm: Npm,
 	yarn: Yarn,
