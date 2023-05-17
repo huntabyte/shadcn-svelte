@@ -1,5 +1,5 @@
 export const siteConfig = {
-	name: "shadcn/ui - Svelte",
+	name: "shadcn/ui/svelte",
 	url: "https://ui.shadcn.com",
 	ogImage: "https://ui.shadcn.com/og.jpg",
 	description: "Beautifully designed components built with Radix UI and Tailwind CSS.",

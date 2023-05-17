@@ -45,20 +45,8 @@
 	<section
 		class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"
 	>
-		<img
-			src="/examples/dashboard-light.png"
-			width={1280}
-			height={866}
-			alt="Dashboard"
-			class="block dark:hidden"
-		/>
-		<img
-			src="/examples/dashboard-dark.png"
-			width={1280}
-			height={866}
-			alt="Dashboard"
-			class="hidden dark:block"
-		/>
+		<img src="" width={1280} height={866} alt="Dashboard" class="block dark:hidden" />
+		<img src="" width={1280} height={866} alt="Dashboard" class="hidden dark:block" />
 	</section>
 	<section class="hidden md:block">
 		<div class="overflow-hidden rounded-lg border bg-background shadow-xl">
