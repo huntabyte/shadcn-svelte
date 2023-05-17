@@ -8,8 +8,8 @@ radix:
 ---
 
 <script>
-    import { AccordionDemo } from '$components/docs/examples/accordion';
-    import ComponentExample from '$components/docs/ComponentExample.svelte';
+    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$ui/accordion';
+    import { AccordionDemo, ComponentExample, Callout } from '$components/docs';
 </script>
 
 <ComponentExample>
@@ -20,4 +20,75 @@ radix:
 
 ```bash
 npx shadcn-ui add accordion
+```
+
+<Accordion type="single" collapsible>
+<AccordionItem value="manual-installation">
+<AccordionTrigger>Manual Installation</AccordionTrigger>
+<AccordionContent>
+Install the `@radix-ui/react-accordion` component from radix-ui:
+
+```bash
+npm install @radix-ui/react-accordion
+```
+
+Copy and paste the following code into your project.
+
+<Callout>
+
+This is the `<Accordion />` primitive. You can place it in a file at `components/ui/accordion.tsx`.
+
+</Callout>
+</AccordionContent>
+</AccordionItem>
+</Accordion>
+
+## tailwind.config.js
+
+Add the following animations to your `tailwind.config.js` file:
+
+Add the following animations to your `tailwind.config.js` file:
+
+```js title="tailwind.config.js" {5-18} /module/
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+	theme: {
+		extend: {
+			keyframes: {
+				"accordion-down": {
+					from: { height: 0 },
+					to: { height: "var(--radix-accordion-content-height)" }
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: 0 }
+				}
+			},
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out"
+			}
+		}
+	}
+};
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+	import {
+		Accordion,
+		AccordionContent,
+		AccordionItem,
+		AccordionTrigger
+	} from "$components/ui/accordion";
+</script>
+
+<Accordion type="single" collapsible>
+	<AccordionItem value="item-1">
+		<AccordionTrigger>Is it accessible?</AccordionTrigger>
+		<AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+	</AccordionItem>
+</Accordion>
 ```
