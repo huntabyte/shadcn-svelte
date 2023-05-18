@@ -47,8 +47,6 @@ This is the `<Accordion />` primitive. You can place it in a file at `components
 
 Add the following animations to your `tailwind.config.js` file:
 
-Add the following animations to your `tailwind.config.js` file:
-
 ```js title="tailwind.config.js" {5-18} /module/
 /** @type {import('tailwindcss').Config} */
 module.exports = {
