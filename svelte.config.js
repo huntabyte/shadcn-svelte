@@ -10,7 +10,7 @@ const config = {
 		preprocess({
 			postcss: true
 		}),
-		mdsvex({ extensions: [".md"], layout: "./src/lib/components/docs/mdsvex/Layout.svelte" })
+		mdsvex({ extensions: [".md"], layout: "./src/lib/components/docs/mdsvex/mdsvex.svelte" })
 	],
 
 	extensions: [".svelte", ".md"],

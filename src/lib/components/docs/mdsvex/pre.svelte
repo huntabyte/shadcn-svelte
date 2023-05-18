@@ -5,8 +5,8 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let rawString: string | undefined = undefined;
-	export let withMeta: string | undefined = undefined;
+	export let __rawString__: string | undefined = undefined;
+	export let __withMeta__: string | undefined = undefined;
 
 	type $$Props = HTMLAttributes<HTMLPreElement>;
 </script>
@@ -17,6 +17,9 @@
 		className
 	)}
 	{...$$restProps}>
-    <CopyButton value={rawString} class={cn("absolute right-4 top-4", withMeta && "top-16")} />
+    <CopyButton
+		value={__rawString__}
+		class={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
+	/>
 	<slot />
 </pre>

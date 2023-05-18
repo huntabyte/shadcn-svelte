@@ -45,8 +45,16 @@
 		"clsx": "^1.2.1",
 		"lucide-svelte": "^0.216.0",
 		"radix-svelte": "^0.5.0",
+		"rehype-autolink-headings": "^6.1.1",
+		"rehype-pretty-code": "^0.9.5",
+		"rehype-slug": "^5.1.0",
+		"remark-code-import": "^1.2.0",
+		"remark-gfm": "^3.0.1",
+		"shiki": "^0.14.2",
 		"svelte-action-balancer": "^1.0.4",
 		"svelte-legos": "^0.2.1",
-		"tailwind-merge": "^1.12.0"
+		"tailwind-merge": "^1.12.0",
+		"unist-builder": "^3.0.1",
+		"unist-util-visit": "^4.1.2"
 	}
 }
