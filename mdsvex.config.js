@@ -1,18 +1,21 @@
 import fs from "fs";
 import path from "path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code-class";
+import rehypePrettyCode from "@huntabyte/rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { u } from "unist-builder";
+import escape from "escape-html";
+import { toHtml } from "hast-util-to-html";
+import { unescape } from "querystring";
 
 /** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: [".md"],
-	layout: "./src/lib/components/docs/mdsvex/mdsvex.svelte",
 	remarkPlugins: [remarkGfm, codeImport],
+	highlight: false,
 	rehypePlugins: [
 		rehypeSlug,
 		rehypeComponent,
@@ -23,17 +26,9 @@ export const mdsvexOptions = {
 					if (codeEl.tagName !== "code") {
 						return;
 					}
-					if (codeEl.data?.meta) {
-						const regex = /event="([^"]*)"/;
-						const match = codeEl.data?.meta.match(regex);
-						if (match) {
-							node.__event__ = match ? match[1] : null;
-							codeEl.data.meta = codeEl.data.meta.replace(regex, "");
-						}
+					for (const child of codeEl.children) {
+						child.value = unescapeSvelte(child.value);
 					}
-
-					node.__rawString__ = codeEl.children?.[0].value;
-					node.__src__ = node.properties?.__src__;
 				}
 			});
 		},
@@ -59,30 +54,32 @@ export const mdsvexOptions = {
 		],
 		() => (tree) => {
 			visit(tree, (node) => {
-				if (node?.type === "element" && node?.tagName === "div") {
-					if (!("data-rehype-pretty-code-fragment" in node.properties)) {
+				if (node?.tagName === "code") {
+					console.log(node);
+				}
+				if (node?.type === "element" && node?.tagName === "pre") {
+					// const escapedValue = escapeSvelte(escape(node.value));
+					const [codeEl] = node.children;
+					if (codeEl.tagName !== "code") {
 						return;
 					}
-
-					const preElement = node.children.at(-1);
-					if (preElement.tagName !== "pre") {
-						return;
+					for (const child of codeEl.children) {
+						if (child.type === "element" && child.tagName === "span") {
+							console.log(JSON.stringify(child, null, 2));
+						}
 					}
 
-					preElement.properties["__withMeta__"] = node.children.at(0).tagName === "div";
-					preElement.properties["__rawString__"] = node.__rawString__;
-
-					if (node.__src__) {
-						preElement.properties["__src__"] = node.__src__;
-					}
-
-					if (node.__event__) {
-						preElement.properties["__event__"] = node.__event__;
-					}
+					const toHtmlString = toHtml(codeEl.children, {
+						allowDangerousCharacters: true,
+						allowDangerousHtml: true
+					});
+					console.log(unescapeSvelte(toHtmlString));
+					codeEl.type = "raw";
+					codeEl.value = `{@html \`${toHtmlString}\`}`;
 				}
 			});
 		},
-		rehypeNpmCommand,
+
 		[
 			rehypeAutolinkHeadings,
 			{
@@ -94,10 +91,21 @@ export const mdsvexOptions = {
 		]
 	]
 };
-function escapeSvelte(str) {
+
+function unescapeSvelte(str) {
+	const reverseMap = {
+		"&#123;": "{",
+		"&#125;": "}",
+		"&#96;": "`",
+		"&#92;": "\\"
+	};
+
 	return str
-		.replace(/[{}`]/g, (c) => ({ "{": "&#123;", "}": "&#125;", "`": "&#96;" }[c]))
-		.replace(/\\([trn])/g, "&#92;$1");
+		.replace(/&#92;([trn])/g, (match, escapeSeq) => `\\${escapeSeq}`)
+		.replace(
+			/&#92;&#123;|&#92;&#125;|&#92;&#96;|&#123;|&#125;|&#96;/g,
+			(match) => reverseMap[match]
+		);
 }
 
 function rehypeNpmCommand() {

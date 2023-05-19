@@ -7,44 +7,6 @@ radix:
   api: https://www.radix-svelte.com/docs/accordion
 ---
 
-<script>
-    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$ui/accordion';
-    import { AccordionDemo, ComponentExample, Callout } from '$components/docs';
-</script>
-
-<ComponentExample>
-    <AccordionDemo />
-</ComponentExample>
-
-## Installation
-
-```bash
-npx shadcn-ui add accordion
-```
-
-<Accordion type="single" collapsible>
-<AccordionItem value="manual-installation">
-<AccordionTrigger>Manual Installation</AccordionTrigger>
-<AccordionContent>
-Install the `@radix-ui/react-accordion` component from radix-ui:
-
-```bash
-npm install @radix-ui/react-accordion
-```
-
-Copy and paste the following code into your project.
-
-<Callout>
-
-This is the `<Accordion />` primitive. You can place it in a file at `components/ui/accordion.tsx`.
-
-</Callout>
-</AccordionContent>
-</AccordionItem>
-</Accordion>
-
-## tailwind.config.js
-
 Add the following animations to your `tailwind.config.js` file:
 
 ```js title="tailwind.config.js" {5-18} /module/
@@ -69,24 +31,4 @@ module.exports = {
 		}
 	}
 };
-```
-
-## Usage
-
-```svelte
-<script lang="ts">
-	import {
-		Accordion,
-		AccordionContent,
-		AccordionItem,
-		AccordionTrigger
-	} from "$components/ui/accordion";
-</script>
-
-<Accordion type="single" collapsible>
-	<AccordionItem value="item-1">
-		<AccordionTrigger>Is it accessible?</AccordionTrigger>
-		<AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-	</AccordionItem>
-</Accordion>
 ```
