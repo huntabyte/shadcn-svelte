@@ -1,21 +1,18 @@
 import fs from "fs";
 import path from "path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "@huntabyte/rehype-pretty-code";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { u } from "unist-builder";
-import escape from "escape-html";
 import { toHtml } from "hast-util-to-html";
-import { unescape } from "querystring";
 
 /** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: [".md"],
 	remarkPlugins: [remarkGfm, codeImport],
-	highlight: false,
 	rehypePlugins: [
 		rehypeSlug,
 		rehypeComponent,
@@ -54,9 +51,6 @@ export const mdsvexOptions = {
 		],
 		() => (tree) => {
 			visit(tree, (node) => {
-				if (node?.tagName === "code") {
-					console.log(node);
-				}
 				if (node?.type === "element" && node?.tagName === "pre") {
 					// const escapedValue = escapeSvelte(escape(node.value));
 					const [codeEl] = node.children;
@@ -65,7 +59,6 @@ export const mdsvexOptions = {
 					}
 					for (const child of codeEl.children) {
 						if (child.type === "element" && child.tagName === "span") {
-							console.log(JSON.stringify(child, null, 2));
 						}
 					}
 
@@ -73,7 +66,6 @@ export const mdsvexOptions = {
 						allowDangerousCharacters: true,
 						allowDangerousHtml: true
 					});
-					console.log(unescapeSvelte(toHtmlString));
 					codeEl.type = "raw";
 					codeEl.value = `{@html \`${toHtmlString}\`}`;
 				}
