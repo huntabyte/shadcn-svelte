@@ -12,20 +12,21 @@ import { toHtml } from "hast-util-to-html";
 /** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: [".md"],
+	layout: "./src/lib/components/docs/mdsvex/mdsvex.svelte",
 	remarkPlugins: [remarkGfm, codeImport],
 	rehypePlugins: [
 		rehypeSlug,
-		rehypeComponent,
 		() => (tree) => {
 			visit(tree, (node) => {
-				if (node?.type === "element" && node?.tagName === "pre") {
-					const [codeEl] = node.children;
-					if (codeEl.tagName !== "code") {
-						return;
-					}
-					for (const child of codeEl.children) {
-						child.value = unescapeSvelte(child.value);
-					}
+				if (node?.type === "element" && node?.tagName === "Components.pre") {
+					node.tagName = "pre";
+					// const [codeEl] = node.children;
+					// if (codeEl.tagName !== "code") {
+					// 	return;
+					// }
+					// for (const child of codeEl.children) {
+					// 	child.value = unescapeSvelte(child.value);
+					// }
 				}
 			});
 		},
@@ -51,23 +52,28 @@ export const mdsvexOptions = {
 		],
 		() => (tree) => {
 			visit(tree, (node) => {
-				if (node?.type === "element" && node?.tagName === "pre") {
+				if (
+					node?.type === "element" &&
+					(node?.tagName === "Components.pre" || node?.tagName === "pre")
+				) {
 					// const escapedValue = escapeSvelte(escape(node.value));
 					const [codeEl] = node.children;
 					if (codeEl.tagName !== "code") {
 						return;
 					}
-					for (const child of codeEl.children) {
-						if (child.type === "element" && child.tagName === "span") {
-						}
-					}
-
-					const toHtmlString = toHtml(codeEl.children, {
+					const toHtmlString = toHtml(codeEl, {
 						allowDangerousCharacters: true,
 						allowDangerousHtml: true
 					});
 					codeEl.type = "raw";
 					codeEl.value = `{@html \`${toHtmlString}\`}`;
+				}
+			});
+		},
+		() => (tree) => {
+			visit(tree, (node) => {
+				if (node?.type === "element" && node?.tagName === "pre") {
+					node.tagName = "Components.pre";
 				}
 			});
 		},

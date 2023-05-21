@@ -7,9 +7,6 @@
 	type $$Props = HTMLAttributes<HTMLHeadingElement>;
 </script>
 
-<h3
-	class={cn("font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight", className)}
-	{...$$restProps}
->
+<h3 class={cn("mt-8 scroll-m-20 text-xl font-semibold tracking-tight", className)} {...$$restProps}>
 	<slot />
 </h3>

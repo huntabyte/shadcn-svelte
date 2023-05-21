@@ -4,6 +4,7 @@
 	import { badgeVariants } from "$components/ui/badge";
 	import { balancer } from "svelte-action-balancer";
 	import { Separator } from "$ui/separator";
+	import MdsvexComponent from "$components/docs/mdsvex/mdsvex.svelte";
 
 	import { cn } from "$lib/utils";
 
@@ -60,9 +61,7 @@
 		{/if}
 		<Separator class="my-4 md:my-6" />
 		<div class="mdsvex">
-			<div class="mdsvex">
-				<svelte:component this={component} />
-			</div>
+			<svelte:component this={component} />
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
 		<Separator class="my-4 md:my-6" />

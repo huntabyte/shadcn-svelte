@@ -17,9 +17,7 @@
 		className
 	)}
 	{...$$restProps}>
-    <CopyButton
-		value={__rawString__}
-		class={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-	/>
+    
 	<slot />
 </pre>
+<CopyButton value={__rawString__} class={cn("absolute right-4 top-16")} />

@@ -1,5 +1,9 @@
+.mdsvex code {
+	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
+}
+
 [data-theme="light"] {
-	display: block;
+	display: flex;
 }
 
 [data-theme="dark"] {
@@ -11,7 +15,7 @@
 }
 
 .dark [data-theme="dark"] {
-	display: block;
+	display: flex;
 }
 
 [data-rehype-pretty-code-fragment] {

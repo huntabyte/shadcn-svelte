@@ -13,7 +13,9 @@ radix:
 </script>
 
 <ComponentExample>
+    <div style="max-width: 70%; width: 100%;">
     <AccordionDemo />
+    </div>
 </ComponentExample>
 
 ## Installation
