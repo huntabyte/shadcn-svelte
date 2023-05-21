@@ -65,12 +65,7 @@ export const mdsvexOptions = {
 					}
 
 					if (node.children.at(0).tagName === "div") {
-						console.log(node.children.at(0));
-						console.log(node);
 						node.properties["data-metadata"] = "";
-						console.log(node);
-						// node.data = node.data || {};
-						// node.data.meta = "true";
 					}
 				}
 			});
