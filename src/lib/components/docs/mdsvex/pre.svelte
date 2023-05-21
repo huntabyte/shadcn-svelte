@@ -6,7 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let __rawString__: string | undefined = undefined;
-	export let __withMeta__: string | undefined = undefined;
 
 	type $$Props = HTMLAttributes<HTMLPreElement>;
 </script>
