@@ -54,6 +54,24 @@ export const mdsvexOptions = {
 		],
 		() => (tree) => {
 			visit(tree, (node) => {
+				if (node?.type === "element" && node?.tagName === "div") {
+					if (!("data-rehype-pretty-code-fragment" in node.properties)) {
+						return;
+					}
+
+					const preElement = node.children.at(-1);
+					if (preElement.tagName !== "pre") {
+						return;
+					}
+
+					if (node.children.at(0).tagName === "div") {
+						node.properties.className.push("with--meta");
+					}
+				}
+			});
+		},
+		() => (tree) => {
+			visit(tree, (node) => {
 				if (
 					node?.type === "element" &&
 					(node?.tagName === "Components.pre" || node?.tagName === "pre")
