@@ -9,7 +9,7 @@ radix:
 
 <script>
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$ui/accordion';
-    import { AccordionDemo, ComponentExample, Callout } from '$components/docs';
+    import { AccordionDemo, ComponentExample, CodeBlockWrapper, ComponentSource, Callout } from '$components/docs';
 </script>
 
 <ComponentExample>
@@ -28,6 +28,7 @@ npx shadcn-ui add accordion
 <AccordionItem value="manual-installation">
 <AccordionTrigger>Manual Installation</AccordionTrigger>
 <AccordionContent>
+
 1. Install the `@radix-ui/react-accordion` component from radix-ui:
 
 ```bash
@@ -36,9 +37,27 @@ npm install @radix-ui/react-accordion
 
 2. Copy and paste the following code into your project.
 
+<CodeBlockWrapper>
+
+```svelte
+<script lang="ts">
+  import { Accordion as AccordionPrimitive, type AccordionRootProps } from "radix-svelte";
+
+  export let value: any = undefined;
+  export let type: AccordionRootProps["type"] = "single";
+  export let disabled: AccordionRootProps["disabled"] = undefined;
+</script>
+
+<AccordionPrimitive.Root bind:value {type} {disabled} {...$$restProps}>
+  <slot />
+</AccordionPrimitive.Root>
+```
+
+</CodeBlockWrapper>
+
 <Callout>
 
-This is the `<Accordion />` primitive. You can place it in a file at `components/ui/accordion.tsx`.
+This is the `<Accordion />` primitive. You can place it in a file at `components/ui/accordion.ts`.
 
 </Callout>
 </AccordionContent>

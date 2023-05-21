@@ -1,5 +1,7 @@
 import Callout from "./Callout.svelte";
 import ComponentExample from "./ComponentExample.svelte";
+import CodeBlockWrapper from "./CodeBlockWrapper.svelte";
+import ComponentSource from "./ComponentSource.svelte";
 import CopyButton from "./CopyButton.svelte";
 import SiteFooter from "./SiteFooter.svelte";
 import SiteHeader from "./SiteHeader.svelte";
@@ -9,4 +11,13 @@ export * from "./examples";
 export * from "./icons";
 export * from "./page-header";
 export * from "./nav";
-export { Callout, ComponentExample, CopyButton, SiteFooter, SiteHeader, TailwindIndicator };
+export {
+	Callout,
+	CodeBlockWrapper,
+	ComponentExample,
+	ComponentSource,
+	CopyButton,
+	SiteFooter,
+	SiteHeader,
+	TailwindIndicator
+};

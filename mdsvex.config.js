@@ -13,20 +13,22 @@ import { toHtml } from "hast-util-to-html";
 export const mdsvexOptions = {
 	extensions: [".md"],
 	layout: "./src/lib/components/docs/mdsvex/mdsvex.svelte",
+	smartypants: {
+		quotes: false,
+		ellipses: false,
+		backticks: false,
+		dashes: false
+	},
 	remarkPlugins: [remarkGfm, codeImport],
 	rehypePlugins: [
 		rehypeSlug,
 		() => (tree) => {
 			visit(tree, (node) => {
+				if (node?.tagName === "Component.pre" || node?.tagName === "pre") {
+					// console.log(JSON.stringify(node, null, 2));
+				}
 				if (node?.type === "element" && node?.tagName === "Components.pre") {
 					node.tagName = "pre";
-					// const [codeEl] = node.children;
-					// if (codeEl.tagName !== "code") {
-					// 	return;
-					// }
-					// for (const child of codeEl.children) {
-					// 	child.value = unescapeSvelte(child.value);
-					// }
 				}
 			});
 		},
@@ -109,7 +111,7 @@ function unescapeSvelte(str) {
 function rehypeNpmCommand() {
 	return (tree) => {
 		visit(tree, (node) => {
-			if (node.type !== "element" || node?.tagName !== "pre") {
+			if (node.type !== "element" || node?.tagName !== "pre" || node?.tagName !== "Component.pre") {
 				return;
 			}
 
@@ -145,8 +147,38 @@ function rehypeNpmCommand() {
 
 function rehypeComponent() {
 	return async (tree) => {
-		visit(tree, (node) => {
-			const { value: src } = getNodeAttributeByName(node, "src") || {};
+		visit(tree, (node, index, parent) => {
+			const srcRegex = /src="([^"]+)"/;
+			if (node?.tagName === "p" || node?.tagName === "Components.p") {
+				console.log(node.children[0].value);
+				const match = node.children[0].value.match(srcRegex);
+				const src = match ? match[1] : null;
+				if (!src) {
+					return;
+				}
+				const source = getComponentSourceFileContent(src);
+				const preNode = u("element", {
+					tagName: "pre",
+					properties: {
+						__src__: src
+					},
+					children: [
+						u("element", {
+							tagName: "code",
+							properties: {
+								className: ["language-svelte"]
+							},
+							children: [
+								{
+									type: "text",
+									value: source
+								}
+							]
+						})
+					]
+				});
+				parent.children.splice(index, 1, preNode);
+			}
 
 			if (node.name === "ComponentExample") {
 				const source = getComponentSourceFileContent(node);
@@ -259,9 +291,7 @@ function getNodeAttributeByName(node, name) {
 	return node.attributes?.find((attribute) => attribute.name === name);
 }
 
-function getComponentSourceFileContent(node) {
-	const src = getNodeAttributeByName(node, "src")?.value;
-
+function getComponentSourceFileContent(src = undefined) {
 	if (!src) {
 		return null;
 	}

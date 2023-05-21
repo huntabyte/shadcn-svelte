@@ -3,7 +3,7 @@
 }
 
 [data-theme="light"] {
-	display: flex;
+	display: block;
 }
 
 [data-theme="dark"] {
@@ -15,7 +15,7 @@
 }
 
 .dark [data-theme="dark"] {
-	display: flex;
+	display: block;
 }
 
 [data-rehype-pretty-code-fragment] {
