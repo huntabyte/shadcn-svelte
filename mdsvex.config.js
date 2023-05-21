@@ -53,7 +53,7 @@ export const mdsvexOptions = {
 			}
 		],
 		() => (tree) => {
-			visit(tree, (node, index, parent) => {
+			visit(tree, (node) => {
 				if (node?.type === "element" && node?.tagName === "div") {
 					if (!("data-rehype-pretty-code-fragment" in node.properties)) {
 						return;
