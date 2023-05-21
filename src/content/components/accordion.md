@@ -13,9 +13,9 @@ radix:
 </script>
 
 <ComponentExample>
-    <div style="max-width: 70%; width: 100%;">
-    <AccordionDemo />
-    </div>
+  <div style="max-width: 70%; width: 100%;">
+  <AccordionDemo />
+  </div>
 </ComponentExample>
 
 ## Installation
@@ -28,13 +28,13 @@ npx shadcn-ui add accordion
 <AccordionItem value="manual-installation">
 <AccordionTrigger>Manual Installation</AccordionTrigger>
 <AccordionContent>
-Install the `@radix-ui/react-accordion` component from radix-ui:
+1. Install the `@radix-ui/react-accordion` component from radix-ui:
 
 ```bash
 npm install @radix-ui/react-accordion
 ```
 
-Copy and paste the following code into your project.
+2. Copy and paste the following code into your project.
 
 <Callout>
 
@@ -52,24 +52,24 @@ Add the following animations to your `tailwind.config.js` file:
 ```js title="tailwind.config.js" {5-18} /module/
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	theme: {
-		extend: {
-			keyframes: {
-				"accordion-down": {
-					from: { height: 0 },
-					to: { height: "var(--radix-accordion-content-height)" }
-				},
-				"accordion-up": {
-					from: { height: "var(--radix-accordion-content-height)" },
-					to: { height: 0 }
-				}
-			},
-			animation: {
-				"accordion-down": "accordion-down 0.2s ease-out",
-				"accordion-up": "accordion-up 0.2s ease-out"
-			}
-		}
-	}
+  theme: {
+    extend: {
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" }
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 }
+        }
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out"
+      }
+    }
+  }
 };
 ```
 
@@ -77,18 +77,18 @@ module.exports = {
 
 ```svelte
 <script lang="ts">
-	import {
-		Accordion,
-		AccordionContent,
-		AccordionItem,
-		AccordionTrigger
-	} from "$components/ui/accordion";
+  import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+  } from "$components/ui/accordion";
 </script>
 
 <Accordion type="single" collapsible>
-	<AccordionItem value="item-1">
-		<AccordionTrigger>Is it accessible?</AccordionTrigger>
-		<AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-	</AccordionItem>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
 </Accordion>
 ```
