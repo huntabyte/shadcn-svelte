@@ -53,7 +53,7 @@ export const mdsvexOptions = {
 			}
 		],
 		() => (tree) => {
-			visit(tree, (node) => {
+			visit(tree, (node, index, parent) => {
 				if (node?.type === "element" && node?.tagName === "div") {
 					if (!("data-rehype-pretty-code-fragment" in node.properties)) {
 						return;
@@ -65,7 +65,12 @@ export const mdsvexOptions = {
 					}
 
 					if (node.children.at(0).tagName === "div") {
-						node.properties.className.push("with--meta");
+						console.log(node.children.at(0));
+						console.log(node);
+						node.properties["data-metadata"] = "";
+						console.log(node);
+						// node.data = node.data || {};
+						// node.data.meta = "true";
 					}
 				}
 			});

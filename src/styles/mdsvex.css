@@ -46,8 +46,16 @@
 	text-align: right;
 }
 
+[data-metadata] .pre-copy-btn {
+	@apply top-16 !important;
+}
+
 [data-rehype-pretty-code-fragment] .line--highlighted {
 	@apply bg-muted;
+}
+
+[data-rehype-pretty-code-fragment] .with--meta {
+	@apply top-16 !important;
 }
 
 [data-rehype-pretty-code-fragment] .line-highlighted span {
