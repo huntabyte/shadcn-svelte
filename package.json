@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@huntabyte/mdsvex": "^0.10.6",
 		"class-variance-authority": "^0.6.0",
 		"clsx": "^1.2.1",
 		"escape-html": "^1.0.3",
