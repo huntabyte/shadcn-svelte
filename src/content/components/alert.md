@@ -60,10 +60,10 @@ npx shadcn-ui add alert
 
 ### Destructive
 
-<ComponentExample src="src/lib/components/docs/examples/alert/AlertDestructiveDemo.svelte">
+<ComponentExample src="src/lib/components/docs/examples/alert/AlertDemoDestructive.svelte">
 
 <div slot="example" style="width: 100%;">
-<AlertDestructiveDemo />
+<AlertDemoDestructive />
 </div>
 
 </ComponentExample>

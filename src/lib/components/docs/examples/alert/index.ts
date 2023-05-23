@@ -1,4 +1,4 @@
 import AlertDemo from "./AlertDemo.svelte";
-import AlertDestructiveDemo from "./AlertDestructiveDemo.svelte";
+import AlertDemoDestructive from "./AlertDemoDestructive.svelte";
 
-export { AlertDemo, AlertDestructiveDemo };
+export { AlertDemo, AlertDemoDestructive };
