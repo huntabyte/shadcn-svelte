@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/
 ---
 
 <script>
-  import { AlertDemo, AlertDestructiveDemo, ComponentExample, ManualInstall } from '$components/docs';
+  import { AlertDemo, AlertDemoDestructive, ComponentExample, ManualInstall } from '$components/docs';
 </script>
 
 <ComponentExample src="src/lib/components/docs/examples/alert/AlertDemo.svelte">
