@@ -13,7 +13,7 @@ radix: https://www.radix-svelte.com/docs/accordion
 
 <ComponentExample src="src/lib/components/docs/examples/accordion/AccordionDemo.svelte">
 
-<div slot="example" class="max-w-[70%] w-full">
+<div slot="example" style="max-width: 70%; width: 100%;">
 <AccordionDemo />
 </div>
 

@@ -41,12 +41,10 @@
       </div>
     </TabsContent>
     <TabsContent value="code">
-      <div class="flex flex-col space-y-4">
-        <div
-          class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
-        >
-          <slot />
-        </div>
+      <div
+        class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
+      >
+        <slot />
       </div>
     </TabsContent>
   </Tabs>
