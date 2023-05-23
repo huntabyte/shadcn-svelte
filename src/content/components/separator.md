@@ -40,7 +40,7 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import { Separator } from "@/components/ui/separator";
+  import { Separator } from "$components/ui/separator";
 </script>
 ```
 
