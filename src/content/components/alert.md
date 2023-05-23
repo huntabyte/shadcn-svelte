@@ -1,12 +1,11 @@
 ---
 title: Alert
-description: A vertically stacked set of interactive headings that each reveal a section of content.
+description: Displays a callout for user attention.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/alert
 ---
 
 <script>
-  import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$ui/accordion';
   import { AlertDemo, AlertDestructiveDemo, ComponentExample, ManualInstall } from '$components/docs';
 </script>
 
@@ -34,9 +33,11 @@ npx shadcn-ui add alert
 
 ```svelte
 <script lang="ts">
-  import { Alert, AlertDescription, AlertTitle } from "$ui/alert";
+  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
 </script>
+```
 
+```svelte
 <Alert>
   <AlertTitle>Heads up!</AlertTitle>
   <AlertDescription>

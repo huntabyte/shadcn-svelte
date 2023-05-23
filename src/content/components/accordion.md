@@ -47,7 +47,9 @@ npm install radix-svelte
     AccordionTrigger
   } from "$components/ui/accordion";
 </script>
+```
 
+```svelte
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <AccordionTrigger>Is it accessible?</AccordionTrigger>

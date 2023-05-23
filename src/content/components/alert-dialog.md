@@ -1,6 +1,7 @@
 ---
 title: Alert Dialog
-description: A vertically stacked set of interactive headings that each reveal a section of content.
+description: A modal dialog that interrupts the user with important content and expects a response.
+featured: true
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/alert-dialog
 radix: https://https://www.radix-svelte.com/docs/alert-dialog
