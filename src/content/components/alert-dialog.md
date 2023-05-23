@@ -27,7 +27,7 @@ npx shadcn-ui add alert-dialog
 
 <ManualInstall>
 
-1. Install the `radix-svelte`:
+1. Install `radix-svelte`:
 
 ```bash
 npm install radix-svelte

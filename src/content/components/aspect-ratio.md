@@ -26,7 +26,7 @@ npx shadcn-ui add aspect-ratio
 
 <ManualInstall>
 
-1. Install the `radix-svelte`:
+1. Install `radix-svelte`:
 
 ```bash
 npm install radix-svelte
