@@ -29,10 +29,10 @@ npx shadcn-ui add accordion
 <AccordionTrigger>Manual Installation</AccordionTrigger>
 <AccordionContent>
 
-1. Install the `@radix-ui/react-accordion` component from radix-ui:
+1. Install the `radix-svelte`:
 
 ```bash
-npm install @radix-ui/react-accordion
+npm install radix-svelte
 ```
 
 2. Copy and paste the following code into your project.
