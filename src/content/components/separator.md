@@ -12,7 +12,7 @@ radix: https://www.radix-svelte.com/docs/separator
 
 <ComponentExample src="src/lib/components/docs/examples/separator/SeparatorDemo.svelte">
 
-<div slot="example" style="width: 60%;">
+<div slot="example">
 <SeparatorDemo />
 </div>
 
@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/separator
 ## Installation
 
 ```bash
-npx shadcn-ui add progress
+npx shadcn-ui add separator
 ```
 
 <ManualInstall>

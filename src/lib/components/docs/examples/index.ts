@@ -13,3 +13,4 @@ export * from "./input";
 export * from "./label";
 export * from "./progress";
 export * from "./separator";
+export * from "./switch";
