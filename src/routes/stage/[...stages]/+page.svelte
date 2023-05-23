@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { StagePage } from "svelte-stage";
+  import { StagePage } from "svelte-stage";
 </script>
 
 <StagePage />

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { StageLayout, type loadStageData } from "svelte-stage";
+  import { StageLayout, type loadStageData } from "svelte-stage";
 
-	export let data: ReturnType<typeof loadStageData>;
+  export let data: ReturnType<typeof loadStageData>;
 </script>
 
 <StageLayout {data}>
-	<slot />
+  <slot />
 </StageLayout>

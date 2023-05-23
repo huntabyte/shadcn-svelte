@@ -12,12 +12,12 @@ export * from "./icons";
 export * from "./page-header";
 export * from "./nav";
 export {
-	Callout,
-	CodeBlockWrapper,
-	ComponentExample,
-	ComponentSource,
-	CopyButton,
-	SiteFooter,
-	SiteHeader,
-	TailwindIndicator
+  Callout,
+  CodeBlockWrapper,
+  ComponentExample,
+  ComponentSource,
+  CopyButton,
+  SiteFooter,
+  SiteHeader,
+  TailwindIndicator
 };

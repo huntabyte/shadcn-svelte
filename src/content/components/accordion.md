@@ -11,10 +11,12 @@ radix: https://www.radix-svelte.com/docs/accordion
     import { AccordionDemo, ComponentExample, CodeBlockWrapper, ComponentSource, Callout } from '$components/docs';
 </script>
 
-<ComponentExample>
-  <div style="max-width: 70%; width: 100%;">
-  <AccordionDemo />
-  </div>
+<ComponentExample src="src/lib/components/docs/examples/accordion/AccordionDemo.svelte">
+
+<div slot="example" class="max-w-[70%] w-full">
+<AccordionDemo />
+</div>
+
 </ComponentExample>
 
 ## Installation

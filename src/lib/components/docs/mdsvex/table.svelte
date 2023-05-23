@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { cn } from "$lib/utils";
-	import type { HTMLTableAttributes } from "svelte/elements";
+  import { cn } from "$lib/utils";
+  import type { HTMLTableAttributes } from "svelte/elements";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	type $$Props = HTMLTableAttributes;
+  let className: string | undefined | null = undefined;
+  export { className as class };
+  type $$Props = HTMLTableAttributes;
 </script>
 
 <div class="my-6 w-full overflow-y-auto">
-	<table class={cn("w-full", className)} {...$$restProps}>
-		<slot />
-	</table>
+  <table class={cn("w-full", className)} {...$$restProps}>
+    <slot />
+  </table>
 </div>
