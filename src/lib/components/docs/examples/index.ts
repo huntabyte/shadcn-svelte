@@ -16,3 +16,4 @@ export * from "./separator";
 export * from "./switch";
 export * from "./table";
 export * from "./tabs";
+export * from "./textarea";
