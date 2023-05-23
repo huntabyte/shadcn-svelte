@@ -27,7 +27,13 @@ npx shadcn-ui add alert-dialog
 
 <ManualInstall>
 
-1. Copy and paste the component source files linked at the top of this page into your project.
+1. Install the `radix-svelte`:
+
+```bash
+npm install radix-svelte
+```
+
+2. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 
