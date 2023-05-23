@@ -2,9 +2,8 @@
 title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
-radix:
-  link: https://www.radix-svelte.com/docs/accordion
-  api: https://www.radix-svelte.com/docs/accordion
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/accordion
+radix: https://www.radix-svelte.com/docs/accordion
 ---
 
 <script>
@@ -35,87 +34,7 @@ npx shadcn-ui add accordion
 npm install radix-svelte
 ```
 
-2. Copy and paste the following code into your project.
-
-<CodeBlockWrapper>
-
-```svelte title="Accordion.svelte"
-<script lang="ts">
-  import { Accordion as AccordionPrimitive, type AccordionRootProps } from "radix-svelte";
-
-  export let value: any = undefined;
-  export let type: AccordionRootProps["type"] = "single";
-  export let disabled: AccordionRootProps["disabled"] = undefined;
-</script>
-
-<AccordionPrimitive.Root bind:value {type} {disabled} {...$$restProps}>
-  <slot />
-</AccordionPrimitive.Root>
-```
-
-```svelte title="AccordionContent.svelte"
-<script lang="ts">
-  import { Accordion as AccordionPrimitive, type AccordionContentProps } from "radix-svelte";
-  import { cn } from "$lib/utils";
-
-  let className: string | undefined | null = undefined;
-  export { className as class };
-  export let transition: AccordionContentProps["transition"] = true;
-
-  type $$Props = AccordionContentProps;
-</script>
-
-<AccordionPrimitive.Content
-  class={cn("overflow-hidden text-sm", className)}
-  {...$$restProps}
-  {transition}
->
-  <div class="pb-4 pt-0">
-    <slot />
-  </div>
-</AccordionPrimitive.Content>
-```
-
-```svelte title="AccordionItem.svelte"
-<script lang="ts">
-  import { Accordion as AccordionPrimitive, type AccordionItemProps } from "radix-svelte";
-  import { cn } from "$lib/utils";
-
-  let className: string | undefined | null = undefined;
-  export { className as class };
-  export let value: AccordionItemProps["value"];
-</script>
-
-<AccordionPrimitive.Item {value} class={cn("border-b", className)} {...$$restProps}>
-  <slot />
-</AccordionPrimitive.Item>
-```
-
-```svelte title="AccordionTrigger.svelte"
-<script lang="ts">
-  import { Accordion as AccordionPrimitive } from "radix-svelte";
-  import { ChevronDown } from "lucide-svelte";
-  import { cn } from "$lib/utils";
-
-  let className: string | undefined | null = undefined;
-  export { className as class };
-</script>
-
-<AccordionPrimitive.Header class="flex">
-  <AccordionPrimitive.Trigger
-    class={cn(
-      "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-      className
-    )}
-    {...$$restProps}
-  >
-    <slot />
-    <ChevronDown class="h-4 w-4 transition-transform duration-200" />
-  </AccordionPrimitive.Trigger>
-</AccordionPrimitive.Header>
-```
-
-</CodeBlockWrapper>
+2. Copy and paste the component source files linked at the top of this page into your project.
 
 <Callout>
 

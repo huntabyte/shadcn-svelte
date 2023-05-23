@@ -4,7 +4,6 @@
 	import { badgeVariants } from "$components/ui/badge";
 	import { balancer } from "svelte-action-balancer";
 	import { Separator } from "$ui/separator";
-	import MdsvexComponent from "$components/docs/mdsvex/mdsvex.svelte";
 
 	import { cn } from "$lib/utils";
 
@@ -34,9 +33,20 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.radix}
+		{#if doc.source || doc.radix}
 			<div class="flex items-center space-x-2 pt-4">
-				{#if doc.radix?.link}
+				{#if doc.source}
+					<a
+						href={doc.source}
+						target="_blank"
+						rel="noreferrer"
+						class={cn(badgeVariants({ variant: "secondary" }))}
+					>
+						<Icons.gitHub class="mr-1 h-3 w-3" />
+						Component Source
+					</a>
+				{/if}
+				{#if doc.radix}
 					<a
 						href={doc.radix.link}
 						target="_blank"
@@ -44,17 +54,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
 						<Icons.radix class="mr-1 h-3 w-3" />
-						Radix Svelte
-					</a>
-				{/if}
-				{#if doc.radix?.api}
-					<a
-						href={doc.radix.api}
-						target="_blank"
-						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }))}
-					>
-						API Reference
+						Radix Svelte Reference
 					</a>
 				{/if}
 			</div>

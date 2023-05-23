@@ -31,6 +31,7 @@ export type FrontMatter = {
 	title: string;
 	description: string;
 	component: boolean;
+	source: string;
 	radix: {
 		link: string;
 		api: string;
