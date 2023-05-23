@@ -21,7 +21,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/
 ## Installation
 
 ```bash
-npx shadcn-ui add accordion
+npx shadcn-ui add alert
 ```
 
 <ManualInstall>
