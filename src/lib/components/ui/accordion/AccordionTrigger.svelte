@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive, type AccordionTriggerProps } from "radix-svelte";
+	import { Accordion as AccordionPrimitive } from "radix-svelte";
 	import { ChevronDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
