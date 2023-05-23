@@ -7,8 +7,7 @@ radix: https://www.radix-svelte.com/docs/accordion
 ---
 
 <script>
-    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$ui/accordion';
-    import { AccordionDemo, ComponentExample, CodeBlockWrapper, ComponentSource, Callout } from '$components/docs';
+    import { AccordionDemo, ComponentExample, ManualInstall } from '$components/docs';
 </script>
 
 <ComponentExample src="src/lib/components/docs/examples/accordion/AccordionDemo.svelte">
@@ -25,10 +24,7 @@ radix: https://www.radix-svelte.com/docs/accordion
 npx shadcn-ui add accordion
 ```
 
-<Accordion type="single" collapsible>
-<AccordionItem value="manual-installation">
-<AccordionTrigger>Manual Installation</AccordionTrigger>
-<AccordionContent>
+<ManualInstall>
 
 1. Install the `radix-svelte`:
 
@@ -38,14 +34,7 @@ npm install radix-svelte
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
-<Callout>
-
-This is the `<Accordion />` primitive. You can place it in a file at `components/ui/accordion.ts`.
-
-</Callout>
-</AccordionContent>
-</AccordionItem>
-</Accordion>
+</ManualInstall>
 
 ## Usage
 
@@ -62,7 +51,9 @@ This is the `<Accordion />` primitive. You can place it in a file at `components
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
   </AccordionItem>
 </Accordion>
 ```
