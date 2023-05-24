@@ -102,4 +102,5 @@ web_modules/
 .yarn/install-state.gz
 .pnp.*
 packages/cli/dist
+dist/
 dist
