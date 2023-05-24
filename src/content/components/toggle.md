@@ -119,5 +119,3 @@ npm install radix-svelte
 </div>
 
 </ComponentExample>
-
----

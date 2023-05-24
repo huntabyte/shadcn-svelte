@@ -172,13 +172,12 @@ export const docsConfig: DocsConfig = {
         {
           title: "Dropdown Menu",
           href: "",
-          label: "Soon",
           items: []
         },
         {
           title: "Hover Card",
-          href: "",
-          label: "Soon",
+          href: "/docs/components/hover-card",
+          label: "New",
           items: []
         },
         {
