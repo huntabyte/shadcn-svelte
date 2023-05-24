@@ -2,7 +2,7 @@ import fetch from "node-fetch"
 import * as z from "zod"
 
 const baseUrl =
-    process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173/api/components"
+    process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173"
 
 const componentSchema = z.object({
     component: z.string(),

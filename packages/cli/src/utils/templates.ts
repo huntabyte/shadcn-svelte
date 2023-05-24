@@ -88,7 +88,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 `;
 
-export const TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */
+export const TAILWIND_CONFIG = `const { fontFamily } = require("tailwindcss/defaultTheme")
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
