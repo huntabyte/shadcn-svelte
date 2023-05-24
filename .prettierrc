@@ -1,5 +1,6 @@
 {
   "useTabs": false,
+  "tabWidth": 2,
   "singleQuote": false,
   "trailingComma": "none",
   "printWidth": 80,
@@ -19,6 +20,13 @@
     },
     {
       "files": "*.md",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.ts",
       "options": {
         "useTabs": false,
         "tabWidth": 2

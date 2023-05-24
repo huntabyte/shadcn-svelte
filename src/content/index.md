@@ -1,0 +1,72 @@
+---
+title: Introduction
+description: Re-usable components built using Radix UI and Tailwind CSS.
+---
+
+<script>
+  import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '$components/ui/accordion';
+</script>
+
+This is **NOT** a component library. It's a collection of re-usable components that you can copy and paste into your apps.
+
+**What do you mean by not a component library?**
+
+I mean you do not install it as a dependency. It is not available or distributed via npm. I have no plans to publish it as an npm package (for now).
+
+Pick the components you need. Copy and paste the code into your project and customize to your needs. The code is yours.
+
+_Use this as a reference to build your own component libraries._
+
+## FAQ
+
+<Accordion type="multiple" collapsible>
+
+<AccordionItem value="faq-1">
+	<AccordionTrigger>
+		Why copy/paste and not packaged as a dependency?
+	</AccordionTrigger>
+	<AccordionContent>
+The idea behind this is to give you ownership and control over the code, allowing you to decide how the components are built and styled.
+
+Start with some sensible defaults, then customize the components to your needs.
+
+One of the drawback of packaging the components in an npm package is that the style is coupled with the implementation. _The design of your components should be separate from their implementation._
+
+</AccordionContent>
+
+</AccordionItem>
+
+<AccordionItem value="faq-2">
+<AccordionTrigger>
+Which frameworks are supported?
+</AccordionTrigger>
+<AccordionContent>
+
+You can use any framework that supports React. Next.js, Astro, Remix, Gatsby etc.
+
+</AccordionContent>
+</AccordionItem>
+
+<AccordionItem value="faq-3">
+	<AccordionTrigger>
+	Can I use this in my project?
+	</AccordionTrigger>
+	<AccordionContent>
+Yes. Free to use for personal and commercial projects. No attribution required.
+
+But hey, let me know if you do. I'd love to see what you build.
+
+    </AccordionContent>
+
+</AccordionItem>
+
+</Accordion>
+
+## Credits
+
+- [@shadcn](https://twitter.com/shadcn) - The brilliant mind behind the designs, methodology, and implementation.
+- [Radix Svelte](https://radix-svelte.com) - For the primitives.
+- [Vercel](https://vercel.com) - Where I host all my projects.
+- [Shu Ding](https://shud.in) - The typography style is adapted from his work on Nextra.
+- [Cal](https://cal.com) - Where I copied the styles for the first component: the `Button`.
+- [cmdk](https://cmdk.paco.me) - For the `<Command />` component.

@@ -113,12 +113,12 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/button",
           items: []
         },
-        {
-          title: "Calendar",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Calendar",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Card",
           href: "/docs/components/card",
@@ -134,46 +134,46 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/collapsible",
           items: []
         },
-        {
-          title: "Combobox",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Command",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Context Menu",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Data Table",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Date Picker",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Combobox",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Command",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Context Menu",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Data Table",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Date Picker",
+        //   href: "",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Dialog",
           href: "/docs/components/dialog",
           items: []
         },
-        {
-          title: "Dropdown Menu",
-          href: "",
-          items: []
-        },
+        // {
+        //   title: "Dropdown Menu",
+        //   href: "",
+        //   items: []
+        // },
         {
           title: "Hover Card",
           href: "/docs/components/hover-card",
@@ -190,24 +190,24 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/label",
           items: []
         },
-        {
-          title: "Menubar",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Navigation Menu",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Popover",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Menubar",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Navigation Menu",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Popover",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Progress",
           href: "/docs/components/progress",
@@ -215,33 +215,32 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: "Radio Group",
-          href: "",
-          label: "Soon",
+          href: "/docs/components/radio-group",
           items: []
         },
-        {
-          title: "Scroll Area",
-          href: "",
-          label: "Soon",
-          items: []
-        },
-        {
-          title: "Select",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Scroll Area",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
+        // {
+        //   title: "Select",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Separator",
           href: "/docs/components/separator",
           items: []
         },
-        {
-          title: "Sheet",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Sheet",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Skeleton",
           href: "/docs/components/skeleton",
@@ -260,7 +259,6 @@ export const docsConfig: DocsConfig = {
         {
           title: "Table",
           href: "/docs/components/table",
-          label: "New",
           items: []
         },
         {
@@ -273,23 +271,23 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/textarea",
           items: []
         },
-        {
-          title: "Toast",
-          href: "",
-          label: "Soon",
-          items: []
-        },
+        // {
+        //   title: "Toast",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // },
         {
           title: "Toggle",
           href: "/docs/components/toggle",
           items: []
-        },
-        {
-          title: "Tooltip",
-          href: "",
-          label: "Soon",
-          items: []
         }
+        // {
+        //   title: "Tooltip",
+        //   href: "/docs",
+        //   label: "Soon",
+        //   items: []
+        // }
       ]
     }
   ]
