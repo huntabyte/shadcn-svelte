@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { Checkbox as CheckboxPrimitive, type CheckboxRootProps } from "radix-svelte";
+  import {
+    Checkbox as CheckboxPrimitive,
+    type CheckboxRootProps
+  } from "radix-svelte";
   import { cn } from "$lib/utils";
   import { Check } from "lucide-svelte";
 
@@ -17,7 +20,9 @@
   bind:checked
   {...$$restProps}
 >
-  <CheckboxPrimitive.Indicator class={cn("flex items-center justify-center text-current")}>
+  <CheckboxPrimitive.Indicator
+    class={cn("flex items-center justify-center text-current")}
+  >
     <Check class="h-4 w-4" />
   </CheckboxPrimitive.Indicator>
 </CheckboxPrimitive.Root>

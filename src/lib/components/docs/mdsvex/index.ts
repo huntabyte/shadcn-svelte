@@ -1,6 +1,5 @@
 import a from "./a.svelte";
 import blockquote from "./blockquote.svelte";
-import code from "./code.svelte";
 import h1 from "./h1.svelte";
 import h2 from "./h2.svelte";
 import h3 from "./h3.svelte";
@@ -22,7 +21,6 @@ import ul from "./ul.svelte";
 export {
   a,
   blockquote,
-  code,
   h1,
   h2,
   h3,

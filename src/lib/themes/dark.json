@@ -340,7 +340,10 @@
     },
     {
       "name": "HTML Tags",
-      "scope": ["meta.tag entity.name.tag.html", "entity.name.tag.template.html"],
+      "scope": [
+        "meta.tag entity.name.tag.html",
+        "entity.name.tag.template.html"
+      ],
       "settings": {
         "foreground": "#fff"
       }

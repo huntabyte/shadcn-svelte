@@ -1,14 +1,18 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import { buttonVariants } from ".";
-  import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
+  import type {
+    HTMLAnchorAttributes,
+    HTMLButtonAttributes
+  } from "svelte/elements";
   import type { VariantProps } from "class-variance-authority";
 
   let className: string | undefined | null = undefined;
   export { className as class };
   export let href: HTMLAnchorAttributes["href"] = undefined;
   export let type: HTMLButtonAttributes["type"] = undefined;
-  export let variant: VariantProps<typeof buttonVariants>["variant"] = "default";
+  export let variant: VariantProps<typeof buttonVariants>["variant"] =
+    "default";
   export let size: VariantProps<typeof buttonVariants>["size"] = "default";
 </script>
 

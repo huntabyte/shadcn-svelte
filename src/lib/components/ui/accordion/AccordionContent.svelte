@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { Accordion as AccordionPrimitive, type AccordionContentProps } from "radix-svelte";
+  import {
+    Accordion as AccordionPrimitive,
+    type AccordionContentProps
+  } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

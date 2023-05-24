@@ -7,6 +7,9 @@
   type $$Props = HTMLBlockquoteAttributes;
 </script>
 
-<blockquote class={cn("mt-6 border-l-2 pl-6 italic", className)} {...$$restProps}>
+<blockquote
+  class={cn("mt-6 border-l-2 pl-6 italic", className)}
+  {...$$restProps}
+>
   <slot />
 </blockquote>

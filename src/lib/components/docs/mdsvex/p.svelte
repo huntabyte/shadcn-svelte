@@ -7,6 +7,9 @@
   type $$Props = HTMLAttributes<HTMLParagraphElement>;
 </script>
 
-<p class={cn("leading-7 [&:not(:first-child)]:mt-6", className)} {...$$restProps}>
+<p
+  class={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+  {...$$restProps}
+>
   <slot />
 </p>

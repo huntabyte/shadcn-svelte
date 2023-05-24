@@ -6,6 +6,9 @@
   export { className as class };
 </script>
 
-<AlertDialogPrimitive.Title class={cn("text-lg font-semibold", className)} {...$$restProps}>
+<AlertDialogPrimitive.Title
+  class={cn("text-lg font-semibold", className)}
+  {...$$restProps}
+>
   <slot />
 </AlertDialogPrimitive.Title>

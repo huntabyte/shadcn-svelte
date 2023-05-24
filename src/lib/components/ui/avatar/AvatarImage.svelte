@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { Avatar as AvatarPrimitive, type AvatarImageProps } from "radix-svelte";
+  import {
+    Avatar as AvatarPrimitive,
+    type AvatarImageProps
+  } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

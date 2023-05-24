@@ -10,7 +10,10 @@
 </script>
 
 <Collapsible bind:open>
-  <div class={cn("relative overflow-hidden rounded-md mb-4", className)} {...$$restProps}>
+  <div
+    class={cn("relative overflow-hidden rounded-md mb-4", className)}
+    {...$$restProps}
+  >
     <div class={cn("overflow-hidden h-full", !open && "max-h-32")}>
       <slot />
     </div>
@@ -21,7 +24,9 @@
       )}
     >
       <span class={!open ? "pt-4" : ""}>
-        <CollapsibleTrigger class={cn(buttonVariants({ variant: "secondary" }), "h-8 text-xs")}>
+        <CollapsibleTrigger
+          class={cn(buttonVariants({ variant: "secondary" }), "h-8 text-xs")}
+        >
           {open ? "Collapse" : expandButtonTitle}
         </CollapsibleTrigger>
       </span>

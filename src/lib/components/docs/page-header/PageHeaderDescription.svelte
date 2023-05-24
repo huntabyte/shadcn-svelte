@@ -8,7 +8,10 @@
 
 <p
   use:balancer
-  class={cn("max-w-[750px] text-lg text-muted-foreground sm:text-xl", className)}
+  class={cn(
+    "max-w-[750px] text-lg text-muted-foreground sm:text-xl",
+    className
+  )}
   {...$$restProps}
 >
   <slot />

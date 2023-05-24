@@ -18,4 +18,7 @@
   {...$$restProps}>
 	<slot />
 </pre>
-<CopyButton value={__rawString__} class={cn("absolute right-4 top-4 pre-copy-btn")} />
+<CopyButton
+  value={__rawString__}
+  class={cn("absolute right-4 top-4 pre-copy-btn")}
+/>
