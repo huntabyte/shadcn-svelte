@@ -244,8 +244,7 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: "Skeleton",
-          href: "",
-          label: "Soon",
+          href: "/docs/components/skeleton",
           items: []
         },
         {

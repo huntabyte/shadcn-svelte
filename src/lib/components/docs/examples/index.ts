@@ -21,3 +21,4 @@ export * from "./toggle";
 export * from "./hover-card";
 export * from "./radio-group";
 export * from "./slider";
+export * from "./skeleton";
