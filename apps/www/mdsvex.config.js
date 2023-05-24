@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import { toHtml } from "hast-util-to-html";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -10,10 +11,15 @@ import remarkGfm from "remark-gfm";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
 /** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
   extensions: [".md"],
-  layout: "./src/lib/components/docs/mdsvex/mdsvex.svelte",
+  layout: path.resolve(
+    __dirname,
+    "./src/lib/components/docs/mdsvex/mdsvex.svelte"
+  ),
   smartypants: {
     quotes: false,
     ellipses: false,
@@ -30,11 +36,14 @@ export const mdsvexOptions = {
       {
         theme: {
           dark: JSON.parse(
-            fs.readFileSync(path.resolve("./src/lib/themes/dark.json"), "utf-8")
+            fs.readFileSync(
+              path.resolve(__dirname, "./src/lib/themes/dark.json"),
+              "utf-8"
+            )
           ),
           light: JSON.parse(
             fs.readFileSync(
-              path.resolve("./src/lib/themes/light.json"),
+              path.resolve(__dirname, "./src/lib/themes/light.json"),
               "utf-8"
             )
           )
