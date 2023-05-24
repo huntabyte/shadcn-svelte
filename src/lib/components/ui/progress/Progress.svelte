@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { cn } from "$lib/utils";
   import { Progress as ProgressPrimitive } from "radix-svelte";
   import type { ProgressRootProps } from "radix-svelte";
-  import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;
   export { className as class };

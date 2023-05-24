@@ -1,13 +1,13 @@
 import fs from "fs";
+import { toHtml } from "hast-util-to-html";
 import path from "path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
-import { visit } from "unist-util-visit";
 import { u } from "unist-builder";
-import { toHtml } from "hast-util-to-html";
+import { visit } from "unist-util-visit";
 
 /** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {

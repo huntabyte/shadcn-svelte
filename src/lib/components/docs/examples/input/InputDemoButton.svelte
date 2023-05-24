@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Input } from "$components/ui/input";
   import { Button } from "$components/ui/button";
+  import { Input } from "$components/ui/input";
 </script>
 
 <form class="flex w-full max-w-sm items-center space-x-2">

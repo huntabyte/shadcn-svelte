@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { Icons } from "$components/docs/icons";
+  import { MainNav } from "$components/docs/nav";
   import { buttonVariants } from "$components/ui/button";
   import { siteConfig } from "$lib/config/site";
   import { cn } from "$lib/utils";
-  import { Icons } from "$components/docs/icons";
-  import { MainNav } from "$components/docs/nav";
 </script>
 
 <header

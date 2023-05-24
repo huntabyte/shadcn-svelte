@@ -1,10 +1,5 @@
 <script lang="ts">
-  import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger
-  } from "$components/ui/tabs";
+  import { Button } from "$components/ui/button";
   import {
     Card,
     CardContent,
@@ -13,9 +8,14 @@
     CardHeader,
     CardTitle
   } from "$components/ui/card";
-  import { Label } from "$components/ui/label";
   import { Input } from "$components/ui/input";
-  import { Button } from "$components/ui/button";
+  import { Label } from "$components/ui/label";
+  import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger
+  } from "$components/ui/tabs";
 </script>
 
 <Tabs value="account" class="w-[400px]">

@@ -1,11 +1,11 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import { buttonVariants } from ".";
+  import type { VariantProps } from "class-variance-authority";
   import type {
     HTMLAnchorAttributes,
     HTMLButtonAttributes
   } from "svelte/elements";
-  import type { VariantProps } from "class-variance-authority";
 
   let className: string | undefined | null = undefined;
   export { className as class };

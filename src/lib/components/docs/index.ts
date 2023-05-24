@@ -1,6 +1,6 @@
 import Callout from "./Callout.svelte";
-import ComponentExample from "./ComponentExample.svelte";
 import CodeBlockWrapper from "./CodeBlockWrapper.svelte";
+import ComponentExample from "./ComponentExample.svelte";
 import ComponentSource from "./ComponentSource.svelte";
 import CopyButton from "./CopyButton.svelte";
 import ManualInstall from "./ManualInstall.svelte";

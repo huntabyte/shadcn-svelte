@@ -1,7 +1,7 @@
 import type { DocResolver } from "$lib/types/docs";
-import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
 import { slugFromPath } from "$lib/utils";
+import type { PageLoad } from "./$types";
+import { error } from "@sveltejs/kit";
 
 export const load: PageLoad = async (event) => {
   // there's definitely a better way to do this for the index page

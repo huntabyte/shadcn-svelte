@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { buttonVariants } from "$components/ui/button";
   import { cn } from "$lib/utils";
   import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
-  import { buttonVariants } from "$components/ui/button";
+
   let className: string | undefined | null = undefined;
   export { className as class };
 </script>

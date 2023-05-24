@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Accordion as AccordionPrimitive } from "radix-svelte";
-  import { ChevronDown } from "lucide-svelte";
   import { cn } from "$lib/utils";
+  import { ChevronDown } from "lucide-svelte";
+  import { Accordion as AccordionPrimitive } from "radix-svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };

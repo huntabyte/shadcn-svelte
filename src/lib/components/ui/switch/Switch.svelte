@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Switch, type SwitchRootProps } from "radix-svelte";
   import { cn } from "$lib/utils";
+  import { Switch, type SwitchRootProps } from "radix-svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };

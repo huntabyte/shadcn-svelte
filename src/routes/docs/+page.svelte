@@ -1,14 +1,11 @@
 <script lang="ts">
   import { Icons } from "$components/docs/icons";
-
   import { badgeVariants } from "$components/ui/badge";
-  import { balancer } from "svelte-action-balancer";
   import { Separator } from "$components/ui/separator";
-
   import { cn } from "$lib/utils";
-
-  import { ChevronRight } from "lucide-svelte";
   import type { PageData } from "./$types";
+  import { ChevronRight } from "lucide-svelte";
+  import { balancer } from "svelte-action-balancer";
 
   export let data: PageData;
   type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;

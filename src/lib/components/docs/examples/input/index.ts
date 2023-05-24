@@ -4,6 +4,7 @@ import InputDemoDisabled from "./InputDemoDisabled.svelte";
 import InputDemoFile from "./InputDemoFile.svelte";
 import InputDemoLabel from "./InputDemoLabel.svelte";
 import InputDemoText from "./InputDemoText.svelte";
+
 export {
   InputDemo,
   InputDemoButton,

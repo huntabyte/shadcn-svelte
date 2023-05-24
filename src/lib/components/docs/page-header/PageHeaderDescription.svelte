@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { balancer } from "svelte-action-balancer";
   import { cn } from "$lib/utils";
+  import { balancer } from "svelte-action-balancer";
 
   let className: string | undefined | null = undefined;
   export { className as class };

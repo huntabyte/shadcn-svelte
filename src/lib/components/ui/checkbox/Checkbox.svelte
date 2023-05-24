@@ -1,10 +1,10 @@
 <script lang="ts">
+  import { cn } from "$lib/utils";
+  import { Check } from "lucide-svelte";
   import {
     Checkbox as CheckboxPrimitive,
     type CheckboxRootProps
   } from "radix-svelte";
-  import { cn } from "$lib/utils";
-  import { Check } from "lucide-svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };

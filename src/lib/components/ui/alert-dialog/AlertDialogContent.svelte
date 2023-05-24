@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
-  import AlertDialogPortal from "./AlertDialogPortal.svelte";
   import AlertDialogOverlay from "./AlertDialogOverlay.svelte";
+  import AlertDialogPortal from "./AlertDialogPortal.svelte";
+  import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };
