@@ -5,6 +5,7 @@ description: How to install dependencies and structure your app.
 
 <script>
   import { Alert, AlertDescription } from "$components/ui/alert";
+  import { Steps } from "$components/docs";
 </script>
 
 <Alert>
@@ -15,7 +16,6 @@ description: How to install dependencies and structure your app.
     project. Follow the [Tailwind CSS installation instructions](https://tailwindcss.com/docs/installation) to get started.
 
   </AlertDescription>
-  
 </Alert>
 
 ## New Project
@@ -42,7 +42,7 @@ If you have created a project using `create-svelte`, you can use the `shadcn-ui`
 ### Create a new project
 
 ```bash
-npx create-next-app my-app
+npm create svelte@latest my-app
 ```
 
 ### Run the CLI
