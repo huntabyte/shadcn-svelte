@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Re-usable components built using Radix UI and Tailwind CSS.
+description: Re-usable components built using Radix Svelte and Tailwind CSS.
 ---
 
 <script>
@@ -56,7 +56,7 @@ Yes. Free to use for personal and commercial projects. No attribution required.
 
 But hey, let me know if you do. I'd love to see what you build.
 
-    </AccordionContent>
+  </AccordionContent>
 
 </AccordionItem>
 
