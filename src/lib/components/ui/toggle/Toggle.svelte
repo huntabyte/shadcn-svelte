@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { Toggle as TogglePrimitive, type ToggleRootProps } from "radix-svelte";
+  import {
+    Toggle as TogglePrimitive,
+    type ToggleRootProps
+  } from "radix-svelte";
   import { type VariantProps, cva } from "class-variance-authority";
   import { cn } from "$lib/utils";
 
@@ -9,7 +12,8 @@
       variants: {
         variant: {
           default: "bg-transparent",
-          outline: "bg-transparent border border-input hover:bg-accent hover:text-accent-foreground"
+          outline:
+            "bg-transparent border border-input hover:bg-accent hover:text-accent-foreground"
         },
         size: {
           default: "h-10 px-3",
@@ -26,12 +30,16 @@
 
   let className: string | undefined | null = undefined;
   export { className as class };
-  export let variant: VariantProps<typeof toggleVariants>["variant"] = "default";
+  export let variant: VariantProps<typeof toggleVariants>["variant"] =
+    "default";
   export let size: VariantProps<typeof toggleVariants>["size"] = "default";
   export let pressed: boolean = false;
   export let disabled: boolean = false;
 
-  type $$Props = ToggleRootProps;
+  type $$Props = ToggleRootProps & {
+    size?: VariantProps<typeof toggleVariants>["size"];
+    variant?: VariantProps<typeof toggleVariants>["variant"];
+  };
 </script>
 
 <TogglePrimitive.Root
