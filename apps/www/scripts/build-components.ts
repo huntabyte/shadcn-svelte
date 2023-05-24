@@ -31,6 +31,6 @@ const payload = components
   });
 
 fs.writeFileSync(
-  path.join(process.cwd(), "pages/api/components.json"),
+  path.join(process.cwd(), "src/routes/api/components/components.json"),
   JSON.stringify(payload, null, 2)
 );
