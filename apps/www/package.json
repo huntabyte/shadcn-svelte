@@ -1,10 +1,20 @@
 {
   "name": "shadcn-svelte",
   "version": "0.0.1",
+  "author": {
+    "name": "huntabyte",
+    "url": "https://twitter.com/huntabyte"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntabyte/shadcn-svelte.git",
+    "directory": "apps/www"
+  },
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "pnpm build:components && vite build",
+    "build:components": "tsx scripts/build-components.ts",
     "preview": "vite preview",
     "test": "playwright test",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

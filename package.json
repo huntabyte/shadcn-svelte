@@ -2,16 +2,20 @@
   "name": "shadcn-svelte",
   "version": "0.0.1",
   "description": "monorepo for shadcn-svelte",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write ."
+  "author": {
+    "name": "huntabyte",
+    "url": "https://twitter.com/huntabyte"
   },
+  "private": true,
+  "scripts": {},
   "packageManager": "pnpm@8.5.1",
   "engines": {
     "pnpm": ">=8"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntabyte/shadcn-svelte.git"
+  },
+  "license": "MIT",
   "type": "module"
 }
