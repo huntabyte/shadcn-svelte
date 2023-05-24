@@ -10,7 +10,7 @@ const payload = components
 
       return {
         name: basename(file),
-        dir: dirname(file),
+        dir: basename(dirname(file)),
         content
       };
     });
