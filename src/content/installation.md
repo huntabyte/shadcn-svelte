@@ -8,12 +8,16 @@ description: How to install dependencies and structure your app.
   import { Steps } from "$components/docs";
 </script>
 
-<Alert>
+<Alert style="padding-left: 1rem;">
   <AlertDescription>
 
     **Prerequisites**: Components are styled using [Tailwind
     CSS](https://tailwindcss.com). You need to install Tailwind CSS in your
-    project. Follow the [Tailwind CSS installation instructions](https://tailwindcss.com/docs/installation) to get started.
+    project. Follow the [Tailwind CSS installation instructions](https://tailwindcss.com/docs/installation) or use the `svelte-add` CLI to add Tailwind CSS to your project.
+
+```bash
+npx svelte-add@latest tailwindcss
+```
 
   </AlertDescription>
 </Alert>
@@ -64,29 +68,32 @@ This will install dependencies, setup Tailwind CSS, and configure the `cn` utils
 Add the following dependencies to your project:
 
 ```bash
-npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react
+npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-svelte
 ```
 
 ### Path Aliases
 
-I use the `@` alias to make it easier to import components. This is how I configure it in `tsconfig.json`:
+Use the `$` alias to make it easier to import your components. This is how you can configure the `$` alias in `svelte.config.js`:
 
-```json title="tsconfig.json"
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
+```js title="svelte.config.js" {7-8}
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  // ...
+  kit: {
+    // ..
+    alias: {
+      $components: "src/lib/components",
+      "$components/*": "src/lib/components/*"
     }
   }
-}
+};
 ```
 
-If you use a different alias such as `~`, you'll need to update `import` statements when adding components.
+If you prefer to use a different alias than `$`, you'll need to update the `import` statements when adding components.
 
 ### Configure tailwind.config.js
 
-Here's what my `tailwind.config.js` file looks like:
+This is what the project's `tailwind.config.js` file looks like:
 
 ```js title="tailwind.config.js"
 const { fontFamily } = require("tailwindcss/defaultTheme");
@@ -94,7 +101,10 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  content: [
+    "./src/**/*.{html,js,svelte,ts}",
+    "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"
+  ],
   theme: {
     container: {
       center: true,
@@ -140,32 +150,20 @@ module.exports = {
         }
       },
       borderRadius: {
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans]
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" }
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 }
-        }
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
+        sans: [...fontFamily.sans]
       }
     }
   },
   plugins: [require("tailwindcss-animate")]
 };
 ```
+
+Feel free to add or modify as needed to suit your project.
 
 ### Configure styles
 
@@ -257,7 +255,7 @@ Add the following to your `styles/globals.css` file. You can learn more about us
 
 ### Add a cn helper
 
-I use a `cn` helper to make it easier to conditionally add Tailwind CSS classes. Here's how I define it in `lib/utils.ts`:
+You'll want to create a `cn` helper to make it easier to conditionally add Tailwind CSS classes. This project defines it in `lib/utils.ts`:
 
 ```ts title="lib/utils.ts"
 import { clsx, type ClassValue } from "clsx";
@@ -272,40 +270,38 @@ export function cn(...inputs: ClassValue[]) {
 
 ## Icons
 
-I use icons from [Lucide](https://lucide.dev). You can use any icon library.
+This project uses icons from [Lucide](https://lucide.dev/), but feel free to use any icon library.
 
 ## App structure
 
-Here's how I structure my app. I use Next.js, but this is not required.
+Here's a recommended, but not required app structure:
 
-```txt {6-10,14-15}
+```txt {7-14,18}
 .
-├── app
-│   ├── layout.tsx
-│   └── page.tsx
-├── components
-│   ├── ui
-│   │   ├── alert-dialog.tsx
-│   │   ├── button.tsx
-│   │   ├── dropdown-menu.tsx
-│   │   └── ...
-│   ├── main-nav.tsx
-│   ├── page-header.tsx
-│   └── ...
+├── routes
+│   ├── +page.svelte
+│   └── +page.ts
 ├── lib
+│   ├── components
+│   │   ├── ui
+│   │   │   ├── alert-dialog
+│   │   │   │   ├── index.ts
+│   │   │   │   └── Alert.svelte
+│   │   │   ├── button
+│   │   │   │   ├── index.ts
+│   │   │   │   └── Button.svelte
+│   │   │   └── ...
+│   │   ├── Navigation.svelte
+│   │   ├── PageHeader.svelte
+│   │   └── ...
 │   └── utils.ts
 ├── styles
 │   └── globals.css
-├── next.config.js
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-└── tsconfig.json
 ```
 
-- I place the UI components in the `components/ui` folder.
-- The rest of the components such as `<PageHeader />` and `<MainNav />` are placed in the `components` folder.
-- The `lib` folder contains all the utility functions. I have a `utils.ts` where I define the `cn` helper.
+- Place the UI components in the `lib/components/ui` folder.
+- The rest of the components such as `<PageHeader />` and `<Navigation />` are placed in the `lib/components` folder.
+- The `lib/utils` file is where you can define the `cn` helper.
 - The `styles` folder contains the global CSS.
 
 That's it. You can now start adding components to your project.

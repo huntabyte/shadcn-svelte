@@ -9,11 +9,11 @@ description: Re-usable components built using Radix Svelte and Tailwind CSS.
 
 This is **NOT** a component library. It's a collection of re-usable components that you can copy and paste into your apps.
 
-**What do you mean by not a component library?**
+**What do you mean not a component library?**
 
-I mean you do not install it as a dependency. It is not available or distributed via npm. I have no plans to publish it as an npm package (for now).
+It means you do not install it as a dependency. It is not available or distributed via npm, with no plans to publish it.
 
-Pick the components you need. Copy and paste the code into your project and customize to your needs. The code is yours.
+Pick the components you need. Use the CLI to automatically add the components, or copy and paste the code into your project and customize to your needs. The code is yours.
 
 _Use this as a reference to build your own component libraries._
 
@@ -42,7 +42,7 @@ Which frameworks are supported?
 </AccordionTrigger>
 <AccordionContent>
 
-You can use any framework that supports React. Next.js, Astro, Remix, Gatsby etc.
+This port is built to be used with Svelte/SvelteKit.
 
 </AccordionContent>
 </AccordionItem>
@@ -54,7 +54,7 @@ You can use any framework that supports React. Next.js, Astro, Remix, Gatsby etc
 	<AccordionContent>
 Yes. Free to use for personal and commercial projects. No attribution required.
 
-But hey, let me know if you do. I'd love to see what you build.
+But let us know if you do use it. We'd love to see what you build with it.
 
   </AccordionContent>
 

@@ -3,7 +3,7 @@
 
   import { badgeVariants } from "$components/ui/badge";
   import { balancer } from "svelte-action-balancer";
-  import { Separator } from "$ui/separator";
+  import { Separator } from "$components/ui/separator";
 
   import { cn } from "$lib/utils";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
-  import { AspectRatio } from "$ui/aspect-ratio";
+  import { AspectRatio } from "$components/ui/aspect-ratio";
   import StageBox from "./StageBox.svelte";
 </script>
 

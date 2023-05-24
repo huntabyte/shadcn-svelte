@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
   import StageBox from "./StageBox.svelte";
-  import { Button } from "$ui/button";
+  import { Button } from "$components/ui/button";
   import {
     Dialog,
     DialogContent,
@@ -10,9 +10,9 @@
     DialogHeader,
     DialogTitle,
     DialogTrigger
-  } from "$ui/dialog";
-  import { Label } from "$ui/label";
-  import { Input } from "$ui/input";
+  } from "$components/ui/dialog";
+  import { Label } from "$components/ui/label";
+  import { Input } from "$components/ui/input";
 </script>
 
 <Stage component="Dialog">

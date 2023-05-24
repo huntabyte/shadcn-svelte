@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { buttonVariants } from "$ui/button";
+  import { buttonVariants } from "$components/ui/button";
   import { siteConfig } from "$lib/config/site";
   import { cn } from "$lib/utils";
   import { Icons } from "$components/docs/icons";
@@ -12,7 +12,9 @@
   <div class="container flex h-14 items-center">
     <MainNav />
     <!-- <MobileNav /> -->
-    <div class="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
+    <div
+      class="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end"
+    >
       <div class="w-full flex-1 md:w-auto md:flex-none">
         <!-- Command Menu Here -->
       </div>

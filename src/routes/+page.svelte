@@ -8,7 +8,7 @@
   import { buttonVariants } from "$components/ui/button";
   import { siteConfig } from "$lib/config/site";
   import { cn } from "$lib/utils";
-  import { Separator } from "$ui/separator";
+  import { Separator } from "$components/ui/separator";
   import { ChevronRight } from "lucide-svelte";
 </script>
 
@@ -25,8 +25,8 @@
     </a>
     <PageHeaderHeading>Build your component library.</PageHeaderHeading>
     <PageHeaderDescription>
-      Beautifully designed components that you can copy and paste into your apps. Accessible.
-      Customizable. Open Source.
+      Beautifully designed components that you can copy and paste into your
+      apps. Accessible. Customizable. Open Source.
     </PageHeaderDescription>
     <div class="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
       <a href="/docs" class={cn(buttonVariants())}> Get Started </a>
@@ -45,8 +45,20 @@
   <section
     class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"
   >
-    <img src="" width={1280} height={866} alt="Dashboard" class="block dark:hidden" />
-    <img src="" width={1280} height={866} alt="Dashboard" class="hidden dark:block" />
+    <img
+      src=""
+      width={1280}
+      height={866}
+      alt="Dashboard"
+      class="block dark:hidden"
+    />
+    <img
+      src=""
+      width={1280}
+      height={866}
+      alt="Dashboard"
+      class="hidden dark:block"
+    />
   </section>
   <section class="hidden md:block">
     <div class="overflow-hidden rounded-lg border bg-background shadow-xl">

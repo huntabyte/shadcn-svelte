@@ -39,6 +39,7 @@ export const mdsvexOptions = {
           )
         },
         onVisitLine(node) {
+          console.log(node);
           if (node.children.length === 0) {
             node.children = { type: "text", value: " " };
           }

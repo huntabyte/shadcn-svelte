@@ -2,8 +2,12 @@
   import { Stage } from "svelte-stage";
   import { ChevronsUpDown } from "lucide-svelte";
   import StageBox from "./StageBox.svelte";
-  import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "$ui/collapsible";
-  import { Button } from "$ui/button";
+  import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger
+  } from "$components/ui/collapsible";
+  import { Button } from "$components/ui/button";
 
   export let isOpen = false;
 </script>
@@ -20,10 +24,16 @@
           </Button>
         </CollapsibleTrigger>
       </div>
-      <div class="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/primitives</div>
+      <div class="rounded-md border px-4 py-3 font-mono text-sm">
+        @radix-ui/primitives
+      </div>
       <CollapsibleContent class="space-y-2">
-        <div class="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/colors</div>
-        <div class="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
+        <div class="rounded-md border px-4 py-3 font-mono text-sm">
+          @radix-ui/colors
+        </div>
+        <div class="rounded-md border px-4 py-3 font-mono text-sm">
+          @stitches/react
+        </div>
       </CollapsibleContent>
     </Collapsible>
   </StageBox>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Toggle } from "$ui/toggle";
+  import { Toggle } from "$components/ui/toggle";
   import { Bold } from "lucide-svelte";
 </script>
 

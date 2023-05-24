@@ -1,7 +1,12 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
   import StageBox from "./StageBox.svelte";
-  import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "$ui/accordion";
+  import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+  } from "$components/ui/accordion";
   import {
     Table,
     TableBody,
@@ -10,7 +15,7 @@
     TableHead,
     TableHeader,
     TableRow
-  } from "$ui/table";
+  } from "$components/ui/table";
   const invoices = [
     {
       invoice: "INV001",

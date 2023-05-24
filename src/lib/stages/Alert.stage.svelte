@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Terminal } from "lucide-svelte";
   import { Stage } from "svelte-stage";
-  import { Alert, AlertDescription, AlertTitle } from "$ui/alert";
+  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
   import StageBox from "./StageBox.svelte";
 </script>
 
@@ -10,7 +10,9 @@
     <Alert>
       <Terminal className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
-      <AlertDescription>You can add components to your app using the cli.</AlertDescription>
+      <AlertDescription
+        >You can add components to your app using the cli.</AlertDescription
+      >
     </Alert>
   </StageBox>
 </Stage>

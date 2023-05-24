@@ -1,11 +1,23 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
   import StageBox from "./StageBox.svelte";
-  import { Tabs, TabsContent, TabsList, TabsTrigger } from "$ui/tabs";
-  import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "$ui/card";
-  import { Label } from "$ui/label";
-  import { Input } from "$ui/input";
-  import { Button } from "$ui/button";
+  import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger
+  } from "$components/ui/tabs";
+  import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle
+  } from "$components/ui/card";
+  import { Label } from "$components/ui/label";
+  import { Input } from "$components/ui/input";
+  import { Button } from "$components/ui/button";
 </script>
 
 <Stage component="Alert">

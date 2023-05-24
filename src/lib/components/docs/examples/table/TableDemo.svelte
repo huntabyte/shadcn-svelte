@@ -7,7 +7,7 @@
     TableHead,
     TableHeader,
     TableRow
-  } from "$ui/table";
+  } from "$components/ui/table";
   const invoices = [
     {
       invoice: "INV001",

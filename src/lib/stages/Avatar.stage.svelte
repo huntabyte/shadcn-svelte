@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
-  import { Avatar, AvatarFallback, AvatarImage } from "$ui/avatar";
+  import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
   import StageBox from "./StageBox.svelte";
 </script>
 

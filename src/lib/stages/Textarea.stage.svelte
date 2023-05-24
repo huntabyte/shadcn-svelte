@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Stage } from "svelte-stage";
   import StageBox from "./StageBox.svelte";
-  import { Textarea } from "$ui/textarea";
+  import { Textarea } from "$components/ui/textarea";
 </script>
 
 <Stage component="Textarea">
