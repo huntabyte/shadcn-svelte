@@ -2,10 +2,13 @@ export const siteConfig = {
   name: "shadcn/ui/svelte",
   url: "https://ui.shadcn.com",
   ogImage: "https://ui.shadcn.com/og.jpg",
-  description: "Beautifully designed components built with Radix UI and Tailwind CSS.",
+  description:
+    "Beautifully designed components built with Radix UI and Tailwind CSS.",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui"
+    twitter: "https://twitter.com/huntabyte",
+    github: "https://github.com/huntabyte/shad-svelte",
+    shadTwitter: "https://twitter.com/shadcn",
+    shadGithub: "https://github.com/shadcn/ui"
   }
 };
 
