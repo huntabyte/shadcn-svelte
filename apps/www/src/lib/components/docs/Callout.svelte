@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Alert, AlertTitle, AlertDescription } from "$components/ui/alert";
+  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
 </script>
 
 <Alert {...$$restProps}>

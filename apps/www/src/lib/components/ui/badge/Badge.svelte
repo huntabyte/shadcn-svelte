@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
-  import { type VariantProps, cva } from "class-variance-authority";
+  import { cva, type VariantProps } from "class-variance-authority";
   import type { HTMLAnchorAttributes } from "svelte/elements";
 
   const badgeVariants = cva(

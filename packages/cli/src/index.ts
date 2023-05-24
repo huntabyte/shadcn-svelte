@@ -9,7 +9,7 @@ import { Command } from "commander";
 import { execa } from "execa";
 import { existsSync, promises as fs } from "fs";
 import ora from "ora";
-import path, { dirname } from "path";
+import path from "path";
 import prompts from "prompts";
 
 process.on("SIGINT", () => process.exit(0));
@@ -165,11 +165,10 @@ async function main() {
           if (projectInfo?.alias) {
             file.content = file.content.replace(/$\//g, projectInfo.alias);
           }
-          const dirPath = path.join(dir, file.dir)
-          await fs.mkdir(dirPath, { recursive: true })
-          const filePath = path.resolve(dirPath, file.name)
-          await fs.writeFile(filePath, file.content)
-
+          const dirPath = path.join(dir, file.dir);
+          await fs.mkdir(dirPath, { recursive: true });
+          const filePath = path.resolve(dirPath, file.name);
+          await fs.writeFile(filePath, file.content);
         }
 
         // Install dependencies.
