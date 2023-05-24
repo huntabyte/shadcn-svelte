@@ -1,4 +1,7 @@
 {
+  "name": "shadcn-svelte",
+  "version": "0.0.1",
+  "description": "monorepo for shadcn-svelte",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -6,16 +9,9 @@
     "lint": "turbo run lint",
     "format": "prettier --write ."
   },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
-    "@typescript-eslint/eslint-plugin": "^5.59.7",
-    "@typescript-eslint/parser": "^5.59.7",
-    "eslint": "^8.41.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-svelte": "^2.29.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-svelte": "^2.10.0",
-    "turbo": "latest"
+  "packageManager": "pnpm@8.5.1",
+  "engines": {
+    "pnpm": ">=8"
   },
-  "packageManager": "pnpm@8.5.1"
+  "type": "module"
 }

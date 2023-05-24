@@ -14,7 +14,7 @@
       <p
         class="text-center text-sm leading-loose text-muted-foreground md:text-left"
       >
-        Designed & Inspired by{" "}
+        Designed & Built by{" "}
         <a
           href={siteConfig.links.shadTwitter}
           target="_blank"
