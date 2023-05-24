@@ -40,7 +40,7 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import { Toggle } from "@/components/ui/toggle";
+  import { Toggle } from "$components/ui/toggle";
 </script>
 ```
 

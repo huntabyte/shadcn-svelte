@@ -44,7 +44,7 @@ npm install radix-svelte
     HoverCard,
     HoverCardContent,
     HoverCardTrigger
-  } from "@/components/ui/hover-card";
+  } from "$components/ui/hover-card";
 </script>
 ```
 

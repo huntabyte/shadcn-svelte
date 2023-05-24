@@ -40,7 +40,7 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import { Checkbox } from "@/components/ui/checkbox";
+  import { Checkbox } from "$components/ui/checkbox";
 </script>
 ```
 
