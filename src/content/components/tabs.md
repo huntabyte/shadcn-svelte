@@ -50,7 +50,7 @@ npm install radix-svelte
 ```
 
 ```svelte
-<Tabs defaultValue="account" className="w-[400px]">
+<Tabs value="account" class="w-[400px]">
   <TabsList>
     <TabsTrigger value="account">Account</TabsTrigger>
     <TabsTrigger value="password">Password</TabsTrigger>

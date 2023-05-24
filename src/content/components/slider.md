@@ -12,7 +12,7 @@ radix: https://www.radix-svelte.com/docs/slider
 
 <ComponentExample src="src/lib/components/docs/examples/slider/SliderDemo.svelte">
 
-<div slot="example">
+<div slot="example" style="width: 100%; display: flex; justify-content: center;">
 <SliderDemo />
 </div>
 
@@ -37,3 +37,13 @@ npm install radix-svelte
 </ManualInstall>
 
 ## Usage
+
+```svelte
+<script lang="ts">
+  import { Slider } from "$components/ui/slider";
+</script>
+```
+
+```svelte
+<Slider value={33} max={100} step={1} />
+```
