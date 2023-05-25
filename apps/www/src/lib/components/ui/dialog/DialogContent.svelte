@@ -4,9 +4,7 @@
     Dialog as DialogPrimitive,
     type DialogContentProps
   } from "radix-svelte";
-
   import { cn } from "$lib/utils";
-
   import DialogOverlay from "./DialogOverlay.svelte";
   import DialogPortal from "./DialogPortal.svelte";
 

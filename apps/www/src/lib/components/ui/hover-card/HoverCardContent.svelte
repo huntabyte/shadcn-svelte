@@ -4,7 +4,6 @@
     HoverCardContentProps,
     HoverCardPortalProps
   } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

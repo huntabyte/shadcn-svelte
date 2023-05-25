@@ -1,6 +1,5 @@
 <script lang="ts">
   import { siteConfig } from "$lib/config/site";
-
   import { Icons } from "./icons";
 </script>
 

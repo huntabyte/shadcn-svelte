@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Tabs as TabsPrimitive, type TabsTriggerProps } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

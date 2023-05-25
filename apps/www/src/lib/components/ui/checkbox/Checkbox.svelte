@@ -4,7 +4,6 @@
     Checkbox as CheckboxPrimitive,
     type CheckboxRootProps
   } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

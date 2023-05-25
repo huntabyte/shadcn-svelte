@@ -4,7 +4,6 @@
     Toggle as TogglePrimitive,
     type ToggleRootProps
   } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   const toggleVariants = cva(

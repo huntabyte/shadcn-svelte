@@ -1,10 +1,8 @@
 <script lang="ts">
   import { dev } from "$app/environment";
-
   import SiteFooter from "$components/docs/SiteFooter.svelte";
   import SiteHeader from "$components/docs/SiteHeader.svelte";
   import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
-
   import "../styles/globals.css";
 </script>
 

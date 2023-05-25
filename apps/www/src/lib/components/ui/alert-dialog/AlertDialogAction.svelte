@@ -1,6 +1,5 @@
 <script lang="ts">
   import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
-
   import { buttonVariants } from "$components/ui/button";
   import { cn } from "$lib/utils";
 

@@ -3,7 +3,6 @@
     Accordion as AccordionPrimitive,
     type AccordionItemProps
   } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

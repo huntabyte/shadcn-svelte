@@ -1,8 +1,6 @@
 import { error } from "@sveltejs/kit";
-
 import type { DocResolver } from "$lib/types/docs";
 import { slugFromPath } from "$lib/utils";
-
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async (event) => {

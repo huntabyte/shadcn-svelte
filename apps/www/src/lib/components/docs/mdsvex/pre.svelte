@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
-
   import { CopyButton } from "$components/docs";
   import { cn } from "$lib/utils";
 

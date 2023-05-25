@@ -1,7 +1,6 @@
 <script lang="ts">
   import { cva } from "class-variance-authority";
   import { Label as LabelPrimitive } from "radix-svelte";
-
   import { cn } from "$lib/utils";
 
   const labelVariants = cva(
