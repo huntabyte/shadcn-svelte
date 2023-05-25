@@ -36,7 +36,7 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-svelte": "^2.29.0",
-    "mdsvex": "^0.10.6",
+    "mdsvex": "0.10.6",
     "postcss": "^8.4.23",
     "postcss-load-config": "^4.0.1",
     "prettier": "^2.8.8",
@@ -74,5 +74,10 @@
     "unified": "^10.1.2",
     "unist-builder": "^3.0.1",
     "unist-util-visit": "^4.1.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "mdsvex@0.10.6": "patches/mdsvex@0.10.6.patch"
+    }
   }
 }

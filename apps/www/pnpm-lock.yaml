@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+patchedDependencies:
+  mdsvex@0.10.6:
+    hash: 5fktxa7rcgmqj2wc4xhmk3osl4
+    path: patches/mdsvex@0.10.6.patch
+
 dependencies:
   class-variance-authority:
     specifier: ^0.6.0
@@ -101,7 +106,7 @@ devDependencies:
     version: 2.29.0(eslint@8.41.0)(svelte@3.59.1)
   mdsvex:
     specifier: ^0.10.6
-    version: 0.10.6(svelte@3.59.1)
+    version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@3.59.1)
   postcss:
     specifier: ^8.4.23
     version: 8.4.23
@@ -2315,7 +2320,7 @@ packages:
       '@types/mdast': 3.0.11
     dev: false
 
-  /mdsvex@0.10.6(svelte@3.59.1):
+  /mdsvex@0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@3.59.1):
     resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
     peerDependencies:
       svelte: 3.x
@@ -2326,6 +2331,7 @@ packages:
       svelte: 3.59.1
       vfile-message: 2.0.4
     dev: true
+    patched: true
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}

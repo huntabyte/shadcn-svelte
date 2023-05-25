@@ -1,6 +1,6 @@
-import { mdsvex } from "@huntabyte/mdsvex";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/kit/vite";
+import { mdsvex } from "mdsvex";
 import preprocess from "svelte-preprocess";
 
 import { mdsvexOptions } from "./mdsvex.config.js";
@@ -21,9 +21,7 @@ const config = {
     adapter: adapter(),
     alias: {
       $components: "src/lib/components",
-      "$components/*": "src/lib/components/*",
-      $ui: "src/lib/components/ui",
-      "$ui/*": "src/lib/components/ui/*"
+      "$components/*": "src/lib/components/*"
     }
   }
 };
