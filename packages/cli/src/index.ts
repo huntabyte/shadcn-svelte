@@ -13,12 +13,7 @@ import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";
 import { getProjectInfo } from "./utils/get-project-info";
 import { logger } from "./utils/logger";
-import {
-  STYLES,
-  SVELTE_CONFIG,
-  TAILWIND_CONFIG,
-  UTILS
-} from "./utils/templates";
+import { STYLES, TAILWIND_CONFIG, UTILS } from "./utils/templates";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -115,12 +110,6 @@ async function main() {
       const tailwindSpinner = ora(`Updating tailwind.config.cjs...`).start();
       await fs.writeFile(tailwindDestination, TAILWIND_CONFIG, "utf8");
       tailwindSpinner.succeed();
-
-      // Update svelte.config.js
-      const svelteDestination = "./svelte.config.js";
-      const svelteSpinner = ora(`Updating svelte.config.js...`).start();
-      await fs.writeFile(svelteDestination, SVELTE_CONFIG, "utf8");
-      svelteSpinner.succeed();
     });
 
   program
