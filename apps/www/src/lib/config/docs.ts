@@ -187,11 +187,11 @@ export const docsConfig: DocsConfig = {
           href: "/docs/components/dialog",
           items: []
         },
-        {
-          title: "Dropdown Menu",
-          href: "#",
-          items: []
-        },
+        // {
+        //   title: "Dropdown Menu",
+        //   href: "#",
+        //   items: []
+        // },
         {
           title: "Hover Card",
           href: "/docs/components/hover-card",
