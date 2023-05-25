@@ -5,8 +5,11 @@
   "trailingComma": "none",
   "printWidth": 80,
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
   "pluginSearchDirs": false,
+  "plugins": [
+    "prettier-plugin-svelte",
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
   "overrides": [
     {
       "files": "*.svelte",
@@ -36,6 +39,9 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderBuiltinModulesToTop": true,
-  "importOrderParserPlugins": ["typescript", "svelte"],
+  "importOrderParserPlugins": [
+    "typescript",
+    "svelte"
+  ],
   "importOrderMergeDuplicateImports": true
 }
