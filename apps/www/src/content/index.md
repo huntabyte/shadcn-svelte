@@ -66,7 +66,6 @@ But let us know if you do use it. We'd love to see what you build with it.
 
 - [@shadcn](https://twitter.com/shadcn) - The brilliant mind behind the designs, methodology, and implementation.
 - [Radix Svelte](https://radix-svelte.com) - For the primitives.
-- [Vercel](https://vercel.com) - Where I host all my projects.
+- [Vercel](https://vercel.com) - Where this project is hosted.
 - [Shu Ding](https://shud.in) - The typography style is adapted from his work on Nextra.
-- [Cal](https://cal.com) - Where I copied the styles for the first component: the `Button`.
-- [cmdk](https://cmdk.paco.me) - For the `<Command />` component.
+- [Cal](https://cal.com) - Where shad copied the styles for the first component: the `Button`.
