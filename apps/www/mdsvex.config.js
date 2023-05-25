@@ -114,6 +114,8 @@ function rehypeComponentExample() {
             })
           ]
         });
+        const sourceCodeString = `<ComponentExample codeString={\`${sourceCode}\`}>`;
+        node.value = sourceCodeString;
 
         parent.children.splice(index + 1, 0, sourceCodeNode);
       }
@@ -192,7 +194,8 @@ function getComponentSourceFileContent(src = undefined) {
 
   // Read the source file.
   const filePath = path.join(process.cwd(), src);
-  const source = fs.readFileSync(filePath, "utf8");
+  const source = fs.readFileSync(filePath, "utf-8");
+  console.log(source);
 
   return source;
 }

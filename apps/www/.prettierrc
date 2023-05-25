@@ -4,6 +4,7 @@
   "singleQuote": false,
   "trailingComma": "none",
   "printWidth": 80,
+  "endOfLine": "lf",
   "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
   "pluginSearchDirs": false,
   "overrides": [

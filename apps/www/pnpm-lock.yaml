@@ -105,7 +105,7 @@ devDependencies:
     specifier: ^2.29.0
     version: 2.29.0(eslint@8.41.0)(svelte@3.59.1)
   mdsvex:
-    specifier: ^0.10.6
+    specifier: 0.10.6
     version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@3.59.1)
   postcss:
     specifier: ^8.4.23

@@ -8,6 +8,7 @@
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports"
   ],
+  "endOfLine": "lf",
   "bracketSameLine": false,
   "importOrder": [
     "<BUILTIN_MODULES>",

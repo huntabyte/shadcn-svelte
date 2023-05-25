@@ -10,7 +10,7 @@
 
   import CopyButton from "./CopyButton.svelte";
 
-  let codeString: string;
+  export let codeString: string;
   let className: string | undefined | null = undefined;
   export { className as class };
   export let align: "start" | "center" | "end" = "center";
