@@ -13,7 +13,6 @@ export const load: PageLoad = async (event) => {
   let match: { path?: string; resolver?: DocResolver } = {};
 
   for (const [path, resolver] of Object.entries(modules)) {
-    console.log(slugFromPath(path));
     if (slugFromPath(path) === "index") {
       match = { path, resolver: resolver as unknown as DocResolver };
       break;
