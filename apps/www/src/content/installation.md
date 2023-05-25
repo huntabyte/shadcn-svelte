@@ -24,44 +24,45 @@ npx svelte-add@latest tailwindcss
 
 ## New Project
 
-Run the following command to create a new SvelteKit project using the `sveltekit-template` template:
-
-```bash
-npm create-next-app -e https://github.com/shadcn/next-template
-```
-
-This creates a new SvelteKit project with the following features:
-
-- [Tailwind CSS](https://tailwindcss.com)
-- [TypeScript](https://www.typescriptlang.org)
-- [ESLint](https://eslint.org)
-- [Prettier](https://prettier.io)
-
-## create-svelte
-
-If you have created a project using `create-svelte`, you can use the `shadcn-ui` CLI to initialize the project.
-
 <Steps>
 
 ### Create a new project
+
+Use the SvelteKit CLI to create a new project.
 
 ```bash
 npm create svelte@latest my-app
 ```
 
+### Add TailwindCSS
+
+Use the `svelte-add` CLI to add Tailwind CSS to your project.
+
+```bash
+npx svelte-add@latest tailwindcss
+```
+
 ### Run the CLI
 
 ```bash
-npx shadcn-ui init
+npx shadcn-svelte init
 ```
 
-This will install dependencies, setup Tailwind CSS, and configure the `cn` utils for you.
+This will install dependencies, update your TailwindCSS configuration, and configure the `cn` utils for you.
 
 </Steps>
 
 ## Manual Installation
 
 <Steps>
+
+### Add TailwindCSS
+
+Use the `svelte-add` CLI to add Tailwind CSS to your project.
+
+```bash
+npx svelte-add@latest tailwindcss
+```
 
 ### Add dependencies
 
@@ -93,18 +94,15 @@ If you prefer to use a different alias than `$`, you'll need to update the `impo
 
 ### Configure tailwind.config.js
 
-This is what the project's `tailwind.config.js` file looks like:
+This is what this project's `tailwind.config.cjs` file looks like:
 
-```js title="tailwind.config.js"
+```js title="tailwind.config.cjs"
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-    "./src/**/*.{html,js,svelte,ts}",
-    "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"
-  ],
+  content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     container: {
       center: true,
@@ -167,9 +165,9 @@ Feel free to add or modify as needed to suit your project.
 
 ### Configure styles
 
-Add the following to your `styles/globals.css` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
+Add the following to your `src/app.postcss` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
 
-```css title="styles/globals.css"
+```css title="src/app.postcss"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -266,6 +264,18 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
+### Import styles to your app
+
+Create `src/+layout.svelte` and import the styles:
+
+```svelte title="src/routes/+layout.svelte"
+<script lang="ts">
+  import "../app.postcss";
+</script>
+
+<slot />
+```
+
 </Steps>
 
 ## Icons
@@ -276,11 +286,8 @@ This project uses icons from [Lucide](https://lucide.dev/), but feel free to use
 
 Here's a recommended, but not required app structure:
 
-```txt {7-14,18}
-.
-├── routes
-│   ├── +page.svelte
-│   └── +page.ts
+```txt {4-11,15,19}
+src
 ├── lib
 │   ├── components
 │   │   ├── ui
@@ -295,13 +302,15 @@ Here's a recommended, but not required app structure:
 │   │   ├── PageHeader.svelte
 │   │   └── ...
 │   └── utils.ts
-├── styles
-│   └── globals.css
+├── routes
+│   ├── +page.svelte
+│   └── +layout.svelte
+├── app.postcss
 ```
 
 - Place the UI components in the `lib/components/ui` folder.
 - The rest of the components such as `<PageHeader />` and `<Navigation />` are placed in the `lib/components` folder.
-- The `lib/utils` file is where you can define the `cn` helper.
-- The `styles` folder contains the global CSS.
+- The `lib/utils.ts` file is where you can define the `cn` helper.
+- The `app.postcss` file contains the global CSS.
 
 That's it. You can now start adding components to your project.
