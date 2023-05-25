@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { siteConfig } from "$lib/config/site";
-  import { cn } from "$lib/utils";
-
   import { Icons } from "$components/docs/icons";
   import {
     PageHeader,
@@ -9,6 +6,8 @@
     PageHeaderHeading
   } from "$components/docs/page-header";
   import { buttonVariants } from "$components/ui/button";
+  import { siteConfig } from "$lib/config/site";
+  import { cn } from "$lib/utils";
 </script>
 
 <div class="container relative pb-10">

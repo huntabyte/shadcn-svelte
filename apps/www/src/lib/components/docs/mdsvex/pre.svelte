@@ -1,18 +1,23 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
 
+  import { CopyButton } from "$components/docs";
   import { cn } from "$lib/utils";
-
-  import CopyButton from "../CopyButton.svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };
-  export let __rawString__: string | undefined = undefined;
+
+  let codeString: string;
+
+  function copyCodeToClipboard(node: HTMLPreElement) {
+    codeString = node.innerText ?? "";
+  }
 
   type $$Props = HTMLAttributes<HTMLPreElement>;
 </script>
 
 <pre
+  use:copyCodeToClipboard
   class={cn(
     "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border py-4 data-[theme=dark]:bg-background data-[theme=light]:bg-white",
     className
@@ -21,6 +26,6 @@
 	<slot />
 </pre>
 <CopyButton
-  value={__rawString__}
+  value={codeString}
   class={cn("absolute right-4 top-4 pre-copy-btn")}
 />

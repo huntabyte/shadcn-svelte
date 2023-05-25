@@ -3,6 +3,7 @@
   "tabWidth": 2,
   "singleQuote": false,
   "trailingComma": "none",
+  "endOfLine": "lf",
   "printWidth": 80,
   "pluginSearchDirs": false,
   "plugins": [

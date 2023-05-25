@@ -6,10 +6,7 @@
   "printWidth": 80,
   "endOfLine": "lf",
   "pluginSearchDirs": false,
-  "plugins": [
-    "prettier-plugin-svelte",
-    "@ianvs/prettier-plugin-sort-imports"
-  ],
+  "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
   "overrides": [
     {
       "files": "*.svelte",
@@ -29,7 +26,6 @@
     "^\\$env",
     "^\\$service-worker",
     "^\\$lib/server",
-    "^\\$lib/",
     "^\\$(?![^\\/]*\\/)",
     "^\\$[^/]*\\/[^/]+",
     "^[./]",
@@ -39,9 +35,6 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderBuiltinModulesToTop": true,
-  "importOrderParserPlugins": [
-    "typescript",
-    "svelte"
-  ],
+  "importOrderParserPlugins": ["typescript", "svelte"],
   "importOrderMergeDuplicateImports": true
 }

@@ -2,11 +2,10 @@
   import { ChevronRight } from "lucide-svelte";
   import { balancer } from "svelte-action-balancer";
 
-  import { cn } from "$lib/utils";
-
   import { Icons } from "$components/docs/icons";
   import { badgeVariants } from "$components/ui/badge";
   import { Separator } from "$components/ui/separator";
+  import { cn } from "$lib/utils";
 
   import type { PageData } from "./$types";
 

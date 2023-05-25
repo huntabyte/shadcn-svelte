@@ -4,5 +4,4 @@
   type $$Props = HTMLFormAttributes;
 </script>
 
-<form action="">
-</form>
+<form action="" />

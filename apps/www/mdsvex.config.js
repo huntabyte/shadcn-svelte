@@ -195,7 +195,6 @@ function getComponentSourceFileContent(src = undefined) {
   // Read the source file.
   const filePath = path.join(process.cwd(), src);
   const source = fs.readFileSync(filePath, "utf-8");
-  console.log(source);
 
-  return source;
+  return normalizedSource;
 }
