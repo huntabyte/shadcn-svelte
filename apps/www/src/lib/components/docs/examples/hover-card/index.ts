@@ -1,3 +1,1 @@
-import HoverCardDemo from "./HoverCardDemo.svelte";
-
-export { HoverCardDemo };
+export { default as HoverCardDemo } from "./HoverCardDemo.svelte";

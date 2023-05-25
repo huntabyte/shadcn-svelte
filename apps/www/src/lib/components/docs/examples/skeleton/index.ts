@@ -1,3 +1,1 @@
-import SkeletonDemo from "./SkeletonDemo.svelte";
-
-export { SkeletonDemo };
+export { default as SkeletonDemo } from "./SkeletonDemo.svelte";

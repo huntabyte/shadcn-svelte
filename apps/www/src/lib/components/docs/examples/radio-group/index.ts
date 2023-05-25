@@ -1,3 +1,1 @@
-import RadioGroupDemo from "./RadioGroupDemo.svelte";
-
-export { RadioGroupDemo };
+export { default as RadioGroupDemo } from "./RadioGroupDemo.svelte";

@@ -1,3 +1,1 @@
-import TabsDemo from "./TabsDemo.svelte";
-
-export { TabsDemo };
+export { default as TabsDemo } from "./TabsDemo.svelte";

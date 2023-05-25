@@ -7,7 +7,18 @@
     "url": "https://twitter.com/huntabyte"
   },
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "dev": "pnpm --filter www dev",
+    "build": "pnpm --filter www build",
+    "build:components": "pnpm --filter www build:components",
+    "preview": "pnpm --filter www preview",
+    "test": "pnpm --filter www test",
+    "check": "pnpm --filter www check",
+    "check:watch": "pnpm --filter www check:watch",
+    "test:unit": "pnpm --filter www test:unit",
+    "lint": "pnpm --filter www lint",
+    "format": "pnpm --filter www format"
+  },
   "packageManager": "pnpm@8.5.1",
   "engines": {
     "pnpm": ">=8"

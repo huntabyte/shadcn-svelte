@@ -1,3 +1,1 @@
-import Checkbox from "./Checkbox.svelte";
-
-export { Checkbox };
+export { default as Checkbox } from "./Checkbox.svelte";

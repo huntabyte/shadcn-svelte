@@ -1,3 +1,1 @@
-import AspectRatioDemo from "./AspectRatioDemo.svelte";
-
-export { AspectRatioDemo };
+export { default as AspectRatioDemo } from "./AspectRatioDemo.svelte";

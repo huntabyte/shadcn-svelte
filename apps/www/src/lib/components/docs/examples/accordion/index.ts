@@ -1,3 +1,1 @@
-import AccordionDemo from "./AccordionDemo.svelte";
-
-export { AccordionDemo };
+export { default as AccordionDemo } from "./AccordionDemo.svelte";

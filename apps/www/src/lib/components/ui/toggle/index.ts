@@ -1,3 +1,1 @@
-import Toggle from "./Toggle.svelte";
-
-export { Toggle };
+export { default as Toggle } from "./Toggle.svelte";

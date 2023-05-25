@@ -1,4 +1,2 @@
-import RadioGroup from "./RadioGroup.svelte";
-import RadioGroupItem from "./RadioGroupItem.svelte";
-
-export { RadioGroup, RadioGroupItem };
+export { default as RadioGroup } from "./RadioGroup.svelte";
+export { default as RadioGroupItem } from "./RadioGroupItem.svelte";

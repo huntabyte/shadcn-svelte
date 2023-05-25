@@ -1,3 +1,1 @@
-import SwitchDemo from "./SwitchDemo.svelte";
-
-export { SwitchDemo };
+export { default as SwitchDemo } from "./SwitchDemo.svelte";

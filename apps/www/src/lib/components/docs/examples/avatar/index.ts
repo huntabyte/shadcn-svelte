@@ -1,3 +1,1 @@
-import AvatarDemo from "./AvatarDemo.svelte";
-
-export { AvatarDemo };
+export { default as AvatarDemo } from "./AvatarDemo.svelte";

@@ -1,5 +1,3 @@
-import PageHeader from "./PageHeader.svelte";
-import PageHeaderDescription from "./PageHeaderDescription.svelte";
-import PageHeaderHeading from "./PageHeaderHeading.svelte";
-
-export { PageHeader, PageHeaderDescription, PageHeaderHeading };
+export { default as PageHeader } from "./PageHeader.svelte";
+export { default as PageHeaderDescription } from "./PageHeaderDescription.svelte";
+export { default as PageHeaderHeading } from "./PageHeaderHeading.svelte";

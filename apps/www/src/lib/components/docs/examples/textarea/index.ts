@@ -1,13 +1,5 @@
-import TextareaDemo from "./TextareaDemo.svelte";
-import TextareaDemoButton from "./TextareaDemoButton.svelte";
-import TextareaDemoDisabled from "./TextareaDemoDisabled.svelte";
-import TextareaDemoLabel from "./TextareaDemoLabel.svelte";
-import TextareaDemoText from "./TextareaDemoText.svelte";
-
-export {
-  TextareaDemo,
-  TextareaDemoDisabled,
-  TextareaDemoButton,
-  TextareaDemoLabel,
-  TextareaDemoText
-};
+export { default as TextareaDemo } from "./TextareaDemo.svelte";
+export { default as TextareaDemoButton } from "./TextareaDemoButton.svelte";
+export { default as TextareaDemoDisabled } from "./TextareaDemoDisabled.svelte";
+export { default as TextareaDemoLabel } from "./TextareaDemoLabel.svelte";
+export { default as TextareaDemoText } from "./TextareaDemoText.svelte";

@@ -1,3 +1,5 @@
+// Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
+
 import { existsSync } from "fs";
 import fs from "fs-extra";
 import path from "path";

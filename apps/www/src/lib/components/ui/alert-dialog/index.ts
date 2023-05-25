@@ -1,23 +1,12 @@
-import AlertDialogAction from "./AlertDialogAction.svelte";
-import AlertDialogCancel from "./AlertDialogCancel.svelte";
-import AlertDialogContent from "./AlertDialogContent.svelte";
-import AlertDialogDescription from "./AlertDialogDescription.svelte";
-import AlertDialogFooter from "./AlertDialogFooter.svelte";
-import AlertDialogHeader from "./AlertDialogHeader.svelte";
-import AlertDialogTitle from "./AlertDialogTitle.svelte";
 import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
 
-const AlertDialog = AlertDialogPrimitive.Root;
-const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
+export { default as AlertDialogAction } from "./AlertDialogAction.svelte";
+export { default as AlertDialogCancel } from "./AlertDialogCancel.svelte";
+export { default as AlertDialogContent } from "./AlertDialogContent.svelte";
+export { default as AlertDialogDescription } from "./AlertDialogDescription.svelte";
+export { default as AlertDialogFooter } from "./AlertDialogFooter.svelte";
+export { default as AlertDialogHeader } from "./AlertDialogHeader.svelte";
+export { default as AlertDialogTitle } from "./AlertDialogTitle.svelte";
 
-export {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogAction,
-  AlertDialogCancel
-};
+export const AlertDialog = AlertDialogPrimitive.Root;
+export const AlertDialogTrigger = AlertDialogPrimitive.Trigger;

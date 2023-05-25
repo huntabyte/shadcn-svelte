@@ -1,8 +1,7 @@
-import TabsContent from "./TabsContent.svelte";
-import TabsList from "./TabsList.svelte";
-import TabsTrigger from "./TabsTrigger.svelte";
 import { Tabs as TabsPrimitive } from "radix-svelte";
 
-const Tabs = TabsPrimitive.Root;
+export { default as TabsContent } from "./TabsContent.svelte";
+export { default as TabsList } from "./TabsList.svelte";
+export { default as TabsTrigger } from "./TabsTrigger.svelte";
 
-export { Tabs, TabsContent, TabsList, TabsTrigger };
+export const Tabs = TabsPrimitive.Root;

@@ -1,15 +1,6 @@
-import InputDemo from "./InputDemo.svelte";
-import InputDemoButton from "./InputDemoButton.svelte";
-import InputDemoDisabled from "./InputDemoDisabled.svelte";
-import InputDemoFile from "./InputDemoFile.svelte";
-import InputDemoLabel from "./InputDemoLabel.svelte";
-import InputDemoText from "./InputDemoText.svelte";
-
-export {
-  InputDemo,
-  InputDemoButton,
-  InputDemoDisabled,
-  InputDemoFile,
-  InputDemoLabel,
-  InputDemoText
-};
+export { default as InputDemo } from "./InputDemo.svelte";
+export { default as InputDemoButton } from "./InputDemoButton.svelte";
+export { default as InputDemoDisabled } from "./InputDemoDisabled.svelte";
+export { default as InputDemoFile } from "./InputDemoFile.svelte";
+export { default as InputDemoLabel } from "./InputDemoLabel.svelte";
+export { default as InputDemoText } from "./InputDemoText.svelte";

@@ -1,35 +1,36 @@
-import fetch from "node-fetch"
-import * as z from "zod"
+// Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
 
-const baseUrl =
-    process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173"
+import fetch from "node-fetch";
+import * as z from "zod";
+
+const baseUrl = process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173";
 
 const componentSchema = z.object({
-    component: z.string(),
-    name: z.string(),
-    dependencies: z.array(z.string()).optional(),
-    files: z.array(
-        z.object({
-            name: z.string(),
-            dir: z.string(),
-            content: z.string(),
-        })
-    ),
-})
+  component: z.string(),
+  name: z.string(),
+  dependencies: z.array(z.string()).optional(),
+  files: z.array(
+    z.object({
+      name: z.string(),
+      dir: z.string(),
+      content: z.string()
+    })
+  )
+});
 
-export type Component = z.infer<typeof componentSchema>
+export type Component = z.infer<typeof componentSchema>;
 
-const componentsSchema = z.array(componentSchema)
+const componentsSchema = z.array(componentSchema);
 
 export async function getAvailableComponents() {
-    try {
-        const response = await fetch(`${baseUrl}/api/components`)
-        const components = await response.json()
+  try {
+    const response = await fetch(`${baseUrl}/api/components`);
+    const components = await response.json();
 
-        return componentsSchema.parse(components)
-    } catch (error) {
-        throw new Error(
-            `Failed to fetch components from ${baseUrl}/api/components.`
-        )
-    }
+    return componentsSchema.parse(components);
+  } catch (error) {
+    throw new Error(
+      `Failed to fetch components from ${baseUrl}/api/components.`
+    );
+  }
 }

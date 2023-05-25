@@ -1,3 +1,1 @@
-import CollapsibleDemo from "./CollapsibleDemo.svelte";
-
-export { CollapsibleDemo };
+export { default as CollapsibleDemo } from "./CollapsibleDemo.svelte";

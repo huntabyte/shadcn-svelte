@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
 import { Component, getAvailableComponents } from "./utils/get-components";
 import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";

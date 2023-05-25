@@ -1,3 +1,1 @@
-import TableDemo from "./TableDemo.svelte";
-
-export { TableDemo };
+export { default as TableDemo } from "./TableDemo.svelte";

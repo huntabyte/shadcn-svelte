@@ -1,3 +1,1 @@
-import Textarea from "./Textarea.svelte";
-
-export { Textarea };
+export { default as Textarea } from "./Textarea.svelte";

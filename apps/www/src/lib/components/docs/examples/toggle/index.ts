@@ -1,15 +1,6 @@
-import ToggleDemo from "./ToggleDemo.svelte";
-import ToggleDemoDisabled from "./ToggleDemoDisabled.svelte";
-import ToggleDemoLg from "./ToggleDemoLg.svelte";
-import ToggleDemoOutline from "./ToggleDemoOutline.svelte";
-import ToggleDemoSm from "./ToggleDemoSm.svelte";
-import ToggleDemoText from "./ToggleDemoText.svelte";
-
-export {
-  ToggleDemo,
-  ToggleDemoDisabled,
-  ToggleDemoOutline,
-  ToggleDemoLg,
-  ToggleDemoSm,
-  ToggleDemoText
-};
+export { default as ToggleDemo } from "./ToggleDemo.svelte";
+export { default as ToggleDemoDisabled } from "./ToggleDemoDisabled.svelte";
+export { default as ToggleDemoLg } from "./ToggleDemoLg.svelte";
+export { default as ToggleDemoOutline } from "./ToggleDemoOutline.svelte";
+export { default as ToggleDemoSm } from "./ToggleDemoSm.svelte";
+export { default as ToggleDemoText } from "./ToggleDemoText.svelte";

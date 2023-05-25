@@ -1,6 +1,4 @@
-import Accordion from "./Accordion.svelte";
-import AccordionContent from "./AccordionContent.svelte";
-import AccordionItem from "./AccordionItem.svelte";
-import AccordionTrigger from "./AccordionTrigger.svelte";
-
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+export { default as Accordion } from "./Accordion.svelte";
+export { default as AccordionContent } from "./AccordionContent.svelte";
+export { default as AccordionItem } from "./AccordionItem.svelte";
+export { default as AccordionTrigger } from "./AccordionTrigger.svelte";

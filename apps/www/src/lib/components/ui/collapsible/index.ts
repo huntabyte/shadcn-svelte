@@ -1,9 +1,7 @@
 import { Collapsible as CollapsiblePrimitive } from "radix-svelte";
 
-const Collapsible = CollapsiblePrimitive.Root;
+export const Collapsible = CollapsiblePrimitive.Root;
 
-const CollapsibleTrigger = CollapsiblePrimitive.Trigger;
+export const CollapsibleTrigger = CollapsiblePrimitive.Trigger;
 
-const CollapsibleContent = CollapsiblePrimitive.Content;
-
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export const CollapsibleContent = CollapsiblePrimitive.Content;

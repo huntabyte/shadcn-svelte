@@ -1,5 +1,3 @@
-import Avatar from "./Avatar.svelte";
-import AvatarFallback from "./AvatarFallback.svelte";
-import AvatarImage from "./AvatarImage.svelte";
-
-export { Avatar, AvatarFallback, AvatarImage };
+export { default as Avatar } from "./Avatar.svelte";
+export { default as AvatarFallback } from "./AvatarFallback.svelte";
+export { default as AvatarImage } from "./AvatarImage.svelte";

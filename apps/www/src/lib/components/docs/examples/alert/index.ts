@@ -1,4 +1,2 @@
-import AlertDemo from "./AlertDemo.svelte";
-import AlertDemoDestructive from "./AlertDemoDestructive.svelte";
-
-export { AlertDemo, AlertDemoDestructive };
+export { default as AlertDemo } from "./AlertDemo.svelte";
+export { default as AlertDemoDestructive } from "./AlertDemoDestructive.svelte";

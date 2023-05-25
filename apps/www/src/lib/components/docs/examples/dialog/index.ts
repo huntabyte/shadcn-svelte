@@ -1,3 +1,1 @@
-import DialogDemo from "./DialogDemo.svelte";
-
-export { DialogDemo };
+export { default as DialogDemo } from "./DialogDemo.svelte";

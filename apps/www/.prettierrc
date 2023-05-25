@@ -4,7 +4,10 @@
   "singleQuote": false,
   "trailingComma": "none",
   "printWidth": 80,
-  "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
+  "plugins": [
+    "prettier-plugin-svelte",
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
   "pluginSearchDirs": false,
   "overrides": [
     {
@@ -32,9 +35,16 @@
     }
   ],
   "bracketSameLine": false,
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "<THIRD_PARTY_MODULES>",
+    "^[.]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderBuiltinModulesToTop": true,
-  "importOrderParserPlugins": ["typescript"],
+  "importOrderParserPlugins": [
+    "typescript"
+  ],
   "importOrderMergeDuplicateImports": true
 }

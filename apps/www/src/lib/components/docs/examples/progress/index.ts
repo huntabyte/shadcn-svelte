@@ -1,3 +1,1 @@
-import ProgressDemo from "./ProgressDemo.svelte";
-
-export { ProgressDemo };
+export { default as ProgressDemo } from "./ProgressDemo.svelte";

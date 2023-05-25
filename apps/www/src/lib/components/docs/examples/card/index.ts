@@ -1,4 +1,2 @@
-import CardDemo from "./CardDemo.svelte";
-import CardDemoForm from "./CardDemoForm.svelte";
-
-export { CardDemo, CardDemoForm };
+export { default as CardDemo } from "./CardDemo.svelte";
+export { default as CardDemoForm } from "./CardDemoForm.svelte";
