@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
-  import { Icons } from "./icons";
   import { clickToCopyAction } from "svelte-legos";
+
+  import { cn } from "$lib/utils";
+
+  import { Icons } from "./icons";
 
   let copied: boolean = false;
   let className: string | undefined | null = undefined;

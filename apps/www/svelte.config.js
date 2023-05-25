@@ -1,8 +1,9 @@
-import { mdsvexOptions } from "./mdsvex.config.js";
-import { mdsvex } from "@huntabyte/mdsvex/dist/main.cjs.js";
+import { mdsvex } from "@huntabyte/mdsvex";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/kit/vite";
 import preprocess from "svelte-preprocess";
+
+import { mdsvexOptions } from "./mdsvex.config.js";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

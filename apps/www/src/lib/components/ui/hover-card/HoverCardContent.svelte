@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
   import { HoverCard as HoverCardPrimitive } from "radix-svelte";
   import type {
     HoverCardContentProps,
     HoverCardPortalProps
   } from "radix-svelte";
+
+  import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;
   export { className as class };

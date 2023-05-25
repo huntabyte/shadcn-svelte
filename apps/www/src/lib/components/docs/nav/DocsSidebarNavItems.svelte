@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
+
   import type { SidebarNavItem } from "$lib/types/nav";
   import { cn } from "$lib/utils";
 

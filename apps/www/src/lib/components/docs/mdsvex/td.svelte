@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
   import type { HTMLTdAttributes } from "svelte/elements";
+
+  import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;
   export { className as class };

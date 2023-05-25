@@ -1,7 +1,9 @@
+import { error } from "@sveltejs/kit";
+
 import type { DocResolver } from "$lib/types/docs";
 import { slugFromPath } from "$lib/utils";
+
 import type { PageLoad } from "./$types";
-import { error } from "@sveltejs/kit";
 
 export const load: PageLoad = async (event) => {
   const modules = import.meta.glob(`/src/content/**/*.md`);

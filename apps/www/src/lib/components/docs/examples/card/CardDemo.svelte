@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { BellRing, Check } from "lucide-svelte";
+
   import { Button } from "$components/ui/button";
   import {
     Card,
@@ -9,7 +11,6 @@
     CardTitle
   } from "$components/ui/card";
   import { Switch } from "$components/ui/switch";
-  import { BellRing, Check } from "lucide-svelte";
 
   const notifications = [
     {

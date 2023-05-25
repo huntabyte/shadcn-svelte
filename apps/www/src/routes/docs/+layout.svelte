@@ -1,8 +1,9 @@
 <script lang="ts">
   import "../../styles/mdsvex.css";
 
-  import DocsSidebarNav from "$components/docs/nav/DocsSidebarNav.svelte";
   import { docsConfig } from "$lib/config/docs";
+
+  import DocsSidebarNav from "$components/docs/nav/DocsSidebarNav.svelte";
 </script>
 
 <div

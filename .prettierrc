@@ -4,18 +4,9 @@
   "singleQuote": false,
   "trailingComma": "none",
   "printWidth": 80,
-  "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
   "pluginSearchDirs": false,
-  "overrides": [
-    {
-      "files": "*.svelte",
-      "options": {
-        "parser": "svelte",
-        "svelteIndentScriptAndStyle": true,
-        "svelteStrictMode": false,
-        "svelteSortOrder": "scripts-markup-styles-options"
-      }
-    }
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
   ],
   "bracketSameLine": false,
   "importOrder": [
@@ -35,6 +26,9 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderBuiltinModulesToTop": true,
-  "importOrderParserPlugins": ["typescript", "svelte"],
+  "importOrderParserPlugins": [
+    "typescript",
+    "svelte"
+  ],
   "importOrderMergeDuplicateImports": true
 }

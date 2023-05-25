@@ -1,6 +1,7 @@
 <script lang="ts">
-  import CodeBlockWrapper from "$components/docs/CodeBlockWrapper.svelte";
   import { cn } from "$lib/utils";
+
+  import CodeBlockWrapper from "$components/docs/CodeBlockWrapper.svelte";
 
   let className: string | undefined | null = undefined;
   export { className as class };

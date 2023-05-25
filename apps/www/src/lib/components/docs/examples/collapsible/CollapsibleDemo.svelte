@@ -1,11 +1,12 @@
 <script lang="ts">
+  import { ChevronsUpDown } from "lucide-svelte";
+
   import { Button } from "$components/ui/button";
   import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger
   } from "$components/ui/collapsible";
-  import { ChevronsUpDown } from "lucide-svelte";
 
   let isOpen = false;
 </script>

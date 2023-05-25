@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
   import type { HTMLInputAttributes } from "svelte/elements";
+
+  import { cn } from "$lib/utils";
 
   // 2-way binding for type
   function setType(node: HTMLInputElement, _type: HTMLInputAttributes["type"]) {

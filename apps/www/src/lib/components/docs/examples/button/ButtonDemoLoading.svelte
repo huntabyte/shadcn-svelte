@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { Button } from "$components/ui/button";
   import { Loader2 } from "lucide-svelte";
+
+  import { Button } from "$components/ui/button";
 </script>
 
 <Button disabled>

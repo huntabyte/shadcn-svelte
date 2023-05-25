@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
   import { Slider as SliderPrimitive } from "radix-svelte";
   import type { SliderRootProps } from "radix-svelte";
+
+  import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;
   export { className as class };
