@@ -1,6 +1,5 @@
 import fs from "fs";
 import path, { basename, dirname } from "path";
-
 import { components } from "../src/lib/config/components";
 
 const payload = components

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Mail } from "lucide-svelte";
-
   import { Button } from "$components/ui/button";
 </script>
 

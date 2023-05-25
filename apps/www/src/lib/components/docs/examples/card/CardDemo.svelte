@@ -1,6 +1,5 @@
 <script lang="ts">
   import { BellRing, Check } from "lucide-svelte";
-
   import { Button } from "$components/ui/button";
   import {
     Card,

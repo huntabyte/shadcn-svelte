@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Terminal } from "lucide-svelte";
-
   import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
 </script>
 

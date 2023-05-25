@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Loader2 } from "lucide-svelte";
-
   import { Button } from "$components/ui/button";
 </script>
 

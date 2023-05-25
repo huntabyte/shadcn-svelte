@@ -25,7 +25,6 @@ import {
   X,
   type Icon as LucideIcon
 } from "lucide-svelte";
-
 import Apple from "./Apple.svelte";
 import Aria from "./Aria.svelte";
 import GitHub from "./GitHub.svelte";

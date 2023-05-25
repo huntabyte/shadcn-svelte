@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-
 import { toHtml } from "hast-util-to-html";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -114,8 +113,6 @@ function rehypeComponentExample() {
             })
           ]
         });
-        const sourceCodeString = `<ComponentExample codeString={\`${sourceCode}\`}>`;
-        node.value = sourceCodeString;
 
         parent.children.splice(index + 1, 0, sourceCodeNode);
       }
@@ -196,5 +193,5 @@ function getComponentSourceFileContent(src = undefined) {
   const filePath = path.join(process.cwd(), src);
   const source = fs.readFileSync(filePath, "utf-8");
 
-  return normalizedSource;
+  return source;
 }

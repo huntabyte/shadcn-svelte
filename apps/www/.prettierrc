@@ -32,7 +32,7 @@
     "\\.js$",
     "\\.svelte$"
   ],
-  "importOrderSeparation": true,
+  "importOrderSeparation": false,
   "importOrderSortSpecifiers": true,
   "importOrderBuiltinModulesToTop": true,
   "importOrderParserPlugins": ["typescript", "svelte"],

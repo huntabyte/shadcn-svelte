@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Bold } from "lucide-svelte";
-
   import { Toggle } from "$components/ui/toggle";
 </script>
 

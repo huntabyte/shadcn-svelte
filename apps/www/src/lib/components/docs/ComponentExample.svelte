@@ -6,10 +6,13 @@
     TabsTrigger
   } from "$components/ui/tabs";
   import { cn } from "$lib/utils";
-
   import CopyButton from "./CopyButton.svelte";
 
-  export let codeString: string;
+  let codeString: string;
+
+  function copyCodeToClipboard(node: HTMLElement) {
+    codeString = node.innerText ?? "";
+  }
   let className: string | undefined | null = undefined;
   export { className as class };
   export let align: "start" | "center" | "end" = "center";
@@ -37,8 +40,6 @@
           Code
         </TabsTrigger>
       </TabsList>
-
-      <CopyButton value={codeString} class="absolute right-4 top-20" />
     </div>
     <TabsContent value="preview" class="rounded-md border">
       <div
@@ -52,8 +53,10 @@
       </div>
     </TabsContent>
     <TabsContent value="code">
+      <CopyButton value={codeString} class="absolute right-4 top-20" />
       <div
         class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
+        use:copyCodeToClipboard
       >
         <slot />
       </div>

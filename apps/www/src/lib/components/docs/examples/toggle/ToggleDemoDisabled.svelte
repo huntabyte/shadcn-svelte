@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Underline } from "lucide-svelte";
-
   import { Toggle } from "$components/ui/toggle";
 </script>
 

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { ChevronsUpDown } from "lucide-svelte";
-
   import { Button } from "$components/ui/button";
   import {
     Collapsible,
