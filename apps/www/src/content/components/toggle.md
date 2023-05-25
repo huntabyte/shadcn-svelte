@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/toggle
 ## Installation
 
 ```bash
-npx shadcn-ui add toggle
+npx shadcn-svelte add toggle
 ```
 
 <ManualInstall>

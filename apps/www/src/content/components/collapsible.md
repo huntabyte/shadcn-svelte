@@ -22,7 +22,7 @@ radix: https://www.radix-svelte.com/docs/collapsible
 ## Installation
 
 ```bash
-npx shadcn-ui add collapsible
+npx shadcn-svelte add collapsible
 ```
 
 <ManualInstall>

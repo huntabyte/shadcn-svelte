@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/radio-group
 ## Installation
 
 ```bash
-npx shadcn-ui add radio-group
+npx shadcn-svelte add radio-group
 ```
 
 <ManualInstall>

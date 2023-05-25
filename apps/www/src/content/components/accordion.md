@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/accordion
 ## Installation
 
 ```bash
-npx shadcn-ui add accordion
+npx shadcn-svelte add accordion
 ```
 
 <ManualInstall>

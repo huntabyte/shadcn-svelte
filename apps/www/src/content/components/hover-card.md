@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/hover-card
 ## Installation
 
 ```bash
-npx shadcn-ui add hover-card
+npx shadcn-svelte add hover-card
 ```
 
 <ManualInstall>

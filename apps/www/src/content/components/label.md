@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/label
 ## Installation
 
 ```bash
-npx shadcn-ui add label
+npx shadcn-svelte add label
 ```
 
 <ManualInstall>

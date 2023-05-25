@@ -20,7 +20,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/
 ## Installation
 
 ```bash
-npx shadcn-ui add textarea
+npx shadcn-svelte add textarea
 ```
 
 <ManualInstall>

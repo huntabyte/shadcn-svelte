@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/progress
 ## Installation
 
 ```bash
-npx shadcn-ui add progress
+npx shadcn-svelte add progress
 ```
 
 <ManualInstall>

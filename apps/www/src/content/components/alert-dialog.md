@@ -22,7 +22,7 @@ radix: https://https://www.radix-svelte.com/docs/alert-dialog
 ## Installation
 
 ```bash
-npx shadcn-ui add alert-dialog
+npx shadcn-svelte add alert-dialog
 ```
 
 <ManualInstall>

@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/separator
 ## Installation
 
 ```bash
-npx shadcn-ui add separator
+npx shadcn-svelte add separator
 ```
 
 <ManualInstall>

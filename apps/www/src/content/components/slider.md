@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/slider
 ## Installation
 
 ```bash
-npx shadcn-ui add slider
+npx shadcn-svelte add slider
 ```
 
 <ManualInstall>

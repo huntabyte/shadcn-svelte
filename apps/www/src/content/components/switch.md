@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/switch
 ## Installation
 
 ```bash
-npx shadcn-ui add switch
+npx shadcn-svelte add switch
 ```
 
 <ManualInstall>

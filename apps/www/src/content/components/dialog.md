@@ -22,7 +22,7 @@ radix: https://www.radix-svelte.com/docs/dialog
 ## Installation
 
 ```bash
-npx shadcn-ui add dialog
+npx shadcn-svelte add dialog
 ```
 
 <ManualInstall>

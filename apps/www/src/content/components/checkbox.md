@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/checkbox
 ## Installation
 
 ```bash
-npx shadcn-ui add checkbox
+npx shadcn-svelte add checkbox
 ```
 
 <ManualInstall>

@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/tabs
 ## Installation
 
 ```bash
-npx shadcn-ui add tabs
+npx shadcn-svelte add tabs
 ```
 
 <ManualInstall>

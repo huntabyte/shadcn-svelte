@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/avatar
 ## Installation
 
 ```bash
-npx shadcn-ui add avatar
+npx shadcn-svelte add avatar
 ```
 
 <ManualInstall>

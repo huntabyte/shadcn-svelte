@@ -21,7 +21,7 @@ radix: https://www.radix-svelte.com/docs/aspect-ratio
 ## Installation
 
 ```bash
-npx shadcn-ui add aspect-ratio
+npx shadcn-svelte add aspect-ratio
 ```
 
 <ManualInstall>
