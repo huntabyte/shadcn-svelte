@@ -22,3 +22,4 @@ export * from "./hover-card";
 export * from "./radio-group";
 export * from "./slider";
 export * from "./skeleton";
+export * from "./typography";
