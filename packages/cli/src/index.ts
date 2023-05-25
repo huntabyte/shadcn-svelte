@@ -1,17 +1,24 @@
 #!/usr/bin/env node
 // Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
+import { existsSync, promises as fs } from "fs";
+import path from "path";
+
+import { Command } from "commander";
+import { execa } from "execa";
+import ora from "ora";
+import prompts from "prompts";
+
 import { Component, getAvailableComponents } from "./utils/get-components";
 import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";
 import { getProjectInfo } from "./utils/get-project-info";
 import { logger } from "./utils/logger";
-import { STYLES, TAILWIND_CONFIG, UTILS } from "./utils/templates";
-import { Command } from "commander";
-import { execa } from "execa";
-import { existsSync, promises as fs } from "fs";
-import ora from "ora";
-import path from "path";
-import prompts from "prompts";
+import {
+  STYLES,
+  SVELTE_CONFIG,
+  TAILWIND_CONFIG,
+  UTILS
+} from "./utils/templates";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -103,10 +110,17 @@ async function main() {
       await fs.writeFile(utilsDestination, UTILS, "utf8");
       utilsSpinner.succeed();
 
+      // Update tailwind.config.cjs
       const tailwindDestination = "./tailwind.config.cjs";
       const tailwindSpinner = ora(`Updating tailwind.config.cjs...`).start();
       await fs.writeFile(tailwindDestination, TAILWIND_CONFIG, "utf8");
       tailwindSpinner.succeed();
+
+      // Update svelte.config.js
+      const svelteDestination = "./svelte.config.js";
+      const svelteSpinner = ora(`Updating svelte.config.js...`).start();
+      await fs.writeFile(svelteDestination, SVELTE_CONFIG, "utf8");
+      svelteSpinner.succeed();
     });
 
   program
