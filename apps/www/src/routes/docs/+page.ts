@@ -3,6 +3,8 @@ import type { PageLoad } from "./$types";
 import { error } from "@sveltejs/kit";
 import { slugFromPath } from "$lib/utils";
 
+export const prerender = true;
+
 export const load: PageLoad = async () => {
   // there's definitely a better way to do this for the index page
   // but I'll sort this out later - works for now :)
