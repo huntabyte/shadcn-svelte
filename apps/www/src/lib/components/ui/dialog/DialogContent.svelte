@@ -1,9 +1,7 @@
 <script lang="ts">
+  import type { DialogContentProps } from "radix-svelte";
   import { X } from "lucide-svelte";
-  import {
-    Dialog as DialogPrimitive,
-    type DialogContentProps
-  } from "radix-svelte";
+  import { Dialog as DialogPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
   import DialogOverlay from "./DialogOverlay.svelte";
   import DialogPortal from "./DialogPortal.svelte";

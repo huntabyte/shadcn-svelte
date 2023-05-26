@@ -1,8 +1,8 @@
-import type { MainNavItem, SidebarNavItem } from "$lib/types/nav";
+import type { NavItem } from "$lib/types/nav";
 
 interface DocsConfig {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
+  mainNav: NavItem[];
+  sidebarNav: NavItem[];
 }
 
 export const docsConfig: DocsConfig = {

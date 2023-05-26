@@ -1,3 +1,4 @@
+import type { Icon as LucideIcon } from "lucide-svelte";
 import {
   AlertTriangle,
   ArrowRight,
@@ -22,8 +23,7 @@ import {
   Trash,
   Twitter,
   User,
-  X,
-  type Icon as LucideIcon
+  X
 } from "lucide-svelte";
 import Apple from "./Apple.svelte";
 import Aria from "./Aria.svelte";

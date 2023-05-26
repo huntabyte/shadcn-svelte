@@ -3,9 +3,9 @@
   import { cn } from "$lib/utils";
   import { Icons } from "./icons";
 
-  let copied: boolean = false;
+  let copied = false;
   let className: string | undefined | null = undefined;
-  export let value: string = "undefined";
+  export let value = "";
   export { className as class };
 
   function handleCopyDone() {

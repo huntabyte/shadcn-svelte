@@ -1,7 +1,7 @@
 <script lang="ts">
+  import type { RadioGroupItemProps } from "radix-svelte";
   import { Circle } from "lucide-svelte";
   import { RadioGroup as RadioGroupPrimitive } from "radix-svelte";
-  import type { RadioGroupItemProps } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

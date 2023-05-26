@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { cva, type VariantProps } from "class-variance-authority";
-  import {
-    Toggle as TogglePrimitive,
-    type ToggleRootProps
-  } from "radix-svelte";
+  import type { VariantProps } from "class-variance-authority";
+  import type { ToggleRootProps } from "radix-svelte";
+  import { cva } from "class-variance-authority";
+  import { Toggle as TogglePrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   const toggleVariants = cva(
@@ -33,8 +32,8 @@
   export let variant: VariantProps<typeof toggleVariants>["variant"] =
     "default";
   export let size: VariantProps<typeof toggleVariants>["size"] = "default";
-  export let pressed: boolean = false;
-  export let disabled: boolean = false;
+  export let pressed = false;
+  export let disabled = false;
 
   type $$Props = ToggleRootProps & {
     size?: VariantProps<typeof toggleVariants>["size"];

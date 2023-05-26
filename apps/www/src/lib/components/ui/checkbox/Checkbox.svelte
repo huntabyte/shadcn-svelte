@@ -1,9 +1,7 @@
 <script lang="ts">
+  import type { CheckboxRootProps } from "radix-svelte";
   import { Check } from "lucide-svelte";
-  import {
-    Checkbox as CheckboxPrimitive,
-    type CheckboxRootProps
-  } from "radix-svelte";
+  import { Checkbox as CheckboxPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

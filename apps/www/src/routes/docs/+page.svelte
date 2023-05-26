@@ -1,13 +1,15 @@
 <script lang="ts">
+  import type { SvelteComponentTyped } from "svelte";
+  import type { PageData } from "./$types";
   import { ChevronRight } from "lucide-svelte";
   import { balancer } from "svelte-action-balancer";
   import { Icons } from "$components/docs/icons";
   import { badgeVariants } from "$components/ui/badge";
   import { Separator } from "$components/ui/separator";
   import { cn } from "$lib/utils";
-  import type { PageData } from "./$types";
 
   export let data: PageData;
+  // eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any
   type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;
   $: component = data.component as unknown as Component;
   $: doc = data.metadata;

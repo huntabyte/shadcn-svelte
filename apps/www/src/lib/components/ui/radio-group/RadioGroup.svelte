@@ -1,8 +1,6 @@
 <script lang="ts">
-  import {
-    RadioGroup as RadioGroupPrimitive,
-    type RadioGroupRootProps
-  } from "radix-svelte";
+  import type { RadioGroupRootProps } from "radix-svelte";
+  import { RadioGroup as RadioGroupPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

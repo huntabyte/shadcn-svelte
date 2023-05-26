@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { HoverCard as HoverCardPrimitive } from "radix-svelte";
   import type {
     HoverCardContentProps,
     HoverCardPortalProps
   } from "radix-svelte";
+  import { HoverCard as HoverCardPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

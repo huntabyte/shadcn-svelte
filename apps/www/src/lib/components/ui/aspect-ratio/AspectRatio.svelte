@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { AspectRatio, type AspectRatioProps } from "radix-svelte";
+  import type { AspectRatioProps } from "radix-svelte";
+  import { AspectRatio } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

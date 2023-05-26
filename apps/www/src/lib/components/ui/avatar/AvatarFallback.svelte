@@ -1,8 +1,6 @@
 <script lang="ts">
-  import {
-    Avatar as AvatarPrimitive,
-    type AvatarFallbackProps
-  } from "radix-svelte";
+  import type { AvatarFallbackProps } from "radix-svelte";
+  import { Avatar as AvatarPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;

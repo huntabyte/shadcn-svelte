@@ -256,7 +256,8 @@ Add the following to your `src/app.postcss` file. You can learn more about using
 You'll want to create a `cn` helper to make it easier to conditionally add Tailwind CSS classes. This project defines it in `lib/utils.ts`:
 
 ```ts title="lib/utils.ts"
-import { clsx, type ClassValue } from "clsx";
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {

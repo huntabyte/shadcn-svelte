@@ -28,5 +28,8 @@
     "url": "https://github.com/huntabyte/shadcn-svelte.git"
   },
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1"
+  }
 }

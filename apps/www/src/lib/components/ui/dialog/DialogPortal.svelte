@@ -1,8 +1,6 @@
 <script lang="ts">
-  import {
-    Dialog as DialogPrimitive,
-    type DialogPortalProps
-  } from "radix-svelte";
+  import type { DialogPortalProps } from "radix-svelte";
+  import { Dialog as DialogPrimitive } from "radix-svelte";
   import { cn } from "$lib/utils";
 
   let className: string | undefined | null = undefined;
