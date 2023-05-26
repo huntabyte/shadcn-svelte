@@ -33,7 +33,7 @@
             <span class="sr-only">GitHub</span>
           </div>
         </a>
-        <a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">
+        <a href={siteConfig.links.shadTwitter} target="_blank" rel="noreferrer">
           <div
             class={cn(
               buttonVariants({

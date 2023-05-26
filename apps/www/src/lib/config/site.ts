@@ -6,7 +6,7 @@ export const siteConfig = {
     "Beautifully designed components built with Radix Svelte and Tailwind CSS.",
   links: {
     twitter: "https://twitter.com/huntabyte",
-    github: "https://github.com/huntabyte/shad-svelte",
+    github: "https://github.com/huntabyte/shadcn-svelte",
     shadTwitter: "https://twitter.com/shadcn",
     shadGithub: "https://github.com/shadcn/ui"
   }

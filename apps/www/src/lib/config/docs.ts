@@ -1,13 +1,8 @@
-import type {
-  MainNavItem,
-  SidebarNavItem,
-  SocialNavItem
-} from "$lib/types/nav";
+import type { MainNavItem, SidebarNavItem } from "$lib/types/nav";
 
 interface DocsConfig {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
-  socialNav: SocialNavItem[];
 }
 
 export const docsConfig: DocsConfig = {
@@ -31,18 +26,6 @@ export const docsConfig: DocsConfig = {
     {
       title: "GitHub",
       href: "https://github.com/huntabyte/shadcn-svelte",
-      external: true
-    }
-  ],
-  socialNav: [
-    {
-      title: "GitHub",
-      href: "https://github.com/huntabyte/shadcn-svelte",
-      external: true
-    },
-    {
-      title: "Twitter",
-      href: "https://twitter.com/shadcn",
       external: true
     }
   ],
