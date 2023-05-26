@@ -74,7 +74,7 @@ For example:
 ```
 
 ```svelte
-<CardTitle tag={"p"}>This will render a P tzg</CardTitle>
+<CardTitle tag={"p"}>This will render a P tag</CardTitle>
 ```
 
 ## Examples
