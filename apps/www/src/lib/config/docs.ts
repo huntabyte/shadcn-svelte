@@ -313,7 +313,13 @@ export const docsConfig: DocsConfig = {
 	]
 };
 
-export const examples = [
+type Example = {
+	name: string;
+	href: string;
+	label?: string;
+	code: string;
+};
+export const examples: Example[] = [
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
@@ -324,31 +330,31 @@ export const examples = [
 		href: "/examples/cards",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/cards"
 	},
-	{
-		name: "Tasks",
-		href: "/examples/tasks",
-		label: "New",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/tasks"
-	},
-	{
-		name: "Playground",
-		href: "/examples/playground",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/playground"
-	},
-	{
-		name: "Forms",
-		href: "/examples/forms",
-		label: "New",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/forms"
-	},
-	{
-		name: "Music",
-		href: "/examples/music",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/music"
-	},
+	// {
+	// 	name: "Tasks",
+	// 	href: "/examples/tasks",
+	// 	label: "New",
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/tasks"
+	// },
+	// {
+	// 	name: "Playground",
+	// 	href: "/examples/playground",
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/playground"
+	// },
+	// {
+	// 	name: "Music",
+	// 	href: "/examples/music",
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/music"
+	// },
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/authentication"
+	},
+	{
+		name: "Forms",
+		href: "#",
+		label: "Soon",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/forms"
 	}
 ];

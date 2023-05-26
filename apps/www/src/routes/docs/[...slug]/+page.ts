@@ -1,9 +1,13 @@
 import type { DocResolver } from "$lib/types/docs";
 import type { PageLoad } from "./$types";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import { slugFromPath } from "$lib/utils";
 
 export const load: PageLoad = async (event) => {
+	if (event.params.slug === "components") {
+		throw redirect(303, "/docs/components/accordion");
+	}
+
 	const modules = import.meta.glob(`/src/content/**/*.md`);
 
 	let match: { path?: string; resolver?: DocResolver } = {};
