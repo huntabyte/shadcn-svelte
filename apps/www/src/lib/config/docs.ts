@@ -17,7 +17,7 @@ export const docsConfig: DocsConfig = {
 		},
 		{
 			title: "Examples",
-			href: "/examples"
+			href: "/examples/dashboard"
 		},
 		{
 			title: "Figma",
