@@ -45,16 +45,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build the package
-        run: pnpm build:cli
-
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
           commit: "chore(release): version package"
           title: "chore(release): version package"
-          publish: npx changeset publish
+          publish: pnpm ci:release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

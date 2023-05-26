@@ -23,7 +23,9 @@
     "format:write": "pnpm -r format:write",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm -r sync",
-    "release": "changeset version",
+    "ci:publish": "changeset publish",
+    "ci:build": "pnpm --filter shadcn-svelte build",
+    "ci:release": "pnpm ci:build && pnpm ci:publish",
     "pub:beta": "cd packages/cli && pnpm pub:beta",
     "pub:release": "cd packages/cli && pnpm pub:release"
   },
