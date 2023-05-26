@@ -8,20 +8,6 @@ description: How to install dependencies and structure your app.
   import { Steps } from "$components/docs";
 </script>
 
-<Alert style="padding-left: 1rem;">
-  <AlertDescription>
-
-    **Prerequisites**: Components are styled using [Tailwind
-    CSS](https://tailwindcss.com). You need to install Tailwind CSS in your
-    project. Follow the [Tailwind CSS installation instructions](https://tailwindcss.com/docs/installation) or use the `svelte-add` CLI to add Tailwind CSS to your project.
-
-```bash
-npx svelte-add@latest tailwindcss
-```
-
-  </AlertDescription>
-</Alert>
-
 ## New Project
 
 <Steps>
