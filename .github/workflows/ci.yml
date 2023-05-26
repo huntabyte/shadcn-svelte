@@ -1,8 +1,10 @@
-name: Code Check
+name: CI
 
 on:
   pull_request:
-    branches: ["*"]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -18,25 +20,26 @@ jobs:
         with:
           node-version: 18
       
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          run_install: false
-      
+          version: 8
+
+      # PNPM Store cache setup
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-      
-      - uses: actions/cache@v3
-        name: Cache pnpm store
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-      
+    
       - name: Install dependencies
         run: pnpm install
       
@@ -55,19 +58,20 @@ jobs:
         with:
           node-version: 18
       
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          run_install: false
-      
+          version: 8
+
+      # PNPM Store cache setup
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-      
-      - uses: actions/cache@v3
-        name: Cache pnpm store
+          
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}

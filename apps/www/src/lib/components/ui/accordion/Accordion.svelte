@@ -5,13 +5,8 @@
   // Remove the any when radix-svelte is updated to properly satisfy the types
   // https://www.radix-svelte.com/docs/accordion
   export let value: any = undefined;
-  export let type: "single" | "multiple" = "single";
-  export let disabled: AccordionRootProps["disabled"] = undefined;
-  type $$Props = AccordionRootProps & {
-    value: any;
-  };
 </script>
 
-<AccordionPrimitive.Root bind:value {type} {disabled} {...$$restProps}>
+<AccordionPrimitive.Root bind:value {...$$restProps}>
   <slot />
 </AccordionPrimitive.Root>

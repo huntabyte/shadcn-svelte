@@ -13,8 +13,10 @@
         <h4 class="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
           {item.title}
         </h4>
-        {#if item?.items?.length}
-          <DocsSidebarNavItems items={item.items} />
+        {#if item?.items}
+          {#if item?.items?.length}
+            <DocsSidebarNavItems items={item.items} />
+          {/if}
         {/if}
       </div>
     {/each}

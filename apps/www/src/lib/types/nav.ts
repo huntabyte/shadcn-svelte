@@ -1,6 +1,6 @@
 import type { Icons } from "$components/docs/icons";
 
-type NavItemBase = {
+export type NavItem = {
   title: string;
   href?: string;
   disabled?: boolean;
@@ -9,8 +9,6 @@ type NavItemBase = {
   label?: string;
 };
 
-type NavItemWithChildren = NavItemBase & {
-  items: NavItemWithChildren[];
+export type SidebarNavItem = NavItem & {
+  items: SidebarNavItem[];
 };
-
-export type NavItem = NavItemBase | NavItemWithChildren;
