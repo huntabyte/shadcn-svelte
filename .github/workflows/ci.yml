@@ -42,8 +42,6 @@ jobs:
       
       - name: Run svelte-check
         run: pnpm check
-        env:
-          VERCEL_ENV: dev
 
   lint:
     runs-on: ubuntu-latest
