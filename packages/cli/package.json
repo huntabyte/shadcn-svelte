@@ -1,66 +1,67 @@
 {
-  "name": "shadcn-svelte",
-  "version": "0.0.1",
-  "description": "Add components to your apps.",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "huntabyte & shadcn",
-    "url": "https://twitter.com/huntabyte"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/huntabyte/shadcn-svelte.git",
-    "directory": "packages/cli"
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "components",
-    "ui",
-    "tailwind",
-    "radix-ui",
-    "shadcn",
-    "svelte",
-    "sveltekit",
-    "radix-svelte"
-  ],
-  "type": "module",
-  "exports": "./dist/index.js",
-  "bin": "./dist/index.js",
-  "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
-    "typecheck": "tsc --noEmit",
-    "clean": "rimraf dist && rimraf components",
-    "start:dev": "cross-env COMPONENTS_BASE_URL=http://localhost:5173 node dist/index.js",
-    "start": "node dist/index.js",
-    "format:write": "prettier --write \"**/*.{ts}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts}\" --cache",
-    "release": "changeset version",
-    "pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
-    "pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
-    "pub:release": "pnpm build && pnpm publish --access public"
-  },
-  "dependencies": {
-    "chalk": "5.2.0",
-    "commander": "^10.0.0",
-    "execa": "^7.0.0",
-    "fs-extra": "^11.1.0",
-    "node-fetch": "^3.3.0",
-    "ora": "^6.1.2",
-    "prompts": "^2.4.2",
-    "zod": "^3.20.2"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.1",
-    "@types/prompts": "^2.4.2",
-    "rimraf": "^4.1.3",
-    "tsup": "^6.6.3",
-    "type-fest": "^3.8.0",
-    "typescript": "^4.9.3"
-  }
+	"name": "shadcn-svelte",
+	"version": "0.0.1",
+	"description": "Add components to your apps.",
+	"publishConfig": {
+		"access": "public"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "huntabyte & shadcn",
+		"url": "https://twitter.com/huntabyte"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/huntabyte/shadcn-svelte.git",
+		"directory": "packages/cli"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"components",
+		"ui",
+		"tailwind",
+		"radix-ui",
+		"shadcn",
+		"svelte",
+		"sveltekit",
+		"radix-svelte"
+	],
+	"type": "module",
+	"exports": "./dist/index.js",
+	"bin": "./dist/index.js",
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"typecheck": "tsc --noEmit",
+		"clean": "rimraf dist && rimraf components",
+		"start:dev": "cross-env COMPONENTS_BASE_URL=http://localhost:5173 node dist/index.js",
+		"start": "node dist/index.js",
+		"format:write": "prettier --write .",
+		"format:check": "prettier --check .",
+		"release": "changeset version",
+		"pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
+		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
+		"pub:release": "pnpm build && pnpm publish --access public"
+	},
+	"dependencies": {
+		"chalk": "5.2.0",
+		"commander": "^10.0.0",
+		"execa": "^7.0.0",
+		"fs-extra": "^11.1.0",
+		"node-fetch": "^3.3.0",
+		"ora": "^6.1.2",
+		"prompts": "^2.4.2",
+		"zod": "^3.20.2"
+	},
+	"devDependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+		"@types/fs-extra": "^11.0.1",
+		"@types/prompts": "^2.4.2",
+		"rimraf": "^4.1.3",
+		"tsup": "^6.6.3",
+		"type-fest": "^3.8.0",
+		"typescript": "^4.9.3"
+	}
 }

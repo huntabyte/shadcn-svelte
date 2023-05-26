@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils";
 
-  let className: string | undefined | null = undefined;
-  export { className as class };
+	let className: string | undefined | null = undefined;
+	export { className as class };
 </script>
 
 <h1
-  class={cn(
-    "text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]",
-    className
-  )}
-  {...$$restProps}
+	class={cn(
+		"text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]",
+		className
+	)}
+	{...$$restProps}
 >
-  <slot />
+	<slot />
 </h1>

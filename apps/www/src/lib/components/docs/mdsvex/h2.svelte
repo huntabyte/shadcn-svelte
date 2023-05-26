@@ -1,18 +1,18 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
-  import { cn } from "$lib/utils";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils";
 
-  let className: string | undefined | null = undefined;
-  export { className as class };
-  type $$Props = HTMLAttributes<HTMLHeadingElement>;
+	let className: string | undefined | null = undefined;
+	export { className as class };
+	type $$Props = HTMLAttributes<HTMLHeadingElement>;
 </script>
 
 <h2
-  class={cn(
-    "mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
-    className
-  )}
-  {...$$restProps}
+	class={cn(
+		"mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+		className
+	)}
+	{...$$restProps}
 >
-  <slot />
+	<slot />
 </h2>

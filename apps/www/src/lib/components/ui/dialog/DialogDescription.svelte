@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Dialog as DialogPrimitive } from "radix-svelte";
-  import { cn } from "$lib/utils";
+	import { Dialog as DialogPrimitive } from "radix-svelte";
+	import { cn } from "$lib/utils";
 
-  let className: string | undefined | null = undefined;
-  export { className as class };
+	let className: string | undefined | null = undefined;
+	export { className as class };
 </script>
 
 <DialogPrimitive.Description
-  class={cn("text-sm text-muted-foreground", className)}
-  {...$$restProps}
+	class={cn("text-sm text-muted-foreground", className)}
+	{...$$restProps}
 >
-  <slot />
+	<slot />
 </DialogPrimitive.Description>

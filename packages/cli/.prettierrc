@@ -1,0 +1,31 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"singleQuote": false,
+	"trailingComma": "none",
+	"printWidth": 80,
+	"endOfLine": "lf",
+	"pluginSearchDirs": false,
+	"plugins": ["@ianvs/prettier-plugin-sort-imports"],
+	"bracketSameLine": false,
+	"importOrder": [
+		"<TYPES>",
+		"<TYPES>^[.]",
+		"<BUILTIN_MODULES>",
+		"<THIRD_PARTY_MODULES>",
+		"^\\$app",
+		"^\\$env",
+		"^\\$service-worker",
+		"^\\$lib/server",
+		"^\\$(?![^\\/]*\\/)",
+		"^\\$[^/]*\\/[^/]+",
+		"^[./]",
+		"\\.js$",
+		"\\.svelte$"
+	],
+	"importOrderSeparation": false,
+	"importOrderSortSpecifiers": true,
+	"importOrderBuiltinModulesToTop": true,
+	"importOrderParserPlugins": ["typescript"],
+	"importOrderMergeDuplicateImports": true
+}

@@ -3,9 +3,9 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs));
 }
 
 export function slugFromPath(path: string) {
-  return path.replace("/src/content/", "").replace(".md", "");
+	return path.replace("/src/content/", "").replace(".md", "");
 }

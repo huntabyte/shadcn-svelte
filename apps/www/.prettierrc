@@ -1,42 +1,52 @@
 {
-  "useTabs": false,
-  "tabWidth": 2,
-  "singleQuote": false,
-  "trailingComma": "none",
-  "printWidth": 80,
-  "endOfLine": "lf",
-  "pluginSearchDirs": false,
-  "plugins": ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
-  "overrides": [
-    {
-      "files": "*.svelte",
-      "options": {
-        "parser": "svelte",
-        "svelteIndentScriptAndStyle": true,
-        "svelteStrictMode": false,
-        "svelteSortOrder": "scripts-markup-styles-options"
-      }
-    }
-  ],
-  "bracketSameLine": false,
-  "importOrder": [
-    "<TYPES>",
-    "<TYPES>^[.]",
-    "<BUILTIN_MODULES>",
-    "<THIRD_PARTY_MODULES>",
-    "^\\$app",
-    "^\\$env",
-    "^\\$service-worker",
-    "^\\$lib/server",
-    "^\\$(?![^\\/]*\\/)",
-    "^\\$[^/]*\\/[^/]+",
-    "^[./]",
-    "\\.js$",
-    "\\.svelte$"
-  ],
-  "importOrderSeparation": false,
-  "importOrderSortSpecifiers": true,
-  "importOrderBuiltinModulesToTop": true,
-  "importOrderParserPlugins": ["typescript", "svelte"],
-  "importOrderMergeDuplicateImports": true
+	"useTabs": true,
+	"tabWidth": 4,
+	"singleQuote": false,
+	"trailingComma": "none",
+	"printWidth": 80,
+	"endOfLine": "lf",
+	"pluginSearchDirs": false,
+	"plugins": [
+		"prettier-plugin-svelte",
+		"@ianvs/prettier-plugin-sort-imports"
+	],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte",
+				"svelteIndentScriptAndStyle": true,
+				"svelteStrictMode": false,
+				"svelteSortOrder": "scripts-markup-styles-options"
+			}
+		},
+		{
+			"files": "*.md",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	],
+	"bracketSameLine": false,
+	"importOrder": [
+		"<TYPES>",
+		"<TYPES>^[.]",
+		"<BUILTIN_MODULES>",
+		"<THIRD_PARTY_MODULES>",
+		"^\\$app",
+		"^\\$env",
+		"^\\$service-worker",
+		"^\\$lib/server",
+		"^\\$(?![^\\/]*\\/)",
+		"^\\$[^/]*\\/[^/]+",
+		"^[./]",
+		"\\.js$",
+		"\\.svelte$"
+	],
+	"importOrderSeparation": false,
+	"importOrderSortSpecifiers": true,
+	"importOrderBuiltinModulesToTop": true,
+	"importOrderParserPlugins": ["typescript", "svelte"],
+	"importOrderMergeDuplicateImports": true
 }

@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { Terminal } from "lucide-svelte";
-  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
+	import { Terminal } from "lucide-svelte";
+	import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
 </script>
 
 <Alert variant="destructive">
-  <Terminal class="h-4 w-4" />
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
-    You can add components to your app using the cli.
-  </AlertDescription>
+	<Terminal class="h-4 w-4" />
+	<AlertTitle>Heads up!</AlertTitle>
+	<AlertDescription>
+		You can add components to your app using the cli.
+	</AlertDescription>
 </Alert>
