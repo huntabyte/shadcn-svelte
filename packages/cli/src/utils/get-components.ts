@@ -1,6 +1,6 @@
 // Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
 
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 import * as z from "zod";
 
 const baseUrl = process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173";
