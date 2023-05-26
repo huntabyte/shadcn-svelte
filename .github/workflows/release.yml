@@ -1,4 +1,4 @@
-name: Publish Skeleton
+name: Publish
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Build & Publish @latest Release
+    name: Build & Publish Release
     if: github.repository == 'huntabyte/shadcn-svelte'
     runs-on: ubuntu-latest
     steps:
