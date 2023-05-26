@@ -58,11 +58,11 @@
 			</CardHeader>
 			<CardContent class="space-y-2">
 				<div class="space-y-1">
-					<Label htmlFor="current">Current password</Label>
+					<Label for="current">Current password</Label>
 					<Input id="current" type="password" />
 				</div>
 				<div class="space-y-1">
-					<Label htmlFor="new">New password</Label>
+					<Label for="new">New password</Label>
 					<Input id="new" type="password" />
 				</div>
 			</CardContent>

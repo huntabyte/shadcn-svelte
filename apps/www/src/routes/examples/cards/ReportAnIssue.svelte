@@ -30,7 +30,7 @@
 	<CardContent class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-2">
-				<Label htmlFor="area">Area</Label>
+				<Label for="area">Area</Label>
 				<Select value="billing">
 					<SelectTrigger id="area">
 						<SelectValue placeholder="Select" />
@@ -45,7 +45,7 @@
 				</Select>
 			</div>
 			<div class="grid gap-2">
-				<Label htmlFor="security-level">Security Level</Label>
+				<Label for="security-level">Security Level</Label>
 				<Select value="2">
 					<SelectTrigger id="security-level">
 						<SelectValue placeholder="Select level" />
@@ -60,11 +60,11 @@
 			</div>
 		</div>
 		<div class="grid gap-2">
-			<Label htmlFor="subject">Subject</Label>
+			<Label for="subject">Subject</Label>
 			<Input id="subject" placeholder="I need help with..." />
 		</div>
 		<div class="grid gap-2">
-			<Label htmlFor="description">Description</Label>
+			<Label for="description">Description</Label>
 			<Textarea
 				id="description"
 				placeholder="Please include all information relevant to your issue."

@@ -42,11 +42,11 @@
 			</div>
 		</div>
 		<div class="grid gap-2">
-			<Label htmlFor="email">Email</Label>
+			<Label for="email">Email</Label>
 			<Input id="email" type="email" placeholder="m@example.com" />
 		</div>
 		<div class="grid gap-2">
-			<Label htmlFor="password">Password</Label>
+			<Label for="password">Password</Label>
 			<Input id="password" type="password" />
 		</div>
 	</CardContent>
