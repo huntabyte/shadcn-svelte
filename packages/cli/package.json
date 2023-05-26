@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "author": {
-    "name": "huntabyte",
+    "name": "huntabyte & shadcn",
     "url": "https://twitter.com/huntabyte"
   },
   "repository": {
@@ -38,8 +38,8 @@
     "clean": "rimraf dist && rimraf components",
     "start:dev": "cross-env COMPONENTS_BASE_URL=http://localhost:5173 node dist/index.js",
     "start": "node dist/index.js",
-    "format:write": "prettier --write \"**/*.{ts,md}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,md}\" --cache",
+    "format:write": "prettier --write \"**/*.{ts}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts}\" --cache",
     "release": "changeset version",
     "pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
     "pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
@@ -56,10 +56,8 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/fs-extra": "^11.0.1",
     "@types/prompts": "^2.4.2",
-    "prettier": "^2.8.8",
     "rimraf": "^4.1.3",
     "tsup": "^6.6.3",
     "type-fest": "^3.8.0",

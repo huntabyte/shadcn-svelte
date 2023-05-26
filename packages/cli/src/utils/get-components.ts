@@ -3,7 +3,7 @@
 import fetch from "node-fetch";
 import * as z from "zod";
 
-const baseUrl = process.env.COMPONENTS_BASE_URL ?? "http://localhost:5173";
+const baseUrl = process.env.COMPONENTS_BASE_URL ?? "https://shadcn-svelte.com";
 
 const componentSchema = z.object({
   component: z.string(),

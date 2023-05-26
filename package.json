@@ -18,17 +18,14 @@
     "check": "pnpm --filter www check",
     "check:watch": "pnpm --filter www check:watch",
     "test:unit": "pnpm --filter www test:unit",
-    "lint": "pnpm lint",
+    "lint": "pnpm -r lint",
     "format:check": "pnpm -r format:check",
     "format:write": "pnpm -r format:write",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm -r sync",
-    "ci:publish": "changeset publish",
-    "ci:package": "pnpm -r package",
-    "ci:release": "pnpm ci:package && pnpm ci:publish",
-    "ci:lint": "pnpm -r lint",
-    "ci:check": "pnpm -r check",
-    "cs": "changeset"
+    "release": "changeset version",
+    "pub:beta": "cd packages/cli && pnpm pub:beta",
+    "pub:release": "cd packages/cli && pnpm pub:release"
   },
   "packageManager": "pnpm@8.5.1",
   "engines": {
