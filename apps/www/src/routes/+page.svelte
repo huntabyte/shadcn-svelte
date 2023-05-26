@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { DashboardPage } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
 	import {
 		PageHeader,
@@ -67,8 +68,7 @@
 	</section>
 	<section class="hidden md:block">
 		<div class="overflow-hidden rounded-lg border bg-background shadow-xl">
-			<!-- <DashboardPage /> -->
-			hello world
+			<DashboardPage />
 		</div>
 	</section>
 </div>

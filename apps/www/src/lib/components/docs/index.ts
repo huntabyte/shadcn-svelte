@@ -14,3 +14,4 @@ export * from "./icons";
 export * from "./page-header";
 export * from "./nav";
 export * from "./examples-nav";
+export * from "./dashboard";
