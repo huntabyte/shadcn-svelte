@@ -29,6 +29,7 @@
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-vercel": "^3.0.0",
 		"@sveltejs/kit": "^1.18.0",
+		"@types/d3-scale": "^4.0.3",
 		"@types/escape-html": "^1.0.2",
 		"@types/node": "^20.2.3",
 		"@typescript-eslint/eslint-plugin": "^5.59.7",
@@ -57,6 +58,7 @@
 	"dependencies": {
 		"class-variance-authority": "^0.6.0",
 		"clsx": "^1.2.1",
+		"d3-scale": "^4.0.2",
 		"escape-html": "^1.0.3",
 		"hast-util-to-html": "^8.0.4",
 		"lucide-svelte": "^0.220.0",
