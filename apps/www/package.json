@@ -61,6 +61,7 @@
 		"clsx": "^1.2.1",
 		"d3-scale": "^4.0.2",
 		"escape-html": "^1.0.3",
+		"esm-env": "^1.0.0",
 		"hast-util-to-html": "^8.0.4",
 		"lucide-svelte": "^0.221.0",
 		"mdast-util-to-string": "^3.2.0",

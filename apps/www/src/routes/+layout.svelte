@@ -3,8 +3,13 @@
 	import SiteFooter from "$components/docs/SiteFooter.svelte";
 	import SiteHeader from "$components/docs/SiteHeader.svelte";
 	import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
+	import { setInitialClassState } from "$components/docs/light-switch/light-switch";
 	import "../styles/globals.css";
 </script>
+
+<svelte:head>
+	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
+</svelte:head>
 
 <div class="relative flex min-h-screen flex-col">
 	<SiteHeader />

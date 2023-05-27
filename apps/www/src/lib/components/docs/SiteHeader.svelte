@@ -4,6 +4,7 @@
 	import { buttonVariants } from "$components/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "$lib/utils";
+	import LightSwitch from "./light-switch/LightSwitch.svelte";
 	import MobileNav from "./nav/MobileNav.svelte";
 </script>
 
@@ -56,7 +57,7 @@
 						<span class="sr-only">Twitter</span>
 					</div>
 				</a>
-				<!-- <ModeToggle /> -->
+				<LightSwitch />
 			</nav>
 		</div>
 	</div>

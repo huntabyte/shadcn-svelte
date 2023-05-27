@@ -21,6 +21,9 @@ dependencies:
   escape-html:
     specifier: ^1.0.3
     version: 1.0.3
+  esm-env:
+    specifier: ^1.0.0
+    version: 1.0.0
   hast-util-to-html:
     specifier: ^8.0.4
     version: 8.0.4
@@ -1804,7 +1807,6 @@ packages:
 
   /esm-env@1.0.0:
     resolution: {integrity: sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA==}
-    dev: true
 
   /espree@9.5.2:
     resolution: {integrity: sha512-7OASN1Wma5fum5SrNhFMAMJxOUAbhyfQ8dQ//PJaJbNw0URTPWqIghHWt1MmAANKhHZIYOHruW4Kw4ruUWOdGw==}
