@@ -1,7 +1,7 @@
 export const siteConfig = {
 	name: "shadcn-svelte",
-	url: "https://ui.shadcn.com",
-	ogImage: "https://ui.shadcn.com/og.jpg",
+	url: "https://shadcn-svelte.com",
+	ogImage: "https://shadcn-svelte.com/og.jpg",
 	description:
 		"Beautifully designed components built with Radix Svelte and Tailwind CSS.",
 	links: {

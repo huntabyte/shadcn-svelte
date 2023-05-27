@@ -3,6 +3,7 @@
 	import type { PageData } from "./$types";
 	import { ChevronRight } from "lucide-svelte";
 	import { balancer } from "svelte-action-balancer";
+	import Metadata from "$components/docs/Metadata.svelte";
 	import { Icons } from "$components/docs/icons";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
@@ -51,7 +52,7 @@
 				{/if}
 				{#if doc.radix}
 					<a
-						href={doc.radix.link}
+						href={doc.radix}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}

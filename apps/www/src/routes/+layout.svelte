@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
+	import Metadata from "$components/docs/Metadata.svelte";
 	import SiteFooter from "$components/docs/SiteFooter.svelte";
 	import SiteHeader from "$components/docs/SiteHeader.svelte";
 	import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
@@ -9,6 +10,7 @@
 
 <svelte:head>
 	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
+	<Metadata />
 </svelte:head>
 
 <div class="relative flex min-h-screen flex-col">
