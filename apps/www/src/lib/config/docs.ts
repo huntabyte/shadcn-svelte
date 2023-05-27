@@ -163,13 +163,13 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Data Table",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Data Table",
+					href: "#",
+					label: "Soon",
+					disabled: true,
+					items: []
+				},
 				// {
 				//   title: "Date Picker",
 				//   href: "#",

@@ -56,6 +56,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tanstack/svelte-table": "^8.9.1",
 		"class-variance-authority": "^0.6.0",
 		"clsx": "^1.2.1",
 		"d3-scale": "^4.0.2",
