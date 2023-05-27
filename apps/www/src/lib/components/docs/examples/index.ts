@@ -24,3 +24,4 @@ export * from "./slider";
 export * from "./skeleton";
 export * from "./typography";
 export * from "./tooltip";
+export * from "./sheet";
