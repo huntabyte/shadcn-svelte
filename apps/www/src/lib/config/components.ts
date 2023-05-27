@@ -225,12 +225,21 @@ export const components = [
 			"src/lib/components/ui/separator/index.ts"
 		]
 	},
-	//   {
-	//     component: "sheet",
-	//     name: "Sheet",
-	//     dependencies: ["@radix-ui/react-dialog"],
-	//     files: ["components/ui/sheet.tsx"]
-	//   },
+	{
+		component: "sheet",
+		name: "Sheet",
+		dependencies: ["radix-svelte"],
+		files: [
+			"src/lib/components/ui/sheet/SheetContent.svelte",
+			"src/lib/components/ui/sheet/SheetDescription.svelte",
+			"src/lib/components/ui/sheet/SheetFooter.svelte",
+			"src/lib/components/ui/sheet/SheetHeader.svelte",
+			"src/lib/components/ui/sheet/SheetOverlay.svelte",
+			"src/lib/components/ui/sheet/SheetPortal.svelte",
+			"src/lib/components/ui/sheet/SheetTitle.svelte",
+			"src/lib/components/ui/sheet/index.ts"
+		]
+	},
 	{
 		component: "skeleton",
 		name: "Skeleton",
@@ -305,11 +314,14 @@ export const components = [
 			"src/lib/components/ui/toggle/Toggle.svelte",
 			"src/lib/components/ui/toggle/index.ts"
 		]
+	},
+	{
+		component: "tooltip",
+		name: "Tooltip",
+		dependencies: ["radix-svelte"],
+		files: [
+			"src/lib/components/ui/tooltip/TooltipContent.svelte",
+			"src/lib/components/ui/tooltip/index.ts"
+		]
 	}
-	//   {
-	//     component: "tooltip",
-	//     name: "Tooltip",
-	//     dependencies: ["@radix-ui/react-tooltip"],
-	//     files: ["components/ui/tooltip.tsx"]
-	//   }
 ];
