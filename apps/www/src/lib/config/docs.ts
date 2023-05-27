@@ -252,13 +252,11 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/separator",
 					items: []
 				},
-				// {
-				//   title: "Sheet",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Sheet",
+					href: "/docs/components/sheet",
+					items: []
+				},
 				{
 					title: "Skeleton",
 					href: "/docs/components/skeleton",
@@ -300,14 +298,12 @@ export const docsConfig: DocsConfig = {
 					title: "Toggle",
 					href: "/docs/components/toggle",
 					items: []
+				},
+				{
+					title: "Tooltip",
+					href: "/docs/components/tooltip",
+					items: []
 				}
-				// {
-				//   title: "Tooltip",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// }
 			]
 		}
 	]
