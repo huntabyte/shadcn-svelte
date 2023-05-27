@@ -1,5 +1,6 @@
 <!-- MDsveX Layout Component -->
 <script context="module">
+	import "../../../../styles/mdsvex.css";
 	import {
 		a,
 		blockquote,

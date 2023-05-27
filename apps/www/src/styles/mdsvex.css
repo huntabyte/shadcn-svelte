@@ -16,6 +16,7 @@
 
 .dark [data-theme="dark"] {
 	display: flex;
+	flex-direction: column;
 }
 
 [data-rehype-pretty-code-fragment] {

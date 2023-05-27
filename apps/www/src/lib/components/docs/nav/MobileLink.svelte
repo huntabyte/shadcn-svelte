@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import { cn } from "$lib/utils";
 
 	export let href: string;
@@ -11,7 +12,10 @@
 <a
 	{href}
 	on:click={() => (open = false)}
-	class={cn(className)}
+	class={cn(
+		$page.url.pathname === href ? "text-foreground" : "text-foreground/60",
+		className
+	)}
 	{...$$restProps}
 >
 	<slot />

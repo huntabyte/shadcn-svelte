@@ -19,7 +19,7 @@
 			Beautifully designed components that you can copy and paste into
 			your apps. Accessible. Customizable. Open Source.
 		</PageHeaderDescription>
-		<p class="text-sm text-red-600">
+		<p class="text-sm text-red-600 dark:text-red-400">
 			This is an unofficial port of <a
 				href={siteConfig.links.shadGithub}
 				target="_blank"

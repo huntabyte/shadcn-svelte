@@ -22,7 +22,11 @@
 		</Button>
 	</SheetTrigger>
 	<SheetContent size="xl" position="left" class="pr-0">
-		<MobileLink href="/" class="flex items-center" bind:open>
+		<MobileLink
+			href="/"
+			class="flex items-center !text-foreground"
+			bind:open
+		>
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
