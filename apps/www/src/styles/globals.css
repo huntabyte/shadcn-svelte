@@ -81,13 +81,13 @@
 		font-feature-settings: "rlig" 1, "calt" 1;
 	}
 
-	* {
+	/* * {
 		scrollbar-width: auto;
 		scrollbar-color: #7f8ea3;
-	}
+	} */
 
 	/* Chrome, Edge, and Safari */
-	*::-webkit-scrollbar {
+	/* *::-webkit-scrollbar {
 		width: 10px;
 		height: 10px;
 	}
@@ -100,6 +100,7 @@
 		background-color: #7f8ea3;
 		border: 3px none #ffffff;
 	}
+	*/
 }
 
 @layer utilities {
