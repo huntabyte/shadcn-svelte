@@ -61,7 +61,7 @@ export const STYLES = `@tailwind base;
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
  
-    --destructive: 0 63% 31%;
+    --destructive: 360 62% 55%;
     --destructive-foreground: 210 40% 98%;
  
     --ring: 216 34% 17%;
