@@ -12,7 +12,9 @@
 
 <Collapsible open={isOpen} class="w-[350px] space-y-2">
 	<div class="flex items-center justify-between space-x-4 px-4">
-		<h4 class="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+		<h4 class="text-sm font-semibold">
+			@thomasglopes starred 3 repositories
+		</h4>
 		<CollapsibleTrigger>
 			<Button variant="ghost" size="sm" class="w-9 p-0">
 				<ChevronsUpDown class="h-4 w-4" />
@@ -21,14 +23,14 @@
 		</CollapsibleTrigger>
 	</div>
 	<div class="rounded-md border px-4 py-3 font-mono text-sm">
-		@radix-ui/primitives
+		tglide/radix-svelte
 	</div>
 	<CollapsibleContent class="space-y-2">
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
-			@radix-ui/colors
+			sveltejs/svelte
 		</div>
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
-			@stitches/react
+			sveltejs/kit
 		</div>
 	</CollapsibleContent>
 </Collapsible>
