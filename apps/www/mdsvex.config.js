@@ -40,7 +40,7 @@ export const mdsvexOptions = {
 						fs.readFileSync(
 							path.resolve(
 								__dirname,
-								"./src/lib/themes/dark.json"
+								"./other/themes/dark.json"
 							),
 							"utf-8"
 						)
@@ -49,7 +49,7 @@ export const mdsvexOptions = {
 						fs.readFileSync(
 							path.resolve(
 								__dirname,
-								"./src/lib/themes/light.json"
+								"./other/themes/light.json"
 							),
 							"utf-8"
 						)
@@ -195,52 +195,6 @@ function rehypeRenderCode() {
 	};
 }
 
-const mdsvexPrettierConfig = {
-	useTabs: false,
-	tabWidth: 2,
-	singleQuote: false,
-	trailingComma: "none",
-	printWidth: 80,
-	endOfLine: "lf",
-	pluginSearchDirs: false,
-	parser: "svelte",
-	svelteIndexScriptAndStyle: true,
-	svelteStrictMode: false,
-	svelteSortOrder: "scripts-markup-styles-options",
-	plugins: ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
-	overrides: [
-		{
-			files: "*.svelte",
-			options: {
-				parser: "svelte",
-				svelteIndentScriptAndStyle: true,
-				svelteStrictMode: false,
-				svelteSortOrder: "scripts-markup-styles-options"
-			}
-		}
-	],
-	bracketSameLine: false,
-	importOrder: [
-		"<TYPES>",
-		"<TYPES>^[.]",
-		"<BUILTIN_MODULES>",
-		"<THIRD_PARTY_MODULES>",
-		"^\\$app",
-		"^\\$env",
-		"^\\$service-worker",
-		"^\\$lib/server",
-		"^\\$(?![^\\/]*\\/)",
-		"^\\$[^/]*\\/[^/]+",
-		"^[./]",
-		"\\.js$",
-		"\\.svelte$"
-	],
-	importOrderSeparation: false,
-	importOrderSortSpecifiers: true,
-	importOrderBuiltinModulesToTop: true,
-	importOrderParserPlugins: ["typescript", "svelte"],
-	importOrderMergeDuplicateImports: true
-};
 
 function getComponentSourceFileContent(src = undefined) {
 	if (!src) {
