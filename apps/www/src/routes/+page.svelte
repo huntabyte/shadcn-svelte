@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DashboardPage } from "$components/docs";
+	import { DashboardPage, ExamplesNav } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
 	import {
 		PageHeader,
@@ -47,19 +47,19 @@
 			</a>
 		</div>
 	</PageHeader>
-	<!-- <ExamplesNav class="[&>a:first-child]:text-primary" /> -->
+	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section
 		class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"
 	>
 		<img
-			src=""
+			src="/examples/dashboard-light.png"
 			width={1280}
 			height={866}
 			alt="Dashboard"
 			class="block dark:hidden"
 		/>
 		<img
-			src=""
+			src="/examples/dashboard-dark.png"
 			width={1280}
 			height={866}
 			alt="Dashboard"

@@ -3,11 +3,14 @@
 	import { examples } from "$lib/config/docs";
 	import { cn } from "$lib/utils";
 	import ExampleCodeLink from "./ExampleCodeLink.svelte";
+
+	let className: string | undefined | null = undefined;
+	export { className as class };
 </script>
 
 <div class="relative">
 	<div class="max-w-[600px] lg:max-w-none">
-		<div class="mb-4 flex items-center">
+		<div class={cn("mb-4 flex items-center", className)} {...$$restProps}>
 			{#each examples as example, index (index)}
 				<a
 					href={example.href}
