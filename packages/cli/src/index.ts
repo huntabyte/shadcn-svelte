@@ -75,21 +75,9 @@ async function main() {
 			]);
 			dependenciesSpinner.succeed();
 
-			// Ensure styles directory exists.
-			if (!projectInfo?.appDir) {
-				const stylesDir = "./src/styles";
-				if (!existsSync(path.resolve(stylesDir))) {
-					await fs.mkdir(path.resolve(stylesDir), {
-						recursive: true
-					});
-				}
-			}
+			// Update styles
+			let stylesDestination = "./src/app.postcss";
 
-			// Update styles.css
-			let stylesDestination = "./src/styles/globals.css";
-			if (projectInfo?.appDir) {
-				stylesDestination = "./src/app/globals.css";
-			}
 			const stylesSpinner = ora(
 				`Adding styles with CSS variables...`
 			).start();
