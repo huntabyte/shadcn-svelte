@@ -30,7 +30,7 @@
 <div class="flex flex-col space-y-8">
 	<RadioGroup bind:value={size}>
 		<div class="grid grid-cols-2 gap-2">
-			{#each SHEET_SIZES as size, index (size + index.toString())}
+			{#each SHEET_SIZES as size, index (index)}
 				<div class="flex items-center space-x-2">
 					<RadioGroupItem value={size} id={size} />
 					<Label for={size}>{size}</Label>

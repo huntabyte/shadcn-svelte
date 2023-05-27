@@ -21,7 +21,7 @@
 </script>
 
 <div class="flex flex-col space-y-8">
-	<RadioGroup value={position}>
+	<RadioGroup bind:value={position}>
 		<div class="grid grid-cols-2 gap-2">
 			{#each SHEET_POSITIONS as position, index (index)}
 				<div class="flex items-center space-x-2">
