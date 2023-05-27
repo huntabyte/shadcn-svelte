@@ -10,19 +10,18 @@
 	export { className as class };
 	export let align: HoverCardContentProps["align"] = undefined;
 	export let sideOffset: HoverCardContentProps["sideOffset"] = undefined;
-	export let container: HoverCardPortalProps["container"] = undefined;
 
 	type $$Props = HoverCardContentProps & {
 		container?: HoverCardPortalProps["container"];
 	};
 </script>
 
-<HoverCardPrimitive.Portal {container}>
+<HoverCardPrimitive.Portal>
 	<HoverCardPrimitive.Content
 		{align}
 		{sideOffset}
 		class={cn(
-			"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90",
+			"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3",
 			className
 		)}
 		{...$$restProps}
