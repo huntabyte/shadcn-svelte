@@ -47,6 +47,9 @@
 	"importOrderSeparation": false,
 	"importOrderSortSpecifiers": true,
 	"importOrderBuiltinModulesToTop": true,
-	"importOrderParserPlugins": ["typescript", "svelte"],
+	"importOrderParserPlugins": [
+		"typescript",
+		"svelte"
+	],
 	"importOrderMergeDuplicateImports": true
 }

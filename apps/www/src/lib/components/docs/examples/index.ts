@@ -23,3 +23,4 @@ export * from "./radio-group";
 export * from "./slider";
 export * from "./skeleton";
 export * from "./typography";
+export * from "./tooltip";

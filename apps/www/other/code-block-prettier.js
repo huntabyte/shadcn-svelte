@@ -6,14 +6,13 @@ export const codeBlockPrettierConfig = {
 	printWidth: 80,
 	endOfLine: "lf",
 	pluginSearchDirs: [
-		"node_modules/@ianvs/prettier-plugin-sort-imports",
 		"node_modules/prettier-plugin-svelte"
 	],
 	parser: "svelte",
 	svelteIndexScriptAndStyle: true,
 	svelteStrictMode: false,
 	svelteSortOrder: "scripts-markup-styles-options",
-	plugins: ["prettier-plugin-svelte", "@ianvs/prettier-plugin-sort-imports"],
+	plugins: ["prettier-plugin-svelte"],
 	overrides: [
 		{
 			files: "*.svelte",

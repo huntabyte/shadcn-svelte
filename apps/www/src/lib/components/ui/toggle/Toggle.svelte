@@ -32,12 +32,12 @@
 	export let variant: VariantProps<typeof toggleVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof toggleVariants>["size"] = "default";
-	export let pressed = false;
-	export let disabled = false;
+	export let pressed: ToggleRootProps["disabled"] = false;
+	export let disabled: ToggleRootProps["disabled"] = false;
 
 	type $$Props = ToggleRootProps & {
-		size?: VariantProps<typeof toggleVariants>["size"];
 		variant?: VariantProps<typeof toggleVariants>["variant"];
+		size?: VariantProps<typeof toggleVariants>["size"];
 	};
 </script>
 
