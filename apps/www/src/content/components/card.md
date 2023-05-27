@@ -1,6 +1,6 @@
 ---
 title: Card
-description: Displays a button or a component that looks like a button.
+description: Displays a card with header, content, and footer.
 featured: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/card
 ---
