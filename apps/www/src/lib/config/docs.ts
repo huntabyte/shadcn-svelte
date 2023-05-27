@@ -319,12 +319,12 @@ export const examples: Example[] = [
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/dashboard"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/dashboard"
 	},
 	{
 		name: "Cards",
 		href: "/examples/cards",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/cards"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/cards"
 	},
 	// {
 	// 	name: "Tasks",
@@ -345,12 +345,12 @@ export const examples: Example[] = [
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/authentication"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/authentication"
 	},
 	{
 		name: "Forms",
 		href: "#",
 		label: "Soon",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/forms"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
 	}
 ];
