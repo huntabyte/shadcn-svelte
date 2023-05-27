@@ -31,7 +31,7 @@ Given the following CSS variables:
 The `background` color of the following component will be `hsl(var(--primary))` and the `foreground` color will be `hsl(var(--primary-foreground))`.
 
 ```tsx
-<div className="bg-primary text-primary-foreground">Hello</div>
+<div class="bg-primary text-primary-foreground">Hello</div>
 ```
 
 ## CSS Variables
@@ -81,7 +81,7 @@ Here's the list of variables available for customization:
 --accent-foreground: 222.2 47.4% 11.2%;
 ```
 
-```css title="Used for destructive actions such as <Button variant="destructive">"
+```css title="Used for destructive actions such as <Button variant='destructive'>"
 --destructive: 0 100% 50%;
 --destructive-foreground: 210 40% 98%;
 ```
