@@ -57,12 +57,12 @@ dependencies:
   shiki:
     specifier: ^0.14.2
     version: 0.14.2
-  svelte-action-balancer:
-    specifier: ^1.0.4
-    version: 1.0.4
   svelte-legos:
     specifier: ^0.2.1
     version: 0.2.1(svelte@3.59.1)
+  svelte-wrap-balancer:
+    specifier: ^0.0.3
+    version: 0.0.3
   tailwind-merge:
     specifier: ^1.12.0
     version: 1.12.0
@@ -3642,10 +3642,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-action-balancer@1.0.4:
-    resolution: {integrity: sha512-QEJ/UJ576/wt+Sr3Uhswg/6k1s98034QZQBbO3WuNeyPYKa+9w2z/W5SFlusdAi8H7IF+s8BaMptEsUZINfxbw==}
-    dev: false
-
   /svelte-check@3.4.3(@babel/core@7.21.8)(postcss-load-config@4.0.1)(postcss@8.4.23)(svelte@3.59.1):
     resolution: {integrity: sha512-O07soQFY3X0VDt+bcGc6D5naz0cLtjwnmNP9JsEBPVyMemFEqUhL2OdLqvkl5H/u8Jwm50EiAU4BPRn5iin/kg==}
     hasBin: true
@@ -3768,6 +3764,10 @@ packages:
       svelte: 3.59.1
       typescript: 5.0.4
     dev: true
+
+  /svelte-wrap-balancer@0.0.3:
+    resolution: {integrity: sha512-NlHMz+5hy2GiH+JqA1ECdMIG540nKa3ZfbsxBo/LxvP03rkvJ7W6+FeeP2YU38Z5LX8rqV/sSwreF3WPMPRjmw==}
+    dev: false
 
   /svelte@3.59.1:
     resolution: {integrity: sha512-pKj8fEBmqf6mq3/NfrB9SLtcJcUvjYSWyePlfCqN9gujLB25RitWK8PvFzlwim6hD/We35KbPlRteuA6rnPGcQ==}
