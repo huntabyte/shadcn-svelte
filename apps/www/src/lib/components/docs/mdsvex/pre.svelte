@@ -9,7 +9,7 @@
 	let codeString: string;
 
 	function copyCodeToClipboard(node: HTMLPreElement) {
-		codeString = node.innerText ?? "";
+		codeString = node.innerText.trim() ?? "";
 	}
 
 	type $$Props = HTMLAttributes<HTMLPreElement>;
