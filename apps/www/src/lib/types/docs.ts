@@ -32,10 +32,7 @@ export type FrontMatter = {
 	description: string;
 	component: boolean;
 	source: string;
-	radix: {
-		link: string;
-		api: string;
-	} | null;
+	radix?: string;
 };
 
 export type DocFile = {

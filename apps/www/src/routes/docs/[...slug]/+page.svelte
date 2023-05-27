@@ -51,7 +51,7 @@
 				{/if}
 				{#if doc.radix}
 					<a
-						href={doc.radix.link}
+						href={doc.radix}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
