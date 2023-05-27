@@ -8,9 +8,9 @@ description: How to install dependencies and structure your app.
   import { Steps } from "$components/docs";
 </script>
 
-Unlike the official [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components is the optimal approach.
+Unlike the official [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach.
 
-When utilizing the CLI to add components, it will create a folder for each _component_, which is sometimes just a single Svelte file, and other times multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
+The CLI will create a folder for each _component_, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
 
 For example, the Accordion component is split into 4 `.svelte` files:
 
@@ -84,7 +84,7 @@ npm install tailwindcss-animate class-variance-authority clsx tailwind-merge luc
 
 ### Path Aliases
 
-Use the `$` alias to make it easier to import your components. This is how you can configure the `$` alias in `svelte.config.js`:
+Use the `$components` alias to make it easier to import your components. This is how you can configure the `$components` alias in `svelte.config.js`:
 
 ```js title="svelte.config.js" {7-8}
 /** @type {import('@sveltejs/kit').Config} */
@@ -100,9 +100,9 @@ const config = {
 };
 ```
 
-If you prefer to use a different alias than `$`, you'll need to update the `import` statements when adding components.
+If you prefer to use a different alias than `$components`, you'll need to update the `import` statements when adding components.
 
-### Configure tailwind.config.js
+### Configure tailwind.config.cjs
 
 This is what this project's `tailwind.config.cjs` file looks like:
 
@@ -277,7 +277,7 @@ export function cn(...inputs: ClassValue[]) {
 
 ### Import styles to your app
 
-Create `src/+layout.svelte` and import the styles:
+Create `src/routes/+layout.svelte` and import the styles:
 
 ```svelte title="src/routes/+layout.svelte"
 <script lang="ts">
