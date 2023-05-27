@@ -2,7 +2,7 @@
 title: Textarea
 description: Displays a form textarea or a component that looks like a textarea.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/textarea
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/textarea
 ---
 
 <script>

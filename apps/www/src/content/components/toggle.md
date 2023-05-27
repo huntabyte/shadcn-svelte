@@ -2,7 +2,7 @@
 title: Toggle
 description: A two-state button that can be either on or off.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/toggle
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/toggle
 radix: https://www.radix-svelte.com/docs/toggle
 ---
 

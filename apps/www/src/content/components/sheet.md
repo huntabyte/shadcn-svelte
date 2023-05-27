@@ -2,7 +2,7 @@
 title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/sheet
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/sheet
 radix: https://www.radix-svelte.com/docs/dialog
 ---
 

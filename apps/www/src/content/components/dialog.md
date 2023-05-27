@@ -3,7 +3,7 @@ title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 component: true
 featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/dialog
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/dialog
 radix: https://www.radix-svelte.com/docs/dialog
 ---
 

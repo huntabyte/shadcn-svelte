@@ -2,7 +2,7 @@
 title: Card
 description: Displays a button or a component that looks like a button.
 featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/card
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/card
 ---
 
 <script>

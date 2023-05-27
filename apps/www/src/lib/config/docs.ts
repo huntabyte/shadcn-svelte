@@ -319,38 +319,38 @@ export const examples: Example[] = [
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/dashboard"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/dashboard"
 	},
 	{
 		name: "Cards",
 		href: "/examples/cards",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/cards"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/cards"
 	},
 	// {
 	// 	name: "Tasks",
 	// 	href: "/examples/tasks",
 	// 	label: "New",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/tasks"
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/tasks"
 	// },
 	// {
 	// 	name: "Playground",
 	// 	href: "/examples/playground",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/playground"
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
 	// },
 	// {
 	// 	name: "Music",
 	// 	href: "/examples/music",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/music"
+	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/music"
 	// },
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/authentication"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/authentication"
 	},
 	{
 		name: "Forms",
 		href: "#",
 		label: "Soon",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/app/examples/forms"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/forms"
 	}
 ];

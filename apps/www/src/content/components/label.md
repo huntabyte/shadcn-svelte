@@ -2,7 +2,7 @@
 title: Label
 description: Renders an accessible label associated with controls.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/label
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/label
 radix: https://www.radix-svelte.com/docs/label
 ---
 

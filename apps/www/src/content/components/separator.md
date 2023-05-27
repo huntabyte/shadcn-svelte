@@ -2,7 +2,7 @@
 title: Separator
 description: Visually or semantically separates content.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/separator
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/separator
 radix: https://www.radix-svelte.com/docs/separator
 ---
 

@@ -2,7 +2,7 @@
 title: Table
 description: A responsive table component.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/table
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/table
 ---
 
 <script>

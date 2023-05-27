@@ -2,7 +2,7 @@
 title: Switch
 description: A control that allows the user to toggle between checked and not checked.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/src/lib/components/ui/switch
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/switch
 radix: https://www.radix-svelte.com/docs/switch
 ---
 
