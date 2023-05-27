@@ -8,6 +8,30 @@ description: How to install dependencies and structure your app.
   import { Steps } from "$components/docs";
 </script>
 
+Unlike the official [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components is the optimal approach.
+
+When utilizing the CLI to add components, it will create a folder for each _component_, which is sometimes just a single Svelte file, and other times multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
+
+For example, the Accordion component is split into 4 `.svelte` files:
+
+- `Accordion.svelte`
+- `AccordionContent.svelte`
+- `AccordionItem.svelte`
+- `AccordionTrigger.svelte`
+
+Each of which can be imported from the `accordion/index.ts` file like so:
+
+```svelte
+<script lang="ts">
+  import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+  } from "$components/ui/accordion";
+</script>
+```
+
 ## New Project
 
 <Steps>
