@@ -7,9 +7,7 @@ import fs from "fs-extra";
 export async function getProjectInfo() {
 	const info = {
 		tsconfig: null,
-		alias: null,
-		srcDir: false,
-		appDir: false
+		alias: null
 	};
 
 	try {
