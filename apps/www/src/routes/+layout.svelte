@@ -9,8 +9,8 @@
 </script>
 
 <svelte:head>
+	<!-- eslint-disable -->
 	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
-	<Metadata />
 </svelte:head>
 
 <div class="relative flex min-h-screen flex-col">

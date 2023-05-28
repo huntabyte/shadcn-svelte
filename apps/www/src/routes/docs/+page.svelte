@@ -4,7 +4,6 @@
 	import { ChevronRight } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { Icons } from "$components/docs/icons";
-	import Metadata from "$components/docs/Metadata.svelte";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
 	import { cn } from "$lib/utils";
