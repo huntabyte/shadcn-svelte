@@ -2,26 +2,12 @@
 	import type { HTMLInputAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
 
-	// 2-way binding for type
-	function setType(
-		node: HTMLInputElement,
-		_type: HTMLInputAttributes["type"]
-	) {
-		if (_type) {
-			node.type = _type;
-			return {
-				update(_type: string) {
-					node.type = _type;
-				}
-			};
-		}
-	}
-
 	let className: string | undefined | null = undefined;
 
-	export let type: HTMLInputAttributes["type"] = "text";
 	export let value: HTMLInputAttributes["value"] = undefined;
 	export { className as class };
+
+	type $$Props = HTMLInputAttributes;
 </script>
 
 <input
@@ -42,6 +28,5 @@
 	on:mouseleave
 	on:paste
 	on:input
-	use:setType={type}
 	{...$$restProps}
 />
