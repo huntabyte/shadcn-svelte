@@ -47,7 +47,7 @@ async function main() {
 				"This command assumes a SvelteKit project with TypeScript and Tailwind CSS."
 			);
 			logger.warn(
-				"If you don't have these, follow the manual steps at https://ui.shadcn.com/docs/installation."
+				"If you don't have these, follow the manual steps at https://shadcn-svelte.com/docs/installation."
 			);
 			logger.warn("");
 
