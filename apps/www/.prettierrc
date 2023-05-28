@@ -44,9 +44,5 @@
 		"\\.js$",
 		"\\.svelte$"
 	],
-	"importOrderSeparation": false,
-	"importOrderSortSpecifiers": true,
-	"importOrderBuiltinModulesToTop": true,
-	"importOrderParserPlugins": ["typescript", "svelte"],
-	"importOrderMergeDuplicateImports": true
+	"importOrderTypeScriptVersion": "5.0.4"
 }
