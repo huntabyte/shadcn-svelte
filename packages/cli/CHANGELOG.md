@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.5
+
+### Patch Changes
+
+- a5ddff2: Update link to shadcn-svelte in prompt
+
 ## 0.0.4
 
 ### Patch Changes
