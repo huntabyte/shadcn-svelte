@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<!-- eslint-disable -->
+	<!-- This causes the new eslint-plugin-svelte to error for some reason... so ignoring this entire file for now -->
 	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
 </svelte:head>
 
