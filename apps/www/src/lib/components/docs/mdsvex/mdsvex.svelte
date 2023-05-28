@@ -46,4 +46,11 @@
 	};
 </script>
 
+<script lang="ts">
+	export let title = "";
+	export let description = "";
+	export let source = "";
+	export let component = "";
+</script>
+
 <slot />
