@@ -9,7 +9,7 @@
       {
         "name": "Accordion.svelte",
         "dir": "accordion",
-        "content": "<script lang=\"ts\">\n\timport type { AccordionRootProps } from \"radix-svelte\";\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\n\t// Remove the any when radix-svelte is updated to properly satisfy the types\n\t// https://www.radix-svelte.com/docs/accordion\n\texport let value: any = undefined;\n</script>\n\n<AccordionPrimitive.Root bind:value {...$$restProps}>\n\t<slot />\n</AccordionPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\n\t// Remove the any when radix-svelte is updated to properly satisfy the types\n\t// https://www.radix-svelte.com/docs/accordion\n\texport let value: any = undefined;\n</script>\n\n<AccordionPrimitive.Root bind:value {...$$restProps}>\n\t<slot />\n</AccordionPrimitive.Root>\n"
       },
       {
         "name": "AccordionContent.svelte",
@@ -152,7 +152,7 @@
       {
         "name": "AvatarFallback.svelte",
         "dir": "avatar",
-        "content": "<script lang=\"ts\">\n\timport type { AvatarFallbackProps } from \"radix-svelte\";\n\timport { Avatar as AvatarPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let delayMs: AvatarFallbackProps[\"delayMs\"] = 0;\n</script>\n\n<AvatarPrimitive.Fallback\n\t{delayMs}\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
+        "content": "<script lang=\"ts\">\n\timport type { AvatarFallbackProps } from \"radix-svelte\";\n\timport { Avatar as AvatarPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\ttype $$Props = AvatarFallbackProps;\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
       },
       {
         "name": "AvatarImage.svelte",
@@ -347,7 +347,7 @@
       {
         "name": "Input.svelte",
         "dir": "input",
-        "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\t// 2-way binding for type\n\tfunction setType(\n\t\tnode: HTMLInputElement,\n\t\t_type: HTMLInputAttributes[\"type\"]\n\t) {\n\t\tif (_type) {\n\t\t\tnode.type = _type;\n\t\t\treturn {\n\t\t\t\tupdate(_type: string) {\n\t\t\t\t\tnode.type = _type;\n\t\t\t\t}\n\t\t\t};\n\t\t}\n\t}\n\n\tlet className: string | undefined | null = undefined;\n\n\texport let type: HTMLInputAttributes[\"type\"] = \"text\";\n\texport let value: HTMLInputAttributes[\"value\"] = undefined;\n\texport { className as class };\n</script>\n\n<input\n\tclass={cn(\n\t\t\"flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n\tuse:setType={type}\n\t{...$$restProps}\n/>\n"
+        "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\n\texport let value: HTMLInputAttributes[\"value\"] = undefined;\n\texport { className as class };\n</script>\n\n<input\n\tclass={cn(\n\t\t\"flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n\t{...$$restProps}\n/>\n"
       },
       {
         "name": "index.ts",
