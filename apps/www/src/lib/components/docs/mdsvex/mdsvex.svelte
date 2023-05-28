@@ -51,6 +51,7 @@
 	export let description = "";
 	export let source = "";
 	export let component = "";
+	export let radix = "";
 </script>
 
 <slot />
