@@ -5,11 +5,11 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let delayMs: AvatarFallbackProps["delayMs"] = 0;
+
+	type $$Props = AvatarFallbackProps;
 </script>
 
 <AvatarPrimitive.Fallback
-	{delayMs}
 	class={cn(
 		"flex h-full w-full items-center justify-center rounded-full bg-muted",
 		className

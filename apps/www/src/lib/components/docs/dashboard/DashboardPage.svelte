@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from "$components/ui/button";
 	import {
 		Activity,
 		CreditCard,
@@ -7,15 +6,8 @@
 		Download,
 		Users
 	} from "lucide-svelte";
-	import MainNav from "./MainNav.svelte";
-	import Overview from "./Overview.svelte";
-	import Search from "./Search.svelte";
-	import {
-		Tabs,
-		TabsContent,
-		TabsList,
-		TabsTrigger
-	} from "$components/ui/tabs";
+	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+	import { Button } from "$components/ui/button";
 	import {
 		Card,
 		CardContent,
@@ -23,8 +15,16 @@
 		CardHeader,
 		CardTitle
 	} from "$components/ui/card";
+	import {
+		Tabs,
+		TabsContent,
+		TabsList,
+		TabsTrigger
+	} from "$components/ui/tabs";
+	import MainNav from "./MainNav.svelte";
+	import Overview from "./Overview.svelte";
 	import RecentSales from "./RecentSales.svelte";
-	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+	import Search from "./Search.svelte";
 </script>
 
 <div class="md:hidden">

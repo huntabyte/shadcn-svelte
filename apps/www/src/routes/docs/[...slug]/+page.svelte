@@ -2,11 +2,11 @@
 	import type { SvelteComponentTyped } from "svelte";
 	import type { PageData } from "./$types";
 	import { ChevronRight } from "lucide-svelte";
+	import Balancer from "svelte-wrap-balancer";
 	import { Icons } from "$components/docs/icons";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
 	import { cn } from "$lib/utils";
-	import Balancer from "svelte-wrap-balancer";
 
 	export let data: PageData;
 	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any

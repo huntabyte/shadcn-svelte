@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
+	import { setInitialClassState } from "$components/docs/light-switch/light-switch";
 	import Metadata from "$components/docs/Metadata.svelte";
 	import SiteFooter from "$components/docs/SiteFooter.svelte";
 	import SiteHeader from "$components/docs/SiteHeader.svelte";
 	import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
-	import { setInitialClassState } from "$components/docs/light-switch/light-switch";
 	import "../styles/globals.css";
 </script>
 

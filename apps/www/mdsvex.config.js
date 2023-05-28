@@ -38,10 +38,7 @@ export const mdsvexOptions = {
 				theme: {
 					dark: JSON.parse(
 						fs.readFileSync(
-							path.resolve(
-								__dirname,
-								"./other/themes/dark.json"
-							),
+							path.resolve(__dirname, "./other/themes/dark.json"),
 							"utf-8"
 						)
 					),
@@ -194,7 +191,6 @@ function rehypeRenderCode() {
 		});
 	};
 }
-
 
 function getComponentSourceFileContent(src = undefined) {
 	if (!src) {

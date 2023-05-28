@@ -5,9 +5,7 @@ export const codeBlockPrettierConfig = {
 	trailingComma: "none",
 	printWidth: 80,
 	endOfLine: "lf",
-	pluginSearchDirs: [
-		"node_modules/prettier-plugin-svelte"
-	],
+	pluginSearchDirs: ["node_modules/prettier-plugin-svelte"],
 	parser: "svelte",
 	svelteIndexScriptAndStyle: true,
 	svelteStrictMode: false,
