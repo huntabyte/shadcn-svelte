@@ -80,7 +80,7 @@ export const STYLES = `@tailwind base;
   }
 }`;
 
-export const UTILS = `import { ClassValue, clsx } from "clsx"
+export const UTILS = `import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
  
 export function cn(...inputs: ClassValue[]) {
