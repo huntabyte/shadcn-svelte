@@ -6,8 +6,6 @@
 
 	export let value: HTMLInputAttributes["value"] = undefined;
 	export { className as class };
-
-	type $$Props = HTMLInputAttributes;
 </script>
 
 <input
