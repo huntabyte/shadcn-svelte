@@ -30,7 +30,7 @@ Given the following CSS variables:
 
 The `background` color of the following component will be `hsl(var(--primary))` and the `foreground` color will be `hsl(var(--primary-foreground))`.
 
-```tsx
+```svelte
 <div class="bg-primary text-primary-foreground">Hello</div>
 ```
 
