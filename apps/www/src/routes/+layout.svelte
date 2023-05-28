@@ -9,8 +9,8 @@
 </script>
 
 <svelte:head>
+	<!-- This causes the new eslint-plugin-svelte to error for some reason... so ignoring this entire file for now -->
 	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
-	<Metadata />
 </svelte:head>
 
 <div class="relative flex min-h-screen flex-col">

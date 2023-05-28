@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { AccordionRootProps } from "radix-svelte";
 	import { Accordion as AccordionPrimitive } from "radix-svelte";
 
 	// Remove the any when radix-svelte is updated to properly satisfy the types
