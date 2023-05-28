@@ -55,7 +55,7 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Typography",
-					href: "/docs/components/typography",
+					href: "/docs/typography",
 					items: []
 				}
 			]
