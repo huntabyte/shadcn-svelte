@@ -1,3 +1,5 @@
+import type { Node } from "estree-walker";
+
 export const STYLES = `@tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -172,3 +174,53 @@ const config = {
 };
 
 export default config;`;
+
+export const FULL_ALIAS_NODE: Node = {
+	type: "Property",
+	method: false,
+	shorthand: false,
+	computed: false,
+	key: {
+		type: "Identifier",
+		name: "alias"
+	},
+	value: {
+		type: "ObjectExpression",
+		properties: [
+			{
+				type: "Property",
+				method: false,
+				shorthand: false,
+				computed: false,
+				key: {
+					type: "Identifier",
+					name: "$components"
+				},
+				value: {
+					type: "Literal",
+					value: "src/lib/components",
+					raw: '"src/lib/components"'
+				},
+				kind: "init"
+			},
+			{
+				type: "Property",
+				method: false,
+				shorthand: false,
+				computed: false,
+				key: {
+					type: "Literal",
+					value: "$components/*",
+					raw: '"$components/*"'
+				},
+				value: {
+					type: "Literal",
+					value: "src/lib/components/*",
+					raw: '"src/lib/components/*"'
+				},
+				kind: "init"
+			}
+		]
+	},
+	kind: "init"
+};

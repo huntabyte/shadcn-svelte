@@ -43,11 +43,14 @@
 		"release": "changeset version",
 		"pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
 		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
-		"pub:release": "pnpm build && pnpm publish --access public"
+		"pub:release": "pnpm build && pnpm publish --access public",
+		"temp": "pnpm build && pnpm start config"
 	},
 	"dependencies": {
+		"acorn": "^8.8.2",
 		"chalk": "5.2.0",
 		"commander": "^10.0.0",
+		"estree-walker": "^3.0.3",
 		"execa": "^7.0.0",
 		"fs-extra": "^11.1.0",
 		"node-fetch": "^3.3.0",
