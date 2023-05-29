@@ -1,6 +1,3 @@
-// This is a temporary type definition for the metadata object
-// will want to use a more robust type definition in the future
-// something similar to the one used in
 export type Metadata = {
 	title: string;
 	description: string;

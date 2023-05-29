@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { DialogDescriptionProps } from "radix-svelte";
 	import { Dialog as SheetPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
 
