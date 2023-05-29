@@ -66,7 +66,7 @@ This will install dependencies, update your TailwindCSS configuration, and confi
 
 <Steps>
 
-### Add TailwindCSS
+### Add Tailwind
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
