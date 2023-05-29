@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
+	import {
+		Metadata,
+		SiteFooter,
+		SiteHeader,
+		TailwindIndicator
+	} from "$components/docs";
 	import { setInitialClassState } from "$components/docs/light-switch/light-switch";
-	import Metadata from "$components/docs/Metadata.svelte";
-	import SiteFooter from "$components/docs/SiteFooter.svelte";
-	import SiteHeader from "$components/docs/SiteHeader.svelte";
-	import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
 	import "../styles/globals.css";
-	import { inject } from "@vercel/analytics";
-
-	inject({ mode: dev ? "development" : "production" });
 </script>
 
 <svelte:head>

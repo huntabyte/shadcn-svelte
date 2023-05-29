@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { toHtml } from "hast-util-to-html";
 import prettier from "prettier";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
@@ -67,16 +66,7 @@ export const mdsvexOptions = {
 		],
 		rehypeHandleMetadata,
 		rehypeRenderCode,
-		rehypePreToComponentPre,
-		[
-			rehypeAutolinkHeadings,
-			{
-				properties: {
-					className: ["subheading-anchor"],
-					ariaLabel: "Link to section"
-				}
-			}
-		]
+		rehypePreToComponentPre
 	]
 };
 
