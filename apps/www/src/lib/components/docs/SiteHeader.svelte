@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { Icons } from "$components/docs/icons";
-	import { MainNav } from "$components/docs/nav";
+	import { Icons, LightSwitch, MainNav, MobileNav } from "$components/docs";
 	import { buttonVariants } from "$components/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "$lib/utils";
-	import LightSwitch from "./light-switch/LightSwitch.svelte";
-	import MobileNav from "./nav/MobileNav.svelte";
 </script>
 
 <header

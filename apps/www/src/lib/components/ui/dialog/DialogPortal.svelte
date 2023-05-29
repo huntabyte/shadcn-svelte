@@ -1,14 +1,9 @@
 <script lang="ts">
-	import type { DialogPortalProps } from "radix-svelte";
 	import { Dialog as DialogPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	type $$Props = DialogPortalProps & {
-		class?: string;
-	};
 </script>
 
 <DialogPrimitive.Portal class={cn(className)} {...$$restProps}>

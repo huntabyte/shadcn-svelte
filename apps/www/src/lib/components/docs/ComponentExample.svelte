@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { CopyButton } from "$components/docs";
 	import {
 		Tabs,
 		TabsContent,
@@ -6,7 +7,6 @@
 		TabsTrigger
 	} from "$components/ui/tabs";
 	import { cn } from "$lib/utils";
-	import CopyButton from "./CopyButton.svelte";
 
 	let codeString: string;
 

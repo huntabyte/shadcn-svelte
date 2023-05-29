@@ -6,8 +6,6 @@
 
 	export let value: HTMLTextareaAttributes["value"] = undefined;
 	export { className as class };
-
-	type $$Props = HTMLTextareaAttributes;
 </script>
 
 <textarea

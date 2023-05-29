@@ -7,8 +7,6 @@
 	export { className as class };
 	export let value: ProgressRootProps["value"] = null;
 	export let max: ProgressRootProps["max"] = 100;
-
-	type $$Props = ProgressRootProps;
 </script>
 
 <ProgressPrimitive.Root

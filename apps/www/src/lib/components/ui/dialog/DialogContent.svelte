@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { DialogContentProps } from "radix-svelte";
 	import { X } from "lucide-svelte";
 	import { Dialog as DialogPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
@@ -8,7 +7,6 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	type $$Props = DialogContentProps;
 </script>
 
 <DialogPortal>

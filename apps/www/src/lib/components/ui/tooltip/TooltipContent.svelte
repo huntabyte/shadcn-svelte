@@ -6,8 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let sideOffset: TooltipContentProps["sideOffset"] = 4;
-
-	type $$Props = TooltipContentProps;
 </script>
 
 <TooltipPrimitive.Portal>

@@ -4,8 +4,6 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	type $$Props = HTMLAttributes<HTMLDivElement>;
 </script>
 
 <div

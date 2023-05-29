@@ -7,7 +7,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let checked: CheckboxRootProps["checked"] = undefined;
-	type $$Props = CheckboxRootProps;
 </script>
 
 <CheckboxPrimitive.Root

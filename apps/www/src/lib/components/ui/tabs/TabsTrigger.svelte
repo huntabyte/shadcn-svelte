@@ -6,7 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: TabsTriggerProps["value"];
-	type $$Props = TabsTriggerProps;
 </script>
 
 <TabsPrimitive.Trigger

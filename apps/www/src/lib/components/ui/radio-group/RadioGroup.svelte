@@ -6,7 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: RadioGroupRootProps["value"] = undefined;
-	type $$Props = RadioGroupRootProps;
 </script>
 
 <RadioGroupPrimitive.Root
