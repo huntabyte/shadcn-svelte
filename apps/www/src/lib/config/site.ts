@@ -9,7 +9,8 @@ export const siteConfig = {
 		github: "https://github.com/huntabyte/shadcn-svelte",
 		shadTwitter: "https://twitter.com/shadcn",
 		shadGithub: "https://github.com/shadcn/ui"
-	}
+	},
+	keywords: `shadcn,Svelte,SvelteKit,Svelte Components,TailwindCSS,Radix Svelte`
 };
 
 export type SiteConfig = typeof siteConfig;

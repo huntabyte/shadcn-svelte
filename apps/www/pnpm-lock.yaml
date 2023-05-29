@@ -137,9 +137,6 @@ devDependencies:
   svelte-check:
     specifier: ^3.4.3
     version: 3.4.3(@babel/core@7.21.8)(postcss-load-config@4.0.1)(postcss@8.4.23)(svelte@3.59.1)
-  svelte-meta-tags:
-    specifier: ^2.7.2
-    version: 2.7.2(svelte@3.59.1)(typescript@5.0.4)
   svelte-preprocess:
     specifier: ^5.0.4
     version: 5.0.4(@babel/core@7.21.8)(postcss-load-config@4.0.1)(postcss@8.4.23)(svelte@3.59.1)(typescript@5.0.4)
@@ -3432,14 +3429,6 @@ packages:
       rimraf: 2.7.1
     dev: true
 
-  /schema-dts@1.1.2(typescript@5.0.4):
-    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
-    peerDependencies:
-      typescript: '>=4.1.0'
-    dependencies:
-      typescript: 5.0.4
-    dev: true
-
   /semver@6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
@@ -3703,17 +3692,6 @@ packages:
       prismjs: 1.29.0
       svelte: 3.59.1
     dev: false
-
-  /svelte-meta-tags@2.7.2(svelte@3.59.1)(typescript@5.0.4):
-    resolution: {integrity: sha512-CLUrgpT1sGUqKWOXtAdSDWULcxk6YKBIl/9HD0NdGzMRX4HmGq158gHVkww5N8fY/gCbhcwEnsACQUHnPzCFXg==}
-    peerDependencies:
-      svelte: ^3.44.0
-    dependencies:
-      schema-dts: 1.1.2(typescript@5.0.4)
-      svelte: 3.59.1
-    transitivePeerDependencies:
-      - typescript
-    dev: true
 
   /svelte-preprocess@5.0.4(@babel/core@7.21.8)(postcss-load-config@4.0.1)(postcss@8.4.23)(svelte@3.59.1)(typescript@5.0.4):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
