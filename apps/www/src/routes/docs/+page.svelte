@@ -3,6 +3,8 @@
 	import type { PageData } from "./$types";
 	import { ChevronRight } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
+	import { page } from "$app/stores";
+	import { TableOfContents } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
@@ -65,7 +67,7 @@
 			</div>
 		{/if}
 		<Separator class="my-4 md:my-6" />
-		<div class="mdsvex">
+		<div class="mdsvex" id="mdsvex">
 			<svelte:component this={component} />
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
@@ -76,7 +78,9 @@
 		<div
 			class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-6"
 		>
-			(TOC HERE)
+			{#key $page.url.pathname}
+				<TableOfContents />
+			{/key}
 		</div>
 	</div>
 </main>
