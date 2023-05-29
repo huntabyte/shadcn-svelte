@@ -41,3 +41,13 @@ export type DocFile = {
 };
 
 export type DocResolver = () => Promise<DocFile>;
+
+export type TableOfContentsItem = {
+	title: string;
+	url: string;
+	items?: TableOfContentsItem[];
+};
+
+export type TableOfContents = {
+	items: TableOfContentsItem[];
+};
