@@ -25,17 +25,17 @@
 <div
 	class="hidden items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-3"
 >
-	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
+	<div class="col-span-3 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
 			<DemoCreateAccount />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoPaymentMethod />
+			<DemoNotifications />
 		</DemoContainer>
 	</div>
-	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
+	<div class="col-span-3 grid items-start gap-6 lg:col-span-2">
 		<DemoContainer>
-			<DemoNotifications />
+			<DemoPaymentMethod />
 		</DemoContainer>
 		<DemoContainer>
 			<DemoCookieSettings />
