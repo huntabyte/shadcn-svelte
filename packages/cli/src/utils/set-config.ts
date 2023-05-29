@@ -5,12 +5,16 @@ import type { Node } from "estree-walker";
 import { parse } from "acorn";
 import { generate } from "astring";
 import { walk } from "estree-walker";
+import prettier from "prettier";
 
 export function setConfig(dir: string = "./src/lib/components/ui") {
-	const svelteConfig = fs.readFileSync(
-		path.join(process.cwd(), "svelte.config.js"),
-		"utf8"
-	);
+	// Parse the svelte.config.js file into an abstract syntax tree (AST),
+	// then walk the tree to find the config object and add the shadcn
+	// property to it with the componentPath property.
+
+	const svelteConfigPath = path.join(process.cwd(), "svelte.config.js");
+
+	const svelteConfig = fs.readFileSync(svelteConfigPath, "utf8");
 
 	const ast = parse(svelteConfig, {
 		ecmaVersion: "latest",
@@ -18,8 +22,7 @@ export function setConfig(dir: string = "./src/lib/components/ui") {
 	});
 
 	const updatedSvelteConfig = walk(ast as Node, {
-		enter(node, parent, prop, index) {
-			// get kit config object
+		enter(node) {
 			if (
 				node.type === "VariableDeclaration" &&
 				node.kind === "const" &&
@@ -43,10 +46,27 @@ export function setConfig(dir: string = "./src/lib/components/ui") {
 		throw new Error("Could not update svelte.config.js");
 	}
 
-	fs.writeFileSync(
-		path.join(process.cwd(), "svelte.config.js"),
-		generate(updatedSvelteConfig)
+	const updatedSvelteConfigString = generate(updatedSvelteConfig);
+
+	const prettierConfigFile =
+		prettier.resolveConfigFile.sync(svelteConfigPath);
+
+	if (!prettierConfigFile) {
+		return fs.writeFileSync(svelteConfigPath, updatedSvelteConfigString);
+	}
+
+	const prettierConfig = prettier.resolveConfig.sync(prettierConfigFile);
+
+	if (!prettierConfig) {
+		return fs.writeFileSync(svelteConfigPath, updatedSvelteConfigString);
+	}
+
+	const prettySvelteConfig = prettier.format(
+		updatedSvelteConfigString,
+		prettierConfig
 	);
+
+	return fs.writeFileSync(svelteConfigPath, prettySvelteConfig);
 }
 
 function createConfigNode(dir: string): Property {
