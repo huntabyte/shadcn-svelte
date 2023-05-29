@@ -5,11 +5,11 @@
 	"trailingComma": "none",
 	"printWidth": 80,
 	"endOfLine": "lf",
-	"pluginSearchDirs": false,
 	"plugins": [
 		"prettier-plugin-svelte",
 		"@ianvs/prettier-plugin-sort-imports"
 	],
+	"pluginSearchDirs": false,
 	"overrides": [
 		{
 			"files": "*.svelte",
