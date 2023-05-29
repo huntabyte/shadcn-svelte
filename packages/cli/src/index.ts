@@ -11,7 +11,7 @@ import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";
 import { getProjectInfo } from "./utils/get-project-info";
 import { logger } from "./utils/logger";
-import { getConfig, setConfig } from "./utils/set-config";
+import { addAliases, getConfig, setConfig } from "./utils/set-config";
 import { STYLES, TAILWIND_CONFIG, UTILS } from "./utils/templates";
 
 process.on("SIGINT", () => process.exit(0));
@@ -107,15 +107,11 @@ async function main() {
 			tailwindSpinner.succeed();
 
 			// Update svelte.config.js
-			const svelteConfigDestination = "./svelte.config.js";
 			const svelteConfigSpinner = ora(
 				`Updating svelte.config.js...`
 			).start();
-			await fs.writeFile(
-				svelteConfigDestination,
-				TAILWIND_CONFIG,
-				"utf8"
-			);
+
+			await addAliases();
 			svelteConfigSpinner.succeed();
 		});
 
@@ -218,7 +214,7 @@ async function promptForComponents(components: Component[]) {
 }
 
 async function promptForDestinationDir() {
-	const config = getConfig();
+	const config = await getConfig();
 
 	if (!config) {
 		const { dir } = await prompts([
@@ -229,7 +225,7 @@ async function promptForDestinationDir() {
 				initial: "./src/lib/components/ui"
 			}
 		]);
-		setConfig(dir);
+		await setConfig(dir);
 		return dir;
 	}
 
