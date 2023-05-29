@@ -319,7 +319,7 @@ export const examples: Example[] = [
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/dashboard"
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/docs/dashboard"
 	},
 	{
 		name: "Cards",
