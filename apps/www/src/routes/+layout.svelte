@@ -12,6 +12,7 @@
 	<!-- This causes the new eslint-plugin-svelte to error for some reason... so ignoring this entire file for now -->
 	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
 </svelte:head>
+<Metadata />
 
 <div class="relative flex min-h-screen flex-col">
 	<SiteHeader />
