@@ -4,7 +4,7 @@
 	import { ChevronRight } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
-	import { TableOfContents } from "$components/docs";
+	import { DocsPager, TableOfContents } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
@@ -72,7 +72,7 @@
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
 		<Separator class="my-4 md:my-6" />
-		<!-- <DocsPager {doc} /> -->
+		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">
 		<div

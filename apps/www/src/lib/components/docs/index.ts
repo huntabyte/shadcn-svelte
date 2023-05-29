@@ -3,6 +3,7 @@ export { default as CodeBlockWrapper } from "./CodeBlockWrapper.svelte";
 export { default as ComponentExample } from "./ComponentExample.svelte";
 export { default as ComponentSource } from "./ComponentSource.svelte";
 export { default as CopyButton } from "./CopyButton.svelte";
+export { default as DocsPager } from "./DocsPager.svelte";
 export { default as ManualInstall } from "./ManualInstall.svelte";
 export { default as SiteFooter } from "./SiteFooter.svelte";
 export { default as SiteHeader } from "./SiteHeader.svelte";

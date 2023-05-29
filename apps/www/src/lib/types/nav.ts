@@ -12,3 +12,7 @@ export type NavItem = {
 export type SidebarNavItem = NavItem & {
 	items: SidebarNavItem[];
 };
+
+export type NavItemWithChildren = NavItem & {
+	items: NavItemWithChildren[];
+};
