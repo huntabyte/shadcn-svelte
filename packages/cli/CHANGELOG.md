@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.8
+
+### Patch Changes
+
+- d704098: Modify destructive background color to be meet AA contrast
+
 ## 0.0.7
 
 ### Patch Changes
