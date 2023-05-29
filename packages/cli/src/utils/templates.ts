@@ -28,8 +28,8 @@ export const STYLES = `@tailwind base;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
  
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 92% 38%;
+		--destructive-foreground: 210 40% 98%;
  
     --ring: 215 20.2% 65.1%;
  
@@ -61,8 +61,8 @@ export const STYLES = `@tailwind base;
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
  
-    --destructive: 360 62% 55%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 359 51% 48%;
+		--destructive-foreground: 210 40% 98%;
  
     --ring: 216 34% 17%;
  
