@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 0.0.7
+
+### Patch Changes
+
+- fa06a5d: Displays the correct version number
+- edb3089: Preserve the content of `svelte.config.js` when running the `init` command
+
 ## 0.0.6
 
 ### Patch Changes
