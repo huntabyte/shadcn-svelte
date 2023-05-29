@@ -4,8 +4,8 @@
 	import { ChevronRight } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
+	import { TableOfContents } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
-	import TableOfContents from "$components/docs/TableOfContents.svelte";
 	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
 	import { cn } from "$lib/utils";
