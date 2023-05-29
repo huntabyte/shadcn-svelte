@@ -240,13 +240,13 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Select",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Select",
+					href: "#",
+					label: "Soon",
+					disabled: true,
+					items: []
+				},
 				{
 					title: "Separator",
 					href: "/docs/components/separator",
