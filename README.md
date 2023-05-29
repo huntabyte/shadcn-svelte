@@ -1,5 +1,5 @@
 <p align="center">
- <img align="center" src="https://raw.githubusercontent.com/huntabyte/shadcn-svelte/54276be9874ab16c8e0fccac4703f3f030e79734/apps/www/static/logo.svg?token=APMEVVC7C7WOFRR7HPBIBJLEOUR6M" height="96" />
+ <img align="center" src="https://raw.githubusercontent.com/huntabyte/shadcn-svelte/main/apps/www/static/logo.svg" height="96" />
  <h1 align="center">
   shadcn-svelte
  </h1>
