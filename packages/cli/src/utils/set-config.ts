@@ -6,6 +6,68 @@ import { parse } from "acorn";
 import { generate } from "astring";
 import { walk } from "estree-walker";
 import prettier from "prettier";
+import { ShadConfig, shadConfigSchema } from "./schemas";
+
+export function getConfig(): ShadConfig | null {
+	const svelteConfigPath = path.join(process.cwd(), "svelte.config.js");
+
+	const svelteConfig = fs.readFileSync(svelteConfigPath, "utf8");
+
+	const ast = parse(svelteConfig, {
+		ecmaVersion: "latest",
+		sourceType: "module"
+	});
+
+	let shadConfigNode: Node | null = null;
+
+	walk(ast as Node, {
+		enter(node) {
+			if (
+				node.type === "VariableDeclaration" &&
+				node.kind === "const" &&
+				node.declarations[0].type === "VariableDeclarator" &&
+				node.declarations[0].id.type === "Identifier" &&
+				node.declarations[0].id.name === "config"
+			) {
+				const configNode = node.declarations[0];
+				if (
+					configNode.init &&
+					configNode.init.type === "ObjectExpression"
+				) {
+					const shadConfig = configNode.init.properties.find(
+						(property) => {
+							if (property.type !== "Property") {
+								return false;
+							}
+							if (property.key.type !== "Identifier") {
+								return false;
+							}
+							return property.key.name === "shadcn";
+						}
+					);
+
+					if (!shadConfig || shadConfig.type !== "Property") {
+						return;
+					}
+
+					shadConfigNode = shadConfig;
+					return;
+				}
+			}
+		}
+	});
+
+	if (!shadConfigNode) {
+		return null;
+	}
+
+	try {
+		const shadConfig = shadConfigSchema.parse(shadConfigNode);
+		return shadConfig;
+	} catch (e) {
+		return null;
+	}
+}
 
 export function setConfig(dir: string = "./src/lib/components/ui") {
 	// Parse the svelte.config.js file into an abstract syntax tree (AST),
@@ -36,7 +98,6 @@ export function setConfig(dir: string = "./src/lib/components/ui") {
 					configNode.init.type === "ObjectExpression"
 				) {
 					configNode.init.properties.push(createConfigNode(dir));
-					console.log(JSON.stringify(configNode, null, 2));
 				}
 			}
 		}

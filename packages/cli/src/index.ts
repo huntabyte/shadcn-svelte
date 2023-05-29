@@ -11,7 +11,7 @@ import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";
 import { getProjectInfo } from "./utils/get-project-info";
 import { logger } from "./utils/logger";
-import { setConfig } from "./utils/set-config";
+import { getConfig, setConfig } from "./utils/set-config";
 import { STYLES, TAILWIND_CONFIG, UTILS } from "./utils/templates";
 
 process.on("SIGINT", () => process.exit(0));
@@ -38,11 +38,6 @@ async function main() {
 			"-v, --version",
 			"display the version number"
 		);
-
-	program.command("config").action((options) => {
-		logger.info("Configuring shadcn-svelte...");
-		setConfig();
-	});
 
 	program
 		.command("init")
@@ -223,16 +218,22 @@ async function promptForComponents(components: Component[]) {
 }
 
 async function promptForDestinationDir() {
-	const { dir } = await prompts([
-		{
-			type: "text",
-			name: "dir",
-			message: "Where would you like to install the component(s)?",
-			initial: "./src/lib/components/ui"
-		}
-	]);
+	const config = getConfig();
 
-	return dir;
+	if (!config) {
+		const { dir } = await prompts([
+			{
+				type: "text",
+				name: "dir",
+				message: "Where would you like to install the component(s)?",
+				initial: "./src/lib/components/ui"
+			}
+		]);
+		setConfig(dir);
+		return dir;
+	}
+
+	return config.componentPath;
 }
 
 main();
