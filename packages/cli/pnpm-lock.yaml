@@ -4,6 +4,9 @@ dependencies:
   acorn:
     specifier: ^8.8.2
     version: 8.8.2
+  astring:
+    specifier: ^1.8.5
+    version: 1.8.5
   chalk:
     specifier: 5.2.0
     version: 5.2.0
@@ -25,6 +28,9 @@ dependencies:
   ora:
     specifier: ^6.1.2
     version: 6.3.1
+  prettier:
+    specifier: ^2.8.8
+    version: 2.8.8
   prompts:
     specifier: ^2.4.2
     version: 2.4.2
@@ -36,6 +42,9 @@ devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
     specifier: ^3.7.2
     version: 3.7.2(prettier@2.8.8)
+  '@types/estree':
+    specifier: ^1.0.1
+    version: 1.0.1
   '@types/fs-extra':
     specifier: ^11.0.1
     version: 11.0.1
@@ -537,7 +546,6 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
-    dev: false
 
   /@types/fs-extra@11.0.1:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
@@ -597,6 +605,11 @@ packages:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
     dev: true
+
+  /astring@1.8.5:
+    resolution: {integrity: sha512-TuBbdn7jWVzf8dmFGTaRpW8qgANtWLi1qJLnkfGO5uVf6jf9f/F4B1H35tnOI+qVYZo3p3i8WZlbZOuPAE0wEA==}
+    hasBin: true
+    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1346,7 +1359,6 @@ packages:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: true
 
   /prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}

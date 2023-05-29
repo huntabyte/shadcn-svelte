@@ -1,10 +1,12 @@
 import fs from "fs";
 import path from "path";
+import type { Property } from "estree";
 import type { Node } from "estree-walker";
 import { parse } from "acorn";
+import { generate } from "astring";
 import { walk } from "estree-walker";
 
-export function setConfig() {
+export function setConfig(dir: string = "./src/lib/components/ui") {
 	const svelteConfig = fs.readFileSync(
 		path.join(process.cwd(), "svelte.config.js"),
 		"utf8"
@@ -15,76 +17,69 @@ export function setConfig() {
 		sourceType: "module"
 	});
 
-	const newNode = walk(ast as Node, {
+	const updatedSvelteConfig = walk(ast as Node, {
 		enter(node, parent, prop, index) {
 			// get kit config object
 			if (
-				node.type === "Property" &&
-				node.key.type === "Identifier" &&
-				node.key.name === "kit"
+				node.type === "VariableDeclaration" &&
+				node.kind === "const" &&
+				node.declarations[0].type === "VariableDeclarator" &&
+				node.declarations[0].id.type === "Identifier" &&
+				node.declarations[0].id.name === "config"
 			) {
-				// console.log(JSON.stringify(node.value, null, 2));
+				const configNode = node.declarations[0];
 				if (
-					node.value.type === "ObjectExpression" &&
-					node.value.properties
+					configNode.init &&
+					configNode.init.type === "ObjectExpression"
 				) {
-					// check if alias property exists or not
-					const aliasNode = node.value.properties.find((prop) => {
-						if (
-							prop.type === "Property" &&
-							prop.key.type === "Identifier" &&
-							prop.key.name === "alias"
-						) {
-							return true;
-						}
-					});
-
-					// if alias property doesn't exist, let's create it
-					if (!aliasNode) {
-					}
-
-					if (
-						aliasNode &&
-						aliasNode.type === "Property" &&
-						aliasNode.value.type === "ObjectExpression"
-					) {
-						console.log(JSON.stringify(aliasNode, null, 2));
-						aliasNode.value.properties.push({
-							type: "Property",
-							method: false,
-							shorthand: false,
-							computed: false,
-							key: {
-								type: "Identifier",
-								name: "$components"
-							},
-							value: {
-								type: "Literal",
-								value: "src/lib/components",
-								raw: '"src/lib/components"'
-							},
-							kind: "init"
-						});
-						aliasNode.value.properties.push({
-							type: "Property",
-							method: false,
-							shorthand: false,
-							computed: false,
-							key: {
-								type: "Literal",
-								value: "$components/*",
-								raw: '"$components/*"'
-							},
-							value: {
-								type: "Literal",
-								value: "src/lib/components/*",
-								raw: '"src/lib/components/*"'
-							},
-							kind: "init"
-						});
-					}
+					configNode.init.properties.push(createConfigNode(dir));
+					console.log(JSON.stringify(configNode, null, 2));
 				}
 			}
 		}
 	});
+
+	if (!updatedSvelteConfig) {
+		throw new Error("Could not update svelte.config.js");
+	}
+
+	fs.writeFileSync(
+		path.join(process.cwd(), "svelte.config.js"),
+		generate(updatedSvelteConfig)
+	);
+}
+
+function createConfigNode(dir: string): Property {
+	return {
+		type: "Property",
+		method: false,
+		shorthand: false,
+		computed: false,
+		key: {
+			type: "Identifier",
+			name: "shadcn"
+		},
+		value: {
+			type: "ObjectExpression",
+			properties: [
+				{
+					type: "Property",
+					method: false,
+					shorthand: false,
+					computed: false,
+					key: {
+						type: "Identifier",
+						name: "componentPath"
+					},
+					value: {
+						type: "Literal",
+						value: dir,
+						raw: `'${dir}'`
+					},
+					kind: "init"
+				}
+			]
+		},
+		kind: "init"
+	};
 }
