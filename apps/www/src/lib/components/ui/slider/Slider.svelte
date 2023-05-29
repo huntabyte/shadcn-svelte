@@ -6,8 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: SliderRootProps["value"] = 0;
-
-	type $$Props = SliderRootProps;
 </script>
 
 <SliderPrimitive.Root

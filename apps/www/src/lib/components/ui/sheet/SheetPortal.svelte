@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { VariantProps } from "class-variance-authority";
-	import type { DialogPortalProps } from "radix-svelte";
 	import { cva } from "class-variance-authority";
 	import { Dialog as SheetPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
@@ -21,10 +20,6 @@
 	export { className as class };
 	export let position: VariantProps<typeof portalVariants>["position"] =
 		"right";
-
-	type $$Props = DialogPortalProps & {
-		position: VariantProps<typeof portalVariants>["position"];
-	};
 </script>
 
 <SheetPrimitive.Portal class={cn(className)} {...$$restProps}>

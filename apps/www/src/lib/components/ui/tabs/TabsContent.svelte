@@ -6,7 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: TabsContentProps["value"];
-	type $$Props = TabsContentProps;
 </script>
 
 <TabsPrimitive.Content

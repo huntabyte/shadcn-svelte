@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DocsSidebarNav from "$components/docs/nav/DocsSidebarNav.svelte";
+	import { DocsSidebarNav } from "$components/docs";
 	import { docsConfig } from "$lib/config/docs";
 </script>
 

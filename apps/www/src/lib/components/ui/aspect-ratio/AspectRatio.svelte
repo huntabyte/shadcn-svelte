@@ -6,7 +6,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let ratio: AspectRatioProps["ratio"] = 16 / 9;
-	type $$Props = AspectRatioProps;
 </script>
 
 <AspectRatio.Root {ratio} class={cn(className)} {...$$restProps}>

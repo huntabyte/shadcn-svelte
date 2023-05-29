@@ -1,8 +1,5 @@
 <script lang="ts">
-	import type {
-		HoverCardContentProps,
-		HoverCardPortalProps
-	} from "radix-svelte";
+	import type { HoverCardContentProps } from "radix-svelte";
 	import { HoverCard as HoverCardPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
 
@@ -10,10 +7,6 @@
 	export { className as class };
 	export let align: HoverCardContentProps["align"] = undefined;
 	export let sideOffset: HoverCardContentProps["sideOffset"] = undefined;
-
-	type $$Props = HoverCardContentProps & {
-		container?: HoverCardPortalProps["container"];
-	};
 </script>
 
 <HoverCardPrimitive.Portal>

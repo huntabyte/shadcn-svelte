@@ -1,8 +1,5 @@
 <script lang="ts">
-	import type { AlertDialogPortalProps } from "radix-svelte";
 	import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
-
-	type $$Props = AlertDialogPortalProps;
 </script>
 
 <AlertDialogPrimitive.Portal {...$$restProps}>

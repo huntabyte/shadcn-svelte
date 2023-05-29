@@ -5,7 +5,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let href: HTMLAnchorAttributes["href"] = undefined;
-	type $$Props = HTMLAnchorAttributes;
 </script>
 
 <a

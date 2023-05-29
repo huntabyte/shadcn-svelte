@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { SidebarOpen } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import { Sheet, SheetTrigger } from "$components/ui/sheet";
-	import SheetContent from "$components/ui/sheet/SheetContent.svelte";
+	import { Sheet, SheetContent, SheetTrigger } from "$components/ui/sheet";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";

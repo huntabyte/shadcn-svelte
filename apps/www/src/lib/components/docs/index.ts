@@ -18,3 +18,4 @@ export * from "./page-header";
 export * from "./nav";
 export * from "./examples-nav";
 export * from "./dashboard";
+export * from "./light-switch";

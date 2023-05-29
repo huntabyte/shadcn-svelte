@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CodeBlockWrapper from "$components/docs/CodeBlockWrapper.svelte";
+	import { CodeBlockWrapper } from "$components/docs";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;

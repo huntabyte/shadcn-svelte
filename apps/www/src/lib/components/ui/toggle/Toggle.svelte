@@ -34,11 +34,6 @@
 	export let size: VariantProps<typeof toggleVariants>["size"] = "default";
 	export let pressed: ToggleRootProps["disabled"] = false;
 	export let disabled: ToggleRootProps["disabled"] = false;
-
-	type $$Props = ToggleRootProps & {
-		variant?: VariantProps<typeof toggleVariants>["variant"];
-		size?: VariantProps<typeof toggleVariants>["size"];
-	};
 </script>
 
 <TogglePrimitive.Root

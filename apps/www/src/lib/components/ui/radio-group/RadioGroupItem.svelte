@@ -7,7 +7,6 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: RadioGroupItemProps["value"] = "";
-	type $$Props = RadioGroupItemProps;
 </script>
 
 <RadioGroupPrimitive.Item
