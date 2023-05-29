@@ -1,0 +1,39 @@
+# Borrowed from https://github.com/skeletonlabs/skeleton
+name: 🐞 Bug
+description: Report an issue or bug
+labels: [bug]
+body:
+    - type: textarea
+      attributes:
+          label: Current Behavior
+          description: A description of what you're experiencing.
+      validations:
+          required: false
+    - type: textarea
+      attributes:
+          label: Expected Behavior
+          description: A description of what you're experiencing.
+      validations:
+          required: false
+    - type: textarea
+      attributes:
+          label: Steps To Reproduce
+          description: Describe how to reproduce the issue.
+          placeholder: |
+              1. Using this component...
+              2. With these properties...
+              3. Click '...'
+              4. See error...
+      validations:
+          required: false
+    - type: input
+      id: reproduction
+      attributes:
+          label: Link to Reproduction / Stackblitz
+    - type: textarea
+      attributes:
+          label: More Information
+          description: |
+              Provide relevant links or additionl information.
+      validations:
+          required: false
