@@ -2,86 +2,40 @@ import fs from "fs";
 import path from "path";
 import type { Property } from "estree";
 import type { Node } from "estree-walker";
-import { parse } from "acorn";
+import { Comment, parse } from "acorn";
 import { generate } from "astring";
 import { walk } from "estree-walker";
 import prettier from "prettier";
+// @ts-expect-error no types
+// had to manually add this package since their package.json is misconfigured
+import { attachComments } from "../astravel";
 import { ShadConfig, shadConfigSchema } from "./schemas";
 
-export function getConfig(): ShadConfig | null {
-	const svelteConfigPath = path.join(process.cwd(), "svelte.config.js");
+const SVELTE_CONFIG_PATH = path.join(process.cwd(), "svelte.config.js");
 
-	const svelteConfig = fs.readFileSync(svelteConfigPath, "utf8");
-
-	const ast = parse(svelteConfig, {
-		ecmaVersion: "latest",
-		sourceType: "module"
-	});
-
-	let shadConfigNode: Node | null = null;
-
-	walk(ast as Node, {
-		enter(node) {
-			if (
-				node.type === "VariableDeclaration" &&
-				node.kind === "const" &&
-				node.declarations[0].type === "VariableDeclarator" &&
-				node.declarations[0].id.type === "Identifier" &&
-				node.declarations[0].id.name === "config"
-			) {
-				const configNode = node.declarations[0];
-				if (
-					configNode.init &&
-					configNode.init.type === "ObjectExpression"
-				) {
-					const shadConfig = configNode.init.properties.find(
-						(property) => {
-							if (property.type !== "Property") {
-								return false;
-							}
-							if (property.key.type !== "Identifier") {
-								return false;
-							}
-							return property.key.name === "shadcn";
-						}
-					);
-
-					if (!shadConfig || shadConfig.type !== "Property") {
-						return;
-					}
-
-					shadConfigNode = shadConfig;
-					return;
-				}
-			}
-		}
-	});
-
-	if (!shadConfigNode) {
-		return null;
-	}
+export async function getConfig(): Promise<ShadConfig | null> {
+	const { default: svelteConfig } = await import(SVELTE_CONFIG_PATH);
 
 	try {
-		const shadConfig = shadConfigSchema.parse(shadConfigNode);
+		const shadConfig = shadConfigSchema.parse(svelteConfig.shadcn);
 		return shadConfig;
 	} catch (e) {
 		return null;
 	}
 }
 
-export function setConfig(dir: string = "./src/lib/components/ui") {
-	// Parse the svelte.config.js file into an abstract syntax tree (AST),
-	// then walk the tree to find the config object and add the shadcn
-	// property to it with the componentPath property.
+/**
+ * Parse the svelte.config.js file into an abstract syntax tree (AST),
+ * then walk the tree to find the config object and add the shadcn
+ * property to it with the componentPath property.
+ */
+export async function setConfig(dir: string = "./src/lib/components/ui") {
+	const { default: config } = await import(SVELTE_CONFIG_PATH);
+	if (!config) {
+		throw new Error("Could not find config for svelte.config.js");
+	}
 
-	const svelteConfigPath = path.join(process.cwd(), "svelte.config.js");
-
-	const svelteConfig = fs.readFileSync(svelteConfigPath, "utf8");
-
-	const ast = parse(svelteConfig, {
-		ecmaVersion: "latest",
-		sourceType: "module"
-	});
+	const { ast, comments } = await parseSvelteConfig();
 
 	const updatedSvelteConfig = walk(ast as Node, {
 		enter(node) {
@@ -107,27 +61,98 @@ export function setConfig(dir: string = "./src/lib/components/ui") {
 		throw new Error("Could not update svelte.config.js");
 	}
 
-	const updatedSvelteConfigString = generate(updatedSvelteConfig);
+	attachComments(updatedSvelteConfig, comments);
+	const updatedSvelteConfigString = generate(updatedSvelteConfig, {
+		comments: true
+	});
 
-	const prettierConfigFile =
-		prettier.resolveConfigFile.sync(svelteConfigPath);
+	return formatFile(updatedSvelteConfigString, SVELTE_CONFIG_PATH);
+}
 
+/**
+ * Parse the svelte.config.js file into an abstract syntax tree (AST),
+ * then walk the tree to find the config object and adds the alias
+ * property to it
+ */
+export async function addAliases(dir: string = "./src/lib/components/ui") {
+	const { ast, comments } = await parseSvelteConfig();
+
+	const updatedSvelteConfig = walk(ast as Node, {
+		enter(node) {
+			if (
+				node.type === "Property" &&
+				node.key.type === "Identifier" &&
+				node.key.name === "kit" &&
+				node.value.type === "ObjectExpression"
+			) {
+				// check if `alias` is already defined
+				const aliasProp = node.value.properties.find(
+					(n) =>
+						n.type === "Property" &&
+						n.value.type === "ObjectExpression" &&
+						n.key.type === "Identifier" &&
+						n.key.name === "alias"
+				) as Property | undefined;
+
+				if (!aliasProp) {
+					// alias is not defined so we'll add it
+					node.value.properties.push(createAliasNode());
+					return;
+				}
+
+				if (
+					aliasProp.type === "Property" &&
+					aliasProp.value.type === "ObjectExpression"
+				) {
+					aliasProp.value.properties.push(...createAliasProperties());
+				}
+			}
+		}
+	});
+
+	if (!updatedSvelteConfig) {
+		throw new Error("Could not update svelte.config.js");
+	}
+
+	attachComments(updatedSvelteConfig, comments);
+	const updatedSvelteConfigString = generate(updatedSvelteConfig, {
+		comments: true
+	});
+
+	return formatFile(updatedSvelteConfigString, SVELTE_CONFIG_PATH);
+}
+
+async function parseSvelteConfig() {
+	const { default: config } = await import(SVELTE_CONFIG_PATH);
+	if (!config) {
+		throw new Error("Could not find config for svelte.config.js");
+	}
+
+	const svelteConfig = fs.readFileSync(SVELTE_CONFIG_PATH, "utf8");
+
+	const comments: Comment[] = [];
+	const ast = parse(svelteConfig, {
+		ecmaVersion: "latest",
+		sourceType: "module",
+		onComment: comments
+	});
+
+	return { ast, comments };
+}
+
+function formatFile(content: string, path: string) {
+	const prettierConfigFile = prettier.resolveConfigFile.sync(path);
 	if (!prettierConfigFile) {
-		return fs.writeFileSync(svelteConfigPath, updatedSvelteConfigString);
+		return fs.writeFileSync(path, content);
 	}
 
 	const prettierConfig = prettier.resolveConfig.sync(prettierConfigFile);
-
 	if (!prettierConfig) {
-		return fs.writeFileSync(svelteConfigPath, updatedSvelteConfigString);
+		return fs.writeFileSync(path, content);
 	}
 
-	const prettySvelteConfig = prettier.format(
-		updatedSvelteConfigString,
-		prettierConfig
-	);
-
-	return fs.writeFileSync(svelteConfigPath, prettySvelteConfig);
+	const prettySvelteConfig = prettier.format(content, prettierConfig);
+	return fs.writeFileSync(path, prettySvelteConfig);
 }
 
 function createConfigNode(dir: string): Property {
@@ -163,4 +188,60 @@ function createConfigNode(dir: string): Property {
 		},
 		kind: "init"
 	};
+}
+
+function createAliasNode(): Property {
+	return {
+		type: "Property",
+		method: false,
+		shorthand: false,
+		computed: false,
+		key: {
+			type: "Identifier",
+			name: "alias"
+		},
+		value: {
+			type: "ObjectExpression",
+			properties: createAliasProperties()
+		},
+		kind: "init"
+	};
+}
+
+function createAliasProperties(): Property[] {
+	return [
+		{
+			type: "Property",
+			method: false,
+			shorthand: false,
+			computed: false,
+			key: {
+				type: "Identifier",
+				name: "$components"
+			},
+			value: {
+				type: "Literal",
+				value: "src/lib/components",
+				raw: '"src/lib/components"'
+			},
+			kind: "init"
+		},
+		{
+			type: "Property",
+			method: false,
+			shorthand: false,
+			computed: false,
+			key: {
+				type: "Literal",
+				value: "$components/*",
+				raw: '"$components/*"'
+			},
+			value: {
+				type: "Literal",
+				value: "src/lib/components/*",
+				raw: '"src/lib/components/*"'
+			},
+			kind: "init"
+		}
+	];
 }
