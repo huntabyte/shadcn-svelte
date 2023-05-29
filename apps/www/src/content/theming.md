@@ -104,7 +104,7 @@ Here's the list of variables available for customization:
 
 The following is the default color palette used by the components.
 
-```css title="styles/globals.css"
+```css title="src/app.postcss"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -135,7 +135,7 @@ The following is the default color palette used by the components.
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 100% 50%;
+    --destructive: 0 92% 38%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 215 20.2% 65.1%;
@@ -168,7 +168,7 @@ The following is the default color palette used by the components.
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 359 51% 48%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 216 34% 17%;
