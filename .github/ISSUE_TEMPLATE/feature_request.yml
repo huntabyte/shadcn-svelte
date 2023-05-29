@@ -1,0 +1,24 @@
+# Borrowed from https://github.com/skeletonlabs/skeleton
+
+name: 🛠️ Request New Feature
+description: Let us know what you would like to see added.
+labels: ["feature request"]
+body:
+    - type: textarea
+      id: description
+      attributes:
+          label: Describe the feature in detail (code, mocks, or screenshots encouraged)
+    - type: dropdown
+      id: category
+      attributes:
+          label: What type of pull request would this be?
+          options:
+              - "New Feature"
+              - "Enhancement"
+              - "Guide"
+              - "Docs"
+              - "Other"
+    - type: textarea
+      id: references
+      attributes:
+          label: Provide relevant links or additional information.
