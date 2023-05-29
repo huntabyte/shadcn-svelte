@@ -6,11 +6,14 @@
 	import SiteHeader from "$components/docs/SiteHeader.svelte";
 	import TailwindIndicator from "$components/docs/TailwindIndicator.svelte";
 	import "../styles/globals.css";
+	import { inject } from "@vercel/analytics";
+
+	inject({ mode: dev ? "development" : "production" });
 </script>
 
 <svelte:head>
-	<!-- This causes the new eslint-plugin-svelte to error for some reason... so ignoring this entire file for now -->
-	{@html `<script nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
+	<!-- This causes the new eslint-plugin-svelte: https://github.com/sveltejs/eslint-plugin-svelte/issues/492 -->
+	{@html `<\u{73}cript nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
 </svelte:head>
 <Metadata />
 
