@@ -11,6 +11,12 @@ We use CSS variables for styling. This allows you to easily change the colors of
 
 **CSS variables must be defined without color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
 
+To convert a HEX color to HSL, you can use [this tool](https://www.w3schools.com/colors/colors_converter.asp).
+
+Simply add your color in hex format, then copy the three values from the HSL section and add them to the CSS variable.
+
+<img src="/docs/hex-to-hsl.png" alt="Hex to HSL conversion" />
+
 ## Convention
 
 We use a simple `background` and `foreground` convention for colors. The `background` variable is used for the background color of the component and the `foreground` variable is used for the text color.

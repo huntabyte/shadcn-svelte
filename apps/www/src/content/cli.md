@@ -23,6 +23,33 @@ The `add` command adds a component to your project and installs all required dep
 npx shadcn-svelte add [component]
 ```
 
+You will be prompted to set an installation path for the component. The default path is `src/lib/components/ui`. The path will be stored in your `svelte.config.js` file and remembered on subsequent component installations.
+
+```js title="svelte.config.js" {17-19}
+const config = {
+  preprocess: [
+    vitePreprocess(),
+    preprocess({
+      postcss: true
+    }),
+    mdsvex(mdsvexOptions)
+  ],
+  extensions: [".svelte", ".md"],
+  kit: {
+    adapter: adapter(),
+    alias: {
+      $components: "src/lib/components",
+      "$components/*": "src/lib/components/*"
+    }
+  },
+  shadcn: {
+    componentPath: "./src/lib/components/ui"
+  }
+};
+```
+
+To change the installation path, simply update the `componentPath` value in your `svelte.config.js` file.
+
 ### Example
 
 ```bash

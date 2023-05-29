@@ -12,7 +12,7 @@ Unlike the official [shadcn/ui](https://ui.shadcn.com) for React, where the full
 
 The CLI will create a folder for each _component_, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
 
-For example, the Accordion component is split into 4 `.svelte` files:
+For example, the Accordion component is split into four `.svelte` files:
 
 - `Accordion.svelte`
 - `AccordionContent.svelte`
@@ -58,7 +58,7 @@ npx svelte-add@latest tailwindcss
 npx shadcn-svelte init
 ```
 
-This will install dependencies, update your TailwindCSS configuration, and configure the `cn` utils for you.
+This will install dependencies, update your TailwindCSS configuration, add the `$components` path alias to your `svelte.config.js` file, and configure the `cn` utils for you.
 
 </Steps>
 
@@ -193,11 +193,11 @@ Add the following to your `src/app.postcss` file. You can learn more about using
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
 
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
@@ -208,7 +208,7 @@ Add the following to your `src/app.postcss` file. You can learn more about using
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 100% 50%;
+    --destructive: 0 92% 38%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 215 20.2% 65.1%;
@@ -223,14 +223,17 @@ Add the following to your `src/app.postcss` file. You can learn more about using
     --muted: 223 47% 11%;
     --muted-foreground: 215.4 16.3% 56.9%;
 
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
     --popover: 224 71% 4%;
     --popover-foreground: 215 20.2% 65.1%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
-
     --border: 216 34% 17%;
     --input: 216 34% 17%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 1.2%;
@@ -238,10 +241,7 @@ Add the following to your `src/app.postcss` file. You can learn more about using
     --secondary: 222.2 47.4% 11.2%;
     --secondary-foreground: 210 40% 98%;
 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 63% 31%;
+    --destructive: 359 51% 48%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 216 34% 17%;
