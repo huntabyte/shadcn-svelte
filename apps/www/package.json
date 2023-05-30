@@ -74,10 +74,12 @@
 		"shiki": "^0.14.2",
 		"svelte-legos": "^0.2.1",
 		"svelte-wrap-balancer": "^0.0.3",
+		"sveltekit-superforms": "^0.8.7",
 		"tailwind-merge": "^1.12.0",
 		"unified": "^10.1.2",
 		"unist-builder": "^3.0.1",
-		"unist-util-visit": "^4.1.2"
+		"unist-util-visit": "^4.1.2",
+		"zod": "^3.20.2"
 	},
 	"pnpm": {
 		"patchedDependencies": {
