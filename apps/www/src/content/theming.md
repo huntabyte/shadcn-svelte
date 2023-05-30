@@ -9,7 +9,7 @@ description: Use CSS Variables to customize the look and feel of your applicatio
 
 We use CSS variables for styling. This allows you to easily change the colors of components without having to update class names.
 
-**CSS variables must be defined without color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
+**CSS variables must be defined without the color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
 
 ## Hex -> Color Channel
 
