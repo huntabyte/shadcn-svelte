@@ -4,18 +4,20 @@ description: Use CSS Variables to customize the look and feel of your applicatio
 ---
 
 <script>
-  import { Callout } from '$components/docs';
+  import { Callout, HexToChannels } from '$components/docs';
 </script>
 
 We use CSS variables for styling. This allows you to easily change the colors of components without having to update class names.
 
 **CSS variables must be defined without color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
 
-To convert a HEX color to HSL, you can use [this tool](https://www.w3schools.com/colors/colors_converter.asp).
+## Hex -> Color Channel
 
-Simply add your color in hex format, then copy the three values from the HSL section and add them to the CSS variable.
+To make it easier, we've created the following tool which you can use to convert your HEX color to HSL without the color space function.
 
-<img src="/docs/hex-to-hsl.png" alt="Hex to HSL conversion" />
+Simply add your color in hex format, copy one of the generated values, then add them to the CSS variable.
+
+<HexToChannels />
 
 ## Convention
 
