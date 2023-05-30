@@ -13,9 +13,7 @@ We use CSS variables for styling. This allows you to easily change the colors of
 
 ## Hex -> Color Channel
 
-To make it easier, we've created the following tool which you can use to convert your HEX color to HSL without the color space function.
-
-Simply add your color in hex format, copy one of the generated values, then add them to the CSS variable.
+You can use this tool to convert your HEX color to HSL without the color space function. Simply add your color in hex format, copy one of the generated values, then add them to the CSS variable.
 
 <HexToChannels />
 
