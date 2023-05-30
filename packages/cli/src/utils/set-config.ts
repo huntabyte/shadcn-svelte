@@ -12,9 +12,10 @@ import { attachComments } from "../astravel";
 import { ShadConfig, shadConfigSchema } from "./schemas";
 
 const SVELTE_CONFIG_PATH = path.join(process.cwd(), "svelte.config.js");
+const IMPORT_SVELTE_CONFIG_PATH = "file://" + SVELTE_CONFIG_PATH;
 
 export async function getConfig(): Promise<ShadConfig | null> {
-	const { default: svelteConfig } = await import(SVELTE_CONFIG_PATH);
+	const { default: svelteConfig } = await import(IMPORT_SVELTE_CONFIG_PATH);
 
 	try {
 		const shadConfig = shadConfigSchema.parse(svelteConfig.shadcn);
@@ -30,7 +31,7 @@ export async function getConfig(): Promise<ShadConfig | null> {
  * property to it with the componentPath property.
  */
 export async function setConfig(dir: string = "./src/lib/components/ui") {
-	const { default: config } = await import(SVELTE_CONFIG_PATH);
+	const { default: config } = await import(IMPORT_SVELTE_CONFIG_PATH);
 	if (!config) {
 		throw new Error("Could not find config for svelte.config.js");
 	}
@@ -123,7 +124,7 @@ export async function addAliases(dir: string = "./src/lib/components/ui") {
 }
 
 async function parseSvelteConfig() {
-	const { default: config } = await import(SVELTE_CONFIG_PATH);
+	const { default: config } = await import(IMPORT_SVELTE_CONFIG_PATH);
 	if (!config) {
 		throw new Error("Could not find config for svelte.config.js");
 	}
