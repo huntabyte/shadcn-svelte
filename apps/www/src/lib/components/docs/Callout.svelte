@@ -2,7 +2,7 @@
 	import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
 </script>
 
-<Alert {...$$restProps}>
+<Alert {...$$restProps} class="mt-2">
 	{#if $$slots.icon}
 		<span class="mr-4 text-2xl">
 			<slot name="icon" />
