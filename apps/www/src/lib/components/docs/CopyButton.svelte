@@ -10,6 +10,9 @@
 
 	function handleCopyDone() {
 		copied = true;
+		setTimeout(() => {
+			copied = false;
+		}, 1000);
 	}
 
 	function handleCopyError() {
