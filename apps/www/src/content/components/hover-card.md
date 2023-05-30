@@ -3,7 +3,7 @@ title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/hover-card
-radix: https://www.radix-svelte.com/docs/hover-card
+radix: https://www.radix-svelte.com/docs/hovercard
 ---
 
 <script>

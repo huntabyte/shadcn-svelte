@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.9
+
+### Patch Changes
+
+- 2c0f259: Fixed dynamic import path error for Windows
+
 ## 0.0.8
 
 ### Patch Changes

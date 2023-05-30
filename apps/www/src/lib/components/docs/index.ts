@@ -4,6 +4,7 @@ export { default as ComponentExample } from "./ComponentExample.svelte";
 export { default as ComponentSource } from "./ComponentSource.svelte";
 export { default as CopyButton } from "./CopyButton.svelte";
 export { default as DocsPager } from "./DocsPager.svelte";
+export { default as HexToChannels } from "./HexToChannels.svelte";
 export { default as ManualInstall } from "./ManualInstall.svelte";
 export { default as Metadata } from "./Metadata.svelte";
 export { default as SiteFooter } from "./SiteFooter.svelte";
