@@ -3,7 +3,7 @@ title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/radio-group
-radix: https://www.radix-svelte.com/docs/radio-group
+radix: https://www.radix-svelte.com/docs/radiogroup
 ---
 
 <script>
