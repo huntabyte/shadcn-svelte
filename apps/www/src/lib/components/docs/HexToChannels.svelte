@@ -4,7 +4,7 @@
 	import { hexToHsl, hexToRgb } from "$lib/utils";
 	import { CopyButton } from ".";
 
-	let hex: string = "#030711";
+	let hex = "#030711";
 	let hsl: [number, number, number] = [0, 0, 0];
 	let rgb: [number, number, number] = [0, 0, 0];
 	$: if (
