@@ -7,13 +7,7 @@
 
 	export let value: Writable<string | undefined | null> = writable("");
 	export let type: HTMLInputAttributes["type"] = "text";
-	export let checked: Writable<boolean> | undefined = undefined;
-
-	type $$Props = HTMLInputAttributes & {
-		value?: Writable<string | undefined | null>;
-		type?: HTMLInputAttributes["type"];
-		checked?: Writable<boolean>;
-	};
+	export let checked: Writable<boolean> = writable(false);
 </script>
 
 {#if type === "checkbox"}
