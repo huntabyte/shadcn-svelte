@@ -1,12 +1,11 @@
 <script lang="ts">
-	import type { Writable } from "svelte/store";
 	import type { StringPathLeaves, UnwrapEffects } from "sveltekit-superforms";
 	import type { SuperForm } from "sveltekit-superforms/client";
-	import type { AnyZodObject, boolean, z } from "zod";
-	import { getContext, setContext } from "svelte/internal";
-	import { writable } from "svelte/store";
+	import type { AnyZodObject, z } from "zod";
+	import { getContext } from "svelte/internal";
 	import { formFieldProxy } from "sveltekit-superforms/client";
 	import { cn } from "$lib/utils";
+	import { superFormField } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -18,45 +17,16 @@
 	export let id: string | null | undefined = String(name);
 	export let checkbox: boolean = false;
 
-	setContext("id", id);
+	const { value, errors, constraints } = formFieldProxy(form, name);
 
-	const { path, value, errors, constraints } = formFieldProxy(form, name);
-
-	type FormField = {
-		id: string | undefined | null;
-		"aria-describedby": string | undefined | null;
-		"aria-invalid": boolean;
-		constraints: typeof $constraints;
-		errors: typeof $errors;
-		name: string & StringPathLeaves<z.infer<T>>;
-		value?: typeof $value;
-		checked?: boolean;
-	};
-
-	let field: FormField = {
+	$: field = superFormField({
 		id,
-		"aria-describedby": !errors ? name : `${String(path)} ${errors}`,
-		"aria-invalid": !!errors,
-		constraints: $constraints,
+		name,
 		errors: $errors,
-		name
-	};
-
-	let boolVal: Writable<boolean>;
-
-	$: if (checkbox) {
-		boolVal = value as Writable<boolean>;
-
-		field = {
-			...field,
-			checked: $boolVal
-		};
-	} else {
-		field = {
-			...field,
-			value: $value
-		};
-	}
+		constraints: $constraints,
+		value: $value,
+		checkbox
+	});
 </script>
 
 <div class={cn("grid gap-2", className)} {...$$restProps}>

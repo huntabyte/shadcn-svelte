@@ -1,14 +1,7 @@
 import type { Actions, PageServerLoad } from "./$types";
 import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms/server";
-import { z } from "zod";
-
-const registerSchema = z.object({
-	name: z.string().min(1).max(64),
-	email: z.string().email(),
-	password: z.string().min(8).max(64),
-	passwordConfirm: z.string().min(8).max(64)
-});
+import { registerSchema } from "./schemas";
 
 export const load: PageServerLoad = async () => {
 	return {

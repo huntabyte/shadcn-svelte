@@ -4,10 +4,13 @@
 	import { Button } from "$components/ui/button";
 	import { Form, FormField, FormLabel } from "$components/ui/form";
 	import { Input } from "$components/ui/input";
+	import { registerSchema } from "./schemas";
 
 	export let data: PageData;
 
-	const form = superForm(data.form);
+	const form = superForm(data.form, {
+		validators: registerSchema
+	});
 </script>
 
 <Form
