@@ -3,7 +3,7 @@
 	import type { SuperFormUnwrap } from ".";
 	import { cn } from "$lib/utils";
 
-	type T = $$Generic<AnyZodObject>;
+	type T = $$Generic;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

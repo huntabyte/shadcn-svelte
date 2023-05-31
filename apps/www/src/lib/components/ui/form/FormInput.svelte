@@ -5,9 +5,13 @@
 	import { Checkbox } from "$components/ui/checkbox";
 	import { Input } from "$components/ui/input";
 
-	export let value: Writable<string | undefined | null> = writable("");
+	export let value = writable<string | null | undefined>("");
+	export let checked = writable<boolean>(false);
 	export let type: HTMLInputAttributes["type"] = "text";
-	export let checked: Writable<boolean> = writable(false);
+
+	if (type === "checkbox") {
+		checked = value as unknown as Writable<boolean>;
+	}
 </script>
 
 {#if type === "checkbox"}

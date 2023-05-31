@@ -15,6 +15,7 @@ export { default as Form } from "./Form.svelte";
 export { default as FormField } from "./FormField.svelte";
 export { default as FormLabel } from "./FormLabel.svelte";
 export { default as FormMessage } from "./FormMessage.svelte";
+export { default as FormInput } from "./FormInput.svelte";
 
 type SuperFormField<
 	T extends ZodValidation<AnyZodObject>,
@@ -68,28 +69,17 @@ export function superFormFieldProxy<
 export function superFormField(
 	opts: SuperFormFieldParams<AnyZodObject>
 ): SuperFormField<AnyZodObject, (typeof opts)["name"]> {
-	const { id, constraints, errors, name, value, checkbox } = opts;
-
+	const { id, constraints, errors, name, value } = opts;
 	setContext("id", id);
 
-	let superField: SuperFormField<AnyZodObject, typeof name> = {
+	return {
 		id,
 		"aria-describedby": !errors ? name : `${name} ${errors}`,
 		"aria-invalid": !!errors,
 		"aria-required": !!constraints?.required,
 		constraints,
 		errors,
-		name
-	};
-
-	if (checkbox) {
-		return {
-			...superField,
-			checked: value as Writable<boolean>
-		};
-	}
-	return {
-		...superField,
+		name,
 		value
 	};
 }

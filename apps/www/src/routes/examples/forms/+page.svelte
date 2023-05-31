@@ -5,11 +5,10 @@
 	import {
 		Form,
 		FormField,
+		FormInput,
 		FormLabel,
 		FormMessage
 	} from "$components/ui/form";
-	import FormInput from "$components/ui/form/FormInput.svelte";
-	import { Input } from "$components/ui/input";
 	import { registerSchema } from "./schemas";
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
@@ -48,6 +47,11 @@
 	<FormField {form} let:field name="passwordConfirm">
 		<FormLabel>Confirm Password</FormLabel>
 		<FormInput type="password" {...field} />
+		<FormMessage />
+	</FormField>
+	<FormField {form} let:field name="acceptTerms">
+		<FormLabel>Accept Terms</FormLabel>
+		<FormInput type="checkbox" {...field} />
 		<FormMessage />
 	</FormField>
 	<Button type="submit">Register</Button>

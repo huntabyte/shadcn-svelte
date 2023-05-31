@@ -13,7 +13,6 @@
 	export let form: SuperForm<T>;
 	export let name: SuperFormPath<T>;
 	export let id: string | null | undefined = String(name);
-	export let checkbox: boolean = false;
 
 	const { value, errors, constraints } = superFormFieldProxy(form, name);
 
@@ -22,8 +21,7 @@
 		name,
 		errors: $errors,
 		constraints: $constraints,
-		value,
-		checkbox
+		value
 	});
 </script>
 

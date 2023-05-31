@@ -11,7 +11,8 @@ export const registerSchema = z
 		passwordConfirm: z
 			.string()
 			.min(8, "Confirm password must be at least 8 characters")
-			.max(64)
+			.max(64),
+		acceptTerms: z.boolean()
 	})
 	.superRefine(({ password, passwordConfirm }, ctx) => {
 		if (password !== passwordConfirm) {
