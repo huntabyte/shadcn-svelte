@@ -25,7 +25,6 @@
 		"format:check": "prettier --plugin-search-dir . --check ."
 	},
 	"devDependencies": {
-		"@ianvs/prettier-plugin-sort-imports": "^4.0.0",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-vercel": "^3.0.0",
 		"@sveltejs/kit": "^1.19.0",
