@@ -8,13 +8,16 @@
 		FormLabel,
 		FormMessage
 	} from "$components/ui/form";
+	import FormInput from "$components/ui/form/FormInput.svelte";
 	import { Input } from "$components/ui/input";
 	import { registerSchema } from "./schemas";
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
 	export let data: PageData;
 
-	const form = superForm(data.form);
+	const form = superForm(data.form, {
+		validators: registerSchema
+	});
 
 	$: ({ form: superFrm } = form);
 </script>
@@ -29,22 +32,22 @@
 >
 	<FormField {form} let:field name="name">
 		<FormLabel>Name</FormLabel>
-		<Input type="text" {...field} />
+		<FormInput type="text" {...field} />
 		<FormMessage />
 	</FormField>
 	<FormField {form} let:field name="email">
 		<FormLabel>Email</FormLabel>
-		<Input type="email" {...field} />
+		<FormInput type="email" {...field} />
 		<FormMessage />
 	</FormField>
 	<FormField {form} let:field name="password">
 		<FormLabel>Password</FormLabel>
-		<Input type="password" {...field} />
+		<FormInput type="password" {...field} />
 		<FormMessage />
 	</FormField>
 	<FormField {form} let:field name="passwordConfirm">
 		<FormLabel>Confirm Password</FormLabel>
-		<Input type="password" {...field} />
+		<FormInput type="password" {...field} />
 		<FormMessage />
 	</FormField>
 	<Button type="submit">Register</Button>

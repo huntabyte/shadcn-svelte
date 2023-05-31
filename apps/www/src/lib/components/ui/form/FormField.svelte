@@ -22,7 +22,7 @@
 		name,
 		errors: $errors,
 		constraints: $constraints,
-		value: $value,
+		value,
 		checkbox
 	});
 </script>

@@ -4,7 +4,7 @@
 
 	let className: string | undefined | null = undefined;
 
-	export let value: HTMLInputAttributes["value"] = undefined;
+	export let value: HTMLInputAttributes["value"];
 	export let name: HTMLInputAttributes["name"] = undefined;
 	export let id: HTMLInputAttributes["id"] = name;
 	export { className as class };
