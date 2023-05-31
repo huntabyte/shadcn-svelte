@@ -13,13 +13,11 @@
 
 	setContext("form", form);
 
-	$: ({ enhance } = form);
-
 	type $$Props = HTMLFormAttributes & {
 		form: SuperForm<ZodValidation<T>, unknown>;
 	};
 </script>
 
-<form {...$$restProps} class={cn(className)} use:enhance>
+<form {...$$restProps} class={cn(className)} use:form.enhance>
 	<slot />
 </form>
