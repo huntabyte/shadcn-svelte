@@ -2,7 +2,7 @@
 	import type { StringPathLeaves, ZodValidation } from "sveltekit-superforms";
 	import type { SuperForm } from "sveltekit-superforms/client";
 	import type { AnyZodObject, z } from "zod";
-	import { getContext } from "svelte/internal";
+	import { getContext, setContext } from "svelte";
 	import { formFieldProxy } from "sveltekit-superforms/client";
 	import { cn } from "$lib/utils";
 	import { superFormField } from ".";
@@ -18,6 +18,8 @@
 	export let checkbox: boolean = false;
 
 	const { value, errors, constraints } = formFieldProxy(form, name);
+
+	setContext("errors", errors);
 
 	$: field = superFormField({
 		id,

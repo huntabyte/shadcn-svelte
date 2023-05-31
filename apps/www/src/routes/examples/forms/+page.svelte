@@ -2,7 +2,12 @@
 	import type { PageData } from "./$types";
 	import { superForm } from "sveltekit-superforms/client";
 	import { Button } from "$components/ui/button";
-	import { Form, FormField, FormLabel } from "$components/ui/form";
+	import {
+		Form,
+		FormField,
+		FormLabel,
+		FormMessage
+	} from "$components/ui/form";
 	import { Input } from "$components/ui/input";
 	import { registerSchema } from "./schemas";
 
@@ -22,18 +27,22 @@
 	<FormField let:field name="name">
 		<FormLabel>Name</FormLabel>
 		<Input type="text" {...field} />
+		<FormMessage />
 	</FormField>
 	<FormField let:field name="email">
 		<FormLabel>Email</FormLabel>
 		<Input type="email" {...field} />
+		<FormMessage />
 	</FormField>
 	<FormField let:field name="password">
 		<FormLabel>Password</FormLabel>
 		<Input type="password" {...field} />
+		<FormMessage />
 	</FormField>
 	<FormField let:field name="passwordConfirm">
 		<FormLabel>Confirm Password</FormLabel>
 		<Input type="passwordConfirm" {...field} />
+		<FormMessage />
 	</FormField>
 	<Button type="submit">Register</Button>
 </Form>

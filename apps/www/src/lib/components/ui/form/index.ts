@@ -11,6 +11,7 @@ import { setContext } from "svelte";
 export { default as Form } from "./Form.svelte";
 export { default as FormField } from "./FormField.svelte";
 export { default as FormLabel } from "./FormLabel.svelte";
+export { default as FormMessage } from "./FormMessage.svelte";
 
 type SuperFormField<T extends ZodValidation<AnyZodObject>> = {
 	id: string | undefined | null;
