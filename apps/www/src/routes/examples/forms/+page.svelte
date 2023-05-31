@@ -27,6 +27,7 @@
 	class="p-4 max-w-md w-full mx-auto grid gap-4"
 	use:form.enhance
 >
+	<img src="" />
 	<FormField {form} let:field name="name">
 		<FormLabel>Name</FormLabel>
 		<FormInput type="text" {...field} />
