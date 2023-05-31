@@ -3,7 +3,6 @@
 	import { superForm } from "sveltekit-superforms/client";
 	import { Button } from "$components/ui/button";
 	import {
-		Form,
 		FormField,
 		FormInput,
 		FormLabel,
@@ -22,12 +21,11 @@
 </script>
 
 <SuperDebug data={$superFrm} />
-<Form
-	{form}
-	let:form
+<form
 	action="?/register"
 	method="POST"
 	class="p-4 max-w-md w-full mx-auto grid gap-4"
+	use:form.enhance
 >
 	<FormField {form} let:field name="name">
 		<FormLabel>Name</FormLabel>
@@ -55,4 +53,4 @@
 		<FormMessage />
 	</FormField>
 	<Button type="submit">Register</Button>
-</Form>
+</form>
