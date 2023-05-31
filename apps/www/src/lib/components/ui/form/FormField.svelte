@@ -1,25 +1,21 @@
 <script lang="ts">
-	import type { StringPathLeaves, ZodValidation } from "sveltekit-superforms";
 	import type { SuperForm } from "sveltekit-superforms/client";
-	import type { AnyZodObject, z } from "zod";
-	import { getContext, setContext } from "svelte";
-	import { formFieldProxy } from "sveltekit-superforms/client";
+	import type { AnyZodObject } from "zod";
+	import type { SuperFormPath } from ".";
 	import { cn } from "$lib/utils";
-	import { superFormField } from ".";
+	import { superFormField, superFormFieldProxy } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
 	type T = $$Generic<AnyZodObject>;
 
-	export let form: SuperForm<ZodValidation<T>, unknown> = getContext("form");
-	export let name: string & StringPathLeaves<z.infer<T>>;
+	export let form: SuperForm<T>;
+	export let name: SuperFormPath<T>;
 	export let id: string | null | undefined = String(name);
 	export let checkbox: boolean = false;
 
-	const { value, errors, constraints } = formFieldProxy(form, name);
-
-	setContext("errors", errors);
+	const { value, errors, constraints } = superFormFieldProxy(form, name);
 
 	$: field = superFormField({
 		id,

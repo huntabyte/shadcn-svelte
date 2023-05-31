@@ -20,26 +20,27 @@
 
 <Form
 	{form}
+	let:form
 	action="?/register"
 	method="POST"
 	class="p-4 max-w-md w-full mx-auto grid gap-4"
 >
-	<FormField let:field name="name">
+	<FormField {form} let:field name="name">
 		<FormLabel>Name</FormLabel>
 		<Input type="text" {...field} />
 		<FormMessage />
 	</FormField>
-	<FormField let:field name="email">
+	<FormField {form} let:field name="email">
 		<FormLabel>Email</FormLabel>
 		<Input type="email" {...field} />
 		<FormMessage />
 	</FormField>
-	<FormField let:field name="password">
+	<FormField {form} let:field name="password">
 		<FormLabel>Password</FormLabel>
 		<Input type="password" {...field} />
 		<FormMessage />
 	</FormField>
-	<FormField let:field name="passwordConfirm">
+	<FormField {form} let:field name="passwordConfirm">
 		<FormLabel>Confirm Password</FormLabel>
 		<Input type="passwordConfirm" {...field} />
 		<FormMessage />

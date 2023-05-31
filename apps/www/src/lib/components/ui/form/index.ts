@@ -1,3 +1,5 @@
+import type { Writable } from "svelte/store";
+import type { SuperForm } from "sveltekit-superforms/client";
 import type { StringPathType } from "sveltekit-superforms/dist/stringPath";
 import type {
 	InputConstraint,
@@ -7,6 +9,7 @@ import type {
 } from "sveltekit-superforms/index";
 import type { AnyZodObject, z } from "zod";
 import { setContext } from "svelte";
+import { formFieldProxy } from "sveltekit-superforms/client";
 
 export { default as Form } from "./Form.svelte";
 export { default as FormField } from "./FormField.svelte";
@@ -39,6 +42,28 @@ type SuperFormFieldParams<T extends ZodValidation<AnyZodObject>> = {
 	>;
 	checkbox?: boolean;
 };
+
+export type ErrorsContext = Writable<string[] | undefined>;
+
+export type SuperFormUnwrap<T, U = unknown> = SuperForm<UnwrapEffects<T>, U>;
+
+export type SuperFormPath<T extends AnyZodObject> = string &
+	StringPathLeaves<z.infer<T>>;
+
+export function superFormFieldProxy<
+	T extends ZodValidation<AnyZodObject>,
+	Path extends string & StringPathLeaves<z.infer<UnwrapEffects<T>>>
+>(form: SuperForm<T, unknown>, name: Path) {
+	const { value, errors, constraints, path } = formFieldProxy(form, name);
+	setContext("errors", errors);
+
+	return {
+		value,
+		errors,
+		constraints,
+		path
+	};
+}
 
 export function superFormField(
 	opts: SuperFormFieldParams<AnyZodObject>
