@@ -16,7 +16,10 @@ export { default as FormField } from "./FormField.svelte";
 export { default as FormLabel } from "./FormLabel.svelte";
 export { default as FormMessage } from "./FormMessage.svelte";
 
-type SuperFormField<T extends ZodValidation<AnyZodObject>> = {
+type SuperFormField<
+	T extends ZodValidation<AnyZodObject>,
+	Path extends string & StringPathLeaves<z.infer<UnwrapEffects<T>>>
+> = {
 	id: string | undefined | null;
 	"aria-describedby": string | undefined | null;
 	"aria-invalid": boolean;
@@ -24,11 +27,8 @@ type SuperFormField<T extends ZodValidation<AnyZodObject>> = {
 	constraints: InputConstraint | undefined;
 	errors: string[] | undefined;
 	name: string & StringPathLeaves<z.infer<T>>;
-	value?: StringPathType<
-		z.TypeOf<UnwrapEffects<UnwrapEffects<T>>>,
-		string & StringPathLeaves<z.TypeOf<T>>
-	>;
-	checked?: boolean;
+	value?: Writable<StringPathType<z.infer<UnwrapEffects<T>>, Path>>;
+	checked?: Writable<boolean>;
 };
 
 type SuperFormFieldParams<T extends ZodValidation<AnyZodObject>> = {
@@ -67,12 +67,12 @@ export function superFormFieldProxy<
 
 export function superFormField(
 	opts: SuperFormFieldParams<AnyZodObject>
-): SuperFormField<AnyZodObject> {
+): SuperFormField<AnyZodObject, (typeof opts)["name"]> {
 	const { id, constraints, errors, name, value, checkbox } = opts;
 
 	setContext("id", id);
 
-	let superField: SuperFormField<AnyZodObject> = {
+	let superField: SuperFormField<AnyZodObject, typeof name> = {
 		id,
 		"aria-describedby": !errors ? name : `${name} ${errors}`,
 		"aria-invalid": !!errors,
@@ -85,7 +85,7 @@ export function superFormField(
 	if (checkbox) {
 		return {
 			...superField,
-			checked: value as boolean
+			checked: value as Writable<boolean>
 		};
 	}
 	return {
