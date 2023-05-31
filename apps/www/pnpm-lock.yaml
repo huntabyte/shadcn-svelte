@@ -65,8 +65,8 @@ dependencies:
     specifier: ^0.0.3
     version: 0.0.3
   sveltekit-superforms:
-    specifier: ^0.8.7
-    version: 0.8.7(@sveltejs/kit@1.19.0)(svelte@3.59.1)(zod@3.21.4)
+    specifier: ^1.0.0-rc.1
+    version: 1.0.0-rc.1(@sveltejs/kit@1.19.0)(svelte@3.59.1)(zod@3.21.4)
   tailwind-merge:
     specifier: ^1.12.0
     version: 1.12.0
@@ -3691,8 +3691,8 @@ packages:
     resolution: {integrity: sha512-pKj8fEBmqf6mq3/NfrB9SLtcJcUvjYSWyePlfCqN9gujLB25RitWK8PvFzlwim6hD/We35KbPlRteuA6rnPGcQ==}
     engines: {node: '>= 8'}
 
-  /sveltekit-superforms@0.8.7(@sveltejs/kit@1.19.0)(svelte@3.59.1)(zod@3.21.4):
-    resolution: {integrity: sha512-0aFK31TNz4AM3N7dzL99QUXlVF2O+W/TNVU+M41VVaAKtJKFNasbv8GNLd5wrhN7UWN6kNJnt4MlZBPISkIQ6w==}
+  /sveltekit-superforms@1.0.0-rc.1(@sveltejs/kit@1.19.0)(svelte@3.59.1)(zod@3.21.4):
+    resolution: {integrity: sha512-UvTN5d1IeAYKz8LFCVPiVmf8xTUnXmyRd3qRR6O+nk4xPZOQGWZIIqiTYaLurq1gzUJ9E6azaYatjJoyKgFKjA==}
     peerDependencies:
       '@sveltejs/kit': 1.x
       svelte: 3.x
