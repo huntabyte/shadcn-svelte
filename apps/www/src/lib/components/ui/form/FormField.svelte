@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { StringPathLeaves, UnwrapEffects } from "sveltekit-superforms";
+	import type { StringPathLeaves, ZodValidation } from "sveltekit-superforms";
 	import type { SuperForm } from "sveltekit-superforms/client";
 	import type { AnyZodObject, z } from "zod";
 	import { getContext } from "svelte/internal";
@@ -12,7 +12,7 @@
 
 	type T = $$Generic<AnyZodObject>;
 
-	export let form: SuperForm<UnwrapEffects<T>, unknown> = getContext("form");
+	export let form: SuperForm<ZodValidation<T>, unknown> = getContext("form");
 	export let name: string & StringPathLeaves<z.infer<T>>;
 	export let id: string | null | undefined = String(name);
 	export let checkbox: boolean = false;
