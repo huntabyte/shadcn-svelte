@@ -8,9 +8,6 @@
 	export let name: HTMLInputAttributes["name"] = undefined;
 	export let id: HTMLInputAttributes["id"] = name;
 	export { className as class };
-
-	$: console.log("Input Props:", $$props);
-	$: console.log("Input Value:", value);
 </script>
 
 <input

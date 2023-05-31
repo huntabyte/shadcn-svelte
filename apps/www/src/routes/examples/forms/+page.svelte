@@ -10,14 +10,16 @@
 	} from "$components/ui/form";
 	import { Input } from "$components/ui/input";
 	import { registerSchema } from "./schemas";
+	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
 	export let data: PageData;
 
-	const form = superForm(data.form, {
-		validators: registerSchema
-	});
+	const form = superForm(data.form);
+
+	$: ({ form: superFrm } = form);
 </script>
 
+<SuperDebug data={$superFrm} />
 <Form
 	{form}
 	let:form
@@ -42,7 +44,7 @@
 	</FormField>
 	<FormField {form} let:field name="passwordConfirm">
 		<FormLabel>Confirm Password</FormLabel>
-		<Input type="passwordConfirm" {...field} />
+		<Input type="password" {...field} />
 		<FormMessage />
 	</FormField>
 	<Button type="submit">Register</Button>
