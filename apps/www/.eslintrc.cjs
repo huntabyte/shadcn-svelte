@@ -18,6 +18,7 @@ module.exports = {
 		es2017: true,
 		node: true
 	},
+	globals: { $$Generic: "readable" },
 	overrides: [
 		{
 			files: ["*.svelte"],
@@ -29,7 +30,8 @@ module.exports = {
 				"@typescript-eslint/no-unused-vars": [
 					"warn",
 					{
-						varsIgnorePattern: "\\$\\$Props"
+						varsIgnorePattern:
+							"^\\$\\$(Props|Events|Slots|Generic)$"
 					}
 				]
 			}
