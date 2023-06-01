@@ -1,57 +1,9 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { superForm } from "sveltekit-superforms/client";
-	import { Button } from "$components/ui/button";
-	import {
-		FormField,
-		FormInput,
-		FormLabel,
-		FormMessage
-	} from "$components/ui/form";
-	import { registerSchema } from "./schemas";
-	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
+
+	import RegisterForm from "./RegisterForm.svelte";
 
 	export let data: PageData;
-
-	const form = superForm(data.form, {
-		validators: registerSchema
-	});
-
-	$: ({ form: superFrm } = form);
 </script>
 
-<SuperDebug data={$superFrm} />
-<form
-	action="?/register"
-	method="POST"
-	class="p-4 max-w-md w-full mx-auto grid gap-4"
-	use:form.enhance
->
-	<img src="" />
-	<FormField {form} let:field name="name">
-		<FormLabel>Name</FormLabel>
-		<FormInput type="text" {...field} />
-		<FormMessage />
-	</FormField>
-	<FormField {form} let:field name="email">
-		<FormLabel>Email</FormLabel>
-		<FormInput type="email" {...field} />
-		<FormMessage />
-	</FormField>
-	<FormField {form} let:field name="password">
-		<FormLabel>Password</FormLabel>
-		<FormInput type="password" {...field} />
-		<FormMessage />
-	</FormField>
-	<FormField {form} let:field name="passwordConfirm">
-		<FormLabel>Confirm Password</FormLabel>
-		<FormInput type="password" {...field} />
-		<FormMessage />
-	</FormField>
-	<FormField {form} let:field name="acceptTerms">
-		<FormLabel>Accept Terms</FormLabel>
-		<FormInput type="checkbox" {...field} />
-		<FormMessage />
-	</FormField>
-	<Button type="submit">Register</Button>
-</form>
+<RegisterForm data={data.form} />
