@@ -2,7 +2,7 @@
 	import { Separator } from "$components/ui/separator";
 	import type { PageData } from "./$types";
 
-	import RegisterForm from "./RegisterForm.svelte";
+	import ProfileForm from "./ProfileForm.svelte";
 
 	export let data: PageData;
 </script>
@@ -13,5 +13,5 @@
 		<p>This is how other will see you on the site.</p>
 	</div>
 	<Separator />
-	<RegisterForm data={data.form} />
+	<ProfileForm data={data.form} />
 </div>

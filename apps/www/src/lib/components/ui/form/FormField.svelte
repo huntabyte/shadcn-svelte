@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { SvelteHTMLElements } from "svelte/elements";
+
 	import type { SuperForm } from "sveltekit-superforms/client";
 	import type { AnyZodObject } from "zod";
 	import type { SuperFormPath } from ".";
@@ -13,6 +15,7 @@
 	export let form: SuperForm<T>;
 	export let name: SuperFormPath<T>;
 	export let id: string | null | undefined = String(name);
+	export let tag = "div";
 
 	const { value, errors, constraints } = superFormFieldProxy(form, name);
 
@@ -25,6 +28,6 @@
 	});
 </script>
 
-<div class={cn("grid gap-2", className)} {...$$restProps}>
+<svelte:element this={tag} class={cn("grid gap-2", className)} {...$$restProps}>
 	<slot {...$$restProps} {field} />
-</div>
+</svelte:element>

@@ -1,17 +1,23 @@
 import type { Actions, PageServerLoad } from "./$types";
 import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms/server";
-import { registerSchema } from "./schemas";
+import { profileSchema } from "./schemas";
 
 export const load: PageServerLoad = async () => {
+	const defaultValues = {
+		bio: "I like to code",
+		urls: ["https://shadcn-svelte.com", "https://twitter.com/huntabyte"]
+	};
 	return {
-		form: superValidate(registerSchema)
+		form: superValidate(defaultValues, profileSchema)
 	};
 };
 
 export const actions: Actions = {
-	register: async (event) => {
-		const form = await superValidate(event, registerSchema);
+	updateProfile: async (event) => {
+		const form = await superValidate(event, profileSchema);
+
+		console.log(form);
 
 		if (!form.valid) {
 			return fail(400, {
@@ -19,10 +25,8 @@ export const actions: Actions = {
 			});
 		}
 
-		console.log("Success!");
-
 		return {
-			status: 200
+			form
 		};
 	}
 };
