@@ -11,7 +11,6 @@ import type { AnyZodObject, z } from "zod";
 import { setContext } from "svelte";
 import { formFieldProxy } from "sveltekit-superforms/client";
 
-export { default as Form } from "./Form.svelte";
 export { default as FormField } from "./FormField.svelte";
 export { default as FormLabel } from "./FormLabel.svelte";
 export { default as FormMessage } from "./FormMessage.svelte";
