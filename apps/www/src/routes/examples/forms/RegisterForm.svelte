@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		FormDescription,
 		FormField,
 		FormInput,
 		FormLabel,
@@ -18,16 +19,15 @@
 	$: ({ form: superFrm } = form);
 </script>
 
-<SuperDebug data={$superFrm} />
-<form
-	action="?/register"
-	method="POST"
-	class="p-4 max-w-md w-full mx-auto grid gap-4"
-	use:form.enhance
->
-	<FormField {form} let:field name="name">
-		<FormLabel>Name</FormLabel>
+<!-- <SuperDebug data={$superFrm} /> -->
+<form action="?/register" method="POST" class="space-y-8" use:form.enhance>
+	<FormField {form} let:field name="username">
+		<FormLabel>Username</FormLabel>
 		<FormInput type="text" {...field} />
+		<FormDescription>
+			This is your public display name. It can be your real name or a
+			pseudonym. You can only change this once every 30 days.
+		</FormDescription>
 		<FormMessage />
 	</FormField>
 	<FormField {form} let:field name="email">

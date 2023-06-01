@@ -15,6 +15,7 @@ export { default as FormField } from "./FormField.svelte";
 export { default as FormLabel } from "./FormLabel.svelte";
 export { default as FormMessage } from "./FormMessage.svelte";
 export { default as FormInput } from "./FormInput.svelte";
+export { default as FormDescription } from "./FormDescription.svelte";
 
 type SuperFormField<
 	T extends ZodValidation<AnyZodObject>,
