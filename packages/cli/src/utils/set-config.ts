@@ -152,8 +152,11 @@ function formatFile(content: string, path: string) {
 		return fs.writeFileSync(path, content);
 	}
 
-	const prettySvelteConfig = prettier.format(content, prettierConfig);
-	return fs.writeFileSync(path, prettySvelteConfig);
+	const formattedContent = prettier.format(content, {
+		...prettierConfig,
+		parser: "babel"
+	});
+	return fs.writeFileSync(path, formattedContent);
 }
 
 function createConfigNode(dir: string): Property {
