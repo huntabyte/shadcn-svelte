@@ -5,10 +5,7 @@
 	"trailingComma": "none",
 	"printWidth": 80,
 	"endOfLine": "lf",
-	"plugins": [
-		"prettier-plugin-svelte",
-		"@ianvs/prettier-plugin-sort-imports"
-	],
+	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": false,
 	"overrides": [
 		{
@@ -28,21 +25,5 @@
 			}
 		}
 	],
-	"bracketSameLine": false,
-	"importOrder": [
-		"<TYPES>",
-		"<TYPES>^[.]",
-		"<BUILTIN_MODULES>",
-		"<THIRD_PARTY_MODULES>",
-		"^\\$app",
-		"^\\$env",
-		"^\\$service-worker",
-		"^\\$lib/server",
-		"^\\$(?![^\\/]*\\/)",
-		"^\\$[^/]*\\/[^/]+",
-		"^[./]",
-		"\\.js$",
-		"\\.svelte$"
-	],
-	"importOrderTypeScriptVersion": "5.0.4"
+	"bracketSameLine": false
 }
