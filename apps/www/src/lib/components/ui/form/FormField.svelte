@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { SvelteHTMLElements } from "svelte/elements";
-
 	import type { SuperForm } from "sveltekit-superforms/client";
 	import type { AnyZodObject } from "zod";
 	import type { SuperFormPath } from ".";

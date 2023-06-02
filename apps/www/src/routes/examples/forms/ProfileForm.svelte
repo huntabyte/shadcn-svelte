@@ -17,13 +17,17 @@
 	export let data: Validation<typeof profileSchema>;
 
 	const form = superForm(data, {
-		taintedMessage: null
+		taintedMessage: null,
+		onSubmit: ({ action, data, form, controller }) => {
+			console.log("Data", data.get("urls[0]"));
+			console.log("Form", form);
+		}
 	});
 
-	$: ({ form: superFrm, delayed, submitting } = form);
+	$: ({ form: superFrm, delayed, errors, tainted } = form);
 </script>
 
-<SuperDebug data={$superFrm} />
+<SuperDebug data={{ $superFrm, $errors, $tainted }} />
 <form action="?/updateProfile" method="POST" class="space-y-8" use:form.enhance>
 	<FormField {form} let:field name="username">
 		<FormLabel>Username</FormLabel>
