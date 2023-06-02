@@ -17,9 +17,12 @@
 
 	const { value, errors, constraints } = superFormFieldProxy(form, name);
 
+	const fieldName = name.match(/^[a-zA-Z]\w*/);
+	if (!fieldName) throw new Error("Invalid form field name.");
+
 	$: field = superFormField({
 		id,
-		name,
+		name: fieldName[0],
 		errors: $errors,
 		constraints: $constraints,
 		value
