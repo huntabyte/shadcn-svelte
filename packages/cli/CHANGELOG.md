@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.10
+
+### Patch Changes
+
+- 1b41d9c: Add parser to CLI prettier config
+
 ## 0.0.9
 
 ### Patch Changes
