@@ -18,5 +18,5 @@ body:
     attributes:
       label: Proposed Changes
       description: Describe the proposed changes and why they are necessary
-    validation:
+    validations:
       required: true
