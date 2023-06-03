@@ -1,20 +1,20 @@
 # Borrowed from https://github.com/skeletonlabs/skeleton
-name: 🐞 Bug
+name: 🐛 Bug Report
 description: Report an issue or bug
-labels: [bug]
+labels: ["type: bug"]
 body:
     - type: textarea
       attributes:
           label: Current Behavior
           description: A description of what you're experiencing.
       validations:
-          required: false
+          required: true
     - type: textarea
       attributes:
           label: Expected Behavior
           description: A description of what you're experiencing.
       validations:
-          required: false
+          required: true
     - type: textarea
       attributes:
           label: Steps To Reproduce
@@ -25,7 +25,7 @@ body:
               3. Click '...'
               4. See error...
       validations:
-          required: false
+          required: true
     - type: input
       id: reproduction
       attributes:
