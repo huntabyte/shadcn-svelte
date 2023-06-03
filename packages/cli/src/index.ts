@@ -118,7 +118,7 @@ async function main() {
 	program
 		.command("add")
 		.description("add components to your project")
-  .option("--nodep", "disable downloading dependencies (advanced use)")
+  .option("--nodep", "disable adding & installing dependencies (advanced)")
 		.argument("[components...]", "name of components")
 		.action(async (options, components: string[]) => {
 			logger.warn(
