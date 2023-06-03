@@ -17,6 +17,7 @@
 		"build:components": "tsx scripts/build-components.ts",
 		"preview": "vite preview",
 		"test": "playwright test",
+		"sync": "svelte-kit sync",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
