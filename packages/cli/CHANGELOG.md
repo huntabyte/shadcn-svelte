@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.11
+
+### Patch Changes
+
+- ae47aa6: add --nodep flag to disable adding and installing dependencies (advanced)
+
 ## 0.0.10
 
 ### Patch Changes
