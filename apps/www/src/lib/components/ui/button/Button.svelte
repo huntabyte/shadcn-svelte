@@ -14,6 +14,24 @@
 	export let variant: VariantProps<typeof buttonVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
+
+	type Props = {
+		class?: string | null;
+		variant?: VariantProps<typeof buttonVariants>["variant"];
+		size?: VariantProps<typeof buttonVariants>["size"];
+	};
+
+	interface AnchorElement extends Props, HTMLAnchorAttributes {
+		href?: HTMLAnchorAttributes["href"];
+		type?: never;
+	}
+
+	interface ButtonElement extends Props, HTMLButtonAttributes {
+		type?: HTMLButtonAttributes["type"];
+		href?: never;
+	}
+
+	type $$Props = AnchorElement | ButtonElement;
 </script>
 
 <svelte:element
