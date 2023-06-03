@@ -118,8 +118,9 @@ async function main() {
 	program
 		.command("add")
 		.description("add components to your project")
+  .option("--nodep", "disable downloading dependencies (advanced use)")
 		.argument("[components...]", "name of components")
-		.action(async (components: string[]) => {
+		.action(async (options, components: string[]) => {
 			logger.warn(
 				"Running the following command will overwrite existing files."
 			);
@@ -184,7 +185,7 @@ async function main() {
 				}
 
 				// Install dependencies.
-				if (component.dependencies?.length) {
+				if (component.dependencies?.length && !options.nodep) {
 					await execa(packageManager, [
 						packageManager === "npm" ? "install" : "add",
 						...component.dependencies
@@ -192,6 +193,8 @@ async function main() {
 				}
 				componentSpinner.succeed(component.name);
 			}
+   
+   if (options.nodep) logger.warn(`components installed without dependencies, consider adding ${[...new Set(selectedComponents.flatMap(component => component.dependencies ?? []))].join(", ")} to your project dependencies`)
 		});
 
 	program.parse();
