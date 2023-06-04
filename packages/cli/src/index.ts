@@ -118,9 +118,12 @@ async function main() {
 	program
 		.command("add")
 		.description("add components to your project")
-  .option("--nodep", "disable adding & installing dependencies (advanced)")
 		.argument("[components...]", "name of components")
-		.action(async (options, components: string[]) => {
+		.option(
+			"--nodep",
+			"disable adding & installing dependencies (advanced)"
+		)
+		.action(async (components: string[], options) => {
 			logger.warn(
 				"Running the following command will overwrite existing files."
 			);
@@ -193,8 +196,17 @@ async function main() {
 				}
 				componentSpinner.succeed(component.name);
 			}
-   
-   if (options.nodep) logger.warn(`components installed without dependencies, consider adding ${[...new Set(selectedComponents.flatMap(component => component.dependencies ?? []))].join(", ")} to your project dependencies`)
+
+			if (options.nodep)
+				logger.warn(
+					`components installed without dependencies, consider adding ${[
+						...new Set(
+							selectedComponents.flatMap(
+								(component) => component.dependencies ?? []
+							)
+						)
+					].join(", ")} to your project dependencies`
+				);
 		});
 
 	program.parse();

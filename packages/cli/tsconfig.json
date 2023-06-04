@@ -15,7 +15,8 @@
 		"noUnusedParameters": false,
 		"preserveWatchOutput": true,
 		"skipLibCheck": true,
-		"strict": true
+		"strict": true,
+		"downlevelIteration": true
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules"]
