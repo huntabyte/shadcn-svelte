@@ -51,8 +51,6 @@ npm install radix-svelte
 ```svelte
 <HoverCard>
   <HoverCardTrigger>Hover</HoverCardTrigger>
-  <HoverCardContent>
-    SvelteKit - Web development, streamlined
-  </HoverCardContent>
+  <HoverCardContent>SvelteKit - Web development, streamlined</HoverCardContent>
 </HoverCard>
 ```
