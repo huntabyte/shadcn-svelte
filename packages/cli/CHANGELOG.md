@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.12
+
+### Patch Changes
+
+- 5bc78d5: fix: properly order opts and args in `add` CLI command
+
 ## 0.0.11
 
 ### Patch Changes
