@@ -52,7 +52,7 @@ npm install radix-svelte
 <HoverCard>
   <HoverCardTrigger>Hover</HoverCardTrigger>
   <HoverCardContent>
-    The React Framework – created and maintained by @vercel.
+    The Svelte Framework – created and maintained by @vercel.
   </HoverCardContent>
 </HoverCard>
 ```
