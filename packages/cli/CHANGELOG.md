@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.0.13
+
+### Patch Changes
+
+- fa77377: Replaced `tailwind.config.cjs` for an ESM template
+
 ## 0.0.12
 
 ### Patch Changes
