@@ -105,7 +105,7 @@ async function main() {
 			).start();
 			await fs.writeFile(tailwindDestination, TAILWIND_CONFIG, "utf8");
 			// Delete tailwind.config.cjs if present
-			await fs.unlink("./tailwind.config.cjs").catch();
+			await fs.unlink("./tailwind.config.cjs").catch((e) => e); // throws when it DNE
 			tailwindSpinner.succeed();
 
 			// Update svelte.config.js
