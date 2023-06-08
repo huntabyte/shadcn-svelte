@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "$components/ui/button";
+	import { Button, buttonVariants } from "$components/ui/button";
 	import {
 		Dialog,
 		DialogContent,
@@ -14,8 +14,8 @@
 </script>
 
 <Dialog modal={true}>
-	<DialogTrigger>
-		<Button variant="outline">Edit Profile</Button>
+	<DialogTrigger class={buttonVariants({ variant: "outline" })}>
+		Edit Profile
 	</DialogTrigger>
 	<DialogContent class="sm:max-w-[425px]">
 		<DialogHeader>
