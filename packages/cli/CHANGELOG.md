@@ -1,5 +1,15 @@
 # shadcn-svelte
 
+## 0.1.0
+
+### Minor Changes
+
+- 58a62ef: Added `update` command for updating existing components
+
+### Patch Changes
+
+- 58a62ef: Fixed select-all option during multiselect prompts
+
 ## 0.0.13
 
 ### Patch Changes
