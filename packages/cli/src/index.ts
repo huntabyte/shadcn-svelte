@@ -149,7 +149,8 @@ async function main() {
 
 			if (!selectedComponents?.length) {
 				selectedComponents = await promptForComponents(
-					availableComponents
+					availableComponents,
+					"Which component(s) would you like to add?"
 				);
 			}
 
@@ -214,12 +215,12 @@ async function main() {
 	program.parse();
 }
 
-async function promptForComponents(components: Component[]) {
+async function promptForComponents(components: Component[], message: string) {
 	const { components: selectedComponents } = await prompts({
-		type: "autocompleteMultiselect",
+		type: "multiselect",
 		name: "components",
-		message: "Which component(s) would you like to add?",
-		hint: "Space to select. A to select all. I to invert selection.",
+		message,
+		hint: "SPACE to select. A to select all.",
 		instructions: false,
 		choices: components.map((component) => ({
 			title: component.name,
