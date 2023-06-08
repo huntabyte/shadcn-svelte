@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { CalendarDays } from "lucide-svelte";
 	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
-	import { Button } from "$components/ui/button";
 	import {
 		HoverCard,
 		HoverCardContent,
@@ -10,8 +9,13 @@
 </script>
 
 <HoverCard>
-	<HoverCardTrigger>
-		<Button variant="link">@sveltejs</Button>
+	<HoverCardTrigger
+		href="https://github.com/sveltejs"
+		target="_blank"
+		rel="noreferrer noopener"
+		class="hover:underline underline-offset-4 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+	>
+		@sveltejs
 	</HoverCardTrigger>
 	<HoverCardContent class="w-80">
 		<div class="flex justify-between space-x-4">
