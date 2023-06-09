@@ -57,7 +57,6 @@
 				return createRender(DataTableCheckbox, { checked: isSelected });
 			},
 			plugins: {
-				colOrder: {},
 				sort: {
 					disable: true
 				},
