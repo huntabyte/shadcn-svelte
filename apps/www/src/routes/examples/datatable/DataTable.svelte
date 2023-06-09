@@ -9,10 +9,11 @@
 		addSortBy,
 		addColumnOrder,
 		addPagination,
-		addTableFilter
+		addTableFilter,
+		addSelectedRows
 	} from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
-	import { readable } from "svelte/store";
+	import { readable, get } from "svelte/store";
 	import {
 		Table,
 		TableBody,
@@ -22,23 +23,48 @@
 		TableRow
 	} from "$components/ui/table";
 	import DeleteAction from "./DeleteAction.svelte";
-	import { Button, buttonVariants } from "$components/ui/button";
+	import { Button } from "$components/ui/button";
 	import { ArrowUpDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 	import { Input } from "$components/ui/input";
+	import { Checkbox } from "$components/ui/checkbox";
+	import DataTableCheckbox from "./DataTableCheckbox.svelte";
 
 	export let data: Payment[];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
-		colOrder: addColumnOrder(),
 		page: addPagination(),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.includes(filterValue)
-		})
+		}),
+		select: addSelectedRows()
 	});
 
 	const columns = table.createColumns([
+		table.column({
+			header: (_, { pluginStates }) => {
+				const { allRowsSelected } = pluginStates.select;
+				return createRender(DataTableCheckbox, {
+					checked: allRowsSelected
+				});
+			},
+			accessor: ({ id }) => id,
+			cell: ({ row }, { pluginStates }) => {
+				const { getRowState } = pluginStates.select;
+				const { isSelected } = getRowState(row);
+
+				return createRender(DataTableCheckbox, { checked: isSelected });
+			},
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
 		table.column({
 			header: "ID",
 			accessor: "id",
@@ -86,9 +112,6 @@
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
 		table.createViewModel(columns);
 
-	const { columnIdOrder } = pluginStates.colOrder;
-	$columnIdOrder = ["id", "email", "amount", "status"];
-
 	const { sortKeys } = pluginStates.sort;
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
@@ -98,6 +121,7 @@
 <div>
 	<div class="flex items-center py-4">
 		<Input
+			class="max-w-sm"
 			placeholder="filter emails..."
 			type="text"
 			bind:value={$filterValue}
