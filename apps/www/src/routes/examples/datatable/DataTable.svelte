@@ -57,6 +57,7 @@
 				return createRender(DataTableCheckbox, { checked: isSelected });
 			},
 			plugins: {
+				colOrder: {},
 				sort: {
 					disable: true
 				},
@@ -74,7 +75,8 @@
 				}
 			}
 		}),
-		table.column({ header: "Status", accessor: "status" }),
+		table.column({ header: "Email", accessor: "email" }),
+
 		table.column({
 			header: "Amount",
 			accessor: "amount",
@@ -91,7 +93,7 @@
 				}
 			}
 		}),
-		table.column({ header: "Email", accessor: "email" }),
+		table.column({ header: "Status", accessor: "status" }),
 		table.column({
 			header: () => "Actions",
 			accessor: ({ id }) => id,
