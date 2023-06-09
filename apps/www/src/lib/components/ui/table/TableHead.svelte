@@ -11,6 +11,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:click
 >
 	<slot />
 </th>
