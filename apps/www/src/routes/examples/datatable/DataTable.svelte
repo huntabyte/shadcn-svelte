@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { createTable, Subscribe, Render } from "svelte-headless-table";
+	import {
+		createTable,
+		Subscribe,
+		Render,
+		createRender
+	} from "svelte-headless-table";
 	import { addSortBy, addColumnOrder } from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
 	import { readable } from "svelte/store";
@@ -11,6 +16,7 @@
 		TableHeader,
 		TableRow
 	} from "$components/ui/table";
+	import DeleteAction from "./DeleteAction.svelte";
 
 	export let data: Payment[];
 
@@ -33,7 +39,19 @@
 				return `${formatted}`;
 			}
 		}),
-		table.column({ header: "Email", accessor: "email" })
+		table.column({ header: "Email", accessor: "email" }),
+		table.column({
+			header: () => "Actions",
+			accessor: ({ id }) => id,
+			cell: (item) => {
+				return createRender(DeleteAction, { id: item.value });
+			},
+			plugins: {
+				sort: {
+					disable: true
+				}
+			}
+		})
 	]);
 
 	const { headerRows, rows, tableAttrs, tableBodyAttrs, pluginStates } =
