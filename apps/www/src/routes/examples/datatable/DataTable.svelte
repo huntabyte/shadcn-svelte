@@ -21,7 +21,9 @@
 		TableRow
 	} from "$components/ui/table";
 	import DeleteAction from "./DeleteAction.svelte";
-	import { Button } from "$components/ui/button";
+	import { Button, buttonVariants } from "$components/ui/button";
+	import { ArrowUpDown } from "lucide-svelte";
+	import { cn } from "$lib/utils";
 
 	export let data: Payment[];
 
@@ -66,7 +68,10 @@
 	const { columnIdOrder } = pluginStates.colOrder;
 	$columnIdOrder = ["id", "email", "amount", "status"];
 
+	const { sortKeys } = pluginStates.sort;
+
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
+	$: console.log($sortKeys);
 </script>
 
 <div>
@@ -85,13 +90,27 @@
 								>
 									<TableHead
 										{...attrs}
-										on:click={props.sort.toggle}
+										class={cn(
+											!props.sort.disabled && "pl-1"
+										)}
 									>
-										<Render of={cell.render()} />
-										{#if props.sort.order === "asc"}
-											⬇️
-										{:else if props.sort.order === "desc"}
-											⬆️
+										{#if props.sort.disabled}
+											<Render of={cell.render()} />
+										{:else}
+											<Button
+												variant="ghost"
+												on:click={props.sort.toggle}
+											>
+												<Render of={cell.render()} />
+												<ArrowUpDown
+													class={cn(
+														$sortKeys[0]?.id ===
+															cell.id &&
+															"text-foreground",
+														"ml-2 h-4 w-4"
+													)}
+												/>
+											</Button>
 										{/if}
 									</TableHead>
 								</Subscribe>
