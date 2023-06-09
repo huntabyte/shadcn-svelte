@@ -8,7 +8,8 @@
 	import {
 		addSortBy,
 		addColumnOrder,
-		addPagination
+		addPagination,
+		addTableFilter
 	} from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
 	import { readable } from "svelte/store";
@@ -24,17 +25,29 @@
 	import { Button, buttonVariants } from "$components/ui/button";
 	import { ArrowUpDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
+	import { Input } from "$components/ui/input";
 
 	export let data: Payment[];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
 		colOrder: addColumnOrder(),
-		page: addPagination()
+		page: addPagination(),
+		filter: addTableFilter({
+			fn: ({ filterValue, value }) => value.includes(filterValue)
+		})
 	});
 
 	const columns = table.createColumns([
-		table.column({ header: "ID", accessor: "id" }),
+		table.column({
+			header: "ID",
+			accessor: "id",
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
 		table.column({ header: "Status", accessor: "status" }),
 		table.column({
 			header: "Amount",
@@ -45,6 +58,11 @@
 					currency: "USD"
 				}).format(value);
 				return `${formatted}`;
+			},
+			plugins: {
+				filter: {
+					exclude: true
+				}
 			}
 		}),
 		table.column({ header: "Email", accessor: "email" }),
@@ -57,6 +75,9 @@
 			plugins: {
 				sort: {
 					disable: true
+				},
+				filter: {
+					exclude: true
 				}
 			}
 		})
@@ -71,10 +92,17 @@
 	const { sortKeys } = pluginStates.sort;
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
-	$: console.log($sortKeys);
+	const { filterValue } = pluginStates.filter;
 </script>
 
 <div>
+	<div class="flex items-center py-4">
+		<Input
+			placeholder="filter emails..."
+			type="text"
+			bind:value={$filterValue}
+		/>
+	</div>
 	<div class="rounded-md border">
 		<Table {...$tableAttrs}>
 			<TableHeader>
