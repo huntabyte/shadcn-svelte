@@ -5,7 +5,11 @@
 		Render,
 		createRender
 	} from "svelte-headless-table";
-	import { addSortBy, addColumnOrder } from "svelte-headless-table/plugins";
+	import {
+		addSortBy,
+		addColumnOrder,
+		addPagination
+	} from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
 	import { readable } from "svelte/store";
 	import {
@@ -17,12 +21,14 @@
 		TableRow
 	} from "$components/ui/table";
 	import DeleteAction from "./DeleteAction.svelte";
+	import { Button } from "$components/ui/button";
 
 	export let data: Payment[];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
-		colOrder: addColumnOrder()
+		colOrder: addColumnOrder(),
+		page: addPagination()
 	});
 
 	const columns = table.createColumns([
@@ -54,57 +60,75 @@
 		})
 	]);
 
-	const { headerRows, rows, tableAttrs, tableBodyAttrs, pluginStates } =
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
 		table.createViewModel(columns);
 
 	const { columnIdOrder } = pluginStates.colOrder;
 	$columnIdOrder = ["id", "email", "amount", "status"];
+
+	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 
-<div class="rounded-md border">
-	<Table {...$tableAttrs}>
-		<TableHeader>
-			{#each $headerRows as headerRow (headerRow.id)}
-				<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-					<TableRow {...rowAttrs}>
-						{#each headerRow.cells as cell (cell.id)}
-							<Subscribe
-								attrs={cell.attrs()}
-								let:attrs
-								props={cell.props()}
-								let:props
-							>
-								<TableHead
-									{...attrs}
-									on:click={props.sort.toggle}
+<div>
+	<div class="rounded-md border">
+		<Table {...$tableAttrs}>
+			<TableHeader>
+				{#each $headerRows as headerRow (headerRow.id)}
+					<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
+						<TableRow {...rowAttrs}>
+							{#each headerRow.cells as cell (cell.id)}
+								<Subscribe
+									attrs={cell.attrs()}
+									let:attrs
+									props={cell.props()}
+									let:props
 								>
-									<Render of={cell.render()} />
-									{#if props.sort.order === "asc"}
-										⬇️
-									{:else if props.sort.order === "desc"}
-										⬆️
-									{/if}
-								</TableHead>
-							</Subscribe>
-						{/each}
-					</TableRow>
-				</Subscribe>
-			{/each}
-		</TableHeader>
-		<TableBody {...$tableBodyAttrs}>
-			{#each $rows as row (row.id)}
-				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-					<TableRow {...rowAttrs}>
-						{#each row.cells as cell (cell.id)}
-							<Subscribe attrs={cell.attrs()} let:attrs>
-								<TableCell {...attrs}>
-									<Render of={cell.render()} />
-								</TableCell>
-							</Subscribe>
-						{/each}
-					</TableRow>
-				</Subscribe>
-			{/each}
-		</TableBody>
-	</Table>
+									<TableHead
+										{...attrs}
+										on:click={props.sort.toggle}
+									>
+										<Render of={cell.render()} />
+										{#if props.sort.order === "asc"}
+											⬇️
+										{:else if props.sort.order === "desc"}
+											⬆️
+										{/if}
+									</TableHead>
+								</Subscribe>
+							{/each}
+						</TableRow>
+					</Subscribe>
+				{/each}
+			</TableHeader>
+			<TableBody {...$tableBodyAttrs}>
+				{#each $pageRows as row (row.id)}
+					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+						<TableRow {...rowAttrs}>
+							{#each row.cells as cell (cell.id)}
+								<Subscribe attrs={cell.attrs()} let:attrs>
+									<TableCell {...attrs}>
+										<Render of={cell.render()} />
+									</TableCell>
+								</Subscribe>
+							{/each}
+						</TableRow>
+					</Subscribe>
+				{/each}
+			</TableBody>
+		</Table>
+	</div>
+	<div class="flex items-center justify-end space-x-2 py-4">
+		<Button
+			variant="outline"
+			size="sm"
+			on:click={() => ($pageIndex = $pageIndex - 1)}
+			disabled={!$hasPreviousPage}>Previous</Button
+		>
+		<Button
+			variant="outline"
+			size="sm"
+			disabled={!$hasNextPage}
+			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+		>
+	</div>
 </div>
