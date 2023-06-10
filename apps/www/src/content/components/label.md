@@ -4,6 +4,9 @@ description: Renders an accessible label associated with controls.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/label
 radix: https://www.radix-svelte.com/docs/label
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/label
 ---
 
 <script>

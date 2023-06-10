@@ -67,6 +67,7 @@ export const Icons = {
 	laptop: Laptop,
 	gitHub: GitHub,
 	radix: RadixSvelte,
+	"Radix Svelte": RadixSvelte,
 	aria: Aria,
 	npm: Npm,
 	yarn: Yarn,

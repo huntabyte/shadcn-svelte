@@ -4,6 +4,9 @@ description: A set of layered sections of content—known as tab panels—that a
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/tabs
 radix: https://www.radix-svelte.com/docs/tabs
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/tabs
 ---
 
 <script>

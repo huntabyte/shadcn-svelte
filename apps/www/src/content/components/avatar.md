@@ -4,6 +4,9 @@ description: An image element with a fallback for representing the user.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/avatar
 radix: https://www.radix-svelte.com/docs/avatar
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/avatar
 ---
 
 <script>

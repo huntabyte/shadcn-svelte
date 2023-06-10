@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponentTyped } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight } from "lucide-svelte";
+	import { ChevronRight, ToyBrick } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
@@ -53,15 +53,15 @@
 						Component Source
 					</a>
 				{/if}
-				{#if doc.radix}
+				{#if doc.external}
 					<a
-						href={doc.radix}
+						href={doc.external.url}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						<Icons.radix class="mr-1 h-3 w-3" />
-						Radix Svelte Reference
+						<ToyBrick class="mr-1 h-3 w-3" />
+						Primitive Reference ({doc.external.project})
 					</a>
 				{/if}
 			</div>

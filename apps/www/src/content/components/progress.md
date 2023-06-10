@@ -4,6 +4,9 @@ description: Displays an indicator showing the completion progress of a task, ty
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/progress
 radix: https://www.radix-svelte.com/docs/progress
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/progress
 ---
 
 <script>
