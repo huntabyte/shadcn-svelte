@@ -16,13 +16,11 @@
 </svelte:head>
 <Metadata />
 
-<div class="relative flex min-h-screen flex-col" id="page">
-	<SiteHeader />
-	<div class="flex-1">
-		<slot />
-	</div>
-	<SiteFooter />
-	{#if dev}
-		<TailwindIndicator />
-	{/if}
+<SiteHeader />
+<div class="flex-1">
+	<slot />
 </div>
+<SiteFooter />
+{#if dev}
+	<TailwindIndicator />
+{/if}
