@@ -5,6 +5,9 @@ featured: true
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/alert-dialog
 radix: https://www.radix-svelte.com/docs/alertdialog
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/alertdialog
 ---
 
 <script>

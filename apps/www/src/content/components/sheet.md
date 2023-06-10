@@ -4,6 +4,9 @@ description: Extends the Dialog component to display content that complements th
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/sheet
 radix: https://www.radix-svelte.com/docs/dialog
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/dialog
 ---
 
 <script>

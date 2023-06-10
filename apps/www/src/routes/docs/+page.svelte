@@ -5,8 +5,6 @@
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
-	import { Icons } from "$components/docs/icons";
-	import { badgeVariants } from "$components/ui/badge";
 	import { Separator } from "$components/ui/separator";
 	import { cn } from "$lib/utils";
 
@@ -40,37 +38,10 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.source || doc.radix}
-			<div class="flex items-center space-x-2 pt-4">
-				{#if doc.source}
-					<a
-						href={doc.source}
-						target="_blank"
-						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }))}
-					>
-						<Icons.gitHub class="mr-1 h-3 w-3" />
-						Component Source
-					</a>
-				{/if}
-				{#if doc.radix}
-					<a
-						href={doc.radix}
-						target="_blank"
-						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }))}
-					>
-						<Icons.radix class="mr-1 h-3 w-3" />
-						Radix Svelte Reference
-					</a>
-				{/if}
-			</div>
-		{/if}
 		<Separator class="my-4 md:my-6" />
 		<div class="mdsvex" id="mdsvex">
 			<svelte:component this={component} />
 		</div>
-		<!-- <Mdx code={doc.body.code} /> -->
 		<Separator class="my-4 md:my-6" />
 		<DocsPager />
 	</div>

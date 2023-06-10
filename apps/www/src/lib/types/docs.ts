@@ -29,6 +29,10 @@ export type FrontMatter = {
 	description: string;
 	component: boolean;
 	source: string;
+	external?: {
+		project: string;
+		url: string;
+	};
 	radix?: string;
 };
 

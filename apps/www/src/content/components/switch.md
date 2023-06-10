@@ -4,6 +4,9 @@ description: A control that allows the user to toggle between checked and not ch
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/switch
 radix: https://www.radix-svelte.com/docs/switch
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/switch
 ---
 
 <script>

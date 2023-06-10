@@ -4,6 +4,9 @@ description: A popup that displays information related to an element when the el
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/tooltip
 radix: https://www.radix-svelte.com/docs/tooltip
+external:
+  project: Radix Svelte
+  url: https://www.radix-svelte.com/docs/tooltip
 ---
 
 <script>
