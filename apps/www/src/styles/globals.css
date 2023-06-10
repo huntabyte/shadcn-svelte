@@ -76,31 +76,52 @@
 	* {
 		@apply border-border;
 	}
+	html {
+		scrollbar-gutter: stable;
+	}
 	body {
 		@apply bg-background text-foreground;
 		font-feature-settings: "rlig" 1, "calt" 1;
 	}
 
-	/* * {
-		scrollbar-width: auto;
-		scrollbar-color: #7f8ea3;
-	} */
-
-	/* Chrome, Edge, and Safari */
-	/* *::-webkit-scrollbar {
-		width: 10px;
-		height: 10px;
+	/* Mobile tap highlight */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
+	html {
+		-webkit-tap-highlight-color: rgba(128, 128, 128, 0.5);
 	}
 
-	*::-webkit-scrollbar-track {
-		background: transparent;
+	/* === Scrollbars === */
+
+	::-webkit-scrollbar {
+		@apply w-2;
+		@apply h-2;
 	}
 
-	*::-webkit-scrollbar-thumb {
-		background-color: #7f8ea3;
-		border: 3px none #ffffff;
+	::-webkit-scrollbar-track {
+		@apply !bg-muted;
 	}
-	*/
+	::-webkit-scrollbar-thumb {
+		@apply rounded-sm !bg-muted-foreground/30;
+	}
+
+	/* Firefox */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
+	html {
+		scrollbar-color: hsl(215.4 16.3% 46.9% / 0.3);
+	}
+
+	html.dark {
+		scrollbar-color: hsl(215.4 16.3% 56.9% / 0.3);
+	}
+
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.hide-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 }
 
 @layer utilities {
