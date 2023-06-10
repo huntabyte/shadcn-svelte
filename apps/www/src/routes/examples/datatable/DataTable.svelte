@@ -7,13 +7,12 @@
 	} from "svelte-headless-table";
 	import {
 		addSortBy,
-		addColumnOrder,
 		addPagination,
 		addTableFilter,
 		addSelectedRows
 	} from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
-	import { readable, get } from "svelte/store";
+	import { get, readable } from "svelte/store";
 	import {
 		Table,
 		TableBody,
@@ -27,7 +26,6 @@
 	import { ArrowUpDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 	import { Input } from "$components/ui/input";
-	import { Checkbox } from "$components/ui/checkbox";
 	import DataTableCheckbox from "./DataTableCheckbox.svelte";
 
 	export let data: Payment[];
@@ -117,6 +115,9 @@
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
+
+	const { selectedDataIds, allRowsSelected } = pluginStates.select;
+	$: console.log($selectedDataIds);
 </script>
 
 <div>
@@ -175,7 +176,10 @@
 			<TableBody {...$tableBodyAttrs}>
 				{#each $pageRows as row (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<TableRow {...rowAttrs}>
+						<TableRow
+							{...rowAttrs}
+							data-state={$selectedDataIds[row.id] && "selected"}
+						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<TableCell {...attrs}>
