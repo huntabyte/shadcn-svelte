@@ -1,5 +1,11 @@
 # www
 
+## 0.0.4
+
+### Patch Changes
+
+- 9c10deb: fix: typo in svelte4 warnings
+
 ## 0.0.3
 
 ### Patch Changes
