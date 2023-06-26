@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.1.1
+
+### Patch Changes
+
+- 78962e9: add warnings for svelte v4 support
+
 ## 0.1.0
 
 ### Minor Changes
