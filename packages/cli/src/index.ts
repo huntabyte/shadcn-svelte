@@ -45,6 +45,9 @@ async function main() {
 		.option("-y, --yes", "Skip confirmation prompt.")
 		.action(async (options) => {
 			logger.warn(
+				"IMPORTANT: Svelte v4 is supported yet by some of our dependencies (lucide-svelte & radix-svelte). Please use Svelte v3 for now, and we expect this issue to be resoved very soon. Apologies for the inconvenience."
+			);
+			logger.warn(
 				"This command assumes a SvelteKit project with TypeScript and Tailwind CSS."
 			);
 			logger.warn(

@@ -18,12 +18,12 @@
 	<PageHeader>
 		<a
 			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-			href="https://github.com/huntabyte/shadcn-svelte/issues/95"
+			href="https://github.com/huntabyte/shadcn-svelte/issues/125"
 			target="_blank"
 			rel="noreferrer"
 		>
-			📢 <Separator class="mx-2 h-4" orientation="vertical" /> Temp Components
-			Roadmap Announcement
+			🚨 <Separator class="mx-2 h-4" orientation="vertical" /> Svelte v4 Support
+			Coming Soon!
 			<ChevronRight class="ml-1 h-4 w-4" />
 		</a>
 		<PageHeaderHeading>Build your component library.</PageHeaderHeading>

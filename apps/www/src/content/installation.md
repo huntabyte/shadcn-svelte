@@ -38,10 +38,10 @@ Each of which can be imported from the `accordion/index.ts` file like so:
 
 ### Create a new project
 
-Use the SvelteKit CLI to create a new project.
+Use the SvelteKit CLI to create a new project. Support for Svelte v4 is coming soon, we are just waiting for our dependencies to be updated.
 
 ```bash
-npm create svelte@latest my-app
+npm create svelte@v4.2.0 my-app
 ```
 
 ### Add TailwindCSS
