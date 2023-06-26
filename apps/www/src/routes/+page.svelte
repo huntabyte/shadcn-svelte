@@ -18,7 +18,7 @@
 	<PageHeader>
 		<a
 			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-			href="https://github.com/huntabyte/shadcn-svelte/issues/95"
+			href="https://github.com/huntabyte/shadcn-svelte/issues/125"
 			target="_blank"
 			rel="noreferrer"
 		>
