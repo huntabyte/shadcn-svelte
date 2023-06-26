@@ -1,5 +1,11 @@
 # www
 
+## 0.0.3
+
+### Patch Changes
+
+- 78962e9: add warnings for svelte v4 support
+
 ## 0.0.2
 
 ### Patch Changes
