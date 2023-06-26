@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.1.2
+
+### Patch Changes
+
+- 9c10deb: fix: typo in svelte4 warnings
+
 ## 0.1.1
 
 ### Patch Changes
