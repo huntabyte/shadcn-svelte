@@ -151,7 +151,10 @@
 							<Overview />
 						</CardContent>
 					</Card>
-					<Card class="col-span-3">
+					<Card
+						class="col-span-4
+					    lg:col-span-3"
+					>
 						<CardHeader>
 							<CardTitle>Recent Sales</CardTitle>
 							<CardDescription>
