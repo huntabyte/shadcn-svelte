@@ -12,6 +12,8 @@
 <button
 	{...$action}
 	use:action
+	on:m-click
+	on:m-keydown
 	class={cn(buttonVariants(), className)}
 	{...$$restProps}
 >

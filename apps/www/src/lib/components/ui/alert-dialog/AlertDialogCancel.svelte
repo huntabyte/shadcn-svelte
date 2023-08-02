@@ -12,6 +12,8 @@
 <button
 	{...$cancel}
 	use:cancel
+	on:m-click
+	on:m-keydown
 	class={cn(
 		buttonVariants({ variant: "outline" }),
 		"mt-2 sm:mt-0",

@@ -38,6 +38,7 @@ export { Header as AlertDialogHeader };
 export { Overlay as AlertDialogOverlay };
 export { Portal as AlertDialogPortal };
 export { Title as AlertDialogTitle };
+export type { CreateDialogProps as CreateAlertDialogProps } from "@melt-ui/svelte";
 
 export const ctx = {
 	set: setAlertDialog,

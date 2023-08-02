@@ -7,4 +7,4 @@
 	const trigger = ctx.set({ ...$$props });
 </script>
 
-<slot {trigger} />
+<slot trigger={$trigger} />

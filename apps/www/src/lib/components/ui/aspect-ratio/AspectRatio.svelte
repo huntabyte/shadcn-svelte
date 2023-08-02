@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { AspectRatioProps } from "radix-svelte";
-	import { AspectRatio } from "radix-svelte";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let ratio: AspectRatioProps["ratio"] = 16 / 9;
+	export let ratio: number = 4 / 3;
+
+	$: ratioClass = `aspect-[${ratio}]`;
 </script>
 
-<AspectRatio.Root {ratio} class={cn(className)} {...$$restProps}>
+<div class={cn(ratioClass, className)} {...$$restProps}>
 	<slot />
-</AspectRatio.Root>
+</div>

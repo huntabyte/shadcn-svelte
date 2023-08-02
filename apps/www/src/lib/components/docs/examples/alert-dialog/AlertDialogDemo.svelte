@@ -4,7 +4,7 @@
 </script>
 
 <AlertDialog let:trigger>
-	<Button builder={trigger} variant="outline">Show Dialog</Button>
+	<Button builders={[trigger]} variant="outline">Show Dialog</Button>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
