@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import type { CreateAvatarProps } from "@melt-ui/svelte";
-	import { ctx } from ".";
+	import { ctx, type CreateAvatar } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	type $$Props = CreateAvatarProps & {
-		class?: string;
-	};
+	export let delayMs: CreateAvatar["delayMs"] = undefined;
+	export let loadingStatus: CreateAvatar["loadingStatus"] = undefined;
+	export let onLoadingStatusChange: CreateAvatar["onLoadingStatusChange"] =
+		undefined;
+
+	ctx.set({ delayMs, loadingStatus, onLoadingStatusChange });
 </script>
 
 <div
