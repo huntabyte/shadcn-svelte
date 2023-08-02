@@ -3,8 +3,10 @@
 	import { Button } from "$components/ui/button";
 </script>
 
-<AlertDialog let:trigger>
-	<Button builders={[trigger]} variant="outline">Show Dialog</Button>
+<AlertDialog>
+	<AlertDialog.Trigger asChild let:trigger>
+		<Button builders={[trigger]} variant="outline">Show Dialog</Button>
+	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
-	import { ctx } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -10,8 +10,7 @@
 </script>
 
 <button
-	{...$cancel}
-	use:cancel
+	use:melt={$cancel}
 	on:m-click
 	on:m-keydown
 	class={cn(

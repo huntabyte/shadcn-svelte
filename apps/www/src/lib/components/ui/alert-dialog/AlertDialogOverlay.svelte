@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { ctx } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -8,8 +8,7 @@
 </script>
 
 <div
-	use:overlay
-	{...$overlay}
+	use:melt={$overlay}
 	class={cn(
 		"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in",
 		className
