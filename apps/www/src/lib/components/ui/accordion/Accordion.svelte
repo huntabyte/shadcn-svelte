@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setAccordion, melt, type CreateAccordionProps } from ".";
+	import { melt, type CreateAccordionProps, accordion } from ".";
 
 	export let multiple: CreateAccordionProps["multiple"] = false;
 	export let disabled: CreateAccordionProps["disabled"] = false;
@@ -7,7 +7,7 @@
 	export let value: CreateAccordionProps["value"] = undefined;
 	export let onValueChange: CreateAccordionProps["onValueChange"] = undefined;
 
-	const root = setAccordion({
+	const root = accordion.set({
 		value,
 		multiple,
 		disabled,

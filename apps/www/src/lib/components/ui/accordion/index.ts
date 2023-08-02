@@ -28,6 +28,15 @@ export type AccordionElements = {
 const ITEM_PROPS = "accordion_itemProps";
 const COMPONENT_NAME = "accordion";
 
+export const accordion = {
+	set: setAccordion,
+	get: getAccordion,
+	setItem: setAccordionItem,
+	getItemProps,
+	getContent,
+	getTriggerAndHeading
+};
+
 export function setAccordion(props: CreateAccordionProps) {
 	setContext(COMPONENT_NAME, createAccordion({ ...props }));
 	const {
