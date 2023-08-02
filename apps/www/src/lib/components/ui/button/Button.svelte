@@ -6,19 +6,23 @@
 	} from "svelte/elements";
 	import { cn } from "$lib/utils";
 	import { buttonVariants } from ".";
+	import type { Action } from "svelte/action";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
 	export let href: HTMLAnchorAttributes["href"] = undefined;
 	export let type: HTMLButtonAttributes["type"] = undefined;
 	export let variant: VariantProps<typeof buttonVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
+	export let builder: Action | undefined = undefined;
 
 	type Props = {
 		class?: string | null;
 		variant?: VariantProps<typeof buttonVariants>["variant"];
 		size?: VariantProps<typeof buttonVariants>["size"];
+		builder?: Action;
 	};
 
 	interface AnchorElement extends Props, HTMLAnchorAttributes {
@@ -34,18 +38,42 @@
 	type $$Props = AnchorElement | ButtonElement;
 </script>
 
-<svelte:element
-	this={href ? "a" : "button"}
-	type={href ? undefined : type}
-	{href}
-	class={cn(buttonVariants({ variant, size, className }))}
-	{...$$restProps}
-	on:click
-	on:change
-	on:keydown
-	on:keyup
-	on:mouseenter
-	on:mouseleave
->
-	<slot />
-</svelte:element>
+{#if builder}
+	<svelte:element
+		this={href ? "a" : "button"}
+		type={href ? undefined : type}
+		{href}
+		class={cn(buttonVariants({ variant, size, className }))}
+		on:click
+		on:change
+		on:keydown
+		on:keyup
+		on:mouseenter
+		on:mouseleave
+		role="button"
+		tabindex="0"
+		use:builder
+		{...$$restProps}
+		{...$builder}
+	>
+		<slot />
+	</svelte:element>
+{:else}
+	<svelte:element
+		this={href ? "a" : "button"}
+		type={href ? undefined : type}
+		{href}
+		class={cn(buttonVariants({ variant, size, className }))}
+		{...$$restProps}
+		on:click
+		on:change
+		on:keydown
+		on:keyup
+		on:mouseenter
+		on:mouseleave
+		role="button"
+		tabindex="0"
+	>
+		<slot />
+	</svelte:element>
+{/if}

@@ -1,14 +1,17 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
+	import { ctx } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	const description = ctx.getDescription();
 </script>
 
-<AlertDialogPrimitive.Description
+<div
+	{...$description}
+	use:description
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
 >
 	<slot />
-</AlertDialogPrimitive.Description>
+</div>

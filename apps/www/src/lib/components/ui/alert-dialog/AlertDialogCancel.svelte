@@ -1,13 +1,17 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
+	import { ctx } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	const cancel = ctx.getClose();
 </script>
 
-<AlertDialogPrimitive.Cancel
+<button
+	{...$cancel}
+	use:cancel
 	class={cn(
 		buttonVariants({ variant: "outline" }),
 		"mt-2 sm:mt-0",
@@ -16,4 +20,4 @@
 	{...$$restProps}
 >
 	<slot />
-</AlertDialogPrimitive.Cancel>
+</button>

@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "radix-svelte";
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
+	import { ctx } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	const action = ctx.getClose();
 </script>
 
-<AlertDialogPrimitive.Action
+<button
+	{...$action}
+	use:action
 	class={cn(buttonVariants(), className)}
 	{...$$restProps}
 >
 	<slot />
-</AlertDialogPrimitive.Action>
+</button>

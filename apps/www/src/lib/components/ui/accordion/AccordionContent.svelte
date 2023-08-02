@@ -1,17 +1,18 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
 	import { slide } from "svelte/transition";
-	import { accordion, melt } from ".";
+	import { ctx } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	const { content, isSelected, props } = accordion.getContent();
+	const { content, isSelected, props } = ctx.getContent();
 </script>
 
 {#if $isSelected(props)}
 	<div
-		use:melt={$content(props)}
+		use:content
+		{...$content(props)}
 		class={cn("overflow-hidden text-sm", className)}
 		transition:slide={{ duration: 200 }}
 		{...$$restProps}

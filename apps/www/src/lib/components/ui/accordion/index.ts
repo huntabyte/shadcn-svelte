@@ -1,34 +1,20 @@
+import { default as Root } from "./Accordion.svelte";
+import { default as Content } from "./AccordionContent.svelte";
+import { default as Item } from "./AccordionItem.svelte";
+import { default as Trigger } from "./AccordionTrigger.svelte";
 import {
 	createAccordion,
-	type Accordion,
+	type Accordion as AccordionReturn,
 	type AccordionItemProps as ItemProps,
 	type CreateAccordionProps,
 	type AccordionHeadingProps as HeadingProps
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
-export { default as Accordion } from "./Accordion.svelte";
-export { default as AccordionContent } from "./AccordionContent.svelte";
-export { default as AccordionItem } from "./AccordionItem.svelte";
-export { default as AccordionTrigger } from "./AccordionTrigger.svelte";
-export { melt, type CreateAccordionProps } from "@melt-ui/svelte";
-
-type ObjectVariation<T> = T extends object ? T : never;
-export type AccordionItemProps = ObjectVariation<ItemProps>;
-export type AccordionTriggerProps = AccordionItemProps;
-export type AccordionHeadingProps = ObjectVariation<HeadingProps>;
-
-export type AccordionElements = {
-	item: AccordionItemProps;
-	content: AccordionItemProps;
-	trigger: AccordionTriggerProps;
-	heading: AccordionHeadingProps;
-};
-
 const ITEM_PROPS = "accordion_itemProps";
-const COMPONENT_NAME = "accordion";
+const NAME = "accordion";
 
-export const accordion = {
+export const ctx = {
 	set: setAccordion,
 	get: getAccordion,
 	setItem: setAccordionItem,
@@ -37,19 +23,19 @@ export const accordion = {
 	getTriggerAndHeading
 };
 
-export function setAccordion(props: CreateAccordionProps) {
-	setContext(COMPONENT_NAME, createAccordion({ ...props }));
+function setAccordion(props: CreateAccordionProps) {
+	setContext(NAME, createAccordion({ ...props }));
 	const {
 		elements: { root }
-	} = getContext<Accordion>(COMPONENT_NAME);
+	} = getContext<AccordionReturn>(NAME);
 	return root;
 }
 
-export function getAccordion() {
-	return getContext<Accordion>(COMPONENT_NAME);
+function getAccordion() {
+	return getContext<AccordionReturn>(NAME);
 }
 
-export function setAccordionItem(props: AccordionItemProps) {
+function setAccordionItem(props: AccordionItemProps) {
 	setContext(ITEM_PROPS, props);
 	const {
 		elements: { item }
@@ -57,12 +43,12 @@ export function setAccordionItem(props: AccordionItemProps) {
 	return { item, props: getContext<AccordionItemProps>(ITEM_PROPS) };
 }
 
-export function getItemProps() {
+function getItemProps() {
 	const itemProps = getContext<AccordionItemProps>(ITEM_PROPS);
 	return itemProps;
 }
 
-export function getContent() {
+function getContent() {
 	const {
 		elements: { content },
 		helpers: { isSelected },
@@ -72,7 +58,7 @@ export function getContent() {
 	return { content, props, isSelected, value };
 }
 
-export function getTriggerAndHeading(level: AccordionHeadingProps["level"]) {
+function getTriggerAndHeading(level: AccordionHeadingProps["level"]) {
 	const {
 		elements: { trigger, heading },
 		states: { value }
@@ -88,3 +74,26 @@ export function getTriggerAndHeading(level: AccordionHeadingProps["level"]) {
 		value
 	};
 }
+
+type ObjectVariation<T> = T extends object ? T : never;
+
+export const Accordion = Object.assign(Root, {
+	Content,
+	Item,
+	Trigger
+});
+
+export { Root as AccordionRoot };
+export { Content as AccordionContent };
+export { Item as AccordionItem };
+export { Trigger as AccordionTrigger };
+
+export type AccordionElements = {
+	item: AccordionItemProps;
+	content: AccordionItemProps;
+	trigger: AccordionItemProps;
+	heading: AccordionHeadingProps;
+};
+export type AccordionItemProps = ObjectVariation<ItemProps>;
+export type AccordionHeadingProps = ObjectVariation<HeadingProps>;
+export type { CreateAccordionProps } from "@melt-ui/svelte";
