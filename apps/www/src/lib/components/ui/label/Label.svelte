@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { getLabel, melt } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	const label = getLabel();
+	const label = ctx.getLabel();
 </script>
 
 <label

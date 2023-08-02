@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { Progress } from "$components/ui/progress";
+	import { writable } from "svelte/store";
 
-	let progress = 13;
+	const value = writable(13);
 	onMount(() => {
-		const timer = setTimeout(() => (progress = 66), 500);
+		const timer = setTimeout(() => value.set(66), 500);
 		return () => clearTimeout(timer);
 	});
 </script>
 
-<Progress value={progress} max={100} />
+<Progress {value} max={100} />
