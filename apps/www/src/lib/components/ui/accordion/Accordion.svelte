@@ -1,11 +1,21 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive } from "radix-svelte";
+	import { setAccordion, melt, type CreateAccordionProps } from ".";
 
-	// Remove the any when radix-svelte is updated to properly satisfy the types
-	// https://www.radix-svelte.com/docs/accordion
-	export let value: any = undefined;
+	export let multiple: CreateAccordionProps["multiple"] = false;
+	export let disabled: CreateAccordionProps["disabled"] = false;
+	export let defaultValue: CreateAccordionProps["defaultValue"] = undefined;
+	export let value: CreateAccordionProps["value"] = undefined;
+	export let onValueChange: CreateAccordionProps["onValueChange"] = undefined;
+
+	const root = setAccordion({
+		value,
+		multiple,
+		disabled,
+		defaultValue,
+		onValueChange
+	});
 </script>
 
-<AccordionPrimitive.Root bind:value {...$$restProps}>
+<div use:melt={$root} {...$$restProps}>
 	<slot />
-</AccordionPrimitive.Root>
+</div>

@@ -1,14 +1,18 @@
 <script lang="ts">
 	import { ChevronDown } from "lucide-svelte";
-	import { Accordion as AccordionPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
-
+	import { melt, getTriggerAndHeading, type AccordionHeadingProps } from ".";
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	export let level: AccordionHeadingProps["level"] = 3;
+
+	const { heading, trigger, props } = getTriggerAndHeading(level);
 </script>
 
-<AccordionPrimitive.Header class="flex">
-	<AccordionPrimitive.Trigger
+<div {...$heading(props.heading)} use:heading class="flex">
+	<button
+		use:melt={$trigger(props.trigger)}
 		class={cn(
 			"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
 			className
@@ -17,5 +21,5 @@
 	>
 		<slot />
 		<ChevronDown class="h-4 w-4 transition-transform duration-200" />
-	</AccordionPrimitive.Trigger>
-</AccordionPrimitive.Header>
+	</button>
+</div>
