@@ -1,22 +1,16 @@
 <script lang="ts">
 	import { AtSign, Bell, BellOff } from "lucide-svelte";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 </script>
 
 <Card>
-	<CardHeader>
-		<CardTitle>Notifications</CardTitle>
-		<CardDescription>
+	<Card.Header>
+		<Card.Title>Notifications</Card.Title>
+		<Card.Description>
 			Choose what you want to be notified about.
-		</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-1 p-1.5">
+		</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-1 p-1.5">
 		<div
 			class="flex items-center space-x-4 rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
 		>
@@ -50,5 +44,5 @@
 				</p>
 			</div>
 		</div>
-	</CardContent>
+	</Card.Content>
 </Card>

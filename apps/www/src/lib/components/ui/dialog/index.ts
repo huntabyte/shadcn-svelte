@@ -1,44 +1,19 @@
 import {
 	createDialog,
 	type CreateDialogProps,
-	type Dialog as DialogReturn,
-	melt
+	type Dialog as DialogReturn
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
-export { melt };
 
-import { default as Root } from "./Dialog.svelte";
-import { default as Content } from "./DialogContent.svelte";
-import { default as Description } from "./DialogDescription.svelte";
-import { default as Footer } from "./DialogFooter.svelte";
-import { default as Header } from "./DialogHeader.svelte";
-import { default as Overlay } from "./DialogOverlay.svelte";
-import { default as Portal } from "./DialogPortal.svelte";
-import { default as Title } from "./DialogTitle.svelte";
-import { default as Trigger } from "./DialogTrigger.svelte";
-
-export const Dialog = Object.assign(Root, {
-	Content,
-	Description,
-	Footer,
-	Header,
-	Overlay,
-	Portal,
-	Title,
-	Trigger
-});
-
-export { Root as DialogRoot };
-export { Content as DialogContent };
-export { Description as DialogDescription };
-export { Footer as DialogFooter };
-export { Header as DialogHeader };
-export { Overlay as DialogOverlay };
-export { Portal as DialogPortal };
-export { Title as DialogTitle };
-export { Trigger as DialogTrigger };
-
-export type { CreateDialogProps as CreateDialogProps } from "@melt-ui/svelte";
+import Root from "./Dialog.svelte";
+import Content from "./DialogContent.svelte";
+import Description from "./DialogDescription.svelte";
+import Footer from "./DialogFooter.svelte";
+import Header from "./DialogHeader.svelte";
+import Overlay from "./DialogOverlay.svelte";
+import Portal from "./DialogPortal.svelte";
+import Title from "./DialogTitle.svelte";
+import Trigger from "./DialogTrigger.svelte";
 
 export const ctx = {
 	set,
@@ -75,3 +50,30 @@ function getPortal() {
 	} = get();
 	return { portal: portalled, open };
 }
+export {
+	melt,
+	type CreateDialogProps as CreateDialogProps
+} from "@melt-ui/svelte";
+
+export const Dialog = Object.assign(Root, {
+	Content,
+	Description,
+	Footer,
+	Header,
+	Overlay,
+	Portal,
+	Title,
+	Trigger
+});
+
+export {
+	Root as DialogRoot,
+	Content as DialogContent,
+	Description as DialogDescription,
+	Footer as DialogFooter,
+	Header as DialogHeader,
+	Overlay as DialogOverlay,
+	Portal as DialogPortal,
+	Title as DialogTitle,
+	Trigger as DialogTrigger
+};

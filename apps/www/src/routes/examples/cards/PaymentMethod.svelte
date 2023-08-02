@@ -2,27 +2,20 @@
 	import { CreditCard } from "lucide-svelte";
 	import { Icons } from "$components/docs";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 	import { RadioGroup, RadioGroupItem } from "$components/ui/radio-group";
 </script>
 
 <Card>
-	<CardHeader>
-		<CardTitle>Payment Method</CardTitle>
-		<CardDescription>
+	<Card.Header>
+		<Card.Title>Payment Method</Card.Title>
+		<Card.Description>
 			Add a new payment method to your account.
-		</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-6">
+		</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-6">
 		<RadioGroup value="card" class="grid grid-cols-3 gap-4">
 			<Label
 				for="card"
@@ -105,8 +98,8 @@
 				<Input id="cvc" placeholder="CVC" />
 			</div>
 		</div>
-	</CardContent>
-	<CardFooter>
+	</Card.Content>
+	<Card.Footer>
 		<Button class="w-full">Continue</Button>
-	</CardFooter>
+	</Card.Footer>
 </Card>

@@ -1,13 +1,8 @@
 <script lang="ts">
+	import A from "$components/docs/mdsvex/a.svelte";
 	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import {
 		Select,
@@ -20,13 +15,13 @@
 </script>
 
 <Card>
-	<CardHeader>
-		<CardTitle>Share this document</CardTitle>
-		<CardDescription>
+	<Card.Header>
+		<Card.Title>Share this document</Card.Title>
+		<Card.Description>
 			Anyone with the link can view this document.
-		</CardDescription>
-	</CardHeader>
-	<CardContent>
+		</Card.Description>
+	</Card.Header>
+	<Card.Content>
 		<div class="flex space-x-2">
 			<Input value="http://example.com/link/to/document" readOnly />
 			<Button variant="secondary" class="shrink-0">Copy Link</Button>
@@ -112,5 +107,5 @@
 				</div>
 			</div>
 		</div>
-	</CardContent>
+	</Card.Content>
 </Card>

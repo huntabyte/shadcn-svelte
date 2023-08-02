@@ -43,6 +43,8 @@ export { melt, type CollapsibleProps };
 
 export const Collapsible = Object.assign(Root, { Content, Trigger });
 
-export { Root as CollapsibleRoot };
-export { Content as CollapsibleContent };
-export { Trigger as CollapsibleTrigger };
+export {
+	Root as CollapsibleRoot,
+	Content as CollapsibleContent,
+	Trigger as CollapsibleTrigger
+};

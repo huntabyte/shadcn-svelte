@@ -1,27 +1,23 @@
 <script lang="ts">
 	import { CalendarDays } from "lucide-svelte";
-	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
-	import {
-		HoverCard,
-		HoverCardContent,
-		HoverCardTrigger
-	} from "$components/ui/hover-card";
+	import { Avatar } from "$components/ui/avatar";
+	import { HoverCard } from "$components/ui/hover-card";
 </script>
 
 <HoverCard>
-	<HoverCardTrigger
+	<HoverCard.Trigger
 		href="https://github.com/sveltejs"
 		target="_blank"
 		rel="noreferrer noopener"
 		class="hover:underline underline-offset-4 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
 	>
 		@sveltejs
-	</HoverCardTrigger>
-	<HoverCardContent class="w-80">
+	</HoverCard.Trigger>
+	<HoverCard.Content class="w-80">
 		<div class="flex justify-between space-x-4">
 			<Avatar>
-				<AvatarImage src="https://github.com/sveltejs.png" />
-				<AvatarFallback>SK</AvatarFallback>
+				<Avatar.Image src="https://github.com/sveltejs.png" />
+				<Avatar.Fallback>SK</Avatar.Fallback>
 			</Avatar>
 			<div class="space-y-1">
 				<h4 class="text-sm font-semibold">@sveltejs</h4>
@@ -34,5 +30,5 @@
 				</div>
 			</div>
 		</div>
-	</HoverCardContent>
+	</HoverCard.Content>
 </HoverCard>

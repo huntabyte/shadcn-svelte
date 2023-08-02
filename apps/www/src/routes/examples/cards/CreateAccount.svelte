@@ -1,26 +1,19 @@
 <script lang="ts">
 	import { Icons } from "$components/docs";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 </script>
 
 <Card>
-	<CardHeader class="space-y-1">
-		<CardTitle class="text-2xl">Create an account</CardTitle>
-		<CardDescription>
+	<Card.Header class="space-y-1">
+		<Card.Title class="text-2xl">Create an account</Card.Title>
+		<Card.Description>
 			Enter your email below to create your account
-		</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-4">
+		</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-4">
 		<div class="grid grid-cols-2 gap-6">
 			<Button variant="outline">
 				<Icons.gitHub class="mr-2 h-4 w-4" />
@@ -49,8 +42,8 @@
 			<Label for="password">Password</Label>
 			<Input id="password" type="password" />
 		</div>
-	</CardContent>
-	<CardFooter>
+	</Card.Content>
+	<Card.Footer>
 		<Button class="w-full">Create account</Button>
-	</CardFooter>
+	</Card.Footer>
 </Card>
