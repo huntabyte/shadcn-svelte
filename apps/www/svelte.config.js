@@ -4,12 +4,22 @@ import { mdsvex } from "mdsvex";
 import { mdsvexOptions } from "./mdsvex.config.js";
 import sequence from "svelte-sequential-preprocessor";
 import { preprocessMeltUI } from "@melt-ui/pp";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: sequence([
 		mdsvex(mdsvexOptions),
-		vitePreprocess(),
+		vitePreprocess({
+			style: {
+				css: {
+					postcss: join(__dirname, "postcss.config.cjs")
+				}
+			}
+		}),
 		preprocessMeltUI()
 	]),
 
