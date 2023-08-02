@@ -5,6 +5,7 @@
 	export { className as class };
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class={cn(
 		"rounded-lg border bg-card text-card-foreground shadow-sm",

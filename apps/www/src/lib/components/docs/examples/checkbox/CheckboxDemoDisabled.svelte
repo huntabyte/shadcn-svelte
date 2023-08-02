@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-	<Checkbox id="terms" disabled />
+	<Checkbox id="terms" disabled={true} />
 	<label
 		for="terms2"
 		class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
