@@ -11,7 +11,13 @@ import { getPackageInfo } from "./utils/get-package-info";
 import { getPackageManager } from "./utils/get-package-manager";
 import { getProjectInfo } from "./utils/get-project-info";
 import { logger } from "./utils/logger";
-import { addAliases, getConfig, setConfig } from "./utils/set-config";
+import {
+	addAliases,
+	getConfig,
+	installMeltPP,
+	isMeltPPInstalled,
+	setConfig
+} from "./utils/set-config";
 import { STYLES, TAILWIND_CONFIG, UTILS } from "./utils/templates";
 
 process.on("SIGINT", () => process.exit(0));
@@ -175,6 +181,10 @@ async function main() {
 			logger.success(
 				`Installing ${selectedComponents.length} component(s) and dependencies...`
 			);
+
+			// check if they already have the PP installed
+			const hasMeltPP = await isMeltPPInstalled();
+
 			for (const component of selectedComponents) {
 				const componentSpinner = ora(`${component.name}...`).start();
 
@@ -199,6 +209,14 @@ async function main() {
 						packageManager === "npm" ? "install" : "add",
 						...component.dependencies
 					]);
+
+					// need PP? Let's add it
+					if (
+						!hasMeltPP &&
+						component.dependencies.includes("@melt-ui/pp")
+					) {
+						await installMeltPP();
+					}
 				}
 				componentSpinner.succeed(component.name);
 			}
