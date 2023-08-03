@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { ctx } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -8,8 +8,7 @@
 </script>
 
 <div
-	{...$description}
-	use:description
+	use:melt={$description}
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
 >

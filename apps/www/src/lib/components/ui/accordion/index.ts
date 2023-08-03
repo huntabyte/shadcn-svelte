@@ -11,8 +11,8 @@ import {
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
-const ITEM_PROPS = "accordion_itemProps";
-const NAME = "accordion";
+const ITEM_PROPS = "AccordionItemProps";
+const NAME = "Accordion";
 
 export const ctx = {
 	set: setAccordion,

@@ -1,14 +1,18 @@
 <script lang="ts">
-	import { Dialog as DialogPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	export let level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h3";
+	const title = ctx.getTitle();
 </script>
 
-<DialogPrimitive.Title
+<svelte:element
+	this={level}
+	use:melt={$title}
 	class={cn("text-lg font-semibold leading-none tracking-tight", className)}
 	{...$$restProps}
 >
 	<slot />
-</DialogPrimitive.Title>
+</svelte:element>

@@ -134,7 +134,7 @@
       {
         "name": "AspectRatio.svelte",
         "dir": "aspect-ratio",
-        "content": "<script lang=\"ts\">\n\timport type { AspectRatioProps } from \"radix-svelte\";\n\timport { AspectRatio } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let ratio: AspectRatioProps[\"ratio\"] = 16 / 9;\n</script>\n\n<AspectRatio.Root {ratio} class={cn(className)} {...$$restProps}>\n\t<slot />\n</AspectRatio.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let ratio: number = 4 / 3;\n\n\t$: ratioClass = `aspect-[${ratio}]`;\n</script>\n\n<div class={cn(ratioClass, className)} {...$$restProps}>\n\t<slot />\n</div>\n"
       },
       {
         "name": "index.ts",
@@ -155,22 +155,22 @@
       {
         "name": "Avatar.svelte",
         "dir": "avatar",
-        "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Root\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, type CreateAvatar } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let delayMs: CreateAvatar[\"delayMs\"] = undefined;\n\texport let loadingStatus: CreateAvatar[\"loadingStatus\"] = undefined;\n\texport let onLoadingStatusChange: CreateAvatar[\"onLoadingStatusChange\"] =\n\t\tundefined;\n\n\tctx.set({ delayMs, loadingStatus, onLoadingStatusChange });\n</script>\n\n<div\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AvatarFallback.svelte",
         "dir": "avatar",
-        "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst fallback = ctx.getFallback();\n</script>\n\n<div\n\tuse:melt={$fallback}\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AvatarImage.svelte",
         "dir": "avatar",
-        "content": "<script lang=\"ts\">\n\timport type { AvatarImageProps } from \"radix-svelte\";\n\timport { Avatar as AvatarPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport let src: AvatarImageProps[\"src\"] = undefined;\n\texport let alt: AvatarImageProps[\"alt\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Image\n\t{alt}\n\t{src}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...$$restProps}\n/>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport let src: string | undefined = undefined;\n\texport let alt: string | undefined = undefined;\n\texport { className as class };\n\tconst image = ctx.getImage(src);\n</script>\n\n<img\n\tuse:melt={$image}\n\t{alt}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...$$restProps}\n/>\n"
       },
       {
         "name": "index.ts",
         "dir": "avatar",
-        "content": "export { default as Avatar } from \"./Avatar.svelte\";\nexport { default as AvatarFallback } from \"./AvatarFallback.svelte\";\nexport { default as AvatarImage } from \"./AvatarImage.svelte\";\n"
+        "content": "import {\n\tcreateAvatar,\n\ttype Avatar as AvatarReturn,\n\ttype CreateAvatarProps,\n\tmelt\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\nimport { default as Root } from \"./Avatar.svelte\";\nimport { default as Fallback } from \"./AvatarFallback.svelte\";\nimport { default as Image } from \"./AvatarImage.svelte\";\n\nconst NAME = \"avatar\";\n\nfunction get() {\n\treturn getContext<AvatarReturn>(NAME);\n}\n\nfunction set(props: CreateAvatar) {\n\tsetContext(NAME, createAvatar({ ...props, src: \"\" }));\n}\n\nfunction getImage(srcProp: string = \"\") {\n\tconst {\n\t\telements: { image },\n\t\toptions: { src }\n\t} = get();\n\tsrc.set(srcProp);\n\treturn image;\n}\n\nexport const ctx = {\n\tset,\n\tget,\n\tgetImage: getImage,\n\tgetFallback: () => get().elements.fallback\n};\n\nexport const Avatar = Object.assign(Root, {\n\tFallback,\n\tImage\n});\n\nexport { Root as AvatarRoot };\nexport { Image as AvatarImage };\nexport { Fallback as AvatarFallback };\n\nexport { melt };\n\nexport type CreateAvatar = Omit<CreateAvatarProps, \"src\">;\n"
       }
     ]
   },
@@ -181,7 +181,7 @@
       {
         "name": "Badge.svelte",
         "dir": "badge",
-        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cva } from \"class-variance-authority\";\n\timport { cn } from \"$lib/utils\";\n\n\tconst badgeVariants = cva(\n\t\t\"inline-flex items-center border rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n\t\t{\n\t\t\tvariants: {\n\t\t\t\tvariant: {\n\t\t\t\t\tdefault:\n\t\t\t\t\t\t\"bg-primary hover:bg-primary/80 border-transparent text-primary-foreground\",\n\t\t\t\t\tsecondary:\n\t\t\t\t\t\t\"bg-secondary hover:bg-secondary/80 border-transparent text-secondary-foreground\",\n\t\t\t\t\tdestructive:\n\t\t\t\t\t\t\"bg-destructive hover:bg-destructive/80 border-transparent text-destructive-foreground\",\n\t\t\t\t\toutline: \"text-foreground\"\n\t\t\t\t}\n\t\t\t},\n\t\t\tdefaultVariants: {\n\t\t\t\tvariant: \"default\"\n\t\t\t}\n\t\t}\n\t);\n\n\texport let href: HTMLAnchorAttributes[\"href\"] = undefined;\n\texport let variant: VariantProps<typeof badgeVariants>[\"variant\"] =\n\t\t\"default\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport { badgeVariants } from \".\";\n\n\texport let href: HTMLAnchorAttributes[\"href\"] = undefined;\n\texport let variant: VariantProps<typeof badgeVariants>[\"variant\"] =\n\t\t\"default\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
       },
       {
         "name": "index.ts",
@@ -202,7 +202,7 @@
       {
         "name": "index.ts",
         "dir": "button",
-        "content": "import { cva } from \"class-variance-authority\";\n\nexport { default as Button } from \"./Button.svelte\";\n\nexport const buttonVariants = cva(\n\t\"inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background\",\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault:\n\t\t\t\t\t\"bg-primary text-primary-foreground hover:bg-primary/90\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n\t\t\t\toutline:\n\t\t\t\t\t\"border border-input hover:bg-accent hover:text-accent-foreground\",\n\t\t\t\tsecondary:\n\t\t\t\t\t\"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n\t\t\t\tghost: \"hover:bg-accent hover:text-accent-foreground\",\n\t\t\t\tlink: \"underline-offset-4 hover:underline text-primary\"\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tdefault: \"h-10 py-2 px-4\",\n\t\t\t\tsm: \"h-9 px-3 rounded-md\",\n\t\t\t\tlg: \"h-11 px-8 rounded-md\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t\tsize: \"default\"\n\t\t}\n\t}\n);\n"
+        "content": "import { cva } from \"class-variance-authority\";\nimport type { Action, ActionReturn } from \"svelte/action\";\n\nexport { default as Button } from \"./Button.svelte\";\n\nexport const buttonVariants = cva(\n\t\"inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background\",\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault:\n\t\t\t\t\t\"bg-primary text-primary-foreground hover:bg-primary/90\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n\t\t\t\toutline:\n\t\t\t\t\t\"border border-input hover:bg-accent hover:text-accent-foreground\",\n\t\t\t\tsecondary:\n\t\t\t\t\t\"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n\t\t\t\tghost: \"hover:bg-accent hover:text-accent-foreground\",\n\t\t\t\tlink: \"underline-offset-4 hover:underline text-primary\"\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tdefault: \"h-10 py-2 px-4\",\n\t\t\t\tsm: \"h-9 px-3 rounded-md\",\n\t\t\t\tlg: \"h-11 px-8 rounded-md\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t\tsize: \"default\"\n\t\t}\n\t}\n);\nexport type Builder = {\n\t[x: PropertyKey]: unknown;\n\t// eslint-disable-next-line @typescript-eslint/no-explicit-any\n\taction: Action<HTMLElement, any, any>;\n};\nexport const allActions: Action<\n\tHTMLElement,\n\t{ builders: Builder[] },\n\tRecord<string, unknown | undefined>\n> = (node, params) => {\n\tconst unsubs: ActionReturn[] = [];\n\tparams.builders.forEach((builder) => {\n\t\tconst act = builder.action(node);\n\t\tif (act) {\n\t\t\tunsubs.push(act);\n\t\t}\n\t});\n\treturn {\n\t\tdestroy: () => {\n\t\t\tunsubs.forEach((unsub) => {\n\t\t\t\tif (unsub.destroy) {\n\t\t\t\t\tunsub.destroy();\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t};\n};\n\nexport function getAttrs(builders: Builder[]) {\n\tconst attrs: Record<string, unknown | undefined> = {};\n\tbuilders.forEach((builder) => {\n\t\tObject.keys(builder).forEach((key) => {\n\t\t\tif (key !== \"action\") {\n\t\t\t\tattrs[key] = builder[key];\n\t\t\t}\n\t\t});\n\t});\n\treturn attrs;\n}\n"
       }
     ]
   },
@@ -213,7 +213,7 @@
       {
         "name": "Card.svelte",
         "dir": "card",
-        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\n\t\t\"rounded-lg border bg-card text-card-foreground shadow-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<!-- svelte-ignore a11y-no-static-element-interactions -->\n<div\n\tclass={cn(\n\t\t\"rounded-lg border bg-card text-card-foreground shadow-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "CardContent.svelte",
@@ -243,7 +243,7 @@
       {
         "name": "index.ts",
         "dir": "card",
-        "content": "export { default as Card } from \"./Card.svelte\";\nexport { default as CardContent } from \"./CardContent.svelte\";\nexport { default as CardDescription } from \"./CardDescription.svelte\";\nexport { default as CardFooter } from \"./CardFooter.svelte\";\nexport { default as CardHeader } from \"./CardHeader.svelte\";\nexport { default as CardTitle } from \"./CardTitle.svelte\";\n"
+        "content": "import Root from \"./Card.svelte\";\nimport Content from \"./CardContent.svelte\";\nimport Description from \"./CardDescription.svelte\";\nimport Footer from \"./CardFooter.svelte\";\nimport Header from \"./CardHeader.svelte\";\nimport Title from \"./CardTitle.svelte\";\n\nexport const Card = Object.assign(Root, {\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle\n});\n\nexport {\n\tRoot as CardRoot,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle\n};\n"
       }
     ]
   },
@@ -259,7 +259,7 @@
       {
         "name": "Checkbox.svelte",
         "dir": "checkbox",
-        "content": "<script lang=\"ts\">\n\timport type { CheckboxRootProps } from \"radix-svelte\";\n\timport { Check } from \"lucide-svelte\";\n\timport { Checkbox as CheckboxPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let checked: CheckboxRootProps[\"checked\"] = undefined;\n</script>\n\n<CheckboxPrimitive.Root\n\tclass={cn(\n\t\t\"peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground\",\n\t\tclassName\n\t)}\n\tbind:checked\n\t{...$$restProps}\n>\n\t<CheckboxPrimitive.Indicator\n\t\tclass={cn(\"flex items-center justify-center text-current\")}\n\t>\n\t\t<Check class=\"h-4 w-4\" />\n\t</CheckboxPrimitive.Indicator>\n</CheckboxPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport {\n\t\tcreateCheckbox,\n\t\tmelt,\n\t\ttype CreateCheckboxProps\n\t} from \"@melt-ui/svelte\";\n\timport { Check, Minus } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let checked: CreateCheckboxProps[\"checked\"] = undefined;\n\texport let defaultChecked: CreateCheckboxProps[\"defaultChecked\"] =\n\t\tundefined;\n\texport let onCheckedChange: CreateCheckboxProps[\"onCheckedChange\"] =\n\t\tundefined;\n\texport let disabled: CreateCheckboxProps[\"disabled\"] = undefined;\n\texport let name: CreateCheckboxProps[\"name\"] = undefined;\n\texport let required: CreateCheckboxProps[\"required\"] = undefined;\n\texport let value: CreateCheckboxProps[\"value\"] = undefined;\n\n\tconst {\n\t\telements: { root },\n\t\thelpers: { isChecked, isIndeterminate }\n\t} = createCheckbox({\n\t\tchecked,\n\t\tdefaultChecked,\n\t\tonCheckedChange,\n\t\tdisabled,\n\t\tname,\n\t\trequired,\n\t\tvalue\n\t});\n</script>\n\n<button\n\tuse:melt={$root}\n\tclass={cn(\n\t\t\"peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div class={cn(\"flex items-center justify-center text-current\")}>\n\t\t{#if $isChecked}\n\t\t\t<Check class=\"h-4 w-4\" />\n\t\t{:else if $isIndeterminate}\n\t\t\t<Minus class=\"h-4 w-4\" />\n\t\t{/if}\n\t</div>\n</button>\n"
       },
       {
         "name": "index.ts",
@@ -280,7 +280,7 @@
       {
         "name": "index.ts",
         "dir": "collapsible",
-        "content": "import { Collapsible as CollapsiblePrimitive } from \"radix-svelte\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\n\nexport const CollapsibleTrigger = CollapsiblePrimitive.Trigger;\n\nexport const CollapsibleContent = CollapsiblePrimitive.Content;\n"
+        "content": "import {\n\tcreateCollapsible,\n\ttype Collapsible as CollapsibleReturn,\n\ttype CreateCollapsibleProps as CollapsibleProps,\n\tmelt\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\nimport { default as Root } from \"./Collapsible.svelte\";\nimport { default as Content } from \"./CollapsibleContent.svelte\";\nimport { default as Trigger } from \"./CollapsibleTrigger.svelte\";\n\nconst NAME = \"collapsible\";\n\nexport const ctx = {\n\tget,\n\tset,\n\tgetContent,\n\tgetTrigger: () => get().elements.trigger\n};\n\nfunction get() {\n\treturn getContext<CollapsibleReturn>(NAME);\n}\n\nfunction set(props: CollapsibleProps) {\n\tconst collapsible = createCollapsible({ ...props });\n\tsetContext(NAME, collapsible);\n\tconst {\n\t\telements: { root }\n\t} = collapsible;\n\treturn root;\n}\n\nfunction getContent() {\n\tconst {\n\t\telements: { content },\n\t\tstates: { open }\n\t} = get();\n\treturn { content, open };\n}\n\nexport { melt, type CollapsibleProps };\n\nexport const Collapsible = Object.assign(Root, { Content, Trigger });\n\nexport {\n\tRoot as CollapsibleRoot,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger\n};\n"
       }
     ]
   },
@@ -296,12 +296,12 @@
       {
         "name": "DialogContent.svelte",
         "dir": "dialog",
-        "content": "<script lang=\"ts\">\n\timport { X } from \"lucide-svelte\";\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\timport DialogOverlay from \"./DialogOverlay.svelte\";\n\timport DialogPortal from \"./DialogPortal.svelte\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<DialogPortal>\n\t<DialogOverlay />\n\t<DialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed z-50 grid w-full gap-4 rounded-b-lg border bg-background p-6 shadow-lg animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t\t<DialogPrimitive.Close\n\t\t\tclass=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground\"\n\t\t>\n\t\t\t<X className=\"h-4 w-4\" />\n\t\t\t<span class=\"sr-only\">Close</span>\n\t\t</DialogPrimitive.Close>\n\t</DialogPrimitive.Content>\n</DialogPortal>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, DialogPortal, DialogOverlay, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst content = ctx.getContent();\n</script>\n\n<DialogPortal>\n\t<DialogOverlay />\n\t<div\n\t\tuse:melt={$content}\n\t\tclass={cn(\n\t\t\t\"fixed z-50 grid w-full gap-4 rounded-b-lg border bg-background p-6 shadow-lg animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</div>\n</DialogPortal>\n"
       },
       {
         "name": "DialogDescription.svelte",
         "dir": "dialog",
-        "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DialogPrimitive.Description>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst description = ctx.getDescription();\n</script>\n\n<div\n\tuse:melt={$description}\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "DialogFooter.svelte",
@@ -316,7 +316,7 @@
       {
         "name": "DialogOverlay.svelte",
         "dir": "dialog",
-        "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Overlay\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-100 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst overlay = ctx.getOverlay();\n</script>\n\n<div\n\tuse:melt={$overlay}\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-100 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
       },
       {
         "name": "DialogPortal.svelte",
@@ -326,12 +326,12 @@
       {
         "name": "DialogTitle.svelte",
         "dir": "dialog",
-        "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Title\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DialogPrimitive.Title>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let level: \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" = \"h3\";\n\tconst title = ctx.getTitle();\n</script>\n\n<svelte:element\n\tthis={level}\n\tuse:melt={$title}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
       },
       {
         "name": "index.ts",
         "dir": "dialog",
-        "content": "import { Dialog as DialogPrimitive } from \"radix-svelte\";\n\nexport const Dialog = DialogPrimitive.Root;\nexport const DialogTrigger = DialogPrimitive.Trigger;\n\nexport { default as DialogContent } from \"./DialogContent.svelte\";\nexport { default as DialogDescription } from \"./DialogDescription.svelte\";\nexport { default as DialogFooter } from \"./DialogFooter.svelte\";\nexport { default as DialogHeader } from \"./DialogHeader.svelte\";\nexport { default as DialogOverlay } from \"./DialogOverlay.svelte\";\nexport { default as DialogPortal } from \"./DialogPortal.svelte\";\nexport { default as DialogTitle } from \"./DialogTitle.svelte\";\n"
+        "content": "import {\n\tcreateDialog,\n\ttype CreateDialogProps,\n\ttype Dialog as DialogReturn\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\n\nimport Root from \"./Dialog.svelte\";\nimport Content from \"./DialogContent.svelte\";\nimport Description from \"./DialogDescription.svelte\";\nimport Footer from \"./DialogFooter.svelte\";\nimport Header from \"./DialogHeader.svelte\";\nimport Overlay from \"./DialogOverlay.svelte\";\nimport Portal from \"./DialogPortal.svelte\";\nimport Title from \"./DialogTitle.svelte\";\nimport Trigger from \"./DialogTrigger.svelte\";\n\nexport const ctx = {\n\tset,\n\tget,\n\tgetClose: () => get().elements.close,\n\tgetContent: () => get().elements.content,\n\tgetOverlay: () => get().elements.overlay,\n\tgetPortal,\n\tgetTitle: () => get().elements.title,\n\tgetDescription: () => get().elements.description,\n\tgetTrigger: () => get().elements.trigger\n};\n\nconst NAME = \"Dialog\";\n\nfunction set(props: CreateDialogProps) {\n\tconst Dialog = createDialog({ ...props });\n\tsetContext(NAME, Dialog);\n\tconst {\n\t\telements: { trigger }\n\t} = Dialog;\n\n\treturn trigger;\n}\n\nfunction get() {\n\treturn getContext<DialogReturn>(NAME);\n}\n\nfunction getPortal() {\n\tconst {\n\t\telements: { portalled },\n\t\tstates: { open }\n\t} = get();\n\treturn { portal: portalled, open };\n}\nexport {\n\tmelt,\n\ttype CreateDialogProps as CreateDialogProps\n} from \"@melt-ui/svelte\";\n\nexport const Dialog = Object.assign(Root, {\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tOverlay,\n\tPortal,\n\tTitle,\n\tTrigger\n});\n\nexport {\n\tRoot as DialogRoot,\n\tContent as DialogContent,\n\tDescription as DialogDescription,\n\tFooter as DialogFooter,\n\tHeader as DialogHeader,\n\tOverlay as DialogOverlay,\n\tPortal as DialogPortal,\n\tTitle as DialogTitle,\n\tTrigger as DialogTrigger\n};\n"
       }
     ]
   },
@@ -347,12 +347,12 @@
       {
         "name": "HoverCardContent.svelte",
         "dir": "hover-card",
-        "content": "<script lang=\"ts\">\n\timport type { HoverCardContentProps } from \"radix-svelte\";\n\timport { HoverCard as HoverCardPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let align: HoverCardContentProps[\"align\"] = undefined;\n\texport let sideOffset: HoverCardContentProps[\"sideOffset\"] = undefined;\n</script>\n\n<HoverCardPrimitive.Portal>\n\t<HoverCardPrimitive.Content\n\t\t{align}\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</HoverCardPrimitive.Content>\n</HoverCardPrimitive.Portal>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst { content, open } = ctx.getContent();\n</script>\n\n{#if $open}\n\t<div\n\t\tuse:melt={$content}\n\t\tclass={cn(\n\t\t\t\"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</div>\n{/if}\n"
       },
       {
         "name": "index.ts",
         "dir": "hover-card",
-        "content": "import { HoverCard as HoverCardPrimitive } from \"radix-svelte\";\n\nexport { default as HoverCardContent } from \"./HoverCardContent.svelte\";\nexport const HoverCard = HoverCardPrimitive.Root;\nexport const HoverCardTrigger = HoverCardPrimitive.Trigger;\nexport const HoverCardPortal = HoverCardPrimitive.Portal;\n"
+        "content": "import {\n\tcreateHoverCard,\n\ttype CreateHoverCardProps as HoverCardProps,\n\ttype HoverCard as HoverCardReturn,\n\tmelt\n} from \"@melt-ui/svelte\";\nimport { default as Root } from \"./HoverCard.svelte\";\nimport { default as Content } from \"./HoverCardContent.svelte\";\nimport { default as Trigger } from \"./HoverCardTrigger.svelte\";\nimport { getContext, setContext } from \"svelte\";\n\nexport { melt, type HoverCardProps };\n\nconst NAME = \"hovercard\";\n\nexport const ctx = {\n\tset,\n\tget,\n\tgetContent,\n\tgetTrigger: () => get().elements.trigger\n};\n\nfunction getContent() {\n\tconst {\n\t\telements: { content },\n\t\tstates: { open }\n\t} = get();\n\treturn {\n\t\tcontent,\n\t\topen\n\t};\n}\n\nfunction get() {\n\treturn getContext<HoverCardReturn>(NAME);\n}\n\nfunction set(props: HoverCardProps) {\n\tconst hovercard = createHoverCard({ ...props, forceVisible: true });\n\tsetContext(NAME, hovercard);\n}\n\nexport const HoverCard = Object.assign(Root, {\n\tContent,\n\tTrigger\n});\n\nexport {\n\tRoot as HoverCardRoot,\n\tContent as HoverCardTitle,\n\tTrigger as HoverCardTrigger\n};\n"
       }
     ]
   },
@@ -384,12 +384,12 @@
       {
         "name": "Label.svelte",
         "dir": "label",
-        "content": "<script lang=\"ts\">\n\timport { cva } from \"class-variance-authority\";\n\timport { Label as LabelPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tconst labelVariants = cva(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\"\n\t);\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root class={cn(labelVariants(), className)} {...$$restProps}>\n\t<slot />\n</LabelPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst label = ctx.getLabel();\n</script>\n\n<label\n\tuse:melt={$label}\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</label>\n"
       },
       {
         "name": "index.ts",
         "dir": "label",
-        "content": "export { default as Label } from \"./Label.svelte\";\n"
+        "content": "import { createLabel, melt } from \"@melt-ui/svelte\";\n\nexport { default as Label } from \"./Label.svelte\";\nexport { melt };\n\nexport const ctx = {\n\tgetLabel: () => {\n\t\tconst {\n\t\t\telements: { root: label }\n\t\t} = createLabel();\n\t\treturn label;\n\t}\n};\n"
       }
     ]
   },
@@ -405,12 +405,12 @@
       {
         "name": "Progress.svelte",
         "dir": "progress",
-        "content": "<script lang=\"ts\">\n\timport type { ProgressRootProps } from \"radix-svelte\";\n\timport { Progress as ProgressPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: ProgressRootProps[\"value\"] = null;\n\texport let max: ProgressRootProps[\"max\"] = 100;\n</script>\n\n<ProgressPrimitive.Root\n\tclass={cn(\n\t\t\"relative h-4 w-full overflow-hidden rounded-full bg-secondary\",\n\t\tclassName\n\t)}\n\t{value}\n\t{max}\n\t{...$$restProps}\n>\n\t<ProgressPrimitive.Indicator\n\t\tclass=\"h-full w-full flex-1 bg-primary transition-all\"\n\t\tstyle={`transform: translateX(-${\n\t\t\t100 - (100 * (value ?? 0)) / (max ?? 1)\n\t\t}%)`}\n\t/>\n</ProgressPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { writable } from \"svelte/store\";\n\timport { melt, ctx, type ProgressProps } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let max: ProgressProps[\"max\"] = 100;\n\texport let defaultValue: ProgressProps[\"defaultValue\"] = undefined;\n\texport let value: ProgressProps[\"value\"] = writable(defaultValue);\n\texport let onValueChange: ProgressProps[\"onValueChange\"] = undefined;\n\n\tconst progress = ctx.getProgress({\n\t\tmax,\n\t\tvalue,\n\t\tdefaultValue,\n\t\tonValueChange\n\t});\n</script>\n\n<div\n\tuse:melt={$progress}\n\tclass={cn(\n\t\t\"relative h-4 w-full overflow-hidden rounded-full bg-secondary\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div\n\t\tclass=\"h-full w-full flex-1 bg-primary transition-all\"\n\t\tstyle={`transform: translateX(-${\n\t\t\t100 - (100 * ($value ?? 0)) / (max ?? 1)\n\t\t}%)`}\n\t/>\n</div>\n"
       },
       {
         "name": "index.ts",
         "dir": "progress",
-        "content": "export { default as Progress } from \"./Progress.svelte\";\n"
+        "content": "import {\n\tcreateProgress,\n\ttype CreateProgressProps as ProgressProps,\n\tmelt\n} from \"@melt-ui/svelte\";\nexport { melt, ProgressProps };\nexport { default as Progress } from \"./Progress.svelte\";\n\nexport const ctx = {\n\tgetProgress: (props: ProgressProps) => {\n\t\tconst {\n\t\t\telements: { root }\n\t\t} = createProgress(props);\n\n\t\treturn root;\n\t}\n};\n"
       }
     ]
   },
@@ -426,17 +426,17 @@
       {
         "name": "RadioGroup.svelte",
         "dir": "radio-group",
-        "content": "<script lang=\"ts\">\n\timport type { RadioGroupRootProps } from \"radix-svelte\";\n\timport { RadioGroup as RadioGroupPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: RadioGroupRootProps[\"value\"] = undefined;\n</script>\n\n<RadioGroupPrimitive.Root\n\tbind:value\n\tclass={cn(\"grid gap-2\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</RadioGroupPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { melt, ctx, type RadioGroupProps } from \".\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let required: RadioGroupProps[\"required\"] = undefined;\n\texport let disabled: RadioGroupProps[\"disabled\"] = undefined;\n\texport let defaultValue: RadioGroupProps[\"defaultValue\"] = undefined;\n\texport let value: RadioGroupProps[\"value\"] = undefined;\n\texport let onValueChange: RadioGroupProps[\"onValueChange\"] = undefined;\n\texport let loop: RadioGroupProps[\"loop\"] = undefined;\n\texport let orientation: RadioGroupProps[\"orientation\"] = undefined;\n\n\tconst root = ctx.set({\n\t\trequired,\n\t\tdisabled,\n\t\tdefaultValue,\n\t\tvalue,\n\t\tonValueChange,\n\t\tloop,\n\t\torientation\n\t});\n</script>\n\n<div use:melt={$root} class={cn(\"grid gap-2\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
       },
       {
         "name": "RadioGroupItem.svelte",
         "dir": "radio-group",
-        "content": "<script lang=\"ts\">\n\timport type { RadioGroupItemProps } from \"radix-svelte\";\n\timport { Circle } from \"lucide-svelte\";\n\timport { RadioGroup as RadioGroupPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: RadioGroupItemProps[\"value\"] = \"\";\n</script>\n\n<RadioGroupPrimitive.Item\n\t{value}\n\tclass={cn(\n\t\t\"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<RadioGroupPrimitive.Indicator class=\"flex items-center justify-center\">\n\t\t<Circle class=\"h-2.5 w-2.5 fill-current text-current\" />\n\t</RadioGroupPrimitive.Indicator>\n</RadioGroupPrimitive.Item>\n"
+        "content": "<script lang=\"ts\">\n\timport { Circle } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, melt, type RadioGroupItemProps } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: RadioGroupItemProps[\"value\"];\n\texport let disabled: RadioGroupItemProps[\"disabled\"] = undefined;\n\n\tconst { item, isChecked } = ctx.getItem();\n</script>\n\n<button\n\tuse:melt={$item({ value, disabled })}\n\tclass={cn(\n\t\t\"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div class=\"flex items-center justify-center\">\n\t\t{#if $isChecked(value)}\n\t\t\t<Circle class=\"h-2.5 w-2.5 fill-current text-current\" />\n\t\t{/if}\n\t</div>\n</button>\n"
       },
       {
         "name": "index.ts",
         "dir": "radio-group",
-        "content": "export { default as RadioGroup } from \"./RadioGroup.svelte\";\nexport { default as RadioGroupItem } from \"./RadioGroupItem.svelte\";\n"
+        "content": "import {\n\tcreateRadioGroup,\n\tmelt,\n\ttype RadioGroupItemProps as ItemProps,\n\ttype CreateRadioGroupProps as RadioGroupProps,\n\ttype RadioGroup as RadioGroupReturn\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\nimport Root from \"./RadioGroup.svelte\";\nimport Item from \"./RadioGroupItem.svelte\";\nimport Input from \"./RadioGroupInput.svelte\";\n\ntype ObjectVariation<T> = T extends object ? T : never;\nconst NAME = \"radiogroup\";\n\nexport const ctx = {\n\tset,\n\tget,\n\tgetItem,\n\tgetInput: () => get().elements.itemInput\n};\n\nfunction set(props: RadioGroupProps) {\n\tconst radioGroup = createRadioGroup(props);\n\tsetContext(NAME, radioGroup);\n\tconst {\n\t\telements: { root }\n\t} = radioGroup;\n\treturn root;\n}\n\nfunction get() {\n\treturn getContext<RadioGroupReturn>(NAME);\n}\n\nfunction getItem() {\n\tconst {\n\t\telements: { item },\n\t\thelpers: { isChecked }\n\t} = get();\n\treturn { item, isChecked };\n}\n\nexport { melt, RadioGroupProps };\nexport type RadioGroupItemProps = ObjectVariation<ItemProps>;\nexport const RadioGroup = Object.assign(Root, {\n\tItem,\n\tInput\n});\n\nexport {\n\tRoot as RadioGroupRoot,\n\tItem as RadioGroupItem,\n\tInput as RadioGroupInput\n};\n"
       }
     ]
   },

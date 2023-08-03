@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { ctx } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -10,8 +10,7 @@
 
 <svelte:element
 	this={level}
-	use:title
-	{...$title}
+	use:melt={$title}
 	class={cn("text-lg font-semibold", className)}
 	{...$$restProps}
 >

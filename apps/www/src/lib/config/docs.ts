@@ -156,13 +156,11 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Context Menu",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Context Menu",
+					href: "/docs/components/context-menu",
+					items: []
+				},
 				{
 					title: "Data Table",
 					href: "#",
@@ -182,11 +180,11 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/dialog",
 					items: []
 				},
-				// {
-				//   title: "Dropdown Menu",
-				//   href: "#",
-				//   items: []
-				// },
+				{
+					title: "Dropdown Menu",
+					href: "/docs/components/dropdown-menu",
+					items: []
+				},
 				{
 					title: "Hover Card",
 					href: "/docs/components/hover-card",
@@ -216,13 +214,11 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Popover",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Popover",
+					href: "/docs/components/popover",
+					items: []
+				},
 				{
 					title: "Progress",
 					href: "/docs/components/progress",
@@ -242,9 +238,7 @@ export const docsConfig: DocsConfig = {
 				// },
 				{
 					title: "Select",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/select",
 					items: []
 				},
 				{

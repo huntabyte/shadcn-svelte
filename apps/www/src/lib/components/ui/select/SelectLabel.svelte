@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
-
+	import { ctx, melt } from ".";
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	const { groupLabel, key } = ctx.getGroupLabel();
 </script>
 
-<SelectPrimitive.Label
+<div
+	use:melt={$groupLabel(key)}
 	class={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
 	{...$$restProps}
 >
 	<slot />
-</SelectPrimitive.Label>
+</div>

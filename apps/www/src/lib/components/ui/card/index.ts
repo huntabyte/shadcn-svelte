@@ -1,6 +1,23 @@
-export { default as Card } from "./Card.svelte";
-export { default as CardContent } from "./CardContent.svelte";
-export { default as CardDescription } from "./CardDescription.svelte";
-export { default as CardFooter } from "./CardFooter.svelte";
-export { default as CardHeader } from "./CardHeader.svelte";
-export { default as CardTitle } from "./CardTitle.svelte";
+import Root from "./Card.svelte";
+import Content from "./CardContent.svelte";
+import Description from "./CardDescription.svelte";
+import Footer from "./CardFooter.svelte";
+import Header from "./CardHeader.svelte";
+import Title from "./CardTitle.svelte";
+
+export const Card = Object.assign(Root, {
+	Content,
+	Description,
+	Footer,
+	Header,
+	Title
+});
+
+export {
+	Root as CardRoot,
+	Content as CardContent,
+	Description as CardDescription,
+	Footer as CardFooter,
+	Header as CardHeader,
+	Title as CardTitle
+};

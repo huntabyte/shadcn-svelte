@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { ctx } from ".";
-	const portal = ctx.getPortal();
-	const open = ctx.getOpen();
+	import { ctx, melt } from ".";
+	const { portal, open } = ctx.getPortal();
 </script>
 
-<div use:portal {...$portal} {...$$restProps}>
+<div use:melt={$portal} {...$$restProps}>
 	{#if $open}
 		<div
 			class="fixed inset-0 z-50 flex items-end justify-center sm:items-center"

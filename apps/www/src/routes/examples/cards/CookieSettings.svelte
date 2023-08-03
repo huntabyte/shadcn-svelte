@@ -1,23 +1,16 @@
 <script lang="ts">
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Label } from "$components/ui/label";
 	import { Switch } from "$components/ui/switch";
 </script>
 
 <Card>
-	<CardHeader>
-		<CardTitle>Cookie Settings</CardTitle>
-		<CardDescription>Manage your cookie settings here.</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-6">
+	<Card.Header>
+		<Card.Title>Cookie Settings</Card.Title>
+		<Card.Description>Manage your cookie settings here.</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-6">
 		<div class="flex items-center justify-between space-x-2">
 			<Label for="necessary" class="flex flex-col space-y-1">
 				<span>Strictly Necessary</span>
@@ -48,8 +41,8 @@
 			</Label>
 			<Switch id="performance" />
 		</div>
-	</CardContent>
-	<CardFooter>
+	</Card.Content>
+	<Card.Footer>
 		<Button variant="outline" class="w-full">Save preferences</Button>
-	</CardFooter>
+	</Card.Footer>
 </Card>

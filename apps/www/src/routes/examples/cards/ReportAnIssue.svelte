@@ -1,13 +1,7 @@
 <script lang="ts">
+	import A from "$components/docs/mdsvex/a.svelte";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 	import {
@@ -21,13 +15,13 @@
 </script>
 
 <Card>
-	<CardHeader>
-		<CardTitle>Report an issue</CardTitle>
-		<CardDescription>
+	<Card.Header>
+		<Card.Title>Report an issue</Card.Title>
+		<Card.Description>
 			What area are you having problems with?
-		</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-6">
+		</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-2">
 				<Label for="area">Area</Label>
@@ -70,9 +64,9 @@
 				placeholder="Please include all information relevant to your issue."
 			/>
 		</div>
-	</CardContent>
-	<CardFooter class="justify-between space-x-2">
+	</Card.Content>
+	<Card.Footer class="justify-between space-x-2">
 		<Button variant="ghost">Cancel</Button>
 		<Button>Submit</Button>
-	</CardFooter>
+	</Card.Footer>
 </Card>

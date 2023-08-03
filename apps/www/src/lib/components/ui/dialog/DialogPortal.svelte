@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { Dialog as DialogPrimitive } from "radix-svelte";
+	import { ctx, melt } from ".";
+	const { portal, open } = ctx.getPortal();
 </script>
 
-<DialogPrimitive.Portal>
-	<div
-		class="fixed inset-0 z-50 flex items-start justify-center sm:items-center"
-	>
-		<slot />
-	</div>
-</DialogPrimitive.Portal>
+<div use:melt={$portal} {...$$restProps}>
+	{#if $open}
+		<div
+			class="fixed inset-0 z-50 flex items-start justify-center sm:items-center"
+		>
+			<slot />
+		</div>
+	{/if}
+</div>

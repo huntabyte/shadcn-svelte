@@ -1,14 +1,7 @@
 <script lang="ts">
 	import { BellRing, Check } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
+	import { Card } from "$components/ui/card";
 	import { Switch } from "$components/ui/switch";
 
 	const notifications = [
@@ -28,11 +21,11 @@
 </script>
 
 <Card class="w-[380px]">
-	<CardHeader>
-		<CardTitle>Notifications</CardTitle>
-		<CardDescription>You have 3 unread messages.</CardDescription>
-	</CardHeader>
-	<CardContent class="grid gap-4">
+	<Card.Header>
+		<Card.Title>Notifications</Card.Title>
+		<Card.Description>You have 3 unread messages.</Card.Description>
+	</Card.Header>
+	<Card.Content class="grid gap-4">
 		<div class=" flex items-center space-x-4 rounded-md border p-4">
 			<BellRing />
 			<div class="flex-1 space-y-1">
@@ -64,10 +57,10 @@
 				</div>
 			{/each}
 		</div>
-	</CardContent>
-	<CardFooter>
+	</Card.Content>
+	<Card.Footer>
 		<Button class="w-full">
 			<Check class="mr-2 h-4 w-4" /> Mark all as read
 		</Button>
-	</CardFooter>
+	</Card.Footer>
 </Card>
