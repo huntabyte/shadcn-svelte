@@ -6,6 +6,8 @@
 		showBookmarks: writable(true),
 		showFullURLs: writable(false)
 	};
+
+	const peopleRadioValue = writable("pedro");
 </script>
 
 <ContextMenu>
@@ -49,7 +51,7 @@
 			Show Full URLs
 		</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
-		<ContextMenu.RadioGroup defaultValue="pedro">
+		<ContextMenu.RadioGroup value={peopleRadioValue}>
 			<ContextMenu.Label inset>People</ContextMenu.Label>
 			<ContextMenu.Separator />
 			<ContextMenu.RadioItem value="pedro">

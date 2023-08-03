@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ctx, type DropdownSubmenuProps } from ".";
-	type $$Props = DropdownSubmenuProps;
+	import { ctx, type ContextSubmenuProps } from ".";
+	type $$Props = ContextSubmenuProps;
 	ctx.setSub($$restProps);
 </script>
 

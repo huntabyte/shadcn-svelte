@@ -52,7 +52,7 @@ function get() {
 }
 
 function set(props: ContextMenuProps) {
-	const contextMenu = createContextMenu({ ...props, forceVisible: true });
+	const contextMenu = createContextMenu({ ...props });
 	setContext(NAME, contextMenu);
 }
 
@@ -68,12 +68,12 @@ function setRadioGroup(props: ContextRadioGroupProps) {
 	const {
 		builders: { createMenuRadioGroup }
 	} = get();
-	const dropdownRadioGroup = createMenuRadioGroup(props);
-	setContext(RADIO_GROUP_NAME, dropdownRadioGroup);
+	const contextRadioGroup = createMenuRadioGroup(props);
+	setContext(RADIO_GROUP_NAME, contextRadioGroup);
 	const {
 		elements: { radioGroup }
-	} = dropdownRadioGroup;
-	return { radioGroup };
+	} = contextRadioGroup;
+	return radioGroup;
 }
 
 function getRadioItem() {
