@@ -3,7 +3,11 @@ import {
 	melt,
 	type CreateDropdownMenuProps as DropdownMenuProps,
 	type CreateDropdownSubmenuProps as DropdownSubmenuProps,
-	type DropdownMenu as DropdownMenuReturn
+	type DropdownMenu as DropdownMenuReturn,
+	type CreateMenuRadioGroupProps as DropdownRadioGroupProps,
+	type DropdownMenuRadioGroup as DropdownRadioGroupReturn,
+	type DropdownMenuRadioItemProps as DropdownRadioItemProps,
+	type DropdownMenuSubmenu as DropdownSubmenuReturn
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
@@ -24,6 +28,7 @@ import Trigger from "./DropdownMenuTrigger.svelte";
 
 const NAME = "DropdownMenu";
 const SUB_NAME = "DropdownSubmenu";
+const RADIO_GROUP_NAME = "DropdownRadioGroup";
 
 export const ctx = {
 	get,
@@ -31,7 +36,12 @@ export const ctx = {
 	setSub,
 	getTrigger: () => get().elements.trigger,
 	getContent,
-	getItem: () => get().elements.item
+	getItem: () => get().elements.item,
+	getSeparator: () => get().elements.separator,
+	setRadioGroup,
+	getRadioItem,
+	getSubTrigger,
+	getSubContent
 };
 
 function get() {
@@ -51,6 +61,33 @@ function setSub(props: DropdownSubmenuProps) {
 	setContext(SUB_NAME, dropdownSubmenu);
 }
 
+function setRadioGroup(props: DropdownRadioGroupProps) {
+	const {
+		builders: { createMenuRadioGroup }
+	} = get();
+	const dropdownRadioGroup = createMenuRadioGroup(props);
+	setContext(RADIO_GROUP_NAME, dropdownRadioGroup);
+	const {
+		elements: { radioGroup }
+	} = dropdownRadioGroup;
+	return { radioGroup };
+}
+
+function getRadioItem() {
+	const {
+		elements: { radioItem },
+		helpers: { isChecked }
+	} = getContext<DropdownRadioGroupReturn>(RADIO_GROUP_NAME);
+	return { radioItem, isChecked };
+}
+
+function getSubTrigger() {
+	const {
+		elements: { subTrigger }
+	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
+	return subTrigger;
+}
+
 function getContent(sideoffset = 4) {
 	const {
 		elements: { menu: content },
@@ -63,7 +100,22 @@ function getContent(sideoffset = 4) {
 	return { content, open };
 }
 
-export { melt, type DropdownMenuProps, type DropdownSubmenuProps };
+function getSubContent() {
+	const {
+		elements: { subMenu: subContent },
+		states: { subOpen }
+	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
+
+	return { subContent, subOpen };
+}
+
+export {
+	melt,
+	type DropdownMenuProps,
+	type DropdownSubmenuProps,
+	type DropdownRadioGroupProps,
+	type DropdownRadioItemProps
+};
 
 export const DropdownMenu = Object.assign(Root, {
 	CheckboxItem,
