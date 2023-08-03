@@ -3,33 +3,35 @@
     "component": "accordion",
     "name": "Accordion",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
         "name": "Accordion.svelte",
         "dir": "accordion",
-        "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\n\t// Remove the any when radix-svelte is updated to properly satisfy the types\n\t// https://www.radix-svelte.com/docs/accordion\n\texport let value: any = undefined;\n</script>\n\n<AccordionPrimitive.Root bind:value {...$$restProps}>\n\t<slot />\n</AccordionPrimitive.Root>\n"
+        "content": "<script lang=\"ts\">\n\timport { type CreateAccordionProps, ctx } from \".\";\n\n\texport let multiple: CreateAccordionProps[\"multiple\"] = false;\n\texport let disabled: CreateAccordionProps[\"disabled\"] = false;\n\texport let defaultValue: CreateAccordionProps[\"defaultValue\"] = undefined;\n\texport let value: CreateAccordionProps[\"value\"] = undefined;\n\texport let onValueChange: CreateAccordionProps[\"onValueChange\"] = undefined;\n\n\tconst root = ctx.set({\n\t\tvalue,\n\t\tmultiple,\n\t\tdisabled,\n\t\tdefaultValue,\n\t\tonValueChange\n\t});\n</script>\n\n<div use:root {...$root} {...$$restProps}>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AccordionContent.svelte",
         "dir": "accordion",
-        "content": "<script lang=\"ts\">\n\timport type { AccordionContentProps } from \"radix-svelte\";\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let transition: AccordionContentProps[\"transition\"] = true;\n</script>\n\n<AccordionPrimitive.Content\n\tclass={cn(\"overflow-hidden text-sm\", className)}\n\t{...$$restProps}\n\t{transition}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t<slot />\n\t</div>\n</AccordionPrimitive.Content>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { slide } from \"svelte/transition\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst { content, isSelected, props } = ctx.getContent();\n</script>\n\n{#if $isSelected(props)}\n\t<div\n\t\tuse:content\n\t\t{...$content(props)}\n\t\tclass={cn(\"overflow-hidden text-sm\", className)}\n\t\ttransition:slide={{ duration: 200 }}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"pb-4 pt-0\">\n\t\t\t<slot />\n\t\t</div>\n\t</div>\n{/if}\n"
       },
       {
         "name": "AccordionItem.svelte",
         "dir": "accordion",
-        "content": "<script lang=\"ts\">\n\timport type { AccordionItemProps } from \"radix-svelte\";\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: AccordionItemProps[\"value\"];\n</script>\n\n<AccordionPrimitive.Item\n\t{value}\n\tclass={cn(\"border-b\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AccordionPrimitive.Item>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, type AccordionItemProps } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: AccordionItemProps[\"value\"];\n\texport let disabled: AccordionItemProps[\"disabled\"] = false;\n\n\tconst { item, props } = ctx.setItem({ value, disabled });\n</script>\n\n<div\n\tuse:item\n\t{...$item(props)}\n\tclass={cn(\"border-b\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AccordionTrigger.svelte",
         "dir": "accordion",
-        "content": "<script lang=\"ts\">\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport { Accordion as AccordionPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Header class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t\t<ChevronDown class=\"h-4 w-4 transition-transform duration-200\" />\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
+        "content": "<script lang=\"ts\">\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\timport { type AccordionHeadingProps, ctx } from \".\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let level: AccordionHeadingProps[\"level\"] = 3;\n\n\tconst { heading, trigger, props } = ctx.getTriggerAndHeading(level);\n</script>\n\n<div use:heading {...$heading(props.heading)} class=\"flex\">\n\t<button\n\t\tuse:trigger\n\t\t{...$trigger(props.trigger)}\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[aria-expanded=true]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t\t<ChevronDown class=\"h-4 w-4 transition-transform duration-200\" />\n\t</button>\n</div>\n"
       },
       {
         "name": "index.ts",
         "dir": "accordion",
-        "content": "export { default as Accordion } from \"./Accordion.svelte\";\nexport { default as AccordionContent } from \"./AccordionContent.svelte\";\nexport { default as AccordionItem } from \"./AccordionItem.svelte\";\nexport { default as AccordionTrigger } from \"./AccordionTrigger.svelte\";\n"
+        "content": "import { default as Root } from \"./Accordion.svelte\";\nimport { default as Content } from \"./AccordionContent.svelte\";\nimport { default as Item } from \"./AccordionItem.svelte\";\nimport { default as Trigger } from \"./AccordionTrigger.svelte\";\nimport {\n\tcreateAccordion,\n\ttype Accordion as AccordionReturn,\n\ttype AccordionItemProps as ItemProps,\n\ttype CreateAccordionProps,\n\ttype AccordionHeadingProps as HeadingProps\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\n\nconst ITEM_PROPS = \"accordion_itemProps\";\nconst NAME = \"accordion\";\n\nexport const ctx = {\n\tset: setAccordion,\n\tget: getAccordion,\n\tsetItem: setAccordionItem,\n\tgetItemProps,\n\tgetContent,\n\tgetTriggerAndHeading\n};\n\nfunction setAccordion(props: CreateAccordionProps) {\n\tsetContext(NAME, createAccordion({ ...props }));\n\tconst {\n\t\telements: { root }\n\t} = getContext<AccordionReturn>(NAME);\n\treturn root;\n}\n\nfunction getAccordion() {\n\treturn getContext<AccordionReturn>(NAME);\n}\n\nfunction setAccordionItem(props: AccordionItemProps) {\n\tsetContext(ITEM_PROPS, props);\n\tconst {\n\t\telements: { item }\n\t} = getAccordion();\n\treturn { item, props: getContext<AccordionItemProps>(ITEM_PROPS) };\n}\n\nfunction getItemProps() {\n\tconst itemProps = getContext<AccordionItemProps>(ITEM_PROPS);\n\treturn itemProps;\n}\n\nfunction getContent() {\n\tconst {\n\t\telements: { content },\n\t\thelpers: { isSelected },\n\t\tstates: { value }\n\t} = getAccordion();\n\tconst { value: props } = getItemProps();\n\treturn { content, props, isSelected, value };\n}\n\nfunction getTriggerAndHeading(level: AccordionHeadingProps[\"level\"]) {\n\tconst {\n\t\telements: { trigger, heading },\n\t\tstates: { value }\n\t} = getAccordion();\n\tconst props = getItemProps();\n\treturn {\n\t\ttrigger,\n\t\theading,\n\t\tprops: {\n\t\t\theading: { level },\n\t\t\ttrigger: props\n\t\t},\n\t\tvalue\n\t};\n}\n\ntype ObjectVariation<T> = T extends object ? T : never;\n\nexport const Accordion = Object.assign(Root, {\n\tContent,\n\tItem,\n\tTrigger\n});\n\nexport { Root as AccordionRoot };\nexport { Content as AccordionContent };\nexport { Item as AccordionItem };\nexport { Trigger as AccordionTrigger };\n\nexport type AccordionElements = {\n\titem: AccordionItemProps;\n\tcontent: AccordionItemProps;\n\ttrigger: AccordionItemProps;\n\theading: AccordionHeadingProps;\n};\nexport type AccordionItemProps = ObjectVariation<ItemProps>;\nexport type AccordionHeadingProps = ObjectVariation<HeadingProps>;\nexport type { CreateAccordionProps } from \"@melt-ui/svelte\";\n"
       }
     ]
   },
@@ -40,7 +42,7 @@
       {
         "name": "Alert.svelte",
         "dir": "alert",
-        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport { cva } from \"class-variance-authority\";\n\timport { cn } from \"$lib/utils\";\n\n\tconst alertVariants = cva(\n\t\t\"relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11\",\n\t\t{\n\t\t\tvariants: {\n\t\t\t\tvariant: {\n\t\t\t\t\tdefault: \"bg-background text-foreground\",\n\t\t\t\t\tdestructive:\n\t\t\t\t\t\t\"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive\"\n\t\t\t\t}\n\t\t\t},\n\t\t\tdefaultVariants: {\n\t\t\t\tvariant: \"default\"\n\t\t\t}\n\t\t}\n\t);\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let variant: VariantProps<typeof alertVariants>[\"variant\"] =\n\t\t\"default\";\n</script>\n\n<div class={cn(alertVariants({ variant }), className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport { tv } from \"tailwind-variants\";\n\timport { cn } from \"$lib/utils\";\n\n\tconst alertVariants = tv({\n\t\tbase: \"relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-background text-foreground\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\"\n\t\t}\n\t});\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let variant: VariantProps<typeof alertVariants>[\"variant\"] =\n\t\t\"default\";\n</script>\n\n<div class={cn(alertVariants({ variant }), className)} {...$$restProps}>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AlertDescription.svelte",
@@ -63,28 +65,30 @@
     "component": "alert-dialog",
     "name": "Alert Dialog",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
         "name": "AlertDialogAction.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { buttonVariants } from \"$components/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Action\n\tclass={cn(buttonVariants(), className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AlertDialogPrimitive.Action>\n"
+        "content": "<script lang=\"ts\">\n\timport { buttonVariants } from \"$components/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst action = ctx.getClose();\n</script>\n\n<button\n\t{...$action}\n\tuse:action\n\tclass={cn(buttonVariants(), className)}\n\t{...$$restProps}\n>\n\t<slot />\n</button>\n"
       },
       {
         "name": "AlertDialogCancel.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { buttonVariants } from \"$components/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Cancel\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"mt-2 sm:mt-0\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AlertDialogPrimitive.Cancel>\n"
+        "content": "<script lang=\"ts\">\n\timport { buttonVariants } from \"$components/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst cancel = ctx.getClose();\n</script>\n\n<button\n\t{...$cancel}\n\tuse:cancel\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"mt-2 sm:mt-0\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</button>\n"
       },
       {
         "name": "AlertDialogContent.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\timport AlertDialogOverlay from \"./AlertDialogOverlay.svelte\";\n\timport AlertDialogPortal from \"./AlertDialogPortal.svelte\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPortal>\n\t<AlertDialogOverlay />\n\t<AlertDialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed z-50 grid w-full max-w-lg scale-100 gap-4 border bg-background p-6 opacity-100 shadow-lg animate-in fade-in-90 slide-in-from-bottom-10 sm:rounded-lg sm:zoom-in-90 sm:slide-in-from-bottom-0 md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</AlertDialogPrimitive.Content>\n</AlertDialogPortal>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx, AlertDialogPortal, AlertDialogOverlay } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst content = ctx.getContent();\n\tconst open = ctx.getOpen();\n</script>\n\n<AlertDialogPortal>\n\t<AlertDialogOverlay />\n\t<div\n\t\t{...$content}\n\t\tuse:content\n\t\tclass={cn(\n\t\t\t\"fixed z-50 grid w-full max-w-lg scale-100 gap-4 border bg-background p-6 opacity-100 shadow-lg animate-in fade-in-90 slide-in-from-bottom-10 sm:rounded-lg sm:zoom-in-90 sm:slide-in-from-bottom-0 md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</div>\n</AlertDialogPortal>\n"
       },
       {
         "name": "AlertDialogDescription.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AlertDialogPrimitive.Description>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst description = ctx.getDescription();\n</script>\n\n<div\n\t{...$description}\n\tuse:description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
       },
       {
         "name": "AlertDialogFooter.svelte",
@@ -99,22 +103,22 @@
       {
         "name": "AlertDialogOverlay.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\tconst overlay = ctx.getOverlay();\n</script>\n\n<div\n\tuse:overlay\n\t{...$overlay}\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
       },
       {
         "name": "AlertDialogPortal.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n</script>\n\n<AlertDialogPrimitive.Portal {...$$restProps}>\n\t<div\n\t\tclass=\"fixed inset-0 z-50 flex items-end justify-center sm:items-center\"\n\t>\n\t\t<slot />\n\t</div>\n</AlertDialogPrimitive.Portal>\n"
+        "content": "<script lang=\"ts\">\n\timport { ctx } from \".\";\n\tconst portal = ctx.getPortal();\n\tconst open = ctx.getOpen();\n</script>\n\n<div use:portal {...$portal} {...$$restProps}>\n\t{#if $open}\n\t\t<div\n\t\t\tclass=\"fixed inset-0 z-50 flex items-end justify-center sm:items-center\"\n\t\t>\n\t\t\t<slot />\n\t\t</div>\n\t{/if}\n</div>\n"
       },
       {
         "name": "AlertDialogTitle.svelte",
         "dir": "alert-dialog",
-        "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Title\n\tclass={cn(\"text-lg font-semibold\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AlertDialogPrimitive.Title>\n"
+        "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { ctx } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let level: \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" = \"h3\";\n\tconst title = ctx.getTitle();\n</script>\n\n<svelte:element\n\tthis={level}\n\tuse:title\n\t{...$title}\n\tclass={cn(\"text-lg font-semibold\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
       },
       {
         "name": "index.ts",
         "dir": "alert-dialog",
-        "content": "import { AlertDialog as AlertDialogPrimitive } from \"radix-svelte\";\n\nexport { default as AlertDialogAction } from \"./AlertDialogAction.svelte\";\nexport { default as AlertDialogCancel } from \"./AlertDialogCancel.svelte\";\nexport { default as AlertDialogContent } from \"./AlertDialogContent.svelte\";\nexport { default as AlertDialogDescription } from \"./AlertDialogDescription.svelte\";\nexport { default as AlertDialogFooter } from \"./AlertDialogFooter.svelte\";\nexport { default as AlertDialogHeader } from \"./AlertDialogHeader.svelte\";\nexport { default as AlertDialogTitle } from \"./AlertDialogTitle.svelte\";\n\nexport const AlertDialog = AlertDialogPrimitive.Root;\nexport const AlertDialogTrigger = AlertDialogPrimitive.Trigger;\n"
+        "content": "import {\n\tcreateDialog,\n\ttype CreateDialogProps,\n\ttype Dialog\n} from \"@melt-ui/svelte\";\nimport { getContext, setContext } from \"svelte\";\n\nimport { default as Root } from \"./AlertDialog.svelte\";\nimport { default as Action } from \"./AlertDialogAction.svelte\";\nimport { default as Cancel } from \"./AlertDialogCancel.svelte\";\nimport { default as Content } from \"./AlertDialogContent.svelte\";\nimport { default as Description } from \"./AlertDialogDescription.svelte\";\nimport { default as Footer } from \"./AlertDialogFooter.svelte\";\nimport { default as Header } from \"./AlertDialogHeader.svelte\";\nimport { default as Overlay } from \"./AlertDialogOverlay.svelte\";\nimport { default as Portal } from \"./AlertDialogPortal.svelte\";\nimport { default as Title } from \"./AlertDialogTitle.svelte\";\n\nexport const AlertDialog = Object.assign(Root, {\n\tAction,\n\tCancel,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tOverlay,\n\tPortal,\n\tTitle\n});\n\nexport { Root as AlertDialogRoot };\nexport { Action as AlertDialogAction };\nexport { Cancel as AlertDialogCancel };\nexport { Content as AlertDialogContent };\nexport { Description as AlertDialogDescription };\nexport { Footer as AlertDialogFooter };\nexport { Header as AlertDialogHeader };\nexport { Overlay as AlertDialogOverlay };\nexport { Portal as AlertDialogPortal };\nexport { Title as AlertDialogTitle };\n\nexport const ctx = {\n\tset: setAlertDialog,\n\tget: getAlertDialog,\n\tgetClose: () => getAlertDialog().elements.close,\n\tgetContent: () => getAlertDialog().elements.content,\n\tgetOverlay: () => getAlertDialog().elements.overlay,\n\tgetPortal: () => getAlertDialog().elements.portalled,\n\tgetTitle: () => getAlertDialog().elements.title,\n\tgetDescription: () => getAlertDialog().elements.description,\n\tgetOpen: () => getAlertDialog().states.open\n};\n\nconst NAME = \"alertDialog\";\n\nfunction setAlertDialog(props: CreateDialogProps) {\n\tconst alertDialog = createDialog({ ...props });\n\tsetContext(NAME, alertDialog);\n\tconst {\n\t\telements: { trigger }\n\t} = alertDialog;\n\n\treturn trigger;\n}\n\nfunction getAlertDialog() {\n\treturn getContext<Dialog>(NAME);\n}\n"
       }
     ]
   },
@@ -122,7 +126,9 @@
     "component": "aspect-ratio",
     "name": "Aspect Ratio",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -141,7 +147,9 @@
     "component": "avatar",
     "name": "Avatar",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -189,7 +197,7 @@
       {
         "name": "Button.svelte",
         "dir": "button",
-        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport type {\n\t\tHTMLAnchorAttributes,\n\t\tHTMLButtonAttributes\n\t} from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport { buttonVariants } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let href: HTMLAnchorAttributes[\"href\"] = undefined;\n\texport let type: HTMLButtonAttributes[\"type\"] = undefined;\n\texport let variant: VariantProps<typeof buttonVariants>[\"variant\"] =\n\t\t\"default\";\n\texport let size: VariantProps<typeof buttonVariants>[\"size\"] = \"default\";\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"button\"}\n\ttype={href ? undefined : type}\n\t{href}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\t{...$$restProps}\n\ton:click\n\ton:change\n\ton:keydown\n\ton:keyup\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</svelte:element>\n"
+        "content": "<script lang=\"ts\">\n\timport type { VariantProps } from \"class-variance-authority\";\n\timport type {\n\t\tHTMLAnchorAttributes,\n\t\tHTMLButtonAttributes\n\t} from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport { buttonVariants } from \".\";\n\timport type { Action } from \"svelte/action\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let href: HTMLAnchorAttributes[\"href\"] = undefined;\n\texport let type: HTMLButtonAttributes[\"type\"] = undefined;\n\texport let variant: VariantProps<typeof buttonVariants>[\"variant\"] =\n\t\t\"default\";\n\texport let size: VariantProps<typeof buttonVariants>[\"size\"] = \"default\";\n\texport let builder: Action | undefined = undefined;\n\n\ttype Props = {\n\t\tclass?: string | null;\n\t\tvariant?: VariantProps<typeof buttonVariants>[\"variant\"];\n\t\tsize?: VariantProps<typeof buttonVariants>[\"size\"];\n\t\tbuilder?: Action;\n\t};\n\n\tinterface AnchorElement extends Props, HTMLAnchorAttributes {\n\t\thref?: HTMLAnchorAttributes[\"href\"];\n\t\ttype?: never;\n\t}\n\n\tinterface ButtonElement extends Props, HTMLButtonAttributes {\n\t\ttype?: HTMLButtonAttributes[\"type\"];\n\t\thref?: never;\n\t}\n\n\ttype $$Props = AnchorElement | ButtonElement;\n</script>\n\n{#if builder}\n\t<svelte:element\n\t\tthis={href ? \"a\" : \"button\"}\n\t\ttype={href ? undefined : type}\n\t\t{href}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\ton:click\n\t\ton:change\n\t\ton:keydown\n\t\ton:keyup\n\t\ton:mouseenter\n\t\ton:mouseleave\n\t\trole=\"button\"\n\t\ttabindex=\"0\"\n\t\tuse:builder\n\t\t{...$$restProps}\n\t\t{...$builder}\n\t>\n\t\t<slot />\n\t</svelte:element>\n{:else}\n\t<svelte:element\n\t\tthis={href ? \"a\" : \"button\"}\n\t\ttype={href ? undefined : type}\n\t\t{href}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\t{...$$restProps}\n\t\ton:click\n\t\ton:change\n\t\ton:keydown\n\t\ton:keyup\n\t\ton:mouseenter\n\t\ton:mouseleave\n\t\trole=\"button\"\n\t\ttabindex=\"0\"\n\t>\n\t\t<slot />\n\t</svelte:element>\n{/if}\n"
       },
       {
         "name": "index.ts",
@@ -243,7 +251,9 @@
     "component": "checkbox",
     "name": "Checkbox",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -262,7 +272,9 @@
     "component": "collapsible",
     "name": "Collapsible",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -276,7 +288,9 @@
     "component": "dialog",
     "name": "Dialog",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -307,7 +321,7 @@
       {
         "name": "DialogPortal.svelte",
         "dir": "dialog",
-        "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Portal class={cn(className)} {...$$restProps}>\n\t<div\n\t\tclass=\"fixed inset-0 z-50 flex items-start justify-center sm:items-center\"\n\t>\n\t\t<slot />\n\t</div>\n</DialogPrimitive.Portal>\n"
+        "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"radix-svelte\";\n</script>\n\n<DialogPrimitive.Portal>\n\t<div\n\t\tclass=\"fixed inset-0 z-50 flex items-start justify-center sm:items-center\"\n\t>\n\t\t<slot />\n\t</div>\n</DialogPrimitive.Portal>\n"
       },
       {
         "name": "DialogTitle.svelte",
@@ -325,7 +339,9 @@
     "component": "hover-card",
     "name": "Hover Card",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -360,7 +376,9 @@
     "component": "label",
     "name": "Label",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -379,7 +397,9 @@
     "component": "progress",
     "name": "Progress",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -398,7 +418,9 @@
     "component": "radio-group",
     "name": "Radio Group",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -422,7 +444,9 @@
     "component": "separator",
     "name": "Separator",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -441,7 +465,9 @@
     "component": "sheet",
     "name": "Sheet",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -506,7 +532,9 @@
     "component": "slider",
     "name": "Slider",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -525,7 +553,9 @@
     "component": "switch",
     "name": "Switch",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -595,7 +625,9 @@
     "component": "tabs",
     "name": "Tabs",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -640,7 +672,9 @@
     "component": "toggle",
     "name": "Toggle",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
@@ -659,7 +693,9 @@
     "component": "tooltip",
     "name": "Tooltip",
     "dependencies": [
-      "radix-svelte"
+      "@melt-ui/svelte",
+      "@melt-ui/pp",
+      "svelte-sequential-preprocessor"
     ],
     "files": [
       {
