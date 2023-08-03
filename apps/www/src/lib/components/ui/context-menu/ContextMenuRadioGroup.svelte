@@ -10,6 +10,7 @@
 		undefined;
 
 	const radioGroup = ctx.setRadioGroup({
+		defaultValue,
 		value,
 		onValueChange
 	});

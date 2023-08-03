@@ -214,13 +214,11 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Popover",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Popover",
+					href: "/docs/components/popover",
+					items: []
+				},
 				{
 					title: "Progress",
 					href: "/docs/components/progress",
