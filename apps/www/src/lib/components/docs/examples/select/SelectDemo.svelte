@@ -24,4 +24,5 @@
 			{/each}
 		</Select.Group>
 	</Select.Content>
+	<Select.Input name="favoriteFruit" />
 </Select>
