@@ -1,18 +1,18 @@
 <script lang="ts">
+	import type { HTMLButtonAttributes } from "svelte/elements";
 	import { ctx, melt } from ".";
-
-	let className: string | undefined | null = undefined;
-
-	export { className as class };
 	export let asChild = false;
 
+	type $$Props = HTMLButtonAttributes & {
+		asChild?: boolean;
+	};
 	const trigger = ctx.getTrigger();
 </script>
 
 {#if asChild}
 	<slot trigger={$trigger} />
 {:else}
-	<button use:melt={$trigger} class={className} {...$$restProps}>
+	<button use:melt={$trigger} {...$$restProps}>
 		<slot trigger={$trigger} />
 	</button>
 {/if}

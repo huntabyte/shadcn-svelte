@@ -6,14 +6,16 @@ import {
 	createSelect
 } from "@melt-ui/svelte";
 
-import Root from "./SelectRoot.svelte";
-import Content from "./SelectContent.svelte";
+import Root from "./Select.svelte";
 import Group from "./SelectGroup.svelte";
+import Input from "./SelectInput.svelte";
 import Label from "./SelectLabel.svelte";
-import Option from "./SelectOption.svelte";
-import Separator from "./SelectSeparator.svelte";
-import Trigger from "./SelectTrigger.svelte";
 import Value from "./SelectValue.svelte";
+import Option from "./SelectOption.svelte";
+import Content from "./SelectContent.svelte";
+import Trigger from "./SelectTrigger.svelte";
+import Separator from "./SelectSeparator.svelte";
+
 import { getContext, setContext } from "svelte";
 
 const NAME = "Select";
@@ -61,28 +63,31 @@ export const ctx = {
 		return { groupLabel, key };
 	},
 	getSeparator: () => get().elements.separator,
-	getValue: () => get().states.valueLabel
+	getValue: () => get().states.valueLabel,
+	getInput: () => get().elements.input
 };
 
 export { melt, type SelectProps, type SelectOptionProps };
 
 export const Select = Object.assign(Root, {
-	Content,
-	Option,
-	Label,
-	Separator,
-	Trigger,
+	Input,
 	Value,
-	Group
+	Group,
+	Label,
+	Option,
+	Content,
+	Trigger,
+	Separator
 });
 
 export {
 	Root as SelectRoot,
-	Content as SelectContent,
-	Option as SelectOption,
+	Input as SelectInput,
 	Group as SelectGroup,
 	Label as SelectLabel,
-	Separator as SelectSeparator,
+	Value as SelectValue,
+	Option as SelectOption,
+	Content as SelectContent,
 	Trigger as SelectTrigger,
-	Value as SelectValue
+	Separator as SelectSeparator
 };
