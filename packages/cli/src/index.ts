@@ -183,7 +183,7 @@ async function main() {
 			);
 
 			// check if they already have the PP installed
-			const hasMeltPP = await isMeltPPInstalled();
+			let hasMeltPP = await isMeltPPInstalled();
 
 			for (const component of selectedComponents) {
 				const componentSpinner = ora(`${component.name}...`).start();
@@ -216,6 +216,7 @@ async function main() {
 						component.dependencies.includes("@melt-ui/pp")
 					) {
 						await installMeltPP();
+						hasMeltPP = true;
 					}
 				}
 				componentSpinner.succeed(component.name);
@@ -311,7 +312,7 @@ async function main() {
 			);
 
 			// check if they already have the PP installed
-			const hasMeltPP = await isMeltPPInstalled();
+			let hasMeltPP = await isMeltPPInstalled();
 
 			for (const component of selectedComponents) {
 				const componentSpinner = ora(`${component.name}...`).start();
@@ -344,6 +345,7 @@ async function main() {
 						component.dependencies.includes("@melt-ui/pp")
 					) {
 						await installMeltPP();
+						hasMeltPP = true;
 					}
 				}
 				componentSpinner.succeed(component.name);
