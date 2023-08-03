@@ -2,7 +2,11 @@ export const components = [
 	{
 		component: "accordion",
 		name: "Accordion",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/accordion/Accordion.svelte",
 			"src/lib/components/ui/accordion/AccordionContent.svelte",
@@ -24,7 +28,11 @@ export const components = [
 	{
 		component: "alert-dialog",
 		name: "Alert Dialog",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/alert-dialog/AlertDialogAction.svelte",
 			"src/lib/components/ui/alert-dialog/AlertDialogCancel.svelte",
@@ -41,7 +49,11 @@ export const components = [
 	{
 		component: "aspect-ratio",
 		name: "Aspect Ratio",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/aspect-ratio/AspectRatio.svelte",
 			"src/lib/components/ui/aspect-ratio/index.ts"
@@ -50,7 +62,11 @@ export const components = [
 	{
 		component: "avatar",
 		name: "Avatar",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/avatar/Avatar.svelte",
 			"src/lib/components/ui/avatar/AvatarFallback.svelte",
@@ -96,7 +112,11 @@ export const components = [
 	{
 		component: "checkbox",
 		name: "Checkbox",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/checkbox/Checkbox.svelte",
 			"src/lib/components/ui/checkbox/index.ts"
@@ -105,7 +125,11 @@ export const components = [
 	{
 		component: "collapsible",
 		name: "Collapsible",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: ["src/lib/components/ui/collapsible/index.ts"]
 	},
 	//   {
@@ -123,7 +147,11 @@ export const components = [
 	{
 		component: "dialog",
 		name: "Dialog",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/dialog/DialogContent.svelte",
 			"src/lib/components/ui/dialog/DialogDescription.svelte",
@@ -144,7 +172,11 @@ export const components = [
 	{
 		component: "hover-card",
 		name: "Hover Card",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/hover-card/HoverCardContent.svelte",
 			"src/lib/components/ui/hover-card/index.ts"
@@ -161,7 +193,11 @@ export const components = [
 	{
 		component: "label",
 		name: "Label",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/label/Label.svelte",
 			"src/lib/components/ui/label/index.ts"
@@ -188,7 +224,11 @@ export const components = [
 	{
 		component: "progress",
 		name: "Progress",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/progress/Progress.svelte",
 			"src/lib/components/ui/progress/index.ts"
@@ -197,7 +237,11 @@ export const components = [
 	{
 		component: "radio-group",
 		name: "Radio Group",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/radio-group/RadioGroup.svelte",
 			"src/lib/components/ui/radio-group/RadioGroupItem.svelte",
@@ -219,7 +263,11 @@ export const components = [
 	{
 		component: "separator",
 		name: "Separator",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/separator/Separator.svelte",
 			"src/lib/components/ui/separator/index.ts"
@@ -228,7 +276,11 @@ export const components = [
 	{
 		component: "sheet",
 		name: "Sheet",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/sheet/SheetContent.svelte",
 			"src/lib/components/ui/sheet/SheetDescription.svelte",
@@ -251,7 +303,11 @@ export const components = [
 	{
 		component: "slider",
 		name: "Slider",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/slider/Slider.svelte",
 			"src/lib/components/ui/slider/index.ts"
@@ -260,7 +316,11 @@ export const components = [
 	{
 		component: "switch",
 		name: "Switch",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/switch/Switch.svelte",
 			"src/lib/components/ui/switch/index.ts"
@@ -284,7 +344,11 @@ export const components = [
 	{
 		component: "tabs",
 		name: "Tabs",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/tabs/TabsContent.svelte",
 			"src/lib/components/ui/tabs/TabsList.svelte",
@@ -309,7 +373,11 @@ export const components = [
 	{
 		component: "toggle",
 		name: "Toggle",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/toggle/Toggle.svelte",
 			"src/lib/components/ui/toggle/index.ts"
@@ -318,7 +386,11 @@ export const components = [
 	{
 		component: "tooltip",
 		name: "Tooltip",
-		dependencies: ["radix-svelte"],
+		dependencies: [
+			"@melt-ui/svelte",
+			"@melt-ui/pp",
+			"svelte-sequential-preprocessor"
+		],
 		files: [
 			"src/lib/components/ui/tooltip/TooltipContent.svelte",
 			"src/lib/components/ui/tooltip/index.ts"
