@@ -156,13 +156,11 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Context Menu",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Context Menu",
+					href: "/docs/components/context-menu",
+					items: []
+				},
 				{
 					title: "Data Table",
 					href: "#",

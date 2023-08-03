@@ -7,7 +7,8 @@ import {
 	type CreateMenuRadioGroupProps as DropdownRadioGroupProps,
 	type DropdownMenuRadioGroup as DropdownRadioGroupReturn,
 	type DropdownMenuRadioItemProps as DropdownRadioItemProps,
-	type DropdownMenuSubmenu as DropdownSubmenuReturn
+	type DropdownMenuSubmenu as DropdownSubmenuReturn,
+	type CreateDropdownMenuCheckboxItemProps as DropdownCheckboxItemProps
 } from "@melt-ui/svelte";
 import { createEventDispatcher, getContext, setContext } from "svelte";
 
@@ -42,6 +43,7 @@ export const ctx = {
 	getRadioItem,
 	getSubTrigger,
 	getSubContent,
+	getCheckboxItem,
 	dispatch: () => createEventDispatcher()
 };
 
@@ -89,23 +91,26 @@ function getSubTrigger() {
 	return subTrigger;
 }
 
-function getContent(sideoffset = 4) {
+function getContent(sideOffset = 4) {
 	const {
 		elements: { menu: content },
 		states: { open },
 		options: { positioning }
 	} = get();
 
-	positioning.update((prev) => ({ ...prev, gutter: sideoffset }));
+	positioning.update((prev) => ({ ...prev, gutter: sideOffset }));
 
 	return { content, open };
 }
 
-function getSubContent() {
+function getSubContent(sideOffset = -1) {
 	const {
 		elements: { subMenu: subContent },
-		states: { subOpen }
+		states: { subOpen },
+		options: { positioning }
 	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
+
+	positioning.update((prev) => ({ ...prev, gutter: sideOffset }));
 
 	return { subContent, subOpen };
 }
@@ -118,12 +123,24 @@ function getItem() {
 	return { item, dispatch };
 }
 
+function getCheckboxItem(props: DropdownCheckboxItemProps) {
+	const {
+		builders: { createCheckboxItem }
+	} = get();
+	const {
+		elements: { checkboxItem },
+		states: { checked }
+	} = createCheckboxItem(props);
+	return { checkboxItem, isChecked: checked };
+}
+
 export {
 	melt,
 	type DropdownMenuProps,
 	type DropdownSubmenuProps,
 	type DropdownRadioGroupProps,
-	type DropdownRadioItemProps
+	type DropdownRadioItemProps,
+	type DropdownCheckboxItemProps
 };
 
 export const DropdownMenu = Object.assign(Root, {
