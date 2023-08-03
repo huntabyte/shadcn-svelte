@@ -9,7 +9,7 @@ import {
 	type DropdownMenuRadioItemProps as DropdownRadioItemProps,
 	type DropdownMenuSubmenu as DropdownSubmenuReturn
 } from "@melt-ui/svelte";
-import { getContext, setContext } from "svelte";
+import { createEventDispatcher, getContext, setContext } from "svelte";
 
 import Root from "./DropdownMenu.svelte";
 import CheckboxItem from "./DropdownMenuCheckboxItem.svelte";
@@ -36,12 +36,13 @@ export const ctx = {
 	setSub,
 	getTrigger: () => get().elements.trigger,
 	getContent,
-	getItem: () => get().elements.item,
+	getItem,
 	getSeparator: () => get().elements.separator,
 	setRadioGroup,
 	getRadioItem,
 	getSubTrigger,
-	getSubContent
+	getSubContent,
+	dispatch: () => createEventDispatcher()
 };
 
 function get() {
@@ -107,6 +108,14 @@ function getSubContent() {
 	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
 
 	return { subContent, subOpen };
+}
+
+function getItem() {
+	const {
+		elements: { item }
+	} = get();
+	const dispatch = createEventDispatcher();
+	return { item, dispatch };
 }
 
 export {

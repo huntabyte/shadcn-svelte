@@ -75,6 +75,30 @@
 					</DropdownMenu.Item>
 				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
+			<DropdownMenu.Item>
+				<Plus class="mr-2 h-4 w-4" />
+				<span>New Team</span>
+				<DropdownMenu.Shortcut>⌘+T</DropdownMenu.Shortcut>
+			</DropdownMenu.Item>
 		</DropdownMenu.Group>
+		<DropdownMenu.Separator />
+		<DropdownMenu.Item>
+			<Github class="mr-2 h-4 w-4" />
+			<span>GitHub</span>
+		</DropdownMenu.Item>
+		<DropdownMenu.Item>
+			<LifeBuoy class="mr-2 h-4 w-4" />
+			<span>Support</span>
+		</DropdownMenu.Item>
+		<DropdownMenu.Item>
+			<Cloud class="mr-2 h-4 w-4" />
+			<span>API</span>
+		</DropdownMenu.Item>
+		<DropdownMenu.Separator />
+		<DropdownMenu.Item>
+			<LogOut class="mr-2 h-4 w-4" />
+			<span>Log out</span>
+			<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
+		</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu>
