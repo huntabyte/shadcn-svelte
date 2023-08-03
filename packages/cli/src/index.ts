@@ -184,6 +184,7 @@ async function main() {
 
 			// check if they already have the PP installed
 			let hasMeltPP = await isMeltPPInstalled();
+			let configUpdated = false;
 
 			for (const component of selectedComponents) {
 				const componentSpinner = ora(`${component.name}...`).start();
@@ -217,6 +218,13 @@ async function main() {
 					) {
 						await installMeltPP();
 						hasMeltPP = true;
+						configUpdated = true;
+					}
+
+					if (configUpdated) {
+						logger.warn(
+							"'svelte.config.js' has been modified. Please ensure that the changes are valid!"
+						);
 					}
 				}
 				componentSpinner.succeed(component.name);
@@ -313,6 +321,7 @@ async function main() {
 
 			// check if they already have the PP installed
 			let hasMeltPP = await isMeltPPInstalled();
+			let configUpdated = false;
 
 			for (const component of selectedComponents) {
 				const componentSpinner = ora(`${component.name}...`).start();
@@ -346,9 +355,16 @@ async function main() {
 					) {
 						await installMeltPP();
 						hasMeltPP = true;
+						configUpdated = true;
 					}
 				}
 				componentSpinner.succeed(component.name);
+			}
+
+			if (configUpdated) {
+				logger.warn(
+					"'svelte.config.js' has been modified. Please ensure that the changes are valid!"
+				);
 			}
 		});
 
