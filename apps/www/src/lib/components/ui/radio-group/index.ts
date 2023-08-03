@@ -11,13 +11,13 @@ import Item from "./RadioGroupItem.svelte";
 import Input from "./RadioGroupInput.svelte";
 
 type ObjectVariation<T> = T extends object ? T : never;
-export type RadioGroupItemProps = ObjectVariation<ItemProps>;
 const NAME = "radiogroup";
 
 export const ctx = {
 	set,
 	get,
-	getItem
+	getItem,
+	getInput: () => get().elements.itemInput
 };
 
 function set(props: RadioGroupProps) {
@@ -42,6 +42,7 @@ function getItem() {
 }
 
 export { melt, RadioGroupProps };
+export type RadioGroupItemProps = ObjectVariation<ItemProps>;
 export const RadioGroup = Object.assign(Root, {
 	Item,
 	Input
