@@ -20,6 +20,7 @@ export * from "./textarea";
 export * from "./toggle";
 export * from "./hover-card";
 export * from "./radio-group";
+export * from "./select";
 export * from "./slider";
 export * from "./skeleton";
 export * from "./typography";

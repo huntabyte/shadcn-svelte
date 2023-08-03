@@ -242,9 +242,7 @@ export const docsConfig: DocsConfig = {
 				// },
 				{
 					title: "Select",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/select",
 					items: []
 				},
 				{
