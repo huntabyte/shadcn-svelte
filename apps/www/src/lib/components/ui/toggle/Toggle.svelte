@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { VariantProps } from "class-variance-authority";
-	import type { ToggleRootProps } from "radix-svelte";
 	import { cva } from "class-variance-authority";
-	import { Toggle as TogglePrimitive } from "radix-svelte";
+	import { melt, ctx, type ToggleProps } from ".";
 	import { cn } from "$lib/utils";
 
 	const toggleVariants = cva(
@@ -32,15 +31,23 @@
 	export let variant: VariantProps<typeof toggleVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof toggleVariants>["size"] = "default";
-	export let pressed: ToggleRootProps["disabled"] = false;
-	export let disabled: ToggleRootProps["disabled"] = false;
+	export let defaultPressed: ToggleProps["defaultPressed"] = undefined;
+	export let pressed: ToggleProps["pressed"] = undefined;
+	export let onPressedChange: ToggleProps["onPressedChange"] = undefined;
+	export let disabled: ToggleProps["disabled"] = undefined;
+
+	const { root, isPressed } = ctx.get({
+		pressed,
+		defaultPressed,
+		onPressedChange,
+		disabled
+	});
 </script>
 
-<TogglePrimitive.Root
+<button
+	use:melt={$root}
 	class={cn(toggleVariants({ variant, size, className }))}
-	bind:pressed
-	bind:disabled
 	{...$$restProps}
 >
 	<slot />
-</TogglePrimitive.Root>
+</button>
