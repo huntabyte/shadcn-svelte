@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import { ctx } from "./ctx";
 	import type { AccordionHeaderProps } from "./types";
+	import { ctx } from "./ctx";
 	import { melt } from "@melt-ui/svelte";
+
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
 		level?: AccordionHeaderProps["level"];
 	};
@@ -12,6 +13,6 @@
 	const header = ctx.getHeader();
 </script>
 
-<div use:melt={$header(level)} class="flex">
+<div use:melt={$header(level)} {...$$restProps}>
 	<slot />
 </div>

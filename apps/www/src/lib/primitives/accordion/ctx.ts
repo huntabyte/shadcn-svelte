@@ -9,6 +9,16 @@ import type {
 const NAME = "Accordion";
 const ITEM_NAME = "AccordionItem";
 
+export const ctx = {
+	set: setAccordion,
+	get: getAccordion,
+	setItem: setAccordionItem,
+	getItemProps,
+	getContent,
+	getTrigger,
+	getHeader
+};
+
 function setAccordion(props: AccordionProps) {
 	setContext(NAME, createAccordion({ ...props }));
 	const {
@@ -22,15 +32,16 @@ function getAccordion() {
 }
 
 function setAccordionItem(props: AccordionItemProps) {
-	setContext(ITEM_NAME, props);
+	setContext(ITEM_NAME, { ...props });
 	const {
 		elements: { item }
 	} = getAccordion();
-	return { item, props: getContext<AccordionItemProps>(ITEM_NAME) };
+	return { item, props };
 }
 
 function getItemProps() {
 	const itemProps = getContext<AccordionItemProps>(ITEM_NAME);
+	console.log(itemProps);
 	return itemProps;
 }
 
@@ -58,13 +69,3 @@ function getHeader() {
 	} = getAccordion();
 	return header;
 }
-
-export const ctx = {
-	set: setAccordion,
-	get: getAccordion,
-	setItem: setAccordionItem,
-	getItemProps,
-	getContent,
-	getTrigger,
-	getHeader
-};

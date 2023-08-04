@@ -1,25 +1,30 @@
 <script lang="ts">
-	import { Accordion } from "$components/ui/accordion";
+	import {
+		Accordion,
+		AccordionItem,
+		AccordionTrigger,
+		AccordionContent
+	} from "$components/ui/accordion";
 </script>
 
 <Accordion class="w-full">
-	<Accordion.Item value="item-1">
-		<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
-		<Accordion.Content>
+	<AccordionItem value="item-1">
+		<AccordionTrigger>Is it accessible?</AccordionTrigger>
+		<AccordionContent>
 			Yes. It adheres to the WAI-ARIA design pattern.
-		</Accordion.Content>
-	</Accordion.Item>
-	<Accordion.Item value="item-2">
-		<Accordion.Trigger>Is it styled?</Accordion.Trigger>
-		<Accordion.Content>
+		</AccordionContent>
+	</AccordionItem>
+	<AccordionItem value="item-2">
+		<AccordionTrigger>Is it styled?</AccordionTrigger>
+		<AccordionContent>
 			Yes. It comes with default styles that matches the other components'
 			aesthetic.
-		</Accordion.Content>
-	</Accordion.Item>
-	<Accordion.Item value="item-3">
-		<Accordion.Trigger>Is it animated?</Accordion.Trigger>
-		<Accordion.Content>
+		</AccordionContent>
+	</AccordionItem>
+	<AccordionItem value="item-3">
+		<AccordionTrigger>Is it animated?</AccordionTrigger>
+		<AccordionContent>
 			Yes. It's animated by default, but you can disable it if you prefer.
-		</Accordion.Content>
-	</Accordion.Item>
+		</AccordionContent>
+	</AccordionItem>
 </Accordion>

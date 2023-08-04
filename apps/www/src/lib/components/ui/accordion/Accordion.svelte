@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Accordion from "$lib/primitives/accordion";
-	type $$Props = Accordion.AccordionProps;
+	import * as AccordionPrimitive from "$lib/primitives/accordion";
+	type $$Props = AccordionPrimitive.AccordionProps;
 </script>
 
-<Accordion.Root {...$$restProps}>
+<AccordionPrimitive.Root {...$$restProps}>
 	<slot />
-</Accordion.Root>
+</AccordionPrimitive.Root>

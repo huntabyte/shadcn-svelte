@@ -8,7 +8,10 @@
 </script>
 
 <AccordionPrimitive.Content
-	class={cn("overflow-hidden text-sm", className)}
+	class={cn(
+		"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+		className
+	)}
 	transition={slide}
 	transitionConfig={{ duration: 200 }}
 	{...$$restProps}
