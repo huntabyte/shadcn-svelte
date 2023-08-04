@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
 	import { slide } from "svelte/transition";
-	import { ctx } from ".";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -11,8 +11,7 @@
 
 {#if $isSelected(props)}
 	<div
-		use:content
-		{...$content(props)}
+		use:melt={$content(props)}
 		class={cn("overflow-hidden text-sm", className)}
 		transition:slide={{ duration: 200 }}
 		{...$$restProps}

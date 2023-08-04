@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { ctx, type AccordionItemProps } from ".";
+	import { ctx, type AccordionItemProps, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -10,11 +10,6 @@
 	const { item, props } = ctx.setItem({ value, disabled });
 </script>
 
-<div
-	use:item
-	{...$item(props)}
-	class={cn("border-b", className)}
-	{...$$restProps}
->
+<div use:melt={$item(props)} class={cn("border-b", className)} {...$$restProps}>
 	<slot />
 </div>

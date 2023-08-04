@@ -7,7 +7,8 @@ import {
 	type Accordion as AccordionReturn,
 	type AccordionItemProps as ItemProps,
 	type CreateAccordionProps,
-	type AccordionHeadingProps as HeadingProps
+	type AccordionHeadingProps as HeadingProps,
+	melt
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
@@ -83,10 +84,13 @@ export const Accordion = Object.assign(Root, {
 	Trigger
 });
 
-export { Root as AccordionRoot };
-export { Content as AccordionContent };
-export { Item as AccordionItem };
-export { Trigger as AccordionTrigger };
+export {
+	Root as AccordionRoot,
+	Content as AccordionContent,
+	Item as AccordionItem,
+	Trigger as AccordionTrigger,
+	melt
+};
 
 export type AccordionElements = {
 	item: AccordionItemProps;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type CreateAccordionProps, ctx } from ".";
+	import { type CreateAccordionProps, ctx, melt } from ".";
 
 	export let multiple: CreateAccordionProps["multiple"] = false;
 	export let disabled: CreateAccordionProps["disabled"] = false;
@@ -16,6 +16,6 @@
 	});
 </script>
 
-<div use:root {...$root} {...$$restProps}>
+<div use:melt={$root} {...$$restProps}>
 	<slot />
 </div>

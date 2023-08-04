@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ChevronDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
-	import { type AccordionHeadingProps, ctx } from ".";
+	import { type AccordionHeadingProps, ctx, melt } from ".";
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
@@ -10,10 +10,9 @@
 	const { heading, trigger, props } = ctx.getTriggerAndHeading(level);
 </script>
 
-<div use:heading {...$heading(props.heading)} class="flex">
+<div use:melt={$heading(props.heading)} class="flex">
 	<button
-		use:trigger
-		{...$trigger(props.trigger)}
+		use:melt={$trigger(props.trigger)}
 		class={cn(
 			"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[aria-expanded=true]>svg]:rotate-180",
 			className
