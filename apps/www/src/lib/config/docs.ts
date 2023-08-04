@@ -198,13 +198,11 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/label",
 					items: []
 				},
-				// {
-				//   title: "Menubar",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Menubar",
+					href: "/docs/components/menubar",
+					items: []
+				},
 				// {
 				//   title: "Navigation Menu",
 				//   href: "#",
