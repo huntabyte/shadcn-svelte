@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { SeparatorRootProps } from "radix-svelte";
-	import { Separator } from "radix-svelte";
 	import { cn } from "$lib/utils";
+	import { ctx, melt, type SeparatorProps } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	export let orientation: SeparatorRootProps["orientation"] = "horizontal";
-	export let decorative: SeparatorRootProps["decorative"] = true;
+	export let orientation: SeparatorProps["orientation"] = "horizontal";
+	export let decorative: SeparatorProps["decorative"] = true;
+
+	const separator = ctx.get({ orientation, decorative });
 </script>
 
-<Separator.Root
-	{orientation}
-	{decorative}
+<div
+	use:melt={$separator}
 	class={cn(
 		"shrink-0 bg-border",
 		orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
