@@ -1,31 +1,29 @@
 <script lang="ts">
 	import { SidebarOpen } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import { Sheet, SheetContent, SheetTrigger } from "$components/ui/sheet";
+	import { Sheet } from "$components/ui/sheet";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";
 	import MobileLink from "./MobileLink.svelte";
+	import { writable } from "svelte/store";
 
-	export let open = false;
+	export let open = writable(false);
 </script>
 
-<Sheet bind:open>
-	<SheetTrigger>
+<Sheet {open}>
+	<Sheet.Trigger asChild let:trigger>
 		<Button
+			builders={[trigger]}
 			variant="ghost"
 			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
 		>
 			<SidebarOpen class="h-6 w-6" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
-	</SheetTrigger>
-	<SheetContent size="xl" position="left" class="pr-0">
-		<MobileLink
-			href="/"
-			class="flex items-center !text-foreground"
-			bind:open
-		>
+	</Sheet.Trigger>
+	<Sheet.Content size="xl" position="left" class="pr-0">
+		<MobileLink href="/" class="flex items-center !text-foreground" {open}>
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
@@ -56,5 +54,5 @@
 				{/each}
 			</div>
 		</div>
-	</SheetContent>
+	</Sheet.Content>
 </Sheet>

@@ -32,11 +32,6 @@ const NAME = "Dialog";
 function set(props: CreateDialogProps) {
 	const Dialog = createDialog({ ...props });
 	setContext(NAME, Dialog);
-	const {
-		elements: { trigger }
-	} = Dialog;
-
-	return trigger;
 }
 
 function get() {

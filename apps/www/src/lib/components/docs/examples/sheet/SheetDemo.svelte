@@ -2,29 +2,20 @@
 	import { Button } from "$components/ui/button";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
-	import {
-		Sheet,
-		SheetClose,
-		SheetContent,
-		SheetDescription,
-		SheetFooter,
-		SheetHeader,
-		SheetTitle,
-		SheetTrigger
-	} from "$components/ui/sheet";
+	import { Sheet } from "$components/ui/sheet";
 </script>
 
 <Sheet>
-	<SheetTrigger>
-		<Button variant="outline">Open</Button>
-	</SheetTrigger>
-	<SheetContent position="right" size="sm">
-		<SheetHeader>
-			<SheetTitle>Edit profile</SheetTitle>
-			<SheetDescription>
+	<Sheet.Trigger asChild let:trigger>
+		<Button builders={[trigger]} variant="outline">Open</Button>
+	</Sheet.Trigger>
+	<Sheet.Content side="right">
+		<Sheet.Header>
+			<Sheet.Title>Edit profile</Sheet.Title>
+			<Sheet.Description>
 				Make changes to your profile here. Click save when you're done.
-			</SheetDescription>
-		</SheetHeader>
+			</Sheet.Description>
+		</Sheet.Header>
 		<div class="grid gap-4 py-4">
 			<div class="grid grid-cols-4 items-center gap-4">
 				<Label for="name" class="text-right">Name</Label>
@@ -35,10 +26,10 @@
 				<Input id="username" value="@peduarte" class="col-span-3" />
 			</div>
 		</div>
-		<SheetFooter>
-			<SheetClose>
-				<Button type="submit">Save changes</Button>
-			</SheetClose>
-		</SheetFooter>
-	</SheetContent>
+		<Sheet.Footer>
+			<Sheet.Close asChild let:close>
+				<Button builders={[close]} type="submit">Save changes</Button>
+			</Sheet.Close>
+		</Sheet.Footer>
+	</Sheet.Content>
 </Sheet>

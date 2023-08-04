@@ -6,7 +6,7 @@
 	export { className as class };
 	export let sideOffset = 4;
 
-	const { open, content } = ctx.getContent(sideOffset);
+	const { content } = ctx.getContent(sideOffset);
 </script>
 
 <div

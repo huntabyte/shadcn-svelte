@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { Dialog as SheetPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
+	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	const description = ctx.getDescription();
 </script>
 
-<SheetPrimitive.Description
+<div
+	use:melt={$description}
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
 >
 	<slot />
-</SheetPrimitive.Description>
+</div>

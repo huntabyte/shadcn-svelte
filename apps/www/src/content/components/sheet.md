@@ -10,7 +10,7 @@ external:
 ---
 
 <script>
-  import { SheetDemo, SheetPositionDemo, SheetSizeDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { SheetDemo, SheetSideDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
 </script>
 
 <ComponentExample src="src/lib/components/docs/examples/sheet/SheetDemo.svelte">
@@ -71,28 +71,16 @@ npm install radix-svelte
 
 ## Examples
 
-### Position
+### Side
 
-Pass the `position` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+Pass the `side` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetPositionDemo.svelte">
+<ComponentExample src="src/lib/components/docs/examples/sheet/SheetSideDemo.svelte">
 
 <div slot="example">
-<SheetPositionDemo />
+<SheetSideDemo />
 </div>
 
 </ComponentExample>
 
 ---
-
-### Size
-
-Pass the `size` property to `<SheetContent />` if you need to adjust the size of the sheet. The values can be `sm`, `default`, `lg`, `xl`, `full` or `content`.
-
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetSizeDemo.svelte">
-
-<div slot="example">
-<SheetSizeDemo />
-</div>
-
-</ComponentExample>
