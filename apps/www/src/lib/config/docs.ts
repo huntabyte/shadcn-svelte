@@ -142,13 +142,11 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/collapsible",
 					items: []
 				},
-				// {
-				//   title: "Combobox",
-				//   href: "#",
-				//   label: "Soon",
-				//   items: [],
-				//   disabled: true
-				// },
+				{
+					title: "Combobox",
+					href: "/docs/components/combobox",
+					items: []
+				},
 				// {
 				//   title: "Command",
 				//   href: "#",
