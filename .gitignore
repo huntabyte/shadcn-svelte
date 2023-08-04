@@ -104,3 +104,4 @@ web_modules/
 packages/cli/dist
 dist/
 dist
+apps/www/src/lib/primitives/accordion/AccordionContent.svelte
