@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { CalendarDays } from "lucide-svelte";
 	import { Avatar } from "$components/ui/avatar";
-	import { HoverCard } from "$components/ui/hover-card";
+	import * as HoverCard from "$components/ui/hover-card";
 </script>
 
-<HoverCard>
+<HoverCard.Root>
 	<HoverCard.Trigger
 		href="https://github.com/sveltejs"
 		target="_blank"
@@ -31,4 +31,4 @@
 			</div>
 		</div>
 	</HoverCard.Content>
-</HoverCard>
+</HoverCard.Root>

@@ -1,22 +1,18 @@
 <script lang="ts">
+	import * as HoverCardPrimitive from "$primitives/hover-card";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = HoverCardPrimitive.ContentProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	const { content, open } = ctx.getContent();
 </script>
 
-{#if $open}
-	<div
-		use:melt={$content}
-		class={cn(
-			"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3",
-			className
-		)}
-		{...$$restProps}
-	>
-		<slot />
-	</div>
-{/if}
+<HoverCardPrimitive.Content
+	class={cn(
+		"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3",
+		className
+	)}
+	{...$$restProps}
+>
+	<slot />
+</HoverCardPrimitive.Content>
