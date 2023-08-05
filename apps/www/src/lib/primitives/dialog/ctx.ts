@@ -1,24 +1,21 @@
-import {
-	createDialog,
-	type Dialog as AlertDialogReturn
-} from "@melt-ui/svelte";
-import type { AlertDialogProps } from "./types";
+import { createDialog, type Dialog as DialogReturn } from "@melt-ui/svelte";
+import type { DialogProps } from "./types";
 import { getContext, setContext } from "svelte";
 
-const NAME = "AlertDialog";
+const NAME = "Dialog";
 
-function set(props: AlertDialogProps) {
-	const alertDialog = createDialog({ ...props, role: "alertdialog" });
-	setContext(NAME, alertDialog);
+function set(props: DialogProps) {
+	const dialog = createDialog(props);
+	setContext(NAME, dialog);
 }
 
 function get() {
-	return getContext<AlertDialogReturn>(NAME);
+	return getContext<DialogReturn>(NAME);
 }
 
 export const ctx = {
-	set: set,
-	get: get,
+	set,
+	get,
 	getClose: () => get().elements.close,
 	getContent: () => get().elements.content,
 	getOverlay: () => get().elements.overlay,

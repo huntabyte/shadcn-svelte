@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import type { AccordionProps } from "../types";
+	import type { Props } from "../types";
 	import { ctx } from "../ctx";
 	import { melt } from "@melt-ui/svelte";
+	import type { HTMLDivAttributes } from "$primitives/internal";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & AccordionProps;
+	type $$Props = HTMLDivAttributes & Props;
 
-	export let multiple: AccordionProps["multiple"] = false;
-	export let disabled: AccordionProps["disabled"] = false;
-	export let defaultValue: AccordionProps["defaultValue"] = undefined;
-	export let value: AccordionProps["value"] = undefined;
-	export let onValueChange: AccordionProps["onValueChange"] = undefined;
+	export let multiple: Props["multiple"] = false;
+	export let disabled: Props["disabled"] = false;
+	export let defaultValue: Props["defaultValue"] = undefined;
+	export let value: Props["value"] = undefined;
+	export let onValueChange: Props["onValueChange"] = undefined;
 
 	const root = ctx.set({
 		value,

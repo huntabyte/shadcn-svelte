@@ -1,7 +1,7 @@
 <script lang="ts">
+	import * as Sheet from "$components/ui/sheet";
 	import { SidebarOpen } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import { Sheet } from "$components/ui/sheet";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";
@@ -11,7 +11,7 @@
 	export let open = writable(false);
 </script>
 
-<Sheet {open}>
+<Sheet.Root {open}>
 	<Sheet.Trigger asChild let:trigger>
 		<Button
 			builders={[trigger]}
@@ -22,7 +22,7 @@
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
 	</Sheet.Trigger>
-	<Sheet.Content size="xl" position="left" class="pr-0">
+	<Sheet.Content side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center !text-foreground" {open}>
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
@@ -55,4 +55,4 @@
 			</div>
 		</div>
 	</Sheet.Content>
-</Sheet>
+</Sheet.Root>

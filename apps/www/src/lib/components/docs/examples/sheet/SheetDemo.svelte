@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Sheet from "$components/ui/sheet";
 	import { Button } from "$components/ui/button";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
-	import { Sheet } from "$components/ui/sheet";
 </script>
 
-<Sheet>
+<Sheet.Root>
 	<Sheet.Trigger asChild let:trigger>
 		<Button builders={[trigger]} variant="outline">Open</Button>
 	</Sheet.Trigger>
@@ -32,4 +32,4 @@
 			</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>
-</Sheet>
+</Sheet.Root>

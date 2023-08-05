@@ -12,8 +12,8 @@ import type {
 import type { HTMLButtonAttributes } from "svelte/elements";
 
 type Props = CreateAccordionProps & HTMLDivAttributes;
-type ItemProps = ObjectVariation<_ItemProps>;
-type HeaderProps = ObjectVariation<_HeadingProps>;
+type ItemProps = ObjectVariation<_ItemProps> & HTMLDivAttributes;
+type HeaderProps = ObjectVariation<_HeadingProps> & HTMLDivAttributes;
 type TriggerProps = ItemProps & HTMLButtonAttributes;
 
 type ContentProps<T extends Transition = Transition> = HTMLDivAttributes & {

@@ -1,21 +1,21 @@
 import Root from "./components/Accordion.svelte";
-import Content from "./components/AccordionContent.svelte";
 import Item from "./components/AccordionItem.svelte";
-import Trigger from "./components/AccordionTrigger.svelte";
 import Header from "./components/AccordionHeader.svelte";
+import Trigger from "./components/AccordionTrigger.svelte";
+import Content from "./components/AccordionContent.svelte";
 
 export {
 	Root,
-	Content,
 	Item,
-	Trigger,
 	Header,
+	Trigger,
+	Content,
 	//
 	Root as Accordion,
-	Content as AccordionContent,
 	Item as AccordionItem,
+	Header as AccordionHeader,
 	Trigger as AccordionTrigger,
-	Header as AccordionHeader
+	Content as AccordionContent
 };
 
 export * from "./types";

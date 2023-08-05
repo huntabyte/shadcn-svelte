@@ -1,16 +1,12 @@
 <script lang="ts">
+	import * as SheetPrimitive from "$primitives/dialog";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = SheetPrimitive.PortalProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	const { portal, open } = ctx.getPortal();
 </script>
 
-<div use:melt={$portal} class={cn(className)} {...$$restProps}>
-	{#if $open}
-		<div>
-			<slot />
-		</div>
-	{/if}
-</div>
+<SheetPrimitive.Portal class={cn(className)} {...$$restProps}>
+	<slot />
+</SheetPrimitive.Portal>

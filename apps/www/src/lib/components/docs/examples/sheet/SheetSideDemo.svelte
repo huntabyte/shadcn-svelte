@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Button from "$components/ui/button/Button.svelte";
-	import Input from "$components/ui/input/Input.svelte";
-	import Label from "$components/ui/label/Label.svelte";
-	import { Sheet } from "$components/ui/sheet";
+	import * as Sheet from "$components/ui/sheet";
+	import { Button } from "$components/ui/button";
+	import { Input } from "$components/ui/input";
+	import { Label } from "$components/ui/label";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 
@@ -11,7 +11,7 @@
 
 <div class="grid grid-cols-2 gap-2">
 	{#each SHEET_SIDES as side, _ (side)}
-		<Sheet>
+		<Sheet.Root>
 			<Sheet.Trigger asChild let:trigger>
 				<Button builders={[trigger]} variant="outline">{side}</Button>
 			</Sheet.Trigger>
@@ -51,6 +51,6 @@
 					</Sheet.Close>
 				</Sheet.Footer>
 			</Sheet.Content>
-		</Sheet>
+		</Sheet.Root>
 	{/each}
 </div>

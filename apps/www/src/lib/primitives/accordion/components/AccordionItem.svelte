@@ -1,12 +1,11 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
 	import { ctx } from "../ctx";
-	import type { AccordionItemProps } from "../types";
+	import type { ItemProps } from "../types";
 	import { melt } from "@melt-ui/svelte";
-	type $$Props = AccordionItemProps & HTMLAttributes<HTMLDivElement>;
+	type $$Props = ItemProps;
 
-	export let value: AccordionItemProps["value"];
-	export let disabled: AccordionItemProps["disabled"] = undefined;
+	export let value: ItemProps["value"];
+	export let disabled: ItemProps["disabled"] = undefined;
 
 	const { item, props } = ctx.setItem({ value, disabled });
 </script>

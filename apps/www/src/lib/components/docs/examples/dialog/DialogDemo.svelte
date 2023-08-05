@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Button, buttonVariants } from "$components/ui/button";
-	import { Dialog } from "$components/ui/dialog";
+	import * as Dialog from "$components/ui/dialog";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 </script>
 
-<Dialog>
+<Dialog.Root>
 	<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>
 		Edit Profile
 	</Dialog.Trigger>
@@ -30,4 +30,4 @@
 			<Button type="submit">Save changes</Button>
 		</Dialog.Footer>
 	</Dialog.Content>
-</Dialog>
+</Dialog.Root>

@@ -1,74 +1,34 @@
-import {
-	createDialog,
-	type CreateDialogProps,
-	type Dialog as DialogReturn
-} from "@melt-ui/svelte";
-import { getContext, setContext } from "svelte";
+import * as DialogPrimitive from "$primitives/dialog";
 
-import Root from "./Dialog.svelte";
-import Content from "./DialogContent.svelte";
-import Description from "./DialogDescription.svelte";
+const Root = DialogPrimitive.Root;
+const Trigger = DialogPrimitive.Trigger;
+
+import Title from "./DialogTitle.svelte";
+import Portal from "./DialogPortal.svelte";
 import Footer from "./DialogFooter.svelte";
 import Header from "./DialogHeader.svelte";
 import Overlay from "./DialogOverlay.svelte";
-import Portal from "./DialogPortal.svelte";
-import Title from "./DialogTitle.svelte";
-import Trigger from "./DialogTrigger.svelte";
+import Content from "./DialogContent.svelte";
+import Description from "./DialogDescription.svelte";
 
-export const ctx = {
-	set,
-	get,
-	getClose: () => get().elements.close,
-	getContent: () => get().elements.content,
-	getOverlay: () => get().elements.overlay,
-	getPortal,
-	getTitle: () => get().elements.title,
-	getDescription: () => get().elements.description,
-	getTrigger: () => get().elements.trigger
-};
-
-const NAME = "Dialog";
-
-function set(props: CreateDialogProps) {
-	const Dialog = createDialog({ ...props });
-	setContext(NAME, Dialog);
-}
-
-function get() {
-	return getContext<DialogReturn>(NAME);
-}
-
-function getPortal() {
-	const {
-		elements: { portalled },
-		states: { open }
-	} = get();
-	return { portal: portalled, open };
-}
 export {
-	melt,
-	type CreateDialogProps as CreateDialogProps
-} from "@melt-ui/svelte";
-
-export const Dialog = Object.assign(Root, {
-	Content,
-	Description,
+	Root,
+	Title,
+	Portal,
 	Footer,
 	Header,
+	Trigger,
 	Overlay,
-	Portal,
-	Title,
-	Trigger
-});
-
-export {
-	Root as DialogRoot,
-	Content as DialogContent,
-	Description as DialogDescription,
+	Content,
+	Description,
+	//
+	Root as Dialog,
+	Title as DialogTitle,
+	Portal as DialogPortal,
 	Footer as DialogFooter,
 	Header as DialogHeader,
+	Trigger as DialogTrigger,
 	Overlay as DialogOverlay,
-	Portal as DialogPortal,
-	Title as DialogTitle,
-	Trigger as DialogTrigger
+	Content as DialogContent,
+	Description as DialogDescription
 };

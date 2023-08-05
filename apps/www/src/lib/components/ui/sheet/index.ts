@@ -1,80 +1,40 @@
+import * as SheetPrimitive from "$primitives/dialog";
 import { cva } from "class-variance-authority";
-import {
-	createDialog,
-	type CreateDialogProps,
-	type Dialog as DialogReturn
-} from "@melt-ui/svelte";
-import { getContext, setContext } from "svelte";
 
-import Root from "./Sheet.svelte";
-import Content from "./SheetContent.svelte";
-import Close from "./SheetClose.svelte";
-import Description from "./SheetDescription.svelte";
-import Footer from "./SheetFooter.svelte";
-import Header from "./SheetHeader.svelte";
-import Overlay from "./SheetOverlay.svelte";
 import Portal from "./SheetPortal.svelte";
+import Overlay from "./SheetOverlay.svelte";
+import Content from "./SheetContent.svelte";
+import Header from "./SheetHeader.svelte";
+import Footer from "./SheetFooter.svelte";
 import Title from "./SheetTitle.svelte";
-import Trigger from "./SheetTrigger.svelte";
+import Description from "./SheetDescription.svelte";
 
-export const ctx = {
-	set,
-	get,
-	getClose: () => get().elements.close,
-	getContent: () => get().elements.content,
-	getOverlay: () => get().elements.overlay,
-	getPortal,
-	getTitle: () => get().elements.title,
-	getDescription: () => get().elements.description,
-	getTrigger: () => get().elements.trigger
-};
+const Root = SheetPrimitive.Root;
+const Close = SheetPrimitive.Close;
+const Trigger = SheetPrimitive.Trigger;
 
-const NAME = "Dialog";
-
-function set(props: CreateDialogProps) {
-	const Dialog = createDialog({ ...props });
-	setContext(NAME, Dialog);
-}
-
-function get() {
-	return getContext<DialogReturn>(NAME);
-}
-
-function getPortal() {
-	const {
-		elements: { portalled },
-		states: { open }
-	} = get();
-	return { portal: portalled, open };
-}
 export {
-	melt,
-	type CreateDialogProps as CreateDialogProps
-} from "@melt-ui/svelte";
-
-export const Sheet = Object.assign(Root, {
-	Content,
+	Root,
 	Close,
-	Description,
-	Footer,
-	Header,
-	Overlay,
+	Trigger,
 	Portal,
+	Overlay,
+	Content,
+	Header,
+	Footer,
 	Title,
-	Trigger
-});
-
-export {
-	Root as SheetRoot,
-	Content as SheetContent,
+	Description,
+	//
+	Root as Sheet,
 	Close as SheetClose,
-	Description as SheetDescription,
-	Footer as SheetFooter,
-	Header as SheetHeader,
-	Overlay as SheetOverlay,
+	Trigger as SheetTrigger,
 	Portal as SheetPortal,
+	Overlay as SheetOverlay,
+	Content as SheetContent,
+	Header as SheetHeader,
+	Footer as SheetFooter,
 	Title as SheetTitle,
-	Trigger as SheetTrigger
+	Description as SheetDescription
 };
 
 export const sheetVariants = cva(

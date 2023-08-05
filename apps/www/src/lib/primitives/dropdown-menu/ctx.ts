@@ -12,11 +12,11 @@ import {
 import { getContext, setContext } from "svelte";
 import type { Readable } from "svelte/store";
 
-const NAME = "ContextMenu";
-const SUB_NAME = "ContextSubmenu";
-const RADIO_GROUP_NAME = "ContextRadioGroup";
-const CHECKBOX_ITEM_NAME = "ContextCheckboxItem";
-const RADIO_ITEM_NAME = "ContextRadioItem";
+const NAME = "DropdownMenu";
+const SUB_NAME = "DropdownSubmenu";
+const RADIO_GROUP_NAME = "DropdownRadioGroup";
+const CHECKBOX_ITEM_NAME = "DropdownCheckboxItem";
+const RADIO_ITEM_NAME = "DropdownRadioItem";
 
 export const ctx = {
 	get,

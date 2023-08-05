@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
 	import { ctx } from "../ctx";
-	import type { AlertDialogCancelProps } from "../types";
+	import type { CancelProps } from "../types";
 
-	type $$Props = AlertDialogCancelProps;
+	type $$Props = CancelProps;
 	export let asChild = false;
 	const cancel = ctx.getClose();
 </script>

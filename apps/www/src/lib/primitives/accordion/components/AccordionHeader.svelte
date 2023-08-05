@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { AccordionHeaderProps } from "../types";
+	import type { HeaderProps } from "../types";
 	import { ctx } from "../ctx";
 	import { melt } from "@melt-ui/svelte";
+	import type { HTMLDivAttributes } from "$primitives/internal";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
-		level?: AccordionHeaderProps["level"];
+	type $$Props = HTMLDivAttributes & {
+		level?: HeaderProps["level"];
 	};
 
-	export let level: AccordionHeaderProps["level"] = 3;
+	export let level: HeaderProps["level"] = 3;
 
 	const header = ctx.getHeader();
 </script>

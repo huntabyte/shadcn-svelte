@@ -1,16 +1,15 @@
 <script lang="ts">
+	import * as SheetPrimitive from "$primitives/dialog";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = SheetPrimitive.DescriptionProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	const description = ctx.getDescription();
 </script>
 
-<div
-	use:melt={$description}
+<SheetPrimitive.Description
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
 >
 	<slot />
-</div>
+</SheetPrimitive.Description>
