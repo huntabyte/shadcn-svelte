@@ -13,7 +13,6 @@ type ContentProps = HTMLDivAttributes;
 type GroupProps = HTMLDivAttributes;
 type ItemProps = HTMLDivAttributes;
 type CheckboxItemIndicatorProps = HTMLDivAttributes;
-type RadioItemIndicatorProps = HTMLDivAttributes;
 type LabelProps = HTMLDivAttributes;
 type RadioGroupProps = CreateContextMenuRadioGroupProps & HTMLDivAttributes;
 type RadioItemProps = ContextMenuRadioItemProps & HTMLDivAttributes;
@@ -32,7 +31,6 @@ export type {
 	GroupProps,
 	ItemProps,
 	CheckboxItemIndicatorProps,
-	RadioItemIndicatorProps,
 	LabelProps,
 	RadioGroupProps,
 	RadioItemProps,

@@ -9,6 +9,6 @@
 	const radioItem = ctx.getRadioItem(value);
 </script>
 
-<div use:melt={$radioItem({ value, disabled })}>
+<div use:melt={$radioItem({ value, disabled })} {...$$restProps}>
 	<slot />
 </div>

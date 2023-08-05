@@ -8,7 +8,7 @@
 </script>
 
 {#if $subOpen}
-	<div use:melt={$subContent}>
+	<div use:melt={$subContent} {...$$restProps}>
 		<slot />
 	</div>
 {/if}

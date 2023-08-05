@@ -1,46 +1,49 @@
 import * as ContextMenuPrimitive from "$primitives/context-menu";
 
-import CheckboxItem from "./ContextMenuCheckboxItem.svelte";
-import Content from "./ContextMenuContent.svelte";
-import Group from "./ContextMenuGroup.svelte";
 import Item from "./ContextMenuItem.svelte";
-import RadioGroup from "./ContextMenuRadioGroup.svelte";
+import Label from "./ContextMenuLabel.svelte";
+import Group from "./ContextMenuGroup.svelte";
+import Content from "./ContextMenuContent.svelte";
+import Shortcut from "./ContextMenuShortcut.svelte";
 import RadioItem from "./ContextMenuRadioItem.svelte";
 import Separator from "./ContextMenuSeparator.svelte";
-import Shortcut from "./ContextMenuShortcut.svelte";
+import RadioGroup from "./ContextMenuRadioGroup.svelte";
 import SubContent from "./ContextMenuSubContent.svelte";
 import SubTrigger from "./ContextMenuSubTrigger.svelte";
+import CheckboxItem from "./ContextMenuCheckboxItem.svelte";
 
-const Root = ContextMenuPrimitive.Root;
 const Sub = ContextMenuPrimitive.Sub;
+const Root = ContextMenuPrimitive.Root;
 const Trigger = ContextMenuPrimitive.Trigger;
 
 export {
-	Root,
 	Sub,
-	Trigger,
-	CheckboxItem,
-	Content,
-	Group,
+	Root,
 	Item,
-	RadioGroup,
-	RadioItem,
-	Separator,
+	Label,
+	Group,
+	Trigger,
+	Content,
 	Shortcut,
+	Separator,
+	RadioItem,
 	SubContent,
 	SubTrigger,
+	RadioGroup,
+	CheckboxItem,
 	//
 	Root as ContextMenu,
 	Sub as ContextMenuSub,
-	Trigger as ContextMenuTrigger,
-	CheckboxItem as ContextMenuCheckboxItem,
-	Content as ContextMenuContent,
-	Group as ContextMenuGroup,
 	Item as ContextMenuItem,
-	RadioGroup as ContextMenuRadioGroup,
+	Label as ContextMenuLabel,
+	Group as ContextMenuGroup,
+	Content as ContextMenuContent,
+	Trigger as ContextMenuTrigger,
+	Shortcut as ContextMenuShortcut,
 	RadioItem as ContextMenuRadioItem,
 	Separator as ContextMenuSeparator,
-	Shortcut as ContextMenuShortcut,
+	RadioGroup as ContextMenuRadioGroup,
 	SubContent as ContextMenuSubContent,
-	SubTrigger as ContextMenuSubTrigger
+	SubTrigger as ContextMenuSubTrigger,
+	CheckboxItem as ContextMenuCheckboxItem
 };
