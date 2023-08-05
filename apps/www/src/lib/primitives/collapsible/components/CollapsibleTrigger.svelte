@@ -5,7 +5,7 @@
 
 	type $$Props = TriggerProps;
 	export let asChild: boolean = false;
-	const trigger = ctx.getTrigger();
+	const trigger = ctx.get().elements.trigger;
 </script>
 
 {#if !asChild}

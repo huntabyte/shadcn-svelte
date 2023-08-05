@@ -4,17 +4,28 @@
 	import type { Props } from "../types";
 
 	type $$Props = Props;
-	export let disabled: Props["disabled"] = undefined;
-	export let defaultOpen: Props["defaultOpen"] = undefined;
-	export let open: Props["open"] = undefined;
-	export let onOpenChange: Props["onOpenChange"] = undefined;
+	export let forceVisible: $$Props["forceVisible"] = false;
+	export let disabled: $$Props["disabled"] = undefined;
+	export let open: $$Props["open"] = undefined;
 
-	const root = ctx.set({
+	const {
+		elements: { root },
+		states: { open: localOpen },
+		updateOption
+	} = ctx.set({
 		disabled,
-		defaultOpen,
-		open,
-		onOpenChange
+		forceVisible,
+		defaultOpen: open,
+		onOpenChange: ({ next }) => {
+			open = next;
+			return next;
+		}
 	});
+
+	$: open !== undefined && localOpen.set(open);
+
+	$: updateOption("disabled", disabled);
+	$: updateOption("forceVisible", forceVisible);
 </script>
 
 <div use:melt={$root} {...$$restProps}>

@@ -1,36 +1,27 @@
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 import {
 	createCollapsible,
 	type Collapsible as CollapsibleReturn,
-	type CreateCollapsibleProps as CollapsibleProps
+	type CreateCollapsibleProps
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
-const NAME = "collapsible";
+const NAME = "Collapsible";
 
 export const ctx = {
 	get,
-	set,
-	getContent,
-	getTrigger: () => get().elements.trigger
+	set
 };
+
+function set(props: CreateCollapsibleProps) {
+	const collapsible = createCollapsible(removeUndefined(props));
+	setContext(NAME, collapsible);
+	return {
+		...collapsible,
+		updateOption: getOptionUpdater(collapsible.options)
+	};
+}
 
 function get() {
 	return getContext<CollapsibleReturn>(NAME);
-}
-
-function set(props: CollapsibleProps) {
-	const collapsible = createCollapsible({ ...props });
-	setContext(NAME, collapsible);
-	const {
-		elements: { root }
-	} = collapsible;
-	return root;
-}
-
-function getContent() {
-	const {
-		elements: { content },
-		states: { open }
-	} = get();
-	return { content, open };
 }

@@ -3,6 +3,7 @@
 	import { Check, Minus } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
+	type $$Props = CheckboxPrimitive.Props;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

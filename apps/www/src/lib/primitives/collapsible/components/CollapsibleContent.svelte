@@ -10,7 +10,10 @@
 	export let transitionConfig: ContentProps<T>["transitionConfig"] =
 		undefined;
 
-	const { content, open } = ctx.getContent();
+	const {
+		elements: { content },
+		states: { open }
+	} = ctx.get();
 </script>
 
 {#if transition}
