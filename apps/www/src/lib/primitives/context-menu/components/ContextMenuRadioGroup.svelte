@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { writable } from "svelte/store";
-	import { ctx } from "./ctx";
-	import type { RadioGroupProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { RadioGroupProps } from "../types";
 	import { melt } from "@melt-ui/svelte";
 
 	type $$Props = RadioGroupProps;

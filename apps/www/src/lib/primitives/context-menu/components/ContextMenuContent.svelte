@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { ContentProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { ContentProps } from "../types";
 
 	type $$Props = ContentProps;
 	const { open, content } = ctx.getContent();

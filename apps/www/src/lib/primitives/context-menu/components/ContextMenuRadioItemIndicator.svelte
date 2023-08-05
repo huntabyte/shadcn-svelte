@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ctx } from "./ctx";
+	import { ctx } from "../ctx";
 	const { isChecked, value } = ctx.getRadioIndicator();
 </script>
 

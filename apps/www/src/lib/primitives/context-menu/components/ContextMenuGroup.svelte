@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GroupProps } from "./types";
+	import type { GroupProps } from "../types";
 	type $$Props = GroupProps;
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LabelProps } from "./types";
+	import type { LabelProps } from "../types";
 	type $$Props = LabelProps;
 </script>
 

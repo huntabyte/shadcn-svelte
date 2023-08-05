@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { CheckboxItemProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { CheckboxItemProps } from "../types";
 
 	export let checked: CheckboxItemProps["checked"] = undefined;
 	export let disabled: CheckboxItemProps["disabled"] = undefined;

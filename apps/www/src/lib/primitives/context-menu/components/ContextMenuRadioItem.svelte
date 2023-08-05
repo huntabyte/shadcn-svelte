@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { RadioItemProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { RadioItemProps } from "../types";
 
 	type $$Props = RadioItemProps;
 	export let value: RadioItemProps["value"];

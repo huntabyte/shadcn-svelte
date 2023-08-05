@@ -1,18 +1,18 @@
-import Root from "./ContextMenu.svelte";
-import Sub from "./ContextMenuSub.svelte";
-import Item from "./ContextMenuItem.svelte";
-import Group from "./ContextMenuGroup.svelte";
-import Label from "./ContextMenuLabel.svelte";
-import Content from "./ContextMenuContent.svelte";
-import Trigger from "./ContextMenuTrigger.svelte";
-import RadioItem from "./ContextMenuRadioItem.svelte";
-import Separator from "./ContextMenuSeparator.svelte";
-import RadioGroup from "./ContextMenuRadioGroup.svelte";
-import SubContent from "./ContextMenuSubContent.svelte";
-import SubTrigger from "./ContextMenuSubTrigger.svelte";
-import CheckboxItem from "./ContextMenuCheckboxItem.svelte";
-import RadioItemIndicator from "./ContextMenuRadioItemIndicator.svelte";
-import CheckboxItemIndicator from "./ContextMenuCheckboxIndicator.svelte";
+import Root from "./components/ContextMenu.svelte";
+import Sub from "./components/ContextMenuSub.svelte";
+import Item from "./components/ContextMenuItem.svelte";
+import Group from "./components/ContextMenuGroup.svelte";
+import Label from "./components/ContextMenuLabel.svelte";
+import Content from "./components/ContextMenuContent.svelte";
+import Trigger from "./components/ContextMenuTrigger.svelte";
+import RadioItem from "./components/ContextMenuRadioItem.svelte";
+import Separator from "./components/ContextMenuSeparator.svelte";
+import RadioGroup from "./components/ContextMenuRadioGroup.svelte";
+import SubContent from "./components/ContextMenuSubContent.svelte";
+import SubTrigger from "./components/ContextMenuSubTrigger.svelte";
+import CheckboxItem from "./components/ContextMenuCheckboxItem.svelte";
+import RadioItemIndicator from "./components/ContextMenuRadioItemIndicator.svelte";
+import CheckboxItemIndicator from "./components/ContextMenuCheckboxIndicator.svelte";
 
 export {
 	Sub,
