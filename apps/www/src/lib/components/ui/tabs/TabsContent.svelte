@@ -1,20 +1,33 @@
+<script lang="ts" context="module">
+	export type ContentProps = {
+		class?: string;
+		value: Parameters<StoreValue<TabsElements["content"]>>[0];
+	};
+</script>
+
 <script lang="ts">
-	import type { TabsContentProps } from "radix-svelte";
-	import { Tabs as TabsPrimitive } from "radix-svelte";
 	import { cn } from "$lib/utils";
+	import { melt, type StoreValue, type TabsElements } from "@melt-ui/svelte";
+	import { ctx } from ".";
+
+	type $$Props = ContentProps;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: TabsContentProps["value"];
+	export let value: $$Props["value"];
+
+	const {
+		elements: { content }
+	} = ctx.get();
 </script>
 
-<TabsPrimitive.Content
+<div
 	class={cn(
 		"mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 		className
 	)}
-	{value}
+	use:melt={$content(value)}
 	{...$$restProps}
 >
 	<slot />
-</TabsPrimitive.Content>
+</div>
