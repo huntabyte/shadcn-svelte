@@ -34,7 +34,6 @@
 			if (value !== undefined) result[key] = value;
 		}
 
-		console.log(result);
 		return result;
 	}
 
