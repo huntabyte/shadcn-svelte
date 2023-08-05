@@ -1,11 +1,18 @@
 import type { HTMLDivAttributes } from "$primitives/internal";
 import type { CreateCheckboxProps } from "@melt-ui/svelte";
+import type { OmitChecked } from "$primitives/internal/types";
 import type {
 	HTMLButtonAttributes,
 	HTMLInputAttributes
 } from "svelte/elements";
 
-type Props = CreateCheckboxProps & HTMLButtonAttributes;
+type Props = Expand<
+	OmitChecked<CreateCheckboxProps> & {
+		checked?: CreateCheckboxProps["defaultChecked"] & {};
+	}
+> &
+	HTMLButtonAttributes;
+
 type IndicatorProps = HTMLDivAttributes;
 type InputProps = HTMLInputAttributes;
 

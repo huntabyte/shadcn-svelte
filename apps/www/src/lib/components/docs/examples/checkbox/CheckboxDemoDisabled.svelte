@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Checkbox } from "$components/ui/checkbox";
+	import { Label } from "$components/ui/label";
 </script>
 
 <div class="flex items-center space-x-2">
-	<Checkbox id="terms" disabled={true} />
-	<label
+	<Checkbox id="terms" disabled />
+	<Label
 		for="terms2"
 		class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 	>
 		Accept terms and conditions
-	</label>
+	</Label>
 </div>
