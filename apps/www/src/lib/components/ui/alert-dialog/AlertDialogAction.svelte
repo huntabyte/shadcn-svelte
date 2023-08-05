@@ -1,20 +1,15 @@
 <script lang="ts">
+	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	const action = ctx.getClose();
 </script>
 
-<button
-	use:melt={$action}
-	on:m-click
-	on:m-keydown
+<AlertDialogPrimitive.Action
 	class={cn(buttonVariants(), className)}
 	{...$$restProps}
 >
 	<slot />
-</button>
+</AlertDialogPrimitive.Action>
