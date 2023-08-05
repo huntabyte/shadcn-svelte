@@ -1,19 +1,9 @@
 <script lang="ts">
+	import * as CollapsiblePrimitive from "$primitives/collapsible";
 	import { slide } from "svelte/transition";
-	import { ctx, melt } from ".";
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	const { content, open } = ctx.getContent();
+	type $$Props = CollapsiblePrimitive.ContentProps;
 </script>
 
-{#if $open}
-	<div
-		use:melt={$content}
-		class={className}
-		{...$$restProps}
-		transition:slide
-	>
-		<slot />
-	</div>
-{/if}
+<CollapsiblePrimitive.Content transition={slide} {...$$restProps}>
+	<slot />
+</CollapsiblePrimitive.Content>

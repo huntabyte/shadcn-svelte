@@ -1,10 +1,10 @@
 <script lang="ts">
+	import * as Collapsible from "$components/ui/collapsible";
 	import { ChevronsUpDown } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import { Collapsible } from "$components/ui/collapsible";
 </script>
 
-<Collapsible class="w-[350px] space-y-2">
+<Collapsible.Root class="w-[350px] space-y-2">
 	<div class="flex items-center justify-between space-x-4 px-4">
 		<h4 class="text-sm font-semibold">
 			@thomasglopes starred 3 repositories
@@ -32,4 +32,4 @@
 			sveltejs/kit
 		</div>
 	</Collapsible.Content>
-</Collapsible>
+</Collapsible.Root>

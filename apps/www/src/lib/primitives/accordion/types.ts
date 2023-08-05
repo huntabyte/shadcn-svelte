@@ -1,22 +1,36 @@
-import type { ObjectVariation } from "$primitives/internal/types";
+import type {
+	HTMLDivAttributes,
+	ObjectVariation,
+	Transition,
+	TransitionParams
+} from "$primitives/internal/types";
 import type {
 	CreateAccordionProps,
-	AccordionItemProps as ItemProps,
-	AccordionHeadingProps as HeadingProps,
-	Accordion as AccordionReturn
+	AccordionItemProps as _ItemProps,
+	AccordionHeadingProps as _HeadingProps
 } from "@melt-ui/svelte";
-import type { HTMLAttributes, HTMLButtonAttributes } from "svelte/elements";
+import type { HTMLButtonAttributes } from "svelte/elements";
 
-type AccordionItemProps = ObjectVariation<ItemProps>;
-type AccordionHeaderProps = ObjectVariation<HeadingProps>;
-type AccordionTriggerProps = AccordionItemProps & HTMLButtonAttributes;
+type Props = CreateAccordionProps & HTMLDivAttributes;
+type ItemProps = ObjectVariation<_ItemProps>;
+type HeaderProps = ObjectVariation<_HeadingProps>;
+type TriggerProps = ItemProps & HTMLButtonAttributes;
 
-type AccordionProps = CreateAccordionProps & HTMLAttributes<HTMLDivElement>;
+type ContentProps<T extends Transition = Transition> = HTMLDivAttributes & {
+	transition?: T;
+	transitionConfig?: TransitionParams<T>;
+};
 
 export type {
-	AccordionProps,
-	AccordionItemProps,
-	AccordionHeaderProps,
-	AccordionReturn,
-	AccordionTriggerProps
+	Props,
+	ItemProps,
+	HeaderProps,
+	TriggerProps,
+	ContentProps,
+	//
+	Props as AccordionProps,
+	ItemProps as AccordionItemProps,
+	HeaderProps as AccordionHeaderProps,
+	TriggerProps as AccordionTriggerProps,
+	ContentProps as AccordionContentProps
 };

@@ -1,10 +1,9 @@
-import { createAccordion } from "@melt-ui/svelte";
+import {
+	createAccordion,
+	type Accordion as AccordionReturn
+} from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
-import type {
-	AccordionItemProps,
-	AccordionProps,
-	AccordionReturn
-} from "./types";
+import type { AccordionItemProps, AccordionProps } from "./types";
 
 const NAME = "Accordion";
 const ITEM_NAME = "AccordionItem";

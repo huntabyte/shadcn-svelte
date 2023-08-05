@@ -1,15 +1,13 @@
-import * as CollapsiblePrimitive from "$primitives/collapsible";
+import Root from "./Collapsible.svelte";
 import Content from "./CollapsibleContent.svelte";
-
-const Root = CollapsiblePrimitive.Root;
-const Trigger = CollapsiblePrimitive.Trigger;
+import Trigger from "./CollapsibleTrigger.svelte";
 
 export {
 	Root,
 	Content,
 	Trigger,
-	//
 	Root as Collapsible,
 	Content as CollapsibleContent,
 	Trigger as CollapsibleTrigger
 };
+export * from "./types";
