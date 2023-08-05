@@ -4,21 +4,40 @@ import type {
 } from "$primitives/internal";
 import type { HTMLButtonAttributes } from "svelte/elements";
 
-export type {
-	CreateDialogProps as AlertDialogProps,
-	Dialog as AlertDialogReturn
-} from "@melt-ui/svelte";
+import type { CreateDialogProps as Props } from "@melt-ui/svelte";
 
-export type AlertDialogTriggerProps = HTMLButtonAttributes & {
+type TriggerProps = HTMLButtonAttributes & {
 	asChild?: boolean;
 };
-export type AlertDialogActionProps = AlertDialogTriggerProps;
+type ActionProps = TriggerProps;
 
-export type AlertDialogCancelProps = AlertDialogTriggerProps;
-export type AlertDialogContentProps = HTMLDivAttributes;
-export type AlertDialogDescriptionProps = HTMLDivAttributes;
-export type AlertDialogOverlayProps = HTMLDivAttributes;
-export type AlertDialogPortalProps = HTMLDivAttributes;
-export type AlertDialogTitleProps = HTMLHeadingAttributes & {
+type CancelProps = TriggerProps;
+type ContentProps = HTMLDivAttributes;
+type DescriptionProps = HTMLDivAttributes;
+type OverlayProps = HTMLDivAttributes;
+type PortalProps = HTMLDivAttributes;
+type TitleProps = HTMLHeadingAttributes & {
 	level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+};
+
+export type {
+	Props,
+	TriggerProps,
+	ActionProps,
+	CancelProps,
+	ContentProps,
+	DescriptionProps,
+	OverlayProps,
+	PortalProps,
+	TitleProps,
+	//
+	Props as AlertDialogProps,
+	TriggerProps as AlertDialogTriggerProps,
+	ActionProps as AlertDialogActionProps,
+	CancelProps as AlertDialogCancelProps,
+	ContentProps as AlertDialogContentProps,
+	DescriptionProps as AlertDialogDescriptionProps,
+	OverlayProps as AlertDialogOverlayProps,
+	PortalProps as AlertDialogPortalProps,
+	TitleProps as AlertDialogTitleProps
 };

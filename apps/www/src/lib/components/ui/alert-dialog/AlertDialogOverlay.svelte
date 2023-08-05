@@ -1,14 +1,13 @@
 <script lang="ts">
+	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = AlertDialogPrimitive.OverlayProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	const overlay = ctx.getOverlay();
 </script>
 
-<div
-	use:melt={$overlay}
+<AlertDialogPrimitive.Overlay
 	class={cn(
 		"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in",
 		className

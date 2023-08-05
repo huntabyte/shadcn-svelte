@@ -4,7 +4,6 @@
 	import type { AlertDialogPortalProps } from "./types";
 
 	type $$Props = AlertDialogPortalProps;
-
 	const { portal, open } = ctx.getPortal();
 </script>
 

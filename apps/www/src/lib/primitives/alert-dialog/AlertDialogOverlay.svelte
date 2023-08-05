@@ -4,7 +4,6 @@
 	import type { AlertDialogOverlayProps } from "./types";
 
 	type $$Props = AlertDialogOverlayProps;
-
 	const overlay = ctx.getOverlay();
 </script>
 

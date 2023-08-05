@@ -14,8 +14,6 @@
 		value,
 		onValueChange
 	});
-
-	$: console.log($value);
 </script>
 
 <div use:melt={$radioGroup} class={className} {...$$restProps}>

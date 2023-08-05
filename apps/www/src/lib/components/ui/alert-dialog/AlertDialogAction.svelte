@@ -3,6 +3,7 @@
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
 
+	type $$Props = AlertDialogPrimitive.ActionProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

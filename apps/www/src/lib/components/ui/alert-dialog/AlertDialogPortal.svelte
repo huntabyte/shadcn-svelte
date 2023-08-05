@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { ctx, melt } from ".";
-	const { portal, open } = ctx.getPortal();
+	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
+
+	type $$Props = AlertDialogPrimitive.PortalProps;
 </script>
 
-<div use:melt={$portal} {...$$restProps}>
-	{#if $open}
-		<div
-			class="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
-		>
-			<slot />
-		</div>
-	{/if}
-</div>
+<AlertDialogPrimitive.Portal {...$$restProps}>
+	<div
+		class="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+	>
+		<slot />
+	</div>
+</AlertDialogPrimitive.Portal>

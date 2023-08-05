@@ -1,5 +1,8 @@
-import { createDialog } from "@melt-ui/svelte";
-import type { AlertDialogProps, AlertDialogReturn } from "./types";
+import {
+	createDialog,
+	type Dialog as AlertDialogReturn
+} from "@melt-ui/svelte";
+import type { AlertDialogProps } from "./types";
 import { getContext, setContext } from "svelte";
 
 const NAME = "alertDialog";

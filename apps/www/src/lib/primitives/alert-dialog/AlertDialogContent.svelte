@@ -4,7 +4,6 @@
 	import type { AlertDialogContentProps } from "./types";
 
 	type $$Props = AlertDialogContentProps;
-
 	const content = ctx.getContent();
 </script>
 

@@ -1,18 +1,14 @@
 <script lang="ts">
+	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = AlertDialogPrimitive.CancelProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	const cancel = ctx.getClose();
 </script>
 
-<button
-	use:melt={$cancel}
-	on:m-click
-	on:m-keydown
+<AlertDialogPrimitive.Cancel
 	class={cn(
 		buttonVariants({ variant: "outline" }),
 		"mt-2 sm:mt-0",
@@ -21,4 +17,4 @@
 	{...$$restProps}
 >
 	<slot />
-</button>
+</AlertDialogPrimitive.Cancel>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
+	import type { HTMLDivAttributes } from "$primitives/internal";
 
+	type $$Props = HTMLDivAttributes;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

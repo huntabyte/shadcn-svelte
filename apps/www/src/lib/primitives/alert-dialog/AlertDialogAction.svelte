@@ -4,16 +4,14 @@
 	import type { AlertDialogActionProps } from "./types";
 
 	type $$Props = AlertDialogActionProps;
-
 	export let asChild = false;
-
 	const action = ctx.getClose();
 </script>
 
 {#if asChild}
 	<slot action={$action} />
 {:else}
-	<button use:melt={$action} on:m-click on:m-keydown {...$$restProps}>
+	<button use:melt={$action} {...$$restProps}>
 		<slot />
 	</button>
 {/if}

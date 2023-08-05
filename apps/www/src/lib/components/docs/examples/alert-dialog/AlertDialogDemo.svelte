@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { AlertDialog } from "$components/ui/alert-dialog";
+	import * as AlertDialog from "$components/ui/alert-dialog";
 	import { Button } from "$components/ui/button";
 </script>
 
-<AlertDialog>
+<AlertDialog.Root>
 	<AlertDialog.Trigger asChild let:trigger>
 		<Button builders={[trigger]} variant="outline">Show Dialog</Button>
 	</AlertDialog.Trigger>
@@ -20,4 +20,4 @@
 			<AlertDialog.Action>Continue</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
-</AlertDialog>
+</AlertDialog.Root>

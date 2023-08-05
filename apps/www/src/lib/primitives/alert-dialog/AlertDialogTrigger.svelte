@@ -1,14 +1,10 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
 	import { ctx } from "./ctx";
-	import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { AlertDialogTriggerProps } from "./types";
 
-	type $$Props = HTMLButtonAttributes & {
-		asChild?: boolean;
-	};
-
+	type $$Props = AlertDialogTriggerProps;
 	export let asChild = false;
-
 	const trigger = ctx.getTrigger();
 </script>
 

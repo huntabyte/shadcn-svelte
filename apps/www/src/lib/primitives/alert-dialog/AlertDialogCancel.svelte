@@ -4,7 +4,6 @@
 	import type { AlertDialogCancelProps } from "./types";
 
 	type $$Props = AlertDialogCancelProps;
-
 	export let asChild = false;
 	const cancel = ctx.getClose();
 </script>

@@ -1,16 +1,15 @@
 <script lang="ts">
+	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = AlertDialogPrimitive.DescriptionProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	const description = ctx.getDescription();
 </script>
 
-<div
-	use:melt={$description}
+<AlertDialogPrimitive.Description
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
 >
 	<slot />
-</div>
+</AlertDialogPrimitive.Description>

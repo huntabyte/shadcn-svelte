@@ -4,9 +4,7 @@
 	import type { AlertDialogTitleProps } from "./types";
 
 	type $$Props = AlertDialogTitleProps;
-
 	export let level: AlertDialogTitleProps["level"] = "h2";
-
 	const title = ctx.getTitle();
 </script>
 
