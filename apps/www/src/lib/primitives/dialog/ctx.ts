@@ -1,12 +1,20 @@
-import { createDialog, type Dialog as DialogReturn } from "@melt-ui/svelte";
-import type { DialogProps } from "./types";
+import {
+	createDialog,
+	type CreateDialogProps,
+	type Dialog as DialogReturn
+} from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 
 const NAME = "Dialog";
 
-function set(props: DialogProps) {
-	const dialog = createDialog(props);
+function set(props: CreateDialogProps) {
+	const dialog = createDialog({ ...removeUndefined(props), role: "dialog" });
 	setContext(NAME, dialog);
+	return {
+		...dialog,
+		updateOption: getOptionUpdater(dialog.options)
+	};
 }
 
 function get() {

@@ -9,12 +9,9 @@ export type TransitionParams<T extends Transition> = Parameters<T>[1];
 export type HTMLDivAttributes = HTMLAttributes<HTMLDivElement>;
 export type HTMLHeadingAttributes = HTMLAttributes<HTMLHeadingElement>;
 
-export type RemoveOpen<T> = Omit<T, "open" | "defaultOpen" | "onOpenChange">;
-export type RemoveValue<T> = Omit<
-	T,
-	"value" | "defaultValue" | "onValueChange"
->;
-export type RemoveChecked<T> = Omit<
+export type OmitOpen<T> = Omit<T, "open" | "defaultOpen" | "onOpenChange">;
+export type OmitValue<T> = Omit<T, "value" | "defaultValue" | "onValueChange">;
+export type OmitChecked<T> = Omit<
 	T,
 	"checked" | "defaultChecked" | "onCheckedChange"
 >;

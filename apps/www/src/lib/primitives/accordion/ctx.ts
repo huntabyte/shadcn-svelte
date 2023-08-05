@@ -1,40 +1,43 @@
 import {
 	createAccordion,
-	type Accordion as AccordionReturn
+	type Accordion as AccordionReturn,
+	type CreateAccordionProps
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
-import type { AccordionItemProps, AccordionProps } from "./types";
+import type { AccordionItemProps } from "./types";
+import { getOptionUpdater, removeUndefined } from "../internal/helpers";
 
 const NAME = "Accordion";
 const ITEM_NAME = "AccordionItem";
 
 export const ctx = {
-	set: setAccordion,
-	get: getAccordion,
-	setItem: setAccordionItem,
+	set,
+	get,
+	setItem,
 	getItemProps,
 	getContent,
 	getTrigger,
 	getHeader
 };
 
-function setAccordion(props: AccordionProps) {
-	setContext(NAME, createAccordion({ ...props }));
-	const {
-		elements: { root }
-	} = getContext<AccordionReturn>(NAME);
-	return root;
+function set(props: CreateAccordionProps) {
+	const accordion = createAccordion(removeUndefined(props));
+	setContext(NAME, accordion);
+	return {
+		...accordion,
+		updateOption: getOptionUpdater(accordion.options)
+	};
 }
 
-function getAccordion() {
+function get() {
 	return getContext<AccordionReturn>(NAME);
 }
 
-function setAccordionItem(props: AccordionItemProps) {
+function setItem(props: AccordionItemProps) {
 	setContext(ITEM_NAME, { ...props });
 	const {
 		elements: { item }
-	} = getAccordion();
+	} = get();
 	return { item, props };
 }
 
@@ -48,7 +51,7 @@ function getContent() {
 		elements: { content },
 		helpers: { isSelected },
 		states: { value }
-	} = getAccordion();
+	} = get();
 	const { value: props } = getItemProps();
 	return { content, props, isSelected, value };
 }
@@ -56,7 +59,7 @@ function getContent() {
 function getTrigger() {
 	const {
 		elements: { trigger }
-	} = getAccordion();
+	} = get();
 	const { value: props } = getItemProps();
 	return { props, trigger };
 }
@@ -64,6 +67,6 @@ function getTrigger() {
 function getHeader() {
 	const {
 		elements: { heading: header }
-	} = getAccordion();
+	} = get();
 	return header;
 }

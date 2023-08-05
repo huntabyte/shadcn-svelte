@@ -4,7 +4,7 @@
 	import type { Writable } from "svelte/store";
 
 	export let href: string;
-	export let open: Writable<boolean>;
+	export let open: boolean;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -12,7 +12,7 @@
 
 <a
 	{href}
-	on:click={() => open.set(false)}
+	on:click={() => (open = false)}
 	class={cn(
 		$page.url.pathname === href ? "text-foreground" : "text-foreground/60",
 		className

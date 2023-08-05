@@ -14,10 +14,9 @@ function set(props: CreateAlertDialogProps) {
 		role: "alertdialog"
 	});
 	setContext(NAME, alertDialog);
-	const updateOption = getOptionUpdater(alertDialog.options);
 	return {
 		...alertDialog,
-		updateOption
+		updateOption: getOptionUpdater(alertDialog.options)
 	};
 }
 

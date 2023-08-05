@@ -6,12 +6,11 @@
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";
 	import MobileLink from "./MobileLink.svelte";
-	import { writable } from "svelte/store";
 
-	export let open = writable(false);
+	let open = false;
 </script>
 
-<Sheet.Root {open}>
+<Sheet.Root bind:open>
 	<Sheet.Trigger asChild let:trigger>
 		<Button
 			builders={[trigger]}

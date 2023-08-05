@@ -2,7 +2,8 @@ import type {
 	HTMLDivAttributes,
 	ObjectVariation,
 	Transition,
-	TransitionParams
+	TransitionParams,
+	OmitValue
 } from "$primitives/internal/types";
 import type {
 	CreateAccordionProps,
@@ -11,7 +12,10 @@ import type {
 } from "@melt-ui/svelte";
 import type { HTMLButtonAttributes } from "svelte/elements";
 
-type Props = CreateAccordionProps & HTMLDivAttributes;
+type Props = OmitValue<CreateAccordionProps> & {
+	value?: CreateAccordionProps["defaultValue"] & {};
+} & HTMLDivAttributes;
+
 type ItemProps = ObjectVariation<_ItemProps> & HTMLDivAttributes;
 type HeaderProps = ObjectVariation<_HeadingProps> & HTMLDivAttributes;
 type TriggerProps = ItemProps & HTMLButtonAttributes;

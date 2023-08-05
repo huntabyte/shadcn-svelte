@@ -1,10 +1,17 @@
 import type {
 	HTMLDivAttributes,
-	HTMLHeadingAttributes
+	HTMLHeadingAttributes,
+	OmitOpen
 } from "$primitives/internal";
 import type { HTMLButtonAttributes } from "svelte/elements";
 
-import type { CreateDialogProps as Props } from "@melt-ui/svelte";
+import type { CreateDialogProps } from "@melt-ui/svelte";
+
+type Props = Expand<
+	OmitOpen<Omit<CreateDialogProps, "role">> & {
+		open?: CreateDialogProps["defaultOpen"] & {};
+	}
+>;
 
 type TriggerProps = HTMLButtonAttributes & {
 	asChild?: boolean;
