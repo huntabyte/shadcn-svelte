@@ -1,15 +1,24 @@
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 import {
 	createDialog,
-	type Dialog as AlertDialogReturn
+	type Dialog as AlertDialogReturn,
+	type CreateDialogProps as CreateAlertDialogProps
 } from "@melt-ui/svelte";
-import type { AlertDialogProps } from "./types";
 import { getContext, setContext } from "svelte";
 
 const NAME = "AlertDialog";
 
-function set(props: AlertDialogProps) {
-	const alertDialog = createDialog({ ...props, role: "alertdialog" });
+function set(props: CreateAlertDialogProps) {
+	const alertDialog = createDialog({
+		...removeUndefined(props),
+		role: "alertdialog"
+	});
 	setContext(NAME, alertDialog);
+	const updateOption = getOptionUpdater(alertDialog.options);
+	return {
+		...alertDialog,
+		updateOption
+	};
 }
 
 function get() {

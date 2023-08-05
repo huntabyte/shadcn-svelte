@@ -1,9 +1,13 @@
 <script lang="ts">
 	import * as AlertDialog from "$components/ui/alert-dialog";
 	import { Button } from "$components/ui/button";
+
+	let open = false;
+
+	$: console.log(open);
 </script>
 
-<AlertDialog.Root>
+<AlertDialog.Root bind:open>
 	<AlertDialog.Trigger asChild let:trigger>
 		<Button builders={[trigger]} variant="outline">Show Dialog</Button>
 	</AlertDialog.Trigger>

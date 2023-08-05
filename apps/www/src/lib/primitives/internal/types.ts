@@ -8,3 +8,30 @@ export type TransitionParams<T extends Transition> = Parameters<T>[1];
 
 export type HTMLDivAttributes = HTMLAttributes<HTMLDivElement>;
 export type HTMLHeadingAttributes = HTMLAttributes<HTMLHeadingElement>;
+
+export type RemoveOpen<T> = Omit<T, "open" | "defaultOpen" | "onOpenChange">;
+export type RemoveValue<T> = Omit<
+	T,
+	"value" | "defaultValue" | "onValueChange"
+>;
+export type RemoveChecked<T> = Omit<
+	T,
+	"checked" | "defaultChecked" | "onCheckedChange"
+>;
+
+export type Expand<T> = T extends object
+	? T extends infer O
+		? { [K in keyof O]: O[K] }
+		: never
+	: T;
+
+export type ExpandDeep<T> = T extends object
+	? T extends infer O
+		? { [K in keyof O]: ExpandDeep<O[K]> }
+		: never
+	: T;
+
+export type Prettify<T> = {
+	[K in keyof T]: T[K];
+	// eslint-disable-next-line @typescript-eslint/ban-types
+} & {};

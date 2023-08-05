@@ -35,6 +35,21 @@ module.exports = {
 					}
 				]
 			}
+		},
+		{
+			files: ["*.ts"],
+			parser: "@typescript-eslint/parser",
+			rules: {
+				"@typescript-eslint/ban-types": [
+					"error",
+					{
+						extendDefaults: true,
+						types: {
+							"{}": false
+						}
+					}
+				]
+			}
 		}
 	]
 };
