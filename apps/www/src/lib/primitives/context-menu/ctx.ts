@@ -1,13 +1,14 @@
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 import {
-	type CreateContextMenuProps as ContextMenuProps,
-	type CreateContextSubmenuProps as ContextSubmenuProps,
 	type ContextMenu as ContextMenuReturn,
-	type CreateMenuRadioGroupProps as ContextRadioGroupProps,
 	type ContextMenuRadioGroup as ContextRadioGroupReturn,
 	type ContextMenuSubmenu as ContextSubmenuReturn,
 	type Checkbox as CheckboxReturn,
 	type CreateContextMenuCheckboxItemProps as ContextCheckboxItemProps,
-	createContextMenu
+	createContextMenu,
+	type CreateContextMenuProps,
+	type CreateContextMenuRadioGroupProps,
+	type CreateContextSubmenuProps
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 import type { Readable } from "svelte/store";
@@ -30,7 +31,7 @@ export const ctx = {
 	getRadioItem,
 	getSubTrigger,
 	getSubContent,
-	getCheckboxItem,
+	setCheckboxItem,
 	getCheckboxIndicator,
 	getRadioIndicator
 };
@@ -39,28 +40,33 @@ function get() {
 	return getContext<ContextMenuReturn>(NAME);
 }
 
-function set(props: ContextMenuProps) {
-	const contextMenu = createContextMenu({ ...props });
+function set(props: CreateContextMenuProps) {
+	const contextMenu = createContextMenu(removeUndefined(props));
 	setContext(NAME, contextMenu);
+	return {
+		...contextMenu,
+		updateOption: getOptionUpdater(contextMenu.options)
+	};
 }
 
-function setSub(props: ContextSubmenuProps) {
+function setSub(props: CreateContextSubmenuProps) {
 	const {
 		builders: { createSubmenu }
 	} = get();
-	const dropdownSubmenu = createSubmenu(props);
-	setContext(SUB_NAME, dropdownSubmenu);
+	const sub = createSubmenu(removeUndefined(props));
+	setContext(SUB_NAME, sub);
+	return {
+		...sub,
+		updateOption: getOptionUpdater(sub.options)
+	};
 }
 
-function setRadioGroup(props: ContextRadioGroupProps) {
+function setRadioGroup(props: CreateContextMenuRadioGroupProps) {
 	const {
 		builders: { createMenuRadioGroup }
 	} = get();
-	const contextRadioGroup = createMenuRadioGroup(props);
-	setContext(RADIO_GROUP_NAME, contextRadioGroup);
-	const {
-		elements: { radioGroup }
-	} = contextRadioGroup;
+	const radioGroup = createMenuRadioGroup(removeUndefined(props));
+	setContext(RADIO_GROUP_NAME, radioGroup);
 	return radioGroup;
 }
 
@@ -116,17 +122,17 @@ function getItem() {
 	return { item };
 }
 
-function getCheckboxItem(props: ContextCheckboxItemProps) {
+function setCheckboxItem(props: ContextCheckboxItemProps) {
 	const {
 		builders: { createCheckboxItem }
 	} = get();
-	const {
-		elements: { checkboxItem },
-		states: { checked }
-	} = createCheckboxItem(props);
-	setContext(CHECKBOX_ITEM_NAME, checked);
+	const checkboxItem = createCheckboxItem(removeUndefined(props));
+	setContext(CHECKBOX_ITEM_NAME, checkboxItem.states.checked);
 
-	return checkboxItem;
+	return {
+		...checkboxItem,
+		updateOption: getOptionUpdater(checkboxItem.options)
+	};
 }
 
 function getCheckboxIndicator() {

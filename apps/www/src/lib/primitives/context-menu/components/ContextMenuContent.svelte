@@ -4,7 +4,10 @@
 	import type { ContentProps } from "../types";
 
 	type $$Props = ContentProps;
-	const { open, content } = ctx.getContent();
+	const {
+		elements: { menu: content },
+		states: { open }
+	} = ctx.get();
 </script>
 
 {#if $open}
