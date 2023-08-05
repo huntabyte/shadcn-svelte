@@ -1,27 +1,26 @@
 <script lang="ts">
+	import * as ContextMenuPrimitive from "$primitives/context-menu";
 	import { cn } from "$lib/utils";
 	import { Circle } from "lucide-svelte";
-	import { ctx, melt, type ContextRadioItemProps } from ".";
 
+	type $$Props = ContextMenuPrimitive.RadioItemProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: ContextRadioItemProps["value"];
-	export let disabled: ContextRadioItemProps["disabled"] = false;
-
-	const { radioItem, isChecked } = ctx.getRadioItem();
+	export let value: ContextMenuPrimitive.RadioItemProps["value"];
 </script>
 
-<div
-	use:melt={$radioItem({ value, disabled })}
+<ContextMenuPrimitive.RadioItem
 	class={cn(
 		"relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		className
 	)}
+	{value}
+	{...$$restProps}
 >
-	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-		{#if $isChecked(value)}
-			<Circle class="h-2 w-2 fill-current" />
-		{/if}
-	</span>
+	<ContextMenuPrimitive.RadioItemIndicator
+		class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+	>
+		<Circle class="h-2 w-2 fill-current" />
+	</ContextMenuPrimitive.RadioItemIndicator>
 	<slot />
-</div>
+</ContextMenuPrimitive.RadioItem>

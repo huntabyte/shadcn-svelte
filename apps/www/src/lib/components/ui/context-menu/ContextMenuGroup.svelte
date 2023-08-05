@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	type $$Props = HTMLAttributes<HTMLDivElement>;
+	import * as ContextMenuPrimitive from "$primitives/context-menu";
+	type $$Props = ContextMenuPrimitive.GroupProps;
 </script>
 
-<div role="group" {...$$restProps}>
+<ContextMenuPrimitive.Group role="group" {...$$restProps}>
 	<slot />
-</div>
+</ContextMenuPrimitive.Group>

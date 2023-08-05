@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from "svelte/elements";
-	import { ctx, melt } from ".";
-	export let asChild = false;
+	import { ctx } from "./ctx";
+	import { melt } from "@melt-ui/svelte";
+	import type { TriggerProps } from "./types";
 
-	type $$Props = HTMLButtonAttributes & {
-		asChild?: boolean;
-	};
+	type $$Props = TriggerProps;
+	export let asChild = false;
 	const trigger = ctx.getTrigger();
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu } from "$components/ui/context-menu";
+	import * as ContextMenu from "$components/ui/context-menu";
 	import { writable } from "svelte/store";
 
 	const checked = {
@@ -10,7 +10,7 @@
 	const peopleRadioValue = writable("pedro");
 </script>
 
-<ContextMenu>
+<ContextMenu.Root>
 	<ContextMenu.Trigger
 		class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"
 	>
@@ -21,7 +21,7 @@
 			Back
 			<ContextMenu.Shortcut>⌘[</ContextMenu.Shortcut>
 		</ContextMenu.Item>
-		<ContextMenu.Item inset data-disabled>
+		<ContextMenu.Item inset>
 			Forward
 			<ContextMenu.Shortcut>⌘]</ContextMenu.Shortcut>
 		</ContextMenu.Item>
@@ -62,4 +62,4 @@
 			</ContextMenu.RadioItem>
 		</ContextMenu.RadioGroup>
 	</ContextMenu.Content>
-</ContextMenu>
+</ContextMenu.Root>
