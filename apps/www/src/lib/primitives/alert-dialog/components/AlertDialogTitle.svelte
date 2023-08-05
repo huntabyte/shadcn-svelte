@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { AlertDialogTitleProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { AlertDialogTitleProps } from "../types";
 
 	type $$Props = AlertDialogTitleProps;
 	export let level: AlertDialogTitleProps["level"] = "h2";

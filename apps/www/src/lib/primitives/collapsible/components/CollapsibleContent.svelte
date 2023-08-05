@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ContentProps } from "./types";
-	import { ctx } from "./ctx";
+	import type { ContentProps } from "../types";
+	import { ctx } from "../ctx";
 	import { melt } from "@melt-ui/svelte";
 
 	type T = $$Generic<Transition>;

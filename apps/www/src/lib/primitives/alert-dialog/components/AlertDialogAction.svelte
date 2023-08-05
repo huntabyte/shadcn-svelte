@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { AlertDialogActionProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { AlertDialogActionProps } from "../types";
 
 	type $$Props = AlertDialogActionProps;
 	export let asChild = false;

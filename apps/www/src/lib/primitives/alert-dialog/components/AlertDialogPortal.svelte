@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { AlertDialogPortalProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { AlertDialogPortalProps } from "../types";
 
 	type $$Props = AlertDialogPortalProps;
 	const { portal, open } = ctx.getPortal();

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from "svelte/elements";
-	import { ctx } from "./ctx";
 	import { melt } from "@melt-ui/svelte";
-	type $$Props = HTMLButtonAttributes;
+	import { ctx } from "../ctx";
+	import type { TriggerProps } from "../types";
+	type $$Props = TriggerProps;
 
 	const { trigger, props } = ctx.getTrigger();
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { melt } from "@melt-ui/svelte";
-	import { ctx } from "./ctx";
-	import type { TriggerProps } from "./types";
+	import { ctx } from "../ctx";
+	import type { TriggerProps } from "../types";
 
 	type $$Props = TriggerProps;
 	export let asChild: boolean = false;

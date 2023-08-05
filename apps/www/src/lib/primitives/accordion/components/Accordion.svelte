@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { AccordionProps } from "./types";
-	import { ctx } from "./ctx";
+	import type { AccordionProps } from "../types";
+	import { ctx } from "../ctx";
 	import { melt } from "@melt-ui/svelte";
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & AccordionProps;

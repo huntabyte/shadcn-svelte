@@ -40,7 +40,6 @@ function setAccordionItem(props: AccordionItemProps) {
 
 function getItemProps() {
 	const itemProps = getContext<AccordionItemProps>(ITEM_NAME);
-	console.log(itemProps);
 	return itemProps;
 }
 

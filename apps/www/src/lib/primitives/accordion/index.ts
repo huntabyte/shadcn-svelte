@@ -1,8 +1,8 @@
-import Root from "./Accordion.svelte";
-import Content from "./AccordionContent.svelte";
-import Item from "./AccordionItem.svelte";
-import Trigger from "./AccordionTrigger.svelte";
-import Header from "./AccordionHeader.svelte";
+import Root from "./components/Accordion.svelte";
+import Content from "./components/AccordionContent.svelte";
+import Item from "./components/AccordionItem.svelte";
+import Trigger from "./components/AccordionTrigger.svelte";
+import Header from "./components/AccordionHeader.svelte";
 
 export {
 	Root,

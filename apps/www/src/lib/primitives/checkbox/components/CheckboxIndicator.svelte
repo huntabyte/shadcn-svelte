@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ctx } from "./ctx";
-	import type { IndicatorProps } from "./types";
-	const { isChecked, isIndeterminate } = ctx.getIndicator();
+	import { ctx } from "../ctx";
+	import type { IndicatorProps } from "../types";
 
 	type $$Props = IndicatorProps;
+	const { isChecked, isIndeterminate } = ctx.getIndicator();
 </script>
 
 <div {...$$restProps}>

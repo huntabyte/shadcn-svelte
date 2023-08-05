@@ -1,12 +1,12 @@
-import Root from "./AlertDialog.svelte";
-import Title from "./AlertDialogTitle.svelte";
-import Action from "./AlertDialogAction.svelte";
-import Cancel from "./AlertDialogCancel.svelte";
-import Portal from "./AlertDialogPortal.svelte";
-import Content from "./AlertDialogContent.svelte";
-import Overlay from "./AlertDialogOverlay.svelte";
-import Trigger from "./AlertDialogTrigger.svelte";
-import Description from "./AlertDialogDescription.svelte";
+import Root from "./components/AlertDialog.svelte";
+import Title from "./components/AlertDialogTitle.svelte";
+import Action from "./components/AlertDialogAction.svelte";
+import Cancel from "./components/AlertDialogCancel.svelte";
+import Portal from "./components/AlertDialogPortal.svelte";
+import Content from "./components/AlertDialogContent.svelte";
+import Overlay from "./components/AlertDialogOverlay.svelte";
+import Trigger from "./components/AlertDialogTrigger.svelte";
+import Description from "./components/AlertDialogDescription.svelte";
 
 export {
 	Root,
