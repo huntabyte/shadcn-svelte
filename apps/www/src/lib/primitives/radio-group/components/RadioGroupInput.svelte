@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from "svelte/elements";
-	import { ctx, melt } from ".";
+	import { ctx } from "../ctx";
+	import { melt } from "@melt-ui/svelte";
 
 	const input = ctx.getInput();
 

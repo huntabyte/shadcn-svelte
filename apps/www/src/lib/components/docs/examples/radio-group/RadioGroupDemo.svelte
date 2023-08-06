@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as RadioGroup from "$components/ui/radio-group";
 	import { Label } from "$components/ui/label";
-	import { RadioGroup } from "$components/ui/radio-group";
 </script>
 
-<RadioGroup defaultValue="comfortable">
+<RadioGroup.Root value="comfortable">
 	<div class="flex items-center space-x-2">
 		<RadioGroup.Item value="default" id="r1" />
 		<Label for="r1">Default</Label>
@@ -17,4 +17,4 @@
 		<Label for="r3">Compact</Label>
 	</div>
 	<RadioGroup.Input name="spacing" />
-</RadioGroup>
+</RadioGroup.Root>
