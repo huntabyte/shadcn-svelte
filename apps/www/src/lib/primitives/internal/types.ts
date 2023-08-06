@@ -16,6 +16,10 @@ export type OmitChecked<T> = Omit<
 	T,
 	"checked" | "defaultChecked" | "onCheckedChange"
 >;
+export type OmitPressed<T> = Omit<
+	T,
+	"pressed" | "defaultPressed" | "onPressedChange"
+>;
 
 export type Expand<T> = T extends object
 	? T extends infer O
