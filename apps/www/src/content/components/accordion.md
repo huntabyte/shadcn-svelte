@@ -43,22 +43,15 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger
-  } from "$components/ui/accordion";
+  import * as Accordion from "$components/ui/accordion";
 </script>
-```
 
-```svelte
-<Accordion type="single" collapsible>
-  <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>
+<Accordion.Root>
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+    <Accordion.Content>
       Yes. It adheres to the WAI-ARIA design pattern.
-    </AccordionContent>
-  </AccordionItem>
-</Accordion>
+    </Accordion.Content>
+  </Accordion.Item>
+</Accordion.Root>
 ```

@@ -49,9 +49,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 <script lang="ts">
   import { badgeVariants } from "$components/ui/badge";
 </script>
-```
 
-```svelte
 <a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>
 ```
 

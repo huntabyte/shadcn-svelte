@@ -33,30 +33,21 @@ npx shadcn-svelte add card
 
 ```svelte
 <script lang="ts">
-  import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle
-  } from "$components/ui/card";
+  import * as Card from "$components/ui/card";
 </script>
-```
 
-```svelte
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card Description</CardDescription>
-  </CardHeader>
-  <CardContent>
+<Card.Root>
+  <Card.Header>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Description>Card Description</Card.Description>
+  </Card.Header>
+  <Card.Content>
     <p>Card Content</p>
-  </CardContent>
-  <CardFooter>
+  </Card.Content>
+  <Card.Footer>
     <p>Card Footer</p>
-  </CardFooter>
-</Card>
+  </Card.Footer>
+</Card.Root>
 ```
 
 ### Modify the heading level

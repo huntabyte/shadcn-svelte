@@ -43,13 +43,11 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+  import * as Avatar from "$components/ui/avatar";
 </script>
-```
 
-```svelte
-<Avatar>
-  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-  <AvatarFallback>CN</AvatarFallback>
-</Avatar>
+<Avatar.Root>
+  <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+  <Avatar.Fallback>CN</Avatar.Fallback>
+</Avatar.Root>
 ```

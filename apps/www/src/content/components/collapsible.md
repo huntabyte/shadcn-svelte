@@ -44,11 +44,9 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import { Collapsible } from "$components/ui/collapsible";
+  import * as Collapsible from "$components/ui/collapsible";
 </script>
-```
 
-```svelte
 <Collapsible>
   <Collapsible.Trigger>Can I use this in my project?</Collapsible.Trigger>
   <Collapsible.Content>

@@ -45,9 +45,7 @@ npm install radix-svelte
 <script lang="ts">
   import { AspectRatio } from "$components/ui/aspect-ratio";
 </script>
-```
 
-```svelte
 <AspectRatio ratio={16 / 9} class="bg-muted">
   <img src="..." alt="..." class="rounded-md object-cover" />
 </AspectRatio>

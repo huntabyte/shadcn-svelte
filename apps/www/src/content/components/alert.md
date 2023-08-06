@@ -33,17 +33,15 @@ npx shadcn-svelte add alert
 
 ```svelte
 <script lang="ts">
-  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
+  import * as Alert from "$components/ui/alert";
 </script>
-```
 
-```svelte
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
+<Alert.Root>
+  <Alert.Title>Heads up!</Alert.Title>
+  <Alert.Description>
     You can add components to your app using the cli.
-  </AlertDescription>
-</Alert>
+  </Alert.Description>
+</Alert.Root>
 ```
 
 ## Examples

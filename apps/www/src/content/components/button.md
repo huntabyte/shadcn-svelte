@@ -50,9 +50,7 @@ You can convert the `<button>` into an `<a>` element by simply passing an `href`
 <script lang="ts">
   import { Button } from "$components/ui/button";
 </script>
-```
 
-```svelte
 <Button href="/dashboard">Dashboard</Button>
 ```
 
@@ -62,9 +60,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 <script lang="ts">
   import { buttonVariants } from "$components/ui/button";
 </script>
-```
 
-```svelte
 <a href="/dashboard" class={buttonVariants({ variant: "outline" })}>
   Dashboard
 </a>
