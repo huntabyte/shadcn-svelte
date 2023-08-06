@@ -1,20 +1,7 @@
-import {
-	createSwitch,
-	melt,
-	type CreateSwitchProps as SwitchProps
-} from "@melt-ui/svelte";
+import Root from "./Switch.svelte";
 
-export { melt, SwitchProps };
-export { default as Switch } from "./Switch.svelte";
-
-export const ctx = {
-	get
+export {
+	Root,
+	//
+	Root as Switch
 };
-
-function get(props: SwitchProps) {
-	const {
-		elements: { root },
-		states: { checked }
-	} = createSwitch(props);
-	return { root, isChecked: checked };
-}
