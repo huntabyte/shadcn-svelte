@@ -17,12 +17,12 @@
 			variant="ghost"
 			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
 		>
-			<SidebarOpen class="h-6 w-6" />
+			<SidebarOpen class="h-5 w-5" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
-		<MobileLink href="/" class="flex items-center !text-foreground" {open}>
+		<MobileLink href="/" class="flex items-center" {open}>
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>

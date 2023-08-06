@@ -12,11 +12,3 @@ external:
 <script>
   import { ComboboxDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
 </script>
-
-<ComponentExample src="src/lib/components/docs/examples/combobox/ComboboxDemo.svelte">
-
-<div slot="example">
-<ComboboxDemo />
-</div>
-
-</ComponentExample>

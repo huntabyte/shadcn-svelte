@@ -5,7 +5,7 @@ import type {
 } from "svelte/elements";
 
 type Builders = {
-	builders: Builder[];
+	builders?: Builder[];
 };
 
 interface AnchorElement extends Builders, HTMLAnchorAttributes {

@@ -11,8 +11,8 @@ patchedDependencies:
 
 dependencies:
   '@melt-ui/svelte':
-    specifier: ^0.32.1
-    version: 0.32.1(svelte@4.1.2)
+    specifier: ^0.33.1
+    version: 0.33.1(svelte@4.1.2)
   class-variance-authority:
     specifier: ^0.6.0
     version: 0.6.0(typescript@5.1.6)
@@ -89,7 +89,7 @@ devDependencies:
     version: 0.16.8(svelte@4.1.2)
   '@melt-ui/pp':
     specifier: ^0.1.0
-    version: 0.1.0(@melt-ui/svelte@0.32.1)(svelte@4.1.2)
+    version: 0.1.0(@melt-ui/svelte@0.33.1)(svelte@4.1.2)
   '@playwright/test':
     specifier: ^1.36.2
     version: 1.36.2
@@ -751,19 +751,19 @@ packages:
       - supports-color
     dev: true
 
-  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.32.1)(svelte@4.1.2):
+  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.33.1)(svelte@4.1.2):
     resolution: {integrity: sha512-GbzqhLDjfxh3BwC0It7kVUHvx05f+IdBad+mXWMO76xgfdqBkAO/pS6Q+tAEntKglQvxXugV3gHAyEJgSI0AlA==}
     engines: {pnpm: '>=8.6.3'}
     peerDependencies:
       '@melt-ui/svelte': '>= 0.29.0'
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.32.1(svelte@4.1.2)
+      '@melt-ui/svelte': 0.33.1(svelte@4.1.2)
       svelte: 4.1.2
     dev: true
 
-  /@melt-ui/svelte@0.32.1(svelte@4.1.2):
-    resolution: {integrity: sha512-Q5LJYEuRFl6wKrDN9a6Oq1o3+fAIv/oTXeMcVPzrtyO4ZoJGuLHP+72XrgARymkR+ZEyrob54vndpLOoTiPygA==}
+  /@melt-ui/svelte@0.33.1(svelte@4.1.2):
+    resolution: {integrity: sha512-XF66hH5T4/f30dXXZeDD3W0eic2HCzdDxcMdV09ylZm2QPC+aR3T/3EwZqtk++zWNQF8C6gZL4DVWPxNxAzwrQ==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:

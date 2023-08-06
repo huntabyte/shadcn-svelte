@@ -59,7 +59,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@melt-ui/svelte": "^0.32.1",
+		"@melt-ui/svelte": "^0.33.1",
 		"class-variance-authority": "^0.6.0",
 		"clsx": "^2.0.0",
 		"d3-scale": "^4.0.2",

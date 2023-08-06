@@ -11,7 +11,6 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let href: $$Props["href"] = undefined;
 	export let variant: VariantProps<typeof buttonVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
@@ -20,7 +19,6 @@
 
 <ButtonPrimitive.Root
 	{builders}
-	{href}
 	class={cn(buttonVariants({ variant, size, className }))}
 	{...$$restProps}
 	on:click

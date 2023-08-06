@@ -1,39 +1,38 @@
 <script lang="ts">
-	import { buttonVariants } from "$components/ui/button";
-	import { Collapsible } from "$components/ui/collapsible";
+	import * as Collapsible from "$components/ui/collapsible";
+	import { buttonVariants, Button } from "$components/ui/button";
 	import { cn } from "$lib/utils";
 	import { writable } from "svelte/store";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let expandButtonTitle = "View Code";
-	const open = writable(false);
+	let open = false;
 </script>
 
-<Collapsible {open}>
-	<div
-		class={cn("relative overflow-hidden rounded-md mb-4", className)}
-		{...$$restProps}
-	>
+<Collapsible.Root bind:open>
+	<div class={cn("relative overflow-hidden", className)} {...$$restProps}>
 		<div class={cn("overflow-hidden h-full", !open && "max-h-32")}>
 			<slot />
 		</div>
 		<div
 			class={cn(
-				"absolute flex items-center justify-center bg-gradient-to-b from-background/30 to-muted/90 p-2",
-				open ? "inset-x-0 bottom-0 h-12" : "inset-0"
+				"[&_pre]:my-0 [&_pre]:max-h-[650px] [&_pre]:pb-[100px]",
+				open ? "[&_pre]:overflow-hidden" : "[&_pre]:overflow-auto]"
 			)}
 		>
-			<span class={!$open ? "pt-4" : ""}>
-				<Collapsible.Trigger
-					class={cn(
-						buttonVariants({ variant: "secondary" }),
-						"h-8 text-xs"
-					)}
-				>
-					{$open ? "Collapse" : expandButtonTitle}
+			<div
+				class={cn(
+					"absolute flex items-center justify-center bg-gradient-to-b from-zinc-700/30 to-zinc-950/90 p-2",
+					open ? "inset-x-0 bottom-0 h-12" : "inset-0"
+				)}
+			>
+				<Collapsible.Trigger asChild>
+					<Button variant="secondary" class="h-8 text-xs">
+						{open ? "Collapse" : expandButtonTitle}
+					</Button>
 				</Collapsible.Trigger>
-			</span>
+			</div>
 		</div>
 	</div>
-</Collapsible>
+</Collapsible.Root>

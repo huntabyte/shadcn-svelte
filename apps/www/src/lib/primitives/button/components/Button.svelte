@@ -8,7 +8,7 @@
 	export let builders: $$Props["builders"] = [];
 </script>
 
-{#if builders.length}
+{#if builders && builders.length}
 	<svelte:element
 		this={href ? "a" : "button"}
 		type={href ? undefined : type}
