@@ -12,6 +12,8 @@ import SubContent from "./components/MenubarSubContent.svelte";
 import SubTrigger from "./components/MenubarSubTrigger.svelte";
 import RadioGroup from "./components/MenubarRadioGroup.svelte";
 import CheckboxItem from "./components/MenubarCheckboxItem.svelte";
+import RadioItemIndicator from "./components/MenubarRadioItemIndicator.svelte";
+import CheckboxItemIndicator from "./components/MenubarCheckboxItemIndicator.svelte";
 
 export {
 	Sub,
@@ -28,6 +30,8 @@ export {
 	SubContent,
 	RadioGroup,
 	CheckboxItem,
+	RadioItemIndicator,
+	CheckboxItemIndicator,
 	//
 	Root as Menubar,
 	Sub as MenubarSub,
@@ -42,5 +46,8 @@ export {
 	SubContent as MenubarSubContent,
 	SubTrigger as MenubarSubTrigger,
 	RadioGroup as MenubarRadioGroup,
-	CheckboxItem as MenubarCheckboxItem
+	CheckboxItem as MenubarCheckboxItem,
+	RadioItemIndicator as MenubarRadioItemIndicator,
+	CheckboxItemIndicator as MenubarCheckboxItemIndicator
 };
+export * from "./types";

@@ -1,15 +1,13 @@
 <script lang="ts">
+	import * as MenubarPrimitive from "$primitives/menubar";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = MenubarPrimitive.SeparatorProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	const separator = ctx.getSeparator();
 </script>
 
-<div
-	use:melt={$separator}
+<MenubarPrimitive.Separator
 	class={cn("-mx-1 my-1 h-px bg-muted", className)}
 	{...$$restProps}
 />

@@ -1,16 +1,13 @@
 <script lang="ts">
-	import { Menubar } from "$components/ui/menubar";
-	import { writable } from "svelte/store";
+	import * as Menubar from "$components/ui/menubar";
 
-	const checked = {
-		bookmarks: writable(false),
-		fullUrls: writable(true)
-	};
+	let bookmarks = false;
+	let fullUrls = true;
 
-	const profileRadioValue = writable("benoit");
+	const profileRadioValue = "benoit";
 </script>
 
-<Menubar>
+<Menubar.Root>
 	<Menubar.Menu>
 		<Menubar.Trigger>File</Menubar.Trigger>
 		<Menubar.Content>
@@ -20,7 +17,7 @@
 			<Menubar.Item>
 				New Window <Menubar.Shortcut>⌘N</Menubar.Shortcut>
 			</Menubar.Item>
-			<Menubar.Item disabled>New Incognito Window</Menubar.Item>
+			<Menubar.Item>New Incognito Window</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Sub>
 				<Menubar.SubTrigger>Share</Menubar.SubTrigger>
@@ -65,17 +62,17 @@
 	<Menubar.Menu>
 		<Menubar.Trigger>View</Menubar.Trigger>
 		<Menubar.Content>
-			<Menubar.CheckboxItem checked={checked.bookmarks}
+			<Menubar.CheckboxItem bind:checked={bookmarks}
 				>Always Show Bookmarks Bar</Menubar.CheckboxItem
 			>
-			<Menubar.CheckboxItem checked={checked.fullUrls}>
+			<Menubar.CheckboxItem bind:checked={fullUrls}>
 				Always Show Full URLs
 			</Menubar.CheckboxItem>
 			<Menubar.Separator />
 			<Menubar.Item inset>
 				Reload <Menubar.Shortcut>⌘R</Menubar.Shortcut>
 			</Menubar.Item>
-			<Menubar.Item disabled inset>
+			<Menubar.Item inset>
 				Force Reload <Menubar.Shortcut>⇧⌘R</Menubar.Shortcut>
 			</Menubar.Item>
 			<Menubar.Separator />
@@ -98,4 +95,4 @@
 			<Menubar.Item inset>Add Profile...</Menubar.Item>
 		</Menubar.Content>
 	</Menubar.Menu>
-</Menubar>
+</Menubar.Root>

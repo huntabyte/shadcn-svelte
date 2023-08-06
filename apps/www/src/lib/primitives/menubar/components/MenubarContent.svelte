@@ -8,8 +8,6 @@
 	const { content, open } = ctx.getContent(sideOffset);
 </script>
 
-{#if $open}
-	<div use:melt={$content} {...$$restProps}>
-		<slot />
-	</div>
-{/if}
+<div use:melt={$content} {...$$restProps}>
+	<slot />
+</div>

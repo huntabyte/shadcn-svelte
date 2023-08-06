@@ -1,17 +1,16 @@
 <script lang="ts">
+	import * as MenubarPrimitive from "$primitives/menubar";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = MenubarPrimitive.ItemProps & {
+		inset?: boolean;
+	};
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let inset: boolean | undefined = undefined;
-
-	const { item, dispatch } = ctx.getItem();
 </script>
 
-<div
-	use:melt={$item}
-	on:m-click={(e) => dispatch("select", e.detail)}
+<MenubarPrimitive.Item
 	class={cn(
 		"relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		inset && "pl-8",
@@ -20,4 +19,4 @@
 	{...$$restProps}
 >
 	<slot />
-</div>
+</MenubarPrimitive.Item>

@@ -7,8 +7,6 @@
 	const { subContent, subOpen } = ctx.getSubContent();
 </script>
 
-{#if $subOpen}
-	<div use:melt={$subContent} {...$$restProps}>
-		<slot />
-	</div>
-{/if}
+<div use:melt={$subContent} {...$$restProps}>
+	<slot />
+</div>
