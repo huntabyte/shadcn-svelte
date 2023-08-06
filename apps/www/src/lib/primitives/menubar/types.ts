@@ -1,44 +1,89 @@
-import type { HTMLDivAttributes } from "$primitives/internal";
+import type {
+	Expand,
+	HTMLDivAttributes,
+	OmitChecked,
+	OmitOpen,
+	OmitValue
+} from "$primitives/internal";
 import type {
 	CreateMenubarProps,
-	CreateMenubarSubmenuProps,
 	CreateMenubarMenuProps,
 	MenubarCheckboxItemProps as CreateMenubarCheckboxItemProps,
 	CreateMenuRadioGroupProps,
-	MenubarRadioItemProps
+	MenubarRadioItemProps,
+	CreateMenubarSubmenuProps
 } from "@melt-ui/svelte";
+import type { HTMLButtonAttributes } from "svelte/elements";
 
-type Props = CreateMenubarProps & HTMLDivAttributes;
-type SubProps = CreateMenubarSubmenuProps & HTMLDivAttributes;
-type MenuProps = CreateMenubarMenuProps & HTMLDivAttributes;
-type CheckboxItemProps = CreateMenubarCheckboxItemProps & HTMLDivAttributes;
-type ContentProps = HTMLDivAttributes & {
+type Props = Expand<CreateMenubarProps> & HTMLDivAttributes;
+
+type MenuProps = Expand<
+	OmitOpen<CreateMenubarMenuProps> & {
+		open?: CreateMenubarMenuProps["defaultOpen"] & {};
+	}
+>;
+
+type CheckboxItemProps = Expand<
+	OmitChecked<CreateMenubarCheckboxItemProps> & {
+		checked?: CreateMenubarCheckboxItemProps["defaultChecked"] & {};
+	}
+> &
+	HTMLDivAttributes;
+
+type RadioGroupProps = Expand<
+	OmitValue<CreateMenuRadioGroupProps> & {
+		value?: CreateMenuRadioGroupProps["defaultValue"] & {};
+	}
+> &
+	HTMLDivAttributes;
+
+type ContentProps = {
 	sideOffset?: number;
-};
+} & HTMLDivAttributes;
 type GroupProps = HTMLDivAttributes;
 type ItemProps = HTMLDivAttributes;
+type CheckboxItemIndicatorProps = HTMLDivAttributes;
 type LabelProps = HTMLDivAttributes;
-type RadioGroupProps = CreateMenuRadioGroupProps & HTMLDivAttributes;
 type RadioItemProps = MenubarRadioItemProps & HTMLDivAttributes;
 type SeparatorProps = HTMLDivAttributes;
+type SubProps = Expand<CreateMenubarSubmenuProps>;
 type SubContentProps = HTMLDivAttributes;
 type SubTriggerProps = HTMLDivAttributes;
-
-type TriggerProps = HTMLDivAttributes;
+type TriggerProps = {
+	asChild?: boolean;
+} & HTMLButtonAttributes;
 
 export type {
 	Props,
 	SubProps,
 	MenuProps,
-	CheckboxItemProps,
-	ContentProps,
-	GroupProps,
 	ItemProps,
+	GroupProps,
 	LabelProps,
-	RadioGroupProps,
+	TriggerProps,
+	ContentProps,
 	RadioItemProps,
 	SeparatorProps,
+	RadioGroupProps,
 	SubContentProps,
 	SubTriggerProps,
-	TriggerProps
+	CheckboxItemProps,
+	CheckboxItemIndicatorProps,
+
+	//
+	Props as MenubarProps,
+	SubProps as MenubarSubProps,
+	MenuProps as MenubarMenuProps,
+	ItemProps as MenubarItemProps,
+	GroupProps as MenubarGroupProps,
+	LabelProps as MenubarLabelProps,
+	ContentProps as MenubarContentProps,
+	TriggerProps as MenubarTriggerProps,
+	RadioItemProps as MenubarRadioItemProps,
+	SeparatorProps as MenubarSeparatorProps,
+	SubContentProps as MenubarSubContentProps,
+	SubTriggerProps as MenubarSubTriggerProps,
+	RadioGroupProps as MenubarRadioGroupProps,
+	CheckboxItemProps as MenubarCheckboxItemProps,
+	CheckboxItemIndicatorProps as MenubarCheckboxItemIndicatorProps
 };

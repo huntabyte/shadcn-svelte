@@ -5,9 +5,11 @@
 
 	type $$Props = ContentProps;
 	export let sideOffset = 4;
-	const { content } = ctx.getContent(sideOffset);
+	const { content, open } = ctx.getContent(sideOffset);
 </script>
 
-<div use:melt={$content} {...$$restProps}>
-	<slot />
-</div>
+{#if $open}
+	<div use:melt={$content} {...$$restProps}>
+		<slot />
+	</div>
+{/if}

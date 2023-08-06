@@ -28,10 +28,10 @@ export const ctx = {
 	getItem,
 	getSeparator: () => get().elements.separator,
 	setRadioGroup,
-	getRadioItem,
+	setRadioItem,
 	getSubTrigger,
 	getSubContent,
-	getCheckboxItem,
+	setCheckboxItem,
 	getCheckboxIndicator,
 	getRadioIndicator
 };
@@ -70,7 +70,7 @@ function setRadioGroup(props: DropdownRadioGroupProps) {
 	return radioGroup;
 }
 
-function getRadioItem(value: string) {
+function setRadioItem(value: string) {
 	const {
 		elements: { radioItem },
 		helpers: { isChecked }
@@ -122,17 +122,17 @@ function getItem() {
 	return { item };
 }
 
-function getCheckboxItem(props: DropdownCheckboxItemProps) {
+function setCheckboxItem(props: DropdownCheckboxItemProps) {
 	const {
 		builders: { createCheckboxItem }
 	} = get();
-	const {
-		elements: { checkboxItem },
-		states: { checked }
-	} = createCheckboxItem(props);
-	setContext(CHECKBOX_ITEM_NAME, checked);
+	const checkboxItem = createCheckboxItem(removeUndefined(props));
+	setContext(CHECKBOX_ITEM_NAME, checkboxItem.states.checked);
 
-	return checkboxItem;
+	return {
+		...checkboxItem,
+		updateOption: getOptionUpdater(checkboxItem.options)
+	};
 }
 
 function getCheckboxIndicator() {

@@ -6,7 +6,7 @@
 	type $$Props = RadioItemProps;
 	export let value: RadioItemProps["value"];
 	export let disabled: RadioItemProps["disabled"] = false;
-	const radioItem = ctx.getRadioItem(value);
+	const radioItem = ctx.setRadioItem(value);
 </script>
 
 <div use:melt={$radioItem({ value, disabled })} {...$$restProps}>

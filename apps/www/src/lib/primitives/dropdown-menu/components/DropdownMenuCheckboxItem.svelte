@@ -3,18 +3,25 @@
 	import { ctx } from "../ctx";
 	import type { CheckboxItemProps } from "../types";
 
-	export let checked: CheckboxItemProps["checked"] = undefined;
-	export let disabled: CheckboxItemProps["disabled"] = undefined;
-	export let defaultChecked: CheckboxItemProps["defaultChecked"] = undefined;
-	export let onCheckedChange: CheckboxItemProps["onCheckedChange"] =
-		undefined;
+	type $$Props = CheckboxItemProps;
+	export let checked: $$Props["checked"] = undefined;
+	export let disabled: $$Props["disabled"] = undefined;
 
-	const checkboxItem = ctx.getCheckboxItem({
-		checked,
+	const {
+		elements: { checkboxItem },
+		states: { checked: localChecked },
+		updateOption
+	} = ctx.setCheckboxItem({
 		disabled,
-		defaultChecked,
-		onCheckedChange
+		defaultChecked: checked,
+		onCheckedChange: ({ next }) => {
+			checked = next;
+			return next;
+		}
 	});
+
+	$: checked !== undefined && localChecked.set(checked);
+	$: updateOption("disabled", disabled);
 </script>
 
 <div use:melt={$checkboxItem} {...$$restProps}>
