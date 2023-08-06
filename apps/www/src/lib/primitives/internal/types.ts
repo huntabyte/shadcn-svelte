@@ -8,7 +8,7 @@ export type Transition = (node: Element, params?: any) => TransitionConfig;
 export type TransitionParams<T extends Transition> = Parameters<T>[1];
 
 export type HTMLDivAttributes = HTMLAttributes<HTMLDivElement>;
-export type HTMLHeadingAttributes = HTMLAttributes<HTMLHeadingElement>;
+export type HTMLSpanAttributes = HTMLAttributes<HTMLSpanElement>;
 
 export type OmitOpen<T> = Omit<T, "open" | "defaultOpen" | "onOpenChange">;
 export type OmitValue<T> = Omit<T, "value" | "defaultValue" | "onValueChange">;

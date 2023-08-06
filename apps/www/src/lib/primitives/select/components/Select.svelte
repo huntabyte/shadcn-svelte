@@ -36,7 +36,15 @@
 		multiple,
 		defaultValue: value,
 		defaultOpen: open,
-		defaultValueLabel: label
+		defaultValueLabel: label,
+		onValueChange: ({ next }) => {
+			value = next;
+			return next;
+		},
+		onOpenChange: ({ next }) => {
+			open = next;
+			return next;
+		}
 	});
 
 	$: open !== undefined && localOpen.set(open);
