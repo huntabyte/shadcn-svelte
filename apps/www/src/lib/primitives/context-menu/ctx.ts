@@ -1,4 +1,8 @@
-import { getOptionUpdater, removeUndefined } from "$primitives/internal";
+import {
+	generateId,
+	getOptionUpdater,
+	removeUndefined
+} from "$primitives/internal";
 import {
 	type ContextMenu as ContextMenuReturn,
 	type ContextMenuRadioGroup as ContextRadioGroupReturn,
@@ -18,6 +22,7 @@ const SUB_NAME = "ContextSubmenu";
 const RADIO_GROUP_NAME = "ContextRadioGroup";
 const CHECKBOX_ITEM_NAME = "ContextCheckboxItem";
 const RADIO_ITEM_NAME = "ContextRadioItem";
+const GROUP_NAME = "ContextGroup";
 
 export const ctx = {
 	get,
@@ -33,7 +38,9 @@ export const ctx = {
 	getSubContent,
 	setCheckboxItem,
 	getCheckboxIndicator,
-	getRadioIndicator
+	getRadioIndicator,
+	setGroup,
+	getGroupLabel
 };
 
 function get() {
@@ -137,4 +144,21 @@ function setCheckboxItem(props: ContextCheckboxItemProps) {
 
 function getCheckboxIndicator() {
 	return getContext<CheckboxReturn["states"]["checked"]>(CHECKBOX_ITEM_NAME);
+}
+
+function setGroup() {
+	const {
+		elements: { group }
+	} = get();
+	const id = generateId();
+	setContext(GROUP_NAME, id);
+	return { group, id };
+}
+
+function getGroupLabel() {
+	const id = getContext<string>(GROUP_NAME);
+	const {
+		elements: { groupLabel }
+	} = get();
+	return { groupLabel, id };
 }

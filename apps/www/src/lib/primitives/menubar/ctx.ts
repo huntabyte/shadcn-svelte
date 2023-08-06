@@ -8,11 +8,15 @@ import {
 	type CreateMenubarSubmenuProps,
 	type CreateMenubarMenuProps,
 	type MenubarMenuSubmenu as MenubarSubReturn,
-	type MenubarCheckboxItemProps,
+	type CreateMenuCheckboxItemProps,
 	type Checkbox as CheckboxReturn
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
-import { getOptionUpdater, removeUndefined } from "../internal/helpers";
+import {
+	generateId,
+	getOptionUpdater,
+	removeUndefined
+} from "../internal/helpers";
 import type { Readable } from "svelte/store";
 
 const NAME = "Menubar";
@@ -21,6 +25,7 @@ const SUB_NAME = "MenubarSub";
 const CHECKBOX_ITEM_NAME = "MenubarCheckboxItem";
 const RADIO_GROUP_NAME = "MenubarRadioGroup";
 const RADIO_ITEM_NAME = "MenubarRadioItem";
+const GROUP_NAME = "MenubarGroup";
 
 export const ctx = {
 	get,
@@ -38,7 +43,9 @@ export const ctx = {
 	getSubContent,
 	setCheckboxItem,
 	getRadioIndicator,
-	getCheckboxIndicator
+	getCheckboxIndicator,
+	setGroup,
+	getGroupLabel
 };
 
 function get() {
@@ -139,7 +146,7 @@ function getItem() {
 	return { item };
 }
 
-function setCheckboxItem(props: MenubarCheckboxItemProps) {
+function setCheckboxItem(props: CreateMenuCheckboxItemProps) {
 	const {
 		builders: { createCheckboxItem }
 	} = getMenu();
@@ -161,4 +168,20 @@ function getRadioIndicator() {
 		isChecked: Readable<(itemValue: string) => boolean>;
 		value: string;
 	}>(RADIO_ITEM_NAME);
+}
+function setGroup() {
+	const {
+		elements: { group }
+	} = getMenu();
+	const id = generateId();
+	setContext(GROUP_NAME, id);
+	return { group, id };
+}
+
+function getGroupLabel() {
+	const id = getContext<string>(GROUP_NAME);
+	const {
+		elements: { groupLabel }
+	} = getMenu();
+	return { groupLabel, id };
 }

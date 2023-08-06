@@ -8,7 +8,7 @@ export function noop() {
 	// do nothing
 }
 
-export function id() {
+export function generateId() {
 	return nanoid(10);
 }
 

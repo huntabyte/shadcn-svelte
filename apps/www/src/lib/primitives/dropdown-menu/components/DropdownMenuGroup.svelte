@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { melt } from "@melt-ui/svelte";
+	import { ctx } from "../ctx";
 	import type { GroupProps } from "../types";
 	type $$Props = GroupProps;
+
+	const { group, id } = ctx.setGroup();
 </script>
 
-<div role="group" {...$$restProps}>
+<div use:melt={$group(id)} {...$$restProps}>
 	<slot />
 </div>
