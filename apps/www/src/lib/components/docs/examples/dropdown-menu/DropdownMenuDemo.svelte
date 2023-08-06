@@ -17,10 +17,10 @@
 	} from "lucide-svelte";
 
 	import { Button } from "$components/ui/button";
-	import { DropdownMenu } from "$components/ui/dropdown-menu";
+	import * as DropdownMenu from "$components/ui/dropdown-menu";
 </script>
 
-<DropdownMenu>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:trigger>
 		<Button builders={[trigger]} variant="outline">Open</Button>
 	</DropdownMenu.Trigger>
@@ -101,4 +101,4 @@
 			<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

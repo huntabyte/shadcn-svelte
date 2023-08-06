@@ -1,13 +1,14 @@
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 import {
-	type CreateContextMenuProps as ContextMenuProps,
-	type CreateContextSubmenuProps as ContextSubmenuProps,
-	type ContextMenu as ContextMenuReturn,
-	type CreateMenuRadioGroupProps as ContextRadioGroupProps,
-	type ContextMenuRadioGroup as ContextRadioGroupReturn,
-	type ContextMenuSubmenu as ContextSubmenuReturn,
+	type CreateDropdownSubmenuProps as DropdownSubmenuProps,
+	type DropdownMenu as DropdownMenuReturn,
+	type CreateMenuRadioGroupProps as DropdownRadioGroupProps,
+	type DropdownMenuRadioGroup as DropdownRadioGroupReturn,
+	type DropdownMenuSubmenu as DropdownSubmenuReturn,
 	type Checkbox as CheckboxReturn,
-	type CreateContextMenuCheckboxItemProps as ContextCheckboxItemProps,
-	createContextMenu
+	type CreateDropdownMenuCheckboxItemProps as DropdownCheckboxItemProps,
+	type CreateDropdownMenuProps,
+	createDropdownMenu
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 import type { Readable } from "svelte/store";
@@ -36,31 +37,36 @@ export const ctx = {
 };
 
 function get() {
-	return getContext<ContextMenuReturn>(NAME);
+	return getContext<DropdownMenuReturn>(NAME);
 }
 
-function set(props: ContextMenuProps) {
-	const contextMenu = createContextMenu({ ...props });
-	setContext(NAME, contextMenu);
+function set(props: CreateDropdownMenuProps) {
+	const dropdownMenu = createDropdownMenu(removeUndefined(props));
+	setContext(NAME, dropdownMenu);
+	return {
+		...dropdownMenu,
+		updateOption: getOptionUpdater(dropdownMenu.options)
+	};
 }
 
-function setSub(props: ContextSubmenuProps) {
+function setSub(props: DropdownSubmenuProps) {
 	const {
 		builders: { createSubmenu }
 	} = get();
-	const dropdownSubmenu = createSubmenu(props);
-	setContext(SUB_NAME, dropdownSubmenu);
+	const sub = createSubmenu(removeUndefined(props));
+	setContext(SUB_NAME, sub);
+	return {
+		...sub,
+		updateOption: getOptionUpdater(sub.options)
+	};
 }
 
-function setRadioGroup(props: ContextRadioGroupProps) {
+function setRadioGroup(props: DropdownRadioGroupProps) {
 	const {
 		builders: { createMenuRadioGroup }
 	} = get();
-	const contextRadioGroup = createMenuRadioGroup(props);
-	setContext(RADIO_GROUP_NAME, contextRadioGroup);
-	const {
-		elements: { radioGroup }
-	} = contextRadioGroup;
+	const radioGroup = createMenuRadioGroup(props);
+	setContext(RADIO_GROUP_NAME, radioGroup);
 	return radioGroup;
 }
 
@@ -68,7 +74,7 @@ function getRadioItem(value: string) {
 	const {
 		elements: { radioItem },
 		helpers: { isChecked }
-	} = getContext<ContextRadioGroupReturn>(RADIO_GROUP_NAME);
+	} = getContext<DropdownRadioGroupReturn>(RADIO_GROUP_NAME);
 	setContext(RADIO_ITEM_NAME, { isChecked, value });
 	return radioItem;
 }
@@ -83,7 +89,7 @@ function getRadioIndicator() {
 function getSubTrigger() {
 	const {
 		elements: { subTrigger }
-	} = getContext<ContextSubmenuReturn>(SUB_NAME);
+	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
 	return subTrigger;
 }
 
@@ -104,7 +110,7 @@ function getSubContent(sideOffset = -1) {
 		elements: { subMenu: subContent },
 		states: { subOpen },
 		options: { positioning }
-	} = getContext<ContextSubmenuReturn>(SUB_NAME);
+	} = getContext<DropdownSubmenuReturn>(SUB_NAME);
 	positioning.update((prev) => ({ ...prev, gutter: sideOffset }));
 	return { subContent, subOpen };
 }
@@ -116,7 +122,7 @@ function getItem() {
 	return { item };
 }
 
-function getCheckboxItem(props: ContextCheckboxItemProps) {
+function getCheckboxItem(props: DropdownCheckboxItemProps) {
 	const {
 		builders: { createCheckboxItem }
 	} = get();

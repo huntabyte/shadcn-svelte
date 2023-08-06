@@ -2,7 +2,6 @@ import * as ContextMenuPrimitive from "$primitives/context-menu";
 
 import Item from "./ContextMenuItem.svelte";
 import Label from "./ContextMenuLabel.svelte";
-import Group from "./ContextMenuGroup.svelte";
 import Content from "./ContextMenuContent.svelte";
 import Shortcut from "./ContextMenuShortcut.svelte";
 import RadioItem from "./ContextMenuRadioItem.svelte";
@@ -15,6 +14,7 @@ import CheckboxItem from "./ContextMenuCheckboxItem.svelte";
 const Sub = ContextMenuPrimitive.Sub;
 const Root = ContextMenuPrimitive.Root;
 const Trigger = ContextMenuPrimitive.Trigger;
+const Group = ContextMenuPrimitive.Group;
 
 export {
 	Sub,

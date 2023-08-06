@@ -60,5 +60,20 @@ export type {
 	SubProps,
 	SubContentProps,
 	SubTriggerProps,
-	TriggerProps
+	TriggerProps,
+	//
+	Props as ContextMenuProps,
+	CheckboxItemProps as ContextMenuCheckboxItemProps,
+	ContentProps as ContextMenuContentProps,
+	GroupProps as ContextMenuGroupProps,
+	ItemProps as ContextMenuItemProps,
+	CheckboxItemIndicatorProps as ContextMenuCheckboxItemIndicatorProps,
+	LabelProps as ContextMenuLabelProps,
+	RadioGroupProps as ContextMenuRadioGroupProps,
+	RadioItemProps as ContextMenuRadioItemProps,
+	SeparatorProps as ContextMenuSeparatorProps,
+	SubProps as ContextMenuSubProps,
+	SubContentProps as ContextMenuSubContentProps,
+	SubTriggerProps as ContextMenuSubTriggerProps,
+	TriggerProps as ContextMenuTriggerProps
 };

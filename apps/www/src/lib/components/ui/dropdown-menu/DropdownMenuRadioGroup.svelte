@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { ctx, melt, type DropdownRadioGroupProps } from ".";
-
-	type $$Props = DropdownRadioGroupProps;
-	const { radioGroup } = ctx.setRadioGroup($$restProps);
+	import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
+	type $$Props = DropdownMenuPrimitive.RadioGroupProps;
+	export let value: $$Props["value"] = undefined;
 </script>
 
-<div use:melt={$radioGroup}>
+<DropdownMenuPrimitive.RadioGroup {...$$restProps} bind:value>
 	<slot />
-</div>
+</DropdownMenuPrimitive.RadioGroup>

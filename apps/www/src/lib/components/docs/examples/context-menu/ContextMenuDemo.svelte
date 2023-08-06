@@ -1,13 +1,10 @@
 <script lang="ts">
 	import * as ContextMenu from "$components/ui/context-menu";
-	import { writable } from "svelte/store";
 
-	const checked = {
-		showBookmarks: writable(true),
-		showFullURLs: writable(false)
-	};
+	let showBookmarks = false;
+	let showFullURLs = true;
 
-	const peopleRadioValue = writable("pedro");
+	let value = "pedro";
 </script>
 
 <ContextMenu.Root>
@@ -43,15 +40,15 @@
 			</ContextMenu.SubContent>
 		</ContextMenu.Sub>
 		<ContextMenu.Separator />
-		<ContextMenu.CheckboxItem checked={checked.showBookmarks}>
+		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
 			Show Bookmarks Bar
 			<ContextMenu.Shortcut>⌘⇧B</ContextMenu.Shortcut>
 		</ContextMenu.CheckboxItem>
-		<ContextMenu.CheckboxItem checked={checked.showFullURLs}>
+		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
 			Show Full URLs
 		</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
-		<ContextMenu.RadioGroup value={peopleRadioValue}>
+		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Label inset>People</ContextMenu.Label>
 			<ContextMenu.Separator />
 			<ContextMenu.RadioItem value="pedro">

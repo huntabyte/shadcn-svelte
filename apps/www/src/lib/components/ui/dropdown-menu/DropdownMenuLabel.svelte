@@ -1,13 +1,18 @@
 <script lang="ts">
+	import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
 	import { cn } from "$lib/utils";
+
+	type $$Props = DropdownMenuPrimitive.LabelProps & {
+		inset?: boolean;
+	};
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let inset: boolean | undefined = undefined;
 </script>
 
-<div
+<DropdownMenuPrimitive.Label
 	class={cn("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
 	{...$$restProps}
 >
 	<slot />
-</div>
+</DropdownMenuPrimitive.Label>
