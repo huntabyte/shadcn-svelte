@@ -1,6 +1,8 @@
 import type { StoreValue } from "@melt-ui/svelte";
 import { nanoid } from "nanoid/non-secure";
 import type { Writable } from "svelte/store";
+import type { Builder } from "./types";
+import type { ActionReturn } from "svelte/action";
 
 export function noop() {
 	// do nothing
@@ -32,4 +34,46 @@ export function getOptionUpdater(options: Options) {
 		const store = options[key];
 		store.set(value as never);
 	};
+}
+
+type BuilderActionsParams = {
+	builders: Builder[];
+};
+
+type BuilderActionsReturn = {
+	destroy: () => void;
+};
+
+export function builderActions(
+	node: HTMLElement,
+	params: BuilderActionsParams
+): BuilderActionsReturn {
+	const unsubs: ActionReturn[] = [];
+	params.builders.forEach((builder) => {
+		const act = builder.action(node);
+		if (act) {
+			unsubs.push(act);
+		}
+	});
+	return {
+		destroy: () => {
+			unsubs.forEach((unsub) => {
+				if (unsub.destroy) {
+					unsub.destroy();
+				}
+			});
+		}
+	};
+}
+
+export function getAttrs(builders: Builder[]) {
+	const attrs: Record<string, unknown | undefined> = {};
+	builders.forEach((builder) => {
+		Object.keys(builder).forEach((key) => {
+			if (key !== "action") {
+				attrs[key] = builder[key];
+			}
+		});
+	});
+	return attrs;
 }

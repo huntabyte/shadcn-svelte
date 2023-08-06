@@ -1,78 +1,34 @@
 <script lang="ts">
+	import * as ButtonPrimitive from "$primitives/button";
 	import type { VariantProps } from "class-variance-authority";
-	import type {
-		HTMLAnchorAttributes,
-		HTMLButtonAttributes
-	} from "svelte/elements";
 	import { cn } from "$lib/utils";
-	import { buttonVariants, type Builder, allActions, getAttrs } from ".";
+	import { buttonVariants } from ".";
+
+	type $$Props = ButtonPrimitive.Props & {
+		variant?: VariantProps<typeof buttonVariants>["variant"];
+		size?: VariantProps<typeof buttonVariants>["size"];
+	};
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	export let href: HTMLAnchorAttributes["href"] = undefined;
-	export let type: HTMLButtonAttributes["type"] = undefined;
+	export let href: $$Props["href"] = undefined;
 	export let variant: VariantProps<typeof buttonVariants>["variant"] =
 		"default";
 	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
-	export let builders: Builder[] = [];
-
-	type Props = {
-		class?: string | null;
-		variant?: VariantProps<typeof buttonVariants>["variant"];
-		size?: VariantProps<typeof buttonVariants>["size"];
-		builders?: Builder[];
-	};
-
-	interface AnchorElement extends Props, HTMLAnchorAttributes {
-		href?: HTMLAnchorAttributes["href"];
-		type?: never;
-	}
-
-	interface ButtonElement extends Props, HTMLButtonAttributes {
-		type?: HTMLButtonAttributes["type"];
-		href?: never;
-	}
-
-	type $$Props = AnchorElement | ButtonElement;
+	export let builders: $$Props["builders"] = [];
 </script>
 
-{#if builders.length}
-	<svelte:element
-		this={href ? "a" : "button"}
-		type={href ? undefined : type}
-		{href}
-		class={cn(buttonVariants({ variant, size, className }))}
-		on:click
-		on:change
-		on:keydown
-		on:keyup
-		on:mouseenter
-		on:mouseleave
-		role="button"
-		tabindex="0"
-		use:allActions={{ builders }}
-		{...getAttrs(builders)}
-		{...$$restProps}
-	>
-		<slot />
-	</svelte:element>
-{:else}
-	<svelte:element
-		this={href ? "a" : "button"}
-		type={href ? undefined : type}
-		{href}
-		class={cn(buttonVariants({ variant, size, className }))}
-		{...$$restProps}
-		on:click
-		on:change
-		on:keydown
-		on:keyup
-		on:mouseenter
-		on:mouseleave
-		role="button"
-		tabindex="0"
-	>
-		<slot />
-	</svelte:element>
-{/if}
+<ButtonPrimitive.Root
+	{builders}
+	{href}
+	class={cn(buttonVariants({ variant, size, className }))}
+	{...$$restProps}
+	on:click
+	on:change
+	on:keydown
+	on:keyup
+	on:mouseenter
+	on:mouseleave
+>
+	<slot />
+</ButtonPrimitive.Root>

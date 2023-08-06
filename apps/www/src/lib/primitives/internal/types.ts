@@ -1,3 +1,4 @@
+import type { Action } from "svelte/action";
 import type { HTMLAttributes } from "svelte/elements";
 import type { TransitionConfig } from "svelte/transition";
 
@@ -32,3 +33,9 @@ export type Prettify<T> = {
 	[K in keyof T]: T[K];
 	// eslint-disable-next-line @typescript-eslint/ban-types
 } & {};
+
+export type Builder = {
+	[x: PropertyKey]: unknown;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	action: Action<HTMLElement, any, any>;
+};

@@ -1,7 +1,5 @@
-import { cva } from "class-variance-authority";
-import type { Action, ActionReturn } from "svelte/action";
-
 export { default as Button } from "./Button.svelte";
+import { cva } from "class-variance-authority";
 
 export const buttonVariants = cva(
 	"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -32,43 +30,3 @@ export const buttonVariants = cva(
 		}
 	}
 );
-
-export type Builder = {
-	[x: PropertyKey]: unknown;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	action: Action<HTMLElement, any, any>;
-};
-export const allActions: Action<
-	HTMLElement,
-	{ builders: Builder[] },
-	Record<string, unknown | undefined>
-> = (node, params) => {
-	const unsubs: ActionReturn[] = [];
-	params.builders.forEach((builder) => {
-		const act = builder.action(node);
-		if (act) {
-			unsubs.push(act);
-		}
-	});
-	return {
-		destroy: () => {
-			unsubs.forEach((unsub) => {
-				if (unsub.destroy) {
-					unsub.destroy();
-				}
-			});
-		}
-	};
-};
-
-export function getAttrs(builders: Builder[]) {
-	const attrs: Record<string, unknown | undefined> = {};
-	builders.forEach((builder) => {
-		Object.keys(builder).forEach((key) => {
-			if (key !== "action") {
-				attrs[key] = builder[key];
-			}
-		});
-	});
-	return attrs;
-}
