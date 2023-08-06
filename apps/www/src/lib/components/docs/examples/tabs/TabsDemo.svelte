@@ -1,22 +1,17 @@
 <script lang="ts">
+	import * as Tabs from "$components/ui/tabs";
 	import { Button } from "$components/ui/button";
 	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
-	import {
-		Tabs,
-		TabsContent,
-		TabsList,
-		TabsTrigger
-	} from "$components/ui/tabs";
 </script>
 
-<Tabs value="account" class="w-[400px]">
-	<TabsList class="grid w-full grid-cols-2">
-		<TabsTrigger value="account">Account</TabsTrigger>
-		<TabsTrigger value="password">Password</TabsTrigger>
-	</TabsList>
-	<TabsContent value="account">
+<Tabs.Root value="account" class="w-[400px]">
+	<Tabs.List class="grid w-full grid-cols-2">
+		<Tabs.Trigger value="account">Account</Tabs.Trigger>
+		<Tabs.Trigger value="password">Password</Tabs.Trigger>
+	</Tabs.List>
+	<Tabs.Content value="account">
 		<Card>
 			<Card.Header>
 				<Card.Title>Account</Card.Title>
@@ -39,8 +34,8 @@
 				<Button>Save changes</Button>
 			</Card.Footer>
 		</Card>
-	</TabsContent>
-	<TabsContent value="password">
+	</Tabs.Content>
+	<Tabs.Content value="password">
 		<Card>
 			<Card.Header>
 				<Card.Title>Password</Card.Title>
@@ -63,5 +58,5 @@
 				<Button>Save password</Button>
 			</Card.Footer>
 		</Card>
-	</TabsContent>
-</Tabs>
+	</Tabs.Content>
+</Tabs.Root>

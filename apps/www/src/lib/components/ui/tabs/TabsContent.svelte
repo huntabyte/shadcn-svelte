@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { TabsContentProps } from "radix-svelte";
-	import { Tabs as TabsPrimitive } from "radix-svelte";
+	import * as TabsPrimitive from "$primitives/tabs";
 	import { cn } from "$lib/utils";
 
+	type $$Props = TabsPrimitive.ContentProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: TabsContentProps["value"];
+	export let value: $$Props["value"];
 </script>
 
 <TabsPrimitive.Content

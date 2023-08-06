@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Tabs as TabsPrimitive } from "radix-svelte";
+	import * as TabsPrimitive from "$primitives/tabs";
 	import { cn } from "$lib/utils";
 
+	type $$Props = TabsPrimitive.ListProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

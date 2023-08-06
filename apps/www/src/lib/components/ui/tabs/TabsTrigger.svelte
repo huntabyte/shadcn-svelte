@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { TabsTriggerProps } from "radix-svelte";
-	import { Tabs as TabsPrimitive } from "radix-svelte";
+	import * as TabsPrimitive from "$primitives/tabs";
 	import { cn } from "$lib/utils";
 
+	type $$Props = TabsPrimitive.TriggerProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: TabsTriggerProps["value"];
+	export let value: $$Props["value"];
 </script>
 
 <TabsPrimitive.Trigger

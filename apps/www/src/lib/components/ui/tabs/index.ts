@@ -1,7 +1,18 @@
-import { Tabs as TabsPrimitive } from "radix-svelte";
+import * as TabsPrimitive from "$primitives/tabs";
+import Content from "./TabsContent.svelte";
+import List from "./TabsList.svelte";
+import Trigger from "./TabsTrigger.svelte";
 
-export { default as TabsContent } from "./TabsContent.svelte";
-export { default as TabsList } from "./TabsList.svelte";
-export { default as TabsTrigger } from "./TabsTrigger.svelte";
+const Root = TabsPrimitive.Root;
 
-export const Tabs = TabsPrimitive.Root;
+export {
+	Root,
+	Content,
+	List,
+	Trigger,
+	//
+	Root as Tabs,
+	Content as TabsContent,
+	List as TabsList,
+	Trigger as TabsTrigger
+};

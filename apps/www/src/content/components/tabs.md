@@ -43,16 +43,9 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger
-  } from "$components/ui/tabs";
+  import * as Tabs from "$components/ui/tabs";
 </script>
-```
 
-```svelte
 <Tabs value="account" class="w-[400px]">
   <TabsList>
     <TabsTrigger value="account">Account</TabsTrigger>
