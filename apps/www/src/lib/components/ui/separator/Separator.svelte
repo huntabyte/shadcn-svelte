@@ -1,22 +1,21 @@
 <script lang="ts">
+	import * as SeparatorPrimitive from "$primitives/separator";
 	import { cn } from "$lib/utils";
-	import { ctx, melt, type SeparatorProps } from ".";
 
+	type $$Props = SeparatorPrimitive.Props;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	export let orientation: SeparatorProps["orientation"] = "horizontal";
-	export let decorative: SeparatorProps["decorative"] = true;
-
-	const separator = ctx.get({ orientation, decorative });
+	export let orientation: $$Props["orientation"] = "horizontal";
+	export let decorative: $$Props["decorative"] = undefined;
 </script>
 
-<div
-	use:melt={$separator}
+<SeparatorPrimitive.Root
 	class={cn(
 		"shrink-0 bg-border",
 		orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
 		className
 	)}
+	{orientation}
+	{decorative}
 	{...$$restProps}
 />
