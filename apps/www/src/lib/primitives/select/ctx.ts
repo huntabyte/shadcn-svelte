@@ -21,8 +21,7 @@ function get() {
 
 function set(props: CreateSelectProps) {
 	const select = createSelect({
-		...removeUndefined(props),
-		forceVisible: true
+		...removeUndefined(props)
 	});
 	setContext(NAME, select);
 	return {
@@ -35,13 +34,7 @@ export const ctx = {
 	set,
 	get,
 	setGroup,
-	getContent: () => {
-		const {
-			elements: { menu: content },
-			states: { open }
-		} = get();
-		return { content, open };
-	},
+	getContent,
 	getTrigger: () => get().elements.trigger,
 	setItem,
 	getItemIndicator,
@@ -50,6 +43,14 @@ export const ctx = {
 	getValue: () => get().states.valueLabel,
 	getInput: () => get().elements.input
 };
+
+function getContent() {
+	const {
+		elements: { menu: content },
+		states: { open }
+	} = get();
+	return { content, open };
+}
 
 function setGroup() {
 	const id = generateId();

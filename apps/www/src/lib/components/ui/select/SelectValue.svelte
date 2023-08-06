@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { ctx } from ".";
+	import * as SelectPrimitive from "$primitives/select";
 
-	let className: string | null | undefined = undefined;
-	export { className as class };
-	export let placeholder: string = "";
-
-	const valueLabel = ctx.getValue();
+	type $$Props = SelectPrimitive.ValueProps;
+	export let placeholder: $$Props["placeholder"] = "";
 </script>
 
-<span class={className} {...$$restProps}>
-	{$valueLabel ? $valueLabel : placeholder}
-</span>
+<SelectPrimitive.Value {placeholder} {...$$restProps} />

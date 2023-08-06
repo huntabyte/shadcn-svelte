@@ -1,8 +1,7 @@
 <script lang="ts">
-	import type { HTMLInputAttributes } from "svelte/elements";
-	import { ctx, melt } from ".";
-	const input = ctx.getInput();
-	type $$Props = HTMLInputAttributes;
+	import * as SelectPrimitive from "$primitives/select";
+
+	type $$Props = SelectPrimitive.InputProps;
 </script>
 
-<input use:melt={$input} hidden {...$$restProps} />
+<SelectPrimitive.Input {...$$restProps} />

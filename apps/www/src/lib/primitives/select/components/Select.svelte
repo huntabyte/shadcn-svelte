@@ -20,7 +20,7 @@
 	export let label: $$Props["label"] = undefined;
 
 	const {
-		states: { open: localOpen, value: localValue },
+		states: { open: localOpen, value: localValue, valueLabel },
 		updateOption
 	} = ctx.set({
 		required,
@@ -41,6 +41,7 @@
 
 	$: open !== undefined && localOpen.set(open);
 	$: value !== undefined && localValue.set(value);
+
 	$: updateOption("required", required);
 	$: updateOption("disabled", disabled);
 	$: updateOption("arrowSize", arrowSize);

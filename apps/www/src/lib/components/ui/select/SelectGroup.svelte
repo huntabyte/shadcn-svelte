@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ctx, melt } from ".";
+	import * as SelectPrimitive from "$primitives/select";
 
-	const { group, key } = ctx.getGroup();
+	type $$Props = SelectPrimitive.GroupProps;
 </script>
 
-<div use:melt={$group(key)} {...$$restProps}>
+<SelectPrimitive.Group {...$$restProps}>
 	<slot />
-</div>
+</SelectPrimitive.Group>

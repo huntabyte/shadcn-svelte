@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select } from "$components/ui/select";
+	import * as Select from "$components/ui/select";
 
 	const fruits = [
 		{ value: "apple", label: "Apple" },
@@ -10,7 +10,7 @@
 	];
 </script>
 
-<Select>
+<Select.Root>
 	<Select.Trigger class="w-[180px]">
 		<Select.Value placeholder="Select a fruit" />
 	</Select.Trigger>
@@ -18,11 +18,11 @@
 		<Select.Group>
 			<Select.Label>Fruits</Select.Label>
 			{#each fruits as fruit}
-				<Select.Option value={fruit.value} label={fruit.label}
-					>{fruit.label}</Select.Option
+				<Select.Item value={fruit.value} label={fruit.label}
+					>{fruit.label}</Select.Item
 				>
 			{/each}
 		</Select.Group>
 	</Select.Content>
 	<Select.Input name="favoriteFruit" />
-</Select>
+</Select.Root>

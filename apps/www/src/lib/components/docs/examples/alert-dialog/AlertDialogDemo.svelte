@@ -3,8 +3,6 @@
 	import { Button } from "$components/ui/button";
 
 	let open = false;
-
-	$: console.log(open);
 </script>
 
 <AlertDialog.Root bind:open>

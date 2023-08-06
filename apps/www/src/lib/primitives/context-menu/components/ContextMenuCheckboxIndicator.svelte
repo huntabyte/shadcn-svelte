@@ -4,8 +4,6 @@
 
 	type $$Props = CheckboxItemIndicatorProps;
 	const checked = ctx.getCheckboxIndicator();
-
-	$: console.log($checked);
 </script>
 
 <div {...$$restProps}>

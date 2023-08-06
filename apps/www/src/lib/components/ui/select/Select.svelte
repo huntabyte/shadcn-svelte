@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { ctx, type SelectProps } from ".";
+	import * as SelectPrimitive from "$primitives/select";
 
-	type $$Props = SelectProps;
-
-	ctx.set($$restProps);
+	type $$Props = SelectPrimitive.Props;
+	export let value: $$Props["value"] = undefined;
+	export let open: $$Props["open"] = undefined;
 </script>
 
-<slot />
+<SelectPrimitive.Root bind:value bind:open {...$$restProps}>
+	<slot />
+</SelectPrimitive.Root>
