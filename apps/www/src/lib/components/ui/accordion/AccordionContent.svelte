@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 	import { slide } from "svelte/transition";
 
+	type $$Props = AccordionPrimitive.ContentProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { ctx, melt } from ".";
+	import { melt } from "@melt-ui/svelte";
+	import { ctx } from "../ctx";
+	import type { TriggerProps } from "../types";
 
+	type $$Props = TriggerProps;
 	export let asChild = false;
-
 	const trigger = ctx.getTrigger();
 </script>
 

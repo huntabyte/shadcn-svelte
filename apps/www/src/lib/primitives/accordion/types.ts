@@ -18,7 +18,7 @@ type Props = OmitValue<CreateAccordionProps> & {
 
 type ItemProps = ObjectVariation<_ItemProps> & HTMLDivAttributes;
 type HeaderProps = ObjectVariation<_HeadingProps> & HTMLDivAttributes;
-type TriggerProps = ItemProps & HTMLButtonAttributes;
+type TriggerProps = HTMLButtonAttributes;
 
 type ContentProps<T extends Transition = Transition> = HTMLDivAttributes & {
 	transition?: T;

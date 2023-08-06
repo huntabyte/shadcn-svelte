@@ -1,15 +1,19 @@
 <script lang="ts">
+	import {
+		Popover,
+		PopoverTrigger,
+		PopoverContent
+	} from "$components/ui/popover";
 	import { Label } from "$components/ui/label";
 	import { Button } from "$components/ui/button";
-	import { Popover } from "$components/ui/popover";
 	import { Input } from "$components/ui/input";
 </script>
 
 <Popover>
-	<Popover.Trigger asChild let:trigger>
+	<PopoverTrigger asChild let:trigger>
 		<Button builders={[trigger]} variant="outline">Open</Button>
-	</Popover.Trigger>
-	<Popover.Content class="w-80">
+	</PopoverTrigger>
+	<PopoverContent class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">
 				<h4 class="font-medium leading-none">Dimensions</h4>
@@ -36,5 +40,5 @@
 				</div>
 			</div>
 		</div>
-	</Popover.Content>
+	</PopoverContent>
 </Popover>
