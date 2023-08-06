@@ -20,6 +20,7 @@ export type OmitPressed<T> = Omit<
 	T,
 	"pressed" | "defaultPressed" | "onPressedChange"
 >;
+export type OmitForceVisible<T> = Omit<T, "forceVisible">;
 
 export type Expand<T> = T extends object
 	? T extends infer O

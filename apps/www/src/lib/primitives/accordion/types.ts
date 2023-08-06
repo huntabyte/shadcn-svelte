@@ -20,10 +20,10 @@ type ItemProps = ObjectVariation<_ItemProps> & HTMLDivAttributes;
 type HeaderProps = ObjectVariation<_HeadingProps> & HTMLDivAttributes;
 type TriggerProps = HTMLButtonAttributes;
 
-type ContentProps<T extends Transition = Transition> = HTMLDivAttributes & {
+type ContentProps<T extends Transition = Transition> = {
 	transition?: T;
 	transitionConfig?: TransitionParams<T>;
-};
+} & HTMLDivAttributes;
 
 export type {
 	Props,

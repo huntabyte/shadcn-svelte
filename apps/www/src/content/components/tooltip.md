@@ -43,22 +43,13 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-  } from "$components/ui/tooltip";
+  import * as Tooltip from "$components/ui/tooltip";
 </script>
-```
 
-```svelte
-<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger>Hover</TooltipTrigger>
-    <TooltipContent>
-      <p>Add to library</p>
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>
+<Tooltip.Root>
+  <Tooltip.Trigger>Hover</Tooltip.Trigger>
+  <Tooltip.Content>
+    <p>Add to library</p>
+  </Tooltip.Content>
+</Tooltip.Root>
 ```
