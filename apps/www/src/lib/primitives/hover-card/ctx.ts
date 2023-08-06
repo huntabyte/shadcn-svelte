@@ -1,8 +1,10 @@
+import { getOptionUpdater, removeUndefined } from "$primitives/internal";
 import {
 	createHoverCard,
 	type CreateHoverCardProps as HoverCardProps,
 	type HoverCard as HoverCardReturn,
-	melt
+	melt,
+	type CreateHoverCardProps
 } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 
@@ -32,7 +34,14 @@ function get() {
 	return getContext<HoverCardReturn>(NAME);
 }
 
-function set(props: HoverCardProps) {
-	const hovercard = createHoverCard({ ...props, forceVisible: true });
+function set(props: CreateHoverCardProps) {
+	const hovercard = createHoverCard({
+		...removeUndefined(props),
+		forceVisible: true
+	});
 	setContext(NAME, hovercard);
+	return {
+		...hovercard,
+		updateOption: getOptionUpdater(hovercard.options)
+	};
 }
