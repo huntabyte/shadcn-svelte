@@ -32,7 +32,7 @@ export const add = new Command()
 			logger.error(
 				"An error occurred while fetching components. Please try again."
 			);
-			process.exit(0);
+			process.exitCode = 1;
 		}
 
 		let selectedComponents = availableComponents.filter((component) =>
@@ -50,7 +50,7 @@ export const add = new Command()
 
 		if (!selectedComponents?.length) {
 			logger.warn("No components selected. Nothing to install.");
-			process.exit(0);
+			process.exitCode = 0;
 		}
 
 		// Create componentPath directory if it doesn't exist.

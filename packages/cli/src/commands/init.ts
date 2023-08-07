@@ -45,7 +45,8 @@ export const init = new Command()
 			});
 
 			if (!proceed) {
-				process.exit(0);
+				process.exitCode = 0;
+				return;
 			}
 		}
 

@@ -31,13 +31,15 @@ export const update = new Command()
 			logger.error(
 				"An error occurred while fetching components. Please try again."
 			);
-			process.exit(0);
+			process.exitCode = 1;
+			return;
 		}
 
 		const config = await getConfig();
 		if (!config) {
 			logger.error("'shadcn' config is missing in 'svelte.config.js'.");
-			process.exit(0);
+			process.exitCode = 1;
+			return;
 		}
 
 		const dir = config.componentPath;
@@ -45,7 +47,8 @@ export const update = new Command()
 		const destinationDir = path.resolve(dir);
 		if (!existsSync(destinationDir)) {
 			logger.error(`componentPath '${dir}' does not exist.`);
-			process.exit(0);
+			process.exitCode = 1;
+			return;
 		}
 
 		const userDefinedComponents: typeof availableComponents = [];
@@ -75,13 +78,15 @@ export const update = new Command()
 		}
 
 		if (selectedComponents === undefined) {
-			logger.warn(`No shadcn components detected in '${dir}'.`);
-			process.exit(0);
+			logger.info(`No shadcn components detected in '${dir}'.`);
+			process.exitCode = 0;
+			return;
 		}
 
 		if (selectedComponents.length === 0) {
-			logger.warn("No components selected. Nothing to update.");
-			process.exit(0);
+			logger.info("No components selected. Nothing to update.");
+			process.exitCode = 0;
+			return;
 		}
 
 		logger.success(
