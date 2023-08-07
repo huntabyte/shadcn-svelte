@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
 	import { Label } from "$components/ui/label";
 	import { Switch } from "$components/ui/switch";
 </script>
 
-<Card>
+<Card.Root>
 	<Card.Header>
 		<Card.Title>Cookie Settings</Card.Title>
 		<Card.Description>Manage your cookie settings here.</Card.Description>
@@ -19,7 +19,7 @@
 					use its features.
 				</span>
 			</Label>
-			<Switch id="necessary" defaultChecked />
+			<Switch id="necessary" checked />
 		</div>
 		<div class="flex items-center justify-between space-x-2">
 			<Label for="functional" class="flex flex-col space-y-1">
@@ -45,4 +45,4 @@
 	<Card.Footer>
 		<Button variant="outline" class="w-full">Save preferences</Button>
 	</Card.Footer>
-</Card>
+</Card.Root>

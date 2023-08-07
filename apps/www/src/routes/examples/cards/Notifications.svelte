@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AtSign, Bell, BellOff } from "lucide-svelte";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
 </script>
 
-<Card>
+<Card.Root>
 	<Card.Header>
 		<Card.Title>Notifications</Card.Title>
 		<Card.Description>
@@ -45,4 +45,4 @@
 			</div>
 		</div>
 	</Card.Content>
-</Card>
+</Card.Root>

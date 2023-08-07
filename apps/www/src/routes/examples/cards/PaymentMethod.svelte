@@ -2,13 +2,14 @@
 	import { CreditCard } from "lucide-svelte";
 	import { Icons } from "$components/docs";
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
+	import * as RadioGroup from "$components/ui/radio-group";
+	import * as Select from "$components/ui/select";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
-	import { RadioGroup, RadioGroupItem } from "$components/ui/radio-group";
 </script>
 
-<Card>
+<Card.Root>
 	<Card.Header>
 		<Card.Title>Payment Method</Card.Title>
 		<Card.Description>
@@ -16,12 +17,12 @@
 		</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
-		<RadioGroup value="card" class="grid grid-cols-3 gap-4">
+		<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
 			<Label
 				for="card"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroupItem value="card" id="card" class="sr-only" />
+				<RadioGroup.Item value="card" id="card" class="sr-only" />
 				<CreditCard class="mb-3 h-6 w-6" />
 				Card
 			</Label>
@@ -29,7 +30,7 @@
 				for="paypal"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroupItem value="paypal" id="paypal" class="sr-only" />
+				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" />
 				<Icons.paypal class="mb-3 h-6 w-6" />
 				Paypal
 			</Label>
@@ -37,11 +38,11 @@
 				for="apple"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroupItem value="apple" id="apple" class="sr-only" />
+				<RadioGroup.Item value="apple" id="apple" class="sr-only" />
 				<Icons.apple class="mb-3 h-6 w-6" />
 				Apple
 			</Label>
-		</RadioGroup>
+		</RadioGroup.Root>
 		<div class="grid gap-2">
 			<Label for="name">Name</Label>
 			<Input id="name" placeholder="First Last" />
@@ -53,45 +54,43 @@
 		<div class="grid grid-cols-3 gap-4">
 			<div class="grid gap-2">
 				<Label for="month">Expires</Label>
-				<Input id="month" placeholder="" />
-				<!-- <Select>
-					<SelectTrigger id="month">
-						<SelectValue placeholder="Month" />
-					</SelectTrigger>
-					<SelectContent>
-						<SelectItem value="1">January</SelectItem>
-						<SelectItem value="2">February</SelectItem>
-						<SelectItem value="3">March</SelectItem>
-						<SelectItem value="4">April</SelectItem>
-						<SelectItem value="5">May</SelectItem>
-						<SelectItem value="6">June</SelectItem>
-						<SelectItem value="7">July</SelectItem>
-						<SelectItem value="8">August</SelectItem>
-						<SelectItem value="9">September</SelectItem>
-						<SelectItem value="10">October</SelectItem>
-						<SelectItem value="11">November</SelectItem>
-						<SelectItem value="12">December</SelectItem>
-					</SelectContent>
-				</Select> -->
+				<Select.Root>
+					<Select.Trigger id="month">
+						<Select.Value placeholder="Month" />
+					</Select.Trigger>
+					<Select.Content>
+						<Select.Item value="1">January</Select.Item>
+						<Select.Item value="2">February</Select.Item>
+						<Select.Item value="3">March</Select.Item>
+						<Select.Item value="4">April</Select.Item>
+						<Select.Item value="5">May</Select.Item>
+						<Select.Item value="6">June</Select.Item>
+						<Select.Item value="7">July</Select.Item>
+						<Select.Item value="8">August</Select.Item>
+						<Select.Item value="9">September</Select.Item>
+						<Select.Item value="10">October</Select.Item>
+						<Select.Item value="11">November</Select.Item>
+						<Select.Item value="12">December</Select.Item>
+					</Select.Content>
+				</Select.Root>
 			</div>
 			<div class="grid gap-2">
 				<Label for="year">Year</Label>
-				<Input id="year" placeholder="" />
-				<!-- <Select>
-					<SelectTrigger id="year">
-						<SelectValue placeholder="Year" />
-					</SelectTrigger>
-					<SelectContent>
-						{#each Array(10) as _, i}}
-							<SelectItem
-								key={i}
+				<Select.Root>
+					<Select.Trigger id="year">
+						<Select.Value placeholder="Year" />
+					</Select.Trigger>
+					<Select.Content>
+						{#each Array(10) as _, i}
+							<Select.Item
+								label={`${new Date().getFullYear() + i}`}
 								value={`${new Date().getFullYear() + i}`}
 							>
 								{new Date().getFullYear() + i}
-							</SelectItem>
+							</Select.Item>
 						{/each}
-					</SelectContent>
-				</Select> -->
+					</Select.Content>
+				</Select.Root>
 			</div>
 			<div class="grid gap-2">
 				<Label for="cvc">CVC</Label>
@@ -102,4 +101,4 @@
 	<Card.Footer>
 		<Button class="w-full">Continue</Button>
 	</Card.Footer>
-</Card>
+</Card.Root>

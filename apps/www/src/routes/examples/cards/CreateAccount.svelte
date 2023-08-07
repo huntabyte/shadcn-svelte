@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Icons } from "$components/docs";
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 </script>
 
-<Card>
+<Card.Root>
 	<Card.Header class="space-y-1">
 		<Card.Title class="text-2xl">Create an account</Card.Title>
 		<Card.Description>
@@ -46,4 +46,4 @@
 	<Card.Footer>
 		<Button class="w-full">Create account</Button>
 	</Card.Footer>
-</Card>
+</Card.Root>

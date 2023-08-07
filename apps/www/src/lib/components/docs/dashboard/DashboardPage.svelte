@@ -6,21 +6,10 @@
 		Download,
 		Users
 	} from "lucide-svelte";
-	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+	import * as Avatar from "$components/ui/avatar";
 	import { Button } from "$components/ui/button";
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from "$components/ui/card";
-	import {
-		Tabs,
-		TabsContent,
-		TabsList,
-		TabsTrigger
-	} from "$components/ui/tabs";
+	import * as Card from "$components/ui/card";
+	import * as Tabs from '$components/ui/tabs'
 	import MainNav from "./MainNav.svelte";
 	import Overview from "./Overview.svelte";
 	import RecentSales from "./RecentSales.svelte";
@@ -49,10 +38,10 @@
 			<MainNav class="mx-6" />
 			<div class="ml-auto flex items-center space-x-4">
 				<Search />
-				<Avatar className="h-8 w-8">
-					<AvatarImage src="/avatars/01.png" alt="@shadcn" />
-					<AvatarFallback>SC</AvatarFallback>
-				</Avatar>
+				<Avatar.Root class="h-8 w-8">
+					<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
+					<Avatar.Fallback>SC</Avatar.Fallback>
+				</Avatar.Root>
 			</div>
 		</div>
 	</div>
@@ -66,104 +55,104 @@
 				</Button>
 			</div>
 		</div>
-		<Tabs value="overview" class="space-y-4">
-			<TabsList>
-				<TabsTrigger value="overview">Overview</TabsTrigger>
-				<TabsTrigger value="analytics" disabled>Analytics</TabsTrigger>
-				<TabsTrigger value="reports" disabled>Reports</TabsTrigger>
-				<TabsTrigger value="notifications" disabled
-					>Notifications</TabsTrigger
+		<Tabs.Root value="overview" class="space-y-4">
+			<Tabs.List>
+				<Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+				<Tabs.Trigger value="analytics" disabled>Analytics</Tabs.Trigger>
+				<Tabs.Trigger value="reports" disabled>Reports</Tabs.Trigger>
+				<Tabs.Trigger value="notifications" disabled
+					>Notifications</Tabs.Trigger
 				>
-			</TabsList>
-			<TabsContent value="overview" class="space-y-4">
+			</Tabs.List>
+			<Tabs.Content value="overview" class="space-y-4">
 				<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-					<Card>
-						<CardHeader
+					<Card.Root>
+						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<CardTitle class="text-sm font-medium">
+							<Card.Title class="text-sm font-medium">
 								Total Revenue
-							</CardTitle>
+							</Card.Title>
 							<DollarSign class="h-4 w-4 text-muted-foreground" />
-						</CardHeader>
-						<CardContent>
+						</Card.Header>
+						<Card.Content>
 							<div class="text-2xl font-bold">$45,231.89</div>
 							<p class="text-xs text-muted-foreground">
 								+20.1% from last month
 							</p>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader
+						</Card.Content>
+					</Card.Root>
+					<Card.Root>
+						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<CardTitle class="text-sm font-medium">
+							<Card.Title class="text-sm font-medium">
 								Subscriptions
-							</CardTitle>
+							</Card.Title>
 							<Users class="h-4 w-4 text-muted-foreground" />
-						</CardHeader>
-						<CardContent>
+						</Card.Header>
+						<Card.Content>
 							<div class="text-2xl font-bold">+2350</div>
 							<p class="text-xs text-muted-foreground">
 								+180.1% from last month
 							</p>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader
+						</Card.Content>
+					</Card.Root>
+					<Card.Root>
+						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<CardTitle class="text-sm font-medium"
-								>Sales</CardTitle
+							<Card.Title class="text-sm font-medium"
+								>Sales</Card.Title
 							>
 							<CreditCard class="h-4 w-4 text-muted-foreground" />
-						</CardHeader>
-						<CardContent>
+						</Card.Header>
+						<Card.Content>
 							<div class="text-2xl font-bold">+12,234</div>
 							<p class="text-xs text-muted-foreground">
 								+19% from last month
 							</p>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardHeader
+						</Card.Content>
+					</Card.Root>
+					<Card.Root>
+						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<CardTitle class="text-sm font-medium">
+							<Card.Title class="text-sm font-medium">
 								Active Now
-							</CardTitle>
+							</Card.Title>
 							<Activity class="h-4 w-4 text-muted-foreground" />
-						</CardHeader>
-						<CardContent>
+						</Card.Header>
+						<Card.Content>
 							<div class="text-2xl font-bold">+573</div>
 							<p class="text-xs text-muted-foreground">
 								+201 since last hour
 							</p>
-						</CardContent>
-					</Card>
+						</Card.Content>
+					</Card.Root>
 				</div>
 				<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-					<Card class="col-span-4">
-						<CardHeader>
-							<CardTitle>Overview</CardTitle>
-						</CardHeader>
-						<CardContent>
+					<Card.Root class="col-span-4">
+						<Card.Header>
+							<Card.Title>Overview</Card.Title>
+						</Card.Header>
+						<Card.Content>
 							<Overview />
-						</CardContent>
-					</Card>
-					<Card class="col-span-3">
-						<CardHeader>
-							<CardTitle>Recent Sales</CardTitle>
-							<CardDescription>
+						</Card.Content>
+					</Card.Root>
+					<Card.Root class="col-span-3">
+						<Card.Header>
+							<Card.Title>Recent Sales</Card.Title>
+							<Card.Description>
 								You made 265 sales this month.
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
+							</Card.Description>
+						</Card.Header>
+						<Card.Content>
 							<RecentSales />
-						</CardContent>
-					</Card>
+						</Card.Content>
+					</Card.Root>
 				</div>
-			</TabsContent>
-		</Tabs>
+			</Tabs.Content>
+		</Tabs.Root>
 	</div>
 </div>
