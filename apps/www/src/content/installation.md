@@ -8,9 +8,9 @@ description: How to install dependencies and structure your app.
   import { Steps } from "$components/docs";
 </script>
 
-Unlike the official [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach.
+Unlike the original [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach.
 
-The CLI will create a folder for each _component_, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
+The CLI will create a folder for _each_ component, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
 
 For example, the Accordion component is split into four `.svelte` files:
 
@@ -21,15 +21,15 @@ For example, the Accordion component is split into four `.svelte` files:
 
 Each of which can be imported from the `accordion/index.ts` file like so:
 
-```svelte
-<script lang="ts">
-  import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger
-  } from "$components/ui/accordion";
-</script>
+```ts
+import * as Accordion from '$components/ui/accordion"
+// or
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "$components/ui/accordion"
 ```
 
 ## New Project
@@ -41,7 +41,7 @@ Each of which can be imported from the `accordion/index.ts` file like so:
 Use the SvelteKit CLI to create a new project. Support for Svelte v4 is coming soon, we are just waiting for our dependencies to be updated.
 
 ```bash
-npm create svelte@v4.2.0 my-app
+npm create svelte@latest my-app
 ```
 
 ### Add TailwindCSS
