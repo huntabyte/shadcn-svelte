@@ -1,5 +1,4 @@
 <script lang="ts">
-	import A from "$components/docs/mdsvex/a.svelte";
 	import * as Avatar from "$components/ui/avatar";
 	import { Button } from "$components/ui/button";
 	import * as Card from "$components/ui/card";

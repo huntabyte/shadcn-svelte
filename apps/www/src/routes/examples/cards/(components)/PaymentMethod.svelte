@@ -7,6 +7,21 @@
 	import * as Select from "$components/ui/select";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
+
+	const months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	];
 </script>
 
 <Card.Root>
@@ -59,18 +74,11 @@
 						<Select.Value placeholder="Month" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="1">January</Select.Item>
-						<Select.Item value="2">February</Select.Item>
-						<Select.Item value="3">March</Select.Item>
-						<Select.Item value="4">April</Select.Item>
-						<Select.Item value="5">May</Select.Item>
-						<Select.Item value="6">June</Select.Item>
-						<Select.Item value="7">July</Select.Item>
-						<Select.Item value="8">August</Select.Item>
-						<Select.Item value="9">September</Select.Item>
-						<Select.Item value="10">October</Select.Item>
-						<Select.Item value="11">November</Select.Item>
-						<Select.Item value="12">December</Select.Item>
+						{#each months as month, i}
+							<Select.Item value={`${i + 1}`} label={month}
+								>{month}</Select.Item
+							>
+						{/each}
 					</Select.Content>
 				</Select.Root>
 			</div>

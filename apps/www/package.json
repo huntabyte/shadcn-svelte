@@ -83,7 +83,8 @@
 		"tailwind-variants": "^0.1.13",
 		"unified": "^10.1.2",
 		"unist-builder": "^3.0.1",
-		"unist-util-visit": "^4.1.2"
+		"unist-util-visit": "^4.1.2",
+		"zod": "^3.20.2"
 	},
 	"pnpm": {
 		"patchedDependencies": {

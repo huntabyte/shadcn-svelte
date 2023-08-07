@@ -1,9 +1,12 @@
 <script lang="ts">
-	import DemoCookieSettings from "./CookieSettings.svelte";
-	import DemoCreateAccount from "./CreateAccount.svelte";
-	import DemoContainer from "./DemoContainer.svelte";
-	import DemoNotifications from "./Notifications.svelte";
-	import DemoPaymentMethod from "./PaymentMethod.svelte";
+	import DemoCookieSettings from "./(components)/CookieSettings.svelte";
+	import DemoCreateAccount from "./(components)/CreateAccount.svelte";
+	import DemoContainer from "./(components)/DemoContainer.svelte";
+	import DemoNotifications from "./(components)/Notifications.svelte";
+	import DemoPaymentMethod from "./(components)/PaymentMethod.svelte";
+	import DemoShareDocument from "./(components)/ShareDocument.svelte";
+	import DemoGithub from "./(components)/GithubCard.svelte";
+	import DemoReportAnIssue from "./(components)/ReportAnIssue.svelte";
 </script>
 
 <div class="md:hidden">
@@ -30,12 +33,25 @@
 			<DemoCreateAccount />
 		</DemoContainer>
 		<DemoContainer>
+			<DemoPaymentMethod />
+		</DemoContainer>
+	</div>
+	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
+		<DemoContainer>
+			<DemoShareDocument />
+		</DemoContainer>
+		<DemoContainer>
 			<DemoNotifications />
 		</DemoContainer>
 	</div>
-	<div class="col-span-3 grid items-start gap-6 lg:col-span-2">
+	<div
+		class="col-span-2 grid items-start gap-6 lg:col-span-2 lg:grid-cols-2 xl:col-span-1 xl:grid-cols-1"
+	>
 		<DemoContainer>
-			<DemoPaymentMethod />
+			<DemoReportAnIssue />
+		</DemoContainer>
+		<DemoContainer>
+			<DemoGithub />
 		</DemoContainer>
 		<DemoContainer>
 			<DemoCookieSettings />
