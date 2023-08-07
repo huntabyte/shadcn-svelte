@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as DialogPrimitive from "$primitives/dialog";
+	import { Dialog as DialogPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = DialogPrimitive.OverlayProps;

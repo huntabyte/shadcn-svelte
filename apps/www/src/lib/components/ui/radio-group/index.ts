@@ -1,8 +1,7 @@
-import * as RadioGroupPrimitive from "$primitives/radio-group";
+import { RadioGroup as RadioGroupPrimitive } from "@huntabyte/primitives";
 
 import Root from "./RadioGroup.svelte";
 import Item from "./RadioGroupItem.svelte";
-
 const Input = RadioGroupPrimitive.Input;
 
 export {

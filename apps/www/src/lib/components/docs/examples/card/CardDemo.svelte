@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { BellRing, Check } from "lucide-svelte";
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
 	import { Switch } from "$components/ui/switch";
 
 	const notifications = [
@@ -20,7 +20,7 @@
 	];
 </script>
 
-<Card class="w-[380px]">
+<Card.Root class="w-[380px]">
 	<Card.Header>
 		<Card.Title>Notifications</Card.Title>
 		<Card.Description>You have 3 unread messages.</Card.Description>
@@ -63,4 +63,4 @@
 			<Check class="mr-2 h-4 w-4" /> Mark all as read
 		</Button>
 	</Card.Footer>
-</Card>
+</Card.Root>

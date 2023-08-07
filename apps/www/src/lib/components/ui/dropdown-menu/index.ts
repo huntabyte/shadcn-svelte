@@ -1,5 +1,4 @@
-import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
-
+import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
 import Item from "./DropdownMenuItem.svelte";
 import Label from "./DropdownMenuLabel.svelte";
 import Content from "./DropdownMenuContent.svelte";

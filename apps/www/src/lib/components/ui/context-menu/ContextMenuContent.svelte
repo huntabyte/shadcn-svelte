@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import * as ContextMenuPrimitive from "$primitives/context-menu";
 
 	type $$Props = ContextMenuPrimitive.ContentProps;
 	let className: string | undefined | null = undefined;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SelectPrimitive from "$primitives/select";
+	import { Select as SelectPrimitive } from "@huntabyte/primitives";
 
 	type $$Props = SelectPrimitive.ValueProps;
 	export let placeholder: $$Props["placeholder"] = "";

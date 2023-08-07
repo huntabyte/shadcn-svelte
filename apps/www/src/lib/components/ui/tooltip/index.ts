@@ -1,4 +1,4 @@
-import * as TooltipPrimitive from "$primitives/tooltip";
+import { Tooltip as TooltipPrimitive } from "@huntabyte/primitives";
 import Content from "./TooltipContent.svelte";
 
 const Root = TooltipPrimitive.Root;

@@ -1,4 +1,4 @@
-import * as AlertDialogPrimitive from "$primitives/alert-dialog";
+import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/primitives";
 
 const Root = AlertDialogPrimitive.Root;
 const Trigger = AlertDialogPrimitive.Trigger;

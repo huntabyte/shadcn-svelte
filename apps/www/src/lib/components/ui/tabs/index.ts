@@ -1,4 +1,4 @@
-import * as TabsPrimitive from "$primitives/tabs";
+import { Tabs as TabsPrimitive } from "@huntabyte/primitives";
 import Content from "./TabsContent.svelte";
 import List from "./TabsList.svelte";
 import Trigger from "./TabsTrigger.svelte";

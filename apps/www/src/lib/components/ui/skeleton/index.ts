@@ -1,1 +1,7 @@
-export { default as Skeleton } from "./Skeleton.svelte";
+import Root from "./Skeleton.svelte";
+
+export {
+	Root,
+	//
+	Root as Skeleton
+};

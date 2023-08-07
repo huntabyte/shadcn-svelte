@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as MenubarPrimitive from "$primitives/menubar";
+	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;

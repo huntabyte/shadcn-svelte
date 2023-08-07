@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
 
 	type $$Props = DropdownMenuPrimitive.ContentProps;
 	let className: string | undefined | null = undefined;

@@ -1,1 +1,6 @@
-export { default as Checkbox } from "./Checkbox.svelte";
+import Root from "./Checkbox.svelte";
+export {
+	Root,
+	//
+	Root as Checkbox
+};

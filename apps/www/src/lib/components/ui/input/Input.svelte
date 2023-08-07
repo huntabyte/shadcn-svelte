@@ -2,10 +2,10 @@
 	import type { HTMLInputAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
 
+	type $$Props = HTMLInputAttributes;
 	let className: string | undefined | null = undefined;
-
-	export let value: HTMLInputAttributes["value"] = undefined;
 	export { className as class };
+	export let value: $$Props["value"] = undefined;
 </script>
 
 <input

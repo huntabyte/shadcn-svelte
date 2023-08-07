@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as DialogPrimitive from "$primitives/dialog";
+	import { Dialog as DialogPrimitive } from "@huntabyte/primitives";
 	type $$Props = DialogPrimitive.PortalProps;
 </script>
 

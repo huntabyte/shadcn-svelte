@@ -144,7 +144,9 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Combobox",
-					href: "/docs/components/combobox",
+					disabled: true,
+					label: "Soon",
+					href: "#",
 					items: []
 				},
 				// {

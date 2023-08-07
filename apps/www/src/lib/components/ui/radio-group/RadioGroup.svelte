@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as RadioGroupPrimitive from "$primitives/radio-group";
+	import { RadioGroup as RadioGroupPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = RadioGroupPrimitive.Props;

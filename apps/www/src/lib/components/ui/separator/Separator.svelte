@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SeparatorPrimitive from "$primitives/separator";
+	import { Separator as SeparatorPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = SeparatorPrimitive.Props;

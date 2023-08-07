@@ -1,4 +1,4 @@
-import * as MenubarPrimitive from "$primitives/menubar";
+import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 
 import Root from "./Menubar.svelte";
 import CheckboxItem from "./MenubarCheckboxItem.svelte";

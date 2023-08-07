@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as AvatarPrimitive from "$primitives/avatar";
+	import { Avatar as AvatarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = AvatarPrimitive.Props;

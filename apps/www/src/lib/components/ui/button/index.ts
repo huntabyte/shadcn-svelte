@@ -1,5 +1,5 @@
-export { default as Button } from "./Button.svelte";
-import { cva } from "class-variance-authority";
+import Root from "./Button.svelte";
+import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonVariants = cva(
 	"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -30,3 +30,12 @@ export const buttonVariants = cva(
 		}
 	}
 );
+
+export type Variant = VariantProps<typeof buttonVariants>["variant"];
+export type Size = VariantProps<typeof buttonVariants>["size"];
+
+export {
+	Root,
+	//
+	Root as Button
+};

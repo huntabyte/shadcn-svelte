@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as CheckboxPrimitive from "$primitives/checkbox";
+	import { Checkbox as CheckboxPrimitive } from "@huntabyte/primitives";
 	import { Check, Minus } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 

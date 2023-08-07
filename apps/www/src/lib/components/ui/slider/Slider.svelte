@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SliderPrimitive from "$primitives/slider";
+	import { Slider as SliderPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = SliderPrimitive.Props;

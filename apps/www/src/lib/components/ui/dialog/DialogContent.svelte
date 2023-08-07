@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as DialogPrimitive from "$primitives/dialog";
+	import { Dialog as DialogPrimitive } from "@huntabyte/primitives";
 	import * as Dialog from ".";
 	import { cn } from "$lib/utils";
 	import { X } from "lucide-svelte";

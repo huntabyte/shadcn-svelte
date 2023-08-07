@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
+	import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 	import { Check } from "lucide-svelte";
 

@@ -1,19 +1,17 @@
 <script lang="ts">
-	import * as ButtonPrimitive from "$primitives/button";
-	import type { VariantProps } from "class-variance-authority";
+	import { Button as ButtonPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { buttonVariants } from ".";
+	import { buttonVariants, type Size, type Variant } from ".";
 
 	type $$Props = ButtonPrimitive.Props & {
-		variant?: VariantProps<typeof buttonVariants>["variant"];
-		size?: VariantProps<typeof buttonVariants>["size"];
+		variant?: Variant;
+		size?: Size;
 	};
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let variant: VariantProps<typeof buttonVariants>["variant"] =
-		"default";
-	export let size: VariantProps<typeof buttonVariants>["size"] = "default";
+	export let variant: $$Props["variant"] = "default";
+	export let size: $$Props["size"] = "default";
 	export let builders: $$Props["builders"] = [];
 </script>
 

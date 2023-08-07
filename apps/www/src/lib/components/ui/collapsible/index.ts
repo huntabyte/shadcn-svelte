@@ -1,4 +1,4 @@
-import * as CollapsiblePrimitive from "$primitives/collapsible";
+import { Collapsible as CollapsiblePrimitive } from "@huntabyte/primitives";
 import Content from "./CollapsibleContent.svelte";
 
 const Root = CollapsiblePrimitive.Root;

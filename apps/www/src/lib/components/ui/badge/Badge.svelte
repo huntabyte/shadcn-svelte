@@ -1,12 +1,10 @@
 <script lang="ts">
-	import type { VariantProps } from "class-variance-authority";
-	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
 	import { badgeVariants } from ".";
+	import type { Variant } from "../alert";
 
-	export let href: HTMLAnchorAttributes["href"] = undefined;
-	export let variant: VariantProps<typeof badgeVariants>["variant"] =
-		"default";
+	export let href: string | undefined = undefined;
+	export let variant: Variant = "default";
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>

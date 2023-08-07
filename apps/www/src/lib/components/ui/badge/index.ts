@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 export { default as Badge } from "./Badge.svelte";
 export const badgeVariants = cva(
@@ -20,3 +20,5 @@ export const badgeVariants = cva(
 		}
 	}
 );
+
+export type Variant = VariantProps<typeof badgeVariants>["variant"];

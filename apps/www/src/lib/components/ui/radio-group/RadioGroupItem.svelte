@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as RadioGroupPrimitive from "$primitives/radio-group";
+	import { RadioGroup as RadioGroupPrimitive } from "@huntabyte/primitives";
 	import { Circle } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ContextMenuPrimitive from "$primitives/context-menu";
+	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 	import { Check } from "lucide-svelte";
 

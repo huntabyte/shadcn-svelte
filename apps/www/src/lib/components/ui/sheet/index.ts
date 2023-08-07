@@ -1,5 +1,5 @@
-import * as SheetPrimitive from "$primitives/dialog";
-import { cva } from "class-variance-authority";
+import { Dialog as SheetPrimitive } from "@huntabyte/primitives";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import Portal from "./SheetPortal.svelte";
 import Overlay from "./SheetOverlay.svelte";
@@ -53,3 +53,5 @@ export const sheetVariants = cva(
 		}
 	}
 );
+
+export type Side = VariantProps<typeof sheetVariants>["side"];

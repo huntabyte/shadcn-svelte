@@ -1,6 +1,7 @@
 <script lang="ts">
-	import * as LabelPrimitive from "$primitives/label";
+	import { Label as LabelPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
+
 	type $$Props = LabelPrimitive.Props;
 	let className: string | undefined | null = undefined;
 	export { className as class };

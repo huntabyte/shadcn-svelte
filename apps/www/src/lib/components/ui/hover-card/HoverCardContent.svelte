@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as HoverCardPrimitive from "$primitives/hover-card";
+	import { HoverCard as HoverCardPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = HoverCardPrimitive.ContentProps;

@@ -1,4 +1,4 @@
-import * as ContextMenuPrimitive from "$primitives/context-menu";
+import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
 
 import Item from "./ContextMenuItem.svelte";
 import Label from "./ContextMenuLabel.svelte";

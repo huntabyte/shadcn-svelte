@@ -1,4 +1,4 @@
-import * as HoverCardPrimitive from "$primitives/hover-card";
+import { HoverCard as HoverCardPrimitive } from "@huntabyte/primitives";
 
 import Content from "./HoverCardContent.svelte";
 const Root = HoverCardPrimitive.Root;

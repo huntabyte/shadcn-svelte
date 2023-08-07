@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SheetPrimitive from "$primitives/dialog";
+	import { Dialog as SheetPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = SheetPrimitive.PortalProps;

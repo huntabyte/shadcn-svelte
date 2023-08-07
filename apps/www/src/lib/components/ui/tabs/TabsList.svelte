@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as TabsPrimitive from "$primitives/tabs";
+	import { Tabs as TabsPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = TabsPrimitive.ListProps;

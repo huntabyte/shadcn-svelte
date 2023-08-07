@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SwitchPrimitive from "$primitives/switch";
+	import { Switch as SwitchPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = SwitchPrimitive.Props;

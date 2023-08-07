@@ -1,17 +1,15 @@
 <script lang="ts">
-	import * as SheetPrimitive from "$primitives/dialog";
-	import { SheetOverlay, SheetPortal } from ".";
-	import type { VariantProps } from "class-variance-authority";
+	import { Dialog as SheetPrimitive } from "@huntabyte/primitives";
+	import { SheetOverlay, SheetPortal, sheetVariants, type Side } from ".";
 	import { X } from "lucide-svelte";
 	import { cn } from "$lib/utils";
-	import { sheetVariants } from ".";
 
 	type $$Props = SheetPrimitive.ContentProps & {
-		side?: VariantProps<typeof sheetVariants>["side"];
+		side?: Side;
 	};
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let side: VariantProps<typeof sheetVariants>["side"] = "right";
+	export let side: $$Props["side"] = "right";
 </script>
 
 <SheetPortal>

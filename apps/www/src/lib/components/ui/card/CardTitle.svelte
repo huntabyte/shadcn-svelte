@@ -1,10 +1,15 @@
 <script lang="ts">
+	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
+	import type { HeadingLevel } from "../alert";
 
+	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
+		level?: HeadingLevel;
+	};
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	export let tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h3";
+	export let tag: HeadingLevel = "h3";
 </script>
 
 <svelte:element

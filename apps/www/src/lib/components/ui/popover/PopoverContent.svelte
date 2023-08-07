@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as PopoverPrimitive from "$primitives/popover";
+	import { Popover as PopoverPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
 	type $$Props = PopoverPrimitive.ContentProps;

@@ -1,4 +1,4 @@
-import * as DialogPrimitive from "$primitives/dialog";
+import { Dialog as DialogPrimitive } from "@huntabyte/primitives";
 
 const Root = DialogPrimitive.Root;
 const Trigger = DialogPrimitive.Trigger;

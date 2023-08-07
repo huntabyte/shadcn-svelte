@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as DropdownMenuPrimitive from "$primitives/dropdown-menu";
+	import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
 	type $$Props = DropdownMenuPrimitive.RadioGroupProps;
 	export let value: $$Props["value"] = undefined;
 </script>

@@ -1,6 +1,5 @@
-import * as PopoverPrimitive from "$primitives/popover";
+import { Popover as PopoverPrimitive } from "@huntabyte/primitives";
 import Content from "./PopoverContent.svelte";
-
 const Root = PopoverPrimitive.Root;
 const Trigger = PopoverPrimitive.Trigger;
 

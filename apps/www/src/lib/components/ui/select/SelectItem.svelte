@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as SelectPrimitive from "$primitives/select";
+	import { Select as SelectPrimitive } from "@huntabyte/primitives";
 	import { Check } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
