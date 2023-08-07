@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as AccordionPrimitive from "$primitives/accordion";
+	import { Accordion as AccordionPrimitive } from "@huntabyte/primitives";
 	import type { AccordionItemProps } from "$primitives/accordion";
 	import { cn } from "$lib/utils";
 

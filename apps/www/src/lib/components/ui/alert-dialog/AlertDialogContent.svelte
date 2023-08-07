@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/primitives";
 	import * as AlertDialog from ".";
-	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.ContentProps;

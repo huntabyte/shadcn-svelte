@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as AccordionPrimitive from "$lib/primitives/accordion";
+	import { Accordion as AccordionPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 	import { slide } from "svelte/transition";
 

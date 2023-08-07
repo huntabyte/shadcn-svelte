@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as AccordionPrimitive from "$lib/primitives/accordion";
+	import { Accordion as AccordionPrimitive } from "@huntabyte/primitives";
 	type $$Props = AccordionPrimitive.AccordionProps;
 </script>
 

@@ -1,14 +1,13 @@
 <script lang="ts">
+	import * as AvatarPrimitive from "$primitives/avatar";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = AvatarPrimitive.FallbackProps;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	const fallback = ctx.getFallback();
 </script>
 
-<div
-	use:melt={$fallback}
+<AvatarPrimitive.Fallback
 	class={cn(
 		"flex h-full w-full items-center justify-center rounded-full bg-muted",
 		className
@@ -16,4 +15,4 @@
 	{...$$restProps}
 >
 	<slot />
-</div>
+</AvatarPrimitive.Fallback>

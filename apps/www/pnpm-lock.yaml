@@ -10,6 +10,9 @@ patchedDependencies:
     path: ./patches/mdsvex@0.10.6.patch
 
 dependencies:
+  '@huntabyte/primitives':
+    specifier: ^0.0.2
+    version: 0.0.2(svelte@4.1.2)
   '@melt-ui/svelte':
     specifier: ^0.33.1
     version: 0.33.1(svelte@4.1.2)
@@ -697,6 +700,16 @@ packages:
       svelte: 4.1.2
       vfile-message: 2.0.4
     dev: true
+
+  /@huntabyte/primitives@0.0.2(svelte@4.1.2):
+    resolution: {integrity: sha512-cChEJNnmE5U5GTqgnHFjsf3HoA9E/hoekpNOdHJbpNCdyUP+E60LRP0sbwOzPMJ75PaBnDzwH8ZDvkyv/EAIHw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      '@melt-ui/svelte': 0.33.1(svelte@4.1.2)
+      nanoid: 4.0.2
+      svelte: 4.1.2
+    dev: false
 
   /@jest/schemas@29.6.0:
     resolution: {integrity: sha512-rxLjXyJBTL4LQeJW3aKo0M/+GkCOXsO+8i9Iu7eDb6KwtP65ayoDsitrdPBtujxQ88k4wI2FNYfa6TOGwSn6cQ==}

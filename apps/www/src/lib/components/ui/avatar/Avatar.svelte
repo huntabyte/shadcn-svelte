@@ -1,19 +1,15 @@
 <script lang="ts">
+	import * as AvatarPrimitive from "$primitives/avatar";
 	import { cn } from "$lib/utils";
-	import { ctx, type CreateAvatar } from ".";
 
+	type $$Props = AvatarPrimitive.Props;
 	let className: string | undefined | null = undefined;
 	export { className as class };
-
-	export let delayMs: CreateAvatar["delayMs"] = undefined;
-	export let loadingStatus: CreateAvatar["loadingStatus"] = undefined;
-	export let onLoadingStatusChange: CreateAvatar["onLoadingStatusChange"] =
-		undefined;
-
-	ctx.set({ delayMs, loadingStatus, onLoadingStatusChange });
+	export let delayMs: $$Props["delayMs"] = undefined;
 </script>
 
-<div
+<AvatarPrimitive.Root
+	{delayMs}
 	class={cn(
 		"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
 		className
@@ -21,4 +17,4 @@
 	{...$$restProps}
 >
 	<slot />
-</div>
+</AvatarPrimitive.Root>

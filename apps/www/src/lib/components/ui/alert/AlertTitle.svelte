@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
+	import type { HeadingLevel } from ".";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h5";
+	export let level: HeadingLevel = "h5";
 </script>
 
 <svelte:element

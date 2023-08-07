@@ -1,16 +1,16 @@
 <script lang="ts">
+	import * as AvatarPrimitive from "$primitives/avatar";
 	import { cn } from "$lib/utils";
-	import { ctx, melt } from ".";
 
+	type $$Props = AvatarPrimitive.ImageProps;
 	let className: string | undefined | null = undefined;
-	export let src: string | undefined = undefined;
-	export let alt: string | undefined = undefined;
 	export { className as class };
-	const image = ctx.getImage(src);
+	export let src: $$Props["src"] = undefined;
+	export let alt: $$Props["alt"] = undefined;
 </script>
 
-<img
-	use:melt={$image}
+<AvatarPrimitive.Image
+	{src}
 	{alt}
 	class={cn("aspect-square h-full w-full", className)}
 	{...$$restProps}

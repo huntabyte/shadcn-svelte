@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as AlertDialogPrimitive from "$primitives/alert-dialog";
+	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/primitives";
 	import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
 
