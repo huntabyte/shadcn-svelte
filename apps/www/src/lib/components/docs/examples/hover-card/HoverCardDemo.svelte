@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CalendarDays } from "lucide-svelte";
-	import { Avatar } from "$components/ui/avatar";
+	import * as Avatar from "$components/ui/avatar";
 	import * as HoverCard from "$components/ui/hover-card";
 </script>
 
@@ -15,10 +15,10 @@
 	</HoverCard.Trigger>
 	<HoverCard.Content class="w-80">
 		<div class="flex justify-between space-x-4">
-			<Avatar>
+			<Avatar.Root>
 				<Avatar.Image src="https://github.com/sveltejs.png" />
 				<Avatar.Fallback>SK</Avatar.Fallback>
-			</Avatar>
+			</Avatar.Root>
 			<div class="space-y-1">
 				<h4 class="text-sm font-semibold">@sveltejs</h4>
 				<p class="text-sm">Cybernetically enhanced web apps.</p>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Tabs from "$components/ui/tabs";
+	import * as Card from "$components/ui/card";
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
 	import { Input } from "$components/ui/input";
 	import { Label } from "$components/ui/label";
 </script>
@@ -12,7 +12,7 @@
 		<Tabs.Trigger value="password">Password</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="account">
-		<Card>
+		<Card.Root>
 			<Card.Header>
 				<Card.Title>Account</Card.Title>
 				<Card.Description>
@@ -33,10 +33,10 @@
 			<Card.Footer>
 				<Button>Save changes</Button>
 			</Card.Footer>
-		</Card>
+		</Card.Root>
 	</Tabs.Content>
 	<Tabs.Content value="password">
-		<Card>
+		<Card.Root>
 			<Card.Header>
 				<Card.Title>Password</Card.Title>
 				<Card.Description>
@@ -57,6 +57,6 @@
 			<Card.Footer>
 				<Button>Save password</Button>
 			</Card.Footer>
-		</Card>
+		</Card.Root>
 	</Tabs.Content>
 </Tabs.Root>

@@ -27,9 +27,9 @@
 					id="email"
 					placeholder="name@example.com"
 					type="email"
-					autoCapitalize="none"
-					autoComplete="email"
-					autoCorrect="off"
+					autocapitalize="none"
+					autocomplete="email"
+					autocorrect="off"
 					disabled={isLoading}
 				/>
 			</div>

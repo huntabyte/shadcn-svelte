@@ -9,7 +9,7 @@
 	import * as Avatar from "$components/ui/avatar";
 	import { Button } from "$components/ui/button";
 	import * as Card from "$components/ui/card";
-	import * as Tabs from '$components/ui/tabs'
+	import * as Tabs from "$components/ui/tabs";
 	import MainNav from "./MainNav.svelte";
 	import Overview from "./Overview.svelte";
 	import RecentSales from "./RecentSales.svelte";
@@ -58,7 +58,8 @@
 		<Tabs.Root value="overview" class="space-y-4">
 			<Tabs.List>
 				<Tabs.Trigger value="overview">Overview</Tabs.Trigger>
-				<Tabs.Trigger value="analytics" disabled>Analytics</Tabs.Trigger>
+				<Tabs.Trigger value="analytics" disabled>Analytics</Tabs.Trigger
+				>
 				<Tabs.Trigger value="reports" disabled>Reports</Tabs.Trigger>
 				<Tabs.Trigger value="notifications" disabled
 					>Notifications</Tabs.Trigger

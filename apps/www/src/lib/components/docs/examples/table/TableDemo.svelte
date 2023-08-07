@@ -1,13 +1,5 @@
 <script lang="ts">
-	import {
-		Table,
-		TableBody,
-		TableCaption,
-		TableCell,
-		TableHead,
-		TableHeader,
-		TableRow
-	} from "$components/ui/table";
+	import * as Table from "$components/ui/table";
 
 	const invoices = [
 		{
@@ -55,24 +47,25 @@
 	];
 </script>
 
-<Table>
-	<TableCaption>A list of your recent invoices.</TableCaption>
-	<TableHeader>
-		<TableRow>
-			<TableHead class="w-[100px]">Invoice</TableHead>
-			<TableHead>Status</TableHead>
-			<TableHead>Method</TableHead>
-			<TableHead class="text-right">Amount</TableHead>
-		</TableRow>
-	</TableHeader>
-	<TableBody>
+<Table.Root>
+	<Table.Caption>A list of your recent invoices.</Table.Caption>
+	<Table.Header>
+		<Table.Row>
+			<Table.Head class="w-[100px]">Invoice</Table.Head>
+			<Table.Head>Status</Table.Head>
+			<Table.Head>Method</Table.Head>
+			<Table.Head class="text-right">Amount</Table.Head>
+		</Table.Row>
+	</Table.Header>
+	<Table.Body>
 		{#each invoices as invoice, i (i)}
-			<TableRow key={invoice.invoice}>
-				<TableCell class="font-medium">{invoice.invoice}</TableCell>
-				<TableCell>{invoice.paymentStatus}</TableCell>
-				<TableCell>{invoice.paymentMethod}</TableCell>
-				<TableCell class="text-right">{invoice.totalAmount}</TableCell>
-			</TableRow>
+			<Table.Row>
+				<Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
+				<Table.Cell>{invoice.paymentStatus}</Table.Cell>
+				<Table.Cell>{invoice.paymentMethod}</Table.Cell>
+				<Table.Cell class="text-right">{invoice.totalAmount}</Table.Cell
+				>
+			</Table.Row>
 		{/each}
-	</TableBody>
-</Table>
+	</Table.Body>
+</Table.Root>

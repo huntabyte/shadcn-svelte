@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import { badgeVariants } from ".";
-	import type { Variant } from "../alert";
+	import { badgeVariants, type Variant } from ".";
 
 	export let href: string | undefined = undefined;
 	export let variant: Variant = "default";

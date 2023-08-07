@@ -1,20 +1,14 @@
 <script lang="ts">
 	import A from "$components/docs/mdsvex/a.svelte";
-	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+	import * as Avatar from "$components/ui/avatar";
 	import { Button } from "$components/ui/button";
-	import { Card } from "$components/ui/card";
+	import * as Card from "$components/ui/card";
 	import { Input } from "$components/ui/input";
-	import {
-		Select,
-		SelectContent,
-		SelectTrigger,
-		SelectValue
-	} from "$components/ui/select";
-	import SelectItem from "$components/ui/select/SelectItem.svelte";
+	import * as Select from "$components/ui/select";
 	import { Separator } from "$components/ui/separator";
 </script>
 
-<Card>
+<Card.Root>
 	<Card.Header>
 		<Card.Title>Share this document</Card.Title>
 		<Card.Description>
@@ -23,7 +17,7 @@
 	</Card.Header>
 	<Card.Content>
 		<div class="flex space-x-2">
-			<Input value="http://example.com/link/to/document" readOnly />
+			<Input value="http://example.com/link/to/document" readonly />
 			<Button variant="secondary" class="shrink-0">Copy Link</Button>
 		</div>
 		<Separator class="my-4" />
@@ -32,10 +26,10 @@
 			<div class="grid gap-6">
 				<div class="flex items-center justify-between space-x-4">
 					<div class="flex items-center space-x-4">
-						<Avatar>
-							<AvatarImage src="/avatars/03.png" />
-							<AvatarFallback>OM</AvatarFallback>
-						</Avatar>
+						<Avatar.Root>
+							<Avatar.Image src="/avatars/03.png" />
+							<Avatar.Fallback>OM</Avatar.Fallback>
+						</Avatar.Root>
 						<div>
 							<p class="text-sm font-medium leading-none">
 								Olivia Martin
@@ -45,22 +39,22 @@
 							</p>
 						</div>
 					</div>
-					<Select value="edit">
-						<SelectTrigger class="ml-auto w-[110px]">
-							<SelectValue placeholder="Select" />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="edit">Can edit</SelectItem>
-							<SelectItem value="view">Can view</SelectItem>
-						</SelectContent>
-					</Select>
+					<Select.Root value="edit">
+						<Select.Trigger class="ml-auto w-[110px]">
+							<Select.Value placeholder="Select" />
+						</Select.Trigger>
+						<Select.Content>
+							<Select.Item value="edit">Can edit</Select.Item>
+							<Select.Item value="view">Can view</Select.Item>
+						</Select.Content>
+					</Select.Root>
 				</div>
 				<div class="flex items-center justify-between space-x-4">
 					<div class="flex items-center space-x-4">
-						<Avatar>
-							<AvatarImage src="/avatars/05.png" />
-							<AvatarFallback>IN</AvatarFallback>
-						</Avatar>
+						<Avatar.Root>
+							<Avatar.Image src="/avatars/05.png" />
+							<Avatar.Fallback>IN</Avatar.Fallback>
+						</Avatar.Root>
 						<div>
 							<p class="text-sm font-medium leading-none">
 								Isabella Nguyen
@@ -70,22 +64,22 @@
 							</p>
 						</div>
 					</div>
-					<Select value="view">
-						<SelectTrigger class="ml-auto w-[110px]">
-							<SelectValue placeholder="Select" />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="edit">Can edit</SelectItem>
-							<SelectItem value="view">Can view</SelectItem>
-						</SelectContent>
-					</Select>
+					<Select.Root value="view">
+						<Select.Trigger class="ml-auto w-[110px]">
+							<Select.Value placeholder="Select" />
+						</Select.Trigger>
+						<Select.Content>
+							<Select.Item value="edit">Can edit</Select.Item>
+							<Select.Item value="view">Can view</Select.Item>
+						</Select.Content>
+					</Select.Root>
 				</div>
 				<div class="flex items-center justify-between space-x-4">
 					<div class="flex items-center space-x-4">
-						<Avatar>
-							<AvatarImage src="/avatars/01.png" />
-							<AvatarFallback>SD</AvatarFallback>
-						</Avatar>
+						<Avatar.Root>
+							<Avatar.Image src="/avatars/01.png" />
+							<Avatar.Fallback>SD</Avatar.Fallback>
+						</Avatar.Root>
 						<div>
 							<p class="text-sm font-medium leading-none">
 								Sofia Davis
@@ -95,17 +89,17 @@
 							</p>
 						</div>
 					</div>
-					<Select value="view">
-						<SelectTrigger class="ml-auto w-[110px]">
-							<SelectValue placeholder="Select" />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="edit">Can edit</SelectItem>
-							<SelectItem value="view">Can view</SelectItem>
-						</SelectContent>
-					</Select>
+					<Select.Root value="view">
+						<Select.Trigger class="ml-auto w-[110px]">
+							<Select.Value placeholder="Select" />
+						</Select.Trigger>
+						<Select.Content>
+							<Select.Item value="edit">Can edit</Select.Item>
+							<Select.Item value="view">Can view</Select.Item>
+						</Select.Content>
+					</Select.Root>
 				</div>
 			</div>
 		</div>
 	</Card.Content>
-</Card>
+</Card.Root>

@@ -1,17 +1,12 @@
 <script lang="ts">
-	import {
-		Accordion,
-		AccordionContent,
-		AccordionItem,
-		AccordionTrigger
-	} from "$components/ui/accordion";
+	import * as Accordion from "$components/ui/accordion";
 </script>
 
-<Accordion type="single" collapsible>
-	<AccordionItem value="manual-installation">
-		<AccordionTrigger>Manual Installation</AccordionTrigger>
-		<AccordionContent>
+<Accordion.Root>
+	<Accordion.Item value="manual-installation">
+		<Accordion.Trigger>Manual Installation</Accordion.Trigger>
+		<Accordion.Content>
 			<slot />
-		</AccordionContent>
-	</AccordionItem>
-</Accordion>
+		</Accordion.Content>
+	</Accordion.Item>
+</Accordion.Root>
