@@ -26,7 +26,13 @@ npx shadcn-svelte add button
 
 <ManualInstall>
 
-1. Copy and paste the component source files linked at the top of this page into your project.
+1. Install `@huntabyte/primitives`:
+
+```bash
+npm install @huntabyte/primitives
+```
+
+2. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 

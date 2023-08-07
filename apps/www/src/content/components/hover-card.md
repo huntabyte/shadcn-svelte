@@ -29,10 +29,10 @@ npx shadcn-svelte add hover-card
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `@huntabyte/primitives`:
 
 ```bash
-npm install radix-svelte
+npm install @huntabyte/primitives
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -43,17 +43,13 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger
-  } from "$components/ui/hover-card";
+  import * as HoverCard from "$components/ui/hover-card";
 </script>
-```
 
-```svelte
-<HoverCard>
-  <HoverCardTrigger>Hover</HoverCardTrigger>
-  <HoverCardContent>SvelteKit - Web development, streamlined</HoverCardContent>
-</HoverCard>
+<HoverCard.Root>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content>
+    SvelteKit - Web development, streamlined
+  </HoverCard.Content>
+</HoverCard.Root>
 ```

@@ -20,3 +20,34 @@ external:
 </div>
 
 </ComponentExample>
+
+## Installation
+
+```bash
+npx shadcn-svelte add popover
+```
+
+<ManualInstall>
+
+1. Install `@huntabyte/primitives`:
+
+```bash
+npm install @huntabyte/primitives
+```
+
+2. Copy and paste the component source files linked at the top of this page into your project.
+
+</ManualInstall>
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import * as Popover from "$components/ui/popover";
+</script>
+
+<Popover.Root>
+  <Popover.Trigger>Open</Popover.Trigger>
+  <Popover.Content>Place content for the popover here.</Popover.Content>
+</Popover.Root>
+```

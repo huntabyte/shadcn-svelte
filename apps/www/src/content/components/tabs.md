@@ -29,10 +29,10 @@ npx shadcn-svelte add tabs
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `@huntabyte/primitives`:
 
 ```bash
-npm install radix-svelte
+npm install @huntabyte/primitives
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -46,12 +46,14 @@ npm install radix-svelte
   import * as Tabs from "$components/ui/tabs";
 </script>
 
-<Tabs value="account" class="w-[400px]">
-  <TabsList>
-    <TabsTrigger value="account">Account</TabsTrigger>
-    <TabsTrigger value="password">Password</TabsTrigger>
-  </TabsList>
-  <TabsContent value="account">Make changes to your account here.</TabsContent>
-  <TabsContent value="password">Change your password here.</TabsContent>
-</Tabs>
+<Tabs.Root value="account" class="w-[400px]">
+  <Tabs.List>
+    <Tabs.Trigger value="account">Account</Tabs.Trigger>
+    <Tabs.Trigger value="password">Password</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">
+    Make changes to your account here.
+  </Tabs.Content>
+  <Tabs.Content value="password">Change your password here.</Tabs.Content>
+</Tabs.Root>
 ```

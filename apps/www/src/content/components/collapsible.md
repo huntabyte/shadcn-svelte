@@ -47,11 +47,11 @@ npm install radix-svelte
   import * as Collapsible from "$components/ui/collapsible";
 </script>
 
-<Collapsible>
+<Collapsible.Root>
   <Collapsible.Trigger>Can I use this in my project?</Collapsible.Trigger>
   <Collapsible.Content>
     Yes. Free to use for personal and commercial projects. No attribution
     required.
   </Collapsible.Content>
-</Collapsible>
+</Collapsible.Root>
 ```

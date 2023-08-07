@@ -29,10 +29,10 @@ npx shadcn-svelte add aspect-ratio
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `@huntabyte/primitives`:
 
 ```bash
-npm install radix-svelte
+npm install @huntabyte/primitives
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -46,7 +46,9 @@ npm install radix-svelte
   import { AspectRatio } from "$components/ui/aspect-ratio";
 </script>
 
-<AspectRatio ratio={16 / 9} class="bg-muted">
-  <img src="..." alt="..." class="rounded-md object-cover" />
-</AspectRatio>
+<div class="w-[450px]">
+  <AspectRatio ratio={16 / 9} class="bg-muted">
+    <img src="..." alt="..." class="rounded-md object-cover" />
+  </AspectRatio>
+</div>
 ```

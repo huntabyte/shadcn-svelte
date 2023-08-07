@@ -29,10 +29,10 @@ npx shadcn-svelte add label
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `@huntabyte/primitives`:
 
 ```bash
-npm install radix-svelte
+npm install @huntabyte/primitives
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,8 +45,6 @@ npm install radix-svelte
 <script lang="ts">
   import { Label } from "$components/ui/label";
 </script>
-```
 
-```svelte
 <Label for="email">Your email address</Label>
 ```

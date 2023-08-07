@@ -29,10 +29,10 @@ npx shadcn-svelte add sheet
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `@huntabyte/primitives`:
 
 ```bash
-npm install radix-svelte
+npm install @huntabyte/primitives
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -43,30 +43,21 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger
-  } from "$components/ui/sheet";
+  import * as Sheet from "$components/ui/sheet";
 </script>
-```
 
-```svelte
-<Sheet>
-  <SheetTrigger>Open</SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-      <SheetDescription>
+<Sheet.Root>
+  <Sheet.Trigger>Open</Sheet.Trigger>
+  <Sheet.Content>
+    <Sheet.Header>
+      <Sheet.Title>Are you sure absolutely sure?</Sheet.Title>
+      <Sheet.Description>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
-      </SheetDescription>
-    </SheetHeader>
-  </SheetContent>
-</Sheet>
+      </Sheet.Description>
+    </Sheet.Header>
+  </Sheet.Content>
+</Sheet.Root>
 ```
 
 ## Examples
@@ -82,5 +73,3 @@ Pass the `side` property to `<SheetContent />` to indicate the edge of the scree
 </div>
 
 </ComponentExample>
-
----
