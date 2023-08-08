@@ -44,7 +44,7 @@ npm install @huntabyte/primitives
 
 ```svelte
 <script lang="ts">
-  import * as DropdownMenu from '$components/ui/dropdown-menu"
+  import * as DropdownMenu from "$components/ui/dropdown-menu";
 </script>
 
 <DropdownMenu.Root>

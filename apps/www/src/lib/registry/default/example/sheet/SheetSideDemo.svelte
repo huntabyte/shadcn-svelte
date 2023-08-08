@@ -5,8 +5,6 @@
 	import { Label } from "@/registry/default/ui/label";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
-
-	type SheetSide = (typeof SHEET_SIDES)[number];
 </script>
 
 <div class="grid grid-cols-2 gap-2">

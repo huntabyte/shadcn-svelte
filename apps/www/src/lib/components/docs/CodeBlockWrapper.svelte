@@ -1,8 +1,7 @@
 <script lang="ts">
 	import * as Collapsible from "@/registry/default/ui/collapsible";
-	import { buttonVariants, Button } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 	import { cn } from "$lib/utils";
-	import { writable } from "svelte/store";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils";
-	import type { Writable } from "svelte/store";
 
 	export let href: string;
 	export let open: boolean;

@@ -66,8 +66,7 @@
 				{/if}
 			</div>
 		{/if}
-		<Separator class="my-4 md:my-6" />
-		<div class="mdsvex" id="mdsvex">
+		<div class="mdsvex pt-8" id="mdsvex">
 			<svelte:component this={component} />
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
