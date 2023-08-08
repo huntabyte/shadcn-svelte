@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "$components/ui/checkbox";
-	import { Label } from "$components/ui/label";
+	import { Checkbox } from "@/registry/default/ui/checkbox";
+	import { Label } from "@/registry/default/ui/label";
 </script>
 
 <div>

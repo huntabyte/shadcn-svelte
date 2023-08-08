@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ContextMenu from "$components/ui/context-menu";
+	import * as ContextMenu from "@/registry/default/ui/context-menu";
 
 	let showBookmarks = false;
 	let showFullURLs = true;

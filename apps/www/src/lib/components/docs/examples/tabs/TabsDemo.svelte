@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Tabs from "$components/ui/tabs";
-	import * as Card from "$components/ui/card";
-	import { Button } from "$components/ui/button";
-	import { Input } from "$components/ui/input";
-	import { Label } from "$components/ui/label";
+	import * as Tabs from "@/registry/default/ui/tabs";
+	import * as Card from "@/registry/default/ui/card";
+	import { Button } from "@/registry/default/ui/button";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
 </script>
 
 <Tabs.Root value="account" class="w-[400px]">

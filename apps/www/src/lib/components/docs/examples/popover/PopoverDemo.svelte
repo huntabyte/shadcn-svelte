@@ -3,10 +3,10 @@
 		Popover,
 		PopoverTrigger,
 		PopoverContent
-	} from "$components/ui/popover";
-	import { Label } from "$components/ui/label";
-	import { Button } from "$components/ui/button";
-	import { Input } from "$components/ui/input";
+	} from "@/registry/default/ui/popover";
+	import { Label } from "@/registry/default/ui/label";
+	import { Button } from "@/registry/default/ui/button";
+	import { Input } from "@/registry/default/ui/input";
 </script>
 
 <Popover>

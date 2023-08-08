@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AspectRatio } from "$components/ui/aspect-ratio";
+	import { AspectRatio } from "@/registry/default/ui/aspect-ratio";
 </script>
 
 <AspectRatio ratio={16 / 9} class="bg-muted">

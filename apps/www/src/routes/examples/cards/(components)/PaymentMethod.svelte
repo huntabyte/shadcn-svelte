@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { CreditCard } from "lucide-svelte";
 	import { Icons } from "$components/docs";
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import * as RadioGroup from "$components/ui/radio-group";
-	import * as Select from "$components/ui/select";
-	import { Input } from "$components/ui/input";
-	import { Label } from "$components/ui/label";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import * as RadioGroup from "@/registry/default/ui/radio-group";
+	import * as Select from "@/registry/default/ui/select";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
 
 	const months = [
 		"January",

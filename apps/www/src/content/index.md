@@ -4,7 +4,7 @@ description: Re-usable components built using Radix Svelte and Tailwind CSS.
 ---
 
 <script>
-  import * as Accordion from '$components/ui/accordion';
+  import * as Accordion from '@/registry/default/ui/accordion';
   import { Callout } from '$components/docs';
   import { AlertCircle } from "lucide-svelte";
 </script>

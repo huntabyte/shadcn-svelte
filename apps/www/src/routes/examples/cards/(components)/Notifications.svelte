@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AtSign, Bell, BellOff } from "lucide-svelte";
-	import * as Card from "$components/ui/card";
+	import * as Card from "@/registry/default/ui/card";
 </script>
 
 <Card.Root>

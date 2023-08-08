@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Mail } from "lucide-svelte";
-	import { Button } from "$components/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 </script>
 
 <Button>

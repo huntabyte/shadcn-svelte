@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Label } from "$components/ui/label";
-	import { Switch } from "$components/ui/switch";
+	import { Label } from "@/registry/default/ui/label";
+	import { Switch } from "@/registry/default/ui/switch";
 </script>
 
 <div class="flex items-center space-x-2">

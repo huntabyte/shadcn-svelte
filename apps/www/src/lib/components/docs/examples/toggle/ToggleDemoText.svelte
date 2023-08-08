@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Italic } from "lucide-svelte";
-	import { Toggle } from "$components/ui/toggle";
+	import { Toggle } from "@/registry/default/ui/toggle";
 </script>
 
 <Toggle aria-label="Toggle italic">

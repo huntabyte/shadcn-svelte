@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as AlertDialog from "$components/ui/alert-dialog";
-	import { Button } from "$components/ui/button";
+	import * as AlertDialog from "@/registry/default/ui/alert-dialog";
+	import { Button } from "@/registry/default/ui/button";
 
 	let open = false;
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Sheet from "$components/ui/sheet";
+	import * as Sheet from "@/registry/default/ui/sheet";
 	import { SidebarOpen } from "lucide-svelte";
-	import { Button } from "$components/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";

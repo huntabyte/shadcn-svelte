@@ -5,7 +5,7 @@
 		PageHeaderDescription,
 		PageHeaderHeading
 	} from "$components/docs";
-	import { Button } from "$components/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 </script>
 
 <div class="container relative pb-10">

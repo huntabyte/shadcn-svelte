@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Avatar from "$components/ui/avatar";
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import { Input } from "$components/ui/input";
-	import * as Select from "$components/ui/select";
-	import { Separator } from "$components/ui/separator";
+	import * as Avatar from "@/registry/default/ui/avatar";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import { Input } from "@/registry/default/ui/input";
+	import * as Select from "@/registry/default/ui/select";
+	import { Separator } from "@/registry/default/ui/separator";
 </script>
 
 <Card.Root>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Collapsible from "$components/ui/collapsible";
-	import { buttonVariants, Button } from "$components/ui/button";
+	import * as Collapsible from "@/registry/default/ui/collapsible";
+	import { buttonVariants, Button } from "@/registry/default/ui/button";
 	import { cn } from "$lib/utils";
 	import { writable } from "svelte/store";
 

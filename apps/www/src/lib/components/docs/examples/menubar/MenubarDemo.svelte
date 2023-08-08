@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Menubar from "$components/ui/menubar";
+	import * as Menubar from "@/registry/default/ui/menubar";
 
 	let bookmarks = false;
 	let fullUrls = true;

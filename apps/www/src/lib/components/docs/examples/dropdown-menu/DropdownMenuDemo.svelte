@@ -16,8 +16,8 @@
 		Users
 	} from "lucide-svelte";
 
-	import { Button } from "$components/ui/button";
-	import * as DropdownMenu from "$components/ui/dropdown-menu";
+	import { Button } from "@/registry/default/ui/button";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
 </script>
 
 <DropdownMenu.Root>

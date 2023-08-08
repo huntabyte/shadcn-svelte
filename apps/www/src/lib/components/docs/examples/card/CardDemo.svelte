@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { BellRing, Check } from "lucide-svelte";
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import { Switch } from "$components/ui/switch";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import { Switch } from "@/registry/default/ui/switch";
 
 	const notifications = [
 		{

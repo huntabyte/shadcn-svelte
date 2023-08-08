@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { Terminal } from "lucide-svelte";
-	import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
+	import {
+		Alert,
+		AlertDescription,
+		AlertTitle
+	} from "@/registry/default/ui/alert";
 </script>
 
 <Alert>

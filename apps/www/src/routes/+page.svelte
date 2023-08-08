@@ -6,8 +6,8 @@
 		PageHeaderDescription,
 		PageHeaderHeading
 	} from "$components/docs/page-header";
-	import { buttonVariants } from "$components/ui/button";
-	import { Separator } from "$components/ui/separator";
+	import { buttonVariants } from "@/registry/default/ui/button";
+	import { Separator } from "@/registry/default/ui/separator";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "$lib/utils";
 	import { ChevronRight } from "lucide-svelte";

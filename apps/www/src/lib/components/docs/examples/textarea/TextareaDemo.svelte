@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Textarea } from "$components/ui/textarea";
+	import { Textarea } from "@/registry/default/ui/textarea";
 </script>
 
 <Textarea placeholder="Type your message here." />

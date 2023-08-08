@@ -6,8 +6,8 @@
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { Icons } from "$components/docs/icons";
-	import { badgeVariants } from "$components/ui/badge";
-	import { Separator } from "$components/ui/separator";
+	import { badgeVariants } from "@/registry/default/ui/badge";
+	import { Separator } from "@/registry/default/ui/separator";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;

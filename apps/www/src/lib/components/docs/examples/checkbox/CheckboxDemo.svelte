@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "$components/ui/checkbox";
-	import Label from "$components/ui/label/Label.svelte";
+	import { Checkbox } from "@/registry/default/ui/checkbox";
+	import Label from "@/registry/default/ui/label/Label.svelte";
 	let checked = false;
 </script>
 
