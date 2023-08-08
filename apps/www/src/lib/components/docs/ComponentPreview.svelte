@@ -1,0 +1,91 @@
+<script lang="ts">
+	import * as Tabs from "@/registry/default/ui/tabs";
+	import { Index as RegistryIndex } from "../../../../__registry__";
+	import { styles } from "@/registry";
+	import { config } from "@/stores";
+	import { cn } from "@/utils";
+	import StyleSwitcher from "./StyleSwitcher.svelte";
+	import CopyButton from "./CopyButton.svelte";
+	import ThemeWrapper from "./ThemeWrapper.svelte";
+	import { SvelteComponent, onMount } from "svelte";
+	export let name: string;
+	export let className: string;
+	export let align: "center" | "start" | "end";
+
+	const Index = RegistryIndex as Record<string, any>;
+
+	const index = styles.findIndex((style) => style.name === $config.style);
+	console.log(name);
+	const component = Index[$config.style][name]?.component();
+
+	let codeString: string;
+
+	function copyCodeToClipboard(node: HTMLElement) {
+		codeString = node.innerText ?? "";
+	}
+</script>
+
+<div
+	class={cn("group relative my-4 flex flex-col space-y-2", className)}
+	{...$$restProps}
+>
+	<Tabs.Root value="preview" class="relative mr-auto w-full">
+		<div class="flex items-center justify-between pb-3">
+			<Tabs.List
+				class="w-full justify-start rounded-none border-b bg-transparent p-0"
+			>
+				<Tabs.Trigger
+					value="preview"
+					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+				>
+					Preview
+				</Tabs.Trigger>
+				<Tabs.Trigger
+					value="code"
+					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+				>
+					Code
+				</Tabs.Trigger>
+			</Tabs.List>
+		</div>
+		<Tabs.Content value="preview" class="rounded-md border">
+			<div class="flex items-center justify-between p-4">
+				<StyleSwitcher />
+			</div>
+			<ThemeWrapper>
+				<div
+					class={cn("flex min-h-[350px] justify-center p-10", {
+						"items-center": align === "center",
+						"items-start": align === "start",
+						"items-end": align === "end"
+					})}
+				>
+					<slot name="example">
+						{#await component then Component}
+							<svelte:component this={Component} />
+						{:catch}
+							<p class="text-sm text-muted-foreground">
+								Component{" "}
+								<code
+									class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+								>
+									{name}
+								</code>{" "}
+								not found in registry.
+							</p>
+						{/await}
+					</slot>
+				</div>
+			</ThemeWrapper>
+		</Tabs.Content>
+		<Tabs.Content value="code">
+			<CopyButton value={codeString} class="absolute right-4 top-20" />
+			<div
+				class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
+				use:copyCodeToClipboard
+			>
+				<slot />
+			</div>
+		</Tabs.Content>
+	</Tabs.Root>
+</div>

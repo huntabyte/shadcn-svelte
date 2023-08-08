@@ -7,9 +7,10 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
-import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
+import { u } from "unist-builder";
+import { Index } from "./__registry__/index.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -70,51 +71,81 @@ export const mdsvexOptions = {
 	]
 };
 
-function rehypeComponentExample() {
+const styles = [
+	{
+		name: "default",
+		label: "Default"
+	},
+	{
+		name: "new-york",
+		label: "New York"
+	}
+];
+
+export function rehypeComponentExample() {
 	return async (tree) => {
-		const srcRegex = /src="([^"]+)"/;
+		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
 			if (
 				node?.type === "raw" &&
 				node?.value?.startsWith("<ComponentExample")
 			) {
-				const match = node.value.match(srcRegex);
-				const src = match ? match[1] : null;
+				const match = node.value.match(nameRegex);
+				const name = match ? match[1] : null;
 
-				if (!src) {
-					return;
+				if (!name) {
+					return null;
 				}
 
-				const sourceCode = getComponentSourceFileContent(src);
+				try {
+					for (const style of styles) {
+						const component = Index[style.name][name];
+						const src = component.files[0];
+						let sourceCode = getComponentSourceFileContent(src);
+						sourceCode = sourceCode.replaceAll(
+							`@/registry/${style.name}/`,
+							"@/components/"
+						);
 
-				const sourceCodeNode = u("element", {
-					tagName: "pre",
-					properties: {
-						__src__: src,
-						className: ["code"]
-					},
-					children: [
-						u("element", {
-							tagName: "code",
+						const sourceCodeNode = u("element", {
+							tagName: "pre",
 							properties: {
-								className: ["language-svelte"]
+								__src__: src,
+								__style__: style.name,
+								className: ["code"]
 							},
-							children: [
+							attributes: [
 								{
+									name: "styleName",
 									type: "text",
-									value: sourceCode
+									value: style.name
 								}
+							],
+							children: [
+								u("element", {
+									tagName: "code",
+									properties: {
+										className: ["language-svelte"]
+									},
+									children: [
+										{
+											type: "text",
+											value: sourceCode
+										}
+									]
+								})
 							]
-						})
-					]
-				});
-
-				parent.children.splice(index + 1, 0, sourceCodeNode);
+						});
+						if (!index) return;
+						parent.children.splice(index + 1, 0, sourceCodeNode);
+					}
+				} catch (e) {
+					console.error(e);
+				}
 			}
 		});
 	};
 }
-
 function rehypeHandleMetadata() {
 	return async (tree) => {
 		visit(tree, (node) => {

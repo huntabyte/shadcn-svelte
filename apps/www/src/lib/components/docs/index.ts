@@ -1,6 +1,7 @@
 export { default as Callout } from "./Callout.svelte";
 export { default as CodeBlockWrapper } from "./CodeBlockWrapper.svelte";
 export { default as ComponentExample } from "./ComponentExample.svelte";
+export { default as ComponentPreview } from "./ComponentPreview.svelte";
 export { default as ComponentSource } from "./ComponentSource.svelte";
 export { default as CopyButton } from "./CopyButton.svelte";
 export { default as DocsPager } from "./DocsPager.svelte";
