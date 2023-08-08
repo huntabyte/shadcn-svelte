@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { ProgressDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ProgressDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/progress/ProgressDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/progress/ProgressDemo.svelte">
 
 <div slot="example" style="width: 60%;">
 <ProgressDemo />

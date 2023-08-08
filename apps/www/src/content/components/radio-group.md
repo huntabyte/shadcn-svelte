@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { RadioGroupDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { RadioGroupDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/radio-group/RadioGroupDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/radio-group/RadioGroupDemo.svelte">
 
 <div slot="example">
 <RadioGroupDemo />

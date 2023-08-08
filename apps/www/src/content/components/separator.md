@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { SeparatorDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { SeparatorDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/separator/SeparatorDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/separator/SeparatorDemo.svelte">
 
 <div slot="example">
 <SeparatorDemo />

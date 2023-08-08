@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-    import { SelectDemo, ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { SelectDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/select/SelectDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/select/SelectDemo.svelte">
 
 <div slot="example">
 <SelectDemo />

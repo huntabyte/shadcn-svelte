@@ -43,6 +43,9 @@ dependencies:
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
+  radix-icons-svelte:
+    specifier: ^1.2.1
+    version: 1.2.1
   radix-svelte:
     specifier: ^0.9.0
     version: 0.9.0(svelte@4.1.2)
@@ -3229,6 +3232,10 @@ packages:
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  /radix-icons-svelte@1.2.1:
+    resolution: {integrity: sha512-svmiMd0ocpdTm9cvAz0klcZpnh639lVctj6psQiawd4pYalVzOG4cX+JizAgRckyTAsRVdzObP7D2EBrSfdghA==}
+    dev: false
 
   /radix-svelte@0.9.0(svelte@4.1.2):
     resolution: {integrity: sha512-0PJMHiZVTjWGrjK7c2/FY+nq0fBGwPXNy6fFvkLZIs73hTIai/Exw+pi3TCvtd80gSjFb5utdHWI3qiuuN0B/Q==}

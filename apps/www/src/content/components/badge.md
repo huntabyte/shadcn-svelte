@@ -6,10 +6,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { BadgeDemo, BadgeDemoDestructive, BadgeDemoOutline, BadgeDemoSecondary, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { BadgeDemo, BadgeDemoDestructive, BadgeDemoOutline, BadgeDemoSecondary } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemo.svelte">
 
 <div slot="example">
 <BadgeDemo />
@@ -57,7 +58,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Default
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemo.svelte">
 
 <div slot="example">
 <BadgeDemo />
@@ -69,7 +70,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Secondary
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoSecondary.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoSecondary.svelte">
 
 <div slot="example">
 <BadgeDemoSecondary />
@@ -81,7 +82,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Outline
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoOutline.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoOutline.svelte">
 
 <div slot="example">
 <BadgeDemoOutline />
@@ -93,7 +94,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Destructive
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoDestructive.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoDestructive.svelte">
 
 <div slot="example">
 <BadgeDemoDestructive />

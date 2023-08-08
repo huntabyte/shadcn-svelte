@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { SliderDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { SliderDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/slider/SliderDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/slider/SliderDemo.svelte">
 
 <div slot="example" style="width: 100%; display: flex; justify-content: center;">
 <SliderDemo />

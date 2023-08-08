@@ -11,10 +11,11 @@ external:
 ---
 
 <script>
-  import { DialogDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { DialogDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/dialog/DialogDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/dialog/DialogDemo.svelte">
 
 <div slot="example">
 <DialogDemo />

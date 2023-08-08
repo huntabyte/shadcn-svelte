@@ -6,10 +6,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { SkeletonDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { SkeletonDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/skeleton/SkeletonDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/skeleton/SkeletonDemo.svelte">
 
 <div slot="example">
 <SkeletonDemo />

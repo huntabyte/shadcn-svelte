@@ -14,7 +14,6 @@ export { default as TableOfContents } from "./TableOfContents.svelte";
 export { default as Tree } from "./Tree.svelte";
 export { default as TailwindIndicator } from "./TailwindIndicator.svelte";
 
-export * from "./examples";
 export * from "./icons";
 export * from "./page-header";
 export * from "./nav";

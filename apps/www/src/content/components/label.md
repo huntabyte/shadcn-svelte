@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { LabelDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { LabelDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/label/LabelDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/label/LabelDemo.svelte">
 
 <div slot="example">
 <LabelDemo />

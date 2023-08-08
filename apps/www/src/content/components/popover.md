@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { PopoverDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { PopoverDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/popover/PopoverDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/popover/PopoverDemo.svelte">
 
 <div slot="example">
 <PopoverDemo />

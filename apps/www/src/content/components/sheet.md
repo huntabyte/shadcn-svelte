@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { SheetDemo, SheetSideDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { SheetDemo, SheetSideDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/sheet/SheetDemo.svelte">
 
 <div slot="example">
 <SheetDemo />
@@ -66,7 +67,7 @@ npm install @huntabyte/primitives
 
 Pass the `side` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetSideDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/sheet/SheetSideDemo.svelte">
 
 <div slot="example">
 <SheetSideDemo />

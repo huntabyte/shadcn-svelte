@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { AvatarDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { AvatarDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/avatar/AvatarDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/avatar/AvatarDemo.svelte">
 
 <div slot="example">
 <AvatarDemo />

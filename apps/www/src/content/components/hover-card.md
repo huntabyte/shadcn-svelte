@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { HoverCardDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { HoverCardDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/hover-card/HoverCardDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/hover-card/HoverCardDemo.svelte">
 
 <div slot="example">
 <HoverCardDemo />

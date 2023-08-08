@@ -10,10 +10,11 @@ external:
 ---
 
 <script>
-  import { TooltipDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { TooltipDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/tooltip/TooltipDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/tooltip/TooltipDemo.svelte">
 
 <div slot="example">
 <TooltipDemo />
