@@ -74,6 +74,8 @@
 	}
 	html {
 		scrollbar-gutter: stable;
+		-webkit-text-size-adjust: 100%;
+		font-variation-settings: normal;
 	}
 	body {
 		@apply bg-background text-foreground;
@@ -117,6 +119,11 @@
 	.hide-scrollbar {
 		-ms-overflow-style: none;
 		scrollbar-width: none;
+	}
+
+	.antialised {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 }
 

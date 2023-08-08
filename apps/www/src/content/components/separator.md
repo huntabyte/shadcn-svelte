@@ -10,17 +10,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { SeparatorDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/separator/separator-demo.svelte">
-
-<div slot="example">
-<SeparatorDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="separator-demo" />
 
 ## Installation
 

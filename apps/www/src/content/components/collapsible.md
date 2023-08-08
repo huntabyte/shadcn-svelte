@@ -11,17 +11,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { CollapsibleDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/collapsible/collapsible-demo.svelte">
-
-<div slot="example">
-<CollapsibleDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="collapsible-demo" />
 
 ## Installation
 

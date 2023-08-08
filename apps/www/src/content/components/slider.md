@@ -10,18 +10,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { SliderDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/slider/slider-demo.svelte">
-
-<div slot="example" style="width: 100%; display: flex; justify-content: center;">
-<SliderDemo />
-</div>
-
-</ComponentExample>
-
+<ComponentPreview name="slider-demo" />
 ## Installation
 
 ```bash

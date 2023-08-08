@@ -6,17 +6,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { TextareaDemo, TextareaDisabled, TextareaWithLabel, TextareaWithText , TextareaWithButton } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-demo.svelte" >
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-demo" />
 
 ## Installation
 
@@ -46,58 +39,28 @@ npx shadcn-svelte add textarea
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-demo.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-demo" />
 
 ---
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-disabled.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDisabled />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-disabled" />
 
 ---
 
 ### With Label
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-label.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaWithLabel />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-with-label" />
 
 ---
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-text.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaWithText />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-with-text" />
 
 ---
 
 ### With Button
 
-<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-button.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaWithButton />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="textarea-with-button" />

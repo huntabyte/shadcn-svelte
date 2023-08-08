@@ -9,20 +9,24 @@
 	import ThemeWrapper from "./ThemeWrapper.svelte";
 	import { SvelteComponent, onMount } from "svelte";
 	export let name: string;
-	export let className: string;
-	export let align: "center" | "start" | "end";
+	let className: string;
+	export let align: "center" | "start" | "end" = "center";
 
 	const Index = RegistryIndex as Record<string, any>;
 
 	const index = styles.findIndex((style) => style.name === $config.style);
 	console.log(name);
-	const component = Index[$config.style][name]?.component();
+	let component = Index[$config.style][name]?.component();
 
 	let codeString: string;
 
 	function copyCodeToClipboard(node: HTMLElement) {
 		codeString = node.innerText ?? "";
 	}
+
+	export { className as class };
+
+	$: component = Index[$config.style][name]?.component();
 </script>
 
 <div
@@ -36,29 +40,32 @@
 			>
 				<Tabs.Trigger
 					value="preview"
-					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
 				>
 					Preview
 				</Tabs.Trigger>
 				<Tabs.Trigger
 					value="code"
-					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
 				>
 					Code
 				</Tabs.Trigger>
 			</Tabs.List>
 		</div>
-		<Tabs.Content value="preview" class="rounded-md border">
+		<Tabs.Content value="preview" class="relative rounded-md border">
 			<div class="flex items-center justify-between p-4">
 				<StyleSwitcher />
 			</div>
 			<ThemeWrapper>
 				<div
-					class={cn("flex min-h-[350px] justify-center p-10", {
-						"items-center": align === "center",
-						"items-start": align === "start",
-						"items-end": align === "end"
-					})}
+					class={cn(
+						"preview flex min-h-[350px] w-full justify-center p-10",
+						{
+							"items-center": align === "center",
+							"items-start": align === "start",
+							"items-end": align === "end"
+						}
+					)}
 				>
 					<slot name="example">
 						{#await component then Component}

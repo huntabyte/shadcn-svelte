@@ -6,17 +6,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { TableDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/table/table-demo.svelte">
-
-<div slot="example" style="width: 100%;">
-<TableDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="table-demo" />
 
 ## Installation
 

@@ -11,17 +11,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$components/docs';
-  import { AlertDialogDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/alert-dialog/alert-dialog-demo.svelte">
-
-<div slot="example">
-<AlertDialogDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="alert-dialog-demo" />
 
 ## Installation
 

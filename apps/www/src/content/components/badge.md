@@ -6,17 +6,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
   import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/badge/badge-demo.svelte">
-
-<div slot="example">
-<BadgeDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="badge-demo" />
 
 ## Installation
 
@@ -58,46 +52,22 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/badge/badge-demo.svelte">
-
-<div slot="example">
-<BadgeDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="badge-demo" />
 
 ---
 
 ### Secondary
 
-<ComponentExample src="src/lib/registry/default/example/badge/badge-secondary.svelte">
-
-<div slot="example">
-<BadgeSecondary />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="badge-secondary" />
 
 ---
 
 ### Outline
 
-<ComponentExample src="src/lib/registry/default/example/badge/badge-outline.svelte">
-
-<div slot="example">
-<BadgeOutline />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="badge-outline" />
 
 ---
 
 ### Destructive
 
-<ComponentExample src="src/lib/registry/default/example/badge/badge-destructive.svelte">
-
-<div slot="example">
-<BadgeDestructive />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="badge-destructive" />

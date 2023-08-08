@@ -6,17 +6,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { InputDemo, InputDisabled, InputWithLabel, InputWithText, InputFile, InputWithButton } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/input/input-demo.svelte" >
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-demo" />
 
 ## Installation
 
@@ -46,70 +39,34 @@ npx shadcn-svelte add input
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/input/input-demo.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-demo" />
 
 ---
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/input/input-disabled.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDisabled />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-disabled" />
 
 ---
 
 ### With Label
 
-<ComponentExample src="src/lib/registry/default/example/input/input-with-label.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputWithLabel />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-with-label" />
 
 ---
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/input/input-with-text.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputWithText />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-with-text" />
 
 ---
 
 ### With Button
 
-<ComponentExample src="src/lib/registry/default/example/input/input-with-button.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputWithButton />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-with-button" />
 
 ---
 
 ### File
 
-<ComponentExample src="src/lib/registry/default/example/input/input-file.svelte">
-
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<InputFile />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="input-file" />

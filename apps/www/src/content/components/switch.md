@@ -10,17 +10,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { SwitchDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/switch/switch-demo.svelte">
-
-<div slot="example">
-<SwitchDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="switch-demo" />
 
 ## Installation
 

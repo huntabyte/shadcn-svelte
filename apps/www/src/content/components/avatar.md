@@ -10,17 +10,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { AvatarDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/avatar/avatar-demo.svelte">
-
-<div slot="example">
-<AvatarDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="avatar-demo" />
 
 ## Installation
 

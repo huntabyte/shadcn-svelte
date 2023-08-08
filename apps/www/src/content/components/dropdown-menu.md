@@ -10,17 +10,10 @@ external:
 ---
 
 <script>
-    import { ComponentExample, ManualInstall } from '$lib/components/docs'
-    import { DropdownMenuDemo } from '@/registry/default/example'
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/dropdown-menu/dropdown-menu-demo.svelte">
-
-<div slot="example">
-<DropdownMenuDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="dropdown-menu-demo" />
 
 ## Installation
 

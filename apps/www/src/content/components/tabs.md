@@ -10,17 +10,10 @@ external:
 ---
 
 <script>
-  import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { TabsDemo } from '@/registry/default/example'
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/tabs/tabs-demo.svelte">
-
-<div slot="example">
-<TabsDemo />
-</div>
-
-</ComponentExample>
+<ComponentPreview name="tabs-demo" />
 
 ## Installation
 
