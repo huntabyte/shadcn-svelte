@@ -1,12 +1,16 @@
 {
   "name": "label",
   "dependencies": [
-    "@radix-ui/react-label"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "label.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst labelVariants = cva(\n  \"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\"\n)\n\nconst Label = React.forwardRef<\n  React.ElementRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &\n    VariantProps<typeof labelVariants>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn(labelVariants(), className)}\n    {...props}\n  />\n))\nLabel.displayName = LabelPrimitive.Root.displayName\n\nexport { Label }\n"
+      "name": "Label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</LabelPrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label\n};\n"
     }
   ],
   "type": "components:ui"

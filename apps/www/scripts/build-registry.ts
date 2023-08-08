@@ -85,7 +85,7 @@ for (const style of styles) {
 
 		const files = item.files?.map((file) => {
 			const content = fs.readFileSync(
-				path.join(process.cwd(), "registry", style.name, file),
+				path.join(process.cwd(), "src/lib/registry", style.name, file),
 				"utf8"
 			);
 

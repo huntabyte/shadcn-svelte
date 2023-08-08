@@ -2,8 +2,12 @@
   "name": "skeleton",
   "files": [
     {
-      "name": "skeleton.tsx",
-      "content": "import { cn } from \"@/lib/utils\"\n\nfunction Skeleton({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\"animate-pulse rounded-md bg-primary/10\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\n"
+      "name": "Skeleton.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\"animate-pulse rounded-md bg-primary/10\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Skeleton.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Skeleton\n};\n"
     }
   ],
   "type": "components:ui"

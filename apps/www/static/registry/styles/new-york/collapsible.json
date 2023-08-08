@@ -1,12 +1,16 @@
 {
   "name": "collapsible",
   "dependencies": [
-    "@radix-ui/react-collapsible"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "collapsible.tsx",
-      "content": "\"use client\"\n\nimport * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\"\n\nconst Collapsible = CollapsiblePrimitive.Root\n\nconst CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger\n\nconst CollapsibleContent = CollapsiblePrimitive.CollapsibleContent\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n"
+      "name": "CollapsibleContent.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"@huntabyte/primitives\";\n\timport { slide } from \"svelte/transition\";\n\ttype $$Props = CollapsiblePrimitive.ContentProps;\n</script>\n\n<CollapsiblePrimitive.Content transition={slide} {...$$restProps}>\n\t<slot />\n</CollapsiblePrimitive.Content>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { Collapsible as CollapsiblePrimitive } from \"@huntabyte/primitives\";\nimport Content from \"./CollapsibleContent.svelte\";\n\nconst Root = CollapsiblePrimitive.Root;\nconst Trigger = CollapsiblePrimitive.Trigger;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger\n};\n"
     }
   ],
   "type": "components:ui"

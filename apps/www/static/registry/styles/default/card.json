@@ -2,8 +2,32 @@
   "name": "card",
   "files": [
     {
-      "name": "card.tsx",
-      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Card = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"rounded-lg border bg-card text-card-foreground shadow-sm\",\n      className\n    )}\n    {...props}\n  />\n))\nCard.displayName = \"Card\"\n\nconst CardHeader = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex flex-col space-y-1.5 p-6\", className)}\n    {...props}\n  />\n))\nCardHeader.displayName = \"CardHeader\"\n\nconst CardTitle = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\n      \"text-2xl font-semibold leading-none tracking-tight\",\n      className\n    )}\n    {...props}\n  />\n))\nCardTitle.displayName = \"CardTitle\"\n\nconst CardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n))\nCardDescription.displayName = \"CardDescription\"\n\nconst CardContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"p-6 pt-0\", className)} {...props} />\n))\nCardContent.displayName = \"CardContent\"\n\nconst CardFooter = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex items-center p-6 pt-0\", className)}\n    {...props}\n  />\n))\nCardFooter.displayName = \"CardFooter\"\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }\n"
+      "name": "Card.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<!-- svelte-ignore a11y-no-static-element-interactions -->\n<div\n\tclass={cn(\n\t\t\"rounded-lg border bg-card text-card-foreground shadow-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "CardContent.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "CardDescription.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<p class={cn(\"text-sm text-muted-foreground\", className)} {...$$restProps}>\n\t<slot />\n</p>\n"
+    },
+    {
+      "name": "CardFooter.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex items-center p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "CardHeader.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex flex-col space-y-1.5 p-6\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "CardTitle.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HeadingLevel } from \"../alert\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let tag: HeadingLevel = \"h3\";\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Card.svelte\";\nimport Content from \"./CardContent.svelte\";\nimport Description from \"./CardDescription.svelte\";\nimport Footer from \"./CardFooter.svelte\";\nimport Header from \"./CardHeader.svelte\";\nimport Title from \"./CardTitle.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle\n};\n\nexport type HeadingLevel = \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\";\n"
     }
   ],
   "type": "components:ui"

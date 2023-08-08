@@ -1,12 +1,16 @@
 {
   "name": "tooltip",
   "dependencies": [
-    "@radix-ui/react-tooltip"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "tooltip.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst TooltipProvider = TooltipPrimitive.Provider\n\nconst Tooltip = TooltipPrimitive.Root\n\nconst TooltipTrigger = TooltipPrimitive.Trigger\n\nconst TooltipContent = React.forwardRef<\n  React.ElementRef<typeof TooltipPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>\n>(({ className, sideOffset = 4, ...props }, ref) => (\n  <TooltipPrimitive.Content\n    ref={ref}\n    sideOffset={sideOffset}\n    className={cn(\n      \"z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n      className\n    )}\n    {...props}\n  />\n))\nTooltipContent.displayName = TooltipPrimitive.Content.displayName\n\nexport { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }\n"
+      "name": "TooltipContent.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = TooltipPrimitive.ContentProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let sideOffset: $$Props[\"sideOffset\"] = 4;\n</script>\n\n<TooltipPrimitive.Content\n\t{sideOffset}\n\tclass={cn(\n\t\t\"z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-50 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</TooltipPrimitive.Content>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { Tooltip as TooltipPrimitive } from \"@huntabyte/primitives\";\nimport Content from \"./TooltipContent.svelte\";\n\nconst Root = TooltipPrimitive.Root;\nconst Trigger = TooltipPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Tooltip,\n\tContent as TooltipContent,\n\tTrigger as TooltipTrigger\n};\n"
     }
   ],
   "type": "components:ui"

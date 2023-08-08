@@ -1,12 +1,16 @@
 {
   "name": "toggle",
   "dependencies": [
-    "@radix-ui/react-toggle"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "toggle.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as TogglePrimitive from \"@radix-ui/react-toggle\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst toggleVariants = cva(\n  \"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent\",\n        outline:\n          \"border border-input bg-transparent hover:bg-accent hover:text-accent-foreground\",\n      },\n      size: {\n        default: \"h-10 px-3\",\n        sm: \"h-9 px-2.5\",\n        lg: \"h-11 px-5\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\nconst Toggle = React.forwardRef<\n  React.ElementRef<typeof TogglePrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> &\n    VariantProps<typeof toggleVariants>\n>(({ className, variant, size, ...props }, ref) => (\n  <TogglePrimitive.Root\n    ref={ref}\n    className={cn(toggleVariants({ variant, size, className }))}\n    {...props}\n  />\n))\n\nToggle.displayName = TogglePrimitive.Root.displayName\n\nexport { Toggle, toggleVariants }\n"
+      "name": "Toggle.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Toggle as TogglePrimitive } from \"@huntabyte/primitives\";\n\timport { toggleVariants, type Variant, type Size } from \".\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = TogglePrimitive.Props & {\n\t\tvariant?: Variant;\n\t\tsize?: Size;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport let size: $$Props[\"size\"] = \"default\";\n\texport let pressed: $$Props[\"pressed\"] = undefined;\n</script>\n\n<TogglePrimitive.Root\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</TogglePrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Toggle.svelte\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nexport const toggleVariants = cva(\n\t\"inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors data-[state=on]:bg-accent data-[state=on]:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-background hover:bg-muted hover:text-muted-foreground\",\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-transparent\",\n\t\t\t\toutline:\n\t\t\t\t\t\"bg-transparent border border-input hover:bg-accent hover:text-accent-foreground\"\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tdefault: \"h-10 px-3\",\n\t\t\t\tsm: \"h-9 px-2.5\",\n\t\t\t\tlg: \"h-11 px-5\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t\tsize: \"default\"\n\t\t}\n\t}\n);\n\nexport type Variant = VariantProps<typeof toggleVariants>[\"variant\"];\nexport type Size = VariantProps<typeof toggleVariants>[\"size\"];\n\nexport {\n\tRoot,\n\t//\n\tRoot as Toggle\n};\n"
     }
   ],
   "type": "components:ui"

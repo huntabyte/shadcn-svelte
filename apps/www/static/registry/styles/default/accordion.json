@@ -1,12 +1,24 @@
 {
   "name": "accordion",
   "dependencies": [
-    "@radix-ui/react-accordion"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "accordion.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as AccordionPrimitive from \"@radix-ui/react-accordion\"\nimport { ChevronDown } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Accordion = AccordionPrimitive.Root\n\nconst AccordionItem = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>\n>(({ className, ...props }, ref) => (\n  <AccordionPrimitive.Item\n    ref={ref}\n    className={cn(\"border-b\", className)}\n    {...props}\n  />\n))\nAccordionItem.displayName = \"AccordionItem\"\n\nconst AccordionTrigger = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Trigger>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>\n>(({ className, children, ...props }, ref) => (\n  <AccordionPrimitive.Header className=\"flex\">\n    <AccordionPrimitive.Trigger\n      ref={ref}\n      className={cn(\n        \"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <ChevronDown className=\"h-4 w-4 shrink-0 transition-transform duration-200\" />\n    </AccordionPrimitive.Trigger>\n  </AccordionPrimitive.Header>\n))\nAccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName\n\nconst AccordionContent = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>\n>(({ className, children, ...props }, ref) => (\n  <AccordionPrimitive.Content\n    ref={ref}\n    className={cn(\n      \"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down\",\n      className\n    )}\n    {...props}\n  >\n    <div className=\"pb-4 pt-0\">{children}</div>\n  </AccordionPrimitive.Content>\n))\nAccordionContent.displayName = AccordionPrimitive.Content.displayName\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent }\n"
+      "name": "AccordionContent.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\timport { slide } from \"svelte/transition\";\n\n\ttype $$Props = AccordionPrimitive.ContentProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Content\n\tclass={cn(\n\t\t\"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down\",\n\t\tclassName\n\t)}\n\ttransition={slide}\n\ttransitionConfig={{ duration: 200 }}\n\t{...$$restProps}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t<slot />\n\t</div>\n</AccordionPrimitive.Content>\n"
+    },
+    {
+      "name": "AccordionItem.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AccordionPrimitive.ItemProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: $$Props[\"value\"];\n</script>\n\n<AccordionPrimitive.Item\n\t{value}\n\tclass={cn(\"border-b\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AccordionPrimitive.Item>\n"
+    },
+    {
+      "name": "AccordionTrigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"@huntabyte/primitives\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AccordionPrimitive.TriggerProps & {\n\t\tlevel?: AccordionPrimitive.HeaderProps[\"level\"];\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let level: AccordionPrimitive.HeaderProps[\"level\"] = 3;\n</script>\n\n<AccordionPrimitive.Header {level} class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t\t<ChevronDown class=\"h-4 w-4 transition-transform duration-200\" />\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { Accordion as AccordionPrimitive } from \"@huntabyte/primitives\";\nimport Content from \"./AccordionContent.svelte\";\nimport Item from \"./AccordionItem.svelte\";\nimport Trigger from \"./AccordionTrigger.svelte\";\nconst Root = AccordionPrimitive.Root;\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger\n};\n"
     }
   ],
   "type": "components:ui"

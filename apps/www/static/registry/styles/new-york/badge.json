@@ -2,8 +2,12 @@
   "name": "badge",
   "files": [
     {
-      "name": "badge.tsx",
-      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80\",\n        secondary:\n          \"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        destructive:\n          \"border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80\",\n        outline: \"text-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <div className={cn(badgeVariants({ variant }), className)} {...props} />\n  )\n}\n\nexport { Badge, badgeVariants }\n"
+      "name": "Badge.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { badgeVariants, type Variant } from \".\";\n\n\texport let href: string | undefined = undefined;\n\texport let variant: Variant = \"default\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\n\nexport { default as Badge } from \"./Badge.svelte\";\nexport const badgeVariants = cva(\n\t\"inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault:\n\t\t\t\t\t\"border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80\",\n\t\t\t\tsecondary:\n\t\t\t\t\t\"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80\",\n\t\t\t\toutline: \"text-foreground\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\"\n\t\t}\n\t}\n);\n\nexport type Variant = VariantProps<typeof badgeVariants>[\"variant\"];\n"
     }
   ],
   "type": "components:ui"

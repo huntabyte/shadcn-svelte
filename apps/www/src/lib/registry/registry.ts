@@ -6,7 +6,6 @@ const ui: Registry = [
 		type: "components:ui",
 		dependencies: ["@huntabyte/primitives"],
 		files: [
-			"ui/accordion/Accordion.svelte",
 			"ui/accordion/AccordionContent.svelte",
 			"ui/accordion/AccordionItem.svelte",
 			"ui/accordion/AccordionTrigger.svelte",
@@ -257,13 +256,10 @@ const ui: Registry = [
 		files: [
 			"ui/select/Select.svelte",
 			"ui/select/SelectContent.svelte",
-			"ui/select/SelectGroup.svelte",
-			"ui/select/SelectInput.svelte",
 			"ui/select/SelectItem.svelte",
 			"ui/select/SelectLabel.svelte",
 			"ui/select/SelectSeparator.svelte",
 			"ui/select/SelectTrigger.svelte",
-			"ui/select/SelectValue.svelte",
 			"ui/select/index.ts"
 		]
 	},

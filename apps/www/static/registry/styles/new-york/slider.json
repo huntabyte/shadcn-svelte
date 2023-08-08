@@ -1,12 +1,16 @@
 {
   "name": "slider",
   "dependencies": [
-    "@radix-ui/react-slider"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "slider.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as SliderPrimitive from \"@radix-ui/react-slider\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Slider = React.forwardRef<\n  React.ElementRef<typeof SliderPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <SliderPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"relative flex w-full touch-none select-none items-center\",\n      className\n    )}\n    {...props}\n  >\n    <SliderPrimitive.Track className=\"relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20\">\n      <SliderPrimitive.Range className=\"absolute h-full bg-primary\" />\n    </SliderPrimitive.Track>\n    <SliderPrimitive.Thumb className=\"block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50\" />\n  </SliderPrimitive.Root>\n))\nSlider.displayName = SliderPrimitive.Root.displayName\n\nexport { Slider }\n"
+      "name": "Slider.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SliderPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: $$Props[\"value\"] = [0];\n</script>\n\n<SliderPrimitive.Root\n\tbind:value\n\tclass={cn(\n\t\t\"relative flex w-full touch-none select-none items-center\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<span\n\t\tclass=\"relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20\"\n\t>\n\t\t<SliderPrimitive.Range class=\"absolute h-full bg-primary\" />\n\t</span>\n\t<SliderPrimitive.Thumb\n\t\tclass=\"block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50\"\n\t/>\n</SliderPrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider\n};\n"
     }
   ],
   "type": "components:ui"

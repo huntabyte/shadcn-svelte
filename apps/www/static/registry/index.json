@@ -2,369 +2,396 @@
   {
     "name": "accordion",
     "dependencies": [
-      "@radix-ui/react-accordion"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/accordion.tsx"
+      "ui/accordion/AccordionContent.svelte",
+      "ui/accordion/AccordionItem.svelte",
+      "ui/accordion/AccordionTrigger.svelte",
+      "ui/accordion/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "alert",
     "files": [
-      "ui/alert.tsx"
+      "ui/alert/Alert.svelte",
+      "ui/alert/AlertDescription.svelte",
+      "ui/alert/AlertTitle.svelte",
+      "ui/alert/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "alert-dialog",
     "dependencies": [
-      "@radix-ui/react-alert-dialog"
+      "@huntabyte/primitives"
     ],
     "registryDependencies": [
       "button"
     ],
     "files": [
-      "ui/alert-dialog.tsx"
+      "ui/alert-dialog/AlertDialogAction.svelte",
+      "ui/alert-dialog/AlertDialogCancel.svelte",
+      "ui/alert-dialog/AlertDialogContent.svelte",
+      "ui/alert-dialog/AlertDialogDescription.svelte",
+      "ui/alert-dialog/AlertDialogFooter.svelte",
+      "ui/alert-dialog/AlertDialogHeader.svelte",
+      "ui/alert-dialog/AlertDialogOverlay.svelte",
+      "ui/alert-dialog/AlertDialogPortal.svelte",
+      "ui/alert-dialog/AlertDialogTitle.svelte",
+      "ui/alert-dialog/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "aspect-ratio",
     "dependencies": [
-      "@radix-ui/react-aspect-ratio"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/aspect-ratio.tsx"
+      "ui/aspect-ratio/AspectRatio.svelte",
+      "ui/aspect-ratio/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "avatar",
     "dependencies": [
-      "@radix-ui/react-avatar"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/avatar.tsx"
+      "ui/avatar/Avatar.svelte",
+      "ui/avatar/AvatarFallback.svelte",
+      "ui/avatar/AvatarImage.svelte",
+      "ui/avatar/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "badge",
     "files": [
-      "ui/badge.tsx"
+      "ui/badge/Badge.svelte",
+      "ui/badge/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "button",
     "dependencies": [
-      "@radix-ui/react-slot"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/button.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "calendar",
-    "dependencies": [
-      "react-day-picker",
-      "date-fns"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/calendar.tsx"
+      "ui/button/Button.svelte",
+      "ui/button/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "card",
     "files": [
-      "ui/card.tsx"
+      "ui/card/Card.svelte",
+      "ui/card/CardContent.svelte",
+      "ui/card/CardDescription.svelte",
+      "ui/card/CardFooter.svelte",
+      "ui/card/CardHeader.svelte",
+      "ui/card/CardTitle.svelte",
+      "ui/card/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "checkbox",
     "dependencies": [
-      "@radix-ui/react-checkbox"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/checkbox.tsx"
+      "ui/checkbox/Checkbox.svelte",
+      "ui/checkbox/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "collapsible",
     "dependencies": [
-      "@radix-ui/react-collapsible"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/collapsible.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "command",
-    "dependencies": [
-      "cmdk"
-    ],
-    "registryDependencies": [
-      "dialog"
-    ],
-    "files": [
-      "ui/command.tsx"
+      "ui/collapsible/CollapsibleContent.svelte",
+      "ui/collapsible/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "context-menu",
     "dependencies": [
-      "@radix-ui/react-context-menu"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/context-menu.tsx"
+      "ui/context-menu/ContextMenuCheckboxItem.svelte",
+      "ui/context-menu/ContextMenuContent.svelte",
+      "ui/context-menu/ContextMenuItem.svelte",
+      "ui/context-menu/ContextMenuLabel.svelte",
+      "ui/context-menu/ContextMenuRadioGroup.svelte",
+      "ui/context-menu/ContextMenuRadioItem.svelte",
+      "ui/context-menu/ContextMenuSeparator.svelte",
+      "ui/context-menu/ContextMenuShortcut.svelte",
+      "ui/context-menu/ContextMenuSubContent.svelte",
+      "ui/context-menu/ContextMenuSubTrigger.svelte",
+      "ui/context-menu/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "dialog",
     "dependencies": [
-      "@radix-ui/react-dialog"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/dialog.tsx"
+      "ui/dialog/DialogContent.svelte",
+      "ui/dialog/DialogDescription.svelte",
+      "ui/dialog/DialogFooter.svelte",
+      "ui/dialog/DialogHeader.svelte",
+      "ui/dialog/DialogOverlay.svelte",
+      "ui/dialog/DialogPortal.svelte",
+      "ui/dialog/DialogTitle.svelte",
+      "ui/dialog/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "dropdown-menu",
     "dependencies": [
-      "@radix-ui/react-dropdown-menu"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/dropdown-menu.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "form",
-    "dependencies": [
-      "@radix-ui/react-label",
-      "@radix-ui/react-slot",
-      "@hookform/resolvers",
-      "zod",
-      "react-hook-form"
-    ],
-    "registryDependencies": [
-      "button",
-      "label"
-    ],
-    "files": [
-      "ui/form.tsx"
+      "ui/dropdown-menu/DropdownMenuCheckboxItem.svelte",
+      "ui/dropdown-menu/DropdownMenuContent.svelte",
+      "ui/dropdown-menu/DropdownMenuItem.svelte",
+      "ui/dropdown-menu/DropdownMenuLabel.svelte",
+      "ui/dropdown-menu/DropdownMenuRadioGroup.svelte",
+      "ui/dropdown-menu/DropdownMenuRadioItem.svelte",
+      "ui/dropdown-menu/DropdownMenuSeparator.svelte",
+      "ui/dropdown-menu/DropdownMenuShortcut.svelte",
+      "ui/dropdown-menu/DropdownMenuSubContent.svelte",
+      "ui/dropdown-menu/DropdownMenuSubTrigger.svelte",
+      "ui/dropdown-menu/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "hover-card",
     "dependencies": [
-      "@radix-ui/react-hover-card"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/hover-card.tsx"
+      "ui/hover-card/HoverCardContent.svelte",
+      "ui/hover-card/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "input",
     "files": [
-      "ui/input.tsx"
+      "ui/input/Input.svelte",
+      "ui/input/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "label",
     "dependencies": [
-      "@radix-ui/react-label"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/label.tsx"
+      "ui/label/Label.svelte",
+      "ui/label/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "menubar",
     "dependencies": [
-      "@radix-ui/react-menubar"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/menubar.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "navigation-menu",
-    "dependencies": [
-      "@radix-ui/react-navigation-menu"
-    ],
-    "files": [
-      "ui/navigation-menu.tsx"
+      "ui/menubar/Menubar.svelte",
+      "ui/menubar/MenubarCheckboxItem.svelte",
+      "ui/menubar/MenubarContent.svelte",
+      "ui/menubar/MenubarItem.svelte",
+      "ui/menubar/MenubarLabel.svelte",
+      "ui/menubar/MenubarRadioItem.svelte",
+      "ui/menubar/MenubarSeparator.svelte",
+      "ui/menubar/MenubarShortcut.svelte",
+      "ui/menubar/MenubarSubContent.svelte",
+      "ui/menubar/MenubarSubTrigger.svelte",
+      "ui/menubar/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "popover",
     "dependencies": [
-      "@radix-ui/react-popover"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/popover.tsx"
+      "ui/popover/PopoverContent.svelte",
+      "ui/popover/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "progress",
     "dependencies": [
-      "@radix-ui/react-progress"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/progress.tsx"
+      "ui/progress/Progress.svelte",
+      "ui/progress/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "radio-group",
     "dependencies": [
-      "@radix-ui/react-radio-group"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/radio-group.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "scroll-area",
-    "dependencies": [
-      "@radix-ui/react-scroll-area"
-    ],
-    "files": [
-      "ui/scroll-area.tsx"
+      "ui/radio-group/RadioGroup.svelte",
+      "ui/radio-group/RadioGroupItem.svelte",
+      "ui/radio-group/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "select",
     "dependencies": [
-      "@radix-ui/react-select"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/select.tsx"
+      "ui/select/Select.svelte",
+      "ui/select/SelectContent.svelte",
+      "ui/select/SelectItem.svelte",
+      "ui/select/SelectLabel.svelte",
+      "ui/select/SelectSeparator.svelte",
+      "ui/select/SelectTrigger.svelte",
+      "ui/select/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "separator",
     "dependencies": [
-      "@radix-ui/react-separator"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/separator.tsx"
+      "ui/separator/Separator.svelte",
+      "ui/separator/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "sheet",
     "dependencies": [
-      "@radix-ui/react-dialog"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/sheet.tsx"
+      "ui/sheet/SheetContent.svelte",
+      "ui/sheet/SheetDescription.svelte",
+      "ui/sheet/SheetFooter.svelte",
+      "ui/sheet/SheetHeader.svelte",
+      "ui/sheet/SheetOverlay.svelte",
+      "ui/sheet/SheetPortal.svelte",
+      "ui/sheet/SheetTitle.svelte",
+      "ui/sheet/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "skeleton",
     "files": [
-      "ui/skeleton.tsx"
+      "ui/skeleton/Skeleton.svelte",
+      "ui/skeleton/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "slider",
     "dependencies": [
-      "@radix-ui/react-slider"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/slider.tsx"
+      "ui/slider/Slider.svelte",
+      "ui/slider/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "switch",
     "dependencies": [
-      "@radix-ui/react-switch"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/switch.tsx"
+      "ui/switch/Switch.svelte",
+      "ui/switch/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "table",
     "files": [
-      "ui/table.tsx"
+      "ui/table/Table.svelte",
+      "ui/table/TableBody.svelte",
+      "ui/table/TableCaption.svelte",
+      "ui/table/TableCell.svelte",
+      "ui/table/TableFooter.svelte",
+      "ui/table/TableHead.svelte",
+      "ui/table/TableHeader.svelte",
+      "ui/table/TableRow.svelte",
+      "ui/table/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "tabs",
     "dependencies": [
-      "@radix-ui/react-tabs"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/tabs.tsx"
+      "ui/tabs/TabsContent.svelte",
+      "ui/tabs/TabsList.svelte",
+      "ui/tabs/TabsTrigger.svelte",
+      "ui/tabs/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "textarea",
     "files": [
-      "ui/textarea.tsx"
-    ],
-    "type": "components:ui"
-  },
-  {
-    "name": "toast",
-    "dependencies": [
-      "@radix-ui/react-toast"
-    ],
-    "files": [
-      "ui/toast.tsx",
-      "ui/use-toast.ts",
-      "ui/toaster.tsx"
+      "ui/textarea/Textarea.svelte",
+      "ui/textarea/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "toggle",
     "dependencies": [
-      "@radix-ui/react-toggle"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/toggle.tsx"
+      "ui/toggle/Toggle.svelte",
+      "ui/toggle/index.ts"
     ],
     "type": "components:ui"
   },
   {
     "name": "tooltip",
     "dependencies": [
-      "@radix-ui/react-tooltip"
+      "@huntabyte/primitives"
     ],
     "files": [
-      "ui/tooltip.tsx"
+      "ui/tooltip/TooltipContent.svelte",
+      "ui/tooltip/index.ts"
     ],
     "type": "components:ui"
   }

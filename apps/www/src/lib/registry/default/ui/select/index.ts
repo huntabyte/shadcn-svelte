@@ -1,13 +1,15 @@
+import { Select as SelectPrimitive } from "@huntabyte/primitives";
+
 import Root from "./Select.svelte";
-import Group from "./SelectGroup.svelte";
-import Input from "./SelectInput.svelte";
 import Label from "./SelectLabel.svelte";
-import Value from "./SelectValue.svelte";
 import Item from "./SelectItem.svelte";
 import Content from "./SelectContent.svelte";
 import Trigger from "./SelectTrigger.svelte";
 import Separator from "./SelectSeparator.svelte";
 
+const Group = SelectPrimitive.Group;
+const Input = SelectPrimitive.Input;
+const Value = SelectPrimitive.Value;
 export {
 	Root,
 	Group,

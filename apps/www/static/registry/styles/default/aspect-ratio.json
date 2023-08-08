@@ -1,12 +1,16 @@
 {
   "name": "aspect-ratio",
   "dependencies": [
-    "@radix-ui/react-aspect-ratio"
+    "@huntabyte/primitives"
   ],
   "files": [
     {
-      "name": "aspect-ratio.tsx",
-      "content": "\"use client\"\n\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\"\n\nconst AspectRatio = AspectRatioPrimitive.Root\n\nexport { AspectRatio }\n"
+      "name": "AspectRatio.svelte",
+      "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"@huntabyte/primitives\";\n\n\ttype $$Props = AspectRatioPrimitive.Props;\n\texport let ratio: $$Props[\"ratio\"] = 4 / 3;\n</script>\n\n<AspectRatioPrimitive.Root {ratio} {...$$restProps}>\n\t<slot />\n</AspectRatioPrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./AspectRatio.svelte\";\n\nexport { Root, Root as AspectRatio };\n"
     }
   ],
   "type": "components:ui"

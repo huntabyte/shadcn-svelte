@@ -2,8 +2,40 @@
   "name": "table",
   "files": [
     {
-      "name": "table.tsx",
-      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Table = React.forwardRef<\n  HTMLTableElement,\n  React.HTMLAttributes<HTMLTableElement>\n>(({ className, ...props }, ref) => (\n  <div className=\"w-full overflow-auto\">\n    <table\n      ref={ref}\n      className={cn(\"w-full caption-bottom text-sm\", className)}\n      {...props}\n    />\n  </div>\n))\nTable.displayName = \"Table\"\n\nconst TableHeader = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <thead ref={ref} className={cn(\"[&_tr]:border-b\", className)} {...props} />\n))\nTableHeader.displayName = \"TableHeader\"\n\nconst TableBody = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <tbody\n    ref={ref}\n    className={cn(\"[&_tr:last-child]:border-0\", className)}\n    {...props}\n  />\n))\nTableBody.displayName = \"TableBody\"\n\nconst TableFooter = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <tfoot\n    ref={ref}\n    className={cn(\"bg-primary font-medium text-primary-foreground\", className)}\n    {...props}\n  />\n))\nTableFooter.displayName = \"TableFooter\"\n\nconst TableRow = React.forwardRef<\n  HTMLTableRowElement,\n  React.HTMLAttributes<HTMLTableRowElement>\n>(({ className, ...props }, ref) => (\n  <tr\n    ref={ref}\n    className={cn(\n      \"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n      className\n    )}\n    {...props}\n  />\n))\nTableRow.displayName = \"TableRow\"\n\nconst TableHead = React.forwardRef<\n  HTMLTableCellElement,\n  React.ThHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <th\n    ref={ref}\n    className={cn(\n      \"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0\",\n      className\n    )}\n    {...props}\n  />\n))\nTableHead.displayName = \"TableHead\"\n\nconst TableCell = React.forwardRef<\n  HTMLTableCellElement,\n  React.TdHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <td\n    ref={ref}\n    className={cn(\"p-4 align-middle [&:has([role=checkbox])]:pr-0\", className)}\n    {...props}\n  />\n))\nTableCell.displayName = \"TableCell\"\n\nconst TableCaption = React.forwardRef<\n  HTMLTableCaptionElement,\n  React.HTMLAttributes<HTMLTableCaptionElement>\n>(({ className, ...props }, ref) => (\n  <caption\n    ref={ref}\n    className={cn(\"mt-4 text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n))\nTableCaption.displayName = \"TableCaption\"\n\nexport {\n  Table,\n  TableHeader,\n  TableBody,\n  TableFooter,\n  TableHead,\n  TableRow,\n  TableCell,\n  TableCaption,\n}\n"
+      "name": "Table.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLTableAttributes;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class=\"w-full overflow-auto\">\n\t<table\n\t\tclass={cn(\"w-full caption-bottom text-sm\", className)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</table>\n</div>\n"
+    },
+    {
+      "name": "TableBody.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableSectionElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<tbody class={cn(\"[&_tr:last-child]:border-0\", className)} {...$$restProps}>\n\t<slot />\n</tbody>\n"
+    },
+    {
+      "name": "TableCaption.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableCaptionElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<caption\n\tclass={cn(\"mt-4 text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</caption>\n"
+    },
+    {
+      "name": "TableCell.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableCellElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<td\n\tclass={cn(\"p-4 align-middle [&:has([role=checkbox])]:pr-0\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</td>\n"
+    },
+    {
+      "name": "TableFooter.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableSectionElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<tfoot\n\tclass={cn(\"bg-primary font-medium text-primary-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</tfoot>\n"
+    },
+    {
+      "name": "TableHead.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableCellElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<th\n\tclass={cn(\n\t\t\"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</th>\n"
+    },
+    {
+      "name": "TableHeader.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableSectionElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<thead class={cn(\"[&_tr]:border-b\", className)} {...$$restProps}>\n\t<slot />\n</thead>\n"
+    },
+    {
+      "name": "TableRow.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableRowElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<tr\n\tclass={cn(\n\t\t\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</tr>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./Table.svelte\";\nimport Body from \"./TableBody.svelte\";\nimport Caption from \"./TableCaption.svelte\";\nimport Cell from \"./TableCell.svelte\";\nimport Footer from \"./TableFooter.svelte\";\nimport Head from \"./TableHead.svelte\";\nimport Header from \"./TableHeader.svelte\";\nimport Row from \"./TableRow.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow\n};\n"
     }
   ],
   "type": "components:ui"
