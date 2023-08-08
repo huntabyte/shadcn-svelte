@@ -16,8 +16,8 @@
 		Users
 	} from "lucide-svelte";
 
-	import { Button } from "@/registry/default/ui/button";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 </script>
 
 <DropdownMenu.Root>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button, buttonVariants } from "@/registry/default/ui/button";
-	import * as Dialog from "@/registry/default/ui/dialog";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
+	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
+	import * as Dialog from "@/registry/new-york/ui/dialog";
+	import { Input } from "@/registry/new-york/ui/input";
+	import { Label } from "@/registry/new-york/ui/label";
 </script>
 
 <Dialog.Root>

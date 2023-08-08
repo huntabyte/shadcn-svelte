@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Label } from "@/registry/default/ui/label";
-	import { Textarea } from "@/registry/default/ui/textarea";
+	import { Label } from "@/registry/new-york/ui/label";
+	import { Textarea } from "@/registry/new-york/ui/textarea";
 </script>
 
 <div class="grid w-full gap-1.5">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Menubar from "@/registry/default/ui/menubar";
+	import * as Menubar from "@/registry/new-york/ui/menubar";
 
 	let bookmarks = false;
 	let fullUrls = true;

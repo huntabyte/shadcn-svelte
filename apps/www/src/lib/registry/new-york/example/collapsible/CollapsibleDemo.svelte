@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Collapsible from "@/registry/default/ui/collapsible";
-	import { ChevronsUpDown } from "lucide-svelte";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Collapsible from "@/registry/new-york/ui/collapsible";
+	import { CaretSort } from "radix-icons-svelte";
+	import { Button } from "@/registry/new-york/ui/button";
 </script>
 
 <Collapsible.Root class="w-[350px] space-y-2">
@@ -16,17 +16,17 @@
 				size="sm"
 				class="w-9 p-0"
 			>
-				<ChevronsUpDown class="h-4 w-4" />
+				<CaretSort class="h-4 w-4" />
 				<span class="sr-only">Toggle</span>
 			</Button>
 		</Collapsible.Trigger>
 	</div>
 	<div class="rounded-md border px-4 py-3 font-mono text-sm">
-		melt-ui/melt-ui
+		@melt-ui/melt-ui
 	</div>
 	<Collapsible.Content class="space-y-2">
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
-			sveltejs/svelte
+			@huntabyte/primitives
 		</div>
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
 			sveltejs/kit

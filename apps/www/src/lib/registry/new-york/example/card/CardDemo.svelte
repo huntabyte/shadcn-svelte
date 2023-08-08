@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { BellRing, Check } from "lucide-svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import { Switch } from "@/registry/default/ui/switch";
+	import { Bell, Check } from "radix-icons-svelte";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as Card from "@/registry/new-york/ui/card";
+	import { Switch } from "@/registry/new-york/ui/switch";
 
 	const notifications = [
 		{
@@ -26,8 +26,8 @@
 		<Card.Description>You have 3 unread messages.</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-4">
-		<div class=" flex items-center space-x-4 rounded-md border p-4">
-			<BellRing />
+		<div class="flex items-center space-x-4 rounded-md border p-4">
+			<Bell />
 			<div class="flex-1 space-y-1">
 				<p class="text-sm font-medium leading-none">
 					Push Notifications

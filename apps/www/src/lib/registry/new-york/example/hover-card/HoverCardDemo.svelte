@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { CalendarDays } from "lucide-svelte";
-	import * as Avatar from "@/registry/default/ui/avatar";
-	import * as HoverCard from "@/registry/default/ui/hover-card";
+	import { Calendar } from "radix-icons-svelte";
+	import * as Avatar from "@/registry/new-york/ui/avatar";
+	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 </script>
 
 <HoverCard.Root>
@@ -23,7 +23,7 @@
 				<h4 class="text-sm font-semibold">@sveltejs</h4>
 				<p class="text-sm">Cybernetically enhanced web apps.</p>
 				<div class="flex items-center pt-2">
-					<CalendarDays class="mr-2 h-4 w-4 opacity-70" />{" "}
+					<Calendar class="mr-2 h-4 w-4 opacity-70" />{" "}
 					<span class="text-xs text-muted-foreground">
 						Joined September 2022
 					</span>

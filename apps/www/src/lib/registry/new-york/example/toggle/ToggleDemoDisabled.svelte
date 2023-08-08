@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Underline } from "lucide-svelte";
-	import { Toggle } from "@/registry/default/ui/toggle";
+	import { Underline } from "radix-icons-svelte";
+	import { Toggle } from "@/registry/new-york/ui/toggle";
 </script>
 
 <Toggle aria-label="Toggle underline" disabled>

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { Mail } from "lucide-svelte";
-	import { Button } from "@/registry/default/ui/button";
+	import { ChevronRight } from "radix-icons-svelte";
+	import { Button } from "@/registry/new-york/ui/button";
 </script>
 
-<Button>
-	<Mail class="mr-2 h-4 w-4" />
-	Login with Email
+<Button variant="outline" size="icon">
+	<ChevronRight class="h-4 w-4" />
 </Button>

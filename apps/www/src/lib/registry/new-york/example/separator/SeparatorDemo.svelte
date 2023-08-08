@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Separator } from "@/registry/default/ui/separator";
+	import { Separator } from "@/registry/new-york/ui/separator";
 </script>
 
 <div>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Italic } from "lucide-svelte";
-	import { Toggle } from "@/registry/default/ui/toggle";
+	import { FontItalic } from "radix-icons-svelte";
+	import { Toggle } from "@/registry/new-york/ui/toggle";
 </script>
 
 <Toggle aria-label="Toggle italic">
-	<Italic class="mr-2 h-4 w-4" />
+	<FontItalic class="mr-2 h-4 w-4" />
 	Italic
 </Toggle>

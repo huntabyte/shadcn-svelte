@@ -3,10 +3,10 @@
 		Popover,
 		PopoverTrigger,
 		PopoverContent
-	} from "@/registry/default/ui/popover";
-	import { Label } from "@/registry/default/ui/label";
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
+	} from "@/registry/new-york/ui/popover";
+	import { Label } from "@/registry/new-york/ui/label";
+	import { Button } from "@/registry/new-york/ui/button";
+	import { Input } from "@/registry/new-york/ui/input";
 </script>
 
 <Popover>
