@@ -15,7 +15,7 @@ external:
   import { AlertDialogDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/alert-dialog/AlertDialogDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/alert-dialog/alert-dialog-demo.svelte">
 
 <div slot="example">
 <AlertDialogDemo />

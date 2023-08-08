@@ -7,10 +7,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { InputDemo, InputDemoDisabled, InputDemoLabel, InputDemoText, InputDemoFile, InputDemoButton } from '@/registry/default/example'
+  import { InputDemo, InputDisabled, InputWithLabel, InputWithText, InputFile, InputWithButton } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemo.svelte" >
+<ComponentExample src="src/lib/registry/default/example/input/input-demo.svelte" >
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
 <InputDemo />
@@ -46,7 +46,7 @@ npx shadcn-svelte add input
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-demo.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
 <InputDemo />
@@ -58,10 +58,10 @@ npx shadcn-svelte add input
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemoDisabled.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-disabled.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemoDisabled />
+<InputDisabled />
 </div>
 
 </ComponentExample>
@@ -70,10 +70,10 @@ npx shadcn-svelte add input
 
 ### With Label
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemoLabel.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-with-label.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemoLabel />
+<InputWithLabel />
 </div>
 
 </ComponentExample>
@@ -82,10 +82,10 @@ npx shadcn-svelte add input
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemoText.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-with-text.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemoText />
+<InputWithText />
 </div>
 
 </ComponentExample>
@@ -94,10 +94,10 @@ npx shadcn-svelte add input
 
 ### With Button
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemoButton.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-with-button.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemoButton />
+<InputWithButton />
 </div>
 
 </ComponentExample>
@@ -106,10 +106,10 @@ npx shadcn-svelte add input
 
 ### File
 
-<ComponentExample src="src/lib/registry/default/example/input/InputDemoFile.svelte">
+<ComponentExample src="src/lib/registry/default/example/input/input-file.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<InputDemoFile />
+<InputFile />
 </div>
 
 </ComponentExample>

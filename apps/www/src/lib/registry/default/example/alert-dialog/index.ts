@@ -1,1 +1,1 @@
-export { default as AlertDialogDemo } from "./AlertDialogDemo.svelte";
+export { default as AlertDialogDemo } from "./alert-dialog-demo.svelte";

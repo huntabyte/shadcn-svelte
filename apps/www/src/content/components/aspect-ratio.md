@@ -14,7 +14,7 @@ external:
   import { AspectRatioDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/aspect-ratio/AspectRatioDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/aspect-ratio/aspect-ratio-demo.svelte">
 
 <div slot="example" style="width: 100%;">
 <AspectRatioDemo />

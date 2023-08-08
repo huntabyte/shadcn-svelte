@@ -1,1 +1,1 @@
-export { default as AccordionDemo } from "./AccordionDemo.svelte";
+export { default as AccordionDemo } from "./accordion-demo.svelte";

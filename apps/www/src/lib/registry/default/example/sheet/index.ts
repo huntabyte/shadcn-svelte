@@ -1,2 +1,2 @@
-export { default as SheetDemo } from "./SheetDemo.svelte";
-export { default as SheetSideDemo } from "./SheetSideDemo.svelte";
+export { default as SheetDemo } from "./sheet-demo.svelte";
+export { default as SheetSide } from "./sheet-side.svelte";

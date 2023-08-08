@@ -7,10 +7,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { TextareaDemo, TextareaDemoDisabled, TextareaDemoLabel, TextareaDemoText , TextareaDemoButton } from '@/registry/default/example'
+  import { TextareaDemo, TextareaDisabled, TextareaWithLabel, TextareaWithText , TextareaWithButton } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemo.svelte" >
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-demo.svelte" >
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
 <TextareaDemo />
@@ -46,7 +46,7 @@ npx shadcn-svelte add textarea
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-demo.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
 <TextareaDemo />
@@ -58,10 +58,10 @@ npx shadcn-svelte add textarea
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemoDisabled.svelte">
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-disabled.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoDisabled />
+<TextareaDisabled />
 </div>
 
 </ComponentExample>
@@ -70,10 +70,10 @@ npx shadcn-svelte add textarea
 
 ### With Label
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemoLabel.svelte">
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-label.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoLabel />
+<TextareaWithLabel />
 </div>
 
 </ComponentExample>
@@ -82,10 +82,10 @@ npx shadcn-svelte add textarea
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemoText.svelte">
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-text.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoText />
+<TextareaWithText />
 </div>
 
 </ComponentExample>
@@ -94,10 +94,10 @@ npx shadcn-svelte add textarea
 
 ### With Button
 
-<ComponentExample src="src/lib/registry/default/example/textarea/TextareaDemoButton.svelte">
+<ComponentExample src="src/lib/registry/default/example/textarea/textarea-with-button.svelte">
 
 <div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoButton />
+<TextareaWithButton />
 </div>
 
 </ComponentExample>

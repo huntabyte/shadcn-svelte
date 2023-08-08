@@ -13,3 +13,4 @@ package-lock.json
 yarn.lock
 
 apps/www/src/routes/api/components/components.json
+apps/www/static

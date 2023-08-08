@@ -5,12 +5,12 @@
   ],
   "files": [
     {
-      "name": "Separator.svelte",
+      "name": "separator.svelte",
       "content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SeparatorPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let orientation: $$Props[\"orientation\"] = \"horizontal\";\n\texport let decorative: $$Props[\"decorative\"] = undefined;\n</script>\n\n<SeparatorPrimitive.Root\n\tclass={cn(\n\t\t\"shrink-0 bg-border\",\n\t\torientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n\t\tclassName\n\t)}\n\t{orientation}\n\t{decorative}\n\t{...$$restProps}\n/>\n"
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./Separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator\n};\n"
+      "content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator\n};\n"
     }
   ],
   "type": "components:ui"

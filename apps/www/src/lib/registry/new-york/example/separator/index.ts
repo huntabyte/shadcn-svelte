@@ -1,1 +1,1 @@
-export { default as SeparatorDemo } from "./SeparatorDemo.svelte";
+export { default as SeparatorDemo } from "./separator-demo.svelte";

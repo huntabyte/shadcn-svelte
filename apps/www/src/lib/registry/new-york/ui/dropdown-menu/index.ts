@@ -1,14 +1,14 @@
 import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
-import Item from "./DropdownMenuItem.svelte";
-import Label from "./DropdownMenuLabel.svelte";
-import Content from "./DropdownMenuContent.svelte";
-import Shortcut from "./DropdownMenuShortcut.svelte";
-import RadioItem from "./DropdownMenuRadioItem.svelte";
-import Separator from "./DropdownMenuSeparator.svelte";
-import RadioGroup from "./DropdownMenuRadioGroup.svelte";
-import SubContent from "./DropdownMenuSubContent.svelte";
-import SubTrigger from "./DropdownMenuSubTrigger.svelte";
-import CheckboxItem from "./DropdownMenuCheckboxItem.svelte";
+import Item from "./dropdown-menu-item.svelte";
+import Label from "./dropdown-menu-label.svelte";
+import Content from "./dropdown-menu-content.svelte";
+import Shortcut from "./dropdown-menu-shortcut.svelte";
+import RadioItem from "./dropdown-menu-radio-item.svelte";
+import Separator from "./dropdown-menu-separator.svelte";
+import RadioGroup from "./dropdown-menu-radio-group.svelte";
+import SubContent from "./dropdown-menu-sub-content.svelte";
+import SubTrigger from "./dropdown-menu-sub-trigger.svelte";
+import CheckboxItem from "./dropdown-menu-checkbox-item.svelte";
 
 const Sub = DropdownMenuPrimitive.Sub;
 const Root = DropdownMenuPrimitive.Root;

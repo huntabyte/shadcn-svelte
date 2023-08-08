@@ -15,7 +15,7 @@ external:
   import { CollapsibleDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/collapsible/CollapsibleDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/collapsible/collapsible-demo.svelte">
 
 <div slot="example">
 <CollapsibleDemo />

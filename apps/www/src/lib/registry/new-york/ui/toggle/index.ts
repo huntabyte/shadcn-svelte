@@ -1,4 +1,4 @@
-import Root from "./Toggle.svelte";
+import Root from "./toggle.svelte";
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const toggleVariants = cva(

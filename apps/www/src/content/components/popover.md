@@ -14,7 +14,7 @@ external:
   import { PopoverDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/popover/PopoverDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/popover/popover-demo.svelte">
 
 <div slot="example">
 <PopoverDemo />

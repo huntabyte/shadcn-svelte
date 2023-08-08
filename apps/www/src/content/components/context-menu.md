@@ -14,7 +14,7 @@ external:
     import { ContextMenuDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/context-menu/ContextMenuDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/context-menu/context-menu-demo.svelte">
 
 <div slot="example">
 <ContextMenuDemo />

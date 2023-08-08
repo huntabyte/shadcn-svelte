@@ -14,7 +14,7 @@ external:
   import { TooltipDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/tooltip/TooltipDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/tooltip/tooltip-demo.svelte">
 
 <div slot="example">
 <TooltipDemo />

@@ -1,1 +1,1 @@
-export { default as ContextMenuDemo } from "./ContextMenuDemo.svelte";
+export { default as ContextMenuDemo } from "./context-menu-demo.svelte";

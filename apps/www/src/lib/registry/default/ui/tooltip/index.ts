@@ -1,5 +1,5 @@
 import { Tooltip as TooltipPrimitive } from "@huntabyte/primitives";
-import Content from "./TooltipContent.svelte";
+import Content from "./tooltip-content.svelte";
 
 const Root = TooltipPrimitive.Root;
 const Trigger = TooltipPrimitive.Trigger;

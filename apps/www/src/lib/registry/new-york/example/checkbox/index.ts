@@ -1,3 +1,3 @@
-export { default as CheckboxDemo } from "./CheckboxDemo.svelte";
-export { default as CheckboxDemoDisabled } from "./CheckboxDemoDisabled.svelte";
-export { default as CheckboxDemoText } from "./CheckboxDemoText.svelte";
+export { default as CheckboxDemo } from "./checkbox-demo.svelte";
+export { default as CheckboxDisabled } from "./checkbox-disabled.svelte";
+export { default as CheckboxWithText } from "./checkbox-with-text.svelte";

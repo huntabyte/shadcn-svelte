@@ -5,12 +5,12 @@
   ],
   "files": [
     {
-      "name": "Label.svelte",
+      "name": "label.svelte",
       "content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</LabelPrimitive.Root>\n"
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./Label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label\n};\n"
+      "content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label\n};\n"
     }
   ],
   "type": "components:ui"

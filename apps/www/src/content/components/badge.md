@@ -7,10 +7,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { BadgeDemo, BadgeDemoDestructive, BadgeDemoOutline, BadgeDemoSecondary } from '@/registry/default/example'
+  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/badge-demo.svelte">
 
 <div slot="example">
 <BadgeDemo />
@@ -58,7 +58,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/badge-demo.svelte">
 
 <div slot="example">
 <BadgeDemo />
@@ -70,10 +70,10 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Secondary
 
-<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoSecondary.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/badge-secondary.svelte">
 
 <div slot="example">
-<BadgeDemoSecondary />
+<BadgeSecondary />
 </div>
 
 </ComponentExample>
@@ -82,10 +82,10 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Outline
 
-<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoOutline.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/badge-outline.svelte">
 
 <div slot="example">
-<BadgeDemoOutline />
+<BadgeOutline />
 </div>
 
 </ComponentExample>
@@ -94,10 +94,10 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Destructive
 
-<ComponentExample src="src/lib/registry/default/example/badge/BadgeDemoDestructive.svelte">
+<ComponentExample src="src/lib/registry/default/example/badge/badge-destructive.svelte">
 
 <div slot="example">
-<BadgeDemoDestructive />
+<BadgeDestructive />
 </div>
 
 </ComponentExample>

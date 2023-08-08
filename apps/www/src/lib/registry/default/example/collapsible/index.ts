@@ -1,1 +1,1 @@
-export { default as CollapsibleDemo } from "./CollapsibleDemo.svelte";
+export { default as CollapsibleDemo } from "./collapsible-demo.svelte";

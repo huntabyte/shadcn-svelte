@@ -14,7 +14,7 @@ external:
   import { RadioGroupDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/radio-group/RadioGroupDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/radio-group/radio-group-demo.svelte">
 
 <div slot="example">
 <RadioGroupDemo />

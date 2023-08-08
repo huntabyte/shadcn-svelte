@@ -1,8 +1,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-import Root from "./Alert.svelte";
-import Description from "./AlertDescription.svelte";
-import Title from "./AlertTitle.svelte";
+import Root from "./alert.svelte";
+import Description from "./alert-description.svelte";
+import Title from "./alert-title.svelte";
 
 export const alertVariants = cva(
 	"relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11",

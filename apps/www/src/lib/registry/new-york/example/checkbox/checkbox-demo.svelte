@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/default/ui/checkbox";
-	import Label from "@/registry/default/ui/label/Label.svelte";
+	import { Checkbox } from "@/registry/new-york/ui/checkbox";
+	import Label from "@/registry/new-york/ui/label/label.svelte";
 	let checked = false;
 </script>
 

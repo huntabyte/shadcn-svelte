@@ -1,6 +1,6 @@
 import { HoverCard as HoverCardPrimitive } from "@huntabyte/primitives";
 
-import Content from "./HoverCardContent.svelte";
+import Content from "./hover-card-content.svelte";
 const Root = HoverCardPrimitive.Root;
 const Trigger = HoverCardPrimitive.Trigger;
 

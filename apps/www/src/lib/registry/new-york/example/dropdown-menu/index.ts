@@ -1,1 +1,1 @@
-export { default as DropdownMenuDemo } from "./DropdownMenuDemo.svelte";
+export { default as DropdownMenuDemo } from "./dropdown-menu-demo.svelte";

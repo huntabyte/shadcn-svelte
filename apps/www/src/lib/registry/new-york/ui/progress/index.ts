@@ -1,4 +1,4 @@
-import Root from "./Progress.svelte";
+import Root from "./progress.svelte";
 
 export {
 	Root,

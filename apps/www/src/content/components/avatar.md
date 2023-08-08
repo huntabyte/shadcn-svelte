@@ -14,7 +14,7 @@ external:
   import { AvatarDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/avatar/AvatarDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/avatar/avatar-demo.svelte">
 
 <div slot="example">
 <AvatarDemo />

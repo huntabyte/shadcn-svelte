@@ -14,7 +14,7 @@ external:
     import { DropdownMenuDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/dropdown-menu/DropdownMenuDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/dropdown-menu/dropdown-menu-demo.svelte">
 
 <div slot="example">
 <DropdownMenuDemo />

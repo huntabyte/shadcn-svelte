@@ -11,10 +11,10 @@ external:
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { CheckboxDemo, CheckboxDemoDisabled, CheckboxDemoText } from '@/registry/default/example'
+  import { CheckboxDemo, CheckboxDisabled, CheckboxWithText } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/checkbox/CheckboxDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/checkbox/checkbox-demo.svelte">
 
 <div slot="example">
 <CheckboxDemo />
@@ -56,20 +56,20 @@ npm install @huntabyte/primitives
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/checkbox/CheckboxDemoText.svelte">
+<ComponentExample src="src/lib/registry/default/example/checkbox/checkbox-with-text.svelte">
 
 <div slot="example">
-<CheckboxDemoText />
+<CheckboxWithText />
 </div>
 
 </ComponentExample>
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/checkbox/CheckboxDemoDisabled.svelte">
+<ComponentExample src="src/lib/registry/default/example/checkbox/checkbox-disabled.svelte">
 
 <div slot="example">
-<CheckboxDemoDisabled />
+<CheckboxDisabled />
 </div>
 
 </ComponentExample>

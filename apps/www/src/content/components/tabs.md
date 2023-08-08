@@ -14,7 +14,7 @@ external:
   import { TabsDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/tabs/TabsDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/tabs/tabs-demo.svelte">
 
 <div slot="example">
 <TabsDemo />

@@ -10,7 +10,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { CardDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/card/CardDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/card/card-demo.svelte">
 
 <div slot="example">
 <CardDemo />

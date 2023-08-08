@@ -10,7 +10,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { SkeletonDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/skeleton/SkeletonDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/skeleton/skeleton-demo.svelte">
 
 <div slot="example">
 <SkeletonDemo />

@@ -1,2 +1,2 @@
-export { default as AlertDemo } from "./AlertDemo.svelte";
-export { default as AlertDemoDestructive } from "./AlertDemoDestructive.svelte";
+export { default as AlertDemo } from "./alert-demo.svelte";
+export { default as AlertDestructive } from "./alert-destructive.svelte";

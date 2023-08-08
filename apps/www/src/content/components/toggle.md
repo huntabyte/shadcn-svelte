@@ -11,10 +11,10 @@ external:
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { ToggleDemo, ToggleDemoDisabled, ToggleDemoLg, ToggleDemoSm, ToggleDemoText, ToggleDemoOutline } from '@/registry/default/example'
+  import { ToggleDemo, ToggleDisabled, ToggleLg, ToggleSm, ToggleWithText, ToggleOutline } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-demo.svelte">
 
 <div slot="example">
 <ToggleDemo />
@@ -54,7 +54,7 @@ npm install @huntabyte/primitives
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-demo.svelte">
 
 <div slot="example">
 <ToggleDemo />
@@ -66,10 +66,10 @@ npm install @huntabyte/primitives
 
 ### Outline
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemoOutline.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-outline.svelte">
 
 <div slot="example">
-<ToggleDemoOutline />
+<ToggleOutline />
 </div>
 
 </ComponentExample>
@@ -78,10 +78,10 @@ npm install @huntabyte/primitives
 
 ### With Text
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemoText.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-with-text.svelte">
 
 <div slot="example">
-<ToggleDemoText />
+<ToggleWithText />
 </div>
 
 </ComponentExample>
@@ -90,10 +90,10 @@ npm install @huntabyte/primitives
 
 ### Small
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemoSm.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-sm.svelte">
 
 <div slot="example">
-<ToggleDemoSm />
+<ToggleSm />
 </div>
 
 </ComponentExample>
@@ -102,10 +102,10 @@ npm install @huntabyte/primitives
 
 ### Large
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemoLg.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-lg.svelte">
 
 <div slot="example">
-<ToggleDemoLg />
+<ToggleLg />
 </div>
 
 </ComponentExample>
@@ -114,10 +114,10 @@ npm install @huntabyte/primitives
 
 ### Disabled
 
-<ComponentExample src="src/lib/registry/default/example/toggle/ToggleDemoDisabled.svelte">
+<ComponentExample src="src/lib/registry/default/example/toggle/toggle-disabled.svelte">
 
 <div slot="example">
-<ToggleDemoDisabled />
+<ToggleDisabled />
 </div>
 
 </ComponentExample>

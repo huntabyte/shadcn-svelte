@@ -14,7 +14,7 @@ external:
   import { SwitchDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/switch/SwitchDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/switch/switch-demo.svelte">
 
 <div slot="example">
 <SwitchDemo />

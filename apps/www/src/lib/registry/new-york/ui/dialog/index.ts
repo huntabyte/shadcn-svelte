@@ -3,13 +3,13 @@ import { Dialog as DialogPrimitive } from "@huntabyte/primitives";
 const Root = DialogPrimitive.Root;
 const Trigger = DialogPrimitive.Trigger;
 
-import Title from "./DialogTitle.svelte";
-import Portal from "./DialogPortal.svelte";
-import Footer from "./DialogFooter.svelte";
-import Header from "./DialogHeader.svelte";
-import Overlay from "./DialogOverlay.svelte";
-import Content from "./DialogContent.svelte";
-import Description from "./DialogDescription.svelte";
+import Title from "./dialog-title.svelte";
+import Portal from "./dialog-portal.svelte";
+import Footer from "./dialog-footer.svelte";
+import Header from "./dialog-header.svelte";
+import Overlay from "./dialog-overlay.svelte";
+import Content from "./dialog-content.svelte";
+import Description from "./dialog-description.svelte";
 
 export {
 	Root,

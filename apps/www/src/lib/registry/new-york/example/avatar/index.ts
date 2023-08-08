@@ -1,1 +1,1 @@
-export { default as AvatarDemo } from "./AvatarDemo.svelte";
+export { default as AvatarDemo } from "./avatar-demo.svelte";

@@ -8,10 +8,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentExample, ManualInstall } from '$lib/components/docs';
-  import { ButtonDemo, ButtonDemoDestructive, ButtonDemoGhost, ButtonDemoOutline, ButtonDemoSecondary, ButtonDemoIcon, ButtonDemoLoading, ButtonDemoLink } from '@/registry/default/example'
+  import { ButtonDemo, ButtonDestructive, ButtonGhost, ButtonOutline, ButtonSecondary, ButtonIcon, ButtonLoading, ButtonLink, ButtonWithIcon } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-demo.svelte">
 
 <div slot="example">
 <ButtonDemo />
@@ -77,7 +77,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Primary
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-demo.svelte">
 
 <div slot="example">
 <ButtonDemo />
@@ -89,10 +89,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Secondary
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoSecondary.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-secondary.svelte">
 
 <div slot="example">
-<ButtonDemoSecondary />
+<ButtonSecondary />
 </div>
 
 </ComponentExample>
@@ -101,10 +101,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Destructive
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoDestructive.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-destructive.svelte">
 
 <div slot="example">
-<ButtonDemoDestructive />
+<ButtonDestructive />
 </div>
 
 </ComponentExample>
@@ -113,10 +113,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Outline
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoOutline.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-outline.svelte">
 
 <div slot="example">
-<ButtonDemoOutline />
+<ButtonOutline />
 </div>
 
 </ComponentExample>
@@ -125,10 +125,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Ghost
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoGhost.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-ghost.svelte">
 
 <div slot="example">
-<ButtonDemoGhost />
+<ButtonGhost />
 </div>
 
 </ComponentExample>
@@ -137,10 +137,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Link
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoLink.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-link.svelte">
 
 <div slot="example">
-<ButtonDemoLink />
+<ButtonLink />
 </div>
 
 </ComponentExample>
@@ -149,10 +149,22 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### With Icon
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoIcon.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-with-icon.svelte">
 
 <div slot="example">
-<ButtonDemoIcon />
+<ButtonWithIcon />
+</div>
+
+</ComponentExample>
+
+---
+
+### Icon
+
+<ComponentExample src="src/lib/registry/default/example/button/button-icon.svelte">
+
+<div slot="example">
+<ButtonIcon />
 </div>
 
 </ComponentExample>
@@ -161,10 +173,10 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Loading
 
-<ComponentExample src="src/lib/registry/default/example/button/ButtonDemoLoading.svelte">
+<ComponentExample src="src/lib/registry/default/example/button/button-loading.svelte">
 
 <div slot="example">
-<ButtonDemoLoading />
+<ButtonLoading />
 </div>
 
 </ComponentExample>

@@ -5,11 +5,12 @@ component: true
 ---
 
 <script>
-  import { BlockquoteDemo, H1Demo, H2Demo, H3Demo, H4Demo, InlineCodeDemo, LargeDemo, LeadDemo, ListDemo, MutedDemo, PDemo, SmallDemo, TableDemo2, TypographyDemo, ComponentExample } from "$components/docs"
+  import {  ComponentExample } from "$components/docs"
+  import { TypographyBlockquote, TypographyH1, TypographyH2, TypographyH3, TypographyH4, TypographyInlineCode, TypographyLarge, TypographyLead, TypographyList, TypographyMuted, TypographyP, TypographySmall, TypographyTable, TypographyDemo } from '@/registry/default/example'
 </script>
 
 <ComponentExample
-src="src/lib/registry/default/example/typography/TypographyDemo.svelte">
+src="src/lib/registry/default/example/typography/typography-demo.svelte">
 
 <div slot="example" class="[&>div.min-h-[350px]]:p-6">
 <TypographyDemo />
@@ -19,80 +20,80 @@ src="src/lib/registry/default/example/typography/TypographyDemo.svelte">
 
 ## h1
 
-<ComponentExample src="src/lib/registry/default/example/typography/H1Demo.svelte" >
+<ComponentExample src="src/lib/registry/default/example/typography/typography-h1.svelte" >
 
 <div slot="example">
-  <H1Demo />
+  <TypographyH1 />
 </div>
 
 </ComponentExample>
 
 ## h2
 
-<ComponentExample src="src/lib/registry/default/example/typography/H2Demo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-h2.svelte">
 
 <div slot="example">
-  <H2Demo />
+  <TypographyH2 />
 </div>
 
 </ComponentExample>
 
 ## h3
 
-<ComponentExample src="src/lib/registry/default/example/typography/H3Demo.svelte" >
+<ComponentExample src="src/lib/registry/default/example/typography/typography-h3.svelte" >
 
 <div slot="example">
-  <H3Demo />
+  <TypographyH3 />
 </div>
 
 </ComponentExample>
 
 ## h4
 
-<ComponentExample src="src/lib/registry/default/example/typography/H4Demo.svelte" >
+<ComponentExample src="src/lib/registry/default/example/typography/typography-h4.svelte" >
 
 <div slot="example">
-  <H4Demo />
+  <TypographyH4 />
 </div>
 
 </ComponentExample>
 
 ## p
 
-<ComponentExample src="src/lib/registry/default/example/typography/PDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-p.svelte">
 
 <div slot="example">
-  <PDemo />
+  <TypographyP />
 </div>
 
 </ComponentExample>
 
 ## blockquote
 
-<ComponentExample src="src/lib/registry/default/example/typography/BlockquoteDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-blockquote.svelte">
 
 <div slot="example">
-<BlockquoteDemo />
+<TypographyBlockquote />
 </div>
 
 </ComponentExample>
 
 ## table
 
-<ComponentExample src="src/lib/registry/default/example/typography/TableDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-table.svelte">
 
 <div slot="example">
-  <TableDemo2 />
+  <TypographyTable />
 </div>
 
 </ComponentExample>
 
 ## list
 
-<ComponentExample src="src/lib/registry/default/example/typography/ListDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-list.svelte">
 
 <div slot="example">
-  <ListDemo />
+  <TypographyList />
 </div>
 
 </ComponentExample>
@@ -100,30 +101,30 @@ src="src/lib/registry/default/example/typography/TypographyDemo.svelte">
 ## Inline code
 
 <ComponentExample
-src="src/lib/registry/default/example/typography/InlineCodeDemo.svelte">
+src="src/lib/registry/default/example/typography/typography-inline-code.svelte">
 
 <div slot="example">
-  <InlineCodeDemo />
+  <TypographyInlineCode />
 </div>
 
 </ComponentExample>
 
 ## Lead
 
-<ComponentExample src="src/lib/registry/default/example/typography/LeadDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-lead.svelte">
 
 <div slot="example">
-  <LeadDemo />
+  <TypographyLead />
 </div>
 
 </ComponentExample>
 
 ## Large
 
-<ComponentExample src="src/lib/registry/default/example/typography/LargeDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-large.svelte">
 
 <div slot="example">
-  <LargeDemo />
+  <TypographyLarge />
 </div>
 
 </ComponentExample>
@@ -131,20 +132,20 @@ src="src/lib/registry/default/example/typography/InlineCodeDemo.svelte">
 ## Small
 
 <ComponentExample
-src="src/lib/registry/default/example/typography/SmallDemo.svelte">
+src="src/lib/registry/default/example/typography/typography-small.svelte">
 
 <div slot="example">
-  <SmallDemo />
+  <TypographySmall />
 </div>
 
 </ComponentExample>
 
 ## Muted
 
-<ComponentExample src="src/lib/registry/default/example/typography/MutedDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/typography/typography-muted.svelte">
 
 <div slot="example">
-  <MutedDemo />
+  <TypographyMuted />
 </div>
 
 </ComponentExample>

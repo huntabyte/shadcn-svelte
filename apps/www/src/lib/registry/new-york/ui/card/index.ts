@@ -1,9 +1,9 @@
-import Root from "./Card.svelte";
-import Content from "./CardContent.svelte";
-import Description from "./CardDescription.svelte";
-import Footer from "./CardFooter.svelte";
-import Header from "./CardHeader.svelte";
-import Title from "./CardTitle.svelte";
+import Root from "./card.svelte";
+import Content from "./card-content.svelte";
+import Description from "./card-description.svelte";
+import Footer from "./card-footer.svelte";
+import Header from "./card-header.svelte";
+import Title from "./card-title.svelte";
 
 export {
 	Root,

@@ -17,4 +17,3 @@ src/routes/api/components/components.json
 static/site.webmanifest
 .vercel
 static
-__registry__

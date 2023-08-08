@@ -1,1 +1,1 @@
-export { default as SkeletonDemo } from "./SkeletonDemo.svelte";
+export { default as SkeletonDemo } from "./skeleton-demo.svelte";

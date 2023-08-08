@@ -14,7 +14,7 @@ external:
   import { LabelDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/label/LabelDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/label/label-demo.svelte">
 
 <div slot="example">
 <LabelDemo />

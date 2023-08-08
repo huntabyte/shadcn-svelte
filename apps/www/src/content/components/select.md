@@ -14,7 +14,7 @@ external:
     import { SelectDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/select/SelectDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/select/select-demo.svelte">
 
 <div slot="example">
 <SelectDemo />

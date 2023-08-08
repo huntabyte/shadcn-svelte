@@ -1,6 +1,6 @@
-export { default as ToggleDemo } from "./ToggleDemo.svelte";
-export { default as ToggleDemoDisabled } from "./ToggleDemoDisabled.svelte";
-export { default as ToggleDemoLg } from "./ToggleDemoLg.svelte";
-export { default as ToggleDemoOutline } from "./ToggleDemoOutline.svelte";
-export { default as ToggleDemoSm } from "./ToggleDemoSm.svelte";
-export { default as ToggleDemoText } from "./ToggleDemoText.svelte";
+export { default as ToggleDemo } from "./toggle-demo.svelte";
+export { default as ToggleDisabled } from "./toggle-disabled.svelte";
+export { default as ToggleLg } from "./toggle-lg.svelte";
+export { default as ToggleOutline } from "./toggle-outline.svelte";
+export { default as ToggleSm } from "./toggle-sm.svelte";
+export { default as ToggleWithText } from "./toggle-with-text.svelte";

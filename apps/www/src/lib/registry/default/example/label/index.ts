@@ -1,1 +1,1 @@
-export { default as LabelDemo } from "./LabelDemo.svelte";
+export { default as LabelDemo } from "./label-demo.svelte";

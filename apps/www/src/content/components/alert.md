@@ -7,10 +7,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentExample, ManualInstall } from '$components/docs';
-  import { AlertDemo, AlertDemoDestructive } from '@/registry/default/example'
+  import { AlertDemo, AlertDestructive } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/alert/AlertDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/alert/alert-demo.svelte">
 
 <div slot="example" style="width: 100%;">
 <AlertDemo />
@@ -49,7 +49,7 @@ npx shadcn-svelte add alert
 
 ### Default
 
-<ComponentExample src="src/lib/registry/default/example/alert/AlertDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/alert/alert-demo.svelte">
 
 <div slot="example" style="width: 100%;">
 <AlertDemo />
@@ -59,10 +59,10 @@ npx shadcn-svelte add alert
 
 ### Destructive
 
-<ComponentExample src="src/lib/registry/default/example/alert/AlertDemoDestructive.svelte">
+<ComponentExample src="src/lib/registry/default/example/alert/alert-destructive.svelte">
 
 <div slot="example" style="width: 100%;">
-<AlertDemoDestructive />
+<AlertDestructive />
 </div>
 
 </ComponentExample>

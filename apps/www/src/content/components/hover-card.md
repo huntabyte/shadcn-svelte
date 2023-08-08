@@ -14,7 +14,7 @@ external:
   import { HoverCardDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/hover-card/HoverCardDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/hover-card/hover-card-demo.svelte">
 
 <div slot="example">
 <HoverCardDemo />

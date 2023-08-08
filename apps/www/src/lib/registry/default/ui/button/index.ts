@@ -1,4 +1,4 @@
-import Root from "./Button.svelte";
+import Root from "./button.svelte";
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonVariants = cva(

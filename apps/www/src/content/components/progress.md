@@ -14,7 +14,7 @@ external:
   import { ProgressDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/progress/ProgressDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/progress/progress-demo.svelte">
 
 <div slot="example" style="width: 60%;">
 <ProgressDemo />

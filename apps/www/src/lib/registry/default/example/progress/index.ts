@@ -1,1 +1,1 @@
-export { default as ProgressDemo } from "./ProgressDemo.svelte";
+export { default as ProgressDemo } from "./progress-demo.svelte";

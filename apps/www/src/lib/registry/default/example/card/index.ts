@@ -1,2 +1,2 @@
-export { default as CardDemo } from "./CardDemo.svelte";
-export { default as CardDemoForm } from "./CardDemoForm.svelte";
+export { default as CardDemo } from "./card-demo.svelte";
+export { default as CardWithForm } from "./card-with-form.svelte";

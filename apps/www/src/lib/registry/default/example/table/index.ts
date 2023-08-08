@@ -1,1 +1,1 @@
-export { default as TableDemo } from "./TableDemo.svelte";
+export { default as TableDemo } from "./table-demo.svelte";

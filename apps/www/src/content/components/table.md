@@ -10,7 +10,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { TableDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/table/TableDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/table/table-demo.svelte">
 
 <div slot="example" style="width: 100%;">
 <TableDemo />

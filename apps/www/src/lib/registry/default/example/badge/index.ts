@@ -1,4 +1,4 @@
-export { default as BadgeDemo } from "./BadgeDemo.svelte";
-export { default as BadgeDemoDestructive } from "./BadgeDemoDestructive.svelte";
-export { default as BadgeDemoOutline } from "./BadgeDemoOutline.svelte";
-export { default as BadgeDemoSecondary } from "./BadgeDemoSecondary.svelte";
+export { default as BadgeDemo } from "./badge-demo.svelte";
+export { default as BadgeDestructive } from "./badge-destructive.svelte";
+export { default as BadgeOutline } from "./badge-outline.svelte";
+export { default as BadgeSecondary } from "./badge-secondary.svelte";

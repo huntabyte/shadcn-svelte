@@ -14,7 +14,7 @@ external:
     import { AccordionDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/accordion/AccordionDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/accordion/accordion-demo.svelte">
 
 <div slot="example" style="max-width: 70%; width: 100%;">
 <AccordionDemo />

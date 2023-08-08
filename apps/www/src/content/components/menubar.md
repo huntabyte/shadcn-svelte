@@ -14,7 +14,7 @@ external:
     import { MenubarDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/menubar/MenubarDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/menubar/menubar-demo.svelte">
 
 <div slot="example">
 <MenubarDemo />

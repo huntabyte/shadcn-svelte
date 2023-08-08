@@ -15,7 +15,7 @@ external:
   import { DialogDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/dialog/DialogDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/dialog/dialog-demo.svelte">
 
 <div slot="example">
 <DialogDemo />

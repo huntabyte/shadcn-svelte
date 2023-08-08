@@ -14,7 +14,7 @@ external:
   import { SliderDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/registry/default/example/slider/SliderDemo.svelte">
+<ComponentExample src="src/lib/registry/default/example/slider/slider-demo.svelte">
 
 <div slot="example" style="width: 100%; display: flex; justify-content: center;">
 <SliderDemo />

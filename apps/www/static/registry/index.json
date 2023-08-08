@@ -5,9 +5,9 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/accordion/AccordionContent.svelte",
-      "ui/accordion/AccordionItem.svelte",
-      "ui/accordion/AccordionTrigger.svelte",
+      "ui/accordion/accordion-content.svelte",
+      "ui/accordion/accordion-item.svelte",
+      "ui/accordion/accordion-trigger.svelte",
       "ui/accordion/index.ts"
     ],
     "type": "components:ui"
@@ -15,9 +15,9 @@
   {
     "name": "alert",
     "files": [
-      "ui/alert/Alert.svelte",
-      "ui/alert/AlertDescription.svelte",
-      "ui/alert/AlertTitle.svelte",
+      "ui/alert/alert.svelte",
+      "ui/alert/alert-description.svelte",
+      "ui/alert/alert-title.svelte",
       "ui/alert/index.ts"
     ],
     "type": "components:ui"
@@ -31,15 +31,15 @@
       "button"
     ],
     "files": [
-      "ui/alert-dialog/AlertDialogAction.svelte",
-      "ui/alert-dialog/AlertDialogCancel.svelte",
-      "ui/alert-dialog/AlertDialogContent.svelte",
-      "ui/alert-dialog/AlertDialogDescription.svelte",
-      "ui/alert-dialog/AlertDialogFooter.svelte",
-      "ui/alert-dialog/AlertDialogHeader.svelte",
-      "ui/alert-dialog/AlertDialogOverlay.svelte",
-      "ui/alert-dialog/AlertDialogPortal.svelte",
-      "ui/alert-dialog/AlertDialogTitle.svelte",
+      "ui/alert-dialog/alert-dialog-action.svelte",
+      "ui/alert-dialog/alert-dialog-cancel.svelte",
+      "ui/alert-dialog/alert-dialog-content.svelte",
+      "ui/alert-dialog/alert-dialog-description.svelte",
+      "ui/alert-dialog/alert-dialog-footer.svelte",
+      "ui/alert-dialog/alert-dialog-header.svelte",
+      "ui/alert-dialog/alert-dialog-overlay.svelte",
+      "ui/alert-dialog/alert-dialog-portal.svelte",
+      "ui/alert-dialog/alert-dialog-title.svelte",
       "ui/alert-dialog/index.ts"
     ],
     "type": "components:ui"
@@ -50,7 +50,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/aspect-ratio/AspectRatio.svelte",
+      "ui/aspect-ratio/aspect-ratio.svelte",
       "ui/aspect-ratio/index.ts"
     ],
     "type": "components:ui"
@@ -61,9 +61,9 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/avatar/Avatar.svelte",
-      "ui/avatar/AvatarFallback.svelte",
-      "ui/avatar/AvatarImage.svelte",
+      "ui/avatar/avatar.svelte",
+      "ui/avatar/avatar-fallback.svelte",
+      "ui/avatar/avatar-image.svelte",
       "ui/avatar/index.ts"
     ],
     "type": "components:ui"
@@ -71,7 +71,7 @@
   {
     "name": "badge",
     "files": [
-      "ui/badge/Badge.svelte",
+      "ui/badge/badge.svelte",
       "ui/badge/index.ts"
     ],
     "type": "components:ui"
@@ -82,7 +82,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/button/Button.svelte",
+      "ui/button/button.svelte",
       "ui/button/index.ts"
     ],
     "type": "components:ui"
@@ -90,12 +90,12 @@
   {
     "name": "card",
     "files": [
-      "ui/card/Card.svelte",
-      "ui/card/CardContent.svelte",
-      "ui/card/CardDescription.svelte",
-      "ui/card/CardFooter.svelte",
-      "ui/card/CardHeader.svelte",
-      "ui/card/CardTitle.svelte",
+      "ui/card/card.svelte",
+      "ui/card/card-content.svelte",
+      "ui/card/card-description.svelte",
+      "ui/card/card-footer.svelte",
+      "ui/card/card-header.svelte",
+      "ui/card/card-title.svelte",
       "ui/card/index.ts"
     ],
     "type": "components:ui"
@@ -106,7 +106,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/checkbox/Checkbox.svelte",
+      "ui/checkbox/checkbox.svelte",
       "ui/checkbox/index.ts"
     ],
     "type": "components:ui"
@@ -117,7 +117,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/collapsible/CollapsibleContent.svelte",
+      "ui/collapsible/collapsible-content.svelte",
       "ui/collapsible/index.ts"
     ],
     "type": "components:ui"
@@ -128,16 +128,16 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/context-menu/ContextMenuCheckboxItem.svelte",
-      "ui/context-menu/ContextMenuContent.svelte",
-      "ui/context-menu/ContextMenuItem.svelte",
-      "ui/context-menu/ContextMenuLabel.svelte",
-      "ui/context-menu/ContextMenuRadioGroup.svelte",
-      "ui/context-menu/ContextMenuRadioItem.svelte",
-      "ui/context-menu/ContextMenuSeparator.svelte",
-      "ui/context-menu/ContextMenuShortcut.svelte",
-      "ui/context-menu/ContextMenuSubContent.svelte",
-      "ui/context-menu/ContextMenuSubTrigger.svelte",
+      "ui/context-menu/context-menu-checkbox-item.svelte",
+      "ui/context-menu/context-menu-content.svelte",
+      "ui/context-menu/context-menu-item.svelte",
+      "ui/context-menu/context-menu-label.svelte",
+      "ui/context-menu/context-menu-radio-group.svelte",
+      "ui/context-menu/context-menu-radio-item.svelte",
+      "ui/context-menu/context-menu-separator.svelte",
+      "ui/context-menu/context-menu-shortcut.svelte",
+      "ui/context-menu/context-menu-sub-content.svelte",
+      "ui/context-menu/context-menu-sub-trigger.svelte",
       "ui/context-menu/index.ts"
     ],
     "type": "components:ui"
@@ -148,13 +148,13 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/dialog/DialogContent.svelte",
-      "ui/dialog/DialogDescription.svelte",
-      "ui/dialog/DialogFooter.svelte",
-      "ui/dialog/DialogHeader.svelte",
-      "ui/dialog/DialogOverlay.svelte",
-      "ui/dialog/DialogPortal.svelte",
-      "ui/dialog/DialogTitle.svelte",
+      "ui/dialog/dialog-content.svelte",
+      "ui/dialog/dialog-description.svelte",
+      "ui/dialog/dialog-footer.svelte",
+      "ui/dialog/dialog-header.svelte",
+      "ui/dialog/dialog-overlay.svelte",
+      "ui/dialog/dialog-portal.svelte",
+      "ui/dialog/dialog-title.svelte",
       "ui/dialog/index.ts"
     ],
     "type": "components:ui"
@@ -165,16 +165,16 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/dropdown-menu/DropdownMenuCheckboxItem.svelte",
-      "ui/dropdown-menu/DropdownMenuContent.svelte",
-      "ui/dropdown-menu/DropdownMenuItem.svelte",
-      "ui/dropdown-menu/DropdownMenuLabel.svelte",
-      "ui/dropdown-menu/DropdownMenuRadioGroup.svelte",
-      "ui/dropdown-menu/DropdownMenuRadioItem.svelte",
-      "ui/dropdown-menu/DropdownMenuSeparator.svelte",
-      "ui/dropdown-menu/DropdownMenuShortcut.svelte",
-      "ui/dropdown-menu/DropdownMenuSubContent.svelte",
-      "ui/dropdown-menu/DropdownMenuSubTrigger.svelte",
+      "ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-content.svelte",
+      "ui/dropdown-menu/dropdown-menu-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-label.svelte",
+      "ui/dropdown-menu/dropdown-menu-radio-group.svelte",
+      "ui/dropdown-menu/dropdown-menu-radio-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-separator.svelte",
+      "ui/dropdown-menu/dropdown-menu-shortcut.svelte",
+      "ui/dropdown-menu/dropdown-menu-sub-content.svelte",
+      "ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
       "ui/dropdown-menu/index.ts"
     ],
     "type": "components:ui"
@@ -185,7 +185,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/hover-card/HoverCardContent.svelte",
+      "ui/hover-card/hover-card-content.svelte",
       "ui/hover-card/index.ts"
     ],
     "type": "components:ui"
@@ -193,7 +193,7 @@
   {
     "name": "input",
     "files": [
-      "ui/input/Input.svelte",
+      "ui/input/input.svelte",
       "ui/input/index.ts"
     ],
     "type": "components:ui"
@@ -204,7 +204,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/label/Label.svelte",
+      "ui/label/label.svelte",
       "ui/label/index.ts"
     ],
     "type": "components:ui"
@@ -215,16 +215,16 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/menubar/Menubar.svelte",
-      "ui/menubar/MenubarCheckboxItem.svelte",
-      "ui/menubar/MenubarContent.svelte",
-      "ui/menubar/MenubarItem.svelte",
-      "ui/menubar/MenubarLabel.svelte",
-      "ui/menubar/MenubarRadioItem.svelte",
-      "ui/menubar/MenubarSeparator.svelte",
-      "ui/menubar/MenubarShortcut.svelte",
-      "ui/menubar/MenubarSubContent.svelte",
-      "ui/menubar/MenubarSubTrigger.svelte",
+      "ui/menubar/menubar.svelte",
+      "ui/menubar/menubar-checkbox-item.svelte",
+      "ui/menubar/menubar-content.svelte",
+      "ui/menubar/menubar-item.svelte",
+      "ui/menubar/menubar-label.svelte",
+      "ui/menubar/menubar-radio-item.svelte",
+      "ui/menubar/menubar-separator.svelte",
+      "ui/menubar/menubar-shortcut.svelte",
+      "ui/menubar/menubar-sub-content.svelte",
+      "ui/menubar/menubar-sub-trigger.svelte",
       "ui/menubar/index.ts"
     ],
     "type": "components:ui"
@@ -235,7 +235,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/popover/PopoverContent.svelte",
+      "ui/popover/popover-content.svelte",
       "ui/popover/index.ts"
     ],
     "type": "components:ui"
@@ -246,7 +246,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/progress/Progress.svelte",
+      "ui/progress/progress.svelte",
       "ui/progress/index.ts"
     ],
     "type": "components:ui"
@@ -257,8 +257,8 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/radio-group/RadioGroup.svelte",
-      "ui/radio-group/RadioGroupItem.svelte",
+      "ui/radio-group/radio-group.svelte",
+      "ui/radio-group/radio-group-item.svelte",
       "ui/radio-group/index.ts"
     ],
     "type": "components:ui"
@@ -269,12 +269,12 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/select/Select.svelte",
-      "ui/select/SelectContent.svelte",
-      "ui/select/SelectItem.svelte",
-      "ui/select/SelectLabel.svelte",
-      "ui/select/SelectSeparator.svelte",
-      "ui/select/SelectTrigger.svelte",
+      "ui/select/select.svelte",
+      "ui/select/select-content.svelte",
+      "ui/select/select-item.svelte",
+      "ui/select/select-label.svelte",
+      "ui/select/select-separator.svelte",
+      "ui/select/select-trigger.svelte",
       "ui/select/index.ts"
     ],
     "type": "components:ui"
@@ -285,7 +285,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/separator/Separator.svelte",
+      "ui/separator/separator.svelte",
       "ui/separator/index.ts"
     ],
     "type": "components:ui"
@@ -296,13 +296,13 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/sheet/SheetContent.svelte",
-      "ui/sheet/SheetDescription.svelte",
-      "ui/sheet/SheetFooter.svelte",
-      "ui/sheet/SheetHeader.svelte",
-      "ui/sheet/SheetOverlay.svelte",
-      "ui/sheet/SheetPortal.svelte",
-      "ui/sheet/SheetTitle.svelte",
+      "ui/sheet/sheet-content.svelte",
+      "ui/sheet/sheet-description.svelte",
+      "ui/sheet/sheet-footer.svelte",
+      "ui/sheet/sheet-header.svelte",
+      "ui/sheet/sheet-overlay.svelte",
+      "ui/sheet/sheet-portal.svelte",
+      "ui/sheet/sheet-title.svelte",
       "ui/sheet/index.ts"
     ],
     "type": "components:ui"
@@ -310,7 +310,7 @@
   {
     "name": "skeleton",
     "files": [
-      "ui/skeleton/Skeleton.svelte",
+      "ui/skeleton/skeleton.svelte",
       "ui/skeleton/index.ts"
     ],
     "type": "components:ui"
@@ -321,7 +321,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/slider/Slider.svelte",
+      "ui/slider/slider.svelte",
       "ui/slider/index.ts"
     ],
     "type": "components:ui"
@@ -332,7 +332,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/switch/Switch.svelte",
+      "ui/switch/switch.svelte",
       "ui/switch/index.ts"
     ],
     "type": "components:ui"
@@ -340,14 +340,14 @@
   {
     "name": "table",
     "files": [
-      "ui/table/Table.svelte",
-      "ui/table/TableBody.svelte",
-      "ui/table/TableCaption.svelte",
-      "ui/table/TableCell.svelte",
-      "ui/table/TableFooter.svelte",
-      "ui/table/TableHead.svelte",
-      "ui/table/TableHeader.svelte",
-      "ui/table/TableRow.svelte",
+      "ui/table/table.svelte",
+      "ui/table/table-body.svelte",
+      "ui/table/table-caption.svelte",
+      "ui/table/table-cell.svelte",
+      "ui/table/table-footer.svelte",
+      "ui/table/table-head.svelte",
+      "ui/table/table-header.svelte",
+      "ui/table/table-row.svelte",
       "ui/table/index.ts"
     ],
     "type": "components:ui"
@@ -358,9 +358,9 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/tabs/TabsContent.svelte",
-      "ui/tabs/TabsList.svelte",
-      "ui/tabs/TabsTrigger.svelte",
+      "ui/tabs/tabs-content.svelte",
+      "ui/tabs/tabs-list.svelte",
+      "ui/tabs/tabs-trigger.svelte",
       "ui/tabs/index.ts"
     ],
     "type": "components:ui"
@@ -368,7 +368,7 @@
   {
     "name": "textarea",
     "files": [
-      "ui/textarea/Textarea.svelte",
+      "ui/textarea/textarea.svelte",
       "ui/textarea/index.ts"
     ],
     "type": "components:ui"
@@ -379,7 +379,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/toggle/Toggle.svelte",
+      "ui/toggle/toggle.svelte",
       "ui/toggle/index.ts"
     ],
     "type": "components:ui"
@@ -390,7 +390,7 @@
       "@huntabyte/primitives"
     ],
     "files": [
-      "ui/tooltip/TooltipContent.svelte",
+      "ui/tooltip/tooltip-content.svelte",
       "ui/tooltip/index.ts"
     ],
     "type": "components:ui"

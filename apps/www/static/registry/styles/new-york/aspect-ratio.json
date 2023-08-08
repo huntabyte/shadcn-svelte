@@ -5,12 +5,12 @@
   ],
   "files": [
     {
-      "name": "AspectRatio.svelte",
+      "name": "aspect-ratio.svelte",
       "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"@huntabyte/primitives\";\n\n\ttype $$Props = AspectRatioPrimitive.Props;\n\texport let ratio: $$Props[\"ratio\"] = 4 / 3;\n</script>\n\n<AspectRatioPrimitive.Root {ratio} {...$$restProps}>\n\t<slot />\n</AspectRatioPrimitive.Root>\n"
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./AspectRatio.svelte\";\n\nexport { Root, Root as AspectRatio };\n"
+      "content": "import Root from \"./aspect-ratio.svelte\";\n\nexport { Root, Root as AspectRatio };\n"
     }
   ],
   "type": "components:ui"

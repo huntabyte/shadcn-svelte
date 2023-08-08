@@ -1,7 +1,7 @@
 import { Tabs as TabsPrimitive } from "@huntabyte/primitives";
-import Content from "./TabsContent.svelte";
-import List from "./TabsList.svelte";
-import Trigger from "./TabsTrigger.svelte";
+import Content from "./tabs-content.svelte";
+import List from "./tabs-list.svelte";
+import Trigger from "./tabs-trigger.svelte";
 
 const Root = TabsPrimitive.Root;
 
