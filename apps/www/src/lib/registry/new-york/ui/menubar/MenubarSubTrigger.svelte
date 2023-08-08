@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { ChevronRight } from "lucide-svelte";
+	import { ChevronRight } from "radix-icons-svelte";
 
 	type $$Props = MenubarPrimitive.SubTriggerProps;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { ChevronRight } from "lucide-svelte";
+	import { ChevronRight } from "radix-icons-svelte";
 
 	type $$Props = ContextMenuPrimitive.SubTriggerProps & {
 		inset?: boolean;

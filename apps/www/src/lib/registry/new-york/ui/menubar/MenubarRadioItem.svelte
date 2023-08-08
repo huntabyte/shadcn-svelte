@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { Circle } from "lucide-svelte";
+	import { DotFilled } from "radix-icons-svelte";
 
 	type $$Props = MenubarPrimitive.RadioItemProps;
 
@@ -20,7 +20,7 @@
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<MenubarPrimitive.RadioItemIndicator>
-			<Circle class="h-2 w-2 fill-current" />
+			<DotFilled class="h-4 w-4 fill-current" />
 		</MenubarPrimitive.RadioItemIndicator>
 	</span>
 	<slot />

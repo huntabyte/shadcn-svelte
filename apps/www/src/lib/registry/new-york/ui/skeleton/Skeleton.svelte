@@ -8,6 +8,6 @@
 </script>
 
 <div
-	class={cn("animate-pulse rounded-md bg-muted", className)}
+	class={cn("animate-pulse rounded-md bg-primary/10", className)}
 	{...$$restProps}
 />

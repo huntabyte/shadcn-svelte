@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { Check } from "lucide-svelte";
+	import { Check } from "radix-icons-svelte";
 
 	type $$Props = ContextMenuPrimitive.CheckboxItemProps;
 	export let checked: $$Props["checked"] = undefined;

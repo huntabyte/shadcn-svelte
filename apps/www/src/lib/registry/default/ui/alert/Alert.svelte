@@ -11,6 +11,10 @@
 	export let variant: $$Props["variant"] = "default";
 </script>
 
-<div class={cn(alertVariants({ variant }), className)} {...$$restProps}>
+<div
+	class={cn(alertVariants({ variant }), className)}
+	{...$$restProps}
+	role="alert"
+>
 	<slot />
 </div>

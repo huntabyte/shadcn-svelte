@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
-	import { Check } from "lucide-svelte";
+	import { Check } from "radix-icons-svelte";
 
 	type $$Props = MenubarPrimitive.CheckboxItemProps;
 	let className: string | undefined | null = undefined;

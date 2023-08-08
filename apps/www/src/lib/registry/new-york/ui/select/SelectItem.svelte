@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select as SelectPrimitive } from "@huntabyte/primitives";
-	import { Check } from "lucide-svelte";
+	import { Check } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
 	type $$Props = SelectPrimitive.ItemProps;
@@ -16,7 +16,7 @@
 	{disabled}
 	{label}
 	class={cn(
-		"relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		"relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		className
 	)}
 	{...$$restProps}

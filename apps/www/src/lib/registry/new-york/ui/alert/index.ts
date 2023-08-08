@@ -5,13 +5,13 @@ import Description from "./AlertDescription.svelte";
 import Title from "./AlertTitle.svelte";
 
 export const alertVariants = cva(
-	"relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11",
+	"relative w-full rounded-lg border px-4 py-3 text-sm [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
 	{
 		variants: {
 			variant: {
 				default: "bg-background text-foreground",
 				destructive:
-					"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive"
+					"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive"
 			}
 		},
 		defaultVariants: {
