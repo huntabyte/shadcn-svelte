@@ -2,6 +2,8 @@
 	import { CopyButton } from "$components/docs";
 	import * as Tabs from "@/registry/default/ui/tabs";
 	import { cn } from "$lib/utils";
+	import StyleSwitcher from "./StyleSwitcher.svelte";
+	import ThemeWrapper from "./ThemeWrapper.svelte";
 
 	let codeString: string;
 
@@ -37,15 +39,20 @@
 			</Tabs.List>
 		</div>
 		<Tabs.Content value="preview" class="rounded-md border">
-			<div
-				class={cn("flex min-h-[350px] justify-center p-10", {
-					"items-center": align === "center",
-					"items-start": align === "start",
-					"items-end": align === "end"
-				})}
-			>
-				<slot name="example" />
+			<div class="flex items-center justify-between p-4">
+				<StyleSwitcher />
 			</div>
+			<ThemeWrapper>
+				<div
+					class={cn("flex min-h-[350px] justify-center p-10", {
+						"items-center": align === "center",
+						"items-start": align === "start",
+						"items-end": align === "end"
+					})}
+				>
+					<slot name="example" />
+				</div>
+			</ThemeWrapper>
 		</Tabs.Content>
 		<Tabs.Content value="code">
 			<CopyButton value={codeString} class="absolute right-4 top-20" />

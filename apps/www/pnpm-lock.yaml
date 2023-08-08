@@ -70,6 +70,9 @@ dependencies:
   svelte-legos:
     specifier: ^0.2.1
     version: 0.2.1(svelte@4.1.2)
+  svelte-local-storage-store:
+    specifier: ^0.5.0
+    version: 0.5.0(svelte@4.1.2)
   svelte-wrap-balancer:
     specifier: ^0.0.4
     version: 0.0.4
@@ -3644,6 +3647,15 @@ packages:
       canvas-confetti: 1.6.0
       prism-svelte: 0.5.0
       prismjs: 1.29.0
+      svelte: 4.1.2
+    dev: false
+
+  /svelte-local-storage-store@0.5.0(svelte@4.1.2):
+    resolution: {integrity: sha512-SEDrpapeia6fUqta+r1NvSLlJYPkZ4pBcl15EYIOSPNzy6vhpoXu8cnzUDmZxsWl7fZGAHxrVH9UyZCbyO4W+g==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0 || ^4.0.0
+    dependencies:
       svelte: 4.1.2
     dev: false
 

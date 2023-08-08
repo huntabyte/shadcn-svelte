@@ -1,0 +1,22 @@
+<script lang="ts">
+	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
+	import { cn } from "$lib/utils";
+
+	type $$Props = ContextMenuPrimitive.ItemProps & {
+		inset?: boolean;
+	};
+	let className: string | undefined | null = undefined;
+	export { className as class };
+	export let inset: boolean | undefined = undefined;
+</script>
+
+<ContextMenuPrimitive.Item
+	class={cn(
+		"relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		inset && "pl-8",
+		className
+	)}
+	{...$$restProps}
+>
+	<slot />
+</ContextMenuPrimitive.Item>
