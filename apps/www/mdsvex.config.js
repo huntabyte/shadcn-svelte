@@ -31,6 +31,33 @@ export const mdsvexOptions = {
 	rehypePlugins: [
 		rehypeSlug,
 		rehypeComponentExample,
+		() => (tree) => {
+			visit(tree, (node) => {
+				if (node?.type === "element" && node?.tagName === "pre") {
+					const [codeEl] = node.children;
+					if (codeEl.tagName !== "code") {
+						return;
+					}
+
+					if (codeEl.data?.meta) {
+						// Extract event from meta and pass it down the tree.
+						const regex = /event="([^"]*)"/;
+						const match = codeEl.data?.meta.match(regex);
+						if (match) {
+							node.__event__ = match ? match[1] : null;
+							codeEl.data.meta = codeEl.data.meta.replace(
+								regex,
+								""
+							);
+						}
+					}
+
+					node.__rawString__ = codeEl.children?.[0].value;
+					node.__src__ = node.properties?.__src__;
+					node.__style__ = node.properties?.__style__;
+				}
+			});
+		},
 		rehypeComponentPreToPre,
 		[
 			rehypePrettyCode,
@@ -88,7 +115,7 @@ export function rehypeComponentExample() {
 		visit(tree, (node, index, parent) => {
 			if (
 				node?.type === "raw" &&
-				node?.value?.startsWith("<ComponentExample")
+				node?.value?.startsWith("<ComponentPreview")
 			) {
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
@@ -114,19 +141,13 @@ export function rehypeComponentExample() {
 								__style__: style.name,
 								className: ["code"]
 							},
-							attributes: [
-								{
-									name: "styleName",
-									type: "text",
-									value: style.name
-								}
-							],
 							children: [
 								u("element", {
 									tagName: "code",
 									properties: {
-										className: ["language-svelte"]
+										className: [`language-svelte`]
 									},
+									attributes: {},
 									children: [
 										{
 											type: "text",
@@ -137,6 +158,7 @@ export function rehypeComponentExample() {
 							]
 						});
 						if (!index) return;
+						console.log(parent.children);
 						parent.children.splice(index + 1, 0, sourceCodeNode);
 					}
 				} catch (e) {
@@ -153,10 +175,18 @@ function rehypeHandleMetadata() {
 				if (!("data-rehype-pretty-code-fragment" in node.properties)) {
 					return;
 				}
-
 				const preElement = node.children.at(-1);
 				if (preElement.tagName !== "pre") {
 					return;
+				}
+
+				if (node.__src__) {
+					preElement.properties["__src__"] = node.__src__;
+				}
+				if (node.__style__) {
+					node.properties["data-style"] = node.__style__;
+					preElement.properties["__style__"] = node.__style__;
+					preElement.properties["data-style"] = node.__style__;
 				}
 
 				if (node.children.at(0).tagName === "div") {
@@ -177,6 +207,10 @@ function rehypeComponentPreToPre() {
 				node?.tagName === "Components.pre"
 			) {
 				node.tagName = "pre";
+			}
+
+			if (node?.type === "element" && node?.tagName === "pre") {
+				//
 			}
 		});
 	};
@@ -202,6 +236,7 @@ function rehypeRenderCode() {
 				if (codeEl.tagName !== "code") {
 					return;
 				}
+
 				const toHtmlString = toHtml(codeEl, {
 					allowDangerousCharacters: true,
 					allowDangerousHtml: true
@@ -214,12 +249,13 @@ function rehypeRenderCode() {
 }
 
 function getComponentSourceFileContent(src = undefined) {
-	if (!src) {
+	const newSrc = src.replace("../", "./");
+	if (!newSrc) {
 		return null;
 	}
 
 	// Read the source file.
-	const filePath = path.join(process.cwd(), src);
+	const filePath = path.join(process.cwd(), newSrc);
 
 	const formattedSource = prettier.format(
 		fs.readFileSync(filePath, "utf-8"),

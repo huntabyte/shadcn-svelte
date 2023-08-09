@@ -14,7 +14,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="dialog-demo" />
+<ComponentPreview name="dialog-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

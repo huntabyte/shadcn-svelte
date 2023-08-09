@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="popover-demo" />
+<ComponentPreview name="popover-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

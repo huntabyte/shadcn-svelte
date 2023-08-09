@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="switch-demo" />
+<ComponentPreview name="switch-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

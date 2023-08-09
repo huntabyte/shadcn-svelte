@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="checkbox-demo" />
+<ComponentPreview name="checkbox-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -49,8 +53,18 @@ npm install @huntabyte/primitives
 
 ### With Text
 
-<ComponentPreview name="checkbox-with-text" />
+<ComponentPreview name="checkbox-with-text">
+
+<div />
+
+</ComponentPreview>
+
+---
 
 ### Disabled
 
-<ComponentPreview name="checkbox-disabled" />
+<ComponentPreview name="checkbox-disabled">
+
+<div />
+
+</ComponentPreview>

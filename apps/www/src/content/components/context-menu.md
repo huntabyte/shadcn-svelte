@@ -13,7 +13,11 @@ external:
     import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentPreview name="context-menu-demo" />
+<ComponentPreview name="context-menu-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

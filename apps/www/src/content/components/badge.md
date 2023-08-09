@@ -10,7 +10,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '@/registry/default/example'
 </script>
 
-<ComponentPreview name="badge-demo" />
+<ComponentPreview name="badge-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -52,22 +56,38 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Default
 
-<ComponentPreview name="badge-demo" />
+<ComponentPreview name="badge-demo">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Secondary
 
-<ComponentPreview name="badge-secondary" />
+<ComponentPreview name="badge-secondary">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Outline
 
-<ComponentPreview name="badge-outline" />
+<ComponentPreview name="badge-outline">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Destructive
 
-<ComponentPreview name="badge-destructive" />
+<ComponentPreview name="badge-destructive">
+
+<div />
+
+</ComponentPreview>

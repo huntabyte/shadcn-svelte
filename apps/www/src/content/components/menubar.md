@@ -13,7 +13,11 @@ external:
     import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentPreview name="menubar-demo" />
+<ComponentPreview name="menubar-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="toggle-demo" />
+<ComponentPreview name="toggle-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

@@ -7,7 +7,6 @@
 	import StyleSwitcher from "./StyleSwitcher.svelte";
 	import CopyButton from "./CopyButton.svelte";
 	import ThemeWrapper from "./ThemeWrapper.svelte";
-	import { SvelteComponent, onMount } from "svelte";
 	export let name: string;
 	let className: string;
 	export let align: "center" | "start" | "end" = "center";
@@ -15,7 +14,6 @@
 	const Index = RegistryIndex as Record<string, any>;
 
 	const index = styles.findIndex((style) => style.name === $config.style);
-	console.log(name);
 	let component = Index[$config.style][name]?.component();
 
 	let codeString: string;
@@ -86,13 +84,18 @@
 			</ThemeWrapper>
 		</Tabs.Content>
 		<Tabs.Content value="code">
-			<CopyButton value={codeString} class="absolute right-4 top-20" />
-			<div
-				class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
-				use:copyCodeToClipboard
-			>
-				<slot />
-			</div>
+			<ThemeWrapper>
+				<CopyButton
+					value={codeString}
+					class="absolute right-4 top-20"
+				/>
+				<div
+					class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
+					use:copyCodeToClipboard
+				>
+					<slot />
+				</div>
+			</ThemeWrapper>
 		</Tabs.Content>
 	</Tabs.Root>
 </div>

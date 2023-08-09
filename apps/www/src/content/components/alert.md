@@ -9,7 +9,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentPreview name="alert-demo" />
+<ComponentPreview name="alert-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -42,8 +46,16 @@ npx shadcn-svelte add alert
 
 ### Default
 
-<ComponentPreview name="alert-demo" />
+<ComponentPreview name="alert-demo">
+
+<div />
+
+</ComponentPreview>
 
 ### Destructive
 
-<ComponentPreview name="alert-destructive" />
+<ComponentPreview name="alert-destructive">
+
+<div />
+
+</ComponentPreview>

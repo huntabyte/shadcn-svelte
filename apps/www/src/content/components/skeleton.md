@@ -9,7 +9,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="skeleton-demo" />
+<ComponentPreview name="skeleton-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

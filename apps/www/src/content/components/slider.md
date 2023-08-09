@@ -13,7 +13,12 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="slider-demo" />
+<ComponentPreview name="slider-demo">
+
+<div />
+
+</ComponentPreview>
+
 ## Installation
 
 ```bash

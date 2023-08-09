@@ -8,10 +8,13 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 
 <script>
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
-  import { ButtonDemo, ButtonDestructive, ButtonGhost, ButtonOutline, ButtonSecondary, ButtonIcon, ButtonLoading, ButtonLink, ButtonWithIcon } from '@/registry/default/example'
 </script>
 
-<ComponentPreview name="button-demo" />
+<ComponentPreview name="button-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -71,52 +74,88 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Primary
 
-<ComponentPreview name="button-demo" />
+<ComponentPreview name="button-demo">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Secondary
 
-<ComponentPreview name="button-secondary" />
+<ComponentPreview name="button-secondary">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Destructive
 
-<ComponentPreview name="button-destructive" />
+<ComponentPreview name="button-destructive">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Outline
 
-<ComponentPreview name="button-outline" />
+<ComponentPreview name="button-outline">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Ghost
 
-<ComponentPreview name="button-ghost" />
+<ComponentPreview name="button-ghost">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Link
 
-<ComponentPreview name="button-link" />
+<ComponentPreview name="button-link">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Icon
 
-<ComponentPreview name="button-with-icon" />
+<ComponentPreview name="button-with-icon">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Icon
 
-<ComponentPreview name="button-icon" />
+<ComponentPreview name="button-icon">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Loading
 
-<ComponentPreview name="button-loading" />
+<ComponentPreview name="button-loading">
+
+<div />
+
+</ComponentPreview>

@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="hover-card-demo" />
+<ComponentPreview name="hover-card-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

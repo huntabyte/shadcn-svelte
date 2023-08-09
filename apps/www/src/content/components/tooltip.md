@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="tooltip-demo" />
+<ComponentPreview name="tooltip-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

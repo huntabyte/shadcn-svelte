@@ -357,109 +357,109 @@ const example: Registry = [
 		name: "accordion-demo",
 		type: "components:example",
 		registryDependencies: ["accordion"],
-		files: ["example/accordion/accordion-demo.svelte"]
+		files: ["example/accordion-demo.svelte"]
 	},
 	{
 		name: "alert-demo",
 		type: "components:example",
 		registryDependencies: ["alert"],
-		files: ["example/alert/alert-demo.svelte"]
+		files: ["example/alert-demo.svelte"]
 	},
 	{
 		name: "alert-destructive",
 		type: "components:example",
 		registryDependencies: ["alert"],
-		files: ["example/alert/alert-demo-destructive.svelte"]
+		files: ["example/alert-destructive.svelte"]
 	},
 	{
 		name: "alert-dialog-demo",
 		type: "components:example",
 		registryDependencies: ["alert-dialog", "button"],
-		files: ["example/alert-dialog/alert-dialog-demo.svelte"]
+		files: ["example/alert-dialog-demo.svelte"]
 	},
 	{
 		name: "aspect-ratio-demo",
 		type: "components:example",
 		registryDependencies: ["aspect-ratio"],
-		files: ["example/aspect-ratio/aspect-ratio-demo.svelte"]
+		files: ["example/aspect-ratio-demo.svelte"]
 	},
 	{
 		name: "avatar-demo",
 		type: "components:example",
 		registryDependencies: ["avatar"],
-		files: ["example/avatar/avatar-demo.svelte"]
+		files: ["example/avatar-demo.svelte"]
 	},
 	{
 		name: "badge-demo",
 		type: "components:example",
 		registryDependencies: ["badge"],
-		files: ["example/badge/badge-demo.svelte"]
+		files: ["example/badge-demo.svelte"]
 	},
 	{
 		name: "badge-destructive",
 		type: "components:example",
 		registryDependencies: ["badge"],
-		files: ["example/badge/badge-destructive.svelte"]
+		files: ["example/badge-destructive.svelte"]
 	},
 	{
 		name: "badge-outline",
 		type: "components:example",
 		registryDependencies: ["badge"],
-		files: ["example/badge/badge-outline.svelte"]
+		files: ["example/badge-outline.svelte"]
 	},
 	{
 		name: "badge-secondary",
 		type: "components:example",
 		registryDependencies: ["badge"],
-		files: ["example/badge/badge-secondary.svelte"]
+		files: ["example/badge-secondary.svelte"]
 	},
 	{
 		name: "button-demo",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-demo.svelte"]
+		files: ["example/button-demo.svelte"]
 	},
 	{
 		name: "button-secondary",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-secondary.svelte"]
+		files: ["example/button-secondary.svelte"]
 	},
 	{
 		name: "button-destructive",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-destructive.svelte"]
+		files: ["example/button-destructive.svelte"]
 	},
 	{
 		name: "button-outline",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-outline.svelte"]
+		files: ["example/button-outline.svelte"]
 	},
 	{
 		name: "button-ghost",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-ghost.svelte"]
+		files: ["example/button-ghost.svelte"]
 	},
 	{
 		name: "button-link",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-link.svelte"]
+		files: ["example/button-link.svelte"]
 	},
 	{
 		name: "button-with-icon",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-with-icon.svelte"]
+		files: ["example/button-with-icon.svelte"]
 	},
 	{
 		name: "button-loading",
 		type: "components:example",
 		registryDependencies: ["button"],
-		files: ["example/button/button-loading.svelte"]
+		files: ["example/button-loading.svelte"]
 	},
 	// {
 	// 	name: "button-icon",
@@ -489,31 +489,31 @@ const example: Registry = [
 		name: "card-demo",
 		type: "components:example",
 		registryDependencies: ["card", "button", "switch"],
-		files: ["example/card/card-demo.svelte"]
+		files: ["example/card-demo.svelte"]
 	},
 	{
 		name: "card-with-form",
 		type: "components:example",
 		registryDependencies: ["button", "card", "input", "label", "select"],
-		files: ["example/card/card-with-form.svelte"]
+		files: ["example/card-with-form.svelte"]
 	},
 	{
 		name: "checkbox-demo",
 		type: "components:example",
 		registryDependencies: ["checkbox"],
-		files: ["example/checkbox/checkbox-demo.svelte"]
+		files: ["example/checkbox-demo.svelte"]
 	},
 	{
 		name: "checkbox-disabled",
 		type: "components:example",
 		registryDependencies: ["checkbox"],
-		files: ["example/checkbox/checkbox-disabled.svelte"]
+		files: ["example/checkbox-disabled.svelte"]
 	},
 	// {
 	// 	name: "checkbox-form-multiple",
 	// 	type: "components:example",
 	// 	registryDependencies: ["checkbox", "form"],
-	// 	files: ["example/checkbox/CheckboxDemo.svelte"]
+	// 	files: ["example/CheckboxDemo.svelte"]
 	// },
 	// {
 	// 	name: "checkbox-form-single",
@@ -525,13 +525,13 @@ const example: Registry = [
 		name: "checkbox-with-text",
 		type: "components:example",
 		registryDependencies: ["checkbox"],
-		files: ["example/checkbox/checkbox-with-text.svelte"]
+		files: ["example/checkbox-with-text.svelte"]
 	},
 	{
 		name: "collapsible-demo",
 		type: "components:example",
 		registryDependencies: ["collapsible"],
-		files: ["example/collapsible/collapsible-demo.svelte"]
+		files: ["example/collapsible-demo.svelte"]
 	},
 	// {
 	// 	name: "combobox-demo",
@@ -573,7 +573,7 @@ const example: Registry = [
 		name: "context-menu-demo",
 		type: "components:example",
 		registryDependencies: ["context-menu"],
-		files: ["example/context-menu/context-menu-demo.svelte"]
+		files: ["example/context-menu-demo.svelte"]
 	},
 	// {
 	// 	name: "data-table-demo",
@@ -613,13 +613,13 @@ const example: Registry = [
 		name: "dialog-demo",
 		type: "components:example",
 		registryDependencies: ["dialog"],
-		files: ["example/dialog/dialog-demo.svelte"]
+		files: ["example/dialog-demo.svelte"]
 	},
 	{
 		name: "dropdown-menu-demo",
 		type: "components:example",
 		registryDependencies: ["dropdown-menu"],
-		files: ["example/dropdown-menu/dropdown-menu-demo.svelte"]
+		files: ["example/dropdown-menu-demo.svelte"]
 	},
 	// {
 	// 	name: "dropdown-menu-checkboxes",
@@ -637,25 +637,25 @@ const example: Registry = [
 		name: "hover-card-demo",
 		type: "components:example",
 		registryDependencies: ["hover-card"],
-		files: ["example/hover-card/hover-card-demo.svelte"]
+		files: ["example/hover-card-demo.svelte"]
 	},
 	{
 		name: "input-demo",
 		type: "components:example",
 		registryDependencies: ["input"],
-		files: ["example/input/input-demo.svelte"]
+		files: ["example/input-demo.svelte"]
 	},
 	{
 		name: "input-disabled",
 		type: "components:example",
 		registryDependencies: ["input"],
-		files: ["example/input/input-disabled.svelte"]
+		files: ["example/input-disabled.svelte"]
 	},
 	{
 		name: "input-file",
 		type: "components:example",
 		registryDependencies: ["input"],
-		files: ["example/input/input-file.svelte"]
+		files: ["example/input-file.svelte"]
 	},
 	// {
 	// 	name: "input-form",
@@ -667,31 +667,31 @@ const example: Registry = [
 		name: "input-with-button",
 		type: "components:example",
 		registryDependencies: ["input", "button"],
-		files: ["example/input/input-with-button.svelte"]
+		files: ["example/input-with-button.svelte"]
 	},
 	{
 		name: "input-with-label",
 		type: "components:example",
 		registryDependencies: ["input", "button", "label"],
-		files: ["example/input/input-with-label.svelte"]
+		files: ["example/input-with-label.svelte"]
 	},
 	{
 		name: "input-with-text",
 		type: "components:example",
 		registryDependencies: ["input", "button", "label"],
-		files: ["example/input/input-with-text.svelte"]
+		files: ["example/input-with-text.svelte"]
 	},
 	{
 		name: "label-demo",
 		type: "components:example",
 		registryDependencies: ["label"],
-		files: ["example/label/label-demo.svelte"]
+		files: ["example/label-demo.svelte"]
 	},
 	{
 		name: "menubar-demo",
 		type: "components:example",
 		registryDependencies: ["menubar"],
-		files: ["example/menubar/menubar-demo.svelte"]
+		files: ["example/menubar-demo.svelte"]
 	},
 	// {
 	// 	name: "navigation-menu-demo",
@@ -703,19 +703,19 @@ const example: Registry = [
 		name: "popover-demo",
 		type: "components:example",
 		registryDependencies: ["popover"],
-		files: ["example/popover/popover-demo.svelte"]
+		files: ["example/popover-demo.svelte"]
 	},
 	{
 		name: "progress-demo",
 		type: "components:example",
 		registryDependencies: ["progress"],
-		files: ["example/progress/progress-demo.svelte"]
+		files: ["example/progress-demo.svelte"]
 	},
 	{
 		name: "radio-group-demo",
 		type: "components:example",
 		registryDependencies: ["radio-group"],
-		files: ["example/radio-group/radio-group-demo.svelte"]
+		files: ["example/radio-group-demo.svelte"]
 	},
 	// {
 	// 	name: "radio-group-form",
@@ -733,7 +733,7 @@ const example: Registry = [
 		name: "select-demo",
 		type: "components:example",
 		registryDependencies: ["select"],
-		files: ["example/select/select-demo.svelte"]
+		files: ["example/select-demo.svelte"]
 	},
 	// {
 	// 	name: "select-form",
@@ -745,37 +745,37 @@ const example: Registry = [
 		name: "separator-demo",
 		type: "components:example",
 		registryDependencies: ["separator"],
-		files: ["example/separator/separator-demo.svelte"]
+		files: ["example/separator-demo.svelte"]
 	},
 	{
 		name: "sheet-demo",
 		type: "components:example",
 		registryDependencies: ["sheet"],
-		files: ["example/sheet/sheet-demo.svelte"]
+		files: ["example/sheet-demo.svelte"]
 	},
 	{
 		name: "sheet-side",
 		type: "components:example",
 		registryDependencies: ["sheet"],
-		files: ["example/sheet/sheet-side.svelte"]
+		files: ["example/sheet-side.svelte"]
 	},
 	{
 		name: "skeleton-demo",
 		type: "components:example",
 		registryDependencies: ["skeleton"],
-		files: ["example/skeleton/skeleton-demo.svelte"]
+		files: ["example/skeleton-demo.svelte"]
 	},
 	{
 		name: "slider-demo",
 		type: "components:example",
 		registryDependencies: ["slider"],
-		files: ["example/slider/slider-demo.svelte"]
+		files: ["example/slider-demo.svelte"]
 	},
 	{
 		name: "switch-demo",
 		type: "components:example",
 		registryDependencies: ["switch"],
-		files: ["example/switch/switch-demo.svelte"]
+		files: ["example/switch-demo.svelte"]
 	},
 	// {
 	// 	name: "switch-form",
@@ -787,25 +787,25 @@ const example: Registry = [
 		name: "table-demo",
 		type: "components:example",
 		registryDependencies: ["table"],
-		files: ["example/table/table-demo.svelte"]
+		files: ["example/table-demo.svelte"]
 	},
 	{
 		name: "tabs-demo",
 		type: "components:example",
 		registryDependencies: ["tabs"],
-		files: ["example/tabs/tabs-demo.svelte"]
+		files: ["example/tabs-demo.svelte"]
 	},
 	{
 		name: "textarea-demo",
 		type: "components:example",
 		registryDependencies: ["textarea"],
-		files: ["example/textarea/textarea-demo.svelte"]
+		files: ["example/textarea-demo.svelte"]
 	},
 	{
 		name: "textarea-disabled",
 		type: "components:example",
 		registryDependencies: ["textarea"],
-		files: ["example/textarea/textarea-disabled.svelte"]
+		files: ["example/textarea-disabled.svelte"]
 	},
 	// {
 	// 	name: "textarea-form",
@@ -817,19 +817,19 @@ const example: Registry = [
 		name: "textarea-with-button",
 		type: "components:example",
 		registryDependencies: ["textarea", "button"],
-		files: ["example/textarea/textarea-with-button.svelte"]
+		files: ["example/textarea-with-button.svelte"]
 	},
 	{
 		name: "textarea-with-label",
 		type: "components:example",
 		registryDependencies: ["textarea", "label"],
-		files: ["example/textarea/textarea-with-label.svelte"]
+		files: ["example/textarea-with-label.svelte"]
 	},
 	{
 		name: "textarea-with-text",
 		type: "components:example",
 		registryDependencies: ["textarea", "label"],
-		files: ["example/textarea/textarea-with-text.svelte"]
+		files: ["example/textarea-with-text.svelte"]
 	},
 	// {
 	// 	name: "toast-demo",
@@ -865,113 +865,113 @@ const example: Registry = [
 		name: "toggle-demo",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-demo.svelte"]
+		files: ["example/toggle-demo.svelte"]
 	},
 	{
 		name: "toggle-disabled",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-disabled.svelte"]
+		files: ["example/toggle-disabled.svelte"]
 	},
 	{
 		name: "toggle-lg",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-lg.svelte"]
+		files: ["example/toggle-lg.svelte"]
 	},
 	{
 		name: "toggle-outline",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-outline.svelte"]
+		files: ["example/toggle-outline.svelte"]
 	},
 	{
 		name: "toggle-sm",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-sm.svelte"]
+		files: ["example/toggle-sm.svelte"]
 	},
 	{
 		name: "toggle-with-text",
 		type: "components:example",
 		registryDependencies: ["toggle"],
-		files: ["example/toggle/toggle-with-text.svelte"]
+		files: ["example/toggle-with-text.svelte"]
 	},
 	{
 		name: "tooltip-demo",
 		type: "components:example",
 		registryDependencies: ["tooltip"],
-		files: ["example/tooltip/tooltip-demo.svelte"]
+		files: ["example/tooltip-demo.svelte"]
 	},
 	{
 		name: "typography-blockquote",
 		type: "components:example",
-		files: ["example/typography/typography-blockquote.svelte"]
+		files: ["example/typography-blockquote.svelte"]
 	},
 	{
 		name: "typography-demo",
 		type: "components:example",
-		files: ["example/typography/typography-demo.svelte"]
+		files: ["example/typography-demo.svelte"]
 	},
 	{
 		name: "typography-h1",
 		type: "components:example",
-		files: ["example/typography/typography-h1.svelte"]
+		files: ["example/typography-h1.svelte"]
 	},
 	{
 		name: "typography-h2",
 		type: "components:example",
-		files: ["example/typography/typography-h2.svelte"]
+		files: ["example/typography-h2.svelte"]
 	},
 	{
 		name: "typography-h3",
 		type: "components:example",
-		files: ["example/typography/typography-h3.svelte"]
+		files: ["example/typography-h3.svelte"]
 	},
 	{
 		name: "typography-h4",
 		type: "components:example",
-		files: ["example/typography/typography-h4.svelte"]
+		files: ["example/typography-h4.svelte"]
 	},
 	{
 		name: "typography-inline-code",
 		type: "components:example",
-		files: ["example/typography/typography-inline-code.svelte"]
+		files: ["example/typography-inline-code.svelte"]
 	},
 	{
 		name: "typography-large",
 		type: "components:example",
-		files: ["example/typography/typography-large.svelte"]
+		files: ["example/typography-large.svelte"]
 	},
 	{
 		name: "typography-lead",
 		type: "components:example",
-		files: ["example/typography/typography-lead.svelte"]
+		files: ["example/typography-lead.svelte"]
 	},
 	{
 		name: "typography-list",
 		type: "components:example",
-		files: ["example/typography/typography-list.svelte"]
+		files: ["example/typography-list.svelte"]
 	},
 	{
 		name: "typography-muted",
 		type: "components:example",
-		files: ["example/typography/typography-muted.svelte"]
+		files: ["example/typography-muted.svelte"]
 	},
 	{
 		name: "typography-p",
 		type: "components:example",
-		files: ["example/typography/typography-p.svelte"]
+		files: ["example/typography-p.svelte"]
 	},
 	{
 		name: "typography-small",
 		type: "components:example",
-		files: ["example/typography/typography-small.svelte"]
+		files: ["example/typography-small.svelte"]
 	},
 	{
 		name: "typography-table",
 		type: "components:example",
-		files: ["example/typography/typography-table.svelte"]
+		files: ["example/typography-table.svelte"]
 	}
 	// {
 	// 	name: "mode-toggle",

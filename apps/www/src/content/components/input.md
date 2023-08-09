@@ -9,7 +9,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="input-demo" />
+<ComponentPreview name="input-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -39,34 +43,58 @@ npx shadcn-svelte add input
 
 ### Default
 
-<ComponentPreview name="input-demo" />
+<ComponentPreview name="input-demo">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Disabled
 
-<ComponentPreview name="input-disabled" />
+<ComponentPreview name="input-disabled">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Label
 
-<ComponentPreview name="input-with-label" />
+<ComponentPreview name="input-with-label">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Text
 
-<ComponentPreview name="input-with-text" />
+<ComponentPreview name="input-with-text">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Button
 
-<ComponentPreview name="input-with-button" />
+<ComponentPreview name="input-with-button">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### File
 
-<ComponentPreview name="input-file" />
+<ComponentPreview name="input-file">
+
+<div />
+
+</ComponentPreview>

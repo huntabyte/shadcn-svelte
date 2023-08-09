@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentPreview name="aspect-ratio-demo" />
+<ComponentPreview name="aspect-ratio-demo">
+
+<div/>
+
+</ComponentPreview>
 
 ## Installation
 

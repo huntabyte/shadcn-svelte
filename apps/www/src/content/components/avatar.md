@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="avatar-demo" />
+<ComponentPreview name="avatar-demo">
+
+<div/>
+
+</ComponentPreview>
 
 ## Installation
 

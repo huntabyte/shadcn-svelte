@@ -9,7 +9,11 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="textarea-demo" />
+<ComponentPreview name="textarea-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -39,28 +43,48 @@ npx shadcn-svelte add textarea
 
 ### Default
 
-<ComponentPreview name="textarea-demo" />
+<ComponentPreview name="textarea-demo">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Disabled
 
-<ComponentPreview name="textarea-disabled" />
+<ComponentPreview name="textarea-disabled">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Label
 
-<ComponentPreview name="textarea-with-label" />
+<ComponentPreview name="textarea-with-label">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Text
 
-<ComponentPreview name="textarea-with-text" />
+<ComponentPreview name="textarea-with-text">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### With Button
 
-<ComponentPreview name="textarea-with-button" />
+<ComponentPreview name="textarea-with-button">
+
+<div />
+
+</ComponentPreview>

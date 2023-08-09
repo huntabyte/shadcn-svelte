@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="progress-demo" />
+<ComponentPreview name="progress-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

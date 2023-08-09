@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="radio-group-demo" />
+<ComponentPreview name="radio-group-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

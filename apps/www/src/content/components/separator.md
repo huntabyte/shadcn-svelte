@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="separator-demo" />
+<ComponentPreview name="separator-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 

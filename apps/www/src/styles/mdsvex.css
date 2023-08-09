@@ -6,6 +6,22 @@
 	display: flex;
 }
 
+[data-style="new-york"] [data-style="default"] {
+	display: none;
+}
+
+[data-style="default"] [data-style="default"] {
+	display: block;
+}
+
+[data-style="new-york"] [data-style="new-york"] {
+	display: block;
+}
+
+[data-style="default"] [data-style="new-york"] {
+	display: none;
+}
+
 [data-theme="dark"] {
 	display: none;
 }

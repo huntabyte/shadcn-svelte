@@ -13,7 +13,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="sheet-demo" />
+<ComponentPreview name="sheet-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
@@ -60,4 +64,8 @@ npm install @huntabyte/primitives
 
 Pass the `side` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
-<ComponentPreview name="sheet-side" />
+<ComponentPreview name="sheet-side">
+
+<div />
+
+</ComponentPreview>

@@ -14,7 +14,11 @@ external:
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="collapsible-demo" />
+<ComponentPreview name="collapsible-demo">
+
+<div />
+
+</ComponentPreview>
 
 ## Installation
 
