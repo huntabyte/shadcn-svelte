@@ -73,6 +73,9 @@ dependencies:
   shiki:
     specifier: ^0.14.3
     version: 0.14.3
+  svelte-headless-table:
+    specifier: ^0.17.4
+    version: 0.17.4(svelte@4.1.2)
   svelte-legos:
     specifier: ^0.2.1
     version: 0.2.1(svelte@4.1.2)
@@ -3714,6 +3717,16 @@ packages:
       svelte: 4.1.2
     dev: true
 
+  /svelte-headless-table@0.17.4(svelte@4.1.2):
+    resolution: {integrity: sha512-UUlb0Gv2IKbDO+Q4UU7O8BnDJMZwJP8JHkB74wyQu6B4Y8L1nf+HD1h2erUbClUjKXtoYpsG05ZuC2Xxl4Bf4A==}
+    dependencies:
+      svelte-keyed: 1.1.6(svelte@4.1.2)
+      svelte-render: 1.6.0
+      svelte-subscribe: 1.0.5
+    transitivePeerDependencies:
+      - svelte
+    dev: false
+
   /svelte-hmr@0.15.2(svelte@4.1.2):
     resolution: {integrity: sha512-q/bAruCvFLwvNbeE1x3n37TYFb3mTBJ6TrCq6p2CoFbSTNhDE9oAtEfpy+wmc9So8AG0Tja+X0/mJzX9tSfvIg==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -3722,6 +3735,14 @@ packages:
     dependencies:
       svelte: 4.1.2
     dev: true
+
+  /svelte-keyed@1.1.6(svelte@4.1.2):
+    resolution: {integrity: sha512-sd/7j3waSpOkeiQqATstlvNySbEpSs49aoaZ/nc09x/iEndnXQ/9Zy5PTD06+C7hlZk8KjZ4bhrktAQ791jWMQ==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      svelte: 4.1.2
+    dev: false
 
   /svelte-legos@0.2.1(svelte@4.1.2):
     resolution: {integrity: sha512-M7IncWP2e8FaHzQN1DSzxLSoq/6aQYWZ93REZam9bYlvLEjdPGWLAYdpPNnnZtXlHco+o3zrgYTdwsyyS9beUQ==}
@@ -3792,6 +3813,12 @@ packages:
       typescript: 5.1.6
     dev: true
 
+  /svelte-render@1.6.0:
+    resolution: {integrity: sha512-Y6Ea6U768MuhH0xR72pAPnXdSnJ+4yi24YyD/b9Q46yGalQFVxUyan496EELWtQEvgQE9Z2PsFAG8JjvrWcDAg==}
+    dependencies:
+      svelte-subscribe: 1.0.5
+    dev: false
+
   /svelte-sequential-preprocessor@2.0.1:
     resolution: {integrity: sha512-N5JqlBni6BzElxmuFrOPxOJnjsxh1cFDACLEVKs8OHBcx8ZNRO1p5SxuQex1m3qbLzAC8G99EHeWcxGkjyKjLQ==}
     engines: {node: '>=16'}
@@ -3799,6 +3826,10 @@ packages:
       svelte: 4.1.2
       tslib: 2.6.1
     dev: true
+
+  /svelte-subscribe@1.0.5:
+    resolution: {integrity: sha512-p+vRSBVzR9BQC72mjd2eqCv8zx5euLZQJF7QqAw5d41aKzQVOq90y71/NXch+nDNMjWbRo0CX+brcWYgPryJlw==}
+    dev: false
 
   /svelte-wrap-balancer@0.0.4:
     resolution: {integrity: sha512-o+WbHrl426YLDUMgNWJ0yKImmecZ6rFI6WFsrMx7YgsgdaZjtJX0d373TbJ35lzeBqsnMvjdRptl12qE0Mbe9w==}
