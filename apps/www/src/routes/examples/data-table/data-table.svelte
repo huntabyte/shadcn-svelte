@@ -9,14 +9,16 @@
 		addSortBy,
 		addPagination,
 		addTableFilter,
-		addSelectedRows
+		addSelectedRows,
+		addHiddenColumns
 	} from "svelte-headless-table/plugins";
 	import type { Payment } from "./data";
 	import { get, readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
 	import DeleteAction from "./delete-action.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { ArrowUpDown } from "lucide-svelte";
+	import { CaretSort, ChevronDown, DotsHorizontal } from "radix-icons-svelte";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
@@ -29,7 +31,8 @@
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.includes(filterValue)
 		}),
-		select: addSelectedRows()
+		select: addSelectedRows(),
+		hide: addHiddenColumns()
 	});
 
 	const columns = table.createColumns([
@@ -56,17 +59,8 @@
 				}
 			}
 		}),
-		table.column({
-			header: "ID",
-			accessor: "id",
-			plugins: {
-				filter: {
-					exclude: true
-				}
-			}
-		}),
+		table.column({ header: "Status", accessor: "status" }),
 		table.column({ header: "Email", accessor: "email" }),
-
 		table.column({
 			header: "Amount",
 			accessor: "amount",
@@ -83,9 +77,8 @@
 				}
 			}
 		}),
-		table.column({ header: "Status", accessor: "status" }),
 		table.column({
-			header: () => "Actions",
+			header: "Actions",
 			accessor: ({ id }) => id,
 			cell: (item) => {
 				return createRender(DeleteAction, { id: item.value });
@@ -101,26 +94,56 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-		table.createViewModel(columns);
+	const {
+		headerRows,
+		pageRows,
+		tableAttrs,
+		tableBodyAttrs,
+		flatColumns,
+		pluginStates,
+		visibleColumns
+	} = table.createViewModel(columns);
 
 	const { sortKeys } = pluginStates.sort;
+
+	const { hiddenColumnIds } = pluginStates.hide;
+	const ids = flatColumns.map((c) => {
+		console.log(c);
+		return c.id;
+	});
+	let hideForId = Object.fromEntries(ids.map((id) => [id, false]));
+	$: $hiddenColumnIds = Object.entries(hideForId)
+		.filter(([, hide]) => hide)
+		.map(([id]) => id);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 
 	const { selectedDataIds, allRowsSelected } = pluginStates.select;
-	$: console.log($selectedDataIds);
 </script>
 
-<div>
+<div class="w-full">
 	<div class="flex items-center py-4">
 		<Input
 			class="max-w-sm"
-			placeholder="filter emails..."
+			placeholder="Filter emails..."
 			type="text"
 			bind:value={$filterValue}
 		/>
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger asChild let:trigger>
+				<Button variant="outline" class="ml-auto" builders={[trigger]}>
+					Columns <ChevronDown class="ml-2 h-4 w-4" />
+				</Button>
+			</DropdownMenu.Trigger>
+			<DropdownMenu.Content>
+				{#each ids as id}
+					<DropdownMenu.CheckboxItem bind:checked={hideForId[id]}>
+						{id}
+					</DropdownMenu.CheckboxItem>
+				{/each}
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
@@ -149,7 +172,7 @@
 												on:click={props.sort.toggle}
 											>
 												<Render of={cell.render()} />
-												<ArrowUpDown
+												<CaretSort
 													class={cn(
 														$sortKeys[0]?.id ===
 															cell.id &&
