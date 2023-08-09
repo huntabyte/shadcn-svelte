@@ -13,7 +13,7 @@
     "private": true,
     "scripts": {
         "dev": "vite dev",
-        "build": "pnpm build:components && vite build",
+        "build": "vite build",
         "build:components": "tsx scripts/build-components.ts",
         "preview": "vite preview",
         "test": "playwright test",

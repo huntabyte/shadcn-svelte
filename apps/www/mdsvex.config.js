@@ -158,7 +158,6 @@ export function rehypeComponentExample() {
 							]
 						});
 						if (!index) return;
-						console.log(parent.children);
 						parent.children.splice(index + 1, 0, sourceCodeNode);
 					}
 				} catch (e) {

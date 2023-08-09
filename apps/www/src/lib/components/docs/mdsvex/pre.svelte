@@ -8,7 +8,6 @@
 	let codeString: string;
 
 	function copyCodeToClipboard(node: HTMLPreElement) {
-		console.log(node);
 		codeString = node.innerText.trim() ?? "";
 	}
 </script>
