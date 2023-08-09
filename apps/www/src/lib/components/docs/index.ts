@@ -12,6 +12,7 @@ export { default as SiteFooter } from "./SiteFooter.svelte";
 export { default as SiteHeader } from "./SiteHeader.svelte";
 export { default as Steps } from "./Steps.svelte";
 export { default as TableOfContents } from "./TableOfContents.svelte";
+export { default as ThemeWrapper } from "./ThemeWrapper.svelte";
 export { default as Tree } from "./Tree.svelte";
 export { default as TailwindIndicator } from "./TailwindIndicator.svelte";
 

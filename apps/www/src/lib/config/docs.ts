@@ -16,12 +16,12 @@ export const docsConfig: DocsConfig = {
 			href: "/docs/components/accordion"
 		},
 		{
-			title: "Examples",
-			href: "/examples/dashboard"
+			title: "Themes",
+			href: "/themes"
 		},
 		{
-			title: "Figma",
-			href: "/docs/figma"
+			title: "Examples",
+			href: "/examples/dashboard"
 		},
 		{
 			title: "GitHub",

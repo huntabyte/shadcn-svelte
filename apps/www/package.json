@@ -62,6 +62,8 @@
     "dependencies": {
         "@huntabyte/primitives": "^0.0.4",
         "@melt-ui/svelte": "^0.33.1",
+        "@unovis/svelte": "^1.2.0",
+        "@unovis/ts": "^1.2.0",
         "class-variance-authority": "^0.6.0",
         "clsx": "^2.0.0",
         "d3-scale": "^4.0.2",

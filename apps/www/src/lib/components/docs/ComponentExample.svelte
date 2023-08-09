@@ -42,7 +42,7 @@
 			<div class="flex items-center justify-between p-4">
 				<StyleSwitcher />
 			</div>
-			<ThemeWrapper>
+			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn("flex min-h-[350px] justify-center p-10", {
 						"items-center": align === "center",

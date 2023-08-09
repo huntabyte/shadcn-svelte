@@ -26,7 +26,6 @@
 	export { className as class };
 
 	$: component = Index[$config.style][name]?.component();
-	$: console.log(className);
 </script>
 
 <div
@@ -56,7 +55,7 @@
 			<div class="flex items-center justify-between p-4">
 				<StyleSwitcher />
 			</div>
-			<ThemeWrapper>
+			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn(
 						"preview flex min-h-[350px] w-full justify-center p-10",
@@ -96,7 +95,7 @@
 			</ThemeWrapper>
 		</Tabs.Content>
 		<Tabs.Content value="code">
-			<ThemeWrapper>
+			<ThemeWrapper defaultTheme="zinc">
 				<CopyButton
 					value={codeString}
 					class="absolute right-4 top-20"

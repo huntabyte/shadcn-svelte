@@ -108,7 +108,6 @@
 
 	const { hiddenColumnIds } = pluginStates.hide;
 	const ids = flatColumns.map((c) => {
-		console.log(c);
 		return c.id;
 	});
 	let hideForId = Object.fromEntries(ids.map((id) => [id, false]));

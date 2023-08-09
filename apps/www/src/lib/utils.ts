@@ -1,10 +1,13 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
+import { writable } from "svelte/store";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
+
+export const isBrowser = typeof document !== "undefined";
 
 export function slugFromPath(path: string) {
 	return path.replace("/src/content/", "").replace(".md", "");
@@ -72,4 +75,44 @@ export function hexToRgb(hex: string): [number, number, number] {
 		return [red, green, blue];
 	}
 	return [0, 0, 0];
+}
+
+export function createCopyCodeButton() {
+	let codeString = "";
+	const copied = writable(false);
+	let copyTimeout = 0;
+
+	function copyCode() {
+		if (!isBrowser) return;
+		navigator.clipboard.writeText(codeString);
+		copied.set(true);
+		clearTimeout(copyTimeout);
+		copyTimeout = window.setTimeout(() => {
+			copied.set(false);
+		}, 2500);
+	}
+
+	function setCodeString(node: HTMLElement) {
+		codeString = node.innerText.trim() ?? "";
+	}
+
+	return {
+		copied: copied,
+		copyCode: copyCode,
+		setCodeString: setCodeString
+	};
+}
+
+export function updateTheme(activeTheme: string, path: string) {
+	if (!isBrowser) return;
+	document.body.classList.forEach((className) => {
+		if (className.match(/^theme.*/)) {
+			document.body.classList.remove(className);
+		}
+	});
+
+	const theme = path === "/themes" ? activeTheme : null;
+	if (theme) {
+		return document.body.classList.add(`theme-${theme}`);
+	}
 }
