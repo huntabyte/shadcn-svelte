@@ -11,14 +11,6 @@ description: Re-usable components built using Radix Svelte and Tailwind CSS.
 
 An unofficial, community-led [Svelte](https://svelte.dev) port of [shadcn/ui](https://ui.shadcn.com). We are not affiliated with [shadcn](https://twitter.com/shadcn), but we did get his blessing before creating a Svelte version of his work. This project was born out of the need for a similar project for the Svelte ecosystem.
 
-<br>
-
-<Callout>
-	  <p>
-	<strong>NOTE:</strong> This project does not have complete feature parity with the original. We do have majority of the components ported over, and are working on adding the missing components, which will start with adding the primitives to <a href="https://melt-ui.com" target="_blank">Melt UI</a>
-	</p>
-</Callout>
-
 This is **NOT** a component library. It's a collection of re-usable components that you can copy and paste or use the CLI to add to your apps.
 
 **What do you mean not a component library?**

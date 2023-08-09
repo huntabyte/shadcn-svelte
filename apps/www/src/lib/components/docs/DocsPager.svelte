@@ -50,7 +50,7 @@
 		</Button>
 	{/if}
 	{#if pager?.next?.href}
-		<Button href={pager.next.href} variant="outline">
+		<Button href={pager.next.href} variant="outline" class="ml-auto">
 			{pager.next.title}
 			<Icons.chevronRight class="ml-2 h-4 w-4" />
 		</Button>

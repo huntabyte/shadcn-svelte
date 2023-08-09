@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		%sveltekit.head%
-	</head>
 
-	<body
-		data-sveltekit-preload-data="hover"
-		class="min-h-screen bg-background antialiased font-sans"
-	>
-		<div style="display: contents" class="flex min-h-screen flex-col">
-			%sveltekit.body%
-		</div>
-	</body>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+  <meta name="viewport" content="width=device-width" />
+  %sveltekit.head%
+</head>
+
+<body data-sveltekit-preload-data="hover" class="min-h-screen bg-background antialiased font-sans">
+  <div style="display: contents" class="relative flex min-h-screen flex-col">
+    %sveltekit.body%
+  </div>
+</body>
+
 </html>

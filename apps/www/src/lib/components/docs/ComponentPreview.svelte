@@ -7,6 +7,7 @@
 	import StyleSwitcher from "./StyleSwitcher.svelte";
 	import CopyButton from "./CopyButton.svelte";
 	import ThemeWrapper from "./ThemeWrapper.svelte";
+	import { Icons } from "./icons";
 	export let name: string;
 	let className: string;
 	export let align: "center" | "start" | "end" = "center";
@@ -68,7 +69,16 @@
 					)}
 				>
 					<slot name="example">
-						{#await component then Component}
+						{#await component}
+							<div
+								class="flex items-center text-sm text-muted-foreground"
+							>
+								<Icons.spinner
+									class="mr-2 h-4 w-4 animate-spin"
+								/>
+								Loading...
+							</div>
+						{:then Component}
 							<svelte:component this={Component} />
 						{:catch}
 							<p class="text-sm text-muted-foreground">
