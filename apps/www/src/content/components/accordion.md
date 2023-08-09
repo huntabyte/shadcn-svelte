@@ -14,7 +14,7 @@ external:
     import { AccordionDemo } from '@/registry/default/example'
 </script>
 
-<ComponentPreview name="accordion-demo" class="[&_.preview>[data-melt-accordion-item]]:sm:max-w-[70%]">
+<ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
 
 <div />
 

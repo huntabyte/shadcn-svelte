@@ -6,9 +6,7 @@
 
 <Collapsible.Root class="w-[350px] space-y-2">
 	<div class="flex items-center justify-between space-x-4 px-4">
-		<h4 class="text-sm font-semibold">
-			@thomasglopes starred 3 repositories
-		</h4>
+		<h4 class="text-sm font-semibold">@peduarte starred 3 repositories</h4>
 		<Collapsible.Trigger let:trigger asChild>
 			<Button
 				builders={[trigger]}
@@ -22,14 +20,14 @@
 		</Collapsible.Trigger>
 	</div>
 	<div class="rounded-md border px-4 py-3 font-mono text-sm">
-		melt-ui/melt-ui
+		@melt-ui/melt-ui
 	</div>
 	<Collapsible.Content class="space-y-2">
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
-			sveltejs/svelte
+			@huntabyte/primitives
 		</div>
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
-			sveltejs/kit
+			@radix-ui/primitives
 		</div>
 	</Collapsible.Content>
 </Collapsible.Root>

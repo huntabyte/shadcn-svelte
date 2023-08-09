@@ -2,4 +2,4 @@
 	import { Input } from "@/registry/new-york/ui/input";
 </script>
 
-<Input type="email" placeholder="email" />
+<Input type="email" placeholder="email" class="max-w-xs" />

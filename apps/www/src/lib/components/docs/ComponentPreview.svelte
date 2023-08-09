@@ -25,6 +25,7 @@
 	export { className as class };
 
 	$: component = Index[$config.style][name]?.component();
+	$: console.log(className);
 </script>
 
 <div
@@ -62,7 +63,8 @@
 							"items-center": align === "center",
 							"items-start": align === "start",
 							"items-end": align === "end"
-						}
+						},
+						className
 					)}
 				>
 					<slot name="example">

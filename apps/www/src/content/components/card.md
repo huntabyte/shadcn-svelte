@@ -55,15 +55,15 @@ By default, the `<CardTitle>` component renders an `<h3>` element. You can chang
 For example:
 
 ```svelte
-<CardTitle tag={"h2"}>This will render an H2</CardTitle>
+<CardTitle tag="h2">This will render an H2</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"h5"}>This will render an H5</CardTitle>
+<CardTitle tag="h5">This will render an H5</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"p"}>This will render a P tag</CardTitle>
+<CardTitle tag="p">This will render a P tag</CardTitle>
 ```
 
 ## Examples

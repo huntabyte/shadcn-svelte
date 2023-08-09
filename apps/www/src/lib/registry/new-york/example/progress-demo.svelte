@@ -9,4 +9,4 @@
 	});
 </script>
 
-<Progress {value} max={100} />
+<Progress {value} max={100} class="w-[60%]" />
