@@ -60,8 +60,9 @@
     },
     "type": "module",
     "dependencies": {
-        "@huntabyte/primitives": "^0.0.4",
-        "@melt-ui/svelte": "^0.33.1",
+        "@huntabyte/primitives": "^0.0.6",
+        "@melt-ui/svelte": "^0.34.3",
+        "@tanstack/svelte-table": "^8.9.4",
         "@unovis/svelte": "^1.2.0",
         "@unovis/ts": "^1.2.0",
         "class-variance-authority": "^0.6.0",

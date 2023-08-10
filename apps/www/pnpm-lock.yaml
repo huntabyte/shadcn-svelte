@@ -11,11 +11,14 @@ patchedDependencies:
 
 dependencies:
   '@huntabyte/primitives':
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@4.1.2)
+    specifier: ^0.0.6
+    version: 0.0.6(svelte@4.1.2)
   '@melt-ui/svelte':
-    specifier: ^0.33.1
-    version: 0.33.1(svelte@4.1.2)
+    specifier: ^0.34.3
+    version: 0.34.3(svelte@4.1.2)
+  '@tanstack/svelte-table':
+    specifier: ^8.9.4
+    version: 8.9.4(svelte@4.1.2)
   '@unovis/svelte':
     specifier: ^1.2.0
     version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.1.2)
@@ -116,7 +119,7 @@ devDependencies:
     version: 0.16.8(svelte@4.1.2)
   '@melt-ui/pp':
     specifier: ^0.1.0
-    version: 0.1.0(@melt-ui/svelte@0.33.1)(svelte@4.1.2)
+    version: 0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2)
   '@playwright/test':
     specifier: ^1.36.2
     version: 1.36.2
@@ -848,12 +851,12 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /@huntabyte/primitives@0.0.4(svelte@4.1.2):
-    resolution: {integrity: sha512-5l46jaxZCKJ1zpqKsKW+u6j7Ik1nCZiObWd2GlZWrzmQiusFMtoAGOJ4Bf41WGdXnxtliTsIz9rNpD9Co0TZKQ==}
+  /@huntabyte/primitives@0.0.6(svelte@4.1.2):
+    resolution: {integrity: sha512-3QuAQOVB9xvj7RhtkDh+BeEKvMjtW5gGzfxoV/VB7+yKDaCmqudgto8u/pC861U+DTi1CYIN/k8QJODn5Cw2Kg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.33.1(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
       nanoid: 4.0.2
       svelte: 4.1.2
     dev: false
@@ -955,19 +958,19 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.33.1)(svelte@4.1.2):
+  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2):
     resolution: {integrity: sha512-GbzqhLDjfxh3BwC0It7kVUHvx05f+IdBad+mXWMO76xgfdqBkAO/pS6Q+tAEntKglQvxXugV3gHAyEJgSI0AlA==}
     engines: {pnpm: '>=8.6.3'}
     peerDependencies:
       '@melt-ui/svelte': '>= 0.29.0'
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.33.1(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
       svelte: 4.1.2
     dev: true
 
-  /@melt-ui/svelte@0.33.1(svelte@4.1.2):
-    resolution: {integrity: sha512-XF66hH5T4/f30dXXZeDD3W0eic2HCzdDxcMdV09ylZm2QPC+aR3T/3EwZqtk++zWNQF8C6gZL4DVWPxNxAzwrQ==}
+  /@melt-ui/svelte@0.34.3(svelte@4.1.2):
+    resolution: {integrity: sha512-qJE0+7+8Q8h1UhdqpAWWSJx3vXSjlgAKkfjLC5wn6dtVY70Jkb6Hiu726isZ2yNbPilBmbaLrOzfoMTRurjKXw==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1097,6 +1100,21 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@tanstack/svelte-table@8.9.4(svelte@4.1.2):
+    resolution: {integrity: sha512-Qz8rRnsCGAg5PQlxzU/ikgZ81gaLeqFlRXVEmKgr3H59Rbs1nZ1JQP27BQMJ+Oi0y4Br7q5P6IfThenwf6qc6g==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      '@tanstack/table-core': 8.9.3
+      svelte: 4.1.2
+    dev: false
+
+  /@tanstack/table-core@8.9.3:
+    resolution: {integrity: sha512-NpHZBoHTfqyJk0m/s/+CSuAiwtebhYK90mDuf5eylTvgViNOujiaOaxNDxJkQQAsVvHWZftUGAx1EfO1rkKtLg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /@types/chai-subset@1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
