@@ -6,15 +6,17 @@
 	import CardsCreateAccount from "./create-account.svelte";
 	import CardsReportIssue from "./report-issue.svelte";
 	import CardsShare from "./share.svelte";
+	import CardsStats from "./stats.svelte";
+	import CardsCalendar from "./calendar.svelte";
 </script>
 
 <div
 	class="md:grids-col-2 grid md:gap-4 lg:grid-cols-10 xl:grid-cols-11 xl:gap-4"
 >
 	<div class="space-y-4 lg:col-span-4 xl:col-span-6 xl:space-y-4">
-		<!-- <CardsStats /> -->
+		<CardsStats />
 		<div class="grid gap-1 sm:grid-cols-[260px_1fr] md:hidden">
-			<!-- <CardsCalendar /> -->
+			<CardsCalendar />
 			<div class="pt-3 sm:pl-2 sm:pt-0 xl:pl-4">
 				<CardsActivityGoal />
 			</div>
@@ -39,7 +41,7 @@
 	</div>
 	<div class="space-y-4 lg:col-span-6 xl:col-span-5 xl:space-y-4">
 		<div class="hidden gap-1 sm:grid-cols-[260px_1fr] md:grid">
-			<!-- <CardsCalendar /> -->
+			<CardsCalendar />
 			<div class="pt-3 sm:pl-2 sm:pt-0 xl:pl-3">
 				<CardsActivityGoal />
 			</div>

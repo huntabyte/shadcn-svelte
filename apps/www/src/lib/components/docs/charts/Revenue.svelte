@@ -1,10 +1,5 @@
 <script lang="ts">
-	import { VisXYContainer, VisGroupedBar, VisLine } from "@unovis/svelte";
-	import { config } from "@/stores";
-	import { themes } from "@/registry";
-	import { modeCurrent } from "$components/docs/light-switch/light-switch";
-
-	const activeTheme = themes.find((theme) => theme.name === $config.theme);
+	import { VisXYContainer, VisLine } from "@unovis/svelte";
 
 	const data = [
 		{
@@ -42,19 +37,8 @@
 	];
 	const x = (d: { revenue: number; id: number }) => d.id;
 	const y = (d: { revenue: number; id: number }) => d.revenue;
-	const color = () => {
-		if (activeTheme) {
-			return `hsl(${
-				activeTheme.cssVars[$modeCurrent ? "light" : "dark"]["primary"]
-			}`;
-		}
-
-		return `hsl(${
-			themes[0].cssVars[$modeCurrent ? "light" : "dark"]["primary"]
-		}`;
-	};
 </script>
 
-<VisXYContainer {data}>
-	<VisLine {x} {y} {color} />
+<VisXYContainer {data} height="80">
+	<VisLine {x} {y} />
 </VisXYContainer>

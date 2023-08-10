@@ -30,6 +30,13 @@
     --ring: 240 5.9% 10%;
  
     --radius: 0.5rem;
+
+    --vis-color0: hsl(240 5.9% 10%);
+    --vis-color1: hsl(240 5.9% 10%);
+    --vis-color2: hsl(240 5.9% 10%);
+    --vis-color3: hsl(240 5.9% 10%);
+    --vis-color4: hsl(240 5.9% 10%);
+    
   }
  
   .dark .theme-zinc {
@@ -61,6 +68,12 @@
     --destructive-foreground: 0 0% 98%;
  
     --ring: 240 4.9% 83.9%;
+
+    --vis-color0: hsl(0 0% 98%);
+    --vis-color1: hsl(0 0% 98%);
+    --vis-color2: hsl(0 0% 98%);
+    --vis-color3: hsl(0 0% 98%);
+    --vis-color4: hsl(0 0% 98%);
   }
 
   .theme-slate {
@@ -94,6 +107,12 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
+
+    --vis-color0: hsl(222.2 47.4% 11.2%);
+    --vis-color1: hsl(222.2 47.4% 11.2%);
+    --vis-color2: hsl(222.2 47.4% 11.2%);
+    --vis-color3: hsl(222.2 47.4% 11.2%);
+    --vis-color4: hsl(222.2 47.4% 11.2%);
   }
  
   .dark .theme-slate {
@@ -125,6 +144,12 @@
     --destructive-foreground: 210 40% 98%;
  
     --ring: 212.7 26.8% 83.9;
+
+    --vis-color0: hsl(210 40% 98%);
+    --vis-color1: hsl(210 40% 98%);
+    --vis-color2: hsl(210 40% 98%);
+    --vis-color3: hsl(210 40% 98%);
+    --vis-color4: hsl(210 40% 98%);
   }
 
   .theme-stone {
@@ -158,6 +183,12 @@
     --ring: 20 14.3% 4.1%;
  
     --radius: 0.95rem;
+
+    --vis-color0: hsl(24 9.8% 10%);
+    --vis-color1: hsl(24 9.8% 10%);
+    --vis-color2: hsl(24 9.8% 10%);
+    --vis-color3: hsl(24 9.8% 10%);
+    --vis-color4: hsl(24 9.8% 10%);
   }
  
   .dark .theme-stone {
@@ -189,6 +220,12 @@
     --destructive-foreground: 60 9.1% 97.8%;
  
     --ring: 24 5.7% 82.9%;
+
+    --vis-color0: hsl(60 9.1% 97.8%);
+    --vis-color1: hsl(60 9.1% 97.8%);
+    --vis-color2: hsl(60 9.1% 97.8%);
+    --vis-color3: hsl(60 9.1% 97.8%);
+    --vis-color4: hsl(60 9.1% 97.8%);
   }
 
   .theme-gray {
@@ -222,6 +259,12 @@
     --ring: 224 71.4% 4.1%;
  
     --radius: 0.35rem;
+
+    --vis-color0: hsl(220.9 39.3% 11%);
+    --vis-color1: hsl(220.9 39.3% 11%);
+    --vis-color2: hsl(220.9 39.3% 11%);
+    --vis-color3: hsl(220.9 39.3% 11%);
+    --vis-color4: hsl(220.9 39.3% 11%);
   }
  
   .dark .theme-gray {
@@ -253,6 +296,12 @@
     --destructive-foreground: 210 20% 98%;
  
     --ring: 216 12.2% 83.9%;
+
+    --vis-color0: hsl(210 20% 98%);
+    --vis-color1: hsl(210 20% 98%);
+    --vis-color2: hsl(210 20% 98%);
+    --vis-color3: hsl(210 20% 98%);
+    --vis-color4: hsl(210 20% 98%);
   }
 
   .theme-neutral {
@@ -285,7 +334,12 @@
  
     --ring: 0 0% 3.9%;
  
-    --radius: ;
+    --vis-color0: hsl(0 0% 9%);
+    --vis-color1: hsl(0 0% 9%);
+    --vis-color2: hsl(0 0% 9%);
+    --vis-color3: hsl(0 0% 9%);
+    --vis-color4: hsl(0 0% 9%);
+
   }
  
   .dark .theme-neutral {
@@ -317,6 +371,14 @@
     --destructive-foreground: 0 0% 98%;
  
     --ring: 0 0% 83.1%;
+
+    --radius: ;
+
+    --vis-color0: hsl(0 0% 98%);
+    --vis-color1: hsl(0 0% 98%);
+    --vis-color2: hsl(0 0% 98%);
+    --vis-color3: hsl(0 0% 98%);
+    --vis-color4: hsl(0 0% 98%);
   }
 
   .theme-red {
@@ -350,6 +412,12 @@
     --ring: 0 72.2% 50.6%;
  
     --radius: 0.4rem;
+
+    --vis-color0: hsl(0 72.2% 50.6%);
+    --vis-color1: hsl(0 72.2% 50.6%);
+    --vis-color2: hsl(0 72.2% 50.6%);
+    --vis-color3: hsl(0 72.2% 50.6%);
+    --vis-color4: hsl(0 72.2% 50.6%);
   }
  
   .dark .theme-red {
@@ -381,6 +449,12 @@
     --destructive-foreground: 0 0% 98%;
  
     --ring: 0 72.2% 50.6%;
+
+    --vis-color0: hsl(0 72.2% 50.6%);
+    --vis-color1: hsl(0 72.2% 50.6%);
+    --vis-color2: hsl(0 72.2% 50.6%);
+    --vis-color3: hsl(0 72.2% 50.6%);
+    --vis-color4: hsl(0 72.2% 50.6%);
   }
 
   .theme-rose {
@@ -414,6 +488,12 @@
     --ring: 346.8 77.2% 49.8%;
  
     --radius: 0.5rem;
+
+    --vis-color0: hsl(346.8 77.2% 49.8%);
+    --vis-color1: hsl(346.8 77.2% 49.8%);
+    --vis-color2: hsl(346.8 77.2% 49.8%);
+    --vis-color3: hsl(346.8 77.2% 49.8%);
+    --vis-color4: hsl(346.8 77.2% 49.8%);
   }
  
   .dark .theme-rose {
@@ -445,6 +525,12 @@
     --destructive-foreground: 0 85.7% 97.3%;
  
     --ring: 346.8 77.2% 49.8%;
+
+    --vis-color0: hsl(346.8 77.2% 49.8%);
+    --vis-color1: hsl(346.8 77.2% 49.8%);
+    --vis-color2: hsl(346.8 77.2% 49.8%);
+    --vis-color3: hsl(346.8 77.2% 49.8%);
+    --vis-color4: hsl(346.8 77.2% 49.8%);
   }
 
   .theme-orange {
@@ -478,6 +564,12 @@
     --ring: 24.6 95% 53.1%;
  
     --radius: 0.95rem;
+
+    --vis-color0: hsl(24.6 95% 53.1%);
+    --vis-color1: hsl(24.6 95% 53.1%);
+    --vis-color2: hsl(24.6 95% 53.1%);
+    --vis-color3: hsl(24.6 95% 53.1%);
+    --vis-color4: hsl(24.6 95% 53.1%);
   }
  
   .dark .theme-orange {
@@ -509,6 +601,13 @@
     --destructive-foreground: 60 9.1% 97.8%;
  
     --ring: 20.5 90.2% 48.2%;
+
+    --vis-color0: hsl(20.5 90.2% 48.2%);
+    --vis-color1: hsl(20.5 90.2% 48.2%);
+    --vis-color2: hsl(20.5 90.2% 48.2%);
+    --vis-color3: hsl(20.5 90.2% 48.2%);
+    --vis-color4: hsl(20.5 90.2% 48.2%);
+    
   }
 
   .theme-green {
@@ -542,6 +641,12 @@
     --ring: 142.1 76.2% 36.3%;
  
     --radius: ;
+
+    --vis-color0: hsl(142.1 76.2% 36.3%);
+    --vis-color1: hsl(142.1 76.2% 36.3%);
+    --vis-color2: hsl(142.1 76.2% 36.3%);
+    --vis-color3: hsl(142.1 76.2% 36.3%);
+    --vis-color4: hsl(142.1 76.2% 36.3%);
   }
  
   .dark .theme-green {
@@ -573,6 +678,12 @@
     --destructive-foreground: 0 85.7% 97.3%;
  
     --ring: 142.4 71.8% 29.2%;
+
+    --vis-color0: hsl(142.1 70.6% 45.3%);
+    --vis-color1: hsl(142.1 70.6% 45.3%);
+    --vis-color2: hsl(142.1 70.6% 45.3%);
+    --vis-color3: hsl(142.1 70.6% 45.3%);
+    --vis-color4: hsl(142.1 70.6% 45.3%);
   }
 
   .theme-blue {
@@ -606,6 +717,12 @@
     --ring: 221.2 83.2% 53.3%;
  
     --radius: ;
+
+    --vis-color0: hsl(221.2 83.2% 53.3%);
+    --vis-color1: hsl(221.2 83.2% 53.3%);
+    --vis-color2: hsl(221.2 83.2% 53.3%);
+    --vis-color3: hsl(221.2 83.2% 53.3%);
+    --vis-color4: hsl(221.2 83.2% 53.3%);
   }
  
   .dark .theme-blue {
@@ -637,6 +754,12 @@
     --destructive-foreground: 210 40% 98%;
  
     --ring: 224.3 76.3% 48%;
+
+    --vis-color0: hsl(217.2 91.2% 59.8%);
+    --vis-color1: hsl(217.2 91.2% 59.8%);
+    --vis-color2: hsl(217.2 91.2% 59.8%);
+    --vis-color3: hsl(217.2 91.2% 59.8%);
+    --vis-color4: hsl(217.2 91.2% 59.8%);
   }
 
   .theme-yellow {
@@ -670,6 +793,12 @@
     --ring: 20 14.3% 4.1%;
  
     --radius: 0.95rem;
+
+    --vis-color0: hsl(47.9 95.8% 53.1%);
+    --vis-color1: hsl(47.9 95.8% 53.1%);
+    --vis-color2: hsl(47.9 95.8% 53.1%);
+    --vis-color3: hsl(47.9 95.8% 53.1%);
+    --vis-color4: hsl(47.9 95.8% 53.1%);
   }
  
   .dark .theme-yellow {
@@ -701,6 +830,12 @@
     --destructive-foreground: 60 9.1% 97.8%;
  
     --ring: 35.5 91.7% 32.9%;
+
+    --vis-color0: hsl(47.9 95.8% 53.1%);
+    --vis-color1: hsl(47.9 95.8% 53.1%);
+    --vis-color2: hsl(47.9 95.8% 53.1%);
+    --vis-color3: hsl(47.9 95.8% 53.1%);
+    --vis-color4: hsl(47.9 95.8% 53.1%);
   }
 
   .theme-violet {
@@ -734,6 +869,12 @@
     --ring: 262.1 83.3% 57.8%;
  
     --radius: ;
+
+    --vis-color0: hsl(262.1 83.3% 57.8%);
+    --vis-color1: hsl(262.1 83.3% 57.8%);
+    --vis-color2: hsl(262.1 83.3% 57.8%);
+    --vis-color3: hsl(262.1 83.3% 57.8%);
+    --vis-color4: hsl(262.1 83.3% 57.8%);
   }
  
   .dark .theme-violet {
@@ -765,4 +906,10 @@
     --destructive-foreground: 210 20% 98%;
  
     --ring: 263.4 70% 50.4%;
+
+    --vis-color0: hsl(263.4 70% 50.4%);
+    --vis-color1: hsl(263.4 70% 50.4%);
+    --vis-color2: hsl(263.4 70% 50.4%);
+    --vis-color3: hsl(263.4 70% 50.4%);
+    --vis-color4: hsl(263.4 70% 50.4%);
   }

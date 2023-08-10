@@ -14,6 +14,19 @@
 	import { isBrowser } from "@/utils";
 </script>
 
+<svelte:head>
+	<style>
+		@import "../../../static/registry/themes.css";
+		:root {
+			--vis-color0: var(--primary);
+			--vis-color1: #ffffff;
+			--vis-color2: #ffffff;
+			--vis-color3: #ffffff;
+			--vis-color4: #ffffff;
+		}
+	</style>
+</svelte:head>
+
 <div class="container">
 	<ThemeWrapper
 		defaultTheme="zinc"
