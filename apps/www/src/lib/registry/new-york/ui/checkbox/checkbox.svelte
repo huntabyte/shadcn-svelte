@@ -20,12 +20,10 @@
 		let:isChecked
 		let:isIndeterminate
 	>
-		{#if isChecked}
-			<Check class="h-4 w-4" />
-		{:else if isIndeterminate}
+		{#if isIndeterminate}
 			<Minus class="h-4 w-4" />
 		{:else}
-			<Check class="h-4 w-4 text-transparent" />
+			<Check class={cn("h-4 w-4", !isChecked && "text-transparent")} />
 		{/if}
 	</CheckboxPrimitive.Indicator>
 </CheckboxPrimitive.Root>
