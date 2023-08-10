@@ -15,6 +15,7 @@
 	import type { Payment } from "./data";
 	import { get, readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
+	import * as Card from "@/registry/new-york/ui/card";
 	import DeleteAction from "./delete-action.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { CaretSort, ChevronDown, DotsHorizontal } from "radix-icons-svelte";
@@ -121,105 +122,121 @@
 	const { selectedDataIds, allRowsSelected } = pluginStates.select;
 </script>
 
-<div class="w-full">
-	<div class="flex items-center py-4">
-		<Input
-			class="max-w-sm"
-			placeholder="Filter emails..."
-			type="text"
-			bind:value={$filterValue}
-		/>
-		<DropdownMenu.Root>
-			<DropdownMenu.Trigger asChild let:trigger>
-				<Button variant="outline" class="ml-auto" builders={[trigger]}>
-					Columns <ChevronDown class="ml-2 h-4 w-4" />
-				</Button>
-			</DropdownMenu.Trigger>
-			<DropdownMenu.Content>
-				{#each ids as id}
-					<DropdownMenu.CheckboxItem bind:checked={hideForId[id]}>
-						{id}
-					</DropdownMenu.CheckboxItem>
-				{/each}
-			</DropdownMenu.Content>
-		</DropdownMenu.Root>
-	</div>
-	<div class="rounded-md border">
-		<Table.Root {...$tableAttrs}>
-			<Table.Header>
-				{#each $headerRows as headerRow (headerRow.id)}
-					<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
-							{#each headerRow.cells as cell (cell.id)}
-								<Subscribe
-									attrs={cell.attrs()}
-									let:attrs
-									props={cell.props()}
-									let:props
-								>
-									<Table.Head
-										{...attrs}
-										class={cn(
-											!props.sort.disabled && "pl-1"
-										)}
+<Card.Root>
+	<Card.Header>
+		<Card.Title>Payments</Card.Title>
+		<Card.Description>Manage your payments.</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<div class="mb-4 flex items-center gap-4">
+			<Input
+				class="max-w-sm"
+				placeholder="Filter emails..."
+				type="text"
+				bind:value={$filterValue}
+			/>
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger asChild let:trigger>
+					<Button
+						variant="outline"
+						class="ml-auto"
+						builders={[trigger]}
+					>
+						Columns <ChevronDown class="ml-2 h-4 w-4" />
+					</Button>
+				</DropdownMenu.Trigger>
+				<DropdownMenu.Content>
+					{#each ids as id}
+						<DropdownMenu.CheckboxItem bind:checked={hideForId[id]}>
+							{id}
+						</DropdownMenu.CheckboxItem>
+					{/each}
+				</DropdownMenu.Content>
+			</DropdownMenu.Root>
+		</div>
+		<div class="rounded-md border">
+			<Table.Root {...$tableAttrs}>
+				<Table.Header>
+					{#each $headerRows as headerRow (headerRow.id)}
+						<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
+							<Table.Row>
+								{#each headerRow.cells as cell (cell.id)}
+									<Subscribe
+										attrs={cell.attrs()}
+										let:attrs
+										props={cell.props()}
+										let:props
 									>
-										{#if props.sort.disabled}
-											<Render of={cell.render()} />
-										{:else}
-											<Button
-												variant="ghost"
-												on:click={props.sort.toggle}
-											>
+										<Table.Head
+											{...attrs}
+											class={cn(
+												"[&:has([role=checkbox])]:pl-3"
+											)}
+										>
+											{#if props.sort.disabled}
 												<Render of={cell.render()} />
-												<CaretSort
-													class={cn(
-														$sortKeys[0]?.id ===
-															cell.id &&
-															"text-foreground",
-														"ml-2 h-4 w-4"
-													)}
-												/>
-											</Button>
-										{/if}
-									</Table.Head>
-								</Subscribe>
-							{/each}
-						</Table.Row>
-					</Subscribe>
-				{/each}
-			</Table.Header>
-			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row (row.id)}
-					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row
-							{...rowAttrs}
-							data-state={$selectedDataIds[row.id] && "selected"}
-						>
-							{#each row.cells as cell (cell.id)}
-								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs}>
-										<Render of={cell.render()} />
-									</Table.Cell>
-								</Subscribe>
-							{/each}
-						</Table.Row>
-					</Subscribe>
-				{/each}
-			</Table.Body>
-		</Table.Root>
-	</div>
-	<div class="flex items-center justify-end space-x-2 py-4">
-		<Button
-			variant="outline"
-			size="sm"
-			on:click={() => ($pageIndex = $pageIndex - 1)}
-			disabled={!$hasPreviousPage}>Previous</Button
-		>
-		<Button
-			variant="outline"
-			size="sm"
-			disabled={!$hasNextPage}
-			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
-		>
-	</div>
-</div>
+											{:else}
+												<Button
+													variant="ghost"
+													on:click={props.sort.toggle}
+												>
+													<Render
+														of={cell.render()}
+													/>
+													<CaretSort
+														class={cn(
+															$sortKeys[0]?.id ===
+																cell.id &&
+																"text-foreground",
+															"ml-2 h-4 w-4"
+														)}
+													/>
+												</Button>
+											{/if}
+										</Table.Head>
+									</Subscribe>
+								{/each}
+							</Table.Row>
+						</Subscribe>
+					{/each}
+				</Table.Header>
+				<Table.Body {...$tableBodyAttrs}>
+					{#each $pageRows as row (row.id)}
+						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+							<Table.Row
+								{...rowAttrs}
+								data-state={$selectedDataIds[row.id] &&
+									"selected"}
+							>
+								{#each row.cells as cell (cell.id)}
+									<Subscribe attrs={cell.attrs()} let:attrs>
+										<Table.Cell
+											class="[&:has([role=checkbox])]:pl-3"
+											{...attrs}
+										>
+											<Render of={cell.render()} />
+										</Table.Cell>
+									</Subscribe>
+								{/each}
+							</Table.Row>
+						</Subscribe>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
+		<div class="flex items-center justify-end space-x-2 py-4">
+			<Button
+				variant="outline"
+				size="sm"
+				on:click={() => ($pageIndex = $pageIndex - 1)}
+				disabled={!$hasPreviousPage}>Previous</Button
+			>
+			<Button
+				variant="outline"
+				size="sm"
+				disabled={!$hasNextPage}
+				on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+			>
+		</div>
+	</Card.Content>
+</Card.Root>

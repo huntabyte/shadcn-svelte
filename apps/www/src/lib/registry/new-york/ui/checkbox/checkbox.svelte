@@ -24,6 +24,8 @@
 			<Check class="h-4 w-4" />
 		{:else if isIndeterminate}
 			<Minus class="h-4 w-4" />
+		{:else}
+			<Check class="h-4 w-4 text-transparent" />
 		{/if}
 	</CheckboxPrimitive.Indicator>
 </CheckboxPrimitive.Root>
