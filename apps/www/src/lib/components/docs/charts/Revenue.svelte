@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { VisXYContainer, VisLine } from "@unovis/svelte";
+	import { color } from "./helpers";
 
 	const data = [
 		{
@@ -40,5 +41,5 @@
 </script>
 
 <VisXYContainer {data} height="80">
-	<VisLine {x} {y} />
+	<VisLine {x} {y} color={color()} />
 </VisXYContainer>

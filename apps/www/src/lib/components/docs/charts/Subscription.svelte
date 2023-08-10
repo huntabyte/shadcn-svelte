@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
+	import { color } from "./helpers";
 
 	const data = [
 		{
@@ -40,5 +41,5 @@
 </script>
 
 <VisXYContainer {data} height={80}>
-	<VisGroupedBar {x} {y} roundedCorners={4} />
+	<VisGroupedBar {x} {y} roundedCorners={4} color={color()} />
 </VisXYContainer>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Minus, Plus } from "radix-icons-svelte";
+	import * as Card from "@/registry/default/ui/card";
+	import { Button } from "@/registry/default/ui/button";
+	import { Minus, Plus } from "lucide-svelte";
 	import Activity from "$components/docs/charts/Activity.svelte";
 
 	let goal = 350;
@@ -12,7 +12,7 @@
 
 <Card.Root>
 	<Card.Header class="pb-4">
-		<Card.Title>Move Goal</Card.Title>
+		<Card.Title class="text-base">Move Goal</Card.Title>
 		<Card.Description>Set your daily activity goal.</Card.Description>
 	</Card.Header>
 	<Card.Content class="pb-2">
