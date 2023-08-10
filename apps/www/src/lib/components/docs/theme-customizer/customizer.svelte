@@ -7,7 +7,10 @@
 	import Label from "@/registry/default/ui/label/label.svelte";
 	import { cn } from "@/utils";
 	import { themes } from "@/registry";
-	import { modeCurrent } from "$lib/components/docs/light-switch/light-switch";
+	import {
+		modeCurrent,
+		setModeCurrent
+	} from "$lib/components/docs/light-switch/light-switch";
 </script>
 
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
@@ -165,7 +168,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => modeCurrent.set(true)}
+					on:click={() => setModeCurrent(true)}
 					class={cn($modeCurrent && "border-2 border-primary")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
@@ -174,7 +177,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => modeCurrent.set(false)}
+					on:click={() => setModeCurrent(false)}
 					class={cn(!$modeCurrent && "border-2 border-primary")}
 				>
 					<Moon class="mr-1 -translate-x-1" />
