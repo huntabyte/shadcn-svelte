@@ -2,7 +2,7 @@
 	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
 }
 
-[data-theme="light"] {
+[data-theme="default"] {
 	display: flex;
 }
 
@@ -11,28 +11,17 @@
 }
 
 [data-style="default"] [data-style="default"] {
-	display: block;
+	display: flex;
+	flex-direction: column;
 }
 
 [data-style="new-york"] [data-style="new-york"] {
-	display: block;
+	display: flex;
+	flex-direction: column;
 }
 
 [data-style="default"] [data-style="new-york"] {
 	display: none;
-}
-
-[data-theme="dark"] {
-	display: none;
-}
-
-.dark [data-theme="light"] {
-	display: none;
-}
-
-.dark [data-theme="dark"] {
-	display: flex;
-	flex-direction: column;
 }
 
 [data-rehype-pretty-code-fragment] {

@@ -62,23 +62,12 @@ export const mdsvexOptions = {
 		[
 			rehypePrettyCode,
 			{
-				theme: {
-					dark: JSON.parse(
-						fs.readFileSync(
-							path.resolve(__dirname, "./other/themes/dark.json"),
-							"utf-8"
-						)
-					),
-					light: JSON.parse(
-						fs.readFileSync(
-							path.resolve(
-								__dirname,
-								"./other/themes/light.json"
-							),
-							"utf-8"
-						)
+				theme: JSON.parse(
+					fs.readFileSync(
+						path.resolve(__dirname, "./other/themes/dark.json"),
+						"utf-8"
 					)
-				},
+				),
 				onVisitLine(node) {
 					if (node.children.length === 0) {
 						node.children = { type: "text", value: " " };
