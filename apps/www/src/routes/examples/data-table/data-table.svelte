@@ -38,9 +38,9 @@
 	const columns = table.createColumns([
 		table.column({
 			header: (_, { pluginStates }) => {
-				const { allRowsSelected } = pluginStates.select;
+				const { allPageRowsSelected } = pluginStates.select;
 				return createRender(DataTableCheckbox, {
-					checked: allRowsSelected
+					checked: allPageRowsSelected
 				});
 			},
 			accessor: "id",
@@ -111,11 +111,6 @@
 		visibleColumns
 	} = table.createViewModel(columns);
 
-	$: console.log("headerRows", $headerRows);
-	$: console.log("flatColumns", flatColumns);
-	$: console.log("visibleColumns", $visibleColumns);
-	$: console.log("page", $pageRows);
-
 	const { sortKeys } = pluginStates.sort;
 
 	const { hiddenColumnIds } = pluginStates.hide;
@@ -132,7 +127,6 @@
 	const { selectedDataIds } = pluginStates.select;
 
 	const hideableCols = ["status", "email", "amount"];
-	$: console.log(flatColumns);
 </script>
 
 <div class="w-full">
@@ -230,6 +224,10 @@
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-2 py-4">
+		<div class="flex-1 text-sm text-muted-foreground">
+			{Object.keys($selectedDataIds).length} of{" "}
+			{$rows.length} row(s) selected.
+		</div>
 		<Button
 			variant="outline"
 			size="sm"
