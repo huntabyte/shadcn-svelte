@@ -43,12 +43,14 @@
 					checked: allRowsSelected
 				});
 			},
-			accessor: ({ id }) => id,
+			accessor: "id",
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
 
-				return createRender(DataTableCheckbox, { checked: isSelected });
+				return createRender(DataTableCheckbox, {
+					checked: isSelected
+				});
 			},
 			plugins: {
 				sort: {
@@ -73,7 +75,7 @@
 					style: "currency",
 					currency: "USD"
 				}).format(value);
-				return `${formatted}`;
+				return formatted;
 			},
 			plugins: {
 				filter: {
@@ -116,23 +118,20 @@
 	const { sortKeys } = pluginStates.sort;
 
 	const { hiddenColumnIds } = pluginStates.hide;
-	const ids = flatColumns.map((c) => {
-		return c.id;
-	});
-	let hideForId = Object.fromEntries(ids.map((id) => [id, false]));
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => hide)
-		.map(([id]) => id);
+	const ids = flatColumns.map((c) => c.id);
+	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
 
-	$: isVisible = (id: string) => !$hiddenColumnIds.includes(id);
+	$: $hiddenColumnIds = Object.entries(hideForId)
+		.filter(([, hide]) => !hide)
+		.map(([id]) => id);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 
 	const { selectedDataIds, allRowsSelected } = pluginStates.select;
 
-	const hideableCols = ["Status", "Email", "Amount"];
-	$: console.log(ids);
+	const hideableCols = ["status", "email", "amount"];
+	$: console.log(flatColumns);
 </script>
 
 <div class="w-full">
@@ -151,9 +150,10 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
 				{#each flatColumns as col}
-					{@const isHidable = col.accessorKey !== undefined}
-					{#if isHidable}
-						<DropdownMenu.CheckboxItem>
+					{#if hideableCols.includes(col.id)}
+						<DropdownMenu.CheckboxItem
+							bind:checked={hideForId[col.id]}
+						>
 							{col.header}
 						</DropdownMenu.CheckboxItem>
 					{/if}
@@ -164,7 +164,7 @@
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
-				{#each $headerRows as headerRow (headerRow.id)}
+				{#each $headerRows as headerRow}
 					<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
