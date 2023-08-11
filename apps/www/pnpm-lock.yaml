@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  mdsvex@0.10.6:
-    hash: 5fktxa7rcgmqj2wc4xhmk3osl4
-    path: ./patches/mdsvex@0.10.6.patch
-
 importers:
 
   .:
@@ -19,9 +14,6 @@ importers:
       '@melt-ui/svelte':
         specifier: ^0.34.3
         version: 0.34.3(svelte@4.1.2)
-      '@tanstack/svelte-table':
-        specifier: ^8.9.4
-        version: 8.9.4(svelte@4.1.2)
       '@unovis/svelte':
         specifier: ^1.2.0
         version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.1.2)
@@ -124,7 +116,7 @@ importers:
         version: 4.5.0
       mdsvex:
         specifier: 0.10.6
-        version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.1.2)
+        version: 0.10.6(svelte@4.1.2)
       postcss:
         specifier: ^8.4.27
         version: 8.4.27
@@ -1094,21 +1086,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@tanstack/svelte-table@8.9.4(svelte@4.1.2):
-    resolution: {integrity: sha512-Qz8rRnsCGAg5PQlxzU/ikgZ81gaLeqFlRXVEmKgr3H59Rbs1nZ1JQP27BQMJ+Oi0y4Br7q5P6IfThenwf6qc6g==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      svelte: ^3.49.0
-    dependencies:
-      '@tanstack/table-core': 8.9.3
-      svelte: 4.1.2
-    dev: false
-
-  /@tanstack/table-core@8.9.3:
-    resolution: {integrity: sha512-NpHZBoHTfqyJk0m/s/+CSuAiwtebhYK90mDuf5eylTvgViNOujiaOaxNDxJkQQAsVvHWZftUGAx1EfO1rkKtLg==}
-    engines: {node: '>=12'}
-    dev: false
 
   /@types/chai-subset@1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
@@ -3554,7 +3531,7 @@ packages:
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
-  /mdsvex@0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.1.2):
+  /mdsvex@0.10.6(svelte@4.1.2):
     resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
     peerDependencies:
       svelte: 3.x
@@ -3565,7 +3542,6 @@ packages:
       svelte: 4.1.2
       vfile-message: 2.0.4
     dev: true
-    patched: true
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
