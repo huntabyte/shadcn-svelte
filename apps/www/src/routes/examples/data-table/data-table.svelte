@@ -64,7 +64,7 @@
 		table.column({
 			header: "Status",
 			accessor: "status",
-			plugins: { sort: { disable: true } }
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({ header: "Email", accessor: "email" }),
 		table.column({
@@ -78,11 +78,11 @@
 				return formatted;
 			},
 			plugins: {
-				filter: {
-					exclude: true
-				},
 				sort: {
 					disable: true
+				},
+				filter: {
+					exclude: true
 				}
 			}
 		}),
@@ -95,9 +95,6 @@
 			plugins: {
 				sort: {
 					disable: true
-				},
-				filter: {
-					exclude: true
 				}
 			}
 		})
@@ -109,11 +106,15 @@
 		tableAttrs,
 		tableBodyAttrs,
 		flatColumns,
-		pluginStates
+		pluginStates,
+		rows,
+		visibleColumns
 	} = table.createViewModel(columns);
 
-	$: console.log("headerRows", headerRows);
+	$: console.log("headerRows", $headerRows);
 	$: console.log("flatColumns", flatColumns);
+	$: console.log("visibleColumns", $visibleColumns);
+	$: console.log("page", $pageRows);
 
 	const { sortKeys } = pluginStates.sort;
 
@@ -128,7 +129,7 @@
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 
-	const { selectedDataIds, allRowsSelected } = pluginStates.select;
+	const { selectedDataIds } = pluginStates.select;
 
 	const hideableCols = ["status", "email", "amount"];
 	$: console.log(flatColumns);
