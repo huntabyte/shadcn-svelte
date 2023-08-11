@@ -12,10 +12,9 @@
 		addSelectedRows,
 		addHiddenColumns
 	} from "svelte-headless-table/plugins";
-	import type { Payment } from "./data";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
-	import DeleteAction from "./delete-action.svelte";
+	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { CaretSort, ChevronDown, DotsHorizontal } from "radix-icons-svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
@@ -23,7 +22,45 @@
 	import { Input } from "@/registry/new-york/ui/input";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
 
-	export let data: Payment[];
+	type Payment = {
+		id: string;
+		amount: number;
+		status: "Pending" | "Processing" | "Success" | "Failed";
+		email: string;
+	};
+
+	const data: Payment[] = [
+		{
+			id: "m5gr84i9",
+			amount: 316,
+			status: "Success",
+			email: "ken99@yahoo.com"
+		},
+		{
+			id: "3u1reuv4",
+			amount: 242,
+			status: "Success",
+			email: "Abe45@gmail.com"
+		},
+		{
+			id: "derv1ws0",
+			amount: 837,
+			status: "Processing",
+			email: "Monserrat44@gmail.com"
+		},
+		{
+			id: "5kma53ae",
+			amount: 874,
+			status: "Success",
+			email: "Silas22@gmail.com"
+		},
+		{
+			id: "bhqecj4p",
+			amount: 721,
+			status: "Failed",
+			email: "carmella@hotmail.com"
+		}
+	];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -90,7 +127,7 @@
 			header: "Actions",
 			accessor: ({ id }) => id,
 			cell: (item) => {
-				return createRender(DeleteAction, { id: item.value });
+				return createRender(Actions, { id: item.value });
 			},
 			plugins: {
 				sort: {

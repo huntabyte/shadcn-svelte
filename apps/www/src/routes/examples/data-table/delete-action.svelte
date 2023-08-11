@@ -4,7 +4,7 @@
 	import { cn } from "$lib/utils";
 	import { Trash2 } from "lucide-svelte";
 
-	export let id: number;
+	export let id: string;
 </script>
 
 <AlertDialog.Root>
