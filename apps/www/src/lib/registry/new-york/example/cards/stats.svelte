@@ -7,7 +7,7 @@
 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
 	<Card.Root>
 		<Card.Header
-			class="flex flex-row items-center justify-between space-y-0"
+			class="flex flex-row items-center justify-between space-y-0 pb-2"
 		>
 			<Card.Title class="text-sm font-normal">Total Revenue</Card.Title>
 		</Card.Header>
