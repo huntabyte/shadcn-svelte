@@ -1,8 +1,8 @@
 import { readdir, readFile } from "node:fs/promises";
 import { resolve, join } from "node:path";
 import { parse, preprocess, walk } from "svelte/compiler";
-import config from "../svelte.config.js";
-import type { Registry } from "@/registry/schema";
+import config from "../svelte.config";
+import type { Registry } from "@/registry";
 
 const DEPENDENCIES = ["@huntabyte/primitives"];
 const REGISTRY_DEPENDENCY = "@/";
