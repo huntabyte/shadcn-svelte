@@ -3,11 +3,8 @@
   "dependencies": [
     "@huntabyte/primitives"
   ],
+  "registryDependencies": [],
   "files": [
-    {
-      "name": "avatar.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let delayMs: $$Props[\"delayMs\"] = undefined;\n</script>\n\n<AvatarPrimitive.Root\n\t{delayMs}\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Root>\n"
-    },
     {
       "name": "avatar-fallback.svelte",
       "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.FallbackProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
@@ -15,6 +12,10 @@
     {
       "name": "avatar-image.svelte",
       "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.ImageProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let src: $$Props[\"src\"] = undefined;\n\texport let alt: $$Props[\"alt\"] = undefined;\n</script>\n\n<AvatarPrimitive.Image\n\t{src}\n\t{alt}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "avatar.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let delayMs: $$Props[\"delayMs\"] = undefined;\n</script>\n\n<AvatarPrimitive.Root\n\t{delayMs}\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Root>\n"
     },
     {
       "name": "index.ts",
