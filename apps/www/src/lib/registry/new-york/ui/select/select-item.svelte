@@ -4,11 +4,13 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = SelectPrimitive.ItemProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = SelectPrimitive.ItemEvents;
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
 	export let label: $$Props["label"] = undefined;
 	export let disabled: $$Props["disabled"] = undefined;
+	export { className as class };
 </script>
 
 <SelectPrimitive.Item
@@ -20,6 +22,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<SelectPrimitive.ItemIndicator>

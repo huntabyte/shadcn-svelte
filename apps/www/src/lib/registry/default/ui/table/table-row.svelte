@@ -5,7 +5,8 @@
 	type $$Props = HTMLAttributes<HTMLTableRowElement> & {
 		"data-state"?: any;
 	};
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 

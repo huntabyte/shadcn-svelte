@@ -3,10 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AvatarPrimitive.ImageProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let className: $$Props["class"] = undefined;
 	export let src: $$Props["src"] = undefined;
 	export let alt: $$Props["alt"] = undefined;
+	export { className as class };
 </script>
 
 <AvatarPrimitive.Image

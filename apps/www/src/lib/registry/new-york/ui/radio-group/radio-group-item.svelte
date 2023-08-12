@@ -3,10 +3,14 @@
 	import { Check } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
-	type $$Props = RadioGroupPrimitive.ItemProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Props = RadioGroupPrimitive.ItemProps & {
+		value: string;
+	};
+	type $$Events = RadioGroupPrimitive.ItemEvents;
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
+	export { className as class };
 </script>
 
 <RadioGroupPrimitive.Item
@@ -16,6 +20,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<div class="flex items-center justify-center">
 		<RadioGroupPrimitive.ItemIndicator>

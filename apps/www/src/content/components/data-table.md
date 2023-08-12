@@ -1,6 +1,6 @@
 ---
 title: Data Table
-description: Powerful table and datagrids built using TanStack Table.
+description: Powerful table and datagrids built using Svelte Headless Table.
 component: true
 ---
 

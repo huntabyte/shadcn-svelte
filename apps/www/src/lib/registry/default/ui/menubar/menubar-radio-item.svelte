@@ -4,10 +4,11 @@
 	import { Circle } from "lucide-svelte";
 
 	type $$Props = MenubarPrimitive.RadioItemProps;
+	type $$Events = MenubarPrimitive.RadioItemEvents;
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
+	export { className as class };
 </script>
 
 <MenubarPrimitive.RadioItem
@@ -17,6 +18,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<MenubarPrimitive.RadioItemIndicator>

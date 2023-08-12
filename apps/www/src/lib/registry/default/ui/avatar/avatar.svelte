@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AvatarPrimitive.Props;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let delayMs: $$Props["delayMs"] = undefined;
+	export { className as class };
 </script>
 
 <AvatarPrimitive.Root

@@ -4,7 +4,8 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.CancelProps;
-	let className: string | undefined | null = undefined;
+	type $$Events = AlertDialogPrimitive.CancelEvents;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
@@ -15,6 +16,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </AlertDialogPrimitive.Cancel>

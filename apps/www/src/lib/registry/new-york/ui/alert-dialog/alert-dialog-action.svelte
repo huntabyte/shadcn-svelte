@@ -4,13 +4,15 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.ActionProps;
-	let className: string | undefined | null = undefined;
+	type $$Events = AlertDialogPrimitive.ActionEvents;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
 <AlertDialogPrimitive.Action
 	class={cn(buttonVariants(), className)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </AlertDialogPrimitive.Action>

@@ -2,10 +2,10 @@
 	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-
 	type $$Props = MenubarPrimitive.Props;
+
+	let className: $$Props["class"] = undefined;
+	export { className as class };
 </script>
 
 <MenubarPrimitive.Root

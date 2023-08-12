@@ -4,7 +4,7 @@
 	import { Check } from "radix-icons-svelte";
 
 	type $$Props = MenubarPrimitive.CheckboxItemProps;
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 	export let checked: $$Props["checked"] = undefined;
 </script>

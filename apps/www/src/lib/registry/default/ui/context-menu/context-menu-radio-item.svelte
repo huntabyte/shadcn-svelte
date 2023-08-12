@@ -4,9 +4,11 @@
 	import { Circle } from "lucide-svelte";
 
 	type $$Props = ContextMenuPrimitive.RadioItemProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = ContextMenuPrimitive.RadioItemEvents;
+
+	let className: $$Props["class"] = undefined;
 	export let value: ContextMenuPrimitive.RadioItemProps["value"];
+	export { className as class };
 </script>
 
 <ContextMenuPrimitive.RadioItem
@@ -16,6 +18,7 @@
 	)}
 	{value}
 	{...$$restProps}
+	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<ContextMenuPrimitive.RadioItemIndicator>

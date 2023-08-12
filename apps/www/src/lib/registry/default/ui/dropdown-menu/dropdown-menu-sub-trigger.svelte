@@ -6,9 +6,11 @@
 	type $$Props = DropdownMenuPrimitive.SubTriggerProps & {
 		inset?: boolean;
 	};
-	let className: string | undefined | null = undefined;
+	type $$Events = DropdownMenuPrimitive.SubTriggerEvents;
+
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
 	export { className as class };
-	export let inset: boolean | undefined = undefined;
 </script>
 
 <DropdownMenuPrimitive.SubTrigger
@@ -18,6 +20,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 	<ChevronRight class="ml-auto h-4 w-4" />

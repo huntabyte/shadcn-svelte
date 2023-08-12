@@ -3,7 +3,8 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = HTMLTextareaAttributes;
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;
 	export { className as class };
 </script>

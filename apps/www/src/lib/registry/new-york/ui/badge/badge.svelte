@@ -4,7 +4,7 @@
 
 	export let href: string | undefined = undefined;
 	export let variant: Variant = "default";
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 

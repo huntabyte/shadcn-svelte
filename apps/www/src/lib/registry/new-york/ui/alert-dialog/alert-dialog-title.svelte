@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.TitleProps;
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
+	export let level: $$Props["level"] = "h3";
 	export { className as class };
-	export let level: AlertDialogPrimitive.TitleProps["level"] = "h3";
 </script>
 
 <AlertDialogPrimitive.Title

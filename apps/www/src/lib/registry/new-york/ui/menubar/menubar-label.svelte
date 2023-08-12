@@ -2,10 +2,12 @@
 	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
 	import { cn } from "$lib/utils";
 
-	type $$Props = MenubarPrimitive.LabelProps;
-	let className: string | undefined | null = undefined;
+	type $$Props = MenubarPrimitive.LabelProps & {
+		inset?: boolean;
+	};
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
 	export { className as class };
-	export let inset: boolean | undefined = undefined;
 </script>
 
 <MenubarPrimitive.Label

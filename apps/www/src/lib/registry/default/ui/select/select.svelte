@@ -2,6 +2,7 @@
 	import { Select as SelectPrimitive } from "@huntabyte/primitives";
 
 	type $$Props = SelectPrimitive.Props;
+
 	export let value: $$Props["value"] = undefined;
 	export let open: $$Props["open"] = undefined;
 </script>

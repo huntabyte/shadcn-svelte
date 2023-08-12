@@ -7,9 +7,10 @@
 	type $$Props = SheetPrimitive.ContentProps & {
 		side?: Side;
 	};
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let side: $$Props["side"] = "right";
+	export { className as class };
 </script>
 
 <SheetPortal>

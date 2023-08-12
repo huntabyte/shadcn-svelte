@@ -6,9 +6,10 @@
 	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
 		level?: HeadingLevel;
 	};
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let level: $$Props["level"] = "h5";
+	export { className as class };
 </script>
 
 <svelte:element

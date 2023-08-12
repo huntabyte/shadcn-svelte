@@ -5,7 +5,7 @@
 
 	type $$Props = AlertDialogPrimitive.ContentProps;
 
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 

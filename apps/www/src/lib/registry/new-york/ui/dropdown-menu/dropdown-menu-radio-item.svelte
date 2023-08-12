@@ -4,9 +4,11 @@
 	import { DotFilled } from "radix-icons-svelte";
 
 	type $$Props = DropdownMenuPrimitive.RadioItemProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = DropdownMenuPrimitive.RadioItemEvents;
+
+	let className: $$Props["class"] = undefined;
 	export let value: DropdownMenuPrimitive.RadioItemProps["value"];
+	export { className as class };
 </script>
 
 <DropdownMenuPrimitive.RadioItem
@@ -16,6 +18,7 @@
 	)}
 	{value}
 	{...$$restProps}
+	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<DropdownMenuPrimitive.RadioItemIndicator>

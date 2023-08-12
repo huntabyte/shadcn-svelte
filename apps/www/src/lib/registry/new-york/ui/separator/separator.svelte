@@ -3,10 +3,11 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = SeparatorPrimitive.Props;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let orientation: $$Props["orientation"] = "horizontal";
 	export let decorative: $$Props["decorative"] = undefined;
+	export { className as class };
 </script>
 
 <SeparatorPrimitive.Root

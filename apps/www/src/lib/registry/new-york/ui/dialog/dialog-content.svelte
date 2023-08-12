@@ -5,7 +5,7 @@
 	import { Cross2 } from "radix-icons-svelte";
 
 	type $$Props = DialogPrimitive.ContentProps;
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 

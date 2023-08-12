@@ -6,9 +6,10 @@
 	type $$Props = AccordionPrimitive.TriggerProps & {
 		level?: AccordionPrimitive.HeaderProps["level"];
 	};
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = AccordionPrimitive.TriggerEvents;
+	let className: $$Props["class"] = undefined;
 	export let level: AccordionPrimitive.HeaderProps["level"] = 3;
+	export { className as class };
 </script>
 
 <AccordionPrimitive.Header {level} class="flex">
@@ -18,6 +19,7 @@
 			className
 		)}
 		{...$$restProps}
+		on:m-click
 	>
 		<slot />
 		<ChevronDown

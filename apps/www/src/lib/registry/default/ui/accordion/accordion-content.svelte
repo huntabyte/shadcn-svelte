@@ -4,17 +4,19 @@
 	import { slide } from "svelte/transition";
 
 	type $$Props = AccordionPrimitive.ContentProps;
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
+	export let transition: $$Props["transition"] = slide;
+	export let transitionConfig: $$Props["transitionConfig"] = {
+		duration: 200
+	};
 	export { className as class };
 </script>
 
 <AccordionPrimitive.Content
-	class={cn(
-		"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
-		className
-	)}
-	transition={slide}
-	transitionConfig={{ duration: 200 }}
+	class={cn("overflow-hidden text-sm transition-all", className)}
+	{transition}
+	{transitionConfig}
 	{...$$restProps}
 >
 	<div class="pb-4 pt-0">

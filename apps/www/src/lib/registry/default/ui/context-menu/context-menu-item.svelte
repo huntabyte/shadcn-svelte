@@ -5,9 +5,11 @@
 	type $$Props = ContextMenuPrimitive.ItemProps & {
 		inset?: boolean;
 	};
-	let className: string | undefined | null = undefined;
+	type $$Events = ContextMenuPrimitive.ItemEvents;
+
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
 	export { className as class };
-	export let inset: boolean | undefined = undefined;
 </script>
 
 <ContextMenuPrimitive.Item
@@ -17,6 +19,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </ContextMenuPrimitive.Item>

@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = MenubarPrimitive.ContentProps;
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
+	export let sideOffset: $$Props["sideOffset"] = 4;
 	export { className as class };
-	export let sideOffset = 4;
 </script>
 
 <MenubarPrimitive.Content

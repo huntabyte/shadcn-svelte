@@ -6,9 +6,9 @@
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
 		variant?: Variant;
 	};
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let className: $$Props["class"] = undefined;
 	export let variant: $$Props["variant"] = "default";
+	export { className as class };
 </script>
 
 <div

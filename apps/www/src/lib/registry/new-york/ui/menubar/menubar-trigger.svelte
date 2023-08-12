@@ -3,7 +3,9 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = MenubarPrimitive.TriggerProps;
-	let className: string | undefined | null = undefined;
+	type $$Events = MenubarPrimitive.TriggerEvents;
+
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
@@ -13,6 +15,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </MenubarPrimitive.Trigger>

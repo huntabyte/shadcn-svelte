@@ -3,11 +3,14 @@
 	import { cn } from "$lib/utils";
 	import { ChevronRight } from "lucide-svelte";
 
-	type $$Props = MenubarPrimitive.SubTriggerProps;
+	type $$Props = MenubarPrimitive.SubTriggerProps & {
+		inset?: boolean;
+	};
+	type $$Events = MenubarPrimitive.SubTriggerEvents;
 
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
 	export { className as class };
-	export let inset: boolean | undefined = undefined;
 </script>
 
 <MenubarPrimitive.SubTrigger
@@ -17,6 +20,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 	<ChevronRight class="ml-auto h-4 w-4" />

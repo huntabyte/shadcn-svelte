@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = SwitchPrimitive.Props;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let checked: $$Props["checked"] = undefined;
+	export { className as class };
 </script>
 
 <SwitchPrimitive.Root

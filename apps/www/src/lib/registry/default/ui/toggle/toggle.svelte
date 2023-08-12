@@ -7,17 +7,20 @@
 		variant?: Variant;
 		size?: Size;
 	};
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = TogglePrimitive.Events;
+
+	let className: $$Props["class"] = undefined;
 	export let variant: $$Props["variant"] = "default";
 	export let size: $$Props["size"] = "default";
 	export let pressed: $$Props["pressed"] = undefined;
+	export { className as class };
 </script>
 
 <TogglePrimitive.Root
 	bind:pressed
 	class={cn(toggleVariants({ variant, size, className }))}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </TogglePrimitive.Root>

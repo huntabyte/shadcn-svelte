@@ -3,9 +3,11 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = TabsPrimitive.TriggerProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = TabsPrimitive.TriggerEvents;
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
+	export { className as class };
 </script>
 
 <TabsPrimitive.Trigger
@@ -15,6 +17,7 @@
 	)}
 	{value}
 	{...$$restProps}
+	on:m-click
 >
 	<slot />
 </TabsPrimitive.Trigger>

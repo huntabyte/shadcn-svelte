@@ -3,7 +3,8 @@
 	import type { HTMLTableAttributes } from "svelte/elements";
 
 	type $$Props = HTMLTableAttributes;
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 

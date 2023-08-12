@@ -5,9 +5,10 @@
 	type $$Props = ContextMenuPrimitive.LabelProps & {
 		inset?: boolean;
 	};
-	let className: string | undefined | null = undefined;
+
+	let className: $$Props["class"] = undefined;
+	export let inset: $$Props["inset"] = undefined;
 	export { className as class };
-	export let inset: boolean | undefined = undefined;
 </script>
 
 <ContextMenuPrimitive.Label

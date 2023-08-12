@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = HTMLInputAttributes;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;
+	export { className as class };
 </script>
 
 <input

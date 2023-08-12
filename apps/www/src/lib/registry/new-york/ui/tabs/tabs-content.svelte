@@ -3,9 +3,10 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = TabsPrimitive.ContentProps;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+
+	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
+	export { className as class };
 </script>
 
 <TabsPrimitive.Content

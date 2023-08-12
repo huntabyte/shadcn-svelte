@@ -4,9 +4,11 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = CheckboxPrimitive.Props;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Events = CheckboxPrimitive.Events;
+
+	let className: $$Props["class"] = undefined;
 	export let checked: $$Props["checked"] = false;
+	export { className as class };
 </script>
 
 <CheckboxPrimitive.Root
@@ -15,6 +17,7 @@
 		className
 	)}
 	bind:checked
+	on:m-click
 	{...$$restProps}
 >
 	<CheckboxPrimitive.Indicator

@@ -4,9 +4,11 @@
 	import { Circle } from "lucide-svelte";
 
 	type $$Props = DropdownMenuPrimitive.RadioItemProps;
-	let className: string | undefined | null = undefined;
+	type $$Events = DropdownMenuPrimitive.RadioItemEvents;
+
+	let className: $$Props["class"] = undefined;
+	export let value: $$Props["value"];
 	export { className as class };
-	export let value: DropdownMenuPrimitive.RadioItemProps["value"];
 </script>
 
 <DropdownMenuPrimitive.RadioItem
@@ -16,6 +18,7 @@
 	)}
 	{value}
 	{...$$restProps}
+	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<DropdownMenuPrimitive.RadioItemIndicator>
