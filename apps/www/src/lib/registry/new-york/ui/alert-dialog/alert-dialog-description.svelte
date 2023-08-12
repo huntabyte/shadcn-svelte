@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.DescriptionProps;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>

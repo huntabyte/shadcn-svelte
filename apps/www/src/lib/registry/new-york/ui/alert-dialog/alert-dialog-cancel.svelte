@@ -5,6 +5,7 @@
 
 	type $$Props = AlertDialogPrimitive.CancelProps;
 	type $$Events = AlertDialogPrimitive.CancelEvents;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>

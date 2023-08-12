@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AccordionPrimitive.ItemProps;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 	export let value: $$Props["value"];

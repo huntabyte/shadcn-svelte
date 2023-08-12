@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AvatarPrimitive.FallbackProps;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>

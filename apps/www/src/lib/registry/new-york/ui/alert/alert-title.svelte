@@ -6,6 +6,7 @@
 	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
 		level?: HeadingLevel;
 	};
+
 	let className: $$Props["class"] = undefined;
 	export let level: $$Props["level"] = "h5";
 	export { className as class };

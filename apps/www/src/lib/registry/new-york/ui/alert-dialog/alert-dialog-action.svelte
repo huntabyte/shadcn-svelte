@@ -5,6 +5,7 @@
 
 	type $$Props = AlertDialogPrimitive.ActionProps;
 	type $$Events = AlertDialogPrimitive.ActionEvents;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>

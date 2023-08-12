@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = HTMLAttributes<HTMLDivElement>;
+
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
