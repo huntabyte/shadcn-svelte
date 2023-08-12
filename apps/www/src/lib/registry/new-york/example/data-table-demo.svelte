@@ -103,7 +103,11 @@
 			accessor: "status",
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
-		table.column({ header: "Email", accessor: "email" }),
+		table.column({
+			header: "Email",
+			accessor: "email",
+			cell: ({ value }) => value.toLowerCase()
+		}),
 		table.column({
 			header: "Amount",
 			accessor: "amount",
@@ -124,7 +128,7 @@
 			}
 		}),
 		table.column({
-			header: "Actions",
+			header: "",
 			accessor: ({ id }) => id,
 			cell: (item) => {
 				return createRender(Actions, { id: item.value });
@@ -144,8 +148,7 @@
 		tableBodyAttrs,
 		flatColumns,
 		pluginStates,
-		rows,
-		visibleColumns
+		rows
 	} = table.createViewModel(columns);
 
 	const { sortKeys } = pluginStates.sort;
@@ -212,9 +215,11 @@
 											"[&:has([role=checkbox])]:pl-3"
 										)}
 									>
-										{#if props.sort.disabled}
-											<Render of={cell.render()} />
-										{:else}
+										{#if cell.id === "amount"}
+											<div class="text-right">
+												<Render of={cell.render()} />
+											</div>
+										{:else if cell.id === "email"}
 											<Button
 												variant="ghost"
 												on:click={props.sort.toggle}
@@ -229,6 +234,8 @@
 													)}
 												/>
 											</Button>
+										{:else}
+											<Render of={cell.render()} />
 										{/if}
 									</Table.Head>
 								</Subscribe>
@@ -250,7 +257,13 @@
 										class="[&:has([role=checkbox])]:pl-3"
 										{...attrs}
 									>
-										<Render of={cell.render()} />
+										{#if cell.id === "amount"}
+											<div class="text-right font-medium">
+												<Render of={cell.render()} />
+											</div>
+										{:else}
+											<Render of={cell.render()} />
+										{/if}
 									</Table.Cell>
 								</Subscribe>
 							{/each}

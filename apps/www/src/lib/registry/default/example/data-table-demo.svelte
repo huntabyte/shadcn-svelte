@@ -13,12 +13,12 @@
 		addHiddenColumns
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "@/registry/new-york/ui/table";
+	import * as Table from "@/registry/default/ui/table";
 	import Actions from "./data-table/data-table-actions.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import { Button } from "@/registry/default/ui/button";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
 	import { cn } from "$lib/utils";
-	import { Input } from "@/registry/new-york/ui/input";
+	import { Input } from "@/registry/default/ui/input";
 	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
 	import { ArrowUpDown, ChevronDown } from "lucide-svelte";
 
@@ -103,7 +103,11 @@
 			accessor: "status",
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
-		table.column({ header: "Email", accessor: "email" }),
+		table.column({
+			header: "Email",
+			accessor: "email",
+			cell: ({ value }) => value.toLowerCase()
+		}),
 		table.column({
 			header: "Amount",
 			accessor: "amount",
@@ -124,7 +128,7 @@
 			}
 		}),
 		table.column({
-			header: "Actions",
+			header: "",
 			accessor: ({ id }) => id,
 			cell: (item) => {
 				return createRender(Actions, { id: item.value });
@@ -166,7 +170,7 @@
 </script>
 
 <div class="w-full">
-	<div class="mb-4 flex items-center gap-4">
+	<div class="flex items-center py-4">
 		<Input
 			class="max-w-sm"
 			placeholder="Filter emails..."
@@ -211,9 +215,11 @@
 											"[&:has([role=checkbox])]:pl-3"
 										)}
 									>
-										{#if props.sort.disabled}
-											<Render of={cell.render()} />
-										{:else}
+										{#if cell.id === "amount"}
+											<div class="text-right font-medium">
+												<Render of={cell.render()} />
+											</div>
+										{:else if cell.id === "email"}
 											<Button
 												variant="ghost"
 												on:click={props.sort.toggle}
@@ -228,6 +234,8 @@
 													)}
 												/>
 											</Button>
+										{:else}
+											<Render of={cell.render()} />
 										{/if}
 									</Table.Head>
 								</Subscribe>
@@ -257,6 +265,8 @@
 											<div class="capitalize">
 												<Render of={cell.render()} />
 											</div>
+										{:else}
+											<Render of={cell.render()} />
 										{/if}
 									</Table.Cell>
 								</Subscribe>
