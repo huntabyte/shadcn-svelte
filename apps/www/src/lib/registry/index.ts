@@ -1,5 +1,5 @@
 export * from "./colors";
-export * from "./registry";
+export * from "../../../scripts/registry";
 export * from "./themes";
 export * from "./schema";
 export * from "./styles";
