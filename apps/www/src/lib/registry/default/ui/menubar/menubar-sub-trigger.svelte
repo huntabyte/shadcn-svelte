@@ -19,8 +19,8 @@
 		inset && "pl-8",
 		className
 	)}
-	{...$$restProps}
 	on:m-click
+	{...$$restProps}
 >
 	<slot />
 	<ChevronRight class="ml-auto h-4 w-4" />
