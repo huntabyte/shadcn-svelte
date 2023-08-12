@@ -11,11 +11,11 @@ patchedDependencies:
 
 dependencies:
   '@huntabyte/primitives':
-    specifier: ^0.0.6
-    version: 0.0.6(svelte@4.1.2)
+    specifier: ^0.0.7
+    version: 0.0.7(svelte@4.1.2)
   '@melt-ui/svelte':
-    specifier: ^0.34.3
-    version: 0.34.3(svelte@4.1.2)
+    specifier: ^0.34.5
+    version: 0.34.5(svelte@4.1.2)
   '@unovis/svelte':
     specifier: ^1.2.0
     version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.1.2)
@@ -68,7 +68,7 @@ devDependencies:
     version: 0.16.8(svelte@4.1.2)
   '@melt-ui/pp':
     specifier: ^0.1.0
-    version: 0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2)
+    version: 0.1.0(@melt-ui/svelte@0.34.5)(svelte@4.1.2)
   '@playwright/test':
     specifier: ^1.36.2
     version: 1.36.2
@@ -836,12 +836,12 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /@huntabyte/primitives@0.0.6(svelte@4.1.2):
-    resolution: {integrity: sha512-3QuAQOVB9xvj7RhtkDh+BeEKvMjtW5gGzfxoV/VB7+yKDaCmqudgto8u/pC861U+DTi1CYIN/k8QJODn5Cw2Kg==}
+  /@huntabyte/primitives@0.0.7(svelte@4.1.2):
+    resolution: {integrity: sha512-qH1PC+5Ig4OmAchF+2fkNAqXYnXWCADAQtF34TGyr4EcDZKdJ/zy2yPNn264HgTcM1BoRfmpIOwOwUR1CH/FRg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.5(svelte@4.1.2)
       nanoid: 4.0.2
       svelte: 4.1.2
     dev: false
@@ -943,19 +943,19 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2):
+  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.34.5)(svelte@4.1.2):
     resolution: {integrity: sha512-GbzqhLDjfxh3BwC0It7kVUHvx05f+IdBad+mXWMO76xgfdqBkAO/pS6Q+tAEntKglQvxXugV3gHAyEJgSI0AlA==}
     engines: {pnpm: '>=8.6.3'}
     peerDependencies:
       '@melt-ui/svelte': '>= 0.29.0'
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.5(svelte@4.1.2)
       svelte: 4.1.2
     dev: true
 
-  /@melt-ui/svelte@0.34.3(svelte@4.1.2):
-    resolution: {integrity: sha512-qJE0+7+8Q8h1UhdqpAWWSJx3vXSjlgAKkfjLC5wn6dtVY70Jkb6Hiu726isZ2yNbPilBmbaLrOzfoMTRurjKXw==}
+  /@melt-ui/svelte@0.34.5(svelte@4.1.2):
+    resolution: {integrity: sha512-0ZuahJiolPrgVdxfGSsLmd/c5SFKyEB2THS7b2hnx3PcC3hiN8+cbrrnNaDsSTwKWj8zjBUgjDrVQ/tJwWEiqw==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
