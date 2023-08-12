@@ -9,7 +9,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentPreview name="card-demo">
+<ComponentPreview name="card-with-form">
 
 <div />
 
@@ -68,4 +68,8 @@ For example:
 
 ## Examples
 
-Coming soon
+<ComponentPreview name="card-demo">
+
+<div />
+
+</ComponentPreview>
