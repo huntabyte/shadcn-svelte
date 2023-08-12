@@ -6,5 +6,5 @@
 </script>
 
 <div class="container mx-auto py-10">
-	<DataTable data={data.paymentData} />
+	<DataTable />
 </div>

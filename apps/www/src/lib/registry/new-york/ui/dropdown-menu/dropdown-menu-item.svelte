@@ -5,6 +5,7 @@
 	type $$Props = DropdownMenuPrimitive.ItemProps & {
 		inset?: boolean;
 	};
+	type $$Events = DropdownMenuPrimitive.ItemEvents;
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let inset: boolean | undefined = undefined;
@@ -16,6 +17,8 @@
 		inset && "pl-8",
 		className
 	)}
+	on:click
+	on:m-click
 	{...$$restProps}
 >
 	<slot />

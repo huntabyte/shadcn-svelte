@@ -9,191 +9,189 @@ patchedDependencies:
     hash: 5fktxa7rcgmqj2wc4xhmk3osl4
     path: ./patches/mdsvex@0.10.6.patch
 
-importers:
+dependencies:
+  '@huntabyte/primitives':
+    specifier: ^0.0.7
+    version: 0.0.7(svelte@4.1.2)
+  '@melt-ui/svelte':
+    specifier: ^0.34.5
+    version: 0.34.5(svelte@4.1.2)
+  '@unovis/svelte':
+    specifier: ^1.2.0
+    version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.1.2)
+  '@unovis/ts':
+    specifier: ^1.2.0
+    version: 1.2.0
+  class-variance-authority:
+    specifier: ^0.6.0
+    version: 0.6.0(typescript@5.1.6)
+  clsx:
+    specifier: ^2.0.0
+    version: 2.0.0
+  d3-scale:
+    specifier: ^4.0.2
+    version: 4.0.2
+  esm-env:
+    specifier: ^1.0.0
+    version: 1.0.0
+  lucide-svelte:
+    specifier: ^0.263.0
+    version: 0.263.0(svelte@4.1.2)
+  nanoid:
+    specifier: ^4.0.2
+    version: 4.0.2
+  radix-icons-svelte:
+    specifier: ^1.2.1
+    version: 1.2.1
+  svelte-headless-table:
+    specifier: ^0.17.4
+    version: 0.17.4(svelte@4.1.2)
+  svelte-legos:
+    specifier: ^0.2.1
+    version: 0.2.1(svelte@4.1.2)
+  svelte-local-storage-store:
+    specifier: ^0.5.0
+    version: 0.5.0(svelte@4.1.2)
+  svelte-wrap-balancer:
+    specifier: ^0.0.4
+    version: 0.0.4
+  tailwind-merge:
+    specifier: ^1.14.0
+    version: 1.14.0
+  tailwind-variants:
+    specifier: ^0.1.13
+    version: 0.1.13(tailwindcss@3.3.3)
 
-  .:
-    dependencies:
-      '@huntabyte/primitives':
-        specifier: ^0.0.6
-        version: 0.0.6(svelte@4.1.2)
-      '@melt-ui/svelte':
-        specifier: ^0.34.3
-        version: 0.34.3(svelte@4.1.2)
-      '@unovis/svelte':
-        specifier: ^1.2.0
-        version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.1.2)
-      '@unovis/ts':
-        specifier: ^1.2.0
-        version: 1.2.0
-      class-variance-authority:
-        specifier: ^0.6.0
-        version: 0.6.0(typescript@5.1.6)
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
-      d3-scale:
-        specifier: ^4.0.2
-        version: 4.0.2
-      esm-env:
-        specifier: ^1.0.0
-        version: 1.0.0
-      lucide-svelte:
-        specifier: ^0.263.0
-        version: 0.263.0(svelte@4.1.2)
-      nanoid:
-        specifier: ^4.0.2
-        version: 4.0.2
-      radix-icons-svelte:
-        specifier: ^1.2.1
-        version: 1.2.1
-      svelte-headless-table:
-        specifier: ^0.17.4
-        version: 0.17.4(svelte@4.1.2)
-      svelte-legos:
-        specifier: ^0.2.1
-        version: 0.2.1(svelte@4.1.2)
-      svelte-local-storage-store:
-        specifier: ^0.5.0
-        version: 0.5.0(svelte@4.1.2)
-      svelte-wrap-balancer:
-        specifier: ^0.0.4
-        version: 0.0.4
-      tailwind-merge:
-        specifier: ^1.14.0
-        version: 1.14.0
-      tailwind-variants:
-        specifier: ^0.1.13
-        version: 0.1.13(tailwindcss@3.3.3)
-    devDependencies:
-      '@huntabyte/mdsvex':
-        specifier: ^0.16.8
-        version: 0.16.8(svelte@4.1.2)
-      '@melt-ui/pp':
-        specifier: ^0.1.0
-        version: 0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2)
-      '@playwright/test':
-        specifier: ^1.36.2
-        version: 1.36.2
-      '@sveltejs/adapter-vercel':
-        specifier: ^3.0.3
-        version: 3.0.3(@sveltejs/kit@1.22.4)
-      '@sveltejs/kit':
-        specifier: ^1.22.4
-        version: 1.22.4(svelte@4.1.2)(vite@4.4.8)
-      '@types/d3-scale':
-        specifier: ^4.0.3
-        version: 4.0.3
-      '@types/escape-html':
-        specifier: ^1.0.2
-        version: 1.0.2
-      '@types/lodash.template':
-        specifier: ^4.5.1
-        version: 4.5.1
-      '@types/node':
-        specifier: ^18.17.5
-        version: 18.17.5
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.2.1
-        version: 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
-      '@typescript-eslint/parser':
-        specifier: ^6.2.1
-        version: 6.2.1(eslint@8.46.0)(typescript@5.1.6)
-      autoprefixer:
-        specifier: ^10.4.14
-        version: 10.4.14(postcss@8.4.27)
-      escape-html:
-        specifier: ^1.0.3
-        version: 1.0.3
-      eslint:
-        specifier: ^8.46.0
-        version: 8.46.0
-      eslint-config-prettier:
-        specifier: ^8.9.0
-        version: 8.9.0(eslint@8.46.0)
-      eslint-plugin-svelte:
-        specifier: ^2.32.4
-        version: 2.32.4(eslint@8.46.0)(svelte@4.1.2)
-      hast-util-to-html:
-        specifier: ^8.0.4
-        version: 8.0.4
-      lodash.template:
-        specifier: ^4.5.0
-        version: 4.5.0
-      mdsvex:
-        specifier: 0.10.6
-        version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.1.2)
-      postcss:
-        specifier: ^8.4.27
-        version: 8.4.27
-      postcss-load-config:
-        specifier: ^4.0.1
-        version: 4.0.1(postcss@8.4.27)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      prettier-plugin-svelte:
-        specifier: ^2.10.1
-        version: 2.10.1(prettier@2.8.8)(svelte@4.1.2)
-      rehype-pretty-code:
-        specifier: ^0.9.6
-        version: 0.9.6(shiki@0.14.3)
-      rehype-slug:
-        specifier: ^5.1.0
-        version: 5.1.0
-      remark-code-import:
-        specifier: ^1.2.0
-        version: 1.2.0
-      remark-gfm:
-        specifier: ^3.0.1
-        version: 3.0.1
-      rimraf:
-        specifier: ^4.4.1
-        version: 4.4.1
-      shiki:
-        specifier: ^0.14.3
-        version: 0.14.3
-      svelte:
-        specifier: ^4.1.2
-        version: 4.1.2
-      svelte-check:
-        specifier: ^3.4.6
-        version: 3.4.6(postcss-load-config@4.0.1)(postcss@8.4.27)(svelte@4.1.2)
-      svelte-sequential-preprocessor:
-        specifier: ^2.0.1
-        version: 2.0.1
-      tailwindcss:
-        specifier: ^3.3.3
-        version: 3.3.3
-      tailwindcss-animate:
-        specifier: ^1.0.6
-        version: 1.0.6(tailwindcss@3.3.3)
-      tslib:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^3.12.7
-        version: 3.12.7
-      typescript:
-        specifier: ^5.1.6
-        version: 5.1.6
-      unified:
-        specifier: ^10.1.2
-        version: 10.1.2
-      unist-builder:
-        specifier: ^3.0.1
-        version: 3.0.1
-      unist-util-visit:
-        specifier: ^4.1.2
-        version: 4.1.2
-      vite:
-        specifier: ^4.4.8
-        version: 4.4.8(@types/node@18.17.5)
-      vitest:
-        specifier: ^0.34.1
-        version: 0.34.1
-      zod:
-        specifier: ^3.21.4
-        version: 3.21.4
+devDependencies:
+  '@huntabyte/mdsvex':
+    specifier: ^0.16.8
+    version: 0.16.8(svelte@4.1.2)
+  '@melt-ui/pp':
+    specifier: ^0.1.0
+    version: 0.1.0(@melt-ui/svelte@0.34.5)(svelte@4.1.2)
+  '@playwright/test':
+    specifier: ^1.36.2
+    version: 1.36.2
+  '@sveltejs/adapter-vercel':
+    specifier: ^3.0.3
+    version: 3.0.3(@sveltejs/kit@1.22.4)
+  '@sveltejs/kit':
+    specifier: ^1.22.4
+    version: 1.22.4(svelte@4.1.2)(vite@4.4.8)
+  '@types/d3-scale':
+    specifier: ^4.0.3
+    version: 4.0.3
+  '@types/escape-html':
+    specifier: ^1.0.2
+    version: 1.0.2
+  '@types/lodash.template':
+    specifier: ^4.5.1
+    version: 4.5.1
+  '@types/node':
+    specifier: ^20.4.5
+    version: 20.4.5
+  '@typescript-eslint/eslint-plugin':
+    specifier: ^6.2.1
+    version: 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
+  '@typescript-eslint/parser':
+    specifier: ^6.2.1
+    version: 6.2.1(eslint@8.46.0)(typescript@5.1.6)
+  autoprefixer:
+    specifier: ^10.4.14
+    version: 10.4.14(postcss@8.4.27)
+  escape-html:
+    specifier: ^1.0.3
+    version: 1.0.3
+  eslint:
+    specifier: ^8.46.0
+    version: 8.46.0
+  eslint-config-prettier:
+    specifier: ^8.9.0
+    version: 8.9.0(eslint@8.46.0)
+  eslint-plugin-svelte:
+    specifier: ^2.32.4
+    version: 2.32.4(eslint@8.46.0)(svelte@4.1.2)
+  hast-util-to-html:
+    specifier: ^8.0.4
+    version: 8.0.4
+  lodash.template:
+    specifier: ^4.5.0
+    version: 4.5.0
+  mdsvex:
+    specifier: 0.10.6
+    version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.1.2)
+  postcss:
+    specifier: ^8.4.27
+    version: 8.4.27
+  postcss-load-config:
+    specifier: ^4.0.1
+    version: 4.0.1(postcss@8.4.27)
+  prettier:
+    specifier: ^2.8.8
+    version: 2.8.8
+  prettier-plugin-svelte:
+    specifier: ^2.10.1
+    version: 2.10.1(prettier@2.8.8)(svelte@4.1.2)
+  rehype-pretty-code:
+    specifier: ^0.9.6
+    version: 0.9.6(shiki@0.14.3)
+  rehype-slug:
+    specifier: ^5.1.0
+    version: 5.1.0
+  remark-code-import:
+    specifier: ^1.2.0
+    version: 1.2.0
+  remark-gfm:
+    specifier: ^3.0.1
+    version: 3.0.1
+  rimraf:
+    specifier: ^4.4.1
+    version: 4.4.1
+  shiki:
+    specifier: ^0.14.3
+    version: 0.14.3
+  svelte:
+    specifier: ^4.1.2
+    version: 4.1.2
+  svelte-check:
+    specifier: ^3.4.6
+    version: 3.4.6(postcss-load-config@4.0.1)(postcss@8.4.27)(svelte@4.1.2)
+  svelte-sequential-preprocessor:
+    specifier: ^2.0.1
+    version: 2.0.1
+  tailwindcss:
+    specifier: ^3.3.3
+    version: 3.3.3
+  tailwindcss-animate:
+    specifier: ^1.0.6
+    version: 1.0.6(tailwindcss@3.3.3)
+  tslib:
+    specifier: ^2.6.1
+    version: 2.6.1
+  tsx:
+    specifier: ^3.12.7
+    version: 3.12.7
+  typescript:
+    specifier: ^5.1.6
+    version: 5.1.6
+  unified:
+    specifier: ^10.1.2
+    version: 10.1.2
+  unist-builder:
+    specifier: ^3.0.1
+    version: 3.0.1
+  unist-util-visit:
+    specifier: ^4.1.2
+    version: 4.1.2
+  vite:
+    specifier: ^4.4.8
+    version: 4.4.8(@types/node@20.4.5)
+  vitest:
+    specifier: ^0.34.1
+    version: 0.34.1
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
   ../..: {}
 
@@ -842,12 +840,12 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /@huntabyte/primitives@0.0.6(svelte@4.1.2):
-    resolution: {integrity: sha512-3QuAQOVB9xvj7RhtkDh+BeEKvMjtW5gGzfxoV/VB7+yKDaCmqudgto8u/pC861U+DTi1CYIN/k8QJODn5Cw2Kg==}
+  /@huntabyte/primitives@0.0.7(svelte@4.1.2):
+    resolution: {integrity: sha512-qH1PC+5Ig4OmAchF+2fkNAqXYnXWCADAQtF34TGyr4EcDZKdJ/zy2yPNn264HgTcM1BoRfmpIOwOwUR1CH/FRg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.5(svelte@4.1.2)
       nanoid: 4.0.2
       svelte: 4.1.2
     dev: false
@@ -949,19 +947,19 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.34.3)(svelte@4.1.2):
+  /@melt-ui/pp@0.1.0(@melt-ui/svelte@0.34.5)(svelte@4.1.2):
     resolution: {integrity: sha512-GbzqhLDjfxh3BwC0It7kVUHvx05f+IdBad+mXWMO76xgfdqBkAO/pS6Q+tAEntKglQvxXugV3gHAyEJgSI0AlA==}
     engines: {pnpm: '>=8.6.3'}
     peerDependencies:
       '@melt-ui/svelte': '>= 0.29.0'
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.34.3(svelte@4.1.2)
+      '@melt-ui/svelte': 0.34.5(svelte@4.1.2)
       svelte: 4.1.2
     dev: true
 
-  /@melt-ui/svelte@0.34.3(svelte@4.1.2):
-    resolution: {integrity: sha512-qJE0+7+8Q8h1UhdqpAWWSJx3vXSjlgAKkfjLC5wn6dtVY70Jkb6Hiu726isZ2yNbPilBmbaLrOzfoMTRurjKXw==}
+  /@melt-ui/svelte@0.34.5(svelte@4.1.2):
+    resolution: {integrity: sha512-0ZuahJiolPrgVdxfGSsLmd/c5SFKyEB2THS7b2hnx3PcC3hiN8+cbrrnNaDsSTwKWj8zjBUgjDrVQ/tJwWEiqw==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { DotsHorizontal } from "radix-icons-svelte";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
+	import { Button } from "@/registry/default/ui/button";
+	import { MoreHorizontal } from "lucide-svelte";
 
 	export let id: string;
 </script>
@@ -10,7 +10,7 @@
 	<DropdownMenu.Trigger asChild let:trigger>
 		<Button variant="ghost" builders={[trigger]} class="h-8 w-8 p-0">
 			<span class="sr-only">Open menu</span>
-			<DotsHorizontal class="h-4 w-4" />
+			<MoreHorizontal class="h-4 w-4" />
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>

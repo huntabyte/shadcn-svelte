@@ -168,9 +168,7 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Data Table",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/data-table",
 					items: []
 				},
 				// {

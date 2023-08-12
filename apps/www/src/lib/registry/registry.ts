@@ -575,12 +575,16 @@ const example: Registry = [
 		registryDependencies: ["context-menu"],
 		files: ["example/context-menu-demo.svelte"]
 	},
-	// {
-	// 	name: "data-table-demo",
-	// 	type: "components:example",
-	// 	registryDependencies: ["data-table"],
-	// 	files: ["example/data-table-demo.tsx"]
-	// },
+	{
+		name: "data-table-demo",
+		type: "components:example",
+		registryDependencies: ["data-table"],
+		files: [
+			"example/data-table-demo.svelte",
+			"example/data-table/data-table-actions.svelte",
+			"example/data-table/data-table-checkbox.svelte"
+		]
+	},
 	// {
 	// 	name: "date-picker-demo",
 	// 	type: "components:example",

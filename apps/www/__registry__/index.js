@@ -178,6 +178,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/context-menu-demo.svelte"],
     },
+    "data-table-demo": {
+      name: "data-table-demo",
+      type: "components:example",
+      registryDependencies: ["data-table"],
+      component: () => import("../src/lib/registry/default/example/data-table-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/data-table-demo.svelte","../src/lib/registry/default/example/data-table/data-table-actions.svelte","../src/lib/registry/default/example/data-table/data-table-checkbox.svelte"],
+    },
     "dialog-demo": {
       name: "dialog-demo",
       type: "components:example",
@@ -696,6 +703,13 @@ export const Index = {
       registryDependencies: ["context-menu"],
       component: () => import("../src/lib/registry/new-york/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/context-menu-demo.svelte"],
+    },
+    "data-table-demo": {
+      name: "data-table-demo",
+      type: "components:example",
+      registryDependencies: ["data-table"],
+      component: () => import("../src/lib/registry/new-york/example/data-table-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/data-table-demo.svelte","../src/lib/registry/new-york/example/data-table/data-table-actions.svelte","../src/lib/registry/new-york/example/data-table/data-table-checkbox.svelte"],
     },
     "dialog-demo": {
       name: "dialog-demo",
