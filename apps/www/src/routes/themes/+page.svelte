@@ -1,5 +1,4 @@
 <script lang="ts">
-	import "../../../static/registry/themes.css";
 	import {
 		PageHeader,
 		PageHeaderDescription,
@@ -16,7 +15,7 @@
 
 <svelte:head>
 	<style>
-		@import "../../../static/registry/themes.css";
+		@import "/registry/themes.css";
 		:root {
 			--vis-color0: var(--primary);
 			--vis-color1: #ffffff;
