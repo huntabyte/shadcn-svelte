@@ -5,13 +5,14 @@ import template from "lodash.template";
 import { rimraf } from "rimraf";
 
 import { colorMapping, colors } from "../src/lib/registry/colors";
-import { registry } from "../src/lib/registry/registry";
 import { registrySchema } from "../src/lib/registry/schema";
 import { styles } from "../src/lib/registry/styles";
 import { themes } from "../src/lib/registry/themes";
+import { buildRegistry } from "./registry";
 
 const REGISTRY_PATH = path.join(process.cwd(), "static/registry");
 
+const registry = await buildRegistry();
 const result = registrySchema.safeParse(registry);
 
 if (!result.success) {

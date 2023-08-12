@@ -15,6 +15,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"build:components": "tsx scripts/build-components.ts",
+		"build:registry": "tsx scripts/build-registry.ts",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"sync": "svelte-kit sync",

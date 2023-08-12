@@ -1,9 +1,11 @@
 {
   "name": "table",
+  "dependencies": [],
+  "registryDependencies": [],
   "files": [
     {
-      "name": "table.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLTableAttributes;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class=\"w-full overflow-auto\">\n\t<table\n\t\tclass={cn(\"w-full caption-bottom text-sm\", className)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</table>\n</div>\n"
+      "name": "index.ts",
+      "content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow\n};\n"
     },
     {
       "name": "table-body.svelte",
@@ -31,11 +33,11 @@
     },
     {
       "name": "table-row.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableRowElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<tr\n\tclass={cn(\n\t\t\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</tr>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableRowElement> & {\n\t\t\"data-state\"?: any;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<tr\n\tclass={cn(\n\t\t\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</tr>\n"
     },
     {
-      "name": "index.ts",
-      "content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow\n};\n"
+      "name": "table.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLTableAttributes;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class=\"w-full overflow-auto\">\n\t<table\n\t\tclass={cn(\"w-full caption-bottom text-sm\", className)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</table>\n</div>\n"
     }
   ],
   "type": "components:ui"

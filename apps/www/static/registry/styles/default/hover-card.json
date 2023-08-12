@@ -3,6 +3,7 @@
   "dependencies": [
     "@huntabyte/primitives"
   ],
+  "registryDependencies": [],
   "files": [
     {
       "name": "hover-card-content.svelte",

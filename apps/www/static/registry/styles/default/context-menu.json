@@ -3,6 +3,7 @@
   "dependencies": [
     "@huntabyte/primitives"
   ],
+  "registryDependencies": [],
   "files": [
     {
       "name": "context-menu-checkbox-item.svelte",

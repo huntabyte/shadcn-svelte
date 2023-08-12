@@ -3,7 +3,12 @@
   "dependencies": [
     "@huntabyte/primitives"
   ],
+  "registryDependencies": [],
   "files": [
+    {
+      "name": "index.ts",
+      "content": "import { Tabs as TabsPrimitive } from \"@huntabyte/primitives\";\nimport Content from \"./tabs-content.svelte\";\nimport List from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nconst Root = TabsPrimitive.Root;\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger\n};\n"
+    },
     {
       "name": "tabs-content.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = TabsPrimitive.ContentProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: $$Props[\"value\"];\n</script>\n\n<TabsPrimitive.Content\n\tclass={cn(\n\t\t\"mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n\t\tclassName\n\t)}\n\t{value}\n\t{...$$restProps}\n>\n\t<slot />\n</TabsPrimitive.Content>\n"
@@ -15,10 +20,6 @@
     {
       "name": "tabs-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = TabsPrimitive.TriggerProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let value: $$Props[\"value\"];\n</script>\n\n<TabsPrimitive.Trigger\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow\",\n\t\tclassName\n\t)}\n\t{value}\n\t{...$$restProps}\n>\n\t<slot />\n</TabsPrimitive.Trigger>\n"
-    },
-    {
-      "name": "index.ts",
-      "content": "import { Tabs as TabsPrimitive } from \"@huntabyte/primitives\";\nimport Content from \"./tabs-content.svelte\";\nimport List from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nconst Root = TabsPrimitive.Root;\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger\n};\n"
     }
   ],
   "type": "components:ui"

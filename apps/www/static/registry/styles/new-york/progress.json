@@ -3,14 +3,15 @@
   "dependencies": [
     "@huntabyte/primitives"
   ],
+  "registryDependencies": [],
   "files": [
-    {
-      "name": "progress.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ProgressPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let max: $$Props[\"max\"] = 100;\n\texport let value: $$Props[\"value\"] = undefined;\n</script>\n\n<ProgressPrimitive.Root\n\tclass={cn(\n\t\t\"relative h-2 w-full overflow-hidden rounded-full bg-primary/20\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div\n\t\tclass=\"h-full w-full flex-1 bg-primary transition-all\"\n\t\tstyle={`transform: translateX(-${\n\t\t\t100 - (100 * (value ?? 0)) / (max ?? 1)\n\t\t}%)`}\n\t/>\n</ProgressPrimitive.Root>\n"
-    },
     {
       "name": "index.ts",
       "content": "import Root from \"./progress.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Progress\n};\n"
+    },
+    {
+      "name": "progress.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ProgressPrimitive.Props;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let max: $$Props[\"max\"] = 100;\n\texport let value: $$Props[\"value\"] = undefined;\n</script>\n\n<ProgressPrimitive.Root\n\tclass={cn(\n\t\t\"relative h-2 w-full overflow-hidden rounded-full bg-primary/20\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div\n\t\tclass=\"h-full w-full flex-1 bg-primary transition-all\"\n\t\tstyle={`transform: translateX(-${\n\t\t\t100 - (100 * (value ?? 0)) / (max ?? 1)\n\t\t}%)`}\n\t/>\n</ProgressPrimitive.Root>\n"
     }
   ],
   "type": "components:ui"
