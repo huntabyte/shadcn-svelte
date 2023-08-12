@@ -68,14 +68,15 @@ async function crawlExample(rootPath: string) {
 			});
 		}
 
-		if (dirent.isDirectory()) {
-			const componentPath = resolve(rootPath, dirent.name);
-			const ui = await buildUIRegistry(componentPath, dirent.name);
-			exampleRegistry.push({
-				...ui,
-				type
-			});
-		}
+		// ignoring examples with directories for now...
+		// if (dirent.isDirectory()) {
+		// 	const componentPath = resolve(rootPath, dirent.name);
+		// 	const ui = await buildUIRegistry(componentPath, dirent.name);
+		// 	exampleRegistry.push({
+		// 		...ui,
+		// 		type
+		// 	});
+		// }
 	}
 
 	return exampleRegistry;

@@ -150,13 +150,6 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/card-with-form.svelte"],
     },
-    "cards": {
-      name: "cards",
-      type: "components:example",
-      registryDependencies: ["card","button","label","switch","input","radio-group","select","textarea","avatar","separator"],
-      component: () => import("../src/lib/registry/default/example/cards.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/default/ui/cards/activity-goal.svelte","../src/lib/registry/default/ui/cards/all.svelte","../src/lib/registry/default/ui/cards/calendar.svelte","../src/lib/registry/default/ui/cards/cookie-settings.svelte","../src/lib/registry/default/ui/cards/create-account.svelte","../src/lib/registry/default/ui/cards/metric.svelte","../src/lib/registry/default/ui/cards/payment-method.svelte","../src/lib/registry/default/ui/cards/report-issue.svelte","../src/lib/registry/default/ui/cards/share.svelte","../src/lib/registry/default/ui/cards/stats.svelte"],
-    },
     "checkbox-demo": {
       name: "checkbox-demo",
       type: "components:example",
@@ -191,13 +184,6 @@ export const Index = {
       registryDependencies: ["context-menu"],
       component: () => import("../src/lib/registry/default/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/context-menu-demo.svelte"],
-    },
-    "data-table": {
-      name: "data-table",
-      type: "components:example",
-      registryDependencies: ["dropdown-menu","button","checkbox"],
-      component: () => import("../src/lib/registry/default/example/data-table.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/default/ui/data-table/data-table-actions.svelte","../src/lib/registry/default/ui/data-table/data-table-checkbox.svelte"],
     },
     "data-table-demo": {
       name: "data-table-demo",
@@ -697,13 +683,6 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/card-with-form.svelte"],
     },
-    "cards": {
-      name: "cards",
-      type: "components:example",
-      registryDependencies: ["card","button","label","switch","input","radio-group","select","textarea","avatar","separator"],
-      component: () => import("../src/lib/registry/new-york/example/cards.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/new-york/ui/cards/activity-goal.svelte","../src/lib/registry/new-york/ui/cards/all.svelte","../src/lib/registry/new-york/ui/cards/calendar.svelte","../src/lib/registry/new-york/ui/cards/cookie-settings.svelte","../src/lib/registry/new-york/ui/cards/create-account.svelte","../src/lib/registry/new-york/ui/cards/metric.svelte","../src/lib/registry/new-york/ui/cards/payment-method.svelte","../src/lib/registry/new-york/ui/cards/report-issue.svelte","../src/lib/registry/new-york/ui/cards/share.svelte","../src/lib/registry/new-york/ui/cards/stats.svelte"],
-    },
     "checkbox-demo": {
       name: "checkbox-demo",
       type: "components:example",
@@ -738,13 +717,6 @@ export const Index = {
       registryDependencies: ["context-menu"],
       component: () => import("../src/lib/registry/new-york/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/context-menu-demo.svelte"],
-    },
-    "data-table": {
-      name: "data-table",
-      type: "components:example",
-      registryDependencies: ["dropdown-menu","button","checkbox"],
-      component: () => import("../src/lib/registry/new-york/example/data-table.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/new-york/ui/data-table/data-table-actions.svelte","../src/lib/registry/new-york/ui/data-table/data-table-checkbox.svelte"],
     },
     "data-table-demo": {
       name: "data-table-demo",
