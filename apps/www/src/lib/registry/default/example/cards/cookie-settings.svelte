@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Switch } from "@/registry/new-york/ui/switch";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import { Label } from "@/registry/default/ui/label";
+	import { Switch } from "@/registry/default/ui/switch";
 </script>
 
 <Card.Root>

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card";
-	import * as Select from "@/registry/new-york/ui/select";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Textarea } from "@/registry/new-york/ui/textarea";
+	import * as Card from "@/registry/default/ui/card";
+	import * as Select from "@/registry/default/ui/select";
+	import { Button } from "@/registry/default/ui/button";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
+	import { Textarea } from "@/registry/default/ui/textarea";
 </script>
 
 <Card.Root>
@@ -23,13 +23,20 @@
 						<Select.Value placeholder="Select" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="team">Team</Select.Item>
-						<Select.Item value="billing">Billing</Select.Item>
-						<Select.Item value="account">Account</Select.Item>
-						<Select.Item value="deployments"
+						<Select.Item value="team" label="Team">Team</Select.Item
+						>
+						<Select.Item value="billing" label="Billing"
+							>Billing</Select.Item
+						>
+						<Select.Item value="account" label="Account"
+							>Account</Select.Item
+						>
+						<Select.Item value="deployments" label="Deployments"
 							>Deployments</Select.Item
 						>
-						<Select.Item value="support">Support</Select.Item>
+						<Select.Item value="support" label="Support"
+							>Support</Select.Item
+						>
 					</Select.Content>
 				</Select.Root>
 			</div>
@@ -40,11 +47,18 @@
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="1">Severity 1 (Highest)</Select.Item
+						<Select.Item value="1" label="Severity 1 (highest)"
+							>Severity 1 (Highest)</Select.Item
 						>
-						<Select.Item value="2">Severity 2</Select.Item>
-						<Select.Item value="3">Severity 3</Select.Item>
-						<Select.Item value="4">Severity 4 (Lowest)</Select.Item>
+						<Select.Item value="2" label="Severity 2"
+							>Severity 2</Select.Item
+						>
+						<Select.Item value="3" label="Severity 3"
+							>Severity 3</Select.Item
+						>
+						<Select.Item value="4" label="Severity 4 (Lowest)"
+							>Severity 4 (Lowest)</Select.Item
+						>
 					</Select.Content>
 				</Select.Root>
 			</div>

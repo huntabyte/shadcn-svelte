@@ -1,6 +1,5 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Calendar } from "radix-icons-svelte";
+	import * as Card from "@/registry/default/ui/card";
 </script>
 
 <Card.Root class="max-w-[260px]">

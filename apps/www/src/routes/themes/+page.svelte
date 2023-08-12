@@ -7,10 +7,8 @@
 	import ThemeCustomizer from "$components/docs/theme-customizer/theme-customizer.svelte";
 	import ThemeWrapper from "$components/docs/ThemeWrapper.svelte";
 	import CardsNewYork from "@/registry/new-york/example/cards/all.svelte";
-	import { onDestroy, onMount } from "svelte";
+	import CardsDefault from "@/registry/default/example/cards/all.svelte";
 	import { config } from "@/stores";
-	import { afterNavigate, beforeNavigate } from "$app/navigation";
-	import { isBrowser } from "@/utils";
 </script>
 
 <svelte:head>
@@ -42,6 +40,10 @@
 		</div>
 	</ThemeWrapper>
 	<ThemeWrapper>
-		<CardsNewYork />
+		{#if $config.style === "default"}
+			<CardsDefault />
+		{:else}
+			<CardsNewYork />
+		{/if}
 	</ThemeWrapper>
 </div>
