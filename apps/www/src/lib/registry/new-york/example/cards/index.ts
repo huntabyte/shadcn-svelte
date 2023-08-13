@@ -9,3 +9,4 @@ export { default as CardsReportIssue } from "./report-issue.svelte";
 export { default as CardsShare } from "./share.svelte";
 export { default as CardsStats } from "./stats.svelte";
 export { default as CardsGithub } from "./github.svelte";
+export { default as CardsNewYork } from "./all.svelte";

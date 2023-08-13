@@ -1,11 +1,7 @@
 <script lang="ts">
-	import { DashboardPage, ExamplesNav } from "$components/docs";
+	import { DashboardPage, ExamplesNav } from "@/components/docs";
+	import * as PageHeader from "@/components/docs/page-header";
 	import { Icons } from "$components/docs/icons";
-	import {
-		PageHeader,
-		PageHeaderDescription,
-		PageHeaderHeading
-	} from "$components/docs/page-header";
 	import { buttonVariants } from "@/registry/default/ui/button";
 	import { Separator } from "@/registry/default/ui/separator";
 	import { siteConfig } from "$lib/config/site";
@@ -15,7 +11,7 @@
 
 <div class="container relative pb-10">
 	<!-- <StyleSwitcher /> -->
-	<PageHeader>
+	<PageHeader.Root>
 		<a
 			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
 			href="https://github.com/huntabyte/shadcn-svelte/issues/125"
@@ -25,11 +21,11 @@
 			🎉<Separator class="mx-2 h-4" orientation="vertical" /> New components & themes!
 			<ChevronRight class="ml-1 h-4 w-4" />
 		</a>
-		<PageHeaderHeading>Build your component library.</PageHeaderHeading>
-		<PageHeaderDescription>
+		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
+		<PageHeader.Description>
 			Beautifully designed components that you can copy and paste into your
 			apps. Accessible. Customizable. Open Source.
-		</PageHeaderDescription>
+		</PageHeader.Description>
 		<p class="text-sm text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a
 				href={siteConfig.links.shadGithub}
@@ -57,7 +53,7 @@
 				GitHub
 			</a>
 		</div>
-	</PageHeader>
+	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section
 		class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"

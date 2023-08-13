@@ -10,3 +10,4 @@ export { default as CardsPaymentMethod } from "./payment-method.svelte";
 export { default as CardsReportIssue } from "./report-issue.svelte";
 export { default as CardsShare } from "./share.svelte";
 export { default as CardsStats } from "./stats.svelte";
+export { default as CardsDefault } from "./all.svelte";
