@@ -10,14 +10,13 @@
 		addPagination,
 		addTableFilter,
 		addSelectedRows,
-		addHiddenColumns,
-		addColumnFilters
+		addHiddenColumns
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
 	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { CaretSort, ChevronDown, DotsHorizontal, MixerHorizontal, CaretRight, CaretLeft, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
+	import { CaretSort, MixerHorizontal, CaretRight, CaretLeft, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import * as Select from "@/registry/new-york/ui/select";
 	import { cn } from "$lib/utils";
