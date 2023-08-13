@@ -9,7 +9,7 @@
 	import { Button } from "@/registry/default/ui/button";
 	import * as Card from "@/registry/default/ui/card";
 	import * as Tabs from "@/registry/default/ui/tabs";
-	import { MainNav, Overview, RecentSales, Search, UserNav } from ".";
+	import { DashboardMainNav, Overview, RecentSales, Search, UserNav } from ".";
 </script>
 
 <div class="md:hidden">
@@ -31,7 +31,7 @@
 <div class="hidden flex-col md:flex">
 	<div class="border-b">
 		<div class="flex h-16 items-center px-4">
-			<MainNav class="mx-6" />
+			<DashboardMainNav class="mx-6" />
 			<div class="ml-auto flex items-center space-x-4">
 				<Search />
 				<UserNav />

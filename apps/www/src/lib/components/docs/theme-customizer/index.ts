@@ -1,6 +1,11 @@
 import type { Theme } from "@/registry";
 import template from "lodash.template";
 
+export { default as ThemeCopyCodeButton } from "./copy-code-button.svelte";
+export { default as CustomizerCode } from "./customizer-code.svelte";
+export { default as ThemeCustomizer } from "./theme-customizer.svelte";
+export { default as Customizer } from "./customizer.svelte";
+
 const BASE_STYLES_WITH_VARIABLES = `
 @layer base {
   :root {

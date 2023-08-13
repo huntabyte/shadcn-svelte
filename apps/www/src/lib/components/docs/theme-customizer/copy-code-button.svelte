@@ -3,8 +3,7 @@
 	import { config } from "@/stores";
 	import { themes } from "@/registry";
 	import { Button } from "@/registry/default/ui/button";
-	import { ThemeWrapper } from "$lib/components/docs";
-	import CustomizerCode from "./customizer-code.svelte";
+	import { ThemeWrapper, CustomizerCode } from "@/components/docs";
 	import { Check, Copy } from "radix-icons-svelte";
 	import { createCopyCodeButton } from "@/utils";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);

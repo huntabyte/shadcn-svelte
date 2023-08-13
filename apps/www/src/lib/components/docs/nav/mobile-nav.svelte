@@ -5,7 +5,7 @@
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
 	import { Icons } from "../icons";
-	import MobileLink from "./MobileLink.svelte";
+	import MobileLink from "./mobile-link.svelte";
 
 	let open = false;
 </script>
