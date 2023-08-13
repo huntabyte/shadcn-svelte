@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-    import { DropdownMenuDemo, ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/dropdown-menu/DropdownMenuDemo.svelte">
+<ComponentPreview name="dropdown-menu-demo">
 
-<div slot="example">
-<DropdownMenuDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -43,7 +41,7 @@ npm install @huntabyte/primitives
 
 ```svelte
 <script lang="ts">
-  import * as DropdownMenu from '$components/ui/dropdown-menu"
+  import * as DropdownMenu from "$components/ui/dropdown-menu";
 </script>
 
 <DropdownMenu.Root>
@@ -60,3 +58,21 @@ npm install @huntabyte/primitives
   </DropdownMenu.Content>
 </DropdownMenu.Root>
 ```
+
+## Examples
+
+### Checkboxes
+
+<ComponentPreview name="dropdown-menu-checkboxes">
+
+<div />
+
+</ComponentPreview>
+
+### Radio Group
+
+<ComponentPreview name="dropdown-menu-radio-group">
+
+<div />
+
+</ComponentPreview>

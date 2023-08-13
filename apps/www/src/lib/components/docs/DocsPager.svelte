@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav";
 	import { page } from "$app/stores";
-	import { Button } from "$components/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 	import { docsConfig } from "$lib/config/docs";
 	import { Icons } from "./icons";
 
@@ -50,7 +50,7 @@
 		</Button>
 	{/if}
 	{#if pager?.next?.href}
-		<Button href={pager.next.href} variant="outline">
+		<Button href={pager.next.href} variant="outline" class="ml-auto">
 			{pager.next.title}
 			<Icons.chevronRight class="ml-2 h-4 w-4" />
 		</Button>

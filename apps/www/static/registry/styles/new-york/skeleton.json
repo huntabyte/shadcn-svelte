@@ -1,0 +1,16 @@
+{
+  "name": "skeleton",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./skeleton.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Skeleton\n};\n"
+    },
+    {
+      "name": "skeleton.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\"animate-pulse rounded-md bg-primary/10\", className)}\n\t{...$$restProps}\n/>\n"
+    }
+  ],
+  "type": "components:ui"
+}

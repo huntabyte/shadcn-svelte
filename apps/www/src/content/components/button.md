@@ -7,16 +7,14 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { ButtonDemo, ButtonDemoDestructive, ButtonDemoGhost, ButtonDemoOutline, ButtonDemoSecondary, ButtonDemoIcon, ButtonDemoLoading, ButtonDemoLink, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemo.svelte">
+<ComponentPreview name="button-demo">
 
-<div slot="example">
-<ButtonDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -76,94 +74,88 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ### Primary
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemo.svelte">
+<ComponentPreview name="button-demo">
 
-<div slot="example">
-<ButtonDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Secondary
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoSecondary.svelte">
+<ComponentPreview name="button-secondary">
 
-<div slot="example">
-<ButtonDemoSecondary />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Destructive
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoDestructive.svelte">
+<ComponentPreview name="button-destructive">
 
-<div slot="example">
-<ButtonDemoDestructive />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Outline
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoOutline.svelte">
+<ComponentPreview name="button-outline">
 
-<div slot="example">
-<ButtonDemoOutline />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Ghost
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoGhost.svelte">
+<ComponentPreview name="button-ghost">
 
-<div slot="example">
-<ButtonDemoGhost />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Link
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoLink.svelte">
+<ComponentPreview name="button-link">
 
-<div slot="example">
-<ButtonDemoLink />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### With Icon
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoIcon.svelte">
+<ComponentPreview name="button-with-icon">
 
-<div slot="example">
-<ButtonDemoIcon />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
+
+---
+
+### Icon
+
+<ComponentPreview name="button-icon">
+
+<div />
+
+</ComponentPreview>
 
 ---
 
 ### Loading
 
-<ComponentExample src="src/lib/components/docs/examples/button/ButtonDemoLoading.svelte">
+<ComponentPreview name="button-loading">
 
-<div slot="example">
-<ButtonDemoLoading />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>

@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-    import { MenubarDemo, ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/menubar/MenubarDemo.svelte">
+<ComponentPreview name="menubar-demo">
 
-<div slot="example">
-<MenubarDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { Avatar, AvatarFallback, AvatarImage } from "$components/ui/avatar";
+	import {
+		Avatar,
+		AvatarFallback,
+		AvatarImage
+	} from "@/registry/default/ui/avatar";
 </script>
 
 <div class="space-y-8">

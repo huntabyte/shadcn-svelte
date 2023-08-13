@@ -6,16 +6,14 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { CardDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/card/CardDemo.svelte">
+<ComponentPreview name="card-with-form">
 
-<div slot="example">
-<CardDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -57,17 +55,21 @@ By default, the `<CardTitle>` component renders an `<h3>` element. You can chang
 For example:
 
 ```svelte
-<CardTitle tag={"h2"}>This will render an H2</CardTitle>
+<CardTitle tag="h2">This will render an H2</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"h5"}>This will render an H5</CardTitle>
+<CardTitle tag="h5">This will render an H5</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"p"}>This will render a P tag</CardTitle>
+<CardTitle tag="p">This will render a P tag</CardTitle>
 ```
 
 ## Examples
 
-Coming soon
+<ComponentPreview name="card-demo">
+
+<div />
+
+</ComponentPreview>

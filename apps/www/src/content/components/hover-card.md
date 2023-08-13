@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { HoverCardDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/hover-card/HoverCardDemo.svelte">
+<ComponentPreview name="hover-card-demo">
 
-<div slot="example">
-<HoverCardDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

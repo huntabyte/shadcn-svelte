@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { ProgressDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/progress/ProgressDemo.svelte">
+<ComponentPreview name="progress-demo">
 
-<div slot="example" style="width: 60%;">
-<ProgressDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

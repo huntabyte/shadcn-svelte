@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { SliderDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/slider/SliderDemo.svelte">
+<ComponentPreview name="slider-demo">
 
-<div slot="example" style="width: 100%; display: flex; justify-content: center;">
-<SliderDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

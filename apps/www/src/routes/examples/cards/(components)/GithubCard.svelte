@@ -5,10 +5,10 @@
 		PlusIcon,
 		StarIcon
 	} from "lucide-svelte";
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import * as DropdownMenu from "$components/ui/dropdown-menu";
-	import { Separator } from "$components/ui/separator";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
+	import { Separator } from "@/registry/default/ui/separator";
 </script>
 
 <Card.Root>

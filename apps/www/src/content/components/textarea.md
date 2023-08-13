@@ -6,16 +6,14 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/co
 ---
 
 <script>
-  import { TextareaDemo, TextareaDemoDisabled, TextareaDemoLabel, TextareaDemoText , TextareaDemoButton, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemo.svelte" >
+<ComponentPreview name="textarea-demo">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -45,58 +43,48 @@ npx shadcn-svelte add textarea
 
 ### Default
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemo.svelte">
+<ComponentPreview name="textarea-demo">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Disabled
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemoDisabled.svelte">
+<ComponentPreview name="textarea-disabled">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoDisabled />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### With Label
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemoLabel.svelte">
+<ComponentPreview name="textarea-with-label">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoLabel />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### With Text
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemoText.svelte">
+<ComponentPreview name="textarea-with-text">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoText />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### With Button
 
-<ComponentExample src="src/lib/components/docs/examples/textarea/TextareaDemoButton.svelte">
+<ComponentPreview name="textarea-with-button">
 
-<div slot="example" style="max-width: 24rem; width: 100%;">
-<TextareaDemoButton />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>

@@ -4,7 +4,7 @@ description: How to install dependencies and structure your app.
 ---
 
 <script>
-  import { Alert, AlertDescription } from "$components/ui/alert";
+  import { Alert, AlertDescription } from "@/registry/default/ui/alert";
   import { Steps } from "$components/docs";
 </script>
 

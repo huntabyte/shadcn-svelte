@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input } from "$components/ui/input";
+	import { Input } from "@/registry/default/ui/input";
 </script>
 
 <div>

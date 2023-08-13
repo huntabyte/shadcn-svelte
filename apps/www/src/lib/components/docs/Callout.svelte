@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
+	import * as Alert from "@/registry/default/ui/alert";
 </script>
 
-<Alert {...$$restProps} class="mt-2">
+<Alert.Root {...$$restProps} class="mt-2">
 	{#if $$slots.icon}
 		<span class="mr-4 text-2xl">
 			<slot name="icon" />
 		</span>
 	{/if}
-	<AlertTitle>
+	<Alert.Title>
 		<slot name="title" />
-	</AlertTitle>
-	<AlertDescription>
+	</Alert.Title>
+	<Alert.Description>
 		<slot />
-	</AlertDescription>
-</Alert>
+	</Alert.Description>
+</Alert.Root>

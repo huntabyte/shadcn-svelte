@@ -16,3 +16,7 @@ apps/www/src/routes/api/components/components.json
 src/routes/api/components/components.json
 static/site.webmanifest
 .vercel
+static
+__registry__/index.js
+other/themes/dark.json
+other/themes/light.json

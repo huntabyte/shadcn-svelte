@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import { dev } from "$app/environment";
 	import {
 		Metadata,
@@ -7,7 +8,11 @@
 		TailwindIndicator
 	} from "$components/docs";
 	import { setInitialClassState } from "$components/docs/light-switch/light-switch";
+	import { updateTheme } from "@/utils";
 	import "../styles/globals.css";
+	import { config } from "@/stores";
+
+	$: updateTheme($config.theme, $page.url.pathname);
 </script>
 
 <svelte:head>

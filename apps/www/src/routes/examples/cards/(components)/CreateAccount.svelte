@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Icons } from "$components/docs";
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import { Input } from "$components/ui/input";
-	import { Label } from "$components/ui/label";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
 </script>
 
 <Card.Root>

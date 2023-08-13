@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { AspectRatioDemo, ComponentExample, ManualInstall } from '$components/docs';
+  import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/aspect-ratio/AspectRatioDemo.svelte">
+<ComponentPreview name="aspect-ratio-demo">
 
-<div slot="example" style="width: 100%;">
-<AspectRatioDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

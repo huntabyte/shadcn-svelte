@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { LabelDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/label/LabelDemo.svelte">
+<ComponentPreview name="label-demo">
 
-<div slot="example">
-<LabelDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

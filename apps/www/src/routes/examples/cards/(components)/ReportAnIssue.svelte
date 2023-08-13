@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "$components/ui/card";
-	import * as Select from "$components/ui/select";
-	import { Button } from "$components/ui/button";
-	import { Input } from "$components/ui/input";
-	import { Label } from "$components/ui/label";
-	import { Textarea } from "$components/ui/textarea";
+	import * as Card from "@/registry/default/ui/card";
+	import * as Select from "@/registry/default/ui/select";
+	import { Button } from "@/registry/default/ui/button";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
+	import { Textarea } from "@/registry/default/ui/textarea";
 </script>
 
 <Card.Root>

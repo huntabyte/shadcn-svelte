@@ -16,12 +16,12 @@ export const docsConfig: DocsConfig = {
 			href: "/docs/components/accordion"
 		},
 		{
-			title: "Examples",
-			href: "/examples/dashboard"
+			title: "Themes",
+			href: "/themes"
 		},
 		{
-			title: "Figma",
-			href: "/docs/figma"
+			title: "Examples",
+			href: "/examples/dashboard"
 		},
 		{
 			title: "GitHub",
@@ -168,9 +168,7 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Data Table",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/data-table",
 					items: []
 				},
 				// {

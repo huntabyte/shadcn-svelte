@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icons, LightSwitch, MainNav, MobileNav } from "$components/docs";
-	import { buttonVariants } from "$components/ui/button";
+	import { buttonVariants } from "@/registry/default/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "$lib/utils";
 </script>

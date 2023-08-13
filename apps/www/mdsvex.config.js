@@ -7,9 +7,10 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
-import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
+import { u } from "unist-builder";
+import { Index } from "./__registry__/index.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -30,27 +31,43 @@ export const mdsvexOptions = {
 	rehypePlugins: [
 		rehypeSlug,
 		rehypeComponentExample,
+		() => (tree) => {
+			visit(tree, (node) => {
+				if (node?.type === "element" && node?.tagName === "pre") {
+					const [codeEl] = node.children;
+					if (codeEl.tagName !== "code") {
+						return;
+					}
+
+					if (codeEl.data?.meta) {
+						// Extract event from meta and pass it down the tree.
+						const regex = /event="([^"]*)"/;
+						const match = codeEl.data?.meta.match(regex);
+						if (match) {
+							node.__event__ = match ? match[1] : null;
+							codeEl.data.meta = codeEl.data.meta.replace(
+								regex,
+								""
+							);
+						}
+					}
+
+					node.__rawString__ = codeEl.children?.[0].value;
+					node.__src__ = node.properties?.__src__;
+					node.__style__ = node.properties?.__style__;
+				}
+			});
+		},
 		rehypeComponentPreToPre,
 		[
 			rehypePrettyCode,
 			{
-				theme: {
-					dark: JSON.parse(
-						fs.readFileSync(
-							path.resolve(__dirname, "./other/themes/dark.json"),
-							"utf-8"
-						)
-					),
-					light: JSON.parse(
-						fs.readFileSync(
-							path.resolve(
-								__dirname,
-								"./other/themes/light.json"
-							),
-							"utf-8"
-						)
+				theme: JSON.parse(
+					fs.readFileSync(
+						path.resolve(__dirname, "./other/themes/dark.json"),
+						"utf-8"
 					)
-				},
+				),
 				onVisitLine(node) {
 					if (node.children.length === 0) {
 						node.children = { type: "text", value: " " };
@@ -70,51 +87,75 @@ export const mdsvexOptions = {
 	]
 };
 
-function rehypeComponentExample() {
+const styles = [
+	{
+		name: "default",
+		label: "Default"
+	},
+	{
+		name: "new-york",
+		label: "New York"
+	}
+];
+
+export function rehypeComponentExample() {
 	return async (tree) => {
-		const srcRegex = /src="([^"]+)"/;
+		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
 			if (
 				node?.type === "raw" &&
-				node?.value?.startsWith("<ComponentExample")
+				node?.value?.startsWith("<ComponentPreview")
 			) {
-				const match = node.value.match(srcRegex);
-				const src = match ? match[1] : null;
+				const match = node.value.match(nameRegex);
+				const name = match ? match[1] : null;
 
-				if (!src) {
-					return;
+				if (!name) {
+					return null;
 				}
 
-				const sourceCode = getComponentSourceFileContent(src);
+				try {
+					for (const style of styles) {
+						const component = Index[style.name][name];
+						const src = component.files[0];
+						let sourceCode = getComponentSourceFileContent(src);
+						sourceCode = sourceCode.replaceAll(
+							`@/registry/${style.name}/`,
+							"@/components/"
+						);
 
-				const sourceCodeNode = u("element", {
-					tagName: "pre",
-					properties: {
-						__src__: src,
-						className: ["code"]
-					},
-					children: [
-						u("element", {
-							tagName: "code",
+						const sourceCodeNode = u("element", {
+							tagName: "pre",
 							properties: {
-								className: ["language-svelte"]
+								__src__: src,
+								__style__: style.name,
+								className: ["code"]
 							},
 							children: [
-								{
-									type: "text",
-									value: sourceCode
-								}
+								u("element", {
+									tagName: "code",
+									properties: {
+										className: [`language-svelte`]
+									},
+									attributes: {},
+									children: [
+										{
+											type: "text",
+											value: sourceCode
+										}
+									]
+								})
 							]
-						})
-					]
-				});
-
-				parent.children.splice(index + 1, 0, sourceCodeNode);
+						});
+						if (!index) return;
+						parent.children.splice(index + 1, 0, sourceCodeNode);
+					}
+				} catch (e) {
+					console.error(e);
+				}
 			}
 		});
 	};
 }
-
 function rehypeHandleMetadata() {
 	return async (tree) => {
 		visit(tree, (node) => {
@@ -122,10 +163,18 @@ function rehypeHandleMetadata() {
 				if (!("data-rehype-pretty-code-fragment" in node.properties)) {
 					return;
 				}
-
 				const preElement = node.children.at(-1);
 				if (preElement.tagName !== "pre") {
 					return;
+				}
+
+				if (node.__src__) {
+					preElement.properties["__src__"] = node.__src__;
+				}
+				if (node.__style__) {
+					node.properties["data-style"] = node.__style__;
+					preElement.properties["__style__"] = node.__style__;
+					preElement.properties["data-style"] = node.__style__;
 				}
 
 				if (node.children.at(0).tagName === "div") {
@@ -146,6 +195,10 @@ function rehypeComponentPreToPre() {
 				node?.tagName === "Components.pre"
 			) {
 				node.tagName = "pre";
+			}
+
+			if (node?.type === "element" && node?.tagName === "pre") {
+				//
 			}
 		});
 	};
@@ -171,6 +224,7 @@ function rehypeRenderCode() {
 				if (codeEl.tagName !== "code") {
 					return;
 				}
+
 				const toHtmlString = toHtml(codeEl, {
 					allowDangerousCharacters: true,
 					allowDangerousHtml: true
@@ -183,12 +237,13 @@ function rehypeRenderCode() {
 }
 
 function getComponentSourceFileContent(src = undefined) {
-	if (!src) {
+	const newSrc = src.replace("../", "./");
+	if (!newSrc) {
 		return null;
 	}
 
 	// Read the source file.
-	const filePath = path.join(process.cwd(), src);
+	const filePath = path.join(process.cwd(), newSrc);
 
 	const formattedSource = prettier.format(
 		fs.readFileSync(filePath, "utf-8"),

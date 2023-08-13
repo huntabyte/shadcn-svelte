@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-    import { ContextMenuDemo, ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/context-menu/ContextMenuDemo.svelte">
+<ComponentPreview name="context-menu-demo">
 
-<div slot="example">
-<ContextMenuDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

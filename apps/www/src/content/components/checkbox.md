@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { CheckboxDemo, CheckboxDemoDisabled, CheckboxDemoText, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/checkbox/CheckboxDemo.svelte">
+<ComponentPreview name="checkbox-demo">
 
-<div slot="example">
-<CheckboxDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -55,20 +53,18 @@ npm install @huntabyte/primitives
 
 ### With Text
 
-<ComponentExample src="src/lib/components/docs/examples/checkbox/CheckboxDemoText.svelte">
+<ComponentPreview name="checkbox-with-text">
 
-<div slot="example">
-<CheckboxDemoText />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
+
+---
 
 ### Disabled
 
-<ComponentExample src="src/lib/components/docs/examples/checkbox/CheckboxDemoDisabled.svelte">
+<ComponentPreview name="checkbox-disabled">
 
-<div slot="example">
-<CheckboxDemoDisabled />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>

@@ -10,16 +10,15 @@ external:
 ---
 
 <script>
-    import { AccordionDemo, ComponentExample, ManualInstall } from '$components/docs';
+    import { ComponentPreview, ManualInstall } from '$components/docs';
+    import { AccordionDemo } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/accordion/AccordionDemo.svelte">
+<ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
 
-<div slot="example" style="max-width: 70%; width: 100%;">
-<AccordionDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

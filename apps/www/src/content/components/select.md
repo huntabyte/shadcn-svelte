@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-    import { SelectDemo, ComponentExample, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/select/SelectDemo.svelte">
+<ComponentPreview name="select-demo">
 
-<div slot="example">
-<SelectDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "$components/ui/button";
-	import * as Card from "$components/ui/card";
-	import { Label } from "$components/ui/label";
-	import { Switch } from "$components/ui/switch";
+	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card";
+	import { Label } from "@/registry/default/ui/label";
+	import { Switch } from "@/registry/default/ui/switch";
 </script>
 
 <Card.Root>

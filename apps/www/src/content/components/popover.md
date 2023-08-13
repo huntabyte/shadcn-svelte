@@ -10,16 +10,14 @@ external:
 ---
 
 <script>
-  import { PopoverDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/popover/PopoverDemo.svelte">
+<ComponentPreview name="popover-demo">
 
-<div slot="example">
-<PopoverDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
