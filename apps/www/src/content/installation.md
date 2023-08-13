@@ -79,7 +79,7 @@ npx svelte-add@latest tailwindcss
 Add the following dependencies to your project:
 
 ```bash
-npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-svelte
+npm install tailwindcss-animate tailwind-variants clsx tailwind-merge lucide-svelte
 ```
 
 ### Path Aliases

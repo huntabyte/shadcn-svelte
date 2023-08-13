@@ -1,12 +1,15 @@
 <script lang="ts">
-	import DemoCookieSettings from "./(components)/CookieSettings.svelte";
-	import DemoCreateAccount from "./(components)/CreateAccount.svelte";
+	import {
+		CardsCookieSettings,
+		CardsCreateAccount,
+		CardsPaymentMethod,
+		CardsShare,
+		CardsReportIssue,
+		CardsGithub
+	} from "@/registry/new-york/example/cards";
+
 	import DemoContainer from "./(components)/DemoContainer.svelte";
 	import DemoNotifications from "./(components)/Notifications.svelte";
-	import DemoPaymentMethod from "./(components)/PaymentMethod.svelte";
-	import DemoShareDocument from "./(components)/ShareDocument.svelte";
-	import DemoGithub from "./(components)/GithubCard.svelte";
-	import DemoReportAnIssue from "./(components)/ReportAnIssue.svelte";
 </script>
 
 <div class="md:hidden">
@@ -30,15 +33,15 @@
 >
 	<div class="col-span-3 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
-			<DemoCreateAccount />
+			<CardsCreateAccount />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoPaymentMethod />
+			<CardsPaymentMethod />
 		</DemoContainer>
 	</div>
 	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
-			<DemoShareDocument />
+			<CardsShare />
 		</DemoContainer>
 		<DemoContainer>
 			<DemoNotifications />
@@ -48,13 +51,13 @@
 		class="col-span-2 grid items-start gap-6 lg:col-span-2 lg:grid-cols-2 xl:col-span-1 xl:grid-cols-1"
 	>
 		<DemoContainer>
-			<DemoReportAnIssue />
+			<CardsReportIssue />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoGithub />
+			<CardsGithub />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoCookieSettings />
+			<CardsCookieSettings />
 		</DemoContainer>
 	</div>
 </div>

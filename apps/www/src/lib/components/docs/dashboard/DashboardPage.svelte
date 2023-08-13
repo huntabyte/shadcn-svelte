@@ -6,7 +6,6 @@
 		Download,
 		Users
 	} from "lucide-svelte";
-	import * as Avatar from "@/registry/default/ui/avatar";
 	import { Button } from "@/registry/default/ui/button";
 	import * as Card from "@/registry/default/ui/card";
 	import * as Tabs from "@/registry/default/ui/tabs";
@@ -14,6 +13,7 @@
 	import Overview from "./Overview.svelte";
 	import RecentSales from "./RecentSales.svelte";
 	import Search from "./Search.svelte";
+	import UserNav from "./user-nav.svelte";
 </script>
 
 <div class="md:hidden">
@@ -38,10 +38,7 @@
 			<MainNav class="mx-6" />
 			<div class="ml-auto flex items-center space-x-4">
 				<Search />
-				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
-					<Avatar.Fallback>SC</Avatar.Fallback>
-				</Avatar.Root>
+				<UserNav />
 			</div>
 		</div>
 	</div>
@@ -58,11 +55,9 @@
 		<Tabs.Root value="overview" class="space-y-4">
 			<Tabs.List>
 				<Tabs.Trigger value="overview">Overview</Tabs.Trigger>
-				<Tabs.Trigger value="analytics" disabled>Analytics</Tabs.Trigger
-				>
+				<Tabs.Trigger value="analytics" disabled>Analytics</Tabs.Trigger>
 				<Tabs.Trigger value="reports" disabled>Reports</Tabs.Trigger>
-				<Tabs.Trigger value="notifications" disabled
-					>Notifications</Tabs.Trigger
+				<Tabs.Trigger value="notifications" disabled>Notifications</Tabs.Trigger
 				>
 			</Tabs.List>
 			<Tabs.Content value="overview" class="space-y-4">
@@ -71,9 +66,7 @@
 						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<Card.Title class="text-sm font-medium">
-								Total Revenue
-							</Card.Title>
+							<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
 							<DollarSign class="h-4 w-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
@@ -87,9 +80,7 @@
 						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<Card.Title class="text-sm font-medium">
-								Subscriptions
-							</Card.Title>
+							<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
 							<Users class="h-4 w-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
@@ -103,32 +94,24 @@
 						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<Card.Title class="text-sm font-medium"
-								>Sales</Card.Title
-							>
+							<Card.Title class="text-sm font-medium">Sales</Card.Title>
 							<CreditCard class="h-4 w-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+12,234</div>
-							<p class="text-xs text-muted-foreground">
-								+19% from last month
-							</p>
+							<p class="text-xs text-muted-foreground">+19% from last month</p>
 						</Card.Content>
 					</Card.Root>
 					<Card.Root>
 						<Card.Header
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
-							<Card.Title class="text-sm font-medium">
-								Active Now
-							</Card.Title>
+							<Card.Title class="text-sm font-medium">Active Now</Card.Title>
 							<Activity class="h-4 w-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+573</div>
-							<p class="text-xs text-muted-foreground">
-								+201 since last hour
-							</p>
+							<p class="text-xs text-muted-foreground">+201 since last hour</p>
 						</Card.Content>
 					</Card.Root>
 				</div>
