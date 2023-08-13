@@ -67,8 +67,12 @@
 				>
 					<slot name="example">
 						{#await component}
-							<div class="flex items-center text-sm text-muted-foreground">
-								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+							<div
+								class="flex items-center text-sm text-muted-foreground"
+							>
+								<Icons.spinner
+									class="mr-2 h-4 w-4 animate-spin"
+								/>
 								Loading...
 							</div>
 						{:then Component}
@@ -90,7 +94,10 @@
 		</Tabs.Content>
 		<Tabs.Content value="code">
 			<ThemeWrapper defaultTheme="zinc">
-				<CopyButton value={codeString} class="absolute right-4 top-20" />
+				<CopyButton
+					value={codeString}
+					class="absolute right-4 top-20"
+				/>
 				<div
 					class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
 					use:copyCodeToClipboard

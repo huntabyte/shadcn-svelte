@@ -45,7 +45,10 @@ export const mdsvexOptions = {
 						const match = codeEl.data?.meta.match(regex);
 						if (match) {
 							node.__event__ = match ? match[1] : null;
-							codeEl.data.meta = codeEl.data.meta.replace(regex, "");
+							codeEl.data.meta = codeEl.data.meta.replace(
+								regex,
+								""
+							);
 						}
 					}
 
@@ -187,7 +190,10 @@ function rehypeComponentPreToPre() {
 		// Replace `Component.pre` tags with `pre` tags.
 		// This is a workaround to use rehype-pretty-code along with custom mdsvex components.
 		visit(tree, (node) => {
-			if (node?.type === "element" && node?.tagName === "Components.pre") {
+			if (
+				node?.type === "element" &&
+				node?.tagName === "Components.pre"
+			) {
 				node.tagName = "pre";
 			}
 

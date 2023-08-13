@@ -55,8 +55,12 @@
 								>
 							</Avatar.Root>
 							<div>
-								<p class="text-sm font-medium leading-none">{person.name}</p>
-								<p class="text-sm text-muted-foreground">{person.email}</p>
+								<p class="text-sm font-medium leading-none">
+									{person.name}
+								</p>
+								<p class="text-sm text-muted-foreground">
+									{person.email}
+								</p>
 							</div>
 						</div>
 						<Select.Root value={person.permission}>
@@ -64,9 +68,11 @@
 								<Select.Value placeholder="Select" />
 							</Select.Trigger>
 							<Select.Content>
-								<Select.Item value="edit" label="Can edit">Can edit</Select.Item
+								<Select.Item value="edit" label="Can edit"
+									>Can edit</Select.Item
 								>
-								<Select.Item value="view" label="Can view">Can view</Select.Item
+								<Select.Item value="view" label="Can view"
+									>Can view</Select.Item
 								>
 							</Select.Content>
 						</Select.Root>
@@ -79,8 +85,12 @@
 							<Avatar.Fallback>IN</Avatar.Fallback>
 						</Avatar.Root>
 						<div>
-							<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-							<p class="text-sm text-muted-foreground">b@example.com</p>
+							<p class="text-sm font-medium leading-none">
+								Isabella Nguyen
+							</p>
+							<p class="text-sm text-muted-foreground">
+								b@example.com
+							</p>
 						</div>
 					</div>
 					<Select.Root value="view">
@@ -100,8 +110,12 @@
 							<Avatar.Fallback>SD</Avatar.Fallback>
 						</Avatar.Root>
 						<div>
-							<p class="text-sm font-medium leading-none">Sofia Davis</p>
-							<p class="text-sm text-muted-foreground">p@example.com</p>
+							<p class="text-sm font-medium leading-none">
+								Sofia Davis
+							</p>
+							<p class="text-sm text-muted-foreground">
+								p@example.com
+							</p>
 						</div>
 					</div>
 					<Select.Root value="view">

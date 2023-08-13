@@ -337,11 +337,11 @@ export const examples: Example[] = [
 	// 	href: "/examples/playground",
 	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
 	// },
-	// {
-	// 	name: "Music",
-	// 	href: "/examples/music",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/music"
-	// },
+	{
+		name: "Music",
+		href: "/examples/music",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/music"
+	},
 	{
 		name: "Authentication",
 		href: "/examples/authentication",

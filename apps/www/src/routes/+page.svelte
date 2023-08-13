@@ -18,13 +18,14 @@
 			target="_blank"
 			rel="noreferrer"
 		>
-			🎉<Separator class="mx-2 h-4" orientation="vertical" /> New components & themes!
+			🎉<Separator class="mx-2 h-4" orientation="vertical" /> New components
+			& themes!
 			<ChevronRight class="ml-1 h-4 w-4" />
 		</a>
 		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
 		<PageHeader.Description>
-			Beautifully designed components that you can copy and paste into your
-			apps. Accessible. Customizable. Open Source.
+			Beautifully designed components that you can copy and paste into
+			your apps. Accessible. Customizable. Open Source.
 		</PageHeader.Description>
 		<p class="text-sm text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a

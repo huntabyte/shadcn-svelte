@@ -34,7 +34,9 @@
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
 			<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-			<p class="text-sm text-muted-foreground">isabella.nguyen@email.com</p>
+			<p class="text-sm text-muted-foreground">
+				isabella.nguyen@email.com
+			</p>
 		</div>
 		<div class="ml-auto font-medium">+$299.00</div>
 	</div>

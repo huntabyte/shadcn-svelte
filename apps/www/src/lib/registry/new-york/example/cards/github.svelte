@@ -15,7 +15,8 @@
 		<div class="space-y-1">
 			<Card.Title>shadcn/ui</Card.Title>
 			<Card.Description>
-				Beautifully designed components built with Radix UI and Tailwind CSS.
+				Beautifully designed components built with Radix UI and Tailwind
+				CSS.
 			</Card.Description>
 		</div>
 		<div
@@ -33,7 +34,9 @@
 						variant="secondary"
 						class="px-2 shadow-none"
 					>
-						<ChevronDown class="h-4 w-4 text-secondary-foreground" />
+						<ChevronDown
+							class="h-4 w-4 text-secondary-foreground"
+						/>
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]">
