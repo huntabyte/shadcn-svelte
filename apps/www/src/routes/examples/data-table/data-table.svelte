@@ -10,14 +10,16 @@
 		addPagination,
 		addTableFilter,
 		addSelectedRows,
-		addHiddenColumns
+		addHiddenColumns,
+		addColumnFilters
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
 	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { CaretSort, ChevronDown, DotsHorizontal, MixerHorizontal } from "radix-icons-svelte";
+	import { CaretSort, ChevronDown, DotsHorizontal, MixerHorizontal, CaretRight, CaretLeft, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import * as Select from "@/registry/new-york/ui/select";
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
@@ -52,7 +54,7 @@
 			fn: ({ filterValue, value }) => value.includes(filterValue)
 		}),
 		select: addSelectedRows(),
-		hide: addHiddenColumns()
+		hide: addHiddenColumns(),
 	});
 
 	const columns = table.createColumns([
@@ -84,7 +86,8 @@
 		table.column({
 			header: "Status",
 			accessor: "status",
-			plugins: { sort: { disable: true }, filter: { exclude: true } }
+			plugins: { 
+				sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({
 			header: "Priority",
@@ -146,12 +149,14 @@
 		.filter(([, hide]) => !hide)
 		.map(([id]) => id);
 
-	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
+	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ["status", "email", "amount"];
+	const hideableCols = ["status", "email", "amount", "priority"];
+
+	$: console.log("pluginStates", pluginStates);
 </script>
 
 <div class="w-full">
@@ -254,17 +259,62 @@
 			{Object.keys($selectedDataIds).length} of{" "}
 			{$rows.length} row(s) selected.
 		</div>
-		<Button
-			variant="outline"
-			size="sm"
-			on:click={() => ($pageIndex = $pageIndex - 1)}
-			disabled={!$hasPreviousPage}>Previous</Button
-		>
-		<Button
-			variant="outline"
-			size="sm"
-			disabled={!$hasNextPage}
-			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
-		>
+		<div class="flex items-center space-x-6 lg:space-x-8">
+			<div class="flex items-center space-x-2">
+				<Label class="flex items-center space-x-2">
+					<p class="text-sm font-medium w-full">Rows per page</p>
+					<Select.Root bind:value={$pageSize}>
+						<Select.Trigger class="flex w-[70]">
+						  <Select.Value placeholder={`${$pageSize}`} />
+						</Select.Trigger>
+						<Select.Content>
+						  <Select.Item value={10}>10</Select.Item>
+						  <Select.Item value={20}>20</Select.Item>
+						  <Select.Item value={30}>30</Select.Item>
+						  <Select.Item value={40}>40</Select.Item>
+						  <Select.Item value={50}>50</Select.Item>
+						</Select.Content>
+					  </Select.Root>
+				</Label>
+			</div>
+			<div class="w-100px items-center justify-center text-sm font-medium">
+				<Label>Page {$pageIndex+1} of {$pageCount}</Label>
+			</div>
+			<div class="flex items-center space-x-2">
+				<Button
+					variant="outline"
+					size="sm"
+					on:click={() => ($pageIndex = 0)}
+					disabled={!$hasPreviousPage}>
+						<DoubleArrowLeft />
+					</Button
+				>
+				<Button
+					variant="outline"
+					size="sm"
+					on:click={() => ($pageIndex = $pageIndex - 1)}
+					disabled={!$hasPreviousPage}>
+						<CaretLeft />
+					</Button
+				>
+				<Button
+					variant="outline"
+					size="sm"
+					disabled={!$hasNextPage}
+					on:click={() => ($pageIndex = $pageIndex + 1)}>
+						<CaretRight />
+					</Button
+				>
+				<Button
+					variant="outline"
+					size="sm"
+					disabled={!$hasNextPage}
+					on:click={() => ($pageIndex = $pageCount - 1)}>
+						<DoubleArrowRight />
+					</Button
+				>
+			</div>
+		</div>
+		
 	</div>
 </div>
