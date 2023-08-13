@@ -9,6 +9,7 @@
 	import Button from "@/registry/default/ui/button/button.svelte";
 	import { Paintbrush } from "lucide-svelte";
 	import Customizer from "./customizer.svelte";
+	import CopyCodeButton from "./copy-code-button.svelte";
 
 	const colors = ["zinc", "rose", "blue", "green", "orange"];
 </script>
@@ -33,9 +34,7 @@
 								}}
 								class={cn(
 									"flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
-									isActive
-										? "border-[--theme-primary]"
-										: "border-transparent"
+									isActive ? "border-[--theme-primary]" : "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
 									$modeCurrent ? 'light' : 'dark'
@@ -51,9 +50,7 @@
 								<span class="sr-only">{theme.label}</span>
 							</button>
 						</Tooltip.Trigger>
-						<Tooltip.Content
-							class="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
-						>
+						<Tooltip.Content class="rounded-[0.5rem] bg-zinc-900 text-zinc-50">
 							{theme.label}
 						</Tooltip.Content>
 					</Tooltip.Root>
@@ -74,4 +71,5 @@
 			</Popover.Content>
 		</Popover.Root>
 	</div>
+	<CopyCodeButton />
 </div>

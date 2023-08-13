@@ -3,9 +3,7 @@
 	import { ChevronDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
-	type $$Props = AccordionPrimitive.TriggerProps & {
-		level?: AccordionPrimitive.HeaderProps["level"];
-	};
+	type $$Props = AccordionPrimitive.TriggerProps;
 	type $$Events = AccordionPrimitive.TriggerEvents;
 
 	let className: $$Props["class"] = undefined;

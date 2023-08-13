@@ -3,13 +3,11 @@
 	import { ChevronDown } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
-	type $$Props = AccordionPrimitive.TriggerProps & {
-		level: AccordionPrimitive.HeaderProps["level"];
-	};
+	type $$Props = AccordionPrimitive.TriggerProps;
 	type $$Events = AccordionPrimitive.TriggerEvents;
 
 	let className: $$Props["class"] = undefined;
-	export let level: $$Props["level"] = 3;
+	export let level: AccordionPrimitive.HeaderProps["level"] = 3;
 	export { className as class };
 </script>
 
