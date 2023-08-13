@@ -27,11 +27,11 @@ import {
 } from "lucide-svelte";
 import Apple from "./apple.svelte";
 import Aria from "./aria.svelte";
-import GitHub from "./gitHub.svelte";
+import GitHub from "./github.svelte";
 import Google from "./google.svelte";
 import Logo from "./logo.svelte";
 import Npm from "./npm.svelte";
-import PayPal from "./payPal.svelte";
+import PayPal from "./paypal.svelte";
 import Pnpm from "./pnpm.svelte";
 import RadixSvelte from "./radix-svelte.svelte";
 import Tailwind from "./tailwind.svelte";
