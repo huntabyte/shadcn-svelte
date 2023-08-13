@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		ChevronDownIcon,
-		CircleIcon,
-		PlusIcon,
-		StarIcon
-	} from "lucide-svelte";
+	import { ChevronDown, Circle, Plus, Star } from "lucide-svelte";
 	import { Button } from "@/registry/default/ui/button";
 	import * as Card from "@/registry/default/ui/card";
 	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
@@ -16,15 +11,14 @@
 		<div class="space-y-1">
 			<Card.Title>shadcn/ui</Card.Title>
 			<Card.Description>
-				Beautifully designed components built with Radix UI and Tailwind
-				CSS.
+				Beautifully designed components built with Radix UI and Tailwind CSS.
 			</Card.Description>
 		</div>
 		<div
 			class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground"
 		>
 			<Button variant="secondary" class="px-3 shadow-none">
-				<StarIcon class="mr-2 h-4 w-4" />
+				<Star class="mr-2 h-4 w-4" />
 				Star
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
@@ -35,9 +29,7 @@
 						variant="secondary"
 						class="px-2 shadow-none"
 					>
-						<ChevronDownIcon
-							class="h-4 w-4 text-secondary-foreground"
-						/>
+						<ChevronDown class="h-4 w-4 text-secondary-foreground" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]">
@@ -46,15 +38,11 @@
 					<DropdownMenu.CheckboxItem checked>
 						Future Ideas
 					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem
-						>My Stack</DropdownMenu.CheckboxItem
-					>
-					<DropdownMenu.CheckboxItem
-						>Inspiration</DropdownMenu.CheckboxItem
-					>
+					<DropdownMenu.CheckboxItem>My Stack</DropdownMenu.CheckboxItem>
+					<DropdownMenu.CheckboxItem>Inspiration</DropdownMenu.CheckboxItem>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<PlusIcon class="mr-2 h-4 w-4" /> Create List
+						<Plus class="mr-2 h-4 w-4" /> Create List
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
@@ -63,11 +51,11 @@
 	<Card.Content>
 		<div class="flex space-x-4 text-sm text-muted-foreground">
 			<div class="flex items-center">
-				<CircleIcon class="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
+				<Circle class="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
 				TypeScript
 			</div>
 			<div class="flex items-center">
-				<StarIcon class="mr-1 h-3 w-3" />
+				<Star class="mr-1 h-3 w-3" />
 				20k
 			</div>
 			<div>Updated April 2023</div>

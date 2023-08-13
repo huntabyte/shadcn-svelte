@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from "@/registry/default/ui/button";
-	import UserAuthForm from "./UserAuthForm.svelte";
+	import UserAuthForm from "./(components)/user-auth-form.svelte";
 </script>
 
 <div class="md:hidden">
@@ -45,9 +45,9 @@
 		<div class="relative z-20 mt-auto">
 			<blockquote class="space-y-2">
 				<p class="text-lg">
-					&ldquo;This library has saved me countless hours of work and
-					helped me deliver stunning designs to my clients faster than
-					ever before. Highly recommended!&rdquo;
+					&ldquo;This library has saved me countless hours of work and helped me
+					deliver stunning designs to my clients faster than ever before. Highly
+					recommended!&rdquo;
 				</p>
 				<footer class="text-sm">Sofia Davis</footer>
 			</blockquote>
@@ -58,9 +58,7 @@
 			class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
 		>
 			<div class="flex flex-col space-y-2 text-center">
-				<h1 class="text-2xl font-semibold tracking-tight">
-					Create an account
-				</h1>
+				<h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
 				<p class="text-sm text-muted-foreground">
 					Enter your email below to create your account
 				</p>

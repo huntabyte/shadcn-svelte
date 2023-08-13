@@ -9,11 +9,7 @@
 	import { Button } from "@/registry/default/ui/button";
 	import * as Card from "@/registry/default/ui/card";
 	import * as Tabs from "@/registry/default/ui/tabs";
-	import MainNav from "./MainNav.svelte";
-	import Overview from "./Overview.svelte";
-	import RecentSales from "./RecentSales.svelte";
-	import Search from "./Search.svelte";
-	import UserNav from "./user-nav.svelte";
+	import { MainNav, Overview, RecentSales, Search, UserNav } from ".";
 </script>
 
 <div class="md:hidden">

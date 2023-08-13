@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Icons } from "$components/docs";
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
+	import { Button } from "@/registry/new-york/ui/button";
+	import { Input } from "@/registry/new-york/ui/input";
+	import { Label } from "@/registry/new-york/ui/label";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;

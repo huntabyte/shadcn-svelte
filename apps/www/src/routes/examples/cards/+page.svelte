@@ -5,11 +5,11 @@
 		CardsPaymentMethod,
 		CardsShare,
 		CardsReportIssue,
-		CardsGithub
-	} from "@/registry/new-york/example/cards";
+		CardsGithub,
+		CardsNotifications
+	} from "@/registry/default/example/cards";
 
 	import DemoContainer from "./(components)/DemoContainer.svelte";
-	import DemoNotifications from "./(components)/Notifications.svelte";
 </script>
 
 <div class="md:hidden">
@@ -44,7 +44,7 @@
 			<CardsShare />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoNotifications />
+			<CardsNotifications />
 		</DemoContainer>
 	</div>
 	<div

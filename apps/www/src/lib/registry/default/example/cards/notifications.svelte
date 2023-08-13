@@ -28,9 +28,7 @@
 			<AtSign class="h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
-				<p class="text-sm text-muted-foreground">
-					Only mentions and comments.
-				</p>
+				<p class="text-sm text-muted-foreground">Only mentions and comments.</p>
 			</div>
 		</div>
 		<div
@@ -39,9 +37,7 @@
 			<BellOff class="h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
-				<p class="text-sm text-muted-foreground">
-					Turn off all notifications.
-				</p>
+				<p class="text-sm text-muted-foreground">Turn off all notifications.</p>
 			</div>
 		</div>
 	</Card.Content>
