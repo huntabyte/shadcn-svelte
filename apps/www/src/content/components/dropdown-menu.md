@@ -58,3 +58,21 @@ npm install @huntabyte/primitives
   </DropdownMenu.Content>
 </DropdownMenu.Root>
 ```
+
+## Examples
+
+### Checkboxes
+
+<ComponentPreview name="dropdown-menu-checkboxes">
+
+<div />
+
+</ComponentPreview>
+
+### Radio Group
+
+<ComponentPreview name="dropdown-menu-radio-group">
+
+<div />
+
+</ComponentPreview>

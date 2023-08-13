@@ -14,3 +14,6 @@ yarn.lock
 
 apps/www/src/routes/api/components/components.json
 apps/www/static
+apps/www/__registry__/index.js
+apps/www/other/themes/dark.json
+apps/www/other/themes/light.json

@@ -146,7 +146,7 @@ export const Index = {
     "card-with-form": {
       name: "card-with-form",
       type: "components:example",
-      registryDependencies: [],
+      registryDependencies: ["button","card","select","input","label"],
       component: () => import("../src/lib/registry/default/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/card-with-form.svelte"],
     },
@@ -199,12 +199,26 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/dialog-demo.svelte"],
     },
+    "dropdown-menu-checkboxes": {
+      name: "dropdown-menu-checkboxes",
+      type: "components:example",
+      registryDependencies: ["dropdown-menu","button"],
+      component: () => import("../src/lib/registry/default/example/dropdown-menu-checkboxes.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/dropdown-menu-checkboxes.svelte"],
+    },
     "dropdown-menu-demo": {
       name: "dropdown-menu-demo",
       type: "components:example",
       registryDependencies: ["button","dropdown-menu"],
       component: () => import("../src/lib/registry/default/example/dropdown-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/dropdown-menu-demo.svelte"],
+    },
+    "dropdown-menu-radio-group": {
+      name: "dropdown-menu-radio-group",
+      type: "components:example",
+      registryDependencies: ["dropdown-menu","button"],
+      component: () => import("../src/lib/registry/default/example/dropdown-menu-radio-group.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/dropdown-menu-radio-group.svelte"],
     },
     "hover-card-demo": {
       name: "hover-card-demo",
@@ -679,7 +693,7 @@ export const Index = {
     "card-with-form": {
       name: "card-with-form",
       type: "components:example",
-      registryDependencies: [],
+      registryDependencies: ["button","card","select","input","label"],
       component: () => import("../src/lib/registry/new-york/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/card-with-form.svelte"],
     },
@@ -732,12 +746,26 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/dialog-demo.svelte"],
     },
+    "dropdown-menu-checkboxes": {
+      name: "dropdown-menu-checkboxes",
+      type: "components:example",
+      registryDependencies: ["dropdown-menu","button"],
+      component: () => import("../src/lib/registry/new-york/example/dropdown-menu-checkboxes.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/dropdown-menu-checkboxes.svelte"],
+    },
     "dropdown-menu-demo": {
       name: "dropdown-menu-demo",
       type: "components:example",
       registryDependencies: ["button","dropdown-menu"],
       component: () => import("../src/lib/registry/new-york/example/dropdown-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/dropdown-menu-demo.svelte"],
+    },
+    "dropdown-menu-radio-group": {
+      name: "dropdown-menu-radio-group",
+      type: "components:example",
+      registryDependencies: ["dropdown-menu","button"],
+      component: () => import("../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte"],
     },
     "hover-card-demo": {
       name: "hover-card-demo",

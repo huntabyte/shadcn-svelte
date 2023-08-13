@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "button.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Button as ButtonPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\timport { buttonVariants, type Size, type Variant } from \".\";\n\n\ttype $$Props = ButtonPrimitive.Props & {\n\t\tvariant?: Variant;\n\t\tsize?: Size;\n\t};\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport let size: $$Props[\"size\"] = \"default\";\n\texport let builders: $$Props[\"builders\"] = [];\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\t{...$$restProps}\n\ton:click\n\ton:change\n\ton:keydown\n\ton:keyup\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { Button as ButtonPrimitive } from \"@huntabyte/primitives\";\n\timport { cn } from \"$lib/utils\";\n\timport { buttonVariants, type Size, type Variant } from \".\";\n\n\ttype $$Props = ButtonPrimitive.Props & {\n\t\tvariant?: Variant;\n\t\tsize?: Size;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport let size: $$Props[\"size\"] = \"default\";\n\texport let builders: $$Props[\"builders\"] = [];\n\texport { className as class };\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\t{...$$restProps}\n\ton:click\n\ton:change\n\ton:keydown\n\ton:keyup\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
     },
     {
       "name": "index.ts",

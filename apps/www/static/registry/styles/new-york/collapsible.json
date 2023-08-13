@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "collapsible-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"@huntabyte/primitives\";\n\timport { slide } from \"svelte/transition\";\n\ttype $$Props = CollapsiblePrimitive.ContentProps;\n</script>\n\n<CollapsiblePrimitive.Content transition={slide} {...$$restProps}>\n\t<slot />\n</CollapsiblePrimitive.Content>\n"
+      "content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"@huntabyte/primitives\";\n\timport { slide } from \"svelte/transition\";\n\ttype $$Props = CollapsiblePrimitive.ContentProps;\n\n\texport let transition: $$Props[\"transition\"] = slide;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = undefined;\n</script>\n\n<CollapsiblePrimitive.Content {transition} {transitionConfig} {...$$restProps}>\n\t<slot />\n</CollapsiblePrimitive.Content>\n"
     },
     {
       "name": "index.ts",

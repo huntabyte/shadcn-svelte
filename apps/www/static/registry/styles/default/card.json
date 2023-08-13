@@ -5,27 +5,27 @@
   "files": [
     {
       "name": "card-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "card-description.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<p class={cn(\"text-sm text-muted-foreground\", className)} {...$$restProps}>\n\t<slot />\n</p>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<p class={cn(\"text-sm text-muted-foreground\", className)} {...$$restProps}>\n\t<slot />\n</p>\n"
     },
     {
       "name": "card-footer.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex items-center p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex items-center p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "card-header.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex flex-col space-y-1.5 p-6\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex flex-col space-y-1.5 p-6\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "card-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HeadingLevel } from \"../alert\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\texport let tag: HeadingLevel = \"h3\";\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HeadingLevel } from \"../alert\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let tag: $$Props[\"level\"] = \"h3\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
     },
     {
       "name": "card.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<!-- svelte-ignore a11y-no-static-element-interactions -->\n<div\n\tclass={cn(\n\t\t\"rounded-lg border bg-card text-card-foreground shadow-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\n\t\t\"rounded-lg border bg-card text-card-foreground shadow-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
     },
     {
       "name": "index.ts",

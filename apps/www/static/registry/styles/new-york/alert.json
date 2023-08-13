@@ -5,15 +5,15 @@
   "files": [
     {
       "name": "alert-description.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "alert-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { HeadingLevel } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let level: $$Props[\"level\"] = \"h5\";\n</script>\n\n<svelte:element\n\tthis={level}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { HeadingLevel } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let level: $$Props[\"level\"] = \"h5\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={level}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
     },
     {
       "name": "alert.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { alertVariants, type Variant } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tvariant?: Variant;\n\t};\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\texport let variant: $$Props[\"variant\"] = \"default\";\n</script>\n\n<div\n\tclass={cn(alertVariants({ variant }), className)}\n\t{...$$restProps}\n\trole=\"alert\"\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { alertVariants, type Variant } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tvariant?: Variant;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(alertVariants({ variant }), className)}\n\t{...$$restProps}\n\trole=\"alert\"\n>\n\t<slot />\n</div>\n"
     },
     {
       "name": "index.ts",
