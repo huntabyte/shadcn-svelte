@@ -9,7 +9,7 @@
 		CardsNotifications
 	} from "@/registry/default/example/cards";
 
-	import DemoContainer from "./(components)/DemoContainer.svelte";
+	import DemoContainer from "./(components)/demo-container.svelte";
 </script>
 
 <div class="md:hidden">

@@ -1,3 +1,3 @@
-export { default as PageHeader } from "./PageHeader.svelte";
-export { default as PageHeaderDescription } from "./PageHeaderDescription.svelte";
-export { default as PageHeaderHeading } from "./PageHeaderHeading.svelte";
+export { default as PageHeader } from "./page-header.svelte";
+export { default as PageHeaderDescription } from "./page-header-description.svelte";
+export { default as PageHeaderHeading } from "./page-header-heading.svelte";

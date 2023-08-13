@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { CopyButton } from "$components/docs";
 	import * as Tabs from "@/registry/default/ui/tabs";
 	import { cn } from "$lib/utils";
-	import StyleSwitcher from "./StyleSwitcher.svelte";
-	import ThemeWrapper from "./ThemeWrapper.svelte";
+	import { StyleSwitcher, ThemeWrapper, CopyButton } from "@/components/docs";
 
 	let codeString: string;
 

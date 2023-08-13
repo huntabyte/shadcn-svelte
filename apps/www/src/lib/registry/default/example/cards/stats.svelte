@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Card from "@/registry/default/ui/card";
-	import Revenue from "$components/docs/charts/Revenue.svelte";
-	import Subscription from "$components/docs/charts/Subscription.svelte";
+	import { Revenue, Subscription } from "@/components/docs/charts";
 </script>
 
 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
