@@ -8,9 +8,15 @@
 	export { className as class };
 </script>
 
-<div class="relative">
+<div class="relative pb-4 sm:pb-0">
 	<div class="max-w-[600px] lg:max-w-none">
-		<div class={cn("mb-4 flex items-center", className)} {...$$restProps}>
+		<div
+			class={cn(
+				"mb-4 flex items-center pb-2 overflow-x-auto sm:overflow-x-visible",
+				className
+			)}
+			{...$$restProps}
+		>
 			{#each examples as example, index (index)}
 				<a
 					href={example.href}
