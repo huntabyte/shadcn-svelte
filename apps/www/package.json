@@ -73,7 +73,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@huntabyte/primitives": "^0.0.14",
+		"@huntabyte/primitives": "^0.0.16",
 		"@melt-ui/svelte": "^0.34.6",
 		"@unovis/svelte": "^1.2.0",
 		"@unovis/ts": "^1.2.0",

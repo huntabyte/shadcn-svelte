@@ -14,8 +14,8 @@
 
 {#if activeTheme}
 	<Dialog.Root>
-		<Dialog.Trigger asChild let:trigger>
-			<Button class="flex" builders={[trigger]}>Copy Code</Button>
+		<Dialog.Trigger asChild let:builder>
+			<Button class="flex" builders={[builder]}>Copy Code</Button>
 		</Dialog.Trigger>
 		<Dialog.Content class="max-w-2xl outline-none">
 			<Dialog.Header>

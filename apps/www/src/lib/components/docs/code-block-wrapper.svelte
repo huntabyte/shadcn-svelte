@@ -26,8 +26,8 @@
 					open ? "inset-x-0 bottom-0 h-12" : "inset-0"
 				)}
 			>
-				<Collapsible.Trigger asChild>
-					<Button variant="secondary" class="h-8 text-xs">
+				<Collapsible.Trigger asChild let:builder>
+					<Button variant="secondary" builders={[builder]} class="h-8 text-xs">
 						{open ? "Collapse" : expandButtonTitle}
 					</Button>
 				</Collapsible.Trigger>

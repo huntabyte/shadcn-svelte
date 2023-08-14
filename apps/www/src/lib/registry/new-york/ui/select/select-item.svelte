@@ -4,7 +4,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = SelectPrimitive.ItemProps;
-	type $$Events = SelectPrimitive.ItemEvents;
+	type $$Events = Required<SelectPrimitive.ItemEvents>;
 
 	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"];
@@ -23,6 +23,8 @@
 	)}
 	{...$$restProps}
 	on:m-click
+	on:m-pointermove
+	on:m-focusin
 >
 	<span class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
 		<SelectPrimitive.ItemIndicator>

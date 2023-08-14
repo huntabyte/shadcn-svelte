@@ -11,8 +11,8 @@ patchedDependencies:
 
 dependencies:
   '@huntabyte/primitives':
-    specifier: ^0.0.14
-    version: 0.0.14(svelte@4.1.2)
+    specifier: ^0.0.16
+    version: 0.0.16(svelte@4.1.2)
   '@melt-ui/svelte':
     specifier: ^0.34.6
     version: 0.34.6(svelte@4.1.2)
@@ -833,8 +833,8 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /@huntabyte/primitives@0.0.14(svelte@4.1.2):
-    resolution: {integrity: sha512-dbinwwyXLI0skw1LVatOa8Uu/PKNTGM53ZMz7JuG0B/Q5P7DG5IxOVWmkJmp8y8bMb4nCOBHBVhg027WaBt/Cw==}
+  /@huntabyte/primitives@0.0.16(svelte@4.1.2):
+    resolution: {integrity: sha512-glPbSUwSkeFZnz9V/KXypquOYHKl3IDyWZ4uu+E9NY/Tn1YuxU6LehzKSX36cmj7m9sb4wnLxnA9PE1NwvWnng==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:

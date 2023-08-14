@@ -10,8 +10,8 @@
 </script>
 
 <Popover>
-	<PopoverTrigger asChild let:trigger>
-		<Button builders={[trigger]} variant="outline">Open</Button>
+	<PopoverTrigger asChild let:builder>
+		<Button builders={[builder]} variant="outline">Open</Button>
 	</PopoverTrigger>
 	<PopoverContent class="w-80">
 		<div class="grid gap-4">

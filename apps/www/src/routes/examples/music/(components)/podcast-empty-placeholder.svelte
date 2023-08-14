@@ -33,8 +33,8 @@
 			You have not added any podcasts. Add one below.
 		</p>
 		<Dialog.Root>
-			<Dialog.Trigger asChild let:trigger>
-				<Button size="sm" builders={[trigger]} class="relative">
+			<Dialog.Trigger asChild let:builder>
+				<Button size="sm" builders={[builder]} class="relative">
 					Add Podcast
 				</Button>
 			</Dialog.Trigger>
@@ -48,10 +48,7 @@
 				<div class="grid gap-4 py-4">
 					<div class="grid gap-2">
 						<Label for="url">Podcast URL</Label>
-						<Input
-							id="url"
-							placeholder="https://example.com/feed.xml"
-						/>
+						<Input id="url" placeholder="https://example.com/feed.xml" />
 					</div>
 				</div>
 				<Dialog.Footer>

@@ -4,8 +4,8 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:trigger>
-		<Button builders={[trigger]} variant="outline">Open</Button>
+	<DropdownMenu.Trigger asChild let:builder>
+		<Button builders={[builder]} variant="outline">Open</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Label>My Account</DropdownMenu.Label>

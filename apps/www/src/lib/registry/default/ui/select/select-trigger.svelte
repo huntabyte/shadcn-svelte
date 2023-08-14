@@ -15,8 +15,9 @@
 		className
 	)}
 	{...$$restProps}
+	let:builder
 >
-	<slot />
+	<slot {builder} />
 	<div>
 		<ChevronDown class="h-4 w-4 opacity-50" />
 	</div>

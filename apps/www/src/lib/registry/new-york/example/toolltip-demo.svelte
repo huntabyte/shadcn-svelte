@@ -4,8 +4,8 @@
 </script>
 
 <Tooltip.Root>
-	<Tooltip.Trigger asChild let:trigger>
-		<Button builders={[trigger]} variant="outline">Hover</Button>
+	<Tooltip.Trigger asChild let:builder>
+		<Button builders={[builder]} variant="outline">Hover</Button>
 	</Tooltip.Trigger>
 	<Tooltip.Content>
 		<p>Add to library</p>

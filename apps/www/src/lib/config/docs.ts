@@ -332,11 +332,11 @@ export const examples: Example[] = [
 	// 	label: "New",
 	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/tasks"
 	// },
-	// {
-	// 	name: "Playground",
-	// 	href: "/examples/playground",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
-	// },
+	{
+		name: "Playground",
+		href: "/examples/playground",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
+	},
 	{
 		name: "Music",
 		href: "/examples/music",

@@ -20,9 +20,7 @@
 				<img
 					class={cn(
 						"h-auto w-auto object-cover transition-all hover:scale-105",
-						aspectRatio === "portrait"
-							? "aspect-[3/4]"
-							: "aspect-square"
+						aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
 					)}
 					src={album.cover}
 					alt={album.name}
@@ -37,8 +35,7 @@
 				<ContextMenu.SubTrigger>Add to Playlist</ContextMenu.SubTrigger>
 				<ContextMenu.SubContent class="w-48">
 					<ContextMenu.Item>
-						<PlusCircled className="mr-2 h-4 w-4" />
-						New Playlist
+						<PlusCircled class="mr-2 h-4 w-4" /> New Playlist
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					{#each playlists as playlist}
