@@ -346,11 +346,10 @@ export const examples: Example[] = [
 		name: "Authentication",
 		href: "/examples/authentication",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/authentication"
+	},
+	{
+		name: "Forms",
+		href: "/examples/forms",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
 	}
-	// {
-	// 	name: "Forms",
-	// 	href: "#",
-	// 	label: "Soon",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
-	// }
 ];

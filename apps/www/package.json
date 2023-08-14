@@ -87,6 +87,7 @@
 		"svelte-legos": "^0.2.1",
 		"svelte-local-storage-store": "^0.5.0",
 		"svelte-wrap-balancer": "^0.0.4",
+		"sveltekit-superforms": "^1.5.1",
 		"tailwind-merge": "^1.14.0",
 		"tailwind-variants": "^0.1.13"
 	},

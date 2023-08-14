@@ -6,8 +6,7 @@
 		CardsShare,
 		CardsReportIssue,
 		CardsGithub,
-		CardsNotifications,
-		CardsDataTable
+		CardsNotifications
 	} from "@/registry/default/example/cards";
 
 	import DemoContainer from "./(components)/demo-container.svelte";
