@@ -69,8 +69,12 @@
 						Receive emails about your accoutn activity.
 					</Form.Description>
 				</div>
-				<input hidden value={$form.communication_emails} {...field} />
-				<Switch bind:checked={$form.communication_emails} />
+				<input
+					hidden
+					value={$form.communication_emails}
+					name="communication_emails"
+				/>
+				<Switch bind:checked={$form.communication_emails} {...field} />
 			</Form.Field>
 			<Form.Field
 				errors={$errors.marketing_emails}
@@ -84,8 +88,8 @@
 						Receive emails about new products, features, and more.
 					</Form.Description>
 				</div>
-				<input hidden value={$form.marketing_emails} {...field} />
-				<Switch bind:checked={$form.marketing_emails} />
+				<input hidden value={$form.marketing_emails} name="marketing_emails" />
+				<Switch bind:checked={$form.marketing_emails} {...field} />
 			</Form.Field>
 			<Form.Field
 				errors={$errors.social_emails}
@@ -99,8 +103,8 @@
 						Receive emails for friend requests, follows, and more.
 					</Form.Description>
 				</div>
-				<input hidden value={$form.social_emails} {...field} />
-				<Switch bind:checked={$form.social_emails} />
+				<input hidden value={$form.social_emails} name="social_emails" />
+				<Switch bind:checked={$form.social_emails} {...field} />
 			</Form.Field>
 			<Form.Field
 				errors={$errors.security_emails}
@@ -114,8 +118,8 @@
 						Receive emails about your account activity and security.
 					</Form.Description>
 				</div>
-				<input hidden value={$form.security_emails} {...field} />
-				<Switch bind:checked={$form.security_emails} />
+				<input hidden value={$form.security_emails} name="security_email" />
+				<Switch bind:checked={$form.security_emails} {...field} />
 			</Form.Field>
 		</div>
 	</div>
@@ -125,7 +129,7 @@
 		let:field
 		class="flex flex-row items-start space-x-3 space-y-0"
 	>
-		<input hidden value={$form.mobile} {...field} />
+		<input hidden value={$form.mobile} name="mobile" />
 		<Checkbox bind:checked={$form.mobile} {...field} />
 		<div class="space-y-1 leading-none">
 			<Form.Label>Use different settings for my mobile devices</Form.Label>
