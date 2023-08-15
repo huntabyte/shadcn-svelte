@@ -67,7 +67,12 @@
 				name="communication_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 				let:field
+				let:value
 			>
+				<!-- The goal is for this to only allow me to set a `boolean` as the value. -->
+				<!-- Instead, it allows me to set it as any acceptable value across the entire schema -->
+				<!-- By passing `communication_emails` it would be nice to have it infer the type -->
+				<button on:click={() => value.set("all")} />
 				<div class="space-y-0.5">
 					<Form.Label class="text-base">Communication emails</Form.Label>
 					<Form.Description>
@@ -75,7 +80,7 @@
 					</Form.Description>
 				</div>
 				<input hidden value={field.attrs.value} name="communication_emails" />
-				<Switch checked={field.attrs.value} />
+				<Switch />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -90,7 +95,7 @@
 					</Form.Description>
 				</div>
 				<input hidden {...field.attrs} />
-				<Switch checked={field.attrs.value} {...field.attrs} />
+				<Switch />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -105,7 +110,7 @@
 					</Form.Description>
 				</div>
 				<input hidden {...field.attrs} />
-				<Switch checked={field.attrs.value} />
+				<Switch />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -120,7 +125,7 @@
 					</Form.Description>
 				</div>
 				<input hidden {...field.attrs} />
-				<Switch value={field.attrs.value} />
+				<Switch />
 			</Form.Field>
 		</div>
 	</div>
@@ -131,7 +136,7 @@
 		class="flex flex-row items-start space-x-3 space-y-0"
 	>
 		<input hidden {...field.attrs} />
-		<Checkbox value={field.attrs.value} />
+		<Checkbox />
 		<div class="space-y-1 leading-none">
 			<Form.Label>Use different settings for my mobile devices</Form.Label>
 			<Form.Description>
