@@ -11,6 +11,7 @@ import type {
 	FormFieldContext
 } from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
+import type { z } from "zod";
 import type { StoresValues } from "svelte/store";
 
 export function createFormField<T extends FormValidation>(
@@ -30,9 +31,20 @@ export function createFormField<T extends FormValidation>(
 	};
 	setContext("FormField", context);
 
-	type Value = StoresValues<typeof stores.value>;
+	type Schema = z.infer<typeof form.schema>;
 
-	const getFieldAttrs = (value: Value, errors: string[] | undefined) => {
+	type FieldAttrs = {
+		"aria-invalid"?: boolean;
+		"aria-describedby"?: string;
+		name: string;
+		id: string;
+		value: Schema[typeof name];
+	};
+
+	function getFieldAttrs(
+		val: StoresValues<typeof stores.value>,
+		errors: string[] | undefined
+	): FieldAttrs {
 		return {
 			"aria-invalid": errors ? true : undefined,
 			"aria-describedby": !errors
@@ -40,9 +52,9 @@ export function createFormField<T extends FormValidation>(
 				: `${context.formDescriptionId} ${context.formMessageId}`,
 			name,
 			id: context.formItemId,
-			value
+			value: val
 		};
-	};
+	}
 
 	return {
 		stores,
