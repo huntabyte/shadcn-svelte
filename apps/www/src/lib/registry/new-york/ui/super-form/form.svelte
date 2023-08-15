@@ -13,6 +13,7 @@
 </script>
 
 <script lang="ts" generics="T extends Validation = Validation, M = any">
+	import { setContext } from "svelte";
 	import type { SuperValidated } from "sveltekit-superforms";
 
 	export let schema: T;
@@ -21,7 +22,10 @@
 		validators: schema,
 		taintedMessage: null
 	};
-	const { form, errors, enhance } = superForm(data, options);
+	const form = superForm(data, options);
+	setContext("Form", form);
+
+	const { form: formStore } = form;
 </script>
 
-<slot form={$form} />
+<slot form={$formStore} />
