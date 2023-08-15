@@ -67,21 +67,18 @@
 				name="communication_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 				let:field
-				let:value
 			>
-				<!-- The goal is for this to only allow me to set a `boolean` as the value. -->
-				<!-- Instead, it allows me to set it as any acceptable value across the entire schema -->
-				<!-- By passing `communication_emails` it would be nice to have it infer the type -->
-				<!-- `value` is being typed as `Writable<boolean | "all" | "mentions" | "none" | undefined>` when it should be Writable<boolean | undefined> -->
-				<button on:click={() => value.set("all")} />
 				<div class="space-y-0.5">
 					<Form.Label class="text-base">Communication emails</Form.Label>
 					<Form.Description>
 						Receive emails about your accoutn activity.
 					</Form.Description>
 				</div>
-				<input hidden value={field.attrs.value} name="communication_emails" />
-				<Switch />
+				<input hidden value={field.attrs.value} name={field.attrs.name} />
+				<Switch
+					checked={field.attrs.value}
+					onCheckedChange={(v) => field.value.set(v)}
+				/>
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -95,8 +92,12 @@
 						Receive emails about new products, features, and more.
 					</Form.Description>
 				</div>
-				<input hidden {...field.attrs} />
-				<Switch />
+				<input hidden value={field.attrs.value} name={field.attrs.name} />
+				<Switch
+					checked={field.attrs.value}
+					id={field.attrs.id}
+					onCheckedChange={(v) => field.value.set(v)}
+				/>
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -110,8 +111,11 @@
 						Receive emails for friend requests, follows, and more.
 					</Form.Description>
 				</div>
-				<input hidden {...field.attrs} />
-				<Switch />
+				<input hidden name={field.attrs.name} value={field.attrs.value} />
+				<Switch
+					checked={field.attrs.value}
+					onCheckedChange={(v) => field.value.set(v)}
+				/>
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -125,8 +129,15 @@
 						Receive emails about your account activity and security.
 					</Form.Description>
 				</div>
-				<input hidden {...field.attrs} />
-				<Switch />
+				<input hidden name={field.attrs.name} value={field.attrs.value} />
+				<Switch
+					checked={field.attrs.value}
+					onCheckedChange={(v) => {
+						if (v !== undefined) {
+							field.value.set(v);
+						}
+					}}
+				/>
 			</Form.Field>
 		</div>
 	</div>
@@ -136,8 +147,15 @@
 		let:field
 		class="flex flex-row items-start space-x-3 space-y-0"
 	>
-		<input hidden {...field.attrs} />
-		<Checkbox />
+		<input hidden name={field.attrs.name} value={field.attrs.value} />
+		<Checkbox
+			checked={field.attrs.value}
+			onCheckedChange={(v) => {
+				if (typeof v === "boolean") {
+					field.value.set(v);
+				}
+			}}
+		/>
 		<div class="space-y-1 leading-none">
 			<Form.Label>Use different settings for my mobile devices</Form.Label>
 			<Form.Description>

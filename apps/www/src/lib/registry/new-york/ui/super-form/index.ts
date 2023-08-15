@@ -4,29 +4,38 @@ import Field from "./form-field.svelte";
 import Label from "./form-label.svelte";
 import Message from "./form-message.svelte";
 import { setContext } from "svelte";
-import type { FormFieldName, Form, FormFieldContext } from "./types";
+import type { Form, FormFieldContext } from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
-import type { StoresValues, Writable } from "svelte/store";
 
-// function createValueWithType<T extends AnyZodObject, U extends keyof z.infer<T>>(schema: T, name: U): Writable<z.infer<T>[U]> {
-//     return schema[name]
-// }
+import type {
+	FormPathLeaves,
+	UnwrapEffects,
+	ZodValidation
+} from "sveltekit-superforms";
 
-type ValueWithType<
-	T extends AnyZodObject,
-	U extends keyof z.infer<T>
-> = Writable<z.infer<T>[U]>;
-
-export function createFormField<T extends AnyZodObject>(
+export function createFormField<
+	T extends ZodValidation<AnyZodObject>,
+	Path extends FormPathLeaves<z.infer<UnwrapEffects<T>>>
+>(
 	form: Form<T>,
-	name: FormFieldName<T>
-) {
-	type ValueType = ValueWithType<T, typeof name>;
-
+	name: Path
+): {
+	stores: ReturnType<typeof formFieldProxy<T, Path>>;
+	getFieldAttrs: <T>(
+		val: T,
+		errors: string[] | undefined
+	) => {
+		"aria-invalid": boolean | undefined;
+		"aria-describedby": string | undefined;
+		name: string;
+		id: string;
+		value: T;
+	};
+} {
 	const id = Math.random().toString(36).slice(2);
-	const stores = formFieldProxy(form.form, name);
-	const { errors, value } = stores;
+	const stores = formFieldProxy<T, Path>(form.form, name);
+	const { errors } = stores;
 
 	const context: FormFieldContext = {
 		formItemId: id,
@@ -37,10 +46,7 @@ export function createFormField<T extends AnyZodObject>(
 	};
 	setContext("FormField", context);
 
-	function getFieldAttrs(
-		val: StoresValues<typeof stores.value>,
-		errors: string[] | undefined
-	) {
+	function getFieldAttrs<T>(val: T, errors: string[] | undefined) {
 		return {
 			"aria-invalid": errors ? true : undefined,
 			"aria-describedby": !errors
@@ -53,9 +59,7 @@ export function createFormField<T extends AnyZodObject>(
 	}
 
 	return {
-		value: value as ValueType,
 		stores,
-		context,
 		getFieldAttrs
 	};
 }

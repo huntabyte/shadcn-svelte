@@ -19,7 +19,7 @@ export type ExpandDeep<T> = T extends object
 		: never
 	: T;
 
-export type Form<T extends AnyZodObject> = {
+export type Form<T extends ZodValidation<AnyZodObject>> = {
 	schema: T;
 	form: SuperForm<T, unknown>;
 };
@@ -34,3 +34,43 @@ export type FormFieldContext = {
 	formMessageId: string;
 	errors: Writable<string[] | undefined>;
 };
+
+export type FormPathType<T, P extends string> = P extends keyof T
+	? T[P]
+	: P extends number
+	? T
+	: P extends `.${infer Rest}`
+	? FormPathType<NonNullable<T>, Rest>
+	: P extends `${number}]${infer Rest}`
+	? NonNullable<T> extends (infer U)[]
+		? FormPathType<U, Rest>
+		: { invalid_path: P; Type: T }
+	: P extends `${infer K}[${infer Rest}`
+	? K extends keyof NonNullable<T>
+		? FormPathType<NonNullable<T>[K], Rest>
+		: FormPathType<T, Rest>
+	: P extends `${infer K}.${infer Rest}`
+	? K extends keyof NonNullable<T>
+		? FormPathType<NonNullable<T>[K], Rest>
+		: NonNullable<T> extends (infer U)[]
+		? FormPathType<U, Rest>
+		: { invalid_path: P; Type: T }
+	: P extends `[${infer K}].${infer Rest}`
+	? K extends number
+		? T extends (infer U)[]
+			? FormPathType<U, Rest>
+			: { invalid_path: P; Type: T }
+		: P extends `${number}`
+		? NonNullable<T> extends (infer U)[]
+			? U
+			: { invalid_path: P; Type: T }
+		: P extends keyof NonNullable<T>
+		? NonNullable<T>[P]
+		: P extends `${number}`
+		? NonNullable<T> extends (infer U)[]
+			? U
+			: { invalid_path: P; Type: T }
+		: { invalid_path: P; Type: T }
+	: P extends ""
+	? T
+	: { invalid_path: P; Type: T };
