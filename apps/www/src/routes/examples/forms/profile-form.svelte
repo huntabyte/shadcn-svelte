@@ -52,9 +52,9 @@
 		</Form.Description>
 		<Form.Message />
 	</Form.Field>
-	<Form.Field {form} name="email" let:field>
+	<Form.Field {form} name="email" let:field let:value>
 		<Form.Label>Email</Form.Label>
-		<Select.Root onValueChange={(next) => field.update(next)}>
+		<Select.Root onValueChange={(next) => value.set(next)}>
 			<Select.Trigger {...field.attrs}>
 				<Select.Value placeholder="Select a verified email to display" />
 				<Select.Input {...field.attrs} />

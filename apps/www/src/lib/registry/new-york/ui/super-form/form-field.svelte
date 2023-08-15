@@ -1,51 +1,30 @@
 <script lang="ts" context="module">
-	type Validation = ZodValidation<AnyZodObject>;
+	import type { FormFieldName, FormValidation } from "./types";
 </script>
 
-<script lang="ts" generics="T extends Validation">
+<script lang="ts" generics="T extends FormValidation">
+	import { createField } from ".";
+	import type { Form } from "./types";
 	import { cn } from "@/utils";
-	import { setContext } from "svelte";
-	import type {
-		FormPathLeaves,
-		UnwrapEffects,
-		ZodValidation
-	} from "sveltekit-superforms";
-	import { formFieldProxy, type SuperForm } from "sveltekit-superforms/client";
-	import type { AnyZodObject, z } from "zod";
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	const id = Math.random().toString(36).slice(2);
-	type FormField = {
-		schema: T;
-		form: SuperForm<T, unknown>;
-	};
+	export let form: Form<T>;
+	export let name: FormFieldName<T>;
 
-	export let form: FormField;
-	export let name: FormPathLeaves<z.infer<UnwrapEffects<T>>>;
-
-	const { path, value, errors } = formFieldProxy(form.form, name);
-
-	const contextObj = {
-		formItemId: id,
-		formDescriptionId: `${id}-form-item-description`,
-		formMessageId: `${id}-form-item-message`,
-		name
-	};
-	setContext("FormField", contextObj);
-
-	type InputEvent = Event & {
-		currentTarget: HTMLInputElement;
-	};
+	const {
+		stores: { value, errors },
+		context
+	} = createField(form, name);
 
 	$: field = {
 		attrs: {
-			"aria-invalid": errors ? true : undefined,
+			"aria-invalid": $errors ? true : undefined,
 			"aria-describedby": !errors
-				? `${contextObj.formDescriptionId}`
-				: `${contextObj.formDescriptionId} ${contextObj.formMessageId}`,
+				? `${context.formDescriptionId}`
+				: `${context.formDescriptionId} ${context.formMessageId}`,
 			name,
-			id,
+			id: context.formItemId,
 			value: $value
 		},
 		valueStore: value,
@@ -56,5 +35,5 @@
 </script>
 
 <div class={cn("space-y-2", className)}>
-	<slot {field} />
+	<slot {field} {value} />
 </div>
