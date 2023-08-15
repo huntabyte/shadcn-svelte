@@ -26,42 +26,47 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/new-york/ui/form";
+	import * as Form from "@/registry/new-york/ui/super-form";
 	import * as Select from "@/registry/new-york/ui/select";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Input } from "@/registry/new-york/ui/input";
 	import type { SuperValidated } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms/client";
 	import { cn } from "@/utils";
 
 	export let data: SuperValidated<AccountFormSchema>;
-	const { form, errors, enhance } = superForm(data, {
-		validators: accountFormSchema,
-		taintedMessage: null
-	});
 </script>
 
-<form method="POST" class="space-y-8" use:enhance>
-	<Form.Field errors={$errors.name} name="name" let:field>
+<Form.Root
+	schema={accountFormSchema}
+	{data}
+	let:form
+	method="POST"
+	class="space-y-8"
+>
+	<Form.Field name="name" let:field {form}>
 		<Form.Label>Name</Form.Label>
-		<Input bind:value={$form.name} placeholder="Your name" {...field} />
+		<Input
+			placeholder="Your name"
+			{...field.attrs}
+			on:input={field.handleInput}
+		/>
 		<Form.Description>
 			This is the name that will be displayed on your profile and in emails.
 		</Form.Description>
 		<Form.Message />
 	</Form.Field>
-	<Form.Field errors={$errors.language} name="language" let:field>
+	<Form.Field name="language" let:field {form}>
 		<Form.Label>Language</Form.Label>
-		<Select.Root bind:value={$form.language}>
+		<Select.Root onValueChange={field.updateValue}>
 			<Select.Trigger
-				{...field}
+				{...field.attrs}
 				class={cn(
 					"w-[200px] justify-between",
-					!$form.language && "text-muted-foreground"
+					!field.attrs.value && "text-muted-foreground"
 				)}
 			>
 				<Select.Value placeholder="Select language" />
-				<Select.Input {...field} />
+				<Select.Input name={field.attrs.name} />
 			</Select.Trigger>
 			<Select.Content>
 				{#each languages as language}
@@ -77,4 +82,4 @@
 		<Form.Message />
 	</Form.Field>
 	<Button type="submit">Update account</Button>
-</form>
+</Form.Root>

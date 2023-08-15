@@ -4,7 +4,7 @@ import type {
 	UnwrapEffects,
 	ZodValidation
 } from "sveltekit-superforms";
-import type { SuperForm } from "sveltekit-superforms/client";
+import type { SuperForm, formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
 
 export type Expand<T> = T extends object
@@ -25,7 +25,8 @@ export type Form<T extends ZodValidation<AnyZodObject>> = {
 };
 
 export type FormValidation = ZodValidation<AnyZodObject>;
-export type FormFieldName<T> = FormPathLeaves<z.infer<UnwrapEffects<T>>>;
+export type FormFieldName<T extends ZodValidation<AnyZodObject>> =
+	FormPathLeaves<z.infer<T>>;
 
 export type FormFieldContext = {
 	name: string;
@@ -35,42 +36,20 @@ export type FormFieldContext = {
 	errors: Writable<string[] | undefined>;
 };
 
-export type FormPathType<T, P extends string> = P extends keyof T
-	? T[P]
-	: P extends number
-	? T
-	: P extends `.${infer Rest}`
-	? FormPathType<NonNullable<T>, Rest>
-	: P extends `${number}]${infer Rest}`
-	? NonNullable<T> extends (infer U)[]
-		? FormPathType<U, Rest>
-		: { invalid_path: P; Type: T }
-	: P extends `${infer K}[${infer Rest}`
-	? K extends keyof NonNullable<T>
-		? FormPathType<NonNullable<T>[K], Rest>
-		: FormPathType<T, Rest>
-	: P extends `${infer K}.${infer Rest}`
-	? K extends keyof NonNullable<T>
-		? FormPathType<NonNullable<T>[K], Rest>
-		: NonNullable<T> extends (infer U)[]
-		? FormPathType<U, Rest>
-		: { invalid_path: P; Type: T }
-	: P extends `[${infer K}].${infer Rest}`
-	? K extends number
-		? T extends (infer U)[]
-			? FormPathType<U, Rest>
-			: { invalid_path: P; Type: T }
-		: P extends `${number}`
-		? NonNullable<T> extends (infer U)[]
-			? U
-			: { invalid_path: P; Type: T }
-		: P extends keyof NonNullable<T>
-		? NonNullable<T>[P]
-		: P extends `${number}`
-		? NonNullable<T> extends (infer U)[]
-			? U
-			: { invalid_path: P; Type: T }
-		: { invalid_path: P; Type: T }
-	: P extends ""
-	? T
-	: { invalid_path: P; Type: T };
+export type FieldAttrs<T> = {
+	"aria-invalid"?: boolean;
+	"aria-describedby"?: string;
+	name: string;
+	id: string;
+	value: T;
+};
+
+export type ControlFieldAttrs<T> = {
+	control: Omit<FieldAttrs<T>, "name">;
+	input: Pick<FieldAttrs<T>, "value" | "name">;
+};
+
+export type FormStores<
+	T extends ZodValidation<AnyZodObject>,
+	Path extends FormPathLeaves<z.infer<UnwrapEffects<T>>>
+> = ReturnType<typeof formFieldProxy<T, Path>>;

@@ -3,8 +3,9 @@ import Description from "./form-description.svelte";
 import Field from "./form-field.svelte";
 import Label from "./form-label.svelte";
 import Message from "./form-message.svelte";
+
 import { setContext } from "svelte";
-import type { Form, FormFieldContext } from "./types";
+import type { FieldAttrs, Form, FormFieldContext, FormStores } from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
 
@@ -14,6 +15,9 @@ import type {
 	ZodValidation
 } from "sveltekit-superforms";
 
+export const FORM_CONTROL_CONTEXT = "FormFieldControl";
+export const FORM_FIELD_CONTEXT = "FormField";
+
 export function createFormField<
 	T extends ZodValidation<AnyZodObject>,
 	Path extends FormPathLeaves<z.infer<UnwrapEffects<T>>>
@@ -21,17 +25,8 @@ export function createFormField<
 	form: Form<T>,
 	name: Path
 ): {
-	stores: ReturnType<typeof formFieldProxy<T, Path>>;
-	getFieldAttrs: <T>(
-		val: T,
-		errors: string[] | undefined
-	) => {
-		"aria-invalid": boolean | undefined;
-		"aria-describedby": string | undefined;
-		name: string;
-		id: string;
-		value: T;
-	};
+	stores: FormStores<T, Path>;
+	getFieldAttrs: <T>(val: T, errors: string[] | undefined) => FieldAttrs<T>;
 } {
 	const id = Math.random().toString(36).slice(2);
 	const stores = formFieldProxy<T, Path>(form.form, name);
@@ -44,7 +39,7 @@ export function createFormField<
 		name,
 		errors
 	};
-	setContext("FormField", context);
+	setContext(FORM_FIELD_CONTEXT, context);
 
 	function getFieldAttrs<T>(val: T, errors: string[] | undefined) {
 		return {
@@ -52,6 +47,8 @@ export function createFormField<
 			"aria-describedby": !errors
 				? context.formDescriptionId
 				: `${context.formDescriptionId} ${context.formMessageId}`,
+			"data-invalid": errors ? true : undefined,
+			"data-valid": errors ? undefined : true,
 			name,
 			id: context.formItemId,
 			value: val

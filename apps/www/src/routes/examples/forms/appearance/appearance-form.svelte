@@ -19,20 +19,22 @@
 
 <script lang="ts">
 	import { ChevronDown } from "radix-icons-svelte";
-	import * as Form from "@/registry/new-york/ui/form";
+	import * as Form from "@/registry/new-york/ui/super-form";
 	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
 	import { cn } from "@/utils";
 	import Label from "@/registry/default/ui/label/label.svelte";
 	export let data: SuperValidated<AppearanceFormSchema>;
-	const { form, errors, enhance } = superForm(data, {
-		validators: appearanceFormSchema,
-		taintedMessage: null
-	});
 </script>
 
-<form class="space-y-8" method="POST" use:enhance>
-	<Form.Field errors={$errors.font} name="font" let:field>
+<Form.Root
+	schema={appearanceFormSchema}
+	{data}
+	let:form
+	class="space-y-8"
+	method="POST"
+>
+	<Form.Field {form} name="font" let:field>
 		<Form.Label>Font</Form.Label>
 		<div class="relative w-max">
 			<select
@@ -40,8 +42,8 @@
 					buttonVariants({ variant: "outline" }),
 					"w-[200px] appearance-none bg-transparent font-normal"
 				)}
-				{...field}
-				bind:value={$form.font}
+				{...field.attrs}
+				on:input={field.handleInput}
 			>
 				<option value="inter">Inter</option>
 				<option value="manrope">Manrope</option>
@@ -50,15 +52,16 @@
 			<ChevronDown class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
 		</div>
 	</Form.Field>
-	<Form.Field errors={$errors.theme} name="theme" let:field>
+	<Form.Field {form} name="theme" let:field>
 		<Form.Label>Theme</Form.Label>
 		<Form.Description>Select the theme for the dashboard.</Form.Description>
 		<Form.Message />
 		<RadioGroup.Root
-			bind:value={$form.theme}
+			onValueChange={field.updateValue}
+			value={field.attrs.value}
 			class="grid max-w-md grid-cols-2 gap-8 pt-2"
 		>
-			<RadioGroup.Input {...field} />
+			<RadioGroup.Input name={field.attrs.name} />
 			<Label
 				for="light"
 				class="[&:has([data-state=checked])>div]:border-primary"
@@ -121,4 +124,4 @@
 	</Form.Field>
 
 	<Button type="submit">Update preferences</Button>
-</form>
+</Form.Root>

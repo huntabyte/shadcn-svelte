@@ -41,11 +41,7 @@
 >
 	<Form.Field {form} name="username" let:field>
 		<Form.Label>Username</Form.Label>
-		<Input
-			placeholder="shadcn"
-			{...field.attrs}
-			on:input={(e) => field.value.set(e.currentTarget.value)}
-		/>
+		<Input placeholder="shadcn" {...field.attrs} on:input={field.handleInput} />
 		<Form.Description>
 			This is your public display name. It can be your real name or a pseudonym.
 			You can only change this once every 30 days.
@@ -54,10 +50,10 @@
 	</Form.Field>
 	<Form.Field {form} name="email" let:field>
 		<Form.Label>Email</Form.Label>
-		<Select.Root onValueChange={(next) => field.value.set(next)}>
+		<Select.Root onValueChange={field.updateValue}>
 			<Select.Trigger {...field.attrs}>
 				<Select.Value placeholder="Select a verified email to display" />
-				<Select.Input {...field.attrs} />
+				<Select.Input name={field.attrs.name} />
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Item value="m@example.com" label="m@example.com"
@@ -84,7 +80,7 @@
 			placeholder="Tell us a little bit about yourself"
 			class="resize-none"
 			{...field.attrs}
-			on:input={(e) => field.value.set(e.currentTarget.value)}
+			on:input={field.handleInput}
 		/>
 		<Form.Description>
 			You can <span>@mention</span> other users and organizations to link to them.
@@ -98,10 +94,7 @@
 				<Form.Description class={cn(i !== 0 && "sr-only")}>
 					Add links to your website, blog, or social media profiles.
 				</Form.Description>
-				<Input
-					{...field.attrs}
-					on:input={(e) => field.value.set(e.currentTarget.value)}
-				/>
+				<Input {...field.attrs} on:input={field.handleInput} />
 				<Form.Message />
 			</Form.Field>
 		{/each}

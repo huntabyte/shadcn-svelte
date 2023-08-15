@@ -34,15 +34,11 @@
 	<Form.Field {form} name="type" let:field>
 		<Form.Label>Notify me about...</Form.Label>
 		<RadioGroup.Root
-			value={String(field.attrs.value)}
-			onValueChange={(v) => {
-				if (v === "all" || v === "mentions" || v === "none") {
-					field.value.set(v);
-				}
-			}}
+			{...field.attrs}
+			onValueChange={field.updateValue}
 			class="flex flex-col space-y-1"
 		>
-			<RadioGroup.Input {...field} />
+			<RadioGroup.Input name={field.attrs.name} />
 			<div class="flex items-center space-x-3">
 				<RadioGroup.Item value="all" id="all" />
 				<Label for="all" class="font-normal">All new messages</Label>
@@ -74,11 +70,9 @@
 						Receive emails about your accoutn activity.
 					</Form.Description>
 				</div>
-				<input hidden value={field.attrs.value} name={field.attrs.name} />
-				<Switch
-					checked={field.attrs.value}
-					onCheckedChange={(v) => field.value.set(v)}
-				/>
+				{@const { value, name, ...rest } = field.attrs}
+				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -92,12 +86,9 @@
 						Receive emails about new products, features, and more.
 					</Form.Description>
 				</div>
-				<input hidden value={field.attrs.value} name={field.attrs.name} />
-				<Switch
-					checked={field.attrs.value}
-					id={field.attrs.id}
-					onCheckedChange={(v) => field.value.set(v)}
-				/>
+				{@const { value, name, ...rest } = field.attrs}
+				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -111,11 +102,9 @@
 						Receive emails for friend requests, follows, and more.
 					</Form.Description>
 				</div>
-				<input hidden name={field.attrs.name} value={field.attrs.value} />
-				<Switch
-					checked={field.attrs.value}
-					onCheckedChange={(v) => field.value.set(v)}
-				/>
+				{@const { value, name, ...rest } = field.attrs}
+				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
 				{form}
@@ -129,15 +118,9 @@
 						Receive emails about your account activity and security.
 					</Form.Description>
 				</div>
-				<input hidden name={field.attrs.name} value={field.attrs.value} />
-				<Switch
-					checked={field.attrs.value}
-					onCheckedChange={(v) => {
-						if (v !== undefined) {
-							field.value.set(v);
-						}
-					}}
-				/>
+				{@const { value, name, ...rest } = field.attrs}
+				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<input hidden {name} {value} />
 			</Form.Field>
 		</div>
 	</div>
@@ -147,15 +130,13 @@
 		let:field
 		class="flex flex-row items-start space-x-3 space-y-0"
 	>
-		<input hidden name={field.attrs.name} value={field.attrs.value} />
+		{@const { name, value, ...rest } = field.attrs}
 		<Checkbox
+			{...rest}
 			checked={field.attrs.value}
-			onCheckedChange={(v) => {
-				if (typeof v === "boolean") {
-					field.value.set(v);
-				}
-			}}
+			onCheckedChange={field.updateValue}
 		/>
+		<input hidden {name} {value} />
 		<div class="space-y-1 leading-none">
 			<Form.Label>Use different settings for my mobile devices</Form.Label>
 			<Form.Description>
