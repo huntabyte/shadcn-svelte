@@ -72,6 +72,7 @@
 				<!-- The goal is for this to only allow me to set a `boolean` as the value. -->
 				<!-- Instead, it allows me to set it as any acceptable value across the entire schema -->
 				<!-- By passing `communication_emails` it would be nice to have it infer the type -->
+				<!-- `value` is being typed as `Writable<boolean | "all" | "mentions" | "none" | undefined>` when it should be Writable<boolean | undefined> -->
 				<button on:click={() => value.set("all")} />
 				<div class="space-y-0.5">
 					<Form.Label class="text-base">Communication emails</Form.Label>
