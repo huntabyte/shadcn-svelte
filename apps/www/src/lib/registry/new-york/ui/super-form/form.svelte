@@ -1,11 +1,5 @@
 <script lang="ts" context="module">
-	import { superForm, type FormOptions } from "sveltekit-superforms/client";
-
-	import type {
-		UnwrapEffects,
-		Validators,
-		ZodValidation
-	} from "sveltekit-superforms";
+	import type { UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 	import type { AnyZodObject } from "zod";
 
 	type Validation = ZodValidation<AnyZodObject>;
@@ -13,8 +7,16 @@
 </script>
 
 <script lang="ts" generics="T extends Validation = Validation, M = any">
-	import { setContext } from "svelte";
+	import { superForm, type FormOptions } from "sveltekit-superforms/client";
+	import type { HTMLFormAttributes } from "svelte/elements";
+
 	import type { SuperValidated } from "sveltekit-superforms";
+
+	type $$Props = HTMLFormAttributes & {
+		schema: T;
+		options?: Options<T, M>;
+		data: SuperValidated<T, M>;
+	};
 
 	export let schema: T;
 	export let data: SuperValidated<T, M>;
@@ -22,10 +24,16 @@
 		validators: schema,
 		taintedMessage: null
 	};
-	const form = superForm(data, options);
-	setContext("Form", form);
 
-	const { form: formStore } = form;
+	const form = superForm(data, options);
+	const { enhance } = form;
+
+	const field = {
+		form,
+		schema
+	};
 </script>
 
-<slot form={$formStore} />
+<form {...$$restProps} use:enhance>
+	<slot form={field} />
+</form>

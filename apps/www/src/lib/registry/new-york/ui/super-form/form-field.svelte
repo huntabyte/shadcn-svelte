@@ -1,32 +1,50 @@
-<script lang="ts">
+<script lang="ts" context="module">
+	type Validation = ZodValidation<AnyZodObject>;
+</script>
+
+<script lang="ts" generics="T extends Validation">
 	import { cn } from "@/utils";
 	import { setContext } from "svelte";
-	import { writable } from "svelte/store";
-
-	const id = Math.random().toString(36).slice(2);
-	export let errors: string[] | undefined = undefined;
-	export let name: string;
-	const errorStore = writable<string[] | undefined>(errors);
+	import type {
+		FormPathLeaves,
+		UnwrapEffects,
+		ZodValidation
+	} from "sveltekit-superforms";
+	import { formFieldProxy, type SuperForm } from "sveltekit-superforms/client";
+	import type { AnyZodObject, z } from "zod";
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	const id = Math.random().toString(36).slice(2);
+	type FormField = {
+		schema: T;
+		form: SuperForm<T, unknown>;
+	};
+
+	export let form: FormField;
+	export let name: FormPathLeaves<z.infer<UnwrapEffects<T>>>;
+
+	const { path, value, errors } = formFieldProxy(form.form, name);
+
 	const contextObj = {
 		formItemId: id,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
-		errors: errorStore,
 		name
 	};
 	setContext("FormField", contextObj);
 
-	$: errorStore.set(errors);
-
 	$: field = {
-		"aria-invalid": errors ? true : undefined,
-		"aria-describedby": !errors
-			? `${contextObj.formDescriptionId}`
-			: `${contextObj.formDescriptionId} ${contextObj.formMessageId}`,
-		name,
-		id
+		attrs: {
+			"aria-invalid": errors ? true : undefined,
+			"aria-describedby": !errors
+				? `${contextObj.formDescriptionId}`
+				: `${contextObj.formDescriptionId} ${contextObj.formMessageId}`,
+			name,
+			id,
+			value: $value
+		},
+		valueStore: value
 	};
 </script>
 

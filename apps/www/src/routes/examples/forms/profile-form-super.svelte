@@ -27,15 +27,56 @@
 	import { superForm } from "sveltekit-superforms/client";
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { cn } from "@/utils";
+	import type { Writable } from "svelte/store";
 
 	export let data: SuperValidated<ProfileFormSchema>;
-	const { form, errors, enhance } = superForm(data, {
-		validators: profileFormSchema,
-		taintedMessage: null
-	});
+
+	function handleValueChange(valueStore: Writable<unknown>, next: unknown) {
+		valueStore.set(next);
+	}
 </script>
 
-<Form.Root {data}>
+<Form.Root {data} schema={profileFormSchema} let:form method="POST">
+	<Form.Field {form} name="username" let:field>
+		<Form.Label>Username</Form.Label>
+		<Input placeholder="shadcn" {...field.attrs} />
+		<Form.Description>
+			This is your public display name. It can be your real name or a pseudonym.
+			You can only change this once every 30 days.
+		</Form.Description>
+		<Form.Message />
+	</Form.Field>
+	<Form.Field {form} name="email" let:field>
+		<Form.Label>Email</Form.Label>
+		<Select.Root
+			onValueChange={(next) => handleValueChange(field.valueStore, next)}
+		>
+			<Select.Trigger {...field.attrs}>
+				<Select.Value placeholder="Select a verified email to display" />
+				<Select.Input {...field.attrs} />
+			</Select.Trigger>
+			<Select.Content>
+				<Select.Item value="m@example.com" label="m@example.com"
+					>m@example.com
+				</Select.Item>
+				<Select.Item value="m@google.com" label="m@google.com"
+					>m@google.com
+				</Select.Item>
+				<Select.Item value="m@support.com" label="m@support.com"
+					>m@support.com
+				</Select.Item>
+			</Select.Content>
+		</Select.Root>
+		<Form.Description>
+			You can manage verified email addresses in your{" "}<a
+				href="/examples/forms">email settings</a
+			>.
+		</Form.Description>
+		<Form.Message />
+	</Form.Field>
+</Form.Root>
+
+<!-- <Form.Root {data}>
 	<form method="POST" class="space-y-8" use:enhance>
 		<Form.Field errors={$errors.username} name="username" let:field>
 			<Form.Label>Username</Form.Label>
@@ -117,4 +158,4 @@
 		</div>
 		<Button type="submit">Update profile</Button>
 	</form>
-</Form.Root>
+</Form.Root> -->

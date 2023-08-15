@@ -19,7 +19,7 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/new-york/ui/form";
+	import * as Form from "@/registry/new-york/ui/super-form";
 	import { Input } from "@/registry/new-york/ui/input";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Select from "@/registry/new-york/ui/select";
@@ -29,13 +29,9 @@
 	import { cn } from "@/utils";
 
 	export let data: SuperValidated<ProfileFormSchema>;
-	const { form, errors, enhance } = superForm(data, {
-		validators: profileFormSchema,
-		taintedMessage: null
-	});
 </script>
 
-<form method="POST" class="space-y-8" use:enhance>
+<!-- <form method="POST" class="space-y-8" use:enhance>
 	<Form.Field errors={$errors.username} name="username" let:field>
 		<Form.Label>Username</Form.Label>
 		<Input placeholder="shadcn" bind:value={$form.username} {...field} />
@@ -115,4 +111,4 @@
 		</Button>
 	</div>
 	<Button type="submit">Update profile</Button>
-</form>
+</form> -->
