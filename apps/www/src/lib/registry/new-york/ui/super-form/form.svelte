@@ -37,5 +37,5 @@
 
 <SuperDebug data={$formStore} />
 <form {...$$restProps} use:enhance>
-	<slot form={field} />
+	<slot form={field} formValues={$formStore} formStore={form.form} />
 </form>

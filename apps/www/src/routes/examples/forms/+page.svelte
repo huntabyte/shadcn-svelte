@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import ProfileForm from "./profile-form-super.svelte";
+	import ProfileForm from "./profile-form.svelte";
 	import { Separator } from "@/registry/new-york/ui/separator";
 	export let data: PageData;
 </script>

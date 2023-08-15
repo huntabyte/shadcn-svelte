@@ -34,6 +34,10 @@
 	};
 	setContext("FormField", contextObj);
 
+	type InputEvent = Event & {
+		currentTarget: HTMLInputElement;
+	};
+
 	$: field = {
 		attrs: {
 			"aria-invalid": errors ? true : undefined,
@@ -44,7 +48,10 @@
 			id,
 			value: $value
 		},
-		valueStore: value
+		valueStore: value,
+		update: (next: typeof $value) => {
+			value.set(next);
+		}
 	};
 </script>
 
