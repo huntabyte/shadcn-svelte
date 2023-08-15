@@ -1,8 +1,23 @@
 <script lang="ts">
 	import type { HTMLTextareaAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
+	import type { FormTextareaEvent } from ".";
 
 	type $$Props = HTMLTextareaAttributes;
+	type $$Events = {
+		blur: FormTextareaEvent<FocusEvent>;
+		change: FormTextareaEvent<Event>;
+		click: FormTextareaEvent<MouseEvent>;
+		focus: FormTextareaEvent<FocusEvent>;
+		keydown: FormTextareaEvent<KeyboardEvent>;
+		keypress: FormTextareaEvent<KeyboardEvent>;
+		keyup: FormTextareaEvent<KeyboardEvent>;
+		mouseover: FormTextareaEvent<MouseEvent>;
+		mouseenter: FormTextareaEvent<MouseEvent>;
+		mouseleave: FormTextareaEvent<MouseEvent>;
+		paste: FormTextareaEvent<ClipboardEvent>;
+		input: FormTextareaEvent<InputEvent>;
+	};
 
 	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;
