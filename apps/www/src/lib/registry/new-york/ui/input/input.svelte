@@ -3,6 +3,20 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = HTMLInputAttributes;
+	type $$Events = {
+		blur: FocusEvent;
+		change: Event;
+		click: MouseEvent;
+		focus: FocusEvent;
+		keydown: KeyboardEvent;
+		keypress: KeyboardEvent;
+		keyup: KeyboardEvent;
+		mouseover: MouseEvent;
+		mouseenter: MouseEvent;
+		mouseleave: MouseEvent;
+		paste: ClipboardEvent;
+		input: Event;
+	};
 
 	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;

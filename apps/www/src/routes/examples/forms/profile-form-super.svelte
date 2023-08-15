@@ -28,6 +28,7 @@
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import type { Writable } from "svelte/store";
+	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
 	export let data: SuperValidated<ProfileFormSchema>;
 
@@ -38,8 +39,13 @@
 
 <Form.Root {data} schema={profileFormSchema} let:form method="POST">
 	<Form.Field {form} name="username" let:field>
+		{@const { valueStore, attrs } = field}
 		<Form.Label>Username</Form.Label>
-		<Input placeholder="shadcn" {...field.attrs} />
+		<Input
+			placeholder="shadcn"
+			{...attrs}
+			on:input={(e) => handleValueChange(valueStore, e.target?.value)}
+		/>
 		<Form.Description>
 			This is your public display name. It can be your real name or a pseudonym.
 			You can only change this once every 30 days.

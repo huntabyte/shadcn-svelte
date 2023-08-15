@@ -11,6 +11,7 @@
 	import type { HTMLFormAttributes } from "svelte/elements";
 
 	import type { SuperValidated } from "sveltekit-superforms";
+	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
 	type $$Props = HTMLFormAttributes & {
 		schema: T;
@@ -26,7 +27,7 @@
 	};
 
 	const form = superForm(data, options);
-	const { enhance } = form;
+	const { enhance, form: formStore } = form;
 
 	const field = {
 		form,
@@ -34,6 +35,7 @@
 	};
 </script>
 
+<SuperDebug data={$formStore} />
 <form {...$$restProps} use:enhance>
 	<slot form={field} />
 </form>
