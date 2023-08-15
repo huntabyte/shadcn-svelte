@@ -1,4 +1,5 @@
-<script lang="ts" generics="T extends FormValidation">
+<script lang="ts" generics="T extends AnyZodObject">
+	import type { AnyZodObject } from "zod";
 	import type { FormFieldName, FormValidation } from "./types";
 	import { createFormField } from ".";
 	import type { Form } from "./types";
@@ -10,7 +11,8 @@
 	export let name: FormFieldName<T>;
 
 	const {
-		stores: { value, errors },
+		value,
+		stores: { errors },
 		getFieldAttrs
 	} = createFormField(form, name);
 
@@ -21,5 +23,5 @@
 </script>
 
 <div class={cn("space-y-2", className)} {...$$restProps}>
-	<slot {field} />
+	<slot {field} {value} />
 </div>

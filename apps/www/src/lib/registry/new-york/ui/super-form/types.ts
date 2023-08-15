@@ -7,7 +7,19 @@ import type {
 import type { SuperForm } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
 
-export type Form<T extends ZodValidation<AnyZodObject>> = {
+export type Expand<T> = T extends object
+	? T extends infer O
+		? { [K in keyof O]: O[K] }
+		: never
+	: T;
+
+export type ExpandDeep<T> = T extends object
+	? T extends infer O
+		? { [K in keyof O]: ExpandDeep<O[K]> }
+		: never
+	: T;
+
+export type Form<T extends AnyZodObject> = {
 	schema: T;
 	form: SuperForm<T, unknown>;
 };
