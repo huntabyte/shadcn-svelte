@@ -27,10 +27,7 @@
 			id: context.formItemId,
 			value: $value
 		},
-		valueStore: value,
-		update: (next: typeof $value) => {
-			value.set(next);
-		}
+		value
 	};
 </script>
 

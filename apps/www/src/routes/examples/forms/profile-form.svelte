@@ -44,7 +44,7 @@
 		<Input
 			placeholder="shadcn"
 			{...field.attrs}
-			on:input={(e) => field.update(e.currentTarget.value)}
+			on:input={(e) => field.value.set(e.currentTarget.value)}
 		/>
 		<Form.Description>
 			This is your public display name. It can be your real name or a pseudonym.
@@ -52,9 +52,9 @@
 		</Form.Description>
 		<Form.Message />
 	</Form.Field>
-	<Form.Field {form} name="email" let:field let:value>
+	<Form.Field {form} name="email" let:field>
 		<Form.Label>Email</Form.Label>
-		<Select.Root onValueChange={(next) => value.set(next)}>
+		<Select.Root onValueChange={(next) => field.value.set(next)}>
 			<Select.Trigger {...field.attrs}>
 				<Select.Value placeholder="Select a verified email to display" />
 				<Select.Input {...field.attrs} />
@@ -84,7 +84,7 @@
 			placeholder="Tell us a little bit about yourself"
 			class="resize-none"
 			{...field.attrs}
-			on:input={(e) => field.update(e.currentTarget.value)}
+			on:input={(e) => field.value.set(e.currentTarget.value)}
 		/>
 		<Form.Description>
 			You can <span>@mention</span> other users and organizations to link to them.
@@ -100,7 +100,7 @@
 				</Form.Description>
 				<Input
 					{...field.attrs}
-					on:input={(e) => field.update(e.currentTarget.value)}
+					on:input={(e) => field.value.set(e.currentTarget.value)}
 				/>
 				<Form.Message />
 			</Form.Field>
