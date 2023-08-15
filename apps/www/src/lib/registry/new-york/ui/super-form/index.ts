@@ -6,23 +6,41 @@ import Message from "./form-message.svelte";
 import { setContext } from "svelte";
 import type { FormFieldName, Form, FormValidation } from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
+import type { StoresValues } from "svelte/store";
 
-export function createField<T extends FormValidation>(
+export function createFormField<T extends FormValidation>(
 	form: Form<T>,
 	name: FormFieldName<T>
 ) {
 	const id = Math.random().toString(36).slice(2);
-	const contextObj = {
+	const context = {
 		formItemId: id,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
 		name
 	};
-	setContext("FormField", contextObj);
+	setContext("FormField", context);
+
+	const stores = formFieldProxy(form.form, name);
+
+	type Value = StoresValues<typeof stores.value>;
+
+	const getFieldAttrs = (value: Value, errors: string[] | undefined) => {
+		return {
+			"aria-invalid": errors ? true : undefined,
+			"aria-describedby": !errors
+				? context.formDescriptionId
+				: `${context.formDescriptionId} ${context.formMessageId}`,
+			name,
+			id: context.formItemId,
+			value
+		};
+	};
 
 	return {
-		stores: formFieldProxy(form.form, name),
-		context: contextObj
+		stores,
+		context,
+		getFieldAttrs
 	};
 }
 
