@@ -9,18 +9,23 @@
 	const errorStore = writable<string[] | undefined>(errors);
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	setContext("FormField", {
+
+	const contextObj = {
 		formItemId: id,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
 		errors: errorStore,
 		name
-	});
+	};
+	setContext("FormField", contextObj);
 
 	$: errorStore.set(errors);
 
 	$: field = {
 		"aria-invalid": errors ? true : undefined,
+		"aria-describedby": !errors
+			? `${contextObj.formDescriptionId}`
+			: `${contextObj.formDescriptionId} ${contextObj.formMessageId}`,
 		name,
 		id
 	};
