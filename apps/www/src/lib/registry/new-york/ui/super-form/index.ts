@@ -4,7 +4,12 @@ import Field from "./form-field.svelte";
 import Label from "./form-label.svelte";
 import Message from "./form-message.svelte";
 import { setContext } from "svelte";
-import type { FormFieldName, Form, FormValidation } from "./types";
+import type {
+	FormFieldName,
+	Form,
+	FormValidation,
+	FormFieldContext
+} from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
 import type { StoresValues } from "svelte/store";
 
@@ -13,15 +18,17 @@ export function createFormField<T extends FormValidation>(
 	name: FormFieldName<T>
 ) {
 	const id = Math.random().toString(36).slice(2);
-	const context = {
+	const stores = formFieldProxy(form.form, name);
+	const { errors } = stores;
+
+	const context: FormFieldContext = {
 		formItemId: id,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
-		name
+		name,
+		errors
 	};
 	setContext("FormField", context);
-
-	const stores = formFieldProxy(form.form, name);
 
 	type Value = StoresValues<typeof stores.value>;
 

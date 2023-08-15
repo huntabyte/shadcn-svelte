@@ -15,7 +15,7 @@
 	} = createFormField(form, name);
 
 	$: field = {
-		...getFieldAttrs($value, $errors),
+		attrs: getFieldAttrs($value, $errors),
 		value
 	};
 </script>
