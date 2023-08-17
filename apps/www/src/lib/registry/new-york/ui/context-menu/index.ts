@@ -1,4 +1,4 @@
-import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
+import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 
 import Item from "./context-menu-item.svelte";
 import Label from "./context-menu-label.svelte";

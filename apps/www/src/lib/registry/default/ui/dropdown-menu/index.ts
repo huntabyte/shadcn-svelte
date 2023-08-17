@@ -1,4 +1,4 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/primitives";
+import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 import Item from "./dropdown-menu-item.svelte";
 import Label from "./dropdown-menu-label.svelte";
 import Content from "./dropdown-menu-content.svelte";

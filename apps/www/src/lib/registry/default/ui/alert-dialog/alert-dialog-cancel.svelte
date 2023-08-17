@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/primitives";
+	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
 	import { buttonVariants } from "@/registry/default/ui/button";
 	import { cn } from "$lib/utils";
 
@@ -10,11 +10,7 @@
 </script>
 
 <AlertDialogPrimitive.Cancel
-	class={cn(
-		buttonVariants({ variant: "outline" }),
-		"mt-2 sm:mt-0",
-		className
-	)}
+	class={cn(buttonVariants({ variant: "outline" }), "mt-2 sm:mt-0", className)}
 	{...$$restProps}
 >
 	<slot />

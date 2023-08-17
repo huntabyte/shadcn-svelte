@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button as ButtonPrimitive } from "@huntabyte/primitives";
+	import { Button as ButtonPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 	import { buttonVariants, type Size, type Variant } from ".";
 
@@ -7,6 +7,7 @@
 		variant?: Variant;
 		size?: Size;
 	};
+	type $$Events = ButtonPrimitive.Events;
 
 	let className: $$Props["class"] = undefined;
 	export let variant: $$Props["variant"] = "default";
@@ -20,11 +21,7 @@
 	class={cn(buttonVariants({ variant, size, className }))}
 	{...$$restProps}
 	on:click
-	on:change
 	on:keydown
-	on:keyup
-	on:mouseenter
-	on:mouseleave
 >
 	<slot />
 </ButtonPrimitive.Root>

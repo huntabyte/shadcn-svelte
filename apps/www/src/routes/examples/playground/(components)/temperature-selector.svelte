@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Slider as SliderPrimitive } from "@huntabyte/primitives";
+	import type { Slider as SliderPrimitive } from "bits-ui";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 	import { Label } from "@/registry/new-york/ui/label";
 	import { Slider } from "@/registry/new-york/ui/slider";

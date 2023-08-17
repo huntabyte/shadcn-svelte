@@ -1,4 +1,4 @@
-import { Select as SelectPrimitive } from "@huntabyte/primitives";
+import { Select as SelectPrimitive } from "bits-ui";
 
 import Root from "./select.svelte";
 import Label from "./select-label.svelte";

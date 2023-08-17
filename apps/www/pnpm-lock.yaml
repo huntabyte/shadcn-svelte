@@ -10,9 +10,6 @@ patchedDependencies:
     path: ./patches/mdsvex@0.10.6.patch
 
 dependencies:
-  '@huntabyte/primitives':
-    specifier: ^0.0.17
-    version: 0.0.17(svelte@4.1.2)
   '@melt-ui/svelte':
     specifier: ^0.34.6
     version: 0.34.6(svelte@4.1.2)
@@ -99,6 +96,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.27)
+  bits-ui:
+    specifier: ^0.0.20
+    version: 0.0.20(@sveltejs/kit@1.22.4)(svelte@4.1.2)
   escape-html:
     specifier: ^1.0.3
     version: 1.0.3
@@ -813,16 +813,6 @@ packages:
       svelte: 4.1.2
       vfile-message: 2.0.4
     dev: true
-
-  /@huntabyte/primitives@0.0.17(svelte@4.1.2):
-    resolution: {integrity: sha512-GYcyGGDveBchQLbMYAbVWkcjHnn+m7canLgieS2uWql8ZbzgHBDSm1v2JMUoUiOR/74u2HUPW7yp8KxgSWyBwQ==}
-    peerDependencies:
-      svelte: ^4.0.0
-    dependencies:
-      '@melt-ui/svelte': 0.34.6(svelte@4.1.2)
-      nanoid: 4.0.2
-      svelte: 4.1.2
-    dev: false
 
   /@jest/schemas@29.6.0:
     resolution: {integrity: sha512-rxLjXyJBTL4LQeJW3aKo0M/+GkCOXsO+8i9Iu7eDb6KwtP65ayoDsitrdPBtujxQ88k4wI2FNYfa6TOGwSn6cQ==}
@@ -1822,6 +1812,23 @@ packages:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
     dependencies:
       file-uri-to-path: 1.0.0
+    dev: true
+
+  /bits-ui@0.0.20(@sveltejs/kit@1.22.4)(svelte@4.1.2):
+    resolution: {integrity: sha512-4dNrfcwXGLJ2JCrw9l0TXR1HV0B+8CHh5BvfgoygQAIdK5mzcQVQUxADbc0RRIb15cMngcBSLZYuGzEebwJR7Q==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      '@melt-ui/svelte': 0.34.6(svelte@4.1.2)
+      '@sveltejs/adapter-vercel': 3.0.3(@sveltejs/kit@1.22.4)
+      nanoid: 4.0.2
+      shiki: 0.14.3
+      svelte: 4.1.2
+      tailwind-merge: 1.14.0
+    transitivePeerDependencies:
+      - '@sveltejs/kit'
+      - encoding
+      - supports-color
     dev: true
 
   /brace-expansion@1.1.11:
@@ -4801,7 +4808,6 @@ packages:
 
   /tailwind-merge@1.14.0:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-    dev: false
 
   /tailwind-variants@0.1.13(tailwindcss@3.3.3):
     resolution: {integrity: sha512-G2M7M74hjq0nAo6QdEfUJgF+0t9DecFUw91GC1P9YTnwMcfB3uChT5U5e2DuNU42xoOz15lzo7r0mPdMzZkylg==}

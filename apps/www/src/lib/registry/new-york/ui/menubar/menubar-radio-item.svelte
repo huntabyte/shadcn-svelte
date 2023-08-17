@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar as MenubarPrimitive } from "@huntabyte/primitives";
+	import { Menubar as MenubarPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 	import { DotFilled } from "radix-icons-svelte";
 
@@ -20,9 +20,9 @@
 	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-		<MenubarPrimitive.RadioItemIndicator>
+		<MenubarPrimitive.RadioIndicator>
 			<DotFilled class="h-4 w-4 fill-current" />
-		</MenubarPrimitive.RadioItemIndicator>
+		</MenubarPrimitive.RadioIndicator>
 	</span>
 	<slot />
 </MenubarPrimitive.RadioItem>

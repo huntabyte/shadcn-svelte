@@ -1,23 +1,10 @@
 <script lang="ts">
-	import type { FormEventHandler, HTMLInputAttributes } from "svelte/elements";
+	import type { HTMLInputAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
-	import type { FormInputEvent } from ".";
+	import type { InputEvents } from ".";
 
 	type $$Props = HTMLInputAttributes;
-	type $$Events = {
-		blur: FormInputEvent<FocusEvent>;
-		change: FormInputEvent<Event>;
-		click: FormInputEvent<MouseEvent>;
-		focus: FormInputEvent<FocusEvent>;
-		keydown: FormInputEvent<KeyboardEvent>;
-		keypress: FormInputEvent<KeyboardEvent>;
-		keyup: FormInputEvent<KeyboardEvent>;
-		mouseover: FormInputEvent<MouseEvent>;
-		mouseenter: FormInputEvent<MouseEvent>;
-		mouseleave: FormInputEvent<MouseEvent>;
-		paste: FormInputEvent<ClipboardEvent>;
-		input: FormInputEvent<InputEvent>;
-	};
+	type $$Events = InputEvents;
 
 	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;

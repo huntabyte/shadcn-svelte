@@ -4,7 +4,7 @@ import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "@/registry";
 
-const DEPENDENCIES = ["@huntabyte/primitives"];
+const DEPENDENCIES = ["bits-ui"];
 const REGISTRY_DEPENDENCY = "@/";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;

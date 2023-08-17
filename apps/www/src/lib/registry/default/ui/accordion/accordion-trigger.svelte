@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive } from "@huntabyte/primitives";
+	import { Accordion as AccordionPrimitive } from "bits-ui";
 	import { ChevronDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 

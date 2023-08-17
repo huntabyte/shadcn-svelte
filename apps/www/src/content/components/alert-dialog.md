@@ -28,10 +28,10 @@ npx shadcn-svelte add alert-dialog
 
 <ManualInstall>
 
-1. Install `@huntabyte/primitives`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/primitives
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
