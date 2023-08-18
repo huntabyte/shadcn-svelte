@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Collapsible from "@/registry/default/ui/collapsible";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Collapsible from "@/registry/new-york/ui/collapsible";
+	import { Button } from "@/registry/new-york/ui/button";
 	import { cn } from "$lib/utils";
 
 	let className: string | undefined | null = undefined;

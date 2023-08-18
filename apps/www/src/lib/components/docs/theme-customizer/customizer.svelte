@@ -4,7 +4,7 @@
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import { ThemeWrapper } from "@/components/docs";
 	import { Check, InfoCircled, Moon, Reset, Sun } from "radix-icons-svelte";
-	import Label from "@/registry/default/ui/label/label.svelte";
+	import { Label } from "@/registry/new-york/ui/label";
 	import { cn } from "@/utils";
 	import { themes } from "@/registry";
 	import {
@@ -16,9 +16,7 @@
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
 	<div class="flex items-start">
 		<div class="space-y-1 pr-2">
-			<div class="font-semibold leading-none tracking-tight">
-				Customize
-			</div>
+			<div class="font-semibold leading-none tracking-tight">Customize</div>
 			<div class="text-xs text-muted-foreground">
 				Pick a style and color for your components.
 			</div>
@@ -43,31 +41,26 @@
 		<div class="space-y-1 5">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
-				<Popover.Root
-					positioning={{ placement: "right-start", gutter: -20 }}
-				>
+				<Popover.Root positioning={{ placement: "right-start", gutter: -20 }}>
 					<Popover.Trigger>
 						<InfoCircled class="ml-1 h-3 w-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content class="space-y-3 rounded-[0.5rem] text-sm">
 						<p class="font-medium">
-							What is the difference between the New York and
-							Default style?
+							What is the difference between the New York and Default style?
 						</p>
 						<p>
-							A style comes with its own set of components,
-							animations, icons and more.
+							A style comes with its own set of components, animations, icons
+							and more.
 						</p>
 						<p>
-							The <span class="font-medium">Default</span> style has
-							larger inputs, uses lucide-react for icons and tailwindcss-animate
-							for animations.
+							The <span class="font-medium">Default</span> style has larger inputs,
+							uses lucide-react for icons and tailwindcss-animate for animations.
 						</p>
 						<p>
-							The <span class="font-medium">New York</span> style ships
-							with smaller buttons and cards with shadows. It uses
-							icons from Radix Icons.
+							The <span class="font-medium">New York</span> style ships with smaller
+							buttons and cards with shadows. It uses icons from Radix Icons.
 						</p>
 					</Popover.Content>
 				</Popover.Root>
@@ -81,9 +74,7 @@
 							...prev,
 							style: "default"
 						}))}
-					class={cn(
-						$config.style === "default" && "border-2 border-primary"
-					)}
+					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
 				</Button>
@@ -95,10 +86,7 @@
 							...prev,
 							style: "new-york"
 						}))}
-					class={cn(
-						$config.style === "new-york" &&
-							"border-2 border-primary"
-					)}
+					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
 				</Button>
@@ -118,10 +106,7 @@
 								theme: theme.name
 							}));
 						}}
-						class={cn(
-							"justify-start",
-							isActive && "border-2 border-primary"
-						)}
+						class={cn("justify-start", isActive && "border-2 border-primary")}
 						style="--theme-primary: hsl({theme?.activeColor[
 							$modeCurrent ? 'light' : 'dark'
 						]}"
@@ -153,8 +138,7 @@
 							}));
 						}}
 						class={cn(
-							$config.radius === valueFloat &&
-								"border-2 border-primary"
+							$config.radius === valueFloat && "border-2 border-primary"
 						)}
 					>
 						{value}

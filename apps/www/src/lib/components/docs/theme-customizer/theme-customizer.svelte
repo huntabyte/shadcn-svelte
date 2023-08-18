@@ -6,7 +6,7 @@
 	import { themes } from "@/registry";
 	import { cn } from "@/utils";
 	import { Check } from "radix-icons-svelte";
-	import Button from "@/registry/default/ui/button/button.svelte";
+	import Button from "@/registry/new-york/ui/button/button.svelte";
 	import { Paintbrush } from "lucide-svelte";
 	import { Customizer, ThemeCopyCodeButton } from ".";
 

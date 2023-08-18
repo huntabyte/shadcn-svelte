@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Tabs from "@/registry/default/ui/tabs";
+	import * as Tabs from "@/registry/new-york/ui/tabs";
 	import { cn } from "$lib/utils";
 	import { StyleSwitcher, ThemeWrapper, CopyButton } from "@/components/docs";
 

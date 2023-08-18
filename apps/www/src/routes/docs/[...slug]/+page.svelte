@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight } from "lucide-svelte";
+	import { ChevronRight, Code } from "radix-icons-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
-	import { Icons } from "$components/docs/icons";
-	import { badgeVariants } from "@/registry/default/ui/badge";
-	import { Separator } from "@/registry/default/ui/separator";
+	import { badgeVariants } from "@/registry/new-york/ui/badge";
+	import { Separator } from "@/registry/new-york/ui/separator";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;
@@ -36,7 +35,7 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.source || doc.radix}
+		{#if doc.source || doc.bits}
 			<div class="flex items-center space-x-2 pt-4">
 				{#if doc.source}
 					<a
@@ -45,21 +44,20 @@
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						<Icons.gitHub class="mr-1 h-3 w-3" />
+						<Code class="mr-1 h-3.5 w-3.5" />
 						Component Source
 					</a>
 				{/if}
-				<!-- {#if doc.external}
+				{#if doc.bits}
 					<a
-						href={doc.external.url}
+						href={doc.bits}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						<ToyBrick class="mr-1 h-3 w-3" />
-						Primitive Reference ({doc.external.project})
+						API Reference
 					</a>
-				{/if} -->
+				{/if}
 			</div>
 		{/if}
 		<div class="mdsvex pt-8" id="mdsvex">

@@ -33,7 +33,7 @@ export type FrontMatter = {
 		project: string;
 		url: string;
 	};
-	radix?: string;
+	bits?: string;
 };
 
 export type DocFile = {
