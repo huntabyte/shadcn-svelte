@@ -12,8 +12,6 @@ bits: https://www.bits-ui.com/docs/components/menubar
 
 <ComponentPreview name="menubar-demo">
 
-<div />
-
 </ComponentPreview>
 
 ## Installation

@@ -56,7 +56,3 @@ npx shadcn-svelte add table
   </Table.Body>
 </Table.Root>
 ```
-
-## Data Table
-
-(coming soon)

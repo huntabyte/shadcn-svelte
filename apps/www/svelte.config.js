@@ -2,8 +2,6 @@ import adapter from "@sveltejs/adapter-vercel";
 import { vitePreprocess } from "@sveltejs/kit/vite";
 import { mdsvex } from "mdsvex";
 import { mdsvexOptions } from "./mdsvex.config.js";
-import sequence from "svelte-sequential-preprocessor";
-import { preprocessMeltUI } from "@melt-ui/pp";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -11,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: sequence([
+	preprocess: [
 		mdsvex(mdsvexOptions),
 		vitePreprocess({
 			style: {
@@ -19,9 +17,8 @@ const config = {
 					postcss: join(__dirname, "postcss.config.cjs")
 				}
 			}
-		}),
-		preprocessMeltUI()
-	]),
+		})
+	],
 
 	extensions: [".svelte", ".md"],
 
