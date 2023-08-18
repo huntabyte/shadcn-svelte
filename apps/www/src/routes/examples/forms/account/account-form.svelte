@@ -51,7 +51,8 @@
 			on:input={field.handleInput}
 		/>
 		<Form.Description>
-			This is the name that will be displayed on your profile and in emails.
+			This is the name that will be displayed on your profile and in
+			emails.
 		</Form.Description>
 		<Form.Message />
 	</Form.Field>

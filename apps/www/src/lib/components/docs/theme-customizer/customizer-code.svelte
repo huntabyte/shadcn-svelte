@@ -33,7 +33,8 @@
 						?.cssVars.light["foreground"]};</span
 				>
             {#each prefixes as prefix}
-					<span class="line text-white">    --{prefix}:{" "}{activeTheme
+					<span
+						class="line text-white">    --{prefix}:{" "}{activeTheme
 							?.cssVars.light[prefix]};</span
 					>
               <span
@@ -57,15 +58,16 @@
                   <span class="line text-white" />
                   <span class="line text-white">  .dark &#123;</span>
                   <span
-					class="line text-white">    --background:{" "}{activeTheme?.cssVars
-						.dark["background"]};</span
+					class="line text-white">    --background:{" "}{activeTheme
+						?.cssVars.dark["background"]};</span
 				>
                   <span
-					class="line text-white">    --foreground:{" "}{activeTheme?.cssVars
-						.dark["foreground"]};</span
+					class="line text-white">    --foreground:{" "}{activeTheme
+						?.cssVars.dark["foreground"]};</span
 				>
                   {#each prefixes as prefix}
-					<span class="line text-white">    --{prefix}:{" "}{activeTheme
+					<span
+						class="line text-white">    --{prefix}:{" "}{activeTheme
 							?.cssVars.dark[prefix]};</span
 					>
             <span

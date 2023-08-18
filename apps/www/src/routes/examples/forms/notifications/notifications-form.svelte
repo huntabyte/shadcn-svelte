@@ -65,13 +65,19 @@
 				let:field
 			>
 				<div class="space-y-0.5">
-					<Form.Label class="text-base">Communication emails</Form.Label>
+					<Form.Label class="text-base"
+						>Communication emails</Form.Label
+					>
 					<Form.Description>
 						Receive emails about your accoutn activity.
 					</Form.Description>
 				</div>
 				{@const { value, name, ...rest } = field.attrs}
-				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<Switch
+					{...rest}
+					checked={value}
+					onCheckedChange={field.updateValue}
+				/>
 				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
@@ -87,7 +93,11 @@
 					</Form.Description>
 				</div>
 				{@const { value, name, ...rest } = field.attrs}
-				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<Switch
+					{...rest}
+					checked={value}
+					onCheckedChange={field.updateValue}
+				/>
 				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
@@ -103,7 +113,11 @@
 					</Form.Description>
 				</div>
 				{@const { value, name, ...rest } = field.attrs}
-				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<Switch
+					{...rest}
+					checked={value}
+					onCheckedChange={field.updateValue}
+				/>
 				<input hidden {name} {value} />
 			</Form.Field>
 			<Form.Field
@@ -119,7 +133,11 @@
 					</Form.Description>
 				</div>
 				{@const { value, name, ...rest } = field.attrs}
-				<Switch {...rest} checked={value} onCheckedChange={field.updateValue} />
+				<Switch
+					{...rest}
+					checked={value}
+					onCheckedChange={field.updateValue}
+				/>
 				<input hidden {name} {value} />
 			</Form.Field>
 		</div>
@@ -138,7 +156,8 @@
 		/>
 		<input hidden {name} {value} />
 		<div class="space-y-1 leading-none">
-			<Form.Label>Use different settings for my mobile devices</Form.Label>
+			<Form.Label>Use different settings for my mobile devices</Form.Label
+			>
 			<Form.Description>
 				You can manage your mobile notifications in the{" "}<a
 					href="/examples/forms">mobile settings</a

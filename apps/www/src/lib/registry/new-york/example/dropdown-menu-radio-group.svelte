@@ -14,7 +14,9 @@
 		<DropdownMenu.Separator />
 		<DropdownMenu.RadioGroup bind:value={position}>
 			<DropdownMenu.RadioItem value="top">Top</DropdownMenu.RadioItem>
-			<DropdownMenu.RadioItem value="bottom">Bottom</DropdownMenu.RadioItem>
+			<DropdownMenu.RadioItem value="bottom"
+				>Bottom</DropdownMenu.RadioItem
+			>
 			<DropdownMenu.RadioItem value="right">Right</DropdownMenu.RadioItem>
 		</DropdownMenu.RadioGroup>
 	</DropdownMenu.Content>

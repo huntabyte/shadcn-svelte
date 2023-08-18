@@ -21,9 +21,9 @@
 	on:m-click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-		<ContextMenuPrimitive.CheckboxItemIndicator>
+		<ContextMenuPrimitive.CheckboxIndicator>
 			<Check class="h-4 w-4" />
-		</ContextMenuPrimitive.CheckboxItemIndicator>
+		</ContextMenuPrimitive.CheckboxIndicator>
 	</span>
 	<slot />
 </ContextMenuPrimitive.CheckboxItem>

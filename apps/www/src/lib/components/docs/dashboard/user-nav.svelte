@@ -21,7 +21,9 @@
 		<DropdownMenu.Label class="font-normal">
 			<div class="flex flex-col space-y-1">
 				<p class="text-sm font-medium leading-none">shadcn</p>
-				<p class="text-xs leading-none text-muted-foreground">m@example.com</p>
+				<p class="text-xs leading-none text-muted-foreground">
+					m@example.com
+				</p>
 			</div>
 		</DropdownMenu.Label>
 		<DropdownMenu.Separator />

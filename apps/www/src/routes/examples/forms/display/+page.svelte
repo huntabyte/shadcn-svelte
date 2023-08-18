@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { Separator } from "@/registry/new-york/ui/separator";
-	import DisplayForm from "./display-form.svelte";
-	import type { PageData } from "./$types";
-	export let data: PageData;
 </script>
 
 <div class="space-y-6">
@@ -13,5 +10,4 @@
 		</p>
 	</div>
 	<Separator />
-	<DisplayForm data={data.form} />
 </div>

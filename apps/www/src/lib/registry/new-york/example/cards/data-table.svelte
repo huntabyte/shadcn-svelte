@@ -185,14 +185,20 @@
 			/>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button variant="outline" class="ml-auto" builders={[builder]}>
+					<Button
+						variant="outline"
+						class="ml-auto"
+						builders={[builder]}
+					>
 						Columns <ChevronDown class="ml-2 h-4 w-4" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content>
 					{#each flatColumns as col}
 						{#if hideableCols.includes(col.id)}
-							<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
+							<DropdownMenu.CheckboxItem
+								bind:checked={hideForId[col.id]}
+							>
 								{col.header}
 							</DropdownMenu.CheckboxItem>
 						{/if}
@@ -215,18 +221,31 @@
 									>
 										<Table.Head
 											{...attrs}
-											class={cn("[&:has([role=checkbox])]:pl-3")}
+											class={cn(
+												"[&:has([role=checkbox])]:pl-3"
+											)}
 										>
 											{#if cell.id === "amount"}
-												<div class="text-right font-medium">
-													<Render of={cell.render()} />
+												<div
+													class="text-right font-medium"
+												>
+													<Render
+														of={cell.render()}
+													/>
 												</div>
 											{:else if cell.id === "email"}
-												<Button variant="ghost" on:click={props.sort.toggle}>
-													<Render of={cell.render()} />
+												<Button
+													variant="ghost"
+													on:click={props.sort.toggle}
+												>
+													<Render
+														of={cell.render()}
+													/>
 													<ArrowUpDown
 														class={cn(
-															$sortKeys[0]?.id === cell.id && "text-foreground",
+															$sortKeys[0]?.id ===
+																cell.id &&
+																"text-foreground",
 															"ml-2 h-4 w-4"
 														)}
 													/>
@@ -246,7 +265,8 @@
 						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 							<Table.Row
 								{...rowAttrs}
-								data-state={$selectedDataIds[row.id] && "selected"}
+								data-state={$selectedDataIds[row.id] &&
+									"selected"}
 							>
 								{#each row.cells as cell (cell.id)}
 									<Subscribe attrs={cell.attrs()} let:attrs>
@@ -255,12 +275,18 @@
 											{...attrs}
 										>
 											{#if cell.id === "amount"}
-												<div class="text-right font-medium">
-													<Render of={cell.render()} />
+												<div
+													class="text-right font-medium"
+												>
+													<Render
+														of={cell.render()}
+													/>
 												</div>
 											{:else if cell.id === "status"}
 												<div class="capitalize">
-													<Render of={cell.render()} />
+													<Render
+														of={cell.render()}
+													/>
 												</div>
 											{:else}
 												<Render of={cell.render()} />

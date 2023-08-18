@@ -42,9 +42,9 @@
 </script>
 
 <script lang="ts">
-	import type { SuperValidated } from "sveltekit-superforms";
+	// import type { SuperValidated } from "sveltekit-superforms";
 
-	export let data: SuperValidated<DisplayFormSchema>;
+	// export let data: SuperValidated<DisplayFormSchema>;
 </script>
 
 <div class="text-base">WIP</div>

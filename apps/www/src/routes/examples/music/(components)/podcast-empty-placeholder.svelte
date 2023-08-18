@@ -48,7 +48,10 @@
 				<div class="grid gap-4 py-4">
 					<div class="grid gap-2">
 						<Label for="url">Podcast URL</Label>
-						<Input id="url" placeholder="https://example.com/feed.xml" />
+						<Input
+							id="url"
+							placeholder="https://example.com/feed.xml"
+						/>
 					</div>
 				</div>
 				<Dialog.Footer>

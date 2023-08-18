@@ -31,7 +31,8 @@ export const models: Model<ModelType>[] = [
 	{
 		id: "ac0797b0-7e31-43b6-a494-da7e2ab43445",
 		name: "text-babbage-001",
-		description: "Capable of straightforward tasks, very fast, and lower cost.",
+		description:
+			"Capable of straightforward tasks, very fast, and lower cost.",
 		type: "GPT-3",
 		strengths: "Moderate classification, semantic search"
 	},

@@ -20,7 +20,9 @@
 				<img
 					class={cn(
 						"h-auto w-auto object-cover transition-all hover:scale-105",
-						aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
+						aspectRatio === "portrait"
+							? "aspect-[3/4]"
+							: "aspect-square"
 					)}
 					src={album.cover}
 					alt={album.name}

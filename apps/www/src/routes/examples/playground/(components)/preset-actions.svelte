@@ -36,9 +36,9 @@
 		<Dialog.Header>
 			<Dialog.Title>Content filter preferences</Dialog.Title>
 			<Dialog.Description>
-				The content filter flags text that may violate our content policy.
-				It&apos;s powered by our moderation endpoint which is free to use to
-				moderate your OpenAI API traffic. Learn more.
+				The content filter flags text that may violate our content
+				policy. It&apos;s powered by our moderation endpoint which is
+				free to use to moderate your OpenAI API traffic. Learn more.
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="py-6">
@@ -50,14 +50,16 @@
 						Show a warning when content is flagged
 					</span>
 					<span class="text-sm text-muted-foreground">
-						A warning will be shown when sexual, hateful, violent or self-harm
-						content is detected.
+						A warning will be shown when sexual, hateful, violent or
+						self-harm content is detected.
 					</span>
 				</Label>
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button variant="secondary" on:click={() => (open = false)}>Close</Button>
+			<Button variant="secondary" on:click={() => (open = false)}
+				>Close</Button
+			>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
@@ -66,8 +68,8 @@
 		<AlertDialog.Header>
 			<AlertDialog.Title>Are you sure absolutely sure?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This action cannot be undone. This preset will no longer be accessible
-				by you or others you&apos;ve shared it with.
+				This action cannot be undone. This preset will no longer be
+				accessible by you or others you&apos;ve shared it with.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>

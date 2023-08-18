@@ -26,8 +26,9 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm">
-			The model which will generate the completion. Some models are suitable for
-			natural language tasks, others specialize in code. Learn more.
+			The model which will generate the completion. Some models are
+			suitable for natural language tasks, others specialize in code.
+			Learn more.
 		</HoverCard.Content>
 	</HoverCard.Root>
 	<Select.Root
@@ -56,13 +57,19 @@
 				<HoverCard.Trigger asChild let:builder>
 					<HoverCard.Content class="min-h-[280px]">
 						<div class="grid gap-2">
-							<h4 class="font-medium leading-none">{peekedModel.name}</h4>
+							<h4 class="font-medium leading-none">
+								{peekedModel.name}
+							</h4>
 							<div class="text-sm text-muted-foreground">
 								{peekedModel.description}
 							</div>
 							{#if peekedModel.strengths}
 								<div class="mt-4 grid gap-2">
-									<h5 class="text-sm font-medium leading-none">Strengths</h5>
+									<h5
+										class="text-sm font-medium leading-none"
+									>
+										Strengths
+									</h5>
 									<ul class="text-sm text-muted-foreground">
 										{peekedModel.strengths}
 									</ul>
