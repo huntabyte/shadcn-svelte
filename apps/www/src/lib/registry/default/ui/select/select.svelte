@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from "@huntabyte/primitives";
+	import { Select as SelectPrimitive } from "bits-ui";
 
 	type $$Props = SelectPrimitive.Props;
 

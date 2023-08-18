@@ -8,8 +8,8 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:trigger>
-		<Button variant="outline" builders={[trigger]}>Open</Button>
+	<DropdownMenu.Trigger asChild let:builder>
+		<Button variant="outline" builders={[builder]}>Open</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Label>Appearance</DropdownMenu.Label>

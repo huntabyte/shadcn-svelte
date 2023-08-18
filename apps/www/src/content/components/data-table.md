@@ -5,7 +5,7 @@ component: true
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall } from '@/components/docs'
 </script>
 
 <ComponentPreview name="data-table-demo">
@@ -13,3 +13,7 @@ component: true
 <div />
 
 </ComponentPreview>
+
+## Introduction
+
+A step by step guide on how to implement your own data table is currently in the works. In the meantime, you can reference the source code of the demo above to get an idea of how to implement your own data table.

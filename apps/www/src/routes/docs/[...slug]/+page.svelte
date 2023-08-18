@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SvelteComponentTyped } from "svelte";
+	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight, ToyBrick } from "lucide-svelte";
+	import { ChevronRight } from "lucide-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
@@ -12,19 +12,15 @@
 
 	export let data: PageData;
 	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any
-	type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;
+	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
-		<div
-			class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground"
-		>
-			<div class="overflow-hidden text-ellipsis whitespace-nowrap">
-				Docs
-			</div>
+		<div class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
 			<ChevronRight class="h-4 w-4" />
 			<div class="font-medium text-foreground">{doc.title}</div>
 		</div>
@@ -53,7 +49,7 @@
 						Component Source
 					</a>
 				{/if}
-				{#if doc.external}
+				<!-- {#if doc.external}
 					<a
 						href={doc.external.url}
 						target="_blank"
@@ -63,7 +59,7 @@
 						<ToyBrick class="mr-1 h-3 w-3" />
 						Primitive Reference ({doc.external.project})
 					</a>
-				{/if}
+				{/if} -->
 			</div>
 		{/if}
 		<div class="mdsvex pt-8" id="mdsvex">

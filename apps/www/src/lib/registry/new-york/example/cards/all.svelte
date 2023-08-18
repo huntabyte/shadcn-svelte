@@ -1,14 +1,16 @@
 <script lang="ts">
-	import CardsActivityGoal from "./activity-goal.svelte";
-	import CardsMetric from "./metric.svelte";
-	import CardsCookieSettings from "./cookie-settings.svelte";
-	import CardsPaymentMethod from "./payment-method.svelte";
-	import CardsCreateAccount from "./create-account.svelte";
-	import CardsReportIssue from "./report-issue.svelte";
-	import CardsShare from "./share.svelte";
-	import CardsStats from "./stats.svelte";
-	import CardsCalendar from "./calendar.svelte";
-	import CardsDataTable from "./data-table.svelte";
+	import {
+		CardsActivityGoal,
+		CardsMetric,
+		CardsCookieSettings,
+		CardsPaymentMethod,
+		CardsCreateAccount,
+		CardsCalendar,
+		CardsDataTable,
+		CardsReportIssue,
+		CardsShare,
+		CardsStats
+	} from ".";
 </script>
 
 <div

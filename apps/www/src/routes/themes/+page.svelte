@@ -1,13 +1,8 @@
 <script lang="ts">
-	import {
-		PageHeader,
-		PageHeaderDescription,
-		PageHeaderHeading
-	} from "$components/docs";
-	import ThemeCustomizer from "$components/docs/theme-customizer/theme-customizer.svelte";
-	import ThemeWrapper from "$components/docs/ThemeWrapper.svelte";
-	import CardsNewYork from "@/registry/new-york/example/cards/all.svelte";
-	import CardsDefault from "@/registry/default/example/cards/all.svelte";
+	import { ThemeCustomizer, ThemeWrapper } from "@/components/docs";
+	import * as PageHeader from "@/components/docs/page-header";
+	import { CardsNewYork } from "@/registry/new-york/example/cards";
+	import { CardsDefault } from "@/registry/default/example/cards";
 	import { config } from "@/stores";
 </script>
 
@@ -29,12 +24,12 @@
 		defaultTheme="zinc"
 		class="relative flex flex-col items-start md:flex-row md:items-center"
 	>
-		<PageHeader class="relative pb-4 md:pb-8 lg:pb-12">
-			<PageHeaderHeading>Make it yours.</PageHeaderHeading>
-			<PageHeaderDescription>
+		<PageHeader.Root class="relative pb-4 md:pb-8 lg:pb-12">
+			<PageHeader.Heading>Make it yours.</PageHeader.Heading>
+			<PageHeader.Description>
 				Hand-picked themes that you can copy and paste into your apps.
-			</PageHeaderDescription>
-		</PageHeader>
+			</PageHeader.Description>
+		</PageHeader.Root>
 		<div class="px-4 pb-8 md:ml-auto md:pb-0">
 			<ThemeCustomizer />
 		</div>

@@ -2,7 +2,7 @@
 	import * as Card from "@/registry/new-york/ui/card";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Minus, Plus } from "radix-icons-svelte";
-	import Activity from "$components/docs/charts/Activity.svelte";
+	import { Activity } from "@/components/docs/charts";
 
 	let goal = 350;
 	function updateGoal(adjustment: number) {

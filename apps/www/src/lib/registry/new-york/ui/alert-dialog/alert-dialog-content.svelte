@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/primitives";
+	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
 	import * as AlertDialog from ".";
 	import { cn } from "$lib/utils";
 

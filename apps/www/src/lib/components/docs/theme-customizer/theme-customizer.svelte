@@ -8,8 +8,7 @@
 	import { Check } from "radix-icons-svelte";
 	import Button from "@/registry/default/ui/button/button.svelte";
 	import { Paintbrush } from "lucide-svelte";
-	import Customizer from "./customizer.svelte";
-	import CopyCodeButton from "./copy-code-button.svelte";
+	import { Customizer, ThemeCopyCodeButton } from ".";
 
 	const colors = ["zinc", "rose", "blue", "green", "orange"];
 </script>
@@ -22,10 +21,10 @@
 				{@const isActive = $config.theme === color}
 				{#if theme}
 					<Tooltip.Root>
-						<Tooltip.Trigger asChild let:trigger>
+						<Tooltip.Trigger asChild let:builder>
 							<button
-								{...trigger}
-								use:trigger.action
+								{...builder}
+								use:builder.action
 								on:click={() => {
 									config.update((prev) => ({
 										...prev,
@@ -34,9 +33,7 @@
 								}}
 								class={cn(
 									"flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
-									isActive
-										? "border-[--theme-primary]"
-										: "border-transparent"
+									isActive ? "border-[--theme-primary]" : "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
 									$modeCurrent ? 'light' : 'dark'
@@ -52,9 +49,7 @@
 								<span class="sr-only">{theme.label}</span>
 							</button>
 						</Tooltip.Trigger>
-						<Tooltip.Content
-							class="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
-						>
+						<Tooltip.Content class="rounded-[0.5rem] bg-zinc-900 text-zinc-50">
 							{theme.label}
 						</Tooltip.Content>
 					</Tooltip.Root>
@@ -62,8 +57,8 @@
 			{/each}
 		</div>
 		<Popover.Root positioning={{ placement: "bottom-end" }}>
-			<Popover.Trigger asChild let:trigger>
-				<Button variant="outline" builders={[trigger]}>
+			<Popover.Trigger asChild let:builder>
+				<Button variant="outline" builders={[builder]}>
 					<Paintbrush class="mr-2 h-4 w-4" />
 					Customize
 				</Button>
@@ -75,5 +70,5 @@
 			</Popover.Content>
 		</Popover.Root>
 	</div>
-	<CopyCodeButton />
+	<ThemeCopyCodeButton />
 </div>

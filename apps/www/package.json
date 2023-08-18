@@ -39,6 +39,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.2.1",
 		"@typescript-eslint/parser": "^6.2.1",
 		"autoprefixer": "^10.4.14",
+		"bits-ui": "^0.0.20",
 		"escape-html": "^1.0.3",
 		"eslint": "^8.46.0",
 		"eslint-config-prettier": "^8.9.0",
@@ -73,11 +74,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@huntabyte/primitives": "^0.0.11",
-		"@melt-ui/svelte": "^0.34.5",
+		"@melt-ui/svelte": "^0.34.6",
 		"@unovis/svelte": "^1.2.0",
 		"@unovis/ts": "^1.2.0",
-		"class-variance-authority": "^0.6.0",
 		"clsx": "^2.0.0",
 		"d3-scale": "^4.0.2",
 		"esm-env": "^1.0.0",
@@ -88,6 +87,7 @@
 		"svelte-legos": "^0.2.1",
 		"svelte-local-storage-store": "^0.5.0",
 		"svelte-wrap-balancer": "^0.0.4",
+		"sveltekit-superforms": "^1.5.1",
 		"tailwind-merge": "^1.14.0",
 		"tailwind-variants": "^0.1.13"
 	},

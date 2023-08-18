@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
+	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 
 	type $$Props = ContextMenuPrimitive.RadioGroupProps;
 

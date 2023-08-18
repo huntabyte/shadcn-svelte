@@ -6,8 +6,8 @@
 </script>
 
 <Sheet.Root>
-	<Sheet.Trigger asChild let:trigger>
-		<Button builders={[trigger]} variant="outline">Open</Button>
+	<Sheet.Trigger asChild let:builder>
+		<Button builders={[builder]} variant="outline">Open</Button>
 	</Sheet.Trigger>
 	<Sheet.Content side="right">
 		<Sheet.Header>
@@ -27,8 +27,8 @@
 			</div>
 		</div>
 		<Sheet.Footer>
-			<Sheet.Close asChild let:close>
-				<Button builders={[close]} type="submit">Save changes</Button>
+			<Sheet.Close asChild let:builder>
+				<Button builders={[builder]} type="submit">Save changes</Button>
 			</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>

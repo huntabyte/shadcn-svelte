@@ -73,7 +73,6 @@
 		@apply border-border;
 	}
 	html {
-		scrollbar-gutter: stable;
 		-webkit-text-size-adjust: 100%;
 		font-variation-settings: normal;
 	}

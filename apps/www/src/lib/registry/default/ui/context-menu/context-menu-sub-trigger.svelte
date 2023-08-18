@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/primitives";
+	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 	import { ChevronRight } from "lucide-svelte";
 

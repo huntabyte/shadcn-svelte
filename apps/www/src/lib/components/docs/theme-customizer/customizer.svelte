@@ -2,7 +2,7 @@
 	import { config } from "@/stores";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Popover from "@/registry/new-york/ui/popover";
-	import { ThemeWrapper } from "$components/docs";
+	import { ThemeWrapper } from "@/components/docs";
 	import { Check, InfoCircled, Moon, Reset, Sun } from "radix-icons-svelte";
 	import Label from "@/registry/default/ui/label/label.svelte";
 	import { cn } from "@/utils";
@@ -10,7 +10,7 @@
 	import {
 		modeCurrent,
 		setModeCurrent
-	} from "$lib/components/docs/light-switch/light-switch";
+	} from "@/components/docs/light-switch/light-switch";
 </script>
 
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">

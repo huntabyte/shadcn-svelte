@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Label as LabelPrimitive } from "@huntabyte/primitives";
+	import { Label as LabelPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = LabelPrimitive.Props;

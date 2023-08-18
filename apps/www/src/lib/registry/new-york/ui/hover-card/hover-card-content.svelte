@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HoverCard as HoverCardPrimitive } from "@huntabyte/primitives";
+	import { HoverCard as HoverCardPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = HoverCardPrimitive.ContentProps;

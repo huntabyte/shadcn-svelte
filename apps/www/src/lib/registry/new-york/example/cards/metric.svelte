@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Metric from "$components/docs/charts/Metric.svelte";
+	import { Metric } from "@/components/docs/charts";
 	import * as Card from "@/registry/new-york/ui/card";
 </script>
 

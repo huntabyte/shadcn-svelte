@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Progress as ProgressPrimitive } from "@huntabyte/primitives";
+	import { Progress as ProgressPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = ProgressPrimitive.Props;

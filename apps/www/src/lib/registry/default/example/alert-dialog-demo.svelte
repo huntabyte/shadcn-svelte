@@ -6,15 +6,15 @@
 </script>
 
 <AlertDialog.Root bind:open>
-	<AlertDialog.Trigger asChild let:trigger>
-		<Button builders={[trigger]} variant="outline">Show Dialog</Button>
+	<AlertDialog.Trigger asChild let:builder>
+		<Button builders={[builder]} variant="outline">Show Dialog</Button>
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This action cannot be undone. This will permanently delete your
-				account and remove your data from our servers.
+				This action cannot be undone. This will permanently delete your account
+				and remove your data from our servers.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
