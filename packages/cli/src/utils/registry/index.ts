@@ -5,6 +5,7 @@ import { Config } from "../get-config";
 import {
 	registryBaseColorSchema,
 	registryIndexSchema,
+	registryItemSchema,
 	registryItemWithContentSchema,
 	registryWithContentSchema,
 	stylesSchema
@@ -12,6 +13,8 @@ import {
 
 const baseUrl =
 	process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
+
+export type RegistryItem = z.infer<typeof registryItemSchema>;
 
 export async function getRegistryIndex() {
 	try {
