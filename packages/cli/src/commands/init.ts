@@ -258,7 +258,7 @@ async function runInit(cwd: string, config: Config) {
 			dirname = dirname.replace(/\/utils$/, "");
 		}
 
-		if (!existsSync(dirname)) {
+		if (!existsSync(dirname) && key !== "utils") {
 			await fs.mkdir(dirname, { recursive: true });
 		}
 	}
