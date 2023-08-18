@@ -54,12 +54,10 @@ Use the `svelte-add` CLI to add Tailwind CSS to your project.
 npx svelte-add@latest tailwindcss
 ```
 
-### Start the dev server
-
-The first time you run the dev server, a `.svelte-kit` directory is created in your project root. The CLI tool uses information from this folder to work its magic.
+### Install dependencies
 
 ```bash
-npm run dev
+npm install
 ```
 
 ### Run the CLI
