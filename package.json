@@ -8,10 +8,10 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "pnpm --filter www build",
+		"build": "pnpm build:registry && pnpm --filter www build",
 		"build:cli": "pnpm --filter shadcn-svelte build",
 		"build:registry": "pnpm --filter www build:registry",
-		"dev": "pnpm --filter www dev",
+		"dev": "pnpm build:registry && pnpm --filter www dev",
 		"dev:cli": "pnpm --filter shadcn-svelte start:dev",
 		"preview": "pnpm --filter www preview",
 		"test": "pnpm --filter www test",
