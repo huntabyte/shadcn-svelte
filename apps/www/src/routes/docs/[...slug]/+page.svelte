@@ -16,7 +16,7 @@
 	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
-	$: componentSource = data.metadata.source.replace(
+	$: componentSource = data.metadata.source?.replace(
 		"default",
 		$config.style ?? "default"
 	);
