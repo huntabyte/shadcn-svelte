@@ -58,7 +58,7 @@ export const init = new Command()
 					type: "confirm",
 					name: "proceed",
 					message:
-						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js] & svelte.config.js. Proceed?",
+						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js]. Proceed?",
 					initial: true
 				}
 			]);
@@ -86,18 +86,6 @@ export const init = new Command()
 				existingConfig,
 				options.yes
 			);
-			if (config.resolvedPaths.tailwindConfig.endsWith(".cjs")) {
-				logger.info(
-					"Your tailwind.config.cjs has been renamed to tailwind.config.js."
-				);
-				const renamedTailwindConfigPath =
-					config.resolvedPaths.tailwindConfig.replace(".cjs", ".js");
-				fs.rename(
-					config.resolvedPaths.tailwindConfig,
-					renamedTailwindConfigPath
-				);
-				config.resolvedPaths.tailwindConfig = renamedTailwindConfigPath;
-			}
 
 			await runInit(cwd, config);
 			logger.info("");
@@ -231,6 +219,17 @@ async function promptForConfig(
 		}
 	}
 
+	if (config.tailwind.config.endsWith(".cjs")) {
+		logger.info(
+			"Your tailwind.config.cjs has been renamed to tailwind.config.js."
+		);
+		const renamedTailwindConfigPath = config.tailwind.config.replace(
+			".cjs",
+			".js"
+		);
+		config.tailwind.config = renamedTailwindConfigPath;
+	}
+
 	// Write to file.
 	logger.info("");
 	const spinner = ora(`Writing components.json...`).start();
@@ -272,7 +271,11 @@ async function runInit(cwd: string, config: Config) {
 		"utf8"
 	);
 	// Delete tailwind.config.cjs, if present
-	await fs.unlink("./tailwind.config.cjs").catch((e) => e); // throws when it DNE
+	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(
+		".cjs",
+		".js"
+	);
+	await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 	// Write css file.
 	const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
