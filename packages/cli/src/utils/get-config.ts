@@ -1,7 +1,10 @@
+import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import path from "path";
+import { execa } from "execa";
 import { loadConfig } from "tsconfig-paths";
 import * as z from "zod";
+import { getPackageManager } from "./get-package-manager";
 import { resolveImport } from "./resolve-imports";
 
 export const DEFAULT_STYLE = "default";
@@ -64,12 +67,23 @@ export async function getAliases() {
 
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	const TSCONFIG_PATH = ".svelte-kit/tsconfig.json";
+	if (!existsSync(TSCONFIG_PATH)) {
+		const packageManager = await getPackageManager(cwd);
+		await execa(
+			packageManager === "npm" ? "npx" : packageManager,
+			["svelte-kit", "sync"],
+			{
+				cwd
+			}
+		);
+	}
+
 	const tsconfigPath = path.resolve(cwd, TSCONFIG_PATH);
 	const tsConfig = loadConfig(tsconfigPath);
 
 	if (tsConfig.resultType === "failed") {
 		throw new Error(
-			`Failed to load tsconfig.json. Make sure you've started the development server at least once before rerunning the command. Error: ${
+			`Failed to load .svelte-kit/tsconfig.json. Error: ${
 				tsConfig.message ?? ""
 			}`.trim()
 		);
