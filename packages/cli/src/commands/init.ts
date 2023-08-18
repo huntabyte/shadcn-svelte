@@ -264,16 +264,16 @@ async function runInit(cwd: string, config: Config) {
 	}
 
 	// Write tailwind config.
-
 	await fs.writeFile(
 		config.resolvedPaths.tailwindConfig,
 		templates.TAILWIND_CONFIG_WITH_VARIABLES,
 		"utf8"
 	);
+
 	// Delete tailwind.config.cjs, if present
 	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(
-		".cjs",
-		".js"
+		".js",
+		".cjs"
 	);
 	await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
