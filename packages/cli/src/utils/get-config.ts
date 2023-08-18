@@ -21,8 +21,8 @@ export const rawConfigSchema = z
 		tailwind: z.object({
 			config: z.string(),
 			css: z.string(),
-			baseColor: z.string(),
-			cssVariables: z.boolean().default(true)
+			baseColor: z.string()
+			// cssVariables: z.boolean().default(true)
 		}),
 		aliases: z.object({
 			components: z.string(),
