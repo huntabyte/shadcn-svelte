@@ -64,30 +64,13 @@ export const docsConfig: DocsConfig = {
 					items: []
 				},
 				{
-					title: "About",
-					href: "/docs/about",
-					items: []
-				}
-			]
-		},
-		{
-			title: "Community",
-			items: [
-				{
 					title: "Figma",
 					href: "/docs/figma",
 					items: []
-				}
-			]
-		},
-		{
-			title: "Forms",
-			items: [
+				},
 				{
-					title: "Superforms",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					title: "About",
+					href: "/docs/about",
 					items: []
 				}
 			]
@@ -191,6 +174,13 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Dropdown Menu",
 					href: "/docs/components/dropdown-menu",
+					items: []
+				},
+				{
+					title: "Form",
+					href: "#",
+					label: "Soon",
+					disabled: true,
 					items: []
 				},
 				{

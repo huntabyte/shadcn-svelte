@@ -19,7 +19,7 @@ For example, the Accordion component is split into four `.svelte` files:
 - `AccordionItem.svelte`
 - `AccordionTrigger.svelte`
 
-Each of which can be imported from the `accordion/index.ts` file like so:
+They can then be imported from the `accordion/index.ts` file like so:
 
 ```ts
 import * as Accordion from '$components/ui/accordion"
@@ -32,13 +32,15 @@ import {
 } from "$components/ui/accordion"
 ```
 
+Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.
+
 ## New Project
 
 <Steps>
 
-### Create a new project
+### Create project
 
-Use the SvelteKit CLI to create a new project. Support for Svelte v4 is coming soon, we are just waiting for our dependencies to be updated.
+Use the SvelteKit CLI to create a new project.
 
 ```bash
 npm create svelte@latest my-app
@@ -52,19 +54,46 @@ Use the `svelte-add` CLI to add Tailwind CSS to your project.
 npx svelte-add@latest tailwindcss
 ```
 
+### Start the dev server
+
+The first time you run the dev server, a `.svelte-kit` directory is created in your project root. The CLI tool uses information from this folder to work its magic.
+
+```bash
+npm run dev
+```
+
 ### Run the CLI
 
 ```bash
-npx shadcn-svelte init
+npx shadcn-svelte@latest init
 ```
 
-This will install dependencies, update your TailwindCSS configuration, add the `$components` path alias to your `svelte.config.js` file, and configure the `cn` utils for you.
+### Configure components.json
+
+You will be asked a few questions to configure `components.json`:
+
+```txt showLineNumbers
+Which style would you like to use? › Default
+Which color would you like to use as base color? › Slate
+Where is your global CSS file? › src/app.postcss
+Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
+Configure the import alias for components: › $lib/components
+Configure the import alias for utils: › $lib/utils
+```
 
 </Steps>
 
 ## Manual Installation
 
 <Steps>
+
+### Create project
+
+Use the SvelteKit CLI to create a new project.
+
+```bash
+npm create svelte@latest my-app
+```
 
 ### Add Tailwind
 
@@ -79,38 +108,19 @@ npx svelte-add@latest tailwindcss
 Add the following dependencies to your project:
 
 ```bash
-npm install tailwindcss-animate tailwind-variants clsx tailwind-merge lucide-svelte
+npm install tailwindcss-animate tailwind-variants clsx tailwind-merge
 ```
 
-### Path Aliases
+### Configure tailwind.config.js
 
-Use the `$components` alias to make it easier to import your components. This is how you can configure the `$components` alias in `svelte.config.js`:
+This is what this project's `tailwind.config.js` file looks like:
 
-```js title="svelte.config.js" {7-8}
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  // ...
-  kit: {
-    // ..
-    alias: {
-      $components: "src/lib/components",
-      "$components/*": "src/lib/components/*"
-    }
-  }
-};
-```
-
-If you prefer to use a different alias than `$components`, you'll need to update the `import` statements when adding components.
-
-### Configure tailwind.config.cjs
-
-This is what this project's `tailwind.config.cjs` file looks like:
-
-```js title="tailwind.config.cjs"
-const { fontFamily } = require("tailwindcss/defaultTheme");
+```javascript title="tailwind.config.js"
+import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   darkMode: ["class"],
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
@@ -163,12 +173,14 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: [...fontFamily.sans]
+        sans: ["Inter", ...fontFamily.sans]
       }
     }
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [tailwindcssAnimate]
 };
+
+export default config;
 ```
 
 Feel free to add or modify as needed to suit your project.

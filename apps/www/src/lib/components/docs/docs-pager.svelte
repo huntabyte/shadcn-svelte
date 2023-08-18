@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav";
 	import { page } from "$app/stores";
-	import { Button } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/new-york/ui/button";
 	import { docsConfig } from "$lib/config/docs";
 	import { Icons } from "./icons";
 
@@ -32,9 +32,7 @@
 	function flatten(links: NavItemWithChildren[]): NavItem[] {
 		return links
 			.reduce<NavItem[]>((flat, link) => {
-				return flat.concat(
-					link.items?.length ? flatten(link.items) : link
-				);
+				return flat.concat(link.items?.length ? flatten(link.items) : link);
 			}, [])
 			.filter((link) => !link?.disabled);
 	}

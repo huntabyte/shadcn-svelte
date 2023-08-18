@@ -27,11 +27,11 @@ See the [CLI section](/docs/cli) for more information.
 
 ## $schema
 
-You can see the JSON Schema for `components.json` [here](https://ui.shadcn.com/schema.json).
+You can see the JSON Schema for `components.json` [here](https://shadcn-svelte.com/schema.json).
 
 ```json title="components.json"
 {
-  "$schema": "https://ui.shadcn.com/schema.json"
+  "$schema": "https://shadcn-svelte.com/schema.json"
 }
 ```
 
@@ -76,7 +76,7 @@ Path to the CSS file that imports Tailwind CSS into your project.
 ```json title="components.json"
 {
   "tailwind": {
-    "css": "styles/global.css"
+    "css": "src/app.postcss"
   }
 }
 ```
@@ -93,24 +93,6 @@ This is used to generate the default color palette for your components. **This c
 }
 ```
 
-### tailwind.cssVariables
-
-You can choose between using CSS variables or Tailwind CSS utility classes for theming.
-
-To use utility classes for theming set `tailwind.cssVariables` to `false`. For CSS variables, set `tailwind.cssVariables` to `true`.
-
-```json title="components.json"
-{
-  "tailwind": {
-    "cssVariables": true | false
-  }
-}
-```
-
-For more information, see the [theming docs](/docs/theming).
-
-**This cannot be changed after initialization.** To switch between CSS variables and utility classes, you'll have to delete and re-install your components.
-
 ## aliases
 
 The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.
@@ -121,29 +103,22 @@ Path aliases have to be set up in your `svelte.config.js` file.
 
 Import alias for your utility functions.
 
-```js title="svelte.config.js"
-const config = {
-  // other config
-  kit: {
-    alias: {
-      $utils: "src/lib/utils"
-    }
+```json title="svelte.config.js"
+{
+  "aliases": {
+    "utils": "$lib/utils"
   }
-};
+}
 ```
 
 ### aliases.components
 
 Import alias for your components.
 
-```js title="svelte.config.js"
-const config = {
-  // other config
-  kit: {
-    alias: {
-      $components: "src/lib/components",
-      "$components/*": "src/lib/components/*"
-    }
+```json title="svelte.config.js"
+{
+  "aliases": {
+    "components": "$lib/components"
   }
-};
+}
 ```
