@@ -18,11 +18,7 @@
 				<!-- Command Menu Here -->
 			</div>
 			<nav class="flex items-center space-x-1">
-				<a
-					href={siteConfig.links.github}
-					target="_blank"
-					rel="noreferrer"
-				>
+				<a href={siteConfig.links.github} target="_blank" rel="noreferrer">
 					<div
 						class={cn(
 							buttonVariants({
@@ -36,11 +32,7 @@
 						<span class="sr-only">GitHub</span>
 					</div>
 				</a>
-				<a
-					href={siteConfig.links.shadTwitter}
-					target="_blank"
-					rel="noreferrer"
-				>
+				<a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">
 					<div
 						class={cn(
 							buttonVariants({

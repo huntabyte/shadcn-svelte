@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { config } from "@/stores";
+
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
 	import { ChevronRight, Code } from "radix-icons-svelte";
@@ -14,16 +16,16 @@
 	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
+	$: componentSource = data.metadata.source?.replace(
+		"default",
+		$config.style ?? "default"
+	);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
-		<div
-			class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground"
-		>
-			<div class="overflow-hidden text-ellipsis whitespace-nowrap">
-				Docs
-			</div>
+		<div class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
 			<ChevronRight class="h-4 w-4" />
 			<div class="font-medium text-foreground">{doc.title}</div>
 		</div>
@@ -41,9 +43,9 @@
 		</div>
 		{#if doc.source || doc.bits}
 			<div class="flex items-center space-x-2 pt-4">
-				{#if doc.source}
+				{#if componentSource}
 					<a
-						href={doc.source}
+						href={componentSource}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
@@ -59,7 +61,7 @@
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						API Reference
+						Primitive API Reference
 					</a>
 				{/if}
 			</div>
