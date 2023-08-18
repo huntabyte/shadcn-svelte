@@ -8,7 +8,7 @@ export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
 export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_TAILWIND_CSS = "src/app.postcss";
-export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.js";
+export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 
 export const rawConfigSchema = z
@@ -69,7 +69,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (tsConfig.resultType === "failed") {
 		throw new Error(
-			`Failed to load tsconfig.json. ${tsConfig.message ?? ""}`.trim()
+			`Failed to load tsconfig.json. Make sure you've started the development server at least once before rerunning the command. Error: ${
+				tsConfig.message ?? ""
+			}`.trim()
 		);
 	}
 

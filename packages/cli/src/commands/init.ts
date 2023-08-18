@@ -23,7 +23,6 @@ import {
 	getRegistryBaseColors,
 	getRegistryStyles
 } from "../utils/registry";
-// import { addAliases } from "../utils/set-config";
 import * as templates from "../utils/templates";
 
 const PROJECT_DEPENDENCIES = [
@@ -87,11 +86,27 @@ export const init = new Command()
 				existingConfig,
 				options.yes
 			);
+			if (config.resolvedPaths.tailwindConfig.endsWith(".cjs")) {
+				logger.info(
+					"Your tailwind.config.cjs has been renamed to tailwind.config.js."
+				);
+				const renamedTailwindConfigPath =
+					config.resolvedPaths.tailwindConfig.replace(".cjs", ".js");
+				fs.rename(
+					config.resolvedPaths.tailwindConfig,
+					renamedTailwindConfigPath
+				);
+				config.resolvedPaths.tailwindConfig = renamedTailwindConfigPath;
+			}
 
 			await runInit(cwd, config);
 			logger.info("");
 			logger.info(
 				`${chalk.green("Success!")} Project initialization completed.`
+			);
+			logger.info("");
+			logger.info(
+				"Don't forget to add the aliases you configured to your svelte.config.js!"
 			);
 			logger.info("");
 
@@ -141,15 +156,35 @@ async function promptForConfig(
 			type: "text",
 			name: "tailwindCss",
 			message: `Where is your ${highlight("global CSS")} file?`,
-			initial: defaultConfig?.tailwind.css ?? DEFAULT_TAILWIND_CSS
+			initial: defaultConfig?.tailwind.css ?? DEFAULT_TAILWIND_CSS,
+			validate: (value) => {
+				if (existsSync(value)) {
+					return true;
+				}
+				logger.error(
+					`${value} does not exist. Please enter a valid path.`
+				);
+				return false;
+			}
 		},
 		{
 			type: "text",
 			name: "tailwindConfig",
 			message: `Where is your ${highlight(
-				"tailwind.config.js"
+				"tailwind.config.[cjs|js|ts]"
 			)} located?`,
-			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG
+			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
+			validate: (value) => {
+				if (existsSync(value)) {
+					return true;
+				}
+				logger.info("");
+				logger.error(
+					`${value} does not exist. Please enter a valid path.`
+				);
+				logger.info("");
+				return false;
+			}
 		},
 		{
 			type: "text",
@@ -230,6 +265,7 @@ async function runInit(cwd: string, config: Config) {
 	}
 
 	// Write tailwind config.
+
 	await fs.writeFile(
 		config.resolvedPaths.tailwindConfig,
 		templates.TAILWIND_CONFIG_WITH_VARIABLES,
