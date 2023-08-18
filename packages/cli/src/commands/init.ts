@@ -27,7 +27,7 @@ import * as templates from "../utils/templates";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwindcss-animate",
-	"class-variance-authority",
+	"tailwind-variants",
 	"clsx",
 	"tailwind-merge"
 ] as const;

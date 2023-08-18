@@ -153,7 +153,7 @@ export const Index = {
     "checkbox-demo": {
       name: "checkbox-demo",
       type: "components:example",
-      registryDependencies: ["checkbox","label.svelte"],
+      registryDependencies: ["checkbox","label"],
       component: () => import("../src/lib/registry/default/example/checkbox-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/checkbox-demo.svelte"],
     },
@@ -700,7 +700,7 @@ export const Index = {
     "checkbox-demo": {
       name: "checkbox-demo",
       type: "components:example",
-      registryDependencies: ["checkbox","label.svelte"],
+      registryDependencies: ["checkbox","label"],
       component: () => import("../src/lib/registry/new-york/example/checkbox-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/checkbox-demo.svelte"],
     },

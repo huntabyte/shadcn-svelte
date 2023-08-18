@@ -10,7 +10,6 @@
 	import type { HTMLFormAttributes } from "svelte/elements";
 
 	import type { SuperValidated } from "sveltekit-superforms";
-	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
 	type Options<T, M> = FormOptions<UnwrapEffects<T>, M>;
 	type $$Props = HTMLFormAttributes & {
@@ -35,7 +34,6 @@
 	};
 </script>
 
-<SuperDebug data={$formStore} />
 <form {...$$restProps} use:enhance>
 	<slot form={field} formValues={$formStore} formStore={form.form} />
 </form>

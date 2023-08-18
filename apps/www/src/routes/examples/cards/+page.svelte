@@ -6,10 +6,9 @@
 		CardsShare,
 		CardsReportIssue,
 		CardsGithub,
-		CardsNotifications
-	} from "@/registry/default/example/cards";
-
-	import DemoContainer from "./(components)/demo-container.svelte";
+		CardsNotifications,
+		DemoContainer
+	} from "./(components)";
 </script>
 
 <div class="md:hidden">
