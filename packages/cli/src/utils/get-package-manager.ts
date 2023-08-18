@@ -1,19 +1,13 @@
-// Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
+import { detect } from "@antfu/ni";
 
-export function getPackageManager() {
-	const userAgent = process.env.npm_config_user_agent;
+export async function getPackageManager(
+	targetDir: string
+): Promise<"yarn" | "pnpm" | "bun" | "npm"> {
+	const packageManager = await detect({ programmatic: true, cwd: targetDir });
 
-	if (!userAgent) {
-		return "npm";
-	}
+	if (packageManager === "yarn@berry") return "yarn";
+	if (packageManager === "pnpm@6") return "pnpm";
+	if (packageManager === "bun") return "bun";
 
-	if (userAgent.startsWith("yarn")) {
-		return "yarn";
-	}
-
-	if (userAgent.startsWith("pnpm")) {
-		return "pnpm";
-	}
-
-	return "npm";
+	return packageManager ?? "npm";
 }
