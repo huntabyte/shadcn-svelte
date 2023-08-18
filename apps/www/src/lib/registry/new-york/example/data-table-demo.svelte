@@ -200,7 +200,7 @@
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
 				{#each $headerRows as headerRow}
-					<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
+					<Subscribe rowAttrs={headerRow.attrs()}>
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe

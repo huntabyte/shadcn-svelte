@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createFormField } from ".";
 	import type { Form, FormFieldName } from "./types";
-	import type { AnyZodObject, z } from "zod";
+	import type { AnyZodObject } from "zod";
 	import { cn } from "@/utils";
 	let className: string | undefined | null = undefined;
 	export { className as class };

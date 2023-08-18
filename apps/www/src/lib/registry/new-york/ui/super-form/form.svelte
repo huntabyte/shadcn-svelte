@@ -3,7 +3,6 @@
 	import type { AnyZodObject } from "zod";
 
 	type Validation = ZodValidation<AnyZodObject>;
-	type Options<T, M> = FormOptions<UnwrapEffects<T>, M>;
 </script>
 
 <script lang="ts" generics="T extends Validation = Validation, M = any">
@@ -13,6 +12,7 @@
 	import type { SuperValidated } from "sveltekit-superforms";
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 
+	type Options<T, M> = FormOptions<UnwrapEffects<T>, M>;
 	type $$Props = HTMLFormAttributes & {
 		schema: T;
 		options?: Options<T, M>;

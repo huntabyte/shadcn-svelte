@@ -16,7 +16,7 @@
 	import * as Table from "@/registry/new-york/ui/table";
 	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { CaretSort, ChevronDown, DotsHorizontal } from "radix-icons-svelte";
+	import { CaretSort, ChevronDown } from "radix-icons-svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";
@@ -144,8 +144,7 @@
 		tableBodyAttrs,
 		flatColumns,
 		pluginStates,
-		rows,
-		visibleColumns
+		rows
 	} = table.createViewModel(columns);
 
 	const { sortKeys } = pluginStates.sort;
@@ -197,7 +196,7 @@
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
 				{#each $headerRows as headerRow}
-					<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
+					<Subscribe rowAttrs={headerRow.attrs()}>
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe

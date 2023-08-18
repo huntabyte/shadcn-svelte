@@ -3,7 +3,7 @@
 	import type { HTMLAttributes } from "svelte/elements";
 
 	type $$Props = HTMLAttributes<HTMLTableRowElement> & {
-		"data-state"?: any;
+		"data-state"?: unknown;
 	};
 
 	let className: $$Props["class"] = undefined;

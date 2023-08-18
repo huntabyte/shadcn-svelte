@@ -1,10 +1,9 @@
 <script lang="ts">
 	import * as Tabs from "@/registry/new-york/ui/tabs";
 	import { Index as RegistryIndex } from "../../../../__registry__";
-	import { styles } from "@/registry";
 	import { config } from "@/stores";
 	import { cn } from "@/utils";
-	import { StyleSwitcher, CopyButton, ThemeWrapper } from "@/components/docs";
+	import { StyleSwitcher, ThemeWrapper } from "@/components/docs";
 	import { Icons } from "./icons";
 	export let name: string;
 	let className: string;
@@ -12,14 +11,7 @@
 
 	const Index = RegistryIndex as Record<string, any>;
 
-	const index = styles.findIndex((style) => style.name === $config.style);
 	let component = Index[$config.style][name]?.component();
-
-	let codeString: string;
-
-	function copyCodeToClipboard(node: HTMLElement) {
-		codeString = node.innerText ?? "";
-	}
 
 	export { className as class };
 

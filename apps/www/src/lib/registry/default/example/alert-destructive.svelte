@@ -1,16 +1,12 @@
 <script lang="ts">
 	import { AlertCircle } from "lucide-svelte";
-	import {
-		Alert,
-		AlertDescription,
-		AlertTitle
-	} from "@/registry/default/ui/alert";
+	import * as Alert from "@/registry/default/ui/alert";
 </script>
 
-<Alert variant="destructive">
+<Alert.Root variant="destructive">
 	<AlertCircle class="h-4 w-4" />
-	<AlertTitle>Error</AlertTitle>
-	<AlertDescription>
+	<Alert.Title>Error</Alert.Title>
+	<Alert.Description>
 		Your session has expired. Please login again.
-	</AlertDescription>
-</Alert>
+	</Alert.Description>
+</Alert.Root>

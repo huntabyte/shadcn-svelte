@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { Check, CaretSort } from "radix-icons-svelte";
 	import { cn } from "@/utils";
-	import { Button } from "@/registry/new-york/ui/button";
 	import * as Select from "@/registry/new-york/ui/select";
 	import type { Preset } from "../(data)/presets";
 	import { buttonVariants } from "@/registry/default/ui/button";
