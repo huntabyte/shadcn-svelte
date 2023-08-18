@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
 	import type { SuperValidated } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms/client";
 	import { z } from "zod";
 
 	export const appearanceFormSchema = z.object({

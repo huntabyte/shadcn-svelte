@@ -107,7 +107,7 @@
 		<div class="space-y-1 5">
 			<Label class="text-xs">Color</Label>
 			<div class="grid grid-cols-3 gap-2">
-				{#each themes as theme, idx (theme.name)}
+				{#each themes as theme (theme.name)}
 					{@const isActive = $config.theme === theme.name}
 					<Button
 						variant="outline"
