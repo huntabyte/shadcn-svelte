@@ -19,10 +19,6 @@
 			title: "Notifications",
 			href: "/examples/forms/notifications"
 		}
-		// {
-		// 	title: "Display",
-		// 	href: "/examples/forms/display"
-		// }
 	];
 </script>
 

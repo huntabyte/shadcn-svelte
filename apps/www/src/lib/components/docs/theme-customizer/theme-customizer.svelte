@@ -16,7 +16,7 @@
 <div class="flex items-center space-x-2">
 	<div class="flex">
 		<div class="mr-2 items-center space-x-0.5 flex">
-			{#each colors as color, i (color)}
+			{#each colors as color (color)}
 				{@const theme = themes.find((theme) => theme.name === color)}
 				{@const isActive = $config.theme === color}
 				{#if theme}

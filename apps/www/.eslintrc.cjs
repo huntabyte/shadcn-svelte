@@ -18,7 +18,8 @@ module.exports = {
 		es2017: true,
 		node: true
 	},
-	globals: { $$Generic: "readable" },
+
+	globals: { $$Generic: "readable", _: "writable" },
 	overrides: [
 		{
 			files: ["*.svelte"],

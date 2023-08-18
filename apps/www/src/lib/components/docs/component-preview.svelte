@@ -9,6 +9,7 @@
 	let className: string;
 	export let align: "center" | "start" | "end" = "center";
 
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const Index = RegistryIndex as Record<string, any>;
 
 	let component = Index[$config.style][name]?.component();
