@@ -150,18 +150,19 @@ export const add = new Command()
 				}
 
 				const existingComponent = item.files.filter((file) =>
-					existsSync(path.resolve(targetDir, file.name))
+					existsSync(path.resolve(targetDir, item.name, file.name))
 				);
 
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
 						logger.warn(
-							`Component ${
+							`\nComponent ${
 								item.name
 							} already exists. Use ${chalk.green(
 								"--overwrite"
 							)} to overwrite.`
 						);
+						spinner.stop();
 						process.exitCode = 1;
 						return;
 					}
