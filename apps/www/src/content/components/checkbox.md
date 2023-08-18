@@ -2,11 +2,8 @@
 title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/checkbox
-radix: https://www.radix-svelte.com/docs/checkbox
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/checkbox
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/checkbox
+bits: https://www.bits-ui.com/docs/components/checkbox
 ---
 
 <script>

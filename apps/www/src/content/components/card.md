@@ -2,7 +2,7 @@
 title: Card
 description: Displays a card with header, content, and footer.
 featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/card
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/card
 ---
 
 <script>

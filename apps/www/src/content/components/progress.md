@@ -2,11 +2,8 @@
 title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/progress
-radix: https://www.radix-svelte.com/docs/progress
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/progress
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/progress
+bits: https://www.bits-ui.com/docs/components/progress
 ---
 
 <script>

@@ -1,0 +1,31 @@
+{
+  "name": "form",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils",
+    "label"
+  ],
+  "files": [
+    {
+      "name": "form-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"@/utils\";\n\timport { getContext } from \"svelte\";\n\timport type { FormFieldContext } from \".\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst { formDescriptionId } = getContext<FormFieldContext>(\"FormField\");\n</script>\n\n<p\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n\tid={formDescriptionId}\n>\n\t<slot />\n</p>\n"
+    },
+    {
+      "name": "form-field.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"@/utils\";\n\timport { setContext } from \"svelte\";\n\timport { writable } from \"svelte/store\";\n\n\tconst id = Math.random().toString(36).slice(2);\n\texport let errors: string[] | undefined = undefined;\n\texport let name: string;\n\tconst errorStore = writable<string[] | undefined>(errors);\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst contextObj = {\n\t\tformItemId: id,\n\t\tformDescriptionId: `${id}-form-item-description`,\n\t\tformMessageId: `${id}-form-item-message`,\n\t\terrors: errorStore,\n\t\tname\n\t};\n\tsetContext(\"FormField\", contextObj);\n\n\t$: errorStore.set(errors);\n\n\t$: field = {\n\t\t\"aria-invalid\": errors ? true : undefined,\n\t\t\"aria-describedby\": !errors\n\t\t\t? `${contextObj.formDescriptionId}`\n\t\t\t: `${contextObj.formDescriptionId} ${contextObj.formMessageId}`,\n\t\tname,\n\t\tid\n\t};\n</script>\n\n<div class={cn(\"space-y-2\", className)}>\n\t<slot {field} />\n</div>\n"
+    },
+    {
+      "name": "form-label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Label } from \"@/registry/new-york/ui/label\";\n\timport { cn } from \"@/utils\";\n\timport { getContext } from \"svelte\";\n\timport type { FormFieldContext } from \".\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst { formItemId, errors } = getContext<FormFieldContext>(\"FormField\");\n</script>\n\n<Label class={cn($errors && \"text-destructive\", className)} for={formItemId}>\n\t<slot />\n</Label>\n"
+    },
+    {
+      "name": "form-message.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"@/utils\";\n\timport { getContext } from \"svelte\";\n\timport type { FormFieldContext } from \".\";\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n\n\tconst { formMessageId, errors } = getContext<FormFieldContext>(\"FormField\");\n</script>\n\n{#if $errors}\n\t<p\n\t\tclass={cn(\"text-sm font-medium text-destructive\", className)}\n\t\tid={formMessageId}\n\t>\n\t\t{$errors}\n\t</p>\n{/if}\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import type { Writable } from \"svelte/store\";\nimport Description from \"./form-description.svelte\";\nimport Field from \"./form-field.svelte\";\nimport Label from \"./form-label.svelte\";\nimport Message from \"./form-message.svelte\";\n\nexport type FormFieldContext = {\n\tname: string;\n\tformItemId: string;\n\tformDescriptionId: string;\n\tformMessageId: string;\n\terrors: Writable<string[] | undefined>;\n};\n\nexport {\n\tField,\n\tDescription,\n\tLabel,\n\tMessage,\n\t//\n\tField as FormField,\n\tDescription as FormDescription,\n\tLabel as FormLabel,\n\tMessage as FormMessage\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}

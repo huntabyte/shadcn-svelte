@@ -2,7 +2,7 @@
 title: Input
 description: Displays a form input field or a component that looks like an input field.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/input
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/input
 ---
 
 <script>

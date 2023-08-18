@@ -2,11 +2,8 @@
 title: Dropdown Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/dropdown-menu
-radix: https://www.radix-svelte.com/docs/radiogroup
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/radiogroup
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/dropdown-menu
+bits: https://www.bits-ui.com/docs/components/dropdown-menu
 ---
 
 <script>

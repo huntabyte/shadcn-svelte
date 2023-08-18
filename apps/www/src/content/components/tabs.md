@@ -2,11 +2,8 @@
 title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/tabs
-radix: https://www.radix-svelte.com/docs/tabs
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/tabs
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/tabs
+bits: https://www.bits-ui.com/docs/components/tabs
 ---
 
 <script>

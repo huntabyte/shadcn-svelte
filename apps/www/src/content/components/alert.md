@@ -2,7 +2,7 @@
 title: Alert
 description: Displays a callout for user attention.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/alert
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/alert
 ---
 
 <script>

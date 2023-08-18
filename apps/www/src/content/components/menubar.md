@@ -2,11 +2,8 @@
 title: Menubar
 description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/menubar
-radix: https://www.radix-svelte.com/docs/radiogroup
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/radiogroup
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/menubar
+bits: https://www.bits-ui.com/docs/components/menubar
 ---
 
 <script>

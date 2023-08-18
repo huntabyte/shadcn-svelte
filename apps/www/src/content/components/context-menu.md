@@ -2,11 +2,8 @@
 title: Context Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/context-menu
-radix: https://www.radix-svelte.com/docs/radiogroup
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/radiogroup
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/context-menu
+bits: https://www.bits-ui.com/docs/components/context-menu
 ---
 
 <script>

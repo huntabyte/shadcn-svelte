@@ -2,11 +2,8 @@
 title: Slider
 description: An input where the user selects a value from within a given range.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/slider
-radix: https://www.radix-svelte.com/docs/slider
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/slider
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/slider
+bits: https://www.bits-ui.com/docs/components/slider
 ---
 
 <script>

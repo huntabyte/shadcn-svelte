@@ -2,11 +2,8 @@
 title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/tooltip
-radix: https://www.radix-svelte.com/docs/tooltip
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/tooltip
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/tooltip
+bits: https://www.bits-ui.com/docs/components/tooltip
 ---
 
 <script>

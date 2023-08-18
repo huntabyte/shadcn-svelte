@@ -3,11 +3,8 @@ title: Alert Dialog
 description: A modal dialog that interrupts the user with important content and expects a response.
 featured: true
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/alert-dialog
-radix: https://www.radix-svelte.com/docs/alertdialog
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/alertdialog
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/alert-dialog
+bits: https://www.bits-ui.com/docs/components/alert-dialog
 ---
 
 <script>

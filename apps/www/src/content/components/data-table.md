@@ -2,6 +2,7 @@
 title: Data Table
 description: Powerful table and datagrids built using Svelte Headless Table.
 component: true
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/examples/data-table-demo.svelte
 ---
 
 <script>

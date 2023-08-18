@@ -118,10 +118,15 @@ fs.writeFileSync(
 	"utf8"
 );
 
+const REGISTRY_IGNORE = ["form"];
+
 // ----------------------------------------------------------------------------
 // Build registry/index.json.
 // ----------------------------------------------------------------------------
-const names = result.data.filter((item) => item.type === "components:ui");
+const names = result.data.filter(
+	(item) =>
+		item.type === "components:ui" && !REGISTRY_IGNORE.includes(item.name)
+);
 const registryJson = JSON.stringify(names, null, 2);
 rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
 fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8");
@@ -146,10 +151,7 @@ for (const [color, value] of Object.entries(colors)) {
 	if (Array.isArray(value)) {
 		colorsData[color] = value.map((item) => ({
 			...item,
-			rgbChannel: item.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
+			rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
 			hslChannel: item.hsl.replace(
 				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
 				"$1 $2 $3"
@@ -161,10 +163,7 @@ for (const [color, value] of Object.entries(colors)) {
 	if (typeof value === "object") {
 		colorsData[color] = {
 			...value,
-			rgbChannel: value.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
+			rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
 			hslChannel: value.hsl.replace(
 				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
 				"$1 $2 $3"
@@ -277,10 +276,7 @@ for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
 		base["cssVars"][mode] = {};
 		for (const [key, value] of Object.entries(values)) {
 			if (typeof value === "string") {
-				const resolvedColor = value.replace(
-					/{{base}}-/g,
-					`${baseColor}-`
-				);
+				const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
 				base["inlineColors"][mode][key] = resolvedColor;
 
 				const [resolvedBase, scale] = resolvedColor.split("-");
