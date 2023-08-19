@@ -52,7 +52,7 @@ npx shadcn-svelte add [component]
 Use the `add` command to add components and dependencies to your project.
 
 ```bash
-npx shadcn-ui@latest add [component]
+npx shadcn-svelte@latest add [component]
 ```
 
 You will be presented with a list of components to choose from:
