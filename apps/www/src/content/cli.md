@@ -33,18 +33,8 @@ initialize your project and install dependencies
 
 Options:
   -y, --yes        skip confirmation prompt. (default: false)
-  -c, --cwd <cwd>  the working directory. defaults to the current directory.
+  -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
-```
-
-## add
-
-Use the `add` command to add components to your project.
-
-The `add` command adds a component to your project and installs all required dependencies.
-
-```bash
-npx shadcn-svelte add [component]
 ```
 
 ## add
@@ -52,7 +42,7 @@ npx shadcn-svelte add [component]
 Use the `add` command to add components and dependencies to your project.
 
 ```bash
-npx shadcn-ui@latest add [component]
+npx shadcn-svelte@latest add [component]
 ```
 
 You will be presented with a list of components to choose from:
