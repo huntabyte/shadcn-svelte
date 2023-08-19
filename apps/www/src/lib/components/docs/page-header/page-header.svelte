@@ -7,7 +7,7 @@
 
 <section
 	class={cn(
-		"flex max-w-[980px] flex-col items-start gap-2 px-4 pt-8 md:pt-12",
+		"flex max-w-[980px] flex-col items-start gap-2 px-4 pt-8 md:pt-12 pb-8",
 		className
 	)}
 	{...$$restProps}

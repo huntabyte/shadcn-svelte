@@ -314,13 +314,13 @@ src
 │   │   ├── ui
 │   │   │   ├── alert-dialog
 │   │   │   │   ├── index.ts
-│   │   │   │   └── Alert.svelte
+│   │   │   │   └── alert.svelte
 │   │   │   ├── button
 │   │   │   │   ├── index.ts
-│   │   │   │   └── Button.svelte
+│   │   │   │   └── button.svelte
 │   │   │   └── ...
-│   │   ├── Navigation.svelte
-│   │   ├── PageHeader.svelte
+│   │   ├── navigation.svelte
+│   │   ├── page-header.svelte
 │   │   └── ...
 │   └── utils.ts
 ├── routes
