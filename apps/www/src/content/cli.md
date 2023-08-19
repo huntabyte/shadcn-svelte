@@ -33,7 +33,7 @@ initialize your project and install dependencies
 
 Options:
   -y, --yes        skip confirmation prompt. (default: false)
-  -c, --cwd <cwd>  the working directory. defaults to the current directory.
+  -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
 ```
 
