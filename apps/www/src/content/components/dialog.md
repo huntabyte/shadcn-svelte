@@ -20,7 +20,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 ## Installation
 
 ```bash
-npx shadcn-svelte add dialog
+npx shadcn-svelte@latest add dialog
 ```
 
 <ManualInstall>

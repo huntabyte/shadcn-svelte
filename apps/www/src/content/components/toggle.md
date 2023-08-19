@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 ## Installation
 
 ```bash
-npx shadcn-svelte add toggle
+npx shadcn-svelte@latest add toggle
 ```
 
 <ManualInstall>

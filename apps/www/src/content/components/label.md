@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/label
 ## Installation
 
 ```bash
-npx shadcn-svelte add label
+npx shadcn-svelte@latest add label
 ```
 
 <ManualInstall>

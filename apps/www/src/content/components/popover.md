@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/popover
 ## Installation
 
 ```bash
-npx shadcn-svelte add popover
+npx shadcn-svelte@latest add popover
 ```
 
 <ManualInstall>

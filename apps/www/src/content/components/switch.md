@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/switch
 ## Installation
 
 ```bash
-npx shadcn-svelte add switch
+npx shadcn-svelte@latest add switch
 ```
 
 <ManualInstall>

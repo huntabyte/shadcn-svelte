@@ -20,7 +20,7 @@ bits: https://www.bits-ui.com/docs/components/collapsible
 ## Installation
 
 ```bash
-npx shadcn-svelte add collapsible
+npx shadcn-svelte@latest add collapsible
 ```
 
 <ManualInstall>

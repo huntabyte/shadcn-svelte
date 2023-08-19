@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/select
 ## Installation
 
 ```bash
-npx shadcn-svelte add select
+npx shadcn-svelte@latest add select
 ```
 
 <ManualInstall>

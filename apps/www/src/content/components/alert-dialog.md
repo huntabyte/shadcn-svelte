@@ -20,7 +20,7 @@ bits: https://www.bits-ui.com/docs/components/alert-dialog
 ## Installation
 
 ```bash
-npx shadcn-svelte add alert-dialog
+npx shadcn-svelte@latest add alert-dialog
 ```
 
 <ManualInstall>

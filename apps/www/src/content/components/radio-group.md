@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/radio-group
 ## Installation
 
 ```bash
-npx shadcn-svelte add radio-group
+npx shadcn-svelte@latest add radio-group
 ```
 
 <ManualInstall>

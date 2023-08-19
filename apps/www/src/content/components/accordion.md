@@ -20,7 +20,7 @@ bits: https://www.bits-ui.com/docs/components/accordion
 ## Installation
 
 ```bash
-npx shadcn-svelte add accordion
+npx shadcn-svelte@latest add accordion
 ```
 
 <ManualInstall>

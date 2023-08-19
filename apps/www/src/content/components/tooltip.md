@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/tooltip
 ## Installation
 
 ```bash
-npx shadcn-svelte add tooltip
+npx shadcn-svelte@latest add tooltip
 ```
 
 <ManualInstall>
