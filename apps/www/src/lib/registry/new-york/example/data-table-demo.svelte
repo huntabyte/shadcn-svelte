@@ -106,7 +106,14 @@
 		table.column({
 			header: "Email",
 			accessor: "email",
-			cell: ({ value }) => value.toLowerCase()
+			cell: ({ value }) => value.toLowerCase(),
+			plugins: {
+				filter: {
+					getFilterValue(value) {
+						return value.toLowerCase();
+					}
+				}
+			}
 		}),
 		table.column({
 			header: "Amount",
