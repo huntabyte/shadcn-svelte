@@ -20,7 +20,7 @@ We use it to understand how your project is set up and how to generate component
 You can create a `components.json` file in your project by running the following command:
 
 ```bash
-npx shadcn-ui@latest init
+npx shadcn-svelte@latest init
 ```
 
 See the [CLI section](/docs/cli) for more information.
