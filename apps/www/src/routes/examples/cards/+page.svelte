@@ -1,9 +1,14 @@
 <script lang="ts">
-	import DemoCookieSettings from "./CookieSettings.svelte";
-	import DemoCreateAccount from "./CreateAccount.svelte";
-	import DemoContainer from "./DemoContainer.svelte";
-	import DemoNotifications from "./Notifications.svelte";
-	import DemoPaymentMethod from "./PaymentMethod.svelte";
+	import {
+		CardsCookieSettings,
+		CardsCreateAccount,
+		CardsPaymentMethod,
+		CardsShare,
+		CardsReportIssue,
+		CardsGithub,
+		CardsNotifications,
+		DemoContainer
+	} from "./(components)";
 </script>
 
 <div class="md:hidden">
@@ -27,18 +32,31 @@
 >
 	<div class="col-span-3 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
-			<DemoCreateAccount />
+			<CardsCreateAccount />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoNotifications />
+			<CardsPaymentMethod />
 		</DemoContainer>
 	</div>
-	<div class="col-span-3 grid items-start gap-6 lg:col-span-2">
+	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
-			<DemoPaymentMethod />
+			<CardsShare />
 		</DemoContainer>
 		<DemoContainer>
-			<DemoCookieSettings />
+			<CardsNotifications />
+		</DemoContainer>
+		<DemoContainer>
+			<CardsCookieSettings />
+		</DemoContainer>
+	</div>
+	<div
+		class="col-span-2 grid items-start gap-6 lg:col-span-2 lg:grid-cols-2 xl:col-span-1 xl:grid-cols-1"
+	>
+		<DemoContainer>
+			<CardsReportIssue />
+		</DemoContainer>
+		<DemoContainer>
+			<CardsGithub />
 		</DemoContainer>
 	</div>
 </div>

@@ -2,24 +2,19 @@
 title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/radio-group
-radix: https://www.radix-svelte.com/docs/radiogroup
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/radiogroup
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/radio-group
+bits: https://www.bits-ui.com/docs/components/radio-group
 ---
 
 <script>
-  import { RadioGroupDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/radio-group/RadioGroupDemo.svelte">
+<ComponentPreview name="radio-group-demo">
 
-<div slot="example">
-<RadioGroupDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add radio-group
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -44,19 +39,17 @@ npm install radix-svelte
 ```svelte
 <script lang="ts">
   import { Label } from "$components/ui/label";
-  import { RadioGroup, RadioGroupItem } from "$components/ui/radio-group";
+  import * as RadioGroup from "$components/ui/radio-group";
 </script>
-```
 
-```svelte
-<RadioGroup value="option-one">
+<RadioGroup.Root value="option-one">
   <div class="flex items-center space-x-2">
-    <RadioGroupItem value="option-one" id="option-one" />
+    <RadioGroup.Item value="option-one" id="option-one" />
     <Label for="option-one">Option One</Label>
   </div>
   <div class="flex items-center space-x-2">
-    <RadioGroupItem value="option-two" id="option-two" />
+    <RadioGroup.Item value="option-two" id="option-two" />
     <Label for="option-two">Option Two</Label>
   </div>
-</RadioGroup>
+</RadioGroup.Root>
 ```

@@ -1,0 +1,16 @@
+{
+  "name": "input",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./input.svelte\";\n\ntype FormInputEvent<T extends Event = Event> = T & {\n\tcurrentTarget: EventTarget & HTMLInputElement;\n};\nexport type InputEvents = {\n\tblur: FormInputEvent<FocusEvent>;\n\tchange: FormInputEvent<Event>;\n\tclick: FormInputEvent<MouseEvent>;\n\tfocus: FormInputEvent<FocusEvent>;\n\tkeydown: FormInputEvent<KeyboardEvent>;\n\tkeypress: FormInputEvent<KeyboardEvent>;\n\tkeyup: FormInputEvent<KeyboardEvent>;\n\tmouseover: FormInputEvent<MouseEvent>;\n\tmouseenter: FormInputEvent<MouseEvent>;\n\tmouseleave: FormInputEvent<MouseEvent>;\n\tpaste: FormInputEvent<ClipboardEvent>;\n\tinput: FormInputEvent<InputEvent>;\n};\n\nexport {\n\tRoot,\n\t//\n\tRoot as Input\n};\n"
+    },
+    {
+      "name": "input.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { InputEvents } from \".\";\n\n\ttype $$Props = HTMLInputAttributes;\n\ttype $$Events = InputEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"] = undefined;\n\texport { className as class };\n</script>\n\n<input\n\tclass={cn(\n\t\t\"flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n\t{...$$restProps}\n/>\n"
+    }
+  ],
+  "type": "components:ui"
+}

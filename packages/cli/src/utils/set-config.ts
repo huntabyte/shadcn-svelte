@@ -9,21 +9,9 @@ import prettier from "prettier";
 // @ts-expect-error no types
 // had to manually add this package since their package.json is misconfigured
 import { attachComments } from "../astravel";
-import { ShadConfig, shadConfigSchema } from "./schemas";
 
 const SVELTE_CONFIG_PATH = path.join(process.cwd(), "svelte.config.js");
 const IMPORT_SVELTE_CONFIG_PATH = "file://" + SVELTE_CONFIG_PATH;
-
-export async function getConfig(): Promise<ShadConfig | null> {
-	const { default: svelteConfig } = await import(IMPORT_SVELTE_CONFIG_PATH);
-
-	try {
-		const shadConfig = shadConfigSchema.parse(svelteConfig.shadcn);
-		return shadConfig;
-	} catch (e) {
-		return null;
-	}
-}
 
 /**
  * Parse the svelte.config.js file into an abstract syntax tree (AST),

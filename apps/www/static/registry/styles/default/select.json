@@ -1,0 +1,38 @@
+{
+  "name": "select",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import { Select as SelectPrimitive } from \"bits-ui\";\n\nimport Root from \"./select.svelte\";\nimport Label from \"./select-label.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\n\nconst Group = SelectPrimitive.Group;\nconst Input = SelectPrimitive.Input;\nconst Value = SelectPrimitive.Value;\nexport {\n\tRoot,\n\tGroup,\n\tInput,\n\tLabel,\n\tItem,\n\tValue,\n\tContent,\n\tTrigger,\n\tSeparator,\n\t//\n\tRoot as Select,\n\tGroup as SelectGroup,\n\tInput as SelectInput,\n\tLabel as SelectLabel,\n\tItem as SelectItem,\n\tValue as SelectValue,\n\tContent as SelectContent,\n\tTrigger as SelectTrigger,\n\tSeparator as SelectSeparator\n};\n"
+    },
+    {
+      "name": "select-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Content\n\tclass={cn(\n\t\t\"relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md animate-in fade-in-80 translate-y-1 outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<div class=\"w-full p-1\">\n\t\t<slot />\n\t</div>\n</SelectPrimitive.Content>\n"
+    },
+    {
+      "name": "select-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { Check } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.ItemProps;\n\ttype $$Events = SelectPrimitive.ItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport let label: $$Props[\"label\"] = undefined;\n\texport let disabled: $$Props[\"disabled\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Item\n\t{value}\n\t{disabled}\n\t{label}\n\tclass={cn(\n\t\t\"relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n\t\t<SelectPrimitive.ItemIndicator>\n\t\t\t<Check class=\"h-4 w-4\" />\n\t\t</SelectPrimitive.ItemIndicator>\n\t</span>\n\t<slot />\n</SelectPrimitive.Item>\n"
+    },
+    {
+      "name": "select-label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.LabelProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Label\n\tclass={cn(\"py-1.5 pl-8 pr-2 text-sm font-semibold\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</SelectPrimitive.Label>\n"
+    },
+    {
+      "name": "select-separator.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.SeparatorProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Separator\n\tclass={cn(\"-mx-1 my-1 h-px bg-muted\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "select-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.TriggerProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Trigger\n\tclass={cn(\n\t\t\"flex h-10 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\tlet:builder\n>\n\t<slot {builder} />\n\t<div>\n\t\t<ChevronDown class=\"h-4 w-4 opacity-50\" />\n\t</div>\n</SelectPrimitive.Trigger>\n"
+    },
+    {
+      "name": "select.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\n\texport let value: $$Props[\"value\"] = undefined;\n\texport let open: $$Props[\"open\"] = undefined;\n</script>\n\n<SelectPrimitive.Root bind:value bind:open {...$$restProps}>\n\t<slot />\n</SelectPrimitive.Root>\n"
+    }
+  ],
+  "type": "components:ui"
+}

@@ -1,0 +1,436 @@
+[
+  {
+    "name": "accordion",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/accordion/accordion-content.svelte",
+      "ui/accordion/accordion-item.svelte",
+      "ui/accordion/accordion-trigger.svelte",
+      "ui/accordion/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "alert",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/alert/alert-description.svelte",
+      "ui/alert/alert-title.svelte",
+      "ui/alert/alert.svelte",
+      "ui/alert/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "alert-dialog",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/alert-dialog/alert-dialog-action.svelte",
+      "ui/alert-dialog/alert-dialog-cancel.svelte",
+      "ui/alert-dialog/alert-dialog-content.svelte",
+      "ui/alert-dialog/alert-dialog-description.svelte",
+      "ui/alert-dialog/alert-dialog-footer.svelte",
+      "ui/alert-dialog/alert-dialog-header.svelte",
+      "ui/alert-dialog/alert-dialog-overlay.svelte",
+      "ui/alert-dialog/alert-dialog-portal.svelte",
+      "ui/alert-dialog/alert-dialog-title.svelte",
+      "ui/alert-dialog/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "aspect-ratio",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/aspect-ratio/aspect-ratio.svelte",
+      "ui/aspect-ratio/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "avatar",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/avatar/avatar-fallback.svelte",
+      "ui/avatar/avatar-image.svelte",
+      "ui/avatar/avatar.svelte",
+      "ui/avatar/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "badge",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/badge/badge.svelte",
+      "ui/badge/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "button",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/button/button.svelte",
+      "ui/button/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "card",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/card/card-content.svelte",
+      "ui/card/card-description.svelte",
+      "ui/card/card-footer.svelte",
+      "ui/card/card-header.svelte",
+      "ui/card/card-title.svelte",
+      "ui/card/card.svelte",
+      "ui/card/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "checkbox",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/checkbox/checkbox.svelte",
+      "ui/checkbox/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "collapsible",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/collapsible/collapsible-content.svelte",
+      "ui/collapsible/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "context-menu",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/context-menu/context-menu-checkbox-item.svelte",
+      "ui/context-menu/context-menu-content.svelte",
+      "ui/context-menu/context-menu-item.svelte",
+      "ui/context-menu/context-menu-label.svelte",
+      "ui/context-menu/context-menu-radio-group.svelte",
+      "ui/context-menu/context-menu-radio-item.svelte",
+      "ui/context-menu/context-menu-separator.svelte",
+      "ui/context-menu/context-menu-shortcut.svelte",
+      "ui/context-menu/context-menu-sub-content.svelte",
+      "ui/context-menu/context-menu-sub-trigger.svelte",
+      "ui/context-menu/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "dialog",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/dialog/dialog-content.svelte",
+      "ui/dialog/dialog-description.svelte",
+      "ui/dialog/dialog-footer.svelte",
+      "ui/dialog/dialog-header.svelte",
+      "ui/dialog/dialog-overlay.svelte",
+      "ui/dialog/dialog-portal.svelte",
+      "ui/dialog/dialog-title.svelte",
+      "ui/dialog/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "dropdown-menu",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-content.svelte",
+      "ui/dropdown-menu/dropdown-menu-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-label.svelte",
+      "ui/dropdown-menu/dropdown-menu-radio-group.svelte",
+      "ui/dropdown-menu/dropdown-menu-radio-item.svelte",
+      "ui/dropdown-menu/dropdown-menu-separator.svelte",
+      "ui/dropdown-menu/dropdown-menu-shortcut.svelte",
+      "ui/dropdown-menu/dropdown-menu-sub-content.svelte",
+      "ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
+      "ui/dropdown-menu/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "hover-card",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/hover-card/hover-card-content.svelte",
+      "ui/hover-card/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "input",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/input/index.ts",
+      "ui/input/input.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "label",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/label/index.ts",
+      "ui/label/label.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "menubar",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/menubar/index.ts",
+      "ui/menubar/menubar-checkbox-item.svelte",
+      "ui/menubar/menubar-content.svelte",
+      "ui/menubar/menubar-item.svelte",
+      "ui/menubar/menubar-label.svelte",
+      "ui/menubar/menubar-radio-item.svelte",
+      "ui/menubar/menubar-separator.svelte",
+      "ui/menubar/menubar-shortcut.svelte",
+      "ui/menubar/menubar-sub-content.svelte",
+      "ui/menubar/menubar-sub-trigger.svelte",
+      "ui/menubar/menubar-trigger.svelte",
+      "ui/menubar/menubar.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "popover",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/popover/index.ts",
+      "ui/popover/popover-content.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "progress",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/progress/index.ts",
+      "ui/progress/progress.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "radio-group",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/radio-group/index.ts",
+      "ui/radio-group/radio-group-item.svelte",
+      "ui/radio-group/radio-group.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "select",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/select/index.ts",
+      "ui/select/select-content.svelte",
+      "ui/select/select-item.svelte",
+      "ui/select/select-label.svelte",
+      "ui/select/select-separator.svelte",
+      "ui/select/select-trigger.svelte",
+      "ui/select/select.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "separator",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/separator/index.ts",
+      "ui/separator/separator.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "sheet",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/sheet/index.ts",
+      "ui/sheet/sheet-content.svelte",
+      "ui/sheet/sheet-description.svelte",
+      "ui/sheet/sheet-footer.svelte",
+      "ui/sheet/sheet-header.svelte",
+      "ui/sheet/sheet-overlay.svelte",
+      "ui/sheet/sheet-portal.svelte",
+      "ui/sheet/sheet-title.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "skeleton",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/skeleton/index.ts",
+      "ui/skeleton/skeleton.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "slider",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/slider/index.ts",
+      "ui/slider/slider.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "switch",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/switch/index.ts",
+      "ui/switch/switch.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "table",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/table/index.ts",
+      "ui/table/table-body.svelte",
+      "ui/table/table-caption.svelte",
+      "ui/table/table-cell.svelte",
+      "ui/table/table-footer.svelte",
+      "ui/table/table-head.svelte",
+      "ui/table/table-header.svelte",
+      "ui/table/table-row.svelte",
+      "ui/table/table.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "tabs",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/tabs/index.ts",
+      "ui/tabs/tabs-content.svelte",
+      "ui/tabs/tabs-list.svelte",
+      "ui/tabs/tabs-trigger.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "textarea",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/textarea/index.ts",
+      "ui/textarea/textarea.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "toggle",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/toggle/index.ts",
+      "ui/toggle/toggle.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "tooltip",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/tooltip/index.ts",
+      "ui/tooltip/tooltip-content.svelte"
+    ],
+    "type": "components:ui"
+  }
+]

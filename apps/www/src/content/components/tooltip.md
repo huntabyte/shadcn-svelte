@@ -2,24 +2,19 @@
 title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/tooltip
-radix: https://www.radix-svelte.com/docs/tooltip
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/tooltip
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/tooltip
+bits: https://www.bits-ui.com/docs/components/tooltip
 ---
 
 <script>
-  import { TooltipDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/tooltip/TooltipDemo.svelte">
+<ComponentPreview name="tooltip-demo">
 
-<div slot="example">
-<TooltipDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add tooltip
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -43,22 +38,13 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-  } from "$components/ui/tooltip";
+  import * as Tooltip from "$components/ui/tooltip";
 </script>
-```
 
-```svelte
-<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger>Hover</TooltipTrigger>
-    <TooltipContent>
-      <p>Add to library</p>
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>
+<Tooltip.Root>
+  <Tooltip.Trigger>Hover</Tooltip.Trigger>
+  <Tooltip.Content>
+    <p>Add to library</p>
+  </Tooltip.Content>
+</Tooltip.Root>
 ```

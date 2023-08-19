@@ -2,24 +2,19 @@
 title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/hover-card
-radix: https://www.radix-svelte.com/docs/hovercard
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/hovercard
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/hover-card
+bits: https://www.bits-ui.com/docs/components/link-preview
 ---
 
 <script>
-  import { HoverCardDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/hover-card/HoverCardDemo.svelte">
+<ComponentPreview name="hover-card-demo">
 
-<div slot="example">
-<HoverCardDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add hover-card
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -43,17 +38,13 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger
-  } from "$components/ui/hover-card";
+  import * as HoverCard from "$components/ui/hover-card";
 </script>
-```
 
-```svelte
-<HoverCard>
-  <HoverCardTrigger>Hover</HoverCardTrigger>
-  <HoverCardContent>SvelteKit - Web development, streamlined</HoverCardContent>
-</HoverCard>
+<HoverCard.Root>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content>
+    SvelteKit - Web development, streamlined
+  </HoverCard.Content>
+</HoverCard.Root>
 ```

@@ -3,24 +3,19 @@ title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 component: true
 featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/dialog
-radix: https://www.radix-svelte.com/docs/dialog
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/dialog
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/dialog
+bits: https://www.bits-ui.com/docs/components/dialog
 ---
 
 <script>
-  import { DialogDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/dialog/DialogDemo.svelte">
+<ComponentPreview name="dialog-demo">
 
-<div slot="example">
-<DialogDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -30,10 +25,10 @@ npx shadcn-svelte add dialog
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -44,32 +39,19 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger
-  } from "$components/ui/dialog";
+  import * as Dialog from "$components/ui/dialog";
 </script>
-```
 
-```svelte
-<Dialog>
-  <DialogTrigger>Open</DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-      <DialogDescription>
+<Dialog.Root>
+  <Dialog.Trigger>Open</Dialog.Trigger>
+  <Dialog.Content>
+    <Dialog.Header>
+      <Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
+      <Dialog.Description>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
+      </Dialog.Description>
+    </Dialog.Header>
+  </Dialog.Content>
+</Dialog.Root>
 ```
-
-## Notes
-
-(coming soon)

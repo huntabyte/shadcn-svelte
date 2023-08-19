@@ -33,11 +33,11 @@ export type FrontMatter = {
 		project: string;
 		url: string;
 	};
-	radix?: string;
+	bits?: string;
 };
 
 export type DocFile = {
-	default: import("svelte/internal").SvelteComponent;
+	default: import("svelte").SvelteComponent;
 	metadata: FrontMatter;
 };
 

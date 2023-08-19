@@ -1,0 +1,26 @@
+{
+  "name": "avatar",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "avatar-fallback.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.FallbackProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\n\t\t\"flex h-full w-full items-center justify-center rounded-full bg-muted\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
+    },
+    {
+      "name": "avatar-image.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.ImageProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let src: $$Props[\"src\"] = undefined;\n\texport let alt: $$Props[\"alt\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Image\n\t{src}\n\t{alt}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "avatar.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AvatarPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let delayMs: $$Props[\"delayMs\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Root\n\t{delayMs}\n\tclass={cn(\n\t\t\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}

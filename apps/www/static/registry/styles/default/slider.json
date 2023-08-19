@@ -1,0 +1,18 @@
+{
+  "name": "slider",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider\n};\n"
+    },
+    {
+      "name": "slider.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SliderPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"] = [0];\n\texport { className as class };\n</script>\n\n<SliderPrimitive.Root\n\tbind:value\n\tclass={cn(\n\t\t\"relative flex w-full touch-none select-none items-center\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<span\n\t\tclass=\"relative h-2 w-full grow overflow-hidden rounded-full bg-secondary\"\n\t>\n\t\t<SliderPrimitive.Range class=\"absolute h-full bg-primary\" />\n\t</span>\n\t<SliderPrimitive.Thumb\n\t\tclass=\"block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\"\n\t/>\n</SliderPrimitive.Root>\n"
+    }
+  ],
+  "type": "components:ui"
+}

@@ -2,20 +2,18 @@
 title: Table
 description: A responsive table component.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/table
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/table
 ---
 
 <script>
-  import { TableDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/table/TableDemo.svelte">
+<ComponentPreview name="table-demo">
 
-<div slot="example" style="width: 100%;">
-<TableDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -25,13 +23,7 @@ npx shadcn-svelte add table
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
-
-```bash
-npm install radix-svelte
-```
-
-2. Copy and paste the component source files linked at the top of this page into your project.
+1. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 
@@ -39,40 +31,28 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow
-  } from "$components/ui/table";
+  import * as Table from "$components/ui/table";
 </script>
 ```
 
 ```svelte
-<Table>
-  <TableCaption>A list of your recent invoices.</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableHead class="w-[100px]">Invoice</TableHead>
-      <TableHead>Status</TableHead>
-      <TableHead>Method</TableHead>
-      <TableHead class="text-right">Amount</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell class="font-medium">INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell class="text-right">$250.00</TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+<Table.Root>
+  <Table.Caption>A list of your recent invoices.</Table.Caption>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head class="w-[100px]">Invoice</Table.Head>
+      <Table.Head>Status</Table.Head>
+      <Table.Head>Method</Table.Head>
+      <Table.Head class="text-right">Amount</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell class="font-medium">INV001</Table.Cell>
+      <Table.Cell>Paid</Table.Cell>
+      <Table.Cell>Credit Card</Table.Cell>
+      <Table.Cell class="text-right">$250.00</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table.Root>
 ```
-
-## Data Table
-
-(coming soon)

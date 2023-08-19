@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$components/ui/button";
-	import UserAuthForm from "./UserAuthForm.svelte";
+	import { Button } from "@/registry/default/ui/button";
+	import UserAuthForm from "./(components)/user-auth-form.svelte";
 </script>
 
 <div class="md:hidden">

@@ -2,24 +2,19 @@
 title: Slider
 description: An input where the user selects a value from within a given range.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/slider
-radix: https://www.radix-svelte.com/docs/slider
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/slider
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/slider
+bits: https://www.bits-ui.com/docs/components/slider
 ---
 
 <script>
-  import { SliderDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/slider/SliderDemo.svelte">
+<ComponentPreview name="slider-demo">
 
-<div slot="example" style="width: 100%; display: flex; justify-content: center;">
-<SliderDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add slider
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,8 +40,6 @@ npm install radix-svelte
 <script lang="ts">
   import { Slider } from "$components/ui/slider";
 </script>
-```
 
-```svelte
 <Slider value={33} max={100} step={1} />
 ```

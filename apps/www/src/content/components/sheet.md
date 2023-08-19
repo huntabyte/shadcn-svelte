@@ -2,24 +2,19 @@
 title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/sheet
-radix: https://www.radix-svelte.com/docs/dialog
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/dialog
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/sheet
+bits: https://www.bits-ui.com/docs/components/dialog
 ---
 
 <script>
-  import { SheetDemo, SheetPositionDemo, SheetSizeDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetDemo.svelte">
+<ComponentPreview name="sheet-demo">
 
-<div slot="example">
-<SheetDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add sheet
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -43,56 +38,31 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger
-  } from "$components/ui/sheet";
+  import * as Sheet from "$components/ui/sheet";
 </script>
-```
 
-```svelte
-<Sheet>
-  <SheetTrigger>Open</SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-      <SheetDescription>
+<Sheet.Root>
+  <Sheet.Trigger>Open</Sheet.Trigger>
+  <Sheet.Content>
+    <Sheet.Header>
+      <Sheet.Title>Are you sure absolutely sure?</Sheet.Title>
+      <Sheet.Description>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
-      </SheetDescription>
-    </SheetHeader>
-  </SheetContent>
-</Sheet>
+      </Sheet.Description>
+    </Sheet.Header>
+  </Sheet.Content>
+</Sheet.Root>
 ```
 
 ## Examples
 
-### Position
+### Side
 
-Pass the `position` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
+Pass the `side` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetPositionDemo.svelte">
+<ComponentPreview name="sheet-side">
 
-<div slot="example">
-<SheetPositionDemo />
-</div>
+<div />
 
-</ComponentExample>
-
----
-
-### Size
-
-Pass the `size` property to `<SheetContent />` if you need to adjust the size of the sheet. The values can be `sm`, `default`, `lg`, `xl`, `full` or `content`.
-
-<ComponentExample src="src/lib/components/docs/examples/sheet/SheetSizeDemo.svelte">
-
-<div slot="example">
-<SheetSizeDemo />
-</div>
-
-</ComponentExample>
+</ComponentPreview>

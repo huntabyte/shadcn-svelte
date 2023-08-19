@@ -54,4 +54,4 @@
 	export let radix = "";
 </script>
 
-<slot />
+<slot {title} {description} {source} {component} {radix} />

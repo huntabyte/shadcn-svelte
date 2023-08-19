@@ -2,20 +2,19 @@
 title: Badge
 description: Displays a badge or a component that looks like a badge.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/badge
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/badge
 ---
 
 <script>
-  import { BadgeDemo, BadgeDemoDestructive, BadgeDemoOutline, BadgeDemoSecondary, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '@/registry/default/example'
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemo.svelte">
+<ComponentPreview name="badge-demo">
 
-<div slot="example">
-<BadgeDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -49,9 +48,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 <script lang="ts">
   import { badgeVariants } from "$components/ui/badge";
 </script>
-```
 
-```svelte
 <a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>
 ```
 
@@ -59,46 +56,38 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ### Default
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemo.svelte">
+<ComponentPreview name="badge-demo">
 
-<div slot="example">
-<BadgeDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Secondary
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoSecondary.svelte">
+<ComponentPreview name="badge-secondary">
 
-<div slot="example">
-<BadgeDemoSecondary />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Outline
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoOutline.svelte">
+<ComponentPreview name="badge-outline">
 
-<div slot="example">
-<BadgeDemoOutline />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ---
 
 ### Destructive
 
-<ComponentExample src="src/lib/components/docs/examples/badge/BadgeDemoDestructive.svelte">
+<ComponentPreview name="badge-destructive">
 
-<div slot="example">
-<BadgeDemoDestructive />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>

@@ -2,20 +2,18 @@
 title: Alert
 description: Displays a callout for user attention.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/alert
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/alert
 ---
 
 <script>
-  import { AlertDemo, AlertDemoDestructive, ComponentExample, ManualInstall } from '$components/docs';
+  import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/alert/AlertDemo.svelte">
+<ComponentPreview name="alert-demo">
 
-<div slot="example" style="width: 100%;">
-<AlertDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -33,37 +31,31 @@ npx shadcn-svelte add alert
 
 ```svelte
 <script lang="ts">
-  import { Alert, AlertDescription, AlertTitle } from "$components/ui/alert";
+  import * as Alert from "$components/ui/alert";
 </script>
-```
 
-```svelte
-<Alert>
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
+<Alert.Root>
+  <Alert.Title>Heads up!</Alert.Title>
+  <Alert.Description>
     You can add components to your app using the cli.
-  </AlertDescription>
-</Alert>
+  </Alert.Description>
+</Alert.Root>
 ```
 
 ## Examples
 
 ### Default
 
-<ComponentExample src="src/lib/components/docs/examples/alert/AlertDemo.svelte">
+<ComponentPreview name="alert-demo">
 
-<div slot="example" style="width: 100%;">
-<AlertDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ### Destructive
 
-<ComponentExample src="src/lib/components/docs/examples/alert/AlertDemoDestructive.svelte">
+<ComponentPreview name="alert-destructive">
 
-<div slot="example" style="width: 100%;">
-<AlertDemoDestructive />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>

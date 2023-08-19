@@ -2,24 +2,19 @@
 title: Switch
 description: A control that allows the user to toggle between checked and not checked.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/switch
-radix: https://www.radix-svelte.com/docs/switch
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/switch
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/switch
+bits: https://www.bits-ui.com/docs/components/switch
 ---
 
 <script>
-  import { SwitchDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/switch/SwitchDemo.svelte">
+<ComponentPreview name="switch-demo">
 
-<div slot="example">
-<SwitchDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add switch
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,8 +40,6 @@ npm install radix-svelte
 <script lang="ts">
   import { Switch } from "$components/ui/switch";
 </script>
-```
 
-```svelte
 <Switch />
 ```

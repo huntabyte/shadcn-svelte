@@ -1,0 +1,23 @@
+<script lang="ts">
+	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
+	import { buttonVariants } from "@/registry/default/ui/button";
+	import { cn } from "$lib/utils";
+
+	type $$Props = AlertDialogPrimitive.CancelProps;
+	type $$Events = AlertDialogPrimitive.CancelEvents;
+
+	let className: $$Props["class"] = undefined;
+	export { className as class };
+</script>
+
+<AlertDialogPrimitive.Cancel
+	class={cn(
+		buttonVariants({ variant: "outline" }),
+		"mt-2 sm:mt-0",
+		className
+	)}
+	{...$$restProps}
+	on:m-click
+>
+	<slot />
+</AlertDialogPrimitive.Cancel>

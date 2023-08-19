@@ -5,146 +5,115 @@ component: true
 ---
 
 <script>
-  import { BlockquoteDemo, H1Demo, H2Demo, H3Demo, H4Demo, InlineCodeDemo, LargeDemo, LeadDemo, ListDemo, MutedDemo, PDemo, SmallDemo, TableDemo2, TypographyDemo, ComponentExample } from "$components/docs"
+  import {  ComponentPreview } from "$components/docs"
 </script>
 
-<ComponentExample
-src="src/lib/components/docs/examples/typography/TypographyDemo.svelte">
+<ComponentPreview name="typography-demo">
 
-<div slot="example" class="[&>div.min-h-[350px]]:p-6">
-<TypographyDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## h1
 
-<ComponentExample src="src/lib/components/docs/examples/typography/H1Demo.svelte" >
+<ComponentPreview name="typography-h1">
 
-<div slot="example">
-  <H1Demo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## h2
 
-<ComponentExample src="src/lib/components/docs/examples/typography/H2Demo.svelte">
+<ComponentPreview name="typography-h2">
 
-<div slot="example">
-  <H2Demo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## h3
 
-<ComponentExample src="src/lib/components/docs/examples/typography/H3Demo.svelte" >
+<ComponentPreview name="typography-h3">
 
-<div slot="example">
-  <H3Demo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## h4
 
-<ComponentExample src="src/lib/components/docs/examples/typography/H4Demo.svelte" >
+<ComponentPreview name="typography-h4">
 
-<div slot="example">
-  <H4Demo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## p
 
-<ComponentExample src="src/lib/components/docs/examples/typography/PDemo.svelte">
+<ComponentPreview name="typography-p">
 
-<div slot="example">
-  <PDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## blockquote
 
-<ComponentExample src="src/lib/components/docs/examples/typography/BlockquoteDemo.svelte">
+<ComponentPreview name="typography-blockquote">
 
-<div slot="example">
-<BlockquoteDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## table
 
-<ComponentExample src="src/lib/components/docs/examples/typography/TableDemo.svelte">
+<ComponentPreview name="typography-table">
 
-<div slot="example">
-  <TableDemo2 />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## list
 
-<ComponentExample src="src/lib/components/docs/examples/typography/ListDemo.svelte">
+<ComponentPreview name="typography-list">
 
-<div slot="example">
-  <ListDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Inline code
 
-<ComponentExample
-src="src/lib/components/docs/examples/typography/InlineCodeDemo.svelte">
+<ComponentPreview name="typography-inline-code">
 
-<div slot="example">
-  <InlineCodeDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Lead
 
-<ComponentExample src="src/lib/components/docs/examples/typography/LeadDemo.svelte">
+<ComponentPreview name="typography-lead">
 
-<div slot="example">
-  <LeadDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Large
 
-<ComponentExample src="src/lib/components/docs/examples/typography/LargeDemo.svelte">
+<ComponentPreview name="typography-large">
 
-<div slot="example">
-  <LargeDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Small
 
-<ComponentExample
-src="src/lib/components/docs/examples/typography/SmallDemo.svelte">
+<ComponentPreview name="typography-small">
 
-<div slot="example">
-  <SmallDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Muted
 
-<ComponentExample src="src/lib/components/docs/examples/typography/MutedDemo.svelte">
+<ComponentPreview name="typography-muted">
 
-<div slot="example">
-  <MutedDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>

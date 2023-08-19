@@ -2,20 +2,18 @@
 title: Card
 description: Displays a card with header, content, and footer.
 featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/card
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/card
 ---
 
 <script>
-  import { CardDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/card/CardDemo.svelte">
+<ComponentPreview name="card-with-form">
 
-<div slot="example">
-<CardDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -33,30 +31,21 @@ npx shadcn-svelte add card
 
 ```svelte
 <script lang="ts">
-  import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle
-  } from "$components/ui/card";
+  import * as Card from "$components/ui/card";
 </script>
-```
 
-```svelte
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card Description</CardDescription>
-  </CardHeader>
-  <CardContent>
+<Card.Root>
+  <Card.Header>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Description>Card Description</Card.Description>
+  </Card.Header>
+  <Card.Content>
     <p>Card Content</p>
-  </CardContent>
-  <CardFooter>
+  </Card.Content>
+  <Card.Footer>
     <p>Card Footer</p>
-  </CardFooter>
-</Card>
+  </Card.Footer>
+</Card.Root>
 ```
 
 ### Modify the heading level
@@ -66,17 +55,21 @@ By default, the `<CardTitle>` component renders an `<h3>` element. You can chang
 For example:
 
 ```svelte
-<CardTitle tag={"h2"}>This will render an H2</CardTitle>
+<CardTitle tag="h2">This will render an H2</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"h5"}>This will render an H5</CardTitle>
+<CardTitle tag="h5">This will render an H5</CardTitle>
 ```
 
 ```svelte
-<CardTitle tag={"p"}>This will render a P tag</CardTitle>
+<CardTitle tag="p">This will render a P tag</CardTitle>
 ```
 
 ## Examples
 
-Coming soon
+<ComponentPreview name="card-demo">
+
+<div />
+
+</ComponentPreview>

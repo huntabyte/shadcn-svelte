@@ -2,24 +2,19 @@
 title: Aspect Ratio
 description: Displays content within a desired ratio.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/aspect-ratio
-radix: https://www.radix-svelte.com/docs/aspect-ratio
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/aspect-ratio
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/aspect-ratio
+bits: https://www.bits-ui.com/docs/components/aspect-ratio
 ---
 
 <script>
-  import { AspectRatioDemo, ComponentExample, ManualInstall } from '$components/docs';
+  import { ComponentPreview, ManualInstall } from '$components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/aspect-ratio/AspectRatioDemo.svelte">
+<ComponentPreview name="aspect-ratio-demo">
 
-<div slot="example" style="width: 100%;">
-<AspectRatioDemo />
-</div>
+<div/>
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add aspect-ratio
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,10 +40,10 @@ npm install radix-svelte
 <script lang="ts">
   import { AspectRatio } from "$components/ui/aspect-ratio";
 </script>
-```
 
-```svelte
-<AspectRatio ratio={16 / 9} class="bg-muted">
-  <img src="..." alt="..." class="rounded-md object-cover" />
-</AspectRatio>
+<div class="w-[450px]">
+  <AspectRatio ratio={16 / 9} class="bg-muted">
+    <img src="..." alt="..." class="rounded-md object-cover" />
+  </AspectRatio>
+</div>
 ```

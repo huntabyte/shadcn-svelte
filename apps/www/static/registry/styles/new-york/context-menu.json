@@ -1,0 +1,54 @@
+{
+  "name": "context-menu",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "context-menu-checkbox-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { Check } from \"radix-icons-svelte\";\n\n\ttype $$Props = ContextMenuPrimitive.CheckboxItemProps;\n\ttype $$Events = ContextMenuPrimitive.CheckboxItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\texport let checked: $$Props[\"checked\"] = undefined;\n</script>\n\n<ContextMenuPrimitive.CheckboxItem\n\tbind:checked\n\tclass={cn(\n\t\t\"relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n\t\t<ContextMenuPrimitive.CheckboxIndicator>\n\t\t\t<Check class=\"h-4 w-4\" />\n\t\t</ContextMenuPrimitive.CheckboxIndicator>\n\t</span>\n\t<slot />\n</ContextMenuPrimitive.CheckboxItem>\n"
+    },
+    {
+      "name": "context-menu-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ContextMenuPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.Content\n\tclass={cn(\n\t\t\"z-50 min-w-[8rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 focus:outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</ContextMenuPrimitive.Content>\n"
+    },
+    {
+      "name": "context-menu-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ContextMenuPrimitive.ItemProps & {\n\t\tinset?: boolean;\n\t};\n\ttype $$Events = ContextMenuPrimitive.ItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let inset: $$Props[\"inset\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.Item\n\tclass={cn(\n\t\t\"relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<slot />\n</ContextMenuPrimitive.Item>\n"
+    },
+    {
+      "name": "context-menu-label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ContextMenuPrimitive.LabelProps & {\n\t\tinset?: boolean;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let inset: $$Props[\"inset\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.Label\n\tclass={cn(\n\t\t\"px-2 py-1.5 text-sm font-semibold text-foreground\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</ContextMenuPrimitive.Label>\n"
+    },
+    {
+      "name": "context-menu-radio-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\n\ttype $$Props = ContextMenuPrimitive.RadioGroupProps;\n\n\texport let value: $$Props[\"value\"] = undefined;\n</script>\n\n<ContextMenuPrimitive.RadioGroup {...$$restProps} bind:value>\n\t<slot />\n</ContextMenuPrimitive.RadioGroup>\n"
+    },
+    {
+      "name": "context-menu-radio-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { DotFilled } from \"radix-icons-svelte\";\n\n\ttype $$Props = ContextMenuPrimitive.RadioItemProps;\n\ttype $$Events = ContextMenuPrimitive.RadioItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.RadioItem\n\tclass={cn(\n\t\t\"relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{value}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n\t\t<ContextMenuPrimitive.RadioIndicator>\n\t\t\t<DotFilled class=\"h-4 w-4 fill-current\" />\n\t\t</ContextMenuPrimitive.RadioIndicator>\n\t</span>\n\t<slot />\n</ContextMenuPrimitive.RadioItem>\n"
+    },
+    {
+      "name": "context-menu-separator.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ContextMenuPrimitive.SeparatorProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.Separator\n\tclass={cn(\"-mx-1 my-1 h-px bg-border\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "context-menu-shortcut.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\n\t\t\"ml-auto text-xs tracking-widest text-muted-foreground\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
+    },
+    {
+      "name": "context-menu-sub-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = ContextMenuPrimitive.SubContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.SubContent\n\tclass={cn(\n\t\t\"z-50 min-w-[8rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 focus:outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</ContextMenuPrimitive.SubContent>\n"
+    },
+    {
+      "name": "context-menu-sub-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronRight } from \"radix-icons-svelte\";\n\n\ttype $$Props = ContextMenuPrimitive.SubTriggerProps & {\n\t\tinset?: boolean;\n\t};\n\ttype $$Events = ContextMenuPrimitive.SubTriggerEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let inset: $$Props[\"inset\"] = undefined;\n\texport { className as class };\n</script>\n\n<ContextMenuPrimitive.SubTrigger\n\tclass={cn(\n\t\t\"flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<slot />\n\t<ChevronRight class=\"ml-auto h-4 w-4\" />\n</ContextMenuPrimitive.SubTrigger>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { ContextMenu as ContextMenuPrimitive } from \"bits-ui\";\n\nimport Item from \"./context-menu-item.svelte\";\nimport Label from \"./context-menu-label.svelte\";\nimport Content from \"./context-menu-content.svelte\";\nimport Shortcut from \"./context-menu-shortcut.svelte\";\nimport RadioItem from \"./context-menu-radio-item.svelte\";\nimport Separator from \"./context-menu-separator.svelte\";\nimport RadioGroup from \"./context-menu-radio-group.svelte\";\nimport SubContent from \"./context-menu-sub-content.svelte\";\nimport SubTrigger from \"./context-menu-sub-trigger.svelte\";\nimport CheckboxItem from \"./context-menu-checkbox-item.svelte\";\n\nconst Sub = ContextMenuPrimitive.Sub;\nconst Root = ContextMenuPrimitive.Root;\nconst Trigger = ContextMenuPrimitive.Trigger;\nconst Group = ContextMenuPrimitive.Group;\n\nexport {\n\tSub,\n\tRoot,\n\tItem,\n\tLabel,\n\tGroup,\n\tTrigger,\n\tContent,\n\tShortcut,\n\tSeparator,\n\tRadioItem,\n\tSubContent,\n\tSubTrigger,\n\tRadioGroup,\n\tCheckboxItem,\n\t//\n\tRoot as ContextMenu,\n\tSub as ContextMenuSub,\n\tItem as ContextMenuItem,\n\tLabel as ContextMenuLabel,\n\tGroup as ContextMenuGroup,\n\tContent as ContextMenuContent,\n\tTrigger as ContextMenuTrigger,\n\tShortcut as ContextMenuShortcut,\n\tRadioItem as ContextMenuRadioItem,\n\tSeparator as ContextMenuSeparator,\n\tRadioGroup as ContextMenuRadioGroup,\n\tSubContent as ContextMenuSubContent,\n\tSubTrigger as ContextMenuSubTrigger,\n\tCheckboxItem as ContextMenuCheckboxItem\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}

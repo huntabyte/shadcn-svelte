@@ -1,0 +1,18 @@
+{
+  "name": "hover-card",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "hover-card-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = HoverCardPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<HoverCardPrimitive.Content\n\tclass={cn(\n\t\t\"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</HoverCardPrimitive.Content>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\nimport Content from \"./hover-card-content.svelte\";\nconst Root = HoverCardPrimitive.Root;\nconst Trigger = HoverCardPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\tRoot as HoverCard,\n\tContent as HoverCardContent,\n\tTrigger as HoverCardTrigger\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}

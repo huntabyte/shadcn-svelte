@@ -1,20 +1,25 @@
 <script lang="ts">
-	import type { SvelteComponentTyped } from "svelte";
+	import { config } from "@/stores";
+
+	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight, ToyBrick } from "lucide-svelte";
+	import { ChevronRight, Code } from "radix-icons-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
-	import { Icons } from "$components/docs/icons";
-	import { badgeVariants } from "$components/ui/badge";
-	import { Separator } from "$components/ui/separator";
+	import { badgeVariants } from "@/registry/new-york/ui/badge";
+	import { Separator } from "@/registry/new-york/ui/separator";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;
 	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any
-	type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;
+	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
+	$: componentSource = data.metadata.source?.replace(
+		"default",
+		$config.style ?? "default"
+	);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
@@ -40,34 +45,32 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.source || doc.radix}
+		{#if doc.source || doc.bits}
 			<div class="flex items-center space-x-2 pt-4">
-				{#if doc.source}
+				{#if componentSource}
 					<a
-						href={doc.source}
+						href={componentSource}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						<Icons.gitHub class="mr-1 h-3 w-3" />
+						<Code class="mr-1 h-3.5 w-3.5" />
 						Component Source
 					</a>
 				{/if}
-				{#if doc.external}
+				{#if doc.bits}
 					<a
-						href={doc.external.url}
+						href={doc.bits}
 						target="_blank"
 						rel="noreferrer"
 						class={cn(badgeVariants({ variant: "secondary" }))}
 					>
-						<ToyBrick class="mr-1 h-3 w-3" />
-						Primitive Reference ({doc.external.project})
+						Primitive API Reference
 					</a>
 				{/if}
 			</div>
 		{/if}
-		<Separator class="my-4 md:my-6" />
-		<div class="mdsvex" id="mdsvex">
+		<div class="mdsvex pt-8" id="mdsvex">
 			<svelte:component this={component} />
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->

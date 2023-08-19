@@ -1,1 +1,1 @@
-export { default as LightSwitch } from "./LightSwitch.svelte";
+export { default as LightSwitch } from "./light-switch.svelte";

@@ -16,12 +16,12 @@ export const docsConfig: DocsConfig = {
 			href: "/docs/components/accordion"
 		},
 		{
-			title: "Examples",
-			href: "/examples/dashboard"
+			title: "Themes",
+			href: "/themes"
 		},
 		{
-			title: "Figma",
-			href: "/docs/figma"
+			title: "Examples",
+			href: "/examples/dashboard"
 		},
 		{
 			title: "GitHub",
@@ -44,6 +44,11 @@ export const docsConfig: DocsConfig = {
 					items: []
 				},
 				{
+					title: "components.json",
+					href: "/docs/components-json",
+					items: []
+				},
+				{
 					title: "Theming",
 					href: "/docs/theming",
 					items: []
@@ -57,27 +62,15 @@ export const docsConfig: DocsConfig = {
 					title: "Typography",
 					href: "/docs/typography",
 					items: []
-				}
-			]
-		},
-		{
-			title: "Community",
-			items: [
+				},
 				{
 					title: "Figma",
 					href: "/docs/figma",
 					items: []
-				}
-			]
-		},
-		{
-			title: "Forms",
-			items: [
+				},
 				{
-					title: "Superforms",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					title: "About",
+					href: "/docs/about",
 					items: []
 				}
 			]
@@ -142,13 +135,13 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/collapsible",
 					items: []
 				},
-				// {
-				//   title: "Combobox",
-				//   href: "#",
-				//   label: "Soon",
-				//   items: [],
-				//   disabled: true
-				// },
+				{
+					title: "Combobox",
+					disabled: true,
+					label: "Soon",
+					href: "#",
+					items: []
+				},
 				// {
 				//   title: "Command",
 				//   href: "#",
@@ -156,18 +149,15 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Context Menu",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Context Menu",
+					href: "/docs/components/context-menu",
+					items: []
+				},
 				{
 					title: "Data Table",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/data-table",
+					label: "Preview",
 					items: []
 				},
 				// {
@@ -182,11 +172,18 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/dialog",
 					items: []
 				},
-				// {
-				//   title: "Dropdown Menu",
-				//   href: "#",
-				//   items: []
-				// },
+				{
+					title: "Dropdown Menu",
+					href: "/docs/components/dropdown-menu",
+					items: []
+				},
+				{
+					title: "Form",
+					href: "#",
+					label: "Soon",
+					disabled: true,
+					items: []
+				},
 				{
 					title: "Hover Card",
 					href: "/docs/components/hover-card",
@@ -202,13 +199,11 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/label",
 					items: []
 				},
-				// {
-				//   title: "Menubar",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Menubar",
+					href: "/docs/components/menubar",
+					items: []
+				},
 				// {
 				//   title: "Navigation Menu",
 				//   href: "#",
@@ -216,13 +211,11 @@ export const docsConfig: DocsConfig = {
 				//   disabled: true,
 				//   items: []
 				// },
-				// {
-				//   title: "Popover",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Popover",
+					href: "/docs/components/popover",
+					items: []
+				},
 				{
 					title: "Progress",
 					href: "/docs/components/progress",
@@ -242,9 +235,7 @@ export const docsConfig: DocsConfig = {
 				// },
 				{
 					title: "Select",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/select",
 					items: []
 				},
 				{
@@ -332,25 +323,24 @@ export const examples: Example[] = [
 	// 	label: "New",
 	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/tasks"
 	// },
-	// {
-	// 	name: "Playground",
-	// 	href: "/examples/playground",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
-	// },
-	// {
-	// 	name: "Music",
-	// 	href: "/examples/music",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/music"
-	// },
+	{
+		name: "Playground",
+		href: "/examples/playground",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/playground"
+	},
+	{
+		name: "Music",
+		href: "/examples/music",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/music"
+	},
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/authentication"
+	},
+	{
+		name: "Forms",
+		href: "/examples/forms",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
 	}
-	// {
-	// 	name: "Forms",
-	// 	href: "#",
-	// 	label: "Soon",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
-	// }
 ];

@@ -2,24 +2,19 @@
 title: Separator
 description: Visually or semantically separates content.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/separator
-radix: https://www.radix-svelte.com/docs/separator
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/separator
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/separator
+bits: https://www.bits-ui.com/docs/components/separator
 ---
 
 <script>
-  import { SeparatorDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/separator/SeparatorDemo.svelte">
+<ComponentPreview name="separator-demo">
 
-<div slot="example">
-<SeparatorDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add separator
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,8 +40,6 @@ npm install radix-svelte
 <script lang="ts">
   import { Separator } from "$components/ui/separator";
 </script>
-```
 
-```svelte
 <Separator />
 ```

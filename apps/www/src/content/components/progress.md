@@ -2,24 +2,19 @@
 title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/ui/progress
-radix: https://www.radix-svelte.com/docs/progress
-external:
-  project: Radix Svelte
-  url: https://www.radix-svelte.com/docs/progress
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/progress
+bits: https://www.bits-ui.com/docs/components/progress
 ---
 
 <script>
-  import { ProgressDemo, ComponentExample, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
-<ComponentExample src="src/lib/components/docs/examples/progress/ProgressDemo.svelte">
+<ComponentPreview name="progress-demo">
 
-<div slot="example" style="width: 60%;">
-<ProgressDemo />
-</div>
+<div />
 
-</ComponentExample>
+</ComponentPreview>
 
 ## Installation
 
@@ -29,10 +24,10 @@ npx shadcn-svelte add progress
 
 <ManualInstall>
 
-1. Install `radix-svelte`:
+1. Install `bits-ui`:
 
 ```bash
-npm install radix-svelte
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
@@ -45,8 +40,6 @@ npm install radix-svelte
 <script lang="ts">
   import { Progress } from "$components/ui/progress";
 </script>
-```
 
-```svelte
-<Progress value={33}>
+<Progress value={33} />
 ```

@@ -1,0 +1,18 @@
+{
+  "name": "tooltip",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport Content from \"./tooltip-content.svelte\";\n\nconst Root = TooltipPrimitive.Root;\nconst Trigger = TooltipPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\t//\n\tRoot as Tooltip,\n\tContent as TooltipContent,\n\tTrigger as TooltipTrigger\n};\n"
+    },
+    {
+      "name": "tooltip-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = TooltipPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let sideOffset: $$Props[\"sideOffset\"] = 4;\n\texport { className as class };\n</script>\n\n<TooltipPrimitive.Content\n\t{sideOffset}\n\tclass={cn(\n\t\t\"z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</TooltipPrimitive.Content>\n"
+    }
+  ],
+  "type": "components:ui"
+}

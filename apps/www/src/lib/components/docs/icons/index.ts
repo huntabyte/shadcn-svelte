@@ -25,17 +25,17 @@ import {
 	User,
 	X
 } from "lucide-svelte";
-import Apple from "./Apple.svelte";
-import Aria from "./Aria.svelte";
-import GitHub from "./GitHub.svelte";
-import Google from "./Google.svelte";
-import Logo from "./Logo.svelte";
-import Npm from "./Npm.svelte";
-import PayPal from "./PayPal.svelte";
-import Pnpm from "./Pnpm.svelte";
-import RadixSvelte from "./RadixSvelte.svelte";
-import Tailwind from "./Tailwind.svelte";
-import Yarn from "./Yarn.svelte";
+import Apple from "./apple.svelte";
+import Aria from "./aria.svelte";
+import GitHub from "./github.svelte";
+import Google from "./google.svelte";
+import Logo from "./logo.svelte";
+import Npm from "./npm.svelte";
+import PayPal from "./paypal.svelte";
+import Pnpm from "./pnpm.svelte";
+import RadixSvelte from "./radix-svelte.svelte";
+import Tailwind from "./tailwind.svelte";
+import Yarn from "./yarn.svelte";
 
 export type Icon = LucideIcon;
 
