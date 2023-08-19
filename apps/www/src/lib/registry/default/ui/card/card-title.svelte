@@ -4,11 +4,11 @@
 	import type { HeadingLevel } from "../alert";
 
 	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
-		level?: HeadingLevel;
+		tag?: HeadingLevel;
 	};
 
 	let className: $$Props["class"] = undefined;
-	export let tag: $$Props["level"] = "h3";
+	export let tag: $$Props["tag"] = "h3";
 	export { className as class };
 </script>
 
