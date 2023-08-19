@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.2.0
+
+### Minor Changes
+
+- c4e2a41: Refactored to use the new registry system
+
 ## 0.1.2
 
 ### Patch Changes
