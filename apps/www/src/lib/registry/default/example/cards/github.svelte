@@ -11,7 +11,8 @@
 		<div class="space-y-1">
 			<Card.Title>shadcn-svelte</Card.Title>
 			<Card.Description>
-				Beautifully designed components built with Melt UI and Tailwind CSS.
+				Beautifully designed components built with Melt UI and Tailwind
+				CSS.
 			</Card.Description>
 		</div>
 		<div
@@ -29,7 +30,9 @@
 						variant="secondary"
 						class="px-2 shadow-none"
 					>
-						<ChevronDown class="h-4 w-4 text-secondary-foreground" />
+						<ChevronDown
+							class="h-4 w-4 text-secondary-foreground"
+						/>
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]">
@@ -38,8 +41,12 @@
 					<DropdownMenu.CheckboxItem checked>
 						Future Ideas
 					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem>My Stack</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem>Inspiration</DropdownMenu.CheckboxItem>
+					<DropdownMenu.CheckboxItem
+						>My Stack</DropdownMenu.CheckboxItem
+					>
+					<DropdownMenu.CheckboxItem
+						>Inspiration</DropdownMenu.CheckboxItem
+					>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
 						<Plus class="mr-2 h-4 w-4" /> Create List
