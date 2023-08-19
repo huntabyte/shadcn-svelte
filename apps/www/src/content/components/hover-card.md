@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/link-preview
 ## Installation
 
 ```bash
-npx shadcn-svelte add hover-card
+npx shadcn-svelte@latest add hover-card
 ```
 
 <ManualInstall>

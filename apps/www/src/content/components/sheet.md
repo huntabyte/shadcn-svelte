@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 ## Installation
 
 ```bash
-npx shadcn-svelte add sheet
+npx shadcn-svelte@latest add sheet
 ```
 
 <ManualInstall>

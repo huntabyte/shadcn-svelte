@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/tabs
 ## Installation
 
 ```bash
-npx shadcn-svelte add tabs
+npx shadcn-svelte@latest add tabs
 ```
 
 <ManualInstall>

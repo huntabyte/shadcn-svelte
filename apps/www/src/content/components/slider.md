@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/slider
 ## Installation
 
 ```bash
-npx shadcn-svelte add slider
+npx shadcn-svelte@latest add slider
 ```
 
 <ManualInstall>

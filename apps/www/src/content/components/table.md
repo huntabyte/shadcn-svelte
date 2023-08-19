@@ -18,7 +18,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ## Installation
 
 ```bash
-npx shadcn-svelte add table
+npx shadcn-svelte@latest add table
 ```
 
 <ManualInstall>

@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/avatar
 ## Installation
 
 ```bash
-npx shadcn-svelte add avatar
+npx shadcn-svelte@latest add avatar
 ```
 
 <ManualInstall>

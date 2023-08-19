@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 ## Installation
 
 ```bash
-npx shadcn-svelte add aspect-ratio
+npx shadcn-svelte@latest add aspect-ratio
 ```
 
 <ManualInstall>

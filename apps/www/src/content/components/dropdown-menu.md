@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 ## Installation
 
 ```bash
-npx shadcn-svelte add dropdown-menu
+npx shadcn-svelte@latest add dropdown-menu
 ```
 
 <ManualInstall>

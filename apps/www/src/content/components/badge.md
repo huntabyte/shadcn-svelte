@@ -19,7 +19,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ## Installation
 
 ```bash
-npx shadcn-svelte add badge
+npx shadcn-svelte@latest add badge
 ```
 
 <ManualInstall>

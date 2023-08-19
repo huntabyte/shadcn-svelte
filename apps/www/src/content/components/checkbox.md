@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/checkbox
 ## Installation
 
 ```bash
-npx shadcn-svelte add checkbox
+npx shadcn-svelte@latest add checkbox
 ```
 
 <ManualInstall>

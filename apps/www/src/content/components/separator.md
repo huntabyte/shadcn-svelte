@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/separator
 ## Installation
 
 ```bash
-npx shadcn-svelte add separator
+npx shadcn-svelte@latest add separator
 ```
 
 <ManualInstall>

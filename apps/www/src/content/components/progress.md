@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/progress
 ## Installation
 
 ```bash
-npx shadcn-svelte add progress
+npx shadcn-svelte@latest add progress
 ```
 
 <ManualInstall>

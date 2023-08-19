@@ -20,7 +20,7 @@ bits: https://www.bits-ui.com/docs/components/button
 ## Installation
 
 ```bash
-npx shadcn-svelte add button
+npx shadcn-svelte@latest add button
 ```
 
 <ManualInstall>

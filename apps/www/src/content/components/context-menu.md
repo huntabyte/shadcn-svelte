@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/context-menu
 ## Installation
 
 ```bash
-npx shadcn-svelte add context-menu
+npx shadcn-svelte@latest add context-menu
 ```
 
 <ManualInstall>

@@ -17,7 +17,7 @@ bits: https://www.bits-ui.com/docs/components/menubar
 ## Installation
 
 ```bash
-npx shadcn-svelte add menubar
+npx shadcn-svelte@latest add menubar
 ```
 
 <ManualInstall>
