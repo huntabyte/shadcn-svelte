@@ -45,7 +45,7 @@ npm install bits-ui
     <Menubar.Content>
       <Menubar.Item>
         New Tab
-        <MenubarShortcut>⌘T</MenubarShortcut>
+        <Menubar.Shortcut>⌘T</Menubar.Shortcut>
       </Menubar.Item>
       <Menubar.Item>New Window</Menubar.Item>
       <Menubar.Separator />
