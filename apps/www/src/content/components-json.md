@@ -103,7 +103,7 @@ Path aliases have to be set up in your `svelte.config.js` file.
 
 Import alias for your utility functions.
 
-```json title="svelte.config.js"
+```json title="components.json"
 {
   "aliases": {
     "utils": "$lib/utils"
@@ -115,7 +115,7 @@ Import alias for your utility functions.
 
 Import alias for your components.
 
-```json title="svelte.config.js"
+```json title="components.json"
 {
   "aliases": {
     "components": "$lib/components"
