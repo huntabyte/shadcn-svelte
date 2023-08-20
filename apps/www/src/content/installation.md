@@ -79,6 +79,23 @@ Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 ```
 
+### Setup path aliases
+
+If you changed the path aliases from the default, you'll also need to update your `svelte.config.js` file to include those aliases.
+
+```js title="svelte.config.js"
+const config = {
+  // ... other config
+  kit: {
+    // ... other config
+    alias: {
+      $lib: "./src/lib",
+      "$lib/*": "./src/lib/*"
+    }
+  }
+};
+```
+
 </Steps>
 
 ## Manual Installation
@@ -275,7 +292,7 @@ Add the following to your `src/app.postcss` file. You can learn more about using
 
 You'll want to create a `cn` helper to make it easier to conditionally add Tailwind CSS classes. This project defines it in `lib/utils.ts`:
 
-```ts title="lib/utils.ts"
+```ts title="src/lib/utils.ts"
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -301,7 +318,7 @@ Create `src/routes/+layout.svelte` and import the styles:
 
 ## Icons
 
-This project uses icons from [Lucide](https://lucide.dev/), but feel free to use any icon library.
+This project uses icons from [Lucide](https://lucide.dev/) for the `default` style, and [Radix](https://radix-ui.com/icons) for the `new-york` style, but feel free to use any icon library.
 
 ## App structure
 
