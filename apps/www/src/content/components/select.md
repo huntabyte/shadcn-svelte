@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Select from "$components/ui/select";
+  import * as Select from "$lib/components/ui/select";
 </script>
 
 <Select.Root>

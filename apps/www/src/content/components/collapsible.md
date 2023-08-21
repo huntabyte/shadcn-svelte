@@ -39,7 +39,7 @@ npm install radix-svelte
 
 ```svelte
 <script lang="ts">
-  import * as Collapsible from "$components/ui/collapsible";
+  import * as Collapsible from "$lib/components/ui/collapsible";
 </script>
 
 <Collapsible.Root>

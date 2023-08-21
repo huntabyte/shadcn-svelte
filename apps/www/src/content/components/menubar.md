@@ -36,7 +36,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Menubar from "@/components/ui/menubar";
+  import * as Menubar from "$lib/components/ui/menubar";
 </script>
 
 <Menubar.Root>

@@ -39,7 +39,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Button } from "$components/ui/button";
+  import { Button } from "$lib/components/ui/button";
 </script>
 ```
 
@@ -53,7 +53,7 @@ You can convert the `<button>` into an `<a>` element by simply passing an `href`
 
 ```svelte
 <script lang="ts">
-  import { Button } from "$components/ui/button";
+  import { Button } from "$lib/components/ui/button";
 </script>
 
 <Button href="/dashboard">Dashboard</Button>
@@ -63,7 +63,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ```svelte
 <script lang="ts">
-  import { buttonVariants } from "$components/ui/button";
+  import { buttonVariants } from "$lib/components/ui/button";
 </script>
 
 <a href="/dashboard" class={buttonVariants({ variant: "outline" })}>

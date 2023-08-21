@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Switch } from "$components/ui/switch";
+  import { Switch } from "$lib/components/ui/switch";
 </script>
 
 <Switch />

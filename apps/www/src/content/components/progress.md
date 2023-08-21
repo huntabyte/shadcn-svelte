@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Progress } from "$components/ui/progress";
+  import { Progress } from "$lib/components/ui/progress";
 </script>
 
 <Progress value={33} />

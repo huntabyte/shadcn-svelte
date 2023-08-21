@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add card
 
 ```svelte
 <script lang="ts">
-  import * as Card from "$components/ui/card";
+  import * as Card from "$lib/components/ui/card";
 </script>
 
 <Card.Root>

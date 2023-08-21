@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Popover from "$components/ui/popover";
+  import * as Popover from "$lib/components/ui/popover";
 </script>
 
 <Popover.Root>

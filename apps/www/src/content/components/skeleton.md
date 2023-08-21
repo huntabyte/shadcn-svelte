@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add skeleton
 
 ```svelte
 <script lang="ts">
-  import { Skeleton } from "$components/ui/skeleton";
+  import { Skeleton } from "$lib/components/ui/skeleton";
 </script>
 ```
 

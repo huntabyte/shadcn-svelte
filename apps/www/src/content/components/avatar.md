@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Avatar from "$components/ui/avatar";
+  import * as Avatar from "$lib/components/ui/avatar";
 </script>
 
 <Avatar.Root>

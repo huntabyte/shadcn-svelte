@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { AspectRatio } from "$components/ui/aspect-ratio";
+  import { AspectRatio } from "lib/components/ui/aspect-ratio";
 </script>
 
 <div class="w-[450px]">

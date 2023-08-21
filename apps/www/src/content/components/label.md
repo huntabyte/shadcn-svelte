@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Label } from "$components/ui/label";
+  import { Label } from "$lib/components/ui/label";
 </script>
 
 <Label for="email">Your email address</Label>

@@ -38,8 +38,8 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Label } from "$components/ui/label";
-  import * as RadioGroup from "$components/ui/radio-group";
+  import { Label } from "$lib/components/ui/label";
+  import * as RadioGroup from "$lib/components/ui/radio-group";
 </script>
 
 <RadioGroup.Root value="option-one">
