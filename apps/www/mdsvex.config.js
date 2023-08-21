@@ -120,7 +120,7 @@ export function rehypeComponentExample() {
 						let sourceCode = getComponentSourceFileContent(src);
 						sourceCode = sourceCode.replaceAll(
 							`@/registry/${style.name}/`,
-							"@/components/"
+							"$lib/components/"
 						);
 
 						const sourceCodeNode = u("element", {
