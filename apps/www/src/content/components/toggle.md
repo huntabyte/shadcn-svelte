@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Toggle } from "$components/ui/toggle";
+  import { Toggle } from "$lib/components/ui/toggle";
 </script>
 
 <Toggle>Toggle</Toggle>

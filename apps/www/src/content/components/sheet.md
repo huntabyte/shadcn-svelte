@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Sheet from "$components/ui/sheet";
+  import * as Sheet from "$lib/components/ui/sheet";
 </script>
 
 <Sheet.Root>

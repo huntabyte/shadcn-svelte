@@ -39,7 +39,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Accordion from "$components/ui/accordion";
+  import * as Accordion from "$lib/components/ui/accordion";
 </script>
 
 <Accordion.Root>

@@ -39,7 +39,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Dialog from "$components/ui/dialog";
+  import * as Dialog from "$lib/components/ui/dialog";
 </script>
 
 <Dialog.Root>

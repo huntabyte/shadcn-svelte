@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Separator } from "$components/ui/separator";
+  import { Separator } from "$lib/components/ui/separator";
 </script>
 
 <Separator />

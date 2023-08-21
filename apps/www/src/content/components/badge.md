@@ -32,7 +32,7 @@ npx shadcn-svelte@latest add badge
 
 ```svelte
 <script lang="ts">
-  import { Badge } from "$components/ui/badge";
+  import { Badge } from "$lib/components/ui/badge";
 </script>
 ```
 
@@ -46,7 +46,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 ```svelte
 <script lang="ts">
-  import { badgeVariants } from "$components/ui/badge";
+  import { badgeVariants } from "$lib/components/ui/badge";
 </script>
 
 <a href="/dashboard" class={badgeVariants({ variant: "outline" })}>Badge</a>

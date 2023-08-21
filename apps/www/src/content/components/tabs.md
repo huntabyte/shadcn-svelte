@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Tabs from "$components/ui/tabs";
+  import * as Tabs from "$lib/components/ui/tabs";
 </script>
 
 <Tabs.Root value="account" class="w-[400px]">

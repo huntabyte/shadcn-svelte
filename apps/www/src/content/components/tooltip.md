@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Tooltip from "$components/ui/tooltip";
+  import * as Tooltip from "$lib/components/ui/tooltip";
 </script>
 
 <Tooltip.Root>

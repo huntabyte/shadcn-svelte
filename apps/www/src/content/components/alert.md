@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add alert
 
 ```svelte
 <script lang="ts">
-  import * as Alert from "$components/ui/alert";
+  import * as Alert from "$lib/components/ui/alert";
 </script>
 
 <Alert.Root>

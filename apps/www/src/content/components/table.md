@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add table
 
 ```svelte
 <script lang="ts">
-  import * as Table from "$components/ui/table";
+  import * as Table from "$lib/components/ui/table";
 </script>
 ```
 

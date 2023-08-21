@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add textarea
 
 ```svelte
 <script lang="ts">
-  import { Textarea } from "$components/ui/textarea";
+  import { Textarea } from "$lib/components/ui/textarea";
 </script>
 ```
 

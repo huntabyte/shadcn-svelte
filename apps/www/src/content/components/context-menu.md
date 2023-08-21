@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as ContextMenu from "$components/ui/context-menu";
+  import * as ContextMenu from "$lib/components/ui/context-menu";
 </script>
 
 <ContextMenu.Root>

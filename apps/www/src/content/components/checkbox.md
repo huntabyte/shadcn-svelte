@@ -38,7 +38,7 @@ npm install bits-ui
 
 ```svelte
 <script lang="ts">
-  import { Checkbox } from "$components/ui/checkbox";
+  import { Checkbox } from "$lib/components/ui/checkbox";
 </script>
 ```
 

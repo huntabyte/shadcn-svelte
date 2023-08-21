@@ -31,7 +31,7 @@ npx shadcn-svelte@latest add input
 
 ```svelte
 <script lang="ts">
-  import { Input } from "$components/ui/input";
+  import { Input } from "$lib/components/ui/input";
 </script>
 
 <Input />
