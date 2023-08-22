@@ -18,7 +18,7 @@
 			<MoreHorizontal class="w-4 h-4" />
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56">
+	<DropdownMenu.Content>
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
 			<DropdownMenu.Item
