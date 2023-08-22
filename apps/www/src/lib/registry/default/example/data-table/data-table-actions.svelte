@@ -8,12 +8,17 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} class="h-8 w-8 p-0">
+		<Button
+			variant="ghost"
+			builders={[builder]}
+			size="icon"
+			class="relative w-8 h-8 p-0"
+		>
 			<span class="sr-only">Open menu</span>
-			<MoreHorizontal class="h-4 w-4" />
+			<MoreHorizontal class="w-4 h-4" />
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content>
+	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
 			<DropdownMenu.Item
