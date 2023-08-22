@@ -42,7 +42,7 @@ npm install bits-ui
 </script>
 
 <Select.Root>
-  <Select.Trigger className="w-[180px]">
+  <Select.Trigger class="w-[180px]">
     <Select.Value placeholder="Theme" />
   </Select.Trigger>
   <Select.Content>
