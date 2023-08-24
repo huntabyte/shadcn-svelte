@@ -1418,4 +1418,6 @@ To accomodate the checkbox, we'll need to update our table styles. We'll also ad
 </div>
 ```
 
+See the [selected row docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-selected-rows) for more information on how to customize the pagination behavior.
+
 </Steps>
