@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout } from '@/components/docs'
+    import { ComponentPreview, ManualInstall, Callout, Steps } from '@/components/docs'
 </script>
 
 <ComponentPreview name="data-table-demo">
@@ -102,3 +102,232 @@ routes
 - `data-table-actions.svelte` will contain the actions menu for each row.
 - `data-table-checkbox.svelte` will contain the checkbox for each row.
 - `+page.svelte` is where we'll render and access `<DataTable />` component.
+
+## Basic Table
+
+Let's start by building a basic table.
+
+<Steps>
+
+### Get/Add Data
+
+Before we can initialize a table, we need to get our data. You can retrieve your data from anywhere, but for this example we'll use a `payments` array.
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts">
+  type Payment = {
+    id: string;
+    amount: number;
+    status: "pending" | "processing" | "success" | "failed";
+    email: string;
+  };
+
+  const data: Payment[] = [
+    {
+      id: "m5gr84i9",
+      amount: 316,
+      status: "success",
+      email: "ken99@yahoo.com"
+    }
+    // ...
+  ];
+</script>
+```
+
+### Initialize Table
+
+Next, we'll initialize a new table using `svelte-headless-table`.
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,21}
+<script lang="ts">
+  import { createTable } from "svelte-headless-table";
+  import { readable } from "svelte/store";
+
+  type Payment = {
+    id: string;
+    amount: number;
+    status: "pending" | "processing" | "success" | "failed";
+    email: string;
+  };
+
+  const data: Payment[] = [
+    {
+      id: "m5gr84i9",
+      amount: 316,
+      status: "success",
+      email: "ken99@yahoo.com"
+    }
+    // ...
+  ];
+
+  const table = createTable(readable(data));
+</script>
+```
+
+### Create Columns
+
+Now that we have a table, we can define our columns.
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {24-45}
+<script lang="ts">
+  import { createTable } from "svelte-headless-table";
+  import { readable } from "svelte/store";
+
+  type Payment = {
+    id: string;
+    amount: number;
+    status: "pending" | "processing" | "success" | "failed";
+    email: string;
+  };
+
+  const data: Payment[] = [
+    {
+      id: "m5gr84i9",
+      amount: 316,
+      status: "success",
+      email: "ken99@yahoo.com"
+    }
+    // ...
+  ];
+
+  const table = createTable(readable(data));
+
+  const columns = table.createColumns([
+    table.column({
+      accessor: "id",
+      header: "ID"
+    }),
+    table.column({
+      accessor: "status",
+      header: "Status"
+    }),
+    table.column({
+      accessor: "email",
+      header: "Email"
+    }),
+    table.column({
+      accessor: "amount",
+      header: "Amount"
+    }),
+    table.column({
+      accessor: ({ id }) => id,
+      header: ""
+    })
+  ]);
+</script>
+```
+
+The last column is where we'll render a menu of actions for each row. Since our dataset doesn't have an `actions` property, we'll use a function to access the `id` property as the accessor. The header we'll leave as an empty string for now.
+
+### Create View Model & Render Table
+
+Finally, we'll create a view model which we'll use to build our table.
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {2,4,48-49,52-90}
+<script lang="ts">
+  import { createTable, Render, Subscribe } from "svelte-headless-table";
+  import { readable } from "svelte/store";
+  import * as Table from "$lib/components/ui/table";
+
+  type Payment = {
+    id: string;
+    amount: number;
+    status: "pending" | "processing" | "success" | "failed";
+    email: string;
+  };
+
+  const data: Payment[] = [
+    {
+      id: "m5gr84i9",
+      amount: 316,
+      status: "success",
+      email: "ken99@yahoo.com"
+    }
+    // ...
+  ];
+
+  const table = createTable(readable(data));
+
+  const columns = table.createColumns([
+    table.column({
+      accessor: "id",
+      header: "ID"
+    }),
+    table.column({
+      accessor: "status",
+      header: "Status"
+    }),
+    table.column({
+      accessor: "email",
+      header: "Email"
+    }),
+    table.column({
+      accessor: "amount",
+      header: "Amount"
+    }),
+    table.column({
+      accessor: ({ id }) => id,
+      header: ""
+    })
+  ]);
+
+  const { headerRows, pageRows, tableAttrs, tableBodyAttrs } =
+    table.createViewModel(columns);
+</script>
+
+<div class="rounded-md border">
+  <Table.Root {...$tableAttrs}>
+    <Table.Header>
+      {#each $headerRows as headerRow}
+        <Subscribe rowAttrs={headerRow.attrs()}>
+          <Table.Row>
+            {#each headerRow.cells as cell (cell.id)}
+              <Subscribe
+                attrs={cell.attrs()}
+                let:attrs
+                props={cell.props()}
+                let:props
+              >
+                <Table.Head {...attrs}>
+                  <Render of={cell.render()} />
+                </Table.Head>
+              </Subscribe>
+            {/each}
+          </Table.Row>
+        </Subscribe>
+      {/each}
+    </Table.Header>
+    <Table.Body {...$tableBodyAttrs}>
+      {#each $pageRows as row (row.id)}
+        <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+          <Table.Row {...rowAttrs}>
+            {#each row.cells as cell (cell.id)}
+              <Subscribe attrs={cell.attrs()} let:attrs>
+                <Table.Cell {...attrs}>
+                  <Render of={cell.render()} />
+                </Table.Cell>
+              </Subscribe>
+            {/each}
+          </Table.Row>
+        </Subscribe>
+      {/each}
+    </Table.Body>
+  </Table.Root>
+</div>
+```
+
+### Render the table
+
+Finally, we'll render our table in our `+page.svelte` file.
+
+```svelte showLineNumbers title="routes/payments/+page.svelte"
+<script lang="ts">
+  import DataTable from "./data-table.svelte";
+</script>
+
+<div class="container mx-auto py-10">
+  <DataTable />
+</div>
+```
+
+</Steps>
