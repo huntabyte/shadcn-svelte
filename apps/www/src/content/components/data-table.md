@@ -47,7 +47,7 @@ This guide will show you how to use [Svelte Headless Table](https://svelte-headl
 1. Add the `<Table />` component to your project:
 
 ```bash
-npm shadcn-svelte@latest add table
+npx shadcn-svelte@latest add table
 ```
 
 2. Add `svelte-headless-table` as a dependency:
@@ -138,7 +138,7 @@ Before we can initialize a table, we need to get our data. You can retrieve your
 
 Next, we'll initialize a new table using `svelte-headless-table`.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,21}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,22}
 <script lang="ts">
   import { createTable } from "svelte-headless-table";
   import { readable } from "svelte/store";
@@ -409,9 +409,9 @@ Now that we're returning a formatted string, let's now align the `amount` header
                       <Render of={cell.render()} />
                     </div>
                   {:else if cell.id === "status"}
-                      <div class="capitalize">
-                        <Render of={cell.render()}>
-                      </div>
+                    <div class="capitalize">
+                      <Render of={cell.render()} />
+                    </div>
                   {:else}
                     <Render of={cell.render()} />
                   {/if}
@@ -432,13 +432,13 @@ You can use this approach to customize the styles of any cell in your table. In 
 
 ## Row Actions
 
-Let's now add row actions to our table. We'll use a `<DropdownMenu />` component for this.
+Let's now add row actions to our table. We'll use a `<DropdownMenu />` and `<Button />` component for this.
 
 <Steps>
 
 ### Create actions component
 
-We'll start by creating a new component called `data-table-actions.svelte` which will contain our actions menu. It's going to receive an `id` prop, which we'll use to identify and take specific actions on the row.
+We'll start by creating a new component called `data-table-actions.svelte` which will contain our actions menu. It's going to receive an `id` prop, which we'll use to identify and perform specific actions on the row.
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
@@ -548,7 +548,7 @@ Now that we've defined our actions component, let's update our `actions` column 
 </script>
 ```
 
-We're just passing the `id` to our actions component, but you could pass whatever information you need to take actions on the row. In this example, we could use the `id` to make a DELETE request to our API to delete the payment.
+We're just passing the `id` to our actions component, but you could pass whatever information you need to perform actions on the row. In this example, we could use the `id` to make a DELETE request to our API to delete the payment.
 
 </Steps>
 
@@ -560,7 +560,7 @@ Next, we'll add pagination to our table
 
 ### Enable the `addPagination` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,12,68,71}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,31-33,12,68,71}
 <script lang="ts">
   import {
     createTable,
@@ -631,15 +631,15 @@ Next, we'll add pagination to our table
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { hasNextPage, hasPreviewPage, pageIndex } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
 ### Add pagination controls
 
-We can add paginations controls to our table using the `<Button />` component and the `hasNextPage`, `hasPreviewPage`, and `pageIndex` variables.
+We can add pagination controls to our table using the `<Button />` component and the `hasNextPage`, `hasPreviousPage`, and `pageIndex` variables.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {1,7-19,21}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {1,7-20,21}
 <div>
   <div class="rounded-md border">
     <Table.Root {...$tableAttrs}>
@@ -811,7 +811,7 @@ Let's add a search input to filter emails in our table.
 
 We'll start by enabling the `addTableFilter` plugin and importing the `<Input />` component we'll use for the search input.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,50-53,59-62,79-82,91-94,103}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,50-53,59-63,79-83,91-95,103}
 <script lang="ts">
   import {
     createTable,
@@ -1074,7 +1074,7 @@ Let's add the ability to control which columns are visible in our table.
     .filter(([, hide]) => !hide)
     .map(([id]) => id);
 
-  const hideableCols = ["status", "email", "amount"];
+  const hidableCols = ["status", "email", "amount"];
 </script>
 ```
 
@@ -1099,7 +1099,7 @@ We'll use the `<DropdownMenu />` we imported in the previous step to render a me
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         {#each flatColumns as col}
-          {#if hideableCols.includes(col.id)}
+          {#if hidableCols.includes(col.id)}
             <DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
               {col.header}
             </DropdownMenu.CheckboxItem>
@@ -1133,7 +1133,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 ```svelte showLineNumbers title="routes/payments/data-table-checkbox.svelte"
 <script lang="ts">
-  import { Checkbox } from "@/registry/new-york/ui/checkbox";
+  import { Checkbox } from "$lib/components/ui/checkbox";
   import type { Writable } from "svelte/store";
 
   export let checked: Writable<boolean>;
@@ -1303,13 +1303,13 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     .filter(([, hide]) => !hide)
     .map(([id]) => id);
 
-  const hideableCols = ["status", "email", "amount"];
+  const hidableCols = ["status", "email", "amount"];
 </script>
 ```
 
 ### Update styles & show selected rows
 
-To accomodate the checkbox, we'll need to update our table styles. We'll also add a message to show how many rows are selected.
+To accommodate the checkbox, we'll need to update our table styles. We'll also add a message to show how many rows are selected.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte" {39,65,87-90}
 <div>
@@ -1328,7 +1328,7 @@ To accomodate the checkbox, we'll need to update our table styles. We'll also ad
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         {#each flatColumns as col}
-          {#if hideableCols.includes(col.id)}
+          {#if hidableCols.includes(col.id)}
             <DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
               {col.header}
             </DropdownMenu.CheckboxItem>
