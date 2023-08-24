@@ -8,14 +8,18 @@
 	import {
 		addPagination,
 		addSortBy,
-		addTableFilter
+		addTableFilter,
+		addHiddenColumns,
+		addSelectedRows
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
 	import DataTableActions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { ArrowUpDown } from "lucide-svelte";
+	import { ArrowUpDown, ChevronDown } from "lucide-svelte";
 	import { Input } from "@/registry/new-york/ui/input";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import DataTableCheckbox from "./data-table-checkbox.svelte";
 
 	type Payment = {
 		id: string;
@@ -59,17 +63,31 @@
 
 	const table = createTable(readable(data), {
 		page: addPagination(),
-		sort: addSortBy(),
+		sort: addSortBy({ disableMultiSort: true }),
 		filter: addTableFilter({
-			fn: ({ filterValue, value }) =>
-				value.toLowerCase().includes(filterValue.toLowerCase())
-		})
+			fn: ({ filterValue, value }) => value.includes(filterValue)
+		}),
+		hide: addHiddenColumns(),
+		select: addSelectedRows()
 	});
 
 	const columns = table.createColumns([
 		table.column({
 			accessor: "id",
-			header: "ID",
+			header: (_, { pluginStates }) => {
+				const { allPageRowsSelected } = pluginStates.select;
+				return createRender(DataTableCheckbox, {
+					checked: allPageRowsSelected
+				});
+			},
+			cell: ({ row }, { pluginStates }) => {
+				const { getRowState } = pluginStates.select;
+				const { isSelected } = getRowState(row);
+
+				return createRender(DataTableCheckbox, {
+					checked: isSelected
+				});
+			},
 			plugins: {
 				filter: {
 					exclude: true
@@ -106,24 +124,37 @@
 			}
 		}),
 		table.column({
-			accessor: ({ id }) => id,
+			accessor: ({ email }) => email,
 			header: "",
 			cell: (item) => {
-				return createRender(DataTableActions, { id: item.value });
-			},
-			plugins: {
-				filter: {
-					exclude: true
-				}
+				return createRender(DataTableActions, { id: item.id });
 			}
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-		table.createViewModel(columns);
+	const {
+		headerRows,
+		pageRows,
+		tableAttrs,
+		tableBodyAttrs,
+		pluginStates,
+		flatColumns,
+		rows
+	} = table.createViewModel(columns);
 
 	const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
+	const { hiddenColumnIds } = pluginStates.hide;
+	const { selectedDataIds } = pluginStates.select;
+
+	const ids = flatColumns.map((col) => col.id);
+	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
+
+	$: $hiddenColumnIds = Object.entries(hideForId)
+		.filter(([, hide]) => !hide)
+		.map(([id]) => id);
+
+	const hideableCols = ["status", "email", "amount"];
 </script>
 
 <div>
@@ -134,6 +165,22 @@
 			type="text"
 			bind:value={$filterValue}
 		/>
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger asChild let:builder>
+				<Button variant="outline" class="ml-auto" builders={[builder]}>
+					Columns <ChevronDown class="ml-2 h-4 w-4" />
+				</Button>
+			</DropdownMenu.Trigger>
+			<DropdownMenu.Content>
+				{#each flatColumns as col}
+					{#if hideableCols.includes(col.id)}
+						<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
+							{col.header}
+						</DropdownMenu.CheckboxItem>
+					{/if}
+				{/each}
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
@@ -148,7 +195,7 @@
 									props={cell.props()}
 									let:props
 								>
-									<Table.Head {...attrs}>
+									<Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
 										{#if cell.id === "amount"}
 											<div class="text-right">
 												<Render of={cell.render()} />
@@ -174,7 +221,7 @@
 						<Table.Row {...rowAttrs}>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs}>
+									<Table.Cell {...attrs} class="[&:has([role=checkbox])]:pl-3">
 										{#if cell.id === "amount"}
 											<div class="text-right font-medium">
 												<Render of={cell.render()} />
@@ -196,6 +243,10 @@
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-4 py-4">
+		<div class="flex-1 text-sm text-muted-foreground">
+			{Object.keys($selectedDataIds).length} of{" "}
+			{$rows.length} row(s) selected.
+		</div>
 		<Button
 			variant="outline"
 			size="sm"
