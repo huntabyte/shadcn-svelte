@@ -26,7 +26,6 @@
 		"format:check": "prettier --plugin-search-dir . --check ."
 	},
 	"devDependencies": {
-		"@huntabyte/mdsvex": "^0.16.8",
 		"@playwright/test": "^1.36.2",
 		"@sveltejs/adapter-vercel": "^3.0.3",
 		"@sveltejs/kit": "^1.20.4",
@@ -70,9 +69,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@huntabyte/bits-ui": "^0.0.33",
 		"@unovis/svelte": "^1.2.0",
 		"@unovis/ts": "^1.2.0",
-		"bits-ui": "^0.0.24",
 		"clsx": "^2.0.0",
 		"d3-scale": "^4.0.2",
 		"esm-env": "^1.0.0",

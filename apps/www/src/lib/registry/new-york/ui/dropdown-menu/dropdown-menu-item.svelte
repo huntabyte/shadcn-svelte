@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = DropdownMenuPrimitive.ItemProps & {
@@ -18,7 +18,7 @@
 		inset && "pl-8",
 		className
 	)}
-	on:m-click
+	on:click
 	{...$$restProps}
 >
 	<slot />

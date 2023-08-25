@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button as ButtonPrimitive } from "bits-ui";
+	import { Button as ButtonPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 	import { buttonVariants, type Size, type Variant } from ".";
 

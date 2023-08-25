@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar as MenubarPrimitive } from "bits-ui";
+	import { Menubar as MenubarPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 	import { ChevronRight } from "lucide-svelte";
 
@@ -19,7 +19,7 @@
 		inset && "pl-8",
 		className
 	)}
-	on:m-click
+	on:click
 	{...$$restProps}
 >
 	<slot />

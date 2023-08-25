@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar as MenubarPrimitive } from "bits-ui";
+	import { Menubar as MenubarPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = MenubarPrimitive.ItemProps & {
@@ -19,7 +19,7 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:pointerdown
 >
 	<slot />
 </MenubarPrimitive.Item>

@@ -25,10 +25,10 @@ npx shadcn-svelte@latest add accordion
 
 <ManualInstall>
 
-1. Install `bits-ui`:
+1. Install `@huntabyte/bits-ui`:
 
 ```bash
-npm install bits-ui
+npm install @huntabyte/bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

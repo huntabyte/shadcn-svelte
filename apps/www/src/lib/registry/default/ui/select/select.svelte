@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from "bits-ui";
+	import { Select as SelectPrimitive } from "@huntabyte/bits-ui";
 
 	type $$Props = SelectPrimitive.Props;
 
-	export let value: $$Props["value"] = undefined;
+	export let selected: $$Props["selected"] = undefined;
 	export let open: $$Props["open"] = undefined;
 </script>
 
-<SelectPrimitive.Root bind:value bind:open {...$$restProps}>
+<SelectPrimitive.Root bind:selected bind:open {...$$restProps}>
 	<slot />
 </SelectPrimitive.Root>

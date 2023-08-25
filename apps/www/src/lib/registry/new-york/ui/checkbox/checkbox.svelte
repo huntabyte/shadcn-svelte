@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox as CheckboxPrimitive } from "bits-ui";
+	import { Checkbox as CheckboxPrimitive } from "@huntabyte/bits-ui";
 	import { Check, Minus } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
@@ -17,7 +17,7 @@
 		className
 	)}
 	bind:checked
-	on:m-click
+	on:click
 	{...$$restProps}
 >
 	<CheckboxPrimitive.Indicator

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive } from "bits-ui";
+	import { Accordion as AccordionPrimitive } from "@huntabyte/bits-ui";
 	import { ChevronDown } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
@@ -18,7 +18,7 @@
 			className
 		)}
 		{...$$restProps}
-		on:m-click
+		on:click
 	>
 		<slot />
 		<ChevronDown

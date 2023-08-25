@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from "bits-ui";
+	import { Select as SelectPrimitive } from "@huntabyte/bits-ui";
 	import { Check } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 
@@ -22,9 +22,9 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
-	on:m-pointermove
-	on:m-focusin
+	on:click
+	on:pointermove
+	on:focusin
 >
 	<span class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
 		<SelectPrimitive.ItemIndicator>

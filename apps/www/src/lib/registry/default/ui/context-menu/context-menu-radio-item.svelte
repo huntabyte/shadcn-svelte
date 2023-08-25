@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
+	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 	import { Circle } from "lucide-svelte";
 
@@ -18,7 +18,7 @@
 	)}
 	{value}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
 		<ContextMenuPrimitive.RadioIndicator>

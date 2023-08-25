@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+	import { DropdownMenu as DropdownMenuPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = DropdownMenuPrimitive.LabelProps & {

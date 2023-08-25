@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive } from "bits-ui";
+	import { Accordion as AccordionPrimitive } from "@huntabyte/bits-ui";
 	import { ChevronDown } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
@@ -18,7 +18,7 @@
 			className
 		)}
 		{...$$restProps}
-		on:m-click
+		on:click
 	>
 		<slot />
 		<ChevronDown class="h-4 w-4 transition-transform duration-200" />

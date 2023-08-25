@@ -23,7 +23,9 @@
 		@melt-ui/melt-ui
 	</div>
 	<Collapsible.Content class="space-y-2">
-		<div class="rounded-md border px-4 py-3 font-mono text-sm">bits-ui</div>
+		<div class="rounded-md border px-4 py-3 font-mono text-sm">
+			@huntabyte/bits-ui
+		</div>
 		<div class="rounded-md border px-4 py-3 font-mono text-sm">
 			@radix-ui/primitives
 		</div>

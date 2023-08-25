@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Dialog as SheetPrimitive } from "bits-ui";
+	import { Dialog as SheetPrimitive } from "@huntabyte/bits-ui";
 	import { SheetOverlay, SheetPortal, sheetVariants, type Side } from ".";
 	import { X } from "lucide-svelte";
 	import { cn } from "$lib/utils";

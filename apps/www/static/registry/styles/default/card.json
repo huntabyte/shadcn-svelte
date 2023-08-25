@@ -21,7 +21,7 @@
     },
     {
       "name": "card-title.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HeadingLevel } from \"../alert\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\tlevel?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let tag: $$Props[\"level\"] = \"h3\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HeadingLevel } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\ttag?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let tag: $$Props[\"tag\"] = \"h3\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
     },
     {
       "name": "card.svelte",

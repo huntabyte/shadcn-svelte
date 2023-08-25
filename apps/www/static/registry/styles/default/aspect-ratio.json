@@ -1,13 +1,13 @@
 {
   "name": "aspect-ratio",
   "dependencies": [
-    "bits-ui"
+    "@huntabyte/bits-ui"
   ],
   "registryDependencies": [],
   "files": [
     {
       "name": "aspect-ratio.svelte",
-      "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\n\ttype $$Props = AspectRatioPrimitive.Props;\n\n\texport let ratio: $$Props[\"ratio\"] = 4 / 3;\n</script>\n\n<AspectRatioPrimitive.Root {ratio} {...$$restProps}>\n\t<slot />\n</AspectRatioPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"@huntabyte/bits-ui\";\n\n\ttype $$Props = AspectRatioPrimitive.Props;\n\n\texport let ratio: $$Props[\"ratio\"] = 4 / 3;\n</script>\n\n<AspectRatioPrimitive.Root {ratio} {...$$restProps}>\n\t<slot />\n</AspectRatioPrimitive.Root>\n"
     },
     {
       "name": "index.ts",

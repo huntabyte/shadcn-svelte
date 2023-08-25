@@ -33,7 +33,7 @@
 	</HoverCard.Root>
 	<Select.Root
 		bind:open
-		value={selectedModel.id}
+		selected={{ value: selectedModel.id, label: selectedModel.name }}
 		positioning={{ placement: "bottom-end", sameWidth: false }}
 		loop
 	>
@@ -85,7 +85,7 @@
 								<Select.Item
 									value={model.id}
 									label={model.name}
-									on:m-focusin={() => handlePeek(model)}
+									on:focusin={() => handlePeek(model)}
 								>
 									{model.name}
 								</Select.Item>

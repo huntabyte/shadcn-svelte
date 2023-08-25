@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Avatar as AvatarPrimitive } from "bits-ui";
+	import { Avatar as AvatarPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = AvatarPrimitive.FallbackProps;

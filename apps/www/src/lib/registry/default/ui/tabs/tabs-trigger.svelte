@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Tabs as TabsPrimitive } from "bits-ui";
+	import { Tabs as TabsPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = TabsPrimitive.TriggerProps;
@@ -17,7 +17,7 @@
 	)}
 	{value}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<slot />
 </TabsPrimitive.Trigger>

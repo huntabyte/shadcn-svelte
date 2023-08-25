@@ -2,7 +2,7 @@
   {
     "name": "accordion",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -28,7 +28,7 @@
   {
     "name": "alert-dialog",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [
       "button"
@@ -50,7 +50,7 @@
   {
     "name": "aspect-ratio",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -62,7 +62,7 @@
   {
     "name": "avatar",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -86,7 +86,7 @@
   {
     "name": "button",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -113,7 +113,7 @@
   {
     "name": "checkbox",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -125,7 +125,7 @@
   {
     "name": "collapsible",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -137,7 +137,7 @@
   {
     "name": "context-menu",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -158,7 +158,7 @@
   {
     "name": "dialog",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -176,7 +176,7 @@
   {
     "name": "dropdown-menu",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -197,7 +197,7 @@
   {
     "name": "hover-card",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -219,7 +219,7 @@
   {
     "name": "label",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -231,7 +231,7 @@
   {
     "name": "menubar",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -253,7 +253,7 @@
   {
     "name": "popover",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -265,7 +265,7 @@
   {
     "name": "progress",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -277,7 +277,7 @@
   {
     "name": "radio-group",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -290,7 +290,7 @@
   {
     "name": "select",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -307,7 +307,7 @@
   {
     "name": "separator",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -319,7 +319,7 @@
   {
     "name": "sheet",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -347,7 +347,7 @@
   {
     "name": "slider",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -359,7 +359,7 @@
   {
     "name": "switch",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -388,7 +388,7 @@
   {
     "name": "tabs",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -412,7 +412,7 @@
   {
     "name": "toggle",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [
@@ -424,7 +424,7 @@
   {
     "name": "tooltip",
     "dependencies": [
-      "bits-ui"
+      "@huntabyte/bits-ui"
     ],
     "registryDependencies": [],
     "files": [

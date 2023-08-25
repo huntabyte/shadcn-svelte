@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox as CheckboxPrimitive } from "bits-ui";
+	import { Checkbox as CheckboxPrimitive } from "@huntabyte/bits-ui";
 	import { Check, Minus } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
@@ -18,7 +18,7 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<CheckboxPrimitive.Indicator
 		class={cn("flex items-center justify-center text-current")}

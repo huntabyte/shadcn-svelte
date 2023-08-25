@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
+	import { RadioGroup as RadioGroupPrimitive } from "@huntabyte/bits-ui";
 	import { Circle } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 
@@ -18,7 +18,7 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<div class="flex items-center justify-center">
 		<RadioGroupPrimitive.ItemIndicator>

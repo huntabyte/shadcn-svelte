@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Toggle as TogglePrimitive } from "bits-ui";
+	import { Toggle as TogglePrimitive } from "@huntabyte/bits-ui";
 	import { toggleVariants, type Variant, type Size } from ".";
 	import { cn } from "$lib/utils";
 
@@ -20,7 +20,7 @@
 	bind:pressed
 	class={cn(toggleVariants({ variant, size, className }))}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<slot />
 </TogglePrimitive.Root>

@@ -3,7 +3,7 @@ title: Toggle
 description: A two-state button that can be either on or off.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/toggle
-bits: https://www.bits-ui.com/docs/components/toggle
+bits: https://www.@huntabyte/bits-ui.com/docs/components/toggle
 ---
 
 <script>
@@ -24,10 +24,10 @@ npx shadcn-svelte@latest add toggle
 
 <ManualInstall>
 
-1. Install `bits-ui`:
+1. Install `@huntabyte/bits-ui`:
 
 ```bash
-npm install bits-ui
+npm install @huntabyte/bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

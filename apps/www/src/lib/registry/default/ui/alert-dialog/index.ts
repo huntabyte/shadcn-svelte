@@ -1,4 +1,4 @@
-import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
+import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/bits-ui";
 
 const Root = AlertDialogPrimitive.Root;
 const Trigger = AlertDialogPrimitive.Trigger;

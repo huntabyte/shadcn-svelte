@@ -54,7 +54,7 @@
 	</Form.Field>
 	<Form.Field {form} name="email" let:field>
 		<Form.Label>Email</Form.Label>
-		<Select.Root onValueChange={field.updateValue}>
+		<Select.Root onSelectedChange={field.updateValue}>
 			<Select.Trigger {...field.attrs}>
 				<Select.Value
 					placeholder="Select a verified email to display"
