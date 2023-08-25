@@ -14,6 +14,8 @@
 	class={cn(buttonVariants(), className)}
 	{...$$restProps}
 	on:click
+	on:keydown
+	let:builder
 >
-	<slot />
+	<slot {builder} />
 </AlertDialogPrimitive.Action>

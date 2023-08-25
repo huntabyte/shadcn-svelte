@@ -16,6 +16,8 @@
 	)}
 	{...$$restProps}
 	on:click
+	on:keydown
+	on:pointerenter
 >
 	<slot />
 </MenubarPrimitive.Trigger>
