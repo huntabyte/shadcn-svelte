@@ -69,7 +69,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@huntabyte/bits-ui": "^0.0.33",
+		"@huntabyte/bits-ui": "^0.0.35",
 		"@unovis/svelte": "^1.2.0",
 		"@unovis/ts": "^1.2.0",
 		"clsx": "^2.0.0",

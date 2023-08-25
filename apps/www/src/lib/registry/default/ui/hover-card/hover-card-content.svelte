@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { LinkPreview as HoverCardPrimitive } from "@huntabyte/bits-ui";
-	import { cn } from "$lib/utils";
+	import { cn, transition } from "$lib/utils";
 
 	type $$Props = HoverCardPrimitive.ContentProps;
 
@@ -9,8 +9,9 @@
 </script>
 
 <HoverCardPrimitive.Content
+	{transition}
 	class={cn(
-		"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in zoom-in-90 mt-3",
+		"z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none mt-3",
 		className
 	)}
 	{...$$restProps}

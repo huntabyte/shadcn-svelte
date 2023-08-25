@@ -3,6 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = LabelPrimitive.Props;
+	type $$Events = LabelPrimitive.Events;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
@@ -14,6 +15,7 @@
 		className
 	)}
 	{...$$restProps}
+	on:mousedown
 >
 	<slot />
 </LabelPrimitive.Root>

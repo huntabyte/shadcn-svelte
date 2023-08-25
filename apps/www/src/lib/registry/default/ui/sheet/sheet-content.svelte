@@ -1,11 +1,18 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "@huntabyte/bits-ui";
-	import { SheetOverlay, SheetPortal, sheetVariants, type Side } from ".";
+	import {
+		SheetOverlay,
+		SheetPortal,
+		sheetTransitions,
+		sheetVariants,
+		type Side
+	} from ".";
 	import { X } from "lucide-svelte";
 	import { cn } from "$lib/utils";
+	import { fly, slide } from "svelte/transition";
 
 	type $$Props = SheetPrimitive.ContentProps & {
-		side?: Side;
+		side: Side;
 	};
 
 	let className: $$Props["class"] = undefined;
@@ -16,6 +23,8 @@
 <SheetPortal>
 	<SheetOverlay />
 	<SheetPrimitive.Content
+		transition={fly}
+		transitionConfig={sheetTransitions[side ? side : "right"]}
 		class={cn(sheetVariants({ side }), className)}
 		{...$$restProps}
 	>

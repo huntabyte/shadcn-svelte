@@ -17,7 +17,6 @@
 	export { className as class };
 
 	$: component = Index[$config.style][name]?.component();
-	$: console.log(component);
 </script>
 
 <div

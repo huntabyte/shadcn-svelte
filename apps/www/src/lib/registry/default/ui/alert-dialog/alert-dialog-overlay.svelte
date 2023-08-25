@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/bits-ui";
 	import { cn } from "$lib/utils";
+	import { fade } from "svelte/transition";
 
 	type $$Props = AlertDialogPrimitive.OverlayProps;
 
@@ -9,9 +10,8 @@
 </script>
 
 <AlertDialogPrimitive.Overlay
-	class={cn(
-		"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in",
-		className
-	)}
+	transition={fade}
+	transitionConfig={{ duration: 150 }}
+	class={cn("fixed inset-0 z-50 bg-background/80 backdrop-blur-sm ", className)}
 	{...$$restProps}
 />
