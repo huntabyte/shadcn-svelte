@@ -9,22 +9,25 @@
 	} from ".";
 	import { X } from "lucide-svelte";
 	import { cn } from "$lib/utils";
-	import { fly, slide } from "svelte/transition";
+	import { fly } from "svelte/transition";
 
 	type $$Props = SheetPrimitive.ContentProps & {
-		side: Side;
+		side?: Side;
 	};
 
 	let className: $$Props["class"] = undefined;
 	export let side: $$Props["side"] = "right";
+	export let transition: $$Props["transition"] = fly;
+	export let transitionConfig: $$Props["transitionConfig"] =
+		sheetTransitions[side ? side : "right"];
 	export { className as class };
 </script>
 
 <SheetPortal>
 	<SheetOverlay />
 	<SheetPrimitive.Content
-		transition={fly}
-		transitionConfig={sheetTransitions[side ? side : "right"]}
+		{transition}
+		{transitionConfig}
 		class={cn(sheetVariants({ side }), className)}
 		{...$$restProps}
 	>

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/bits-ui";
 	import * as AlertDialog from ".";
-	import { cn, transition } from "$lib/utils";
+	import { cn, flyAndScale } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.ContentProps;
+
+	export let transition: $$Props["transition"] = flyAndScale;
+	export let transitionConfig: $$Props["transitionConfig"] = undefined;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
@@ -13,6 +16,7 @@
 	<AlertDialog.Overlay />
 	<AlertDialogPrimitive.Content
 		{transition}
+		{transitionConfig}
 		class={cn(
 			"fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full",
 			className

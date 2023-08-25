@@ -119,16 +119,16 @@ export function updateTheme(activeTheme: string, path: string) {
 	}
 }
 
-type TransitionParams = {
+type FlyAndScaleParams = {
 	y?: number;
 	x?: number;
 	start?: number;
 	duration?: number;
 };
 
-export const transition = (
+export const flyAndScale = (
 	node: Element,
-	params: TransitionParams = { y: -8, x: 0, start: 0.95, duration: 150 }
+	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
 	const transform = style.transform === "none" ? "" : style.transform;
