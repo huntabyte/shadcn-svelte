@@ -11,14 +11,14 @@ patchedDependencies:
 
 dependencies:
   '@unovis/svelte':
-    specifier: ^1.2.0
-    version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.2.0)
+    specifier: ^1.2.1
+    version: 1.2.1(@unovis/ts@1.2.1)(svelte@4.2.0)
   '@unovis/ts':
-    specifier: ^1.2.0
-    version: 1.2.0
+    specifier: ^1.2.1
+    version: 1.2.1
   bits-ui:
-    specifier: ^0.5.0
-    version: 0.5.0(svelte@4.2.0)
+    specifier: ^0.5.1
+    version: 0.5.1(svelte@4.2.0)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -1512,18 +1512,18 @@ packages:
       lodash-es: 4.17.21
     dev: false
 
-  /@unovis/svelte@1.2.0(@unovis/ts@1.2.0)(svelte@4.2.0):
-    resolution: {integrity: sha512-Gu1PDxoykorfG9danfcSbyBGf/csSfEiQyRrWgsyo7yykfEJ9rjNdHR4zZSd9ZMMIAvtZuJnAGAUm5NvZZ5QpQ==}
+  /@unovis/svelte@1.2.1(@unovis/ts@1.2.1)(svelte@4.2.0):
+    resolution: {integrity: sha512-jvt+hiTCmyd2KRO2jp1O2CUew1dz2OCYwJsHYf5Rp5de1exYF6pz117PDUC5yYcf/a/nxmQKVDB7qqzYhWx+hQ==}
     peerDependencies:
-      '@unovis/ts': 1.2.0
+      '@unovis/ts': 1.2.1
       svelte: ^3.48.0 || ^4.0.0
     dependencies:
-      '@unovis/ts': 1.2.0
+      '@unovis/ts': 1.2.1
       svelte: 4.2.0
     dev: false
 
-  /@unovis/ts@1.2.0:
-    resolution: {integrity: sha512-8is2xrPZO1AxhPIQqMgymTlhi3Jbp55np8kYU62VVphXIbcLpfzq7OjBUdTBBjkasCdkHfcT2oDNw2825IOIcA==}
+  /@unovis/ts@1.2.1:
+    resolution: {integrity: sha512-787MjSqvfgN+YlOlA3pz39E7ozky1CWlTioROZXeSa0gCkQhfaacOaUAYcDEgyAhU8oHkByG5keCN7eP7hoUlg==}
     dependencies:
       '@emotion/css': 11.11.2
       '@juggle/resize-observer': 3.4.0
@@ -1549,6 +1549,7 @@ packages:
       geojson: 0.5.0
       leaflet: 1.7.1
       maplibre-gl: 2.4.0
+      striptags: 3.2.0
       supercluster: 7.1.5
       three: 0.135.0
       throttle-debounce: 5.0.0
@@ -1790,8 +1791,8 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.5.0(svelte@4.2.0):
-    resolution: {integrity: sha512-gnVmOH1CAS2wVnV/HDZW7hl9MbOQjqrXE/7oDnktZbP0gCtB1BIECT0QXXnD2WLVCU4fbQ9Lf0hKaBjvJ1/1Dg==}
+  /bits-ui@0.5.1(svelte@4.2.0):
+    resolution: {integrity: sha512-AdMJvrPRx8/77fnH/GAH7+lXWNbWcs3NbNVq+fwJpwf7oyz1ttuqTE4pffDXyAIsSioNaUmudb3/P0tHrsjJEw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
@@ -4807,6 +4808,10 @@ packages:
     dependencies:
       acorn: 8.10.0
     dev: true
+
+  /striptags@3.2.0:
+    resolution: {integrity: sha512-g45ZOGzHDMe2bdYMdIvdAfCQkCTDMGBazSw1ypMowwGIee7ZQ5dU0rBJ8Jqgl+jAKIv4dbeE1jscZq9wid1Tkw==}
+    dev: false
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
