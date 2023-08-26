@@ -162,7 +162,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Data Table",
 					href: "/docs/components/data-table",
-					label: "Preview",
 					items: []
 				},
 				// {
