@@ -6,24 +6,35 @@
 	import * as Select from "@/registry/new-york/ui/select";
 	import { Separator } from "@/registry/new-york/ui/separator";
 
+	const permissions = [
+		{
+			value: "view",
+			label: "Can view"
+		},
+		{
+			value: "edit",
+			label: "Can edit"
+		}
+	];
+
 	const people = [
 		{
 			name: "Olivia Martin",
 			email: "m@example.com",
 			avatar: "/avatars/03.png",
-			permission: "edit"
+			permission: permissions[1]
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "b@example.com",
 			avatar: "/avatars/05.png",
-			permission: "view"
+			permission: permissions[0]
 		},
 		{
 			name: "Sofia Davis",
 			email: "p@example.com",
 			avatar: "/avatars/01.png",
-			permission: "view"
+			permission: permissions[0]
 		}
 	];
 </script>
@@ -49,9 +60,9 @@
 						<div class="flex items-center space-x-4">
 							<Avatar.Root>
 								<Avatar.Image src={person.avatar} />
-								{@const initials = person.name.split(" ")}
+								{@const splitName = person.name.split(" ")}
 								<Avatar.Fallback
-									>{initials[0][0]}{initials[1][0]}</Avatar.Fallback
+									>{splitName[0][0]}{splitName[1][0]}</Avatar.Fallback
 								>
 							</Avatar.Root>
 							<div>
@@ -63,71 +74,22 @@
 								</p>
 							</div>
 						</div>
-						<Select.Root value={person.permission}>
+						<Select.Root selected={person.permission}>
 							<Select.Trigger class="ml-auto w-[110px]">
 								<Select.Value placeholder="Select" />
 							</Select.Trigger>
 							<Select.Content>
-								<Select.Item value="edit" label="Can edit"
-									>Can edit</Select.Item
-								>
-								<Select.Item value="view" label="Can view"
-									>Can view</Select.Item
-								>
+								{#each permissions as permission}
+									<Select.Item
+										value={permission.value}
+										label={permission.label}
+										>{permission.label}</Select.Item
+									>
+								{/each}
 							</Select.Content>
 						</Select.Root>
 					</div>
 				{/each}
-				<div class="flex items-center justify-between space-x-4">
-					<div class="flex items-center space-x-4">
-						<Avatar.Root>
-							<Avatar.Image src="/avatars/05.png" />
-							<Avatar.Fallback>IN</Avatar.Fallback>
-						</Avatar.Root>
-						<div>
-							<p class="text-sm font-medium leading-none">
-								Isabella Nguyen
-							</p>
-							<p class="text-sm text-muted-foreground">
-								b@example.com
-							</p>
-						</div>
-					</div>
-					<Select.Root value="view">
-						<Select.Trigger class="ml-auto w-[110px]">
-							<Select.Value placeholder="Select" />
-						</Select.Trigger>
-						<Select.Content>
-							<Select.Item value="edit">Can edit</Select.Item>
-							<Select.Item value="view">Can view</Select.Item>
-						</Select.Content>
-					</Select.Root>
-				</div>
-				<div class="flex items-center justify-between space-x-4">
-					<div class="flex items-center space-x-4">
-						<Avatar.Root>
-							<Avatar.Image src="/avatars/01.png" />
-							<Avatar.Fallback>SD</Avatar.Fallback>
-						</Avatar.Root>
-						<div>
-							<p class="text-sm font-medium leading-none">
-								Sofia Davis
-							</p>
-							<p class="text-sm text-muted-foreground">
-								p@example.com
-							</p>
-						</div>
-					</div>
-					<Select.Root value="view">
-						<Select.Trigger class="ml-auto w-[110px]">
-							<Select.Value placeholder="Select" />
-						</Select.Trigger>
-						<Select.Content>
-							<Select.Item value="edit">Can edit</Select.Item>
-							<Select.Item value="view">Can view</Select.Item>
-						</Select.Content>
-					</Select.Root>
-				</div>
 			</div>
 		</div>
 	</Card.Content>

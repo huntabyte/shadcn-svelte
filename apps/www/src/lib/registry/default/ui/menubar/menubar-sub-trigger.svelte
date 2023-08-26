@@ -15,12 +15,17 @@
 
 <MenubarPrimitive.SubTrigger
 	class={cn(
-		"flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
+		"flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
 		inset && "pl-8",
 		className
 	)}
-	on:m-click
+	on:click
 	{...$$restProps}
+	on:keydown
+	on:focusin
+	on:focusout
+	on:pointerleave
+	on:pointermove
 >
 	<slot />
 	<ChevronRight class="ml-auto h-4 w-4" />

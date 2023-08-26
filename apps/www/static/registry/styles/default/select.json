@@ -15,7 +15,7 @@
     },
     {
       "name": "select-item.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { Check } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.ItemProps;\n\ttype $$Events = SelectPrimitive.ItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport let label: $$Props[\"label\"] = undefined;\n\texport let disabled: $$Props[\"disabled\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Item\n\t{value}\n\t{disabled}\n\t{label}\n\tclass={cn(\n\t\t\"relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:m-click\n>\n\t<span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n\t\t<SelectPrimitive.ItemIndicator>\n\t\t\t<Check class=\"h-4 w-4\" />\n\t\t</SelectPrimitive.ItemIndicator>\n\t</span>\n\t<slot />\n</SelectPrimitive.Item>\n"
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { Check } from \"lucide-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.ItemProps;\n\ttype $$Events = SelectPrimitive.ItemEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport let label: $$Props[\"label\"] = undefined;\n\texport let disabled: $$Props[\"disabled\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Item\n\t{value}\n\t{disabled}\n\t{label}\n\tclass={cn(\n\t\t\"relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n>\n\t<span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n\t\t<SelectPrimitive.ItemIndicator>\n\t\t\t<Check class=\"h-4 w-4\" />\n\t\t</SelectPrimitive.ItemIndicator>\n\t</span>\n\t<slot />\n</SelectPrimitive.Item>\n"
     },
     {
       "name": "select-label.svelte",
@@ -31,7 +31,7 @@
     },
     {
       "name": "select.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\n\texport let value: $$Props[\"value\"] = undefined;\n\texport let open: $$Props[\"open\"] = undefined;\n</script>\n\n<SelectPrimitive.Root bind:value bind:open {...$$restProps}>\n\t<slot />\n</SelectPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\n\texport let selected: $$Props[\"selected\"] = undefined;\n\texport let open: $$Props[\"open\"] = undefined;\n</script>\n\n<SelectPrimitive.Root bind:selected bind:open {...$$restProps}>\n\t<slot />\n</SelectPrimitive.Root>\n"
     }
   ],
   "type": "components:ui"

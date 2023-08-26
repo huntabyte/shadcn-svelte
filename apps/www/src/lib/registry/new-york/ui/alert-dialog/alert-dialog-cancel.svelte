@@ -17,7 +17,9 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:click
+	on:keydown
+	let:builder
 >
-	<slot />
+	<slot {builder} />
 </AlertDialogPrimitive.Cancel>

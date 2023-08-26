@@ -5,7 +5,9 @@
 	type $$Props = CollapsiblePrimitive.ContentProps;
 
 	export let transition: $$Props["transition"] = slide;
-	export let transitionConfig: $$Props["transitionConfig"] = undefined;
+	export let transitionConfig: $$Props["transitionConfig"] = {
+		duration: 150
+	};
 </script>
 
 <CollapsiblePrimitive.Content {transition} {transitionConfig} {...$$restProps}>

@@ -17,7 +17,8 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:click
+	on:keydown
 >
 	<SwitchPrimitive.Thumb
 		class={cn(

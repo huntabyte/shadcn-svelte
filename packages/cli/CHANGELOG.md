@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.0
+
+### Minor Changes
+
+- 8b72f01: - Add `flyAndScale` transitions util
+
 ## 0.2.0
 
 ### Minor Changes
