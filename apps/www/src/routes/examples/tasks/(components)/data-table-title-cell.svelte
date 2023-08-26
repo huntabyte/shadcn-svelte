@@ -3,7 +3,8 @@
 	import { labels } from "../(data)/data";
 
 	export let value: string;
-	const label = labels.find((label) => label.value === value);
+	export let labelValue: string;
+	const label = labels.find((label) => label.value === labelValue);
 </script>
 
 <div class="flex space-x-2">

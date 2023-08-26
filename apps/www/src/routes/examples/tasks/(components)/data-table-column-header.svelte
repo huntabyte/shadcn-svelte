@@ -3,11 +3,10 @@
 	import { cn } from "@/utils";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import type { Readable } from "svelte/store";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let props: Readable<{
+	export let props: {
 		select: never;
 		sort: {
 			order: "desc" | "asc" | undefined;
@@ -16,27 +15,25 @@
 			disabled: boolean;
 		};
 		filter: never;
-	}>;
+	};
 	export let title: string;
 
 	function handleAscSort(e: Event) {
-		if ($props.sort.order === "asc") {
+		if (props.sort.order === "asc") {
 			return;
 		}
-		$props.sort.toggle(e);
+		props.sort.toggle(e);
 	}
 
 	function handleDescSort(e: Event) {
-		if ($props.sort.order === "desc") {
+		if (props.sort.order === "desc") {
 			return;
 		}
-		$props.sort.toggle(e);
+		props.sort.toggle(e);
 	}
-
-	$: console.log($props);
 </script>
 
-{#if !$props.sort.disabled}
+{#if !props.sort.disabled}
 	<div class={cn("flex items-center", className)}>
 		<DropdownMenu.Root positioning={{ placement: "bottom-start" }}>
 			<DropdownMenu.Trigger asChild let:builder>
@@ -45,10 +42,10 @@
 					builders={[builder]}
 					class="-ml-3 h-8 data-[state=open]:bg-accent"
 				>
-					<span>{title}</span>
-					{#if $props.sort.order === "desc"}
+					<span class="capitalize">{title}</span>
+					{#if props.sort.order === "desc"}
 						<ArrowDown class="ml-2 h-4 w-4" />
-					{:else if $props.sort.order === "asc"}
+					{:else if props.sort.order === "asc"}
 						<ArrowUp class="ml-2 h-4 w-4" />
 					{:else}
 						<CaretSort class="ml-2 h-4 w-4" />
@@ -56,13 +53,13 @@
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
-				<DropdownMenu.Item on:click={handleAscSort}
-					>Asc</DropdownMenu.Item
-				>
-				<DropdownMenu.Item on:click={handleDescSort}
-					>Desc</DropdownMenu.Item
-				>
+				<DropdownMenu.Item on:click={handleAscSort}>Asc</DropdownMenu.Item>
+				<DropdownMenu.Item on:click={handleDescSort}>Desc</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
+{:else}
+	<span class="capitalize">
+		{title}
+	</span>
 {/if}

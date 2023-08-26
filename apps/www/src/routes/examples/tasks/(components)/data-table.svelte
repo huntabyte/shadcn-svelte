@@ -5,7 +5,7 @@
 		createRender,
 		createTable
 	} from "svelte-headless-table";
-	import { readable } from "svelte/store";
+	import { get, readable } from "svelte/store";
 	import type { Task } from "../(data)/schemas";
 	import {
 		addHiddenColumns,
@@ -21,6 +21,7 @@
 	import DataTablePriorityCell from "./data-table-priority-cell.svelte";
 	import DataTableColumnHeader from "./data-table-column-header.svelte";
 	import { Cell } from "@/registry/default/ui/table";
+	import DataTableToolbar from "./data-table-toolbar.svelte";
 	export let data: Task[];
 
 	const table = createTable(readable(data), {
@@ -59,7 +60,9 @@
 		}),
 		table.column({
 			accessor: "id",
-			header: "Task",
+			header: () => {
+				return "Task";
+			},
 			id: "task",
 			plugins: {
 				sort: {
@@ -71,10 +74,14 @@
 			accessor: "title",
 			header: "Title",
 			id: "title",
-			cell: ({ value }) => {
-				return createRender(DataTableTitleCell, {
-					value
-				});
+			cell: ({ value, row }) => {
+				if (row.isData()) {
+					return createRender(DataTableTitleCell, {
+						value,
+						labelValue: row.original.label
+					});
+				}
+				return value;
 			}
 		}),
 		table.column({
@@ -90,13 +97,7 @@
 		table.column({
 			accessor: "priority",
 			id: "priority",
-			header: (cell) => {
-				const propStore = cell.props();
-				return createRender(DataTableColumnHeader, {
-					props: propStore,
-					title: "Priority"
-				});
-			},
+			header: () => "Priority",
 			cell: ({ value }) => {
 				return createRender(DataTablePriorityCell, {
 					value
@@ -106,13 +107,20 @@
 		table.display({
 			id: "actions",
 			header: () => {
-				return "Actions";
+				return "";
 			},
-			cell: () => {
-				return "actions";
+			cell: ({ row }) => {
+				if (row.isData() && row.original) {
+					return createRender(DataTableRowActions, {
+						row: row.original
+					});
+				}
+				return "";
 			}
 		})
 	]);
+
+	const tableModel = table.createViewModel(columns);
 
 	const {
 		headerRows,
@@ -121,7 +129,7 @@
 		tableBodyAttrs,
 		flatColumns,
 		pluginStates
-	} = table.createViewModel(columns);
+	} = tableModel;
 
 	const { hiddenColumnIds } = pluginStates.hide;
 	const ids = flatColumns.map((col) => col.id);
@@ -135,6 +143,7 @@
 </script>
 
 <div class="space-y-4">
+	<DataTableToolbar />
 	<div class="rounded-md border">
 		<Table.Root>
 			<Table.Header>
@@ -149,7 +158,11 @@
 									let:props
 								>
 									<Table.Head {...attrs}>
-										<Render of={cell.render()} />
+										{#if cell.id !== "select" && cell.id !== "actions"}
+											<DataTableColumnHeader {props} title={cell.id} />
+										{:else}
+											<Render of={cell.render()} />
+										{/if}
 									</Table.Head>
 								</Subscribe>
 							{/each}
@@ -157,6 +170,27 @@
 					</Subscribe>
 				{/each}
 			</Table.Header>
+			<Table.Body {...$tableBodyAttrs}>
+				{#each $pageRows as row (row.id)}
+					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+						<Table.Row {...rowAttrs}>
+							{#each row.cells as cell (cell.id)}
+								<Subscribe attrs={cell.attrs()} let:attrs>
+									<Table.Cell {...attrs}>
+										{#if cell.id === "task"}
+											<div class="w-[80px]">
+												<Render of={cell.render()} />
+											</div>
+										{:else}
+											<Render of={cell.render()} />
+										{/if}
+									</Table.Cell>
+								</Subscribe>
+							{/each}
+						</Table.Row>
+					</Subscribe>
+				{/each}
+			</Table.Body>
 		</Table.Root>
 	</div>
 </div>
