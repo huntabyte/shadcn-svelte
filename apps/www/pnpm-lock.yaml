@@ -11,8 +11,8 @@ patchedDependencies:
 
 dependencies:
   '@huntabyte/bits-ui':
-    specifier: ^0.0.35
-    version: 0.0.35(@sveltejs/kit@1.22.6)(svelte@4.2.0)
+    specifier: ^0.0.37
+    version: 0.0.37(@sveltejs/kit@1.22.6)(svelte@4.2.0)
   '@unovis/svelte':
     specifier: ^1.2.0
     version: 1.2.0(@unovis/ts@1.2.0)(svelte@4.2.0)
@@ -788,8 +788,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@huntabyte/bits-ui@0.0.35(@sveltejs/kit@1.22.6)(svelte@4.2.0):
-    resolution: {integrity: sha512-QcMIGBp+oTtsd284q2Mx8zTt2xWdtLku8aX9S5vaEr3Peu8ceZmw9g6Z8KpVvcj6fqeYbGCByXT3GDNmUh0miQ==}
+  /@huntabyte/bits-ui@0.0.37(@sveltejs/kit@1.22.6)(svelte@4.2.0):
+    resolution: {integrity: sha512-rp0hOLZfV/15aziRJm82pXu6n1e78TCtxaV/ihhx72Xng/NkjBtwrWGT/hbmZnqfqsflGH+OK/vCac0TidkRfQ==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:

@@ -21,6 +21,7 @@
 	class={cn(toggleVariants({ variant, size, className }))}
 	{...$$restProps}
 	on:click
+	on:keydown
 >
 	<slot />
 </TogglePrimitive.Root>
