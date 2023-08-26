@@ -60,8 +60,12 @@
 				>
 					<slot name="example">
 						{#await component}
-							<div class="flex items-center text-sm text-muted-foreground">
-								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+							<div
+								class="flex items-center text-sm text-muted-foreground"
+							>
+								<Icons.spinner
+									class="mr-2 h-4 w-4 animate-spin"
+								/>
 								Loading...
 							</div>
 						{:then Component}
