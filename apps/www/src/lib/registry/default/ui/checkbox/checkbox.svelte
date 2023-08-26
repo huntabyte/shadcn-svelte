@@ -18,7 +18,7 @@
 		className
 	)}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<CheckboxPrimitive.Indicator
 		class={cn("flex items-center justify-center text-current")}

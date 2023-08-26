@@ -17,7 +17,7 @@
 	)}
 	{value}
 	{...$$restProps}
-	on:m-click
+	on:click
 >
 	<slot />
 </TabsPrimitive.Trigger>

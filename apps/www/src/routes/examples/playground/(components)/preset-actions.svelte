@@ -19,12 +19,12 @@
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
-		<DropdownMenu.Item on:m-click={() => (open = true)}>
+		<DropdownMenu.Item on:click={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Item
-			on:m-click={() => (showDeleteDialog = true)}
+			on:click={() => (showDeleteDialog = true)}
 			class="text-red-600"
 		>
 			Delete preset

@@ -58,7 +58,7 @@
 	</Form.Field>
 	<Form.Field name="language" let:field {form}>
 		<Form.Label>Language</Form.Label>
-		<Select.Root onValueChange={field.updateValue}>
+		<Select.Root onSelectedChange={field.updateValue}>
 			<Select.Trigger
 				{...field.attrs}
 				class={cn(

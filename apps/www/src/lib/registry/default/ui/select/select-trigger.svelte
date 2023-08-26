@@ -4,6 +4,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = SelectPrimitive.TriggerProps;
+	type $$Events = SelectPrimitive.TriggerEvents;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
@@ -16,6 +17,8 @@
 	)}
 	{...$$restProps}
 	let:builder
+	on:click
+	on:keydown
 >
 	<slot {builder} />
 	<div>

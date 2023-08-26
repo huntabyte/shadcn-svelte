@@ -14,7 +14,7 @@ import { Index } from "./__registry__/index.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-/** @type {import('@huntabyte/mdsvex').MdsvexOptions} */
+/** @type {import('mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: [".md"],
 	layout: path.resolve(
