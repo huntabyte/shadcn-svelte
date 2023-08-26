@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Slider as SliderPrimitive } from "@huntabyte/bits-ui";
+	import type { Slider as SliderPrimitive } from "bits-ui";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 	import { Label } from "@/registry/new-york/ui/label";
 	import { Slider } from "@/registry/new-york/ui/slider";
@@ -34,9 +34,9 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm">
-			Controls randomness: lowering results in less random completions. As
-			the temperature approaches zero, the model will become deterministic
-			and repetitive.
+			Controls randomness: lowering results in less random completions. As the
+			temperature approaches zero, the model will become deterministic and
+			repetitive.
 		</HoverCard.Content>
 	</HoverCard.Root>
 </div>

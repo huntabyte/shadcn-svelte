@@ -3,7 +3,7 @@ title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/tabs
-bits: https://www.@huntabyte/bits-ui.com/docs/components/tabs
+bits: https://www.bits-ui.com/docs/components/tabs
 ---
 
 <script>
@@ -24,10 +24,10 @@ npx shadcn-svelte@latest add tabs
 
 <ManualInstall>
 
-1. Install `@huntabyte/bits-ui`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/bits-ui
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

@@ -4,7 +4,7 @@ import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
 
-const DEPENDENCIES = ["@huntabyte/bits-ui"];
+const DEPENDENCIES = ["bits-ui"];
 const REGISTRY_DEPENDENCY = "@/";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
@@ -56,8 +56,9 @@ async function crawlExample(rootPath: string) {
 		if (dirent.isFile()) {
 			const [name] = dirent.name.split(".svelte");
 			const file_path = join("example", dirent.name);
-			const { dependencies, registryDependencies } =
-				await getDependencies(join(rootPath, dirent.name));
+			const { dependencies, registryDependencies } = await getDependencies(
+				join(rootPath, dirent.name)
+			);
 
 			exampleRegistry.push({
 				name,
@@ -102,9 +103,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		if (dirent.name === "index.ts") continue;
 		const deps = await getDependencies(join(componentPath, dirent.name));
 		deps.dependencies.forEach((dep) => dependencies.add(dep));
-		deps.registryDependencies.forEach((dep) =>
-			registryDependencies.add(dep)
-		);
+		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
 	return {

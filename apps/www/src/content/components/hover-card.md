@@ -3,7 +3,7 @@ title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/hover-card
-bits: https://www.@huntabyte/bits-ui.com/docs/components/link-preview
+bits: https://www.bits-ui.com/docs/components/link-preview
 ---
 
 <script>
@@ -24,10 +24,10 @@ npx shadcn-svelte@latest add hover-card
 
 <ManualInstall>
 
-1. Install `@huntabyte/bits-ui`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/bits-ui
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

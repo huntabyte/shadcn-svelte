@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Slider as SliderPrimitive } from "@huntabyte/bits-ui";
+	import type { Slider as SliderPrimitive } from "bits-ui";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 	import { Slider } from "@/registry/new-york/ui/slider";
 	import { Label } from "@/registry/new-york/ui/label";
@@ -34,9 +34,9 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm">
-			The maximum number of tokens to generate. Requests can use up to
-			2,048 or 4,000 tokens, shared between prompt and completion. The
-			exact limit varies by model.
+			The maximum number of tokens to generate. Requests can use up to 2,048 or
+			4,000 tokens, shared between prompt and completion. The exact limit varies
+			by model.
 		</HoverCard.Content>
 	</HoverCard.Root>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertDialog as AlertDialogPrimitive } from "@huntabyte/bits-ui";
+	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
 	import * as AlertDialog from ".";
 	import { cn, flyAndScale } from "$lib/utils";
 

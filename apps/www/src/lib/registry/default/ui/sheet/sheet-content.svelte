@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Dialog as SheetPrimitive } from "@huntabyte/bits-ui";
+	import { Dialog as SheetPrimitive } from "bits-ui";
 	import {
 		SheetOverlay,
 		SheetPortal,

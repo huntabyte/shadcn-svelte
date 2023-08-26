@@ -4,7 +4,7 @@ description: An interactive component which expands/collapses a panel.
 component: true
 featured: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/collapsible
-bits: https://www.@huntabyte/bits-ui.com/docs/components/collapsible
+bits: https://www.bits-ui.com/docs/components/collapsible
 ---
 
 <script>

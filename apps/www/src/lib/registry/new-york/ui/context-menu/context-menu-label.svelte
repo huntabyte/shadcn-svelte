@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu as ContextMenuPrimitive } from "@huntabyte/bits-ui";
+	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 
 	type $$Props = ContextMenuPrimitive.LabelProps & {

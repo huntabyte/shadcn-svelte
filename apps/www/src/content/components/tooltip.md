@@ -3,7 +3,7 @@ title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/tooltip
-bits: https://www.@huntabyte/bits-ui.com/docs/components/tooltip
+bits: https://www.bits-ui.com/docs/components/tooltip
 ---
 
 <script>
@@ -24,10 +24,10 @@ npx shadcn-svelte@latest add tooltip
 
 <ManualInstall>
 
-1. Install `@huntabyte/bits-ui`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/bits-ui
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

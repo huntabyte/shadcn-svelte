@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Tooltip as TooltipPrimitive } from "@huntabyte/bits-ui";
+	import { Tooltip as TooltipPrimitive } from "bits-ui";
 	import { cn, flyAndScale } from "$lib/utils";
 
 	type $$Props = TooltipPrimitive.ContentProps;

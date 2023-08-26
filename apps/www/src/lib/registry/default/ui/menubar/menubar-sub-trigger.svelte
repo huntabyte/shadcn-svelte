@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Menubar as MenubarPrimitive } from "@huntabyte/bits-ui";
+	import { Menubar as MenubarPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
 	import { ChevronRight } from "lucide-svelte";
 

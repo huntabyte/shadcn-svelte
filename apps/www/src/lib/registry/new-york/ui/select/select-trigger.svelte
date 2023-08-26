@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select as SelectPrimitive } from "@huntabyte/bits-ui";
+	import { Select as SelectPrimitive } from "bits-ui";
 	import { CaretSort } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
 

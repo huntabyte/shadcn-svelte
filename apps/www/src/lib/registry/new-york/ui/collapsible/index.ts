@@ -1,4 +1,4 @@
-import { Collapsible as CollapsiblePrimitive } from "@huntabyte/bits-ui";
+import { Collapsible as CollapsiblePrimitive } from "bits-ui";
 import Content from "./collapsible-content.svelte";
 
 const Root = CollapsiblePrimitive.Root;

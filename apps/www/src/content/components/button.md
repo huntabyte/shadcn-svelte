@@ -4,7 +4,7 @@ description: Displays a button or a component that looks like a button.
 featured: true
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/button
-bits: https://www.@huntabyte/bits-ui.com/docs/components/button
+bits: https://www.bits-ui.com/docs/components/button
 ---
 
 <script>
@@ -25,10 +25,10 @@ npx shadcn-svelte@latest add button
 
 <ManualInstall>
 
-1. Install `@huntabyte/bits-ui`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/bits-ui
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.

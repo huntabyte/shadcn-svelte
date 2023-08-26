@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox as CheckboxPrimitive } from "@huntabyte/bits-ui";
+	import { Checkbox as CheckboxPrimitive } from "bits-ui";
 	import { Check, Minus } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 

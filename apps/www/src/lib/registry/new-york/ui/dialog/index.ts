@@ -1,4 +1,4 @@
-import { Dialog as DialogPrimitive } from "@huntabyte/bits-ui";
+import { Dialog as DialogPrimitive } from "bits-ui";
 
 const Root = DialogPrimitive.Root;
 const Trigger = DialogPrimitive.Trigger;

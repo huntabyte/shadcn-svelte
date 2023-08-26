@@ -3,7 +3,7 @@ title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
 source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/progress
-bits: https://www.@huntabyte/bits-ui.com/docs/components/progress
+bits: https://www.bits-ui.com/docs/components/progress
 ---
 
 <script>
@@ -24,10 +24,10 @@ npx shadcn-svelte@latest add progress
 
 <ManualInstall>
 
-1. Install `@huntabyte/bits-ui`:
+1. Install `bits-ui`:
 
 ```bash
-npm install @huntabyte/bits-ui
+npm install bits-ui
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
