@@ -677,7 +677,7 @@ Let's make the email column sortable.
 
 Let's enable the `addSortBy` plugin and import the icon we'll use to indicate the sort option for the column.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,13,34}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,13,34,41-45,50-54,70-74,82-86}
 <script lang="ts">
   import {
     createTable,
@@ -717,11 +717,21 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
   const columns = table.createColumns([
     table.column({
       accessor: "id",
-      header: "ID"
+      header: "ID",
+      plugins: {
+        sort: {
+          disable: true
+        }
+      }
     }),
     table.column({
       accessor: "status",
-      header: "Status"
+      header: "Status",
+      plugins: {
+        sort: {
+          disable: true
+        }
+      }
     }),
     table.column({
       accessor: "email",
@@ -736,6 +746,11 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
           currency: "USD"
         }).format(value);
         return formatted;
+      },
+      plugins: {
+        sort: {
+          disable: true
+        }
       }
     }),
     table.column({
@@ -743,6 +758,11 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       header: "",
       cell: (item) => {
         return createRender(DataTableActions, { id: item.id });
+      },
+      plugins: {
+        sort: {
+          disable: true
+        }
       }
     })
   ]);
@@ -811,7 +831,7 @@ Let's add a search input to filter emails in our table.
 
 We'll start by enabling the `addTableFilter` plugin and importing the `<Input />` component we'll use for the search input.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,50-53,59-63,79-83,91-95,103}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,54-56,66-68,89-91,112}
 <script lang="ts">
   import {
     createTable,
@@ -862,6 +882,9 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       accessor: "id",
       header: "ID",
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -871,6 +894,9 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       accessor: "status",
       header: "Status",
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -891,6 +917,9 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
         return formatted;
       },
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -903,8 +932,8 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
         return createRender(DataTableActions, { id: item.id });
       },
       plugins: {
-        filter: {
-          exclude: true
+        sort: {
+          disable: true
         }
       }
     })
@@ -959,7 +988,7 @@ Let's add the ability to control which columns are visible in our table.
 
 ### Enable `addHiddenColumns` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,44,101,106,108-109,111-113,115}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,44,115,120,122-123,125-127,129}
 <script lang="ts">
   import {
     createTable,
@@ -1011,6 +1040,9 @@ Let's add the ability to control which columns are visible in our table.
       accessor: "id",
       header: "ID",
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -1020,6 +1052,9 @@ Let's add the ability to control which columns are visible in our table.
       accessor: "status",
       header: "Status",
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -1040,6 +1075,9 @@ Let's add the ability to control which columns are visible in our table.
         return formatted;
       },
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -1050,6 +1088,11 @@ Let's add the ability to control which columns are visible in our table.
       header: "",
       cell: (item) => {
         return createRender(DataTableActions, { id: item.id });
+      }
+      plugins: {
+        sort: {
+          disable: true
+        },
       }
     })
   ]);
@@ -1146,7 +1189,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,71,77-90,142,148}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,119,125}
 <script lang="ts">
   import {
     createTable,
@@ -1183,31 +1226,8 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       amount: 316,
       status: "success",
       email: "ken99@yahoo.com"
-    },
-    {
-      id: "3u1reuv4",
-      amount: 242,
-      status: "success",
-      email: "Abe45@gmail.com"
-    },
-    {
-      id: "derv1ws0",
-      amount: 837,
-      status: "processing",
-      email: "Monserrat44@gmail.com"
-    },
-    {
-      id: "5kma53ae",
-      amount: 874,
-      status: "success",
-      email: "Silas22@gmail.com"
-    },
-    {
-      id: "bhqecj4p",
-      amount: 721,
-      status: "failed",
-      email: "carmella@hotmail.com"
     }
+    // ...
   ];
 
   const table = createTable(readable(data), {

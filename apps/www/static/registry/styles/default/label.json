@@ -11,7 +11,7 @@
     },
     {
       "name": "label.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</LabelPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\ttype $$Events = LabelPrimitive.Events;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:mousedown\n>\n\t<slot />\n</LabelPrimitive.Root>\n"
     }
   ],
   "type": "components:ui"

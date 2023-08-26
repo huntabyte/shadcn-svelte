@@ -17,7 +17,7 @@
     },
     {
       "name": "alert-dialog-content.svelte",
-      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport * as AlertDialog from \".\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AlertDialogPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed z-50 grid w-full max-w-lg scale-100 gap-4 border bg-background p-6 opacity-100 shadow-lg animate-in fade-in-90 slide-in-from-bottom-10 sm:rounded-lg sm:zoom-in-90 sm:slide-in-from-bottom-0 md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</AlertDialogPrimitive.Content>\n</AlertDialog.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport * as AlertDialog from \".\";\n\timport { cn, flyAndScale } from \"$lib/utils\";\n\n\ttype $$Props = AlertDialogPrimitive.ContentProps;\n\n\texport let transition: $$Props[\"transition\"] = flyAndScale;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = undefined;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\t{transition}\n\t\t{transitionConfig}\n\t\tclass={cn(\n\t\t\t\"fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</AlertDialogPrimitive.Content>\n</AlertDialog.Portal>\n"
     },
     {
       "name": "alert-dialog-description.svelte",
@@ -33,11 +33,11 @@
     },
     {
       "name": "alert-dialog-overlay.svelte",
-      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AlertDialogPrimitive.OverlayProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { fade } from \"svelte/transition\";\n\n\ttype $$Props = AlertDialogPrimitive.OverlayProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let transition: $$Props[\"transition\"] = fade;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = {\n\t\tduration: 150\n\t};\n\texport { className as class };\n</script>\n\n<AlertDialogPrimitive.Overlay\n\t{transition}\n\t{transitionConfig}\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm \",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
     },
     {
       "name": "alert-dialog-portal.svelte",
-      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\n\ttype $$Props = AlertDialogPrimitive.PortalProps;\n</script>\n\n<AlertDialogPrimitive.Portal {...$$restProps}>\n\t<div\n\t\tclass=\"fixed inset-0 z-50 flex items-end justify-center sm:items-center\"\n\t>\n\t\t<slot />\n\t</div>\n</AlertDialogPrimitive.Portal>\n"
+      "content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\n\ttype $$Props = AlertDialogPrimitive.PortalProps;\n</script>\n\n<AlertDialogPrimitive.Portal {...$$restProps}>\n\t<slot />\n</AlertDialogPrimitive.Portal>\n"
     },
     {
       "name": "alert-dialog-title.svelte",
