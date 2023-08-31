@@ -54,24 +54,52 @@ export const sheetVariants = tv({
 
 export const sheetTransitions = {
 	top: {
-		y: "-100%",
-		duration: 500,
-		opacity: 1
+		in: {
+			y: "-100%",
+			duration: 500,
+			opacity: 1
+		},
+		out: {
+			y: "-100%",
+			duration: 300,
+			opacity: 1
+		}
 	},
 	bottom: {
-		y: "100%",
-		duration: 500,
-		opacity: 1
+		in: {
+			y: "100%",
+			duration: 500,
+			opacity: 1
+		},
+		out: {
+			y: "100%",
+			duration: 300,
+			opacity: 1
+		}
 	},
 	left: {
-		x: "-100%",
-		duration: 500,
-		opacity: 1
+		in: {
+			x: "-100%",
+			duration: 500,
+			opacity: 1
+		},
+		out: {
+			x: "-100%",
+			duration: 300,
+			opacity: 1
+		}
 	},
 	right: {
-		x: "100%",
-		duration: 500,
-		opacity: 1
+		in: {
+			x: "100%",
+			duration: 500,
+			opacity: 1
+		},
+		out: {
+			x: "100%",
+			duration: 300,
+			opacity: 1
+		}
 	}
 };
 
