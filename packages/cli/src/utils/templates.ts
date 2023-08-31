@@ -144,7 +144,6 @@ export const flyAndScale = (
 };`;
 
 export const TAILWIND_CONFIG_WITH_VARIABLES = `import { fontFamily } from "tailwindcss/defaultTheme";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -204,14 +203,12 @@ const config = {
 			}
 		}
 	},
-	plugins: [tailwindcssAnimate]
 };
 
 export default config;
 `;
 
 export const TAILWIND_CONFIG = `import { fontFamily } from "tailwindcss/defaultTheme";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -236,7 +233,6 @@ const config = {
 			}
 		}
 	},
-	plugins: [tailwindcssAnimate]
 };
 
 export default config;
