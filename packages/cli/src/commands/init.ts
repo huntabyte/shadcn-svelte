@@ -26,7 +26,6 @@ import {
 import * as templates from "../utils/templates";
 
 const PROJECT_DEPENDENCIES = [
-	"tailwindcss-animate",
 	"tailwind-variants",
 	"clsx",
 	"tailwind-merge"
