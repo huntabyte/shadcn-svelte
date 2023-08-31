@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.1
+
+### Patch Changes
+
+- b791a75: - Remove `tailwindcss-animate` from dependencies
+
 ## 0.3.0
 
 ### Minor Changes
