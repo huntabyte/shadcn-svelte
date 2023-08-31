@@ -123,7 +123,7 @@ npx svelte-add@latest tailwindcss
 Add the following dependencies to your project:
 
 ```bash
-npm install tailwindcss-animate tailwind-variants clsx tailwind-merge
+npm install tailwind-variants clsx tailwind-merge
 ```
 
 ### Configure tailwind.config.js
@@ -132,7 +132,6 @@ This is what this project's `tailwind.config.js` file looks like:
 
 ```javascript title="tailwind.config.js"
 import { fontFamily } from "tailwindcss/defaultTheme";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {

@@ -61,8 +61,7 @@
 						</p>
 						<p>
 							The <span class="font-medium">Default</span> style has
-							larger inputs, uses lucide-react for icons and tailwindcss-animate
-							for animations.
+							larger inputs, uses lucide-react for icons.
 						</p>
 						<p>
 							The <span class="font-medium">New York</span> style ships

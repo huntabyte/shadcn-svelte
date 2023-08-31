@@ -56,7 +56,6 @@
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tailwindcss": "^3.3.3",
-		"tailwindcss-animate": "^1.0.6",
 		"tslib": "^2.4.1",
 		"tsx": "^3.12.7",
 		"typescript": "^5.1.6",
