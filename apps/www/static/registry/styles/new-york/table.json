@@ -17,7 +17,7 @@
     },
     {
       "name": "table-cell.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableCellElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<td\n\tclass={cn(\n\t\t\"p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</td>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLTdAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLTdAttributes;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<td\n\tclass={cn(\n\t\t\"p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</td>\n"
     },
     {
       "name": "table-footer.svelte",
@@ -25,7 +25,7 @@
     },
     {
       "name": "table-head.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLTableCellElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<th\n\tclass={cn(\n\t\t\"h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</th>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLThAttributes;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<th\n\tclass={cn(\n\t\t\"h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</th>\n"
     },
     {
       "name": "table-header.svelte",
