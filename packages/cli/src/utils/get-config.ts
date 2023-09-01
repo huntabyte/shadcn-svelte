@@ -25,8 +25,12 @@ export const rawConfigSchema = z
 			// cssVariables: z.boolean().default(true)
 		}),
 		aliases: z.object({
-			components: z.string(),
-			utils: z.string()
+			components: z
+				.string()
+				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+			utils: z
+				.string()
+				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
 		})
 	})
 	.strict();
