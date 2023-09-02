@@ -3,7 +3,7 @@
 	import { Label } from "@/registry/default/ui/label";
 </script>
 
-<div class="grid w-full max-w-sm items-center gap-1.5">
+<div class="flex flex-col w-full max-w-sm gap-1.5">
 	<Label for="email">Email</Label>
 	<Input type="email" id="email" placeholder="email" />
 </div>
