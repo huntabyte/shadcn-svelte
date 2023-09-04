@@ -251,3 +251,6 @@
 .super-debug--code .number {
 	@apply !text-[#FFF8];
 }
+.super-debug--code .boolean {
+	@apply !text-[#FFF8];
+}

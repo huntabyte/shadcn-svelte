@@ -16,11 +16,9 @@
 </script>
 
 <script lang="ts">
-	import { ChevronDown } from "radix-icons-svelte";
 	import * as Form from "@/registry/default/ui/form";
-	import { Button, buttonVariants } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/default/ui/button";
 	import * as RadioGroup from "@/registry/default/ui/radio-group";
-	import { cn } from "@/utils";
 	import Label from "@/registry/default/ui/label/label.svelte";
 	export let data: SuperValidated<AppearanceFormSchema>;
 </script>
@@ -37,18 +35,16 @@
 		<Form.Field {config} name="font">
 			<Form.Label>Font</Form.Label>
 			<div class="relative w-max">
-				<Form.Select
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[200px] appearance-none bg-transparent font-normal"
-					)}
-				>
+				<Form.Select class="w-[200px]">
 					<option value="inter">Inter</option>
 					<option value="manrope">Manrope</option>
 					<option value="system">System</option>
 				</Form.Select>
-				<ChevronDown class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
 			</div>
+			<Form.Description>
+				Set the font you want to use in the dashboard.
+			</Form.Description>
+			<Form.Validation />
 		</Form.Field>
 	</Form.Item>
 	<Form.Item>

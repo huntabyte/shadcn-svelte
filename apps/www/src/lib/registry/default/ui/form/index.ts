@@ -6,11 +6,13 @@ import Textarea from "./form-textarea.svelte";
 import Description from "./form-description.svelte";
 import Label from "./form-label.svelte";
 import Validation from "./form-validation.svelte";
+import Checkbox from "./form-checkbox.svelte";
+import Switch from "./form-switch.svelte";
+import Select from "./form-select.svelte";
 
 const Root = FormPrimitive.Root;
 const Field = FormPrimitive.Field;
-const Select = FormPrimitive.Select;
-const Radio = FormPrimitive.Radio;
+const NativeRadio = FormPrimitive.Radio;
 
 export type TextareaGetFormField = Omit<
 	ReturnType<typeof getFormField>,
@@ -29,7 +31,9 @@ export {
 	Label,
 	Validation,
 	Select,
-	Radio,
+	NativeRadio,
+	Checkbox,
+	Switch,
 	//
 	Root as Form,
 	Field as FormField,
@@ -40,5 +44,7 @@ export {
 	Label as FormLabel,
 	Validation as FormValidation,
 	Select as FormSelect,
-	Radio as FormRadio
+	NativeRadio as FormNativeRadio,
+	Checkbox as FormCheckbox,
+	Switch as FormSwitch
 };
