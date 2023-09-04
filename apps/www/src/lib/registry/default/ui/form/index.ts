@@ -14,6 +14,7 @@ import NativeSelect from "./form-native-select.svelte";
 import RadioGroup from "./form-radio-group.svelte";
 import Select from "./form-select.svelte";
 import SelectTrigger from "./form-select-trigger.svelte";
+import Button from "./form-button.svelte";
 
 const Root = FormPrimitive.Root;
 const Field = FormPrimitive.Field;
@@ -37,15 +38,16 @@ export {
 	Field,
 	Item,
 	Input,
-	Textarea,
-	Description,
 	Label,
+	Button,
+	Switch,
+	Select,
+	Checkbox,
+	Textarea,
 	Validation,
 	RadioGroup,
 	RadioItem,
-	Checkbox,
-	Switch,
-	Select,
+	Description,
 	SelectContent,
 	SelectLabel,
 	SelectGroup,
@@ -75,5 +77,6 @@ export {
 	SelectGroup as FormSelectGroup,
 	SelectItem as FormSelectItem,
 	SelectSeparator as FormSelectSeparator,
-	SelectTrigger as FormSelectTrigger
+	SelectTrigger as FormSelectTrigger,
+	Button as FormButton
 };

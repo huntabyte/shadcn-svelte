@@ -20,7 +20,6 @@
 <script lang="ts">
 	import * as Form from "@/registry/default/ui/form";
 	import { Button } from "@/registry/default/ui/button";
-	import * as Select from "@/registry/default/ui/select";
 	import type { SuperValidated } from "sveltekit-superforms";
 
 	export let data: SuperValidated<ProfileFormSchema>;
@@ -46,26 +45,22 @@
 		</Form.Field>
 	</Form.Item>
 	<Form.Item>
-		<Form.Field {config} name="email" let:attrs let:setValue>
-			{@const { name, value } = attrs.input}
+		<Form.Field {config} name="email">
 			<Form.Label>Email</Form.Label>
-			<Select.Root onSelectedChange={(v) => v && setValue(v.value)}>
-				<Select.Trigger {...attrs.input}>
-					<Select.Value placeholder="Select a verified email to display" />
-					<Select.Input {name} {value} />
-				</Select.Trigger>
-				<Select.Content>
-					<Select.Item value="m@example.com" label="m@example.com"
+			<Form.Select>
+				<Form.SelectTrigger placeholder="Select a verified email to display" />
+				<Form.SelectContent>
+					<Form.SelectItem value="m@example.com" label="m@example.com"
 						>m@example.com
-					</Select.Item>
-					<Select.Item value="m@google.com" label="m@google.com"
+					</Form.SelectItem>
+					<Form.SelectItem value="m@google.com" label="m@google.com"
 						>m@google.com
-					</Select.Item>
-					<Select.Item value="m@support.com" label="m@support.com"
+					</Form.SelectItem>
+					<Form.SelectItem value="m@support.com" label="m@support.com"
 						>m@support.com
-					</Select.Item>
-				</Select.Content>
-			</Select.Root>
+					</Form.SelectItem>
+				</Form.SelectContent>
+			</Form.Select>
 			<Form.Description>
 				You can manage verified email addresses in your <a
 					href="/examples/forms">email settings</a
