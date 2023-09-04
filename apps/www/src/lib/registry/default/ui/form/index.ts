@@ -1,4 +1,6 @@
 import { Form as FormPrimitive, getFormField } from "formsnap";
+import * as RadioGroupComp from "@/registry/default/ui/radio-group";
+import * as SelectComp from "@/registry/default/ui/select";
 import type { Writable } from "svelte/store";
 import Item from "./form-item.svelte";
 import Input from "./form-input.svelte";
@@ -8,11 +10,20 @@ import Label from "./form-label.svelte";
 import Validation from "./form-validation.svelte";
 import Checkbox from "./form-checkbox.svelte";
 import Switch from "./form-switch.svelte";
+import NativeSelect from "./form-native-select.svelte";
+import RadioGroup from "./form-radio-group.svelte";
 import Select from "./form-select.svelte";
+import SelectTrigger from "./form-select-trigger.svelte";
 
 const Root = FormPrimitive.Root;
 const Field = FormPrimitive.Field;
+const RadioItem = RadioGroupComp.Item;
 const NativeRadio = FormPrimitive.Radio;
+const SelectContent = SelectComp.Content;
+const SelectLabel = SelectComp.Label;
+const SelectGroup = SelectComp.Group;
+const SelectItem = SelectComp.Item;
+const SelectSeparator = SelectComp.Separator;
 
 export type TextareaGetFormField = Omit<
 	ReturnType<typeof getFormField>,
@@ -30,10 +41,19 @@ export {
 	Description,
 	Label,
 	Validation,
-	Select,
-	NativeRadio,
+	RadioGroup,
+	RadioItem,
 	Checkbox,
 	Switch,
+	Select,
+	SelectContent,
+	SelectLabel,
+	SelectGroup,
+	SelectItem,
+	SelectSeparator,
+	SelectTrigger,
+	NativeSelect,
+	NativeRadio,
 	//
 	Root as Form,
 	Field as FormField,
@@ -43,8 +63,17 @@ export {
 	Description as FormDescription,
 	Label as FormLabel,
 	Validation as FormValidation,
-	Select as FormSelect,
+	NativeSelect as FormNativeSelect,
 	NativeRadio as FormNativeRadio,
 	Checkbox as FormCheckbox,
-	Switch as FormSwitch
+	Switch as FormSwitch,
+	RadioGroup as FormRadioGroup,
+	RadioItem as FormRadioItem,
+	Select as FormSelect,
+	SelectContent as FormSelectContent,
+	SelectLabel as FormSelectLabel,
+	SelectGroup as FormSelectGroup,
+	SelectItem as FormSelectItem,
+	SelectSeparator as FormSelectSeparator,
+	SelectTrigger as FormSelectTrigger
 };

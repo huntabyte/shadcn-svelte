@@ -1,24 +1,20 @@
 <script lang="ts">
-	import { Form as FormPrimitive } from "formsnap";
-	import { buttonVariants } from "@/registry/default/ui/button";
-	import { cn } from "@/utils";
-	import { ChevronDown } from "lucide-svelte";
-	import type { HTMLSelectAttributes } from "svelte/elements";
+	import * as Select from "@/registry/default/ui/select";
+	import { getFormField } from "formsnap";
+	import type { Select as SelectPrimitive } from "bits-ui";
 
-	type $$Props = HTMLSelectAttributes;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	type $$Props = SelectPrimitive.Props;
+	const { setValue, name, value } = getFormField();
+	export let onSelectedChange: $$Props["onSelectedChange"];
 </script>
 
-<FormPrimitive.Select
-	class={cn(
-		buttonVariants({ variant: "outline" }),
-		"appearance-none bg-transparent font-normal",
-		className
-	)}
+<Select.Root
+	onSelectedChange={(v) => {
+		onSelectedChange?.(v);
+		setValue(v ? v.value : undefined);
+	}}
 	{...$$restProps}
 >
 	<slot />
-</FormPrimitive.Select>
-<ChevronDown class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
+	<input hidden {name} value={$value} />
+</Select.Root>

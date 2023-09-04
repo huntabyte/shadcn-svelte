@@ -3,15 +3,22 @@
 	import type { Switch as SwitchPrimitive } from "bits-ui";
 	import { Switch } from "@/registry/default/ui/switch";
 	type $$Props = SwitchPrimitive.Props;
+	type $$Events = SwitchPrimitive.Events;
+
+	export let onCheckedChange: $$Props["onCheckedChange"] = undefined;
 
 	const { name, setValue, attrStore, value } = getFormField();
-	const { name: nameAttr, value: valueAttr, ...rest } = $attrStore;
 </script>
 
 <Switch
-	{...rest}
+	{...$attrStore}
 	checked={typeof $value === "boolean" ? $value : false}
-	onCheckedChange={setValue}
+	onCheckedChange={(v) => {
+		onCheckedChange?.(v);
+		setValue(v);
+	}}
 	{...$$restProps}
+	on:click
+	on:keydown
 />
 <input hidden {name} value={$value} />

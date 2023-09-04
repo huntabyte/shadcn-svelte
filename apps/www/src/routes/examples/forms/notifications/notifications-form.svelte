@@ -16,9 +16,6 @@
 <script lang="ts">
 	import type { SuperValidated } from "sveltekit-superforms";
 	import * as Form from "@/registry/default/ui/form";
-	import { Switch } from "@/registry/default/ui/switch";
-	import * as RadioGroup from "@/registry/default/ui/radio-group";
-	import { Checkbox } from "@/registry/default/ui/checkbox";
 	import { Button } from "@/registry/default/ui/button";
 	import Label from "@/registry/default/ui/label/label.svelte";
 	export let data: SuperValidated<NotificationFormSchema>;
@@ -33,30 +30,24 @@
 	debug={true}
 >
 	<Form.Item>
-		<Form.Field {config} name="type" let:attrs let:setValue>
-			{@const { name, value } = attrs.input}
+		<Form.Field {config} name="type">
 			<Form.Label>Notify me about...</Form.Label>
-			<RadioGroup.Root
-				{...attrs.input}
-				onValueChange={setValue}
-				class="flex flex-col space-y-1"
-			>
-				<RadioGroup.Input {name} {value} />
+			<Form.RadioGroup class="flex flex-col space-y-1">
 				<div class="flex items-center space-x-3">
-					<RadioGroup.Item value="all" id="all" />
+					<Form.RadioItem value="all" id="all" />
 					<Label for="all" class="font-normal">All new messages</Label>
 				</div>
 				<div class="flex items-center space-x-3">
-					<RadioGroup.Item value="mentions" id="mentions" />
+					<Form.RadioItem value="mentions" id="mentions" />
 					<Label for="mentions" class="font-normal"
 						>Direct messages and mentions</Label
 					>
 				</div>
 				<div class="flex items-center space-x-3">
-					<RadioGroup.Item value="none" id="none" />
+					<Form.RadioItem value="none" id="none" />
 					<Label for="none" class="font-normal">Nothing</Label>
 				</div>
-			</RadioGroup.Root>
+			</Form.RadioGroup>
 		</Form.Field>
 	</Form.Item>
 	<div>

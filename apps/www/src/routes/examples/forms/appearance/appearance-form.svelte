@@ -18,7 +18,6 @@
 <script lang="ts">
 	import * as Form from "@/registry/default/ui/form";
 	import { Button } from "@/registry/default/ui/button";
-	import * as RadioGroup from "@/registry/default/ui/radio-group";
 	import Label from "@/registry/default/ui/label/label.svelte";
 	export let data: SuperValidated<AppearanceFormSchema>;
 </script>
@@ -35,11 +34,11 @@
 		<Form.Field {config} name="font">
 			<Form.Label>Font</Form.Label>
 			<div class="relative w-max">
-				<Form.Select class="w-[200px]">
+				<Form.NativeSelect class="w-[200px]">
 					<option value="inter">Inter</option>
 					<option value="manrope">Manrope</option>
 					<option value="system">System</option>
-				</Form.Select>
+				</Form.NativeSelect>
 			</div>
 			<Form.Description>
 				Set the font you want to use in the dashboard.
@@ -52,19 +51,15 @@
 			<Form.Label>Theme</Form.Label>
 			<Form.Description>Select the theme for the dashboard.</Form.Description>
 			<Form.Validation />
-			<RadioGroup.Root
-				onValueChange={(v) => setValue(v)}
-				{...attrs.input}
+			<Form.RadioGroup
 				class="grid max-w-md grid-cols-2 gap-8 pt-2"
 				orientation="horizontal"
 			>
-				{@const { name, value } = attrs.input}
-				<RadioGroup.Input {name} {value} />
 				<Label
 					for="light"
 					class="[&:has([data-state=checked])>div]:border-primary"
 				>
-					<RadioGroup.Item id="light" value="light" class="sr-only" />
+					<Form.RadioItem id="light" value="light" class="sr-only" />
 					<div
 						class="items-center rounded-md border-2 border-muted p-1 hover:border-accent"
 					>
@@ -93,7 +88,7 @@
 					for="dark"
 					class="[&:has([data-state=checked])>div]:border-primary"
 				>
-					<RadioGroup.Item id="dark" value="dark" class="sr-only" />
+					<Form.RadioItem id="dark" value="dark" class="sr-only" />
 					<div
 						class="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground"
 					>
@@ -118,7 +113,7 @@
 					</div>
 					<span class="block w-full p-2 text-center font-normal"> Dark </span>
 				</Label>
-			</RadioGroup.Root>
+			</Form.RadioGroup>
 		</Form.Field>
 	</Form.Item>
 	<Button type="submit">Update preferences</Button>
