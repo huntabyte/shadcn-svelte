@@ -72,6 +72,7 @@ async function crawlExample(rootPath: string) {
 		}
 
 		// ignoring examples with directories for now...
+
 		// if (dirent.isDirectory()) {
 		// 	const componentPath = resolve(rootPath, dirent.name);
 		// 	const ui = await buildUIRegistry(componentPath, dirent.name);
