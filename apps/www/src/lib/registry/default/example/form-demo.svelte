@@ -26,7 +26,9 @@
 		<Form.Item>
 			<Form.Label>Username</Form.Label>
 			<Form.Input />
-			<Form.Description>This is your public display name.</Form.Description>
+			<Form.Description
+				>This is your public display name.</Form.Description
+			>
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>

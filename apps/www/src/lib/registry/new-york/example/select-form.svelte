@@ -29,11 +29,19 @@
 		<Form.Item>
 			<Form.Label>Email</Form.Label>
 			<Form.Select>
-				<Form.SelectTrigger placeholder="Select a verified email to display" />
+				<Form.SelectTrigger
+					placeholder="Select a verified email to display"
+				/>
 				<Form.SelectContent>
-					<Form.SelectItem value="m@example.com">m@example.com</Form.SelectItem>
-					<Form.SelectItem value="m@google.com">m@google.com</Form.SelectItem>
-					<Form.SelectItem value="m@support.com">m@support.com</Form.SelectItem>
+					<Form.SelectItem value="m@example.com"
+						>m@example.com</Form.SelectItem
+					>
+					<Form.SelectItem value="m@google.com"
+						>m@google.com</Form.SelectItem
+					>
+					<Form.SelectItem value="m@support.com"
+						>m@support.com</Form.SelectItem
+					>
 				</Form.SelectContent>
 			</Form.Select>
 			<Form.Description>

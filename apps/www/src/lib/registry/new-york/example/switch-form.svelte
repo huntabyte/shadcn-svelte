@@ -32,7 +32,8 @@
 					<div class="space-y-0.5">
 						<Form.Label>Marketing emails</Form.Label>
 						<Form.Description>
-							Receive emails about new products, features, and more.
+							Receive emails about new products, features, and
+							more.
 						</Form.Description>
 					</div>
 					<Form.Switch />
