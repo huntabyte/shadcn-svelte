@@ -332,6 +332,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/select-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/select-demo.svelte"],
     },
+    "select-form": {
+      name: "select-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/select-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/select-form.svelte"],
+    },
     "separator-demo": {
       name: "separator-demo",
       type: "components:example",
@@ -373,6 +380,13 @@ export const Index = {
       registryDependencies: ["label","switch"],
       component: () => import("../src/lib/registry/default/example/switch-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/switch-demo.svelte"],
+    },
+    "switch-form": {
+      name: "switch-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/switch-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/switch-form.svelte"],
     },
     "table-demo": {
       name: "table-demo",
@@ -900,6 +914,13 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/select-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/select-demo.svelte"],
     },
+    "select-form": {
+      name: "select-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/select-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/select-form.svelte"],
+    },
     "separator-demo": {
       name: "separator-demo",
       type: "components:example",
@@ -941,6 +962,13 @@ export const Index = {
       registryDependencies: ["label","switch"],
       component: () => import("../src/lib/registry/new-york/example/switch-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/switch-demo.svelte"],
+    },
+    "switch-form": {
+      name: "switch-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/switch-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/switch-form.svelte"],
     },
     "table-demo": {
       name: "table-demo",
