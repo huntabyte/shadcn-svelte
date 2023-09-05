@@ -10,14 +10,13 @@
 </script>
 
 <script lang="ts">
+	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
-
 	// Since the labels used in each radio item don't represent the field
 	// we need to use a regular label component instead of Form.Label
 	import { Label } from "@/registry/new-york/ui/label";
 	import type { SuperValidated } from "sveltekit-superforms";
-
-	export let form: SuperValidated<FormSchema>;
+	export let form: SuperValidated<FormSchema> = $page.data.radioGroup;
 </script>
 
 <Form.Root

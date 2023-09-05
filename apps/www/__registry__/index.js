@@ -416,6 +416,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/textarea-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/textarea-disabled.svelte"],
     },
+    "textarea-form": {
+      name: "textarea-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/textarea-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/textarea-form.svelte"],
+    },
     "textarea-with-button": {
       name: "textarea-with-button",
       type: "components:example",
@@ -997,6 +1004,13 @@ export const Index = {
       registryDependencies: ["textarea"],
       component: () => import("../src/lib/registry/new-york/example/textarea-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/textarea-disabled.svelte"],
+    },
+    "textarea-form": {
+      name: "textarea-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/textarea-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/textarea-form.svelte"],
     },
     "textarea-with-button": {
       name: "textarea-with-button",

@@ -7,9 +7,10 @@
 </script>
 
 <script lang="ts">
+	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
 	import type { SuperValidated } from "sveltekit-superforms";
-	export let form: SuperValidated<FormSchema>;
+	export let form: SuperValidated<FormSchema> = $page.data.checkboxSingle;
 </script>
 
 <Form.Root
