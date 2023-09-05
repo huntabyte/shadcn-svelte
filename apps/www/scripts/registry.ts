@@ -5,6 +5,9 @@ import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
 
 const DEPENDENCIES = ["bits-ui", "formsnap"];
+const PEERS = new Map<string, string[]>([
+	["formsnap", ["zod", "sveltekit-superforms"]]
+]);
 const REGISTRY_DEPENDENCY = "@/";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
@@ -131,7 +134,10 @@ async function getDependencies(filename: string) {
 			if (node.type === "ImportDeclaration") {
 				const source = node.source.value as string;
 
-				if (DEPENDENCIES.includes(source)) dependencies.add(source);
+				if (DEPENDENCIES.includes(source)) {
+					dependencies.add(source);
+					PEERS.get(source)?.forEach((dep) => dependencies.add(dep));
+				}
 
 				if (source.startsWith(REGISTRY_DEPENDENCY)) {
 					const component = source.split("/").at(-1)!;
