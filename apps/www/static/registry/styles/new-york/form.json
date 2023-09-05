@@ -1,6 +1,8 @@
 {
   "name": "form",
-  "dependencies": [],
+  "dependencies": [
+    "formsnap"
+  ],
   "registryDependencies": [
     "button",
     "checkbox",
