@@ -4,8 +4,8 @@ import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
 
-const DEPENDENCIES = ["bits-ui", "formsnap"];
-const PEERS = new Map<string, string[]>([
+const DEPENDENCIES = new Map<string, string[]>([
+	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]]
 ]);
 const REGISTRY_DEPENDENCY = "@/";
@@ -134,9 +134,10 @@ async function getDependencies(filename: string) {
 			if (node.type === "ImportDeclaration") {
 				const source = node.source.value as string;
 
-				if (DEPENDENCIES.includes(source)) {
+				const peerDeps = DEPENDENCIES.get(source);
+				if (peerDeps !== undefined) {
 					dependencies.add(source);
-					PEERS.get(source)?.forEach((dep) => dependencies.add(dep));
+					peerDeps.forEach((dep) => dependencies.add(dep));
 				}
 
 				if (source.startsWith(REGISTRY_DEPENDENCY)) {
