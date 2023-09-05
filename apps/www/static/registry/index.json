@@ -197,7 +197,9 @@
   {
     "name": "form",
     "dependencies": [
-      "formsnap"
+      "formsnap",
+      "zod",
+      "sveltekit-superforms"
     ],
     "registryDependencies": [
       "button",
