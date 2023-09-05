@@ -14,10 +14,10 @@
 	<PageHeader.Root>
 		<a
 			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-			href="/docs/installation"
+			href="/docs/components/form"
 		>
-			🎉<Separator class="mx-2 h-4" orientation="vertical" /> New CLI, Styles,
-			Themes, & Components!
+			🎉<Separator class="mx-2 h-4" orientation="vertical" /> Form components,
+			now in preview!
 			<ChevronRight class="ml-1 h-4 w-4" />
 		</a>
 		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
