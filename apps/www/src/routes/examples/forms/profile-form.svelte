@@ -47,7 +47,9 @@
 		<Form.Field {config} name="email">
 			<Form.Label>Email</Form.Label>
 			<Form.Select>
-				<Form.SelectTrigger placeholder="Select a verified email to display" />
+				<Form.SelectTrigger
+					placeholder="Select a verified email to display"
+				/>
 				<Form.SelectContent>
 					<Form.SelectItem value="m@example.com" label="m@example.com"
 						>m@example.com
@@ -76,7 +78,8 @@
 				class="resize-none"
 			/>
 			<Form.Description>
-				You can <span>@mention</span> other users and organizations to link to them.
+				You can <span>@mention</span> other users and organizations to link
+				to them.
 			</Form.Description>
 			<Form.Validation />
 		</Form.Field>
