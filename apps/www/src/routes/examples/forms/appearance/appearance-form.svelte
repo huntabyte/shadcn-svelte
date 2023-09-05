@@ -16,9 +16,8 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/default/ui/form";
-	import { Button } from "@/registry/default/ui/button";
-	import Label from "@/registry/default/ui/label/label.svelte";
+	import * as Form from "@/registry/new-york/ui/form";
+	import Label from "@/registry/new-york/ui/label/label.svelte";
 	export let data: SuperValidated<AppearanceFormSchema>;
 </script>
 
@@ -47,7 +46,7 @@
 		</Form.Field>
 	</Form.Item>
 	<Form.Item>
-		<Form.Field {config} name="theme" let:attrs let:setValue>
+		<Form.Field {config} name="theme">
 			<Form.Label>Theme</Form.Label>
 			<Form.Description>Select the theme for the dashboard.</Form.Description>
 			<Form.Validation />
@@ -116,5 +115,5 @@
 			</Form.RadioGroup>
 		</Form.Field>
 	</Form.Item>
-	<Button type="submit">Update preferences</Button>
+	<Form.Button>Update preferences</Form.Button>
 </Form.Root>

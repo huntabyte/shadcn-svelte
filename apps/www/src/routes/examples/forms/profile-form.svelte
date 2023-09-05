@@ -18,8 +18,7 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/default/ui/form";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Form from "@/registry/new-york/ui/form";
 	import type { SuperValidated } from "sveltekit-superforms";
 
 	export let data: SuperValidated<ProfileFormSchema>;
@@ -92,5 +91,5 @@
 			<Form.Validation />
 		</Form.Field>
 	</Form.Item>
-	<Button type="submit">Update profile</Button>
+	<Form.Button>Update profile</Form.Button>
 </Form.Root>

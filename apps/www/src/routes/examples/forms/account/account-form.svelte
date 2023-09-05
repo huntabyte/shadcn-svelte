@@ -17,7 +17,9 @@
 
 	export const accountFormSchema = z.object({
 		name: z
-			.string()
+			.string({
+				required_error: "Required."
+			})
 			.min(2, "Name must be at least 2 characters.")
 			.max(30, "Name must not be longer than 30 characters"),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
@@ -29,9 +31,7 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/default/ui/form";
-	import * as Select from "@/registry/default/ui/select";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Form from "@/registry/new-york/ui/form";
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 
@@ -57,36 +57,30 @@
 		</Form.Field>
 	</Form.Item>
 	<Form.Item>
-		<Form.Field {config} name="language" let:attrs let:setValue>
-			{@const { value, name } = attrs.input}
+		<Form.Field {config} name="language" let:attrs>
+			{@const { value } = attrs.input}
 			<Form.Label>Language</Form.Label>
-			<Select.Root
-				onSelectedChange={(v) => v && setValue(v.value)}
-				selected={{ value, label: languages[value] }}
-			>
-				<Select.Trigger
-					{...attrs.input}
+			<Form.Select selected={{ value, label: languages[value] }}>
+				<Form.SelectTrigger
+					placeholder="Select language"
 					class={cn(
 						"w-[200px] justify-between",
 						!attrs.input.value && "text-muted-foreground"
 					)}
-				>
-					<Select.Value placeholder="Select language" />
-					<Select.Input {name} {value} />
-				</Select.Trigger>
-				<Select.Content>
+				/>
+				<Form.SelectContent class="h-52 overflow-y-auto">
 					{#each Object.entries(languages) as [value, lang]}
-						<Select.Item {value} label={lang}>
+						<Form.SelectItem {value}>
 							{lang}
-						</Select.Item>
+						</Form.SelectItem>
 					{/each}
-				</Select.Content>
-			</Select.Root>
+				</Form.SelectContent>
+			</Form.Select>
 			<Form.Description>
 				This is the language that will be used in the dashboard.
 			</Form.Description>
 			<Form.Validation />
 		</Form.Field>
 	</Form.Item>
-	<Button type="submit">Update account</Button>
+	<Form.Button>Update account</Form.Button>
 </Form.Root>

@@ -15,9 +15,8 @@
 
 <script lang="ts">
 	import type { SuperValidated } from "sveltekit-superforms";
-	import * as Form from "@/registry/default/ui/form";
-	import { Button } from "@/registry/default/ui/button";
-	import Label from "@/registry/default/ui/label/label.svelte";
+	import * as Form from "@/registry/new-york/ui/form";
+	import { Label } from "@/registry/new-york/ui/label";
 	export let data: SuperValidated<NotificationFormSchema>;
 </script>
 
@@ -120,5 +119,5 @@
 			</div>
 		</Form.Item>
 	</Form.Field>
-	<Button type="submit">Update notifications</Button>
+	<Form.Button>Update notifications</Form.Button>
 </Form.Root>
