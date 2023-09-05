@@ -53,3 +53,15 @@ npm install bits-ui
   </div>
 </RadioGroup.Root>
 ```
+
+## Examples
+
+### Form
+
+When using a radio group with a form, you'll want to use the `<Form.RadioGroup />` and `<Form.RadioItem />` components, which are wrappers around your existing radio group components that nicely handle the form state for you.
+
+<ComponentPreview name="radio-group-form">
+
+<div />
+
+</ComponentPreview>

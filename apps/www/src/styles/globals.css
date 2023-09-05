@@ -238,6 +238,10 @@
 	@apply !bg-transparent !text-[#FFF8];
 }
 
+.super-debug--code {
+	@apply !bg-transparent;
+}
+
 .super-debug--code .key {
 	@apply text-white !important;
 }

@@ -17,6 +17,9 @@
 	export { className as class };
 
 	$: component = Index[$config.style][name]?.component();
+
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+	export let form: any;
 </script>
 
 <div
@@ -60,16 +63,12 @@
 				>
 					<slot name="example">
 						{#await component}
-							<div
-								class="flex items-center text-sm text-muted-foreground"
-							>
-								<Icons.spinner
-									class="mr-2 h-4 w-4 animate-spin"
-								/>
+							<div class="flex items-center text-sm text-muted-foreground">
+								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 								Loading...
 							</div>
 						{:then Component}
-							<svelte:component this={Component} />
+							<svelte:component this={Component} {form} />
 						{:catch}
 							<p class="text-sm text-muted-foreground">
 								Component{" "}

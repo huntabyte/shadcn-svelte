@@ -17,6 +17,7 @@ export { default as TableOfContents } from "./table-of-contents.svelte";
 export { default as ThemeWrapper } from "./theme-wrapper.svelte";
 export { default as Tree } from "./tree.svelte";
 export { default as TailwindIndicator } from "./tailwind-indicator.svelte";
+export { default as ComponentPreviewManual } from "./component-preview-manual.svelte";
 
 export * from "./icons";
 export * from "./page-header";
@@ -25,3 +26,4 @@ export * from "./examples-nav";
 export * from "./dashboard";
 export * from "./light-switch";
 export * from "./theme-customizer";
+export * from "./forms";
