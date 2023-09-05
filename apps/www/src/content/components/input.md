@@ -47,8 +47,6 @@ npx shadcn-svelte@latest add input
 
 </ComponentPreview>
 
----
-
 ### Disabled
 
 <ComponentPreview name="input-disabled">
@@ -56,8 +54,6 @@ npx shadcn-svelte@latest add input
 <div />
 
 </ComponentPreview>
-
----
 
 ### With Label
 
@@ -67,8 +63,6 @@ npx shadcn-svelte@latest add input
 
 </ComponentPreview>
 
----
-
 ### With Text
 
 <ComponentPreview name="input-with-text">
@@ -76,8 +70,6 @@ npx shadcn-svelte@latest add input
 <div />
 
 </ComponentPreview>
-
----
 
 ### With Button
 
@@ -87,11 +79,19 @@ npx shadcn-svelte@latest add input
 
 </ComponentPreview>
 
----
-
 ### File
 
 <ComponentPreview name="input-file">
+
+<div />
+
+</ComponentPreview>
+
+### Form
+
+When using the input within a form, you'll want to use the `<Form.Input />` component instead. This is a wrapper around your existing `<Input />` component with some additional functionality for forms.
+
+<ComponentPreview name="form-demo">
 
 <div />
 

@@ -5,7 +5,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./textarea.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Textarea\n};\n"
+      "content": "import Root from \"./textarea.svelte\";\n\ntype FormTextareaEvent<T extends Event = Event> = T & {\n\tcurrentTarget: EventTarget & HTMLTextAreaElement;\n};\n\ntype TextareaEvents = {\n\tblur: FormTextareaEvent<FocusEvent>;\n\tchange: FormTextareaEvent<Event>;\n\tclick: FormTextareaEvent<MouseEvent>;\n\tfocus: FormTextareaEvent<FocusEvent>;\n\tkeydown: FormTextareaEvent<KeyboardEvent>;\n\tkeypress: FormTextareaEvent<KeyboardEvent>;\n\tkeyup: FormTextareaEvent<KeyboardEvent>;\n\tmouseover: FormTextareaEvent<MouseEvent>;\n\tmouseenter: FormTextareaEvent<MouseEvent>;\n\tmouseleave: FormTextareaEvent<MouseEvent>;\n\tpaste: FormTextareaEvent<ClipboardEvent>;\n\tinput: FormTextareaEvent<InputEvent>;\n};\n\nexport {\n\tRoot,\n\t//\n\tRoot as Textarea,\n\ttype TextareaEvents,\n\ttype FormTextareaEvent\n};\n"
     },
     {
       "name": "textarea.svelte",

@@ -4,7 +4,10 @@ import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
 
-const DEPENDENCIES = ["bits-ui"];
+const DEPENDENCIES = new Map<string, string[]>([
+	["bits-ui", []],
+	["formsnap", ["zod", "sveltekit-superforms"]]
+]);
 const REGISTRY_DEPENDENCY = "@/";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
@@ -69,6 +72,7 @@ async function crawlExample(rootPath: string) {
 		}
 
 		// ignoring examples with directories for now...
+
 		// if (dirent.isDirectory()) {
 		// 	const componentPath = resolve(rootPath, dirent.name);
 		// 	const ui = await buildUIRegistry(componentPath, dirent.name);
@@ -131,7 +135,11 @@ async function getDependencies(filename: string) {
 			if (node.type === "ImportDeclaration") {
 				const source = node.source.value as string;
 
-				if (DEPENDENCIES.includes(source)) dependencies.add(source);
+				const peerDeps = DEPENDENCIES.get(source);
+				if (peerDeps !== undefined) {
+					dependencies.add(source);
+					peerDeps.forEach((dep) => dependencies.add(dep));
+				}
 
 				if (source.startsWith(REGISTRY_DEPENDENCY)) {
 					const component = source.split("/").at(-1)!;

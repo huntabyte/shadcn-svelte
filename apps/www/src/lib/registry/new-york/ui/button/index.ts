@@ -38,14 +38,15 @@ type Props = ButtonPrimitive.Props & {
 	size?: Size;
 };
 
+type Events = ButtonPrimitive.Events;
+
 export {
 	Root,
-	Root as Button,
-	//
 	type Props,
-	type Props as ButtonProps,
+	type Events,
 	//
-	buttonVariants,
-	type Variant as ButtonVariant,
-	type Size as ButtonSize
+	Root as Button,
+	type Props as ButtonProps,
+	type Events as ButtonEvents,
+	buttonVariants
 };

@@ -164,6 +164,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/checkbox-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/checkbox-disabled.svelte"],
     },
+    "checkbox-form-single": {
+      name: "checkbox-form-single",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/checkbox-form-single.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/checkbox-form-single.svelte"],
+    },
     "checkbox-with-text": {
       name: "checkbox-with-text",
       type: "components:example",
@@ -219,6 +226,13 @@ export const Index = {
       registryDependencies: ["dropdown-menu","button"],
       component: () => import("../src/lib/registry/default/example/dropdown-menu-radio-group.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/dropdown-menu-radio-group.svelte"],
+    },
+    "form-demo": {
+      name: "form-demo",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/form-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/form-demo.svelte"],
     },
     "hover-card-demo": {
       name: "hover-card-demo",
@@ -304,12 +318,26 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/radio-group-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/radio-group-demo.svelte"],
     },
+    "radio-group-form": {
+      name: "radio-group-form",
+      type: "components:example",
+      registryDependencies: ["form","label"],
+      component: () => import("../src/lib/registry/default/example/radio-group-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/radio-group-form.svelte"],
+    },
     "select-demo": {
       name: "select-demo",
       type: "components:example",
       registryDependencies: ["select"],
       component: () => import("../src/lib/registry/default/example/select-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/select-demo.svelte"],
+    },
+    "select-form": {
+      name: "select-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/select-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/select-form.svelte"],
     },
     "separator-demo": {
       name: "separator-demo",
@@ -353,6 +381,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/switch-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/switch-demo.svelte"],
     },
+    "switch-form": {
+      name: "switch-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/switch-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/switch-form.svelte"],
+    },
     "table-demo": {
       name: "table-demo",
       type: "components:example",
@@ -380,6 +415,13 @@ export const Index = {
       registryDependencies: ["textarea"],
       component: () => import("../src/lib/registry/default/example/textarea-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/textarea-disabled.svelte"],
+    },
+    "textarea-form": {
+      name: "textarea-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/default/example/textarea-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/textarea-form.svelte"],
     },
     "textarea-with-button": {
       name: "textarea-with-button",
@@ -711,6 +753,13 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/checkbox-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/checkbox-disabled.svelte"],
     },
+    "checkbox-form-single": {
+      name: "checkbox-form-single",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/checkbox-form-single.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/checkbox-form-single.svelte"],
+    },
     "checkbox-with-text": {
       name: "checkbox-with-text",
       type: "components:example",
@@ -766,6 +815,13 @@ export const Index = {
       registryDependencies: ["dropdown-menu","button"],
       component: () => import("../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte"],
+    },
+    "form-demo": {
+      name: "form-demo",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/form-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/form-demo.svelte"],
     },
     "hover-card-demo": {
       name: "hover-card-demo",
@@ -851,12 +907,26 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/radio-group-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/radio-group-demo.svelte"],
     },
+    "radio-group-form": {
+      name: "radio-group-form",
+      type: "components:example",
+      registryDependencies: ["form","label"],
+      component: () => import("../src/lib/registry/new-york/example/radio-group-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/radio-group-form.svelte"],
+    },
     "select-demo": {
       name: "select-demo",
       type: "components:example",
       registryDependencies: ["select"],
       component: () => import("../src/lib/registry/new-york/example/select-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/select-demo.svelte"],
+    },
+    "select-form": {
+      name: "select-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/select-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/select-form.svelte"],
     },
     "separator-demo": {
       name: "separator-demo",
@@ -900,6 +970,13 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/switch-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/switch-demo.svelte"],
     },
+    "switch-form": {
+      name: "switch-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/switch-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/switch-form.svelte"],
+    },
     "table-demo": {
       name: "table-demo",
       type: "components:example",
@@ -927,6 +1004,13 @@ export const Index = {
       registryDependencies: ["textarea"],
       component: () => import("../src/lib/registry/new-york/example/textarea-disabled.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/textarea-disabled.svelte"],
+    },
+    "textarea-form": {
+      name: "textarea-form",
+      type: "components:example",
+      registryDependencies: ["form"],
+      component: () => import("../src/lib/registry/new-york/example/textarea-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/textarea-form.svelte"],
     },
     "textarea-with-button": {
       name: "textarea-with-button",

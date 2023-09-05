@@ -71,7 +71,7 @@
 			</div>
 		{/if}
 		<div class="mdsvex pt-8" id="mdsvex">
-			<svelte:component this={component} />
+			<svelte:component this={component} form={data.form} />
 		</div>
 		<!-- <Mdx code={doc.body.code} /> -->
 		<Separator class="my-4 md:my-6" />

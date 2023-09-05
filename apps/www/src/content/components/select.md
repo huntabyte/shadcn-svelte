@@ -52,3 +52,15 @@ npm install bits-ui
   </Select.Content>
 </Select.Root>
 ```
+
+## Examples
+
+### Form
+
+When using the select component in a form, you'll want to use the `<Form.Select/>` component, which is a wrapper around your existing `<Select/>` component that makes it seamlessly integrate with forms.
+
+<ComponentPreview name="select-form">
+
+<div />
+
+</ComponentPreview>
