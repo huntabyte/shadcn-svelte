@@ -29,7 +29,6 @@
 		"pub:beta": "cd packages/cli && pnpm pub:beta",
 		"pub:release": "cd packages/cli && pnpm pub:release"
 	},
-	"packageManager": "pnpm@8.5.1",
 	"engines": {
 		"pnpm": ">=8"
 	},
