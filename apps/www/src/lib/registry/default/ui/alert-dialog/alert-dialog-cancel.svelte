@@ -4,6 +4,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = AlertDialogPrimitive.CancelProps;
+	type $$Events = AlertDialogPrimitive.CancelEvents;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
@@ -16,6 +17,9 @@
 		className
 	)}
 	{...$$restProps}
+	on:click
+	on:keydown
+	let:builder
 >
-	<slot />
+	<slot {builder} />
 </AlertDialogPrimitive.Cancel>
