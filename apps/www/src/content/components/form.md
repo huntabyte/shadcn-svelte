@@ -21,7 +21,7 @@ In this guide, we will take a look at building forms with [formsnap](https://for
 
 ## Features
 
-The `Form` components offered by `shadcn-svelte` are wrappers around `formsnap` &`sveltekit-superforms` which provide a few things:
+The `Form` components offered by `shadcn-svelte` are wrappers around `formsnap` & `sveltekit-superforms` which provide a few things:
 
 - Composable components for building forms.
 - A `<Form.Field />` component for building controlled form fields.
@@ -86,7 +86,7 @@ export const formSchema = z.object({
 export type FormSchema = typeof formSchema;
 ```
 
-### Return the form the route's load function
+### Return the form from the route's load function
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers
 import type { PageServerLoad } from "./$types";
