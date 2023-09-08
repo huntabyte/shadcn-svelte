@@ -204,7 +204,6 @@
     "registryDependencies": [
       "button",
       "checkbox",
-      "utils",
       "input",
       "label",
       "radio-group",

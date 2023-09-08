@@ -8,7 +8,6 @@
   "registryDependencies": [
     "button",
     "checkbox",
-    "utils",
     "input",
     "label",
     "radio-group",
@@ -27,7 +26,7 @@
     },
     {
       "name": "form-description.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"@/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Description>\n"
+      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Description>\n"
     },
     {
       "name": "form-input.svelte",
@@ -35,15 +34,15 @@
     },
     {
       "name": "form-item.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"@/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"space-y-2\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"space-y-2\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "form-label.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"@/utils\";\n\timport { Label } from \"@/registry/default/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label\n\tfor={ids.input}\n\tclass={cn($errors && \"text-destructive\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</Label>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/default/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label\n\tfor={ids.input}\n\tclass={cn($errors && \"text-destructive\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</Label>\n"
     },
     {
       "name": "form-native-select.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/default/ui/button\";\n\timport { cn } from \"@/utils\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLSelectAttributes;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Select\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"appearance-none bg-transparent font-normal\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Select>\n<ChevronDown class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n"
+      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLSelectAttributes;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Select\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"appearance-none bg-transparent font-normal\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Select>\n<ChevronDown class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n"
     },
     {
       "name": "form-radio-group.svelte",
@@ -67,7 +66,7 @@
     },
     {
       "name": "form-validation.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"@/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Validation\n\tclass={cn(\"text-sm font-medium text-destructive\", className)}\n\t{...$$restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Validation\n\tclass={cn(\"text-sm font-medium text-destructive\", className)}\n\t{...$$restProps}\n/>\n"
     },
     {
       "name": "index.ts",
