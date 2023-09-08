@@ -3,37 +3,41 @@ name: 🐛 Bug Report
 description: Report an issue or bug
 labels: ["type: bug"]
 body:
-    - type: textarea
-      attributes:
-          label: Current Behavior
-          description: A description of what you're experiencing.
-      validations:
-          required: true
-    - type: textarea
-      attributes:
-          label: Expected Behavior
-          description: A description of what you're experiencing.
-      validations:
-          required: true
-    - type: textarea
-      attributes:
-          label: Steps To Reproduce
-          description: Describe how to reproduce the issue.
-          placeholder: |
-              1. Using this component...
-              2. With these properties...
-              3. Click '...'
-              4. See error...
-      validations:
-          required: true
-    - type: input
-      id: reproduction
-      attributes:
-          label: Link to Reproduction / Stackblitz
-    - type: textarea
-      attributes:
-          label: More Information
-          description: |
-              Provide relevant links or additionl information.
-      validations:
-          required: false
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting a bug report, ensure you're running the latest version of the dependencies (`bits-ui` & `formsnap`/`sveltekit-superforms` if you're using forms). If you have a question, please ask it in the [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions) or [Discord](https://hbyt.us/discord), not here.
+  - type: textarea
+    attributes:
+      label: Current Behavior
+      description: A description of what you're experiencing.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A description of what you're experiencing.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Describe how to reproduce the issue.
+      placeholder: |
+        1. Using this component...
+        2. With these properties...
+        3. Click '...'
+        4. See error...
+    validations:
+      required: true
+  - type: input
+    id: reproduction
+    attributes:
+      label: Link to Reproduction / Stackblitz
+  - type: textarea
+    attributes:
+      label: More Information
+      description: |
+        Provide relevant links or additionl information.
+    validations:
+      required: false
