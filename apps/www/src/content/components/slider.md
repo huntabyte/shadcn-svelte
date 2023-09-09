@@ -41,5 +41,5 @@ npm install bits-ui
   import { Slider } from "$lib/components/ui/slider";
 </script>
 
-<Slider value={33} max={100} step={1} />
+<Slider value={[33]} max={100} step={1} />
 ```
