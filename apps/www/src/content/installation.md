@@ -89,8 +89,7 @@ const config = {
   kit: {
     // ... other config
     alias: {
-      $lib: "./src/lib",
-      "$lib/*": "./src/lib/*"
+      $lib: "./src/lib"
     }
   }
 };
