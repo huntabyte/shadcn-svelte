@@ -61,7 +61,7 @@
 						</p>
 						<p>
 							The <span class="font-medium">Default</span> style has
-							larger inputs, uses lucide-react for icons.
+							larger inputs, uses lucide-svelte for icons.
 						</p>
 						<p>
 							The <span class="font-medium">New York</span> style ships
