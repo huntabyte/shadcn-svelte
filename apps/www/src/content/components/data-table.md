@@ -535,10 +535,10 @@ Now that we've defined our actions component, let's update our `actions` column 
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: (item) => item,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({value}) => {
+        return createRender(DataTableActions, { id: value.id });
       }
     })
   ]);
