@@ -537,7 +537,7 @@ Now that we've defined our actions component, let's update our `actions` column 
     table.column({
       accessor: (item) => item,
       header: "",
-      cell: ({value}) => {
+      cell: ({ value }) => {
         return createRender(DataTableActions, { id: value.id });
       }
     })
