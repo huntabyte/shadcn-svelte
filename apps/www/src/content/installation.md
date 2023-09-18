@@ -189,8 +189,7 @@ const config = {
         sans: ["Inter", ...fontFamily.sans]
       }
     }
-  },
-  plugins: [tailwindcssAnimate]
+  }
 };
 
 export default config;
