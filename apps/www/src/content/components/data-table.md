@@ -1241,8 +1241,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
   });
 
   const columns = table.createColumns([
-    table.column({
-      accessor: "id",
+    table.display({
       header: (_, { pluginStates }) => {
         const { allPageRowsSelected } = pluginStates.select;
         return createRender(DataTableCheckbox, {
@@ -1250,9 +1249,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         });
       },
       cell: ({ row }, { pluginStates }) => {
-        const { getRowState } = pluginStates.select;
-        const { isSelected } = getRowState(row);
-
+        const { isSelected } = pluginStates.select.getRowState(row);
         return createRender(DataTableCheckbox, {
           checked: isSelected
         });
