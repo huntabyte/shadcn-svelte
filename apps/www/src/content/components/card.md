@@ -50,20 +50,20 @@ npx shadcn-svelte@latest add card
 
 ### Modify the heading level
 
-By default, the `<CardTitle>` component renders an `<h3>` element. You can change this by passing a `tag` prop to the component.
+By default, the `<Card.Title>` component renders an `<h3>` element. You can change this by passing a `tag` prop to the component.
 
 For example:
 
 ```svelte
-<CardTitle tag="h2">This will render an H2</CardTitle>
+<Card.Title tag="h2">This will render an H2</Card.Title>
 ```
 
 ```svelte
-<CardTitle tag="h5">This will render an H5</CardTitle>
+<Card.Title tag="h5">This will render an H5</Card.Title>
 ```
 
 ```svelte
-<CardTitle tag="p">This will render a P tag</CardTitle>
+<Card.Title tag="p">This will render a P tag</Card.Title>
 ```
 
 ## Examples
