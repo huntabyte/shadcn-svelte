@@ -2,8 +2,9 @@
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { DotsHorizontal } from "radix-icons-svelte";
-
-	export let id: string;
+	import type { Payment } from "./data-table.svelte";
+	import type { Readable } from "svelte/store";
+	export let payment: Readable<Payment>;
 </script>
 
 <DropdownMenu.Root>
@@ -11,7 +12,8 @@
 		<Button
 			variant="ghost"
 			builders={[builder]}
-			class="w-8 h-8 p- relative"
+			size="icon"
+			class="relative w-8 h-8 p-0"
 		>
 			<span class="sr-only">Open menu</span>
 			<DotsHorizontal class="w-4 h-4" />
@@ -21,7 +23,7 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
 			<DropdownMenu.Item
-				on:click={() => navigator.clipboard.writeText(id)}
+				on:click={() => navigator.clipboard.writeText($payment.id)}
 			>
 				Copy payment ID
 			</DropdownMenu.Item>

@@ -1,3 +1,12 @@
+<script lang="ts" context="module">
+	export type Payment = {
+		id: string;
+		amount: number;
+		status: "Pending" | "Processing" | "Success" | "Failed";
+		email: string;
+	};
+</script>
+
 <script lang="ts">
 	import {
 		createTable,
@@ -12,7 +21,7 @@
 		addSelectedRows,
 		addHiddenColumns
 	} from "svelte-headless-table/plugins";
-	import { readable } from "svelte/store";
+	import { derived, readable } from "svelte/store";
 	import * as Table from "@/registry/new-york/ui/table";
 	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
@@ -21,13 +30,6 @@
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
-
-	type Payment = {
-		id: string;
-		amount: number;
-		status: "Pending" | "Processing" | "Success" | "Failed";
-		email: string;
-	};
 
 	const data: Payment[] = [
 		{
@@ -73,18 +75,16 @@
 	});
 
 	const columns = table.createColumns([
-		table.column({
+		table.display({
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected
 				});
 			},
-			accessor: "id",
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
-
 				return createRender(DataTableCheckbox, {
 					checked: isSelected
 				});
@@ -123,11 +123,13 @@
 				}
 			}
 		}),
-		table.column({
-			header: "Actions",
-			accessor: ({ id }) => id,
-			cell: (item) => {
-				return createRender(Actions, { id: item.value });
+		table.display({
+			header: "",
+			cell: ({ row }, { data }) => {
+				const payment = derived(data, ($data) => $data[Number(row.id)]);
+				return createRender(Actions, {
+					payment
+				});
 			},
 			plugins: {
 				sort: {

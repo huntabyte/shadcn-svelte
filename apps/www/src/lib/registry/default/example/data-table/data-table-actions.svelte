@@ -3,7 +3,9 @@
 	import { Button } from "@/registry/default/ui/button";
 	import { MoreHorizontal } from "lucide-svelte";
 
-	export let id: string;
+	import type { Readable } from "svelte/store";
+	import type { Payment } from "../data-table-demo.svelte";
+	export let payment: Readable<Payment>;
 </script>
 
 <DropdownMenu.Root>
@@ -22,7 +24,7 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
 			<DropdownMenu.Item
-				on:click={() => navigator.clipboard.writeText(id)}
+				on:click={() => navigator.clipboard.writeText($payment.id)}
 			>
 				Copy payment ID
 			</DropdownMenu.Item>
