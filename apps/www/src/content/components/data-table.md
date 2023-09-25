@@ -68,7 +68,7 @@ type Payment = {
   email: string;
 };
 
-export const payments: Payment[] = [
+export const data: Payment[] = [
   {
     id: "728ed52f",
     amount: 100,
@@ -114,14 +114,16 @@ Let's start by building a basic table.
 Before we can initialize a table, we need to get our data. You can retrieve your data from anywhere, but for this example we'll use a `payments` array.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts">
-  type Payment = {
+<script lang="ts" context="module">
+  export type Payment = {
     id: string;
     amount: number;
     status: "pending" | "processing" | "success" | "failed";
     email: string;
   };
+</script>
 
+<script lang="ts">
   const data: Payment[] = [
     {
       id: "m5gr84i9",
@@ -138,17 +140,10 @@ Before we can initialize a table, we need to get our data. You can retrieve your
 
 Next, we'll initialize a new table using `svelte-headless-table`.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,22}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,15}
 <script lang="ts">
   import { createTable } from "svelte-headless-table";
   import { readable } from "svelte/store";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -168,17 +163,10 @@ Next, we'll initialize a new table using `svelte-headless-table`.
 
 Now that we have a table, we can define our columns.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {24-45}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {17-34}
 <script lang="ts">
   import { createTable } from "svelte-headless-table";
   import { readable } from "svelte/store";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -208,10 +196,6 @@ Now that we have a table, we can define our columns.
     table.column({
       accessor: "amount",
       header: "Amount"
-    }),
-    table.column({
-      accessor: ({ email }) => email,
-      header: ""
     })
   ]);
 </script>
@@ -223,18 +207,11 @@ The last column is where we'll render a menu of actions for each row.
 
 Finally, we'll create a view model which we'll use to build our table.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2,4,48-49,52-90}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {2,4,37-38,41-74}
 <script lang="ts">
   import { createTable, Render, Subscribe } from "svelte-headless-table";
   import { readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -264,10 +241,6 @@ Finally, we'll create a view model which we'll use to build our table.
     table.column({
       accessor: "amount",
       header: "Amount"
-    }),
-    table.column({
-      accessor: ({ email }) => email,
-      header: ""
     })
   ]);
 
@@ -361,10 +334,6 @@ const columns = table.createColumns([
       }).format(value);
       return formatted;
     }
-  }),
-  table.column({
-    accessor: ({ email }) => email,
-    header: ""
   })
 ]);
 ```
@@ -438,15 +407,16 @@ Let's now add row actions to our table. We'll use a `<DropdownMenu />` and `<But
 
 ### Create actions component
 
-We'll start by creating a new component called `data-table-actions.svelte` which will contain our actions menu. It's going to receive an `id` prop, which we'll use to identify and perform specific actions on the row.
+We'll start by creating a new component called `data-table-actions.svelte` which will contain our actions menu. It's going to receive a `payment` prop, which we'll use to identify and perform specific actions on the row.
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import { Button } from "$lib/components/ui/button";
   import { MoreHorizontal } from "lucide-svelte";
-
-  export let id: string;
+  import type { Payment } from "./data-table.svelte";
+  import type { Readable } from "svelte/store";
+  export let payment: Readable<Payment>;
 </script>
 
 <DropdownMenu.Root>
@@ -464,7 +434,9 @@ We'll start by creating a new component called `data-table-actions.svelte` which
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label>Actions</DropdownMenu.Label>
-      <DropdownMenu.Item on:m-click={() => navigator.clipboard.writeText(id)}>
+      <DropdownMenu.Item
+        on:click={() => navigator.clipboard.writeText($payment.id)}
+      >
         Copy payment ID
       </DropdownMenu.Item>
     </DropdownMenu.Group>
@@ -479,7 +451,7 @@ We'll start by creating a new component called `data-table-actions.svelte` which
 
 Now that we've defined our actions component, let's update our `actions` column definition to use it.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {6,10,58-60}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {6,8,10,48-56}
 <script lang="ts">
   import {
     createTable,
@@ -487,16 +459,9 @@ Now that we've defined our actions component, let's update our `actions` column 
     Subscribe,
     createRender
   } from "svelte-headless-table";
-  import { readable } from "svelte/store";
+  import { derived, readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -534,11 +499,13 @@ Now that we've defined our actions component, let's update our `actions` column 
         return formatted;
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
       }
     })
   ]);
@@ -548,7 +515,7 @@ Now that we've defined our actions component, let's update our `actions` column 
 </script>
 ```
 
-We're just passing the `id` to our actions component, but you could pass whatever information you need to perform actions on the row. In this example, we could use the `id` to make a DELETE request to our API to delete the payment.
+We're just passing the `payemnt` to our actions component, but you could pass whatever information you need to perform actions on the row. In this example, we could use the `payment` to make a DELETE request to our API to delete the payment.
 
 </Steps>
 
@@ -560,7 +527,7 @@ Next, we'll add pagination to our table
 
 ### Enable the `addPagination` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,31-33,12,68,71}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,24-26,12,63,66}
 <script lang="ts">
   import {
     createTable,
@@ -569,17 +536,10 @@ Next, we'll add pagination to our table
     createRender
   } from "svelte-headless-table";
   import { addPagination } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
+  import { derived, readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -619,11 +579,13 @@ Next, we'll add pagination to our table
         return formatted;
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
       }
     })
   ]);
@@ -677,7 +639,7 @@ Let's make the email column sortable.
 
 Let's enable the `addSortBy` plugin and import the icon we'll use to indicate the sort option for the column.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,13,34,41-45,50-54,70-74,82-86}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,13,27,34-38,43-47,63-67,77-81}
 <script lang="ts">
   import {
     createTable,
@@ -686,18 +648,11 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
     createRender
   } from "svelte-headless-table";
   import { addPagination, addSortBy } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
+  import { derived, readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
   import { ArrowUpDown } from "lucide-svelte";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -753,11 +708,13 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
         }
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
       },
       plugins: {
         sort: {
@@ -770,7 +727,7 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { hasNextPage, hasPreviewPage, pageIndex } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
@@ -831,7 +788,7 @@ Let's add a search input to filter emails in our table.
 
 We'll start by enabling the `addTableFilter` plugin and importing the `<Input />` component we'll use for the search input.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,54-56,66-68,89-91,112}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,33-36,47-49,59-61,82-84,107}
 <script lang="ts">
   import {
     createTable,
@@ -844,19 +801,12 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
     addSortBy,
     addTableFilter
   } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
+  import { derived, readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
   import { ArrowUpDown } from "lucide-svelte";
   import { Input } from "$lib/components/ui/input";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -865,12 +815,12 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       status: "success",
       email: "ken99@yahoo.com"
     }
-    // ...
+    //...
   ];
 
   const table = createTable(readable(data), {
     page: addPagination(),
-    sort: addSortBy(),
+    sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
       fn: ({ filterValue, value }) =>
         value.toLowerCase().includes(filterValue.toLowerCase())
@@ -925,11 +875,13 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
         }
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
       },
       plugins: {
         sort: {
@@ -942,7 +894,7 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
 </script>
 ```
@@ -988,7 +940,7 @@ Let's add the ability to control which columns are visible in our table.
 
 ### Enable `addHiddenColumns` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,44,115,120,122-123,125-127,129}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,39,112,117,119-120,122-124,126}
 <script lang="ts">
   import {
     createTable,
@@ -1002,7 +954,7 @@ Let's add the ability to control which columns are visible in our table.
     addTableFilter,
     addHiddenColumns
   } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
+  import { derived, readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
@@ -1010,12 +962,6 @@ Let's add the ability to control which columns are visible in our table.
   import { Input } from "$lib/components/ui/input";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
   const data: Payment[] = [
     {
       id: "m5gr84i9",
@@ -1023,14 +969,15 @@ Let's add the ability to control which columns are visible in our table.
       status: "success",
       email: "ken99@yahoo.com"
     }
-    // ...
+    //...
   ];
 
   const table = createTable(readable(data), {
     page: addPagination(),
     sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
-      fn: ({ filterValue, value }) => value.includes(filterValue)
+      fn: ({ filterValue, value }) =>
+        value.toLowerCase().includes(filterValue.toLowerCase())
     }),
     hide: addHiddenColumns()
   });
@@ -1083,16 +1030,18 @@ Let's add the ability to control which columns are visible in our table.
         }
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
-      }
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
+      },
       plugins: {
         sort: {
           disable: true
-        },
+        }
       }
     })
   ]);
@@ -1106,7 +1055,7 @@ Let's add the ability to control which columns are visible in our table.
     flatColumns
   } = table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
   const { hiddenColumnIds } = pluginStates.hide;
 
@@ -1189,7 +1138,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,119,125}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,42,47-59,128,134}
 <script lang="ts">
   import {
     createTable,
@@ -1204,21 +1153,14 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     addHiddenColumns,
     addSelectedRows
   } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
-  import * as Table from "@/registry/new-york/ui/table";
+  import { derived, readable } from "svelte/store";
+  import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "@/registry/new-york/ui/button";
+  import { Button } from "$lib/components/ui/button";
   import { ArrowUpDown, ChevronDown } from "lucide-svelte";
-  import { Input } from "@/registry/new-york/ui/input";
-  import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+  import { Input } from "$lib/components/ui/input";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import DataTableCheckbox from "./data-table-checkbox.svelte";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
 
   const data: Payment[] = [
     {
@@ -1227,22 +1169,22 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       status: "success",
       email: "ken99@yahoo.com"
     }
-    // ...
+    //...
   ];
 
   const table = createTable(readable(data), {
     page: addPagination(),
     sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
-      fn: ({ filterValue, value }) => value.includes(filterValue)
+      fn: ({ filterValue, value }) =>
+        value.toLowerCase().includes(filterValue.toLowerCase())
     }),
     hide: addHiddenColumns(),
     select: addSelectedRows()
   });
 
   const columns = table.createColumns([
-    table.column({
-      accessor: "id",
+    table.display({
       header: (_, { pluginStates }) => {
         const { allPageRowsSelected } = pluginStates.select;
         return createRender(DataTableCheckbox, {
@@ -1258,6 +1200,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         });
       },
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -1267,6 +1212,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       accessor: "status",
       header: "Status",
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
@@ -1287,16 +1235,26 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         return formatted;
       },
       plugins: {
+        sort: {
+          disable: true
+        },
         filter: {
           exclude: true
         }
       }
     }),
-    table.column({
-      accessor: ({ email }) => email,
+    table.display({
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ row }, { data }) => {
+        const payment = derived(data, ($data) => $data[Number(row.id)]);
+        return createRender(DataTableActions, {
+          payment
+        });
+      },
+      plugins: {
+        sort: {
+          disable: true
+        }
       }
     })
   ]);
@@ -1311,7 +1269,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     rows
   } = table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
   const { hiddenColumnIds } = pluginStates.hide;
   const { selectedDataIds } = pluginStates.select;
