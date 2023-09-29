@@ -47,7 +47,7 @@ async function crawlExample(rootPath: string) {
 	const type = "components:example";
 
 	const dir = await readdir(rootPath, {
-		recursive: true,
+		// recursive: true, // ignoring examples with directories for now...
 		withFileTypes: true
 	});
 
@@ -56,7 +56,7 @@ async function crawlExample(rootPath: string) {
 	for (const dirent of dir) {
 		if (dirent.name === "index.ts") continue;
 
-		if (dirent.isFile()) {
+		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
 			const file_path = join("example", dirent.name);
 			const { dependencies, registryDependencies } =
