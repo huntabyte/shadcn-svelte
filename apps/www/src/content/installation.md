@@ -131,6 +131,7 @@ This is what this project's `tailwind.config.js` file looks like:
 
 ```javascript title="tailwind.config.js"
 import { fontFamily } from "tailwindcss/defaultTheme";
+import colors from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -187,7 +188,8 @@ const config = {
       },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans]
-      }
+      },
+      brand: colors.lime
     }
   }
 };
