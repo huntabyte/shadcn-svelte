@@ -39,6 +39,12 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.26.1"
+		"@changesets/cli": "^2.26.1",
+		"mdsvex": "0.10.6"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"mdsvex@0.10.6": "./patches/mdsvex@0.10.6.patch"
+		}
 	}
 }
