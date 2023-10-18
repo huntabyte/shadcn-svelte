@@ -41,10 +41,5 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.26.1",
 		"mdsvex": "0.10.6"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"mdsvex@0.10.6": "./apps/www/patches/mdsvex@0.10.6.patch"
-		}
 	}
 }

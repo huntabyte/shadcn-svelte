@@ -4,18 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  mdsvex@0.10.6:
-    hash: 5fktxa7rcgmqj2wc4xhmk3osl4
-    path: ./apps/www/patches/mdsvex@0.10.6.patch
-
 devDependencies:
   '@changesets/cli':
     specifier: ^2.26.1
     version: 2.26.1
   mdsvex:
     specifier: 0.10.6
-    version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@3.59.2)
+    version: 0.10.6(svelte@3.59.2)
 
 packages:
 
@@ -1111,7 +1106,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /mdsvex@0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@3.59.2):
+  /mdsvex@0.10.6(svelte@3.59.2):
     resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
     peerDependencies:
       svelte: 3.x
@@ -1122,7 +1117,6 @@ packages:
       svelte: 3.59.2
       vfile-message: 2.0.4
     dev: true
-    patched: true
 
   /meow@6.1.1:
     resolution: {integrity: sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==}
