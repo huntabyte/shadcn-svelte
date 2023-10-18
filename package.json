@@ -44,7 +44,7 @@
 	},
 	"pnpm": {
 		"patchedDependencies": {
-			"mdsvex@0.10.6": "./patches/mdsvex@0.10.6.patch"
+			"mdsvex@0.10.6": "./apps/www/patches/mdsvex@0.10.6.patch"
 		}
 	}
 }
