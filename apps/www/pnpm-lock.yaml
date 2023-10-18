@@ -7,7 +7,7 @@ settings:
 patchedDependencies:
   mdsvex@0.10.6:
     hash: 5fktxa7rcgmqj2wc4xhmk3osl4
-    path: ./patches/mdsvex@0.10.6.patch
+    path: patches/mdsvex@0.10.6.patch
 
 dependencies:
   '@unovis/svelte':
