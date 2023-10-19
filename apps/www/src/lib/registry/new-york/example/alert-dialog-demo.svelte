@@ -1,8 +1,6 @@
 <script lang="ts">
 	import * as AlertDialog from "@/registry/new-york/ui/alert-dialog";
 	import { Button } from "@/registry/new-york/ui/button";
-
-	let open = false;
 </script>
 
 <AlertDialog.Root>
@@ -13,8 +11,8 @@
 		<AlertDialog.Header>
 			<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
 			<AlertDialog.Description>
-				This action cannot be undone. This will permanently delete your
-				account and remove your data from our servers.
+				This action cannot be undone. This will permanently delete your account
+				and remove your data from our servers.
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
