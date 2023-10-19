@@ -17,8 +17,8 @@ dependencies:
     specifier: ^1.2.1
     version: 1.2.1
   bits-ui:
-    specifier: ^0.5.6
-    version: 0.5.6(svelte@4.2.0)
+    specifier: ^0.6.1
+    version: 0.6.1(svelte@4.2.0)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -29,8 +29,8 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   formsnap:
-    specifier: ^0.0.8
-    version: 0.0.8(svelte@4.2.0)(sveltekit-superforms@1.6.1)(zod@3.22.2)
+    specifier: ^0.2.0
+    version: 0.2.0(svelte@4.2.0)(sveltekit-superforms@1.6.1)(zod@3.22.2)
   lucide-svelte:
     specifier: ^0.268.0
     version: 0.268.0(svelte@4.2.0)
@@ -886,8 +886,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/svelte@0.41.2(svelte@4.2.0):
-    resolution: {integrity: sha512-B1cNv2kZpu+0aySYk0mWk1xyQ3qgBPEaA5D2/K+iQHC2kVhsFkAShylF57kkHEzBdIuD2SDILwS4l14jMVPQ6w==}
+  /@melt-ui/svelte@0.55.2(svelte@4.2.0):
+    resolution: {integrity: sha512-P1sfmoLKxT886NOqO5fZGIhy9VWH/XEuIbOjTkmD4+Lzy4dOzCRwqawgo9tJwqnV2Kg1zsnMe/+Eke4y+Cpi/w==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1778,12 +1778,12 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.5.6(svelte@4.2.0):
-    resolution: {integrity: sha512-qBhozVmS/Gxgtcg3isll74/N9SVDVQQjAknHe3Lh4w1h40oQgx1saOWQjoR6+6FTOLcEv5OohSVfGyob0nLd/A==}
+  /bits-ui@0.6.1(svelte@4.2.0):
+    resolution: {integrity: sha512-vgNmnM07fA7ElZE8pSSfFsmVAf7t1GqccwnfZIzy97gFC5sxorHuNxqlr7zUzTeEK8b+Cf/GcICP4Mu796s98g==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.41.2(svelte@4.2.0)
+      '@melt-ui/svelte': 0.55.2(svelte@4.2.0)
       nanoid: 4.0.2
       svelte: 4.2.0
     dev: false
@@ -2739,11 +2739,11 @@ packages:
       tabbable: 6.2.0
     dev: false
 
-  /formsnap@0.0.8(svelte@4.2.0)(sveltekit-superforms@1.6.1)(zod@3.22.2):
-    resolution: {integrity: sha512-KDwTNtObq/JsQwpz0mbK8GYZQdVWBDuLqm06BCd70+N5A3nav6eha2nLlQG3vO7u+w/BApgEROLUrb1cr6j0JQ==}
+  /formsnap@0.2.0(svelte@4.2.0)(sveltekit-superforms@1.6.1)(zod@3.22.2):
+    resolution: {integrity: sha512-/V6HQTdRCNrDDCvSJVkBl/co0v8D0DkQoAdQCPKZaRagYie1S267BVrpPXmXq2cSj0MH6IvQWojLcTpkEfB9Uw==}
     peerDependencies:
       svelte: ^4.0.0
-      sveltekit-superforms: ^1.6.1
+      sveltekit-superforms: ^1.7.1
       zod: ^3.22.2
     dependencies:
       svelte: 4.2.0
