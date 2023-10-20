@@ -62,7 +62,7 @@
 							>Communication emails</Form.Label
 						>
 						<Form.Description>
-							Receive emails about your accoutn activity.
+							Receive emails about your account activity.
 						</Form.Description>
 					</div>
 					<Form.Switch />
