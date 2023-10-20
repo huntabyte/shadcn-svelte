@@ -70,7 +70,9 @@ export function setInitialClassState() {
 	// Conditions
 	const condLocalStorageUserPrefs =
 		localStorage.getItem("modeUserPrefers") === "false";
-	const condLocalStorageUserPrefsExists = !("modeUserPrefers" in localStorage);
+	const condLocalStorageUserPrefsExists = !(
+		"modeUserPrefers" in localStorage
+	);
 	const condMatchMedia = window.matchMedia(
 		"(prefers-color-scheme: dark)"
 	).matches;
