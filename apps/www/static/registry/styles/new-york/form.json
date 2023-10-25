@@ -54,7 +54,7 @@
     },
     {
       "name": "form-select.svelte",
-      "content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/new-york/ui/select\";\n\timport { getFormField } from \"formsnap\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\tconst { setValue, name, value } = getFormField();\n\texport let onSelectedChange: $$Props[\"onSelectedChange\"];\n</script>\n\n<Select.Root\n\tonSelectedChange={(v) => {\n\t\tonSelectedChange?.(v);\n\t\tsetValue(v ? v.value : undefined);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</Select.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/new-york/ui/select\";\n\timport { getFormField } from \"formsnap\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\tconst { setValue, name, value } = getFormField();\n\texport let onSelectedChange: $$Props[\"onSelectedChange\"] = undefined;\n</script>\n\n<Select.Root\n\tonSelectedChange={(v) => {\n\t\tonSelectedChange?.(v);\n\t\tsetValue(v ? v.value : undefined);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</Select.Root>\n"
     },
     {
       "name": "form-switch.svelte",
