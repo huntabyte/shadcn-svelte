@@ -22,7 +22,6 @@
 	import DataTableRowActions from "./data-table-row-actions.svelte";
 	import DataTablePriorityCell from "./data-table-priority-cell.svelte";
 	import DataTableColumnHeader from "./data-table-column-header.svelte";
-	import { Cell } from "@/registry/default/ui/table";
 	import DataTableToolbar from "./data-table-toolbar.svelte";
 	import DataTablePagination from "./data-table-pagination.svelte";
 
@@ -34,7 +33,9 @@
 			toggleOrder: ["asc", "desc"]
 		}),
 		page: addPagination(),
-		filter: addTableFilter(),
+		filter: addTableFilter({
+			fn: ({ filterValue, value }) => value.includes(filterValue)
+		}),
 		hide: addHiddenColumns()
 	});
 
@@ -139,7 +140,11 @@
 </script>
 
 <div class="space-y-4">
-	<DataTableToolbar hideState={pluginStates.hide} {flatColumns} />
+	<DataTableToolbar
+		filterState={pluginStates.filter}
+		hideState={pluginStates.hide}
+		{flatColumns}
+	/>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>

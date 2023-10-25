@@ -7,9 +7,14 @@
 	import type { FlatColumn } from "svelte-headless-table/lib/columns";
 	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { Task } from "../(data)/schemas";
+	import type { TableFilterState } from "svelte-headless-table/lib/plugins/addTableFilter";
+
 	// TODO: Is this the right types??
 	export let hideState: HiddenColumnsState;
 	export let flatColumns: FlatColumn<Task, AnyPlugins, any>[];
+	export let filterState: TableFilterState<any>;
+
+	const { filterValue } = filterState;
 
 	const { hiddenColumnIds } = hideState;
 
@@ -29,6 +34,8 @@
 		<Input
 			placeholder="Filter tasks..."
 			class="h-8 w-[150px] lg:w-[250px]"
+			type="text"
+			bind:value={$filterValue}
 		/>
 	</div>
 	<DropdownMenu.Root>
