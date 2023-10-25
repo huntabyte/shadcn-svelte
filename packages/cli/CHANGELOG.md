@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.3
+
+### Patch Changes
+
+- e218143: Update file overwrite warning to include the css file
+
 ## 0.3.2
 
 ### Patch Changes
