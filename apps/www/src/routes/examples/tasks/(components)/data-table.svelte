@@ -107,7 +107,7 @@
 		table.column({
 			accessor: "priority",
 			id: "priority",
-			header: () => "Priority",
+			header: "Priority",
 			cell: ({ value }) => {
 				return createRender(DataTablePriorityCell, {
 					value
@@ -137,7 +137,6 @@
 		pageRows,
 		tableAttrs,
 		tableBodyAttrs,
-		flatColumns,
 		pluginStates,
 		rows
 	} = tableModel;
@@ -149,22 +148,14 @@
 
 	const { hiddenColumnIds } = pluginStates.hide;
 
-	const ids = flatColumns.map((col) => col.id);
-	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
-
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => !hide)
-		.map(([id]) => id);
-
+	/** TODO: Fix type error Maby their is a better way to do this?? */
 	const updatePageSize = (selected) => {
-		$pageSize = selected.value;
+		pageSize.set(selected.value);
 	};
-
-	const hidableCols = ["title", "status", "priority", "actions"];
 </script>
 
 <div class="space-y-4">
-	<DataTableToolbar />
+	<DataTableToolbar {hiddenColumnIds} {tableModel} />
 	<div class="rounded-md border">
 		<Table.Root>
 			<Table.Header>
@@ -226,8 +217,7 @@
 			<div class="flex items-center space-x-2">
 				<p class="text-sm font-medium">Rows per page</p>
 				<Select.Root
-					onSelectedChange={/** TODO: Fix type error Maby their is a better way to do this?? */
-					(selected) => updatePageSize(selected)}
+					onSelectedChange={(selected) => updatePageSize(selected)}
 					selected={{ value: 10, label: "10" }}
 				>
 					<Select.Trigger class="w-[180px]">
