@@ -57,7 +57,7 @@ export const init = new Command()
 					type: "confirm",
 					name: "proceed",
 					message:
-						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts]. Proceed?",
+						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.postcss file. Proceed?",
 					initial: true
 				}
 			]);
