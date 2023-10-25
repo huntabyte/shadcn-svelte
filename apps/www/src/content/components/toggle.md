@@ -48,34 +48,48 @@ npm install bits-ui
 
 ### Default
 
-<ComponentPreview name="toggle-demo" />
+<ComponentPreview name="toggle-demo">
 
----
+<div />
+
+</ComponentPreview>
 
 ### Outline
 
-<ComponentPreview name="toggle-outline" />
+<ComponentPreview name="toggle-outline">
 
----
+<div />
+
+</ComponentPreview>
 
 ### With Text
 
-<ComponentPreview name="toggle-with-text" />
+<ComponentPreview name="toggle-with-text">
 
----
+<div />
+
+</ComponentPreview>
 
 ### Small
 
-<ComponentPreview name="toggle-sm" />
+<ComponentPreview name="toggle-sm">
 
----
+<div />
+
+</ComponentPreview>
 
 ### Large
 
-<ComponentPreview name="toggle-lg" />
+<ComponentPreview name="toggle-lg">
 
----
+<div />
+
+</ComponentPreview>
 
 ### Disabled
 
-<ComponentPreview name="toggle-disabled" />
+<ComponentPreview name="toggle-disabled">
+
+<div />
+
+</ComponentPreview>

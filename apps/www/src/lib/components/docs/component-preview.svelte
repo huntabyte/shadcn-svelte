@@ -17,6 +17,9 @@
 	export { className as class };
 
 	$: component = Index[$config.style][name]?.component();
+
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+	export let form: any;
 </script>
 
 <div
@@ -69,7 +72,7 @@
 								Loading...
 							</div>
 						{:then Component}
-							<svelte:component this={Component} />
+							<svelte:component this={Component} {form} />
 						{:catch}
 							<p class="text-sm text-muted-foreground">
 								Component{" "}

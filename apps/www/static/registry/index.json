@@ -195,6 +195,41 @@
     "type": "components:ui"
   },
   {
+    "name": "form",
+    "dependencies": [
+      "formsnap",
+      "zod",
+      "sveltekit-superforms"
+    ],
+    "registryDependencies": [
+      "button",
+      "checkbox",
+      "input",
+      "label",
+      "radio-group",
+      "select",
+      "switch",
+      "textarea"
+    ],
+    "files": [
+      "ui/form/form-button.svelte",
+      "ui/form/form-checkbox.svelte",
+      "ui/form/form-description.svelte",
+      "ui/form/form-input.svelte",
+      "ui/form/form-item.svelte",
+      "ui/form/form-label.svelte",
+      "ui/form/form-native-select.svelte",
+      "ui/form/form-radio-group.svelte",
+      "ui/form/form-select-trigger.svelte",
+      "ui/form/form-select.svelte",
+      "ui/form/form-switch.svelte",
+      "ui/form/form-textarea.svelte",
+      "ui/form/form-validation.svelte",
+      "ui/form/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "hover-card",
     "dependencies": [
       "bits-ui"

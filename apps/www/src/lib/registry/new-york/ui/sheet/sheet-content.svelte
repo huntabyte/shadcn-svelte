@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
-	import { SheetOverlay, SheetPortal, sheetVariants, type Side } from ".";
+	import {
+		SheetOverlay,
+		SheetPortal,
+		sheetVariants,
+		sheetTransitions,
+		type Side
+	} from ".";
 	import { Cross2 } from "radix-icons-svelte";
 	import { cn } from "$lib/utils";
+	import { fly } from "svelte/transition";
 
 	type $$Props = SheetPrimitive.ContentProps & {
 		side?: Side;
@@ -11,11 +18,21 @@
 	let className: $$Props["class"] = undefined;
 	export let side: $$Props["side"] = "right";
 	export { className as class };
+	export let inTransition: $$Props["inTransition"] = fly;
+	export let inTransitionConfig: $$Props["inTransitionConfig"] =
+		sheetTransitions[side ? side : "right"]["in"];
+	export let outTransition: $$Props["outTransition"] = fly;
+	export let outTransitionConfig: $$Props["outTransitionConfig"] =
+		sheetTransitions[side ? side : "right"]["out"];
 </script>
 
 <SheetPortal>
 	<SheetOverlay />
 	<SheetPrimitive.Content
+		{inTransition}
+		{inTransitionConfig}
+		{outTransition}
+		{outTransitionConfig}
 		class={cn(sheetVariants({ side }), className)}
 		{...$$restProps}
 	>

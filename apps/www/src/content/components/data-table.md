@@ -2,7 +2,7 @@
 title: Data Table
 description: Powerful table and datagrids built using Svelte Headless Table.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/examples/data-table-demo.svelte
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/example/data-table-demo.svelte
 ---
 
 <script>
@@ -464,7 +464,7 @@ We'll start by creating a new component called `data-table-actions.svelte` which
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label>Actions</DropdownMenu.Label>
-      <DropdownMenu.Item on:m-click={() => navigator.clipboard.writeText(id)}>
+      <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
         Copy payment ID
       </DropdownMenu.Item>
     </DropdownMenu.Group>

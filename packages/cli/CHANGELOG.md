@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 0.3.2
+
+### Patch Changes
+
+- 47b7008: - Strip unicode characters from CLI input
+
+## 0.3.1
+
+### Patch Changes
+
+- b791a75: - Remove `tailwindcss-animate` from dependencies
+
 ## 0.3.0
 
 ### Minor Changes

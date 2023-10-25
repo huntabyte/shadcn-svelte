@@ -64,7 +64,9 @@ export function setModeCurrent(value: boolean) {
 
 /** Set the visible light/dark mode on page load. */
 export function setInitialClassState() {
-	const elemHtmlClasses = document.documentElement.classList;
+	const htmlEl = document.documentElement;
+
+	const htmlElClasses = htmlEl.classList;
 	// Conditions
 	const condLocalStorageUserPrefs =
 		localStorage.getItem("modeUserPrefers") === "false";
@@ -79,9 +81,11 @@ export function setInitialClassState() {
 		condLocalStorageUserPrefs ||
 		(condLocalStorageUserPrefsExists && condMatchMedia)
 	) {
-		elemHtmlClasses.add("dark");
+		htmlElClasses.add("dark");
+		htmlEl.style.colorScheme = "dark";
 	} else {
-		elemHtmlClasses.remove("dark");
+		htmlElClasses.remove("dark");
+		htmlEl.style.colorScheme = "light";
 	}
 }
 
@@ -91,11 +95,17 @@ export function setInitialClassState() {
 export function autoModeWatcher(): void {
 	const mql = window.matchMedia("(prefers-color-scheme: light)");
 	function setMode(value: boolean) {
-		const elemHtmlClasses = document.documentElement.classList;
+		const htmlEl = document.documentElement;
+		const htmlElClasses = htmlEl.classList;
 		const classDark = `dark`;
-		value === true
-			? elemHtmlClasses.remove(classDark)
-			: elemHtmlClasses.add(classDark);
+
+		if (value === true) {
+			htmlElClasses.remove(classDark);
+			htmlEl.style.colorScheme = "light";
+		} else {
+			htmlElClasses.add(classDark);
+			htmlEl.style.colorScheme = "dark";
+		}
 	}
 	setMode(mql.matches);
 	mql.onchange = () => {

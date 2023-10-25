@@ -20,6 +20,7 @@
 			{#each examples as example, index (index)}
 				<a
 					href={example.href}
+					data-sveltekit-noscroll
 					class={cn(
 						"flex items-center px-4",
 						$page.url.pathname.startsWith(example.href)

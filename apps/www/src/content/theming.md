@@ -34,7 +34,7 @@ Given the following CSS variables:
 --primary-foreground: 210 40% 98%;
 ```
 
-The `background` color of the following component will be `hsl(var(--primary))` and the `foreground` color will be `hsl(var(--primary-foreground))`.
+The `background` color of the following component will be `hsl(var(--primary) / <alpha-value>)` and the `foreground` color will be `hsl(var(--primary-foreground) / <alpha-value>)`.
 
 ```svelte
 <div class="bg-primary text-primary-foreground">Hello</div>

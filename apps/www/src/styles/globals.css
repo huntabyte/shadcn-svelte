@@ -229,3 +229,32 @@
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-2;
 }
+
+.super-debug {
+	@apply bg-zinc-950 dark:bg-zinc-900 text-[#FFF8] !important;
+}
+
+.super-debug--pre {
+	@apply !bg-transparent !text-[#FFF8];
+}
+
+.super-debug--code {
+	@apply !bg-transparent;
+}
+
+.super-debug--code .key {
+	@apply text-white !important;
+}
+
+.super-debug--code .undefined {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .string {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .number {
+	@apply !text-[#FFF8];
+}
+.super-debug--code .boolean {
+	@apply !text-[#FFF8];
+}
