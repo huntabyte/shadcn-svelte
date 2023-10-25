@@ -1,27 +1,21 @@
 <script lang="ts">
-	import { Cross2 } from "radix-icons-svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Input } from "@/registry/new-york/ui/input";
-	import { priorities, statuses } from "../(data)/data";
 	import { MixerHorizontal } from "radix-icons-svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import type { TableViewModel } from "svelte-headless-table/lib/createViewModel";
+	import type { HiddenColumnsState } from "svelte-headless-table/lib/plugins/addHiddenColumns";
+	import type { FlatColumn } from "svelte-headless-table/lib/columns";
+	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
+	import type { Task } from "../(data)/schemas";
+	// TODO: Is this the right types??
+	export let hideState: HiddenColumnsState;
+	export let flatColumns: FlatColumn<Task, AnyPlugins, any>[];
 
-	export let hiddenColumnIds;
+	const { hiddenColumnIds } = hideState;
 
-	export let tableModel: TableViewModel<{
-		id: string;
-		title: string;
-		status: string;
-		priority: string;
-		label: string;
-	}>;
+	const ids = flatColumns.map((col: { id: any }) => col.id);
 
-	const { flatColumns } = tableModel;
-
-	const ids = flatColumns.map((col) => col.id);
-
-	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
+	let hideForId = Object.fromEntries(ids.map((id: any) => [id, true]));
 
 	$: $hiddenColumnIds = Object.entries(hideForId)
 		.filter(([, hide]) => !hide)
@@ -37,7 +31,6 @@
 			class="h-8 w-[150px] lg:w-[250px]"
 		/>
 	</div>
-
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
