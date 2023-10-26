@@ -1,75 +1,27 @@
-<!-- 
-Derived from SkeletonUI:  https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/utilities/LightSwitch/LightSwitch.svelte
- -->
-
 <script lang="ts">
-	import { Moon, Sun } from "lucide-svelte";
-	import { onMount } from "svelte";
-	import { buttonVariants } from "@/registry/new-york/ui/button";
-	import { cn } from "$lib/utils";
-	import {
-		getModeOsPrefers,
-		modeCurrent,
-		setModeCurrent,
-		setModeUserPrefers
-	} from "./light-switch";
+	import { Sun, Moon } from "radix-icons-svelte";
+	import { Button } from "@/registry/default/ui/button";
 
-	type OnKeyDownEvent = KeyboardEvent & {
-		currentTarget: EventTarget & HTMLDivElement;
-	};
-
-	function onToggleHandler(): void {
-		$modeCurrent = !$modeCurrent;
-		setModeUserPrefers($modeCurrent);
-		setModeCurrent($modeCurrent);
-	}
-
-	// A11y Input Handlers
-	function onKeyDown(event: OnKeyDownEvent): void {
-		// Enter/Space triggers selection event
-		if (["Enter", "Space"].includes(event.code)) {
-			event.preventDefault();
-			event.currentTarget.click();
-		}
-	}
-
-	// Lifecycle
-	onMount(() => {
-		// Sync lightswitch with the theme
-		if (!("modeCurrent" in localStorage)) {
-			setModeCurrent(getModeOsPrefers());
-		}
-	});
+	import { toggleMode, mode } from "mode-watcher";
 </script>
 
-<div
-	on:click={onToggleHandler}
-	on:click
-	on:keydown={onKeyDown}
-	on:keydown
-	on:keyup
-	on:keypress
+<Button
+	on:click={toggleMode}
+	variant="ghost"
+	size="sm"
 	role="switch"
 	aria-label="Light Switch"
-	aria-checked={$modeCurrent}
-	title="Toggle {$modeCurrent === true ? 'Dark' : 'Light'} Mode"
-	tabindex="0"
+	aria-checked={$mode === "dark"}
+	title="Toggle {$mode === 'light' ? 'Dark' : 'Light'} Mode"
+	class="h-8 w-9 px-0"
 >
-	<div
-		class={cn(
-			buttonVariants({
-				size: "sm",
-				variant: "ghost"
-			}),
-			"w-9 px-0"
-		)}
-	>
-		{#if $modeCurrent}
-			<Moon class="h-5 w-5" />
-			<span class="sr-only">Dark</span>
-		{:else}
-			<Sun class="h-5 w-5" />
-			<span class="sr-only">Light</span>
-		{/if}
-	</div>
-</div>
+	<Sun
+		class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+	/>
+	<Moon
+		class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+	/>
+	<span class="sr-only">
+		Toggle {$mode === "light" ? "Dark" : "Light"} Mode
+	</span>
+</Button>

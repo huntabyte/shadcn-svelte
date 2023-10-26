@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  mdsvex@0.10.6:
-    hash: 5fktxa7rcgmqj2wc4xhmk3osl4
-    path: patches/mdsvex@0.10.6.patch
-
 dependencies:
   '@unovis/svelte':
     specifier: ^1.2.1
@@ -34,6 +29,9 @@ dependencies:
   lucide-svelte:
     specifier: ^0.268.0
     version: 0.268.0(svelte@4.2.0)
+  mode-watcher:
+    specifier: ^0.0.3
+    version: 0.0.3(svelte@4.2.0)
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -116,7 +114,7 @@ devDependencies:
     version: 4.5.0
   mdsvex:
     specifier: 0.10.6
-    version: 0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.2.0)
+    version: 0.10.6(svelte@4.2.0)
   postcss:
     specifier: ^8.4.29
     version: 8.4.29
@@ -3453,7 +3451,7 @@ packages:
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
-  /mdsvex@0.10.6(patch_hash=5fktxa7rcgmqj2wc4xhmk3osl4)(svelte@4.2.0):
+  /mdsvex@0.10.6(svelte@4.2.0):
     resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
     peerDependencies:
       svelte: 3.x
@@ -3464,7 +3462,6 @@ packages:
       svelte: 4.2.0
       vfile-message: 2.0.4
     dev: true
-    patched: true
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -3793,6 +3790,16 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.1.2
     dev: true
+
+  /mode-watcher@0.0.3(svelte@4.2.0):
+    resolution: {integrity: sha512-m8UVCrmTq+GawPdg4XVszs1T48P41/ZkPYnr6/an4KRte1Miv0F5+vjMb2dy0XgEr5MvdiqitQUi96qy0sPaQw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      matchers: link:@testing-library/jest-dom/matchers
+      svelte: 4.2.0
+      svelte-persisted-store: 0.7.0(svelte@4.2.0)
+    dev: false
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -4650,6 +4657,15 @@ packages:
     engines: {node: '>=0.14'}
     peerDependencies:
       svelte: ^3.48.0 || ^4.0.0
+    dependencies:
+      svelte: 4.2.0
+    dev: false
+
+  /svelte-persisted-store@0.7.0(svelte@4.2.0):
+    resolution: {integrity: sha512-PczYS60ysScQ0DmTCPXQm5rwt8FfQzSlx0lCbljbE6hTCKqXaw2bP8KH1+B7QTPmuiy/QbAk4pjYpNCmZhjyRw==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0 || >4.0.0
     dependencies:
       svelte: 4.2.0
     dev: false
