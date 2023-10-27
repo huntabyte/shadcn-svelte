@@ -4,6 +4,7 @@
 	import * as Popover from "@/registry/default/ui/popover";
 	import { Button } from "@/registry/default/ui/button";
 	import { cn } from "$lib/utils";
+	import { tick } from "svelte";
 
 	const frameworks = [
 		{
@@ -34,9 +35,19 @@
 	$: selectedValue =
 		frameworks.find((f) => f.value === value)?.label ??
 		"Select a framework...";
+
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
+	function closeAndFocusTrigger(triggerId: string) {
+		open = false;
+		tick().then(() => {
+			document.getElementById(triggerId)?.focus();
+		});
+	}
 </script>
 
-<Popover.Root bind:open focusTriggerOnClose={true}>
+<Popover.Root bind:open let:ids>
 	<Popover.Trigger asChild let:builder>
 		<Button
 			builders={[builder]}
@@ -59,7 +70,7 @@
 						value={framework.value}
 						onSelect={(currentValue) => {
 							value = currentValue;
-							open = false;
+							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
 						<Check

@@ -22,7 +22,7 @@
     },
     {
       "name": "form-checkbox.svelte",
-      "content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { Checkbox as CheckboxPrimitive } from \"bits-ui\";\n\timport { Checkbox } from \"@/registry/default/ui/checkbox\";\n\ttype $$Props = CheckboxPrimitive.Props;\n\ttype $$Events = CheckboxPrimitive.Events;\n\n\texport let onCheckedChange: $$Props[\"onCheckedChange\"] = undefined;\n\n\tconst { name, setValue, attrStore, value } = getFormField();\n\tconst { name: nameAttr, value: valueAttr, ...rest } = $attrStore;\n</script>\n\n<Checkbox\n\t{...rest}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
+      "content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { Checkbox as CheckboxPrimitive } from \"bits-ui\";\n\timport { Checkbox } from \"@/registry/default/ui/checkbox\";\n\ttype $$Props = CheckboxPrimitive.Props;\n\ttype $$Events = CheckboxPrimitive.Events;\n\n\texport let onCheckedChange: $$Props[\"onCheckedChange\"] = undefined;\n\n\tconst { name, setValue, attrStore, value } = getFormField();\n\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\tconst { name: nameAttr, value: valueAttr, ...rest } = $attrStore;\n</script>\n\n<Checkbox\n\t{...rest}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
     },
     {
       "name": "form-description.svelte",
