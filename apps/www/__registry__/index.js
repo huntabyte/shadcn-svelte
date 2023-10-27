@@ -227,6 +227,20 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/context-menu-demo.svelte"],
     },
+    "dark-mode-dropdown-menu": {
+      name: "dark-mode-dropdown-menu",
+      type: "components:example",
+      registryDependencies: ["button","dropdown-menu"],
+      component: () => import("../src/lib/registry/default/example/dark-mode-dropdown-menu.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/dark-mode-dropdown-menu.svelte"],
+    },
+    "dark-mode-light-switch": {
+      name: "dark-mode-light-switch",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/default/example/dark-mode-light-switch.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/dark-mode-light-switch.svelte"],
+    },
     "data-table-demo": {
       name: "data-table-demo",
       type: "components:example",
@@ -850,6 +864,20 @@ export const Index = {
       registryDependencies: ["context-menu"],
       component: () => import("../src/lib/registry/new-york/example/context-menu-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/context-menu-demo.svelte"],
+    },
+    "dark-mode-dropdown-menu": {
+      name: "dark-mode-dropdown-menu",
+      type: "components:example",
+      registryDependencies: ["button","dropdown-menu"],
+      component: () => import("../src/lib/registry/new-york/example/dark-mode-dropdown-menu.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/dark-mode-dropdown-menu.svelte"],
+    },
+    "dark-mode-light-switch": {
+      name: "dark-mode-light-switch",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/new-york/example/dark-mode-light-switch.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/dark-mode-light-switch.svelte"],
     },
     "data-table-demo": {
       name: "data-table-demo",

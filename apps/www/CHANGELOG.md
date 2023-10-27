@@ -1,5 +1,11 @@
 # www
 
+## 0.0.5
+
+### Patch Changes
+
+- 9c21525: safelist `"dark"` in tailwind config for out-of-the-box dark mode support
+
 ## 0.0.4
 
 ### Patch Changes

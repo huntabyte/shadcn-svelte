@@ -7,10 +7,7 @@
 	import { Label } from "@/registry/new-york/ui/label";
 	import { cn } from "@/utils";
 	import { themes } from "@/registry";
-	import {
-		modeCurrent,
-		setModeCurrent
-	} from "@/components/docs/light-switch/light-switch";
+	import { mode, setMode } from "mode-watcher";
 </script>
 
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
@@ -121,9 +118,7 @@
 							"justify-start",
 							isActive && "border-2 border-primary"
 						)}
-						style="--theme-primary: hsl({theme?.activeColor[
-							$modeCurrent ? 'light' : 'dark'
-						]}"
+						style="--theme-primary: hsl({theme?.activeColor[$mode]}"
 					>
 						<span
 							class="mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
@@ -167,8 +162,8 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setModeCurrent(true)}
-					class={cn($modeCurrent && "border-2 border-primary")}
+					on:click={() => setMode("light")}
+					class={cn($mode === "light" && "border-2 border-primary")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
 					Light
@@ -176,8 +171,8 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setModeCurrent(false)}
-					class={cn(!$modeCurrent && "border-2 border-primary")}
+					on:click={() => setMode("dark")}
+					class={cn($mode === "dark" && "border-2 border-primary")}
 				>
 					<Moon class="mr-1 -translate-x-1" />
 					Dark
