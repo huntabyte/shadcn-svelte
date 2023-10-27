@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, Callout } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="command-demo" align="start" >
@@ -18,6 +18,12 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ## About
 
 The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to provide a fast, composable, unstyled command menu for Svelte.
+
+<Callout>
+
+**Note:** `cmdk-sv` is a new library and is still in alpha. While I don't anticipate a ton of breaking changes, as the API aligns with the original, I want to bring this to your awareness. If you find any bugs, please [open an issue](https://github.com/huntabyte/cmdk-sv) with the library, rather than this project.
+
+</Callout>
 
 ## Installation
 
