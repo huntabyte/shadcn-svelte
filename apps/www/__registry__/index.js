@@ -192,6 +192,20 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/combobox-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/combobox-demo.svelte"],
     },
+    "combobox-dropdown-menu": {
+      name: "combobox-dropdown-menu",
+      type: "components:example",
+      registryDependencies: ["command","dropdown-menu","button"],
+      component: () => import("../src/lib/registry/default/example/combobox-dropdown-menu.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/combobox-dropdown-menu.svelte"],
+    },
+    "combobox-popover": {
+      name: "combobox-popover",
+      type: "components:example",
+      registryDependencies: ["command","popover","button"],
+      component: () => import("../src/lib/registry/default/example/combobox-popover.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/combobox-popover.svelte"],
+    },
     "command-demo": {
       name: "command-demo",
       type: "components:example",
@@ -801,6 +815,20 @@ export const Index = {
       registryDependencies: ["command","popover","button"],
       component: () => import("../src/lib/registry/new-york/example/combobox-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/combobox-demo.svelte"],
+    },
+    "combobox-dropdown-menu": {
+      name: "combobox-dropdown-menu",
+      type: "components:example",
+      registryDependencies: ["command","dropdown-menu","button"],
+      component: () => import("../src/lib/registry/new-york/example/combobox-dropdown-menu.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/combobox-dropdown-menu.svelte"],
+    },
+    "combobox-popover": {
+      name: "combobox-popover",
+      type: "components:example",
+      registryDependencies: ["command","popover","button"],
+      component: () => import("../src/lib/registry/new-york/example/combobox-popover.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/combobox-popover.svelte"],
     },
     "command-demo": {
       name: "command-demo",
