@@ -22,7 +22,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format:write": "prettier --plugin-search-dir . --write .",
+		"format": "prettier --plugin-search-dir . --write .",
 		"format:check": "prettier --plugin-search-dir . --check ."
 	},
 	"devDependencies": {
