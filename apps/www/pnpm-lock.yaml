@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  mdsvex@0.10.6:
+    hash: 5fktxa7rcgmqj2wc4xhmk3osl4
+    path: patches/mdsvex@0.10.6.patch
+
 dependencies:
   '@unovis/svelte':
     specifier: ^1.2.3
@@ -29,6 +34,9 @@ dependencies:
   lucide-svelte:
     specifier: ^0.289.0
     version: 0.289.0(svelte@4.2.2)
+  mode-watcher:
+    specifier: ^0.0.3
+    version: 0.0.3(svelte@4.2.2)
   nanoid:
     specifier: ^5.0.2
     version: 5.0.2
@@ -2760,6 +2768,7 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /fsevents@2.3.3:
@@ -3471,6 +3480,7 @@ packages:
       svelte: 4.2.2
       vfile-message: 2.0.4
     dev: true
+    patched: true
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -3797,14 +3807,14 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mode-watcher@0.0.3(svelte@4.2.0):
+  /mode-watcher@0.0.3(svelte@4.2.2):
     resolution: {integrity: sha512-m8UVCrmTq+GawPdg4XVszs1T48P41/ZkPYnr6/an4KRte1Miv0F5+vjMb2dy0XgEr5MvdiqitQUi96qy0sPaQw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       matchers: link:@testing-library/jest-dom/matchers
-      svelte: 4.2.0
-      svelte-persisted-store: 0.7.0(svelte@4.2.0)
+      svelte: 4.2.2
+      svelte-persisted-store: 0.7.0(svelte@4.2.2)
     dev: false
 
   /mri@1.2.0:
@@ -4683,6 +4693,15 @@ packages:
       svelte: 4.2.2
     dev: false
 
+  /svelte-persisted-store@0.7.0(svelte@4.2.2):
+    resolution: {integrity: sha512-PczYS60ysScQ0DmTCPXQm5rwt8FfQzSlx0lCbljbE6hTCKqXaw2bP8KH1+B7QTPmuiy/QbAk4pjYpNCmZhjyRw==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0 || >4.0.0
+    dependencies:
+      svelte: 4.2.2
+    dev: false
+
   /svelte-preprocess@5.0.4(postcss-load-config@4.0.1)(postcss@8.4.31)(svelte@4.2.2)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
@@ -5179,7 +5198,7 @@ packages:
       postcss: 8.4.31
       rollup: 3.28.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   /vitefu@0.2.4(vite@4.5.0):
     resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}
