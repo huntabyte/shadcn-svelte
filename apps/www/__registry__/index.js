@@ -185,6 +185,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/collapsible-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/collapsible-demo.svelte"],
     },
+    "combobox-demo": {
+      name: "combobox-demo",
+      type: "components:example",
+      registryDependencies: ["command","popover","button"],
+      component: () => import("../src/lib/registry/default/example/combobox-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/combobox-demo.svelte"],
+    },
     "command-demo": {
       name: "command-demo",
       type: "components:example",
@@ -787,6 +794,13 @@ export const Index = {
       registryDependencies: ["collapsible","button"],
       component: () => import("../src/lib/registry/new-york/example/collapsible-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/collapsible-demo.svelte"],
+    },
+    "combobox-demo": {
+      name: "combobox-demo",
+      type: "components:example",
+      registryDependencies: ["command","popover","button"],
+      component: () => import("../src/lib/registry/new-york/example/combobox-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/combobox-demo.svelte"],
     },
     "command-demo": {
       name: "command-demo",
