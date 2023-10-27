@@ -2,7 +2,7 @@
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import * as Tooltip from "@/registry/new-york/ui/tooltip";
 	import { config } from "@/stores";
-	import { modeCurrent } from "../light-switch/light-switch";
+	import { mode } from "mode-watcher";
 	import { themes } from "@/registry";
 	import { cn } from "@/utils";
 	import { Check } from "radix-icons-svelte";
@@ -38,7 +38,7 @@
 										: "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
-									$modeCurrent ? 'light' : 'dark'
+									$mode
 								]}"
 							>
 								<span
