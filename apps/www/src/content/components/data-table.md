@@ -1088,11 +1088,11 @@ Let's add the ability to control which columns are visible in our table.
       header: "",
       cell: (item) => {
         return createRender(DataTableActions, { id: item.id });
-      }
+      },
       plugins: {
         sort: {
           disable: true
-        },
+        }
       }
     })
   ]);
