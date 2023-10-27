@@ -20,6 +20,8 @@
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	export let form: any;
+
+	export let style = "";
 </script>
 
 <div
@@ -60,6 +62,7 @@
 						},
 						className
 					)}
+					{style}
 				>
 					<slot name="example">
 						{#await component}

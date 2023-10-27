@@ -151,10 +151,7 @@ for (const [color, value] of Object.entries(colors)) {
 	if (Array.isArray(value)) {
 		colorsData[color] = value.map((item) => ({
 			...item,
-			rgbChannel: item.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
+			rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
 			hslChannel: item.hsl.replace(
 				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
 				"$1 $2 $3"
@@ -166,10 +163,7 @@ for (const [color, value] of Object.entries(colors)) {
 	if (typeof value === "object") {
 		colorsData[color] = {
 			...value,
-			rgbChannel: value.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
+			rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
 			hslChannel: value.hsl.replace(
 				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
 				"$1 $2 $3"
@@ -282,10 +276,7 @@ for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
 		base["cssVars"][mode] = {};
 		for (const [key, value] of Object.entries(values)) {
 			if (typeof value === "string") {
-				const resolvedColor = value.replace(
-					/{{base}}-/g,
-					`${baseColor}-`
-				);
+				const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
 				base["inlineColors"][mode][key] = resolvedColor;
 
 				const [resolvedBase, scale] = resolvedColor.split("-");

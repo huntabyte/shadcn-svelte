@@ -22,6 +22,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  cmdk-sv:
+    specifier: ^0.0.2
+    version: 0.0.2(svelte@4.2.2)
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
@@ -868,6 +871,19 @@ packages:
   /@mapbox/whoots-js@3.1.0:
     resolution: {integrity: sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==}
     engines: {node: '>=6.0.0'}
+    dev: false
+
+  /@melt-ui/svelte@0.55.3(svelte@4.2.2):
+    resolution: {integrity: sha512-KT9/14LRk5gaUgd2aywUmCpm3jq4RCTIyIvhktKCkP5v/OSsyftkLti6j9uySWNuNeUR4VGBChkT8/sR/bOUyw==}
+    peerDependencies:
+      svelte: '>=3 <5'
+    dependencies:
+      '@floating-ui/core': 1.4.1
+      '@floating-ui/dom': 1.5.1
+      dequal: 2.0.3
+      focus-trap: 7.5.2
+      nanoid: 4.0.2
+      svelte: 4.2.2
     dev: false
 
   /@melt-ui/svelte@0.57.0(svelte@4.2.2):
@@ -1766,6 +1782,16 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
+  /bits-ui@0.7.0(svelte@4.2.2):
+    resolution: {integrity: sha512-F9f6xBBh+YW+TieMjmr2V7SamGE9eOIDUDCq6yaSi7Ks5dkNHZLqSs7hcuptJJup6xUcJhUQBFbKJaxtyZBYGA==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      '@melt-ui/svelte': 0.55.3(svelte@4.2.2)
+      nanoid: 4.0.2
+      svelte: 4.2.2
+    dev: false
+
   /bits-ui@0.8.1(svelte@4.2.2):
     resolution: {integrity: sha512-EIv49tMEh57ymxd04QFA2LEsuFEjpuu5/B8VNdj28het8L6VP5+DloDefmKZYtslwnBhLBPNKsWTeQ0NZvwTJQ==}
     peerDependencies:
@@ -1906,6 +1932,16 @@ packages:
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
+    dev: false
+
+  /cmdk-sv@0.0.2(svelte@4.2.2):
+    resolution: {integrity: sha512-kpkbt2kpcGmVmHvfsHXF5zvPPGtnEW7EfdrlQXWpMpt3QtM0GWfRrKttpvp5MK51+R721QwXbsS6T+Pte86/dw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      bits-ui: 0.7.0(svelte@4.2.2)
+      nanoid: 5.0.2
+      svelte: 4.2.2
     dev: false
 
   /code-red@1.0.3:
@@ -2765,6 +2801,7 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /fsevents@2.3.3:
@@ -5175,7 +5212,7 @@ packages:
       postcss: 8.4.31
       rollup: 3.28.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   /vitefu@0.2.4(vite@4.5.0):
     resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}

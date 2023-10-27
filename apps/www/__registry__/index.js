@@ -185,6 +185,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/collapsible-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/collapsible-demo.svelte"],
     },
+    "command-demo": {
+      name: "command-demo",
+      type: "components:example",
+      registryDependencies: ["command"],
+      component: () => import("../src/lib/registry/default/example/command-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/command-demo.svelte"],
+    },
     "context-menu-demo": {
       name: "context-menu-demo",
       type: "components:example",
@@ -773,6 +780,13 @@ export const Index = {
       registryDependencies: ["collapsible","button"],
       component: () => import("../src/lib/registry/new-york/example/collapsible-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/collapsible-demo.svelte"],
+    },
+    "command-demo": {
+      name: "command-demo",
+      type: "components:example",
+      registryDependencies: ["command"],
+      component: () => import("../src/lib/registry/new-york/example/command-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/command-demo.svelte"],
     },
     "context-menu-demo": {
       name: "context-menu-demo",

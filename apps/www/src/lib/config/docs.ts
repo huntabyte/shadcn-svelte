@@ -147,13 +147,12 @@ export const docsConfig: DocsConfig = {
 					href: "#",
 					items: []
 				},
-				// {
-				//   title: "Command",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Command",
+					href: "/docs/components/command",
+					label: "Preview",
+					items: []
+				},
 				{
 					title: "Context Menu",
 					href: "/docs/components/context-menu",
