@@ -15,6 +15,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 
 </ComponentPreview>
 
+## About
+
+The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to provide a fast, composable, unstyled command menu for Svelte.
+
 ## Installation
 
 ```bash
@@ -37,14 +41,72 @@ npm install cmdk-sv bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Collapsible from "$lib/components/ui/collapsible";
+  import * as Command from "$lib/components/ui/collapsible";
 </script>
 
-<Collapsible.Root>
-  <Collapsible.Trigger>Can I use this in my project?</Collapsible.Trigger>
-  <Collapsible.Content>
-    Yes. Free to use for personal and commercial projects. No attribution
-    required.
-  </Collapsible.Content>
-</Collapsible.Root>
+<Command.Root>
+  <Command.Input placeholder="Type a command or search..." />
+  <Command.List>
+    <Command.Empty>No results found.</Command.Empty>
+    <Command.Group heading="Suggestions">
+      <Command.Item>Calendar</Command.Item>
+      <Command.Item>Search Emoji</Command.Item>
+      <Command.Item>Calculator</Command.Item>
+    </Command.Group>
+    <Command.Separator />
+    <Command.Group heading="Settings">
+      <Command.Item>Profile</Command.Item>
+      <Command.Item>Billing</Command.Item>
+      <Command.Item>Settings</Command.Item>
+    </Command.Group>
+  </Command.List>
+</Command.Root>
+```
+
+## Examples
+
+### Dialog
+
+<ComponentPreview name="command-dialog">
+
+<div />
+
+</ComponentPreview>
+
+To show the command menu in a dialog, use the `<Command.Dialog />` component instead of `<Command.Root />`. It accepts props for both the `<Dialog.Root />` and `<Command.Root />` components.
+
+```svelte
+<script lang="ts">
+  import * as Command from "$lib/components/ui/command";
+  import { onMount } from "svelte";
+
+  let open = false;
+
+  onMount(() => {
+    function handleKeydown(e: KeyboardEvent) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        open = !open;
+      }
+    }
+
+    document.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  });
+</script>
+
+<Command.Dialog bind:open>
+  <Command.Input placeholder="Type a command or search..." />
+  <Command.List>
+    <Command.Empty>No results found.</Command.Empty>
+    <Command.Group heading="Suggestions">
+      <Command.Item>Calendar</Command.Item>
+      <Command.Item>Search Emoji</Command.Item>
+      <Command.Item>Calculator</Command.Item>
+    </Command.Group>
+  </Command.List>
+</Command.Dialog>
 ```
