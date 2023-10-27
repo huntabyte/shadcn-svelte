@@ -8,6 +8,7 @@
 	export let onCheckedChange: $$Props["onCheckedChange"] = undefined;
 
 	const { name, setValue, attrStore, value } = getFormField();
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { name: nameAttr, value: valueAttr, ...rest } = $attrStore;
 </script>
 
