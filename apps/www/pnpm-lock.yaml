@@ -17,8 +17,8 @@ dependencies:
     specifier: ^1.2.3
     version: 1.2.3
   bits-ui:
-    specifier: ^0.8.3
-    version: 0.8.3(svelte@4.2.2)
+    specifier: ^0.8.4
+    version: 0.8.4(svelte@4.2.2)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -35,8 +35,8 @@ dependencies:
     specifier: ^0.290.0
     version: 0.290.0(svelte@4.2.2)
   mode-watcher:
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@4.2.2)
+    specifier: ^0.0.5
+    version: 0.0.5(svelte@4.2.2)
   nanoid:
     specifier: ^5.0.2
     version: 5.0.2
@@ -873,8 +873,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/svelte@0.57.0(svelte@4.2.2):
-    resolution: {integrity: sha512-vfrkYw+sqYTwR1U4T5lkaHsNN6ZnchnRaKjalf1t0IrOVX/QlkyhUS9ZFlhaIUp+qam0mQW1H+f+AzNz/HTNEA==}
+  /@melt-ui/svelte@0.57.1(svelte@4.2.2):
+    resolution: {integrity: sha512-MnW/wsuRzpVqDsaBFr6+gNAC4EdGjJ7MsnHBBvBhacxqbrfruCB2aRDIe1ovmLtAkQDHGWyYS08NcHMHiXPnSg==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1770,12 +1770,12 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.8.3(svelte@4.2.2):
-    resolution: {integrity: sha512-GH7lrFeP5AdIRJsyzj1DDpAd0T0gQ0YTLPPMKDkJ+etoovJI2Jza1Nyo7Y0C8obnIUAeJBY8DFjbTZBlb/EG+A==}
+  /bits-ui@0.8.4(svelte@4.2.2):
+    resolution: {integrity: sha512-2gbT6DuIOg4SeMayzlKCUtylX70CNLVaE4gBUVzhpTJGSHLY6+eDB03Runq5rh5YEtBEHyiAjw6H+zDFHwrRzg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.57.0(svelte@4.2.2)
+      '@melt-ui/svelte': 0.57.1(svelte@4.2.2)
       nanoid: 5.0.2
       svelte: 4.2.2
     dev: false
@@ -3810,12 +3810,11 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mode-watcher@0.0.4(svelte@4.2.2):
-    resolution: {integrity: sha512-2ey4FwzdoTiaZ/bJ4a01sLfAJJKTNbrEWQxHb/ekZ19oO9KqHMYaB8hTCjtKljLX6qBrAUTV5fHyqO+GqVD9Zw==}
+  /mode-watcher@0.0.5(svelte@4.2.2):
+    resolution: {integrity: sha512-a1ygOGLeHeJHM7uZYxzcV1QRsBjNRhr+YnbtcAgP9PGS3JIeJMmSntOKVc0anhRibGCq3omiGRamSt1eAAmpag==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      matchers: link:@testing-library/jest-dom/matchers
       svelte: 4.2.2
       svelte-persisted-store: 0.7.0(svelte@4.2.2)
     dev: false
