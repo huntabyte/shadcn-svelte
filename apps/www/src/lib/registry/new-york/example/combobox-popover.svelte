@@ -1,0 +1,85 @@
+<script lang="ts">
+	import * as Command from "@/registry/new-york/ui/command";
+	import * as Popover from "@/registry/new-york/ui/popover";
+	import { Button } from "@/registry/new-york/ui/button";
+	import { tick } from "svelte";
+
+	type Status = {
+		value: string;
+		label: string;
+	};
+
+	const statuses: Status[] = [
+		{
+			value: "backlog",
+			label: "Backlog"
+		},
+		{
+			value: "todo",
+			label: "Todo"
+		},
+		{
+			value: "in progress",
+			label: "In Progress"
+		},
+		{
+			value: "done",
+			label: "Done"
+		},
+		{
+			value: "canceled",
+			label: "Canceled"
+		}
+	];
+
+	let open = false;
+	let value = "";
+
+	$: selectedStatus = statuses.find((s) => s.value === value) ?? null;
+
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
+	function closeAndFocusTrigger(triggerId: string) {
+		open = false;
+		tick().then(() => {
+			document.getElementById(triggerId)?.focus();
+		});
+	}
+</script>
+
+<div class="flex items-center space-x-4">
+	<p class="text-sm text-muted-foreground">Status</p>
+	<Popover.Root bind:open let:ids positioning={{ placement: "right-start" }}>
+		<Popover.Trigger asChild let:builder>
+			<Button
+				builders={[builder]}
+				variant="outline"
+				class="w-[150px] justify-start"
+			>
+				{selectedStatus ? selectedStatus.label : "+ Set status"}
+			</Button>
+		</Popover.Trigger>
+		<Popover.Content class="p-0">
+			<Command.Root>
+				<Command.Input placeholder="Change status..." />
+				<Command.List>
+					<Command.Empty>No results found.</Command.Empty>
+					<Command.Group>
+						{#each statuses as status}
+							<Command.Item
+								value={status.value}
+								onSelect={(currentValue) => {
+									value = currentValue;
+									closeAndFocusTrigger(ids.trigger);
+								}}
+							>
+								{status.label}
+							</Command.Item>
+						{/each}
+					</Command.Group>
+				</Command.List>
+			</Command.Root>
+		</Popover.Content>
+	</Popover.Root>
+</div>

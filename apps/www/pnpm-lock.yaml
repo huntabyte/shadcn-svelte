@@ -17,11 +17,14 @@ dependencies:
     specifier: ^1.2.3
     version: 1.2.3
   bits-ui:
-    specifier: ^0.8.4
-    version: 0.8.4(svelte@4.2.2)
+    specifier: ^0.9.0
+    version: 0.9.0(svelte@4.2.2)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  cmdk-sv:
+    specifier: ^0.0.4
+    version: 0.0.4(svelte@4.2.2)
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
@@ -29,8 +32,8 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   formsnap:
-    specifier: ^0.2.0
-    version: 0.2.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
+    specifier: ^0.3.0
+    version: 0.3.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
   lucide-svelte:
     specifier: ^0.290.0
     version: 0.290.0(svelte@4.2.2)
@@ -873,8 +876,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/svelte@0.57.1(svelte@4.2.2):
-    resolution: {integrity: sha512-MnW/wsuRzpVqDsaBFr6+gNAC4EdGjJ7MsnHBBvBhacxqbrfruCB2aRDIe1ovmLtAkQDHGWyYS08NcHMHiXPnSg==}
+  /@melt-ui/svelte@0.57.2(svelte@4.2.2):
+    resolution: {integrity: sha512-Ul+pebT2wff5rp5xzlXwQ7W6z5YOS9oXsds21dqlE2gUAFBIfN1vIo4IZrTed/FkpCyey90CvHDQYfQvZiNvkA==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1770,12 +1773,12 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.8.4(svelte@4.2.2):
-    resolution: {integrity: sha512-2gbT6DuIOg4SeMayzlKCUtylX70CNLVaE4gBUVzhpTJGSHLY6+eDB03Runq5rh5YEtBEHyiAjw6H+zDFHwrRzg==}
+  /bits-ui@0.9.0(svelte@4.2.2):
+    resolution: {integrity: sha512-wEVWMnR4or4t8dY+UP+G4jVugzsfhMcuIrTOoJh8V6t/JcHWne/z1nnBA/yD1E1cn391IUurSatRkv7qTJXMww==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.57.1(svelte@4.2.2)
+      '@melt-ui/svelte': 0.57.2(svelte@4.2.2)
       nanoid: 5.0.2
       svelte: 4.2.2
     dev: false
@@ -1912,6 +1915,16 @@ packages:
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
+    dev: false
+
+  /cmdk-sv@0.0.4(svelte@4.2.2):
+    resolution: {integrity: sha512-kUezs3PfP1uRnLXk1vlqebKf8uGl4Qap4UBxh9g7b5HZQStk8xJ1lZ0CNnr/uWCYSKWS03y/Ugj2urirVE8aPA==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      bits-ui: 0.9.0(svelte@4.2.2)
+      nanoid: 5.0.2
+      svelte: 4.2.2
     dev: false
 
   /code-red@1.0.3:
@@ -2740,8 +2753,8 @@ packages:
       tabbable: 6.2.0
     dev: false
 
-  /formsnap@0.2.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
-    resolution: {integrity: sha512-/V6HQTdRCNrDDCvSJVkBl/co0v8D0DkQoAdQCPKZaRagYie1S267BVrpPXmXq2cSj0MH6IvQWojLcTpkEfB9Uw==}
+  /formsnap@0.3.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
+    resolution: {integrity: sha512-1CZgiobEF0Wk2QMsw41kLx8c+a7Ww72ynSQx8S/owhvbUQBVYIijIsjVjWEYAx+s1C7c6exmYg+dASSrgZEXMg==}
     peerDependencies:
       svelte: ^4.0.0
       sveltekit-superforms: ^1.7.1

@@ -23,6 +23,7 @@
 	method="POST"
 	action="?/textarea"
 	class="w-2/3 space-y-6"
+	debug={true}
 >
 	<Form.Field {config} name="bio">
 		<Form.Item>

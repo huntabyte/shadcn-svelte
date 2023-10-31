@@ -16,6 +16,7 @@
 <ButtonPrimitive.Root
 	{builders}
 	class={cn(buttonVariants({ variant, size, className }))}
+	type="button"
 	{...$$restProps}
 	on:click
 	on:keydown

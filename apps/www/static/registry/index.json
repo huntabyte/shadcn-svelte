@@ -135,6 +135,29 @@
     "type": "components:ui"
   },
   {
+    "name": "command",
+    "dependencies": [
+      "cmdk-sv",
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "dialog"
+    ],
+    "files": [
+      "ui/command/command-dialog.svelte",
+      "ui/command/command-empty.svelte",
+      "ui/command/command-group.svelte",
+      "ui/command/command-input.svelte",
+      "ui/command/command-item.svelte",
+      "ui/command/command-list.svelte",
+      "ui/command/command-separator.svelte",
+      "ui/command/command-shortcut.svelte",
+      "ui/command/command.svelte",
+      "ui/command/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "context-menu",
     "dependencies": [
       "bits-ui"
