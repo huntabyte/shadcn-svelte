@@ -30,7 +30,7 @@ Here's what the process looks like:
 
 1. A user opens an issue to report a bug, request a new feature, or propose a change
 2. A maintainer reviews the issue and assigns it a status label
-   1. `needs owner` - the issue is ready to be worked on, but no one has volunteered to work on it yet. If you would like to work on the issue, please leave a comment on the issue to let us know along with a brief description of how you plan to address the issue (if it's not already clear from the issue description).
+   1. `help wanted` - the issue is ready to be worked on, but no one has volunteered to work on it yet. If you would like to work on the issue, please leave a comment on the issue to let us know along with a brief description of how you plan to address the issue (if it's not already clear from the issue description).
    2. `accepted` - the issue has been assigned to someone and they are working on a solution for it.
    3. `duplicate` - the issue is a duplicate of another issue. The issue will be closed and a link to the original issue will be provided.
    4. `blocked` - the issue is blocked by another issue either within this project or another.
