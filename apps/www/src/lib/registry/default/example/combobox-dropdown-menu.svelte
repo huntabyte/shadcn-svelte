@@ -17,35 +17,20 @@
 
 	let open = false;
 	let selectedLabel = "feature";
-	let containerEl: HTMLElement | null = null;
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
 	// rest of the form with the keyboard.
-
-	function focusInput() {
-		tick().then(() => {
-			containerEl
-				?.querySelector<HTMLElement>("[data-cmdk-input]")
-				?.focus();
-		});
-	}
-
-	function closeAndFocusTrigger() {
+	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
 		tick().then(() => {
-			containerEl
-				?.querySelector<HTMLElement>(
-					"[data-bits-dropdown-menu-trigger]"
-				)
-				?.focus();
+			document.getElementById(triggerId)?.focus();
 		});
 	}
 </script>
 
 <div
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
-	bind:this={containerEl}
 >
 	<p class="text-sm font-medium leading-none">
 		<span
@@ -55,7 +40,11 @@
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
-	<DropdownMenu.Root {open} positioning={{ placement: "bottom-end" }}>
+	<DropdownMenu.Root
+		bind:open
+		positioning={{ placement: "bottom-end" }}
+		let:ids
+	>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -79,13 +68,7 @@
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Sub>
-					<DropdownMenu.SubTrigger
-						on:keydown={(e) => {
-							if (e.key === "ArrowRight") {
-								focusInput();
-							}
-						}}
-					>
+					<DropdownMenu.SubTrigger>
 						<Tags class="mr-2 h-4 w-4" />
 						Apply label
 					</DropdownMenu.SubTrigger>
@@ -103,7 +86,9 @@
 											value={label}
 											onSelect={(value) => {
 												selectedLabel = value;
-												closeAndFocusTrigger();
+												closeAndFocusTrigger(
+													ids.trigger
+												);
 											}}
 										>
 											{label}

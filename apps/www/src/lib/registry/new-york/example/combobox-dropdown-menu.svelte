@@ -1,41 +1,22 @@
 <script lang="ts">
+	import { DotsHorizontal } from "radix-icons-svelte";
 	import * as Command from "@/registry/new-york/ui/command";
-	import * as Popover from "@/registry/new-york/ui/popover";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { tick } from "svelte";
 
-	type Status = {
-		value: string;
-		label: string;
-	};
-
-	const statuses: Status[] = [
-		{
-			value: "backlog",
-			label: "Backlog"
-		},
-		{
-			value: "todo",
-			label: "Todo"
-		},
-		{
-			value: "in progress",
-			label: "In Progress"
-		},
-		{
-			value: "done",
-			label: "Done"
-		},
-		{
-			value: "canceled",
-			label: "Canceled"
-		}
+	const labels = [
+		"feature",
+		"bug",
+		"enhancement",
+		"documentation",
+		"design",
+		"question",
+		"maintenance"
 	];
 
 	let open = false;
-	let value = "";
-
-	$: selectedStatus = statuses.find((s) => s.value === value) ?? null;
+	let selectedLabel = "feature";
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -48,38 +29,76 @@
 	}
 </script>
 
-<div class="flex items-center space-x-4">
-	<p class="text-sm text-muted-foreground">Status</p>
-	<Popover.Root bind:open let:ids positioning={{ placement: "right-start" }}>
-		<Popover.Trigger asChild let:builder>
+<div
+	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
+>
+	<p class="text-sm font-medium leading-none">
+		<span
+			class="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground"
+		>
+			{selectedLabel}
+		</span>
+		<span class="text-muted-foreground">Create a new project</span>
+	</p>
+	<DropdownMenu.Root
+		bind:open
+		positioning={{ placement: "bottom-end" }}
+		let:ids
+	>
+		<DropdownMenu.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
-				variant="outline"
-				class="w-[150px] justify-start"
+				variant="ghost"
+				size="sm"
+				aria-label="Open menu"
 			>
-				{selectedStatus ? selectedStatus.label : "+ Set status"}
+				<DotsHorizontal />
 			</Button>
-		</Popover.Trigger>
-		<Popover.Content class="p-0">
-			<Command.Root>
-				<Command.Input placeholder="Change status..." />
-				<Command.List>
-					<Command.Empty>No results found.</Command.Empty>
-					<Command.Group>
-						{#each statuses as status}
-							<Command.Item
-								value={status.value}
-								onSelect={(currentValue) => {
-									value = currentValue;
-									closeAndFocusTrigger(ids.trigger);
-								}}
-							>
-								{status.label}
-							</Command.Item>
-						{/each}
-					</Command.Group>
-				</Command.List>
-			</Command.Root>
-		</Popover.Content>
-	</Popover.Root>
+		</DropdownMenu.Trigger>
+		<DropdownMenu.Content class="w-[200px]">
+			<DropdownMenu.Group>
+				<DropdownMenu.Label>Actions</DropdownMenu.Label>
+				<DropdownMenu.Item>Assign to...</DropdownMenu.Item>
+				<DropdownMenu.Item>Set due date...</DropdownMenu.Item>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Sub>
+					<DropdownMenu.SubTrigger>
+						Apply label
+					</DropdownMenu.SubTrigger>
+					<DropdownMenu.SubContent class="p-0">
+						<Command.Root value={selectedLabel}>
+							<Command.Input
+								autofocus
+								placeholder="Filter label..."
+								class="h-9"
+							/>
+							<Command.List>
+								<Command.Empty>No label found.</Command.Empty>
+								<Command.Group>
+									{#each labels as label}
+										<Command.Item
+											value={label}
+											onSelect={(value) => {
+												selectedLabel = value;
+												closeAndFocusTrigger(
+													ids.trigger
+												);
+											}}
+										>
+											{label}
+										</Command.Item>
+									{/each}
+								</Command.Group>
+							</Command.List>
+						</Command.Root>
+					</DropdownMenu.SubContent>
+				</DropdownMenu.Sub>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Item class="text-red-600">
+					Delete
+					<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
+				</DropdownMenu.Item>
+			</DropdownMenu.Group>
+		</DropdownMenu.Content>
+	</DropdownMenu.Root>
 </div>

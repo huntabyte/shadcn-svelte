@@ -59,7 +59,8 @@ See installation instructions for the [Popover](/docs/components/popover#install
   let value = "";
 
   $: selectedValue =
-    frameworks.find((f) => f.value === value)?.label ?? "Select a framework...";
+    frameworks.find((f) => f.value === value)?.label ??
+    "Select a framework...";
 
   // We want to refocus the trigger button when the user selects
   // an item from the list so users can continue navigating the
@@ -126,6 +127,26 @@ See installation instructions for the [Popover](/docs/components/popover#install
 ### Popover
 
 <ComponentPreview name="combobox-popover">
+
+<div />
+
+</ComponentPreview>
+
+### Dropdown menu
+
+<ComponentPreview name="combobox-dropdown-menu">
+
+<div />
+
+</ComponentPreview>
+
+### Form
+
+Since the Combobox is built using the `<Popover />` and the `<Command />` components, we need to use the `<Form.Control />` component. `<Form.Control />` enables us to apply the right `aria-*` attributes to non-standard form elements, and adds a hidden input to ensure the form is submitted with the correct value.
+
+Note: You must on version `0.3.1` or higher of `formsnap` for this to work correctly.
+
+<ComponentPreview name="combobox-form">
 
 <div />
 

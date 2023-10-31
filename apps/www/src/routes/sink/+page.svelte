@@ -4,6 +4,7 @@
 	import ComboboxDemo from "@/registry/new-york/example/combobox-demo.svelte";
 	import ComboboxPopover from "@/registry/new-york/example/combobox-popover.svelte";
 	import ComboboxDropdownMenu from "@/registry/default/example/combobox-dropdown-menu.svelte";
+	import ComboboxForm from "@/registry/new-york/example/combobox-form.svelte";
 </script>
 
 {#if dev}
@@ -12,6 +13,9 @@
 	</ComponentPreviewManual>
 	<ComponentPreviewManual>
 		<ComboboxPopover />
+	</ComponentPreviewManual>
+	<ComponentPreviewManual>
+		<ComboboxForm />
 	</ComponentPreviewManual>
 	<ComponentPreviewManual>
 		<ComboboxDemo />
