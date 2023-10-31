@@ -6,3 +6,4 @@ export { default as CardsReportIssue } from "./report-issue.svelte";
 export { default as CardsNotifications } from "./notifications.svelte";
 export { default as CardsPaymentMethod } from "./payment-method.svelte";
 export { default as DemoContainer } from "./demo-container.svelte";
+export { default as CardsTeamMembers } from "./team-members.svelte";
