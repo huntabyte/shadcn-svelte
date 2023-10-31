@@ -6,7 +6,8 @@ import type { Registry } from "../src/lib/registry";
 
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
-	["formsnap", ["zod", "sveltekit-superforms"]]
+	["formsnap", ["zod", "sveltekit-superforms"]],
+	["cmdk-sv", ["bits-ui"]]
 ]);
 const REGISTRY_DEPENDENCY = "@/";
 
@@ -59,8 +60,9 @@ async function crawlExample(rootPath: string) {
 		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
 			const file_path = join("example", dirent.name);
-			const { dependencies, registryDependencies } =
-				await getDependencies(join(rootPath, dirent.name));
+			const { dependencies, registryDependencies } = await getDependencies(
+				join(rootPath, dirent.name)
+			);
 
 			exampleRegistry.push({
 				name,
@@ -106,9 +108,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		if (dirent.name === "index.ts") continue;
 		const deps = await getDependencies(join(componentPath, dirent.name));
 		deps.dependencies.forEach((dep) => dependencies.add(dep));
-		deps.registryDependencies.forEach((dep) =>
-			registryDependencies.add(dep)
-		);
+		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
 	return {

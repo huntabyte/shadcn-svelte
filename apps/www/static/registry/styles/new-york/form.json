@@ -38,7 +38,7 @@
     },
     {
       "name": "form-label.svelte",
-      "content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/new-york/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label\n\tfor={ids.input}\n\tclass={cn($errors && \"text-destructive\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</Label>\n"
+      "content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/new-york/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label\n\tfor={$ids.input}\n\tclass={cn($errors && \"text-destructive\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</Label>\n"
     },
     {
       "name": "form-native-select.svelte",

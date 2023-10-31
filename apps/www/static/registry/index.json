@@ -136,8 +136,13 @@
   },
   {
     "name": "command",
-    "dependencies": [],
-    "registryDependencies": [],
+    "dependencies": [
+      "cmdk-sv",
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "dialog"
+    ],
     "files": [
       "ui/command/command-dialog.svelte",
       "ui/command/command-empty.svelte",
