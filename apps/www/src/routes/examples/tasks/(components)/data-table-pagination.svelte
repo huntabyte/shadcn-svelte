@@ -1,27 +1,24 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/new-york/ui/button";
 	import {
 		ChevronRight,
 		ChevronLeft,
 		DoubleArrowRight,
 		DoubleArrowLeft
 	} from "radix-icons-svelte";
-	import * as Select from "@/registry/default/ui/select";
-	import type { SelectedRowsState } from "svelte-headless-table/lib/plugins/addSelectedRows";
-	import type { PaginationState } from "svelte-headless-table/lib/plugins/addPagination";
-	import type { Readable } from "svelte/store";
-	import type { BodyRow } from "svelte-headless-table/lib/bodyRows";
+	import * as Select from "@/registry/new-york/ui/select";
 	import type { Task } from "../(data)/schemas";
+	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
+	import type { TableViewModel } from "svelte-headless-table";
 
-	export let pageStates: PaginationState;
-	export let selectStates: SelectedRowsState<any>;
-	export let rows: Readable<BodyRow<Task>[]>;
-	export let pageRows: Readable<BodyRow<Task>[]>;
+	export let tableModel: TableViewModel<Task, AnyPlugins>;
+
+	const { pageRows, pluginStates, rows } = tableModel;
 
 	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } =
-		pageStates;
+		pluginStates.page;
 
-	const { selectedDataIds } = selectStates;
+	const { selectedDataIds } = pluginStates.select;
 </script>
 
 <div class="flex items-center justify-between px-2">

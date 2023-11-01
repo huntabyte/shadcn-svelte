@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { get, readable } from "svelte/store";
 	import {
 		Render,
 		Subscribe,
 		createRender,
 		createTable
 	} from "svelte-headless-table";
-	import { get, readable } from "svelte/store";
-	import type { Task } from "../(data)/schemas";
+	import * as Table from "@/registry/new-york/ui/table";
 	import {
 		addHiddenColumns,
 		addPagination,
@@ -14,16 +14,18 @@
 		addSortBy,
 		addTableFilter
 	} from "svelte-headless-table/plugins";
+	import {
+		DataTableCheckbox,
+		DataTableTitleCell,
+		DataTableStatusCell,
+		DataTableRowActions,
+		DataTablePriorityCell,
+		DataTableColumnHeader,
+		DataTableToolbar,
+		DataTablePagination
+	} from ".";
 
-	import * as Table from "@/registry/new-york/ui/table";
-	import DataTableCheckbox from "./data-table-checkbox.svelte";
-	import DataTableTitleCell from "./data-table-title-cell.svelte";
-	import DataTableStatusCell from "./data-table-status-cell.svelte";
-	import DataTableRowActions from "./data-table-row-actions.svelte";
-	import DataTablePriorityCell from "./data-table-priority-cell.svelte";
-	import DataTableColumnHeader from "./data-table-column-header.svelte";
-	import DataTableToolbar from "./data-table-toolbar.svelte";
-	import DataTablePagination from "./data-table-pagination.svelte";
+	import type { Task } from "../(data)/schemas";
 
 	export let data: Task[];
 
@@ -134,17 +136,12 @@
 		tableAttrs,
 		tableBodyAttrs,
 		pluginStates,
-		flatColumns,
 		rows
 	} = tableModel;
 </script>
 
 <div class="space-y-4">
-	<DataTableToolbar
-		filterState={pluginStates.filter}
-		hideState={pluginStates.hide}
-		{flatColumns}
-	/>
+	<DataTableToolbar {tableModel} />
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
@@ -197,10 +194,5 @@
 			</Table.Body>
 		</Table.Root>
 	</div>
-	<DataTablePagination
-		pageStates={pluginStates.page}
-		selectStates={pluginStates.select}
-		{rows}
-		{pageRows}
-	/>
+	<DataTablePagination {tableModel} />
 </div>
