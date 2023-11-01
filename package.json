@@ -20,7 +20,7 @@
 		"test:unit": "pnpm --filter www test:unit",
 		"lint": "pnpm -r lint",
 		"format:check": "pnpm -r format:check",
-		"format:write": "pnpm -r format:write",
+		"format": "pnpm -r format",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
 		"ci:publish": "changeset publish",

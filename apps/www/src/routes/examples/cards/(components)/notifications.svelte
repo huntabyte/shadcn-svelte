@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { AtSign, Bell, BellOff } from "lucide-svelte";
-	import * as Card from "@/registry/default/ui/card";
+	import { Bell, EyeNone, Person } from "radix-icons-svelte";
+	import * as Card from "@/registry/new-york/ui/card";
 </script>
 
 <Card.Root>
-	<Card.Header>
+	<Card.Header class="pb-3">
 		<Card.Title>Notifications</Card.Title>
 		<Card.Description>
 			Choose what you want to be notified about.
 		</Card.Description>
 	</Card.Header>
-	<Card.Content class="grid gap-1 p-1.5">
+	<Card.Content class="grid gap-1">
 		<div
-			class="flex items-center space-x-4 rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
+			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
 		>
-			<Bell class="h-5 w-5" />
+			<Bell class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Everything</p>
 				<p class="text-sm text-muted-foreground">
@@ -23,9 +23,9 @@
 			</div>
 		</div>
 		<div
-			class="flex items-center space-x-4 rounded-md bg-accent p-2 text-accent-foreground"
+			class="-mx-2 flex items-start space-x-4 rounded-md bg-accent p-2 text-accent-foreground transition-all"
 		>
-			<AtSign class="h-5 w-5" />
+			<Person class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
 				<p class="text-sm text-muted-foreground">
@@ -34,9 +34,9 @@
 			</div>
 		</div>
 		<div
-			class="flex items-center space-x-4 rounded-md p-2 hover:bg-accent hover:text-accent-foreground"
+			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
 		>
-			<BellOff class="h-5 w-5" />
+			<EyeNone class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
 				<p class="text-sm text-muted-foreground">

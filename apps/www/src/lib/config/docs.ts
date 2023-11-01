@@ -54,6 +54,11 @@ export const docsConfig: DocsConfig = {
 					items: []
 				},
 				{
+					title: "Dark mode",
+					href: "/docs/dark-mode",
+					items: []
+				},
+				{
 					title: "CLI",
 					href: "/docs/cli",
 					items: []
@@ -142,16 +147,14 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Combobox",
-					disabled: true,
-					label: "Soon",
-					href: "#",
+					href: "/docs/components/combobox",
+					label: "New",
 					items: []
 				},
 				{
 					title: "Command",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/command",
+					label: "New",
 					items: []
 				},
 				{

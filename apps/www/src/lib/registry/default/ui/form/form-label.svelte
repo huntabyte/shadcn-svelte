@@ -13,7 +13,7 @@
 </script>
 
 <Label
-	for={ids.input}
+	for={$ids.input}
 	class={cn($errors && "text-destructive", className)}
 	{...$$restProps}
 >

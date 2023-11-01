@@ -7,7 +7,8 @@
 		CardsReportIssue,
 		CardsGithub,
 		CardsNotifications,
-		DemoContainer
+		DemoContainer,
+		CardsTeamMembers
 	} from "./(components)";
 </script>
 
@@ -30,7 +31,7 @@
 <div
 	class="hidden items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-3"
 >
-	<div class="col-span-3 grid items-start gap-6 lg:col-span-1">
+	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
 			<CardsCreateAccount />
 		</DemoContainer>
@@ -40,13 +41,14 @@
 	</div>
 	<div class="col-span-2 grid items-start gap-6 lg:col-span-1">
 		<DemoContainer>
+			<CardsTeamMembers />
+		</DemoContainer>
+		<DemoContainer>
 			<CardsShare />
 		</DemoContainer>
+		<DemoContainer />
 		<DemoContainer>
 			<CardsNotifications />
-		</DemoContainer>
-		<DemoContainer>
-			<CardsCookieSettings />
 		</DemoContainer>
 	</div>
 	<div
@@ -57,6 +59,9 @@
 		</DemoContainer>
 		<DemoContainer>
 			<CardsGithub />
+		</DemoContainer>
+		<DemoContainer>
+			<CardsCookieSettings />
 		</DemoContainer>
 	</div>
 </div>

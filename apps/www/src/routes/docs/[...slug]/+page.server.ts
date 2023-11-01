@@ -6,6 +6,7 @@ import { formSchema as radioGroupSchema } from "@/registry/default/example/radio
 import { formSchema as selectSchema } from "@/registry/default/example/select-form.svelte";
 import { formSchema as switchSchema } from "@/registry/default/example/switch-form.svelte";
 import { formSchema as textareaSchema } from "@/registry/default/example/textarea-form.svelte";
+import { formSchema as comboboxFormSchema } from "@/registry/default/example/combobox-form.svelte";
 
 import { fail } from "@sveltejs/kit";
 import type { AnyZodObject } from "zod";
@@ -17,7 +18,8 @@ export const load: PageServerLoad = async () => {
 		radioGroup: superValidate(radioGroupSchema),
 		select: superValidate(selectSchema),
 		switch: superValidate(switchSchema),
-		textarea: superValidate(textareaSchema)
+		textarea: superValidate(textareaSchema),
+		combobox: superValidate(comboboxFormSchema)
 	};
 };
 
@@ -27,7 +29,8 @@ export const actions: Actions = {
 	radioGroup: async (e) => handleForm(e, radioGroupSchema),
 	select: async (e) => handleForm(e, selectSchema),
 	switch: async (e) => handleForm(e, switchSchema),
-	textarea: async (e) => handleForm(e, textareaSchema)
+	textarea: async (e) => handleForm(e, textareaSchema),
+	combobox: async (e) => handleForm(e, comboboxFormSchema)
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {

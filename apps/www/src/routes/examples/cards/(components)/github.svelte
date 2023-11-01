@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ChevronDown, Circle, Plus, Star } from "lucide-svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { Separator } from "@/registry/default/ui/separator";
+	import { ChevronDown, Circle, Plus, Star } from "radix-icons-svelte";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as Card from "@/registry/new-york/ui/card";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import { Separator } from "@/registry/new-york/ui/separator";
 </script>
 
 <Card.Root>

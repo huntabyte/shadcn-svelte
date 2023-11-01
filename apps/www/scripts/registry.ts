@@ -6,7 +6,8 @@ import type { Registry } from "../src/lib/registry";
 
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
-	["formsnap", ["zod", "sveltekit-superforms"]]
+	["formsnap", ["zod", "sveltekit-superforms"]],
+	["cmdk-sv", ["bits-ui"]]
 ]);
 const REGISTRY_DEPENDENCY = "@/";
 
