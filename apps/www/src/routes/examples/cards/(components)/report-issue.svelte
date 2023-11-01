@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "@/registry/default/ui/card";
-	import * as Select from "@/registry/default/ui/select";
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
-	import { Textarea } from "@/registry/default/ui/textarea";
+	import * as Card from "@/registry/new-york/ui/card";
+	import * as Select from "@/registry/new-york/ui/select";
+	import { Button } from "@/registry/new-york/ui/button";
+	import { Input } from "@/registry/new-york/ui/input";
+	import { Label } from "@/registry/new-york/ui/label";
+	import { Textarea } from "@/registry/new-york/ui/textarea";
 
 	const areas = [
 		{
@@ -76,7 +76,10 @@
 			<div class="grid gap-2">
 				<Label for="security-level">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level">
+					<Select.Trigger
+						id="security-level"
+						class="line-clamp-1 w-[160px] truncate"
+					>
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import { Label } from "@/registry/default/ui/label";
-	import { Switch } from "@/registry/default/ui/switch";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as Card from "@/registry/new-york/ui/card";
+	import { Label } from "@/registry/new-york/ui/label";
+	import { Switch } from "@/registry/new-york/ui/switch";
 </script>
 
 <Card.Root>
@@ -11,7 +11,7 @@
 		<Card.Description>Manage your cookie settings here.</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
-		<div class="flex items-center justify-between space-x-4">
+		<div class="flex items-center justify-between space-x-2">
 			<Label for="necessary" class="flex flex-col space-y-1">
 				<span>Strictly Necessary</span>
 				<span
@@ -23,7 +23,7 @@
 			</Label>
 			<Switch id="necessary" checked aria-label="Necessary" />
 		</div>
-		<div class="flex items-center justify-between space-x-4">
+		<div class="flex items-center justify-between space-x-2">
 			<Label for="functional" class="flex flex-col space-y-1">
 				<span>Functional Cookies</span>
 				<span
@@ -35,7 +35,7 @@
 			</Label>
 			<Switch id="functional" aria-label="Functional" />
 		</div>
-		<div class="flex items-center justify-between space-x-4">
+		<div class="flex items-center justify-between space-x-2">
 			<Label for="performance" class="flex flex-col space-y-1">
 				<span>Performance Cookies</span>
 				<span
