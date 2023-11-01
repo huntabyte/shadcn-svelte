@@ -8,6 +8,7 @@
 	} from "svelte-headless-table";
 	import * as Table from "@/registry/new-york/ui/table";
 	import {
+		addColumnFilters,
 		addHiddenColumns,
 		addPagination,
 		addSelectedRows,
@@ -36,8 +37,11 @@
 		}),
 		page: addPagination(),
 		filter: addTableFilter({
-			fn: ({ filterValue, value }) => value.includes(filterValue)
+			fn: ({ filterValue, value }) => {
+				return value.toLowerCase().includes(filterValue.toLowerCase());
+			}
 		}),
+		colFilter: addColumnFilters(),
 		hide: addHiddenColumns()
 	});
 
@@ -110,6 +114,22 @@
 				return createRender(DataTablePriorityCell, {
 					value
 				});
+			},
+			plugins: {
+				colFilter: {
+					fn: ({ filterValue, value }) => {
+						console.log(filterValue, value);
+						if (filterValue.length === 0) {
+							return true;
+						}
+						return filterValue.includes(value);
+					},
+					render: ({ filterValue, preFilteredValues }) => {
+						return createRender(DataTablePriorityCell, {
+							value: get(filterValue)
+						});
+					}
+				}
 			}
 		}),
 		table.display({
@@ -130,14 +150,8 @@
 
 	const tableModel = table.createViewModel(columns);
 
-	const {
-		headerRows,
-		pageRows,
-		tableAttrs,
-		tableBodyAttrs,
-		pluginStates,
-		rows
-	} = tableModel;
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
+		tableModel;
 </script>
 
 <div class="space-y-4">

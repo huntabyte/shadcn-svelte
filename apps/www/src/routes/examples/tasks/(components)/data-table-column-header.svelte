@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowDown, ArrowUp, CaretSort, EyeNone } from "radix-icons-svelte";
+	import { ArrowDown, ArrowUp, CaretSort } from "radix-icons-svelte";
 	import { cn } from "@/utils";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
@@ -53,8 +53,12 @@
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
-				<DropdownMenu.Item on:click={handleAscSort}>Asc</DropdownMenu.Item>
-				<DropdownMenu.Item on:click={handleDescSort}>Desc</DropdownMenu.Item>
+				<DropdownMenu.Item on:click={handleAscSort}
+					>Asc</DropdownMenu.Item
+				>
+				<DropdownMenu.Item on:click={handleDescSort}
+					>Desc</DropdownMenu.Item
+				>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
