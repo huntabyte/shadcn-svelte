@@ -118,13 +118,12 @@
 			plugins: {
 				colFilter: {
 					fn: ({ filterValue, value }) => {
-						console.log(filterValue, value);
 						if (filterValue.length === 0) {
 							return true;
 						}
 						return filterValue.includes(value);
 					},
-					render: ({ filterValue, preFilteredValues }) => {
+					render: ({ filterValue }) => {
 						return createRender(DataTablePriorityCell, {
 							value: get(filterValue)
 						});
@@ -150,8 +149,7 @@
 
 	const tableModel = table.createViewModel(columns);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-		tableModel;
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = tableModel;
 </script>
 
 <div class="space-y-4">

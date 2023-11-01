@@ -16,9 +16,11 @@
 	let values: string[] = [];
 
 	$: selectedStatus = options.find((s) => values.includes(s.value)) ?? null;
+
+	/** TODO: Add column filters from this */
 </script>
 
-<Popover.Root bind:open let:ids positioning={{ placement: "bottom-start" }}>
+<Popover.Root bind:open positioning={{ placement: "bottom-start" }}>
 	<Popover.Trigger asChild let:builder>
 		<Button
 			builders={[builder]}

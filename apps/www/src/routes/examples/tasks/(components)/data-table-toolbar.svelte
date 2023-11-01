@@ -13,10 +13,9 @@
 	const { pluginStates } = tableModel;
 	const { filterValue } = pluginStates.filter;
 
-	const { filterValues } = pluginStates.colFilter;
+	/** Todo: Add factedFiltered data to column filters */
+	/* const { filterValues } = pluginStates.colFilter; */
 </script>
-
-<pre>$filterValues = {JSON.stringify($filterValues, null, 2)}</pre>
 
 <div class="flex items-center justify-between">
 	<div class="flex flex-1 items-center space-x-2">
@@ -26,6 +25,7 @@
 			type="text"
 			bind:value={$filterValue}
 		/>
+
 		<DataTableFacetedFilter title="Status" options={statuses} />
 		<DataTableFacetedFilter title="Priority" options={priorities} />
 		<Button variant="ghost" class="h-8 px-2 lg:px-3">
