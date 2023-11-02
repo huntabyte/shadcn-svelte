@@ -22,7 +22,7 @@ body:
   - type: textarea
     attributes:
       label: Steps To Reproduce
-      description: Describe how to reproduce the issue.
+      description: Describe how to reproduce the issue. The best way to do this is to provide a link to a reproduction using the [reproduction template](https://shadcn-svelte.com/repro)
       placeholder: |
         1. Using this component...
         2. With these properties...
@@ -33,7 +33,7 @@ body:
   - type: input
     id: reproduction
     attributes:
-      label: Link to Reproduction / Stackblitz
+      label: Link to Reproduction / Stackblitz ([reproduction template](https://shadcn-svelte.com/repro))
   - type: textarea
     attributes:
       label: More Information
