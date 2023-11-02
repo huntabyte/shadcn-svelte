@@ -114,7 +114,7 @@ async function promptForConfig(
 	defaultConfig: Config | null = null,
 	skip = false
 ) {
-	const highlight = (text: string) => chalk.cyan(text);
+	const highlight = logger.highlight;
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
