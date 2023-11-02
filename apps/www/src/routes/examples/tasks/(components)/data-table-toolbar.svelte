@@ -50,7 +50,14 @@
 			options={priorities}
 		/>
 		{#if showReset}
-			<Button variant="ghost" class="h-8 px-2 lg:px-3">
+			<Button
+				on:click={() => {
+					$filterValues.status = [];
+					$filterValues.priority = [];
+				}}
+				variant="ghost"
+				class="h-8 px-2 lg:px-3"
+			>
 				Reset
 				<Cross2 class="ml-2 h-4 w-4" />
 			</Button>

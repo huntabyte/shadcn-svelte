@@ -8,20 +8,23 @@
 	import Badge from "@/registry/new-york/ui/badge/badge.svelte";
 	import type { statuses } from "../(data)/data";
 
-	export let filterValues: string[];
+	export let filterValues: string[] = [];
 	export let title: string;
 	export let options = [] as typeof statuses;
 
 	let open = false;
-	let values: string[] = [];
-
-	$: filterValues = values;
 
 	const handleSelect = (currentValue: string) => {
-		if (Array.isArray(values) && values.includes(currentValue)) {
-			values = values.filter((v) => v !== currentValue);
+		if (
+			Array.isArray(filterValues) &&
+			filterValues.includes(currentValue)
+		) {
+			filterValues = filterValues.filter((v) => v !== currentValue);
 		} else {
-			values = [...(Array.isArray(values) ? values : []), currentValue];
+			filterValues = [
+				...(Array.isArray(filterValues) ? filterValues : []),
+				currentValue
+			];
 		}
 	};
 </script>
@@ -37,24 +40,24 @@
 			<PlusCircled class="mr-2 h-4 w-4" />
 			{title}
 
-			{#if values.length > 0}
+			{#if filterValues.length > 0}
 				<Separator orientation="vertical" class="mx-2 h-4" />
 				<Badge
 					variant="secondary"
 					class="rounded-sm px-1 font-normal lg:hidden"
 				>
-					{values.length}
+					{filterValues.length}
 				</Badge>
 				<div class="hidden space-x-1 lg:flex">
-					{#if values.length > 2}
+					{#if filterValues.length > 2}
 						<Badge
 							variant="secondary"
 							class="rounded-sm px-1 font-normal"
 						>
-							{values.length} Selected
+							{filterValues.length} Selected
 						</Badge>
 					{:else}
-						{#each values as option}
+						{#each filterValues as option}
 							<Badge
 								variant="secondary"
 								className="rounded-sm px-1 font-normal"
@@ -69,7 +72,7 @@
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0">
 		<Command.Root>
-			<Command.Input placeholder="Status" />
+			<Command.Input placeholder={title} />
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
 				<Command.Group>
@@ -83,7 +86,7 @@
 							<div
 								class={cn(
 									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
-									values.includes(option.value)
+									filterValues.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
 								)}
@@ -96,12 +99,12 @@
 						</Command.Item>
 					{/each}
 				</Command.Group>
-				{#if values.length > 0}
+				{#if filterValues.length > 0}
 					<Command.Separator />
 					<Command.Item
 						class="justify-center text-center"
 						onSelect={() => {
-							values = [];
+							filterValues = [];
 						}}
 					>
 						Clear filters

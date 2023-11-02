@@ -27,6 +27,7 @@
 			variant="outline"
 			size="sm"
 			class="ml-auto hidden h-8 lg:flex"
+			positioning={{ placement: "bottom-end" }}
 			builders={[builder]}
 		>
 			<MixerHorizontal class="mr-2 h-4 w-4" />
@@ -34,6 +35,8 @@
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
+		<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>
+		<DropdownMenu.Separator />
 		{#each flatColumns as col}
 			{#if hidableCols.includes(col.id)}
 				<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
