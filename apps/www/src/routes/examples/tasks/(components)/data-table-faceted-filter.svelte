@@ -6,18 +6,24 @@
 	import { cn } from "$lib/utils";
 	import Separator from "@/registry/default/ui/separator/separator.svelte";
 	import Badge from "@/registry/new-york/ui/badge/badge.svelte";
-	import { statuses } from "../(data)/data";
+	import type { statuses } from "../(data)/data";
 
+	export let filterValues: string[];
 	export let title: string;
 	export let options = [] as typeof statuses;
 
 	let open = false;
-
 	let values: string[] = [];
 
-	$: selectedStatus = options.find((s) => values.includes(s.value)) ?? null;
+	$: filterValues = values;
 
-	/** TODO: Add column filters from this */
+	const handleSelect = (currentValue: string) => {
+		if (Array.isArray(values) && values.includes(currentValue)) {
+			values = values.filter((v) => v !== currentValue);
+		} else {
+			values = [...(Array.isArray(values) ? values : []), currentValue];
+		}
+	};
 </script>
 
 <Popover.Root bind:open positioning={{ placement: "bottom-start" }}>
@@ -28,11 +34,9 @@
 			size="sm"
 			class="h-8 border-dashed"
 		>
-			{#if selectedStatus}
-				{selectedStatus.label}
-			{:else}
-				<PlusCircled class="mr-2 h-4 w-4" /> {title}
-			{/if}
+			<PlusCircled class="mr-2 h-4 w-4" />
+			{title}
+
 			{#if values.length > 0}
 				<Separator orientation="vertical" class="mx-2 h-4" />
 				<Badge
@@ -69,23 +73,17 @@
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
 				<Command.Group>
-					{#each statuses as status}
+					{#each options as option}
 						<Command.Item
-							value={status.value}
+							value={option.value}
 							onSelect={(currentValue) => {
-								if (values.includes(currentValue)) {
-									values = values.filter(
-										(v) => v !== currentValue
-									);
-								} else {
-									values = [...values, currentValue];
-								}
+								handleSelect(currentValue);
 							}}
 						>
 							<div
 								class={cn(
 									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
-									values.includes(status.value)
+									values.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
 								)}
@@ -93,7 +91,7 @@
 								<Check className={cn("h-4 w-4")} />
 							</div>
 							<span>
-								{status.label}
+								{option.label}
 							</span>
 						</Command.Item>
 					{/each}

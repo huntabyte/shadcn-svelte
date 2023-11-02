@@ -7,14 +7,27 @@
 	import Button from "@/registry/new-york/ui/button/button.svelte";
 	import { Cross2 } from "radix-icons-svelte";
 	import { statuses, priorities } from "../(data)/data";
+	import type { Writable } from "svelte/store";
 
 	export let tableModel: TableViewModel<Task, AnyPlugins>;
 
 	const { pluginStates } = tableModel;
-	const { filterValue } = pluginStates.filter;
+	const {
+		filterValue
+	}: {
+		filterValue: Writable<string>;
+	} = pluginStates.filter;
 
-	/** Todo: Add factedFiltered data to column filters */
-	/* const { filterValues } = pluginStates.colFilter; */
+	const {
+		filterValues
+	}: {
+		filterValues: Writable<{
+			status: string[];
+			priority: string[];
+		}>;
+	} = pluginStates.colFilter;
+
+	$: showReset = Object.values($filterValues).some((v) => v.length > 0);
 </script>
 
 <div class="flex items-center justify-between">
@@ -26,12 +39,22 @@
 			bind:value={$filterValue}
 		/>
 
-		<DataTableFacetedFilter title="Status" options={statuses} />
-		<DataTableFacetedFilter title="Priority" options={priorities} />
-		<Button variant="ghost" class="h-8 px-2 lg:px-3">
-			Reset
-			<Cross2 class="ml-2 h-4 w-4" />
-		</Button>
+		<DataTableFacetedFilter
+			bind:filterValues={$filterValues.status}
+			title="Status"
+			options={statuses}
+		/>
+		<DataTableFacetedFilter
+			bind:filterValues={$filterValues.priority}
+			title="Priority"
+			options={priorities}
+		/>
+		{#if showReset}
+			<Button variant="ghost" class="h-8 px-2 lg:px-3">
+				Reset
+				<Cross2 class="ml-2 h-4 w-4" />
+			</Button>
+		{/if}
 	</div>
 
 	<DataTableViewOptions {tableModel} />

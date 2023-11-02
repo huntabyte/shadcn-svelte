@@ -104,6 +104,26 @@
 				return createRender(DataTableStatusCell, {
 					value
 				});
+			},
+			plugins: {
+				colFilter: {
+					fn: ({ filterValue, value }) => {
+						console.log("status", filterValue, value);
+						if (filterValue.length === 0) return true;
+						if (
+							!Array.isArray(filterValue) ||
+							typeof value !== "string"
+						)
+							return true;
+						return filterValue.some((filter) => {
+							return value.includes(filter);
+						});
+					},
+					initialFilterValue: [],
+					render: ({ filterValue }) => {
+						return get(filterValue);
+					}
+				}
 			}
 		}),
 		table.column({
@@ -118,15 +138,21 @@
 			plugins: {
 				colFilter: {
 					fn: ({ filterValue, value }) => {
-						if (filterValue.length === 0) {
+						console.log("priority", filterValue, value);
+						if (filterValue.length === 0) return true;
+						if (
+							!Array.isArray(filterValue) ||
+							typeof value !== "string"
+						)
 							return true;
-						}
-						return filterValue.includes(value);
-					},
-					render: ({ filterValue }) => {
-						return createRender(DataTablePriorityCell, {
-							value: get(filterValue)
+
+						return filterValue.some((filter) => {
+							return value.includes(filter);
 						});
+					},
+					initialFilterValue: [],
+					render: ({ filterValue }) => {
+						return get(filterValue);
 					}
 				}
 			}
