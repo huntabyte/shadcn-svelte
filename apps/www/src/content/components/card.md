@@ -55,15 +55,13 @@ By default, the `<Card.Title>` component renders an `<h3>` element. You can chan
 For example:
 
 ```svelte
-<Card.Title tag="h2">This will render an H2</Card.Title>
+<Card.Title tag="h1">This will render an H2</Card.Title>
 ```
 
-```svelte
-<Card.Title tag="h5">This will render an H5</Card.Title>
-```
+...
 
 ```svelte
-<Card.Title tag="p">This will render a P tag</Card.Title>
+<Card.Title tag="h6">This will render an H5</Card.Title>
 ```
 
 ## Examples
