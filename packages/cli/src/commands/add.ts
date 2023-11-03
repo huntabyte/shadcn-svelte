@@ -22,6 +22,7 @@ import { transformImport } from "../utils/transformer";
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
 	yes: z.boolean(),
+	all: z.boolean(),
 	overwrite: z.boolean(),
 	cwd: z.string(),
 	path: z.string().optional(),
@@ -37,6 +38,7 @@ export const add = new Command()
 		"disable adding & installing dependencies (advanced)",
 		false
 	)
+	.option("-a, --all", "Add all components to your project.", false)
 	.option("-y, --yes", "Skip confirmation prompt.", false)
 	.option("-o, --overwrite", "overwrite existing files.", false)
 	.option(
@@ -46,6 +48,7 @@ export const add = new Command()
 	)
 	.option("-p, --path <path>", "the path to add the component to.")
 	.action(async (components: string[], opts) => {
+		const highlight = logger.highlight;
 		logger.warn(
 			"Running the following command will overwrite existing files."
 		);
@@ -83,17 +86,18 @@ export const add = new Command()
 
 			const registryIndex = await getRegistryIndex();
 
-			let selectedComponents = options.components;
-			if (!options.components?.length) {
+			let selectedComponents = options.all ? registryIndex.map(({ name }) => name) : options.components;
+
+			if (!selectedComponents?.length) {
 				const { components } = await prompts({
 					type: "multiselect",
 					name: "components",
 					message: "Which components would you like to add?",
 					hint: "Space to select. A to toggle all. Enter to submit.",
 					instructions: false,
-					choices: registryIndex.map((entry) => ({
-						title: entry.name,
-						value: entry.name
+					choices: registryIndex.map(({ name }) => ({
+						title: name,
+						value: name
 					}))
 				});
 				selectedComponents = components;
@@ -116,6 +120,8 @@ export const add = new Command()
 				process.exitCode = 0;
 				return;
 			}
+
+			logger.info(`Selected components:\n${highlight(selectedComponents)}`);
 
 			if (!options.yes) {
 				const { proceed } = await prompts({
