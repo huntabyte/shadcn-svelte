@@ -23,8 +23,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   cmdk-sv:
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@4.2.2)
+    specifier: ^0.0.5
+    version: 0.0.5(svelte@4.2.2)
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
@@ -32,14 +32,14 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   formsnap:
-    specifier: ^0.3.1
-    version: 0.3.1(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
+    specifier: ^0.4.0
+    version: 0.4.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
   lucide-svelte:
     specifier: ^0.290.0
     version: 0.290.0(svelte@4.2.2)
   mode-watcher:
-    specifier: ^0.0.5
-    version: 0.0.5(svelte@4.2.2)
+    specifier: ^0.0.6
+    version: 0.0.6(svelte@4.2.2)
   nanoid:
     specifier: ^5.0.2
     version: 5.0.2
@@ -1925,8 +1925,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /cmdk-sv@0.0.4(svelte@4.2.2):
-    resolution: {integrity: sha512-kUezs3PfP1uRnLXk1vlqebKf8uGl4Qap4UBxh9g7b5HZQStk8xJ1lZ0CNnr/uWCYSKWS03y/Ugj2urirVE8aPA==}
+  /cmdk-sv@0.0.5(svelte@4.2.2):
+    resolution: {integrity: sha512-knOCoH4uxhICfz9SX5eK8iAmd12LQSlIVA7/fBjjnD07OAuqT8JpgPFx9i/QAvq15ZtMJSWZnUypyb1CsAHE7A==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
@@ -2761,8 +2761,8 @@ packages:
       tabbable: 6.2.0
     dev: false
 
-  /formsnap@0.3.1(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
-    resolution: {integrity: sha512-dr0XQM/+flrX9ESvnEkxx9LS6tmfJd7k17aaaqLwFHA5aPOUZIFU2440alngulVWT+VrNptGwtN+9uM3ptjK2Q==}
+  /formsnap@0.4.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
+    resolution: {integrity: sha512-CiBQ6kHP87JQelkoMFz0Qcin73nqa8bKzqvpvi+tKq3PBvc6Ly05eVZZbxRKFU6fk8CbhuK4LBNhXl2cCzZu8g==}
     peerDependencies:
       svelte: ^4.0.0
       sveltekit-superforms: ^1.7.1
@@ -3831,8 +3831,8 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mode-watcher@0.0.5(svelte@4.2.2):
-    resolution: {integrity: sha512-a1ygOGLeHeJHM7uZYxzcV1QRsBjNRhr+YnbtcAgP9PGS3JIeJMmSntOKVc0anhRibGCq3omiGRamSt1eAAmpag==}
+  /mode-watcher@0.0.6(svelte@4.2.2):
+    resolution: {integrity: sha512-5Og1w+WjPD7M41Dm7e9hQcYo0FVZ3/wMdjNw0LuUixVxfcqSw/ssp7cHn8qZeojkzGcx4sZEfon5niid+DwmcA==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
