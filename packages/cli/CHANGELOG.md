@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.5
+
+### Patch Changes
+
+- 9456656: Feat: update add command with -a flag to install all components in the registry
+
 ## 0.3.4
 
 ### Patch Changes
