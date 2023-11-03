@@ -323,12 +323,12 @@ export const examples: Example[] = [
 		href: "/examples/cards",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/cards"
 	},
-	// {
-	// 	name: "Tasks",
-	// 	href: "/examples/tasks",
-	// 	label: "New",
-	// 	code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/apps/www/app/examples/tasks"
-	// },
+	{
+		name: "Tasks",
+		href: "/examples/tasks",
+		label: "New",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/tasks"
+	},
 	{
 		name: "Playground",
 		href: "/examples/playground",

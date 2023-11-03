@@ -10,7 +10,7 @@
 	];
 </script>
 
-<Select.Root>
+<Select.Root portal={null}>
 	<Select.Trigger class="w-[180px]">
 		<Select.Value placeholder="Select a fruit" />
 	</Select.Trigger>

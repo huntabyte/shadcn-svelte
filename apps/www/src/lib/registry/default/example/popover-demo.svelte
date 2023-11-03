@@ -7,9 +7,10 @@
 	import { Label } from "@/registry/default/ui/label";
 	import { Button } from "@/registry/default/ui/button";
 	import { Input } from "@/registry/default/ui/input";
+	import SelectDemo from "./select-demo.svelte";
 </script>
 
-<Popover>
+<Popover portal={null}>
 	<PopoverTrigger asChild let:builder>
 		<Button builders={[builder]} variant="outline">Open</Button>
 	</PopoverTrigger>
@@ -40,5 +41,6 @@
 				</div>
 			</div>
 		</div>
+		<SelectDemo />
 	</PopoverContent>
 </Popover>
