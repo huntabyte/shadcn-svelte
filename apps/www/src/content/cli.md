@@ -77,6 +77,7 @@ Options:
   -a, --all          Add all components to your project. (default: false)
   -y, --yes          Skip confirmation prompt. (default: false)
   -o, --overwrite    overwrite existing files. (default: false)
+  --proxy			 fetch components from registry using a proxy.
   -c, --cwd <cwd>    the working directory. (default: the current directory)
   -p, --path <path>  the path to add the component to.
   -h, --help         display help for command
