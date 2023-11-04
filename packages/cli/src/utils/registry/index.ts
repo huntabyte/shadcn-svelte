@@ -12,11 +12,12 @@ import {
 	stylesSchema
 } from "./schema";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import { getEnvProxy } from "../get-env-proxy";
 
 const baseUrl =
 	process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
-const proxyUrl = process.env.HTTP_PROXY;
+const proxyUrl = getEnvProxy();
 
 export type RegistryItem = z.infer<typeof registryItemSchema>;
 

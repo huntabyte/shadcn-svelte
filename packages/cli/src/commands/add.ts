@@ -18,6 +18,7 @@ import {
 	resolveTree
 } from "../utils/registry";
 import { transformImport } from "../utils/transformer";
+import { getEnvProxy } from "../utils/get-env-proxy";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -86,7 +87,7 @@ export const add = new Command()
 				return;
 			}
 
-			const chosenProxy = options.proxy ?? process.env.HTTP_PROXY;
+			const chosenProxy = options.proxy ?? getEnvProxy();
 			if (chosenProxy) {
 				const isCustom = !!options.proxy;
 				if (isCustom) process.env.HTTP_PROXY = options.proxy;
