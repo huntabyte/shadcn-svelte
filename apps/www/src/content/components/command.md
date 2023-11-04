@@ -48,7 +48,7 @@ npm install cmdk-sv bits-ui
 
 ```svelte
 <script lang="ts">
-  import * as Command from "$lib/components/ui/collapsible";
+  import * as Command from "$lib/components/ui/command";
 </script>
 
 <Command.Root>
