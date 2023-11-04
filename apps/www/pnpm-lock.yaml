@@ -32,14 +32,14 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   formsnap:
-    specifier: ^0.4.0
-    version: 0.4.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
+    specifier: ^0.4.1
+    version: 0.4.1(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
   lucide-svelte:
     specifier: ^0.290.0
     version: 0.290.0(svelte@4.2.2)
   mode-watcher:
-    specifier: ^0.0.6
-    version: 0.0.6(svelte@4.2.2)
+    specifier: ^0.0.7
+    version: 0.0.7(svelte@4.2.2)
   nanoid:
     specifier: ^5.0.2
     version: 5.0.2
@@ -2761,8 +2761,8 @@ packages:
       tabbable: 6.2.0
     dev: false
 
-  /formsnap@0.4.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
-    resolution: {integrity: sha512-CiBQ6kHP87JQelkoMFz0Qcin73nqa8bKzqvpvi+tKq3PBvc6Ly05eVZZbxRKFU6fk8CbhuK4LBNhXl2cCzZu8g==}
+  /formsnap@0.4.1(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4):
+    resolution: {integrity: sha512-hUOaDKb+KoBi4PamJRnxRqIQW3msp2BKPqohoqjHUuBb+vgBrhoaz0WYEFkXG4bzVQS3JngG55m/zX5ciZTyeA==}
     peerDependencies:
       svelte: ^4.0.0
       sveltekit-superforms: ^1.7.1
@@ -3831,8 +3831,8 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mode-watcher@0.0.6(svelte@4.2.2):
-    resolution: {integrity: sha512-5Og1w+WjPD7M41Dm7e9hQcYo0FVZ3/wMdjNw0LuUixVxfcqSw/ssp7cHn8qZeojkzGcx4sZEfon5niid+DwmcA==}
+  /mode-watcher@0.0.7(svelte@4.2.2):
+    resolution: {integrity: sha512-3/RXHKzg9TjhkYo8YTx++Ai7a2Qd7BkYS3RFWaIhj0NPonXAF5JNegiZ3CTk1Q/k0wyhPQUlsWW0Y5ByCp6Y1g==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
