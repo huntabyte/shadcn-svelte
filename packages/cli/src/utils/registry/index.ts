@@ -1,5 +1,6 @@
 import path from "path";
 import fetch from "node-fetch";
+import type { RequestInit } from "node-fetch";
 import * as z from "zod";
 import { Config } from "../get-config";
 import {
@@ -10,9 +11,13 @@ import {
 	registryWithContentSchema,
 	stylesSchema
 } from "./schema";
+import { HttpsProxyAgent } from "https-proxy-agent";
+import { getEnvProxy } from "../get-env-proxy";
 
 const baseUrl =
 	process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
+
+const proxyUrl = getEnvProxy();
 
 export type RegistryItem = z.infer<typeof registryItemSchema>;
 
@@ -138,9 +143,18 @@ export async function getItemTargetPath(
 
 async function fetchRegistry(paths: string[]) {
 	try {
+		let options: RequestInit = {};
+
+		if (proxyUrl) {
+			options.agent = new HttpsProxyAgent(proxyUrl);
+		}
+
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const response = await fetch(`${baseUrl}/registry/${path}`);
+				const response = await fetch(
+					`${baseUrl}/registry/${path}`,
+					options
+				);
 				return await response.json();
 			})
 		);

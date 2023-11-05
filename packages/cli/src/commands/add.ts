@@ -18,6 +18,7 @@ import {
 	resolveTree
 } from "../utils/registry";
 import { transformImport } from "../utils/transformer";
+import { getEnvProxy } from "../utils/get-env-proxy";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -26,7 +27,8 @@ const addOptionsSchema = z.object({
 	overwrite: z.boolean(),
 	cwd: z.string(),
 	path: z.string().optional(),
-	nodep: z.boolean()
+	nodep: z.boolean(),
+	proxy: z.string().optional()
 });
 
 export const add = new Command()
@@ -41,6 +43,7 @@ export const add = new Command()
 	.option("-a, --all", "Add all components to your project.", false)
 	.option("-y, --yes", "Skip confirmation prompt.", false)
 	.option("-o, --overwrite", "overwrite existing files.", false)
+	.option("--proxy <proxy>", "fetch components from registry using a proxy.")
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
@@ -82,6 +85,18 @@ export const add = new Command()
 				);
 				process.exitCode = 1;
 				return;
+			}
+
+			const chosenProxy = options.proxy ?? getEnvProxy();
+			if (chosenProxy) {
+				const isCustom = !!options.proxy;
+				if (isCustom) process.env.HTTP_PROXY = options.proxy;
+
+				logger.warn(
+					`You are using a ${
+						isCustom ? "provided" : "system environment"
+					} proxy: ${chalk.green(chosenProxy)}`
+				);
 			}
 
 			const registryIndex = await getRegistryIndex();
