@@ -1526,7 +1526,7 @@ export const colorMapping = {
 		"muted-foreground": "{{base}}-500",
 		accent: "{{base}}-100",
 		"accent-foreground": "{{base}}-900",
-		destructive: "red-500",
+		destructive: "red-600",
 		"destructive-foreground": "{{base}}-50",
 		border: "{{base}}-200",
 		input: "{{base}}-200",
