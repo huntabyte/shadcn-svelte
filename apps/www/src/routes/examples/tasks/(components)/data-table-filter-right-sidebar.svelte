@@ -25,7 +25,7 @@
 	);
 </script>
 
-<aside class="relative col-span-3 border-l border-b p-2">
+<aside class="col-span-3 border-l border-b p-2">
 	<div class="sticky top-12 flex flex-col h-full">
 		<Card.Header>
 			<Card.Title># {task.id}</Card.Title>

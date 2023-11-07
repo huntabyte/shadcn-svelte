@@ -26,7 +26,7 @@
 	} = pluginStates.colFilter;
 </script>
 
-<aside class="relative col-span-2 border-r border-b p-2">
+<aside class="col-span-2 border-r border-b p-2">
 	<div class="sticky top-12">
 		<div class="flex flex-col space-y-2">
 			<span class="text-sm font-medium">Filters</span>

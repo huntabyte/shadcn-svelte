@@ -227,7 +227,7 @@
 		tableAttrs,
 		tableBodyAttrs,
 		pluginStates: {
-			custom: { sidebar, taskIdOnEdition, taskOnEdition }
+			custom: { sidebar, taskIdOnEdition }
 		}
 	} = tableModel;
 
@@ -239,11 +239,17 @@
 		(!$anySidebarVisible
 			? 0
 			: ($leftSidebarVisible ? 2 : 0) + ($rightSidebarVisible ? 3 : 0));
+
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+	function taskCellClicked(row: any) {
+		const cells = row.cellForId;
+		taskIdOnEdition.set(cells.task.value);
+	}
 </script>
 
-<div class="relative rounded-md border">
+<div class="rounded-md border">
 	<DataTableToolbar {tableModel} />
-	<div class="relative grid grid-cols-{cols}">
+	<div class="grid grid-cols-{cols}">
 		{#if $leftSidebarVisible}
 			<DataTableFilterLeftSidebar {tableModel} />
 		{/if}
@@ -299,13 +305,10 @@
 														variant="link"
 														size="sm"
 														class="underline"
-														on:click={() => {
-															const cells =
-																row.cellForId;
-															taskIdOnEdition.set(
-																cells.task.value
-															);
-														}}
+														on:click={() =>
+															taskCellClicked(
+																row
+															)}
 													>
 														<Render
 															of={cell.render()}
