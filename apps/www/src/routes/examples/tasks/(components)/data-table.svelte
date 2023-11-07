@@ -247,6 +247,14 @@
 	}
 </script>
 
+<!-- HACK: we need to investigate why all tailwind css classes needs to be generated ahead of render -->
+<span class="hidden col-span-2" />
+<span class="hidden col-span-3" />
+<span class="hidden grid-cols-6" />
+<span class="hidden grid-cols-8" />
+<span class="hidden grid-cols-9" />
+<span class="hidden grid-cols-11" />
+
 <div class="rounded-md border">
 	<DataTableToolbar {tableModel} />
 	<div class="grid grid-cols-{cols}">
