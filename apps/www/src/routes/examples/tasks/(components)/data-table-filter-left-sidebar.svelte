@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Toggle } from "@/registry/new-york/ui/toggle";
-	import { SlidersHorizontal } from "lucide-svelte";
-	import { Cross2 } from "radix-icons-svelte";
+	import Input from "@/registry/new-york/ui/input/input.svelte";
 	import type { TableViewModel } from "svelte-headless-table/lib/createViewModel";
 	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { Writable } from "svelte/store";
-	import { DataTableFacetedFilter, DataTableViewOptions } from ".";
+	import { DataTableFacetedFilter } from ".";
 	import { priorities, statuses } from "../(data)/data";
 	import type { Task } from "../(data)/schemas";
 
@@ -28,40 +24,15 @@
 			priority: string[];
 		}>;
 	} = pluginStates.colFilter;
-
-	const {
-		sidebar
-	}: {
-		sidebar: {
-			left: {
-				visible: Writable<boolean>;
-			};
-			right: {
-				visible: Writable<boolean>;
-			};
-		};
-	} = pluginStates.custom;
-
-	$: leftSidebarVisble = sidebar.left.visible;
-	$: showFiltersAria = $leftSidebarVisble ? "Hide filters" : "Show filters";
-	$: showReset = Object.values($filterValues).some((v) => v.length > 0);
 </script>
 
-<div class="p-2 flex items-center justify-between space-x-2 border-b">
-	<div class="flex flex-1 items-center space-x-2">
-		<Toggle
-			size="sm"
-			variant="outline"
-			aria-label={showFiltersAria}
-			title={showFiltersAria}
-			bind:pressed={$leftSidebarVisble}
-		>
-			<SlidersHorizontal class="h-4 w-4" />
-		</Toggle>
-		{#if !$leftSidebarVisble}
+<aside class="relative col-span-2 border-r border-b p-2">
+	<div class="sticky top-12">
+		<div class="flex flex-col space-y-2">
+			<span class="text-sm font-medium">Filters</span>
 			<Input
 				placeholder="Filter tasks..."
-				class="h-8 w-[150px] lg:w-[250px]"
+				class="h-8 w-full"
 				type="text"
 				bind:value={$filterValue}
 			/>
@@ -69,14 +40,18 @@
 			<DataTableFacetedFilter
 				bind:filterValues={$filterValues.status}
 				title="Status"
+				view="list"
 				options={statuses}
 			/>
+
 			<DataTableFacetedFilter
 				bind:filterValues={$filterValues.priority}
 				title="Priority"
+				view="list"
 				options={priorities}
 			/>
-			{#if showReset}
+
+			<!-- {#if showReset}
 				<Button
 					on:click={() => {
 						$filterValues.status = [];
@@ -88,9 +63,7 @@
 					Reset
 					<Cross2 class="ml-2 h-4 w-4" />
 				</Button>
-			{/if}
-		{/if}
+			{/if} -->
+		</div>
 	</div>
-
-	<DataTableViewOptions {tableModel} />
-</div>
+</aside>

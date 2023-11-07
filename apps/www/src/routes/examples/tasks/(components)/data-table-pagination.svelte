@@ -21,7 +21,7 @@
 	const { selectedDataIds } = pluginStates.select;
 </script>
 
-<div class="flex items-center justify-between px-2">
+<div class="p-2 flex items-center justify-between">
 	<div class="flex-1 text-sm text-muted-foreground">
 		{Object.keys($selectedDataIds).length} of{" "}
 		{$rows.length} row(s) selected.
