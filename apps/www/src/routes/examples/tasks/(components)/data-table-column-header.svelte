@@ -53,12 +53,14 @@
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
-				<DropdownMenu.Item on:click={handleAscSort}
-					>Asc</DropdownMenu.Item
-				>
-				<DropdownMenu.Item on:click={handleDescSort}
-					>Desc</DropdownMenu.Item
-				>
+				<DropdownMenu.Item on:click={handleAscSort}>
+					<ArrowUp class="mr-2 h-4 w-4" />
+					Asc
+				</DropdownMenu.Item>
+				<DropdownMenu.Item on:click={handleDescSort}>
+					<ArrowDown class="mr-2 h-4 w-4" />
+					Desc
+				</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
