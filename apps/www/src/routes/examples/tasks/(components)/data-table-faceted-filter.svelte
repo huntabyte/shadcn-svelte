@@ -60,7 +60,7 @@
 						{#each filterValues as option}
 							<Badge
 								variant="secondary"
-								className="rounded-sm px-1 font-normal"
+								class="rounded-sm px-1 font-normal"
 							>
 								{option}
 							</Badge>
