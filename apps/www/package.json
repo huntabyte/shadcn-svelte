@@ -72,9 +72,9 @@
 	"dependencies": {
 		"@unovis/svelte": "^1.2.3",
 		"@unovis/ts": "^1.2.3",
-		"bits-ui": "^0.9.0",
+		"bits-ui": "^0.9.1",
 		"clsx": "^2.0.0",
-		"cmdk-sv": "^0.0.5",
+		"cmdk-sv": "^0.0.6",
 		"d3-scale": "^4.0.2",
 		"esm-env": "^1.0.0",
 		"formsnap": "^0.4.1",
