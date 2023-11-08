@@ -36,7 +36,7 @@
 			Components
 		</a>
 		<a
-			href="/docs/components"
+			href="/theme"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
 				$page.url.pathname.startsWith("/themes")
