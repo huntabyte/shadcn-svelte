@@ -21,7 +21,6 @@ import {
 	Settings,
 	SunMedium,
 	Trash,
-	Twitter,
 	User,
 	X
 } from "lucide-svelte";
@@ -36,6 +35,7 @@ import Pnpm from "./pnpm.svelte";
 import RadixSvelte from "./radix-svelte.svelte";
 import Tailwind from "./tailwind.svelte";
 import Yarn from "./yarn.svelte";
+import Twitter from "./twitter.svelte";
 
 export type Icon = LucideIcon;
 

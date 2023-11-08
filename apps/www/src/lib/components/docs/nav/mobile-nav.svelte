@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Sheet from "@/registry/new-york/ui/sheet";
-	import { SidebarOpen } from "lucide-svelte";
+	import { ViewVertical } from "radix-icons-svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
@@ -17,12 +17,12 @@
 			variant="ghost"
 			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
 		>
-			<SidebarOpen class="h-5 w-5" />
+			<ViewVertical class="h-5 w-5" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
-		<MobileLink href="/" class="flex items-center" {open}>
+		<MobileLink href="/" class="flex items-center" bind:open>
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
@@ -43,7 +43,11 @@
 						{#if navItem?.items?.length}
 							{#each navItem.items as item}
 								{#if !item.disabled && item.href}
-									<MobileLink href={item.href} bind:open>
+									<MobileLink
+										href={item.href}
+										bind:open
+										class="text-muted-foreground"
+									>
 										{item.title}
 									</MobileLink>
 								{/if}
