@@ -36,7 +36,7 @@
 <Button
 	variant="outline"
 	class={cn(
-		"relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 xl:w-64"
+		"relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
 	)}
 	on:click={() => (open = true)}
 	{...$$restProps}
