@@ -108,7 +108,6 @@
 			plugins: {
 				colFilter: {
 					fn: ({ filterValue, value }) => {
-						console.log("status", filterValue, value);
 						if (filterValue.length === 0) return true;
 						if (
 							!Array.isArray(filterValue) ||
@@ -138,7 +137,6 @@
 			plugins: {
 				colFilter: {
 					fn: ({ filterValue, value }) => {
-						console.log("priority", filterValue, value);
 						if (filterValue.length === 0) return true;
 						if (
 							!Array.isArray(filterValue) ||
