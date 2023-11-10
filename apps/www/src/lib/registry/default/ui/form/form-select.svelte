@@ -13,6 +13,9 @@
 		onSelectedChange?.(v);
 		setValue(v ? v.value : undefined);
 	}}
+	onOpenChange={(v) => {
+		console.log("open change", v);
+	}}
 	{...$$restProps}
 >
 	<slot />
