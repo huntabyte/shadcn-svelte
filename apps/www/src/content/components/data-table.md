@@ -1331,7 +1331,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
 
 To accommodate the checkbox, we'll need to update our table styles. We'll also add a message to show how many rows are selected.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {39,65,87-90}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {39,62-65,90-93}
 <div>
   <div class="flex items-center py-4">
     <Input
@@ -1393,7 +1393,10 @@ To accommodate the checkbox, we'll need to update our table styles. We'll also a
       <Table.Body {...$tableBodyAttrs}>
         {#each $pageRows as row (row.id)}
           <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-            <Table.Row {...rowAttrs}>
+            <Table.Row
+              {...rowAttrs}
+              data-state={$selectedDataIds[row.id] && "selected"}
+            >
               {#each row.cells as cell (cell.id)}
                 <Subscribe attrs={cell.attrs()} let:attrs>
                   <Table.Cell {...attrs} class="[&:has([role=checkbox])]:pl-3">
