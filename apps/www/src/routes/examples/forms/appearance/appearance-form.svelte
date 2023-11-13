@@ -32,7 +32,7 @@
 	<Form.Item>
 		<Form.Field {config} name="font">
 			<Form.Label>Font</Form.Label>
-			<div class="relative w-max">
+			<div class="w-max">
 				<Form.NativeSelect class="w-[200px]">
 					<option value="inter">Inter</option>
 					<option value="manrope">Manrope</option>
