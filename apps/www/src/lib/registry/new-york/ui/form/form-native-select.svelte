@@ -11,14 +11,16 @@
 	export { className as class };
 </script>
 
-<FormPrimitive.Select
-	class={cn(
-		buttonVariants({ variant: "outline" }),
-		"appearance-none bg-transparent font-normal",
-		className
-	)}
-	{...$$restProps}
->
-	<slot />
-</FormPrimitive.Select>
-<CaretSort class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
+<div class="relative">
+	<FormPrimitive.Select
+		class={cn(
+			buttonVariants({ variant: "outline" }),
+			"appearance-none bg-transparent font-normal",
+			className
+		)}
+		{...$$restProps}
+	>
+		<slot />
+	</FormPrimitive.Select>
+	<CaretSort class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
+</div>
