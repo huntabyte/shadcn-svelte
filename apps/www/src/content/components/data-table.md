@@ -1297,6 +1297,11 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       header: "",
       cell: ({ value }) => {
         return createRender(DataTableActions, { id: value });
+      },
+      plugins: {
+        sort: {
+          disable: true
+        }
       }
     })
   ]);
