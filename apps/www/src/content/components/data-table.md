@@ -210,7 +210,7 @@ Now that we have a table, we can define our columns.
       header: "Amount"
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: ""
     })
   ]);
@@ -266,7 +266,7 @@ Finally, we'll create a view model which we'll use to build our table.
       header: "Amount"
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: ""
     })
   ]);
@@ -363,7 +363,7 @@ const columns = table.createColumns([
     }
   }),
   table.column({
-    accessor: ({ email }) => email,
+    accessor: ({ id }) => id,
     header: ""
   })
 ]);
@@ -535,10 +535,10 @@ Now that we've defined our actions component, let's update our `actions` column 
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       }
     })
   ]);
@@ -620,10 +620,10 @@ Next, we'll add pagination to our table
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       }
     })
   ]);
@@ -754,10 +754,10 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       },
       plugins: {
         sort: {
@@ -926,10 +926,10 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       },
       plugins: {
         sort: {
@@ -1084,10 +1084,10 @@ Let's add the ability to control which columns are visible in our table.
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       },
       plugins: {
         sort: {
@@ -1293,10 +1293,10 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       }
     }),
     table.column({
-      accessor: ({ email }) => email,
+      accessor: ({ id }) => id,
       header: "",
-      cell: (item) => {
-        return createRender(DataTableActions, { id: item.id });
+      cell: ({ value }) => {
+        return createRender(DataTableActions, { id: value });
       }
     })
   ]);
