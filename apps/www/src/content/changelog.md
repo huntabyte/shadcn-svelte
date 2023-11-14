@@ -7,6 +7,16 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## November 2023 - Toggle Group
+
+We've added a new component to the library, [Toggle Group](/docs/components/toggle-group).
+
+<ComponentPreview name="toggle-group-demo">
+
+<div />
+
+</ComponentPreview>
+
 ## October 2023 - New Components & Updates
 
 We've added two new components to the library, [Command](/docs/components/command) & [Combobox](/docs/components/combobox). We've also made some updates to the `<Form.Label />` component that you'll want to be aware of.
