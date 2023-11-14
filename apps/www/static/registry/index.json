@@ -480,6 +480,21 @@
     "type": "components:ui"
   },
   {
+    "name": "toggle-group",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "toggle"
+    ],
+    "files": [
+      "ui/toggle-group/index.ts",
+      "ui/toggle-group/toggle-group-item.svelte",
+      "ui/toggle-group/toggle-group.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "tooltip",
     "dependencies": [
       "bits-ui"
