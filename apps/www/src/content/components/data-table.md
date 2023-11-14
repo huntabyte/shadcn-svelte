@@ -988,7 +988,7 @@ Let's add the ability to control which columns are visible in our table.
 
 ### Enable `addHiddenColumns` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,44,115,120,122-123,125-127,129}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,40,44,115,120,122-123,125-127,129}
 <script lang="ts">
   import {
     createTable,
