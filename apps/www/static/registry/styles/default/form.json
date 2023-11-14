@@ -42,7 +42,7 @@
     },
     {
       "name": "form-native-select.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLSelectAttributes;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Select\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"appearance-none bg-transparent font-normal\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Select>\n<ChevronDown class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n"
+      "content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLSelectAttributes;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class=\"relative\">\n\t<FormPrimitive.Select\n\t\tclass={cn(\n\t\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\t\"appearance-none bg-transparent font-normal\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</FormPrimitive.Select>\n\t<ChevronDown class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n</div>\n"
     },
     {
       "name": "form-radio-group.svelte",
@@ -50,7 +50,7 @@
     },
     {
       "name": "form-select-trigger.svelte",
-      "content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/default/ui/select\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\n\ttype $$Props = SelectPrimitive.TriggerProps & {\n\t\tplaceholder?: string;\n\t};\n\ttype $$Events = SelectPrimitive.TriggerEvents;\n\tconst { attrStore } = getFormField();\n\texport let placeholder = \"\";\n</script>\n\n<Select.Trigger {...$$restProps} {...$attrStore} on:click on:keydown>\n\t<Select.Value {placeholder} />\n\t<slot />\n</Select.Trigger>\n"
+      "content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/default/ui/select\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\n\ttype $$Props = SelectPrimitive.TriggerProps & {\n\t\tplaceholder?: string;\n\t};\n\ttype $$Events = SelectPrimitive.TriggerEvents;\n\tconst { attrStore } = getFormField();\n\texport let placeholder = \"\";\n</script>\n\n<Select.Trigger\n\t{...$$restProps}\n\t{...$attrStore}\n\ton:click\n\ton:keydown\n\ttype=\"button\"\n>\n\t<Select.Value {placeholder} />\n\t<slot />\n</Select.Trigger>\n"
     },
     {
       "name": "form-select.svelte",
