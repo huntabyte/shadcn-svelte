@@ -2,7 +2,6 @@
 title: Combobox
 description: Autocomplete input and command palette with a list of suggestions.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/combobox
 ---
 
 <script>
