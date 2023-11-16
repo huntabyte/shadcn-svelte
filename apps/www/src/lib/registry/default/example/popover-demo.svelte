@@ -1,13 +1,12 @@
 <script lang="ts">
-	import {
-		Popover,
-		PopoverTrigger,
-		PopoverContent
-	} from "@/registry/default/ui/popover";
-	import { Label } from "@/registry/default/ui/label";
 	import { Button } from "@/registry/default/ui/button";
 	import { Input } from "@/registry/default/ui/input";
-	import SelectDemo from "./select-demo.svelte";
+	import { Label } from "@/registry/default/ui/label";
+	import {
+		Popover,
+		PopoverContent,
+		PopoverTrigger
+	} from "@/registry/default/ui/popover";
 </script>
 
 <Popover portal={null}>
@@ -41,6 +40,5 @@
 				</div>
 			</div>
 		</div>
-		<SelectDemo />
 	</PopoverContent>
 </Popover>
