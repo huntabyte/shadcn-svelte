@@ -16,7 +16,6 @@
 		};
 		filter: never;
 	};
-	export let title: string;
 
 	function handleAscSort(e: Event) {
 		if (props.sort.order === "asc") {
@@ -42,7 +41,7 @@
 					builders={[builder]}
 					class="-ml-3 h-8 data-[state=open]:bg-accent"
 				>
-					<span class="capitalize">{title}</span>
+					<slot />
 					{#if props.sort.order === "desc"}
 						<ArrowDown class="ml-2 h-4 w-4" />
 					{:else if props.sort.order === "asc"}
@@ -63,7 +62,5 @@
 		</DropdownMenu.Root>
 	</div>
 {:else}
-	<span class="capitalize">
-		{title}
-	</span>
+	<slot />
 {/if}

@@ -193,10 +193,11 @@
 								>
 									<Table.Head {...attrs}>
 										{#if cell.id !== "select" && cell.id !== "actions"}
-											<DataTableColumnHeader
-												{props}
-												title={cell.id}
-											/>
+											<DataTableColumnHeader {props}
+												><Render
+													of={cell.render()}
+												/></DataTableColumnHeader
+											>
 										{:else}
 											<Render of={cell.render()} />
 										{/if}
