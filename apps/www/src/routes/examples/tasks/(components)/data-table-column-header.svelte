@@ -62,7 +62,5 @@
 		</DropdownMenu.Root>
 	</div>
 {:else}
-	<span class="capitalize">
-		{title}
-	</span>
+	<slot />
 {/if}
