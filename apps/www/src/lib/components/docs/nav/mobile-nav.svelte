@@ -49,6 +49,13 @@
 										class="text-muted-foreground"
 									>
 										{item.title}
+										{#if item.label}
+											<span
+												class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000]"
+											>
+												{item.label}
+											</span>
+										{/if}
 									</MobileLink>
 								{/if}
 							{/each}
