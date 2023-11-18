@@ -17,14 +17,14 @@ dependencies:
     specifier: ^1.2.3
     version: 1.2.3
   bits-ui:
-    specifier: ^0.9.7
-    version: 0.9.7(svelte@4.2.2)
+    specifier: ^0.9.8
+    version: 0.9.8(svelte@4.2.2)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
   cmdk-sv:
-    specifier: ^0.0.6
-    version: 0.0.6(svelte@4.2.2)
+    specifier: ^0.0.8
+    version: 0.0.8(svelte@4.2.2)
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
@@ -890,8 +890,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: false
 
-  /@melt-ui/svelte@0.61.1(svelte@4.2.2):
-    resolution: {integrity: sha512-xG/rRK77yfzAWm0/KrB+NrJ3qzBALv7B3OoHGyLSfFXIGum+CzklxtDH8gNSuCA6ENfuPnY7pwy390+LNqvdig==}
+  /@melt-ui/svelte@0.61.2(svelte@4.2.2):
+    resolution: {integrity: sha512-BHkD9G31zQBToA4euDRBgTQRvWxT9scufOVCXgDO6HKTvyxFspbWT2bgiSFqAK4BbAGDn9Ao36Q8F9O71KN4OQ==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1794,12 +1794,12 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.9.7(svelte@4.2.2):
-    resolution: {integrity: sha512-ttALUL1mxcJ3gAUVh6PveLszD3LiUZItOJ8KAZoaQSL16lVoBxTXvWZhi2+Gpyc40hJK07Q9QdYCilIZ/pI1FQ==}
+  /bits-ui@0.9.8(svelte@4.2.2):
+    resolution: {integrity: sha512-cjuurfmqEIhQy51uOY370ihAN/oPxZXT7ifa7CAf3G+Ft2G4ucJKk3xM3Mq1AidJn4zCoDOjr8EW+VOJtcS0+g==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      '@melt-ui/svelte': 0.61.1(svelte@4.2.2)
+      '@melt-ui/svelte': 0.61.2(svelte@4.2.2)
       nanoid: 5.0.3
       svelte: 4.2.2
     dev: false
@@ -1938,12 +1938,12 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /cmdk-sv@0.0.6(svelte@4.2.2):
-    resolution: {integrity: sha512-Wfo77gJD3UMkMZog8tY/h1ITjlhKxsy8ZRLCQ2q89kqBiPeP4j7uO7J2XVB4FaakJq9J/p7afszjCzp1NnBk+Q==}
+  /cmdk-sv@0.0.8(svelte@4.2.2):
+    resolution: {integrity: sha512-ofB39HzWZfAC7R1jrqFSs6X1vQm3FGYWn+erLTATStpTRqNenr9FKL6EO2Ql+Vdw1o+zsXkJ8Rm0REwwE3NHZg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      bits-ui: 0.9.7(svelte@4.2.2)
+      bits-ui: 0.9.8(svelte@4.2.2)
       nanoid: 5.0.3
       svelte: 4.2.2
     dev: false
