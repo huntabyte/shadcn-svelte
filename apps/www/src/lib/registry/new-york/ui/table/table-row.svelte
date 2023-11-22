@@ -16,6 +16,8 @@
 		className
 	)}
 	{...$$restProps}
+	on:click
+	on:keydown
 >
 	<slot />
 </tr>
