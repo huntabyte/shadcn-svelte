@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { cn } from "@/utils";
-	import * as Select from "@/registry/new-york/ui/select";
 	import type { Preset } from "../(data)/presets";
-	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Command from "@/registry/new-york/ui/command";
 	import { Check, CaretSort } from "radix-icons-svelte";
