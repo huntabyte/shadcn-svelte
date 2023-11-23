@@ -109,11 +109,9 @@
 											role="button"
 											tabindex="0"
 											on:mouseover={() => {
-												console.log("hover");
 												handlePeek(model);
 											}}
 											on:focus={() => {
-												console.log("focus");
 												handlePeek(model);
 											}}
 										>
