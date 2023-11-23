@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.7
+
+### Patch Changes
+
+- 9660a09: rename extension name from .postcss to .pcss
+
 ## 0.3.6
 
 ### Patch Changes

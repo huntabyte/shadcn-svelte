@@ -73,7 +73,7 @@ You will be asked a few questions to configure `components.json`:
 ```txt showLineNumbers
 Which style would you like to use? › Default
 Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.postcss
+Where is your global CSS file? › src/app.pcss
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
@@ -200,9 +200,9 @@ Feel free to add or modify as needed to suit your project.
 
 ### Configure styles
 
-Add the following to your `src/app.postcss` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
+Add the following to your `src/app.pcss` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
 
-```css title="src/app.postcss"
+```css title="src/app.pcss"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -369,7 +369,7 @@ Create `src/routes/+layout.svelte` and import the styles:
 
 ```svelte title="src/routes/+layout.svelte"
 <script lang="ts">
-  import "../app.postcss";
+  import "../app.pcss";
 </script>
 
 <slot />
@@ -404,12 +404,12 @@ src
 ├── routes
 │   ├── +page.svelte
 │   └── +layout.svelte
-├── app.postcss
+├── app.pcss
 ```
 
 - Place the UI components in the `lib/components/ui` folder.
 - The rest of the components such as `<PageHeader />` and `<Navigation />` are placed in the `lib/components` folder.
 - The `lib/utils.ts` file is where you can define the `cn` helper.
-- The `app.postcss` file contains the global CSS.
+- The `app.pcss` file contains the global CSS.
 
 That's it. You can now start adding components to your project.

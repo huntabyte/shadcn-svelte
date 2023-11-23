@@ -104,7 +104,7 @@ Here's the list of variables available for customization:
 
 The following is the default color palette used by the components.
 
-```css title="src/app.postcss"
+```css title="src/app.pcss"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

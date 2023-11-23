@@ -76,7 +76,7 @@ Path to the CSS file that imports Tailwind CSS into your project.
 ```json title="components.json"
 {
   "tailwind": {
-    "css": "src/app.postcss"
+    "css": "src/app.pcss"
   }
 }
 ```
