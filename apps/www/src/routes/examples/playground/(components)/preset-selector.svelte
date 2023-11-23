@@ -2,29 +2,73 @@
 	import { cn } from "@/utils";
 	import * as Select from "@/registry/new-york/ui/select";
 	import type { Preset } from "../(data)/presets";
-	import { buttonVariants } from "@/registry/default/ui/button";
+	import { buttonVariants } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "@/registry/new-york/ui/command";
+	import { Check, CaretSort } from "radix-icons-svelte";
+	import * as Popover from "@/registry/new-york/ui/popover";
+	import { tick } from "svelte";
 
 	export let presets: Preset[];
 	let open = false;
+
+	let value = "";
+
+	$: selectedValue =
+		presets.find((f) => f.name === value)?.name ?? "Load a preset...";
+
+	// We want to refocus the trigger button when the user selects
+	// an item from the list so users can continue navigating the
+	// rest of the form with the keyboard.
+	function closeAndFocusTrigger(triggerId: string) {
+		open = false;
+		tick().then(() => {
+			document.getElementById(triggerId)?.focus();
+		});
+	}
 </script>
 
-<Select.Root bind:open positioning={{ sameWidth: false, placement: "bottom" }}>
-	<Select.Trigger
-		class={cn(
-			buttonVariants({ variant: "outline" }),
-			"flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
-		)}
-	>
-		<Select.Value placeholder="Load a preset..." />
-	</Select.Trigger>
-	<Select.Content class="w-[300px] p-0">
-		<Select.Group>
-			<Select.Label>Examples</Select.Label>
-			{#each presets as preset}
-				<Select.Item value={preset.id} label={preset.name}>
-					{preset.name}
-				</Select.Item>
-			{/each}
-		</Select.Group>
-	</Select.Content>
-</Select.Root>
+<Popover.Root bind:open let:ids>
+	<Popover.Trigger asChild let:builder>
+		<Button
+			builders={[builder]}
+			variant="outline"
+			role="combobox"
+			aria-expanded={open}
+			class="flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
+		>
+			{selectedValue}
+			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+		</Button>
+	</Popover.Trigger>
+	<Popover.Content class="md:w-[200px] lg:w-[300px] w-full p-0">
+		<Command.Root>
+			<Command.Input placeholder="Search presets..." />
+			<Command.List>
+				<Command.Empty>No presets found.</Command.Empty>
+				<Command.Group heading="Examples">
+					{#each presets as preset}
+						<Command.Item
+							value={preset.name}
+							class="aria-selected:bg-primary aria-selected:text-primary-foreground"
+							onSelect={(currentValue) => {
+								value = currentValue;
+								closeAndFocusTrigger(ids.trigger);
+							}}
+						>
+							{preset.name}
+							<Check
+								class={cn(
+									"ml-auto h-4 w-4",
+									value === preset.name
+										? "opacity-100"
+										: "opacity-0"
+								)}
+							/>
+						</Command.Item>
+					{/each}
+				</Command.Group>
+			</Command.List>
+		</Command.Root>
+	</Popover.Content>
+</Popover.Root>

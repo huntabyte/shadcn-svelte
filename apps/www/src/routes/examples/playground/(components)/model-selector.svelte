@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { cn } from "@/utils";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
-	import * as Select from "@/registry/new-york/ui/select";
 	import { Label } from "@/registry/new-york/ui/label";
 	import type { ModelType, Model } from "../(data)/models";
-	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button";
 	import * as Command from "@/registry/new-york/ui/command";
 	import { Check, CaretSort } from "radix-icons-svelte";
 	import * as Popover from "@/registry/new-york/ui/popover";
