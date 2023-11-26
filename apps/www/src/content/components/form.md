@@ -74,7 +74,7 @@ npx shadcn-svelte@latest add form
 
 ### Create a form schema
 
-Define the shape of your form using a Zod schema. You can read more about using Zod in the [Zod documentation](https://zod.dev). We're going to define it in a file called `schema.ts` in the same directly as our page component, but you can put it anywhere you like.
+Define the shape of your form using a Zod schema. You can read more about using Zod in the [Zod documentation](https://zod.dev). We're going to define it in a file called `schema.ts` in the same directory as our page component, but you can put it anywhere you like.
 
 ```ts title="src/routes/settings/schema.ts" showLineNumbers
 import { z } from "zod";
