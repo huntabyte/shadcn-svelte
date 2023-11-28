@@ -7,6 +7,7 @@ import ora from "ora";
 import prompts from "prompts";
 import { z } from "zod";
 import { getConfig } from "../utils/get-config";
+import { getEnvProxy } from "../utils/get-env-proxy";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
 import { logger } from "../utils/logger";
@@ -21,7 +22,8 @@ import { transformImport } from "../utils/transformer";
 
 const updateOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
-	cwd: z.string()
+	cwd: z.string(),
+	proxy: z.string().optional()
 });
 
 export const update = new Command()
@@ -33,6 +35,7 @@ export const update = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
+	.option("--proxy <proxy>", "Update components from registry using a proxy.")
 	.action(async (comps, opts) => {
 		logger.warn(
 			"Running the following command will overwrite existing files."
@@ -68,6 +71,18 @@ export const update = new Command()
 				);
 				process.exitCode = 1;
 				return;
+			}
+
+			const chosenProxy = options.proxy ?? getEnvProxy();
+			if (chosenProxy) {
+				const isCustom = !!options.proxy;
+				if (isCustom) process.env.HTTP_PROXY = options.proxy;
+
+				logger.warn(
+					`You are using a ${
+						isCustom ? "provided" : "system environment"
+					} proxy: ${chalk.green(chosenProxy)}`
+				);
 			}
 
 			const registryIndex = await getRegistryIndex();

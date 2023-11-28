@@ -15,6 +15,7 @@ import {
 	rawConfigSchema,
 	resolveConfigPaths
 } from "../utils/get-config";
+import { getEnvProxy } from "../utils/get-env-proxy";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
 import { logger } from "../utils/logger";
@@ -40,6 +41,10 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
+	.option(
+		"--proxy <proxy>",
+		"Initialize dependencies from registry using a proxy."
+	)
 	.action(async (options) => {
 		const cwd = path.resolve(options.cwd);
 
@@ -50,6 +55,18 @@ export const init = new Command()
 			"If you don't have these, follow the manual steps at https://shadcn-svelte.com/docs/installation."
 		);
 		logger.warn("");
+
+		const chosenProxy = options.proxy ?? getEnvProxy();
+		if (chosenProxy) {
+			const isCustom = !!options.proxy;
+			if (isCustom) process.env.HTTP_PROXY = options.proxy;
+
+			logger.warn(
+				`You are using a ${
+					isCustom ? "provided" : "system environment"
+				} proxy: ${chalk.green(chosenProxy)}`
+			);
+		}
 
 		if (!options.yes) {
 			const { proceed } = await prompts([
