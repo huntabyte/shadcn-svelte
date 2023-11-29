@@ -770,7 +770,7 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { hasNextPage, hasPreviewPage, pageIndex } = pluginStates.page;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
