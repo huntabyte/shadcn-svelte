@@ -51,7 +51,7 @@
 		</HoverCard.Content>
 	</HoverCard.Root>
 
-	<Popover.Root bind:open let:names>
+	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -121,7 +121,7 @@
 												onSelect={(currentValue) => {
 													value = currentValue;
 													closeAndFocusTrigger(
-														names.trigger
+														ids.trigger
 													);
 												}}
 											>
