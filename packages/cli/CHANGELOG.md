@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.3.8
+
+### Patch Changes
+
+- 744f149: Bump zod from 3.21.4 to 3.22.3 in /packages/cli
+
 ## 0.3.7
 
 ### Patch Changes
