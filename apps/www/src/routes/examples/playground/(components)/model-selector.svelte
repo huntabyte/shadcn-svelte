@@ -51,7 +51,7 @@
 		</HoverCard.Content>
 	</HoverCard.Root>
 
-	<Popover.Root bind:open let:ids>
+	<Popover.Root bind:open let:names>
 		<Popover.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -116,12 +116,12 @@
 											}}
 										>
 											<Command.Item
-												value={model.id}
+												value={model.name}
 												class="aria-selected:bg-primary aria-selected:text-primary-foreground"
 												onSelect={(currentValue) => {
 													value = currentValue;
 													closeAndFocusTrigger(
-														ids.trigger
+														names.trigger
 													);
 												}}
 											>
