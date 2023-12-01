@@ -356,7 +356,7 @@ export const Index = {
     "popover-demo": {
       name: "popover-demo",
       type: "components:example",
-      registryDependencies: ["popover","label","button","input"],
+      registryDependencies: ["button","input","label","popover"],
       component: () => import("../src/lib/registry/default/example/popover-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/popover-demo.svelte"],
     },
@@ -1043,7 +1043,7 @@ export const Index = {
     "popover-demo": {
       name: "popover-demo",
       type: "components:example",
-      registryDependencies: ["popover","label","button","input"],
+      registryDependencies: ["button","input","label","popover"],
       component: () => import("../src/lib/registry/new-york/example/popover-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/popover-demo.svelte"],
     },
