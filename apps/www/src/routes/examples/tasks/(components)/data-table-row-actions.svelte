@@ -9,7 +9,7 @@
 	const task = taskSchema.parse(row);
 </script>
 
-<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button
 			variant="ghost"
@@ -20,7 +20,7 @@
 			<span class="sr-only">Open menu</span>
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-[160px]">
+	<DropdownMenu.Content class="w-[160px]" align="end">
 		<DropdownMenu.Item>Edit</DropdownMenu.Item>
 		<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
 		<DropdownMenu.Item>Favorite</DropdownMenu.Item>

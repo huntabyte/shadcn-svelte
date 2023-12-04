@@ -26,7 +26,7 @@
 					<p class="text-sm text-muted-foreground">m@example.com</p>
 				</div>
 			</div>
-			<Popover.Root positioning={{ placement: "bottom-end" }}>
+			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button
 						builders={[builder]}
@@ -39,7 +39,7 @@
 						/>
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content class="p-0">
+				<Popover.Content class="p-0" align="end">
 					<Command.Root>
 						<Command.Input placeholder="Select new role..." />
 						<Command.List>
@@ -94,7 +94,7 @@
 					<p class="text-sm text-muted-foreground">p@example.com</p>
 				</div>
 			</div>
-			<Popover.Root positioning={{ placement: "bottom-end" }}>
+			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button
 						builders={[builder]}
@@ -107,7 +107,7 @@
 						/>
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content class="p-0">
+				<Popover.Content class="p-0" align="end">
 					<Command.Root>
 						<Command.Input placeholder="Select new role..." />
 						<Command.List>

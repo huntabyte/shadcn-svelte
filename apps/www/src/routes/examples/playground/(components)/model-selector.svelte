@@ -38,13 +38,13 @@
 </script>
 
 <div class="grid gap-2">
-	<HoverCard.Root openDelay={200} positioning={{ placement: "left-start" }}>
+	<HoverCard.Root openDelay={200}>
 		<HoverCard.Trigger asChild let:builder>
 			<div use:builder.action {...builder}>
 				<Label for="model">Model</Label>
 			</div>
 		</HoverCard.Trigger>
-		<HoverCard.Content class="w-[260px] text-sm">
+		<HoverCard.Content class="w-[260px] text-sm" align="start" side="left">
 			The model which will generate the completion. Some models are
 			suitable for natural language tasks, others specialize in code.
 			Learn more.
@@ -66,14 +66,15 @@
 		</Popover.Trigger>
 		<Popover.Content class="w-[250px] p-0">
 			<HoverCard.Root
-				positioning={{
-					placement: "left-start"
-				}}
 				closeOnOutsideClick={false}
 				open={peekedModel.id !== selectedModel.id}
 				openDelay={0}
 			>
-				<HoverCard.Content class="min-h-[280px] -ml-2 ">
+				<HoverCard.Content
+					class="min-h-[280px] -ml-2"
+					side="left"
+					align="start"
+				>
 					<div class="grid gap-2">
 						<h4 class="font-medium leading-none">
 							{peekedModel.name}

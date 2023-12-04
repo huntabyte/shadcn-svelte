@@ -26,7 +26,6 @@
 	bind:value
 	{...$$restProps}
 	let:builder
-	let:attrs
 >
-	<slot {builder} {attrs} />
+	<slot {builder} />
 </ToggleGroupPrimitive.Root>

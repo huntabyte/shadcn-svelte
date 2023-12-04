@@ -8,11 +8,7 @@
 </script>
 
 <div class="grid gap-2 pt-2">
-	<HoverCard.Root
-		openDelay={200}
-		closeDelay={100}
-		positioning={{ placement: "left-start" }}
-	>
+	<HoverCard.Root openDelay={200} closeDelay={100}>
 		<HoverCard.Trigger asChild let:builder>
 			<div class="grid gap-4" {...builder} use:builder.action>
 				<div class="flex items-center justify-between">
@@ -33,7 +29,7 @@
 				/>
 			</div>
 		</HoverCard.Trigger>
-		<HoverCard.Content class="w-[260px] text-sm">
+		<HoverCard.Content class="w-[260px] text-sm" side="left" align="start">
 			The maximum number of tokens to generate. Requests can use up to
 			2,048 or 4,000 tokens, shared between prompt and completion. The
 			exact limit varies by model.

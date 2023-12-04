@@ -23,7 +23,7 @@
 				Star
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
-			<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
 					<Button
 						builders={[builder]}
@@ -35,7 +35,7 @@
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
-				<DropdownMenu.Content class="w-[200px]">
+				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
 					<DropdownMenu.Separator />
 					<DropdownMenu.CheckboxItem checked>

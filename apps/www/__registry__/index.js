@@ -136,6 +136,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/button-with-icon.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/button-with-icon.svelte"],
     },
+    "calendar-demo": {
+      name: "calendar-demo",
+      type: "components:example",
+      registryDependencies: ["utils","button"],
+      component: () => import("../src/lib/registry/default/example/calendar-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/calendar-demo.svelte"],
+    },
     "card-demo": {
       name: "card-demo",
       type: "components:example",
@@ -822,6 +829,13 @@ export const Index = {
       registryDependencies: ["button"],
       component: () => import("../src/lib/registry/new-york/example/button-with-icon.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/button-with-icon.svelte"],
+    },
+    "calendar-demo": {
+      name: "calendar-demo",
+      type: "components:example",
+      registryDependencies: ["utils","button"],
+      component: () => import("../src/lib/registry/new-york/example/calendar-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/calendar-demo.svelte"],
     },
     "card-demo": {
       name: "card-demo",

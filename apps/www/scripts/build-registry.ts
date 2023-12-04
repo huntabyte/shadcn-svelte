@@ -118,7 +118,7 @@ fs.writeFileSync(
 	"utf8"
 );
 
-const REGISTRY_IGNORE = ["super-form"];
+const REGISTRY_IGNORE = ["super-form", "calendar"];
 
 // ----------------------------------------------------------------------------
 // Build registry/index.json.

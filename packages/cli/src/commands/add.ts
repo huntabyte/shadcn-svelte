@@ -7,6 +7,7 @@ import ora from "ora";
 import prompts from "prompts";
 import { z } from "zod";
 import { getConfig } from "../utils/get-config";
+import { getEnvProxy } from "../utils/get-env-proxy";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
 import { logger } from "../utils/logger";
@@ -18,7 +19,6 @@ import {
 	resolveTree
 } from "../utils/registry";
 import { transformImport } from "../utils/transformer";
-import { getEnvProxy } from "../utils/get-env-proxy";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -101,7 +101,9 @@ export const add = new Command()
 
 			const registryIndex = await getRegistryIndex();
 
-			let selectedComponents = options.all ? registryIndex.map(({ name }) => name) : options.components;
+			let selectedComponents = options.all
+				? registryIndex.map(({ name }) => name)
+				: options.components;
 
 			if (!selectedComponents?.length) {
 				const { components } = await prompts({
@@ -136,7 +138,9 @@ export const add = new Command()
 				return;
 			}
 
-			logger.info(`Selected components:\n${highlight(selectedComponents)}`);
+			logger.info(
+				`Selected components:\n${highlight(selectedComponents)}`
+			);
 
 			if (!options.yes) {
 				const { proceed } = await prompts({

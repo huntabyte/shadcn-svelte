@@ -4,7 +4,7 @@
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 </script>
 
-<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button
 			variant="ghost"
@@ -17,7 +17,7 @@
 			</Avatar.Root>
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-56">
+	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Label class="font-normal">
 			<div class="flex flex-col space-y-1">
 				<p class="text-sm font-medium leading-none">shadcn</p>
