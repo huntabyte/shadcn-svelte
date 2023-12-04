@@ -11,14 +11,14 @@
 	let showDeleteDialog = false;
 </script>
 
-<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="secondary" builders={[builder]}>
 			<span class="sr-only">Actions</span>
 			<DotsHorizontal class="h-4 w-4" />
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content>
+	<DropdownMenu.Content align="end">
 		<DropdownMenu.Item on:click={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>

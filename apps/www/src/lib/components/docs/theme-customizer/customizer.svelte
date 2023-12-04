@@ -40,14 +40,17 @@
 		<div class="space-y-1 5">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
-				<Popover.Root
-					positioning={{ placement: "right-start", gutter: -20 }}
-				>
+				<Popover.Root>
 					<Popover.Trigger>
 						<InfoCircled class="ml-1 h-3 w-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
-					<Popover.Content class="space-y-3 rounded-[0.5rem] text-sm">
+					<Popover.Content
+						class="space-y-3 rounded-[0.5rem] text-sm"
+						align="start"
+						side="right"
+						sideOffset={-20}
+					>
 						<p class="font-medium">
 							What is the difference between the New York and
 							Default style?

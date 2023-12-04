@@ -29,7 +29,7 @@
 	};
 </script>
 
-<Popover.Root bind:open positioning={{ placement: "bottom-start" }}>
+<Popover.Root bind:open>
 	<Popover.Trigger asChild let:builder>
 		<Button
 			builders={[builder]}
@@ -70,7 +70,7 @@
 			{/if}
 		</Button>
 	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
+	<Popover.Content class="w-[200px] p-0" align="start" side="bottom">
 		<Command.Root>
 			<Command.Input placeholder={title} />
 			<Command.List>

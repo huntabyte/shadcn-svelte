@@ -6,7 +6,7 @@
 	import { setMode, resetMode } from "mode-watcher";
 </script>
 
-<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline" size="icon">
 			<Sun
@@ -18,7 +18,7 @@
 			<span class="sr-only">Toggle theme</span>
 		</Button>
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content>
+	<DropdownMenu.Content align="end">
 		<DropdownMenu.Item on:click={() => setMode("light")}>
 			Light
 		</DropdownMenu.Item>

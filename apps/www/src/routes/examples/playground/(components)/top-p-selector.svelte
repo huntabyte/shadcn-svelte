@@ -8,11 +8,7 @@
 </script>
 
 <div class="grid gap-2 pt-2">
-	<HoverCard.Root
-		openDelay={200}
-		closeDelay={100}
-		positioning={{ placement: "left-start" }}
-	>
+	<HoverCard.Root openDelay={200} closeDelay={100}>
 		<HoverCard.Trigger asChild let:builder>
 			<div class="grid gap-4" use:builder.action {...builder}>
 				<div class="flex items-center justify-between">
@@ -33,7 +29,7 @@
 				/>
 			</div>
 		</HoverCard.Trigger>
-		<HoverCard.Content class="w-[260px] text-sm">
+		<HoverCard.Content class="w-[260px] text-sm" side="left" align="start">
 			Control diversity via nucleus sampling: 0.5 means half of all
 			likelihood-weighted options are considered.
 		</HoverCard.Content>

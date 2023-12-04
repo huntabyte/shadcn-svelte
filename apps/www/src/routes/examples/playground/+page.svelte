@@ -60,10 +60,7 @@
 			>
 				<div class="hidden flex-col space-y-4 sm:flex md:order-2">
 					<div class="grid gap-2">
-						<HoverCard.Root
-							openDelay={200}
-							positioning={{ placement: "left" }}
-						>
+						<HoverCard.Root openDelay={200}>
 							<HoverCard.Trigger asChild let:builder>
 								<span
 									class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -73,7 +70,10 @@
 									Mode
 								</span>
 							</HoverCard.Trigger>
-							<HoverCard.Content class="w-[320px] text-sm">
+							<HoverCard.Content
+								class="w-[320px] text-sm"
+								side="left"
+							>
 								Choose the interface that best suits your task.
 								You can provide: a simple prompt to complete,
 								starting and ending text to insert a completion

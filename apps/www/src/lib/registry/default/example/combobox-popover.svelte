@@ -64,7 +64,7 @@
 
 <div class="flex items-center space-x-4">
 	<p class="text-sm text-muted-foreground">Status</p>
-	<Popover.Root bind:open let:ids positioning={{ placement: "right-start" }}>
+	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -83,7 +83,7 @@
 				{/if}
 			</Button>
 		</Popover.Trigger>
-		<Popover.Content class="w-[200px] p-0">
+		<Popover.Content class="w-[200px] p-0" side="right" align="start">
 			<Command.Root>
 				<Command.Input placeholder="Change status..." />
 				<Command.List>

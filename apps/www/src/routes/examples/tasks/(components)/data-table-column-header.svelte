@@ -34,7 +34,7 @@
 
 {#if !props.sort.disabled}
 	<div class={cn("flex items-center", className)}>
-		<DropdownMenu.Root positioning={{ placement: "bottom-start" }}>
+		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild let:builder>
 				<Button
 					variant="ghost"
@@ -51,7 +51,7 @@
 					{/if}
 				</Button>
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content>
+			<DropdownMenu.Content align="start">
 				<DropdownMenu.Item on:click={handleAscSort}
 					>Asc</DropdownMenu.Item
 				>

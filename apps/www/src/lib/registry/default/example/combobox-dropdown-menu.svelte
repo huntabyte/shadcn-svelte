@@ -40,11 +40,7 @@
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
-	<DropdownMenu.Root
-		bind:open
-		positioning={{ placement: "bottom-end" }}
-		let:ids
-	>
+	<DropdownMenu.Root bind:open let:ids>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -55,7 +51,7 @@
 				<MoreHorizontal />
 			</Button>
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content class="w-[200px]">
+		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
 				<DropdownMenu.Label>Actions</DropdownMenu.Label>
 				<DropdownMenu.Item>
