@@ -123,13 +123,13 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/button",
 					items: []
 				},
-				// {
-				//   title: "Calendar",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Calendar",
+					href: "#",
+					label: "Soon",
+					disabled: true,
+					items: []
+				},
 				{
 					title: "Card",
 					href: "/docs/components/card",

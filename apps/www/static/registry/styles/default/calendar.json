@@ -1,0 +1,20 @@
+{
+  "name": "calendar",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "name": "calendar.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"@/utils\";\n\timport { Calendar } from \"bits-ui\";\n\timport { buttonVariants } from \"../button\";\n\timport { ChevronLeft, ChevronRight } from \"lucide-svelte\";\n\n\texport let className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<Calendar.Root\n\tlet:months\n\tlet:weekdays\n\tweekdayFormat=\"short\"\n\tclass={cn(\"p-3\", className)}\n>\n\t<Calendar.Header\n\t\tclass=\"flex justify-between pt-1 relative items-center w-full\"\n\t>\n\t\t<Calendar.PrevButton\n\t\t\tclass={cn(\n\t\t\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\t\t\"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100\"\n\t\t\t)}\n\t\t>\n\t\t\t<ChevronLeft class=\"h-4 w-4\" />\n\t\t</Calendar.PrevButton>\n\t\t<Calendar.Heading class=\"text-sm font-medium\" />\n\t\t<Calendar.NextButton\n\t\t\tclass={cn(\n\t\t\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\t\t\"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100\"\n\t\t\t)}\n\t\t>\n\t\t\t<ChevronRight class=\"h-4 w-4\" />\n\t\t\t<!--  -->\n\t\t</Calendar.NextButton>\n\t</Calendar.Header>\n\t<div\n\t\tclass=\"flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 mt-4\"\n\t>\n\t\t{#each months as month}\n\t\t\t<Calendar.Grid class=\"w-full border-collapse space-y-1\">\n\t\t\t\t<Calendar.GridHead>\n\t\t\t\t\t<Calendar.GridRow class=\"flex\">\n\t\t\t\t\t\t{#each weekdays as weekday}\n\t\t\t\t\t\t\t<Calendar.HeadCell\n\t\t\t\t\t\t\t\tclass=\"text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]\"\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t{weekday.slice(0, 2)}\n\t\t\t\t\t\t\t</Calendar.HeadCell>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Calendar.GridRow>\n\t\t\t\t</Calendar.GridHead>\n\t\t\t\t{#each month.weeks as weekDates}\n\t\t\t\t\t<Calendar.GridRow class=\"flex w-full mt-2\">\n\t\t\t\t\t\t{#each weekDates as date}\n\t\t\t\t\t\t\t<Calendar.Cell\n\t\t\t\t\t\t\t\t{date}\n\t\t\t\t\t\t\t\tclass=\"h-9 w-9 text-center text-sm p-0 relative [&:has([data-selected].day-range-end)]:rounded-r-md [&:has([data-selected].day-outside)]:bg-accent/50 [&:has([data-selected])]:bg-accent first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md focus-within:relative focus-within:z-20\"\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t<Calendar.Date\n\t\t\t\t\t\t\t\t\t{date}\n\t\t\t\t\t\t\t\t\tmonth={month.value}\n\t\t\t\t\t\t\t\t\tclass={cn(\n\t\t\t\t\t\t\t\t\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\t\t\t\t\t\t\t\t\"h-9 w-9 p-0 font-normal aria-selected:opacity-100\",\n\t\t\t\t\t\t\t\t\t\t\"data-[today]:bg-accent data-[today]:text-accent-foreground\",\n\t\t\t\t\t\t\t\t\t\t//\n\t\t\t\t\t\t\t\t\t\t\"data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground\",\n\t\t\t\t\t\t\t\t\t\t//\n\t\t\t\t\t\t\t\t\t\t\"data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground [&[data-outside-month][data-selected]]:opacity-30\",\n\t\t\t\t\t\t\t\t\t\t//\n\t\t\t\t\t\t\t\t\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\"\n\t\t\t\t\t\t\t\t\t)}\n\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t</Calendar.Cell>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Calendar.GridRow>\n\t\t\t\t{/each}\n\t\t\t</Calendar.Grid>\n\t\t{/each}\n\t</div>\n</Calendar.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": ""
+    }
+  ],
+  "type": "components:ui"
+}
