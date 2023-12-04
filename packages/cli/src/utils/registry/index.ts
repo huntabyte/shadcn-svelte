@@ -1,8 +1,10 @@
 import path from "path";
-import fetch from "node-fetch";
 import type { RequestInit } from "node-fetch";
+import { HttpsProxyAgent } from "https-proxy-agent";
+import fetch from "node-fetch";
 import * as z from "zod";
 import { Config } from "../get-config";
+import { getEnvProxy } from "../get-env-proxy";
 import {
 	registryBaseColorSchema,
 	registryIndexSchema,
@@ -11,8 +13,6 @@ import {
 	registryWithContentSchema,
 	stylesSchema
 } from "./schema";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import { getEnvProxy } from "../get-env-proxy";
 
 const baseUrl =
 	process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
