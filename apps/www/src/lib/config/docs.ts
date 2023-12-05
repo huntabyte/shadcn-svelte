@@ -125,9 +125,8 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Calendar",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/calendar",
+					label: "New",
 					items: []
 				},
 				{
@@ -148,13 +147,11 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Combobox",
 					href: "/docs/components/combobox",
-					label: "New",
 					items: []
 				},
 				{
 					title: "Command",
 					href: "/docs/components/command",
-					label: "New",
 					items: []
 				},
 				{
@@ -232,6 +229,12 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/radio-group",
 					items: []
 				},
+				{
+					title: "Range Calendar",
+					href: "/docs/components/range-calendar",
+					label: "New",
+					items: []
+				},
 				// {
 				//   title: "Scroll Area",
 				//   href: "#",
@@ -299,8 +302,7 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Toggle Group",
 					href: "/docs/components/toggle-group",
-					items: [],
-					label: "New"
+					items: []
 				},
 				{
 					title: "Tooltip",

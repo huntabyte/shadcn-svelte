@@ -346,6 +346,32 @@
     "type": "components:ui"
   },
   {
+    "name": "range-calendar",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/range-calendar/index.ts",
+      "ui/range-calendar/range-calendar-cell.svelte",
+      "ui/range-calendar/range-calendar-day.svelte",
+      "ui/range-calendar/range-calendar-grid-body.svelte",
+      "ui/range-calendar/range-calendar-grid-head.svelte",
+      "ui/range-calendar/range-calendar-grid-row.svelte",
+      "ui/range-calendar/range-calendar-grid.svelte",
+      "ui/range-calendar/range-calendar-head-cell.svelte",
+      "ui/range-calendar/range-calendar-header.svelte",
+      "ui/range-calendar/range-calendar-heading.svelte",
+      "ui/range-calendar/range-calendar-months.svelte",
+      "ui/range-calendar/range-calendar-next-button.svelte",
+      "ui/range-calendar/range-calendar-prev-button.svelte",
+      "ui/range-calendar/range-calendar.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "select",
     "dependencies": [
       "bits-ui"

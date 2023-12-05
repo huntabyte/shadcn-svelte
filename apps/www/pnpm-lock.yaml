@@ -10,6 +10,9 @@ patchedDependencies:
     path: patches/mdsvex@0.10.6.patch
 
 dependencies:
+  '@internationalized/date':
+    specifier: ^3.5.0
+    version: 3.5.0
   '@unovis/svelte':
     specifier: ^1.2.3
     version: 1.2.3(@unovis/ts@1.2.3)(svelte@4.2.2)
@@ -17,8 +20,8 @@ dependencies:
     specifier: ^1.2.3
     version: 1.2.3
   bits-ui:
-    specifier: 0.10.0
-    version: 0.10.0(svelte@4.2.2)
+    specifier: 0.10.2
+    version: 0.10.2(svelte@4.2.2)
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -904,8 +907,8 @@ packages:
       svelte: 4.2.2
     dev: false
 
-  /@melt-ui/svelte@0.64.3(svelte@4.2.2):
-    resolution: {integrity: sha512-6P2H0Kf3mqS3fzCI75k0DHqsMhBYniO4HsOTMqMQFEPKTAiUNRPUD5n8m/p2MQk88ba+RacK+9Mp5GhDdIM9WA==}
+  /@melt-ui/svelte@0.64.4(svelte@4.2.2):
+    resolution: {integrity: sha512-QwqIXd7hGR8a5NML91rTNOilN9FPyPe8zWnmZbqEynCvdlCueLXrvlANEfKMYLd/vJuQpoi5u1jFdqSDMmFFMg==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1808,13 +1811,13 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.10.0(svelte@4.2.2):
-    resolution: {integrity: sha512-a2L8DrI/LDGIheRrrO3ly2gUyJkNSAtvrb+byrMh+S/40GEhXudV6HzVIeEG+Cb1XpJn0szGZN2wFrcYpIJM9g==}
+  /bits-ui@0.10.2(svelte@4.2.2):
+    resolution: {integrity: sha512-0OKMDsHX75KYXtOqeqCGiQS7ICuv//YslKPc+HZ5h2RR8SYitxRfOyKZjsWZ8IEAXAl4zefexX6pdOvqa2v+6w==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       '@internationalized/date': 3.5.0
-      '@melt-ui/svelte': 0.64.3(svelte@4.2.2)
+      '@melt-ui/svelte': 0.64.4(svelte@4.2.2)
       nanoid: 5.0.4
       svelte: 4.2.2
     dev: false

@@ -139,7 +139,7 @@ export const Index = {
     "calendar-demo": {
       name: "calendar-demo",
       type: "components:example",
-      registryDependencies: ["utils","button"],
+      registryDependencies: ["calendar"],
       component: () => import("../src/lib/registry/default/example/calendar-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/calendar-demo.svelte"],
     },
@@ -387,6 +387,13 @@ export const Index = {
       registryDependencies: ["form","label"],
       component: () => import("../src/lib/registry/default/example/radio-group-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/radio-group-form.svelte"],
+    },
+    "range-calendar-demo": {
+      name: "range-calendar-demo",
+      type: "components:example",
+      registryDependencies: ["range-calendar"],
+      component: () => import("../src/lib/registry/default/example/range-calendar-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/range-calendar-demo.svelte"],
     },
     "select-demo": {
       name: "select-demo",
@@ -833,7 +840,7 @@ export const Index = {
     "calendar-demo": {
       name: "calendar-demo",
       type: "components:example",
-      registryDependencies: ["utils","button"],
+      registryDependencies: ["calendar"],
       component: () => import("../src/lib/registry/new-york/example/calendar-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/calendar-demo.svelte"],
     },
@@ -1081,6 +1088,13 @@ export const Index = {
       registryDependencies: ["form","label"],
       component: () => import("../src/lib/registry/new-york/example/radio-group-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/radio-group-form.svelte"],
+    },
+    "range-calendar-demo": {
+      name: "range-calendar-demo",
+      type: "components:example",
+      registryDependencies: ["range-calendar"],
+      component: () => import("../src/lib/registry/new-york/example/range-calendar-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/range-calendar-demo.svelte"],
     },
     "select-demo": {
       name: "select-demo",
