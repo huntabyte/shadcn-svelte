@@ -4,10 +4,10 @@
 
 	type $$Props = CalendarPrimitive.GridHeadProps;
 
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<CalendarPrimitive.GridHead {...$$restProps}>
+<CalendarPrimitive.GridHead class={cn(className)} {...$$restProps}>
 	<slot />
 </CalendarPrimitive.GridHead>
