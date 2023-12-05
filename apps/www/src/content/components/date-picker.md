@@ -62,3 +62,21 @@ See installations instructions for the [Popover](/docs/components/popover#instal
   </Popover.Content>
 </Popover.Root>
 ```
+
+## Examples
+
+### Date Picker
+
+<ComponentPreview name="date-picker-demo">
+
+<div />
+
+</ComponentPreview>
+
+### Date Range Picker
+
+<ComponentPreview name="date-picker-with-range">
+
+<div />
+
+</ComponentPreview>

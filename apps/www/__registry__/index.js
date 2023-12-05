@@ -269,6 +269,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/date-picker-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/date-picker-demo.svelte"],
     },
+    "date-picker-with-range": {
+      name: "date-picker-with-range",
+      type: "components:example",
+      registryDependencies: ["button","range-calendar","popover"],
+      component: () => import("../src/lib/registry/default/example/date-picker-with-range.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/date-picker-with-range.svelte"],
+    },
     "dialog-demo": {
       name: "dialog-demo",
       type: "components:example",
@@ -976,6 +983,13 @@ export const Index = {
       registryDependencies: ["button","calendar","popover"],
       component: () => import("../src/lib/registry/new-york/example/date-picker-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/date-picker-demo.svelte"],
+    },
+    "date-picker-with-range": {
+      name: "date-picker-with-range",
+      type: "components:example",
+      registryDependencies: ["button","range-calendar","popover"],
+      component: () => import("../src/lib/registry/new-york/example/date-picker-with-range.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/date-picker-with-range.svelte"],
     },
     "dialog-demo": {
       name: "dialog-demo",
