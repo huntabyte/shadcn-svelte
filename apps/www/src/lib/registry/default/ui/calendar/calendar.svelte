@@ -4,6 +4,7 @@
 	import { cn } from "$lib/utils";
 
 	type $$Props = CalendarPrimitive.Props;
+
 	type $$Events = CalendarPrimitive.Events;
 
 	export let value: $$Props["value"] = undefined;
@@ -15,14 +16,14 @@
 </script>
 
 <CalendarPrimitive.Root
-	on:keydown
-	let:months
-	let:weekdays
 	bind:value
 	bind:placeholder
 	{weekdayFormat}
 	class={cn("p-3", className)}
 	{...$$restProps}
+	on:keydown
+	let:months
+	let:weekdays
 >
 	<Calendar.Header>
 		<Calendar.PrevButton />

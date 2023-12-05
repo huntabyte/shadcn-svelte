@@ -25,7 +25,7 @@
     },
     {
       "name": "range-calendar-grid-head.svelte",
-      "content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = RangeCalendarPrimitive.GridHeadProps;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.GridHead class={cn(className)} {...$$restProps}>\n\t<slot />\n</RangeCalendarPrimitive.GridHead>\n"
+      "content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = RangeCalendarPrimitive.GridHeadProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.GridHead class={cn(className)} {...$$restProps}>\n\t<slot />\n</RangeCalendarPrimitive.GridHead>\n"
     },
     {
       "name": "range-calendar-grid-row.svelte",
@@ -45,7 +45,7 @@
     },
     {
       "name": "range-calendar-heading.svelte",
-      "content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = RangeCalendarPrimitive.HeadingProps;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Heading\n\tlet:headingValue\n\tclass={cn(\"text-sm font-medium\", className)}\n\t{...$$restProps}\n>\n\t<slot {headingValue}>\n\t\t{headingValue}\n\t</slot>\n</RangeCalendarPrimitive.Heading>\n"
+      "content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = RangeCalendarPrimitive.HeadingProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Heading\n\tlet:headingValue\n\tclass={cn(\"text-sm font-medium\", className)}\n\t{...$$restProps}\n>\n\t<slot {headingValue}>\n\t\t{headingValue}\n\t</slot>\n</RangeCalendarPrimitive.Heading>\n"
     },
     {
       "name": "range-calendar-months.svelte",

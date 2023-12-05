@@ -164,13 +164,12 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/data-table",
 					items: []
 				},
-				// {
-				//   title: "Date Picker",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Date Picker",
+					href: "/docs/components/date-picker",
+					label: "New",
+					items: []
+				},
 				{
 					title: "Dialog",
 					href: "/docs/components/dialog",

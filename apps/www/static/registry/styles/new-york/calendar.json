@@ -21,7 +21,7 @@
     },
     {
       "name": "calendar-grid-head.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.GridHeadProps;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.GridHead {...$$restProps}>\n\t<slot />\n</CalendarPrimitive.GridHead>\n"
+      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.GridHeadProps;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.GridHead class={cn(className)} {...$$restProps}>\n\t<slot />\n</CalendarPrimitive.GridHead>\n"
     },
     {
       "name": "calendar-grid-row.svelte",
