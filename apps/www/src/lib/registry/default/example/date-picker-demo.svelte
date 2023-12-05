@@ -10,11 +10,11 @@
 	import { Calendar } from "@/registry/default/ui/calendar";
 	import * as Popover from "@/registry/default/ui/popover";
 
-	let value: DateValue | undefined = undefined;
-
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long"
 	});
+
+	let value: DateValue | undefined = undefined;
 </script>
 
 <Popover.Root openFocus>
@@ -30,7 +30,7 @@
 			<CalendarIcon class="mr-2 h-4 w-4" />
 			{value
 				? df.format(value.toDate(getLocalTimeZone()))
-				: "Select a date"}
+				: "Pick a date"}
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="w-auto p-0">
