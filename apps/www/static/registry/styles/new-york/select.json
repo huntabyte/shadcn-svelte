@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import { Select as SelectPrimitive } from \"bits-ui\";\n\nimport Root from \"./select.svelte\";\nimport Label from \"./select-label.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\n\nconst Group = SelectPrimitive.Group;\nconst Input = SelectPrimitive.Input;\nconst Value = SelectPrimitive.Value;\n\nexport {\n\tRoot,\n\tItem,\n\tGroup,\n\tInput,\n\tLabel,\n\tValue,\n\tContent,\n\tTrigger,\n\tSeparator,\n\t//\n\tRoot as Select,\n\tItem as SelectItem,\n\tGroup as SelectGroup,\n\tInput as SelectInput,\n\tLabel as SelectLabel,\n\tValue as SelectValue,\n\tContent as SelectContent,\n\tTrigger as SelectTrigger,\n\tSeparator as SelectSeparator\n};\n"
+      "content": "import { Select as SelectPrimitive } from \"bits-ui\";\n\nimport Label from \"./select-label.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\n\nconst Root = SelectPrimitive.Root;\nconst Group = SelectPrimitive.Group;\nconst Input = SelectPrimitive.Input;\nconst Value = SelectPrimitive.Value;\n\nexport {\n\tRoot,\n\tItem,\n\tGroup,\n\tInput,\n\tLabel,\n\tValue,\n\tContent,\n\tTrigger,\n\tSeparator,\n\t//\n\tRoot as Select,\n\tItem as SelectItem,\n\tGroup as SelectGroup,\n\tInput as SelectInput,\n\tLabel as SelectLabel,\n\tValue as SelectValue,\n\tContent as SelectContent,\n\tTrigger as SelectTrigger,\n\tSeparator as SelectSeparator\n};\n"
     },
     {
       "name": "select-content.svelte",
@@ -28,10 +28,6 @@
     {
       "name": "select-trigger.svelte",
       "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { CaretSort } from \"radix-icons-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = SelectPrimitive.TriggerProps;\n\ttype $$Events = SelectPrimitive.TriggerEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<SelectPrimitive.Trigger\n\tclass={cn(\n\t\t\"flex h-9 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n\t<div>\n\t\t<CaretSort class=\"h-4 w-4 opacity-50\" />\n\t</div>\n</SelectPrimitive.Trigger>\n"
-    },
-    {
-      "name": "select.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props;\n\n\texport let selected: $$Props[\"selected\"] = undefined;\n\texport let open: $$Props[\"open\"] = undefined;\n</script>\n\n<SelectPrimitive.Root bind:selected bind:open {...$$restProps}>\n\t<slot />\n</SelectPrimitive.Root>\n"
     }
   ],
   "type": "components:ui"

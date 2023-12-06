@@ -80,3 +80,19 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 <div />
 
 </ComponentPreview>
+
+### With Presets
+
+<ComponentPreview name="date-picker-with-presets">
+
+<div />
+
+</ComponentPreview>
+
+### Form
+
+<ComponentPreview name="date-picker-form">
+
+<div />
+
+</ComponentPreview>

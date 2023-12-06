@@ -269,6 +269,20 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/date-picker-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/date-picker-demo.svelte"],
     },
+    "date-picker-form": {
+      name: "date-picker-form",
+      type: "components:example",
+      registryDependencies: ["button","calendar","popover","form"],
+      component: () => import("../src/lib/registry/default/example/date-picker-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/date-picker-form.svelte"],
+    },
+    "date-picker-with-presets": {
+      name: "date-picker-with-presets",
+      type: "components:example",
+      registryDependencies: ["button","calendar","popover","select"],
+      component: () => import("../src/lib/registry/default/example/date-picker-with-presets.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/date-picker-with-presets.svelte"],
+    },
     "date-picker-with-range": {
       name: "date-picker-with-range",
       type: "components:example",
@@ -983,6 +997,20 @@ export const Index = {
       registryDependencies: ["button","calendar","popover"],
       component: () => import("../src/lib/registry/new-york/example/date-picker-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/date-picker-demo.svelte"],
+    },
+    "date-picker-form": {
+      name: "date-picker-form",
+      type: "components:example",
+      registryDependencies: ["button","calendar","popover","form"],
+      component: () => import("../src/lib/registry/new-york/example/date-picker-form.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/date-picker-form.svelte"],
+    },
+    "date-picker-with-presets": {
+      name: "date-picker-with-presets",
+      type: "components:example",
+      registryDependencies: ["button","calendar","popover","select"],
+      component: () => import("../src/lib/registry/new-york/example/date-picker-with-presets.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/date-picker-with-presets.svelte"],
     },
     "date-picker-with-range": {
       name: "date-picker-with-range",

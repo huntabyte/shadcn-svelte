@@ -7,6 +7,7 @@ import { formSchema as selectSchema } from "@/registry/default/example/select-fo
 import { formSchema as switchSchema } from "@/registry/default/example/switch-form.svelte";
 import { formSchema as textareaSchema } from "@/registry/default/example/textarea-form.svelte";
 import { formSchema as comboboxFormSchema } from "@/registry/default/example/combobox-form.svelte";
+import { formSchema as datePickerFormSchema } from "@/registry/default/example/date-picker-form.svelte";
 
 import { fail } from "@sveltejs/kit";
 import type { AnyZodObject } from "zod";
@@ -19,7 +20,8 @@ export const load: PageServerLoad = async () => {
 		select: superValidate(selectSchema),
 		switch: superValidate(switchSchema),
 		textarea: superValidate(textareaSchema),
-		combobox: superValidate(comboboxFormSchema)
+		combobox: superValidate(comboboxFormSchema),
+		datePicker: superValidate(datePickerFormSchema)
 	};
 };
 
@@ -30,7 +32,8 @@ export const actions: Actions = {
 	select: async (e) => handleForm(e, selectSchema),
 	switch: async (e) => handleForm(e, switchSchema),
 	textarea: async (e) => handleForm(e, textareaSchema),
-	combobox: async (e) => handleForm(e, comboboxFormSchema)
+	combobox: async (e) => handleForm(e, comboboxFormSchema),
+	datePicker: async (e) => handleForm(e, datePickerFormSchema)
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {

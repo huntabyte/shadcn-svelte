@@ -383,8 +383,7 @@
       "ui/select/select-item.svelte",
       "ui/select/select-label.svelte",
       "ui/select/select-separator.svelte",
-      "ui/select/select-trigger.svelte",
-      "ui/select/select.svelte"
+      "ui/select/select-trigger.svelte"
     ],
     "type": "components:ui"
   },
