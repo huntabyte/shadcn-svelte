@@ -9,20 +9,22 @@
 	export let value: $$Props["value"] = undefined;
 	export let placeholder: $$Props["placeholder"] = undefined;
 	export let weekdayFormat: $$Props["weekdayFormat"] = "short";
+	export let startValue: $$Props["startValue"] = undefined;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
 <RangeCalendarPrimitive.Root
-	on:keydown
-	let:months
-	let:weekdays
 	bind:value
 	bind:placeholder
+	bind:startValue
 	{weekdayFormat}
 	class={cn("p-3", className)}
 	{...$$restProps}
+	on:keydown
+	let:months
+	let:weekdays
 >
 	<RangeCalendar.Header>
 		<RangeCalendar.PrevButton />

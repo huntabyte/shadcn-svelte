@@ -4,7 +4,8 @@
 	import {
 		CalendarDate,
 		DateFormatter,
-		getLocalTimeZone
+		getLocalTimeZone,
+		type DateValue
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils";
 	import { Button } from "@/registry/default/ui/button";
@@ -19,6 +20,8 @@
 		start: new CalendarDate(2022, 1, 20),
 		end: new CalendarDate(2022, 1, 20).add({ days: 20 })
 	};
+
+	let startValue: DateValue | undefined = undefined;
 </script>
 
 <div class="grid gap-2">
@@ -41,6 +44,8 @@
 					{:else}
 						{df.format(value.start.toDate(getLocalTimeZone()))}
 					{/if}
+				{:else if startValue}
+					{df.format(startValue.toDate(getLocalTimeZone()))}
 				{:else}
 					Pick a date
 				{/if}
@@ -49,6 +54,7 @@
 		<Popover.Content class="w-auto p-0" align="start">
 			<RangeCalendar
 				bind:value
+				bind:startValue
 				initialFocus
 				numberOfMonths={2}
 				placeholder={value?.start}

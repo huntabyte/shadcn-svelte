@@ -3,8 +3,8 @@
 	import { buttonVariants } from "@/registry/default/ui/button";
 	import { cn } from "$lib/utils";
 
-	type $$Props = RangeCalendarPrimitive.DateProps;
-	type $$Events = RangeCalendarPrimitive.DateEvents;
+	type $$Props = RangeCalendarPrimitive.DayProps;
+	type $$Events = RangeCalendarPrimitive.DayEvents;
 
 	export let date: $$Props["date"];
 	export let month: $$Props["month"];
@@ -12,7 +12,7 @@
 	export { className as class };
 </script>
 
-<RangeCalendarPrimitive.Date
+<RangeCalendarPrimitive.Day
 	on:click
 	{date}
 	{month}
@@ -41,4 +41,4 @@
 	<slot {disabled} {unavailable} {builder}>
 		{date.day}
 	</slot>
-</RangeCalendarPrimitive.Date>
+</RangeCalendarPrimitive.Day>

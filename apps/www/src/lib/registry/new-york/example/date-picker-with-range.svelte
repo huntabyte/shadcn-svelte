@@ -20,6 +20,8 @@
 		start: new CalendarDate(2022, 1, 20),
 		end: new CalendarDate(2022, 1, 20).add({ days: 20 })
 	};
+
+	let startValue: DateValue | undefined = undefined;
 </script>
 
 <div class="grid gap-2">
@@ -50,6 +52,7 @@
 		<Popover.Content class="w-auto p-0" align="start">
 			<RangeCalendar
 				bind:value
+				bind:startValue
 				placeholder={value?.start}
 				initialFocus
 				numberOfMonths={2}
