@@ -98,6 +98,7 @@ Arguments:
   components       name of components
 
 Options:
+  -a, --all        update all existing components. (default: false)
   -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
 ```
