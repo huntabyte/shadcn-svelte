@@ -44,6 +44,8 @@
 					{:else}
 						{df.format(value.start.toDate(getLocalTimeZone()))}
 					{/if}
+				{:else if startValue}
+					{df.format(startValue.toDate(getLocalTimeZone()))}
 				{:else}
 					Pick a date
 				{/if}
