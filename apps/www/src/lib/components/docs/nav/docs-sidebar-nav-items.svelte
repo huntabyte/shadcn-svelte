@@ -13,7 +13,7 @@
 				<a
 					href={item.href}
 					class={cn(
-						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
+						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline whitespace-nowrap",
 						item.disabled && "cursor-not-allowed opacity-60",
 						$page.url.pathname === item.href
 							? "font-medium text-foreground"
