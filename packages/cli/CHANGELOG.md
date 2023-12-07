@@ -1,5 +1,15 @@
 # shadcn-svelte
 
+## 0.4.0
+
+### Minor Changes
+
+- 3151474: feat: Added an `--all` flag to the `update` command
+
+### Patch Changes
+
+- d9cc40c: fix: If no lockfile is found, install dependencies with the current PM of the proccess
+
 ## 0.3.8
 
 ### Patch Changes
