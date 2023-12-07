@@ -81,7 +81,7 @@
 					placeholder = placeholder.set({ month: v.value });
 				}}
 			>
-				<Select.Trigger aria-label="Select month">
+				<Select.Trigger aria-label="Select month" class="w-[60%]">
 					<Select.Value placeholder="Select month" />
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
@@ -101,7 +101,7 @@
 					placeholder = placeholder.set({ year: v.value });
 				}}
 			>
-				<Select.Trigger aria-label="Select year">
+				<Select.Trigger aria-label="Select year" class="w-[40%]">
 					<Select.Value placeholder="Select year" />
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
