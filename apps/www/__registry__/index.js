@@ -150,13 +150,6 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/calendar-with-selects.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/calendar-with-selects.svelte"],
     },
-    "calendar-year-buttons": {
-      name: "calendar-year-buttons",
-      type: "components:example",
-      registryDependencies: ["calendar"],
-      component: () => import("../src/lib/registry/default/example/calendar-year-buttons.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/default/example/calendar-year-buttons.svelte"],
-    },
     "card-demo": {
       name: "card-demo",
       type: "components:example",
@@ -892,13 +885,6 @@ export const Index = {
       registryDependencies: ["calendar","select"],
       component: () => import("../src/lib/registry/new-york/example/calendar-with-selects.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/calendar-with-selects.svelte"],
-    },
-    "calendar-year-buttons": {
-      name: "calendar-year-buttons",
-      type: "components:example",
-      registryDependencies: ["calendar"],
-      component: () => import("../src/lib/registry/new-york/example/calendar-year-buttons.svelte").then((m) => m.default),
-      files: ["../src/lib/registry/new-york/example/calendar-year-buttons.svelte"],
     },
     "card-demo": {
       name: "card-demo",
