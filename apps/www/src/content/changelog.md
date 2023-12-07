@@ -7,6 +7,34 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## December 2023
+
+We've added three new components to the project, [Calendar](/docs/components/calendar), [Range Calendar](/docs/components/range-calendar), & [Date Picker](/docs/components/date-picker).
+
+### Calendar
+
+<ComponentPreview name="calendar-demo">
+
+<div/>
+
+</ComponentPreview>
+
+### Range Calendar
+
+<ComponentPreview name="range-calendar-demo">
+
+<div/>
+
+</ComponentPreview>
+
+### Date Picker
+
+<ComponentPreview name="date-picker-demo">
+
+<div/>
+
+</ComponentPreview>
+
 ## November 2023 - Toggle Group
 
 We've added a new component to the library, [Toggle Group](/docs/components/toggle-group).

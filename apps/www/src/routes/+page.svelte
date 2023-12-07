@@ -16,7 +16,7 @@
 			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
 		>
 			🎉 <Separator class="mx-2 h-4" orientation="vertical" />
-			<span> New Components - Command & Combobox </span>
+			<span> New Components - Calendars </span>
 			<ArrowRight class="ml-1 h-4 w-4" />
 		</a>
 		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
