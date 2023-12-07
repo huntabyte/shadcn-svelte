@@ -9,6 +9,12 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["formsnap", ["zod", "sveltekit-superforms"]],
 	["cmdk-sv", ["bits-ui"]]
 ]);
+// these are required dependencies for particular components
+// where the dependencies are not specified in the import declarations of the component file
+const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
+	["calendar", ["@internationalized/date"]],
+	["range-calendar", ["@internationalized/date"]]
+]);
 const REGISTRY_DEPENDENCY = "@/";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
@@ -106,7 +112,12 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		// only grab deps from the svelte files
 		if (dirent.name === "index.ts") continue;
 		const deps = await getDependencies(join(componentPath, dirent.name));
+
 		deps.dependencies.forEach((dep) => dependencies.add(dep));
+		REQUIRED_COMPONENT_DEPS.get(componentName)?.forEach((dep) =>
+			dependencies.add(dep)
+		);
+
 		deps.registryDependencies.forEach((dep) =>
 			registryDependencies.add(dep)
 		);

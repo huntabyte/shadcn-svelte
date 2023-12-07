@@ -125,9 +125,8 @@ export const docsConfig: DocsConfig = {
 				},
 				{
 					title: "Calendar",
-					href: "#",
-					label: "Soon",
-					disabled: true,
+					href: "/docs/components/calendar",
+					label: "New",
 					items: []
 				},
 				{
@@ -148,13 +147,11 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Combobox",
 					href: "/docs/components/combobox",
-					label: "New",
 					items: []
 				},
 				{
 					title: "Command",
 					href: "/docs/components/command",
-					label: "New",
 					items: []
 				},
 				{
@@ -167,13 +164,12 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/data-table",
 					items: []
 				},
-				// {
-				//   title: "Date Picker",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Date Picker",
+					href: "/docs/components/date-picker",
+					label: "New",
+					items: []
+				},
 				{
 					title: "Dialog",
 					href: "/docs/components/dialog",
@@ -230,6 +226,12 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Radio Group",
 					href: "/docs/components/radio-group",
+					items: []
+				},
+				{
+					title: "Range Calendar",
+					href: "/docs/components/range-calendar",
+					label: "New",
 					items: []
 				},
 				// {
@@ -299,8 +301,7 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Toggle Group",
 					href: "/docs/components/toggle-group",
-					items: [],
-					label: "New"
+					items: []
 				},
 				{
 					title: "Tooltip",
