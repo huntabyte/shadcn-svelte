@@ -1,7 +1,8 @@
 {
   "name": "calendar",
   "dependencies": [
-    "bits-ui"
+    "bits-ui",
+    "@internationalized/date"
   ],
   "registryDependencies": [
     "button"
