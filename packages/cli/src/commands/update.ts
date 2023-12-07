@@ -20,6 +20,7 @@ import {
 import { transformImport } from "../utils/transformer";
 
 const updateOptionsSchema = z.object({
+	all: z.boolean(),
 	components: z.array(z.string()).optional(),
 	cwd: z.string()
 });
@@ -28,6 +29,7 @@ export const update = new Command()
 	.command("update")
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
+	.option("-a, --all", "update all existing components.", false)
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
@@ -96,8 +98,10 @@ export const update = new Command()
 				}
 			}
 
-			let selectedComponents: typeof registryIndex = [];
-			if (components !== undefined) {
+			let selectedComponents: typeof registryIndex = options.all
+				? existingComponents
+				: [];
+			if (!selectedComponents.length && components !== undefined) {
 				selectedComponents = existingComponents.filter((component) =>
 					components.includes(component.name)
 				);
