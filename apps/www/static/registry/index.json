@@ -96,6 +96,33 @@
     "type": "components:ui"
   },
   {
+    "name": "calendar",
+    "dependencies": [
+      "bits-ui",
+      "@internationalized/date"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/calendar/calendar-cell.svelte",
+      "ui/calendar/calendar-day.svelte",
+      "ui/calendar/calendar-grid-body.svelte",
+      "ui/calendar/calendar-grid-head.svelte",
+      "ui/calendar/calendar-grid-row.svelte",
+      "ui/calendar/calendar-grid.svelte",
+      "ui/calendar/calendar-head-cell.svelte",
+      "ui/calendar/calendar-header.svelte",
+      "ui/calendar/calendar-heading.svelte",
+      "ui/calendar/calendar-months.svelte",
+      "ui/calendar/calendar-next-button.svelte",
+      "ui/calendar/calendar-prev-button.svelte",
+      "ui/calendar/calendar.svelte",
+      "ui/calendar/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "card",
     "dependencies": [],
     "registryDependencies": [],

@@ -11,6 +11,7 @@ import { themes } from "../src/lib/registry/themes";
 import { buildRegistry } from "./registry";
 
 const REGISTRY_PATH = path.join(process.cwd(), "static/registry");
+const REGISTRY_IGNORE = ["super-form"];
 
 const registry = await buildRegistry();
 const result = registrySchema.safeParse(registry);
@@ -117,8 +118,6 @@ fs.writeFileSync(
 	stylesJson,
 	"utf8"
 );
-
-const REGISTRY_IGNORE = ["super-form", "calendar"];
 
 // ----------------------------------------------------------------------------
 // Build registry/index.json.
