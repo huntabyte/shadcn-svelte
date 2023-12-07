@@ -59,10 +59,12 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 The `<Calendar />` component can be combined with other components to create a more complex calendar. Here's an example of how you could create a calendar with month and year select dropdowns instead of the previous and next buttons.
 
 <Callout>
-    By default, we export the combined Calendar component as <code>Calendar</code> as there are quite a few pieces that need to be combined to create it. We're modifying that component in the example below.
+    By default, we export the combined Calendar component as <code>Calendar</code> as there are quite a few pieces that need to be combined to create it. We're modifying that component in the examples below.
 </Callout>
 
-<ComponentPreview name="calendar-customization">
+### Month & Year Selects
+
+<ComponentPreview name="calendar-with-selects">
 
 <div />
 
