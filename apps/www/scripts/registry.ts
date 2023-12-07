@@ -12,7 +12,8 @@ const DEPENDENCIES = new Map<string, string[]>([
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
-	["calendar", ["@internationalized/date"]]
+	["calendar", ["@internationalized/date"]],
+	["range-calendar", ["@internationalized/date"]]
 ]);
 const REGISTRY_DEPENDENCY = "@/";
 
