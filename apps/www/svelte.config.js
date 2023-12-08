@@ -23,9 +23,7 @@ const config = {
 	extensions: [".svelte", ".md"],
 
 	kit: {
-		adapter: adapter({
-			runtime: "edge"
-		}),
+		adapter: adapter(),
 		alias: {
 			$components: "src/lib/components",
 			"$components/*": "src/lib/components/*",
