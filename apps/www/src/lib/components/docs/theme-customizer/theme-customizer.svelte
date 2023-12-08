@@ -38,7 +38,7 @@
 										: "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
-									$mode
+									$mode ?? 'dark'
 								]}"
 							>
 								<span

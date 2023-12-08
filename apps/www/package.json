@@ -81,7 +81,7 @@
 		"esm-env": "^1.0.0",
 		"formsnap": "^0.4.1",
 		"lucide-svelte": "^0.292.0",
-		"mode-watcher": "^0.0.7",
+		"mode-watcher": "^0.1.2",
 		"nanoid": "^5.0.3",
 		"radix-icons-svelte": "^1.2.1",
 		"svelte-headless-table": "^0.17.7",
