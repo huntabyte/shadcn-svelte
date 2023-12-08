@@ -2,18 +2,14 @@
 	import { Button } from "@/registry/default/ui/button";
 	import { Input } from "@/registry/default/ui/input";
 	import { Label } from "@/registry/default/ui/label";
-	import {
-		Popover,
-		PopoverContent,
-		PopoverTrigger
-	} from "@/registry/default/ui/popover";
+	import * as Popover from "@/registry/default/ui/popover";
 </script>
 
-<Popover portal={null}>
-	<PopoverTrigger asChild let:builder>
+<Popover.Root portal={null}>
+	<Popover.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline">Open</Button>
-	</PopoverTrigger>
-	<PopoverContent class="w-80">
+	</Popover.Trigger>
+	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">
 				<h4 class="font-medium leading-none">Dimensions</h4>
@@ -40,5 +36,5 @@
 				</div>
 			</div>
 		</div>
-	</PopoverContent>
-</Popover>
+	</Popover.Content>
+</Popover.Root>

@@ -1,19 +1,15 @@
 <script lang="ts">
-	import {
-		Popover,
-		PopoverTrigger,
-		PopoverContent
-	} from "@/registry/new-york/ui/popover";
+	import * as Popover from "@/registry/new-york/ui/popover";
 	import { Label } from "@/registry/new-york/ui/label";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Input } from "@/registry/new-york/ui/input";
 </script>
 
-<Popover>
-	<PopoverTrigger asChild let:builder>
+<Popover.Root>
+	<Popover.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline">Open</Button>
-	</PopoverTrigger>
-	<PopoverContent class="w-80">
+	</Popover.Trigger>
+	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">
 				<h4 class="font-medium leading-none">Dimensions</h4>
@@ -40,5 +36,5 @@
 				</div>
 			</div>
 		</div>
-	</PopoverContent>
-</Popover>
+	</Popover.Content>
+</Popover.Root>
