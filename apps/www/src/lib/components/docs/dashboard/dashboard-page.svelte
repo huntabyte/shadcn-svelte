@@ -6,9 +6,9 @@
 		Download,
 		Users
 	} from "lucide-svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import * as Tabs from "@/registry/default/ui/tabs";
+	import { Button } from "@/registry/new-york/ui/button";
+	import * as Card from "@/registry/new-york/ui/card";
+	import * as Tabs from "@/registry/new-york/ui/tabs";
 	import {
 		DashboardMainNav,
 		Overview,
@@ -17,6 +17,7 @@
 		UserNav,
 		TeamSwitcher
 	} from ".";
+	import DatePickerWithRange from "@/registry/new-york/example/date-picker-with-range.svelte";
 </script>
 
 <div class="md:hidden">
@@ -50,6 +51,7 @@
 		<div class="flex items-center justify-between space-y-2">
 			<h2 class="text-3xl font-bold tracking-tight">Dashboard</h2>
 			<div class="flex items-center space-x-2">
+				<DatePickerWithRange />
 				<Button size="sm">
 					<Download class="mr-2 h-4 w-4" />
 					Download
