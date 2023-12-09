@@ -413,3 +413,29 @@ src
 - The `app.pcss` file contains the global CSS.
 
 That's it. You can now start adding components to your project.
+
+## ESLint configuration
+
+If you are using ESLint to find problems in your code, some components might trigger false positives depending on your ESLint configuration. For example, you could end up with lint errors when components define `$$Props` to specify the type for `restProps` because `$$Props` is not directly used in the rest of the component.
+
+To ignore these linting errors, you can modify your ESLint configuration.
+
+One option is to add a `.eslintrc` file in the directory where you define your components, for example `$lib/components/ui`:
+
+```json title="src/lib/components/ui/.eslintrc"
+{
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^\\$\\$(Props|Events|Slots|Generic)$"
+      }
+    ]
+  }
+}
+```
+
+The main benefit with adding an additional `.eslintrc` file just to `$lib/components/ui` is that you will not affect how ESLint functions for the rest of your project. Only your `shadcn-svelte` components will ignore these false positives.
+
+If this is not important to you, then another option is to adapt a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
