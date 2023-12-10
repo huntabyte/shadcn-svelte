@@ -26,7 +26,7 @@
 	];
 </script>
 
-<Popover.Root openFocus>
+<Popover.Root openFocus preventScroll>
 	<Popover.Trigger asChild let:builder>
 		<Button
 			variant="outline"
