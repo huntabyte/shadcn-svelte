@@ -41,8 +41,8 @@ dependencies:
     specifier: ^0.292.0
     version: 0.292.0(svelte@4.2.2)
   mode-watcher:
-    specifier: ^0.0.7
-    version: 0.0.7(svelte@4.2.2)
+    specifier: ^0.1.2
+    version: 0.1.2(svelte@4.2.2)
   nanoid:
     specifier: ^5.0.3
     version: 5.0.3
@@ -3872,13 +3872,12 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mode-watcher@0.0.7(svelte@4.2.2):
-    resolution: {integrity: sha512-3/RXHKzg9TjhkYo8YTx++Ai7a2Qd7BkYS3RFWaIhj0NPonXAF5JNegiZ3CTk1Q/k0wyhPQUlsWW0Y5ByCp6Y1g==}
+  /mode-watcher@0.1.2(svelte@4.2.2):
+    resolution: {integrity: sha512-XTdPCdqC3kqSvB+Q262Kor983YJkkB2Z3vj9uqg5IqKQpOdiz+xB99Jihp8sWbyM67drC7KKp0Nt5FzCypZi2g==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       svelte: 4.2.2
-      svelte-persisted-store: 0.7.0(svelte@4.2.2)
     dev: false
 
   /mri@1.2.0:
@@ -4759,15 +4758,6 @@ packages:
     engines: {node: '>=0.14'}
     peerDependencies:
       svelte: ^3.48.0 || ^4.0.0
-    dependencies:
-      svelte: 4.2.2
-    dev: false
-
-  /svelte-persisted-store@0.7.0(svelte@4.2.2):
-    resolution: {integrity: sha512-PczYS60ysScQ0DmTCPXQm5rwt8FfQzSlx0lCbljbE6hTCKqXaw2bP8KH1+B7QTPmuiy/QbAk4pjYpNCmZhjyRw==}
-    engines: {node: '>=0.14'}
-    peerDependencies:
-      svelte: ^3.48.0 || >4.0.0
     dependencies:
       svelte: 4.2.2
     dev: false
