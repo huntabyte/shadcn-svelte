@@ -274,7 +274,7 @@ async function runInit(cwd: string, config: Config) {
 		".js",
 		".cjs"
 	);
-	await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
+	if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 	// Write css file.
 	const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
