@@ -160,18 +160,7 @@ async function promptForConfig(
 			message: `Where is your ${highlight(
 				"tailwind.config.[cjs|js|ts]"
 			)} located?`,
-			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
-			validate: (value) => {
-				if (existsSync(value)) {
-					return true;
-				}
-				logger.info("");
-				logger.error(
-					`${value} does not exist. Please enter a valid path.`
-				);
-				logger.info("");
-				return false;
-			}
+			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG
 		},
 		{
 			type: "text",
@@ -271,7 +260,7 @@ async function runInit(cwd: string, config: Config) {
 
 	// Delete tailwind.config.cjs, if present
 	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(
-		".js",
+		/\.(j|t)s$/,
 		".cjs"
 	);
 	await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
