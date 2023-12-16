@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.4.1
+
+### Patch Changes
+
+- 3068583: fix: `tailwind.config.ts` is no longer mistakenly deleted on `init`
+
 ## 0.4.0
 
 ### Minor Changes
