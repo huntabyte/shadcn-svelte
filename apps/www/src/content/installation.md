@@ -439,3 +439,14 @@ One option is to add a `.eslintrc` file in the directory where you define your c
 The main benefit with adding an additional `.eslintrc` file just to `$lib/components/ui` is that you will not affect how ESLint functions for the rest of your project. Only your `shadcn-svelte` components will ignore these false positives.
 
 If this is not important to you, then another option is to adapt a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
+
+## VSCode extension
+
+Install the shadcn-svelte [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Selemondev.vscode-shadcn-svelte) by [@selemondev](https://github.com/selemondev) in Visual Studio Code to easily add Shadcn Svelte components to your project.
+
+This extension offers a range of features:
+
+- Ability to initialize the shadcn-svelte CLI
+- Add components to your project
+- Navigate to a specific component's documentation page directly from your IDE
+- Handy snippets for quick component imports and markup
