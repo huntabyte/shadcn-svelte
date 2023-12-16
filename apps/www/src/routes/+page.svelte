@@ -12,12 +12,12 @@
 <div class="container relative">
 	<PageHeader.Root class="pb-8">
 		<a
-			href="/docs/changelog"
-			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
+			href="/docs/installation#vscode-extension"
+			class="inline-flex items-center px-3 py-1 text-sm font-medium rounded-lg bg-muted"
 		>
-			🎉 <Separator class="mx-2 h-4" orientation="vertical" />
-			<span> New Components - Calendars </span>
-			<ArrowRight class="ml-1 h-4 w-4" />
+		✨ <Separator class="h-4 mx-2" orientation="vertical" />
+			<span> VSCode extension </span>
+			<ArrowRight class="w-4 h-4 ml-1" />
 		</a>
 		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
 		<PageHeader.Description>
@@ -39,7 +39,7 @@
 				class="font-medium underline underline-offset-4">@shadcn</a
 			>, just inspired by him.
 		</p>
-		<div class="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
+		<div class="flex items-center w-full pt-4 pb-8 space-x-4 md:pb-10">
 			<a href="/docs" class={cn(buttonVariants())}> Get Started </a>
 			<a
 				target="_blank"
@@ -47,14 +47,14 @@
 				href={siteConfig.links.github}
 				class={cn(buttonVariants({ variant: "outline" }))}
 			>
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<Icons.gitHub class="w-4 h-4 mr-2" />
 				GitHub
 			</a>
 		</div>
 	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section
-		class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"
+		class="space-y-8 overflow-hidden border-2 rounded-lg border-primary dark:border-muted md:hidden"
 	>
 		<img
 			src="/examples/dashboard-light.png"
@@ -72,7 +72,7 @@
 		/>
 	</section>
 	<section class="hidden md:block">
-		<div class="overflow-hidden rounded-lg border bg-background shadow-xl">
+		<div class="overflow-hidden border rounded-lg shadow-xl bg-background">
 			<DashboardPage />
 		</div>
 	</section>
