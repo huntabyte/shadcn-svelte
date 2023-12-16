@@ -442,12 +442,11 @@ If this is not important to you, then another option is to adapt a similar rule 
 
 ## VSCode extension
 
-Install the [shadcn-svelte](https://marketplace.visualstudio.com/items?itemName=Selemondev.vscode-shadcn-svelte) extension by [@selemondev](https://github.com/selemondev) in Visual Studio Code to easily add Shadcn Svelte components to your project.
+Install the shadcn-svelte [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Selemondev.vscode-shadcn-svelte) by [@selemondev](https://github.com/selemondev) in Visual Studio Code to easily add Shadcn Svelte components to your project.
 
 This extension offers a range of features:
 
-- Ability to initialize the Shadcn Svelte CLI
-- Install components
-- Open documentation
-- Navigate to a specific component's documentation page directly from your IDE. 
-- Handy snippets for quick and straightforward component imports and markup.
+- Ability to initialize the shadcn-svelte CLI
+- Add components to your project
+- Navigate to a specific component's documentation page directly from your IDE 
+- Handy snippets for quick component imports and markup
