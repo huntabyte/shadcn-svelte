@@ -14,10 +14,11 @@ import {
 	RegistryItem,
 	fetchTree,
 	getItemTargetPath,
+	getRegistryBaseColor,
 	getRegistryIndex,
 	resolveTree
 } from "../utils/registry";
-import { transformImport } from "../utils/transformer";
+import { transform } from "../utils/transformers";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
@@ -71,6 +72,10 @@ export const update = new Command()
 				process.exitCode = 1;
 				return;
 			}
+
+			const registryBaseColor = await getRegistryBaseColor(
+				config.tailwind.baseColor
+			);
 
 			const registryIndex = await getRegistryIndex();
 
@@ -159,7 +164,12 @@ export const update = new Command()
 					);
 
 					// Run transformers.
-					const content = transformImport(file.content, config);
+					const content = await transform({
+						filename: file.name,
+						raw: file.content,
+						config,
+						baseColor: registryBaseColor
+					});
 
 					if (!existsSync(componentDir)) {
 						await fs.mkdir(componentDir, { recursive: true });

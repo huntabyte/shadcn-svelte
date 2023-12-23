@@ -18,7 +18,7 @@ import {
 	getRegistryIndex,
 	resolveTree
 } from "../utils/registry";
-import { transformImport } from "../utils/transformer";
+import { transform } from "../utils/transformers";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -204,7 +204,12 @@ export const add = new Command()
 					);
 
 					// Run transformers.
-					const content = transformImport(file.content, config);
+					const content = await transform({
+						filename: file.name,
+						raw: file.content,
+						config,
+						baseColor
+					});
 
 					if (!existsSync(componentDir)) {
 						await fs.mkdir(componentDir, { recursive: true });

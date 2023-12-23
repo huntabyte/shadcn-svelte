@@ -57,7 +57,7 @@ export const init = new Command()
 					type: "confirm",
 					name: "proceed",
 					message:
-						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.pcss file. Proceed?",
+						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.css file. Proceed?",
 					initial: true
 				}
 			]);
@@ -155,6 +155,16 @@ async function promptForConfig(
 			}
 		},
 		{
+			type: "toggle",
+			name: "tailwindCssVariables",
+			message: `Would you like to use ${highlight(
+				"CSS variables"
+			)} for colors?`,
+			initial: defaultConfig?.tailwind.cssVariables ?? true,
+			active: "yes",
+			inactive: "no"
+		},
+		{
 			type: "text",
 			name: "tailwindConfig",
 			message: `Where is your ${highlight(
@@ -195,7 +205,8 @@ async function promptForConfig(
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
-			baseColor: options.tailwindBaseColor
+			baseColor: options.tailwindBaseColor,
+			cssVariables: options.tailwindCssVariables,
 		},
 		aliases: {
 			utils: options.utils,
