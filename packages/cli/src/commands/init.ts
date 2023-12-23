@@ -57,7 +57,7 @@ export const init = new Command()
 					type: "confirm",
 					name: "proceed",
 					message:
-						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.css file. Proceed?",
+						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.pcss file. Proceed?",
 					initial: true
 				}
 			]);
@@ -206,7 +206,7 @@ async function promptForConfig(
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
 			baseColor: options.tailwindBaseColor,
-			cssVariables: options.tailwindCssVariables,
+			cssVariables: options.tailwindCssVariables
 		},
 		aliases: {
 			utils: options.utils,
@@ -276,7 +276,9 @@ async function runInit(cwd: string, config: Config) {
 	// Write tailwind config.
 	await fs.writeFile(
 		config.resolvedPaths.tailwindConfig,
-		templates.TAILWIND_CONFIG_WITH_VARIABLES,
+		config.tailwind.cssVariables
+			? templates.TAILWIND_CONFIG_WITH_VARIABLES
+			: templates.TAILWIND_CONFIG,
 		"utf8"
 	);
 
@@ -292,7 +294,9 @@ async function runInit(cwd: string, config: Config) {
 	if (baseColor) {
 		await fs.writeFile(
 			config.resolvedPaths.tailwindCss,
-			baseColor.cssVarsTemplate,
+			config.tailwind.cssVariables
+				? baseColor.cssVarsTemplate
+				: baseColor.inlineColorsTemplate,
 			"utf8"
 		);
 	}
