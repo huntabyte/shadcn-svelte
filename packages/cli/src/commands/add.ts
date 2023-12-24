@@ -169,7 +169,10 @@ export const add = new Command()
 					await fs.mkdir(targetDir, { recursive: true });
 				}
 
-				const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+				const componentPath = path.relative(
+					process.cwd(),
+					path.resolve(targetDir, item.name)
+				);
 
 				const existingComponent = item.files.filter((file) =>
 					existsSync(path.resolve(targetDir, item.name, file.name))
@@ -178,9 +181,7 @@ export const add = new Command()
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
 						logger.warn(
-							`\nComponent already exists at ${
-								componentPath
-							}. Use ${chalk.green(
+							`\nComponent already exists at ${componentPath}. Use ${chalk.green(
 								"--overwrite"
 							)} to overwrite.`
 						);
@@ -246,11 +247,10 @@ export const add = new Command()
 			}
 			spinner.succeed(`Done.`);
 			logger.info(
-				`Components installed at:\n- ${[
-					...componentPaths
-				].join("\n- ")}`
+				`Components installed at:\n- ${[...componentPaths].join(
+					"\n- "
+				)}`
 			);
-			
 		} catch (error) {
 			handleError(error);
 		}
