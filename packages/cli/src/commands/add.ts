@@ -151,6 +151,8 @@ export const add = new Command()
 
 			const spinner = ora(`Installing components...`).start();
 			let skippedDeps = new Set<string>();
+			let componentPaths = [];
+
 			for (const item of payload) {
 				spinner.text = `Installing ${item.name}...`;
 				const targetDir = await getItemTargetPath(
@@ -229,6 +231,8 @@ export const add = new Command()
 						}
 					);
 				}
+
+				componentPaths.push(componentPath);
 			}
 
 			logger.info("");
@@ -241,6 +245,12 @@ export const add = new Command()
 				);
 			}
 			spinner.succeed(`Done.`);
+			logger.info(
+				`Components installed at:\n- ${[
+					...componentPaths
+				].join("\n- ")}`
+			);
+			
 		} catch (error) {
 			handleError(error);
 		}
