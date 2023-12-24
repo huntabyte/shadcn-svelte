@@ -52,13 +52,6 @@ export const add = new Command()
 	.option("-p, --path <path>", "the path to add the component to.")
 	.action(async (components: string[], opts) => {
 		const highlight = logger.highlight;
-		logger.warn(
-			"Running the following command will overwrite existing files."
-		);
-		logger.warn(
-			"Make sure you have committed your changes before proceeding."
-		);
-		logger.warn("");
 
 		try {
 			const options = addOptionsSchema.parse({
