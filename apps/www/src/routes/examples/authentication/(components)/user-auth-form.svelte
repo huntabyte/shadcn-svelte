@@ -58,6 +58,6 @@
 			<Icons.gitHub class="mr-2 h-4 w-4" />
 		{/if}
 		{" "}
-		Github
+		GitHub
 	</Button>
 </div>
