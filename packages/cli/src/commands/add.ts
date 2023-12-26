@@ -181,9 +181,11 @@ export const add = new Command()
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
 						logger.warn(
-							`\nComponent already exists at ${componentPath}. Use ${chalk.green(
-								"--overwrite"
-							)} to overwrite.`
+							`\nComponent ${highlight(
+								item.name
+							)} already exists at ${highlight(
+								componentPath
+							)}. Use ${chalk.green("--overwrite")} to overwrite.`
 						);
 						spinner.stop();
 						process.exitCode = 1;
