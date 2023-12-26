@@ -52,13 +52,6 @@ export const add = new Command()
 	.option("-p, --path <path>", "the path to add the component to.")
 	.action(async (components: string[], opts) => {
 		const highlight = logger.highlight;
-		logger.warn(
-			"Running the following command will overwrite existing files."
-		);
-		logger.warn(
-			"Make sure you have committed your changes before proceeding."
-		);
-		logger.warn("");
 
 		try {
 			const options = addOptionsSchema.parse({
@@ -158,6 +151,8 @@ export const add = new Command()
 
 			const spinner = ora(`Installing components...`).start();
 			let skippedDeps = new Set<string>();
+			let componentPaths = [];
+
 			for (const item of payload) {
 				spinner.text = `Installing ${item.name}...`;
 				const targetDir = await getItemTargetPath(
@@ -174,6 +169,11 @@ export const add = new Command()
 					await fs.mkdir(targetDir, { recursive: true });
 				}
 
+				const componentPath = path.relative(
+					process.cwd(),
+					path.resolve(targetDir, item.name)
+				);
+
 				const existingComponent = item.files.filter((file) =>
 					existsSync(path.resolve(targetDir, item.name, file.name))
 				);
@@ -181,11 +181,11 @@ export const add = new Command()
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
 						logger.warn(
-							`\nComponent ${
+							`\nComponent ${highlight(
 								item.name
-							} already exists. Use ${chalk.green(
-								"--overwrite"
-							)} to overwrite.`
+							)} already exists at ${highlight(
+								componentPath
+							)}. Use ${chalk.green("--overwrite")} to overwrite.`
 						);
 						spinner.stop();
 						process.exitCode = 1;
@@ -234,6 +234,8 @@ export const add = new Command()
 						}
 					);
 				}
+
+				componentPaths.push(componentPath);
 			}
 
 			logger.info("");
@@ -246,6 +248,11 @@ export const add = new Command()
 				);
 			}
 			spinner.succeed(`Done.`);
+			logger.info(
+				`Components installed at:\n- ${[...componentPaths].join(
+					"\n- "
+				)}`
+			);
 		} catch (error) {
 			handleError(error);
 		}
