@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.4.2
+
+### Patch Changes
+
+- 004f7f0: fix: Removed redundant overwrite warning in `add`
+
 ## 0.4.1
 
 ### Patch Changes
