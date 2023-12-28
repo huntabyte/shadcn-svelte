@@ -7,15 +7,19 @@
 	type $$Events = PaginationPrimitive.Events;
 
 	let className: $$Props["class"] = undefined;
-	export let count: $$Props["count"] = 100;
+	export let count: $$Props["count"] = 0;
 	export let perPage: $$Props["perPage"] = 10;
+	export let page: $$Props["page"] = 1;
 
 	export { className as class };
+
+	$: currentPage = page;
 </script>
 
 <PaginationPrimitive.Root
 	{count}
 	{perPage}
+	bind:page
 	let:builder
 	let:pages
 	let:range
@@ -24,8 +28,8 @@
 >
 	<nav
 		{...builder}
-		class={cn("mx-auto flex w-full justify-center", className)}
+		class={cn("mx-auto flex flex-col w-full items-center", className)}
 	>
-		<slot {pages} {range} />
+		<slot {pages} {range} {currentPage} />
 	</nav>
 </PaginationPrimitive.Root>

@@ -2,16 +2,16 @@
 	import { Pagination as PaginationPrimitive } from "bits-ui";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { cn } from "$lib/utils";
-	import { ChevronLeft } from "radix-icons-svelte";
+	import { ChevronRight } from "radix-icons-svelte";
 
-	type $$Props = PaginationPrimitive.PrevButtonProps;
-	type $$Events = PaginationPrimitive.PrevButtonEvents;
+	type $$Props = PaginationPrimitive.NextButtonProps;
+	type $$Events = PaginationPrimitive.NextButtonEvents;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<PaginationPrimitive.PrevButton asChild let:builder>
+<PaginationPrimitive.NextButton asChild let:builder>
 	<Button
 		variant="ghost"
 		class={cn("gap-1 pl-2.5", className)}
@@ -19,7 +19,7 @@
 		on:click
 		{...$$restProps}
 	>
-		<ChevronLeft class="h-4 w-4" />
-		<span>Previous</span>
+		<span>Next</span>
+		<ChevronRight class="h-4 w-4" />
 	</Button>
-</PaginationPrimitive.PrevButton>
+</PaginationPrimitive.NextButton>

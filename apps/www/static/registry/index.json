@@ -340,10 +340,16 @@
     "dependencies": [
       "bits-ui"
     ],
-    "registryDependencies": [],
+    "registryDependencies": [
+      "button"
+    ],
     "files": [
       "ui/pagination/index.ts",
       "ui/pagination/pagination-content.svelte",
+      "ui/pagination/pagination-item.svelte",
+      "ui/pagination/pagination-link.svelte",
+      "ui/pagination/pagination-next-button.svelte",
+      "ui/pagination/pagination-prev-button.svelte",
       "ui/pagination/pagination.svelte"
     ],
     "type": "components:ui"

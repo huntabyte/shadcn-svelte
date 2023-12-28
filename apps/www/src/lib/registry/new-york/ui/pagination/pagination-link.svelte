@@ -1,20 +1,34 @@
 <script lang="ts">
 	import { Pagination as PaginationPrimitive } from "bits-ui";
-	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { cn } from "$lib/utils";
+	import { buttonVariants, type Props } from "@/registry/new-york/ui/button";
 
-	type $$Props = PaginationPrimitive.NextButtonProps;
-	type $$Events = PaginationPrimitive.NextButtonEvents;
+	type $$Props = PaginationPrimitive.PageProps &
+		Props & {
+			isActive: boolean;
+		};
+
+	type $$Events = PaginationPrimitive.PageEvents;
 
 	let className: $$Props["class"] = undefined;
+	export let page: $$Props["page"];
+	export let size: $$Props["size"] = "icon";
+	export let isActive: $$Props["isActive"] = false;
+
 	export { className as class };
 </script>
 
-<PaginationPrimitive.PrevButton
-	class={cn(buttonVariants(), className)}
+<PaginationPrimitive.Page
+	bind:page
+	class={cn(
+		buttonVariants({
+			variant: isActive ? "outline" : "ghost",
+			size
+		}),
+		className
+	)}
 	{...$$restProps}
 	on:click
-	let:builder
 >
-	<slot {builder} />
-</PaginationPrimitive.PrevButton>
+	<slot>{page.value}</slot>
+</PaginationPrimitive.Page>
