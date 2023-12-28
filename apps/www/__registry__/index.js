@@ -395,6 +395,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/menubar-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/menubar-demo.svelte"],
     },
+    "pagination-demo": {
+      name: "pagination-demo",
+      type: "components:example",
+      registryDependencies: ["pagination"],
+      component: () => import("../src/lib/registry/default/example/pagination-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/pagination-demo.svelte"],
+    },
     "popover-demo": {
       name: "popover-demo",
       type: "components:example",
@@ -1130,6 +1137,13 @@ export const Index = {
       registryDependencies: ["menubar"],
       component: () => import("../src/lib/registry/new-york/example/menubar-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/menubar-demo.svelte"],
+    },
+    "pagination-demo": {
+      name: "pagination-demo",
+      type: "components:example",
+      registryDependencies: ["pagination"],
+      component: () => import("../src/lib/registry/new-york/example/pagination-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/pagination-demo.svelte"],
     },
     "popover-demo": {
       name: "popover-demo",

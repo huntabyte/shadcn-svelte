@@ -1,0 +1,22 @@
+{
+  "name": "pagination",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nexport {\n\tRoot,\n\tContent,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent\n};\n"
+    },
+    {
+      "name": "pagination-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ul class={cn(\"flex flex-row items-center gap-1\", className)} {...$$restProps}>\n\t<slot />\n</ul>\n"
+    },
+    {
+      "name": "pagination.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.Root\n\tcount={100}\n\tperPage={10}\n\tlet:pages\n\tlet:range\n\tclass={cn(\"mx-auto flex w-full justify-center\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</PaginationPrimitive.Root>\n"
+    }
+  ],
+  "type": "components:ui"
+}

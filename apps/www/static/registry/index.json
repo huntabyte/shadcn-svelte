@@ -336,6 +336,19 @@
     "type": "components:ui"
   },
   {
+    "name": "pagination",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/pagination/index.ts",
+      "ui/pagination/pagination-content.svelte",
+      "ui/pagination/pagination.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "popover",
     "dependencies": [
       "bits-ui"

@@ -179,6 +179,18 @@ export const components = [
 	//     dependencies: ["@radix-ui/react-navigation-menu"],
 	//     files: ["components/ui/navigation-menu.tsx"]
 	//   },
+	/* 	{
+		component: "pagination",
+		name: "Pagination",
+		dependencies: ["radix-svelte"],
+		files: [
+			"src/lib/components/ui/pagination/Pagination.svelte",
+			"src/lib/components/ui/pagination/PaginationButton.svelte",
+			"src/lib/components/ui/pagination/PaginationEllipsis.svelte",
+			"src/lib/components/ui/pagination/PaginationInfo.svelte",
+			"src/lib/components/ui/pagination/index.ts"
+		]
+	}, */
 	//   {
 	//     component: "popover",
 	//     name: "Popover",
