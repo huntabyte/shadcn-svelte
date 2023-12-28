@@ -346,6 +346,7 @@
     "files": [
       "ui/pagination/index.ts",
       "ui/pagination/pagination-content.svelte",
+      "ui/pagination/pagination-ellipsis.svelte",
       "ui/pagination/pagination-item.svelte",
       "ui/pagination/pagination-link.svelte",
       "ui/pagination/pagination-next-button.svelte",
