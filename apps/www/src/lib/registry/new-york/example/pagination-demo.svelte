@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Pagination from "@/registry/default/ui/pagination";
+	import * as Pagination from "@/registry/new-york/ui/pagination";
 
 	let count = 20;
 	let perPage = 3;
