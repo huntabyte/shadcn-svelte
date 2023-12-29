@@ -93,11 +93,11 @@ import type { PageServerLoad } from "./$types";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "./schema";
 
-export const load: PageServerLoad = () => {
+export const load: PageServerLoad = (async () => {
   return {
-    form: superValidate(formSchema)
+    form: await superValidate(formSchema)
   };
-};
+});
 ```
 
 ### Create a form component
@@ -150,11 +150,11 @@ import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "./schema";
 
-export const load: PageServerLoad = () => {
+export const load: PageServerLoad = (async () => {
   return {
-    form: superValidate(formSchema)
+    form: await superValidate(formSchema)
   };
-};
+});
 
 export const actions: Actions = {
   default: async (event) => {
