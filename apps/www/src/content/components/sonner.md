@@ -15,6 +15,10 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 
 </ComponentPreview>
 
+## About
+
+The Sonner component is provided by [sonner-svelte](https://sonner-svelte.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+
 ## Installation
 
 ```bash
