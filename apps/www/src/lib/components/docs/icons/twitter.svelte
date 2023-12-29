@@ -1,3 +1,9 @@
+<script lang="ts">
+	import type { IconProps } from ".";
+
+	type $$Props = IconProps;
+</script>
+
 <svg
 	height="23"
 	viewBox="0 0 1200 1227"

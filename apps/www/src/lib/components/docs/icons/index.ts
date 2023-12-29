@@ -36,8 +36,17 @@ import RadixSvelte from "./radix-svelte.svelte";
 import Tailwind from "./tailwind.svelte";
 import Yarn from "./yarn.svelte";
 import Twitter from "./twitter.svelte";
+import type { SVGAttributes } from "svelte/elements";
 
 export type Icon = LucideIcon;
+
+export type IconProps = {
+	color?: string;
+	size?: number | string;
+	strokeWidth?: number | string;
+	absoluteStrokeWidth?: boolean;
+	class?: string;
+} & SVGAttributes<SVGElement>;
 
 export const Icons = {
 	logo: Logo,
