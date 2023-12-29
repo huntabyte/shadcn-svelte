@@ -3,7 +3,7 @@
 	import { Textarea } from "@/registry/default/ui/textarea";
 </script>
 
-<div class="grid w-full gap-1.5">
+<div class="space-y-2">
 	<Label for="message">Your message</Label>
 	<Textarea placeholder="Type your message here." id="message" />
 </div>
