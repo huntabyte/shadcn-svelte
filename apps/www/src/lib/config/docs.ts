@@ -126,7 +126,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Calendar",
 					href: "/docs/components/calendar",
-					label: "New",
 					items: []
 				},
 				{
@@ -167,7 +166,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Date Picker",
 					href: "/docs/components/date-picker",
-					label: "New",
 					items: []
 				},
 				{
@@ -231,7 +229,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Range Calendar",
 					href: "/docs/components/range-calendar",
-					label: "New",
 					items: []
 				},
 				// {
@@ -264,6 +261,12 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Slider",
 					href: "/docs/components/slider",
+					items: []
+				},
+				{
+					title: "Sonner",
+					href: "/docs/components/sonner",
+					label: "New",
 					items: []
 				},
 				{
@@ -333,7 +336,6 @@ export const examples: Example[] = [
 	{
 		name: "Tasks",
 		href: "/examples/tasks",
-		label: "New",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/tasks"
 	},
 	{

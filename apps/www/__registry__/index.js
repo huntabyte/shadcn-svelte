@@ -479,6 +479,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/slider-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/slider-demo.svelte"],
     },
+    "sonner-demo": {
+      name: "sonner-demo",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/default/example/sonner-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/sonner-demo.svelte"],
+    },
     "switch-demo": {
       name: "switch-demo",
       type: "components:example",
@@ -1214,6 +1221,13 @@ export const Index = {
       registryDependencies: ["slider"],
       component: () => import("../src/lib/registry/new-york/example/slider-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/slider-demo.svelte"],
+    },
+    "sonner-demo": {
+      name: "sonner-demo",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/new-york/example/sonner-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/sonner-demo.svelte"],
     },
     "switch-demo": {
       name: "switch-demo",

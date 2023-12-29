@@ -468,6 +468,16 @@
     "type": "components:ui"
   },
   {
+    "name": "sonner",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/sonner/index.ts",
+      "ui/sonner/sonner.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "switch",
     "dependencies": [
       "bits-ui"

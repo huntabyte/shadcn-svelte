@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { dev, browser } from "$app/environment";
-	import { env } from "$env/dynamic/public";
 	import {
 		Metadata,
 		SiteFooter,
@@ -12,24 +11,21 @@
 	import "../styles/globals.css";
 	import { config } from "@/stores";
 	import * as Fathom from "fathom-client";
-	import { onMount } from "svelte";
 	import { ModeWatcher } from "mode-watcher";
-
-	onMount(async () => {
-		if (env.PUBLIC_FATHOM_ID && env.PUBLIC_FATHOM_URL) {
-			Fathom.load(env.PUBLIC_FATHOM_ID, {
-				url: env.PUBLIC_FATHOM_URL
-			});
-		}
-	});
+	import { Sonner as DefaultSonner } from "@/registry/default/ui/sonner";
+	import { Sonner as NYSonner } from "@/registry/new-york/ui/sonner";
 
 	$: updateTheme($config.theme, $page.url.pathname);
 	$: $page.url.pathname, browser && Fathom.trackPageview();
 </script>
 
 <ModeWatcher />
-
 <Metadata />
+{#if $config.style === "new-york"}
+	<NYSonner />
+{:else}
+	<DefaultSonner />
+{/if}
 
 <div class="relative flex min-h-screen flex-col" id="page">
 	<SiteHeader />
