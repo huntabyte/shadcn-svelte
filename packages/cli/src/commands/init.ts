@@ -25,11 +25,7 @@ import {
 } from "../utils/registry";
 import * as templates from "../utils/templates";
 
-const PROJECT_DEPENDENCIES = [
-	"tailwind-variants",
-	"clsx",
-	"tailwind-merge"
-] as const;
+const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 
 export const init = new Command()
 	.command("init")
@@ -71,26 +67,18 @@ export const init = new Command()
 		try {
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
-				logger.error(
-					`The path ${cwd} does not exist. Please try again.`
-				);
+				logger.error(`The path ${cwd} does not exist. Please try again.`);
 				process.exitCode = 1;
 				return;
 			}
 
 			// Read config.
 			const existingConfig = await getConfig(cwd);
-			const config = await promptForConfig(
-				cwd,
-				existingConfig,
-				options.yes
-			);
+			const config = await promptForConfig(cwd, existingConfig, options.yes);
 
 			await runInit(cwd, config);
 			logger.info("");
-			logger.info(
-				`${chalk.green("Success!")} Project initialization completed.`
-			);
+			logger.info(`${chalk.green("Success!")} Project initialization completed.`);
 			logger.info("");
 			logger.info(
 				"Don't forget to add the aliases you configured to your svelte.config.js!"
@@ -131,9 +119,7 @@ async function promptForConfig(
 		{
 			type: "select",
 			name: "tailwindBaseColor",
-			message: `Which color would you like to use as ${highlight(
-				"base color"
-			)}?`,
+			message: `Which color would you like to use as ${highlight("base color")}?`,
 			choices: baseColors.map((color) => ({
 				title: color.label,
 				value: color.name
@@ -148,27 +134,21 @@ async function promptForConfig(
 				if (existsSync(value)) {
 					return true;
 				}
-				logger.error(
-					`${value} does not exist. Please enter a valid path.`
-				);
+				logger.error(`${value} does not exist. Please enter a valid path.`);
 				return false;
 			}
 		},
 		{
 			type: "text",
 			name: "tailwindConfig",
-			message: `Where is your ${highlight(
-				"tailwind.config.[cjs|js|ts]"
-			)} located?`,
+			message: `Where is your ${highlight("tailwind.config.[cjs|js|ts]")} located?`,
 			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
 			validate: (value) => {
 				if (existsSync(value)) {
 					return true;
 				}
 				logger.info("");
-				logger.error(
-					`${value} does not exist. Please enter a valid path.`
-				);
+				logger.error(`${value} does not exist. Please enter a valid path.`);
 				logger.info("");
 				return false;
 			}
@@ -176,9 +156,7 @@ async function promptForConfig(
 		{
 			type: "text",
 			name: "components",
-			message: `Configure the import alias for ${highlight(
-				"components"
-			)}:`,
+			message: `Configure the import alias for ${highlight("components")}:`,
 			initial: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS
 		},
 		{
@@ -207,9 +185,7 @@ async function promptForConfig(
 		const { proceed } = await prompts({
 			type: "confirm",
 			name: "proceed",
-			message: `Write configuration to ${highlight(
-				"components.json"
-			)}. Proceed?`,
+			message: `Write configuration to ${highlight("components.json")}. Proceed?`,
 			initial: true
 		});
 
@@ -219,13 +195,8 @@ async function promptForConfig(
 	}
 
 	if (config.tailwind.config.endsWith(".cjs")) {
-		logger.info(
-			"Your tailwind.config.cjs has been renamed to tailwind.config.js."
-		);
-		const renamedTailwindConfigPath = config.tailwind.config.replace(
-			".cjs",
-			".js"
-		);
+		logger.info("Your tailwind.config.cjs has been renamed to tailwind.config.js.");
+		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
 
@@ -270,10 +241,7 @@ async function runInit(cwd: string, config: Config) {
 	);
 
 	// Delete tailwind.config.cjs, if present
-	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(
-		".js",
-		".cjs"
-	);
+	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
 	if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 	// Write css file.
@@ -287,11 +255,7 @@ async function runInit(cwd: string, config: Config) {
 	}
 
 	// Write cn file.
-	await fs.writeFile(
-		`${config.resolvedPaths.utils}.ts`,
-		templates.UTILS,
-		"utf8"
-	);
+	await fs.writeFile(`${config.resolvedPaths.utils}.ts`, templates.UTILS, "utf8");
 
 	spinner?.succeed();
 
@@ -305,12 +269,8 @@ async function runInit(cwd: string, config: Config) {
 		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte"
 	];
 
-	await execa(
-		packageManager,
-		[packageManager === "npm" ? "install" : "add", ...deps],
-		{
-			cwd
-		}
-	);
+	await execa(packageManager, [packageManager === "npm" ? "install" : "add", ...deps], {
+		cwd
+	});
 	dependenciesSpinner?.succeed();
 }

@@ -14,8 +14,7 @@ import {
 	stylesSchema
 } from "./schema";
 
-const baseUrl =
-	process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
 const proxyUrl = getEnvProxy();
 
@@ -92,10 +91,7 @@ export async function resolveTree(
 		tree.push(entry);
 
 		if (entry.registryDependencies) {
-			const dependencies = await resolveTree(
-				index,
-				entry.registryDependencies
-			);
+			const dependencies = await resolveTree(index, entry.registryDependencies);
 			tree.push(...dependencies);
 		}
 	}
@@ -151,10 +147,7 @@ async function fetchRegistry(paths: string[]) {
 
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const response = await fetch(
-					`${baseUrl}/registry/${path}`,
-					options
-				);
+				const response = await fetch(`${baseUrl}/registry/${path}`, options);
 				return await response.json();
 			})
 		);

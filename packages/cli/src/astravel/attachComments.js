@@ -1,12 +1,6 @@
 import { defaultTraveler } from "./defaultTraveler";
 
-function attachCommentsToNode(
-	traveler,
-	state,
-	parent,
-	children,
-	findHeadingComments
-) {
+function attachCommentsToNode(traveler, state, parent, children, findHeadingComments) {
 	let { index } = state;
 	const { comments } = state;
 	let comment = comments[index];
