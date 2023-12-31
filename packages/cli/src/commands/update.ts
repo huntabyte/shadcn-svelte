@@ -17,6 +17,7 @@ import {
 	getRegistryIndex,
 	resolveTree
 } from "../utils/registry";
+import { UTILS } from "../utils/templates";
 import { transformImport } from "../utils/transformer";
 
 const updateOptionsSchema = z.object({
@@ -70,6 +71,29 @@ export const update = new Command()
 				);
 				process.exitCode = 1;
 				return;
+			}
+
+			// utils means update the utils.ts file
+			if (components && components.includes("utils")) {
+				// FIX: This is quick and dirty, finaly solution has to fix resolvedPaths.utils
+				const utilsPath = config.resolvedPaths.utils + ".ts";
+
+				if (!existsSync(utilsPath)) {
+					logger.error(`utils.ts '${utilsPath}' does not exist.`);
+					process.exitCode = 1;
+					return;
+				}
+
+				// utils.ts is not in the registry, it is a template.
+				// Just overwrite it.
+				await fs.writeFile(utilsPath, UTILS);
+
+				// if CLI was called only on utils, stop, o/w continue
+				if (components.length === 1) {
+					logger.info(`utils.ts has been succesfully updated.`);
+					logger.success(`Done.`);
+					return;
+				}
 			}
 
 			const registryIndex = await getRegistryIndex();
