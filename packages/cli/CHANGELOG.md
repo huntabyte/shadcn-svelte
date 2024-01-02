@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.5.0
+
+### Minor Changes
+
+- dcceae8: feat: Added a `utils` option for `update`
+
 ## 0.4.2
 
 ### Patch Changes
