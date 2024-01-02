@@ -307,7 +307,7 @@ export const Index = {
     "drawer-demo": {
       name: "drawer-demo",
       type: "components:example",
-      registryDependencies: [],
+      registryDependencies: ["button","drawer"],
       component: () => import("../src/lib/registry/default/example/drawer-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/drawer-demo.svelte"],
     },
@@ -1057,7 +1057,7 @@ export const Index = {
     "drawer-demo": {
       name: "drawer-demo",
       type: "components:example",
-      registryDependencies: [],
+      registryDependencies: ["button","drawer"],
       component: () => import("../src/lib/registry/new-york/example/drawer-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/drawer-demo.svelte"],
     },

@@ -119,7 +119,7 @@
 						<VisGroupedBar
 							{x}
 							{y}
-							color={`hsl(var(--primary) / ${0.2})`}
+							color={"hsl(var(--primary) / 0.2)"}
 						/>
 					</VisXYContainer>
 				</div>

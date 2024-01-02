@@ -92,7 +92,7 @@
 		"sveltekit-superforms": "^1.8.0",
 		"tailwind-merge": "^1.14.0",
 		"tailwind-variants": "^0.1.16",
-		"vaul-svelte": "^0.0.3"
+		"vaul-svelte": "^0.0.4"
 	},
 	"pnpm": {
 		"patchedDependencies": {

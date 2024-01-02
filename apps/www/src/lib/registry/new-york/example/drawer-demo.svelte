@@ -66,15 +66,9 @@
 	function handleClick(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
-
-	function color(opacity: string = "1") {
-		return () => ``;
-	}
 </script>
 
-ello
-
-<!-- <Drawer.Root>
+<Drawer.Root>
 	<Drawer.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline">Open Drawer</Button>
 	</Drawer.Trigger>
@@ -119,13 +113,13 @@ ello
 					</Button>
 				</div>
 				<div class="mt-3 h-[120px]">
-					<!-- <VisXYContainer {data} height={60}>
+					<VisXYContainer {data} height={60}>
 						<VisGroupedBar
 							{x}
 							{y}
-							color={`hsl(var(--primary) / ${0.2})`}
+							color={"hsl(var(--primary) / 0.2)"}
 						/>
-					</VisXYContainer> -->
+					</VisXYContainer>
 				</div>
 			</div>
 			<Drawer.Footer>
@@ -138,4 +132,4 @@ ello
 			</Drawer.Footer>
 		</div>
 	</Drawer.Content>
-</Drawer.Root> -->
+</Drawer.Root>
