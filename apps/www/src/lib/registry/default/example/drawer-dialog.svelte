@@ -1,0 +1,72 @@
+<script lang="ts">
+	import * as Dialog from "@/registry/default/ui/dialog";
+	import * as Drawer from "@/registry/default/ui/drawer";
+	import { Input } from "@/registry/default/ui/input";
+	import { Label } from "@/registry/default/ui/label";
+	import { Button } from "@/registry/default/ui/button";
+	import { mediaQuery } from "svelte-legos";
+
+	let open = false;
+	const isDesktop = mediaQuery("(min-width: 768px)");
+</script>
+
+{#if $isDesktop}
+	<Dialog.Root bind:open>
+		<Dialog.Trigger asChild let:builder>
+			<Button variant="outline" builders={[builder]}>Edit Profile</Button>
+		</Dialog.Trigger>
+		<Dialog.Content class="sm:max-w-[425px]">
+			<Dialog.Header>
+				<Dialog.Title>Edit profile</Dialog.Title>
+				<Dialog.Description>
+					Make changes to your profile here. Click save when you're
+					done.
+				</Dialog.Description>
+			</Dialog.Header>
+			<form class="grid items-start gap-4">
+				<div class="grid gap-2">
+					<Label for="email">Email</Label>
+					<Input type="email" id="email" value="shadcn@example.com" />
+				</div>
+				<div class="grid gap-2">
+					<Label for="username">Username</Label>
+					<Input id="username" value="@shadcn" />
+				</div>
+				<Button type="submit">Save changes</Button>
+			</form>
+		</Dialog.Content>
+	</Dialog.Root>
+{:else}
+	<Drawer.Root bind:open>
+		<Drawer.Trigger asChild let:builder>
+			<Button variant="outline" builders={[builder]}>Edit Profile</Button>
+		</Drawer.Trigger>
+		<Drawer.Content>
+			<Drawer.Header class="text-left">
+				<Drawer.Title>Edit profile</Drawer.Title>
+				<Drawer.Description>
+					Make changes to your profile here. Click save when you're
+					done.
+				</Drawer.Description>
+			</Drawer.Header>
+			<form class="grid items-start gap-4 px-4">
+				<div class="grid gap-2">
+					<Label for="email">Email</Label>
+					<Input type="email" id="email" value="shadcn@example.com" />
+				</div>
+				<div class="grid gap-2">
+					<Label for="username">Username</Label>
+					<Input id="username" value="@shadcn" />
+				</div>
+				<Button type="submit">Save changes</Button>
+			</form>
+			<Drawer.Footer class="pt-2">
+				<Drawer.Close asChild let:builder>
+					<Button variant="outline" builders={[builder]}
+						>Cancel</Button
+					>
+				</Drawer.Close>
+			</Drawer.Footer>
+		</Drawer.Content>
+	</Drawer.Root>
+{/if}

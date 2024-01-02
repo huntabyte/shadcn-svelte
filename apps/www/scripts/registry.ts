@@ -7,7 +7,9 @@ import type { Registry } from "../src/lib/registry";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
-	["cmdk-sv", ["bits-ui"]]
+	["cmdk-sv", ["bits-ui"]],
+	["svelte-sonner", []],
+	["vaul-svelte", []]
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file

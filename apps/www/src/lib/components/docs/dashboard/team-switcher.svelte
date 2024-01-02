@@ -77,8 +77,8 @@
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
 			<Command.Root>
+				<Command.Input placeholder="Search team..." />
 				<Command.List>
-					<Command.Input placeholder="Search team..." />
 					<Command.Empty>No team found.</Command.Empty>
 					{#each groups as group}
 						<Command.Group heading={group.label}>

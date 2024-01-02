@@ -1,0 +1,44 @@
+{
+  "name": "pagination",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "name": "index.ts",
+      "content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nimport Item from \"./pagination-item.svelte\";\nimport Link from \"./pagination-link.svelte\";\nimport PrevButton from \"./pagination-prev-button.svelte\";\nimport NextButton from \"./pagination-next-button.svelte\";\nimport Ellipsis from \"./pagination-ellipsis.svelte\";\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tLink,\n\tPrevButton,\n\tNextButton,\n\tEllipsis,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tLink as PaginationLink,\n\tPrevButton as PaginationPrevButton,\n\tNextButton as PaginationNextButton,\n\tEllipsis as PaginationEllipsis\n};\n"
+    },
+    {
+      "name": "pagination-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLUListElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ul class={cn(\"flex flex-row items-center gap-1\", className)} {...$$restProps}>\n\t<slot />\n</ul>\n"
+    },
+    {
+      "name": "pagination-ellipsis.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { MoreHorizontal } from \"lucide-svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\taria-hidden\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...$$restProps}\n>\n\t<MoreHorizontal class=\"h-4 w-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n"
+    },
+    {
+      "name": "pagination-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLLIElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<li class={cn(\"\", className)} {...$$restProps}>\n\t<slot />\n</li>\n"
+    },
+    {
+      "name": "pagination-link.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { buttonVariants, type Props } from \"@/registry/default/ui/button\";\n\n\ttype $$Props = PaginationPrimitive.PageProps &\n\t\tProps & {\n\t\t\tisActive: boolean;\n\t\t};\n\n\ttype $$Events = PaginationPrimitive.PageEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let page: $$Props[\"page\"];\n\texport let size: $$Props[\"size\"] = \"icon\";\n\texport let isActive: $$Props[\"isActive\"] = false;\n\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.Page\n\tbind:page\n\tclass={cn(\n\t\tbuttonVariants({\n\t\t\tvariant: isActive ? \"outline\" : \"ghost\",\n\t\t\tsize\n\t\t}),\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n>\n\t<slot>{page.value}</slot>\n</PaginationPrimitive.Page>\n"
+    },
+    {
+      "name": "pagination-next-button.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { Button } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronRight } from \"lucide-svelte\";\n\n\ttype $$Props = PaginationPrimitive.NextButtonProps;\n\ttype $$Events = PaginationPrimitive.NextButtonEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.NextButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pl-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<span>Next</span>\n\t\t<ChevronRight class=\"h-4 w-4\" />\n\t</Button>\n</PaginationPrimitive.NextButton>\n"
+    },
+    {
+      "name": "pagination-prev-button.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { Button } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronLeft } from \"lucide-svelte\";\n\n\ttype $$Props = PaginationPrimitive.PrevButtonProps;\n\ttype $$Events = PaginationPrimitive.PrevButtonEvents;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.PrevButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pl-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<ChevronLeft class=\"h-4 w-4\" />\n\t\t<span>Previous</span>\n\t</Button>\n</PaginationPrimitive.PrevButton>\n"
+    },
+    {
+      "name": "pagination.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = PaginationPrimitive.Props;\n\ttype $$Events = PaginationPrimitive.Events;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let count: $$Props[\"count\"] = 0;\n\texport let perPage: $$Props[\"perPage\"] = 10;\n\texport let page: $$Props[\"page\"] = 1;\n\texport let siblingCount: $$Props[\"siblingCount\"] = 1;\n\n\texport { className as class };\n\n\t$: currentPage = page;\n</script>\n\n<PaginationPrimitive.Root\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tbind:page\n\tlet:builder\n\tlet:pages\n\tlet:range\n\tasChild\n\t{...$$restProps}\n>\n\t<nav\n\t\t{...builder}\n\t\tclass={cn(\"mx-auto flex flex-col w-full items-center\", className)}\n\t>\n\t\t<slot {pages} {range} {currentPage} />\n\t</nav>\n</PaginationPrimitive.Root>\n"
+    }
+  ],
+  "type": "components:ui"
+}

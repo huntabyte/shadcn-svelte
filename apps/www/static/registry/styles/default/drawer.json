@@ -1,0 +1,42 @@
+{
+  "name": "drawer",
+  "dependencies": [
+    "vaul-svelte"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "drawer-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport DrawerOverlay from \"./drawer-overlay.svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = DrawerPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted\" />\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
+    },
+    {
+      "name": "drawer-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = DrawerPrimitive.DescriptionProps;\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
+    },
+    {
+      "name": "drawer-footer.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tel?: HTMLDivElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tbind:this={el}\n\tclass={cn(\"mt-auto flex flex-col gap-2 p-4\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "drawer-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tel?: HTMLDivElement;\n\t};\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tbind:this={el}\n\tclass={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "drawer-overlay.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = DrawerPrimitive.OverlayProps;\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Overlay\n\tbind:el\n\tclass={cn(\"fixed inset-0 z-50 bg-black/80\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Overlay>\n"
+    },
+    {
+      "name": "drawer-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = DrawerPrimitive.TitleProps;\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Title\n\tbind:el\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Title>\n"
+    },
+    {
+      "name": "drawer.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\ttype $$Props = DrawerPrimitive.Props;\n\texport let shouldScaleBackground: $$Props[\"shouldScaleBackground\"] = true;\n\texport let open: $$Props[\"open\"] = false;\n\texport let activeSnapPoint: $$Props[\"activeSnapPoint\"] = undefined;\n</script>\n\n<DrawerPrimitive.Root\n\t{shouldScaleBackground}\n\tbind:open\n\tbind:activeSnapPoint\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Root>\n"
+    },
+    {
+      "name": "index.ts",
+      "content": "import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\nimport Root from \"./drawer.svelte\";\nimport Content from \"./drawer-content.svelte\";\nimport Description from \"./drawer-description.svelte\";\nimport Overlay from \"./drawer-overlay.svelte\";\nimport Footer from \"./drawer-footer.svelte\";\nimport Header from \"./drawer-header.svelte\";\nimport Title from \"./drawer-title.svelte\";\n\nconst Trigger = DrawerPrimitive.Trigger;\nconst Portal = DrawerPrimitive.Portal;\nconst Close = DrawerPrimitive.Close;\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tOverlay,\n\tFooter,\n\tHeader,\n\tTitle,\n\tTrigger,\n\tPortal,\n\tClose,\n\t//\n\tRoot as Drawer,\n\tContent as DrawerContent,\n\tDescription as DrawerDescription,\n\tOverlay as DrawerOverlay,\n\tFooter as DrawerFooter,\n\tHeader as DrawerHeader,\n\tTitle as DrawerTitle,\n\tTrigger as DrawerTrigger,\n\tPortal as DrawerPortal,\n\tClose as DrawerClose\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}
