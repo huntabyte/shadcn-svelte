@@ -218,6 +218,12 @@ export const docsConfig: DocsConfig = {
 				//   items: []
 				// },
 				{
+					title: "Pagination",
+					href: "/docs/components/pagination",
+					label: "New",
+					items: []
+				},
+				{
 					title: "Popover",
 					href: "/docs/components/popover",
 					items: []
