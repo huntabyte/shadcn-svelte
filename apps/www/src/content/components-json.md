@@ -93,6 +93,20 @@ This is used to generate the default color palette for your components. **This c
 }
 ```
 
+### tailwind.cssVariables
+
+You can choose between using CSS variables or Tailwind CSS utility classes for theming.
+
+To use utility classes for theming set `tailwind.cssVariables` to `false`. For CSS variables, set `tailwind.cssVariables` to `true`.
+
+```json title="components.json"
+{
+  "tailwind": {
+    "cssVariables": \`true\` | \`false\`
+  }
+}
+```
+
 ## aliases
 
 The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.

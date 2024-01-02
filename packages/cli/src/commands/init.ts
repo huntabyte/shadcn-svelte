@@ -155,6 +155,16 @@ async function promptForConfig(
 			}
 		},
 		{
+			type: "toggle",
+			name: "tailwindCssVariables",
+			message: `Would you like to use ${highlight(
+				"CSS variables"
+			)} for colors?`,
+			initial: defaultConfig?.tailwind.cssVariables ?? true,
+			active: "yes",
+			inactive: "no"
+		},
+		{
 			type: "text",
 			name: "tailwindConfig",
 			message: `Where is your ${highlight(
@@ -195,7 +205,8 @@ async function promptForConfig(
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
-			baseColor: options.tailwindBaseColor
+			baseColor: options.tailwindBaseColor,
+			cssVariables: options.tailwindCssVariables
 		},
 		aliases: {
 			utils: options.utils,
@@ -265,7 +276,9 @@ async function runInit(cwd: string, config: Config) {
 	// Write tailwind config.
 	await fs.writeFile(
 		config.resolvedPaths.tailwindConfig,
-		templates.TAILWIND_CONFIG_WITH_VARIABLES,
+		config.tailwind.cssVariables
+			? templates.TAILWIND_CONFIG_WITH_VARIABLES
+			: templates.TAILWIND_CONFIG,
 		"utf8"
 	);
 
@@ -281,7 +294,9 @@ async function runInit(cwd: string, config: Config) {
 	if (baseColor) {
 		await fs.writeFile(
 			config.resolvedPaths.tailwindCss,
-			baseColor.cssVarsTemplate,
+			config.tailwind.cssVariables
+				? baseColor.cssVarsTemplate
+				: baseColor.inlineColorsTemplate,
 			"utf8"
 		);
 	}

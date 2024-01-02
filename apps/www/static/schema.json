@@ -20,12 +20,16 @@
 				},
 				"baseColor": {
 					"type": "string"
+				},
+				"cssVariables": {
+					"type": "boolean"
 				}
 			},
 			"required": [
 				"config",
 				"css",
-				"baseColor"
+				"baseColor",
+				"cssVariables"
 			]
 		},
 		"aliases": {
