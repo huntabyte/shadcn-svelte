@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { ChevronDown, Circle, Plus, Star } from "lucide-svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
+	import Circle from "lucide-svelte/icons/circle";
+	import Plus from "lucide-svelte/icons/plus";
+	import Star from "lucide-svelte/icons/star";
 	import { Button } from "@/registry/default/ui/button";
 	import * as Card from "@/registry/default/ui/card";
 	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";

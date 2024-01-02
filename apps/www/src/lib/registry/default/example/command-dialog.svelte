@@ -1,12 +1,10 @@
 <script lang="ts">
-	import {
-		Calculator,
-		Calendar,
-		CreditCard,
-		Settings,
-		Smile,
-		User
-	} from "lucide-svelte";
+	import Calculator from "lucide-svelte/icons/calculator";
+	import Calendar from "lucide-svelte/icons/calendar";
+	import CreditCard from "lucide-svelte/icons/credit-card";
+	import Settings from "lucide-svelte/icons/settings";
+	import Smile from "lucide-svelte/icons/smile";
+	import User from "lucide-svelte/icons/user";
 	import * as Command from "@/registry/default/ui/command";
 	import { onMount } from "svelte";
 

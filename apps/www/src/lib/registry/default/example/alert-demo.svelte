@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Terminal } from "lucide-svelte";
+	import Terminal from "lucide-svelte/icons/terminal";
 	import * as Alert from "@/registry/default/ui/alert";
 </script>
 

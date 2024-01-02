@@ -36,7 +36,8 @@
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import { tick } from "svelte";
-	import { Check, ChevronsUpDown } from "lucide-svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	export let form: SuperValidated<FormSchema> = $page.data.combobox;
 
 	let open = false;

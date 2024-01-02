@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { AtSign, Bell, BellOff } from "lucide-svelte";
+	import AtSign from "lucide-svelte/icons/at-sign";
+	import Bell from "lucide-svelte/icons/bell";
+	import BellOff from "lucide-svelte/icons/bell-off";
 	import * as Card from "@/registry/default/ui/card";
 </script>
 

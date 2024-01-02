@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as Card from "@/registry/default/ui/card";
 	import { Button } from "@/registry/default/ui/button";
-	import { Minus, Plus } from "lucide-svelte";
+	import Minus from "lucide-svelte/icons/minus";
+	import Plus from "lucide-svelte/icons/plus";
 	import { Activity } from "@/components/docs/charts";
 
 	let goal = 350;

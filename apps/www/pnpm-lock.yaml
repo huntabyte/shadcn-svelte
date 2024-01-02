@@ -38,8 +38,8 @@ dependencies:
     specifier: ^0.4.2
     version: 0.4.2(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
   lucide-svelte:
-    specifier: ^0.292.0
-    version: 0.292.0(svelte@4.2.2)
+    specifier: ^0.303.0
+    version: 0.303.0(svelte@4.2.2)
   mode-watcher:
     specifier: ^0.1.2
     version: 0.1.2(svelte@4.2.2)
@@ -3364,8 +3364,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lucide-svelte@0.292.0(svelte@4.2.2):
-    resolution: {integrity: sha512-bnTpg9pbm6pQDc+YiLK2yxtRFk2Cc+hbzwjAPaV85k56x10CJ9LsXjon6wRrlNTSdxJR7GOsRjz0A5ZNu3Z7dg==}
+  /lucide-svelte@0.303.0(svelte@4.2.2):
+    resolution: {integrity: sha512-Lt5kH3pGSSQdFDgL+y09xkp8FCGm7pQBdxmRxdpA0/im5AHl6WGDECWdiB4dnBCp8njOgWd0TaSqgkL0dF0efg==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:

@@ -1,20 +1,18 @@
 <script lang="ts">
-	import {
-		Cloud,
-		CreditCard,
-		Github,
-		Keyboard,
-		LifeBuoy,
-		LogOut,
-		Mail,
-		MessageSquare,
-		Plus,
-		PlusCircle,
-		Settings,
-		User,
-		UserPlus,
-		Users
-	} from "lucide-svelte";
+	import Cloud from "lucide-svelte/icons/cloud";
+	import CreditCard from "lucide-svelte/icons/credit-card";
+	import Github from "lucide-svelte/icons/github";
+	import Keyboard from "lucide-svelte/icons/keyboard";
+	import LifeBuoy from "lucide-svelte/icons/life-buoy";
+	import LogOut from "lucide-svelte/icons/log-out";
+	import Mail from "lucide-svelte/icons/mail";
+	import MessageSquare from "lucide-svelte/icons/message-square";
+	import Plus from "lucide-svelte/icons/plus";
+	import PlusCircle from "lucide-svelte/icons/plus-circle";
+	import Settings from "lucide-svelte/icons/settings";
+	import User from "lucide-svelte/icons/user";
+	import UserPlus from "lucide-svelte/icons/user-plus";
+	import Users from "lucide-svelte/icons/users";
 
 	import { Button } from "@/registry/default/ui/button";
 	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";

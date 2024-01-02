@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Button } from "@/registry/default/ui/button";
 	import * as Drawer from "@/registry/default/ui/drawer";
-	import { Minus, Plus } from "lucide-svelte";
+	import Minus from "lucide-svelte/icons/minus";
+	import Plus from "lucide-svelte/icons/plus";
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
 
 	const data = [
