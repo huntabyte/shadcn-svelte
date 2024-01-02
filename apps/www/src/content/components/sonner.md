@@ -17,7 +17,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 
 ## About
 
-The Sonner component is provided by [sonner-svelte](https://sonner-svelte.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
 
 ## Installation
 
@@ -49,10 +49,10 @@ npx shadcn-svelte@latest add sonner
 
 <ManualInstall>
 
-1. Install `sonner-svelte`:
+1. Install `svelte-sonner`:
 
 ```bash
-npm install sonner-svelte
+npm install svelte-sonner
 ```
 
 2. Copy and paste the component source files linked at the top of this page into your project.
