@@ -225,7 +225,9 @@
   },
   {
     "name": "drawer",
-    "dependencies": [],
+    "dependencies": [
+      "vaul-svelte"
+    ],
     "registryDependencies": [],
     "files": [
       "ui/drawer/drawer-content.svelte",
@@ -485,7 +487,9 @@
   },
   {
     "name": "sonner",
-    "dependencies": [],
+    "dependencies": [
+      "svelte-sonner"
+    ],
     "registryDependencies": [],
     "files": [
       "ui/sonner/index.ts",

@@ -85,7 +85,7 @@
 		"nanoid": "^5.0.3",
 		"radix-icons-svelte": "^1.2.1",
 		"svelte-headless-table": "^0.17.7",
-		"svelte-legos": "^0.2.1",
+		"svelte-legos": "^0.2.2",
 		"svelte-local-storage-store": "^0.5.0",
 		"svelte-sonner": "^0.3.9",
 		"svelte-wrap-balancer": "^0.0.4",

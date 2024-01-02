@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, Steps, Step } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="sonner-demo">
@@ -21,9 +21,31 @@ The Sonner component is provided by [sonner-svelte](https://sonner-svelte.vercel
 
 ## Installation
 
+<Steps>
+
+<Step>
+	Run the following command:
+</Step>
+
 ```bash
 npx shadcn-svelte@latest add sonner
 ```
+
+<Step>
+	Add the Toaster component
+</Step>
+
+```svelte title="+layout.svelte" {2,5}
+<script lang="ts">
+  import { Toaster } from "$lib/components/ui/sonner";
+</script>
+
+<Toaster />
+
+<slot />
+```
+
+</Steps>
 
 <ManualInstall>
 
@@ -39,22 +61,9 @@ npm install sonner-svelte
 
 ## Usage
 
-Add the `Sonner` component to your layout file.
-
-```svelte title="+layout.svelte"
-<script lang="ts">
-  import { Sonner } from "$lib/components/ui/sonner";
-</script>
-
-<Sonner />
-
-<slot />
-```
-
-Call the `toast` function from anywhere in your app.
-
 ```svelte
 <script lang="ts">
+  import { toast } from "svelte-sonner";
   import { Button } from "$lib/components/ui/button";
 </script>
 

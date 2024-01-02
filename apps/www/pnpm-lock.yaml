@@ -53,7 +53,7 @@ dependencies:
     specifier: ^0.17.7
     version: 0.17.7(svelte@4.2.2)
   svelte-legos:
-    specifier: ^0.2.1
+    specifier: ^0.2.2
     version: 0.2.2(svelte@4.2.2)
   svelte-local-storage-store:
     specifier: ^0.5.0

@@ -12,8 +12,8 @@
 	import { config } from "@/stores";
 	import * as Fathom from "fathom-client";
 	import { ModeWatcher } from "mode-watcher";
-	import { Sonner as DefaultSonner } from "@/registry/default/ui/sonner";
-	import { Sonner as NYSonner } from "@/registry/new-york/ui/sonner";
+	import { Toaster as DefaultSonner } from "@/registry/default/ui/sonner";
+	import { Toaster as NYSonner } from "@/registry/new-york/ui/sonner";
 
 	$: updateTheme($config.theme, $page.url.pathname);
 	$: $page.url.pathname, browser && Fathom.trackPageview();

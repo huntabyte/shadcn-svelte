@@ -67,3 +67,9 @@ npm install vaul-svelte
 ### Responsive Dialog
 
 You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` on desktop and a `Drawer` on mobile.
+
+<ComponentPreview name="drawer-dialog">
+
+<div />
+
+</ComponentPreview>
