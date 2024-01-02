@@ -73,29 +73,6 @@ export const update = new Command()
 				return;
 			}
 
-			// utils means update the utils.ts file
-			if (components && components.includes("utils")) {
-				// FIX: This is quick and dirty, finaly solution has to fix resolvedPaths.utils
-				const utilsPath = config.resolvedPaths.utils + ".ts";
-
-				if (!existsSync(utilsPath)) {
-					logger.error(`utils.ts '${utilsPath}' does not exist.`);
-					process.exitCode = 1;
-					return;
-				}
-
-				// utils.ts is not in the registry, it is a template.
-				// Just overwrite it.
-				await fs.writeFile(utilsPath, UTILS);
-
-				// if CLI was called only on utils, stop, o/w continue
-				if (components.length === 1) {
-					logger.info(`utils.ts has been succesfully updated.`);
-					logger.success(`Done.`);
-					return;
-				}
-			}
-
 			const registryIndex = await getRegistryIndex();
 
 			const componentDir = path.resolve(
@@ -117,10 +94,18 @@ export const update = new Command()
 					const component = registryIndex.find(
 						(comp) => comp.name === file.name
 					);
-					// is a valid shadcn component
-					component && existingComponents.push(component);
+					if (component) {
+						// is a valid shadcn component
+						existingComponents.push(component);
+					}
 				}
 			}
+			// add `utils` option to the end
+			existingComponents.push({
+				name: "utils",
+				type: "components:ui",
+				files: []
+			});
 
 			let selectedComponents: typeof registryIndex = options.all
 				? existingComponents
@@ -147,10 +132,32 @@ export const update = new Command()
 				);
 			}
 
+			const spinner = ora(
+				`Updating ${selectedComponents.length} component(s) and dependencies...`
+			).start();
+
 			if (selectedComponents.length === 0) {
-				logger.info("No components selected. Nothing to update.");
+				spinner.info("No components selected. Nothing to update.");
 				process.exitCode = 0;
 				return;
+			}
+
+			// `update utils` - update the utils.ts file
+			if (selectedComponents.find((item) => item.name === "utils")) {
+				const utilsPath = config.resolvedPaths.utils + ".ts";
+
+				if (!existsSync(utilsPath)) {
+					spinner.fail(
+						`utils at ${logger.highlight(
+							utilsPath
+						)} does not exist.`
+					);
+					process.exitCode = 1;
+					return;
+				}
+
+				// utils.ts is not in the registry, it is a template, so we'll just overwrite it
+				await fs.writeFile(utilsPath, UTILS);
 			}
 
 			const tree = await resolveTree(
@@ -159,9 +166,6 @@ export const update = new Command()
 			);
 			const payload = await fetchTree(config.style, tree);
 
-			const spinner = ora(
-				`Updating ${selectedComponents.length} component(s) and dependencies...`
-			).start();
 			for (const item of payload) {
 				spinner.text = `Updating ${item.name}...`;
 				const targetDir = await getItemTargetPath(config, item);
