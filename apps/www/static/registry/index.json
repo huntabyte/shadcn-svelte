@@ -224,6 +224,22 @@
     "type": "components:ui"
   },
   {
+    "name": "drawer",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+      "ui/drawer/drawer-content.svelte",
+      "ui/drawer/drawer-description.svelte",
+      "ui/drawer/drawer-footer.svelte",
+      "ui/drawer/drawer-header.svelte",
+      "ui/drawer/drawer-overlay.svelte",
+      "ui/drawer/drawer-title.svelte",
+      "ui/drawer/drawer.svelte",
+      "ui/drawer/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "dropdown-menu",
     "dependencies": [
       "bits-ui"

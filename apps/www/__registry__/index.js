@@ -304,6 +304,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/dialog-demo.svelte"],
     },
+    "drawer-demo": {
+      name: "drawer-demo",
+      type: "components:example",
+      registryDependencies: [],
+      component: () => import("../src/lib/registry/default/example/drawer-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/drawer-demo.svelte"],
+    },
     "dropdown-menu-checkboxes": {
       name: "dropdown-menu-checkboxes",
       type: "components:example",
@@ -1046,6 +1053,13 @@ export const Index = {
       registryDependencies: ["button","dialog","input","label"],
       component: () => import("../src/lib/registry/new-york/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/dialog-demo.svelte"],
+    },
+    "drawer-demo": {
+      name: "drawer-demo",
+      type: "components:example",
+      registryDependencies: [],
+      component: () => import("../src/lib/registry/new-york/example/drawer-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/drawer-demo.svelte"],
     },
     "dropdown-menu-checkboxes": {
       name: "dropdown-menu-checkboxes",
