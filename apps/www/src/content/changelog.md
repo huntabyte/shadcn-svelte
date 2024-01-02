@@ -23,7 +23,7 @@ The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a po
 
 ### Sonner
 
-The Sonner component is provided by [sonner-svelte](https://sonner-svelte.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
 
 <ComponentPreview name="sonner-demo">
 
