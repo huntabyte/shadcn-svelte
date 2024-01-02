@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
+	import X from "lucide-svelte/icons/x";
 	import {
 		SheetOverlay,
 		SheetPortal,
@@ -7,7 +8,6 @@
 		sheetVariants,
 		type Side
 	} from ".";
-	import { X } from "lucide-svelte";
 	import { cn } from "$lib/utils";
 	import { fly } from "svelte/transition";
 

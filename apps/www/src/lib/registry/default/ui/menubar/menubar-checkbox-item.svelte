@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "bits-ui";
+	import Check from "lucide-svelte/icons/check";
 	import { cn } from "$lib/utils";
-	import { Check } from "lucide-svelte";
 
 	type $$Props = MenubarPrimitive.CheckboxItemProps;
 	type $$Events = MenubarPrimitive.CheckboxItemEvents;
