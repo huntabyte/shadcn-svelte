@@ -7,7 +7,9 @@ import type { Registry } from "../src/lib/registry";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
-	["cmdk-sv", ["bits-ui"]]
+	["cmdk-sv", ["bits-ui"]],
+	["svelte-sonner", []],
+	["vaul-svelte", []]
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
@@ -66,8 +68,9 @@ async function crawlExample(rootPath: string) {
 		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
 			const file_path = join("example", dirent.name);
-			const { dependencies, registryDependencies } =
-				await getDependencies(join(rootPath, dirent.name));
+			const { dependencies, registryDependencies } = await getDependencies(
+				join(rootPath, dirent.name)
+			);
 
 			exampleRegistry.push({
 				name,
@@ -118,9 +121,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 			dependencies.add(dep)
 		);
 
-		deps.registryDependencies.forEach((dep) =>
-			registryDependencies.add(dep)
-		);
+		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
 	return {

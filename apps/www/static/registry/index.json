@@ -224,6 +224,24 @@
     "type": "components:ui"
   },
   {
+    "name": "drawer",
+    "dependencies": [
+      "vaul-svelte"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/drawer/drawer-content.svelte",
+      "ui/drawer/drawer-description.svelte",
+      "ui/drawer/drawer-footer.svelte",
+      "ui/drawer/drawer-header.svelte",
+      "ui/drawer/drawer-overlay.svelte",
+      "ui/drawer/drawer-title.svelte",
+      "ui/drawer/drawer.svelte",
+      "ui/drawer/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "dropdown-menu",
     "dependencies": [
       "bits-ui"
@@ -484,6 +502,18 @@
     "files": [
       "ui/slider/index.ts",
       "ui/slider/slider.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "sonner",
+    "dependencies": [
+      "svelte-sonner"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/sonner/index.ts",
+      "ui/sonner/sonner.svelte"
     ],
     "type": "components:ui"
   },

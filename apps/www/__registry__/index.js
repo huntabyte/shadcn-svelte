@@ -304,6 +304,20 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/dialog-demo.svelte"],
     },
+    "drawer-demo": {
+      name: "drawer-demo",
+      type: "components:example",
+      registryDependencies: ["button","drawer"],
+      component: () => import("../src/lib/registry/default/example/drawer-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/drawer-demo.svelte"],
+    },
+    "drawer-dialog": {
+      name: "drawer-dialog",
+      type: "components:example",
+      registryDependencies: ["dialog","drawer","input","label","button"],
+      component: () => import("../src/lib/registry/default/example/drawer-dialog.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/drawer-dialog.svelte"],
+    },
     "dropdown-menu-checkboxes": {
       name: "dropdown-menu-checkboxes",
       type: "components:example",
@@ -485,6 +499,13 @@ export const Index = {
       registryDependencies: ["slider"],
       component: () => import("../src/lib/registry/default/example/slider-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/slider-demo.svelte"],
+    },
+    "sonner-demo": {
+      name: "sonner-demo",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/default/example/sonner-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/sonner-demo.svelte"],
     },
     "switch-demo": {
       name: "switch-demo",
@@ -1047,6 +1068,20 @@ export const Index = {
       component: () => import("../src/lib/registry/new-york/example/dialog-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/dialog-demo.svelte"],
     },
+    "drawer-demo": {
+      name: "drawer-demo",
+      type: "components:example",
+      registryDependencies: ["button","drawer"],
+      component: () => import("../src/lib/registry/new-york/example/drawer-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/drawer-demo.svelte"],
+    },
+    "drawer-dialog": {
+      name: "drawer-dialog",
+      type: "components:example",
+      registryDependencies: ["dialog","drawer","input","label","button"],
+      component: () => import("../src/lib/registry/new-york/example/drawer-dialog.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/drawer-dialog.svelte"],
+    },
     "dropdown-menu-checkboxes": {
       name: "dropdown-menu-checkboxes",
       type: "components:example",
@@ -1228,6 +1263,13 @@ export const Index = {
       registryDependencies: ["slider"],
       component: () => import("../src/lib/registry/new-york/example/slider-demo.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/slider-demo.svelte"],
+    },
+    "sonner-demo": {
+      name: "sonner-demo",
+      type: "components:example",
+      registryDependencies: ["button"],
+      component: () => import("../src/lib/registry/new-york/example/sonner-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/sonner-demo.svelte"],
     },
     "switch-demo": {
       name: "switch-demo",
