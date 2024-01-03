@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Underline } from "lucide-svelte";
+	import Underline from "lucide-svelte/icons/underline";
 	import { Toggle } from "@/registry/default/ui/toggle";
 </script>
 
