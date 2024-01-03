@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowRight } from "lucide-svelte";
+	import ArrowRight from "lucide-svelte/icons/arrow-right";
 	import { page } from "$app/stores";
 	import { examples } from "$lib/config/docs";
 

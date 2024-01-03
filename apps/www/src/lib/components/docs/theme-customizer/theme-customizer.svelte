@@ -7,7 +7,7 @@
 	import { cn } from "@/utils";
 	import { Check } from "radix-icons-svelte";
 	import Button from "@/registry/new-york/ui/button/button.svelte";
-	import { Paintbrush } from "lucide-svelte";
+	import Paintbrush from "lucide-svelte/icons/paintbrush";
 	import { Customizer, ThemeCopyCodeButton } from ".";
 
 	const colors = ["zinc", "rose", "blue", "green", "orange"];

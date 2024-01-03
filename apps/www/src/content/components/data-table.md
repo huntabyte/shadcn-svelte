@@ -442,9 +442,9 @@ We'll start by creating a new component called `data-table-actions.svelte` which
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
+  import MoreHorizontal from "lucide-svelte/icons/more-horizontal";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import { Button } from "$lib/components/ui/button";
-  import { MoreHorizontal } from "lucide-svelte";
 
   export let id: string;
 </script>
@@ -687,10 +687,10 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
   } from "svelte-headless-table";
   import { addPagination, addSortBy } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
+  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
-  import { ArrowUpDown } from "lucide-svelte";
 
   type Payment = {
     id: string;
@@ -845,10 +845,10 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
     addTableFilter
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
+  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
-  import { ArrowUpDown } from "lucide-svelte";
   import { Input } from "$lib/components/ui/input";
 
   type Payment = {
@@ -1003,10 +1003,11 @@ Let's add the ability to control which columns are visible in our table.
     addHiddenColumns
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
+  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
+  import ChevronDown from "lucide-svelte/icons/chevron-down";
   import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "$lib/components/ui/button";
-  import { ArrowUpDown, ChevronDown } from "lucide-svelte";
   import { Input } from "$lib/components/ui/input";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 
@@ -1205,10 +1206,11 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     addSelectedRows
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
+  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
+  import ChevronDown from "lucide-svelte/icons/chevron-down";
   import * as Table from "@/registry/new-york/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
   import { Button } from "@/registry/new-york/ui/button";
-  import { ArrowUpDown, ChevronDown } from "lucide-svelte";
   import { Input } from "@/registry/new-york/ui/input";
   import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
   import DataTableCheckbox from "./data-table-checkbox.svelte";
