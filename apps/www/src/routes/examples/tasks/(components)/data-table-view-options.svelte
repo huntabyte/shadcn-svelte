@@ -2,11 +2,10 @@
 	import { MixerHorizontal } from "radix-icons-svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { Task } from "../(data)/schemas";
-	import type { TableViewModel } from "svelte-headless-table/lib/createViewModel";
+	import type { TableViewModel } from "svelte-headless-table";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Task>;
 	const { pluginStates, flatColumns } = tableModel;
 	const { hiddenColumnIds } = pluginStates.hide;
 

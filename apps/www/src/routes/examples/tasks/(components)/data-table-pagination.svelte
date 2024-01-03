@@ -8,10 +8,9 @@
 	} from "radix-icons-svelte";
 	import * as Select from "@/registry/new-york/ui/select";
 	import type { Task } from "../(data)/schemas";
-	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { TableViewModel } from "svelte-headless-table";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Task>;
 
 	const { pageRows, pluginStates, rows } = tableModel;
 
