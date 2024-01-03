@@ -54,8 +54,7 @@ npm install vaul-svelte
     </Drawer.Header>
     <Drawer.Footer>
       <Button>Submit</Button>
-      <Drawer.Close>Cancel</Button>
-      </Drawer.Close>
+      <Drawer.Close>Cancel</Drawer.Close>
     </Drawer.Footer>
   </Drawer.Content>
 </Drawer.Root>
