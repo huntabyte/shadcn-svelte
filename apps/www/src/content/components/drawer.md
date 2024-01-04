@@ -58,7 +58,6 @@ npm install vaul-svelte
     </Drawer.Footer>
   </Drawer.Content>
 </Drawer.Root>
-
 ```
 
 ## Examples
