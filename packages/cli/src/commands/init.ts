@@ -200,6 +200,8 @@ async function promptForConfig(
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
 
+	const configPaths = await resolveConfigPaths(cwd, config);
+
 	// Write to file.
 	logger.info("");
 	const spinner = ora(`Writing components.json...`).start();
@@ -207,7 +209,7 @@ async function promptForConfig(
 	await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
 	spinner.succeed();
 
-	return await resolveConfigPaths(cwd, config);
+	return configPaths;
 }
 
 async function runInit(cwd: string, config: Config) {
