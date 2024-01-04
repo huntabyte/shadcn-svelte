@@ -1,7 +1,8 @@
 {
   "name": "sonner",
   "dependencies": [
-    "svelte-sonner"
+    "svelte-sonner",
+    "mode-watcher"
   ],
   "registryDependencies": [],
   "files": [

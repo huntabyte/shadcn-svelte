@@ -8,7 +8,7 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
 	["cmdk-sv", ["bits-ui"]],
-	["svelte-sonner", []],
+	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []]
 ]);
 // these are required dependencies for particular components
