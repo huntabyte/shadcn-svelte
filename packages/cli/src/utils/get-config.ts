@@ -1,7 +1,6 @@
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import path from "path";
-import { cosmiconfig } from "cosmiconfig";
 import { execa } from "execa";
 import { loadConfig } from "tsconfig-paths";
 import * as z from "zod";
@@ -14,10 +13,6 @@ export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
-
-const explorer = cosmiconfig("components", {
-	searchPlaces: ["components.json"]
-});
 
 export const rawConfigSchema = z
 	.object({
@@ -117,16 +112,22 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	try {
-		const configResult = await explorer.search(cwd);
+		const configPath = path.resolve(cwd, "components.json");
+		const configResult = await readFile(configPath, {
+			encoding: "utf8"
+		}).catch((e) => null);
 
 		// no predefined config exists
 		if (!configResult) {
 			return null;
 		}
-		return rawConfigSchema.parse(configResult.config);
+
+		const config = JSON.parse(configResult);
+
+		return rawConfigSchema.parse(config);
 	} catch (error) {
 		throw new Error(
-			`Invalid configuration found in ${cwd}/components.json`
+			`Invalid configuration found in ${cwd}/components.json.`
 		);
 	}
 }

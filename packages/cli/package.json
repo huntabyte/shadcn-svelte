@@ -50,7 +50,6 @@
 	"dependencies": {
 		"chalk": "5.2.0",
 		"commander": "^10.0.0",
-		"cosmiconfig": "^9.0.0",
 		"execa": "^7.0.0",
 		"fs-extra": "^11.1.0",
 		"https-proxy-agent": "^7.0.2",

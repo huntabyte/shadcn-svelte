@@ -3,6 +3,14 @@ import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
 
 vi.mock("execa");
+
+vi.mock("node:fs", async () => {
+	return {
+		...(await vi.importActual<typeof import("node:fs")>("node:fs")),
+		readFileSync: vi.fn()
+	};
+});
+
 // gets the raw config from a fixture directory
 async function getRaw(fixtureDir: string) {
 	return await getRawConfig(
