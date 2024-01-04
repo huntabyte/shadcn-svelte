@@ -1,5 +1,11 @@
 # www
 
+## 0.0.6
+
+### Patch Changes
+
+- 1ba3100: fix: add mode-watcher to Sonner registry dependencies
+
 ## 0.0.5
 
 ### Patch Changes
