@@ -1,43 +1,50 @@
-# Borrowed from https://github.com/skeletonlabs/skeleton
-name: 🐛 Bug Report
-description: Report an issue or bug
+name: "🐛 Bug report"
+description: Report an issue with shadcn-svelte
 labels: ["type: bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Before submitting a bug report, ensure you're running the latest version of the dependencies (`bits-ui` & `formsnap`/`sveltekit-superforms` if you're using forms). If you have a question, please ask it in the [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions) or [Discord](https://hbyt.us/discord), not here.
+        Thanks for taking the time to fill out this bug report!
   - type: textarea
+    id: bug-description
     attributes:
-      label: Current Behavior
-      description: A description of what you're experiencing.
+      label: Describe the bug
+      description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us how in the description. Thanks!
+      placeholder: Bug description
     validations:
       required: true
   - type: textarea
-    attributes:
-      label: Expected Behavior
-      description: A description of what you're experiencing.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Steps To Reproduce
-      description: Describe how to reproduce the issue. The best way to do this is to provide a link to a reproduction using the [reproduction template](https://shadcn-svelte.com/repro)
-      placeholder: |
-        1. Using this component...
-        2. With these properties...
-        3. Click '...'
-        4. See error...
-    validations:
-      required: true
-  - type: input
     id: reproduction
     attributes:
-      label: Link to Reproduction / Stackblitz ([reproduction template](https://shadcn-svelte.com/repro))
-  - type: textarea
-    attributes:
-      label: More Information
-      description: |
-        Provide relevant links or additionl information.
+      label: Reproduction
+      description: Please provide a link to a repo or Stackblitz that can reproduce the problem you ran into (https://shadcn-svelte.com/repro). If a report is vague (e.g. just a generic error message) and has no reproduction, it will receive a "need reproduction" label. If no reproduction is provided within a reasonable time-frame, the issue will be closed.
+      placeholder: Reproduction
     validations:
-      required: false
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: "Please include browser console and server logs around the time this bug occurred. Optional if provided reproduction. Please try not to insert an image but copy paste the log text."
+      render: bash
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap --binaries --browsers`
+      render: bash
+      placeholder: System, Binaries, Browsers
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Select the severity of this issue
+      options:
+        - annoyance
+        - blocking an upgrade
+        - blocking all usage of shadcn-svelte
+    validations:
+      required: true
