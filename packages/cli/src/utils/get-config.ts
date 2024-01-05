@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import chalk from "chalk";
 import { execa } from "execa";
 import { find, parseNative } from "tsconfck";
 import * as z from "zod";
@@ -95,7 +96,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		throw new Error(
 			`Specify a ${logger.highlight("paths")} field in your ${logger.highlight(
 				"tsconfig.json"
-			)} and define your path aliases.` // TODO: add a link to the docs
+			)} and define your path aliases. \n\nSee: ${chalk.green(
+				"https://www.shadcn-svelte.com/docs/installation#setup-path-aliases"
+			)}`
 		);
 	}
 
