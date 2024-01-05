@@ -165,4 +165,41 @@ describe("getConfig", () => {
 			}
 		});
 	});
+
+	it("handles cases where the project uses jsconfig.json", async () => {
+		expect(await getConf("config-jsconfig")).toEqual({
+			style: "new-york",
+			tailwind: {
+				config: "tailwind.config.js",
+				css: "src/app.pcss",
+				baseColor: "zinc"
+			},
+			aliases: {
+				utils: "$lib/utils",
+				components: "$lib/components"
+			},
+			resolvedPaths: {
+				components: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./src/lib/components"
+				),
+				tailwindConfig: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./tailwind.config.js"
+				),
+				tailwindCss: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./src/app.pcss"
+				),
+				utils: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./src/lib/utils"
+				)
+			}
+		});
+	});
 });
