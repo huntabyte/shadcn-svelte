@@ -224,6 +224,24 @@
     "type": "components:ui"
   },
   {
+    "name": "drawer",
+    "dependencies": [
+      "vaul-svelte"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/drawer/drawer-content.svelte",
+      "ui/drawer/drawer-description.svelte",
+      "ui/drawer/drawer-footer.svelte",
+      "ui/drawer/drawer-header.svelte",
+      "ui/drawer/drawer-overlay.svelte",
+      "ui/drawer/drawer-title.svelte",
+      "ui/drawer/drawer.svelte",
+      "ui/drawer/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "dropdown-menu",
     "dependencies": [
       "bits-ui"
@@ -332,6 +350,26 @@
       "ui/menubar/menubar-sub-trigger.svelte",
       "ui/menubar/menubar-trigger.svelte",
       "ui/menubar/menubar.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "pagination",
+    "dependencies": [
+      "bits-ui"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/pagination/index.ts",
+      "ui/pagination/pagination-content.svelte",
+      "ui/pagination/pagination-ellipsis.svelte",
+      "ui/pagination/pagination-item.svelte",
+      "ui/pagination/pagination-link.svelte",
+      "ui/pagination/pagination-next-button.svelte",
+      "ui/pagination/pagination-prev-button.svelte",
+      "ui/pagination/pagination.svelte"
     ],
     "type": "components:ui"
   },
@@ -464,6 +502,19 @@
     "files": [
       "ui/slider/index.ts",
       "ui/slider/slider.svelte"
+    ],
+    "type": "components:ui"
+  },
+  {
+    "name": "sonner",
+    "dependencies": [
+      "svelte-sonner",
+      "mode-watcher"
+    ],
+    "registryDependencies": [],
+    "files": [
+      "ui/sonner/index.ts",
+      "ui/sonner/sonner.svelte"
     ],
     "type": "components:ui"
   },

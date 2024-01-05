@@ -212,7 +212,7 @@ async function promptForConfig(
 	return configPaths;
 }
 
-async function runInit(cwd: string, config: Config) {
+export async function runInit(cwd: string, config: Config) {
 	const spinner = ora(`Initializing project...`)?.start();
 
 	// Ensure all resolved paths directories exist.

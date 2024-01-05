@@ -7,6 +7,40 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## January 2024
+
+We've added three new components to the project, [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).
+
+### Drawer
+
+The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a port of [vaul](https://vaul.emilkowalski.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+
+<ComponentPreview name="drawer-demo">
+
+<div/>
+
+</ComponentPreview>
+
+### Sonner
+
+The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+
+<ComponentPreview name="sonner-demo">
+
+<div/>
+
+</ComponentPreview>
+
+### Pagination
+
+Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagination) component from Bits UI.
+
+<ComponentPreview name="pagination-demo">
+
+<div/>
+
+</ComponentPreview>
+
 ## December 2023
 
 We've added three new components to the project, [Calendar](/docs/components/calendar), [Range Calendar](/docs/components/range-calendar), & [Date Picker](/docs/components/date-picker).
