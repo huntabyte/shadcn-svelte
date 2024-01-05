@@ -1,9 +1,12 @@
-import { existsSync, promises as fs } from "fs";
+import { promises as fs } from "fs";
 import path from "path";
+import chalk from "chalk";
 import { execa } from "execa";
-import { loadConfig } from "tsconfig-paths";
+import { find, parseNative } from "tsconfck";
 import * as z from "zod";
+import { isUsingSvelteKit } from "./get-package-info";
 import { getPackageManager } from "./get-package-manager";
+import { logger } from "./logger";
 import { resolveImport } from "./resolve-imports";
 
 export const DEFAULT_STYLE = "default";
@@ -27,9 +30,7 @@ export const rawConfigSchema = z
 			components: z
 				.string()
 				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
-			utils: z
-				.string()
-				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
 		})
 	})
 	.strict();
@@ -69,8 +70,9 @@ export async function getAliases() {
 }
 
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
-	const TSCONFIG_PATH = ".svelte-kit/tsconfig.json";
-	if (!existsSync(TSCONFIG_PATH)) {
+	// if it's a SvelteKit project, run sync so that the aliases are always up to date
+	const isSvelteKit = isUsingSvelteKit(cwd);
+	if (isSvelteKit) {
 		const packageManager = await getPackageManager(cwd);
 		await execa(
 			packageManager === "npm" ? "npx" : packageManager,
@@ -81,22 +83,31 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const tsconfigPath = path.resolve(cwd, TSCONFIG_PATH);
-	const tsConfig = loadConfig(tsconfigPath);
+	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
+	if (tsconfigPath === null)
+		throw new Error(`Failed to find ${logger.highlight("tsconfig.json")}.`);
 
-	if (tsConfig.resultType === "failed") {
+	const parsedConfig = await parseNative(tsconfigPath);
+
+	const absoluteBaseUrl: string | undefined = parsedConfig.result.options.pathsBasePath;
+	let paths: Record<string, string[]> | undefined = parsedConfig.result.options.paths;
+
+	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
-			`Failed to load .svelte-kit/tsconfig.json. Error: ${
-				tsConfig.message ?? ""
-			}`.trim()
+			`Specify a ${logger.highlight("paths")} field in your ${logger.highlight(
+				"tsconfig.json"
+			)} and define your path aliases. \n\nSee: ${chalk.green(
+				"https://www.shadcn-svelte.com/docs/installation#setup-path-aliases"
+			)}`
 		);
 	}
 
-	const utilsPath = await resolveImport(config.aliases["utils"], tsConfig);
-	const componentsPath = await resolveImport(
-		config.aliases["components"],
-		tsConfig
-	);
+	const importOpts = {
+		absoluteBaseUrl,
+		paths
+	};
+	const utilsPath = await resolveImport(config.aliases.utils, importOpts);
+	const componentsPath = await resolveImport(config.aliases.components, importOpts);
 
 	return configSchema.parse({
 		...config,
@@ -110,8 +121,8 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 }
 
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+	const configPath = path.resolve(cwd, "components.json");
 	try {
-		const configPath = path.resolve(cwd, "components.json");
 		const configResult = await fs
 			.readFile(configPath, {
 				encoding: "utf8"
@@ -128,7 +139,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 		return rawConfigSchema.parse(config);
 	} catch (error) {
 		throw new Error(
-			`Invalid configuration found in ${cwd}/components.json.`
+			`Invalid configuration found in ${logger.highlight(configPath)}.`
 		);
 	}
 }

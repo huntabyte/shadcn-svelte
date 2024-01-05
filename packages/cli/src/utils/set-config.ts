@@ -36,10 +36,7 @@ export async function setConfig(dir: string = "./src/lib/components/ui") {
 				node.declarations[0].id.name === "config"
 			) {
 				const configNode = node.declarations[0];
-				if (
-					configNode.init &&
-					configNode.init.type === "ObjectExpression"
-				) {
+				if (configNode.init && configNode.init.type === "ObjectExpression") {
 					configNode.init.properties.push(createConfigNode(dir));
 				}
 			}

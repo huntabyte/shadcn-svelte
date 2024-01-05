@@ -28,16 +28,11 @@ it("init (config-full)", async () => {
 		},
 		inlineColorsTemplate:
 			"@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
-		cssVarsTemplate:
-			"@tailwind base;\n@tailwind components;\n@tailwind utilities;\n"
+		cssVarsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n"
 	});
 
-	const mockMkdir = vi
-		.spyOn(fs.promises, "mkdir")
-		.mockResolvedValue(undefined);
-	const mockWriteFile = vi
-		.spyOn(fs.promises, "writeFile")
-		.mockResolvedValue();
+	const mockMkdir = vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);
+	const mockWriteFile = vi.spyOn(fs.promises, "writeFile").mockResolvedValue();
 
 	const targetDir = path.resolve(__dirname, "../fixtures/config-full");
 	const config = await getConfig(targetDir);
@@ -61,9 +56,7 @@ it("init (config-full)", async () => {
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
 		1,
 		expect.stringContaining("tailwind.config"),
-		expect.stringContaining(
-			`import { fontFamily } from "tailwindcss/defaultTheme"`
-		),
+		expect.stringContaining(`import { fontFamily } from "tailwindcss/defaultTheme"`),
 		"utf8"
 	);
 
@@ -83,13 +76,7 @@ it("init (config-full)", async () => {
 
 	expect(execa).toHaveBeenCalledWith(
 		"pnpm",
-		[
-			"add",
-			"tailwind-variants",
-			"clsx",
-			"tailwind-merge",
-			"radix-icons-svelte"
-		],
+		["add", "tailwind-variants", "clsx", "tailwind-merge", "radix-icons-svelte"],
 		{ cwd: targetDir }
 	);
 

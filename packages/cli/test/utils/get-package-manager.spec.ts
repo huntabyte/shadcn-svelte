@@ -3,9 +3,7 @@ import { describe, expect, it } from "vitest";
 import { getPackageManager } from "../../src/utils/get-package-manager";
 
 async function getPM(fixtureDir: string) {
-	return await getPackageManager(
-		path.resolve(__dirname, `../fixtures/${fixtureDir}`)
-	);
+	return await getPackageManager(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
 }
 
 describe("getPackageManager", () => {

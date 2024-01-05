@@ -13,9 +13,7 @@ vi.mock("node:fs", async () => {
 
 // gets the raw config from a fixture directory
 async function getRaw(fixtureDir: string) {
-	return await getRawConfig(
-		path.resolve(__dirname, `../fixtures/${fixtureDir}`)
-	);
+	return await getRawConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
 }
 
 describe("getRawConfig", () => {
@@ -47,9 +45,7 @@ describe("getRawConfig", () => {
 
 // gets the config from a fixture directory
 async function getConf(fixtureDir: string) {
-	return await getConfig(
-		path.resolve(__dirname, `../fixtures/${fixtureDir}`)
-	);
+	return await getConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
 }
 
 describe("getConfig", () => {
@@ -127,6 +123,43 @@ describe("getConfig", () => {
 				utils: path.resolve(
 					__dirname,
 					"../fixtures/config-full",
+					"./src/lib/utils"
+				)
+			}
+		});
+	});
+
+	it("handles cases where the project is not svelte-kit", async () => {
+		expect(await getConf("config-vite")).toEqual({
+			style: "new-york",
+			tailwind: {
+				config: "tailwind.config.js",
+				css: "src/app.pcss",
+				baseColor: "zinc"
+			},
+			aliases: {
+				utils: "$lib/utils",
+				components: "$lib/components"
+			},
+			resolvedPaths: {
+				components: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./src/lib/components"
+				),
+				tailwindConfig: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./tailwind.config.js"
+				),
+				tailwindCss: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./src/app.pcss"
+				),
+				utils: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
 					"./src/lib/utils"
 				)
 			}

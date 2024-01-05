@@ -3,7 +3,7 @@
 	"tabWidth": 4,
 	"singleQuote": false,
 	"trailingComma": "none",
-	"printWidth": 80,
+	"printWidth": 90,
 	"endOfLine": "lf",
 	"pluginSearchDirs": false,
 	"plugins": ["@ianvs/prettier-plugin-sort-imports"],
