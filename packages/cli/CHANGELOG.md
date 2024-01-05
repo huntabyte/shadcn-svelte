@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.6.1
+
+### Patch Changes
+
+- 59dca2c: fix: Support use of `jsconfig.json`
+
 ## 0.6.0
 
 ### Minor Changes
