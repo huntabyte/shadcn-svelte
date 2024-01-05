@@ -128,4 +128,41 @@ describe("getConfig", () => {
 			}
 		});
 	});
+
+	it("handles cases where the project is not svelte-kit", async () => {
+		expect(await getConf("config-vite")).toEqual({
+			style: "new-york",
+			tailwind: {
+				config: "tailwind.config.js",
+				css: "src/app.pcss",
+				baseColor: "zinc"
+			},
+			aliases: {
+				utils: "$lib/utils",
+				components: "$lib/components"
+			},
+			resolvedPaths: {
+				components: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./src/lib/components"
+				),
+				tailwindConfig: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./tailwind.config.js"
+				),
+				tailwindCss: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./src/app.pcss"
+				),
+				utils: path.resolve(
+					__dirname,
+					"../fixtures/config-vite",
+					"./src/lib/utils"
+				)
+			}
+		});
+	});
 });
