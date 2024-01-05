@@ -120,9 +120,11 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	const configPath = path.resolve(cwd, "components.json");
 	try {
-		const configResult = await fs.readFile(configPath, {
-			encoding: "utf8"
-		}).catch((e) => null);
+		const configResult = await fs
+			.readFile(configPath, {
+				encoding: "utf8"
+			})
+			.catch((e) => null);
 
 		// no predefined config exists
 		if (!configResult) {

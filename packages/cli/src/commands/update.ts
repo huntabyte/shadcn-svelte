@@ -137,9 +137,7 @@ export const update = new Command()
 
 				if (!existsSync(utilsPath)) {
 					spinner.fail(
-						`utils at ${logger.highlight(
-							utilsPath
-						)} does not exist.`
+						`utils at ${logger.highlight(utilsPath)} does not exist.`
 					);
 					process.exitCode = 1;
 					return;

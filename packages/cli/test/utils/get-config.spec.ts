@@ -13,9 +13,7 @@ vi.mock("node:fs", async () => {
 
 // gets the raw config from a fixture directory
 async function getRaw(fixtureDir: string) {
-	return await getRawConfig(
-		path.resolve(__dirname, `../fixtures/${fixtureDir}`)
-	);
+	return await getRawConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
 }
 
 describe("getRawConfig", () => {
@@ -47,9 +45,7 @@ describe("getRawConfig", () => {
 
 // gets the config from a fixture directory
 async function getConf(fixtureDir: string) {
-	return await getConfig(
-		path.resolve(__dirname, `../fixtures/${fixtureDir}`)
-	);
+	return await getConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
 }
 
 describe("getConfig", () => {
