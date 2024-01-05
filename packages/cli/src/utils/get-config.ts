@@ -1,5 +1,4 @@
-import { existsSync } from "fs";
-import { readFile } from "fs/promises";
+import { existsSync, promises as fs } from "fs";
 import path from "path";
 import { execa } from "execa";
 import { loadConfig } from "tsconfig-paths";
@@ -110,12 +109,14 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	});
 }
 
-async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	try {
 		const configPath = path.resolve(cwd, "components.json");
-		const configResult = await readFile(configPath, {
-			encoding: "utf8"
-		}).catch((e) => null);
+		const configResult = await fs
+			.readFile(configPath, {
+				encoding: "utf8"
+			})
+			.catch((e) => null);
 
 		// no predefined config exists
 		if (!configResult) {
