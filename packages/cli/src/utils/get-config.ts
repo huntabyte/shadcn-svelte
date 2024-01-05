@@ -82,11 +82,11 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const tsconfigPath = await find("package.json", { root: cwd });
+	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
 	if (tsconfigPath === null)
 		throw new Error(`Failed to find ${logger.highlight("tsconfig.json")}.`);
 
-	const parsedConfig = await parseNative(tsconfigPath, { root: cwd });
+	const parsedConfig = await parseNative(tsconfigPath);
 
 	const absoluteBaseUrl: string | undefined = parsedConfig.result.options.pathsBasePath;
 	let paths: Record<string, string[]> | undefined = parsedConfig.result.options.paths;
