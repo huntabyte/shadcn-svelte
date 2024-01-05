@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.6.0
+
+### Minor Changes
+
+- 024cd2a: feat: Added support for non SvelteKit frameworks
+
 ## 0.5.0
 
 ### Minor Changes
