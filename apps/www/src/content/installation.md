@@ -60,6 +60,36 @@ npx svelte-add@latest tailwindcss
 npm install
 ```
 
+### Setup path aliases
+
+If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+
+```js title="svelte.config.js" {6}
+const config = {
+  // ... other config
+  kit: {
+    // ... other config
+    alias: {
+      "@/*": "./path/to/lib/*"
+    }
+  }
+};
+```
+
+If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json`.
+
+```json title="tsconfig.json" {4-7}
+{
+  "compilerOptions": {
+    // ... other options
+    "paths": {
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
 ### Run the CLI
 
 ```bash
@@ -77,22 +107,6 @@ Where is your global CSS file? › src/app.pcss
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
-```
-
-### Setup path aliases
-
-If you changed the path aliases from the default, you'll also need to update your `svelte.config.js` file to include those aliases.
-
-```js title="svelte.config.js"
-const config = {
-  // ... other config
-  kit: {
-    // ... other config
-    alias: {
-      $lib: "./src/lib"
-    }
-  }
-};
 ```
 
 </Steps>
