@@ -8,7 +8,6 @@
 
 	let className: $$Props["class"] = undefined;
 	export let isVisible: $$Props["isVisible"] = true;
-
 	export { className as class };
 </script>
 

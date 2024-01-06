@@ -14,12 +14,12 @@
 <PaginationPrimitive.NextButton asChild let:builder>
 	<Button
 		variant="ghost"
-		class={cn("gap-1 pl-2.5", className)}
+		class={cn("gap-1 pr-2.5", className)}
 		builders={[builder]}
 		on:click
 		{...$$restProps}
 	>
-		<span>Next</span>
+		<span class="hidden sm:block">Next</span>
 		<ChevronRight class="h-4 w-4" />
 	</Button>
 </PaginationPrimitive.NextButton>

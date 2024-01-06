@@ -20,6 +20,6 @@
 		{...$$restProps}
 	>
 		<ChevronLeft class="h-4 w-4" />
-		<span class="hidden sm:block">Next</span>
+		<span class="hidden sm:block">Previous</span>
 	</Button>
 </PaginationPrimitive.PrevButton>

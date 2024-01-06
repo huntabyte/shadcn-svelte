@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Pagination from "@/registry/default/ui/pagination";
 
-	let count = 1000;
-	let perPage = 30;
+	let count = 20;
+	let perPage = 3;
 </script>
 
 <Pagination.Root {count} {perPage} let:pages let:currentPage>
