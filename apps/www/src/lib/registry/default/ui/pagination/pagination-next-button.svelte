@@ -19,7 +19,7 @@
 		on:click
 		{...$$restProps}
 	>
-		<span>Next</span>
+		<span class="hidden sm:block">Next</span>
 		<ChevronRight class="h-4 w-4" />
 	</Button>
 </PaginationPrimitive.NextButton>
