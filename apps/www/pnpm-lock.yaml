@@ -20,8 +20,8 @@ dependencies:
     specifier: ^1.3.1
     version: 1.3.1
   bits-ui:
-    specifier: 0.13.0
-    version: 0.13.0(svelte@4.2.2)
+    specifier: 0.13.3
+    version: 0.13.3(svelte@4.2.2)
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
@@ -74,8 +74,8 @@ dependencies:
     specifier: ^0.1.16
     version: 0.1.17(tailwindcss@3.3.5)
   vaul-svelte:
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@4.2.2)
+    specifier: ^0.0.5
+    version: 0.0.5(svelte@4.2.2)
 
 devDependencies:
   '@faker-js/faker':
@@ -1822,8 +1822,8 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.13.0(svelte@4.2.2):
-    resolution: {integrity: sha512-XMvGKhJQMvSWqaan0eaIx1uAVcFBpImgO6xf+XTb7UhqdzbH0//6be4DeR1nRUpIU70XoU1B7i3lMPrTWg37ng==}
+  /bits-ui@0.13.3(svelte@4.2.2):
+    resolution: {integrity: sha512-sbhFPVRHozz0tzAJyJrGJ7whcQfSTSiwtYvKmPMbY/qw+cgqS2J34G2HiLgnRkcrV4DVUGkXdpfahRL6cGfonw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
@@ -5184,12 +5184,12 @@ packages:
       sade: 1.8.1
     dev: true
 
-  /vaul-svelte@0.0.4(svelte@4.2.2):
-    resolution: {integrity: sha512-JqmjJWUM1ubJecVyUbCoKQ+K8YV1rJlSILb5kg3hARDvFggPEM0HzHWgYS2xXYuf9VTIgvwRnqFHNGAzPc1sfA==}
+  /vaul-svelte@0.0.5(svelte@4.2.2):
+    resolution: {integrity: sha512-3xOlI9ma0yg94YpGEGtF6bk41sRbqtMCdB+w4fp/BhP+JEwHeMptcmKmXyk8OytknJRayFsMEX/7oNzvvAf+qg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      bits-ui: 0.13.0(svelte@4.2.2)
+      bits-ui: 0.13.3(svelte@4.2.2)
       svelte: 4.2.2
     dev: false
 
