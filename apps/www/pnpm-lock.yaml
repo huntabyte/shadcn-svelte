@@ -74,8 +74,8 @@ dependencies:
     specifier: ^0.1.16
     version: 0.1.17(tailwindcss@3.3.5)
   vaul-svelte:
-    specifier: ^0.0.5
-    version: 0.0.5(svelte@4.2.2)
+    specifier: ^0.0.6
+    version: 0.0.6(svelte@4.2.2)
 
 devDependencies:
   '@faker-js/faker':
@@ -5184,8 +5184,8 @@ packages:
       sade: 1.8.1
     dev: true
 
-  /vaul-svelte@0.0.5(svelte@4.2.2):
-    resolution: {integrity: sha512-3xOlI9ma0yg94YpGEGtF6bk41sRbqtMCdB+w4fp/BhP+JEwHeMptcmKmXyk8OytknJRayFsMEX/7oNzvvAf+qg==}
+  /vaul-svelte@0.0.6(svelte@4.2.2):
+    resolution: {integrity: sha512-E13mNtU4iF6sH5lMu+Q9OTSNqwToMTmostgWCFHi5Ba6rLvv7UOVxvLYQqyMOs3ZnrN+aYI9I297eA9UKjCqgA==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
