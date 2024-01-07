@@ -19,7 +19,9 @@
 		on:click
 		{...$$restProps}
 	>
-		<ChevronLeft class="h-4 w-4" />
-		<span>Previous</span>
+		<slot>
+			<ChevronLeft class="h-4 w-4" />
+			<span>Previous</span>
+		</slot>
 	</Button>
 </PaginationPrimitive.PrevButton>

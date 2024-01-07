@@ -1,14 +1,22 @@
 <script lang="ts">
 	import * as Pagination from "@/registry/default/ui/pagination";
+	import { ChevronLeft, ChevronRight } from "lucide-svelte";
+	import { mediaQuery } from "svelte-legos";
 
-	let count = 100;
-	let perPage = 10;
+	const isDesktop = mediaQuery("(min-width: 768px)");
+
+	let count = 20;
+	$: perPage = $isDesktop ? 3 : 8;
+	$: siblingCount = $isDesktop ? 1 : 0;
 </script>
 
-<Pagination.Root {count} {perPage} let:pages let:currentPage>
+<Pagination.Root {count} {perPage} {siblingCount} let:pages let:currentPage>
 	<Pagination.Content>
 		<Pagination.Item>
-			<Pagination.PrevButton />
+			<Pagination.PrevButton>
+				<ChevronLeft class="h-4 w-4" />
+				<span class="hidden sm:block">Previous</span>
+			</Pagination.PrevButton>
 		</Pagination.Item>
 		{#each pages as page (page.key)}
 			{#if page.type === "ellipsis"}
@@ -27,7 +35,10 @@
 			{/if}
 		{/each}
 		<Pagination.Item>
-			<Pagination.NextButton />
+			<Pagination.NextButton>
+				<span class="hidden sm:block">Next</span>
+				<ChevronRight class="h-4 w-4" />
+			</Pagination.NextButton>
 		</Pagination.Item>
 	</Pagination.Content>
 </Pagination.Root>
