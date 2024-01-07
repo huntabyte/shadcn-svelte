@@ -21,6 +21,8 @@
 	on:change
 	on:click
 	on:focus
+	on:focusin
+	on:focusout
 	on:keydown
 	on:keypress
 	on:keyup
