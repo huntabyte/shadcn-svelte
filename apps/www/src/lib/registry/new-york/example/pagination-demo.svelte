@@ -5,8 +5,8 @@
 
 	const isDesktop = mediaQuery("(min-width: 768px)");
 
-	let count = 100;
-	$: perPage = $isDesktop ? 3 : 1;
+	let count = 20;
+	$: perPage = $isDesktop ? 3 : 8;
 	$: siblingCount = $isDesktop ? 1 : 0;
 </script>
 
