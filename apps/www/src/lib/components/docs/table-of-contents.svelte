@@ -18,6 +18,8 @@
 		const hierarchy: TableOfContents = { items: [] };
 		let currentLevel: TableOfContentsItem | undefined = undefined;
 
+		const newIdSet: Set<string> = new Set();
+		let count = 1;
 		headings.forEach((heading: HTMLHeadingElement) => {
 			const level = parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
@@ -25,6 +27,11 @@
 					.replaceAll(/[^a-zA-Z0-9 ]/g, "")
 					.replaceAll(" ", "-")
 					.toLowerCase();
+				if (newIdSet.has(newId)) {
+					newId = `${newId}-${count}`;
+					count++;
+				}
+				newIdSet.add(newId);
 				heading.id = `${newId}`;
 			}
 
