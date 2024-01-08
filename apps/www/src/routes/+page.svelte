@@ -19,12 +19,12 @@
 			<span> Drawer, Sonner, & Pagination </span>
 			<ArrowRight class="ml-1 h-4 w-4" />
 		</a>
-		<PageHeader.Heading>Build your component library.</PageHeader.Heading>
+		<PageHeader.Heading>Build your component library</PageHeader.Heading>
 		<PageHeader.Description>
 			Beautifully designed components that you can copy and paste into
 			your apps. Accessible. Customizable. Open Source.
 		</PageHeader.Description>
-		<p class="text-sm text-orange-700 dark:text-orange-400">
+		<p class="text-sm text-center text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a
 				href={siteConfig.links.shadGithub}
 				target="_blank"
@@ -39,7 +39,9 @@
 				class="font-medium underline underline-offset-4">@shadcn</a
 			>, just inspired by him.
 		</p>
-		<div class="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
+		<div
+			class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10"
+		>
 			<a href="/docs" class={cn(buttonVariants())}> Get Started </a>
 			<a
 				target="_blank"
@@ -54,25 +56,25 @@
 	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section
-		class="space-y-8 overflow-hidden rounded-lg border-2 border-primary dark:border-muted md:hidden"
+		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
 		<img
 			src="/examples/dashboard-light.png"
 			width={1280}
-			height={866}
+			height={727}
 			alt="Dashboard"
 			class="block dark:hidden"
 		/>
 		<img
 			src="/examples/dashboard-dark.png"
 			width={1280}
-			height={866}
+			height={727}
 			alt="Dashboard"
 			class="hidden dark:block"
 		/>
 	</section>
 	<section class="hidden md:block">
-		<div class="overflow-hidden rounded-lg border bg-background shadow-xl">
+		<div class="overflow-hidden rounded-lg border bg-background shadow-lg">
 			<DashboardPage />
 		</div>
 	</section>

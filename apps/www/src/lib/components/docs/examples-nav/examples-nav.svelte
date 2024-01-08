@@ -8,11 +8,12 @@
 	export { className as class };
 </script>
 
-<div class="relative pb-4 sm:pb-0">
-	<div class="max-w-[600px] lg:max-w-none">
+<div class="relative">
+	<div class="lg:max-w-none">
+		<!-- TODO: replace with srollarea component when it's ready -->
 		<div
 			class={cn(
-				"mb-4 flex items-center pb-2 overflow-x-auto sm:overflow-x-visible",
+				"mb-4 flex items-center overflow-y-auto pb-3 md:pb-0",
 				className
 			)}
 			{...$$restProps}
@@ -22,10 +23,11 @@
 					href={example.href}
 					data-sveltekit-noscroll
 					class={cn(
-						"flex items-center px-4",
-						$page.url.pathname.startsWith(example.href)
-							? "font-bold text-primary"
-							: "font-medium text-muted-foreground"
+						"flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
+						$page.url.pathname.startsWith(example.href) ||
+							($page.url.pathname === "/" && index === 0)
+							? "bg-muted font-medium text-primary"
+							: "text-muted-foreground"
 					)}
 				>
 					{example.name}{" "}
