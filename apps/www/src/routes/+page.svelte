@@ -1,24 +1,20 @@
 <script lang="ts">
 	import { ArrowRight } from "radix-icons-svelte";
-	import { DashboardPage, ExamplesNav } from "@/components/docs";
+	import {
+		DashboardPage,
+		ExamplesNav,
+		Announcement
+	} from "@/components/docs";
 	import * as PageHeader from "@/components/docs/page-header";
 	import { Icons } from "@/components/docs/icons";
 	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "@/utils";
-	import Separator from "@/registry/new-york/ui/separator/separator.svelte";
 </script>
 
 <div class="container relative">
 	<PageHeader.Root class="pb-8">
-		<a
-			href="/docs/changelog"
-			class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-		>
-			🎉 <Separator class="mx-2 h-4" orientation="vertical" />
-			<span> Drawer, Sonner, & Pagination </span>
-			<ArrowRight class="ml-1 h-4 w-4" />
-		</a>
+		<Announcement />
 		<PageHeader.Heading>Build your component library</PageHeader.Heading>
 		<PageHeader.Description>
 			Beautifully designed components that you can copy and paste into

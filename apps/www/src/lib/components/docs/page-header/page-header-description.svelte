@@ -2,6 +2,8 @@
 	import Balancer from "svelte-wrap-balancer";
 	import { cn } from "$lib/utils";
 
+	export let balancer: boolean | undefined = true;
+
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>
@@ -13,7 +15,11 @@
 	)}
 	{...$$restProps}
 >
-	<Balancer>
+	{#if balancer}
+		<Balancer>
+			<slot />
+		</Balancer>
+	{:else}
 		<slot />
-	</Balancer>
+	{/if}
 </p>

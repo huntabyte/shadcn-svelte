@@ -21,6 +21,7 @@ export { default as TailwindIndicator } from "./tailwind-indicator.svelte";
 export { default as ComponentPreviewManual } from "./component-preview-manual.svelte";
 export { default as CommandMenu } from "./command-menu.svelte";
 export { default as ModeToggle } from "./mode-toggle.svelte";
+export { default as Announcement } from "./announcement.svelte";
 
 export * from "./icons";
 export * from "./page-header";

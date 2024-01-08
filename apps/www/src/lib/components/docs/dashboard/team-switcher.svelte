@@ -68,6 +68,7 @@
 					<Avatar.Image
 						src="https://avatar.vercel.sh/${selectedTeam.value}.png"
 						alt={selectedTeam.label}
+						class="grayscale"
 					/>
 					<Avatar.Fallback>SC</Avatar.Fallback>
 				</Avatar.Root>

@@ -124,11 +124,12 @@
 		<g>
 			{#each data as point, i}
 				<rect
+					class="bg-primary-foreground"
 					x={xScale(i) + 2}
 					y={yScale(point.total)}
 					width={barWidth - 8}
 					height={yScale(0) - yScale(point.total)}
-					fill="#adfa1d"
+					fill="currentColor"
 					rx="4"
 					ry="4"
 				/>

@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { ThemeCustomizer, ThemeWrapper } from "@/components/docs";
+	import {
+		ThemeCustomizer,
+		ThemeWrapper,
+		Announcement
+	} from "@/components/docs";
 	import * as PageHeader from "@/components/docs/page-header";
 	import { CardsNewYork } from "@/registry/new-york/example/cards";
 	import { CardsDefault } from "@/registry/default/example/cards";
@@ -24,15 +28,23 @@
 		defaultTheme="zinc"
 		class="relative flex flex-col items-start md:flex-row md:items-center"
 	>
-		<PageHeader.Root class="relative pb-4 md:pb-8 lg:pb-12">
-			<PageHeader.Heading>Make it yours.</PageHeader.Heading>
-			<PageHeader.Description>
+		<PageHeader.Root>
+			<Announcement />
+			<PageHeader.Heading class="hidden md:block">
+				Add colors. Make it yours.
+			</PageHeader.Heading>
+			<PageHeader.Heading class="md:hidden">
+				Make it yours.
+			</PageHeader.Heading>
+			<PageHeader.Description balancer={false}>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
+			<div
+				class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10"
+			>
+				<ThemeCustomizer />
+			</div>
 		</PageHeader.Root>
-		<div class="px-4 pb-8 md:ml-auto md:pb-0">
-			<ThemeCustomizer />
-		</div>
 	</ThemeWrapper>
 	<ThemeWrapper>
 		{#if $config.style === "default"}
