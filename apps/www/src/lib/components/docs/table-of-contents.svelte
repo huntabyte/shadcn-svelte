@@ -2,6 +2,7 @@
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs";
 	import { onMount } from "svelte";
 	import { Tree } from "$components/docs";
+	import { writable } from "svelte/store";
 
 	let filteredHeadingsList: TableOfContents;
 
@@ -52,13 +53,59 @@
 		filteredHeadingsList = hierarchy;
 	}
 
+	const activeItem = writable<string | undefined>(undefined);
+
+	function useActiveItem(itemIds: string[]) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						$activeItem = entry.target.id;
+						console.log($activeItem);
+					}
+				});
+			},
+			{ rootMargin: `0% 0% -10% 0%` }
+		);
+
+		const observeElement = (id: string) => {
+			const element = document.getElementById(id);
+			if (element) {
+				observer.observe(element);
+			}
+		};
+
+		itemIds?.forEach(observeElement);
+
+		return () => {
+			const unobserveElement = (id: string) => {
+				const element = document.getElementById(id);
+				if (element) {
+					observer.unobserve(element);
+				}
+			};
+
+			itemIds?.forEach(unobserveElement);
+		};
+	}
+
 	// Lifecycle
 	onMount(() => {
 		getHeadingsWithHierarchy("mdsvex");
+		const allItemIds: string[] = [];
+		filteredHeadingsList.items.forEach((item) => {
+			allItemIds.push(item.url.replace("#", ""));
+			if (!item.items) return;
+			item.items.forEach((subItem) => {
+				console.log(subItem.url);
+				allItemIds.push(subItem.url.replace("#", ""));
+			});
+		});
+		useActiveItem(allItemIds);
 	});
 </script>
 
 <div class="space-y-2">
 	<p class="font-medium">On This Page</p>
-	<Tree tree={filteredHeadingsList} />
+	<Tree tree={filteredHeadingsList} activeItem={$activeItem} />
 </div>

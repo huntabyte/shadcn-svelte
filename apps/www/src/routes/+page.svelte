@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { ArrowRight } from "radix-icons-svelte";
 	import {
 		DashboardPage,
 		ExamplesNav,

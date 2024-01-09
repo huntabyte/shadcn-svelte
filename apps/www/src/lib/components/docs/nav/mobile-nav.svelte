@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Sheet from "@/registry/new-york/ui/sheet";
-	import { ViewVertical } from "radix-icons-svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { docsConfig } from "$lib/config/docs";
 	import { siteConfig } from "$lib/config/site";
