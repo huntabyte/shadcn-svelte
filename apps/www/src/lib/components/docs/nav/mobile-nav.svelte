@@ -17,7 +17,7 @@
 			variant="ghost"
 			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
 		>
-			<ViewVertical class="h-5 w-5" />
+			<Icons.Hamburger class="h-5 w-5" />
 			<span class="sr-only">Toggle Menu</span>
 		</Button>
 	</Sheet.Trigger>
@@ -30,7 +30,11 @@
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
-						<MobileLink href={navItem.href} bind:open>
+						<MobileLink
+							href={navItem.href}
+							bind:open
+							class="text-foreground"
+						>
 							{navItem.title}
 						</MobileLink>
 					{/if}
@@ -43,15 +47,11 @@
 						{#if navItem?.items?.length}
 							{#each navItem.items as item}
 								{#if !item.disabled && item.href}
-									<MobileLink
-										href={item.href}
-										bind:open
-										class="text-muted-foreground"
-									>
+									<MobileLink href={item.href} bind:open>
 										{item.title}
 										{#if item.label}
 											<span
-												class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000]"
+												class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline"
 											>
 												{item.label}
 											</span>

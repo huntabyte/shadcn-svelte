@@ -5,7 +5,6 @@
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
-	import { Separator } from "@/registry/default/ui/separator";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;
@@ -38,11 +37,11 @@
 				</p>
 			{/if}
 		</div>
-		<Separator class="my-4 md:my-6" />
-		<div class="mdsvex" id="mdsvex">
+
+		<div class="mdsvex pb-12 pt-8" id="mdsvex">
 			<svelte:component this={component} />
 		</div>
-		<Separator class="my-4 md:my-6" />
+
 		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">

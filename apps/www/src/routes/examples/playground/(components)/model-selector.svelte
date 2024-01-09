@@ -108,7 +108,6 @@
 											use:builder.action
 											{...builder}
 											role="button"
-											tabindex="0"
 											on:mouseover={() => {
 												handlePeek(model);
 											}}

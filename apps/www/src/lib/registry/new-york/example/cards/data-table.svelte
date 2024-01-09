@@ -235,6 +235,7 @@
 												</div>
 											{:else if cell.id === "email"}
 												<Button
+													tabindex={-1}
 													variant="ghost"
 													on:click={props.sort.toggle}
 												>
