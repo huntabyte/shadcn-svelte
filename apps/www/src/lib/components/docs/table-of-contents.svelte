@@ -101,7 +101,7 @@
 				allItemIds.push(subItem.url.replace("#", ""));
 			});
 		});
-		useActiveItem(allItemIds);
+		return useActiveItem(allItemIds);
 	});
 </script>
 
