@@ -36,7 +36,7 @@
 			<PageHeader.Heading class="md:hidden">
 				Make it yours.
 			</PageHeader.Heading>
-			<PageHeader.Description balancer={false}>
+			<PageHeader.Description balanced={false}>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
 			<div
