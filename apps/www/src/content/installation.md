@@ -89,17 +89,18 @@ If you are _not_ using SvelteKit, then you'll need to update your path aliases i
   }
 }
 ```
+
 ```javascript title="vite.config.js" {1, 5-9}
-import path from 'path';
+import path from "path";
 
 export default defineConfig({
   // ... other options
   resolve: {
     alias: {
-      $lib: path.resolve("./src/lib"),
+      $lib: path.resolve("./src/lib")
     }
   }
-})
+});
 ```
 
 ### Run the CLI
