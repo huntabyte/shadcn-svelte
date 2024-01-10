@@ -14,7 +14,6 @@
 	</a>
 	<nav class="flex items-center gap-6 text-sm">
 		<a
-			data-sveltekit-keepfocus
 			href="/docs"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
@@ -26,7 +25,6 @@
 			Docs
 		</a>
 		<a
-			data-sveltekit-keepfocus
 			href="/docs/components"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
@@ -38,7 +36,6 @@
 			Components
 		</a>
 		<a
-			data-sveltekit-keepfocus
 			href="/themes"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
@@ -50,7 +47,6 @@
 			Themes
 		</a>
 		<a
-			data-sveltekit-keepfocus
 			href="/examples"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
@@ -62,7 +58,6 @@
 			Examples
 		</a>
 		<a
-			data-sveltekit-keepfocus
 			href={siteConfig.links.github}
 			target="_blank"
 			rel="noopener noreferrer"
