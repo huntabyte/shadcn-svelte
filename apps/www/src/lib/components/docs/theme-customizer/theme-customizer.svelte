@@ -26,16 +26,10 @@
 								{...builder}
 								use:builder.action
 								on:click={() => {
-									config.update(
-										(prev) => (
-											console.log("prev", prev),
-											console.log("theme", theme),
-											{
-												...prev,
-												theme: theme.name
-											}
-										)
-									);
+									config.update((prev) => ({
+										...prev,
+										theme: theme.name
+									}));
 								}}
 								class={cn(
 									"flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",

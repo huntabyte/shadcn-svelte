@@ -61,7 +61,6 @@
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						$activeItem = entry.target.id;
-						console.log($activeItem);
 					}
 				});
 			},
@@ -97,7 +96,6 @@
 			allItemIds.push(item.url.replace("#", ""));
 			if (!item.items) return;
 			item.items.forEach((subItem) => {
-				console.log(subItem.url);
 				allItemIds.push(subItem.url.replace("#", ""));
 			});
 		});

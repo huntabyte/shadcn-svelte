@@ -5,7 +5,6 @@
 	export let tree: TableOfContents = {
 		items: []
 	};
-	console.log(tree);
 	export let activeItem: string | undefined;
 	export let level = 1;
 </script>
