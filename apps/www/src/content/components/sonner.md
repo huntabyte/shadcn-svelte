@@ -27,7 +27,7 @@ The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel
 	Setup theme support
 </Step>
 
-By default, Sonner will use the user's system preferences to determine whether to show the light or dark theme. To get around this, you can either pass in a custom `theme` prop to the component, or simply use `mode-watcher` which you can hardcode to `dark` or `light` mode should you wish.
+By default, Sonner will use the user's system preferences to determine whether to show the light or dark theme. To get around this, you can either pass in a custom `theme` prop to the component, or simply use [mode-watcher](https://github.com/svecosystem/mode-watcher) which you can hardcode to `dark` or `light` mode should you wish.
 
 You can learn more about setting up Dark Mode support [here](/docs/dark-mode).
 
