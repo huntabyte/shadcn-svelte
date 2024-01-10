@@ -2,7 +2,7 @@
 	import Balancer from "svelte-wrap-balancer";
 	import { cn } from "$lib/utils";
 
-	export let balancer: boolean | undefined = true;
+	export let balanced = true;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
