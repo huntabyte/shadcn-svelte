@@ -112,6 +112,14 @@
 		font-style: normal;
 		font-weight: 600;
 		font-display: swap;
+		src: url("/fonts/Geist/Geist-SemiBold.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "geist-sans";
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
 		src: url("/fonts/Geist/Geist-Bold.woff2") format("woff2");
 	}
 
