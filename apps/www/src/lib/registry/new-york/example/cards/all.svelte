@@ -10,7 +10,8 @@
 		CardsReportIssue,
 		CardsShare,
 		CardsStats,
-		CardsTeamMembers
+		CardsTeamMembers,
+		CardsChat
 	} from ".";
 </script>
 
@@ -35,7 +36,7 @@
 				<CardsPaymentMethod />
 			</div>
 			<div class="space-y-4 xl:space-y-4">
-				<!-- <CardsChat /> -->
+				<CardsChat />
 				<CardsCreateAccount />
 				<div class="hidden xl:block">
 					<CardsReportIssue />
