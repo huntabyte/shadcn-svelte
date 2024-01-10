@@ -11,7 +11,6 @@
 		{#each items as item, index (index)}
 			{#if item.href}
 				<a
-					data-sveltekit-keepfocus
 					href={item.href}
 					class={cn(
 						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
