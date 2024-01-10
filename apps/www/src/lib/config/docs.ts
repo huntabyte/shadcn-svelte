@@ -356,6 +356,11 @@ export const examples: Example[] = [
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/playground"
 	},
 	{
+		name: "Forms",
+		href: "/examples/forms",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
+	},
+	{
 		name: "Music",
 		href: "/examples/music",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/music"
@@ -364,10 +369,5 @@ export const examples: Example[] = [
 		name: "Authentication",
 		href: "/examples/authentication",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/authentication"
-	},
-	{
-		name: "Forms",
-		href: "/examples/forms",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/forms"
 	}
 ];

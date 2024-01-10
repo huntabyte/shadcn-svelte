@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { config } from "@/stores";
-
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight, Code } from "radix-icons-svelte";
+	import { ChevronRight, Code, ExternalLink } from "radix-icons-svelte";
 	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { badgeVariants } from "@/registry/new-york/ui/badge";
-	import { Separator } from "@/registry/new-york/ui/separator";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;
@@ -52,10 +50,13 @@
 						href={componentSource}
 						target="_blank"
 						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }))}
+						class={cn(
+							badgeVariants({ variant: "secondary" }),
+							"gap-1"
+						)}
 					>
-						<Code class="mr-1 h-3.5 w-3.5" />
 						Component Source
+						<Code class="h-3.5 w-3.5" />
 					</a>
 				{/if}
 				{#if doc.bits}
@@ -63,23 +64,25 @@
 						href={doc.bits}
 						target="_blank"
 						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }))}
+						class={cn(
+							badgeVariants({ variant: "secondary" }),
+							"gap-1"
+						)}
 					>
 						Primitive API Reference
+						<ExternalLink class="h-3 w-3" />
 					</a>
 				{/if}
 			</div>
 		{/if}
-		<div class="mdsvex pt-8" id="mdsvex">
+		<div class="mdsvex pb-12 pt-8" id="mdsvex">
 			<svelte:component this={component} form={data.form} />
 		</div>
-		<!-- <Mdx code={doc.body.code} /> -->
-		<Separator class="my-4 md:my-6" />
 		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">
 		<div
-			class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-6"
+			class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-4"
 		>
 			{#key $page.url.pathname}
 				<TableOfContents />

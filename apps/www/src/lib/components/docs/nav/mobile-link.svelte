@@ -11,11 +11,11 @@
 
 <a
 	{href}
-	on:click={() => (open = false)}
 	class={cn(
 		$page.url.pathname === href ? "text-foreground" : "text-foreground/60",
 		className
 	)}
+	on:click={() => (open = false)}
 	{...$$restProps}
 >
 	<slot />

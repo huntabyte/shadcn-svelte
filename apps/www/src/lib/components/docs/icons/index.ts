@@ -36,6 +36,7 @@ import RadixSvelte from "./radix-svelte.svelte";
 import Tailwind from "./tailwind.svelte";
 import Yarn from "./yarn.svelte";
 import Twitter from "./twitter.svelte";
+import Hamburger from "./hamburger.svelte";
 
 export type Icon = LucideIcon;
 
@@ -75,5 +76,6 @@ export const Icons = {
 	tailwind: Tailwind,
 	google: Google,
 	apple: Apple,
-	paypal: PayPal
+	paypal: PayPal,
+	Hamburger: Hamburger
 };

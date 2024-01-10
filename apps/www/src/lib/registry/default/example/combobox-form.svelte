@@ -97,7 +97,6 @@
 								<Command.Item
 									value={language.value}
 									onSelect={() => {
-										console.log("on select firing");
 										setValue(language.value);
 										closeAndFocusTrigger(ids.trigger);
 									}}

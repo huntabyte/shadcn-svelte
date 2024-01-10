@@ -14,8 +14,8 @@
 </script>
 
 <div class="flex items-center space-x-2">
-	<div class="flex">
-		<div class="mr-2 items-center space-x-0.5 flex">
+	<div class="hidden md:flex">
+		<div class="mr-2 hidden items-center space-x-0.5 lg:flex">
 			{#each colors as color (color)}
 				{@const theme = themes.find((theme) => theme.name === color)}
 				{@const isActive = $config.theme === color}
@@ -38,11 +38,13 @@
 										: "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
-									$mode ?? 'dark'
+									$mode === 'dark' ? 'dark' : 'light'
 								]}"
 							>
 								<span
-									class="flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+									class={cn(
+										"flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+									)}
 								>
 									{#if isActive}
 										<Check class="h-4 w-4 text-white" />
@@ -52,6 +54,7 @@
 							</button>
 						</Tooltip.Trigger>
 						<Tooltip.Content
+							align="center"
 							class="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
 						>
 							{theme.label}
