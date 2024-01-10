@@ -76,7 +76,7 @@ const config = {
 };
 ```
 
-If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json` and `vite.config.js`.
+If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 
 ```json title="tsconfig.json" {4-7}
 {
@@ -90,7 +90,7 @@ If you are _not_ using SvelteKit, then you'll need to update your path aliases i
 }
 ```
 
-```javascript title="vite.config.js" {1, 5-9}
+```js title="vite.config.ts" {1, 5-9}
 import path from "path";
 
 export default defineConfig({
