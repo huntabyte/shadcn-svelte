@@ -32,7 +32,7 @@
 				target="_blank"
 				rel="noreferrer"
 				class="font-medium underline underline-offset-4">@shadcn</a
-			>, just inspired by him.
+			>.
 		</p>
 		<div
 			class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10"
