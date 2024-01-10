@@ -15,7 +15,7 @@
 	)}
 	{...$$restProps}
 >
-	{#if balancer}
+	{#if balanced}
 		<Balancer>
 			<slot />
 		</Balancer>
