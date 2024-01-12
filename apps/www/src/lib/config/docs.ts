@@ -136,7 +136,8 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Carousel",
 					href: "/docs/components/carousel",
-					items: []
+					items: [],
+					label: "New"
 				},
 				{
 					title: "Checkbox",
@@ -181,8 +182,7 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Drawer",
 					href: "/docs/components/drawer",
-					items: [],
-					label: "New"
+					items: []
 				},
 				{
 					title: "Dropdown Menu",
@@ -225,7 +225,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Pagination",
 					href: "/docs/components/pagination",
-					label: "New",
 					items: []
 				},
 				{
@@ -283,7 +282,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Sonner",
 					href: "/docs/components/sonner",
-					label: "New",
 					items: []
 				},
 				{
