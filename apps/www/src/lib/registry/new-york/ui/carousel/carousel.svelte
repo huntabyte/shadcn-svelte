@@ -1,13 +1,13 @@
 <script lang="ts">
 	import emblaCarouselSvelte from "embla-carousel-svelte";
-	import { setEmblaContex, type CarouselProps, type EmblaCarouselType } from "./context.js";
+	import { setEmblaContex, type CarouselProps, type CarouselAPI } from "./context.js";
 	import { cn } from "$lib/utils.js";
 	import { writable } from "svelte/store";
 	import { onDestroy } from "svelte";
 
 	type $$Props = CarouselProps;
 
-	export let options = {};
+	export let opts = {};
 	export let plugins: NonNullable<$$Props["plugins"]> = [];
 	export let api: $$Props["api"] = undefined;
 	export let orientation: NonNullable<$$Props["orientation"]> = "horizontal";
@@ -15,7 +15,7 @@
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 
-	const apiStore = writable<EmblaCarouselType | undefined>(undefined);
+	const apiStore = writable<CarouselAPI | undefined>(undefined);
 	const orientationStore = writable(orientation);
 	const canScrollPrev = writable(false);
 	const canScrollNext = writable(false);
@@ -29,7 +29,7 @@
 		api?.scrollNext();
 	}
 
-	function onSelect(api: EmblaCarouselType) {
+	function onSelect(api: CarouselAPI) {
 		if (!api) return;
 		canScrollPrev.set(api.canScrollPrev());
 		canScrollNext.set(api.canScrollNext());
@@ -61,7 +61,7 @@
 		handleKeyDown
 	});
 
-	function onInit(event: CustomEvent<EmblaCarouselType>) {
+	function onInit(event: CustomEvent<CarouselAPI>) {
 		api = event.detail;
 		apiStore.set(api);
 	}
@@ -71,17 +71,23 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class={cn("relative", className)}
 	use:emblaCarouselSvelte={{
 		options: {
 			container: "[data-embla-container]",
 			slides: "[data-embla-slide]",
-			...options
+			...opts,
+			axis: $orientationStore === "horizontal" ? "x" : "y"
 		},
 		plugins
 	}}
 	on:emblaInit={onInit}
+	on:mouseenter
+	on:mouseleave
+	role="region"
+	aria-roledescription="carousel"
 	{...$$restProps}
 >
 	<slot />

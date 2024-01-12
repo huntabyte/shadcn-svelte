@@ -9,7 +9,8 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["formsnap", ["zod", "sveltekit-superforms"]],
 	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
-	["vaul-svelte", []]
+	["vaul-svelte", []],
+	["embla-carousel-svelte", []]
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file

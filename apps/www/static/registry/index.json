@@ -139,7 +139,9 @@
   },
   {
     "name": "carousel",
-    "dependencies": [],
+    "dependencies": [
+      "embla-carousel-svelte"
+    ],
     "registryDependencies": [
       "index.js"
     ],
