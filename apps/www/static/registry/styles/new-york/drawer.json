@@ -15,7 +15,7 @@
     },
     {
       "name": "drawer-footer.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tel?: HTMLDivElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tbind:this={el}\n\tclass={cn(\"mt-auto flex flex-col gap-2 p-4\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tel?: HTMLDivElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div bind:this={el} class={cn(\"mt-auto flex flex-col gap-2 p-4\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "drawer-header.svelte",
@@ -31,7 +31,7 @@
     },
     {
       "name": "drawer.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\ttype $$Props = DrawerPrimitive.Props;\n\texport let shouldScaleBackground: $$Props[\"shouldScaleBackground\"] = true;\n\texport let open: $$Props[\"open\"] = false;\n\texport let activeSnapPoint: $$Props[\"activeSnapPoint\"] = undefined;\n</script>\n\n<DrawerPrimitive.Root\n\t{shouldScaleBackground}\n\tbind:open\n\tbind:activeSnapPoint\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Root>\n"
+      "content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\ttype $$Props = DrawerPrimitive.Props;\n\texport let shouldScaleBackground: $$Props[\"shouldScaleBackground\"] = true;\n\texport let open: $$Props[\"open\"] = false;\n\texport let activeSnapPoint: $$Props[\"activeSnapPoint\"] = undefined;\n</script>\n\n<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...$$restProps}>\n\t<slot />\n</DrawerPrimitive.Root>\n"
     },
     {
       "name": "index.ts",

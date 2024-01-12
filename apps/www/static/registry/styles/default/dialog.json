@@ -15,15 +15,15 @@
     },
     {
       "name": "dialog-footer.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\n\t\t\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
     },
     {
       "name": "dialog-header.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\"flex flex-col space-y-1.5 text-center sm:text-left\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"flex flex-col space-y-1.5 text-center sm:text-left\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "dialog-overlay.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { fade } from \"svelte/transition\";\n\n\ttype $$Props = DialogPrimitive.OverlayProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let transition: $$Props[\"transition\"] = fade;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = {\n\t\tduration: 150\n\t};\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Overlay\n\t{transition}\n\t{transitionConfig}\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\timport { fade } from \"svelte/transition\";\n\n\ttype $$Props = DialogPrimitive.OverlayProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let transition: $$Props[\"transition\"] = fade;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = {\n\t\tduration: 150\n\t};\n\texport { className as class };\n</script>\n\n<DialogPrimitive.Overlay\n\t{transition}\n\t{transitionConfig}\n\tclass={cn(\"fixed inset-0 z-50 bg-background/80 backdrop-blur-sm\", className)}\n\t{...$$restProps}\n/>\n"
     },
     {
       "name": "dialog-portal.svelte",

@@ -134,6 +134,11 @@ export const docsConfig: DocsConfig = {
 					items: []
 				},
 				{
+					title: "Card",
+					href: "/docs/components/carousel",
+					items: []
+				},
+				{
 					title: "Checkbox",
 					href: "/docs/components/checkbox",
 					items: []

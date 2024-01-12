@@ -13,7 +13,7 @@
     },
     {
       "name": "alert.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { alertVariants, type Variant } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tvariant?: Variant;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(alertVariants({ variant }), className)}\n\t{...$$restProps}\n\trole=\"alert\"\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { alertVariants, type Variant } from \".\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement> & {\n\t\tvariant?: Variant;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let variant: $$Props[\"variant\"] = \"default\";\n\texport { className as class };\n</script>\n\n<div class={cn(alertVariants({ variant }), className)} {...$$restProps} role=\"alert\">\n\t<slot />\n</div>\n"
     },
     {
       "name": "index.ts",

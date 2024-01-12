@@ -164,6 +164,13 @@ export const Index = {
       component: () => import("../src/lib/registry/default/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/default/example/card-with-form.svelte"],
     },
+    "carousel-demo": {
+      name: "carousel-demo",
+      type: "components:example",
+      registryDependencies: ["index.js"],
+      component: () => import("../src/lib/registry/default/example/carousel-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/default/example/carousel-demo.svelte"],
+    },
     "checkbox-demo": {
       name: "checkbox-demo",
       type: "components:example",
@@ -927,6 +934,13 @@ export const Index = {
       registryDependencies: ["button","card","select","input","label"],
       component: () => import("../src/lib/registry/new-york/example/card-with-form.svelte").then((m) => m.default),
       files: ["../src/lib/registry/new-york/example/card-with-form.svelte"],
+    },
+    "carousel-demo": {
+      name: "carousel-demo",
+      type: "components:example",
+      registryDependencies: ["index.js"],
+      component: () => import("../src/lib/registry/new-york/example/carousel-demo.svelte").then((m) => m.default),
+      files: ["../src/lib/registry/new-york/example/carousel-demo.svelte"],
     },
     "checkbox-demo": {
       name: "checkbox-demo",

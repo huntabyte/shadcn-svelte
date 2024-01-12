@@ -63,7 +63,7 @@ async function crawlExample(rootPath: string) {
 	const exampleRegistry: Registry = [];
 
 	for (const dirent of dir) {
-		if (dirent.name === "index.ts") continue;
+		if (!dirent.name.endsWith(".svelte")) continue;
 
 		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
@@ -113,7 +113,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		files.push(file_path);
 
 		// only grab deps from the svelte files
-		if (dirent.name === "index.ts") continue;
+		if (!dirent.name.endsWith(".svelte")) continue;
 		const deps = await getDependencies(join(componentPath, dirent.name));
 
 		deps.dependencies.forEach((dep) => dependencies.add(dep));

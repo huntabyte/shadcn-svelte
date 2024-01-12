@@ -138,6 +138,23 @@
     "type": "components:ui"
   },
   {
+    "name": "carousel",
+    "dependencies": [],
+    "registryDependencies": [
+      "index.js"
+    ],
+    "files": [
+      "ui/carousel/carousel-content.svelte",
+      "ui/carousel/carousel-item.svelte",
+      "ui/carousel/carousel-next.svelte",
+      "ui/carousel/carousel-previous.svelte",
+      "ui/carousel/carousel.svelte",
+      "ui/carousel/context.ts",
+      "ui/carousel/index.ts"
+    ],
+    "type": "components:ui"
+  },
+  {
     "name": "checkbox",
     "dependencies": [
       "bits-ui"
