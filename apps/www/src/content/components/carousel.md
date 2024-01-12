@@ -57,11 +57,3 @@ npm install embla-carousel-svelte -D
 ```
 
 ## Examples
-
-### With Text
-
-<ComponentPreview name="checkbox-with-text">
-
-<div />
-
-</ComponentPreview>
