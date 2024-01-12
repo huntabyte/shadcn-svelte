@@ -3,7 +3,6 @@ import type emblaCarouselSvelte from "embla-carousel-svelte";
 import { getContext, hasContext, setContext } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 import type { Writable, Readable } from "svelte/store";
-import { readable } from "svelte/store";
 
 export type EmblaCarouselType = NonNullable<
 	NonNullable<EmblaCarouselSvelteType["$$_attributes"]>["on:emblaInit"]
@@ -35,17 +34,9 @@ type EmblaContext = {
 	handleKeyDown: (e: KeyboardEvent) => void;
 };
 
-const defaults = {
-	scrollNext: () => {},
-	scrollPrev: () => {},
-	canScrollNext: readable(false),
-	canScrollPrev: readable(false)
-};
-
 export function setEmblaContex(config: EmblaContext): EmblaContext {
-	const withDefaults = { ...defaults, ...config };
-	setContext(EMBLA_CAROUSEL_CONTEXT, withDefaults);
-	return withDefaults;
+	setContext(EMBLA_CAROUSEL_CONTEXT, config);
+	return config;
 }
 
 export function getEmblaContext(name = "This component") {

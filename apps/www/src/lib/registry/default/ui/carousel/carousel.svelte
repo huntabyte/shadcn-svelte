@@ -63,6 +63,7 @@
 
 	function onInit(event: CustomEvent<EmblaCarouselType>) {
 		api = event.detail;
+		console.log(api.slideNodes());
 		apiStore.set(api);
 	}
 
@@ -71,10 +72,16 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div
-	class={cn("relative", className)}
-	use:emblaCarouselSvelte={{ options, plugins }}
+	class={cn("relative", className, "embla")}
+	use:emblaCarouselSvelte={{
+		options: {
+			container: "[data-embla-container]",
+			slides: "[data-embla-slide]",
+			...options
+		},
+		plugins
+	}}
 	on:emblaInit={onInit}
 	role="region"
 	aria-roledescription="carousel"

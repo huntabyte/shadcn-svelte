@@ -73,7 +73,14 @@
 
 <div
 	class={cn("relative", className)}
-	use:emblaCarouselSvelte={{ options, plugins }}
+	use:emblaCarouselSvelte={{
+		options: {
+			container: "[data-embla-container]",
+			slides: "[data-embla-slide]",
+			...options
+		},
+		plugins
+	}}
 	on:emblaInit={onInit}
 	{...$$restProps}
 >

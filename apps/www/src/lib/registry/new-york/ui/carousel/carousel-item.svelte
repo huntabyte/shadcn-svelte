@@ -18,6 +18,7 @@
 		$orientation === "horizontal" ? "pl-4" : "pt-4",
 		className
 	)}
+	data-embla-slide=""
 	{...$$restProps}
 >
 	<slot />

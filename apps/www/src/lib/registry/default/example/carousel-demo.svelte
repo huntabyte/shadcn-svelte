@@ -5,7 +5,7 @@
 
 <Carousel.Root class="w-full max-w-xs">
 	<Carousel.Content>
-		{#each Array.from({ length: 5 }) as _, i (i)}
+		{#each Array(5) as _, i (i)}
 			<Carousel.Item>
 				<div class="p-1">
 					<Card.Root>

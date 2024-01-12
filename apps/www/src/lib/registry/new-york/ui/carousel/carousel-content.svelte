@@ -14,6 +14,7 @@
 <div class="overflow-hidden">
 	<div
 		class={cn("flex", $orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
+		data-embla-container=""
 		{...$$restProps}
 	>
 		<slot />

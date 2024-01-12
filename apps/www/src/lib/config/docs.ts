@@ -134,7 +134,7 @@ export const docsConfig: DocsConfig = {
 					items: []
 				},
 				{
-					title: "Card",
+					title: "Carousel",
 					href: "/docs/components/carousel",
 					items: []
 				},
