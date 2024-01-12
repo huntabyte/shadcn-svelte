@@ -143,13 +143,10 @@
 		<Dialog.Header class="px-4 pb-4 pt-5">
 			<Dialog.Title>New message</Dialog.Title>
 			<Dialog.Description>
-				Invite a user to this thread. This will create a new group
-				message.
+				Invite a user to this thread. This will create a new group message.
 			</Dialog.Description>
 		</Dialog.Header>
-		<Command.Root
-			class="overflow-hidden rounded-t-none border-t bg-transparent"
-		>
+		<Command.Root class="overflow-hidden rounded-t-none border-t bg-transparent">
 			<Command.Input placeholder="Search user..." />
 			<Command.List>
 				<Command.Empty>No users found.</Command.Empty>
@@ -171,8 +168,7 @@
 						>
 							<Avatar.Root>
 								<Avatar.Image src={user.avatar} alt="Image" />
-								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback
-								>
+								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
 							<div class="ml-2">
 								<p class="text-sm font-medium leading-none">
@@ -183,38 +179,27 @@
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<Check
-									class="ml-auto flex h-5 w-5 text-primary"
-								/>
+								<Check class="ml-auto flex h-5 w-5 text-primary" />
 							{/if}
 						</Command.Item>
 					{/each}
 				</Command.Group>
 			</Command.List>
 		</Command.Root>
-		<Dialog.Footer
-			class="flex items-center border-t p-4 sm:justify-between"
-		>
+		<Dialog.Footer class="flex items-center border-t p-4 sm:justify-between">
 			{#if selectedUsers.length}
 				<div class="flex -space-x-2 overflow-hidden">
 					{#each selectedUsers as user}
-						<Avatar.Root
-							class="inline-block border-2 border-background"
-						>
+						<Avatar.Root class="inline-block border-2 border-background">
 							<Avatar.Image src={user.avatar} />
 							<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 						</Avatar.Root>
 					{/each}
 				</div>
 			{:else}
-				<p class="text-sm text-muted-foreground">
-					Select users to add to this thread.
-				</p>
+				<p class="text-sm text-muted-foreground">Select users to add to this thread.</p>
 			{/if}
-			<Button
-				disabled={selectedUsers.length < 2}
-				on:click={() => (open = false)}
-			>
+			<Button disabled={selectedUsers.length < 2} on:click={() => (open = false)}>
 				Continue
 			</Button>
 		</Dialog.Footer>

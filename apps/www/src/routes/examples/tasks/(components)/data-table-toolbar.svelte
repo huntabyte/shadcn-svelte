@@ -27,9 +27,7 @@
 		}>;
 	} = pluginStates.colFilter;
 
-	$: showReset = Object.values({ ...$filterValues, $filterValue }).some(
-		(v) => v.length > 0
-	);
+	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
 </script>
 
 <div class="flex items-center justify-between">

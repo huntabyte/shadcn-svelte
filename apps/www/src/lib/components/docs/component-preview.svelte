@@ -24,15 +24,10 @@
 	export let style = "";
 </script>
 
-<div
-	class={cn("group relative my-4 flex flex-col space-y-2", className)}
-	{...$$restProps}
->
+<div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...$$restProps}>
 	<Tabs.Root value="preview" class="relative mr-auto w-full">
 		<div class="flex items-center justify-between pb-3">
-			<Tabs.List
-				class="w-full justify-start rounded-none border-b bg-transparent p-0"
-			>
+			<Tabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
 				<Tabs.Trigger
 					value="preview"
 					class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
@@ -66,12 +61,8 @@
 				>
 					<slot name="example">
 						{#await component}
-							<div
-								class="flex items-center text-sm text-muted-foreground"
-							>
-								<Icons.spinner
-									class="mr-2 h-4 w-4 animate-spin"
-								/>
+							<div class="flex items-center text-sm text-muted-foreground">
+								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 								Loading...
 							</div>
 						{:then Component}

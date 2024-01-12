@@ -11,9 +11,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Team Members</Card.Title>
-		<Card.Description>
-			Invite your team members to collaborate.
-		</Card.Description>
+		<Card.Description>Invite your team members to collaborate.</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
 		<div class="flex items-center justify-between space-x-4">
@@ -31,9 +29,7 @@
 				<Popover.Trigger asChild>
 					<Button variant="outline" size="sm" class="ml-auto">
 						Owner{" "}
-						<ChevronDown
-							class="ml-2 h-4 w-4 text-muted-foreground"
-						/>
+						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -95,9 +91,7 @@
 				<Popover.Trigger asChild>
 					<Button variant="outline" size="sm" class="ml-auto">
 						Member{" "}
-						<ChevronDown
-							class="ml-2 h-4 w-4 text-muted-foreground"
-						/>
+						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -151,9 +145,7 @@
 					<Avatar.Fallback>IN</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
-					<p class="text-sm font-medium leading-none">
-						Isabella Nguyen
-					</p>
+					<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
 					<p class="text-sm text-muted-foreground">i@example.com</p>
 				</div>
 			</div>
@@ -161,9 +153,7 @@
 				<Popover.Trigger asChild>
 					<Button variant="outline" size="sm" class="ml-auto">
 						Member{" "}
-						<ChevronDown
-							class="ml-2 h-4 w-4 text-muted-foreground"
-						/>
+						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">

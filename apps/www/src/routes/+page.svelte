@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		DashboardPage,
-		ExamplesNav,
-		Announcement
-	} from "@/components/docs";
+	import { DashboardPage, ExamplesNav, Announcement } from "@/components/docs";
 	import * as PageHeader from "@/components/docs/page-header";
 	import { Icons } from "@/components/docs/icons";
 	import { buttonVariants } from "@/registry/new-york/ui/button";
@@ -16,8 +12,8 @@
 		<Announcement />
 		<PageHeader.Heading>Build your component library</PageHeader.Heading>
 		<PageHeader.Description>
-			Beautifully designed components that you can copy and paste into
-			your apps. Accessible. Customizable. Open Source.
+			Beautifully designed components that you can copy and paste into your apps. Accessible.
+			Customizable. Open Source.
 		</PageHeader.Description>
 		<p class="text-sm text-center text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a
@@ -34,9 +30,7 @@
 				class="font-medium underline underline-offset-4">@shadcn</a
 			>.
 		</p>
-		<div
-			class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10"
-		>
+		<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
 			<a href="/docs" class={cn(buttonVariants())}> Get Started </a>
 			<a
 				target="_blank"

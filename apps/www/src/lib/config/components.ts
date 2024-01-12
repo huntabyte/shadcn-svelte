@@ -61,10 +61,7 @@ export const components = [
 	{
 		component: "badge",
 		name: "Badge",
-		files: [
-			"src/lib/components/ui/badge/Badge.svelte",
-			"src/lib/components/ui/badge/index.ts"
-		]
+		files: ["src/lib/components/ui/badge/Badge.svelte", "src/lib/components/ui/badge/index.ts"]
 	},
 	{
 		component: "button",
@@ -153,19 +150,13 @@ export const components = [
 	{
 		component: "input",
 		name: "Input",
-		files: [
-			"src/lib/components/ui/input/Input.svelte",
-			"src/lib/components/ui/input/index.ts"
-		]
+		files: ["src/lib/components/ui/input/Input.svelte", "src/lib/components/ui/input/index.ts"]
 	},
 	{
 		component: "label",
 		name: "Label",
 		dependencies: ["radix-svelte"],
-		files: [
-			"src/lib/components/ui/label/Label.svelte",
-			"src/lib/components/ui/label/index.ts"
-		]
+		files: ["src/lib/components/ui/label/Label.svelte", "src/lib/components/ui/label/index.ts"]
 	},
 	//   {
 	//     component: "menubar",

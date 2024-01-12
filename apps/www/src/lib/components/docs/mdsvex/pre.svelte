@@ -21,7 +21,4 @@
 	{...$$restProps}>
 	<slot />
 </pre>
-<CopyButton
-	value={codeString}
-	class={cn("absolute right-4 top-4 pre-copy-btn")}
-/>
+<CopyButton value={codeString} class={cn("absolute right-4 top-4 pre-copy-btn")} />

@@ -13,9 +13,7 @@
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
 	<div class="flex items-start">
 		<div class="space-y-1 pr-2">
-			<div class="font-semibold leading-none tracking-tight">
-				Customize
-			</div>
+			<div class="font-semibold leading-none tracking-tight">Customize</div>
 			<div class="text-xs text-muted-foreground">
 				Pick a style and color for your components.
 			</div>
@@ -52,21 +50,19 @@
 						sideOffset={-20}
 					>
 						<p class="font-medium">
-							What is the difference between the New York and
-							Default style?
+							What is the difference between the New York and Default style?
 						</p>
 						<p>
-							A style comes with its own set of components,
-							animations, icons and more.
+							A style comes with its own set of components, animations, icons and
+							more.
 						</p>
 						<p>
-							The <span class="font-medium">Default</span> style has
-							larger inputs, uses lucide-svelte for icons.
+							The <span class="font-medium">Default</span> style has larger inputs, uses
+							lucide-svelte for icons.
 						</p>
 						<p>
-							The <span class="font-medium">New York</span> style ships
-							with smaller buttons and cards with shadows. It uses
-							icons from Radix Icons.
+							The <span class="font-medium">New York</span> style ships with smaller buttons
+							and cards with shadows. It uses icons from Radix Icons.
 						</p>
 					</Popover.Content>
 				</Popover.Root>
@@ -80,9 +76,7 @@
 							...prev,
 							style: "default"
 						}))}
-					class={cn(
-						$config.style === "default" && "border-2 border-primary"
-					)}
+					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
 				</Button>
@@ -94,10 +88,7 @@
 							...prev,
 							style: "new-york"
 						}))}
-					class={cn(
-						$config.style === "new-york" &&
-							"border-2 border-primary"
-					)}
+					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
 				</Button>
@@ -117,13 +108,8 @@
 								theme: theme.name
 							}));
 						}}
-						class={cn(
-							"justify-start",
-							isActive && "border-2 border-primary"
-						)}
-						style="--theme-primary: hsl({theme?.activeColor[
-							$mode ?? 'dark'
-						]}"
+						class={cn("justify-start", isActive && "border-2 border-primary")}
+						style="--theme-primary: hsl({theme?.activeColor[$mode ?? 'dark']}"
 					>
 						<span
 							class="mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
@@ -151,10 +137,7 @@
 								radius: valueFloat
 							}));
 						}}
-						class={cn(
-							$config.radius === valueFloat &&
-								"border-2 border-primary"
-						)}
+						class={cn($config.radius === valueFloat && "border-2 border-primary")}
 					>
 						{value}
 					</Button>

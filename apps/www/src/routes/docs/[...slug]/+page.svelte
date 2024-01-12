@@ -14,20 +14,13 @@
 	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
-	$: componentSource = data.metadata.source?.replace(
-		"default",
-		$config.style ?? "default"
-	);
+	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
-		<div
-			class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground"
-		>
-			<div class="overflow-hidden text-ellipsis whitespace-nowrap">
-				Docs
-			</div>
+		<div class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
 			<ChevronRight class="h-4 w-4" />
 			<div class="font-medium text-foreground">{doc.title}</div>
 		</div>
@@ -50,10 +43,7 @@
 						href={componentSource}
 						target="_blank"
 						rel="noreferrer"
-						class={cn(
-							badgeVariants({ variant: "secondary" }),
-							"gap-1"
-						)}
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Component Source
 						<Code class="h-3.5 w-3.5" />
@@ -64,10 +54,7 @@
 						href={doc.bits}
 						target="_blank"
 						rel="noreferrer"
-						class={cn(
-							badgeVariants({ variant: "secondary" }),
-							"gap-1"
-						)}
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Primitive API Reference
 						<ExternalLink class="h-3 w-3" />
@@ -81,9 +68,7 @@
 		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">
-		<div
-			class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-4"
-		>
+		<div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-4">
 			{#key $page.url.pathname}
 				<TableOfContents />
 			{/key}

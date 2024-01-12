@@ -23,8 +23,7 @@
 
 	let value = "";
 
-	$: selectedValue =
-		models.find((f) => f.id === value)?.name ?? "Select a model...";
+	$: selectedValue = models.find((f) => f.id === value)?.name ?? "Select a model...";
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -45,9 +44,8 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm" align="start" side="left">
-			The model which will generate the completion. Some models are
-			suitable for natural language tasks, others specialize in code.
-			Learn more.
+			The model which will generate the completion. Some models are suitable for natural
+			language tasks, others specialize in code. Learn more.
 		</HoverCard.Content>
 	</HoverCard.Root>
 
@@ -70,11 +68,7 @@
 				open={peekedModel.id !== selectedModel.id}
 				openDelay={0}
 			>
-				<HoverCard.Content
-					class="min-h-[280px] -ml-2"
-					side="left"
-					align="start"
-				>
+				<HoverCard.Content class="min-h-[280px] -ml-2" side="left" align="start">
 					<div class="grid gap-2">
 						<h4 class="font-medium leading-none">
 							{peekedModel.name}
@@ -84,9 +78,7 @@
 						</div>
 						{#if peekedModel.strengths}
 							<div class="mt-4 grid gap-2">
-								<h5 class="text-sm font-medium leading-none">
-									Strengths
-								</h5>
+								<h5 class="text-sm font-medium leading-none">Strengths</h5>
 								<ul class="text-sm text-muted-foreground">
 									{peekedModel.strengths}
 								</ul>
@@ -96,9 +88,7 @@
 				</HoverCard.Content>
 				<Command.Root loop>
 					<Command.Input placeholder="Search Models...." />
-					<Command.List
-						class="h-[var(--cmdk-list-height)] max-h-[400px]"
-					>
+					<Command.List class="h-[var(--cmdk-list-height)] max-h-[400px]">
 						<Command.Empty>No models found.</Command.Empty>
 						{#each types as type}
 							<Command.Group heading={type}>
@@ -120,9 +110,7 @@
 												class="aria-selected:bg-primary aria-selected:text-primary-foreground"
 												onSelect={(currentValue) => {
 													value = currentValue;
-													closeAndFocusTrigger(
-														ids.trigger
-													);
+													closeAndFocusTrigger(ids.trigger);
 												}}
 											>
 												{model.name}

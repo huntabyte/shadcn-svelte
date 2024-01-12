@@ -63,8 +63,7 @@
 				<Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
 				<Table.Cell>{invoice.paymentStatus}</Table.Cell>
 				<Table.Cell>{invoice.paymentMethod}</Table.Cell>
-				<Table.Cell class="text-right">{invoice.totalAmount}</Table.Cell
-				>
+				<Table.Cell class="text-right">{invoice.totalAmount}</Table.Cell>
 			</Table.Row>
 		{/each}
 	</Table.Body>

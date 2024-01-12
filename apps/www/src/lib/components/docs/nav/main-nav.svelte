@@ -17,9 +17,7 @@
 			href="/docs"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
-				$page.url.pathname === "/docs"
-					? "text-foreground"
-					: "text-foreground/60"
+				$page.url.pathname === "/docs" ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Docs
@@ -39,9 +37,7 @@
 			href="/themes"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
-				$page.url.pathname.startsWith("/themes")
-					? "text-foreground"
-					: "text-foreground/60"
+				$page.url.pathname.startsWith("/themes") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Themes

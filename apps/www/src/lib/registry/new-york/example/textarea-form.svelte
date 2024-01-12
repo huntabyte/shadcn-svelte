@@ -27,10 +27,7 @@
 	<Form.Field {config} name="bio">
 		<Form.Item>
 			<Form.Label>Bio</Form.Label>
-			<Form.Textarea
-				placeholder="Tell us a little bit about yourself"
-				class="resize-none"
-			/>
+			<Form.Textarea placeholder="Tell us a little bit about yourself" class="resize-none" />
 			<Form.Description>
 				You can <span>@mention</span> other users and organizations.
 			</Form.Description>

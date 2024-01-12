@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		Calendar,
-		EnvelopeClosed,
-		Face,
-		Gear,
-		Person,
-		Rocket
-	} from "radix-icons-svelte";
+	import { Calendar, EnvelopeClosed, Face, Gear, Person, Rocket } from "radix-icons-svelte";
 	import * as Command from "@/registry/new-york/ui/command";
 	import { onMount } from "svelte";
 	let open = false;

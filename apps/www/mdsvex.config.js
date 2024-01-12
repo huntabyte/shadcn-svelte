@@ -17,10 +17,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 /** @type {import('mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
 	extensions: [".md"],
-	layout: path.resolve(
-		__dirname,
-		"./src/lib/components/docs/mdsvex/mdsvex.svelte"
-	),
+	layout: path.resolve(__dirname, "./src/lib/components/docs/mdsvex/mdsvex.svelte"),
 	smartypants: {
 		quotes: false,
 		ellipses: false,
@@ -45,10 +42,7 @@ export const mdsvexOptions = {
 						const match = codeEl.data?.meta.match(regex);
 						if (match) {
 							node.__event__ = match ? match[1] : null;
-							codeEl.data.meta = codeEl.data.meta.replace(
-								regex,
-								""
-							);
+							codeEl.data.meta = codeEl.data.meta.replace(regex, "");
 						}
 					}
 
@@ -63,10 +57,7 @@ export const mdsvexOptions = {
 			rehypePrettyCode,
 			{
 				theme: JSON.parse(
-					fs.readFileSync(
-						path.resolve(__dirname, "./other/themes/dark.json"),
-						"utf-8"
-					)
+					fs.readFileSync(path.resolve(__dirname, "./other/themes/dark.json"), "utf-8")
 				),
 				onVisitLine(node) {
 					if (node.children.length === 0) {
@@ -102,10 +93,7 @@ export function rehypeComponentExample() {
 	return async (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			if (
-				node?.type === "raw" &&
-				node?.value?.startsWith("<ComponentPreview")
-			) {
+			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
@@ -190,10 +178,7 @@ function rehypeComponentPreToPre() {
 		// Replace `Component.pre` tags with `pre` tags.
 		// This is a workaround to use rehype-pretty-code along with custom mdsvex components.
 		visit(tree, (node) => {
-			if (
-				node?.type === "element" &&
-				node?.tagName === "Components.pre"
-			) {
+			if (node?.type === "element" && node?.tagName === "Components.pre") {
 				node.tagName = "pre";
 			}
 

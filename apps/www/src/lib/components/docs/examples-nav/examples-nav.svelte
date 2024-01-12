@@ -12,10 +12,7 @@
 	<div class="lg:max-w-none">
 		<!-- TODO: replace with srollarea component when it's ready -->
 		<div
-			class={cn(
-				"mb-4 flex items-center overflow-y-auto pb-3 md:pb-0",
-				className
-			)}
+			class={cn("mb-4 flex items-center overflow-y-auto pb-3 md:pb-0", className)}
 			{...$$restProps}
 		>
 			{#each examples as example, index (index)}

@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { get, readable } from "svelte/store";
-	import {
-		Render,
-		Subscribe,
-		createRender,
-		createTable
-	} from "svelte-headless-table";
+	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
 	import * as Table from "@/registry/new-york/ui/table";
 	import {
 		addColumnFilters,
@@ -109,11 +104,7 @@
 				colFilter: {
 					fn: ({ filterValue, value }) => {
 						if (filterValue.length === 0) return true;
-						if (
-							!Array.isArray(filterValue) ||
-							typeof value !== "string"
-						)
-							return true;
+						if (!Array.isArray(filterValue) || typeof value !== "string") return true;
 						return filterValue.some((filter) => {
 							return value.includes(filter);
 						});
@@ -138,11 +129,7 @@
 				colFilter: {
 					fn: ({ filterValue, value }) => {
 						if (filterValue.length === 0) return true;
-						if (
-							!Array.isArray(filterValue) ||
-							typeof value !== "string"
-						)
-							return true;
+						if (!Array.isArray(filterValue) || typeof value !== "string") return true;
 
 						return filterValue.some((filter) => {
 							return value.includes(filter);

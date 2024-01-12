@@ -46,9 +46,7 @@
 			<span class="w-full border-t" />
 		</div>
 		<div class="relative flex justify-center text-xs uppercase">
-			<span class="bg-background px-2 text-muted-foreground">
-				Or continue with
-			</span>
+			<span class="bg-background px-2 text-muted-foreground"> Or continue with </span>
 		</div>
 	</div>
 	<Button variant="outline" type="button" disabled={isLoading}>

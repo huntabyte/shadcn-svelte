@@ -15,8 +15,7 @@
 
 	const { pageRows, pluginStates, rows } = tableModel;
 
-	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } =
-		pluginStates.page;
+	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } = pluginStates.page;
 
 	const { selectedDataIds } = pluginStates.select;
 </script>
@@ -30,8 +29,7 @@
 		<div class="flex items-center space-x-2">
 			<p class="text-sm font-medium">Rows per page</p>
 			<Select.Root
-				onSelectedChange={(selected) =>
-					pageSize.set(Number(selected?.value))}
+				onSelectedChange={(selected) => pageSize.set(Number(selected?.value))}
 				selected={{ value: 10, label: "10" }}
 			>
 				<Select.Trigger class="w-[180px]">
@@ -46,9 +44,7 @@
 				</Select.Content>
 			</Select.Root>
 		</div>
-		<div
-			class="flex w-[100px] items-center justify-center text-sm font-medium"
-		>
+		<div class="flex w-[100px] items-center justify-center text-sm font-medium">
 			Page {$pageIndex + 1} of {$pageCount}
 		</div>
 		<div class="flex items-center space-x-2">
@@ -83,9 +79,7 @@
 				variant="outline"
 				class="hidden h-8 w-8 p-0 lg:flex"
 				disabled={!$hasNextPage}
-				on:click={() =>
-					($pageIndex =
-						Math.ceil($rows.length / $pageRows.length) - 1)}
+				on:click={() => ($pageIndex = Math.ceil($rows.length / $pageRows.length) - 1)}
 			>
 				<span class="sr-only">Go to last page</span>
 				<DoubleArrowRight size={15} />

@@ -7,11 +7,7 @@
 	let hex = "#030711";
 	let hsl: [number, number, number] = [0, 0, 0];
 	let rgb: [number, number, number] = [0, 0, 0];
-	$: if (
-		hex &&
-		((hex.length === 6 && hex[0] !== "#") ||
-			(hex.length === 7 && hex[0] === "#"))
-	) {
+	$: if (hex && ((hex.length === 6 && hex[0] !== "#") || (hex.length === 7 && hex[0] === "#"))) {
 		hsl = hexToHsl(hex);
 		rgb = hexToRgb(hex);
 	}

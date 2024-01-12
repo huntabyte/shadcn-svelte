@@ -16,12 +16,9 @@
 	type Language = (typeof languages)[number]["value"];
 
 	export const formSchema = z.object({
-		language: z.enum(
-			languages.map((f) => f.value) as [Language, ...Language[]],
-			{
-				errorMap: () => ({ message: "Please select a valid language." })
-			}
-		)
+		language: z.enum(languages.map((f) => f.value) as [Language, ...Language[]], {
+			errorMap: () => ({ message: "Please select a valid language." })
+		})
 	});
 
 	export type FormSchema = typeof formSchema;
@@ -76,21 +73,14 @@
 								!value && "text-muted-foreground"
 							)}
 						>
-							{languages.find((f) => f.value === value)?.label ??
-								"Select language"}
-							<CaretSort
-								class="ml-2 h-4 w-4 shrink-0 opacity-50"
-							/>
+							{languages.find((f) => f.value === value)?.label ?? "Select language"}
+							<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 						</Button>
 					</Form.Control>
 				</Popover.Trigger>
 				<Popover.Content class="w-[200px] p-0">
 					<Command.Root>
-						<Command.Input
-							autofocus
-							placeholder="Search language..."
-							class="h-9"
-						/>
+						<Command.Input autofocus placeholder="Search language..." class="h-9" />
 						<Command.Empty>No language found.</Command.Empty>
 						<Command.Group>
 							{#each languages as language}
@@ -105,8 +95,7 @@
 									<Check
 										class={cn(
 											"ml-auto h-4 w-4",
-											language.value !== value &&
-												"text-transparent"
+											language.value !== value && "text-transparent"
 										)}
 									/>
 								</Command.Item>

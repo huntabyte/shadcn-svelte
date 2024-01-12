@@ -3,11 +3,7 @@
 	import * as Calendar from "@/registry/new-york/ui/calendar";
 	import * as Select from "@/registry/new-york/ui/select";
 	import { cn } from "$lib/utils";
-	import {
-		DateFormatter,
-		getLocalTimeZone,
-		today
-	} from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 
 	type $$Props = CalendarPrimitive.Props;
 	type $$Events = CalendarPrimitive.Events;
@@ -69,9 +65,7 @@
 	let:weekdays
 >
 	<Calendar.Header>
-		<Calendar.Heading
-			class="flex items-center justify-between w-full gap-2"
-		>
+		<Calendar.Heading class="flex items-center justify-between w-full gap-2">
 			<Select.Root
 				selected={defaultMonth}
 				items={monthOptions}

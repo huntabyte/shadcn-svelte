@@ -6,8 +6,7 @@
 	import { cn } from "$lib/utils";
 
 	type T = $$Generic<"single" | "multiple">;
-	type $$Props = ToggleGroupPrimitive.Props<T> &
-		VariantProps<typeof toggleVariants>;
+	type $$Props = ToggleGroupPrimitive.Props<T> & VariantProps<typeof toggleVariants>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

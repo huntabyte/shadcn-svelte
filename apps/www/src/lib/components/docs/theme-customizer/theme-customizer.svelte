@@ -33,9 +33,7 @@
 								}}
 								class={cn(
 									"flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
-									isActive
-										? "border-[--theme-primary]"
-										: "border-transparent"
+									isActive ? "border-[--theme-primary]" : "border-transparent"
 								)}
 								style="--theme-primary: hsl({theme?.activeColor[
 									$mode === 'dark' ? 'dark' : 'light'

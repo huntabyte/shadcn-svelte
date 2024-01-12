@@ -1,9 +1,5 @@
 import type { Writable } from "svelte/store";
-import type {
-	FormPathLeaves,
-	UnwrapEffects,
-	ZodValidation
-} from "sveltekit-superforms";
+import type { FormPathLeaves, UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 import type { SuperForm, formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
 
@@ -25,8 +21,7 @@ export type Form<T extends ZodValidation<AnyZodObject>> = {
 };
 
 export type FormValidation = ZodValidation<AnyZodObject>;
-export type FormFieldName<T extends ZodValidation<AnyZodObject>> =
-	FormPathLeaves<z.infer<T>>;
+export type FormFieldName<T extends ZodValidation<AnyZodObject>> = FormPathLeaves<z.infer<T>>;
 
 export type FormFieldContext = {
 	name: string;

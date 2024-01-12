@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		ArrowUpCircle,
-		CheckCircle2,
-		Circle,
-		HelpCircle,
-		XCircle
-	} from "lucide-svelte";
+	import { ArrowUpCircle, CheckCircle2, Circle, HelpCircle, XCircle } from "lucide-svelte";
 	import * as Command from "@/registry/default/ui/command";
 	import * as Popover from "@/registry/default/ui/popover";
 	import { Button } from "@/registry/default/ui/button";
@@ -73,10 +67,7 @@
 				class="w-[150px] justify-start"
 			>
 				{#if selectedStatus}
-					<svelte:component
-						this={selectedStatus.icon}
-						class="mr-2 h-4 w-4 shrink-0"
-					/>
+					<svelte:component this={selectedStatus.icon} class="mr-2 h-4 w-4 shrink-0" />
 					{selectedStatus.label}
 				{:else}
 					+ Set status
@@ -101,8 +92,7 @@
 									this={status.icon}
 									class={cn(
 										"mr-2 h-4 w-4",
-										status.value !==
-											selectedStatus?.value &&
+										status.value !== selectedStatus?.value &&
 											"text-foreground/40"
 									)}
 								/>

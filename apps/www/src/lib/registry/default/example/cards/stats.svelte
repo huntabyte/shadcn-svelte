@@ -5,9 +5,7 @@
 
 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
 	<Card.Root>
-		<Card.Header
-			class="flex flex-row items-center justify-between space-y-0 pb-2"
-		>
+		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 			<Card.Title class="text-base font-normal">Total Revenue</Card.Title>
 		</Card.Header>
 		<Card.Content>
@@ -19,9 +17,7 @@
 		</Card.Content>
 	</Card.Root>
 	<Card.Root>
-		<Card.Header
-			class="flex flex-row items-center justify-between space-y-0 pb-2"
-		>
+		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 			<Card.Title class="text-base font-normal">Subscriptions</Card.Title>
 		</Card.Header>
 		<Card.Content>

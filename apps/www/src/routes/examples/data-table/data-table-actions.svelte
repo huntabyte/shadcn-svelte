@@ -8,11 +8,7 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button
-			variant="ghost"
-			builders={[builder]}
-			class="w-8 h-8 p- relative"
-		>
+		<Button variant="ghost" builders={[builder]} class="w-8 h-8 p- relative">
 			<span class="sr-only">Open menu</span>
 			<DotsHorizontal class="w-4 h-4" />
 		</Button>
@@ -20,9 +16,7 @@
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
-			<DropdownMenu.Item
-				on:click={() => navigator.clipboard.writeText(id)}
-			>
+			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
 				Copy payment ID
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>

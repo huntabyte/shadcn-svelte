@@ -52,12 +52,8 @@
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
-				<DropdownMenu.Item on:click={handleAscSort}
-					>Asc</DropdownMenu.Item
-				>
-				<DropdownMenu.Item on:click={handleDescSort}
-					>Desc</DropdownMenu.Item
-				>
+				<DropdownMenu.Item on:click={handleAscSort}>Asc</DropdownMenu.Item>
+				<DropdownMenu.Item on:click={handleDescSort}>Desc</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>

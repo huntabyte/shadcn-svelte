@@ -15,9 +15,7 @@
 		<div class="ml-auto font-medium">+$1,999.00</div>
 	</div>
 	<div class="flex items-center">
-		<Avatar.Root
-			class="flex h-9 w-9 items-center justify-center space-y-0 border"
-		>
+		<Avatar.Root class="flex h-9 w-9 items-center justify-center space-y-0 border">
 			<Avatar.Image src="/avatars/02.png" alt="Avatar" />
 			<Avatar.Fallback>JL</Avatar.Fallback>
 		</Avatar.Root>
@@ -34,9 +32,7 @@
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
 			<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-			<p class="text-sm text-muted-foreground">
-				isabella.nguyen@email.com
-			</p>
+			<p class="text-sm text-muted-foreground">isabella.nguyen@email.com</p>
 		</div>
 		<div class="ml-auto font-medium">+$299.00</div>
 	</div>
