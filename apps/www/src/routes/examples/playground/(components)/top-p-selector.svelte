@@ -30,8 +30,8 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm" side="left" align="start">
-			Control diversity via nucleus sampling: 0.5 means half of all
-			likelihood-weighted options are considered.
+			Control diversity via nucleus sampling: 0.5 means half of all likelihood-weighted
+			options are considered.
 		</HoverCard.Content>
 	</HoverCard.Root>
 </div>

@@ -90,8 +90,7 @@
 						x="57"
 						y="-4"
 						fill="#888888"
-						text-anchor="end"
-						><tspan x="36" dy="0.355em">${tick}</tspan></text
+						text-anchor="end"><tspan x="36" dy="0.355em">${tick}</tspan></text
 					>
 				</g>
 			{/each}
@@ -112,9 +111,7 @@
 						fill="#888888"
 						text-anchor="middle"
 						><tspan x={barWidth / 2} dy="0.71em"
-							>{width > 380
-								? point.name
-								: formatMobile(point.name)}</tspan
+							>{width > 380 ? point.name : formatMobile(point.name)}</tspan
 						></text
 					>
 				</g>

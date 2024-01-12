@@ -22,17 +22,13 @@
 	class="space-y-6"
 >
 	<Form.Field {config} name="mobile">
-		<Form.Item
-			class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
-		>
+		<Form.Item class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
 			<Form.Checkbox />
 			<div class="space-y-1 leading-none">
-				<Form.Label
-					>Use different settings for my mobile devices</Form.Label
-				>
+				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
-					You can manage your mobile notifications in the <a
-						href="/examples/forms">mobile settings</a
+					You can manage your mobile notifications in the <a href="/examples/forms"
+						>mobile settings</a
 					> page.
 				</Form.Description>
 			</div>

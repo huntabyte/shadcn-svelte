@@ -77,9 +77,7 @@
 								navItem.href && goto(navItem.href);
 							})}
 					>
-						<div
-							class="mr-2 flex h-4 w-4 items-center justify-center"
-						>
+						<div class="mr-2 flex h-4 w-4 items-center justify-center">
 							<Circle class="h-3 w-3" />
 						</div>
 						{navItem.title}
@@ -89,24 +87,15 @@
 		{/each}
 		<Command.Separator />
 		<Command.Group heading="Theme">
-			<Command.Item
-				value="light"
-				onSelect={() => runCommand(() => setMode("light"))}
-			>
+			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
 				<Sun class="mr-2 h-4 w-4" />
 				Light
 			</Command.Item>
-			<Command.Item
-				value="dark"
-				onSelect={() => runCommand(() => setMode("dark"))}
-			>
+			<Command.Item value="dark" onSelect={() => runCommand(() => setMode("dark"))}>
 				<Moon class="mr-2 h-4 w-4" />
 				Dark
 			</Command.Item>
-			<Command.Item
-				value="system"
-				onSelect={() => runCommand(() => resetMode())}
-			>
+			<Command.Item value="system" onSelect={() => runCommand(() => resetMode())}>
 				<Laptop class="mr-2 h-4 w-4" />
 				System
 			</Command.Item>

@@ -13,8 +13,8 @@
 		<Dialog.Header>
 			<Dialog.Title>Save preset</Dialog.Title>
 			<Dialog.Description>
-				This will save the current playground state as a preset which
-				you can access later or share with others.
+				This will save the current playground state as a preset which you can access later
+				or share with others.
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="grid gap-4 py-4">

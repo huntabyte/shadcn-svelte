@@ -25,14 +25,12 @@ export const models: Model<ModelType>[] = [
 		name: "text-curie-001",
 		description: "Very capable, but faster and lower cost than Davinci.",
 		type: "GPT-3",
-		strengths:
-			"Language translation, complex classification, sentiment, summarization"
+		strengths: "Language translation, complex classification, sentiment, summarization"
 	},
 	{
 		id: "ac0797b0-7e31-43b6-a494-da7e2ab43445",
 		name: "text-babbage-001",
-		description:
-			"Capable of straightforward tasks, very fast, and lower cost.",
+		description: "Capable of straightforward tasks, very fast, and lower cost.",
 		type: "GPT-3",
 		strengths: "Moderate classification, semantic search"
 	},
@@ -42,8 +40,7 @@ export const models: Model<ModelType>[] = [
 		description:
 			"Capable of very simple tasks, usually the fastest model in the GPT-3 series, and lowest cost.",
 		type: "GPT-3",
-		strengths:
-			"Parsing text, simple classification, address correction, keywords"
+		strengths: "Parsing text, simple classification, address correction, keywords"
 	},
 	{
 		id: "b43c0ea9-5ad4-456a-ae29-26cd77b6d0fb",

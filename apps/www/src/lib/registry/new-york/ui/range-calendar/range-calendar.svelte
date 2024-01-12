@@ -48,10 +48,7 @@
 						<RangeCalendar.GridRow class="w-full mt-2">
 							{#each weekDates as date}
 								<RangeCalendar.Cell {date}>
-									<RangeCalendar.Day
-										{date}
-										month={month.value}
-									/>
+									<RangeCalendar.Day {date} month={month.value} />
 								</RangeCalendar.Cell>
 							{/each}
 						</RangeCalendar.GridRow>

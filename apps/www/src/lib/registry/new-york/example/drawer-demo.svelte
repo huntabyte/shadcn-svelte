@@ -76,9 +76,7 @@
 		<div class="mx-auto w-full max-w-sm">
 			<Drawer.Header>
 				<Drawer.Title>Move Goal</Drawer.Title>
-				<Drawer.Description
-					>Set your daily activity goal.</Drawer.Description
-				>
+				<Drawer.Description>Set your daily activity goal.</Drawer.Description>
 			</Drawer.Header>
 			<div class="p-4 pb-0">
 				<div class="flex items-center justify-center space-x-2">
@@ -96,9 +94,7 @@
 						<div class="text-7xl font-bold tracking-tighter">
 							{goal}
 						</div>
-						<div
-							class="text-[0.70rem] uppercase text-muted-foreground"
-						>
+						<div class="text-[0.70rem] uppercase text-muted-foreground">
 							Calories/day
 						</div>
 					</div>
@@ -114,20 +110,14 @@
 				</div>
 				<div class="mt-3 h-[120px]">
 					<VisXYContainer {data} height={60}>
-						<VisGroupedBar
-							{x}
-							{y}
-							color={"hsl(var(--primary) / 0.2)"}
-						/>
+						<VisGroupedBar {x} {y} color={"hsl(var(--primary) / 0.2)"} />
 					</VisXYContainer>
 				</div>
 			</div>
 			<Drawer.Footer>
 				<Button>Submit</Button>
 				<Drawer.Close asChild let:builder>
-					<Button builders={[builder]} variant="outline"
-						>Cancel</Button
-					>
+					<Button builders={[builder]} variant="outline">Cancel</Button>
 				</Drawer.Close>
 			</Drawer.Footer>
 		</div>

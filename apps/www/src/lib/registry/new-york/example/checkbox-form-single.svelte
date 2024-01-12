@@ -27,12 +27,10 @@
 		>
 			<Form.Checkbox />
 			<div class="space-y-1 leading-none">
-				<Form.Label
-					>Use different settings for my mobile devices</Form.Label
-				>
+				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
-					You can manage your mobile notifications in the <a
-						href="/examples/forms">mobile settings</a
+					You can manage your mobile notifications in the <a href="/examples/forms"
+						>mobile settings</a
 					> page.
 				</Form.Description>
 			</div>

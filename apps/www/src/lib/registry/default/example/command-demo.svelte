@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		Calculator,
-		Calendar,
-		CreditCard,
-		Settings,
-		Smile,
-		User
-	} from "lucide-svelte";
+	import { Calculator, Calendar, CreditCard, Settings, Smile, User } from "lucide-svelte";
 	import * as Command from "@/registry/default/ui/command";
 </script>
 

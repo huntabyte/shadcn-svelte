@@ -27,10 +27,7 @@
 		},
 		handleInput: (
 			e: Event & {
-				currentTarget:
-					| HTMLInputElement
-					| HTMLTextAreaElement
-					| HTMLSelectElement;
+				currentTarget: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 			}
 		) => {
 			field.updateValue(e.currentTarget.value);

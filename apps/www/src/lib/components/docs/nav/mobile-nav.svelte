@@ -29,11 +29,7 @@
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
-						<MobileLink
-							href={navItem.href}
-							bind:open
-							class="text-foreground"
-						>
+						<MobileLink href={navItem.href} bind:open class="text-foreground">
 							{navItem.title}
 						</MobileLink>
 					{/if}

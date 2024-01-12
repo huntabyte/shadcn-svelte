@@ -34,14 +34,11 @@
 			<Form.RadioGroup class="flex flex-col space-y-1">
 				<div class="flex items-center space-x-3">
 					<Form.RadioItem value="all" id="all" />
-					<Label for="all" class="font-normal">All new messages</Label
-					>
+					<Label for="all" class="font-normal">All new messages</Label>
 				</div>
 				<div class="flex items-center space-x-3">
 					<Form.RadioItem value="mentions" id="mentions" />
-					<Label for="mentions" class="font-normal"
-						>Direct messages and mentions</Label
-					>
+					<Label for="mentions" class="font-normal">Direct messages and mentions</Label>
 				</div>
 				<div class="flex items-center space-x-3">
 					<Form.RadioItem value="none" id="none" />
@@ -54,13 +51,9 @@
 		<h3 class="mb-4 text-lg font-medium">Email Notifications</h3>
 		<div class="space-y-4">
 			<Form.Field {config} name="communication_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
-						<Form.Label class="text-base"
-							>Communication emails</Form.Label
-						>
+						<Form.Label class="text-base">Communication emails</Form.Label>
 						<Form.Description>
 							Receive emails about your account activity.
 						</Form.Description>
@@ -69,46 +62,33 @@
 				</Form.Item>
 			</Form.Field>
 			<Form.Field {config} name="marketing_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
-						<Form.Label class="text-base"
-							>Marketing emails</Form.Label
-						>
+						<Form.Label class="text-base">Marketing emails</Form.Label>
 						<Form.Description>
-							Receive emails about new products, features, and
-							more.
+							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
 					<Form.Switch />
 				</Form.Item>
 			</Form.Field>
 			<Form.Field {config} name="social_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Social emails</Form.Label>
 						<Form.Description>
-							Receive emails for friend requests, follows, and
-							more.
+							Receive emails for friend requests, follows, and more.
 						</Form.Description>
 					</div>
 					<Form.Switch />
 				</Form.Item>
 			</Form.Field>
 			<Form.Field {config} name="security_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
-						<Form.Label class="text-base"
-							>Security emails</Form.Label
-						>
+						<Form.Label class="text-base">Security emails</Form.Label>
 						<Form.Description>
-							Receive emails about your account activity and
-							security.
+							Receive emails about your account activity and security.
 						</Form.Description>
 					</div>
 					<Form.Switch />
@@ -120,12 +100,10 @@
 		<Form.Item class="flex flex-row items-start space-x-3 space-y-0">
 			<Form.Checkbox />
 			<div class="space-y-1 leading-none">
-				<Form.Label
-					>Use different settings for my mobile devices</Form.Label
-				>
+				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
-					You can manage your mobile notifications in the{" "}<a
-						href="/examples/forms">mobile settings</a
+					You can manage your mobile notifications in the{" "}<a href="/examples/forms"
+						>mobile settings</a
 					> page.
 				</Form.Description>
 			</div>

@@ -33,14 +33,11 @@
 			<Form.RadioGroup class="flex flex-col space-y-1">
 				<Form.Item class="flex items-center space-x-3 space-y-0">
 					<Form.RadioItem value="all" id="all" />
-					<Label for="all" class="font-normal">All new messages</Label
-					>
+					<Label for="all" class="font-normal">All new messages</Label>
 				</Form.Item>
 				<Form.Item class="flex items-center space-x-3 space-y-0">
 					<Form.RadioItem value="mentions" id="mentions" />
-					<Label for="mentions" class="font-normal"
-						>Direct messages and mentions</Label
-					>
+					<Label for="mentions" class="font-normal">Direct messages and mentions</Label>
 				</Form.Item>
 				<Form.Item class="flex items-center space-x-3 space-y-0">
 					<Form.RadioItem value="none" id="none" />

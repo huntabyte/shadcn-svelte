@@ -52,11 +52,7 @@
 	<p class="text-sm text-muted-foreground">Status</p>
 	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="outline"
-				class="w-[150px] justify-start"
-			>
+			<Button builders={[builder]} variant="outline" class="w-[150px] justify-start">
 				{selectedStatus ? selectedStatus.label : "+ Set status"}
 			</Button>
 		</Popover.Trigger>

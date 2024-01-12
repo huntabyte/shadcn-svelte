@@ -2,7 +2,7 @@
 	"useTabs": true,
 	"singleQuote": false,
 	"trailingComma": "none",
-	"printWidth": 80,
+	"printWidth": 100,
 	"endOfLine": "lf",
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": false,

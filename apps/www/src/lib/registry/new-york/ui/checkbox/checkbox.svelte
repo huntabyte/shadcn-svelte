@@ -28,9 +28,7 @@
 		{#if isIndeterminate}
 			<Minus class="h-3.5 w-3.5" />
 		{:else}
-			<Check
-				class={cn("h-3.5 w-3.5", !isChecked && "text-transparent")}
-			/>
+			<Check class={cn("h-3.5 w-3.5", !isChecked && "text-transparent")} />
 		{/if}
 	</CheckboxPrimitive.Indicator>
 </CheckboxPrimitive.Root>

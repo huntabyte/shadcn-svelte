@@ -2,9 +2,7 @@
 	import { z } from "zod";
 
 	export const formSchema = z.object({
-		dob: z
-			.string()
-			.refine((v) => v, { message: "A date of birth is required." })
+		dob: z.string().refine((v) => v, { message: "A date of birth is required." })
 	});
 
 	export type FormSchema = typeof formSchema;
@@ -41,9 +39,7 @@
 		dateStyle: "long"
 	});
 
-	let value: DateValue | undefined = $formStore.dob
-		? parseDate($formStore.dob)
-		: undefined;
+	let value: DateValue | undefined = $formStore.dob ? parseDate($formStore.dob) : undefined;
 
 	let placeholder: DateValue = today(getLocalTimeZone());
 </script>
@@ -70,9 +66,7 @@
 							!value && "text-muted-foreground"
 						)}
 					>
-						{value
-							? df.format(value.toDate(getLocalTimeZone()))
-							: "Pick a date"}
+						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 						<CalendarIcon class="ml-auto opacity-50 h-4 w-4" />
 					</Popover.Trigger>
 				</Form.Control>
@@ -94,9 +88,7 @@
 					/>
 				</Popover.Content>
 			</Popover.Root>
-			<Form.Description>
-				Your date of birth is used to calculator your age
-			</Form.Description>
+			<Form.Description>Your date of birth is used to calculator your age</Form.Description>
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>

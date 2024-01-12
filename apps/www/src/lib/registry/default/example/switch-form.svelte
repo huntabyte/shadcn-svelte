@@ -26,23 +26,18 @@
 		<legend class="mb-4 text-lg font-medium"> Email Notifications </legend>
 		<div class="space-y-4">
 			<Form.Field {config} name="marketing_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
 						<Form.Label>Marketing emails</Form.Label>
 						<Form.Description>
-							Receive emails about new products, features, and
-							more.
+							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
 					<Form.Switch />
 				</Form.Item>
 			</Form.Field>
 			<Form.Field {config} name="security_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
 					<div class="space-y-0.5">
 						<Form.Label>Security emails</Form.Label>
 						<Form.Description>

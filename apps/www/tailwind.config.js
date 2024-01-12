@@ -26,13 +26,11 @@ const config = {
 				},
 				secondary: {
 					DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
-					foreground:
-						"hsl(var(--secondary-foreground) / <alpha-value>)"
+					foreground: "hsl(var(--secondary-foreground) / <alpha-value>)"
 				},
 				destructive: {
 					DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
-					foreground:
-						"hsl(var(--destructive-foreground) / <alpha-value>)"
+					foreground: "hsl(var(--destructive-foreground) / <alpha-value>)"
 				},
 				muted: {
 					DEFAULT: "hsl(var(--muted) / <alpha-value>)",

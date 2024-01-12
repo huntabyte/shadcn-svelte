@@ -25,10 +25,7 @@
 				</Pagination.Item>
 			{:else}
 				<Pagination.Item>
-					<Pagination.Link
-						{page}
-						isActive={currentPage == page.value}
-					>
+					<Pagination.Link {page} isActive={currentPage == page.value}>
 						{page.value}
 					</Pagination.Link>
 				</Pagination.Item>

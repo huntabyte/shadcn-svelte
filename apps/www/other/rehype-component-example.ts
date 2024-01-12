@@ -11,10 +11,7 @@ export function rehypeComponentExample() {
 	return async (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			if (
-				node?.type === "raw" &&
-				node?.value?.startsWith("<ComponentExample")
-			) {
+			if (node?.type === "raw" && node?.value?.startsWith("<ComponentExample")) {
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 

@@ -39,9 +39,7 @@ for (const style of styles) {
 			continue;
 		}
 
-		const resolveFiles = item.files.map(
-			(file) => `../src/lib/registry/${style.name}/${file}`
-		);
+		const resolveFiles = item.files.map((file) => `../src/lib/registry/${style.name}/${file}`);
 
 		const type = item.type.split(":")[1];
 		index += `
@@ -113,18 +111,13 @@ for (const style of styles) {
 // Build registry/styles/index.json.
 // ----------------------------------------------------------------------------
 const stylesJson = JSON.stringify(styles, null, 2);
-fs.writeFileSync(
-	path.join(REGISTRY_PATH, "styles/index.json"),
-	stylesJson,
-	"utf8"
-);
+fs.writeFileSync(path.join(REGISTRY_PATH, "styles/index.json"), stylesJson, "utf8");
 
 // ----------------------------------------------------------------------------
 // Build registry/index.json.
 // ----------------------------------------------------------------------------
 const names = result.data.filter(
-	(item) =>
-		item.type === "components:ui" && !REGISTRY_IGNORE.includes(item.name)
+	(item) => item.type === "components:ui" && !REGISTRY_IGNORE.includes(item.name)
 );
 const registryJson = JSON.stringify(names, null, 2);
 rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
@@ -150,14 +143,8 @@ for (const [color, value] of Object.entries(colors)) {
 	if (Array.isArray(value)) {
 		colorsData[color] = value.map((item) => ({
 			...item,
-			rgbChannel: item.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
-			hslChannel: item.hsl.replace(
-				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
-				"$1 $2 $3"
-			)
+			rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+			hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3")
 		}));
 		continue;
 	}
@@ -165,14 +152,8 @@ for (const [color, value] of Object.entries(colors)) {
 	if (typeof value === "object") {
 		colorsData[color] = {
 			...value,
-			rgbChannel: value.rgb.replace(
-				/^rgb\((\d+),(\d+),(\d+)\)$/,
-				"$1 $2 $3"
-			),
-			hslChannel: value.hsl.replace(
-				/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
-				"$1 $2 $3"
-			)
+			rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+			hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3")
 		};
 		continue;
 	}
@@ -281,17 +262,12 @@ for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
 		base["cssVars"][mode] = {};
 		for (const [key, value] of Object.entries(values)) {
 			if (typeof value === "string") {
-				const resolvedColor = value.replace(
-					/{{base}}-/g,
-					`${baseColor}-`
-				);
+				const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
 				base["inlineColors"][mode][key] = resolvedColor;
 
 				const [resolvedBase, scale] = resolvedColor.split("-");
 				const color = scale
-					? colorsData[resolvedBase].find(
-							(item: any) => item.scale === parseInt(scale)
-					  )
+					? colorsData[resolvedBase].find((item: any) => item.scale === parseInt(scale))
 					: colorsData[resolvedBase];
 				if (color) {
 					base["cssVars"][mode][key] = color.hslChannel;
@@ -391,10 +367,6 @@ for (const theme of themes) {
 	);
 }
 
-fs.writeFileSync(
-	path.join(REGISTRY_PATH, `themes.css`),
-	themeCSS.join("\n"),
-	"utf8"
-);
+fs.writeFileSync(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf8");
 
 console.log("✅ Done!");

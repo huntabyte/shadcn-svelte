@@ -6,10 +6,7 @@
 </script>
 
 <nav class={cn("flex items-center space-x-4 lg:space-x-6", className)}>
-	<a
-		href="/examples/dashboard"
-		class="text-sm font-medium transition-colors hover:text-primary"
-	>
+	<a href="/examples/dashboard" class="text-sm font-medium transition-colors hover:text-primary">
 		Overview
 	</a>
 

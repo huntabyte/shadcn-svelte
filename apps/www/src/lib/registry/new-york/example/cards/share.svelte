@@ -42,9 +42,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Share this document</Card.Title>
-		<Card.Description>
-			Anyone with the link can view this document.
-		</Card.Description>
+		<Card.Description>Anyone with the link can view this document.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="flex space-x-2">
@@ -61,8 +59,7 @@
 							<Avatar.Root>
 								<Avatar.Image src={person.avatar} />
 								{@const splitName = person.name.split(" ")}
-								<Avatar.Fallback
-									>{splitName[0][0]}{splitName[1][0]}</Avatar.Fallback
+								<Avatar.Fallback>{splitName[0][0]}{splitName[1][0]}</Avatar.Fallback
 								>
 							</Avatar.Root>
 							<div>
@@ -80,9 +77,7 @@
 							</Select.Trigger>
 							<Select.Content>
 								{#each permissions as permission}
-									<Select.Item
-										value={permission.value}
-										label={permission.label}
+									<Select.Item value={permission.value} label={permission.label}
 										>{permission.label}</Select.Item
 									>
 								{/each}

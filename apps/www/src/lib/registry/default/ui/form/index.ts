@@ -27,10 +27,7 @@ const SelectGroup = SelectComp.Group;
 const SelectItem = SelectComp.Item;
 const SelectSeparator = SelectComp.Separator;
 
-export type TextareaGetFormField = Omit<
-	ReturnType<typeof getFormField>,
-	"value"
-> & {
+export type TextareaGetFormField = Omit<ReturnType<typeof getFormField>, "value"> & {
 	value: Writable<string>;
 };
 

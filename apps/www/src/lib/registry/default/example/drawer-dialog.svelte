@@ -19,8 +19,7 @@
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
 				<Dialog.Description>
-					Make changes to your profile here. Click save when you're
-					done.
+					Make changes to your profile here. Click save when you're done.
 				</Dialog.Description>
 			</Dialog.Header>
 			<form class="grid items-start gap-4">
@@ -45,8 +44,7 @@
 			<Drawer.Header class="text-left">
 				<Drawer.Title>Edit profile</Drawer.Title>
 				<Drawer.Description>
-					Make changes to your profile here. Click save when you're
-					done.
+					Make changes to your profile here. Click save when you're done.
 				</Drawer.Description>
 			</Drawer.Header>
 			<form class="grid items-start gap-4 px-4">
@@ -62,9 +60,7 @@
 			</form>
 			<Drawer.Footer class="pt-2">
 				<Drawer.Close asChild let:builder>
-					<Button variant="outline" builders={[builder]}
-						>Cancel</Button
-					>
+					<Button variant="outline" builders={[builder]}>Cancel</Button>
 				</Drawer.Close>
 			</Drawer.Footer>
 		</Drawer.Content>

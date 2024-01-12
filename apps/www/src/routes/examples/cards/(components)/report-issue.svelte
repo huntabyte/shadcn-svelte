@@ -52,9 +52,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Report an issue</Card.Title>
-		<Card.Description
-			>What area are you having problems with?</Card.Description
-		>
+		<Card.Description>What area are you having problems with?</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
@@ -76,10 +74,7 @@
 			<div class="grid gap-2">
 				<Label for="security-level">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger
-						id="security-level"
-						class="line-clamp-1 w-[160px] truncate"
-					>
+					<Select.Trigger id="security-level" class="line-clamp-1 w-[160px] truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>

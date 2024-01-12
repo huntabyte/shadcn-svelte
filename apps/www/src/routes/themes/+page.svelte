@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		ThemeCustomizer,
-		ThemeWrapper,
-		Announcement
-	} from "@/components/docs";
+	import { ThemeCustomizer, ThemeWrapper, Announcement } from "@/components/docs";
 	import * as PageHeader from "@/components/docs/page-header";
 	import { CardsNewYork } from "@/registry/new-york/example/cards";
 	import { CardsDefault } from "@/registry/default/example/cards";
@@ -33,15 +29,11 @@
 			<PageHeader.Heading class="hidden md:block">
 				Add colors. Make it yours.
 			</PageHeader.Heading>
-			<PageHeader.Heading class="md:hidden">
-				Make it yours.
-			</PageHeader.Heading>
+			<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
 			<PageHeader.Description balanced={false}>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
-			<div
-				class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10"
-			>
+			<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
 				<ThemeCustomizer />
 			</div>
 		</PageHeader.Root>

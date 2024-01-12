@@ -12,8 +12,7 @@
 
 	let value = "";
 
-	$: selectedValue =
-		presets.find((f) => f.name === value)?.name ?? "Load a preset...";
+	$: selectedValue = presets.find((f) => f.name === value)?.name ?? "Load a preset...";
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -58,9 +57,7 @@
 							<Check
 								class={cn(
 									"ml-auto h-4 w-4",
-									value === preset.name
-										? "opacity-100"
-										: "opacity-0"
+									value === preset.name ? "opacity-100" : "opacity-0"
 								)}
 							/>
 						</Command.Item>

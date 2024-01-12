@@ -55,9 +55,7 @@
 	<Separator />
 	<Tabs.Root value="complete" class="flex-1">
 		<div class="container h-full py-6">
-			<div
-				class="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]"
-			>
+			<div class="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
 				<div class="hidden flex-col space-y-4 sm:flex md:order-2">
 					<div class="grid gap-2">
 						<HoverCard.Root openDelay={200}>
@@ -70,15 +68,10 @@
 									Mode
 								</span>
 							</HoverCard.Trigger>
-							<HoverCard.Content
-								class="w-[320px] text-sm"
-								side="left"
-							>
-								Choose the interface that best suits your task.
-								You can provide: a simple prompt to complete,
-								starting and ending text to insert a completion
-								within, or some text with instructions to edit
-								it.
+							<HoverCard.Content class="w-[320px] text-sm" side="left">
+								Choose the interface that best suits your task. You can provide: a
+								simple prompt to complete, starting and ending text to insert a
+								completion within, or some text with instructions to edit it.
 							</HoverCard.Content>
 						</HoverCard.Root>
 						<Tabs.List class="grid grid-cols-3">
@@ -298,9 +291,7 @@
 										/>
 									</div>
 									<div class="flex flex-col space-y-2">
-										<Label for="instructions"
-											>Instructions</Label
-										>
+										<Label for="instructions">Instructions</Label>
 										<Textarea
 											id="instructions"
 											placeholder="Fix the grammar."

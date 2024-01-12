@@ -9,10 +9,7 @@
 </script>
 
 <RangeCalendarPrimitive.Header
-	class={cn(
-		"flex justify-between pt-1 relative items-center w-full",
-		className
-	)}
+	class={cn("flex justify-between pt-1 relative items-center w-full", className)}
 	{...$$restProps}
 >
 	<slot />

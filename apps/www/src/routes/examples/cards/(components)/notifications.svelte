@@ -6,9 +6,7 @@
 <Card.Root>
 	<Card.Header class="pb-3">
 		<Card.Title>Notifications</Card.Title>
-		<Card.Description>
-			Choose what you want to be notified about.
-		</Card.Description>
+		<Card.Description>Choose what you want to be notified about.</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-1">
 		<div
@@ -17,9 +15,7 @@
 			<Bell class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Everything</p>
-				<p class="text-sm text-muted-foreground">
-					Email digest, mentions & all activity.
-				</p>
+				<p class="text-sm text-muted-foreground">Email digest, mentions & all activity.</p>
 			</div>
 		</div>
 		<div
@@ -28,9 +24,7 @@
 			<Person class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
-				<p class="text-sm text-muted-foreground">
-					Only mentions and comments.
-				</p>
+				<p class="text-sm text-muted-foreground">Only mentions and comments.</p>
 			</div>
 		</div>
 		<div
@@ -39,9 +33,7 @@
 			<EyeNone class="mt-px h-5 w-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
-				<p class="text-sm text-muted-foreground">
-					Turn off all notifications.
-				</p>
+				<p class="text-sm text-muted-foreground">Turn off all notifications.</p>
 			</div>
 		</div>
 	</Card.Content>

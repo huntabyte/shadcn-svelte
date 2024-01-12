@@ -2,10 +2,7 @@
 	import { getFormField } from "formsnap";
 	import type { HTMLTextareaAttributes } from "svelte/elements";
 	import type { TextareaGetFormField } from ".";
-	import {
-		Textarea,
-		type TextareaEvents
-	} from "@/registry/default/ui/textarea";
+	import { Textarea, type TextareaEvents } from "@/registry/default/ui/textarea";
 
 	type $$Props = HTMLTextareaAttributes;
 	type $$Events = TextareaEvents;

@@ -9,11 +9,7 @@ import type { FieldAttrs, Form, FormFieldContext, FormStores } from "./types";
 import { formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
 
-import type {
-	FormPathLeaves,
-	UnwrapEffects,
-	ZodValidation
-} from "sveltekit-superforms";
+import type { FormPathLeaves, UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 
 export const FORM_CONTROL_CONTEXT = "FormFieldControl";
 export const FORM_FIELD_CONTEXT = "FormField";

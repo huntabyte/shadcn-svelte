@@ -13,9 +13,7 @@
 			return { items: [] };
 		}
 
-		const headings: HTMLHeadingElement[] = Array.from(
-			div.querySelectorAll("h2, h3")
-		);
+		const headings: HTMLHeadingElement[] = Array.from(div.querySelectorAll("h2, h3"));
 		const hierarchy: TableOfContents = { items: [] };
 		let currentLevel: TableOfContentsItem | undefined = undefined;
 

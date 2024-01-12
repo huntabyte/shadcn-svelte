@@ -52,9 +52,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Report an issue</Card.Title>
-		<Card.Description
-			>What area are you having problems with?</Card.Description
-		>
+		<Card.Description>What area are you having problems with?</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">

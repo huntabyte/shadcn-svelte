@@ -7,12 +7,7 @@
 	export { className as class };
 </script>
 
-<nav
-	class={cn(
-		"flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1",
-		className
-	)}
->
+<nav class={cn("flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1", className)}>
 	{#each items as item}
 		<Button
 			href={item.href}

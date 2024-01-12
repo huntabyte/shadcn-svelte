@@ -20,8 +20,6 @@
 		<DropdownMenu.CheckboxItem bind:checked={showActivityBar} disabled>
 			Activity Bar
 		</DropdownMenu.CheckboxItem>
-		<DropdownMenu.CheckboxItem bind:checked={showPanel}>
-			Panel
-		</DropdownMenu.CheckboxItem>
+		<DropdownMenu.CheckboxItem bind:checked={showPanel}>Panel</DropdownMenu.CheckboxItem>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

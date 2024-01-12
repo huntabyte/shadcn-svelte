@@ -7,11 +7,12 @@
 		placeholder?: string;
 	};
 	type $$Events = SelectPrimitive.TriggerEvents;
-	const { attrStore } = getFormField();
+	const { attrStore, value } = getFormField();
 	export let placeholder = "";
 </script>
 
 <Select.Trigger {...$$restProps} {...$attrStore} on:click on:keydown>
-	<Select.Value {placeholder} />
-	<slot />
+	<slot value={$value}>
+		<Select.Value {placeholder} />
+	</slot>
 </Select.Trigger>
