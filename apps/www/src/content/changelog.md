@@ -7,6 +7,16 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## January 2024 - Part 2
+
+We've added a new component to the project, [Carousel](/docs/components/carousel).
+
+<ComponentPreview name="carousel-demo">
+
+<div />
+
+</ComponentPreview>
+
 ## January 2024
 
 We've added three new components to the project, [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).

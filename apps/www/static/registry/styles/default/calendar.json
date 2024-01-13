@@ -30,15 +30,15 @@
     },
     {
       "name": "calendar-grid.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.GridProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Grid\n\tclass={cn(\"w-full border-collapse space-y-1\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.Grid>\n"
+      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.GridProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Grid class={cn(\"w-full border-collapse space-y-1\", className)} {...$$restProps}>\n\t<slot />\n</CalendarPrimitive.Grid>\n"
     },
     {
       "name": "calendar-head-cell.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.HeadCellProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.HeadCell\n\tclass={cn(\n\t\t\"text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.HeadCell>\n"
+      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.HeadCellProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.HeadCell\n\tclass={cn(\"text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.HeadCell>\n"
     },
     {
       "name": "calendar-header.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.HeaderProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Header\n\tclass={cn(\n\t\t\"flex justify-between pt-1 relative items-center w-full\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.Header>\n"
+      "content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CalendarPrimitive.HeaderProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Header\n\tclass={cn(\"flex justify-between pt-1 relative items-center w-full\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.Header>\n"
     },
     {
       "name": "calendar-heading.svelte",
@@ -46,7 +46,7 @@
     },
     {
       "name": "calendar-months.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\n\t\t\"flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 mt-4\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div\n\tclass={cn(\"flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 mt-4\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
     },
     {
       "name": "calendar-next-button.svelte",

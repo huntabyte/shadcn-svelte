@@ -14,7 +14,7 @@
     },
     {
       "name": "command-empty.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CommandPrimitive.EmptyProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CommandPrimitive.Empty\n\tclass={cn(\"py-6 text-center text-sm\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CommandPrimitive.Empty>\n"
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CommandPrimitive.EmptyProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CommandPrimitive.Empty class={cn(\"py-6 text-center text-sm\", className)} {...$$restProps}>\n\t<slot />\n</CommandPrimitive.Empty>\n"
     },
     {
       "name": "command-group.svelte",
@@ -34,11 +34,11 @@
     },
     {
       "name": "command-separator.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CommandPrimitive.SeparatorProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CommandPrimitive.Separator\n\tclass={cn(\"-mx-1 h-px bg-border\", className)}\n\t{...$$restProps}\n/>\n"
+      "content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = CommandPrimitive.SeparatorProps;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<CommandPrimitive.Separator class={cn(\"-mx-1 h-px bg-border\", className)} {...$$restProps} />\n"
     },
     {
       "name": "command-shortcut.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\n\t\t\"ml-auto text-xs tracking-widest text-muted-foreground\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\"ml-auto text-xs tracking-widest text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
     },
     {
       "name": "command.svelte",

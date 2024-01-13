@@ -11,7 +11,7 @@
     },
     {
       "name": "accordion-item.svelte",
-      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AccordionPrimitive.ItemProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Item\n\t{value}\n\tclass={cn(\"border-b\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AccordionPrimitive.Item>\n"
+      "content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = AccordionPrimitive.ItemProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let value: $$Props[\"value\"];\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Item {value} class={cn(\"border-b\", className)} {...$$restProps}>\n\t<slot />\n</AccordionPrimitive.Item>\n"
     },
     {
       "name": "accordion-trigger.svelte",
