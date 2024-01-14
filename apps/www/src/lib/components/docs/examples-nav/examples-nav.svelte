@@ -2,10 +2,17 @@
 	import { page } from "$app/stores";
 	import { examples } from "$lib/config/docs";
 	import { cn } from "$lib/utils";
+	import { cubicInOut } from "svelte/easing";
+	import { crossfade } from "svelte/transition";
 	import ExampleCodeLink from "./example-code-link.svelte";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+
+	const [send, receive] = crossfade({
+		duration: 250,
+		easing: cubicInOut
+	});
 </script>
 
 <div class="relative">
@@ -16,25 +23,35 @@
 			{...$$restProps}
 		>
 			{#each examples as example, index (index)}
+				{@const isActive =
+					$page.url.pathname.startsWith(example.href) ||
+					($page.url.pathname === "/" && index === 0)}
+
 				<a
 					href={example.href}
 					data-sveltekit-noscroll
 					class={cn(
-						"flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
-						$page.url.pathname.startsWith(example.href) ||
-							($page.url.pathname === "/" && index === 0)
-							? "bg-muted font-medium text-primary"
-							: "text-muted-foreground"
+						"relative flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
+						isActive ? "font-medium text-primary" : "text-muted-foreground"
 					)}
 				>
-					{example.name}{" "}
-					{#if example.label}
-						<span
-							class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs font-medium leading-none text-[#000000] no-underline group-hover:no-underline"
-						>
-							{example.label}
-						</span>
+					{#if isActive}
+						<div
+							class="absolute inset-0 rounded-full bg-muted"
+							in:send={{ key: "activetab" }}
+							out:receive={{ key: "activetab" }}
+						/>
 					{/if}
+					<div class="relative">
+						{example.name}{" "}
+						{#if example.label}
+							<span
+								class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs font-medium leading-none text-[#000000] no-underline group-hover:no-underline"
+							>
+								{example.label}
+							</span>
+						{/if}
+					</div>
 				</a>
 			{/each}
 		</div>
