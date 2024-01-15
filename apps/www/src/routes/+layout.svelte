@@ -22,7 +22,7 @@
 	<DefaultSonner />
 {/if}
 
-<div class="relative flex min-h-screen flex-col bg-background" id="page">
+<div class="relative flex min-h-screen flex-col bg-background" id="page" data-vaul-drawer-wrapper>
 	<SiteHeader />
 	<div class="flex-1">
 		<slot />
