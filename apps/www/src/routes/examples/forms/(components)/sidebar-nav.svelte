@@ -18,6 +18,7 @@
 					: "hover:bg-transparent hover:underline",
 				"justify-start"
 			)}
+			data-sveltekit-noscroll
 		>
 			{item.title}
 		</Button>
