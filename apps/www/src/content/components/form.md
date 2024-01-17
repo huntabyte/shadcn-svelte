@@ -4,7 +4,7 @@ description: Building forms with Formsnap, Superforms, & Zod.
 ---
 
 <script>
-	import { Steps, ComponentPreview, FormPreview } from '@/components/docs';
+ import { Steps, ComponentPreview, FormPreview } from '@/components/docs';
 </script>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
@@ -178,6 +178,13 @@ That's it. You now have a fully accessible form that is type-safe and has client
 <FormPreview />
 
 </Steps>
+
+## Options
+
+You can handle the form submission in a few different ways using the `options` from `formsnap`.
+See [the documentation](https://formsnap.dev/docs/options) for more information.
+
+Click the above Submit button to see the different options in action.
 
 ## Examples
 
