@@ -14,14 +14,14 @@ import type { AnyZodObject } from "zod";
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: superValidate(formSchema),
-		checkboxSingle: superValidate(checkboxSingleSchema),
-		radioGroup: superValidate(radioGroupSchema),
-		select: superValidate(selectSchema),
-		switch: superValidate(switchSchema),
-		textarea: superValidate(textareaSchema),
-		combobox: superValidate(comboboxFormSchema),
-		datePicker: superValidate(datePickerFormSchema)
+		form: await superValidate(formSchema),
+		checkboxSingle: await superValidate(checkboxSingleSchema),
+		radioGroup: await superValidate(radioGroupSchema),
+		select: await superValidate(selectSchema),
+		switch: await superValidate(switchSchema),
+		textarea: await superValidate(textareaSchema),
+		combobox: await superValidate(comboboxFormSchema),
+		datePicker: await superValidate(datePickerFormSchema)
 	};
 };
 
