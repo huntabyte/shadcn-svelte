@@ -1,5 +1,4 @@
 <script lang="ts">
-	import emblaCarouselSvelte from "embla-carousel-svelte";
 	import { setEmblaContex, type CarouselProps, type CarouselAPI } from "./context.js";
 	import { cn } from "$lib/utils.js";
 	import { writable } from "svelte/store";
@@ -35,6 +34,12 @@
 		canScrollNext.set(api.canScrollNext());
 	}
 
+	$: if (api) {
+		onSelect(api);
+		api.on("select", onSelect);
+		api.on("reInit", onSelect);
+	}
+
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === "ArrowLeft") {
 			e.preventDefault();
@@ -45,11 +50,8 @@
 		}
 	}
 
-	$: if (api) {
-		onSelect(api);
-		api.on("select", onSelect);
-		api.on("reInit", onSelect);
-	}
+	const optionsStore = writable(opts);
+	const pluginStore = writable(plugins);
 
 	setEmblaContex({
 		api: apiStore,
@@ -58,7 +60,10 @@
 		orientation: orientationStore,
 		canScrollNext,
 		canScrollPrev,
-		handleKeyDown
+		handleKeyDown,
+		options: optionsStore,
+		plugins: pluginStore,
+		onInit
 	});
 
 	function onInit(event: CustomEvent<CarouselAPI>) {
@@ -71,19 +76,8 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class={cn("relative", className)}
-	use:emblaCarouselSvelte={{
-		options: {
-			container: "[data-embla-container]",
-			slides: "[data-embla-slide]",
-			...opts,
-			axis: $orientationStore === "horizontal" ? "x" : "y"
-		},
-		plugins
-	}}
-	on:emblaInit={onInit}
 	on:mouseenter
 	on:mouseleave
 	role="region"

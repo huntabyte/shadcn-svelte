@@ -34,6 +34,9 @@ type EmblaContext = {
 	canScrollNext: Readable<boolean>;
 	canScrollPrev: Readable<boolean>;
 	handleKeyDown: (e: KeyboardEvent) => void;
+	options: Writable<CarouselOptions>;
+	plugins: Writable<CarouselPlugins>;
+	onInit: (e: CustomEvent<CarouselAPI>) => void;
 };
 
 export function setEmblaContex(config: EmblaContext): EmblaContext {
