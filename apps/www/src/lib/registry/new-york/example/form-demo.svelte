@@ -10,13 +10,26 @@
 <script lang="ts">
 	import * as Form from "@/registry/new-york/ui/form";
 	import type { SuperValidated } from "sveltekit-superforms";
+	import type { FormOptions } from "formsnap";
+	import { toast } from "svelte-sonner";
 
 	export let form: SuperValidated<FormSchema>;
+	const options: FormOptions<FormSchema> = {
+		onSubmit() {
+			toast.info("Submitting...");
+		},
+		onResult({ result }) {
+			console.log(result);
+			if (result.status === 200) toast.success("Success!");
+			if (result.status === 400) toast.error("Error!");
+		}
+	};
 </script>
 
 <Form.Root
 	schema={formSchema}
 	{form}
+	{options}
 	let:config
 	method="POST"
 	action="?/username"
