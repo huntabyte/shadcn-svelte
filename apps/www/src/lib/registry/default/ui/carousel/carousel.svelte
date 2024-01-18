@@ -18,8 +18,12 @@
 	const orientationStore = writable(orientation);
 	const canScrollPrev = writable(false);
 	const canScrollNext = writable(false);
+	const optionsStore = writable(opts);
+	const pluginStore = writable(plugins);
 
 	$: orientationStore.set(orientation);
+	$: pluginStore.set(plugins);
+	$: optionsStore.set(opts);
 
 	function scrollPrev() {
 		api?.scrollPrev();
@@ -49,9 +53,6 @@
 			scrollNext();
 		}
 	}
-
-	const optionsStore = writable(opts);
-	const pluginStore = writable(plugins);
 
 	setEmblaContex({
 		api: apiStore,
