@@ -133,6 +133,17 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 ---
 
+### Sizes
+
+
+<ComponentPreview name="button-sizes">
+
+<div />
+
+</ComponentPreview>
+
+---
+
 ### With Icon
 
 <ComponentPreview name="button-with-icon">
