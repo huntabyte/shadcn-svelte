@@ -24,10 +24,18 @@ export const mdsvexOptions = {
 		backticks: false,
 		dashes: false
 	},
-	remarkPlugins: [remarkGfm, codeImport],
+	remarkPlugins: [
+		// Github Flavored Markdown style
+		remarkGfm,
+		// Import code from other files and render them into code blocks
+		codeImport
+	],
 	rehypePlugins: [
+		// Add IDs to headings
 		rehypeSlug,
+		// Get component's source code from the 'name' attribute and render it
 		rehypeComponentExample,
+		// Parse code blocks and add metadata to them
 		() => (tree) => {
 			visit(tree, (node) => {
 				if (node?.type === "element" && node?.tagName === "pre") {
@@ -52,8 +60,10 @@ export const mdsvexOptions = {
 				}
 			});
 		},
+		// Replace `Component.pre` tags with `pre` tags.
 		rehypeComponentPreToPre,
 		[
+			// Prettify code blocks
 			rehypePrettyCode,
 			{
 				theme: JSON.parse(
@@ -72,8 +82,11 @@ export const mdsvexOptions = {
 				}
 			}
 		],
+		// Add metadata tags to code blocks
 		rehypeHandleMetadata,
+		// Render code into Components.pre or pre tags
 		rehypeRenderCode,
+		// Replace back `pre` tags with `Component.pre` tags
 		rehypePreToComponentPre
 	]
 };
@@ -144,6 +157,7 @@ export function rehypeComponentExample() {
 		});
 	};
 }
+
 function rehypeHandleMetadata() {
 	return async (tree) => {
 		visit(tree, (node) => {
@@ -181,13 +195,10 @@ function rehypeComponentPreToPre() {
 			if (node?.type === "element" && node?.tagName === "Components.pre") {
 				node.tagName = "pre";
 			}
-
-			if (node?.type === "element" && node?.tagName === "pre") {
-				//
-			}
 		});
 	};
 }
+
 function rehypePreToComponentPre() {
 	return async (tree) => {
 		visit(tree, (node) => {
