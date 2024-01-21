@@ -22,22 +22,18 @@
 			commands = {
 				npm: value,
 				yarn: value.replace("npm install", "yarn add"),
-				pnpm: value.replace("npm install", "pnpm add"),
-				bun: value.replace("npm install", "bun add")
+				pnpm: value.replace(/^npm/, "pnpm"),
+				bun: value.replace(/^npm/, "bun")
 			};
 		}
 
-		// npx create
-		else if (value.startsWith("npx create")) {
+		// npm create
+		else if (value.startsWith("npm create")) {
 			commands = {
 				npm: value,
-				yarn: value
-					.replace("npx create-", "yarn create ")
-					.replace("npx create", "yarn create"),
-				pnpm: value
-					.replace("npx create-", "pnpm create ")
-					.replace("npx create", "pnpm create"),
-				bun: value.replace("npx create-", "bunx --bun ").replace("npx create", "bunx --bun")
+				yarn: value.replace(/^npm/, "yarn"),
+				pnpm: value.replace(/^npm/, "pnpm"),
+				bun: value.replace(/^npm/, "bun --bun")
 			};
 		}
 
@@ -45,9 +41,9 @@
 		else if (value.startsWith("npx")) {
 			commands = {
 				npm: value,
-				yarn: value.replace("npx", "yarn dlx"),
-				pnpm: value.replace("npx", "pnpm dlx"),
-				bun: value.replace("npx", "bunx --bun")
+				yarn: value.replace(/^npx/, "yarn dlx"),
+				pnpm: value.replace(/^npx/, "pnpx"),
+				bun: value.replace(/^npx/, "bunx --bun")
 			};
 		}
 	}
