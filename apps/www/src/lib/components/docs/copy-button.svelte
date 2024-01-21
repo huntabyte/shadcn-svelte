@@ -28,12 +28,16 @@
 		}
 
 		// npx create
-		else if (value.startsWith("npx create-")) {
+		else if (value.startsWith("npx create")) {
 			commands = {
 				npm: value,
-				yarn: value.replace("npx create-", "yarn create "),
-				pnpm: value.replace("npx create-", "pnpm create "),
-				bun: value.replace("npx create-", "bunx --bun")
+				yarn: value
+					.replace("npx create-", "yarn create ")
+					.replace("npx create", "yarn create"),
+				pnpm: value
+					.replace("npx create-", "pnpm create ")
+					.replace("npx create", "pnpm create"),
+				bun: value.replace("npx create-", "bunx --bun ").replace("npx create", "bunx --bun")
 			};
 		}
 
