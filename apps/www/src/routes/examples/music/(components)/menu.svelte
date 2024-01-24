@@ -175,7 +175,7 @@
 				</Menubar.RadioGroup>
 			</Menubar.Group>
 			<Menubar.Separator />
-			<Menubar.Item inset>Manage Famliy...</Menubar.Item>
+			<Menubar.Item inset>Manage Family...</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Item inset>Add Account...</Menubar.Item>
 		</Menubar.Content>
