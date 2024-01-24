@@ -1,11 +1,11 @@
-name: "🐛 Bug report"
+name: "Bug report"
 description: Report an issue with shadcn-svelte
 labels: ["type: bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thanks for taking the time to fill out this bug report! Ensure to check existing issues before submitting a new one, and if you have a question, please ask it in our [Discord](https://hbyt.us/discord) or [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions) instead of filing an issue.
   - type: textarea
     id: bug-description
     attributes:
