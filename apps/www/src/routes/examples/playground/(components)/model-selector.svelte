@@ -106,7 +106,7 @@
 											}}
 										>
 											<Command.Item
-												value={model.name}
+												value={model.id}
 												class="aria-selected:bg-primary aria-selected:text-primary-foreground"
 												onSelect={(currentValue) => {
 													value = currentValue;
