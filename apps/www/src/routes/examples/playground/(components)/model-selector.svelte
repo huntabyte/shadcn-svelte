@@ -106,10 +106,10 @@
 											}}
 										>
 											<Command.Item
-												value={model.id}
+												value={model.name}
 												class="aria-selected:bg-primary aria-selected:text-primary-foreground"
-												onSelect={(currentValue) => {
-													value = currentValue;
+												onSelect={() => {
+													value = model.id;
 													closeAndFocusTrigger(ids.trigger);
 												}}
 											>
