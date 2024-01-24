@@ -1,7 +1,7 @@
 # Borrowed from https://github.com/skeletonlabs/skeleton
 
 name: 🛠️ Request New Feature
-description: Let us know what you would like to see added.
+description: Let us know what you would like to see added. If the feature is not in the original shadcn/ui, it will not be considered here.
 labels: ["type: feature"]
 body:
   - type: textarea
