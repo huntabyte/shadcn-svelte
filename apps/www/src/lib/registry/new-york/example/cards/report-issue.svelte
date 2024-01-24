@@ -58,8 +58,8 @@
 			<div class="grid gap-2">
 				<Label for="area">Area</Label>
 				<Select.Root selected={areas[1]}>
-					<Select.Trigger>
-						<Select.Value placeholder="Select" id="area" />
+					<Select.Trigger id="area">
+						<Select.Value placeholder="Select" />
 					</Select.Trigger>
 					<Select.Content>
 						{#each areas as area}
@@ -73,8 +73,8 @@
 			<div class="grid gap-2">
 				<Label for="security-level">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger>
-						<Select.Value placeholder="Select level" id="area" />
+					<Select.Trigger id="security-level">
+						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
 						{#each securityLevels as level}
