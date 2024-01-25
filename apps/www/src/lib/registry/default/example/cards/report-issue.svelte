@@ -5,6 +5,7 @@
 	import { Input } from "@/registry/default/ui/input";
 	import { Label } from "@/registry/default/ui/label";
 	import { Textarea } from "@/registry/default/ui/textarea";
+	import { nanoid } from "nanoid";
 
 	const areas = [
 		{
@@ -47,6 +48,8 @@
 			label: "Severity 4 (Lowest)"
 		}
 	];
+
+	const id = nanoid(5);
 </script>
 
 <Card.Root>
@@ -57,9 +60,9 @@
 	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-2">
-				<Label for="area">Area</Label>
+				<Label for="aria-{id}">Area</Label>
 				<Select.Root selected={areas[1]}>
-					<Select.Trigger id="area">
+					<Select.Trigger id="aria-{id}">
 						<Select.Value placeholder="Select" />
 					</Select.Trigger>
 					<Select.Content>
@@ -72,9 +75,9 @@
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="security-level">Security Level</Label>
+				<Label for="security-level-{id}">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level">
+					<Select.Trigger id="security-level-{id}">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
