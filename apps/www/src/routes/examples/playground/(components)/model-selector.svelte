@@ -1,25 +1,20 @@
 <script lang="ts">
-	import { cn } from "@/utils";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 	import { Label } from "@/registry/new-york/ui/label";
 	import type { ModelType, Model } from "../(data)/models";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Command from "@/registry/new-york/ui/command";
-	import { Check, CaretSort } from "radix-icons-svelte";
+	import { CaretSort } from "radix-icons-svelte";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import { tick } from "svelte";
+	import ModelItem from "./model-item.svelte";
 
 	export let types: ModelType[];
 	export let models: Model[];
 
 	let selectedModel = models[0];
-	let peekedModel = models[0];
+	let peekedModel: Model | undefined = undefined;
 	let open = false;
-
-	function handlePeek(model: Model) {
-		if (peekedModel.id === model.id) return;
-		peekedModel = model;
-	}
 
 	let value = "";
 
@@ -33,6 +28,33 @@
 		tick().then(() => {
 			document.getElementById(triggerId)?.focus();
 		});
+	}
+
+	function onPopoverOpenChange(open: boolean) {
+		if (open) {
+			peekedModel = selectedModel;
+		} else {
+			peekedModel = undefined;
+		}
+	}
+
+	$: hoverCardIsOpen = open && peekedModel !== undefined;
+
+	function handlePeek(model: Model) {
+		console.log("current model", peekedModel?.name);
+		console.log("incoming model", model.name);
+		console.log("popover open", open);
+		console.log("hovercard open ", hoverCardIsOpen);
+		if (peekedModel === undefined) {
+			if (!open) return;
+			peekedModel = model;
+			return;
+		}
+		peekedModel = model;
+	}
+
+	function onPopoverOutsideClick() {
+		peekedModel = undefined;
 	}
 </script>
 
@@ -49,7 +71,12 @@
 		</HoverCard.Content>
 	</HoverCard.Root>
 
-	<Popover.Root bind:open let:ids>
+	<Popover.Root
+		bind:open
+		let:ids
+		onOutsideClick={onPopoverOutsideClick}
+		onOpenChange={onPopoverOpenChange}
+	>
 		<Popover.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
@@ -65,26 +92,29 @@
 		<Popover.Content class="w-[250px] p-0">
 			<HoverCard.Root
 				closeOnOutsideClick={false}
-				open={peekedModel.id !== selectedModel.id}
+				open={hoverCardIsOpen}
 				openDelay={0}
+				portal={null}
 			>
 				<HoverCard.Content class="min-h-[280px] -ml-2" side="left" align="start">
-					<div class="grid gap-2">
-						<h4 class="font-medium leading-none">
-							{peekedModel.name}
-						</h4>
-						<div class="text-sm text-muted-foreground">
-							{peekedModel.description}
-						</div>
-						{#if peekedModel.strengths}
-							<div class="mt-4 grid gap-2">
-								<h5 class="text-sm font-medium leading-none">Strengths</h5>
-								<ul class="text-sm text-muted-foreground">
-									{peekedModel.strengths}
-								</ul>
+					{#if peekedModel && hoverCardIsOpen}
+						<div class="grid gap-2">
+							<h4 class="font-medium leading-none">
+								{peekedModel.name}
+							</h4>
+							<div class="text-sm text-muted-foreground">
+								{peekedModel.description}
 							</div>
-						{/if}
-					</div>
+							{#if peekedModel.strengths}
+								<div class="mt-4 grid gap-2">
+									<h5 class="text-sm font-medium leading-none">Strengths</h5>
+									<ul class="text-sm text-muted-foreground">
+										{peekedModel.strengths}
+									</ul>
+								</div>
+							{/if}
+						</div>
+					{/if}
 				</HoverCard.Content>
 				<Command.Root loop>
 					<Command.Input placeholder="Search Models...." />
@@ -98,31 +128,19 @@
 											use:builder.action
 											{...builder}
 											role="button"
-											on:mouseover={() => {
-												handlePeek(model);
-											}}
-											on:focus={() => {
-												handlePeek(model);
-											}}
+											tabindex={0}
 										>
-											<Command.Item
-												value={model.name}
-												class="aria-selected:bg-primary aria-selected:text-primary-foreground"
+											<ModelItem
+												{model}
 												onSelect={() => {
 													value = model.id;
 													closeAndFocusTrigger(ids.trigger);
 												}}
-											>
-												{model.name}
-												<Check
-													class={cn(
-														"ml-auto h-4 w-4",
-														value === model.id
-															? "opacity-100"
-															: "opacity-0"
-													)}
-												/>
-											</Command.Item>
+												onPeek={() => {
+													handlePeek(model);
+												}}
+												isSelected={value === model.id}
+											/>
 										</div>
 									</HoverCard.Trigger>
 								{/each}
