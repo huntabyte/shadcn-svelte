@@ -47,7 +47,7 @@
 	<Card.Content>
 		<div class="flex space-x-2">
 			<Input value="http://example.com/link/to/document" readonly />
-			<Button variant="secondary" class="shrink-0">Copy Link</Button>
+			<Button class="shrink-0">Copy Link</Button>
 		</div>
 		<Separator class="my-4" />
 		<div class="space-y-4">
