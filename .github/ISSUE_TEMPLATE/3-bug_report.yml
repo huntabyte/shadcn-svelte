@@ -1,11 +1,17 @@
-name: "🐛 Bug report"
+name: "Bug report"
 description: Report an issue with shadcn-svelte
 labels: ["type: bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        ### Thanks for taking the time to create an issue! Please search open/closed issues before submitting, as the issue may have already been reported/addressed.
+  - type: markdown
+    attributes:
+      value: |
+        #### If you aren't sure if something is a bug or not, please do not create an issue, instead ask in one of the following channels:
+        - [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions/new?category=help)
+        - [Discord](https://hbyt.us/discord)
   - type: textarea
     id: bug-description
     attributes:
@@ -18,7 +24,11 @@ body:
     id: reproduction
     attributes:
       label: Reproduction
-      description: Please provide a link to a repo or Stackblitz that can reproduce the problem you ran into (https://shadcn-svelte.com/repro). If a report is vague (e.g. just a generic error message) and has no reproduction, it will receive a "need reproduction" label. If no reproduction is provided within a reasonable time-frame, the issue will be closed.
+      description: |
+        Provide a minimal reproduction of the problem. Include a StackBlitz or link to a GitHub repository that we can easily run to recreate the issue. If a report is vague and does not have a reproduction, it will be closed without warning. 
+
+        To get started, you can use the following StackBlitz template:
+        https://shadcn-svelte.com/repro
       placeholder: Reproduction
     validations:
       required: true
@@ -32,7 +42,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap --binaries --browsers`
+      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap,cmdk-sv --binaries --browsers`
       render: bash
       placeholder: System, Binaries, Browsers
     validations:

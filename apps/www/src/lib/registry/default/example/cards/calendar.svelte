@@ -11,7 +11,7 @@
 	};
 </script>
 
-<Card.Root class="max-w-[260px] ">
+<Card.Root class="max-w-[280px] ">
 	<Card.Content class="p-0">
 		<RangeCalendar bind:value />
 	</Card.Content>
