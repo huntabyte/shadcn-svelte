@@ -34,7 +34,8 @@ describe("getRawConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components"
-			}
+			},
+			typescript: true
 		});
 	});
 
@@ -88,7 +89,8 @@ describe("getConfig", () => {
 					"../fixtures/config-partial",
 					"./src/lib/utils"
 				)
-			}
+			},
+			typescript: true
 		});
 	});
 
@@ -125,7 +127,8 @@ describe("getConfig", () => {
 					"../fixtures/config-full",
 					"./src/lib/utils"
 				)
-			}
+			},
+			typescript: true
 		});
 	});
 
@@ -162,7 +165,8 @@ describe("getConfig", () => {
 					"../fixtures/config-vite",
 					"./src/lib/utils"
 				)
-			}
+			},
+			typescript: true
 		});
 	});
 
@@ -199,7 +203,8 @@ describe("getConfig", () => {
 					"../fixtures/config-jsconfig",
 					"./src/lib/utils"
 				)
-			}
+			},
+			typescript: false
 		});
 	});
 });
