@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./switch.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Switch\n};\n"
+      "content": "import Root from \"./switch.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Switch,\n};\n"
     },
     {
       "name": "switch.svelte",

@@ -2,6 +2,7 @@
 
 import { promises as fs } from "fs";
 import path from "path";
+import { RawConfig } from "./get-config.js";
 
 /**
  * find the closest tsconfig.json file
@@ -10,11 +11,19 @@ import path from "path";
  * @param {TSConfckFindOptions} options - options
  * @returns {Promise<string>} absolute path to closest tsconfig.json
  */
-export async function find(filename: string, options?: TSConfckFindOptions) {
+export async function find({
+	filename,
+	options,
+	config
+}: {
+	filename: string;
+	options?: TSConfckFindOptions;
+	config: RawConfig;
+}) {
 	let dir = path.dirname(path.resolve(filename));
 	const root = options?.root ? path.resolve(options.root) : null;
 	while (dir) {
-		const tsconfig = await tsconfigInDir(dir, options);
+		const tsconfig = await tsconfigInDir({ dir, options, config });
 		if (tsconfig) {
 			return tsconfig;
 		} else {
@@ -33,37 +42,46 @@ export async function find(filename: string, options?: TSConfckFindOptions) {
 }
 
 // Modified to also search for jsconfig.json
-async function tsconfigInDir(
-	dir: string,
-	options?: TSConfckFindOptions
-): Promise<string | void> {
+async function tsconfigInDir({
+	dir,
+	options,
+	config
+}: {
+	dir: string;
+	options?: TSConfckFindOptions;
+	config: RawConfig;
+}): Promise<string | void> {
 	const tsconfig = path.join(dir, "tsconfig.json");
 	const jsconfig = path.join(dir, "jsconfig.json");
+	const defaultConfig = config.typescript ? tsconfig : jsconfig;
 
 	if (options?.tsConfigPaths) {
-		return options.tsConfigPaths.has(tsconfig) ? tsconfig : undefined;
-	}
-	try {
-		const stat = await fs.stat(tsconfig);
-		if (stat.isFile() || stat.isFIFO()) {
-			return tsconfig;
-		}
-	} catch (e: any) {
-		// ignore does not exist error
-		if (e.code !== "ENOENT") {
-			throw e;
-		}
+		return options.tsConfigPaths.has(defaultConfig) ? defaultConfig : undefined;
 	}
 
-	try {
-		let stat = await fs.stat(jsconfig);
-		if (stat.isFile() || stat.isFIFO()) {
-			return jsconfig;
+	if (config.typescript) {
+		try {
+			const stat = await fs.stat(tsconfig);
+			if (stat.isFile() || stat.isFIFO()) {
+				return tsconfig;
+			}
+		} catch (e: any) {
+			// ignore does not exist error
+			if (e.code !== "ENOENT") {
+				throw e;
+			}
 		}
-	} catch (e: any) {
-		// ignore does not exist error
-		if (e.code !== "ENOENT") {
-			throw e;
+	} else {
+		try {
+			let stat = await fs.stat(jsconfig);
+			if (stat.isFile() || stat.isFIFO()) {
+				return jsconfig;
+			}
+		} catch (e: any) {
+			// ignore does not exist error
+			if (e.code !== "ENOENT") {
+				throw e;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"useTabs": true,
 	"singleQuote": false,
-	"trailingComma": "none",
+	"trailingComma": "es5",
 	"printWidth": 100,
 	"endOfLine": "lf",
 	"plugins": ["prettier-plugin-svelte"],

@@ -144,7 +144,7 @@ const Control = FormPrimitive.Control;
 export {
   // ...rest
   Control,
-  Control as FormControl
+  Control as FormControl,
 };
 ```
 
@@ -229,10 +229,10 @@ export const flyAndScale = (
           "px, 0) scale(" +
           scale +
           ")",
-        opacity: t
+        opacity: t,
       });
     },
-    easing: cubicOut
+    easing: cubicOut,
   };
 };
 ```

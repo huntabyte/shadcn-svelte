@@ -21,7 +21,7 @@
 			activeIndex !== flattenedLinks.length - 1 ? flattenedLinks[activeIndex + 1] : null;
 		return {
 			prev,
-			next
+			next,
 		};
 	}
 

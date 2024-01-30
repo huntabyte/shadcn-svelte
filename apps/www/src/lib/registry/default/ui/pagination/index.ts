@@ -20,5 +20,5 @@ export {
 	Link as PaginationLink,
 	PrevButton as PaginationPrevButton,
 	NextButton as PaginationNextButton,
-	Ellipsis as PaginationEllipsis
+	Ellipsis as PaginationEllipsis,
 };

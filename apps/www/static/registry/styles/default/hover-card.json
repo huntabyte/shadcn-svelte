@@ -11,7 +11,7 @@
     },
     {
       "name": "index.ts",
-      "content": "import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\nimport Content from \"./hover-card-content.svelte\";\nconst Root = HoverCardPrimitive.Root;\nconst Trigger = HoverCardPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\tRoot as HoverCard,\n\tContent as HoverCardContent,\n\tTrigger as HoverCardTrigger\n};\n"
+      "content": "import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\nimport Content from \"./hover-card-content.svelte\";\nconst Root = HoverCardPrimitive.Root;\nconst Trigger = HoverCardPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\tRoot as HoverCard,\n\tContent as HoverCardContent,\n\tTrigger as HoverCardTrigger,\n};\n"
     }
   ],
   "type": "components:ui"

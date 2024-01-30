@@ -29,7 +29,7 @@
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./card.svelte\";\nimport Content from \"./card-content.svelte\";\nimport Description from \"./card-description.svelte\";\nimport Footer from \"./card-footer.svelte\";\nimport Header from \"./card-header.svelte\";\nimport Title from \"./card-title.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle\n};\n\nexport type HeadingLevel = \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\";\n"
+      "content": "import Root from \"./card.svelte\";\nimport Content from \"./card-content.svelte\";\nimport Description from \"./card-description.svelte\";\nimport Footer from \"./card-footer.svelte\";\nimport Header from \"./card-header.svelte\";\nimport Title from \"./card-title.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle,\n};\n\nexport type HeadingLevel = \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\";\n"
     }
   ],
   "type": "components:ui"

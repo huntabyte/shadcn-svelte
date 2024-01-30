@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider\n};\n"
+      "content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider,\n};\n"
     },
     {
       "name": "slider.svelte",

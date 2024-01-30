@@ -19,9 +19,9 @@
 			container: "[data-embla-container]",
 			slides: "[data-embla-slide]",
 			...$options,
-			axis: $orientation === "horizontal" ? "x" : "y"
+			axis: $orientation === "horizontal" ? "x" : "y",
 		},
-		plugins: $plugins
+		plugins: $plugins,
 	}}
 	on:emblaInit={onInit}
 >

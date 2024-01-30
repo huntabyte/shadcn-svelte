@@ -13,5 +13,5 @@ export {
 	Root as Accordion,
 	Content as AccordionContent,
 	Item as AccordionItem,
-	Trigger as AccordionTrigger
+	Trigger as AccordionTrigger,
 };

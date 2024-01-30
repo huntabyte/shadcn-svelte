@@ -14,10 +14,10 @@ const config = {
 		vitePreprocess({
 			style: {
 				css: {
-					postcss: join(__dirname, "postcss.config.cjs")
-				}
-			}
-		})
+					postcss: join(__dirname, "postcss.config.cjs"),
+				},
+			},
+		}),
 	],
 
 	extensions: [".svelte", ".md"],
@@ -30,9 +30,9 @@ const config = {
 			$primitives: "src/lib/primitives",
 			"$primitives/*": "src/lib/primitives/*",
 			"@": "src/lib",
-			"@/*": "src/lib/*"
-		}
-	}
+			"@/*": "src/lib/*",
+		},
+	},
 };
 
 export default config;

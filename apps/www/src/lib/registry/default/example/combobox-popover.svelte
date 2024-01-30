@@ -16,28 +16,28 @@
 		{
 			value: "backlog",
 			label: "Backlog",
-			icon: HelpCircle
+			icon: HelpCircle,
 		},
 		{
 			value: "todo",
 			label: "Todo",
-			icon: Circle
+			icon: Circle,
 		},
 		{
 			value: "in progress",
 			label: "In Progress",
-			icon: ArrowUpCircle
+			icon: ArrowUpCircle,
 		},
 		{
 			value: "done",
 			label: "Done",
-			icon: CheckCircle2
+			icon: CheckCircle2,
 		},
 		{
 			value: "canceled",
 			label: "Canceled",
-			icon: XCircle
-		}
+			icon: XCircle,
+		},
 	];
 
 	let open = false;

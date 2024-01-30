@@ -5,7 +5,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./skeleton.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Skeleton\n};\n"
+      "content": "import Root from \"./skeleton.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Skeleton,\n};\n"
     },
     {
       "name": "skeleton.svelte",

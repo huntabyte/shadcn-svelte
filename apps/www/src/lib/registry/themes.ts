@@ -4,7 +4,7 @@ export const themes = [
 		label: "Zinc",
 		activeColor: {
 			light: "240 5.9% 10%",
-			dark: "240 5.2% 33.9%"
+			dark: "240 5.2% 33.9%",
 		},
 		cssVars: {
 			light: {
@@ -27,7 +27,7 @@ export const themes = [
 				border: "240 5.9% 90%",
 				input: "240 5.9% 90%",
 				ring: "240 5.9% 10%",
-				radius: "0.5rem"
+				radius: "0.5rem",
 			},
 			dark: {
 				background: "240 10% 3.9%",
@@ -48,16 +48,16 @@ export const themes = [
 				"destructive-foreground": "0 0% 98%",
 				border: "240 3.7% 15.9%",
 				input: "240 3.7% 15.9%",
-				ring: "240 4.9% 83.9%"
-			}
-		}
+				ring: "240 4.9% 83.9%",
+			},
+		},
 	},
 	{
 		name: "slate",
 		label: "Slate",
 		activeColor: {
 			light: "215.4 16.3% 46.9%",
-			dark: "215.3 19.3% 34.5%"
+			dark: "215.3 19.3% 34.5%",
 		},
 		cssVars: {
 			light: {
@@ -80,7 +80,7 @@ export const themes = [
 				border: "214.3 31.8% 91.4%",
 				input: "214.3 31.8% 91.4%",
 				ring: "222.2 84% 4.9%",
-				radius: "0.5rem"
+				radius: "0.5rem",
 			},
 			dark: {
 				background: "222.2 84% 4.9%",
@@ -101,16 +101,16 @@ export const themes = [
 				"destructive-foreground": "210 40% 98%",
 				border: "217.2 32.6% 17.5%",
 				input: "217.2 32.6% 17.5%",
-				ring: "212.7 26.8% 83.9%"
-			}
-		}
+				ring: "212.7 26.8% 83.9%",
+			},
+		},
 	},
 	{
 		name: "stone",
 		label: "Stone",
 		activeColor: {
 			light: "25 5.3% 44.7%",
-			dark: "33.3 5.5% 32.4%"
+			dark: "33.3 5.5% 32.4%",
 		},
 		cssVars: {
 			light: {
@@ -133,7 +133,7 @@ export const themes = [
 				border: "20 5.9% 90%",
 				input: "20 5.9% 90%",
 				ring: "20 14.3% 4.1%",
-				radius: "0.95rem"
+				radius: "0.95rem",
 			},
 			dark: {
 				background: "20 14.3% 4.1%",
@@ -154,16 +154,16 @@ export const themes = [
 				"destructive-foreground": "60 9.1% 97.8%",
 				border: "12 6.5% 15.1%",
 				input: "12 6.5% 15.1%",
-				ring: "24 5.7% 82.9%"
-			}
-		}
+				ring: "24 5.7% 82.9%",
+			},
+		},
 	},
 	{
 		name: "gray",
 		label: "Gray",
 		activeColor: {
 			light: "220 8.9% 46.1%",
-			dark: "215 13.8% 34.1%"
+			dark: "215 13.8% 34.1%",
 		},
 		cssVars: {
 			light: {
@@ -186,7 +186,7 @@ export const themes = [
 				border: "220 13% 91%",
 				input: "220 13% 91%",
 				ring: "224 71.4% 4.1%",
-				radius: "0.35rem"
+				radius: "0.35rem",
 			},
 			dark: {
 				background: "224 71.4% 4.1%",
@@ -207,16 +207,16 @@ export const themes = [
 				"destructive-foreground": "210 20% 98%",
 				border: "215 27.9% 16.9%",
 				input: "215 27.9% 16.9%",
-				ring: "216 12.2% 83.9%"
-			}
-		}
+				ring: "216 12.2% 83.9%",
+			},
+		},
 	},
 	{
 		name: "neutral",
 		label: "Neutral",
 		activeColor: {
 			light: "0 0% 45.1%",
-			dark: "0 0% 32.2%"
+			dark: "0 0% 32.2%",
 		},
 		cssVars: {
 			light: {
@@ -238,7 +238,7 @@ export const themes = [
 				"destructive-foreground": "0 0% 98%",
 				border: "0 0% 89.8%",
 				input: "0 0% 89.8%",
-				ring: "0 0% 3.9%"
+				ring: "0 0% 3.9%",
 			},
 			dark: {
 				background: "0 0% 3.9%",
@@ -259,16 +259,16 @@ export const themes = [
 				"destructive-foreground": "0 0% 98%",
 				border: "0 0% 14.9%",
 				input: "0 0% 14.9%",
-				ring: "0 0% 83.1%"
-			}
-		}
+				ring: "0 0% 83.1%",
+			},
+		},
 	},
 	{
 		name: "red",
 		label: "Red",
 		activeColor: {
 			light: "0 72.2% 50.6%",
-			dark: "0 72.2% 50.6%"
+			dark: "0 72.2% 50.6%",
 		},
 		cssVars: {
 			light: {
@@ -291,7 +291,7 @@ export const themes = [
 				border: "0 0% 89.8%",
 				input: "0 0% 89.8%",
 				ring: "0 72.2% 50.6%",
-				radius: "0.4rem"
+				radius: "0.4rem",
 			},
 			dark: {
 				background: "0 0% 3.9%",
@@ -312,16 +312,16 @@ export const themes = [
 				"destructive-foreground": "0 0% 98%",
 				border: "0 0% 14.9%",
 				input: "0 0% 14.9%",
-				ring: "0 72.2% 50.6%"
-			}
-		}
+				ring: "0 72.2% 50.6%",
+			},
+		},
 	},
 	{
 		name: "rose",
 		label: "Rose",
 		activeColor: {
 			light: "346.8 77.2% 49.8%",
-			dark: "346.8 77.2% 49.8%"
+			dark: "346.8 77.2% 49.8%",
 		},
 		cssVars: {
 			light: {
@@ -344,7 +344,7 @@ export const themes = [
 				border: "240 5.9% 90%",
 				input: "240 5.9% 90%",
 				ring: "346.8 77.2% 49.8%",
-				radius: "0.5rem"
+				radius: "0.5rem",
 			},
 			dark: {
 				background: "20 14.3% 4.1%",
@@ -365,16 +365,16 @@ export const themes = [
 				"destructive-foreground": "0 85.7% 97.3%",
 				border: "240 3.7% 15.9%",
 				input: "240 3.7% 15.9%",
-				ring: "346.8 77.2% 49.8%"
-			}
-		}
+				ring: "346.8 77.2% 49.8%",
+			},
+		},
 	},
 	{
 		name: "orange",
 		label: "Orange",
 		activeColor: {
 			light: "24.6 95% 53.1%",
-			dark: "20.5 90.2% 48.2%"
+			dark: "20.5 90.2% 48.2%",
 		},
 		cssVars: {
 			light: {
@@ -397,7 +397,7 @@ export const themes = [
 				border: "20 5.9% 90%",
 				input: "20 5.9% 90%",
 				ring: "24.6 95% 53.1%",
-				radius: "0.95rem"
+				radius: "0.95rem",
 			},
 			dark: {
 				background: "20 14.3% 4.1%",
@@ -418,16 +418,16 @@ export const themes = [
 				"destructive-foreground": "60 9.1% 97.8%",
 				border: "12 6.5% 15.1%",
 				input: "12 6.5% 15.1%",
-				ring: "20.5 90.2% 48.2%"
-			}
-		}
+				ring: "20.5 90.2% 48.2%",
+			},
+		},
 	},
 	{
 		name: "green",
 		label: "Green",
 		activeColor: {
 			light: "142.1 76.2% 36.3%",
-			dark: "142.1 70.6% 45.3%"
+			dark: "142.1 70.6% 45.3%",
 		},
 		cssVars: {
 			light: {
@@ -449,7 +449,7 @@ export const themes = [
 				"destructive-foreground": "0 0% 98%",
 				border: "240 5.9% 90%",
 				input: "240 5.9% 90%",
-				ring: "142.1 76.2% 36.3%"
+				ring: "142.1 76.2% 36.3%",
 			},
 			dark: {
 				background: "20 14.3% 4.1%",
@@ -470,16 +470,16 @@ export const themes = [
 				"destructive-foreground": "0 85.7% 97.3%",
 				border: "240 3.7% 15.9%",
 				input: "240 3.7% 15.9%",
-				ring: "142.4 71.8% 29.2%"
-			}
-		}
+				ring: "142.4 71.8% 29.2%",
+			},
+		},
 	},
 	{
 		name: "blue",
 		label: "Blue",
 		activeColor: {
 			light: "221.2 83.2% 53.3%",
-			dark: "217.2 91.2% 59.8%"
+			dark: "217.2 91.2% 59.8%",
 		},
 		cssVars: {
 			light: {
@@ -501,7 +501,7 @@ export const themes = [
 				"destructive-foreground": "210 40% 98%",
 				border: "214.3 31.8% 91.4%",
 				input: "214.3 31.8% 91.4%",
-				ring: "221.2 83.2% 53.3%"
+				ring: "221.2 83.2% 53.3%",
 			},
 			dark: {
 				background: "222.2 84% 4.9%",
@@ -522,16 +522,16 @@ export const themes = [
 				"destructive-foreground": "210 40% 98%",
 				border: "217.2 32.6% 17.5%",
 				input: "217.2 32.6% 17.5%",
-				ring: "224.3 76.3% 48%"
-			}
-		}
+				ring: "224.3 76.3% 48%",
+			},
+		},
 	},
 	{
 		name: "yellow",
 		label: "Yellow",
 		activeColor: {
 			light: "47.9 95.8% 53.1%",
-			dark: "47.9 95.8% 53.1%"
+			dark: "47.9 95.8% 53.1%",
 		},
 		cssVars: {
 			light: {
@@ -554,7 +554,7 @@ export const themes = [
 				border: "20 5.9% 90%",
 				input: "20 5.9% 90%",
 				ring: "20 14.3% 4.1%",
-				radius: "0.95rem"
+				radius: "0.95rem",
 			},
 			dark: {
 				background: "20 14.3% 4.1%",
@@ -575,16 +575,16 @@ export const themes = [
 				"destructive-foreground": "60 9.1% 97.8%",
 				border: "12 6.5% 15.1%",
 				input: "12 6.5% 15.1%",
-				ring: "35.5 91.7% 32.9%"
-			}
-		}
+				ring: "35.5 91.7% 32.9%",
+			},
+		},
 	},
 	{
 		name: "violet",
 		label: "Violet",
 		activeColor: {
 			light: "262.1 83.3% 57.8%",
-			dark: "263.4 70% 50.4%"
+			dark: "263.4 70% 50.4%",
 		},
 		cssVars: {
 			light: {
@@ -606,7 +606,7 @@ export const themes = [
 				"destructive-foreground": "210 20% 98%",
 				border: "220 13% 91%",
 				input: "220 13% 91%",
-				ring: "262.1 83.3% 57.8%"
+				ring: "262.1 83.3% 57.8%",
 			},
 			dark: {
 				background: "224 71.4% 4.1%",
@@ -627,10 +627,10 @@ export const themes = [
 				"destructive-foreground": "210 20% 98%",
 				border: "215 27.9% 16.9%",
 				input: "215 27.9% 16.9%",
-				ring: "263.4 70% 50.4%"
-			}
-		}
-	}
+				ring: "263.4 70% 50.4%",
+			},
+		},
+	},
 ] as const;
 
 export type Theme = (typeof themes)[number];

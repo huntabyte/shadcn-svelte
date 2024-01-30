@@ -5,7 +5,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow\n};\n"
+      "content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow,\n};\n"
     },
     {
       "name": "table-body.svelte",

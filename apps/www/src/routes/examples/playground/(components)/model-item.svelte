@@ -30,12 +30,12 @@
 		});
 
 		observer.observe(node, {
-			attributes: true
+			attributes: true,
 		});
 		return {
 			destroy() {
 				observer.disconnect();
-			}
+			},
 		};
 	}
 </script>

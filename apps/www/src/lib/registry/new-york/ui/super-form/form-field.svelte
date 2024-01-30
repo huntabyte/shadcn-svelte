@@ -14,7 +14,7 @@
 
 	const {
 		stores: { errors, value },
-		getFieldAttrs
+		getFieldAttrs,
 	} = createFormField<T, Path>(form, name);
 
 	$: field = {
@@ -31,7 +31,7 @@
 			}
 		) => {
 			field.updateValue(e.currentTarget.value);
-		}
+		},
 	};
 </script>
 

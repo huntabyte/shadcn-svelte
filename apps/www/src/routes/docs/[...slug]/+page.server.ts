@@ -21,7 +21,7 @@ export const load: PageServerLoad = async () => {
 		switch: await superValidate(switchSchema),
 		textarea: await superValidate(textareaSchema),
 		combobox: await superValidate(comboboxFormSchema),
-		datePicker: await superValidate(datePickerFormSchema)
+		datePicker: await superValidate(datePickerFormSchema),
 	};
 };
 
@@ -33,17 +33,17 @@ export const actions: Actions = {
 	switch: async (e) => handleForm(e, switchSchema),
 	textarea: async (e) => handleForm(e, textareaSchema),
 	combobox: async (e) => handleForm(e, comboboxFormSchema),
-	datePicker: async (e) => handleForm(e, datePickerFormSchema)
+	datePicker: async (e) => handleForm(e, datePickerFormSchema),
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {
 	const form = await superValidate(event, schema);
 	if (!form.valid) {
 		return fail(400, {
-			form
+			form,
 		});
 	}
 	return {
-		form
+		form,
 	};
 }

@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./progress.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Progress\n};\n"
+      "content": "import Root from \"./progress.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Progress,\n};\n"
     },
     {
       "name": "progress.svelte",

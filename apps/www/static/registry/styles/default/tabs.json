@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import { Tabs as TabsPrimitive } from \"bits-ui\";\nimport Content from \"./tabs-content.svelte\";\nimport List from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nconst Root = TabsPrimitive.Root;\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger\n};\n"
+      "content": "import { Tabs as TabsPrimitive } from \"bits-ui\";\nimport Content from \"./tabs-content.svelte\";\nimport List from \"./tabs-list.svelte\";\nimport Trigger from \"./tabs-trigger.svelte\";\n\nconst Root = TabsPrimitive.Root;\n\nexport {\n\tRoot,\n\tContent,\n\tList,\n\tTrigger,\n\t//\n\tRoot as Tabs,\n\tContent as TabsContent,\n\tList as TabsList,\n\tTrigger as TabsTrigger,\n};\n"
     },
     {
       "name": "tabs-content.svelte",

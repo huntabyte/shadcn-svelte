@@ -103,11 +103,12 @@ export async function resolveTree(
 }
 
 export async function fetchTree(
-	style: string,
+	config: Config,
 	tree: z.infer<typeof registryIndexSchema>
 ) {
 	try {
-		const paths = tree.map((item) => `styles/${style}/${item.name}.json`);
+		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
+		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
 		const result = await fetchRegistry(paths);
 
 		return registryWithContentSchema.parse(result);

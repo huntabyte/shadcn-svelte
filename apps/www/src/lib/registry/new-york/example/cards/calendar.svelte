@@ -7,7 +7,7 @@
 
 	let value = {
 		start,
-		end
+		end,
 	};
 </script>
 

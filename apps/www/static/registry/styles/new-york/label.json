@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label\n};\n"
+      "content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label,\n};\n"
     },
     {
       "name": "label.svelte",

@@ -7,7 +7,7 @@
   "files": [
     {
       "name": "index.ts",
-      "content": "import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\nimport Root from \"./radio-group.svelte\";\nimport Item from \"./radio-group-item.svelte\";\nconst Input = RadioGroupPrimitive.Input;\n\nexport {\n\tRoot,\n\tInput,\n\tItem,\n\t//\n\tRoot as RadioGroup,\n\tInput as RadioGroupInput,\n\tItem as RadioGroupItem\n};\n"
+      "content": "import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\nimport Root from \"./radio-group.svelte\";\nimport Item from \"./radio-group-item.svelte\";\nconst Input = RadioGroupPrimitive.Input;\n\nexport {\n\tRoot,\n\tInput,\n\tItem,\n\t//\n\tRoot as RadioGroup,\n\tInput as RadioGroupInput,\n\tItem as RadioGroupItem,\n};\n"
     },
     {
       "name": "radio-group-item.svelte",

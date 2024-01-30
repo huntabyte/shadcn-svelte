@@ -10,6 +10,7 @@ import {
 	DEFAULT_COMPONENTS,
 	DEFAULT_TAILWIND_CONFIG,
 	DEFAULT_TAILWIND_CSS,
+	DEFAULT_TYPESCRIPT,
 	DEFAULT_UTILS,
 	getConfig,
 	rawConfigSchema,
@@ -39,9 +40,7 @@ export const init = new Command()
 	.action(async (options) => {
 		const cwd = path.resolve(options.cwd);
 
-		logger.warn(
-			"This command assumes a SvelteKit project with TypeScript and Tailwind CSS."
-		);
+		logger.warn("This command assumes a SvelteKit project with Tailwind CSS.");
 		logger.warn(
 			"If you don't have these, follow the manual steps at https://shadcn-svelte.com/docs/installation."
 		);
@@ -108,6 +107,14 @@ async function promptForConfig(
 
 	const options = await prompts([
 		{
+			type: "toggle",
+			name: "typescript",
+			message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+			initial: defaultConfig?.typescript ?? DEFAULT_TYPESCRIPT,
+			active: "yes",
+			inactive: "no"
+		},
+		{
 			type: "select",
 			name: "style",
 			message: `Which ${highlight("style")} would you like to use?`,
@@ -170,6 +177,7 @@ async function promptForConfig(
 	const config = rawConfigSchema.parse({
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
+		typescript: options.typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
@@ -256,8 +264,10 @@ export async function runInit(cwd: string, config: Config) {
 		);
 	}
 
+	const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
+	const utilsTemplate = config.typescript ? templates.UTILS : templates.UTILS_JS;
 	// Write cn file.
-	await fs.writeFile(`${config.resolvedPaths.utils}.ts`, templates.UTILS, "utf8");
+	await fs.writeFile(utilsPath, utilsTemplate, "utf8");
 
 	spinner?.succeed();
 

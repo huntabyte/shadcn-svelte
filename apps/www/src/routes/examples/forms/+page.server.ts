@@ -5,7 +5,7 @@ import { fail, type Actions } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(profileFormSchema)
+		form: await superValidate(profileFormSchema),
 	};
 };
 
@@ -14,11 +14,11 @@ export const actions: Actions = {
 		const form = await superValidate(event, profileFormSchema);
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
 			});
 		}
 		return {
-			form
+			form,
 		};
-	}
+	},
 };

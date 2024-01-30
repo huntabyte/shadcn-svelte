@@ -11,7 +11,7 @@
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./checkbox.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Checkbox\n};\n"
+      "content": "import Root from \"./checkbox.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Checkbox,\n};\n"
     }
   ],
   "type": "components:ui"

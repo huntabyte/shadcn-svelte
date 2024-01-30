@@ -19,7 +19,7 @@
     },
     {
       "name": "index.ts",
-      "content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback\n};\n"
+      "content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback,\n};\n"
     }
   ],
   "type": "components:ui"

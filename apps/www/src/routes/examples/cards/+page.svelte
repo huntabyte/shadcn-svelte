@@ -8,7 +8,7 @@
 		CardsGithub,
 		CardsNotifications,
 		DemoContainer,
-		CardsTeamMembers
+		CardsTeamMembers,
 	} from "./(components)";
 </script>
 

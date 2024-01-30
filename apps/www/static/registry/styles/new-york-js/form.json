@@ -1,0 +1,77 @@
+{
+  "name": "form",
+  "dependencies": [
+    "formsnap",
+    "zod",
+    "sveltekit-superforms"
+  ],
+  "registryDependencies": [
+    "button",
+    "checkbox",
+    "input",
+    "label",
+    "radio-group",
+    "select",
+    "switch",
+    "textarea"
+  ],
+  "files": [
+    {
+      "name": "form-button.svelte",
+      "content": "<script>\n\timport * as Button from \"@/registry/new-york/ui/button\";\n</script>\n\n<Button.Root type=\"submit\" {...$$restProps} on:click on:keydown>\n\t<slot />\n</Button.Root>\n"
+    },
+    {
+      "name": "form-checkbox.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport { Checkbox } from \"@/registry/new-york/ui/checkbox\";\n\texport let onCheckedChange = void 0;\n\tconst { name, setValue, attrStore, value } = getFormField();\n\tconst { name: nameAttr, value: valueAttr, ...rest } = $attrStore;\n</script>\n\n<Checkbox\n\t{...rest}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
+    },
+    {
+      "name": "form-description.svelte",
+      "content": "<script>\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = void 0;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-[0.8rem] text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</FormPrimitive.Description>\n"
+    },
+    {
+      "name": "form-input.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport { Input } from \"@/registry/new-york/ui/input\";\n\tconst { attrStore, value } = getFormField();\n</script>\n\n<Input\n\t{...$attrStore}\n\tbind:value={$value}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
+    },
+    {
+      "name": "form-item.svelte",
+      "content": "<script>\n\timport { cn } from \"$lib/utils\";\n\tlet className = void 0;\n\texport { className as class };\n</script>\n\n<div class={cn(\"space-y-2\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+    },
+    {
+      "name": "form-label.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/new-york/ui/label\";\n\tlet className = void 0;\n\texport { className as class };\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label for={$ids.input} class={cn($errors && \"text-destructive\", className)} {...$$restProps}>\n\t<slot />\n</Label>\n"
+    },
+    {
+      "name": "form-native-select.svelte",
+      "content": "<script>\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/new-york/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { CaretSort } from \"radix-icons-svelte\";\n\tlet className = void 0;\n\texport { className as class };\n</script>\n\n<div class=\"relative\">\n\t<FormPrimitive.Select\n\t\tclass={cn(\n\t\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\t\"appearance-none bg-transparent font-normal\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</FormPrimitive.Select>\n\t<CaretSort class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n</div>\n"
+    },
+    {
+      "name": "form-radio-group.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport * as RadioGroup from \"@/registry/new-york/ui/radio-group\";\n\tconst { attrStore, setValue, name, value } = getFormField();\n\texport let onValueChange = void 0;\n</script>\n\n<RadioGroup.Root\n\t{...$attrStore}\n\tonValueChange={(v) => {\n\t\tonValueChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</RadioGroup.Root>\n"
+    },
+    {
+      "name": "form-select-trigger.svelte",
+      "content": "<script>\n\timport * as Select from \"@/registry/new-york/ui/select\";\n\timport { getFormField } from \"formsnap\";\n\tconst { attrStore, value } = getFormField();\n\texport let placeholder = \"\";\n</script>\n\n<Select.Trigger {...$$restProps} {...$attrStore} on:click on:keydown>\n\t<slot value={$value}>\n\t\t<Select.Value {placeholder} />\n\t</slot>\n</Select.Trigger>\n"
+    },
+    {
+      "name": "form-select.svelte",
+      "content": "<script>\n\timport * as Select from \"@/registry/new-york/ui/select\";\n\timport { getFormField } from \"formsnap\";\n\tconst { setValue, name, value } = getFormField();\n\texport let onSelectedChange = void 0;\n</script>\n\n<Select.Root\n\tonSelectedChange={(v) => {\n\t\tonSelectedChange?.(v);\n\t\tsetValue(v ? v.value : undefined);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</Select.Root>\n"
+    },
+    {
+      "name": "form-switch.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport { Switch } from \"@/registry/new-york/ui/switch\";\n\texport let onCheckedChange = void 0;\n\tconst { name, setValue, attrStore, value } = getFormField();\n</script>\n\n<Switch\n\t{...$attrStore}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
+    },
+    {
+      "name": "form-textarea.svelte",
+      "content": "<script>\n\timport { getFormField } from \"formsnap\";\n\timport { Textarea } from \"@/registry/new-york/ui/textarea\";\n\tconst { attrStore, value } = getFormField();\n</script>\n\n<Textarea\n\t{...$attrStore}\n\tbind:value={$value}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
+    },
+    {
+      "name": "form-validation.svelte",
+      "content": "<script>\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = void 0;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Validation\n\tclass={cn(\"text-[0.8rem] font-medium text-destructive\", className)}\n\t{...$$restProps}\n/>\n"
+    },
+    {
+      "name": "index.js",
+      "content": "import { Form as FormPrimitive, getFormField } from \"formsnap\";\nimport * as RadioGroupComp from \"@/registry/new-york/ui/radio-group\";\nimport * as SelectComp from \"@/registry/new-york/ui/select\";\nimport Item from \"./form-item.svelte\";\nimport Input from \"./form-input.svelte\";\nimport Textarea from \"./form-textarea.svelte\";\nimport Description from \"./form-description.svelte\";\nimport Label from \"./form-label.svelte\";\nimport Validation from \"./form-validation.svelte\";\nimport Checkbox from \"./form-checkbox.svelte\";\nimport Switch from \"./form-switch.svelte\";\nimport NativeSelect from \"./form-native-select.svelte\";\nimport RadioGroup from \"./form-radio-group.svelte\";\nimport Select from \"./form-select.svelte\";\nimport SelectTrigger from \"./form-select-trigger.svelte\";\nimport Button from \"./form-button.svelte\";\nconst Root = FormPrimitive.Root;\nconst Field = FormPrimitive.Field;\nconst Control = FormPrimitive.Control;\nconst RadioItem = RadioGroupComp.Item;\nconst NativeRadio = FormPrimitive.Radio;\nconst SelectContent = SelectComp.Content;\nconst SelectLabel = SelectComp.Label;\nconst SelectGroup = SelectComp.Group;\nconst SelectItem = SelectComp.Item;\nconst SelectSeparator = SelectComp.Separator;\nexport {\n\tRoot,\n\tField,\n\tControl,\n\tItem,\n\tInput,\n\tLabel,\n\tButton,\n\tSwitch,\n\tSelect,\n\tCheckbox,\n\tTextarea,\n\tValidation,\n\tRadioGroup,\n\tRadioItem,\n\tDescription,\n\tSelectContent,\n\tSelectLabel,\n\tSelectGroup,\n\tSelectItem,\n\tSelectSeparator,\n\tSelectTrigger,\n\tNativeSelect,\n\tNativeRadio,\n\t//\n\tRoot as Form,\n\tField as FormField,\n\tControl as FormControl,\n\tItem as FormItem,\n\tInput as FormInput,\n\tTextarea as FormTextarea,\n\tDescription as FormDescription,\n\tLabel as FormLabel,\n\tValidation as FormValidation,\n\tNativeSelect as FormNativeSelect,\n\tNativeRadio as FormNativeRadio,\n\tCheckbox as FormCheckbox,\n\tSwitch as FormSwitch,\n\tRadioGroup as FormRadioGroup,\n\tRadioItem as FormRadioItem,\n\tSelect as FormSelect,\n\tSelectContent as FormSelectContent,\n\tSelectLabel as FormSelectLabel,\n\tSelectGroup as FormSelectGroup,\n\tSelectItem as FormSelectItem,\n\tSelectSeparator as FormSelectSeparator,\n\tSelectTrigger as FormSelectTrigger,\n\tButton as FormButton,\n};\n"
+    }
+  ],
+  "type": "components:ui"
+}

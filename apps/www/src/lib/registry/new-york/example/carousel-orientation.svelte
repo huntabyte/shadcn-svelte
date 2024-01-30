@@ -5,7 +5,7 @@
 
 <Carousel.Root
 	opts={{
-		align: "start"
+		align: "start",
 	}}
 	orientation="vertical"
 	class="w-full max-w-xs"

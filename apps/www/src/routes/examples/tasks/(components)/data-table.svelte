@@ -8,7 +8,7 @@
 		addPagination,
 		addSelectedRows,
 		addSortBy,
-		addTableFilter
+		addTableFilter,
 	} from "svelte-headless-table/plugins";
 	import {
 		DataTableCheckbox,
@@ -18,7 +18,7 @@
 		DataTablePriorityCell,
 		DataTableColumnHeader,
 		DataTableToolbar,
-		DataTablePagination
+		DataTablePagination,
 	} from ".";
 
 	import type { Task } from "../(data)/schemas";
@@ -28,16 +28,16 @@
 	const table = createTable(readable(data), {
 		select: addSelectedRows(),
 		sort: addSortBy({
-			toggleOrder: ["asc", "desc"]
+			toggleOrder: ["asc", "desc"],
 		}),
 		page: addPagination(),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => {
 				return value.toLowerCase().includes(filterValue.toLowerCase());
-			}
+			},
 		}),
 		colFilter: addColumnFilters(),
-		hide: addHiddenColumns()
+		hide: addHiddenColumns(),
 	});
 
 	const columns = table.createColumns([
@@ -47,7 +47,7 @@
 				const { allPageRowsSelected } = pluginStates.select;
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected,
-					"aria-label": "Select all"
+					"aria-label": "Select all",
 				});
 			},
 			cell: ({ row }, { pluginStates }) => {
@@ -56,14 +56,14 @@
 				return createRender(DataTableCheckbox, {
 					checked: isSelected,
 					"aria-label": "Select row",
-					class: "translate-y-[2px]"
+					class: "translate-y-[2px]",
 				});
 			},
 			plugins: {
 				sort: {
-					disable: true
-				}
-			}
+					disable: true,
+				},
+			},
 		}),
 		table.column({
 			accessor: "id",
@@ -73,9 +73,9 @@
 			id: "task",
 			plugins: {
 				sort: {
-					disable: true
-				}
-			}
+					disable: true,
+				},
+			},
 		}),
 		table.column({
 			accessor: "title",
@@ -85,11 +85,11 @@
 				if (row.isData()) {
 					return createRender(DataTableTitleCell, {
 						value,
-						labelValue: row.original.label
+						labelValue: row.original.label,
 					});
 				}
 				return value;
-			}
+			},
 		}),
 		table.column({
 			accessor: "status",
@@ -97,7 +97,7 @@
 			id: "status",
 			cell: ({ value }) => {
 				return createRender(DataTableStatusCell, {
-					value
+					value,
 				});
 			},
 			plugins: {
@@ -112,9 +112,9 @@
 					initialFilterValue: [],
 					render: ({ filterValue }) => {
 						return get(filterValue);
-					}
-				}
-			}
+					},
+				},
+			},
 		}),
 		table.column({
 			accessor: "priority",
@@ -122,7 +122,7 @@
 			header: "Priority",
 			cell: ({ value }) => {
 				return createRender(DataTablePriorityCell, {
-					value
+					value,
 				});
 			},
 			plugins: {
@@ -138,9 +138,9 @@
 					initialFilterValue: [],
 					render: ({ filterValue }) => {
 						return get(filterValue);
-					}
-				}
-			}
+					},
+				},
+			},
 		}),
 		table.display({
 			id: "actions",
@@ -150,12 +150,12 @@
 			cell: ({ row }) => {
 				if (row.isData() && row.original) {
 					return createRender(DataTableRowActions, {
-						row: row.original
+						row: row.original,
 					});
 				}
 				return "";
-			}
-		})
+			},
+		}),
 	]);
 
 	const tableModel = table.createViewModel(columns);

@@ -33,5 +33,5 @@ export {
 	List as CommandList,
 	Separator as CommandSeparator,
 	Shortcut as CommandShortcut,
-	Loading as CommandLoading
+	Loading as CommandLoading,
 };

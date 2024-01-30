@@ -18,7 +18,7 @@ import {
 	getRegistryIndex,
 	resolveTree
 } from "../utils/registry";
-import { transformImport } from "../utils/transformer";
+import { transformImports } from "../utils/transformers";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -114,7 +114,7 @@ export const add = new Command()
 			}
 
 			const tree = await resolveTree(registryIndex, selectedComponents);
-			const payload = await fetchTree(config.style, tree);
+			const payload = await fetchTree(config, tree);
 			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 			if (!payload.length) {
@@ -164,9 +164,9 @@ export const add = new Command()
 					path.resolve(targetDir, item.name)
 				);
 
-				const existingComponent = item.files.filter((file) =>
-					existsSync(path.resolve(targetDir, item.name, file.name))
-				);
+				const existingComponent = item.files.filter((file) => {
+					existsSync(path.resolve(targetDir, item.name, file.name));
+				});
 
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
@@ -190,7 +190,7 @@ export const add = new Command()
 					let filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
-					const content = transformImport(file.content, config);
+					const content = transformImports(file.content, config);
 
 					if (!existsSync(componentDir)) {
 						await fs.mkdir(componentDir, { recursive: true });
