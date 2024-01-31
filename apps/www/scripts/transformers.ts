@@ -57,7 +57,7 @@ async function transformSvelteTStoJS(content: string, filename: string) {
 
 const compilerOptions: ts.CompilerOptions = {
 	target: ts.ScriptTarget.ESNext,
-	module: ts.ModuleKind.ES2015,
+	module: ts.ModuleKind.ESNext,
 	isolatedModules: true,
 	preserveValueImports: true,
 	lib: ["esnext", "DOM", "DOM.Iterable"],
@@ -65,10 +65,6 @@ const compilerOptions: ts.CompilerOptions = {
 	esModuleInterop: true,
 	ignoreDeprecations: "5.0",
 };
-
-// I think? it's better to put this outside of the function
-// so it's only created once.
-ts.createCompilerHost(compilerOptions);
 
 function transformTStoJS(content: string, filename: string) {
 	const { outputText, diagnostics } = ts.transpileModule(content, {
