@@ -4,7 +4,7 @@
 		bio: z
 			.string()
 			.min(10, "Bio must be at least 10 characters.")
-			.max(160, "Bio must be at most 160 characters.")
+			.max(160, "Bio must be at most 160 characters."),
 	});
 	export type FormSchema = typeof formSchema;
 </script>

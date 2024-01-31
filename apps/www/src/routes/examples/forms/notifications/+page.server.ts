@@ -5,7 +5,7 @@ import { fail, type Actions } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(notificationsFormSchema)
+		form: await superValidate(notificationsFormSchema),
 	};
 };
 
@@ -14,11 +14,11 @@ export const actions: Actions = {
 		const form = await superValidate(event, notificationsFormSchema);
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
 			});
 		}
 		return {
-			form
+			form,
 		};
-	}
+	},
 };

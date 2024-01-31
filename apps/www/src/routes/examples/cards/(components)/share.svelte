@@ -9,12 +9,12 @@
 	const permissions = [
 		{
 			value: "view",
-			label: "Can view"
+			label: "Can view",
 		},
 		{
 			value: "edit",
-			label: "Can edit"
-		}
+			label: "Can edit",
+		},
 	];
 
 	const people = [
@@ -22,20 +22,20 @@
 			name: "Olivia Martin",
 			email: "m@example.com",
 			avatar: "/avatars/03.png",
-			permission: permissions[1]
+			permission: permissions[1],
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "b@example.com",
 			avatar: "/avatars/05.png",
-			permission: permissions[0]
+			permission: permissions[0],
 		},
 		{
 			name: "Sofia Davis",
 			email: "p@example.com",
 			avatar: "/avatars/01.png",
-			permission: permissions[0]
-		}
+			permission: permissions[0],
+		},
 	];
 </script>
 

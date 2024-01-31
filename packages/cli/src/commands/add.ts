@@ -16,7 +16,7 @@ import {
 	getItemTargetPath,
 	getRegistryBaseColor,
 	getRegistryIndex,
-	resolveTree
+	resolveTree,
 } from "../utils/registry";
 import { transformImport } from "../utils/transformer";
 
@@ -28,7 +28,7 @@ const addOptionsSchema = z.object({
 	cwd: z.string(),
 	path: z.string().optional(),
 	nodep: z.boolean(),
-	proxy: z.string().optional()
+	proxy: z.string().optional(),
 });
 
 export const add = new Command()
@@ -52,7 +52,7 @@ export const add = new Command()
 		try {
 			const options = addOptionsSchema.parse({
 				components,
-				...opts
+				...opts,
 			});
 
 			const cwd = path.resolve(options.cwd);
@@ -101,8 +101,8 @@ export const add = new Command()
 					instructions: false,
 					choices: registryIndex.map(({ name }) => ({
 						title: name,
-						value: name
-					}))
+						value: name,
+					})),
 				});
 				selectedComponents = components;
 			}
@@ -130,7 +130,7 @@ export const add = new Command()
 					type: "confirm",
 					name: "proceed",
 					message: `Ready to install components and dependencies. Proceed?`,
-					initial: true
+					initial: true,
 				});
 
 				if (!proceed) {
@@ -211,10 +211,10 @@ export const add = new Command()
 						packageManager,
 						[
 							packageManager === "npm" ? "install" : "add",
-							...item.dependencies
+							...item.dependencies,
 						],
 						{
-							cwd
+							cwd,
 						}
 					);
 				}
@@ -227,7 +227,7 @@ export const add = new Command()
 			if (options.nodep) {
 				logger.warn(
 					`Components have installed without dependencies, consider adding the following to your dependencies:\n- ${[
-						...skippedDeps
+						...skippedDeps,
 					].join("\n- ")}`
 				);
 			}

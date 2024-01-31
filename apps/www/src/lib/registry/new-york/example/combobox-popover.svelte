@@ -12,24 +12,24 @@
 	const statuses: Status[] = [
 		{
 			value: "backlog",
-			label: "Backlog"
+			label: "Backlog",
 		},
 		{
 			value: "todo",
-			label: "Todo"
+			label: "Todo",
 		},
 		{
 			value: "in progress",
-			label: "In Progress"
+			label: "In Progress",
 		},
 		{
 			value: "done",
-			label: "Done"
+			label: "Done",
 		},
 		{
 			value: "canceled",
-			label: "Canceled"
-		}
+			label: "Canceled",
+		},
 	];
 
 	let open = false;

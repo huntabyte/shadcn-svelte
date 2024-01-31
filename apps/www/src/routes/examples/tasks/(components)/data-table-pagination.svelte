@@ -4,7 +4,7 @@
 		ChevronRight,
 		ChevronLeft,
 		DoubleArrowRight,
-		DoubleArrowLeft
+		DoubleArrowLeft,
 	} from "radix-icons-svelte";
 	import * as Select from "@/registry/new-york/ui/select";
 	import type { Task } from "../(data)/schemas";

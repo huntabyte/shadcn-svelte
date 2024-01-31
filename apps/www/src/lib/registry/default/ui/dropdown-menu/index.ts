@@ -44,5 +44,5 @@ export {
 	RadioGroup as DropdownMenuRadioGroup,
 	SubContent as DropdownMenuSubContent,
 	SubTrigger as DropdownMenuSubTrigger,
-	CheckboxItem as DropdownMenuCheckboxItem
+	CheckboxItem as DropdownMenuCheckboxItem,
 };

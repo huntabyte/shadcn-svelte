@@ -10,5 +10,5 @@ export {
 	//
 	Root as Popover,
 	Content as PopoverContent,
-	Trigger as PopoverTrigger
+	Trigger as PopoverTrigger,
 };

@@ -12,7 +12,7 @@
 		"documentation",
 		"design",
 		"question",
-		"maintenance"
+		"maintenance",
 	];
 
 	let open = false;

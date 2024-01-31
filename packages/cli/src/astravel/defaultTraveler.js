@@ -372,5 +372,5 @@ export const defaultTraveler = {
 	},
 	AwaitExpression(node, state) {
 		this.go(node.argument, state);
-	}
+	},
 };

@@ -10,7 +10,7 @@
 		ru: "Russian",
 		ja: "Japanese",
 		ko: "Korean",
-		zh: "Chinese"
+		zh: "Chinese",
 	} as const;
 
 	type Language = keyof typeof languages;
@@ -18,12 +18,12 @@
 	export const accountFormSchema = z.object({
 		name: z
 			.string({
-				required_error: "Required."
+				required_error: "Required.",
 			})
 			.min(2, "Name must be at least 2 characters.")
 			.max(30, "Name must not be longer than 30 characters"),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
-		language: z.enum(Object.keys(languages) as [Language, ...Language[]])
+		language: z.enum(Object.keys(languages) as [Language, ...Language[]]),
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;

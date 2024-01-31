@@ -13,7 +13,7 @@ import {
 	DEFAULT_UTILS,
 	getConfig,
 	rawConfigSchema,
-	resolveConfigPaths
+	resolveConfigPaths,
 } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
@@ -21,7 +21,7 @@ import { logger } from "../utils/logger";
 import {
 	getRegistryBaseColor,
 	getRegistryBaseColors,
-	getRegistryStyles
+	getRegistryStyles,
 } from "../utils/registry";
 import * as templates from "../utils/templates";
 
@@ -54,8 +54,8 @@ export const init = new Command()
 					name: "proceed",
 					message:
 						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.pcss file. Proceed?",
-					initial: true
-				}
+					initial: true,
+				},
 			]);
 
 			if (!proceed) {
@@ -113,8 +113,8 @@ async function promptForConfig(
 			message: `Which ${highlight("style")} would you like to use?`,
 			choices: styles.map((style) => ({
 				title: style.label,
-				value: style.name
-			}))
+				value: style.name,
+			})),
 		},
 		{
 			type: "select",
@@ -122,8 +122,8 @@ async function promptForConfig(
 			message: `Which color would you like to use as ${highlight("base color")}?`,
 			choices: baseColors.map((color) => ({
 				title: color.label,
-				value: color.name
-			}))
+				value: color.name,
+			})),
 		},
 		{
 			type: "text",
@@ -136,7 +136,7 @@ async function promptForConfig(
 				}
 				logger.error(`${value} does not exist. Please enter a valid path.`);
 				return false;
-			}
+			},
 		},
 		{
 			type: "text",
@@ -151,20 +151,20 @@ async function promptForConfig(
 				logger.error(`${value} does not exist. Please enter a valid path.`);
 				logger.info("");
 				return false;
-			}
+			},
 		},
 		{
 			type: "text",
 			name: "components",
 			message: `Configure the import alias for ${highlight("components")}:`,
-			initial: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS
+			initial: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS,
 		},
 		{
 			type: "text",
 			name: "utils",
 			message: `Configure the import alias for ${highlight("utils")}:`,
-			initial: defaultConfig?.aliases["utils"] ?? DEFAULT_UTILS
-		}
+			initial: defaultConfig?.aliases["utils"] ?? DEFAULT_UTILS,
+		},
 	]);
 
 	const config = rawConfigSchema.parse({
@@ -173,12 +173,12 @@ async function promptForConfig(
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
-			baseColor: options.tailwindBaseColor
+			baseColor: options.tailwindBaseColor,
 		},
 		aliases: {
 			utils: options.utils,
-			components: options.components
-		}
+			components: options.components,
+		},
 	});
 
 	if (!skip) {
@@ -186,7 +186,7 @@ async function promptForConfig(
 			type: "confirm",
 			name: "proceed",
 			message: `Write configuration to ${highlight("components.json")}. Proceed?`,
-			initial: true
+			initial: true,
 		});
 
 		if (!proceed) {
@@ -268,11 +268,11 @@ export async function runInit(cwd: string, config: Config) {
 	// TODO: add support for other icon libraries.
 	const deps = [
 		...PROJECT_DEPENDENCIES,
-		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte"
+		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte",
 	];
 
 	await execa(packageManager, [packageManager === "npm" ? "install" : "add", ...deps], {
-		cwd
+		cwd,
 	});
 	dependenciesSpinner?.succeed();
 }

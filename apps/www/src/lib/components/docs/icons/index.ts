@@ -22,7 +22,7 @@ import {
 	SunMedium,
 	Trash,
 	User,
-	X
+	X,
 } from "lucide-svelte";
 import Apple from "./apple.svelte";
 import Aria from "./aria.svelte";
@@ -77,5 +77,5 @@ export const Icons = {
 	google: Google,
 	apple: Apple,
 	paypal: PayPal,
-	Hamburger: Hamburger
+	Hamburger: Hamburger,
 };

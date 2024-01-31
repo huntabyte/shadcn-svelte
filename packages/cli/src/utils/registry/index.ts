@@ -11,7 +11,7 @@ import {
 	registryItemSchema,
 	registryItemWithContentSchema,
 	registryWithContentSchema,
-	stylesSchema
+	stylesSchema,
 } from "./schema";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
@@ -44,24 +44,24 @@ export async function getRegistryBaseColors() {
 	return [
 		{
 			name: "slate",
-			label: "Slate"
+			label: "Slate",
 		},
 		{
 			name: "gray",
-			label: "Gray"
+			label: "Gray",
 		},
 		{
 			name: "zinc",
-			label: "Zinc"
+			label: "Zinc",
 		},
 		{
 			name: "neutral",
-			label: "Neutral"
+			label: "Neutral",
 		},
 		{
 			name: "stone",
-			label: "Stone"
-		}
+			label: "Stone",
+		},
 	];
 }
 

@@ -11,7 +11,7 @@
 		CardsShare,
 		CardsStats,
 		CardsTeamMembers,
-		CardsChat
+		CardsChat,
 	} from ".";
 </script>
 

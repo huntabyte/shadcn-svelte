@@ -13,28 +13,28 @@
 		{
 			name: "Olivia Martin",
 			email: "m@example.com",
-			avatar: "/avatars/01.png"
+			avatar: "/avatars/01.png",
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "isabella.nguyen@email.com",
-			avatar: "/avatars/03.png"
+			avatar: "/avatars/03.png",
 		},
 		{
 			name: "Emma Wilson",
 			email: "emma@example.com",
-			avatar: "/avatars/05.png"
+			avatar: "/avatars/05.png",
 		},
 		{
 			name: "Jackson Lee",
 			email: "lee@example.com",
-			avatar: "/avatars/02.png"
+			avatar: "/avatars/02.png",
 		},
 		{
 			name: "William Kim",
 			email: "will@email.com",
-			avatar: "/avatars/04.png"
-		}
+			avatar: "/avatars/04.png",
+		},
 	] as const;
 
 	type User = (typeof users)[number];
@@ -45,20 +45,20 @@
 	let messages = [
 		{
 			role: "agent",
-			content: "Hi, how can I help you today?"
+			content: "Hi, how can I help you today?",
 		},
 		{
 			role: "user",
-			content: "Hey, I'm having trouble with my account."
+			content: "Hey, I'm having trouble with my account.",
 		},
 		{
 			role: "agent",
-			content: "What seems to be the problem?"
+			content: "What seems to be the problem?",
 		},
 		{
 			role: "user",
-			content: "I can't log in."
-		}
+			content: "I can't log in.",
+		},
 	];
 
 	let input = "";
@@ -117,8 +117,8 @@
 					...messages,
 					{
 						role: "user",
-						content: input
-					}
+						content: input,
+					},
 				];
 				input = "";
 			}}

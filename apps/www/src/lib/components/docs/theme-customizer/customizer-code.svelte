@@ -13,7 +13,7 @@
 		"secondary",
 		"muted",
 		"accent",
-		"destructive"
+		"destructive",
 	] as const;
 </script>
 

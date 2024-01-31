@@ -13,7 +13,7 @@
 	export let outTransitionConfig: $$Props["outTransitionConfig"] = {
 		start: 0.95,
 		opacity: 0,
-		duration: 50
+		duration: 50,
 	};
 
 	let className: $$Props["class"] = undefined;

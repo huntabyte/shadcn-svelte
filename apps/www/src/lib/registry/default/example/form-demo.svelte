@@ -2,7 +2,7 @@
 	import { z } from "zod";
 
 	export const formSchema = z.object({
-		username: z.string().min(2).max(50)
+		username: z.string().min(2).max(50),
 	});
 	export type FormSchema = typeof formSchema;
 </script>
@@ -22,7 +22,7 @@
 			console.log(result);
 			if (result.status === 200) toast.success("Success!");
 			if (result.status === 400) toast.error("Error!");
-		}
+		},
 	};
 </script>
 

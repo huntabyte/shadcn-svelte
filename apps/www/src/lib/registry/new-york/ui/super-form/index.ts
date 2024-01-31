@@ -33,7 +33,7 @@ export function createFormField<
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
 		name,
-		errors
+		errors,
 	};
 	setContext(FORM_FIELD_CONTEXT, context);
 
@@ -47,13 +47,13 @@ export function createFormField<
 			"data-valid": errors ? undefined : true,
 			name,
 			id: context.formItemId,
-			value: val
+			value: val,
 		};
 	}
 
 	return {
 		stores,
-		getFieldAttrs
+		getFieldAttrs,
 	};
 }
 
@@ -68,5 +68,5 @@ export {
 	Description as FormDescription,
 	Field as FormField,
 	Label as FormLabel,
-	Message as FormMessage
+	Message as FormMessage,
 };

@@ -1,8 +1,8 @@
 {
-  "useTabs": true,
-  "singleQuote": false,
-  "trailingComma": "none",
-  "printWidth": 80,
-  "endOfLine": "lf",
-  "bracketSameLine": false
+	"useTabs": true,
+	"singleQuote": false,
+	"trailingComma": "es5",
+	"printWidth": 100,
+	"endOfLine": "lf",
+	"bracketSameLine": false
 }

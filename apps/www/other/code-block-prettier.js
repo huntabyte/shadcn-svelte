@@ -18,9 +18,9 @@ export const codeBlockPrettierConfig = {
 				parser: "svelte",
 				svelteIndentScriptAndStyle: true,
 				svelteStrictMode: false,
-				svelteSortOrder: "scripts-markup-styles-options"
-			}
-		}
+				svelteSortOrder: "scripts-markup-styles-options",
+			},
+		},
 	],
 	bracketSameLine: false,
 	importOrder: [
@@ -36,11 +36,11 @@ export const codeBlockPrettierConfig = {
 		"^\\$[^/]*\\/[^/]+",
 		"^[./]",
 		"\\.js$",
-		"\\.svelte$"
+		"\\.svelte$",
 	],
 	importOrderSeparation: false,
 	importOrderSortSpecifiers: true,
 	importOrderBuiltinModulesToTop: true,
 	importOrderParserPlugins: ["typescript", "svelte"],
-	importOrderMergeDuplicateImports: true
+	importOrderMergeDuplicateImports: true,
 };

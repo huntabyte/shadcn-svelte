@@ -30,5 +30,5 @@ export {
 	Trigger as DialogTrigger,
 	Overlay as DialogOverlay,
 	Content as DialogContent,
-	Description as DialogDescription
+	Description as DialogDescription,
 };

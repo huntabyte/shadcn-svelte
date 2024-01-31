@@ -26,7 +26,7 @@
 				config.update((prev) => ({
 					...prev,
 					theme: "zinc",
-					radius: 0.5
+					radius: 0.5,
 				}));
 			}}
 		>
@@ -74,7 +74,7 @@
 					on:click={() =>
 						config.update((prev) => ({
 							...prev,
-							style: "default"
+							style: "default",
 						}))}
 					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
@@ -86,7 +86,7 @@
 					on:click={() =>
 						config.update((prev) => ({
 							...prev,
-							style: "new-york"
+							style: "new-york",
 						}))}
 					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
@@ -105,7 +105,7 @@
 						on:click={() => {
 							config.update((prev) => ({
 								...prev,
-								theme: theme.name
+								theme: theme.name,
 							}));
 						}}
 						class={cn("justify-start", isActive && "border-2 border-primary")}
@@ -134,7 +134,7 @@
 						on:click={() => {
 							config.update((prev) => ({
 								...prev,
-								radius: valueFloat
+								radius: valueFloat,
 							}));
 						}}
 						class={cn($config.radius === valueFloat && "border-2 border-primary")}
