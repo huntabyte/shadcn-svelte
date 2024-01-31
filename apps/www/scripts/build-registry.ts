@@ -12,10 +12,10 @@ import { buildRegistry } from "./registry";
 import { transformContent } from "./transformers";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
 
-async function main() {
-	const REGISTRY_PATH = path.join(process.cwd(), "static/registry");
-	const REGISTRY_IGNORE = ["super-form"];
+const REGISTRY_PATH = path.join(process.cwd(), "static/registry");
+const REGISTRY_IGNORE = ["super-form"];
 
+async function main() {
 	const registry = await buildRegistry();
 	const result = registrySchema.safeParse(registry);
 
@@ -34,7 +34,7 @@ export const Index = {
 `;
 
 	for (const style of styles) {
-		index += `  "${style.name}": {`;
+		index += `	"${style.name}": {`;
 
 		// Build style index.
 		for (const item of result.data) {
@@ -48,19 +48,19 @@ export const Index = {
 
 			const type = item.type.split(":")[1];
 			index += `
-    "${item.name}": {
-      name: "${item.name}",
-      type: "${item.type}",
-      registryDependencies: ${JSON.stringify(item.registryDependencies)},
-      component: () => import("../src/lib/registry/${style.name}/${type}/${
+		"${item.name}": {
+			name: "${item.name}",
+			type: "${item.type}",
+			registryDependencies: ${JSON.stringify(item.registryDependencies)},
+			component: () => import("../src/lib/registry/${style.name}/${type}/${
 				item.name
 			}.svelte").then((m) => m.default),
-      files: [${resolveFiles.map((file) => `"${file}"`)}],
-    },`;
+			files: [${resolveFiles.map((file) => `"${file}"`)}],
+		},`;
 		}
 
 		index += `
-  },`;
+	},`;
 	}
 
 	index += `
@@ -128,13 +128,13 @@ export const Index = {
 
 			fs.writeFileSync(
 				path.join(targetPath, `${item.name}.json`),
-				JSON.stringify(payload, null, 2),
+				JSON.stringify(payload, null, "\t"),
 				"utf8"
 			);
 
 			fs.writeFileSync(
 				path.join(targetJsPath, `${item.name}.json`),
-				JSON.stringify(jsPayload, null, 2),
+				JSON.stringify(jsPayload, null, "\t"),
 				"utf8"
 			);
 		}
@@ -143,7 +143,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/index.json.
 	// ----------------------------------------------------------------------------
-	const stylesJson = JSON.stringify(styles, null, 2);
+	const stylesJson = JSON.stringify(styles, null, "\t");
 	fs.writeFileSync(path.join(REGISTRY_PATH, "styles/index.json"), stylesJson, "utf8");
 
 	// ----------------------------------------------------------------------------
@@ -152,7 +152,7 @@ export const Index = {
 	const names = result.data.filter(
 		(item) => item.type === "components:ui" && !REGISTRY_IGNORE.includes(item.name)
 	);
-	const registryJson = JSON.stringify(names, null, 2);
+	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
 	fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8");
 
@@ -194,7 +194,7 @@ export const Index = {
 
 	fs.writeFileSync(
 		path.join(colorsTargetPath, "index.json"),
-		JSON.stringify(colorsData, null, 2),
+		JSON.stringify(colorsData, null, "\t"),
 		"utf8"
 	);
 
@@ -236,7 +236,7 @@ export const Index = {
 
 		fs.writeFileSync(
 			path.join(REGISTRY_PATH, `colors/${baseColor}.json`),
-			JSON.stringify(base, null, 2),
+			JSON.stringify(base, null, "\t"),
 			"utf8"
 		);
 	}
