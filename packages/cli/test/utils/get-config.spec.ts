@@ -7,7 +7,7 @@ vi.mock("execa");
 vi.mock("node:fs", async () => {
 	return {
 		...(await vi.importActual<typeof import("node:fs")>("node:fs")),
-		readFileSync: vi.fn()
+		readFileSync: vi.fn(),
 	};
 });
 
@@ -29,13 +29,13 @@ describe("getRawConfig", () => {
 			tailwind: {
 				config: "tailwind.config.js",
 				css: "src/app.pcss",
-				baseColor: "zinc"
+				baseColor: "zinc",
 			},
 			aliases: {
 				utils: "$lib/utils",
-				components: "$lib/components"
+				components: "$lib/components",
 			},
-			typescript: true
+			typescript: true,
 		});
 	});
 
@@ -62,11 +62,11 @@ describe("getConfig", () => {
 			tailwind: {
 				config: "tailwind.config.js",
 				css: "src/app.pcss",
-				baseColor: "zinc"
+				baseColor: "zinc",
 			},
 			aliases: {
 				utils: "$lib/utils",
-				components: "$lib/components"
+				components: "$lib/components",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -88,9 +88,9 @@ describe("getConfig", () => {
 					__dirname,
 					"../fixtures/config-partial",
 					"./src/lib/utils"
-				)
+				),
 			},
-			typescript: true
+			typescript: true,
 		});
 	});
 
@@ -100,11 +100,11 @@ describe("getConfig", () => {
 			tailwind: {
 				config: "tailwind.config.js",
 				css: "src/app.pcss",
-				baseColor: "zinc"
+				baseColor: "zinc",
 			},
 			aliases: {
 				utils: "$lib/utils",
-				components: "$lib/components"
+				components: "$lib/components",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -126,9 +126,9 @@ describe("getConfig", () => {
 					__dirname,
 					"../fixtures/config-full",
 					"./src/lib/utils"
-				)
+				),
 			},
-			typescript: true
+			typescript: true,
 		});
 	});
 
@@ -138,11 +138,11 @@ describe("getConfig", () => {
 			tailwind: {
 				config: "tailwind.config.js",
 				css: "src/app.pcss",
-				baseColor: "zinc"
+				baseColor: "zinc",
 			},
 			aliases: {
 				utils: "$lib/utils",
-				components: "$lib/components"
+				components: "$lib/components",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -164,9 +164,9 @@ describe("getConfig", () => {
 					__dirname,
 					"../fixtures/config-vite",
 					"./src/lib/utils"
-				)
+				),
 			},
-			typescript: true
+			typescript: true,
 		});
 	});
 
@@ -176,11 +176,11 @@ describe("getConfig", () => {
 			tailwind: {
 				config: "tailwind.config.js",
 				css: "src/app.pcss",
-				baseColor: "zinc"
+				baseColor: "zinc",
 			},
 			aliases: {
 				utils: "$lib/utils",
-				components: "$lib/components"
+				components: "$lib/components",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -202,9 +202,9 @@ describe("getConfig", () => {
 					__dirname,
 					"../fixtures/config-jsconfig",
 					"./src/lib/utils"
-				)
+				),
 			},
-			typescript: false
+			typescript: false,
 		});
 	});
 });

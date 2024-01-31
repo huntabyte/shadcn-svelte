@@ -17,5 +17,5 @@ export const logger = {
 	},
 	highlight(...args: unknown[]) {
 		return chalk.cyan(...args);
-	}
+	},
 };
