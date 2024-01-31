@@ -1,5 +1,4 @@
 import { vitePreprocess } from "@sveltejs/kit/vite";
-import MagicString from "magic-string";
 import { preprocess } from "svelte/compiler";
 import ts from "typescript";
 import prettier from "prettier";
@@ -48,10 +47,9 @@ export async function transformContent(content: string, filename: string) {
 async function transformSvelteTStoJS(content: string, filename: string) {
 	try {
 		const { code } = await preprocess(content, [vitePreprocess()]);
-		const s = new MagicString(code);
-		s.replaceAll(/<script lang=['"]ts['"]>/g, "<script>");
-		s.replaceAll(/void 0/g, "undefined");
-		return s.toString();
+		let s = code.replaceAll(/<script lang=['"]ts['"]>/g, "<script>");
+		s = s.replaceAll(/void 0/g, "undefined");
+		return s;
 	} catch (e) {
 		throw new Error(`Error preprocessing Svelte file: ${filename} \n ${e}`);
 	}

@@ -43,9 +43,6 @@ dependencies:
   lucide-svelte:
     specifier: ^0.292.0
     version: 0.292.0(svelte@4.2.2)
-  magic-string:
-    specifier: ^0.30.2
-    version: 0.30.5
   mode-watcher:
     specifier: ^0.1.2
     version: 0.1.2(svelte@4.2.2)
