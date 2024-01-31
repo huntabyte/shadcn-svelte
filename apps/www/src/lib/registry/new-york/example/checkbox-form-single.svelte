@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { z } from "zod";
 	export const formSchema = z.object({
-		mobile: z.boolean().default(false)
+		mobile: z.boolean().default(false),
 	});
 	export type FormSchema = typeof formSchema;
 </script>

@@ -11,12 +11,12 @@ export const alertVariants = tv({
 		variant: {
 			default: "bg-background text-foreground",
 			destructive:
-				"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive"
-		}
+				"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive",
+		},
 	},
 	defaultVariants: {
-		variant: "default"
-	}
+		variant: "default",
+	},
 });
 
 export type Variant = VariantProps<typeof alertVariants>["variant"];
@@ -29,5 +29,5 @@ export {
 	//
 	Root as Alert,
 	Description as AlertDescription,
-	Title as AlertTitle
+	Title as AlertTitle,
 };

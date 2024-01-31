@@ -11,7 +11,7 @@ vi.mock("execa");
 vi.mock("fs/promises", () => ({
 	writeFile: vi.fn(),
 	mkdir: vi.fn(),
-	readFile: vi.fn()
+	readFile: vi.fn(),
 }));
 vi.mock("ora");
 
@@ -20,15 +20,15 @@ it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
 		inlineColors: {
 			light: {},
-			dark: {}
+			dark: {},
 		},
 		cssVars: {
 			light: {},
-			dark: {}
+			dark: {},
 		},
 		inlineColorsTemplate:
 			"@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
-		cssVarsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n"
+		cssVarsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
 	});
 
 	const mockMkdir = vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);

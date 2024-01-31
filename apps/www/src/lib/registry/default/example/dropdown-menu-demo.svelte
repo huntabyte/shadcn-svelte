@@ -13,7 +13,7 @@
 		Settings,
 		User,
 		UserPlus,
-		Users
+		Users,
 	} from "lucide-svelte";
 
 	import { Button } from "@/registry/default/ui/button";

@@ -5,7 +5,7 @@
 		CalendarDate,
 		DateFormatter,
 		getLocalTimeZone,
-		type DateValue
+		type DateValue,
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils";
 	import { Button } from "@/registry/default/ui/button";
@@ -13,12 +13,12 @@
 	import * as Popover from "@/registry/default/ui/popover";
 
 	const df = new DateFormatter("en-US", {
-		dateStyle: "medium"
+		dateStyle: "medium",
 	});
 
 	let value: DateRange | undefined = {
 		start: new CalendarDate(2022, 1, 20),
-		end: new CalendarDate(2022, 1, 20).add({ days: 20 })
+		end: new CalendarDate(2022, 1, 20).add({ days: 20 }),
 	};
 
 	let startValue: DateValue | undefined = undefined;

@@ -24,7 +24,7 @@
 	export let data: SuperValidated<T, M>;
 	export let options: Options<typeof data, M> = {
 		validators: schema,
-		taintedMessage: null
+		taintedMessage: null,
 	};
 
 	const form = superForm(data, options);
@@ -32,7 +32,7 @@
 
 	const field = {
 		form,
-		schema
+		schema,
 	};
 </script>
 

@@ -8,8 +8,8 @@ export const components = [
 			"src/lib/components/ui/accordion/AccordionContent.svelte",
 			"src/lib/components/ui/accordion/AccordionItem.svelte",
 			"src/lib/components/ui/accordion/AccordionTrigger.svelte",
-			"src/lib/components/ui/accordion/index.ts"
-		]
+			"src/lib/components/ui/accordion/index.ts",
+		],
 	},
 	{
 		component: "alert",
@@ -18,8 +18,8 @@ export const components = [
 			"src/lib/components/ui/alert/Alert.svelte",
 			"src/lib/components/ui/alert/AlertDescription.svelte",
 			"src/lib/components/ui/alert/AlertTitle.svelte",
-			"src/lib/components/ui/alert/index.ts"
-		]
+			"src/lib/components/ui/alert/index.ts",
+		],
 	},
 	{
 		component: "alert-dialog",
@@ -35,8 +35,8 @@ export const components = [
 			"src/lib/components/ui/alert-dialog/AlertDialogOverlay.svelte",
 			"src/lib/components/ui/alert-dialog/AlertDialogPortal.svelte",
 			"src/lib/components/ui/alert-dialog/AlertDialogTitle.svelte",
-			"src/lib/components/ui/alert-dialog/index.ts"
-		]
+			"src/lib/components/ui/alert-dialog/index.ts",
+		],
 	},
 	{
 		component: "aspect-ratio",
@@ -44,8 +44,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/aspect-ratio/AspectRatio.svelte",
-			"src/lib/components/ui/aspect-ratio/index.ts"
-		]
+			"src/lib/components/ui/aspect-ratio/index.ts",
+		],
 	},
 	{
 		component: "avatar",
@@ -55,21 +55,21 @@ export const components = [
 			"src/lib/components/ui/avatar/Avatar.svelte",
 			"src/lib/components/ui/avatar/AvatarFallback.svelte",
 			"src/lib/components/ui/avatar/AvatarImage.svelte",
-			"src/lib/components/ui/avatar/index.ts"
-		]
+			"src/lib/components/ui/avatar/index.ts",
+		],
 	},
 	{
 		component: "badge",
 		name: "Badge",
-		files: ["src/lib/components/ui/badge/Badge.svelte", "src/lib/components/ui/badge/index.ts"]
+		files: ["src/lib/components/ui/badge/Badge.svelte", "src/lib/components/ui/badge/index.ts"],
 	},
 	{
 		component: "button",
 		name: "Button",
 		files: [
 			"src/lib/components/ui/button/Button.svelte",
-			"src/lib/components/ui/button/index.ts"
-		]
+			"src/lib/components/ui/button/index.ts",
+		],
 	},
 	{
 		component: "card",
@@ -81,8 +81,8 @@ export const components = [
 			"src/lib/components/ui/card/CardFooter.svelte",
 			"src/lib/components/ui/card/CardHeader.svelte",
 			"src/lib/components/ui/card/CardTitle.svelte",
-			"src/lib/components/ui/card/index.ts"
-		]
+			"src/lib/components/ui/card/index.ts",
+		],
 	},
 	//   {
 	//     component: "calendar",
@@ -96,14 +96,14 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/checkbox/Checkbox.svelte",
-			"src/lib/components/ui/checkbox/index.ts"
-		]
+			"src/lib/components/ui/checkbox/index.ts",
+		],
 	},
 	{
 		component: "collapsible",
 		name: "Collapsible",
 		dependencies: ["radix-svelte"],
-		files: ["src/lib/components/ui/collapsible/index.ts"]
+		files: ["src/lib/components/ui/collapsible/index.ts"],
 	},
 	//   {
 	//     component: "command",
@@ -129,8 +129,8 @@ export const components = [
 			"src/lib/components/ui/dialog/DialogOverlay.svelte",
 			"src/lib/components/ui/dialog/DialogPortal.svelte",
 			"src/lib/components/ui/dialog/DialogTitle.svelte",
-			"src/lib/components/ui/dialog/index.ts"
-		]
+			"src/lib/components/ui/dialog/index.ts",
+		],
 	},
 	//   {
 	//     component: "dropdown-menu",
@@ -144,19 +144,19 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/hover-card/HoverCardContent.svelte",
-			"src/lib/components/ui/hover-card/index.ts"
-		]
+			"src/lib/components/ui/hover-card/index.ts",
+		],
 	},
 	{
 		component: "input",
 		name: "Input",
-		files: ["src/lib/components/ui/input/Input.svelte", "src/lib/components/ui/input/index.ts"]
+		files: ["src/lib/components/ui/input/Input.svelte", "src/lib/components/ui/input/index.ts"],
 	},
 	{
 		component: "label",
 		name: "Label",
 		dependencies: ["radix-svelte"],
-		files: ["src/lib/components/ui/label/Label.svelte", "src/lib/components/ui/label/index.ts"]
+		files: ["src/lib/components/ui/label/Label.svelte", "src/lib/components/ui/label/index.ts"],
 	},
 	//   {
 	//     component: "menubar",
@@ -181,8 +181,8 @@ export const components = [
 			"src/lib/components/ui/pagination/PaginationPrevButton.svelte",
 			"src/lib/components/ui/pagination/PaginationNextButton.svelte",
 			"src/lib/components/ui/pagination/PaginationEllipsis.svelte",
-			"src/lib/components/ui/pagination/index.ts"
-		]
+			"src/lib/components/ui/pagination/index.ts",
+		],
 	},
 	//   {
 	//     component: "popover",
@@ -196,8 +196,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/progress/Progress.svelte",
-			"src/lib/components/ui/progress/index.ts"
-		]
+			"src/lib/components/ui/progress/index.ts",
+		],
 	},
 	{
 		component: "radio-group",
@@ -206,8 +206,8 @@ export const components = [
 		files: [
 			"src/lib/components/ui/radio-group/RadioGroup.svelte",
 			"src/lib/components/ui/radio-group/RadioGroupItem.svelte",
-			"src/lib/components/ui/radio-group/index.ts"
-		]
+			"src/lib/components/ui/radio-group/index.ts",
+		],
 	},
 	//   {
 	//     component: "scroll-area",
@@ -227,8 +227,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/separator/Separator.svelte",
-			"src/lib/components/ui/separator/index.ts"
-		]
+			"src/lib/components/ui/separator/index.ts",
+		],
 	},
 	{
 		component: "sheet",
@@ -242,16 +242,16 @@ export const components = [
 			"src/lib/components/ui/sheet/SheetOverlay.svelte",
 			"src/lib/components/ui/sheet/SheetPortal.svelte",
 			"src/lib/components/ui/sheet/SheetTitle.svelte",
-			"src/lib/components/ui/sheet/index.ts"
-		]
+			"src/lib/components/ui/sheet/index.ts",
+		],
 	},
 	{
 		component: "skeleton",
 		name: "Skeleton",
 		files: [
 			"src/lib/components/ui/skeleton/Skeleton.svelte",
-			"src/lib/components/ui/skeleton/index.ts"
-		]
+			"src/lib/components/ui/skeleton/index.ts",
+		],
 	},
 	{
 		component: "slider",
@@ -259,8 +259,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/slider/Slider.svelte",
-			"src/lib/components/ui/slider/index.ts"
-		]
+			"src/lib/components/ui/slider/index.ts",
+		],
 	},
 	{
 		component: "switch",
@@ -268,8 +268,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/switch/Switch.svelte",
-			"src/lib/components/ui/switch/index.ts"
-		]
+			"src/lib/components/ui/switch/index.ts",
+		],
 	},
 	{
 		component: "table",
@@ -283,8 +283,8 @@ export const components = [
 			"src/lib/components/ui/table/TableHead.svelte",
 			"src/lib/components/ui/table/TableHeader.svelte",
 			"src/lib/components/ui/table/TableRow.svelte",
-			"src/lib/components/ui/table/index.ts"
-		]
+			"src/lib/components/ui/table/index.ts",
+		],
 	},
 	{
 		component: "tabs",
@@ -294,16 +294,16 @@ export const components = [
 			"src/lib/components/ui/tabs/TabsContent.svelte",
 			"src/lib/components/ui/tabs/TabsList.svelte",
 			"src/lib/components/ui/tabs/TabsTrigger.svelte",
-			"src/lib/components/ui/tabs/index.ts"
-		]
+			"src/lib/components/ui/tabs/index.ts",
+		],
 	},
 	{
 		component: "textarea",
 		name: "Textarea",
 		files: [
 			"src/lib/components/ui/textarea/Textarea.svelte",
-			"src/lib/components/ui/textarea/index.ts"
-		]
+			"src/lib/components/ui/textarea/index.ts",
+		],
 	},
 	//   {
 	//     component: "toast",
@@ -317,8 +317,8 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/toggle/Toggle.svelte",
-			"src/lib/components/ui/toggle/index.ts"
-		]
+			"src/lib/components/ui/toggle/index.ts",
+		],
 	},
 	{
 		component: "tooltip",
@@ -326,7 +326,7 @@ export const components = [
 		dependencies: ["radix-svelte"],
 		files: [
 			"src/lib/components/ui/tooltip/TooltipContent.svelte",
-			"src/lib/components/ui/tooltip/index.ts"
-		]
-	}
+			"src/lib/components/ui/tooltip/index.ts",
+		],
+	},
 ];

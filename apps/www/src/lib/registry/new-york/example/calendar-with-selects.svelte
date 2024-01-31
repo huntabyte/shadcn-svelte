@@ -24,29 +24,29 @@
 		"September",
 		"October",
 		"November",
-		"December"
+		"December",
 	].map((month, i) => ({ value: i + 1, label: month }));
 
 	const monthFmt = new DateFormatter("en-US", {
-		month: "long"
+		month: "long",
 	});
 
 	const yearOptions = Array.from({ length: 100 }, (_, i) => ({
 		label: String(new Date().getFullYear() - i),
-		value: new Date().getFullYear() - i
+		value: new Date().getFullYear() - i,
 	}));
 
 	$: defaultYear = placeholder
 		? {
 				value: placeholder.year,
-				label: String(placeholder.year)
+				label: String(placeholder.year),
 		  }
 		: undefined;
 
 	$: defaultMonth = placeholder
 		? {
 				value: placeholder.month,
-				label: monthFmt.format(placeholder.toDate(getLocalTimeZone()))
+				label: monthFmt.format(placeholder.toDate(getLocalTimeZone())),
 		  }
 		: undefined;
 

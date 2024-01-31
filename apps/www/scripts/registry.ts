@@ -10,13 +10,13 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
-	["embla-carousel-svelte", []]
+	["embla-carousel-svelte", []],
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
 	["calendar", ["@internationalized/date"]],
-	["range-calendar", ["@internationalized/date"]]
+	["range-calendar", ["@internationalized/date"]],
 ]);
 const REGISTRY_DEPENDENCY = "@/";
 
@@ -36,7 +36,7 @@ export async function buildRegistry() {
 async function crawlUI(rootPath: string) {
 	const dir = await readdir(rootPath, {
 		recursive: true,
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const uiRegistry: Registry = [];
@@ -58,7 +58,7 @@ async function crawlExample(rootPath: string) {
 
 	const dir = await readdir(rootPath, {
 		// recursive: true, // ignoring examples with directories for now...
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const exampleRegistry: Registry = [];
@@ -78,7 +78,7 @@ async function crawlExample(rootPath: string) {
 				type,
 				files: [file_path],
 				registryDependencies: Array.from(registryDependencies),
-				dependencies: Array.from(dependencies)
+				dependencies: Array.from(dependencies),
 			});
 		}
 
@@ -99,7 +99,7 @@ async function crawlExample(rootPath: string) {
 
 async function buildUIRegistry(componentPath: string, componentName: string) {
 	const dir = await readdir(componentPath, {
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const files: string[] = [];
@@ -128,7 +128,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		type,
 		files,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: Array.from(dependencies)
+		dependencies: Array.from(dependencies),
 	} satisfies RegistryItem;
 }
 
@@ -158,7 +158,7 @@ async function getDependencies(filename: string) {
 					registryDependencies.add(component);
 				}
 			}
-		}
+		},
 	});
 
 	return { registryDependencies, dependencies };

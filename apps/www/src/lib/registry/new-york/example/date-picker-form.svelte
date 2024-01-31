@@ -2,7 +2,7 @@
 	import { z } from "zod";
 
 	export const formSchema = z.object({
-		dob: z.string().refine((v) => v, { message: "A date of birth is required." })
+		dob: z.string().refine((v) => v, { message: "A date of birth is required." }),
 	});
 
 	export type FormSchema = typeof formSchema;
@@ -17,7 +17,7 @@
 		getLocalTimeZone,
 		parseDate,
 		CalendarDate,
-		today
+		today,
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils";
 	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
@@ -30,13 +30,13 @@
 
 	const theForm = superForm(form, {
 		validators: formSchema,
-		taintedMessage: null
+		taintedMessage: null,
 	});
 
 	const { form: formStore } = theForm;
 
 	const df = new DateFormatter("en-US", {
-		dateStyle: "long"
+		dateStyle: "long",
 	});
 
 	let value: DateValue | undefined = $formStore.dob ? parseDate($formStore.dob) : undefined;

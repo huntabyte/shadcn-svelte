@@ -13,13 +13,13 @@
 
 	const { pluginStates } = tableModel;
 	const {
-		filterValue
+		filterValue,
 	}: {
 		filterValue: Writable<string>;
 	} = pluginStates.filter;
 
 	const {
-		filterValues
+		filterValues,
 	}: {
 		filterValues: Writable<{
 			status: string[];

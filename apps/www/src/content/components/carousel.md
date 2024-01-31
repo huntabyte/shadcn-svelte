@@ -148,7 +148,7 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 <Carousel.Root
   opts={{
     align: "start",
-    loop: true
+    loop: true,
   }}
 >
   <Carousel.Content>
@@ -236,8 +236,8 @@ You can use the `plugins` prop to add plugins to the carousel.
 <Carousel.Root
   plugins={[
     Autoplay({
-      delay: 2000
-    })
+      delay: 2000,
+    }),
   ]}
 >
   <!-- ... -->

@@ -40,7 +40,7 @@
 					class={cn("flex min-h-[350px] justify-center p-10", {
 						"items-center": align === "center",
 						"items-start": align === "start",
-						"items-end": align === "end"
+						"items-end": align === "end",
 					})}
 				>
 					<slot name="example" />

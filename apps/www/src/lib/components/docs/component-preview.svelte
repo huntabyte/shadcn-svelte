@@ -53,7 +53,7 @@
 						{
 							"items-center": align === "center",
 							"items-start": align === "start",
-							"items-end": align === "end"
+							"items-end": align === "end",
 						},
 						className
 					)}

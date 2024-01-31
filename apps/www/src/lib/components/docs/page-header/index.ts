@@ -9,5 +9,5 @@ export {
 	//
 	Root as PageHeader,
 	Heading as PageHeaderHeading,
-	Description as PageHeaderDescription
+	Description as PageHeaderDescription,
 };

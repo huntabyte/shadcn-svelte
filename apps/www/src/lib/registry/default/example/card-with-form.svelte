@@ -8,20 +8,20 @@
 	const frameworks = [
 		{
 			value: "sveltekit",
-			label: "SvelteKit"
+			label: "SvelteKit",
 		},
 		{
 			value: "next",
-			label: "Next.js"
+			label: "Next.js",
 		},
 		{
 			value: "astro",
-			label: "Astro"
+			label: "Astro",
 		},
 		{
 			value: "nuxt",
-			label: "Nuxt.js"
-		}
+			label: "Nuxt.js",
+		},
 	];
 </script>
 

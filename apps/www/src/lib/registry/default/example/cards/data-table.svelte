@@ -5,7 +5,7 @@
 		addPagination,
 		addTableFilter,
 		addSelectedRows,
-		addHiddenColumns
+		addHiddenColumns,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/default/ui/table";
@@ -30,42 +30,42 @@
 			id: "m5gr84i9",
 			amount: 316,
 			status: "Success",
-			email: "ken99@yahoo.com"
+			email: "ken99@yahoo.com",
 		},
 		{
 			id: "3u1reuv4",
 			amount: 242,
 			status: "Success",
-			email: "Abe45@gmail.com"
+			email: "Abe45@gmail.com",
 		},
 		{
 			id: "derv1ws0",
 			amount: 837,
 			status: "Processing",
-			email: "Monserrat44@gmail.com"
+			email: "Monserrat44@gmail.com",
 		},
 		{
 			id: "5kma53ae",
 			amount: 874,
 			status: "Success",
-			email: "Silas22@gmail.com"
+			email: "Silas22@gmail.com",
 		},
 		{
 			id: "bhqecj4p",
 			amount: 721,
 			status: "Failed",
-			email: "carmella@hotmail.com"
-		}
+			email: "carmella@hotmail.com",
+		},
 	];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
 		page: addPagination(),
 		filter: addTableFilter({
-			fn: ({ filterValue, value }) => value.includes(filterValue)
+			fn: ({ filterValue, value }) => value.includes(filterValue),
 		}),
 		select: addSelectedRows(),
-		hide: addHiddenColumns()
+		hide: addHiddenColumns(),
 	});
 
 	const columns = table.createColumns([
@@ -73,7 +73,7 @@
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
 				return createRender(DataTableCheckbox, {
-					checked: allPageRowsSelected
+					checked: allPageRowsSelected,
 				});
 			},
 			accessor: "id",
@@ -82,27 +82,27 @@
 				const { isSelected } = getRowState(row);
 
 				return createRender(DataTableCheckbox, {
-					checked: isSelected
+					checked: isSelected,
 				});
 			},
 			plugins: {
 				sort: {
-					disable: true
+					disable: true,
 				},
 				filter: {
-					exclude: true
-				}
-			}
+					exclude: true,
+				},
+			},
 		}),
 		table.column({
 			header: "Status",
 			accessor: "status",
-			plugins: { sort: { disable: true }, filter: { exclude: true } }
+			plugins: { sort: { disable: true }, filter: { exclude: true } },
 		}),
 		table.column({
 			header: "Email",
 			accessor: "email",
-			cell: ({ value }) => value.toLowerCase()
+			cell: ({ value }) => value.toLowerCase(),
 		}),
 		table.column({
 			header: "Amount",
@@ -110,18 +110,18 @@
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat("en-US", {
 					style: "currency",
-					currency: "USD"
+					currency: "USD",
 				}).format(value);
 				return formatted;
 			},
 			plugins: {
 				sort: {
-					disable: true
+					disable: true,
 				},
 				filter: {
-					exclude: true
-				}
-			}
+					exclude: true,
+				},
+			},
 		}),
 		table.column({
 			header: "",
@@ -131,10 +131,10 @@
 			},
 			plugins: {
 				sort: {
-					disable: true
-				}
-			}
-		})
+					disable: true,
+				},
+			},
+		}),
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, flatColumns, pluginStates, rows } =

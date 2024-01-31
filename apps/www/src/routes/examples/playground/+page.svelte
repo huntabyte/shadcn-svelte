@@ -15,7 +15,7 @@
 		PresetSelector,
 		PresetShare,
 		TemperatureSelector,
-		TopPSelector
+		TopPSelector,
 	} from "./(components)";
 	import { models, types } from "./(data)/models";
 	import { presets } from "./(data)/presets";

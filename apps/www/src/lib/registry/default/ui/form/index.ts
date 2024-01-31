@@ -78,5 +78,5 @@ export {
 	SelectItem as FormSelectItem,
 	SelectSeparator as FormSelectSeparator,
 	SelectTrigger as FormSelectTrigger,
-	Button as FormButton
+	Button as FormButton,
 };

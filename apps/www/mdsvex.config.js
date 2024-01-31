@@ -22,13 +22,13 @@ export const mdsvexOptions = {
 		quotes: false,
 		ellipses: false,
 		backticks: false,
-		dashes: false
+		dashes: false,
 	},
 	remarkPlugins: [
 		// Github Flavored Markdown style
 		remarkGfm,
 		// Import code from other files and render them into code blocks
-		codeImport
+		codeImport,
 	],
 	rehypePlugins: [
 		// Add IDs to headings
@@ -79,27 +79,27 @@ export const mdsvexOptions = {
 				},
 				onVisitHighlightedWord(node) {
 					node.properties.className = ["word--highlighted"];
-				}
-			}
+				},
+			},
 		],
 		// Add metadata tags to code blocks
 		rehypeHandleMetadata,
 		// Render code into Components.pre or pre tags
 		rehypeRenderCode,
 		// Replace back `pre` tags with `Component.pre` tags
-		rehypePreToComponentPre
-	]
+		rehypePreToComponentPre,
+	],
 };
 
 const styles = [
 	{
 		name: "default",
-		label: "Default"
+		label: "Default",
 	},
 	{
 		name: "new-york",
-		label: "New York"
-	}
+		label: "New York",
+	},
 ];
 
 export function rehypeComponentExample() {
@@ -129,23 +129,23 @@ export function rehypeComponentExample() {
 							properties: {
 								__src__: src,
 								__style__: style.name,
-								className: ["code"]
+								className: ["code"],
 							},
 							children: [
 								u("element", {
 									tagName: "code",
 									properties: {
-										className: [`language-svelte`]
+										className: [`language-svelte`],
 									},
 									attributes: {},
 									children: [
 										{
 											type: "text",
-											value: sourceCode
-										}
-									]
-								})
-							]
+											value: sourceCode,
+										},
+									],
+								}),
+							],
 						});
 						if (!index) return;
 						parent.children.splice(index + 1, 0, sourceCodeNode);
@@ -223,7 +223,7 @@ function rehypeRenderCode() {
 
 				const toHtmlString = toHtml(codeEl, {
 					allowDangerousCharacters: true,
-					allowDangerousHtml: true
+					allowDangerousHtml: true,
 				});
 				codeEl.type = "raw";
 				codeEl.value = `{@html \`${toHtmlString}\`}`;

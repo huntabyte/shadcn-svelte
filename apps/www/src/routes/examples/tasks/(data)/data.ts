@@ -6,66 +6,66 @@ import {
 	Circle,
 	CrossCircled,
 	QuestionMarkCircled,
-	Stopwatch
+	Stopwatch,
 } from "radix-icons-svelte";
 
 export const labels = [
 	{
 		value: "bug",
-		label: "Bug"
+		label: "Bug",
 	},
 	{
 		value: "feature",
-		label: "Feature"
+		label: "Feature",
 	},
 	{
 		value: "documentation",
-		label: "Documentation"
-	}
+		label: "Documentation",
+	},
 ];
 
 export const statuses = [
 	{
 		value: "backlog",
 		label: "Backlog",
-		icon: QuestionMarkCircled
+		icon: QuestionMarkCircled,
 	},
 	{
 		value: "todo",
 		label: "Todo",
-		icon: Circle
+		icon: Circle,
 	},
 	{
 		value: "in progress",
 		label: "In Progress",
-		icon: Stopwatch
+		icon: Stopwatch,
 	},
 	{
 		value: "done",
 		label: "Done",
-		icon: CheckCircled
+		icon: CheckCircled,
 	},
 	{
 		value: "canceled",
 		label: "Canceled",
-		icon: CrossCircled
-	}
+		icon: CrossCircled,
+	},
 ];
 
 export const priorities = [
 	{
 		label: "Low",
 		value: "low",
-		icon: ArrowDown
+		icon: ArrowDown,
 	},
 	{
 		label: "Medium",
 		value: "medium",
-		icon: ArrowRight
+		icon: ArrowRight,
 	},
 	{
 		label: "High",
 		value: "high",
-		icon: ArrowUp
-	}
+		icon: ArrowUp,
+	},
 ];

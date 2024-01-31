@@ -96,7 +96,7 @@ let traveler = defaultTraveler.makeChild({
 	},
 	SwitchCase(node, state) {
 		attachCommentsToNode(this, state, node, node.consequent, false);
-	}
+	},
 	// TODO: Consider ArrayExpression ?
 });
 
@@ -106,7 +106,7 @@ export function attachComments(node, comments) {
   */
 	traveler[node.type](node, {
 		comments,
-		index: 0
+		index: 0,
 	});
 	return node;
 }

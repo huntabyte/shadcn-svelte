@@ -7,9 +7,9 @@ export const siteConfig = {
 		twitter: "https://twitter.com/huntabyte",
 		github: "https://github.com/huntabyte/shadcn-svelte",
 		shadTwitter: "https://twitter.com/shadcn",
-		shadGithub: "https://github.com/shadcn/ui"
+		shadGithub: "https://github.com/shadcn/ui",
 	},
-	keywords: `shadcn,Svelte,SvelteKit,Svelte Components,TailwindCSS,Melt UI,Bit UI`
+	keywords: `shadcn,Svelte,SvelteKit,Svelte Components,TailwindCSS,Melt UI,Bit UI`,
 };
 
 export type SiteConfig = typeof siteConfig;

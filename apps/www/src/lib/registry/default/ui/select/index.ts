@@ -30,5 +30,5 @@ export {
 	Value as SelectValue,
 	Content as SelectContent,
 	Trigger as SelectTrigger,
-	Separator as SelectSeparator
+	Separator as SelectSeparator,
 };

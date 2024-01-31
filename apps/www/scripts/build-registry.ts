@@ -90,13 +90,13 @@ for (const style of styles) {
 
 			return {
 				name: basename(file),
-				content
+				content,
 			};
 		});
 
 		const payload = {
 			...item,
-			files
+			files,
 		};
 
 		fs.writeFileSync(
@@ -144,7 +144,7 @@ for (const [color, value] of Object.entries(colors)) {
 		colorsData[color] = value.map((item) => ({
 			...item,
 			rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-			hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3")
+			hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
 		}));
 		continue;
 	}
@@ -153,7 +153,7 @@ for (const [color, value] of Object.entries(colors)) {
 		colorsData[color] = {
 			...value,
 			rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-			hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3")
+			hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
 		};
 		continue;
 	}
@@ -255,7 +255,7 @@ export const BASE_STYLES_WITH_VARIABLES = `@tailwind base;
 for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
 	const base: Record<string, any> = {
 		inlineColors: {},
-		cssVars: {}
+		cssVars: {},
 	};
 	for (const [mode, values] of Object.entries(colorMapping)) {
 		base["inlineColors"][mode] = {};
@@ -279,7 +279,7 @@ for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
 	// Build css vars.
 	base["inlineColorsTemplate"] = template(BASE_STYLES)({});
 	base["cssVarsTemplate"] = template(BASE_STYLES_WITH_VARIABLES)({
-		colors: base["cssVars"]
+		colors: base["cssVars"],
 	});
 
 	fs.writeFileSync(
@@ -362,7 +362,7 @@ for (const theme of themes) {
 	themeCSS.push(
 		template(THEME_STYLES_WITH_VARIABLES)({
 			colors: theme.cssVars,
-			theme: theme.name
+			theme: theme.name,
 		})
 	);
 }

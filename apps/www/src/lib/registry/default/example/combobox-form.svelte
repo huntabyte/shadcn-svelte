@@ -10,15 +10,15 @@
 		{ label: "Russian", value: "ru" },
 		{ label: "Japanese", value: "ja" },
 		{ label: "Korean", value: "ko" },
-		{ label: "Chinese", value: "zh" }
+		{ label: "Chinese", value: "zh" },
 	] as const;
 
 	type Language = (typeof languages)[number]["value"];
 
 	export const formSchema = z.object({
 		language: z.enum(languages.map((f) => f.value) as [Language, ...Language[]], {
-			errorMap: () => ({ message: "Please select a valid language." })
-		})
+			errorMap: () => ({ message: "Please select a valid language." }),
+		}),
 	});
 
 	export type FormSchema = typeof formSchema;

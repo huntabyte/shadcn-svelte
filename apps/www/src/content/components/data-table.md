@@ -73,14 +73,14 @@ export const payments: Payment[] = [
     id: "728ed52f",
     amount: 100,
     status: "pending",
-    email: "m@example.com"
+    email: "m@example.com",
   },
   {
     id: "489e1d42",
     amount: 125,
     status: "processing",
-    email: "example@gmail.com"
-  }
+    email: "example@gmail.com",
+  },
   // ...
 ];
 ```
@@ -127,8 +127,8 @@ Before we can initialize a table, we need to get our data. You can retrieve your
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 </script>
@@ -155,8 +155,8 @@ Next, we'll initialize a new table using `svelte-headless-table`.
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -185,8 +185,8 @@ Now that we have a table, we can define our columns.
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -195,24 +195,24 @@ Now that we have a table, we can define our columns.
   const columns = table.createColumns([
     table.column({
       accessor: "id",
-      header: "ID"
+      header: "ID",
     }),
     table.column({
       accessor: "status",
-      header: "Status"
+      header: "Status",
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
-      header: "Amount"
+      header: "Amount",
     }),
     table.column({
       accessor: ({ id }) => id,
-      header: ""
-    })
+      header: "",
+    }),
   ]);
 </script>
 ```
@@ -241,8 +241,8 @@ Finally, we'll create a view model which we'll use to build our table.
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -251,24 +251,24 @@ Finally, we'll create a view model which we'll use to build our table.
   const columns = table.createColumns([
     table.column({
       accessor: "id",
-      header: "ID"
+      header: "ID",
     }),
     table.column({
       accessor: "status",
-      header: "Status"
+      header: "Status",
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
-      header: "Amount"
+      header: "Amount",
     }),
     table.column({
       accessor: ({ id }) => id,
-      header: ""
-    })
+      header: "",
+    }),
   ]);
 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs } =
@@ -341,15 +341,15 @@ First, we'll update our columns definition for the `amount` column to return a f
 const columns = table.createColumns([
   table.column({
     accessor: "id",
-    header: "ID"
+    header: "ID",
   }),
   table.column({
     accessor: "status",
-    header: "Status"
+    header: "Status",
   }),
   table.column({
     accessor: "email",
-    header: "Email"
+    header: "Email",
   }),
   table.column({
     accessor: "amount",
@@ -357,15 +357,15 @@ const columns = table.createColumns([
     cell: ({ value }) => {
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
       }).format(value);
       return formatted;
-    }
+    },
   }),
   table.column({
     accessor: ({ id }) => id,
-    header: ""
-  })
+    header: "",
+  }),
 ]);
 ```
 
@@ -485,7 +485,7 @@ Now that we've defined our actions component, let's update our `actions` column 
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import { readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
@@ -503,8 +503,8 @@ Now that we've defined our actions component, let's update our `actions` column 
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     //...
   ];
 
@@ -513,15 +513,15 @@ Now that we've defined our actions component, let's update our `actions` column 
   const columns = table.createColumns([
     table.column({
       accessor: "id",
-      header: "ID"
+      header: "ID",
     }),
     table.column({
       accessor: "status",
-      header: "Status"
+      header: "Status",
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -529,18 +529,18 @@ Now that we've defined our actions component, let's update our `actions` column 
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
-      }
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
       header: "",
       cell: ({ value }) => {
         return createRender(DataTableActions, { id: value });
-      }
-    })
+      },
+    }),
   ]);
 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs } =
@@ -566,7 +566,7 @@ Next, we'll add pagination to our table
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import { addPagination } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
@@ -586,27 +586,27 @@ Next, we'll add pagination to our table
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     //...
   ];
 
   const table = createTable(readable(data), {
-    page: addPagination()
+    page: addPagination(),
   });
 
   const columns = table.createColumns([
     table.column({
       accessor: "id",
-      header: "ID"
+      header: "ID",
     }),
     table.column({
       accessor: "status",
-      header: "Status"
+      header: "Status",
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -614,18 +614,18 @@ Next, we'll add pagination to our table
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
-      }
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
       header: "",
       cell: ({ value }) => {
         return createRender(DataTableActions, { id: value });
-      }
-    })
+      },
+    }),
   ]);
 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
@@ -683,7 +683,7 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import { addPagination, addSortBy } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
@@ -704,14 +704,14 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     //...
   ];
 
   const table = createTable(readable(data), {
     page: addPagination(),
-    sort: addSortBy()
+    sort: addSortBy(),
   });
 
   const columns = table.createColumns([
@@ -720,22 +720,22 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       header: "ID",
       plugins: {
         sort: {
-          disable: true
-        }
-      }
+          disable: true,
+        },
+      },
     }),
     table.column({
       accessor: "status",
       header: "Status",
       plugins: {
         sort: {
-          disable: true
-        }
-      }
+          disable: true,
+        },
+      },
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -743,15 +743,15 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
       },
       plugins: {
         sort: {
-          disable: true
-        }
-      }
+          disable: true,
+        },
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
@@ -761,10 +761,10 @@ Let's enable the `addSortBy` plugin and import the icon we'll use to indicate th
       },
       plugins: {
         sort: {
-          disable: true
-        }
-      }
-    })
+          disable: true,
+        },
+      },
+    }),
   ]);
 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
@@ -837,12 +837,12 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import {
     addPagination,
     addSortBy,
-    addTableFilter
+    addTableFilter,
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
@@ -863,8 +863,8 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -873,8 +873,8 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
     sort: addSortBy(),
     filter: addTableFilter({
       fn: ({ filterValue, value }) =>
-        value.toLowerCase().includes(filterValue.toLowerCase())
-    })
+        value.toLowerCase().includes(filterValue.toLowerCase()),
+    }),
   });
 
   const columns = table.createColumns([
@@ -883,28 +883,28 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       header: "ID",
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "status",
       header: "Status",
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -912,18 +912,18 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
       },
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
@@ -933,10 +933,10 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
       },
       plugins: {
         sort: {
-          disable: true
-        }
-      }
-    })
+          disable: true,
+        },
+      },
+    }),
   ]);
 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
@@ -994,13 +994,13 @@ Let's add the ability to control which columns are visible in our table.
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import {
     addPagination,
     addSortBy,
     addTableFilter,
-    addHiddenColumns
+    addHiddenColumns,
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
   import * as Table from "$lib/components/ui/table";
@@ -1021,8 +1021,8 @@ Let's add the ability to control which columns are visible in our table.
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -1030,9 +1030,9 @@ Let's add the ability to control which columns are visible in our table.
     page: addPagination(),
     sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
-      fn: ({ filterValue, value }) => value.includes(filterValue)
+      fn: ({ filterValue, value }) => value.includes(filterValue),
     }),
-    hide: addHiddenColumns()
+    hide: addHiddenColumns(),
   });
 
   const columns = table.createColumns([
@@ -1041,28 +1041,28 @@ Let's add the ability to control which columns are visible in our table.
       header: "ID",
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "status",
       header: "Status",
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -1070,18 +1070,18 @@ Let's add the ability to control which columns are visible in our table.
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
       },
       plugins: {
         sort: {
-          disable: true
+          disable: true,
         },
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
@@ -1091,10 +1091,10 @@ Let's add the ability to control which columns are visible in our table.
       },
       plugins: {
         sort: {
-          disable: true
-        }
-      }
-    })
+          disable: true,
+        },
+      },
+    }),
   ]);
 
   const {
@@ -1103,7 +1103,7 @@ Let's add the ability to control which columns are visible in our table.
     tableAttrs,
     tableBodyAttrs,
     pluginStates,
-    flatColumns
+    flatColumns,
   } = table.createViewModel(columns);
 
   const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
@@ -1195,14 +1195,14 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     createTable,
     Render,
     Subscribe,
-    createRender
+    createRender,
   } from "svelte-headless-table";
   import {
     addPagination,
     addSortBy,
     addTableFilter,
     addHiddenColumns,
-    addSelectedRows
+    addSelectedRows,
   } from "svelte-headless-table/plugins";
   import { readable } from "svelte/store";
   import * as Table from "@/registry/new-york/ui/table";
@@ -1225,8 +1225,8 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       id: "m5gr84i9",
       amount: 316,
       status: "success",
-      email: "ken99@yahoo.com"
-    }
+      email: "ken99@yahoo.com",
+    },
     // ...
   ];
 
@@ -1234,10 +1234,10 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     page: addPagination(),
     sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
-      fn: ({ filterValue, value }) => value.includes(filterValue)
+      fn: ({ filterValue, value }) => value.includes(filterValue),
     }),
     hide: addHiddenColumns(),
-    select: addSelectedRows()
+    select: addSelectedRows(),
   });
 
   const columns = table.createColumns([
@@ -1246,7 +1246,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       header: (_, { pluginStates }) => {
         const { allPageRowsSelected } = pluginStates.select;
         return createRender(DataTableCheckbox, {
-          checked: allPageRowsSelected
+          checked: allPageRowsSelected,
         });
       },
       cell: ({ row }, { pluginStates }) => {
@@ -1254,27 +1254,27 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         const { isSelected } = getRowState(row);
 
         return createRender(DataTableCheckbox, {
-          checked: isSelected
+          checked: isSelected,
         });
       },
       plugins: {
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "status",
       header: "Status",
       plugins: {
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: "email",
-      header: "Email"
+      header: "Email",
     }),
     table.column({
       accessor: "amount",
@@ -1282,15 +1282,15 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       cell: ({ value }) => {
         const formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
         }).format(value);
         return formatted;
       },
       plugins: {
         filter: {
-          exclude: true
-        }
-      }
+          exclude: true,
+        },
+      },
     }),
     table.column({
       accessor: ({ id }) => id,
@@ -1300,10 +1300,10 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       },
       plugins: {
         sort: {
-          disable: true
-        }
-      }
-    })
+          disable: true,
+        },
+      },
+    }),
   ]);
 
   const {
@@ -1313,7 +1313,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     tableBodyAttrs,
     pluginStates,
     flatColumns,
-    rows
+    rows,
   } = table.createViewModel(columns);
 
   const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;

@@ -80,7 +80,7 @@ Define the shape of your form using a Zod schema. You can read more about using 
 import { z } from "zod";
 
 export const formSchema = z.object({
-  username: z.string().min(2).max(50)
+  username: z.string().min(2).max(50),
 });
 
 export type FormSchema = typeof formSchema;
@@ -95,7 +95,7 @@ import { formSchema } from "./schema";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(formSchema)
+    form: await superValidate(formSchema),
   };
 };
 ```
@@ -152,7 +152,7 @@ import { formSchema } from "./schema";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(formSchema)
+    form: await superValidate(formSchema),
   };
 };
 
@@ -161,13 +161,13 @@ export const actions: Actions = {
     const form = await superValidate(event, formSchema);
     if (!form.valid) {
       return fail(400, {
-        form
+        form,
       });
     }
     return {
-      form
+      form,
     };
-  }
+  },
 };
 ```
 

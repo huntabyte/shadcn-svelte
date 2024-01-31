@@ -5,7 +5,7 @@
 
 	export let transition: $$Props["transition"] = slide;
 	export let transitionConfig: $$Props["transitionConfig"] = {
-		duration: 150
+		duration: 150,
 	};
 </script>
 

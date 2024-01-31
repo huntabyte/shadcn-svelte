@@ -3,8 +3,8 @@
 
 	export const formSchema = z.object({
 		type: z.enum(["all", "mentions", "none"], {
-			required_error: "You need to select a notification type"
-		})
+			required_error: "You need to select a notification type",
+		}),
 	});
 	export type FormSchema = typeof formSchema;
 </script>

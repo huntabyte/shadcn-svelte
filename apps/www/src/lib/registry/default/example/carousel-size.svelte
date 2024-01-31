@@ -5,7 +5,7 @@
 
 <Carousel.Root
 	opts={{
-		align: "start"
+		align: "start",
 	}}
 	class="w-full max-w-sm"
 >
