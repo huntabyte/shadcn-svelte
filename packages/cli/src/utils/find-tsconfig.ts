@@ -14,7 +14,7 @@ import { RawConfig } from "./get-config.js";
 export async function find({
 	filename,
 	options,
-	config
+	config,
 }: {
 	filename: string;
 	options?: TSConfckFindOptions;
@@ -45,7 +45,7 @@ export async function find({
 async function tsconfigInDir({
 	dir,
 	options,
-	config
+	config,
 }: {
 	dir: string;
 	options?: TSConfckFindOptions;

@@ -112,7 +112,7 @@ async function promptForConfig(
 			message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
 			initial: defaultConfig?.typescript ?? DEFAULT_TYPESCRIPT,
 			active: "yes",
-			inactive: "no"
+			inactive: "no",
 		},
 		{
 			type: "select",
