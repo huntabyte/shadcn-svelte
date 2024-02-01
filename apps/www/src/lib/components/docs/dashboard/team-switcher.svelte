@@ -20,23 +20,23 @@
 			teams: [
 				{
 					label: "Alicia Koch",
-					value: "personal"
-				}
-			]
+					value: "personal",
+				},
+			],
 		},
 		{
 			label: "Teams",
 			teams: [
 				{
 					label: "Acme Inc.",
-					value: "acme-inc"
+					value: "acme-inc",
 				},
 				{
 					label: "Monsters Inc.",
-					value: "monsters"
-				}
-			]
-		}
+					value: "monsters",
+				},
+			],
+		},
 	];
 
 	type Team = (typeof groups)[number]["teams"][number];

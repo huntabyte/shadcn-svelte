@@ -20,7 +20,7 @@
 		td,
 		th,
 		tr,
-		ul
+		ul,
 	} from "$components/docs/mdsvex";
 
 	export {
@@ -42,7 +42,7 @@
 		td,
 		th,
 		tr,
-		ul
+		ul,
 	};
 </script>
 

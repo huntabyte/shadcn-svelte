@@ -9,24 +9,24 @@
 	const frameworks = [
 		{
 			value: "sveltekit",
-			label: "SvelteKit"
+			label: "SvelteKit",
 		},
 		{
 			value: "next.js",
-			label: "Next.js"
+			label: "Next.js",
 		},
 		{
 			value: "nuxt.js",
-			label: "Nuxt.js"
+			label: "Nuxt.js",
 		},
 		{
 			value: "remix",
-			label: "Remix"
+			label: "Remix",
 		},
 		{
 			value: "astro",
-			label: "Astro"
-		}
+			label: "Astro",
+		},
 	];
 
 	let open = false;

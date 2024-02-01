@@ -2,7 +2,7 @@
 	"useTabs": true,
 	"tabWidth": 4,
 	"singleQuote": false,
-	"trailingComma": "none",
+	"trailingComma": "es5",
 	"printWidth": 90,
 	"endOfLine": "lf",
 	"pluginSearchDirs": false,

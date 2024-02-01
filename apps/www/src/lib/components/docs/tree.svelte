@@ -3,7 +3,7 @@
 	import { cn } from "$lib/utils";
 
 	export let tree: TableOfContents = {
-		items: []
+		items: [],
 	};
 	export let activeItem: string | undefined;
 	export let level = 1;

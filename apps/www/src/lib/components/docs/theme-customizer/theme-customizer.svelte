@@ -28,7 +28,7 @@
 							on:click={() => {
 								config.update((prev) => ({
 									...prev,
-									theme: theme.name
+									theme: theme.name,
 								}));
 							}}
 							class={cn(

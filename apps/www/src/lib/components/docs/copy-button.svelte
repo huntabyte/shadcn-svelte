@@ -10,7 +10,7 @@
 		npm: "",
 		yarn: "",
 		pnpm: "",
-		bun: ""
+		bun: "",
 	};
 	let className: string | undefined | null = undefined;
 	export let value = "";
@@ -23,7 +23,7 @@
 				npm: value,
 				yarn: value.replace("npm install", "yarn add"),
 				pnpm: value.replace(/^npm/, "pnpm"),
-				bun: value.replace(/^npm/, "bun")
+				bun: value.replace(/^npm/, "bun"),
 			};
 		}
 
@@ -33,7 +33,7 @@
 				npm: value,
 				yarn: value.replace(/^npm/, "yarn"),
 				pnpm: value.replace(/^npm/, "pnpm"),
-				bun: value.replace(/^npm/, "bun --bun")
+				bun: value.replace(/^npm/, "bun"),
 			};
 		}
 
@@ -43,7 +43,7 @@
 				npm: value,
 				yarn: value.replace(/^npx/, "yarn dlx"),
 				pnpm: value.replace(/^npx/, "pnpx"),
-				bun: value.replace(/^npx/, "bunx --bun")
+				bun: value.replace(/^npx/, "bunx"),
 			};
 		}
 	}

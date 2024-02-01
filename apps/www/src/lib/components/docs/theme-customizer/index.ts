@@ -61,6 +61,6 @@ export function getThemeCode(theme: Theme, radius: number) {
 
 	return template(BASE_STYLES_WITH_VARIABLES)({
 		colors: theme.cssVars,
-		radius
+		radius,
 	});
 }

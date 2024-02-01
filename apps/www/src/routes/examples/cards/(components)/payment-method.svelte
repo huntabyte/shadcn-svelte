@@ -19,7 +19,7 @@
 		"September",
 		"October",
 		"November",
-		"December"
+		"December",
 	];
 </script>
 

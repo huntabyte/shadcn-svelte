@@ -36,5 +36,5 @@ export {
 	Trigger as AlertDialogTrigger,
 	Overlay as AlertDialogOverlay,
 	Content as AlertDialogContent,
-	Description as AlertDialogDescription
+	Description as AlertDialogDescription,
 };

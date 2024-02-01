@@ -9,43 +9,43 @@
 	const areas = [
 		{
 			value: "team",
-			label: "Team"
+			label: "Team",
 		},
 		{
 			value: "billing",
-			label: "Billing"
+			label: "Billing",
 		},
 		{
 			value: "account",
-			label: "Account"
+			label: "Account",
 		},
 		{
 			value: "deployments",
-			label: "Deployments"
+			label: "Deployments",
 		},
 		{
 			value: "support",
-			label: "Support"
-		}
+			label: "Support",
+		},
 	];
 
 	const securityLevels = [
 		{
 			value: "1",
-			label: "Severity 1 (Highest)"
+			label: "Severity 1 (Highest)",
 		},
 		{
 			value: "2",
-			label: "Severity 2"
+			label: "Severity 2",
 		},
 		{
 			value: "3",
-			label: "Severity 3"
+			label: "Severity 3",
 		},
 		{
 			value: "4",
-			label: "Severity 4 (Lowest)"
-		}
+			label: "Severity 4 (Lowest)",
+		},
 	];
 
 	const id = nanoid(5);

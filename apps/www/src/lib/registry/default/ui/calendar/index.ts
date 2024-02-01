@@ -26,5 +26,5 @@ export {
 	NextButton,
 	PrevButton,
 	//
-	Root as Calendar
+	Root as Calendar,
 };

@@ -1,0 +1,18 @@
+{
+	"name": "collapsible",
+	"dependencies": [
+		"bits-ui"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"name": "collapsible-content.svelte",
+			"content": "<script>\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\timport { slide } from \"svelte/transition\";\n\texport let transition = slide;\n\texport let transitionConfig = {\n\t\tduration: 150,\n\t};\n</script>\n\n<CollapsiblePrimitive.Content {transition} {transitionConfig} {...$$restProps}>\n\t<slot />\n</CollapsiblePrimitive.Content>\n"
+		},
+		{
+			"name": "index.js",
+			"content": "import { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\nimport Content from \"./collapsible-content.svelte\";\nconst Root = CollapsiblePrimitive.Root;\nconst Trigger = CollapsiblePrimitive.Trigger;\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n"
+		}
+	],
+	"type": "components:ui"
+}

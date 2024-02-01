@@ -6,7 +6,7 @@ export const registrySchema = z.array(
 		dependencies: z.array(z.string()),
 		registryDependencies: z.array(z.string()),
 		files: z.array(z.string()),
-		type: z.enum(["components:ui", "components:component", "components:example"])
+		type: z.enum(["components:ui", "components:component", "components:example"]),
 	})
 );
 

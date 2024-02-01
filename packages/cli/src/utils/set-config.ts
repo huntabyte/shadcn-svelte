@@ -40,7 +40,7 @@ export async function setConfig(dir: string = "./src/lib/components/ui") {
 					configNode.init.properties.push(createConfigNode(dir));
 				}
 			}
-		}
+		},
 	});
 
 	if (!updatedSvelteConfig) {
@@ -49,7 +49,7 @@ export async function setConfig(dir: string = "./src/lib/components/ui") {
 
 	attachComments(updatedSvelteConfig, comments);
 	const updatedSvelteConfigString = generate(updatedSvelteConfig, {
-		comments: true
+		comments: true,
 	});
 
 	return formatFile(updatedSvelteConfigString, SVELTE_CONFIG_PATH);
@@ -93,7 +93,7 @@ export async function addAliases(dir: string = "./src/lib/components/ui") {
 					aliasProp.value.properties.push(...createAliasProperties());
 				}
 			}
-		}
+		},
 	});
 
 	if (!updatedSvelteConfig) {
@@ -102,7 +102,7 @@ export async function addAliases(dir: string = "./src/lib/components/ui") {
 
 	attachComments(updatedSvelteConfig, comments);
 	const updatedSvelteConfigString = generate(updatedSvelteConfig, {
-		comments: true
+		comments: true,
 	});
 
 	return formatFile(updatedSvelteConfigString, SVELTE_CONFIG_PATH);
@@ -120,7 +120,7 @@ async function parseSvelteConfig() {
 	const ast = parse(svelteConfig, {
 		ecmaVersion: "latest",
 		sourceType: "module",
-		onComment: comments
+		onComment: comments,
 	});
 
 	return { ast, comments };
@@ -139,7 +139,7 @@ function formatFile(content: string, path: string) {
 
 	const formattedContent = prettier.format(content, {
 		...prettierConfig,
-		parser: "babel"
+		parser: "babel",
 	});
 	return fs.writeFileSync(path, formattedContent);
 }
@@ -152,7 +152,7 @@ function createConfigNode(dir: string): Property {
 		computed: false,
 		key: {
 			type: "Identifier",
-			name: "shadcn"
+			name: "shadcn",
 		},
 		value: {
 			type: "ObjectExpression",
@@ -164,18 +164,18 @@ function createConfigNode(dir: string): Property {
 					computed: false,
 					key: {
 						type: "Identifier",
-						name: "componentPath"
+						name: "componentPath",
 					},
 					value: {
 						type: "Literal",
 						value: dir,
-						raw: `'${dir}'`
+						raw: `'${dir}'`,
 					},
-					kind: "init"
-				}
-			]
+					kind: "init",
+				},
+			],
 		},
-		kind: "init"
+		kind: "init",
 	};
 }
 
@@ -187,13 +187,13 @@ function createAliasNode(): Property {
 		computed: false,
 		key: {
 			type: "Identifier",
-			name: "alias"
+			name: "alias",
 		},
 		value: {
 			type: "ObjectExpression",
-			properties: createAliasProperties()
+			properties: createAliasProperties(),
 		},
-		kind: "init"
+		kind: "init",
 	};
 }
 
@@ -206,14 +206,14 @@ function createAliasProperties(): Property[] {
 			computed: false,
 			key: {
 				type: "Identifier",
-				name: "$components"
+				name: "$components",
 			},
 			value: {
 				type: "Literal",
 				value: "src/lib/components",
-				raw: '"src/lib/components"'
+				raw: '"src/lib/components"',
 			},
-			kind: "init"
+			kind: "init",
 		},
 		{
 			type: "Property",
@@ -223,14 +223,14 @@ function createAliasProperties(): Property[] {
 			key: {
 				type: "Literal",
 				value: "$components/*",
-				raw: '"$components/*"'
+				raw: '"$components/*"',
 			},
 			value: {
 				type: "Literal",
 				value: "src/lib/components/*",
-				raw: '"src/lib/components/*"'
+				raw: '"src/lib/components/*"',
 			},
-			kind: "init"
-		}
+			kind: "init",
+		},
 	];
 }

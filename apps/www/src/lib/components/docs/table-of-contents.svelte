@@ -37,7 +37,7 @@
 			const item: TableOfContentsItem = {
 				title: heading.textContent || "",
 				url: `#${heading.id}`,
-				items: []
+				items: [],
 			};
 
 			if (level === 2) {

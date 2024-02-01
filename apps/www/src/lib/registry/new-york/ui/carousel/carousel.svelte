@@ -64,7 +64,7 @@
 		handleKeyDown,
 		options: optionsStore,
 		plugins: pluginStore,
-		onInit
+		onInit,
 	});
 
 	function onInit(event: CustomEvent<CarouselAPI>) {

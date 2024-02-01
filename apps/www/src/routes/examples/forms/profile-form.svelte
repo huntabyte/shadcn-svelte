@@ -10,7 +10,7 @@
 		website: z
 			.string()
 			.url({ message: "Please enter a valid URL." })
-			.default("https://shadcn-svelte.com")
+			.default("https://shadcn-svelte.com"),
 	});
 	export type ProfileFormSchema = typeof profileFormSchema;
 </script>

@@ -21,7 +21,7 @@
 						class={cn(
 							buttonVariants({
 								size: "sm",
-								variant: "ghost"
+								variant: "ghost",
 							}),
 							"w-9 px-0"
 						)}
@@ -35,7 +35,7 @@
 						class={cn(
 							buttonVariants({
 								size: "sm",
-								variant: "ghost"
+								variant: "ghost",
 							}),
 							"w-9 px-0"
 						)}

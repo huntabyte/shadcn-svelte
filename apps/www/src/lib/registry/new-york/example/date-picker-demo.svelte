@@ -7,7 +7,7 @@
 	import * as Popover from "@/registry/new-york/ui/popover";
 
 	const df = new DateFormatter("en-US", {
-		dateStyle: "long"
+		dateStyle: "long",
 	});
 
 	let value: DateValue | undefined = undefined;

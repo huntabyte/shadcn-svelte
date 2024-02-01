@@ -18,7 +18,7 @@ export {
 	Description as CardDescription,
 	Footer as CardFooter,
 	Header as CardHeader,
-	Title as CardTitle
+	Title as CardTitle,
 };
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

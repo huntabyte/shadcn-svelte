@@ -35,6 +35,7 @@
 		"@types/escape-html": "^1.0.3",
 		"@types/lodash.template": "^4.5.2",
 		"@types/node": "^18.17.5",
+		"@types/prettier": "^2.7.2",
 		"@typescript-eslint/eslint-plugin": "^6.9.0",
 		"@typescript-eslint/parser": "^6.9.0",
 		"autoprefixer": "^10.4.16",
