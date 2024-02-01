@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.7.0
+
+### Minor Changes
+
+- bfdc861: feat: Add support for JS
+
 ## 0.6.1
 
 ### Patch Changes
