@@ -165,7 +165,7 @@ export const add = new Command()
 				);
 
 				const existingComponent = item.files.filter((file) => {
-					existsSync(path.resolve(targetDir, item.name, file.name));
+					return existsSync(path.resolve(targetDir, item.name, file.name));
 				});
 
 				if (existingComponent.length && !options.overwrite) {
