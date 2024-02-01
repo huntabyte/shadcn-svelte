@@ -35,6 +35,7 @@ describe("getRawConfig", () => {
 				utils: "$lib/utils",
 				components: "$lib/components",
 			},
+			typescript: true,
 		});
 	});
 
@@ -89,6 +90,7 @@ describe("getConfig", () => {
 					"./src/lib/utils"
 				),
 			},
+			typescript: true,
 		});
 	});
 
@@ -126,6 +128,7 @@ describe("getConfig", () => {
 					"./src/lib/utils"
 				),
 			},
+			typescript: true,
 		});
 	});
 
@@ -163,6 +166,7 @@ describe("getConfig", () => {
 					"./src/lib/utils"
 				),
 			},
+			typescript: true,
 		});
 	});
 
@@ -200,6 +204,7 @@ describe("getConfig", () => {
 					"./src/lib/utils"
 				),
 			},
+			typescript: false,
 		});
 	});
 });

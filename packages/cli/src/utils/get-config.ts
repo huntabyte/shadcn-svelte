@@ -16,6 +16,7 @@ export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
+export const DEFAULT_TYPESCRIPT = true;
 
 export const rawConfigSchema = z
 	.object({
@@ -33,6 +34,7 @@ export const rawConfigSchema = z
 				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 		}),
+		typescript: z.boolean().default(true),
 	})
 	.strict();
 
@@ -85,8 +87,11 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	}
 
 	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
-	if (tsconfigPath === null)
-		throw new Error(`Failed to find ${logger.highlight("tsconfig.json")}.`);
+
+	if (tsconfigPath === null) {
+		const configToFind = config.typescript ? "tsconfig.json" : "jsconfig.json";
+		throw new Error(`Failed to find ${logger.highlight(configToFind)}.`);
+	}
 
 	const parsedConfig = await parseNative(tsconfigPath);
 

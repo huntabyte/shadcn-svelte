@@ -8,5 +8,6 @@
 	"alias": {
 		"utils": "$lib/utils",
 		"components": "$lib/components"
-	}
+	},
+	"typescript": true
 }
