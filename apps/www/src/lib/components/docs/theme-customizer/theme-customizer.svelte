@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Popover from "@/registry/new-york/ui/popover";
+	import * as Drawer from "@/registry/new-york/ui/drawer";
 	import * as Tooltip from "@/registry/new-york/ui/tooltip";
 	import { config } from "@/stores";
 	import { mode } from "mode-watcher";
@@ -14,7 +15,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-	<div class="hidden md:flex">
+	<div class="flex">
 		<div class="mr-2 hidden items-center space-x-0.5 lg:flex">
 			{#each colors as color (color)}
 				{@const theme = themes.find((theme) => theme.name === color)}
@@ -61,20 +62,35 @@
 				{/if}
 			{/each}
 		</div>
-		<Popover.Root>
-			<Popover.Trigger asChild let:builder>
-				<Button variant="outline" builders={[builder]}>
-					<Paintbrush class="mr-2 h-4 w-4" />
-					Customize
-				</Button>
-			</Popover.Trigger>
-			<Popover.Content
-				class="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
-				align="end"
-			>
-				<Customizer />
-			</Popover.Content>
-		</Popover.Root>
+		<div class="block md:hidden">
+			<Drawer.Root>
+				<Drawer.Trigger asChild let:builder>
+					<Button variant="outline" builders={[builder]}>
+						<Paintbrush class="mr-2 h-4 w-4" />
+						Customize
+					</Button>
+				</Drawer.Trigger>
+				<Drawer.Content class="p-6 bg-white dark:bg-zinc-950">
+					<Customizer />
+				</Drawer.Content>
+			</Drawer.Root>
+		</div>
+		<div class="hidden md:block">
+			<Popover.Root>
+				<Popover.Trigger asChild let:builder>
+					<Button variant="outline" builders={[builder]}>
+						<Paintbrush class="mr-2 h-4 w-4" />
+						Customize
+					</Button>
+				</Popover.Trigger>
+				<Popover.Content
+					class="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
+					align="end"
+				>
+					<Customizer />
+				</Popover.Content>
+			</Popover.Root>
+		</div>
 	</div>
 	<ThemeCopyCodeButton />
 </div>
