@@ -53,7 +53,7 @@ Regardless of the import approach you take, the components will be tree-shaken b
 
 This project and the components are written in TypeScript. We recommend using TypeScript for your project as well.
 
-However we provide a JavaScript version of the components as well. The JavaScript version is _only_ available via the [cli](/docs/cli).
+However we provide a JavaScript version of the components as well. The JavaScript version is _only_ available via the [CLI](/docs/cli).
 
 ### Opt-out of TypeScript
 
@@ -88,7 +88,7 @@ To configure import aliases, you need to create a `jsconfig.json`:
 
 ## ESLint configuration
 
-If you are using ESLint to find problems in your code, some components might trigger false positives depending on your ESLint configuration. For example, you could end up with lint errors when components define `$$Props` to specify the type for `restProps` because `$$Props` is not directly used in the rest of the component.
+If you are using ESLint, some components may trigger false positives depending on your ESLint configuration. For example, you could end up with lint errors when components define `$$Props` to specify the type for `$$restProps` as `$$Props` is not directly used in the rest of the component.
 
 To ignore these linting errors, you can modify your ESLint configuration.
 

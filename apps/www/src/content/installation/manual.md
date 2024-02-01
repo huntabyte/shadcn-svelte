@@ -1,6 +1,6 @@
 ---
 title: Manual Installation
-description: How to setup shadcn-svelte manually
+description: How to setup shadcn-svelte manually.
 ---
 
 <script>

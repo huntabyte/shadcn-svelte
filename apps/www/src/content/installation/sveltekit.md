@@ -36,7 +36,7 @@ npm install
 
 ### Setup path aliases
 
-If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
+If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
 ```js title="svelte.config.js" {6}
 const config = {
