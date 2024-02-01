@@ -34,7 +34,7 @@ export const rawConfigSchema = z
 				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 		}),
-		typescript: z.boolean(),
+		typescript: z.boolean().default(true),
 	})
 	.strict();
 
