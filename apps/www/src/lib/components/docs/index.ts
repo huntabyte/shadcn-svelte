@@ -22,6 +22,7 @@ export { default as ComponentPreviewManual } from "./component-preview-manual.sv
 export { default as CommandMenu } from "./command-menu.svelte";
 export { default as ModeToggle } from "./mode-toggle.svelte";
 export { default as Announcement } from "./announcement.svelte";
+export { default as LinkedCard } from "./linked-card.svelte";
 
 export * from "./icons";
 export * from "./page-header";

@@ -1,52 +1,17 @@
 ---
-title: Installation
-description: How to install dependencies and structure your app.
+title: Manual Installation
+description: How to setup shadcn-svelte manually
 ---
 
 <script>
-  import { Alert, AlertDescription } from "@/registry/default/ui/alert";
-  import { Steps } from "$components/docs";
+	import { Steps, Step } from '$lib/components/docs'
 </script>
 
-Unlike the original [shadcn/ui](https://ui.shadcn.com) for React, where the full components can exist in a single file, components in this port are split into multiple files. This is because Svelte doesn't support defining multiple components in a single file, so utilizing the CLI to add components will be the optimal approach.
-
-The CLI will create a folder for _each_ component, which will sometimes just contain a single Svelte file, and in other times, multiple files. Within each folder, there will be an `index.ts` file that exports the component(s), so you can import them from a single file.
-
-For example, the Accordion component is split into four `.svelte` files:
-
-- `Accordion.svelte`
-- `AccordionContent.svelte`
-- `AccordionItem.svelte`
-- `AccordionTrigger.svelte`
-
-They can then be imported from the `accordion/index.ts` file like so:
-
-```ts
-import * as Accordion from '$lib/components/ui/accordion"
-// or
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "$lib/components/ui/accordion"
-```
-
-Regardless of the import approach you take, the components will be tree-shaken by Rollup, so you don't have to worry about unused components being bundled into your app.
-
-## New Project
+## Setup your project
 
 <Steps>
 
-### Create project
-
-Use the SvelteKit CLI to create a new project.
-
-```bash
-npm create svelte@latest my-app
-```
-
-### Add TailwindCSS
+### Add Tailwind
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
@@ -54,13 +19,29 @@ Use the `svelte-add` CLI to add Tailwind CSS to your project.
 npx svelte-add@latest tailwindcss
 ```
 
-### Install dependencies
+### Add dependencies
+
+Add the following dependencies to your project:
 
 ```bash
-npm install
+npm install tailwind-variants clsx tailwind-merge
 ```
 
-### Setup path aliases
+### Add icon library
+
+If you're using the `default` style, install `lucide-svelte`:
+
+```bash
+npm install lucide-svelte
+```
+
+If you're using the `new-york` style, install `radix-icons`:
+
+```bash
+npm install radix-icons-svelte
+```
+
+### Configure path aliases
 
 If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
@@ -101,55 +82,6 @@ export default defineConfig({
     },
   },
 });
-```
-
-### Run the CLI
-
-```bash
-npx shadcn-svelte@latest init
-```
-
-### Configure components.json
-
-You will be asked a few questions to configure `components.json`:
-
-```txt showLineNumbers
-Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.pcss
-Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
-Configure the import alias for components: › $lib/components
-Configure the import alias for utils: › $lib/utils
-```
-
-</Steps>
-
-## Manual Installation
-
-<Steps>
-
-### Create project
-
-Use the SvelteKit CLI to create a new project.
-
-```bash
-npm create svelte@latest my-app
-```
-
-### Add Tailwind
-
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
-
-```bash
-npx svelte-add@latest tailwindcss
-```
-
-### Add dependencies
-
-Add the following dependencies to your project:
-
-```bash
-npm install tailwind-variants clsx tailwind-merge
 ```
 
 ### Configure tailwind.config.js
@@ -402,78 +334,8 @@ Create `src/routes/+layout.svelte` and import the styles:
 <slot />
 ```
 
+### That's it
+
+You can now start adding components to your project.
+
 </Steps>
-
-## Icons
-
-This project uses icons from [Lucide](https://lucide.dev/) for the `default` style, and [Radix](https://radix-ui.com/icons) for the `new-york` style, but feel free to use any icon library.
-
-## App structure
-
-Here's a recommended, but not required app structure:
-
-```txt {4-11,15,19}
-src
-├── lib
-│   ├── components
-│   │   ├── ui
-│   │   │   ├── alert-dialog
-│   │   │   │   ├── index.ts
-│   │   │   │   └── alert.svelte
-│   │   │   ├── button
-│   │   │   │   ├── index.ts
-│   │   │   │   └── button.svelte
-│   │   │   └── ...
-│   │   ├── navigation.svelte
-│   │   ├── page-header.svelte
-│   │   └── ...
-│   └── utils.ts
-├── routes
-│   ├── +page.svelte
-│   └── +layout.svelte
-├── app.pcss
-```
-
-- Place the UI components in the `lib/components/ui` folder.
-- The rest of the components such as `<PageHeader />` and `<Navigation />` are placed in the `lib/components` folder.
-- The `lib/utils.ts` file is where you can define the `cn` helper.
-- The `app.pcss` file contains the global CSS.
-
-That's it. You can now start adding components to your project.
-
-## ESLint configuration
-
-If you are using ESLint to find problems in your code, some components might trigger false positives depending on your ESLint configuration. For example, you could end up with lint errors when components define `$$Props` to specify the type for `restProps` because `$$Props` is not directly used in the rest of the component.
-
-To ignore these linting errors, you can modify your ESLint configuration.
-
-One option is to add a `.eslintrc` file in the directory where you define your components, for example `$lib/components/ui`:
-
-```json title="src/lib/components/ui/.eslintrc"
-{
-  "rules": {
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^\\$\\$(Props|Events|Slots|Generic)$"
-      }
-    ]
-  }
-}
-```
-
-The main benefit with adding an additional `.eslintrc` file just to `$lib/components/ui` is that you will not affect how ESLint functions for the rest of your project. Only your `shadcn-svelte` components will ignore these false positives.
-
-If this is not important to you, then another option is to adapt a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
-
-## VSCode extension
-
-Install the shadcn-svelte [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Selemondev.vscode-shadcn-svelte) by [@selemondev](https://github.com/selemondev) in Visual Studio Code to easily add Shadcn Svelte components to your project.
-
-This extension offers a range of features:
-
-- Ability to initialize the shadcn-svelte CLI
-- Add components to your project
-- Navigate to a specific component's documentation page directly from your IDE
-- Handy snippets for quick component imports and markup
