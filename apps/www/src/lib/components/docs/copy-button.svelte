@@ -33,7 +33,7 @@
 				npm: value,
 				yarn: value.replace(/^npm/, "yarn"),
 				pnpm: value.replace(/^npm/, "pnpm"),
-				bun: value.replace(/^npm/, "bun --bun"),
+				bun: value.replace(/^npm/, "bun"),
 			};
 		}
 
@@ -43,7 +43,7 @@
 				npm: value,
 				yarn: value.replace(/^npx/, "yarn dlx"),
 				pnpm: value.replace(/^npx/, "pnpx"),
-				bun: value.replace(/^npx/, "bunx --bun"),
+				bun: value.replace(/^npx/, "bunx"),
 			};
 		}
 	}
