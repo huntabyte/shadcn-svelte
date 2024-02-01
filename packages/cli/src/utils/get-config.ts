@@ -86,11 +86,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const tsconfigPath = await find({
-		filename: path.resolve(cwd, "package.json"),
-		options: { root: cwd },
-		config,
-	});
+	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
 
 	if (tsconfigPath === null) {
 		const configToFind = config.typescript ? "tsconfig.json" : "jsconfig.json";
