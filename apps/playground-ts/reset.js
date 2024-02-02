@@ -1,5 +1,5 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
+import { execSync } from "child_process";
+import fs from "fs";
 
 function reset() {
 	const fns = [deleteSCNArtifacts, uninstallDeps, resetTailwindConfig, resetPcssStyles];
@@ -10,18 +10,18 @@ reset();
 
 function deleteSCNArtifacts() {
 	// delete `./components.json` from this directory
-	fs.unlinkSync('./components.json');
+	fs.unlinkSync("./components.json");
 
 	// delete './src/lib/components' directory
-	fs.rmdirSync('./src/lib/components', { recursive: true });
+	fs.rmdirSync("./src/lib/components", { recursive: true });
 
 	// delete './src/lib/utils.ts' file
-	fs.unlinkSync('./src/lib/utils.ts');
+	fs.unlinkSync("./src/lib/utils.ts");
 }
 
 function uninstallDeps() {
 	execSync(
-		'pnpm uninstall bits-ui formsnap sveltekit-superforms vaul-svelte cmdk-sv @internationalized/date'
+		"pnpm uninstall bits-ui formsnap sveltekit-superforms vaul-svelte cmdk-sv @internationalized/date"
 	);
 }
 
@@ -40,9 +40,9 @@ const config = {
 module.exports = config;
 `;
 
-	fs.renameSync('./tailwind.config.js', './tailwind.config.cjs');
+	fs.renameSync("./tailwind.config.js", "./tailwind.config.cjs");
 
-	fs.writeFileSync('./tailwind.config.cjs', startingConfig, 'utf-8');
+	fs.writeFileSync("./tailwind.config.cjs", startingConfig, "utf-8");
 }
 
 function resetPcssStyles() {
@@ -51,7 +51,7 @@ function resetPcssStyles() {
 @tailwind components;
 @tailwind utilities`;
 
-	fs.writeFileSync('./src/app.pcss', startingStyles, 'utf-8');
+	fs.writeFileSync("./src/app.pcss", startingStyles, "utf-8");
 }
 
 function safe(fn) {
