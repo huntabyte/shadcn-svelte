@@ -53,11 +53,11 @@ Regardless of the import approach you take, the components will be tree-shaken b
 
 This project and the components are written in TypeScript. We recommend using TypeScript for your project as well.
 
-However we provide a JavaScript version of the components as well. The JavaScript version is _only_ available via the [CLI](/docs/cli).
+However, we provide a JavaScript version of the components as well. The JavaScript version is _only_ available via the [CLI](/docs/cli).
 
 ### Opt-out of TypeScript
 
-To opt-out of TypeScript, you can use the `typescript` flag in your `components.json` file.
+To opt out of TypeScript, set the `typescript` flag to `false` in your `components.json` file.
 
 ```json {7} title="components.json"
 {
@@ -92,7 +92,7 @@ If you are using ESLint, some components may trigger false positives depending o
 
 To ignore these linting errors, you can modify your ESLint configuration.
 
-One option is to add a `.eslintrc` file in the directory where you define your components, for example `$lib/components/ui`:
+One option is to add a `.eslintrc` file in the directory where you define your components, `$lib/components/ui` for example:
 
 ```json title="src/lib/components/ui/.eslintrc"
 {
@@ -108,9 +108,9 @@ One option is to add a `.eslintrc` file in the directory where you define your c
 }
 ```
 
-The main benefit with adding an additional `.eslintrc` file just to `$lib/components/ui` is that you will not affect how ESLint functions for the rest of your project. Only your `shadcn-svelte` components will ignore these false positives.
+The main benefit of adding an additional `.eslintrc` file just to `$lib/components/ui` is that you will not affect how ESLint functions for the rest of your project. Only your `shadcn-svelte` components will ignore these false positives.
 
-If this is not important to you, then another option is to adapt a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
+If this is not important to you, then another option is to use a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer to [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
 
 ## VSCode extension
 
@@ -122,3 +122,14 @@ This extension offers a range of features:
 - Add components to your project
 - Navigate to a specific component's documentation page directly from your IDE
 - Handy snippets for quick component imports and markup
+
+## JetBrains IDEs extension
+
+Install the shadcn/ui Components Manager [JetBrains extension](https://plugins.jetbrains.com/plugin/23479-shadcn-ui-components-manager) by [@WarningImHack3r](https://github.com/WarningImHack3r) in any JetBrains IDE (IntelliJ IDEA, WebStorm...) to easily manage shadcn components within your project.
+
+This extension offers a range of features, including:
+
+- Automatically detect shadcn/ui components in your project
+- Instantly add, remove, and update them with a single click
+- Supports all shadcn/ui implementations: Svelte, React, Vue, and Solid
+- Easily search for remote or existing components
