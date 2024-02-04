@@ -1,5 +1,11 @@
 # www
 
+## 0.1.0
+
+### Minor Changes
+
+- d733f29: Update `Slider` component to latest Bits UI API
+
 ## 0.0.6
 
 ### Patch Changes
