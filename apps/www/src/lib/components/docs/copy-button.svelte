@@ -42,7 +42,7 @@
 			commands = {
 				npm: value,
 				yarn: value.replace(/^npx/, "yarn dlx"),
-				pnpm: value.replace(/^npx/, "pnpx"),
+				pnpm: value.replace(/^npx/, "pnpm dlx"),
 				bun: value.replace(/^npx/, "bunx"),
 			};
 		}
