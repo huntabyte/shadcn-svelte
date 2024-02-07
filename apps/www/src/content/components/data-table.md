@@ -646,7 +646,7 @@ We can add pagination controls to our table using the `<Button />` component and
       <!-- .... -->
     </Table.Root>
   </div>
-  <div class="flex items-center justify-end space-x-2 py-4">
+  <div class="flex items-center justify-end space-x-4 py-4">
     <Button
       variant="outline"
       size="sm"
