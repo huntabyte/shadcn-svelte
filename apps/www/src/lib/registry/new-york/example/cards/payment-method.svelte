@@ -6,6 +6,7 @@
 	import { Input } from "@/registry/new-york/ui/input";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
 	import * as Select from "@/registry/new-york/ui/select";
+	import { nanoid } from "nanoid";
 
 	const months = [
 		"January",
@@ -21,6 +22,8 @@
 		"November",
 		"December",
 	];
+
+	const id = nanoid(5);
 </script>
 
 <Card.Root>
@@ -31,10 +34,10 @@
 	<Card.Content class="grid gap-6">
 		<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
 			<Label
-				for="card"
+				for="card-{id}"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroup.Item value="card" id="card" class="sr-only" aria-label="Card" />
+				<RadioGroup.Item value="card" id="card-{id}" class="sr-only" aria-label="Card" />
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
@@ -51,39 +54,44 @@
 				Card
 			</Label>
 			<Label
-				for="paypal"
+				for="paypal-{id}"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
+				<RadioGroup.Item
+					value="paypal"
+					id="paypal-{id}"
+					class="sr-only"
+					aria-label="Paypal"
+				/>
 				<Icons.paypal class="mb-3 h-6 w-6" />
 				Paypal
 			</Label>
 			<Label
-				for="apple"
+				for="apple-{id}"
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
-				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
+				<RadioGroup.Item value="apple" id="apple-{id}" class="sr-only" aria-label="Apple" />
 				<Icons.apple class="mb-3 h-6 w-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>
 		<div class="grid gap-2">
-			<Label for="name">Name</Label>
-			<Input id="name" placeholder="First Last" />
+			<Label for="name-{id}">Name</Label>
+			<Input id="name-{id}" placeholder="First Last" />
 		</div>
 		<div class="grid gap-2">
-			<Label for="city">City</Label>
-			<Input id="city" placeholder="" />
+			<Label for="city-{id}">City</Label>
+			<Input id="city-{id}" placeholder="" />
 		</div>
 		<div class="grid gap-2">
-			<Label for="number">Card number</Label>
-			<Input id="number" placeholder="" />
+			<Label for="number-{id}">Card number</Label>
+			<Input id="number-{id}" placeholder="" />
 		</div>
 		<div class="grid grid-cols-3 gap-4">
 			<div class="grid gap-2">
-				<Label for="month">Expires</Label>
+				<Label for="month-{id}">Expires</Label>
 				<Select.Root>
-					<Select.Trigger id="month" aria-label="Month">
+					<Select.Trigger id="month-{id}" aria-label="Month">
 						<Select.Value placeholder="Month" />
 					</Select.Trigger>
 					<Select.Content>
@@ -94,9 +102,9 @@
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="year">Year</Label>
+				<Label for="year-{id}">Year</Label>
 				<Select.Root>
-					<Select.Trigger id="year" aria-label="Year">
+					<Select.Trigger id="year-{id}" aria-label="Year">
 						<Select.Value placeholder="Year" />
 					</Select.Trigger>
 					<Select.Content>
@@ -112,8 +120,8 @@
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="cvc">CVC</Label>
-				<Input id="cvc" placeholder="CVC" />
+				<Label for="cvc-{id}">CVC</Label>
+				<Input id="cvc-{id}" placeholder="CVC" />
 			</div>
 		</div>
 	</Card.Content>

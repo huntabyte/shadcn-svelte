@@ -90,13 +90,13 @@
 			</div>
 		</div>
 		<div class="grid gap-2">
-			<Label for="subject">Subject</Label>
-			<Input id="subject" placeholder="I need help with..." />
+			<Label for="subject-{id}">Subject</Label>
+			<Input id="subject-{id}" name="subject-{id}" placeholder="I need help with..." />
 		</div>
 		<div class="grid gap-2">
-			<Label for="description">Description</Label>
+			<Label for="description-{id}">Description</Label>
 			<Textarea
-				id="description"
+				id="description-{id}"
 				placeholder="Please include all information relevant to your issue."
 			/>
 		</div>

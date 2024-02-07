@@ -9,14 +9,11 @@
 
 <p
 	class={cn(
-		"max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl text-balance",
+		"max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl",
+		balanced && "text-balance",
 		className
 	)}
 	{...$$restProps}
 >
-	{#if balanced}
-		<slot />
-	{:else}
-		<slot />
-	{/if}
+	<slot />
 </p>
