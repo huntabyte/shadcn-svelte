@@ -1,15 +1,14 @@
 <script lang="ts">
-	import type { SvelteComponentTyped } from "svelte";
+	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
 	import { ChevronRight } from "lucide-svelte";
-	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { cn } from "$lib/utils";
 
 	export let data: PageData;
 	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any
-	type Component = $$Generic<typeof SvelteComponentTyped<any, any, any>>;
+	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
 </script>
@@ -26,10 +25,8 @@
 				{doc.title}
 			</h1>
 			{#if doc.description}
-				<p class="text-lg text-muted-foreground">
-					<Balancer>
-						{doc.description}
-					</Balancer>
+				<p class="text-lg text-muted-foreground text-balance">
+					{doc.description}
 				</p>
 			{/if}
 		</div>

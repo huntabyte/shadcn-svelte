@@ -3,7 +3,6 @@
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
 	import { ChevronRight, Code, ExternalLink } from "radix-icons-svelte";
-	import Balancer from "svelte-wrap-balancer";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { badgeVariants } from "@/registry/new-york/ui/badge";
@@ -29,10 +28,8 @@
 				{doc.title}
 			</h1>
 			{#if doc.description}
-				<p class="text-lg text-muted-foreground">
-					<Balancer>
-						{doc.description}
-					</Balancer>
+				<p class="text-lg text-muted-foreground text-balance">
+					{doc.description}
 				</p>
 			{/if}
 		</div>

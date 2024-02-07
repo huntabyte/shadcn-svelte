@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Balancer from "svelte-wrap-balancer";
 	import { cn } from "$lib/utils";
 
 	export let balanced = true;
@@ -9,14 +8,12 @@
 </script>
 
 <p
-	class={cn("max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl", className)}
+	class={cn(
+		"max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl",
+		balanced && "text-balance",
+		className
+	)}
 	{...$$restProps}
 >
-	{#if balanced}
-		<Balancer>
-			<slot />
-		</Balancer>
-	{:else}
-		<slot />
-	{/if}
+	<slot />
 </p>
