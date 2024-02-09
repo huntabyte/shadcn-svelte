@@ -646,7 +646,7 @@ We can add pagination controls to our table using the `<Button />` component and
       <!-- .... -->
     </Table.Root>
   </div>
-  <div class="flex items-center justify-end space-x-2 py-4">
+  <div class="flex items-center justify-end space-x-4 py-4">
     <Button
       variant="outline"
       size="sm"
@@ -1189,7 +1189,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,119,125}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,119,125,130}
 <script lang="ts">
   import {
     createTable,
