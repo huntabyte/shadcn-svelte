@@ -1189,7 +1189,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,119,125,130}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,124,125,130}
 <script lang="ts">
   import {
     createTable,
