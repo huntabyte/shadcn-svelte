@@ -56,7 +56,7 @@
 	}
 
 	function handleCopyError() {
-		console.log("Error copying");
+		console.error("Error copying");
 	}
 </script>
 

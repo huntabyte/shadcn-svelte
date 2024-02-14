@@ -155,7 +155,7 @@ async function fetchRegistry(paths: string[]) {
 
 		return results;
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		throw new Error(`Failed to fetch registry from ${baseUrl}.`);
 	}
 }
