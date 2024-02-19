@@ -86,11 +86,13 @@ export const mdsxConfig = defineConfig({
  * itself and checking for it in the code block, but that's not something we need
  * at the moment.
  *
+ * @returns {MdastTransformer}
  */
 function remarkRemovePrettierIgnore() {
 	return async (tree) => {
 		visit(tree, "code", (node) => {
 			node.value = node.value
+				// @ts-expect-error - not dealing with this rn
 				.replaceAll("<!-- prettier-ignore -->\n", "")
 				.replaceAll("// prettier-ignore\n", "");
 		});
@@ -166,10 +168,7 @@ export function rehypeComponentExample() {
 						let sourceCode = getComponentSourceFileContent(src);
 						if (!sourceCode) return;
 						// @ts-expect-error - not dealing with this rn
-						sourceCode = sourceCode.replaceAll(
-							`@/registry/${style.name}/`,
-							"$lib/components/"
-						);
+						sourceCode = sourceCode.replaceAll(`@/registry/${style.name}/`, "$lib/components/");
 
 						const sourceCodeNode = u("element", {
 							tagName: "pre",
@@ -246,10 +245,7 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	const formattedSource = prettier.format(
-		readFileSync(filePath, "utf-8"),
-		codeBlockPrettierConfig
-	);
+	const formattedSource = prettier.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig);
 
 	return formattedSource;
 }
