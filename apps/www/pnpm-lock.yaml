@@ -37,7 +37,7 @@ dependencies:
     version: 0.1.2(svelte@4.2.11)
   nanoid:
     specifier: ^5.0.3
-    version: 5.0.4
+    version: 5.0.5
   radix-icons-svelte:
     specifier: ^1.2.1
     version: 1.2.1
@@ -819,7 +819,7 @@ packages:
       '@internationalized/date': 3.5.1
       dequal: 2.0.3
       focus-trap: 7.5.2
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -1838,7 +1838,7 @@ packages:
     dependencies:
       '@internationalized/date': 3.5.1
       '@melt-ui/svelte': 0.67.0(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -1849,7 +1849,7 @@ packages:
     dependencies:
       '@internationalized/date': 3.5.1
       '@melt-ui/svelte': 0.71.2(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -1859,7 +1859,7 @@ packages:
       svelte: ^4.0.0
     dependencies:
       '@melt-ui/svelte': 0.61.2(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -2014,7 +2014,7 @@ packages:
       svelte: ^4.0.0
     dependencies:
       bits-ui: 0.9.8(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -4159,17 +4159,10 @@ packages:
     hasBin: true
     dev: false
 
-  /nanoid@5.0.4:
-    resolution: {integrity: sha512-vAjmBf13gsmhXSgBrtIclinISzFFy22WwCYoyilZlsrRXNIHSwgFQ1bEdjRwMT3aoadeIF6HMuDRlOxzfXV8ig==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-    dev: false
-
   /nanoid@5.0.5:
     resolution: {integrity: sha512-/Veqm+QKsyMY3kqi4faWplnY1u+VuKO3dD2binyPIybP31DRO29bPF+1mszgLnrR2KqSLceFLBNw0zmvDzN1QQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
-    dev: true
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
