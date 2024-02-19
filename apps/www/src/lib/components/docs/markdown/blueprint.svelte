@@ -1,6 +1,5 @@
-<!-- MDsveX Layout Component -->
 <script context="module">
-	import "../../../../styles/mdsvex.css";
+	import "../../../../styles/markdown.pcss";
 	import {
 		a,
 		blockquote,
@@ -21,7 +20,7 @@
 		th,
 		tr,
 		ul,
-	} from "$components/docs/mdsvex";
+	} from "$components/docs/markdown";
 
 	export {
 		a,

@@ -1,12 +1,13 @@
-.mdsvex code {
+.markdown code {
 	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
 }
 
-[data-theme="default"] {
-	display: flex;
+[data-theme*=" "] {
+	display: flex !important;
+	flex-direction: column;
 }
 
-[data-style="new-york"] [data-style="default"] {
+[data-style="new-york"] [__style__="default"] {
 	display: none;
 }
 
@@ -20,29 +21,29 @@
 	flex-direction: column;
 }
 
-[data-style="default"] [data-style="new-york"] {
+[data-style="default"] [__style__="new-york"] {
 	display: none;
 }
 
-[data-rehype-pretty-code-fragment] {
+[data-rehype-pretty-code-figure] {
 	@apply relative;
 }
 
-[data-rehype-pretty-code-fragment] code {
+[data-rehype-pretty-code-figure] code {
 	@apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
 	counter-reset: line;
 	box-decoration-break: clone;
 }
 
-[data-rehype-pretty-code-fragment] .line {
+[data-rehype-pretty-code-figure] [data-line] {
 	@apply px-4 min-h-[1.5rem] py-0.5 w-full inline-block;
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] .line {
+[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
 	@apply px-2;
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
 	@apply text-zinc-50/40 text-xs;
 	counter-increment: line;
 	content: counter(line);
@@ -56,23 +57,23 @@
 	@apply top-16 !important;
 }
 
-[data-rehype-pretty-code-fragment] .line--highlighted {
+[data-rehype-pretty-code-figure] .line--highlighted {
 	@apply bg-zinc-700/50;
 }
 
-[data-rehype-pretty-code-fragment] .with--meta {
+[data-rehype-pretty-code-figure] .with--meta {
 	@apply top-16 !important;
 }
 
-[data-rehype-pretty-code-fragment] .line-highlighted span {
+[data-rehype-pretty-code-figure] .line-highlighted span {
 	@apply relative;
 }
 
-[data-rehype-pretty-code-fragment] .word--highlighted {
+[data-rehype-pretty-code-figure] .chars--highlighted {
 	@apply rounded-md bg-zinc-700/50 border-zinc-700/70 p-1;
 }
 
-.dark [data-rehype-pretty-code-fragment] .word--highlighted {
+.dark [data-rehype-pretty-code-figure] .chars--highlighted {
 	@apply bg-zinc-900;
 }
 
@@ -82,4 +83,10 @@
 
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-2;
+}
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
 }

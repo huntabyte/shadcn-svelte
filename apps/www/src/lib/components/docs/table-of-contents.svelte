@@ -88,7 +88,7 @@
 
 	// Lifecycle
 	onMount(() => {
-		getHeadingsWithHierarchy("mdsvex");
+		getHeadingsWithHierarchy("markdown");
 		const allItemIds: string[] = [];
 		filteredHeadingsList.items.forEach((item) => {
 			allItemIds.push(item.url.replace("#", ""));

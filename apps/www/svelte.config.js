@@ -1,7 +1,7 @@
 import adapter from "@sveltejs/adapter-vercel";
 import { vitePreprocess } from "@sveltejs/kit/vite";
-import { mdsvex } from "mdsvex";
-import { mdsvexOptions } from "./mdsvex.config.js";
+import { mdsx } from "mdsx";
+import { mdsxConfig } from "./mdsx.config.js";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: [
-		mdsvex(mdsvexOptions),
+		mdsx(mdsxConfig),
 		vitePreprocess({
 			style: {
 				css: {

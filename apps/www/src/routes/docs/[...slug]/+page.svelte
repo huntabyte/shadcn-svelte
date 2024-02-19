@@ -59,7 +59,7 @@
 				{/if}
 			</div>
 		{/if}
-		<div class="mdsvex pb-12 pt-8" id="mdsvex">
+		<div class="markdown pb-12 pt-8" id="markdown">
 			<svelte:component this={component} form={data.form} />
 		</div>
 		<DocsPager />
