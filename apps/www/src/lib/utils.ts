@@ -10,6 +10,7 @@ import { error } from "@sveltejs/kit";
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
+// something
 
 export const isBrowser = typeof document !== "undefined";
 
