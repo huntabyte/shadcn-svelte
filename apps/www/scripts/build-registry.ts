@@ -219,7 +219,7 @@ export const Index = {
 					const color = scale
 						? colorsData[resolvedBase].find(
 								(item: any) => item.scale === parseInt(scale)
-						  )
+							)
 						: colorsData[resolvedBase];
 					if (color) {
 						base["cssVars"][mode][key] = color.hslChannel;

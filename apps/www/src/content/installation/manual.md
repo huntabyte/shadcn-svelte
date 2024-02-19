@@ -240,7 +240,9 @@ Add the following to your `src/app.pcss` file. You can learn more about using CS
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 ```
