@@ -61,14 +61,9 @@
 		<Form.Description>Select the theme for the dashboard.</Form.Description>
 		<Form.FieldErrors />
 		<RadioGroup.Root
-			value={$formData.theme}
 			class="grid max-w-md grid-cols-2 gap-8 pt-2"
 			orientation="horizontal"
-			onValueChange={(v) => {
-				if (v === "light" || v === "dark") {
-					$formData.theme = v;
-				}
-			}}
+			bind:value={$formData.theme}
 		>
 			<Form.Control let:attrs>
 				<Label class="[&:has([data-state=checked])>div]:border-primary">

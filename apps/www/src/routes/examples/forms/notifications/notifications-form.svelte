@@ -35,14 +35,7 @@
 	<Form.Fieldset {form} name="type">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<Form.Control>
-			<RadioGroup.Root
-				value={$formData.type}
-				onValueChange={(v) => {
-					if (v === "all" || v === "mentions" || v === "none") {
-						$formData.type = v;
-					}
-				}}
-			>
+			<RadioGroup.Root bind:value={$formData.type}>
 				<div class="flex items-center space-x-3">
 					<Form.Control let:attrs>
 						<RadioGroup.Item value="all" {...attrs} />
