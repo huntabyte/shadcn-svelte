@@ -51,9 +51,7 @@
 	import {
 		DateFormatter,
 		getLocalTimeZone,
-		fromDate,
 		type DateValue,
-		fromAbsolute,
 		parseDate,
 	} from "@internationalized/date";
 
@@ -116,8 +114,8 @@
 							validate("dob");
 						}}
 					/>
-					<input hidden bind:value={$formData.dob} name={attrs.name} />
 				</Popover.Content>
+				<input hidden bind:value={$formData.dob} name={attrs.name} />
 			</Popover.Root>
 		</Form.Control>
 		<Form.FieldErrors />

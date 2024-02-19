@@ -14,13 +14,14 @@
 </script>
 
 <script lang="ts">
-	import type { SuperValidated } from "sveltekit-superforms";
+	import type { SuperValidated, Infer } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
 	import { Label } from "@/registry/new-york/ui/label";
-	export let data: SuperValidated<NotificationFormSchema>;
+
+	export let data: SuperValidated<Infer<NotificationFormSchema>>;
 </script>
 
-<Form.Root
+<!-- <Form.Root
 	form={data}
 	schema={notificationsFormSchema}
 	let:config
@@ -110,4 +111,4 @@
 		</Form.Item>
 	</Form.Field>
 	<Form.Button>Update notifications</Form.Button>
-</Form.Root>
+</Form.Root> -->

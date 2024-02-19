@@ -1,6 +1,6 @@
 import { superValidate } from "sveltekit-superforms";
 import type { Actions, PageServerLoad, RequestEvent } from "./$types";
-// import { formSchema } from "@/registry/default/example/form-demo.svelte";
+import { formSchema } from "@/registry/default/example/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "@/registry/default/example/checkbox-form-single.svelte";
 import { formSchema as radioGroupSchema } from "@/registry/default/example/radio-group-form.svelte";
 import { formSchema as selectSchema } from "@/registry/default/example/select-form.svelte";
@@ -15,7 +15,7 @@ import type { AnyZodObject } from "zod";
 
 export const load: PageServerLoad = async () => {
 	return {
-		// form: await superValidate(zod(formSchema)),
+		form: await superValidate(zod(formSchema)),
 		checkboxSingle: await superValidate(zod(checkboxSingleSchema)),
 		radioGroup: await superValidate(zod(radioGroupSchema)),
 		select: await superValidate(zod(selectSchema)),

@@ -1,4 +1,4 @@
-<!-- <script lang="ts" context="module">
+<script lang="ts" context="module">
 	import { z } from "zod";
 
 	export const formSchema = z.object({
@@ -9,24 +9,13 @@
 
 <script lang="ts">
 	import * as Form from "@/registry/default/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
-	import type { FormOptions } from "formsnap";
+	import type { SuperValidated, Infer } from "sveltekit-superforms";
 	import { toast } from "svelte-sonner";
 
-	export let form: SuperValidated<FormSchema>;
-	const options: FormOptions<FormSchema> = {
-		onSubmit() {
-			toast.info("Submitting...");
-		},
-		onResult({ result }) {
-			console.log(result);
-			if (result.status === 200) toast.success("Success!");
-			if (result.status === 400) toast.error("Error!");
-		},
-	};
+	export let form: SuperValidated<Infer<FormSchema>>;
 </script>
 
-<Form.Root
+<!-- <Form.Root
 	schema={formSchema}
 	{form}
 	{options}

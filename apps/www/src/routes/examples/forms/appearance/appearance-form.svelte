@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import type { SuperValidated } from "sveltekit-superforms";
 	import { z } from "zod";
 
 	export const appearanceFormSchema = z.object({
@@ -16,11 +15,13 @@
 </script>
 
 <script lang="ts">
+	import type { SuperValidated, Infer } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
 	import Label from "@/registry/new-york/ui/label/label.svelte";
-	export let data: SuperValidated<AppearanceFormSchema>;
+	export let data: SuperValidated<Infer<AppearanceFormSchema>>;
 </script>
 
+<!-- 
 <Form.Root
 	schema={appearanceFormSchema}
 	form={data}
@@ -105,4 +106,4 @@
 		</Form.Field>
 	</Form.Item>
 	<Form.Button>Update preferences</Form.Button>
-</Form.Root>
+</Form.Root> -->
