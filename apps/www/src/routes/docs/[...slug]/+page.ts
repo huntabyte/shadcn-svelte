@@ -4,7 +4,7 @@ import { getDoc } from "$lib/utils";
 
 export const load: PageLoad = async (event) => {
 	if (event.params.slug === "components") {
-		throw redirect(303, "/docs/components/accordion");
+		redirect(303, "/docs/components/accordion");
 	}
 
 	const { component, title, metadata } = await getDoc(event.params.slug);
