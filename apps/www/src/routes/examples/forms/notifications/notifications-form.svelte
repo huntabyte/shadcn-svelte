@@ -136,7 +136,7 @@
 			<div class="space-y-1 leading-none">
 				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
-					You can manage your mobile notifications in the{" "}<a href="/examples/forms"
+					You can manage your mobile notifications in the <a href="/examples/forms"
 						>mobile settings</a
 					> page.
 				</Form.Description>

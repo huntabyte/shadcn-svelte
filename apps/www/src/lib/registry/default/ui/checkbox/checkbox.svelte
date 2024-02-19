@@ -31,4 +31,5 @@
 			<Minus class="h-3.5 w-3.5" />
 		{/if}
 	</CheckboxPrimitive.Indicator>
+	<CheckboxPrimitive.Input />
 </CheckboxPrimitive.Root>
