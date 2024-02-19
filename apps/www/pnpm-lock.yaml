@@ -127,6 +127,9 @@ devDependencies:
   eslint-plugin-svelte:
     specifier: ^2.35.1
     version: 2.35.1(eslint@8.52.0)(svelte@4.2.11)
+  formsnap:
+    specifier: ^0.4.4
+    version: 0.4.4(svelte@4.2.11)(sveltekit-superforms@2.3.0)(zod@3.22.4)
   hast-util-to-html:
     specifier: ^8.0.4
     version: 8.0.4
@@ -2883,6 +2886,18 @@ packages:
     dependencies:
       tabbable: 6.2.0
     dev: false
+
+  /formsnap@0.4.4(svelte@4.2.11)(sveltekit-superforms@2.3.0)(zod@3.22.4):
+    resolution: {integrity: sha512-O+Cf4GneR4CLP48J0c5AJY6eowc+1N3DYZz9uIJ3Mk57AjdL5l8DQEA+HmRfse4UEPepizEPl+M4vFg8cON2BQ==}
+    peerDependencies:
+      svelte: ^4.0.0
+      sveltekit-superforms: ^1.7.1
+      zod: ^3.22.2
+    dependencies:
+      svelte: 4.2.11
+      sveltekit-superforms: 2.3.0(@sveltejs/kit@1.27.1)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.18.20)(svelte@4.2.11)
+      zod: 3.22.4
+    dev: true
 
   /fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}

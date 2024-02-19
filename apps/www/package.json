@@ -49,6 +49,7 @@
 		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^8.9.0",
 		"eslint-plugin-svelte": "^2.35.1",
+		"formsnap": "^0.4.4",
 		"hast-util-to-html": "^8.0.4",
 		"lodash.template": "^4.5.0",
 		"mdsx": "^0.0.3",
