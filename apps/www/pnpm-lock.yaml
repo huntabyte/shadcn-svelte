@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^0.5.1
     version: 0.5.1(prettier@3.2.5)
   '@sveltejs/adapter-vercel':
-    specifier: ^3.1.0
-    version: 3.1.0(@sveltejs/kit@1.27.1)
+    specifier: ^3.0.3
+    version: 3.0.3(@sveltejs/kit@1.27.1)
   '@sveltejs/kit':
     specifier: ^1.27.1
     version: 1.27.1(svelte@4.2.11)(vite@4.5.2)
@@ -1133,13 +1133,13 @@ packages:
     dev: true
     optional: true
 
-  /@sveltejs/adapter-vercel@3.1.0(@sveltejs/kit@1.27.1):
-    resolution: {integrity: sha512-AkG7GuqPj/70zxfuOV7QbxXVuYFPUlyFEPlGUSXynDbIBTYu1Er+c676M2egnAyw0flB+kpj6nlxJIElRLKAaA==}
+  /@sveltejs/adapter-vercel@3.0.3(@sveltejs/kit@1.27.1):
+    resolution: {integrity: sha512-0FQMjR6klW4627ewdclSr0lUe/DqiiyOaRTfgb5cXgNbVMsZMOA2fQ77TYQnJdvMfSEWe6y8uznV48XqKh9+vA==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
       '@sveltejs/kit': 1.27.1(svelte@4.2.11)(vite@4.5.2)
-      '@vercel/nft': 0.24.4
+      '@vercel/nft': 0.23.1
       esbuild: 0.18.20
     transitivePeerDependencies:
       - encoding
@@ -1790,9 +1790,9 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@vercel/nft@0.24.4:
-    resolution: {integrity: sha512-KjYAZty7boH5fi5udp6p+lNu6nawgs++pHW+3koErMgbRkkHuToGX/FwjN5clV1FcaM3udfd4zW/sUapkMgpZw==}
-    engines: {node: '>=16'}
+  /@vercel/nft@0.23.1:
+    resolution: {integrity: sha512-NE0xSmGWVhgHF1OIoir71XAd0W0C1UE3nzFyhpFiMr3rVhetww7NvM1kc41trBsPG37Bh+dE5FYCTMzM/gBu0w==}
+    engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.10
