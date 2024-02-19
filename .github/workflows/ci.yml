@@ -39,7 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Run svelte-check
         run: pnpm check
 
@@ -55,7 +55,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      
+
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
@@ -75,12 +75,12 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-    
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - run: pnpm lint
-  
+
   cli-test:
     name: CLI-Tests
     runs-on: ubuntu-latest
