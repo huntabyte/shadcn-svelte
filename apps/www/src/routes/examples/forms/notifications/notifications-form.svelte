@@ -14,92 +14,125 @@
 </script>
 
 <script lang="ts">
-	import type { SuperValidated, Infer } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
-	import { Label } from "@/registry/new-york/ui/label";
+	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
+	import { Switch } from "@/registry/new-york/ui/switch";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import Checkbox from "@/registry/new-york/ui/checkbox/checkbox.svelte";
+	import { browser } from "$app/environment";
 
 	export let data: SuperValidated<Infer<NotificationFormSchema>>;
+
+	const form = superForm(data, {
+		validators: zodClient(notificationsFormSchema),
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
-<!-- <Form.Root
-	form={data}
-	schema={notificationsFormSchema}
-	let:config
-	method="POST"
-	class="space-y-8"
-	debug={true}
->
-	<Form.Item>
-		<Form.Field {config} name="type">
-			<Form.Label>Notify me about...</Form.Label>
-			<Form.RadioGroup class="flex flex-col space-y-1">
+<form method="POST" use:enhance class="space-y-8">
+	<Form.Fieldset {form} name="type">
+		<Form.Legend>Notify me about...</Form.Legend>
+		<Form.Control>
+			<RadioGroup.Root
+				value={$formData.type}
+				onValueChange={(v) => {
+					if (v === "all" || v === "mentions" || v === "none") {
+						$formData.type = v;
+					}
+				}}
+			>
 				<div class="flex items-center space-x-3">
-					<Form.RadioItem value="all" id="all" />
-					<Label for="all" class="font-normal">All new messages</Label>
+					<Form.Control let:attrs>
+						<RadioGroup.Item value="all" {...attrs} />
+						<Form.Label>All new messages</Form.Label>
+					</Form.Control>
 				</div>
 				<div class="flex items-center space-x-3">
-					<Form.RadioItem value="mentions" id="mentions" />
-					<Label for="mentions" class="font-normal">Direct messages and mentions</Label>
+					<Form.Control let:attrs>
+						<RadioGroup.Item value="mentions" {...attrs} />
+						<Form.Label>Direct messages and mentions</Form.Label>
+					</Form.Control>
 				</div>
 				<div class="flex items-center space-x-3">
-					<Form.RadioItem value="none" id="none" />
-					<Label for="none" class="font-normal">Nothing</Label>
+					<Form.Control let:attrs>
+						<RadioGroup.Item value="none" {...attrs} />
+						<Form.Label>Nothing</Form.Label>
+					</Form.Control>
 				</div>
-			</Form.RadioGroup>
-		</Form.Field>
-	</Form.Item>
+				<RadioGroup.Input name="type" />
+			</RadioGroup.Root>
+		</Form.Control>
+	</Form.Fieldset>
 	<div>
 		<h3 class="mb-4 text-lg font-medium">Email Notifications</h3>
 		<div class="space-y-4">
-			<Form.Field {config} name="communication_emails">
-				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
+			<Form.Field
+				{form}
+				name="communication_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Communication emails</Form.Label>
 						<Form.Description>
 							Receive emails about your account activity.
 						</Form.Description>
 					</div>
-					<Form.Switch />
-				</Form.Item>
+					<Switch includeInput {...attrs} bind:checked={$formData.communication_emails} />
+				</Form.Control>
 			</Form.Field>
-			<Form.Field {config} name="marketing_emails">
-				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
+			<Form.Field
+				{form}
+				name="marketing_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Marketing emails</Form.Label>
 						<Form.Description>
 							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
-					<Form.Switch />
-				</Form.Item>
+					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+				</Form.Control>
 			</Form.Field>
-			<Form.Field {config} name="social_emails">
-				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
+			<Form.Field
+				{form}
+				name="social_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Social emails</Form.Label>
 						<Form.Description>
 							Receive emails for friend requests, follows, and more.
 						</Form.Description>
 					</div>
-					<Form.Switch />
-				</Form.Item>
+					<Switch includeInput {...attrs} bind:checked={$formData.social_emails} />
+				</Form.Control>
 			</Form.Field>
-			<Form.Field {config} name="security_emails">
-				<Form.Item class="flex flex-row items-center justify-between rounded-lg border p-4">
+			<Form.Field
+				{form}
+				name="security_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label class="text-base">Security emails</Form.Label>
 						<Form.Description>
 							Receive emails about your account activity and security.
 						</Form.Description>
 					</div>
-					<Form.Switch />
-				</Form.Item>
+					<Switch includeInput {...attrs} bind:checked={$formData.security_emails} />
+				</Form.Control>
 			</Form.Field>
 		</div>
 	</div>
-	<Form.Field {config} name="mobile">
-		<Form.Item class="flex flex-row items-start space-x-3 space-y-0">
-			<Form.Checkbox />
+	<Form.Field {form} name="mobile" class="flex flex-row items-start space-x-3 space-y-0">
+		<Form.Control let:attrs>
+			<Checkbox {...attrs} bind:checked={$formData.mobile} />
 			<div class="space-y-1 leading-none">
 				<Form.Label>Use different settings for my mobile devices</Form.Label>
 				<Form.Description>
@@ -108,7 +141,12 @@
 					> page.
 				</Form.Description>
 			</div>
-		</Form.Item>
+			<input name={attrs.name} bind:value={$formData.mobile} hidden />
+		</Form.Control>
 	</Form.Field>
 	<Form.Button>Update notifications</Form.Button>
-</Form.Root> -->
+</form>
+
+{#if browser}
+	<SuperDebug data={$formData} />
+{/if}
