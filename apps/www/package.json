@@ -96,10 +96,5 @@
 		"sveltekit-superforms": "^1.8.0",
 		"tailwind-merge": "^1.14.0",
 		"vaul-svelte": "^0.0.6"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"mdsvex@0.10.6": "patches/mdsvex@0.10.6.patch"
-		}
 	}
 }
