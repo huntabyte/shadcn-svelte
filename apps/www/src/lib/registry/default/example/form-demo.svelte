@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<!-- <script lang="ts" context="module">
 	import { z } from "zod";
 
 	export const formSchema = z.object({
@@ -44,4 +44,4 @@
 		</Form.Item>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+</Form.Root> -->
