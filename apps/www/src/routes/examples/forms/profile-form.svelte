@@ -18,9 +18,13 @@
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as Select from "@/registry/new-york/ui/select";
 	import { Input } from "@/registry/new-york/ui/input";
+	import { Button } from "@/registry/new-york/ui/button";
 	import { Textarea } from "@/registry/new-york/ui/textarea";
 	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { cn } from "$lib/utils";
+	import { browser } from "$app/environment";
 
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
 
@@ -29,6 +33,10 @@
 	});
 
 	const { form: formData, enhance } = form;
+
+	function addUrl() {
+		$formData.urls = [...$formData.urls, ""];
+	}
 
 	$: selectedEmail = {
 		label: $formData.email,
@@ -86,12 +94,29 @@
 		</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
-	<!-- <Form.Fieldset {form} name="urls">
-		<Form.Legend>URLS</Form.Legend>
-		<Form.Description>
-			Add links to your website, blog, or social media profiles.
-		</Form.Description>
-	</Form.Fieldset> -->
+	<div>
+		<Form.Fieldset {form} name="urls">
+			<Form.Legend>URLs</Form.Legend>
+			{#each $formData.urls as _, i}
+				<Form.ElementField {form} name="urls[{i}]">
+					<Form.Description class={cn(i !== 0 && "sr-only")}>
+						Add links to your website, blog, or social media profiles.
+					</Form.Description>
+					<Form.Control let:attrs>
+						<Input {...attrs} bind:value={$formData.urls[i]} />
+					</Form.Control>
+					<Form.FieldErrors />
+				</Form.ElementField>
+			{/each}
+		</Form.Fieldset>
+		<Button type="button" variant="outline" size="sm" class="mt-2" on:click={addUrl}>
+			Add URL
+		</Button>
+	</div>
 
 	<Form.Button>Update profile</Form.Button>
 </form>
+
+{#if browser}
+	<SuperDebug data={$formData} />
+{/if}

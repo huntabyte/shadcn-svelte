@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Description, type DescriptionProps } from "@huntabyte/fsnap";
+	import * as FormPrimitive from "@huntabyte/fsnap";
 	import { cn } from "$lib/utils";
 
-	type $$Props = DescriptionProps;
+	type $$Props = FormPrimitive.DescriptionProps;
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<Description
+<FormPrimitive.Description
 	class={cn("text-[0.8rem] text-muted-foreground", className)}
 	{...$$restProps}
 	let:descriptionAttrs
 >
 	<slot {descriptionAttrs} />
-</Description>
+</FormPrimitive.Description>

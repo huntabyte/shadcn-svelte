@@ -1,11 +1,8 @@
 <script lang="ts">
-	import {
-		FieldErrors as FieldErrorsPrimitive,
-		type FieldErrorsProps as FieldErrorsPrimitiveProps,
-	} from "@huntabyte/fsnap";
+	import * as FormPrimitive from "@huntabyte/fsnap";
 	import { cn } from "$lib/utils";
 
-	type $$Props = FieldErrorsPrimitiveProps & {
+	type $$Props = FormPrimitive.FieldErrorsProps & {
 		errorClasses?: string | undefined | null;
 	};
 
@@ -14,7 +11,7 @@
 	export let errorClasses: $$Props["class"] = undefined;
 </script>
 
-<FieldErrorsPrimitive
+<FormPrimitive.FieldErrors
 	class={cn("text-[0.8rem] font-medium text-destructive", className)}
 	{...$$restProps}
 	let:errors
@@ -26,4 +23,4 @@
 			<div {...errorAttrs} class={cn(errorClasses)}>{error}</div>
 		{/each}
 	</slot>
-</FieldErrorsPrimitive>
+</FormPrimitive.FieldErrors>

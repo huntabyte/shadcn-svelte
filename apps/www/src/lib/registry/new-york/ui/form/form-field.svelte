@@ -7,13 +7,10 @@
 
 <script lang="ts" generics="T extends Record<string, unknown>, U extends FormPath<T>">
 	import type { HTMLAttributes } from "svelte/elements";
-	import {
-		Field as FieldPrimitive,
-		type FieldProps as FieldPrimitiveProps,
-	} from "@huntabyte/fsnap";
+	import * as FormPrimitive from "@huntabyte/fsnap";
 	import { cn } from "$lib/utils";
 
-	type $$Props = FieldPrimitiveProps<T, U> & HTMLAttributes<HTMLElement>;
+	type $$Props = FormPrimitive.FieldProps<T, U> & HTMLAttributes<HTMLElement>;
 
 	export let form: SuperForm<T>;
 	export let name: U;
@@ -22,8 +19,8 @@
 	export { className as class };
 </script>
 
-<FieldPrimitive {form} {name} let:constraints let:errors let:tainted let:value>
+<FormPrimitive.Field {form} {name} let:constraints let:errors let:tainted let:value>
 	<div class={cn("space-y-2", className)}>
 		<slot {constraints} {errors} {tainted} {value} />
 	</div>
-</FieldPrimitive>
+</FormPrimitive.Field>
