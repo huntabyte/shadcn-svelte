@@ -30,9 +30,8 @@
 			</div>
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm" align="start" side="left">
-			Controls randomness: lowering results in less random completions. As
-			the temperature approaches zero, the model will become deterministic
-			and repetitive.
+			Controls randomness: lowering results in less random completions. As the temperature
+			approaches zero, the model will become deterministic and repetitive.
 		</HoverCard.Content>
 	</HoverCard.Root>
 </div>

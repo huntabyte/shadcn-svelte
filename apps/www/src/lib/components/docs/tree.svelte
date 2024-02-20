@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { TableOfContents } from "$lib/types/docs";
-	import { page } from "$app/stores";
 	import { cn } from "$lib/utils";
 
 	export let tree: TableOfContents = {
-		items: []
+		items: [],
 	};
+	export let activeItem: string | undefined;
 	export let level = 1;
 </script>
 
@@ -17,7 +17,8 @@
 					href={item.url}
 					class={cn(
 						"inline-block no-underline transition-colors hover:text-foreground",
-						item.url === $page.url.hash
+						item.url === `#${activeItem}` ||
+							item.items?.some((i) => i.url === `#${activeItem}`)
 							? "font-medium text-foreground"
 							: "text-muted-foreground"
 					)}
@@ -25,7 +26,7 @@
 					{item.title}
 				</a>
 				{#if item.items && item.items.length}
-					<svelte:self tree={item} level={level + 1} />
+					<svelte:self tree={item} level={level + 1} {activeItem} />
 				{/if}
 			</li>
 		{/each}

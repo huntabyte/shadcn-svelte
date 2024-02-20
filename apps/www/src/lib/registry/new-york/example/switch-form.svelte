@@ -2,57 +2,77 @@
 	import { z } from "zod";
 	export const formSchema = z.object({
 		marketing_emails: z.boolean().default(false).optional(),
-		security_emails: z.boolean().default(true)
+		security_emails: z.boolean().default(true),
 	});
 	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
 	import { page } from "$app/stores";
-	import * as Form from "@/registry/new-york/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
-	export let form: SuperValidated<FormSchema> = $page.data.switch;
+	import * as Form from "@/registry/default/ui/form";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { Switch } from "@/registry/default/ui/switch";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
+	let data: SuperValidated<Infer<FormSchema>> = $page.data.switch;
+	export { data as form };
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
-<Form.Root
-	{form}
-	schema={formSchema}
-	let:config
-	method="POST"
-	action="?/switch"
-	class="w-full space-y-6"
->
+<form method="POST" action="?/switch" class="w-full space-y-6" use:enhance>
 	<fieldset>
 		<legend class="mb-4 text-lg font-medium"> Email Notifications </legend>
 		<div class="space-y-4">
-			<Form.Field {config} name="marketing_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+			<Form.Field
+				{form}
+				name="marketing_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label>Marketing emails</Form.Label>
 						<Form.Description>
-							Receive emails about new products, features, and
-							more.
+							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
-					<Form.Switch />
-				</Form.Item>
+					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+				</Form.Control>
 			</Form.Field>
-			<Form.Field {config} name="security_emails">
-				<Form.Item
-					class="flex flex-row items-center justify-between rounded-lg border p-4"
-				>
+			<Form.Field
+				{form}
+				name="security_emails"
+				class="flex flex-row items-center justify-between rounded-lg border p-4"
+			>
+				<Form.Control let:attrs>
 					<div class="space-y-0.5">
 						<Form.Label>Security emails</Form.Label>
 						<Form.Description>
 							Receive emails about your account security.
 						</Form.Description>
 					</div>
-					<Form.Switch aria-readonly disabled />
-				</Form.Item>
+					<Switch
+						{...attrs}
+						aria-readonly
+						disabled
+						includeInput
+						bind:checked={$formData.security_emails}
+					/>
+				</Form.Control>
 			</Form.Field>
 		</div>
 	</fieldset>
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+	<SuperDebug data={$formData} />
+</form>

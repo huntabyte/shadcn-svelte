@@ -10,3 +10,5 @@ export { default as CardsShare } from "./share.svelte";
 export { default as CardsStats } from "./stats.svelte";
 export { default as CardsGithub } from "./github.svelte";
 export { default as CardsNewYork } from "./all.svelte";
+export { default as CardsTeamMembers } from "./team-members.svelte";
+export { default as CardsChat } from "./chat.svelte";

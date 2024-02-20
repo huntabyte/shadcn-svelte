@@ -16,9 +16,9 @@ import {
 	getItemTargetPath,
 	getRegistryBaseColor,
 	getRegistryIndex,
-	resolveTree
+	resolveTree,
 } from "../utils/registry";
-import { transformImport } from "../utils/transformer";
+import { transformImports } from "../utils/transformers";
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
@@ -28,18 +28,14 @@ const addOptionsSchema = z.object({
 	cwd: z.string(),
 	path: z.string().optional(),
 	nodep: z.boolean(),
-	proxy: z.string().optional()
+	proxy: z.string().optional(),
 });
 
 export const add = new Command()
 	.command("add")
 	.description("add components to your project")
 	.argument("[components...]", "name of components")
-	.option(
-		"--nodep",
-		"disable adding & installing dependencies (advanced)",
-		false
-	)
+	.option("--nodep", "disable adding & installing dependencies (advanced)", false)
 	.option("-a, --all", "Add all components to your project.", false)
 	.option("-y, --yes", "Skip confirmation prompt.", false)
 	.option("-o, --overwrite", "overwrite existing files.", false)
@@ -56,15 +52,13 @@ export const add = new Command()
 		try {
 			const options = addOptionsSchema.parse({
 				components,
-				...opts
+				...opts,
 			});
 
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				logger.error(
-					`The path ${cwd} does not exist. Please try again.`
-				);
+				logger.error(`The path ${cwd} does not exist. Please try again.`);
 				process.exitCode = 1;
 				return;
 			}
@@ -107,8 +101,8 @@ export const add = new Command()
 					instructions: false,
 					choices: registryIndex.map(({ name }) => ({
 						title: name,
-						value: name
-					}))
+						value: name,
+					})),
 				});
 				selectedComponents = components;
 			}
@@ -120,10 +114,8 @@ export const add = new Command()
 			}
 
 			const tree = await resolveTree(registryIndex, selectedComponents);
-			const payload = await fetchTree(config.style, tree);
-			const baseColor = await getRegistryBaseColor(
-				config.tailwind.baseColor
-			);
+			const payload = await fetchTree(config, tree);
+			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 			if (!payload.length) {
 				logger.warn("Selected components not found. Exiting.");
@@ -131,16 +123,14 @@ export const add = new Command()
 				return;
 			}
 
-			logger.info(
-				`Selected components:\n${highlight(selectedComponents)}`
-			);
+			logger.info(`Selected components:\n${highlight(selectedComponents)}`);
 
 			if (!options.yes) {
 				const { proceed } = await prompts({
 					type: "confirm",
 					name: "proceed",
 					message: `Ready to install components and dependencies. Proceed?`,
-					initial: true
+					initial: true,
 				});
 
 				if (!proceed) {
@@ -174,9 +164,9 @@ export const add = new Command()
 					path.resolve(targetDir, item.name)
 				);
 
-				const existingComponent = item.files.filter((file) =>
-					existsSync(path.resolve(targetDir, item.name, file.name))
-				);
+				const existingComponent = item.files.filter((file) => {
+					return existsSync(path.resolve(targetDir, item.name, file.name));
+				});
 
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
@@ -197,14 +187,10 @@ export const add = new Command()
 
 				for (const file of item.files) {
 					const componentDir = path.resolve(targetDir, item.name);
-					let filePath = path.resolve(
-						targetDir,
-						item.name,
-						file.name
-					);
+					let filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
-					const content = transformImport(file.content, config);
+					const content = transformImports(file.content, config);
 
 					if (!existsSync(componentDir)) {
 						await fs.mkdir(componentDir, { recursive: true });
@@ -216,9 +202,7 @@ export const add = new Command()
 				// Install dependencies.
 				if (item.dependencies?.length) {
 					if (options.nodep) {
-						item.dependencies.forEach((dep) =>
-							skippedDeps.add(dep)
-						);
+						item.dependencies.forEach((dep) => skippedDeps.add(dep));
 						continue;
 					}
 
@@ -227,10 +211,10 @@ export const add = new Command()
 						packageManager,
 						[
 							packageManager === "npm" ? "install" : "add",
-							...item.dependencies
+							...item.dependencies,
 						],
 						{
-							cwd
+							cwd,
 						}
 					);
 				}
@@ -243,15 +227,13 @@ export const add = new Command()
 			if (options.nodep) {
 				logger.warn(
 					`Components have installed without dependencies, consider adding the following to your dependencies:\n- ${[
-						...skippedDeps
+						...skippedDeps,
 					].join("\n- ")}`
 				);
 			}
 			spinner.succeed(`Done.`);
 			logger.info(
-				`Components installed at:\n- ${[...componentPaths].join(
-					"\n- "
-				)}`
+				`Components installed at:\n- ${[...componentPaths].join("\n- ")}`
 			);
 		} catch (error) {
 			handleError(error);

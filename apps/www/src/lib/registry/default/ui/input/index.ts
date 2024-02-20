@@ -8,6 +8,8 @@ export type InputEvents = {
 	change: FormInputEvent<Event>;
 	click: FormInputEvent<MouseEvent>;
 	focus: FormInputEvent<FocusEvent>;
+	focusin: FormInputEvent<FocusEvent>;
+	focusout: FormInputEvent<FocusEvent>;
 	keydown: FormInputEvent<KeyboardEvent>;
 	keypress: FormInputEvent<KeyboardEvent>;
 	keyup: FormInputEvent<KeyboardEvent>;
@@ -21,5 +23,5 @@ export type InputEvents = {
 export {
 	Root,
 	//
-	Root as Input
+	Root as Input,
 };

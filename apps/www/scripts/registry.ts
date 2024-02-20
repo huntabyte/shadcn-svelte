@@ -8,14 +8,15 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
 	["cmdk-sv", ["bits-ui"]],
-	["svelte-sonner", []],
-	["vaul-svelte", []]
+	["svelte-sonner", ["mode-watcher"]],
+	["vaul-svelte", []],
+	["embla-carousel-svelte", []],
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
 	["calendar", ["@internationalized/date"]],
-	["range-calendar", ["@internationalized/date"]]
+	["range-calendar", ["@internationalized/date"]],
 ]);
 const REGISTRY_DEPENDENCY = "@/";
 
@@ -35,7 +36,7 @@ export async function buildRegistry() {
 async function crawlUI(rootPath: string) {
 	const dir = await readdir(rootPath, {
 		recursive: true,
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const uiRegistry: Registry = [];
@@ -57,26 +58,27 @@ async function crawlExample(rootPath: string) {
 
 	const dir = await readdir(rootPath, {
 		// recursive: true, // ignoring examples with directories for now...
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const exampleRegistry: Registry = [];
 
 	for (const dirent of dir) {
-		if (dirent.name === "index.ts") continue;
+		if (!dirent.name.endsWith(".svelte")) continue;
 
 		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
 			const file_path = join("example", dirent.name);
-			const { dependencies, registryDependencies } =
-				await getDependencies(join(rootPath, dirent.name));
+			const { dependencies, registryDependencies } = await getDependencies(
+				join(rootPath, dirent.name)
+			);
 
 			exampleRegistry.push({
 				name,
 				type,
 				files: [file_path],
 				registryDependencies: Array.from(registryDependencies),
-				dependencies: Array.from(dependencies)
+				dependencies: Array.from(dependencies),
 			});
 		}
 
@@ -97,7 +99,7 @@ async function crawlExample(rootPath: string) {
 
 async function buildUIRegistry(componentPath: string, componentName: string) {
 	const dir = await readdir(componentPath, {
-		withFileTypes: true
+		withFileTypes: true,
 	});
 
 	const files: string[] = [];
@@ -112,17 +114,13 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		files.push(file_path);
 
 		// only grab deps from the svelte files
-		if (dirent.name === "index.ts") continue;
+		if (!dirent.name.endsWith(".svelte")) continue;
 		const deps = await getDependencies(join(componentPath, dirent.name));
 
 		deps.dependencies.forEach((dep) => dependencies.add(dep));
-		REQUIRED_COMPONENT_DEPS.get(componentName)?.forEach((dep) =>
-			dependencies.add(dep)
-		);
+		REQUIRED_COMPONENT_DEPS.get(componentName)?.forEach((dep) => dependencies.add(dep));
 
-		deps.registryDependencies.forEach((dep) =>
-			registryDependencies.add(dep)
-		);
+		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
 	return {
@@ -130,7 +128,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		type,
 		files,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: Array.from(dependencies)
+		dependencies: Array.from(dependencies),
 	} satisfies RegistryItem;
 }
 
@@ -160,7 +158,7 @@ async function getDependencies(filename: string) {
 					registryDependencies.add(component);
 				}
 			}
-		}
+		},
 	});
 
 	return { registryDependencies, dependencies };

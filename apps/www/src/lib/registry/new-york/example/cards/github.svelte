@@ -15,13 +15,10 @@
 		<div class="space-y-1">
 			<Card.Title>shadcn/ui</Card.Title>
 			<Card.Description>
-				Beautifully designed components built with Radix UI and Tailwind
-				CSS.
+				Beautifully designed components built with Radix UI and Tailwind CSS.
 			</Card.Description>
 		</div>
-		<div
-			class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground"
-		>
+		<div class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
 			<Button variant="secondary" class="px-3 shadow-none">
 				<Star class="mr-2 h-4 w-4" />
 				Star
@@ -29,14 +26,8 @@
 			<Separator orientation="vertical" class="h-[20px]" />
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="secondary"
-						class="px-2 shadow-none"
-					>
-						<ChevronDown
-							class="h-4 w-4 text-secondary-foreground"
-						/>
+					<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
+						<ChevronDown class="h-4 w-4 text-secondary-foreground" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">

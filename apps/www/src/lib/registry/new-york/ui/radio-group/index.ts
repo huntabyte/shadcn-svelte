@@ -11,5 +11,5 @@ export {
 	//
 	Root as RadioGroup,
 	Input as RadioGroupInput,
-	Item as RadioGroupItem
+	Item as RadioGroupItem,
 };

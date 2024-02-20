@@ -4,6 +4,8 @@ import { cubicOut } from "svelte/easing";
 import { writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
+import type { DocResolver } from "$lib/types/docs.js";
+import { error } from "@sveltejs/kit";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -101,7 +103,7 @@ export function createCopyCodeButton() {
 	return {
 		copied: copied,
 		copyCode: copyCode,
-		setCodeString: setCodeString
+		setCodeString: setCodeString,
 	};
 }
 
@@ -147,9 +149,7 @@ export const flyAndScale = (
 		return valueB;
 	};
 
-	const styleToString = (
-		style: Record<string, number | string | undefined>
-	): string => {
+	const styleToString = (style: Record<string, number | string | undefined>): string => {
 		return Object.keys(style).reduce((str, key) => {
 			if (style[key] === undefined) return str;
 			return str + `${key}:${style[key]};`;
@@ -166,9 +166,60 @@ export const flyAndScale = (
 
 			return styleToString({
 				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t
+				opacity: t,
 			});
 		},
-		easing: cubicOut
+		easing: cubicOut,
 	};
 };
+
+type Modules = Record<string, () => Promise<unknown>>;
+
+function findMatch(slug: string, modules: Modules) {
+	let match: { path?: string; resolver?: DocResolver } = {};
+
+	for (const [path, resolver] of Object.entries(modules)) {
+		if (slugFromPath(path) === slug) {
+			match = { path, resolver: resolver as unknown as DocResolver };
+			break;
+		}
+	}
+	if (!match.path) {
+		match = getIndexDocIfExists(slug, modules);
+	}
+
+	return match;
+}
+
+function getIndexDocIfExists(slug: string, modules: Modules) {
+	let match: { path?: string; resolver?: DocResolver } = {};
+
+	for (const [path, resolver] of Object.entries(modules)) {
+		if (path.includes(`/${slug}/index.md`)) {
+			match = { path, resolver: resolver as unknown as DocResolver };
+			break;
+		}
+	}
+
+	return match;
+}
+
+export async function getDoc(slug: string) {
+	const modules = import.meta.glob(`/src/content/**/*.md`);
+	const match = findMatch(slug, modules);
+	const doc = await match?.resolver?.();
+
+	if (!doc || !doc.metadata) {
+		throw error(404);
+	}
+
+	return {
+		component: doc.default,
+		metadata: doc.metadata,
+		title: doc.metadata.title,
+	};
+}
+
+export function slugFromPathname(pathname: string) {
+	return pathname.split("/").pop() ?? "";
+}

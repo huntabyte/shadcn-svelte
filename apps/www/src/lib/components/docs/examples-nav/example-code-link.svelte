@@ -3,9 +3,7 @@
 	import { page } from "$app/stores";
 	import { examples } from "$lib/config/docs";
 
-	$: example = examples.find((example) =>
-		$page.url.pathname.startsWith(example.href)
-	);
+	$: example = examples.find((example) => $page.url.pathname.startsWith(example.href));
 </script>
 
 {#if example?.code}

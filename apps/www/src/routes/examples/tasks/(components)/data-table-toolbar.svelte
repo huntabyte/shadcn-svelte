@@ -12,13 +12,13 @@
 
 	const { pluginStates } = tableModel;
 	const {
-		filterValue
+		filterValue,
 	}: {
 		filterValue: Writable<string>;
 	} = pluginStates.filter;
 
 	const {
-		filterValues
+		filterValues,
 	}: {
 		filterValues: Writable<{
 			status: string[];
@@ -26,7 +26,7 @@
 		}>;
 	} = pluginStates.colFilter;
 
-	$: showReset = Object.values($filterValues).some((v) => v.length > 0);
+	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
 </script>
 
 <div class="flex items-center justify-between">
@@ -34,7 +34,7 @@
 		<Input
 			placeholder="Filter tasks..."
 			class="h-8 w-[150px] lg:w-[250px]"
-			type="text"
+			type="search"
 			bind:value={$filterValue}
 		/>
 
@@ -51,6 +51,7 @@
 		{#if showReset}
 			<Button
 				on:click={() => {
+					$filterValue = "";
 					$filterValues.status = [];
 					$filterValues.priority = [];
 				}}

@@ -51,12 +51,8 @@
 		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Label inset>People</ContextMenu.Label>
 			<ContextMenu.Separator />
-			<ContextMenu.RadioItem value="pedro">
-				Pedro Duarte
-			</ContextMenu.RadioItem>
-			<ContextMenu.RadioItem value="colm">
-				Colm Tuite
-			</ContextMenu.RadioItem>
+			<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
+			<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
 		</ContextMenu.RadioGroup>
 	</ContextMenu.Content>
 </ContextMenu.Root>

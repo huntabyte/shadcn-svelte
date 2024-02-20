@@ -12,24 +12,24 @@
 	const statuses: Status[] = [
 		{
 			value: "backlog",
-			label: "Backlog"
+			label: "Backlog",
 		},
 		{
 			value: "todo",
-			label: "Todo"
+			label: "Todo",
 		},
 		{
 			value: "in progress",
-			label: "In Progress"
+			label: "In Progress",
 		},
 		{
 			value: "done",
-			label: "Done"
+			label: "Done",
 		},
 		{
 			value: "canceled",
-			label: "Canceled"
-		}
+			label: "Canceled",
+		},
 	];
 
 	let open = false;
@@ -52,11 +52,7 @@
 	<p class="text-sm text-muted-foreground">Status</p>
 	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="outline"
-				class="w-[150px] justify-start"
-			>
+			<Button builders={[builder]} variant="outline" class="w-[150px] justify-start">
 				{selectedStatus ? selectedStatus.label : "+ Set status"}
 			</Button>
 		</Popover.Trigger>

@@ -1,12 +1,6 @@
 import { defaultTraveler } from "./defaultTraveler";
 
-function attachCommentsToNode(
-	traveler,
-	state,
-	parent,
-	children,
-	findHeadingComments
-) {
+function attachCommentsToNode(traveler, state, parent, children, findHeadingComments) {
 	let { index } = state;
 	const { comments } = state;
 	let comment = comments[index];
@@ -102,7 +96,7 @@ let traveler = defaultTraveler.makeChild({
 	},
 	SwitchCase(node, state) {
 		attachCommentsToNode(this, state, node, node.consequent, false);
-	}
+	},
 	// TODO: Consider ArrayExpression ?
 });
 
@@ -112,7 +106,7 @@ export function attachComments(node, comments) {
   */
 	traveler[node.type](node, {
 		comments,
-		index: 0
+		index: 0,
 	});
 	return node;
 }

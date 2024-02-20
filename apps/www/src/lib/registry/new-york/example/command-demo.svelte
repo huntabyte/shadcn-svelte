@@ -1,16 +1,9 @@
 <script lang="ts">
-	import {
-		Calendar,
-		EnvelopeClosed,
-		Face,
-		Gear,
-		Person,
-		Rocket
-	} from "radix-icons-svelte";
+	import { Calendar, EnvelopeClosed, Face, Gear, Person, Rocket } from "radix-icons-svelte";
 	import * as Command from "@/registry/new-york/ui/command";
 </script>
 
-<Command.Root class="rounded-lg border shadow-md max-w-[450px]">
+<Command.Root class="max-w-[450px] rounded-lg border shadow-md">
 	<Command.Input placeholder="Type a command or search..." />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>

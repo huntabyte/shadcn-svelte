@@ -1,0 +1,13 @@
+{
+	"style": "new-york",
+	"tailwind": {
+		"config": "tailwind.config.js",
+		"css": "src/app.pcss",
+		"baseColor": "zinc"
+	},
+	"aliases": {
+		"utils": "$lib/utils",
+		"components": "$lib/components"
+	},
+	"typescript": true
+}

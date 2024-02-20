@@ -4,7 +4,7 @@
 		type DateValue,
 		DateFormatter,
 		getLocalTimeZone,
-		today
+		today,
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils";
 	import { Button } from "@/registry/default/ui/button";
@@ -13,7 +13,7 @@
 	import * as Select from "@/registry/default/ui/select";
 
 	const df = new DateFormatter("en-US", {
-		dateStyle: "long"
+		dateStyle: "long",
 	});
 
 	let value: DateValue | undefined = undefined;
@@ -22,7 +22,7 @@
 		{ value: 0, label: "Today" },
 		{ value: 1, label: "Tomorrow" },
 		{ value: 3, label: "In 3 days" },
-		{ value: 7, label: "In a week" }
+		{ value: 7, label: "In a week" },
 	];
 </script>
 
@@ -37,9 +37,7 @@
 			builders={[builder]}
 		>
 			<CalendarIcon class="mr-2 h-4 w-4" />
-			{value
-				? df.format(value.toDate(getLocalTimeZone()))
-				: "Pick a date"}
+			{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">

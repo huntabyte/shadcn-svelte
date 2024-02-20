@@ -9,32 +9,30 @@
 	const frameworks = [
 		{
 			value: "sveltekit",
-			label: "SvelteKit"
+			label: "SvelteKit",
 		},
 		{
 			value: "next.js",
-			label: "Next.js"
+			label: "Next.js",
 		},
 		{
 			value: "nuxt.js",
-			label: "Nuxt.js"
+			label: "Nuxt.js",
 		},
 		{
 			value: "remix",
-			label: "Remix"
+			label: "Remix",
 		},
 		{
 			value: "astro",
-			label: "Astro"
-		}
+			label: "Astro",
+		},
 	];
 
 	let open = false;
 	let value = "";
 
-	$: selectedValue =
-		frameworks.find((f) => f.value === value)?.label ??
-		"Select a framework...";
+	$: selectedValue = frameworks.find((f) => f.value === value)?.label ?? "Select a framework...";
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the

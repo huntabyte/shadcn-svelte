@@ -1,10 +1,13 @@
-import { existsSync } from "fs";
-import { readFile } from "fs/promises";
+import { promises as fs } from "fs";
 import path from "path";
+import chalk from "chalk";
 import { execa } from "execa";
-import { loadConfig } from "tsconfig-paths";
+import { parseNative } from "tsconfck";
 import * as z from "zod";
+import { find } from "./find-tsconfig";
+import { isUsingSvelteKit } from "./get-package-info";
 import { getPackageManager } from "./get-package-manager";
+import { logger } from "./logger";
 import { resolveImport } from "./resolve-imports";
 
 export const DEFAULT_STYLE = "default";
@@ -13,6 +16,7 @@ export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
+export const DEFAULT_TYPESCRIPT = true;
 
 export const rawConfigSchema = z
 	.object({
@@ -21,17 +25,16 @@ export const rawConfigSchema = z
 		tailwind: z.object({
 			config: z.string(),
 			css: z.string(),
-			baseColor: z.string()
+			baseColor: z.string(),
 			// cssVariables: z.boolean().default(true)
 		}),
 		aliases: z.object({
 			components: z
 				.string()
 				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
-			utils: z
-				.string()
-				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		})
+			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+		}),
+		typescript: z.boolean().default(true),
 	})
 	.strict();
 
@@ -42,8 +45,8 @@ export const configSchema = rawConfigSchema.extend({
 		tailwindConfig: z.string(),
 		tailwindCss: z.string(),
 		utils: z.string(),
-		components: z.string()
-	})
+		components: z.string(),
+	}),
 });
 
 export type Config = z.infer<typeof configSchema>;
@@ -70,34 +73,47 @@ export async function getAliases() {
 }
 
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
-	const TSCONFIG_PATH = ".svelte-kit/tsconfig.json";
-	if (!existsSync(TSCONFIG_PATH)) {
+	// if it's a SvelteKit project, run sync so that the aliases are always up to date
+	const isSvelteKit = isUsingSvelteKit(cwd);
+	if (isSvelteKit) {
 		const packageManager = await getPackageManager(cwd);
 		await execa(
 			packageManager === "npm" ? "npx" : packageManager,
 			["svelte-kit", "sync"],
 			{
-				cwd
+				cwd,
 			}
 		);
 	}
 
-	const tsconfigPath = path.resolve(cwd, TSCONFIG_PATH);
-	const tsConfig = loadConfig(tsconfigPath);
+	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
 
-	if (tsConfig.resultType === "failed") {
+	if (tsconfigPath === null) {
+		const configToFind = config.typescript ? "tsconfig.json" : "jsconfig.json";
+		throw new Error(`Failed to find ${logger.highlight(configToFind)}.`);
+	}
+
+	const parsedConfig = await parseNative(tsconfigPath);
+
+	const absoluteBaseUrl: string | undefined = parsedConfig.result.options.pathsBasePath;
+	let paths: Record<string, string[]> | undefined = parsedConfig.result.options.paths;
+
+	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
-			`Failed to load .svelte-kit/tsconfig.json. Error: ${
-				tsConfig.message ?? ""
-			}`.trim()
+			`Specify a ${logger.highlight("paths")} field in your ${logger.highlight(
+				"tsconfig.json"
+			)} and define your path aliases. \n\nSee: ${chalk.green(
+				"https://www.shadcn-svelte.com/docs/installation#setup-path-aliases"
+			)}`
 		);
 	}
 
-	const utilsPath = await resolveImport(config.aliases["utils"], tsConfig);
-	const componentsPath = await resolveImport(
-		config.aliases["components"],
-		tsConfig
-	);
+	const importOpts = {
+		absoluteBaseUrl,
+		paths,
+	};
+	const utilsPath = await resolveImport(config.aliases.utils, importOpts);
+	const componentsPath = await resolveImport(config.aliases.components, importOpts);
 
 	return configSchema.parse({
 		...config,
@@ -105,17 +121,19 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 			tailwindConfig: path.resolve(cwd, config.tailwind.config),
 			tailwindCss: path.resolve(cwd, config.tailwind.css),
 			utils: utilsPath,
-			components: componentsPath
-		}
+			components: componentsPath,
+		},
 	});
 }
 
-async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+	const configPath = path.resolve(cwd, "components.json");
 	try {
-		const configPath = path.resolve(cwd, "components.json");
-		const configResult = await readFile(configPath, {
-			encoding: "utf8"
-		}).catch((e) => null);
+		const configResult = await fs
+			.readFile(configPath, {
+				encoding: "utf8",
+			})
+			.catch((e) => null);
 
 		// no predefined config exists
 		if (!configResult) {
@@ -127,7 +145,7 @@ async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 		return rawConfigSchema.parse(config);
 	} catch (error) {
 		throw new Error(
-			`Invalid configuration found in ${cwd}/components.json.`
+			`Invalid configuration found in ${logger.highlight(configPath)}.`
 		);
 	}
 }

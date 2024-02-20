@@ -5,63 +5,64 @@
 	import { Input } from "@/registry/default/ui/input";
 	import { Label } from "@/registry/default/ui/label";
 	import { Textarea } from "@/registry/default/ui/textarea";
+	import { nanoid } from "nanoid";
 
 	const areas = [
 		{
 			value: "team",
-			label: "Team"
+			label: "Team",
 		},
 		{
 			value: "billing",
-			label: "Billing"
+			label: "Billing",
 		},
 		{
 			value: "account",
-			label: "Account"
+			label: "Account",
 		},
 		{
 			value: "deployments",
-			label: "Deployments"
+			label: "Deployments",
 		},
 		{
 			value: "support",
-			label: "Support"
-		}
+			label: "Support",
+		},
 	];
 
 	const securityLevels = [
 		{
 			value: "1",
-			label: "Severity 1 (Highest)"
+			label: "Severity 1 (Highest)",
 		},
 		{
 			value: "2",
-			label: "Severity 2"
+			label: "Severity 2",
 		},
 		{
 			value: "3",
-			label: "Severity 3"
+			label: "Severity 3",
 		},
 		{
 			value: "4",
-			label: "Severity 4 (Lowest)"
-		}
+			label: "Severity 4 (Lowest)",
+		},
 	];
+
+	const id = nanoid(5);
 </script>
 
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Report an issue</Card.Title>
-		<Card.Description
-			>What area are you having problems with?</Card.Description
-		>
+		<Card.Description>What area are you having problems with?</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
-		<div class="grid grid-cols-2 gap-4">
+		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="grid gap-2">
-				<Label for="area">Area</Label>
+				<Label for="aria-{id}">Area</Label>
 				<Select.Root selected={areas[1]}>
-					<Select.Trigger id="area">
+					<Select.Trigger id="aria-{id}">
 						<Select.Value placeholder="Select" />
 					</Select.Trigger>
 					<Select.Content>
@@ -74,9 +75,9 @@
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="security-level">Security Level</Label>
+				<Label for="security-level-{id}">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level">
+					<Select.Trigger id="security-level-{id}" class="line-clamp-1 w-full truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
@@ -90,13 +91,14 @@
 			</div>
 		</div>
 		<div class="grid gap-2">
-			<Label for="subject">Subject</Label>
-			<Input id="subject" placeholder="I need help with..." />
+			<Label for="subject-{id}">Subject</Label>
+			<Input id="subject-{id}" name="subject-{id}" placeholder="I need help with..." />
 		</div>
 		<div class="grid gap-2">
-			<Label for="description">Description</Label>
+			<Label for="description-{id}">Description</Label>
 			<Textarea
-				id="description"
+				id="description-{id}"
+				name="description-{id}"
 				placeholder="Please include all information relevant to your issue."
 			/>
 		</div>

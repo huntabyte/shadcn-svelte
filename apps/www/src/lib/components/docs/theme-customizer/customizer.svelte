@@ -13,9 +13,7 @@
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
 	<div class="flex items-start">
 		<div class="space-y-1 pr-2">
-			<div class="font-semibold leading-none tracking-tight">
-				Customize
-			</div>
+			<div class="font-semibold leading-none tracking-tight">Customize</div>
 			<div class="text-xs text-muted-foreground">
 				Pick a style and color for your components.
 			</div>
@@ -28,7 +26,7 @@
 				config.update((prev) => ({
 					...prev,
 					theme: "zinc",
-					radius: 0.5
+					radius: 0.5,
 				}));
 			}}
 		>
@@ -37,7 +35,7 @@
 		</Button>
 	</div>
 	<div class="flex flex-1 flex-col space-y-4 md:space-y-6">
-		<div class="space-y-1 5">
+		<div class="5 space-y-1">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
@@ -52,21 +50,19 @@
 						sideOffset={-20}
 					>
 						<p class="font-medium">
-							What is the difference between the New York and
-							Default style?
+							What is the difference between the New York and Default style?
 						</p>
 						<p>
-							A style comes with its own set of components,
-							animations, icons and more.
+							A style comes with its own set of components, animations, icons and
+							more.
 						</p>
 						<p>
-							The <span class="font-medium">Default</span> style has
-							larger inputs, uses lucide-svelte for icons.
+							The <span class="font-medium">Default</span> style has larger inputs, uses
+							lucide-svelte for icons.
 						</p>
 						<p>
-							The <span class="font-medium">New York</span> style ships
-							with smaller buttons and cards with shadows. It uses
-							icons from Radix Icons.
+							The <span class="font-medium">New York</span> style ships with smaller buttons
+							and cards with shadows. It uses icons from Radix Icons.
 						</p>
 					</Popover.Content>
 				</Popover.Root>
@@ -78,11 +74,9 @@
 					on:click={() =>
 						config.update((prev) => ({
 							...prev,
-							style: "default"
+							style: "default",
 						}))}
-					class={cn(
-						$config.style === "default" && "border-2 border-primary"
-					)}
+					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
 				</Button>
@@ -92,18 +86,15 @@
 					on:click={() =>
 						config.update((prev) => ({
 							...prev,
-							style: "new-york"
+							style: "new-york",
 						}))}
-					class={cn(
-						$config.style === "new-york" &&
-							"border-2 border-primary"
-					)}
+					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
 				</Button>
 			</div>
 		</div>
-		<div class="space-y-1 5">
+		<div class="5 space-y-1">
 			<Label class="text-xs">Color</Label>
 			<div class="grid grid-cols-3 gap-2">
 				{#each themes as theme (theme.name)}
@@ -114,16 +105,11 @@
 						on:click={() => {
 							config.update((prev) => ({
 								...prev,
-								theme: theme.name
+								theme: theme.name,
 							}));
 						}}
-						class={cn(
-							"justify-start",
-							isActive && "border-2 border-primary"
-						)}
-						style="--theme-primary: hsl({theme?.activeColor[
-							$mode ?? 'dark'
-						]}"
+						class={cn("justify-start", isActive && "border-2 border-primary")}
+						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
 					>
 						<span
 							class="mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
@@ -148,13 +134,10 @@
 						on:click={() => {
 							config.update((prev) => ({
 								...prev,
-								radius: valueFloat
+								radius: valueFloat,
 							}));
 						}}
-						class={cn(
-							$config.radius === valueFloat &&
-								"border-2 border-primary"
-						)}
+						class={cn($config.radius === valueFloat && "border-2 border-primary")}
 					>
 						{value}
 					</Button>

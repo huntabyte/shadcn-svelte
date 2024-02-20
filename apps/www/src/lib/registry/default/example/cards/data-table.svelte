@@ -1,16 +1,11 @@
 <script lang="ts">
-	import {
-		createTable,
-		Subscribe,
-		Render,
-		createRender
-	} from "svelte-headless-table";
+	import { createTable, Subscribe, Render, createRender } from "svelte-headless-table";
 	import {
 		addSortBy,
 		addPagination,
 		addTableFilter,
 		addSelectedRows,
-		addHiddenColumns
+		addHiddenColumns,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
 	import * as Table from "@/registry/default/ui/table";
@@ -36,42 +31,42 @@
 			id: "m5gr84i9",
 			amount: 316,
 			status: "Success",
-			email: "ken99@yahoo.com"
+			email: "ken99@yahoo.com",
 		},
 		{
 			id: "3u1reuv4",
 			amount: 242,
 			status: "Success",
-			email: "Abe45@gmail.com"
+			email: "Abe45@gmail.com",
 		},
 		{
 			id: "derv1ws0",
 			amount: 837,
 			status: "Processing",
-			email: "Monserrat44@gmail.com"
+			email: "Monserrat44@gmail.com",
 		},
 		{
 			id: "5kma53ae",
 			amount: 874,
 			status: "Success",
-			email: "Silas22@gmail.com"
+			email: "Silas22@gmail.com",
 		},
 		{
 			id: "bhqecj4p",
 			amount: 721,
 			status: "Failed",
-			email: "carmella@hotmail.com"
-		}
+			email: "carmella@hotmail.com",
+		},
 	];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
 		page: addPagination(),
 		filter: addTableFilter({
-			fn: ({ filterValue, value }) => value.includes(filterValue)
+			fn: ({ filterValue, value }) => value.includes(filterValue),
 		}),
 		select: addSelectedRows(),
-		hide: addHiddenColumns()
+		hide: addHiddenColumns(),
 	});
 
 	const columns = table.createColumns([
@@ -79,7 +74,7 @@
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
 				return createRender(DataTableCheckbox, {
-					checked: allPageRowsSelected
+					checked: allPageRowsSelected,
 				});
 			},
 			accessor: "id",
@@ -88,27 +83,27 @@
 				const { isSelected } = getRowState(row);
 
 				return createRender(DataTableCheckbox, {
-					checked: isSelected
+					checked: isSelected,
 				});
 			},
 			plugins: {
 				sort: {
-					disable: true
+					disable: true,
 				},
 				filter: {
-					exclude: true
-				}
-			}
+					exclude: true,
+				},
+			},
 		}),
 		table.column({
 			header: "Status",
 			accessor: "status",
-			plugins: { sort: { disable: true }, filter: { exclude: true } }
+			plugins: { sort: { disable: true }, filter: { exclude: true } },
 		}),
 		table.column({
 			header: "Email",
 			accessor: "email",
-			cell: ({ value }) => value.toLowerCase()
+			cell: ({ value }) => value.toLowerCase(),
 		}),
 		table.column({
 			header: "Amount",
@@ -116,18 +111,18 @@
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat("en-US", {
 					style: "currency",
-					currency: "USD"
+					currency: "USD",
 				}).format(value);
 				return formatted;
 			},
 			plugins: {
 				sort: {
-					disable: true
+					disable: true,
 				},
 				filter: {
-					exclude: true
-				}
-			}
+					exclude: true,
+				},
+			},
 		}),
 		table.column({
 			header: "",
@@ -137,21 +132,14 @@
 			},
 			plugins: {
 				sort: {
-					disable: true
-				}
-			}
-		})
+					disable: true,
+				},
+			},
+		}),
 	]);
 
-	const {
-		headerRows,
-		pageRows,
-		tableAttrs,
-		tableBodyAttrs,
-		flatColumns,
-		pluginStates,
-		rows
-	} = table.createViewModel(columns);
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, flatColumns, pluginStates, rows } =
+		table.createViewModel(columns);
 
 	const { sortKeys } = pluginStates.sort;
 
@@ -186,20 +174,14 @@
 			/>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						variant="outline"
-						class="ml-auto"
-						builders={[builder]}
-					>
+					<Button variant="outline" class="ml-auto" builders={[builder]}>
 						Columns <ChevronDown class="ml-2 h-4 w-4" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content>
 					{#each flatColumns as col}
 						{#if hideableCols.includes(col.id)}
-							<DropdownMenu.CheckboxItem
-								bind:checked={hideForId[col.id]}
-							>
+							<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
 								{col.header}
 							</DropdownMenu.CheckboxItem>
 						{/if}
@@ -222,30 +204,21 @@
 									>
 										<Table.Head
 											{...attrs}
-											class={cn(
-												"[&:has([role=checkbox])]:pl-3"
-											)}
+											class={cn("[&:has([role=checkbox])]:pl-3")}
 										>
 											{#if cell.id === "amount"}
-												<div
-													class="text-right font-medium"
-												>
-													<Render
-														of={cell.render()}
-													/>
+												<div class="text-right font-medium">
+													<Render of={cell.render()} />
 												</div>
 											{:else if cell.id === "email"}
 												<Button
 													variant="ghost"
 													on:click={props.sort.toggle}
 												>
-													<Render
-														of={cell.render()}
-													/>
+													<Render of={cell.render()} />
 													<ArrowUpDown
 														class={cn(
-															$sortKeys[0]?.id ===
-																cell.id &&
+															$sortKeys[0]?.id === cell.id &&
 																"text-foreground",
 															"ml-2 h-4 w-4"
 														)}
@@ -266,8 +239,7 @@
 						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 							<Table.Row
 								{...rowAttrs}
-								data-state={$selectedDataIds[row.id] &&
-									"selected"}
+								data-state={$selectedDataIds[row.id] && "selected"}
 							>
 								{#each row.cells as cell (cell.id)}
 									<Subscribe attrs={cell.attrs()} let:attrs>
@@ -276,18 +248,12 @@
 											{...attrs}
 										>
 											{#if cell.id === "amount"}
-												<div
-													class="text-right font-medium"
-												>
-													<Render
-														of={cell.render()}
-													/>
+												<div class="text-right font-medium">
+													<Render of={cell.render()} />
 												</div>
 											{:else if cell.id === "status"}
 												<div class="capitalize">
-													<Render
-														of={cell.render()}
-													/>
+													<Render of={cell.render()} />
 												</div>
 											{:else}
 												<Render of={cell.render()} />

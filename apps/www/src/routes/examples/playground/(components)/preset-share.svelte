@@ -14,8 +14,7 @@
 		<div class="flex flex-col space-y-2 text-center sm:text-left">
 			<h3 class="text-lg font-semibold">Share preset</h3>
 			<p class="text-sm text-muted-foreground">
-				Anyone who has this link and an OpenAI account will be able to
-				view this.
+				Anyone who has this link and an OpenAI account will be able to view this.
 			</p>
 		</div>
 		<div class="flex items-center space-x-2 pt-4">

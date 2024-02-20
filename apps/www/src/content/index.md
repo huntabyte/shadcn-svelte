@@ -26,11 +26,11 @@ _Use this as a reference to build your own component libraries._
 <Accordion.Root multiple>
 
 <Accordion.Item value="faq-1">
+
 <Accordion.Trigger>
-
 Why not packaged as a dependency?
-
 </Accordion.Trigger>
+
 <Accordion.Content>
 
 The idea behind this is to give you ownership and control over the code, allowing you to decide how the components are built and styled.
@@ -46,9 +46,7 @@ One of the drawback of packaging the components in an npm package is that the st
 Which frameworks are supported?
 </Accordion.Trigger>
 <Accordion.Content>
-
 This port is built to be used with Svelte/SvelteKit.
-
 </Accordion.Content>
 </Accordion.Item>
 <Accordion.Item value="faq-3">
@@ -57,7 +55,6 @@ Can I use this in my project?
 </Accordion.Trigger>
 <Accordion.Content>
 Yes. Free to use for personal and commercial projects. No attribution required.
-
 But let us know if you do use it. We'd love to see what you build with it.
 </Accordion.Content>
 </Accordion.Item>

@@ -9,13 +9,13 @@
 		CardsDataTable,
 		CardsReportIssue,
 		CardsShare,
-		CardsStats
+		CardsStats,
+		CardsTeamMembers,
+		CardsChat,
 	} from ".";
 </script>
 
-<div
-	class="md:grids-col-2 grid md:gap-4 lg:grid-cols-10 xl:grid-cols-11 xl:gap-4"
->
+<div class="md:grids-col-2 grid md:gap-4 lg:grid-cols-10 xl:grid-cols-11 xl:gap-4">
 	<div class="space-y-4 lg:col-span-4 xl:col-span-6 xl:space-y-4">
 		<CardsStats />
 		<div class="grid gap-1 sm:grid-cols-[260px_1fr] md:hidden">
@@ -29,12 +29,12 @@
 		</div>
 		<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
 			<div class="space-y-4 xl:space-y-4">
-				<!-- <CardsTeamMembers /> -->
+				<CardsTeamMembers />
 				<CardsCookieSettings />
 				<CardsPaymentMethod />
 			</div>
 			<div class="space-y-4 xl:space-y-4">
-				<!-- <CardsChat /> -->
+				<CardsChat />
 				<CardsCreateAccount />
 				<div class="hidden xl:block">
 					<CardsReportIssue />

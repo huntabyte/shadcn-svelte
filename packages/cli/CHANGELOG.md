@@ -1,5 +1,23 @@
 # shadcn-svelte
 
+## 0.7.0
+
+### Minor Changes
+
+- bfdc861: feat: Add support for JS
+
+## 0.6.1
+
+### Patch Changes
+
+- 59dca2c: fix: Support use of `jsconfig.json`
+
+## 0.6.0
+
+### Minor Changes
+
+- 024cd2a: feat: Added support for non SvelteKit frameworks
+
 ## 0.5.0
 
 ### Minor Changes

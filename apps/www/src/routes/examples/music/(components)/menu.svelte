@@ -34,14 +34,10 @@
 						Playlist <Menubar.Shortcut>⌘N</Menubar.Shortcut>
 					</Menubar.Item>
 					<Menubar.Item disabled>
-						Playlist from Selection <Menubar.Shortcut
-							>⇧⌘N</Menubar.Shortcut
-						>
+						Playlist from Selection <Menubar.Shortcut>⇧⌘N</Menubar.Shortcut>
 					</Menubar.Item>
 					<Menubar.Item>
-						Smart Playlist... <Menubar.Shortcut
-							>⌥⌘N</Menubar.Shortcut
-						>
+						Smart Playlist... <Menubar.Shortcut>⌥⌘N</Menubar.Shortcut>
 					</Menubar.Item>
 					<Menubar.Item>Playlist Folder</Menubar.Item>
 					<Menubar.Item disabled>Genius Playlist</Menubar.Item>
@@ -127,9 +123,7 @@
 						class="h-4 w-4"
 						viewBox="0 0 24 24"
 					>
-						<path
-							d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"
-						/>
+						<path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12" />
 						<circle cx="17" cy="7" r="5" />
 					</svg>
 				</Menubar.Shortcut>
@@ -181,7 +175,7 @@
 				</Menubar.RadioGroup>
 			</Menubar.Group>
 			<Menubar.Separator />
-			<Menubar.Item inset>Manage Famliy...</Menubar.Item>
+			<Menubar.Item inset>Manage Family...</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Item inset>Add Account...</Menubar.Item>
 		</Menubar.Content>

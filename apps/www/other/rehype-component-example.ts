@@ -11,10 +11,7 @@ export function rehypeComponentExample() {
 	return async (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			if (
-				node?.type === "raw" &&
-				node?.value?.startsWith("<ComponentExample")
-			) {
+			if (node?.type === "raw" && node?.value?.startsWith("<ComponentExample")) {
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
@@ -37,29 +34,29 @@ export function rehypeComponentExample() {
 							properties: {
 								__src__: src,
 								__style__: style.name,
-								className: ["code"]
+								className: ["code"],
 							},
 							attributes: [
 								{
 									name: "styleName",
 									type: "text",
-									value: style.name
-								}
+									value: style.name,
+								},
 							],
 							children: [
 								u("element", {
 									tagName: "code",
 									properties: {
-										className: ["language-svelte"]
+										className: ["language-svelte"],
 									},
 									children: [
 										{
 											type: "text",
-											value: sourceCode
-										}
-									]
-								})
-							]
+											value: sourceCode,
+										},
+									],
+								}),
+							],
 						});
 						if (!index) return;
 						parent.children.splice(index + 1, 0, sourceCodeNode);

@@ -2,9 +2,7 @@
 	import { z } from "zod";
 
 	export const formSchema = z.object({
-		email: z
-			.string({ required_error: "Please select an email to display" })
-			.email()
+		email: z.string({ required_error: "Please select an email to display" }).email(),
 	});
 
 	export type FormSchema = typeof formSchema;
@@ -13,44 +11,60 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
-	export let form: SuperValidated<FormSchema> = $page.data.select;
+	import * as Select from "@/registry/new-york/ui/select";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
+	let data: SuperValidated<Infer<FormSchema>> = $page.data.select;
+	export { data as form };
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
+	});
+
+	const { form: formData, enhance } = form;
+
+	$: selectedEmail = $formData.email
+		? {
+				label: $formData.email,
+				value: $formData.email,
+			}
+		: undefined;
 </script>
 
-<Form.Root
-	{form}
-	schema={formSchema}
-	let:config
-	method="POST"
-	action="?/select"
-	class="w-2/3 space-y-6"
->
-	<Form.Field {config} name="email">
-		<Form.Item>
+<form method="POST" action="?/select" class="w-2/3 space-y-6" use:enhance>
+	<Form.Field {form} name="email">
+		<Form.Control let:attrs>
 			<Form.Label>Email</Form.Label>
-			<Form.Select>
-				<Form.SelectTrigger
-					placeholder="Select a verified email to display"
-				/>
-				<Form.SelectContent>
-					<Form.SelectItem value="m@example.com"
-						>m@example.com</Form.SelectItem
-					>
-					<Form.SelectItem value="m@google.com"
-						>m@google.com</Form.SelectItem
-					>
-					<Form.SelectItem value="m@support.com"
-						>m@support.com</Form.SelectItem
-					>
-				</Form.SelectContent>
-			</Form.Select>
-			<Form.Description>
-				You can manage email address in your <a href="/examples/forms"
-					>email settings</a
-				>.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Item>
+			<Select.Root
+				selected={selectedEmail}
+				onSelectedChange={(v) => {
+					v && ($formData.email = v.value);
+				}}
+			>
+				<Select.Trigger {...attrs}>
+					<Select.Value placeholder="Select a verified email to display" />
+				</Select.Trigger>
+				<Select.Content>
+					<Select.Item value="m@example.com" label="m@example.com" />
+					<Select.Item value="m@google.com" label="m@google.com" />
+					<Select.Item value="m@support.com" label="m@support.com" />
+				</Select.Content>
+			</Select.Root>
+			<input hidden bind:value={$formData.email} name={attrs.name} />
+		</Form.Control>
+		<Form.Description>
+			You can manage email address in your <a href="/examples/forms">email settings</a>.
+		</Form.Description>
+		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+	<SuperDebug data={$formData} />
+</form>

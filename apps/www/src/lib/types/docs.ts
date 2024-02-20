@@ -12,7 +12,7 @@ export type Metadata = {
 				width: number;
 				height: number;
 				alt: string;
-			}
+			},
 		];
 	};
 	twitter: {

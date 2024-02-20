@@ -2,6 +2,7 @@
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs";
 	import { onMount } from "svelte";
 	import { Tree } from "$components/docs";
+	import { writable } from "svelte/store";
 
 	let filteredHeadingsList: TableOfContents;
 
@@ -12,12 +13,12 @@
 			return { items: [] };
 		}
 
-		const headings: HTMLHeadingElement[] = Array.from(
-			div.querySelectorAll("h2, h3")
-		);
+		const headings: HTMLHeadingElement[] = Array.from(div.querySelectorAll("h2, h3"));
 		const hierarchy: TableOfContents = { items: [] };
 		let currentLevel: TableOfContentsItem | undefined = undefined;
 
+		const newIdSet: Set<string> = new Set();
+		let count = 1;
 		headings.forEach((heading: HTMLHeadingElement) => {
 			const level = parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
@@ -25,13 +26,18 @@
 					.replaceAll(/[^a-zA-Z0-9 ]/g, "")
 					.replaceAll(" ", "-")
 					.toLowerCase();
+				if (newIdSet.has(newId)) {
+					newId = `${newId}-${count}`;
+					count++;
+				}
+				newIdSet.add(newId);
 				heading.id = `${newId}`;
 			}
 
 			const item: TableOfContentsItem = {
 				title: heading.textContent || "",
 				url: `#${heading.id}`,
-				items: []
+				items: [],
 			};
 
 			if (level === 2) {
@@ -45,13 +51,57 @@
 		filteredHeadingsList = hierarchy;
 	}
 
+	const activeItem = writable<string | undefined>(undefined);
+
+	function useActiveItem(itemIds: string[]) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						$activeItem = entry.target.id;
+					}
+				});
+			},
+			{ rootMargin: `0% 0% -10% 0%` }
+		);
+
+		const observeElement = (id: string) => {
+			const element = document.getElementById(id);
+			if (element) {
+				observer.observe(element);
+			}
+		};
+
+		itemIds?.forEach(observeElement);
+
+		return () => {
+			const unobserveElement = (id: string) => {
+				const element = document.getElementById(id);
+				if (element) {
+					observer.unobserve(element);
+				}
+			};
+
+			itemIds?.forEach(unobserveElement);
+		};
+	}
+
 	// Lifecycle
 	onMount(() => {
-		getHeadingsWithHierarchy("mdsvex");
+		getHeadingsWithHierarchy("markdown");
+		const allItemIds: string[] = [];
+		filteredHeadingsList.items.forEach((item) => {
+			allItemIds.push(item.url.replace("#", ""));
+			if (!item.items) return;
+			item.items.forEach((subItem) => {
+				allItemIds.push(subItem.url.replace("#", ""));
+			});
+		});
+		return useActiveItem(allItemIds);
 	});
 </script>
 
 <div class="space-y-2">
 	<p class="font-medium">On This Page</p>
-	<Tree tree={filteredHeadingsList} />
+	<Tree tree={filteredHeadingsList} activeItem={$activeItem} />
 </div>

@@ -7,8 +7,8 @@
 
 	let value = {
 		start,
-		end
+		end,
 	};
 </script>
 
-<RangeCalendar bind:value class="border rounded-md" />
+<RangeCalendar bind:value class="rounded-md border" />

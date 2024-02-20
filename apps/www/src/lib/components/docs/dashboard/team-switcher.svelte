@@ -20,23 +20,23 @@
 			teams: [
 				{
 					label: "Alicia Koch",
-					value: "personal"
-				}
-			]
+					value: "personal",
+				},
+			],
 		},
 		{
 			label: "Teams",
 			teams: [
 				{
 					label: "Acme Inc.",
-					value: "acme-inc"
+					value: "acme-inc",
 				},
 				{
 					label: "Monsters Inc.",
-					value: "monsters"
-				}
-			]
-		}
+					value: "monsters",
+				},
+			],
+		},
 	];
 
 	type Team = (typeof groups)[number]["teams"][number];
@@ -68,6 +68,7 @@
 					<Avatar.Image
 						src="https://avatar.vercel.sh/${selectedTeam.value}.png"
 						alt={selectedTeam.label}
+						class="grayscale"
 					/>
 					<Avatar.Fallback>SC</Avatar.Fallback>
 				</Avatar.Root>
@@ -103,8 +104,7 @@
 									<Check
 										class={cn(
 											"ml-auto h-4 w-4",
-											selectedTeam.value !== team.value &&
-												"text-transparent"
+											selectedTeam.value !== team.value && "text-transparent"
 										)}
 									/>
 								</Command.Item>
@@ -158,9 +158,7 @@
 							</Select.Item>
 							<Select.Item value="pro">
 								<span class="font-medium">Pro</span> -
-								<span class="text-muted-foreground">
-									$9/month per user
-								</span>
+								<span class="text-muted-foreground"> $9/month per user </span>
 							</Select.Item>
 						</Select.Content>
 					</Select.Root>
@@ -168,9 +166,7 @@
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button variant="outline" on:click={() => (showTeamDialog = false)}>
-				Cancel
-			</Button>
+			<Button variant="outline" on:click={() => (showTeamDialog = false)}>Cancel</Button>
 			<Button type="submit">Continue</Button>
 		</Dialog.Footer>
 	</Dialog.Content>

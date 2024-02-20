@@ -30,9 +30,7 @@
 			</Button>
 			<div class="flex-1 text-center">
 				<div class="text-5xl font-bold tracking-tighter">{goal}</div>
-				<div class="text-[0.70rem] uppercase text-muted-foreground">
-					Calories/day
-				</div>
+				<div class="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
 			</div>
 
 			<Button

@@ -15,15 +15,15 @@ import {
 	fetchTree,
 	getItemTargetPath,
 	getRegistryIndex,
-	resolveTree
+	resolveTree,
 } from "../utils/registry";
 import { UTILS } from "../utils/templates";
-import { transformImport } from "../utils/transformer";
+import { transformImports } from "../utils/transformers";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
 	components: z.array(z.string()).optional(),
-	cwd: z.string()
+	cwd: z.string(),
 });
 
 export const update = new Command()
@@ -37,27 +37,21 @@ export const update = new Command()
 		process.cwd()
 	)
 	.action(async (comps, opts) => {
-		logger.warn(
-			"Running the following command will overwrite existing files."
-		);
-		logger.warn(
-			"Make sure you have committed your changes before proceeding."
-		);
+		logger.warn("Running the following command will overwrite existing files.");
+		logger.warn("Make sure you have committed your changes before proceeding.");
 		logger.warn("");
 
 		try {
 			const options = updateOptionsSchema.parse({
 				components: comps,
-				...opts
+				...opts,
 			});
 
 			const components = options.components;
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				logger.error(
-					`The path ${cwd} does not exist. Please try again.`
-				);
+				logger.error(`The path ${cwd} does not exist. Please try again.`);
 				process.exitCode = 1;
 				return;
 			}
@@ -75,10 +69,7 @@ export const update = new Command()
 
 			const registryIndex = await getRegistryIndex();
 
-			const componentDir = path.resolve(
-				config.resolvedPaths.components,
-				"ui"
-			);
+			const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 			if (!existsSync(componentDir)) {
 				logger.error(`Component dir '${componentDir}' does not exist.`);
 				process.exitCode = 1;
@@ -87,7 +78,7 @@ export const update = new Command()
 
 			const existingComponents: typeof registryIndex = [];
 			const files = await fs.readdir(componentDir, {
-				withFileTypes: true
+				withFileTypes: true,
 			});
 			for (const file of files) {
 				if (file.isDirectory()) {
@@ -104,7 +95,7 @@ export const update = new Command()
 			existingComponents.push({
 				name: "utils",
 				type: "components:ui",
-				files: []
+				files: [],
 			});
 
 			let selectedComponents: typeof registryIndex = options.all
@@ -117,9 +108,7 @@ export const update = new Command()
 			}
 
 			if (existingComponents.length === 0) {
-				logger.info(
-					`No shadcn components detected in '${componentDir}'.`
-				);
+				logger.info(`No shadcn components detected in '${componentDir}'.`);
 				process.exitCode = 0;
 				return;
 			}
@@ -142,21 +131,20 @@ export const update = new Command()
 				return;
 			}
 
-			// `update utils` - update the utils.ts file
+			// `update utils` - update the utils.(ts|js) file
 			if (selectedComponents.find((item) => item.name === "utils")) {
-				const utilsPath = config.resolvedPaths.utils + ".ts";
+				const extension = config.typescript ? ".ts" : ".js";
+				const utilsPath = config.resolvedPaths.utils + extension;
 
 				if (!existsSync(utilsPath)) {
 					spinner.fail(
-						`utils at ${logger.highlight(
-							utilsPath
-						)} does not exist.`
+						`utils at ${logger.highlight(utilsPath)} does not exist.`
 					);
 					process.exitCode = 1;
 					return;
 				}
 
-				// utils.ts is not in the registry, it is a template, so we'll just overwrite it
+				// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
 				await fs.writeFile(utilsPath, UTILS);
 			}
 
@@ -164,7 +152,7 @@ export const update = new Command()
 				registryIndex,
 				selectedComponents.map((com) => com.name)
 			);
-			const payload = await fetchTree(config.style, tree);
+			const payload = await fetchTree(config, tree);
 
 			for (const item of payload) {
 				spinner.text = `Updating ${item.name}...`;
@@ -180,14 +168,11 @@ export const update = new Command()
 
 				for (const file of item.files) {
 					const componentDir = path.resolve(targetDir, item.name);
-					let filePath = path.resolve(
-						targetDir,
-						item.name,
-						file.name
-					);
+
+					let filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
-					const content = transformImport(file.content, config);
+					const content = transformImports(file.content, config);
 
 					if (!existsSync(componentDir)) {
 						await fs.mkdir(componentDir, { recursive: true });
@@ -203,10 +188,10 @@ export const update = new Command()
 						packageManager,
 						[
 							packageManager === "npm" ? "install" : "add",
-							...item.dependencies
+							...item.dependencies,
 						],
 						{
-							cwd
+							cwd,
 						}
 					);
 				}
@@ -229,8 +214,8 @@ async function promptForComponents(
 		instructions: false,
 		choices: components.map((component) => ({
 			title: component.name,
-			value: component
-		}))
+			value: component,
+		})),
 	});
 
 	return selectedComponents;

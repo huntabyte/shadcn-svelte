@@ -8,10 +8,7 @@
 </script>
 
 <span
-	class={cn(
-		"ml-auto text-xs tracking-widest text-muted-foreground",
-		className
-	)}
+	class={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)}
 	{...$$restProps}
 >
 	<slot />

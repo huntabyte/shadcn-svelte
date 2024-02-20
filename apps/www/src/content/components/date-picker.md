@@ -2,7 +2,7 @@
 title: Date Picker
 description: A date picker component with range and presets.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/date-picker
+source: https://github.com/huntabyte/shadcn-svelte/blob/main/apps/www/src/lib/registry/default/example/date-picker-demo.svelte
 ---
 
 <script>
@@ -29,7 +29,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
   import {
     type DateValue,
     DateFormatter,
-    getLocalTimeZone
+    getLocalTimeZone,
   } from "@internationalized/date";
   import { cn } from "$lib/utils";
   import { Button } from "$lib/components/ui/button";
@@ -37,7 +37,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
   import * as Popover from "$lib/components/ui/popover";
 
   const df = new DateFormatter("en-US", {
-    dateStyle: "long"
+    dateStyle: "long",
   });
 
   let value: DateValue | undefined = undefined;

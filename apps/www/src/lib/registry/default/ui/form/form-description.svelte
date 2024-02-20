@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Form as FormPrimitive } from "formsnap";
+	import * as FormPrimitive from "formsnap";
 	import { cn } from "$lib/utils";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -11,6 +11,7 @@
 <FormPrimitive.Description
 	class={cn("text-sm text-muted-foreground", className)}
 	{...$$restProps}
+	let:descriptionAttrs
 >
-	<slot />
+	<slot {descriptionAttrs} />
 </FormPrimitive.Description>

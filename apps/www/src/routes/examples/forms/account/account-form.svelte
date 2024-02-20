@@ -1,86 +1,179 @@
 <script lang="ts" context="module">
 	import { z } from "zod";
 
-	const languages = {
-		en: "English",
-		fr: "French",
-		de: "German",
-		es: "Spanish",
-		pt: "Portuguese",
-		ru: "Russian",
-		ja: "Japanese",
-		ko: "Korean",
-		zh: "Chinese"
-	} as const;
+	const languages = [
+		{ label: "English", value: "en" },
+		{ label: "French", value: "fr" },
+		{ label: "German", value: "de" },
+		{ label: "Spanish", value: "es" },
+		{ label: "Portuguese", value: "pt" },
+		{ label: "Russian", value: "ru" },
+		{ label: "Japanese", value: "ja" },
+		{ label: "Korean", value: "ko" },
+		{ label: "Chinese", value: "zh" },
+	] as const;
 
-	type Language = keyof typeof languages;
+	type Language = (typeof languages)[number]["value"];
 
 	export const accountFormSchema = z.object({
 		name: z
 			.string({
-				required_error: "Required."
+				required_error: "Required.",
 			})
 			.min(2, "Name must be at least 2 characters.")
 			.max(30, "Name must not be longer than 30 characters"),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
-		language: z.enum(Object.keys(languages) as [Language, ...Language[]])
+		language: z.enum(languages.map((lang) => lang.value) as [Language, ...Language[]]),
+		dob: z
+			.string()
+			.datetime()
+			// we're setting it optional so the user can clear the date and we don't run into
+			// type issues, but we refine it to make sure it's not undefined
+			.optional()
+			.refine((date) => (date === undefined ? false : true), "Please select a valid date."),
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
 </script>
 
 <script lang="ts">
+	import { Calendar as CalendarIcon, CaretSort, Check } from "radix-icons-svelte";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
 	import * as Form from "@/registry/new-york/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
+	import * as Popover from "@/registry/new-york/ui/popover";
+	import * as Command from "@/registry/new-york/ui/command";
+	import { Calendar } from "@/registry/new-york/ui/calendar";
+	import { Input } from "@/registry/new-york/ui/input";
+	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { cn } from "@/utils";
+	import { browser } from "$app/environment";
+	import {
+		DateFormatter,
+		getLocalTimeZone,
+		type DateValue,
+		parseDate,
+	} from "@internationalized/date";
 
-	export let data: SuperValidated<AccountFormSchema>;
+	export let data: SuperValidated<Infer<AccountFormSchema>>;
+
+	const form = superForm(data, {
+		validators: zodClient(accountFormSchema),
+	});
+	const { form: formData, enhance, validate } = form;
+
+	const df = new DateFormatter("en-US", {
+		dateStyle: "long",
+	});
+
+	let dobValue: DateValue | undefined = $formData.dob ? parseDate($formData.dob) : undefined;
 </script>
 
-<Form.Root
-	method="POST"
-	class="space-y-8"
-	let:config
-	schema={accountFormSchema}
-	form={data}
-	debug={true}
->
-	<Form.Item>
-		<Form.Field name="name" {config}>
+<form method="POST" class="space-y-8" use:enhance>
+	<Form.Field name="name" {form}>
+		<Form.Control let:attrs>
 			<Form.Label>Name</Form.Label>
-			<Form.Input placeholder="Your name" />
-			<Form.Description>
-				This is the name that will be displayed on your profile and in
-				emails.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
-	<Form.Item>
-		<Form.Field {config} name="language" let:attrs>
-			{@const { value } = attrs.input}
-			<Form.Label>Language</Form.Label>
-			<Form.Select selected={{ value, label: languages[value] }}>
-				<Form.SelectTrigger
-					placeholder="Select language"
+			<Input {...attrs} bind:value={$formData.name} />
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
+	<Form.Field {form} name="dob" class="flex flex-col">
+		<Form.Control let:attrs>
+			<Form.Label>Date of Birth</Form.Label>
+			<Popover.Root>
+				<Popover.Trigger
 					class={cn(
-						"w-[200px] justify-between",
-						!attrs.input.value && "text-muted-foreground"
+						buttonVariants({ variant: "outline" }),
+						"w-[240px] justify-start text-left font-normal",
+						!dobValue && "text-muted-foreground"
 					)}
-				/>
-				<Form.SelectContent class="h-52 overflow-y-auto">
-					{#each Object.entries(languages) as [value, lang]}
-						<Form.SelectItem {value}>
-							{lang}
-						</Form.SelectItem>
-					{/each}
-				</Form.SelectContent>
-			</Form.Select>
-			<Form.Description>
-				This is the language that will be used in the dashboard.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
+					{...attrs}
+				>
+					<CalendarIcon class="mr-2 h-4 w-4" />
+					{dobValue ? df.format(dobValue.toDate(getLocalTimeZone())) : "Pick a date"}
+				</Popover.Trigger>
+				<Popover.Content class="w-auto p-0" align="start">
+					<Calendar
+						bind:value={dobValue}
+						isDateDisabled={(currDate) => {
+							const currDateObj = currDate.toDate(getLocalTimeZone());
+							const today = new Date();
+							today.setHours(0, 0, 0, 0);
+
+							if (currDateObj > today || currDate.year < 1900) return true;
+
+							return false;
+						}}
+						onValueChange={(value) => {
+							if (value === undefined) {
+								$formData.dob = undefined;
+								validate("dob");
+								return;
+							}
+							$formData.dob = value.toDate(getLocalTimeZone()).toISOString();
+							validate("dob");
+						}}
+					/>
+				</Popover.Content>
+				<input hidden bind:value={$formData.dob} name={attrs.name} />
+			</Popover.Root>
+		</Form.Control>
+		<Form.FieldErrors />
+	</Form.Field>
+
+	<Form.Field {form} name="language" class="flex flex-col">
+		<Popover.Root>
+			<Form.Control let:attrs>
+				<Form.Label>Language</Form.Label>
+				<Popover.Trigger
+					role="combobox"
+					class={cn(
+						buttonVariants({ variant: "outline" }),
+						"w-[200px] justify-between",
+						!$formData.language && "text-muted-foreground"
+					)}
+					{...attrs}
+				>
+					{languages.find((lang) => lang.value === $formData.language)?.label ||
+						"Select a language"}
+					<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+				</Popover.Trigger>
+				<input hidden bind:value={$formData.language} name={attrs.name} />
+			</Form.Control>
+			<Popover.Content class="w-[200px] p-0">
+				<Command.Root>
+					<Command.Input placeholder="Search language..." />
+					<Command.Empty>No language found.</Command.Empty>
+					<Command.List>
+						{#each languages as language}
+							<Command.Item
+								{...form}
+								value={language.label}
+								onSelect={() => {
+									$formData.language = language.value;
+									validate("language");
+								}}
+							>
+								<Check
+									class={cn(
+										"mr-2 size-4",
+										language.value === $formData.language
+											? "opacity-100"
+											: "opacity-0"
+									)}
+								/>
+								{language.label}
+							</Command.Item>
+						{/each}
+					</Command.List>
+				</Command.Root>
+			</Popover.Content>
+		</Popover.Root>
+	</Form.Field>
+
 	<Form.Button>Update account</Form.Button>
-</Form.Root>
+</form>
+
+{#if browser}
+	<SuperDebug data={$formData} />
+{/if}

@@ -10,10 +10,11 @@ import {
 	DEFAULT_COMPONENTS,
 	DEFAULT_TAILWIND_CONFIG,
 	DEFAULT_TAILWIND_CSS,
+	DEFAULT_TYPESCRIPT,
 	DEFAULT_UTILS,
 	getConfig,
 	rawConfigSchema,
-	resolveConfigPaths
+	resolveConfigPaths,
 } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
@@ -21,15 +22,11 @@ import { logger } from "../utils/logger";
 import {
 	getRegistryBaseColor,
 	getRegistryBaseColors,
-	getRegistryStyles
+	getRegistryStyles,
 } from "../utils/registry";
 import * as templates from "../utils/templates";
 
-const PROJECT_DEPENDENCIES = [
-	"tailwind-variants",
-	"clsx",
-	"tailwind-merge"
-] as const;
+const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 
 export const init = new Command()
 	.command("init")
@@ -43,9 +40,7 @@ export const init = new Command()
 	.action(async (options) => {
 		const cwd = path.resolve(options.cwd);
 
-		logger.warn(
-			"This command assumes a SvelteKit project with TypeScript and Tailwind CSS."
-		);
+		logger.warn("This command assumes a SvelteKit project with Tailwind CSS.");
 		logger.warn(
 			"If you don't have these, follow the manual steps at https://shadcn-svelte.com/docs/installation."
 		);
@@ -58,8 +53,8 @@ export const init = new Command()
 					name: "proceed",
 					message:
 						"Running this command will install dependencies and overwrite your existing tailwind.config.[cjs|js|ts] & app.pcss file. Proceed?",
-					initial: true
-				}
+					initial: true,
+				},
 			]);
 
 			if (!proceed) {
@@ -71,26 +66,18 @@ export const init = new Command()
 		try {
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
-				logger.error(
-					`The path ${cwd} does not exist. Please try again.`
-				);
+				logger.error(`The path ${cwd} does not exist. Please try again.`);
 				process.exitCode = 1;
 				return;
 			}
 
 			// Read config.
 			const existingConfig = await getConfig(cwd);
-			const config = await promptForConfig(
-				cwd,
-				existingConfig,
-				options.yes
-			);
+			const config = await promptForConfig(cwd, existingConfig, options.yes);
 
 			await runInit(cwd, config);
 			logger.info("");
-			logger.info(
-				`${chalk.green("Success!")} Project initialization completed.`
-			);
+			logger.info(`${chalk.green("Success!")} Project initialization completed.`);
 			logger.info("");
 			logger.info(
 				"Don't forget to add the aliases you configured to your svelte.config.js!"
@@ -120,24 +107,30 @@ async function promptForConfig(
 
 	const options = await prompts([
 		{
+			type: "toggle",
+			name: "typescript",
+			message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+			initial: defaultConfig?.typescript ?? DEFAULT_TYPESCRIPT,
+			active: "yes",
+			inactive: "no",
+		},
+		{
 			type: "select",
 			name: "style",
 			message: `Which ${highlight("style")} would you like to use?`,
 			choices: styles.map((style) => ({
 				title: style.label,
-				value: style.name
-			}))
+				value: style.name,
+			})),
 		},
 		{
 			type: "select",
 			name: "tailwindBaseColor",
-			message: `Which color would you like to use as ${highlight(
-				"base color"
-			)}?`,
+			message: `Which color would you like to use as ${highlight("base color")}?`,
 			choices: baseColors.map((color) => ({
 				title: color.label,
-				value: color.name
-			}))
+				value: color.name,
+			})),
 		},
 		{
 			type: "text",
@@ -148,69 +141,60 @@ async function promptForConfig(
 				if (existsSync(value)) {
 					return true;
 				}
-				logger.error(
-					`${value} does not exist. Please enter a valid path.`
-				);
+				logger.error(`${value} does not exist. Please enter a valid path.`);
 				return false;
-			}
+			},
 		},
 		{
 			type: "text",
 			name: "tailwindConfig",
-			message: `Where is your ${highlight(
-				"tailwind.config.[cjs|js|ts]"
-			)} located?`,
+			message: `Where is your ${highlight("tailwind.config.[cjs|js|ts]")} located?`,
 			initial: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
 			validate: (value) => {
 				if (existsSync(value)) {
 					return true;
 				}
 				logger.info("");
-				logger.error(
-					`${value} does not exist. Please enter a valid path.`
-				);
+				logger.error(`${value} does not exist. Please enter a valid path.`);
 				logger.info("");
 				return false;
-			}
+			},
 		},
 		{
 			type: "text",
 			name: "components",
-			message: `Configure the import alias for ${highlight(
-				"components"
-			)}:`,
-			initial: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS
+			message: `Configure the import alias for ${highlight("components")}:`,
+			initial: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS,
 		},
 		{
 			type: "text",
 			name: "utils",
 			message: `Configure the import alias for ${highlight("utils")}:`,
-			initial: defaultConfig?.aliases["utils"] ?? DEFAULT_UTILS
-		}
+			initial: defaultConfig?.aliases["utils"] ?? DEFAULT_UTILS,
+		},
 	]);
 
 	const config = rawConfigSchema.parse({
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
+		typescript: options.typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
-			baseColor: options.tailwindBaseColor
+			baseColor: options.tailwindBaseColor,
 		},
 		aliases: {
 			utils: options.utils,
-			components: options.components
-		}
+			components: options.components,
+		},
 	});
 
 	if (!skip) {
 		const { proceed } = await prompts({
 			type: "confirm",
 			name: "proceed",
-			message: `Write configuration to ${highlight(
-				"components.json"
-			)}. Proceed?`,
-			initial: true
+			message: `Write configuration to ${highlight("components.json")}. Proceed?`,
+			initial: true,
 		});
 
 		if (!proceed) {
@@ -219,15 +203,12 @@ async function promptForConfig(
 	}
 
 	if (config.tailwind.config.endsWith(".cjs")) {
-		logger.info(
-			"Your tailwind.config.cjs has been renamed to tailwind.config.js."
-		);
-		const renamedTailwindConfigPath = config.tailwind.config.replace(
-			".cjs",
-			".js"
-		);
+		logger.info("Your tailwind.config.cjs has been renamed to tailwind.config.js.");
+		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
+
+	const configPaths = await resolveConfigPaths(cwd, config);
 
 	// Write to file.
 	logger.info("");
@@ -236,10 +217,10 @@ async function promptForConfig(
 	await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
 	spinner.succeed();
 
-	return await resolveConfigPaths(cwd, config);
+	return configPaths;
 }
 
-async function runInit(cwd: string, config: Config) {
+export async function runInit(cwd: string, config: Config) {
 	const spinner = ora(`Initializing project...`)?.start();
 
 	// Ensure all resolved paths directories exist.
@@ -270,10 +251,7 @@ async function runInit(cwd: string, config: Config) {
 	);
 
 	// Delete tailwind.config.cjs, if present
-	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(
-		".js",
-		".cjs"
-	);
+	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
 	if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 	// Write css file.
@@ -286,12 +264,10 @@ async function runInit(cwd: string, config: Config) {
 		);
 	}
 
+	const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
+	const utilsTemplate = config.typescript ? templates.UTILS : templates.UTILS_JS;
 	// Write cn file.
-	await fs.writeFile(
-		`${config.resolvedPaths.utils}.ts`,
-		templates.UTILS,
-		"utf8"
-	);
+	await fs.writeFile(utilsPath, utilsTemplate, "utf8");
 
 	spinner?.succeed();
 
@@ -302,15 +278,11 @@ async function runInit(cwd: string, config: Config) {
 	// TODO: add support for other icon libraries.
 	const deps = [
 		...PROJECT_DEPENDENCIES,
-		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte"
+		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte",
 	];
 
-	await execa(
-		packageManager,
-		[packageManager === "npm" ? "install" : "add", ...deps],
-		{
-			cwd
-		}
-	);
+	await execa(packageManager, [packageManager === "npm" ? "install" : "add", ...deps], {
+		cwd,
+	});
 	dependenciesSpinner?.succeed();
 }

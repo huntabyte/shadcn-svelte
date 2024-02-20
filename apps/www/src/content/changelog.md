@@ -7,6 +7,26 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## February 2024 - Major Forms Update
+
+Formsnap has been completely rewritten to be more flexible, easier to use, and less opinionated. This means we've had to make some changes to the way we use it in `shadcn-svelte`, but once you get the hang of it, you'll find it's much more powerful and less restrictive than the previous iteration.
+
+Since the changes are so significant, there isn't a direct migration path from the old version to the new version. You'll need to update your components to use the new API, as well as ensure you're using the latest version of `formsnap` and `sveltekit-superforms`.
+
+All of the `Form` components have been updated to use the new API, and you can see live examples of them on the [Forms Examples](/examples/forms) page.
+
+Visit the [Formsnap](https://formsnap.dev) documentation (which has also been updated) to learn more about the new API and how its used.
+
+## January 2024 - Part 2
+
+We've added a new component to the project, [Carousel](/docs/components/carousel).
+
+<ComponentPreview name="carousel-demo">
+
+<div />
+
+</ComponentPreview>
+
 ## January 2024
 
 We've added three new components to the project, [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).
@@ -134,7 +154,7 @@ const Control = FormPrimitive.Control;
 export {
   // ...rest
   Control,
-  Control as FormControl
+  Control as FormControl,
 };
 ```
 
@@ -219,10 +239,10 @@ export const flyAndScale = (
           "px, 0) scale(" +
           scale +
           ")",
-        opacity: t
+        opacity: t,
       });
     },
-    easing: cubicOut
+    easing: cubicOut,
   };
 };
 ```

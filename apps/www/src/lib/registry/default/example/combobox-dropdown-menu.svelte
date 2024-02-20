@@ -16,7 +16,7 @@
 		"documentation",
 		"design",
 		"question",
-		"maintenance"
+		"maintenance",
 	];
 
 	let open = false;
@@ -37,21 +37,14 @@
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
 	<p class="text-sm font-medium leading-none">
-		<span
-			class="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground"
-		>
+		<span class="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
 			{selectedLabel}
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
 	<DropdownMenu.Root bind:open let:ids>
 		<DropdownMenu.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="ghost"
-				size="sm"
-				aria-label="Open menu"
-			>
+			<Button builders={[builder]} variant="ghost" size="sm" aria-label="Open menu">
 				<MoreHorizontal />
 			</Button>
 		</DropdownMenu.Trigger>
@@ -74,10 +67,7 @@
 					</DropdownMenu.SubTrigger>
 					<DropdownMenu.SubContent class="p-0">
 						<Command.Root value={selectedLabel}>
-							<Command.Input
-								autofocus
-								placeholder="Filter label..."
-							/>
+							<Command.Input autofocus placeholder="Filter label..." />
 							<Command.List>
 								<Command.Empty>No label found.</Command.Empty>
 								<Command.Group>
@@ -86,9 +76,7 @@
 											value={label}
 											onSelect={(value) => {
 												selectedLabel = value;
-												closeAndFocusTrigger(
-													ids.trigger
-												);
+												closeAndFocusTrigger(ids.trigger);
 											}}
 										>
 											{label}

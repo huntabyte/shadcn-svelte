@@ -8,29 +8,27 @@
 	const frameworks = [
 		{
 			value: "sveltekit",
-			label: "SvelteKit"
+			label: "SvelteKit",
 		},
 		{
 			value: "next",
-			label: "Next.js"
+			label: "Next.js",
 		},
 		{
 			value: "astro",
-			label: "Astro"
+			label: "Astro",
 		},
 		{
 			value: "nuxt",
-			label: "Nuxt.js"
-		}
+			label: "Nuxt.js",
+		},
 	];
 </script>
 
 <Card.Root class="w-[350px]">
 	<Card.Header>
 		<Card.Title>Create project</Card.Title>
-		<Card.Description
-			>Deploy your new project in one-click.</Card.Description
-		>
+		<Card.Description>Deploy your new project in one-click.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<form>
@@ -47,9 +45,7 @@
 						</Select.Trigger>
 						<Select.Content>
 							{#each frameworks as framework}
-								<Select.Item
-									value={framework.value}
-									label={framework.label}
+								<Select.Item value={framework.value} label={framework.label}
 									>{framework.label}</Select.Item
 								>
 							{/each}

@@ -35,24 +35,24 @@ See installation instructions for the [Popover](/docs/components/popover#install
   const frameworks = [
     {
       value: "sveltekit",
-      label: "SvelteKit"
+      label: "SvelteKit",
     },
     {
       value: "next.js",
-      label: "Next.js"
+      label: "Next.js",
     },
     {
       value: "nuxt.js",
-      label: "Nuxt.js"
+      label: "Nuxt.js",
     },
     {
       value: "remix",
-      label: "Remix"
+      label: "Remix",
     },
     {
       value: "astro",
-      label: "Astro"
-    }
+      label: "Astro",
+    },
   ];
 
   let open = false;
@@ -144,7 +144,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 Since the Combobox is built using the `<Popover />` and the `<Command />` components, we need to use the `<Form.Control />` component. `<Form.Control />` enables us to apply the right `aria-*` attributes to non-standard form elements, and adds a hidden input to ensure the form is submitted with the correct value.
 
-Note: You must on version `0.3.1` or higher of `formsnap` for this to work correctly.
+Note: You must on version `0.5.0` or higher of `formsnap` for this to work correctly.
 
 <ComponentPreview name="combobox-form">
 

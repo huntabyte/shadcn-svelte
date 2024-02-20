@@ -16,3 +16,15 @@ function getPackageFilePath(filePath: string) {
 
 	return path.resolve(distPath, filePath);
 }
+
+export function loadProjectPackageInfo(cwd: string) {
+	const packageJsonPath = path.resolve(cwd, "package.json");
+	return fs.readJSONSync(packageJsonPath) as PackageJson;
+}
+
+// we'll load the user's package.json and check if @sveltejs/kit is a dependency
+export function isUsingSvelteKit(cwd: string): boolean {
+	const packageJSON = loadProjectPackageInfo(cwd);
+	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
+	return Object.keys(deps).some((dep) => dep === "@sveltejs/kit");
+}

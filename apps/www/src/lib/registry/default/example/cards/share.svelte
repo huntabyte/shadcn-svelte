@@ -9,12 +9,12 @@
 	const permissions = [
 		{
 			value: "view",
-			label: "Can view"
+			label: "Can view",
 		},
 		{
 			value: "edit",
-			label: "Can edit"
-		}
+			label: "Can edit",
+		},
 	];
 
 	const people = [
@@ -22,29 +22,27 @@
 			name: "Olivia Martin",
 			email: "m@example.com",
 			avatar: "/avatars/03.png",
-			permission: permissions[1]
+			permission: permissions[1],
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "b@example.com",
 			avatar: "/avatars/05.png",
-			permission: permissions[0]
+			permission: permissions[0],
 		},
 		{
 			name: "Sofia Davis",
 			email: "p@example.com",
 			avatar: "/avatars/01.png",
-			permission: permissions[0]
-		}
+			permission: permissions[0],
+		},
 	];
 </script>
 
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Share this document</Card.Title>
-		<Card.Description>
-			Anyone with the link can view this document.
-		</Card.Description>
+		<Card.Description>Anyone with the link can view this document.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="flex space-x-2">
@@ -61,9 +59,7 @@
 						<div class="flex items-center space-x-4">
 							<Avatar.Root>
 								<Avatar.Image src={person.avatar} />
-								<Avatar.Fallback
-									>{name[0][0] + name[1][0]}</Avatar.Fallback
-								>
+								<Avatar.Fallback>{name[0][0] + name[1][0]}</Avatar.Fallback>
 							</Avatar.Root>
 							<div>
 								<p class="text-sm font-medium leading-none">
@@ -80,9 +76,7 @@
 							</Select.Trigger>
 							<Select.Content>
 								{#each permissions as permission}
-									<Select.Item
-										value={permission.value}
-										label={permission.label}
+									<Select.Item value={permission.value} label={permission.label}
 										>{permission.label}</Select.Item
 									>
 								{/each}

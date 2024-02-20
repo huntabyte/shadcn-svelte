@@ -9,7 +9,7 @@
 		href="https://github.com/sveltejs"
 		target="_blank"
 		rel="noreferrer noopener"
-		class="hover:underline underline-offset-4 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+		class="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
 	>
 		@sveltejs
 	</HoverCard.Trigger>
@@ -24,9 +24,7 @@
 				<p class="text-sm">Cybernetically enhanced web apps.</p>
 				<div class="flex items-center pt-2">
 					<CalendarDays class="mr-2 h-4 w-4 opacity-70" />{" "}
-					<span class="text-xs text-muted-foreground">
-						Joined September 2022
-					</span>
+					<span class="text-xs text-muted-foreground"> Joined September 2022 </span>
 				</div>
 			</div>
 		</div>

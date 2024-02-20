@@ -20,28 +20,28 @@
 		{
 			value: "backlog",
 			label: "Backlog",
-			icon: HelpCircle
+			icon: HelpCircle,
 		},
 		{
 			value: "todo",
 			label: "Todo",
-			icon: Circle
+			icon: Circle,
 		},
 		{
 			value: "in progress",
 			label: "In Progress",
-			icon: ArrowUpCircle
+			icon: ArrowUpCircle,
 		},
 		{
 			value: "done",
 			label: "Done",
-			icon: CheckCircle2
+			icon: CheckCircle2,
 		},
 		{
 			value: "canceled",
 			label: "Canceled",
-			icon: XCircle
-		}
+			icon: XCircle,
+		},
 	];
 
 	let open = false;
@@ -61,7 +61,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	<p class="text-sm text-muted-foreground">Status</p>
+	<p class="text-muted-foreground text-sm">Status</p>
 	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
 			<Button
@@ -71,10 +71,7 @@
 				class="w-[150px] justify-start"
 			>
 				{#if selectedStatus}
-					<svelte:component
-						this={selectedStatus.icon}
-						class="mr-2 h-4 w-4 shrink-0"
-					/>
+					<svelte:component this={selectedStatus.icon} class="mr-2 h-4 w-4 shrink-0" />
 					{selectedStatus.label}
 				{:else}
 					+ Set status
@@ -99,8 +96,7 @@
 									this={status.icon}
 									class={cn(
 										"mr-2 h-4 w-4",
-										status.value !==
-											selectedStatus?.value &&
+										status.value !== selectedStatus?.value &&
 											"text-foreground/40"
 									)}
 								/>

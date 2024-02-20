@@ -5,12 +5,8 @@
 	import { Label } from "@/registry/new-york/ui/label";
 </script>
 
-<div
-	class="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed"
->
-	<div
-		class="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center"
-	>
+<div class="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
+	<div class="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
@@ -34,9 +30,7 @@
 		</p>
 		<Dialog.Root>
 			<Dialog.Trigger asChild let:builder>
-				<Button size="sm" builders={[builder]} class="relative">
-					Add Podcast
-				</Button>
+				<Button size="sm" builders={[builder]} class="relative">Add Podcast</Button>
 			</Dialog.Trigger>
 			<Dialog.Content>
 				<Dialog.Header>
@@ -48,10 +42,7 @@
 				<div class="grid gap-4 py-4">
 					<div class="grid gap-2">
 						<Label for="url">Podcast URL</Label>
-						<Input
-							id="url"
-							placeholder="https://example.com/feed.xml"
-						/>
+						<Input id="url" placeholder="https://example.com/feed.xml" />
 					</div>
 				</div>
 				<Dialog.Footer>

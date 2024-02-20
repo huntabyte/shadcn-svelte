@@ -10,18 +10,15 @@
 		{ label: "Russian", value: "ru" },
 		{ label: "Japanese", value: "ja" },
 		{ label: "Korean", value: "ko" },
-		{ label: "Chinese", value: "zh" }
+		{ label: "Chinese", value: "zh" },
 	] as const;
 
 	type Language = (typeof languages)[number]["value"];
 
 	export const formSchema = z.object({
-		language: z.enum(
-			languages.map((f) => f.value) as [Language, ...Language[]],
-			{
-				errorMap: () => ({ message: "Please select a valid language." })
-			}
-		)
+		language: z.enum(languages.map((f) => f.value) as [Language, ...Language[]], {
+			errorMap: () => ({ message: "Please select a valid language." }),
+		}),
 	});
 
 	export type FormSchema = typeof formSchema;
@@ -30,15 +27,31 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/default/ui/form";
-	import { Button } from "@/registry/default/ui/button";
 	import * as Popover from "@/registry/default/ui/popover";
 	import * as Command from "@/registry/default/ui/command";
-	import type { SuperValidated } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import { tick } from "svelte";
 	import Check from "lucide-svelte/icons/check";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	export let form: SuperValidated<FormSchema> = $page.data.combobox;
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { buttonVariants } from "@/registry/default/ui/button";
+	import { toast } from "svelte-sonner";
+	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
+	export { data as form };
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
+	});
+
+	const { form: formData, enhance } = form;
 
 	let open = false;
 
@@ -53,75 +66,57 @@
 	}
 </script>
 
-<Form.Root
-	{form}
-	schema={formSchema}
-	let:config
-	method="POST"
-	action="?/combobox"
-	class="space-y-6"
->
-	<Form.Field {config} name="language" let:setValue let:value>
-		<Form.Item class="flex flex-col">
-			<Form.Label>Language</Form.Label>
-			<Popover.Root bind:open let:ids>
-				<Popover.Trigger asChild let:builder>
-					<Form.Control id={ids.trigger} let:attrs>
-						<Button
-							builders={[builder]}
-							{...attrs}
-							variant="outline"
-							role="combobox"
-							type="button"
-							class={cn(
-								"w-[200px] justify-between",
-								!value && "text-muted-foreground"
-							)}
-						>
-							{languages.find((f) => f.value === value)?.label ??
-								"Select language"}
-							<ChevronsUpDown
-								class="ml-2 h-4 w-4 shrink-0 opacity-50"
-							/>
-						</Button>
-					</Form.Control>
+<form method="POST" action="?/combobox" class="space-y-6" use:enhance>
+	<Form.Field {form} name="language" class="flex flex-col">
+		<Popover.Root bind:open let:ids>
+			<Form.Control let:attrs>
+				<Form.Label>Language</Form.Label>
+				<Popover.Trigger
+					class={cn(
+						buttonVariants({ variant: "outline" }),
+						"w-[200px] justify-between",
+						!$formData.language && "text-muted-foreground"
+					)}
+					role="combobox"
+					{...attrs}
+				>
+					{languages.find((f) => f.value === $formData.language)?.label ??
+						"Select language"}
+					<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
-				<Popover.Content class="w-[200px] p-0">
-					<Command.Root>
-						<Command.Input
-							autofocus
-							placeholder="Search language..."
-						/>
-						<Command.Empty>No language found.</Command.Empty>
-						<Command.Group>
-							{#each languages as language}
-								<Command.Item
-									value={language.value}
-									onSelect={() => {
-										console.log("on select firing");
-										setValue(language.value);
-										closeAndFocusTrigger(ids.trigger);
-									}}
-								>
-									<Check
-										class={cn(
-											"mr-2 h-4 w-4",
-											language.value !== value &&
-												"text-transparent"
-										)}
-									/>
-									{language.label}
-								</Command.Item>
-							{/each}
-						</Command.Group>
-					</Command.Root>
-				</Popover.Content>
-			</Popover.Root>
-			<Form.Description>
-				This is the language that will be used in the dashboard.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Item>
+				<input hidden value={$formData.language} name={attrs.name} />
+			</Form.Control>
+			<Popover.Content class="w-[200px] p-0">
+				<Command.Root>
+					<Command.Input autofocus placeholder="Search language..." class="h-9" />
+					<Command.Empty>No language found.</Command.Empty>
+					<Command.Group>
+						{#each languages as language}
+							<Command.Item
+								value={language.value}
+								onSelect={() => {
+									$formData.language = language.value;
+									closeAndFocusTrigger(ids.trigger);
+								}}
+							>
+								{language.label}
+								<Check
+									class={cn(
+										"ml-auto h-4 w-4",
+										language.value !== $formData.language && "text-transparent"
+									)}
+								/>
+							</Command.Item>
+						{/each}
+					</Command.Group>
+				</Command.Root>
+			</Popover.Content>
+		</Popover.Root>
+		<Form.Description>
+			This is the language that will be used in the dashboard.
+		</Form.Description>
+		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+	<SuperDebug data={$formData} />
+</form>
