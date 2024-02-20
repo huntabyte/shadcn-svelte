@@ -192,7 +192,7 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Form",
 					href: "/docs/components/form",
-					label: "Preview",
+					label: "Updated",
 					items: [],
 				},
 				{
