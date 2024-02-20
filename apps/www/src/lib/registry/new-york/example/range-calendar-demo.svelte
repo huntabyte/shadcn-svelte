@@ -11,4 +11,4 @@
 	};
 </script>
 
-<RangeCalendar bind:value class="border rounded-md shadow" />
+<RangeCalendar bind:value class="rounded-md border shadow" />

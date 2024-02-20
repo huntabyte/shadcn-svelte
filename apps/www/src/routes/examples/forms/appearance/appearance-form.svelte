@@ -42,7 +42,7 @@
 					{...attrs}
 					class={cn(
 						buttonVariants({ variant: "outline" }),
-						"appearance-none font-normal w-[200px]"
+						"w-[200px] appearance-none font-normal"
 					)}
 					bind:value={$formData.font}
 				>

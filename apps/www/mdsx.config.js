@@ -168,7 +168,10 @@ export function rehypeComponentExample() {
 						let sourceCode = getComponentSourceFileContent(src);
 						if (!sourceCode) return;
 						// @ts-expect-error - not dealing with this rn
-						sourceCode = sourceCode.replaceAll(`@/registry/${style.name}/`, "$lib/components/");
+						sourceCode = sourceCode.replaceAll(
+							`@/registry/${style.name}/`,
+							"$lib/components/"
+						);
 
 						const sourceCodeNode = u("element", {
 							tagName: "pre",
@@ -245,7 +248,10 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	const formattedSource = prettier.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig);
+	const formattedSource = prettier.format(
+		readFileSync(filePath, "utf-8"),
+		codeBlockPrettierConfig
+	);
 
 	return formattedSource;
 }

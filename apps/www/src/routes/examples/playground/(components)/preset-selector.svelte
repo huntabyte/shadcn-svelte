@@ -38,7 +38,7 @@
 			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 		</Button>
 	</Popover.Trigger>
-	<Popover.Content class="md:w-[200px] lg:w-[300px] w-full p-0">
+	<Popover.Content class="w-full p-0 md:w-[200px] lg:w-[300px]">
 		<Command.Root>
 			<Command.Input placeholder="Search presets..." />
 			<Command.List>

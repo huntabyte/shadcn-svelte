@@ -69,7 +69,7 @@
 					Customize
 				</Button>
 			</Drawer.Trigger>
-			<Drawer.Content class="p-6 bg-white dark:bg-zinc-950">
+			<Drawer.Content class="bg-white p-6 dark:bg-zinc-950">
 				<Customizer />
 			</Drawer.Content>
 		</Drawer.Root>

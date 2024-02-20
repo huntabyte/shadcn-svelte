@@ -40,14 +40,14 @@
 		? {
 				value: placeholder.year,
 				label: String(placeholder.year),
-		  }
+			}
 		: undefined;
 
 	$: defaultMonth = placeholder
 		? {
 				value: placeholder.month,
 				label: monthFmt.format(placeholder.toDate(getLocalTimeZone())),
-		  }
+			}
 		: undefined;
 
 	let className: $$Props["class"] = undefined;
@@ -56,7 +56,7 @@
 
 <CalendarPrimitive.Root
 	{weekdayFormat}
-	class={cn("p-3 rounded-md border", className)}
+	class={cn("rounded-md border p-3", className)}
 	{...$$restProps}
 	on:keydown
 	let:months
@@ -65,7 +65,7 @@
 	bind:placeholder
 >
 	<Calendar.Header>
-		<Calendar.Heading class="flex items-center justify-between w-full gap-2">
+		<Calendar.Heading class="flex w-full items-center justify-between gap-2">
 			<Select.Root
 				selected={defaultMonth}
 				items={monthOptions}
@@ -122,7 +122,7 @@
 				</Calendar.GridHead>
 				<Calendar.GridBody>
 					{#each month.weeks as weekDates}
-						<Calendar.GridRow class="w-full mt-2">
+						<Calendar.GridRow class="mt-2 w-full">
 							{#each weekDates as date}
 								<Calendar.Cell {date}>
 									<Calendar.Day {date} month={month.value} />

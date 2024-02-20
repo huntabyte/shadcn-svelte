@@ -59,7 +59,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="p-0 w-8 h-8"
+				class="h-8 w-8 p-0"
 				on:click={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}
 			>
@@ -68,7 +68,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="p-0 w-8 h-8"
+				class="h-8 w-8 p-0"
 				disabled={!$hasNextPage}
 				on:click={() => ($pageIndex = $pageIndex + 1)}
 			>

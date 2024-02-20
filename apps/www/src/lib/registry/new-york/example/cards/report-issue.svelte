@@ -57,7 +57,7 @@
 		<Card.Description>What area are you having problems with?</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
-		<div class="grid sm:grid-cols-2 gap-4">
+		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="grid gap-2">
 				<Label for="area-{id}">Area</Label>
 				<Select.Root selected={areas[1]}>
