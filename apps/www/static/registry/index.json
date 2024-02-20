@@ -283,7 +283,10 @@
 	},
 	{
 		"name": "form",
-		"dependencies": [],
+		"dependencies": [
+			"@huntabyte/fsnap",
+			"sveltekit-superforms"
+		],
 		"registryDependencies": [
 			"button",
 			"label"
