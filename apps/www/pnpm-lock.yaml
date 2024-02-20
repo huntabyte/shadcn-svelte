@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^1.36.2
     version: 1.36.2
   '@prettier/sync':
-    specifier: ^0.5.0
-    version: 0.5.0(prettier@3.1.1)
+    specifier: 0.3.0
+    version: 0.3.0(prettier@3.1.1)
   '@sveltejs/adapter-vercel':
     specifier: ^3.0.3
     version: 3.0.3(@sveltejs/kit@1.27.1)
@@ -1028,12 +1028,11 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@prettier/sync@0.5.0(prettier@3.1.1):
-    resolution: {integrity: sha512-1a6veNypZYkSbU33anha4Pdna9Jz3HXUc0aru7sgN7HuyJHPIVNdCTfjhm1S+mG9yXmWuAO+a6I+Cznp9Ogt3A==}
+  /@prettier/sync@0.3.0(prettier@3.1.1):
+    resolution: {integrity: sha512-3dcmCyAxIcxy036h1I7MQU/uEEBq8oLwf1CE3xeze+MPlgkdlb/+w6rGR/1dhp6Hqi17fRS6nvwnOzkESxEkOw==}
     peerDependencies:
-      prettier: '*'
+      prettier: ^3.0.0
     dependencies:
-      make-synchronized: 0.2.8
       prettier: 3.1.1
     dev: true
 
@@ -3723,10 +3722,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       semver: 6.3.0
-    dev: true
-
-  /make-synchronized@0.2.8:
-    resolution: {integrity: sha512-jtXnKYCxjmGaXiZhXbDbGPbh4YyTvIIbOgcQjtAboc4RSm9k3nyhTFvFQB0cfs7QFKuZXKe2D2RvOkv1c+vpxg==}
     dev: true
 
   /maplibre-gl@2.4.0:
