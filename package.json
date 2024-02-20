@@ -22,6 +22,7 @@
 		"format:check": "pnpm -r format:check",
 		"format": "pnpm -r format",
 		"preinstall": "npx only-allow pnpm",
+		"postinstall": "pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm --filter shadcn-svelte build",
 		"ci:release": "pnpm ci:build && pnpm ci:publish",
