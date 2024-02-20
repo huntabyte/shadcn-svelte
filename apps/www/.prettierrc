@@ -1,10 +1,10 @@
 {
 	"useTabs": true,
+	"tabWidth": 4,
 	"singleQuote": false,
 	"trailingComma": "es5",
 	"printWidth": 100,
-	"endOfLine": "lf",
-	"plugins": ["prettier-plugin-svelte"],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
 		{
 			"files": "*.svelte",
@@ -20,6 +20,5 @@
 				"printWidth": 79
 			}
 		}
-	],
-	"bracketSameLine": false
+	]
 }
