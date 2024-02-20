@@ -167,7 +167,7 @@ import { formSchema } from "./schema";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(formSchema),
+    form: await superValidate(zod(formSchema)),
   };
 };
 
