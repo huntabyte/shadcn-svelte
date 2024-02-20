@@ -25,14 +25,22 @@
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import * as Form from "@/registry/new-york/ui/form";
 	import type { SuperValidated, Infer } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms";
+	import SuperDebug, { superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
 	export { data as form };
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
 		taintedMessage: null,
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
 	});
 
 	const { form: formData, enhance } = form;
@@ -88,4 +96,5 @@
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
+	<SuperDebug data={$formData} />
 </form>
