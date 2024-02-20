@@ -7,6 +7,7 @@ import type { Registry } from "../src/lib/registry";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
+	["@huntabyte/fsnap", ["sveltekit-superforms"]],
 	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
