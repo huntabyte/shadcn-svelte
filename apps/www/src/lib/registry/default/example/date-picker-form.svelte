@@ -25,7 +25,7 @@
 	import * as Popover from "@/registry/default/ui/popover";
 	import * as Form from "@/registry/default/ui/form";
 	import type { SuperValidated, Infer } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms/client";
+	import { superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
 	export { data as form };
@@ -41,7 +41,9 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined = $formData.dob ? parseDate($formData.dob) : undefined;
+	let value: DateValue | undefined;
+
+	$: value = $formData.dob ? parseDate($formData.dob) : undefined;
 
 	let placeholder: DateValue = today(getLocalTimeZone());
 </script>
@@ -55,7 +57,7 @@
 					{...attrs}
 					class={cn(
 						buttonVariants({ variant: "outline" }),
-						"w-[280px] pl-4 justify-start text-left font-normal",
+						"w-[280px] justify-start pl-4 text-left font-normal",
 						!value && "text-muted-foreground"
 					)}
 				>
@@ -64,7 +66,7 @@
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" side="top">
 					<Calendar
-						bind:value
+						{value}
 						bind:placeholder
 						minValue={new CalendarDate(1900, 1, 1)}
 						maxValue={today(getLocalTimeZone())}
@@ -82,6 +84,7 @@
 			</Popover.Root>
 			<Form.Description>Your date of birth is used to calculator your age</Form.Description>
 			<Form.FieldErrors />
+			<input hidden value={$formData.dob} name={attrs.name} />
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
