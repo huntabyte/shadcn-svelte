@@ -26,42 +26,41 @@ In this guide, we will take a look at building forms with [formsnap](https://for
 The `Form` components offered by `shadcn-svelte` are wrappers around `formsnap` & `sveltekit-superforms` which provide a few things:
 
 - Composable components for building forms.
-- A `<Form.Field />` component for building controlled form fields.
-- Form validation using `zod`.
+- Form field components for scoping form state.
+- Form validation using [Zod](https://zod.dev) or any other validation library supported by [Superforms](https://superforms.rocks).
 - Applies the correct `aria` attributes to form fields based on states.
-- Enables you to easily use various components like [Select](/docs/components/select), [RadioGroup](/docs/components/radio-group), [Switch](/docs/components/switch), [Checkbox](/docs/components/checkbox) and other form components as form fields.
-- Provides an optional native `<select />` & `<input type="radio" />` with out of the box functionality if you prefer to use native form elements rather than the `bits-ui` components.
+- Enables you to easily use various components like [Select](/docs/components/select), [RadioGroup](/docs/components/radio-group), [Switch](/docs/components/switch), [Checkbox](/docs/components/checkbox) and other form components with forms.
 
 If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](https://formsnap.dev), you should check out their documentation first, as this guide assumes you have a basic understanding of how they work together.
 
 ## Anatomy
 
 ```svelte
-<Form.Root>
+<form>
   <Form.Field>
-    <Form.Item>
+    <Form.Control>
       <Form.Label />
       <!-- Any Form input component -->
-      <Form.Description />
-      <Form.Validation />
-    </Form.Item>
+    </Form.Control>
+    <Form.Description />
+    <Form.FieldErrors />
   </Form.Field>
-</Form.Root>
+</form>
 ```
 
 ## Example
 
 ```svelte
-<Form.Root {schema} {form} let:config>
-  <Form.Field {config} name="email">
-    <Form.Item>
-      <Form.Label />
-      <Form.Input />
-      <Form.Description />
-      <Form.Validation />
-    </Form.Item>
+<form method="POST" use:enhance>
+  <Form.Field {form} name="email">
+    <Form.Control let:attrs>
+      <Form.Label>Email</Form.Label>
+      <Input {...attrs} bind:value={$formData.email} />
+    </Form.Control>
+    <Form.Description />
+    <Form.FieldErrors />
   </Form.Field>
-</Form.Root>
+</form>
 ```
 
 ## Installation
@@ -92,12 +91,13 @@ export type FormSchema = typeof formSchema;
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers
 import type { PageServerLoad } from "./$types";
-import { superValidate } from "sveltekit-superforms/server";
+import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
+import { zod } from "sveltekit-superforms/adapters";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(formSchema),
+    form: await superValidate(zod(formSchema)),
   };
 };
 ```
@@ -109,26 +109,38 @@ For this example, we'll be passing the `form` returned from the load function as
 ```svelte title="src/routes/settings/settings-form.svelte" showLineNumbers
 <script lang="ts">
   import * as Form from "$lib/components/ui/form";
+  import { Input } from "$lib/components/ui/input";
   import { formSchema, type FormSchema } from "./schema";
-  import type { SuperValidated } from "sveltekit-superforms";
+  import {
+    type SuperValidated,
+    type Infer,
+    superForm,
+  } from "sveltekit-superforms";
+  import { zodClient } from "sveltekit-superforms/adapters";
 
-  export let form: SuperValidated<FormSchema>;
+  export let data: SuperValidated<Infer<FormSchema>>;
+
+  const form = superForm(data, {
+    validators: zodClient(formSchema),
+  });
+
+  const { form: formData, enhance } = form;
 </script>
 
-<Form.Root method="POST" {form} schema={formSchema} let:config>
-  <Form.Field {config} name="username">
-    <Form.Item>
+<form method="POST" use:enhance>
+  <Form.Field {form} name="username">
+    <Form.Control let:attrs>
       <Form.Label>Username</Form.Label>
-      <Form.Input />
-      <Form.Description>This is your public display name.</Form.Description>
-      <Form.Validation />
-    </Form.Item>
+      <Input {...attrs} bind:value={$formData.username} />
+    </Form.Control>
+    <Form.Description>This is your public display name.</Form.Description>
+    <Form.FieldErrors />
   </Form.Field>
   <Form.Button>Submit</Form.Button>
-</Form.Root>
+</form>
 ```
 
-The `name`, `value`, and all accessibility attributes will be automatically applied to the input thanks to [Formsnap](https://formsnap.dev).
+The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `attrs` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
 
 ### Create a page component that uses the form
 
@@ -141,7 +153,7 @@ We'll pass the `form` from the data returned from the load function to the form 
   export let data: PageData;
 </script>
 
-<SettingsForm form={data.form} />
+<SettingsForm data={data.form} />
 ```
 
 ### Create an Action that handles the form submission
@@ -149,7 +161,8 @@ We'll pass the `form` from the data returned from the load function to the form 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,12-24}
 import type { PageServerLoad, Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
-import { superValidate } from "sveltekit-superforms/server";
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
 import { formSchema } from "./schema";
 
 export const load: PageServerLoad = async () => {
@@ -160,7 +173,7 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
   default: async (event) => {
-    const form = await superValidate(event, formSchema);
+    const form = await superValidate(event, zod(formSchema));
     if (!form.valid) {
       return fail(400, {
         form,
@@ -181,18 +194,16 @@ That's it. You now have a fully accessible form that is type-safe and has client
 
 </Steps>
 
-## Options
+## Next Steps
 
-You can handle the form submission in a few different ways using the `options` from `formsnap`.
-See [the documentation](https://formsnap.dev/docs/options) for more information.
-
-Click the above Submit button to see the different options in action.
+Be sure to check out the [Formsnap](https://formsnap.dev) and [Superforms](https://superforms.rocks) documentation for more information on how to use them.
 
 ## Examples
 
 See the following links for more examples on how to use the other `Form` components:
 
 - [Checkbox](/docs/components/checkbox#form)
+- [Date Picker](/docs/components/date-picker#form)
 - [Input](/docs/components/input#form)
 - [Radio Group](/docs/components/radio-group#form)
 - [Select](/docs/components/select#form)
