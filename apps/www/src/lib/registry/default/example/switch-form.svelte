@@ -10,14 +10,22 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/default/ui/form";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { Switch } from "@/registry/default/ui/switch";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.switch;
 	export { data as form };
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
 	});
 
 	const { form: formData, enhance } = form;
@@ -66,4 +74,5 @@
 		</div>
 	</fieldset>
 	<Form.Button>Submit</Form.Button>
+	<SuperDebug data={$formData} />
 </form>

@@ -220,6 +220,13 @@ export const Index = {
 			component: () => import("../src/lib/registry/default/example/checkbox-disabled.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/default/example/checkbox-disabled.svelte"],
 		},
+		"checkbox-form-multiple": {
+			name: "checkbox-form-multiple",
+			type: "components:example",
+			registryDependencies: ["form","checkbox"],
+			component: () => import("../src/lib/registry/default/example/checkbox-form-multiple.svelte").then((m) => m.default),
+			files: ["../src/lib/registry/default/example/checkbox-form-multiple.svelte"],
+		},
 		"checkbox-form-single": {
 			name: "checkbox-form-single",
 			type: "components:example",
@@ -1025,6 +1032,13 @@ export const Index = {
 			registryDependencies: ["checkbox","label"],
 			component: () => import("../src/lib/registry/new-york/example/checkbox-disabled.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/new-york/example/checkbox-disabled.svelte"],
+		},
+		"checkbox-form-multiple": {
+			name: "checkbox-form-multiple",
+			type: "components:example",
+			registryDependencies: ["form","checkbox"],
+			component: () => import("../src/lib/registry/new-york/example/checkbox-form-multiple.svelte").then((m) => m.default),
+			files: ["../src/lib/registry/new-york/example/checkbox-form-multiple.svelte"],
 		},
 		"checkbox-form-single": {
 			name: "checkbox-form-single",

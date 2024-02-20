@@ -31,5 +31,7 @@
 			<Check class="h-4 w-4" />
 		</SelectPrimitive.ItemIndicator>
 	</span>
-	<slot />
+	<slot>
+		{label ? label : value}
+	</slot>
 </SelectPrimitive.Item>

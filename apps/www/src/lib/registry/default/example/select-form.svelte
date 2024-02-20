@@ -12,13 +12,21 @@
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/default/ui/form";
 	import * as Select from "@/registry/default/ui/select";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.select;
 	export { data as form };
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
 	});
 
 	const { form: formData, enhance } = form;
@@ -58,4 +66,5 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
+	<SuperDebug data={$formData} />
 </form>

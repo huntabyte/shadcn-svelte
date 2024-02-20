@@ -13,14 +13,22 @@
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
 
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.radioGroup;
 	export { data as form };
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
 	});
 
 	const { form: formData, enhance } = form;
@@ -48,8 +56,10 @@
 					<Form.Label class="font-normal">Nothing</Form.Label>
 				</Form.Control>
 			</div>
+			<RadioGroup.Input name="type" />
 		</RadioGroup.Root>
 		<Form.FieldErrors />
 	</Form.Fieldset>
 	<Form.Button>Submit</Form.Button>
+	<SuperDebug data={$formData} />
 </form>
