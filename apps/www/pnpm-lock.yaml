@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^1.36.2
     version: 1.36.2
   '@prettier/sync':
-    specifier: ^0.5.1
-    version: 0.5.1(prettier@3.1.1)
+    specifier: ^0.5.0
+    version: 0.5.0(prettier@3.1.1)
   '@sveltejs/adapter-vercel':
     specifier: ^3.0.3
     version: 3.0.3(@sveltejs/kit@1.27.1)
@@ -1028,8 +1028,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@prettier/sync@0.5.1(prettier@3.1.1):
-    resolution: {integrity: sha512-tpF+A1e4ynO2U4fTH21Sjgm9EYENmqg4zmJCMLrmLVfzIzuDc1cKGXyxrxbFgcH8qQRfowyDCZFAUukwhiZlsw==}
+  /@prettier/sync@0.5.0(prettier@3.1.1):
+    resolution: {integrity: sha512-1a6veNypZYkSbU33anha4Pdna9Jz3HXUc0aru7sgN7HuyJHPIVNdCTfjhm1S+mG9yXmWuAO+a6I+Cznp9Ogt3A==}
     peerDependencies:
       prettier: '*'
     dependencies:
