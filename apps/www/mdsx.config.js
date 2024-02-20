@@ -2,7 +2,7 @@
 import { readFileSync } from "fs";
 import { join, resolve } from "path";
 import { fileURLToPath } from "url";
-import prettier from "prettier";
+import prettier from "@prettier/sync";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
@@ -86,11 +86,13 @@ export const mdsxConfig = defineConfig({
  * itself and checking for it in the code block, but that's not something we need
  * at the moment.
  *
+ * @returns {MdastTransformer}
  */
 function remarkRemovePrettierIgnore() {
 	return async (tree) => {
 		visit(tree, "code", (node) => {
 			node.value = node.value
+				// @ts-expect-error - not dealing with this rn
 				.replaceAll("<!-- prettier-ignore -->\n", "")
 				.replaceAll("// prettier-ignore\n", "");
 		});
@@ -148,7 +150,7 @@ const styles = [
 ];
 
 export function rehypeComponentExample() {
-	return async (tree) => {
+	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {

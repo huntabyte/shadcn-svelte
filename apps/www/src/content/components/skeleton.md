@@ -36,5 +36,5 @@ npx shadcn-svelte@latest add skeleton
 ```
 
 ```svelte
-<Skeleton class="w-[100px] h-[20px] rounded-full" />
+<Skeleton class="h-[20px] w-[100px] rounded-full" />
 ```

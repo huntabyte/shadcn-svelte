@@ -1,4 +1,4 @@
-import { superValidate } from "sveltekit-superforms/server";
+import { superValidate } from "sveltekit-superforms";
 import type { Actions, PageServerLoad, RequestEvent } from "./$types";
 import { formSchema } from "@/registry/default/example/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "@/registry/default/example/checkbox-form-single.svelte";
@@ -11,17 +11,18 @@ import { formSchema as datePickerFormSchema } from "@/registry/default/example/d
 
 import { fail } from "@sveltejs/kit";
 import type { AnyZodObject } from "zod";
+import { zod } from "sveltekit-superforms/adapters";
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(formSchema),
-		checkboxSingle: await superValidate(checkboxSingleSchema),
-		radioGroup: await superValidate(radioGroupSchema),
-		select: await superValidate(selectSchema),
-		switch: await superValidate(switchSchema),
-		textarea: await superValidate(textareaSchema),
-		combobox: await superValidate(comboboxFormSchema),
-		datePicker: await superValidate(datePickerFormSchema),
+		form: await superValidate(zod(formSchema)),
+		checkboxSingle: await superValidate(zod(checkboxSingleSchema)),
+		radioGroup: await superValidate(zod(radioGroupSchema)),
+		select: await superValidate(zod(selectSchema)),
+		switch: await superValidate(zod(switchSchema)),
+		textarea: await superValidate(zod(textareaSchema)),
+		combobox: await superValidate(zod(comboboxFormSchema)),
+		datePicker: await superValidate(zod(datePickerFormSchema)),
 	};
 };
 
@@ -37,7 +38,7 @@ export const actions: Actions = {
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {
-	const form = await superValidate(event, schema);
+	const form = await superValidate(event, zod(schema));
 	if (!form.valid) {
 		return fail(400, {
 			form,

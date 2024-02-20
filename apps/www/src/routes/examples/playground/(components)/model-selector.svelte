@@ -96,7 +96,7 @@
 				openDelay={0}
 				portal={null}
 			>
-				<HoverCard.Content class="min-h-[280px] -ml-2" side="left" align="start">
+				<HoverCard.Content class="-ml-2 min-h-[280px]" side="left" align="start">
 					{#if peekedModel && hoverCardIsOpen}
 						<div class="grid gap-2">
 							<h4 class="font-medium leading-none">

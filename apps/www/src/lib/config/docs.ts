@@ -137,7 +137,6 @@ export const docsConfig: DocsConfig = {
 					title: "Carousel",
 					href: "/docs/components/carousel",
 					items: [],
-					label: "New",
 				},
 				{
 					title: "Checkbox",
@@ -192,7 +191,7 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Form",
 					href: "/docs/components/form",
-					label: "Preview",
+					label: "Updated",
 					items: [],
 				},
 				{

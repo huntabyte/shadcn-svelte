@@ -4,9 +4,9 @@
 	import type { FormSchema } from "@/registry/default/example/form-demo.svelte";
 	import DefaultFormDemo from "@/registry/default/example/form-demo.svelte";
 	import NewYorkFormDemo from "@/registry/new-york/example/form-demo.svelte";
-	import type { SuperValidated } from "sveltekit-superforms";
+	import type { SuperValidated, Infer } from "sveltekit-superforms";
 
-	export let form: SuperValidated<FormSchema>;
+	export let form: SuperValidated<Infer<FormSchema>>;
 </script>
 
 <ComponentPreviewManual>

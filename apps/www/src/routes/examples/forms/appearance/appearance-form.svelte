@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import type { SuperValidated } from "sveltekit-superforms";
 	import { z } from "zod";
 
 	export const appearanceFormSchema = z.object({
@@ -16,41 +15,59 @@
 </script>
 
 <script lang="ts">
+	import { ChevronDown } from "radix-icons-svelte";
+	import { browser } from "$app/environment";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
+	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
 	import Label from "@/registry/new-york/ui/label/label.svelte";
-	export let data: SuperValidated<AppearanceFormSchema>;
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { cn } from "$lib/utils";
+	import { buttonVariants } from "@/registry/new-york/ui/button";
+	export let data: SuperValidated<Infer<AppearanceFormSchema>>;
+
+	const form = superForm(data, {
+		validators: zodClient(appearanceFormSchema),
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
-<Form.Root
-	schema={appearanceFormSchema}
-	form={data}
-	class="space-y-8"
-	method="POST"
-	let:config
-	debug={true}
->
-	<Form.Item>
-		<Form.Field {config} name="font">
+<form method="POST" use:enhance class="space-y-8">
+	<Form.Field {form} name="font">
+		<Form.Control let:attrs>
 			<Form.Label>Font</Form.Label>
-			<div class="w-max">
-				<Form.NativeSelect class="w-[200px]">
+			<div class="relative w-max">
+				<select
+					{...attrs}
+					class={cn(
+						buttonVariants({ variant: "outline" }),
+						"w-[200px] appearance-none font-normal"
+					)}
+					bind:value={$formData.font}
+				>
 					<option value="inter">Inter</option>
 					<option value="manrope">Manrope</option>
 					<option value="system">System</option>
-				</Form.NativeSelect>
+				</select>
+				<ChevronDown class="absolute right-3 top-2.5 size-4 opacity-50" />
 			</div>
-			<Form.Description>Set the font you want to use in the dashboard.</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item>
-	<Form.Item>
-		<Form.Field {config} name="theme">
-			<Form.Label>Theme</Form.Label>
-			<Form.Description>Select the theme for the dashboard.</Form.Description>
-			<Form.Validation />
-			<Form.RadioGroup class="grid max-w-md grid-cols-2 gap-8 pt-2" orientation="horizontal">
-				<Label for="light" class="[&:has([data-state=checked])>div]:border-primary">
-					<Form.RadioItem id="light" value="light" class="sr-only" />
+		</Form.Control>
+		<Form.Description>Set the font you want to use in the dashboard.</Form.Description>
+		<Form.FieldErrors />
+	</Form.Field>
+	<Form.Fieldset {form} name="theme">
+		<Form.Legend>Theme</Form.Legend>
+		<Form.Description>Select the theme for the dashboard.</Form.Description>
+		<Form.FieldErrors />
+		<RadioGroup.Root
+			class="grid max-w-md grid-cols-2 gap-8 pt-2"
+			orientation="horizontal"
+			bind:value={$formData.theme}
+		>
+			<Form.Control let:attrs>
+				<Label class="[&:has([data-state=checked])>div]:border-primary">
+					<RadioGroup.Item {...attrs} value="light" class="sr-only" />
 					<div
 						class="items-center rounded-md border-2 border-muted p-1 hover:border-accent"
 					>
@@ -75,8 +92,10 @@
 					</div>
 					<span class="block w-full p-2 text-center font-normal"> Light </span>
 				</Label>
-				<Label for="dark" class="[&:has([data-state=checked])>div]:border-primary">
-					<Form.RadioItem id="dark" value="dark" class="sr-only" />
+			</Form.Control>
+			<Form.Control let:attrs>
+				<Label class="[&:has([data-state=checked])>div]:border-primary">
+					<RadioGroup.Item {...attrs} value="dark" class="sr-only" />
 					<div
 						class="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground"
 					>
@@ -101,8 +120,13 @@
 					</div>
 					<span class="block w-full p-2 text-center font-normal"> Dark </span>
 				</Label>
-			</Form.RadioGroup>
-		</Form.Field>
-	</Form.Item>
+			</Form.Control>
+			<RadioGroup.Input name="theme" />
+		</RadioGroup.Root>
+	</Form.Fieldset>
 	<Form.Button>Update preferences</Form.Button>
-</Form.Root>
+</form>
+
+{#if browser}
+	<SuperDebug data={$formData} />
+{/if}

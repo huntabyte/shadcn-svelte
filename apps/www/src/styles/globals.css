@@ -79,7 +79,9 @@
 	}
 	body {
 		@apply bg-background text-foreground;
-		font-feature-settings: "rlig" 1, "calt" 1;
+		font-feature-settings:
+			"rlig" 1,
+			"calt" 1;
 	}
 
 	/* Mobile tap highlight */
@@ -167,7 +169,7 @@
 	}
 
 	.step:before {
-		@apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+		@apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
 		@apply ml-[-50px] mt-[-4px];
 		content: counter(step);
 	}
@@ -216,7 +218,7 @@
 }
 
 [data-rehype-pretty-code-fragment] .line {
-	@apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
+	@apply inline-block min-h-[1rem] w-full px-4 py-0.5;
 }
 
 [data-rehype-pretty-code-fragment] [data-line-numbers] .line {
@@ -224,7 +226,7 @@
 }
 
 [data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
-	@apply text-zinc-50/40 text-xs;
+	@apply text-xs text-zinc-50/40;
 	counter-increment: line;
 	content: counter(line);
 	display: inline-block;
@@ -250,7 +252,7 @@
 }
 
 [data-rehype-pretty-code-fragment] .word--highlighted {
-	@apply rounded-md bg-zinc-700/50 border-zinc-700/70 p-1;
+	@apply rounded-md border-zinc-700/70 bg-zinc-700/50 p-1;
 }
 
 .dark [data-rehype-pretty-code-fragment] .word--highlighted {
@@ -258,7 +260,7 @@
 }
 
 [data-rehype-pretty-code-title] {
-	@apply mt-2 pt-6 px-4 text-sm font-medium;
+	@apply mt-2 px-4 pt-6 text-sm font-medium;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -266,7 +268,7 @@
 }
 
 .super-debug {
-	@apply bg-zinc-950 dark:bg-zinc-900 text-[#FFF8] !important;
+	@apply bg-zinc-950 text-[#FFF8] dark:bg-zinc-900 !important;
 }
 
 .super-debug--pre {

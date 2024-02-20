@@ -9,7 +9,7 @@
 		href="https://github.com/sveltejs"
 		target="_blank"
 		rel="noreferrer noopener"
-		class="hover:underline underline-offset-4 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+		class="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
 	>
 		@sveltejs
 	</HoverCard.Trigger>

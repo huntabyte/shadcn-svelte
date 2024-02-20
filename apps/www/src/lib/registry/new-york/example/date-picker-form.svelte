@@ -24,55 +24,49 @@
 	import { Calendar } from "@/registry/new-york/ui/calendar";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import * as Form from "@/registry/new-york/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms/client";
-	export let form: SuperValidated<FormSchema> = $page.data.datePicker;
+	import type { SuperValidated, Infer } from "sveltekit-superforms";
+	import { superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
+	export { data as form };
 
-	const theForm = superForm(form, {
-		validators: formSchema,
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
 		taintedMessage: null,
 	});
 
-	const { form: formStore } = theForm;
+	const { form: formData, enhance } = form;
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined = $formStore.dob ? parseDate($formStore.dob) : undefined;
+	let value: DateValue | undefined;
+
+	$: value = $formData.dob ? parseDate($formData.dob) : undefined;
 
 	let placeholder: DateValue = today(getLocalTimeZone());
 </script>
 
-<Form.Root
-	schema={formSchema}
-	controlled
-	form={theForm}
-	let:config
-	action="?/datePicker"
-	class="space-y-8"
->
-	<Form.Field {config} name="dob">
-		<Form.Item class="flex flex-col">
-			<Form.Label for="dob">Date of birth</Form.Label>
+<form method="POST" action="?/datePicker" class="space-y-8" use:enhance>
+	<Form.Field {form} name="dob" class="flex flex-col">
+		<Form.Control let:attrs>
+			<Form.Label>Date of birth</Form.Label>
 			<Popover.Root>
-				<Form.Control id="dob" let:attrs>
-					<Popover.Trigger
-						id="dob"
-						{...attrs}
-						class={cn(
-							buttonVariants({ variant: "outline" }),
-							"w-[240px] pl-3 justify-start text-left font-normal",
-							!value && "text-muted-foreground"
-						)}
-					>
-						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-						<CalendarIcon class="ml-auto opacity-50 h-4 w-4" />
-					</Popover.Trigger>
-				</Form.Control>
+				<Popover.Trigger
+					{...attrs}
+					class={cn(
+						buttonVariants({ variant: "outline" }),
+						"w-[280px] justify-start pl-4 text-left font-normal",
+						!value && "text-muted-foreground"
+					)}
+				>
+					{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
+					<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" side="top">
 					<Calendar
-						bind:value
+						{value}
 						bind:placeholder
 						minValue={new CalendarDate(1900, 1, 1)}
 						maxValue={today(getLocalTimeZone())}
@@ -80,17 +74,18 @@
 						initialFocus
 						onValueChange={(v) => {
 							if (v) {
-								$formStore.dob = v.toString();
+								$formData.dob = v.toString();
 							} else {
-								$formStore.dob = "";
+								$formData.dob = "";
 							}
 						}}
 					/>
 				</Popover.Content>
 			</Popover.Root>
 			<Form.Description>Your date of birth is used to calculator your age</Form.Description>
-			<Form.Validation />
-		</Form.Item>
+			<Form.FieldErrors />
+			<input hidden value={$formData.dob} name={attrs.name} />
+		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
-</Form.Root>
+</form>

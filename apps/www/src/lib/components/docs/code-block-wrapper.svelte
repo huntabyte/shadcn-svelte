@@ -11,7 +11,7 @@
 
 <Collapsible.Root bind:open>
 	<div class={cn("relative overflow-hidden", className)} {...$$restProps}>
-		<div class={cn("overflow-hidden h-full", !open && "max-h-32")}>
+		<div class={cn("h-full overflow-hidden", !open && "max-h-32")}>
 			<slot />
 		</div>
 		<div

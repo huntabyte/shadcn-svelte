@@ -25,7 +25,7 @@
 				{doc.title}
 			</h1>
 			{#if doc.description}
-				<p class="text-lg text-muted-foreground text-balance">
+				<p class="text-balance text-lg text-muted-foreground">
 					{doc.description}
 				</p>
 			{/if}

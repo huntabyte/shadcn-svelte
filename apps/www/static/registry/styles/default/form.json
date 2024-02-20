@@ -7,70 +7,44 @@
 	],
 	"registryDependencies": [
 		"button",
-		"checkbox",
-		"input",
-		"label",
-		"radio-group",
-		"select",
-		"switch",
-		"textarea"
+		"label"
 	],
 	"files": [
 		{
 			"name": "form-button.svelte",
-			"content": "<script lang=\"ts\">\n\timport * as Button from \"@/registry/default/ui/button\";\n\ttype $$Props = Button.Props;\n\ttype $$Events = Button.Events;\n</script>\n\n<Button.Root type=\"submit\" {...$$restProps} on:click on:keydown>\n\t<slot />\n</Button.Root>\n"
-		},
-		{
-			"name": "form-checkbox.svelte",
-			"content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { Checkbox as CheckboxPrimitive } from \"bits-ui\";\n\timport { Checkbox } from \"@/registry/default/ui/checkbox\";\n\ttype $$Props = CheckboxPrimitive.Props;\n\ttype $$Events = CheckboxPrimitive.Events;\n\n\texport let onCheckedChange: $$Props[\"onCheckedChange\"] = undefined;\n\n\tconst { name, setValue, attrStore, value } = getFormField();\n\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\tconst { name: nameAttr, value: valueAttr, ...rest } = $attrStore;\n</script>\n\n<Checkbox\n\t{...rest}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
+			"content": "<script lang=\"ts\">\n\timport * as Button from \"@/registry/default/ui/button\";\n\n\ttype $$Props = Button.Props;\n</script>\n\n<Button.Root type=\"submit\" {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
 		},
 		{
 			"name": "form-description.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description class={cn(\"text-sm text-muted-foreground\", className)} {...$$restProps}>\n\t<slot />\n</FormPrimitive.Description>\n"
+			"content": "<script lang=\"ts\">\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...$$restProps}\n\tlet:descriptionAttrs\n>\n\t<slot {descriptionAttrs} />\n</FormPrimitive.Description>\n"
 		},
 		{
-			"name": "form-input.svelte",
-			"content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport { Input, type InputEvents } from \"@/registry/default/ui/input\";\n\n\ttype $$Props = HTMLInputAttributes;\n\ttype $$Events = InputEvents;\n\n\tconst { attrStore, value } = getFormField();\n</script>\n\n<Input\n\t{...$attrStore}\n\tbind:value={$value}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
+			"name": "form-element-field.svelte",
+			"content": "<script lang=\"ts\" context=\"module\">\n\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\timport type { FormPathLeaves, SuperForm } from \"sveltekit-superforms\";\n\ttype T = Record<string, unknown>;\n\ttype U = unknown;\n</script>\n\n<script lang=\"ts\" generics=\"T extends Record<string, unknown>, U extends FormPathLeaves<T>\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = FormPrimitive.ElementFieldProps<T, U> & HTMLAttributes<HTMLElement>;\n\n\texport let form: SuperForm<T>;\n\texport let name: U;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.ElementField {form} {name} let:constraints let:errors let:tainted let:value>\n\t<div class={cn(\"space-y-2\", className)}>\n\t\t<slot {constraints} {errors} {tainted} {value} />\n\t</div>\n</FormPrimitive.ElementField>\n"
 		},
 		{
-			"name": "form-item.svelte",
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"space-y-2\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+			"name": "form-field-errors.svelte",
+			"content": "<script lang=\"ts\">\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = FormPrimitive.FieldErrorsProps & {\n\t\terrorClasses?: string | undefined | null;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\texport let errorClasses: $$Props[\"class\"] = undefined;\n</script>\n\n<FormPrimitive.FieldErrors\n\tclass={cn(\"text-destructive text-sm font-medium\", className)}\n\t{...$$restProps}\n\tlet:errors\n\tlet:fieldErrorsAttrs\n\tlet:errorAttrs\n>\n\t<slot {errors} {fieldErrorsAttrs} {errorAttrs}>\n\t\t{#each errors as error}\n\t\t\t<div {...errorAttrs} class={cn(errorClasses)}>{error}</div>\n\t\t{/each}\n\t</slot>\n</FormPrimitive.FieldErrors>\n"
+		},
+		{
+			"name": "form-field.svelte",
+			"content": "<script lang=\"ts\" context=\"module\">\n\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\timport type { FormPath, SuperForm } from \"sveltekit-superforms\";\n\ttype T = Record<string, unknown>;\n\ttype U = unknown;\n</script>\n\n<script lang=\"ts\" generics=\"T extends Record<string, unknown>, U extends FormPath<T>\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = FormPrimitive.FieldProps<T, U> & HTMLAttributes<HTMLElement>;\n\n\texport let form: SuperForm<T>;\n\texport let name: U;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Field {form} {name} let:constraints let:errors let:tainted let:value>\n\t<div class={cn(\"space-y-2\", className)}>\n\t\t<slot {constraints} {errors} {tainted} {value} />\n\t</div>\n</FormPrimitive.Field>\n"
+		},
+		{
+			"name": "form-fieldset.svelte",
+			"content": "<script lang=\"ts\" context=\"module\">\n\t// eslint-disable-next-line @typescript-eslint/no-unused-vars\n\timport type { FormPath, SuperForm } from \"sveltekit-superforms\";\n\ttype T = Record<string, unknown>;\n\ttype U = unknown;\n</script>\n\n<script lang=\"ts\" generics=\"T extends Record<string, unknown>, U extends FormPath<T>\">\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = FormPrimitive.FieldsetProps<T, U>;\n\n\texport let form: SuperForm<T>;\n\texport let name: U;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Fieldset\n\t{form}\n\t{name}\n\tlet:constraints\n\tlet:errors\n\tlet:tainted\n\tlet:value\n\tclass={cn(\"space-y-2\", className)}\n>\n\t<slot {constraints} {errors} {tainted} {value} />\n</FormPrimitive.Fieldset>\n"
 		},
 		{
 			"name": "form-label.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/default/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { errors, ids } = getFormField();\n</script>\n\n<Label for={$ids.input} class={cn($errors && \"text-destructive\", className)} {...$$restProps}>\n\t<slot />\n</Label>\n"
+			"content": "<script lang=\"ts\">\n\timport type { Label as LabelPrimitive } from \"bits-ui\";\n\timport { getFormControl } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport { Label } from \"@/registry/default/ui/label\";\n\n\ttype $$Props = LabelPrimitive.Props;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tconst { labelAttrs } = getFormControl();\n</script>\n\n<Label {...$labelAttrs} class={cn(\"data-[fs-error]:text-destructive\", className)} {...$$restProps}>\n\t<slot {labelAttrs} />\n</Label>\n"
 		},
 		{
-			"name": "form-native-select.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { buttonVariants } from \"@/registry/default/ui/button\";\n\timport { cn } from \"$lib/utils\";\n\timport { ChevronDown } from \"lucide-svelte\";\n\timport type { HTMLSelectAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLSelectAttributes;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<div class=\"relative\">\n\t<FormPrimitive.Select\n\t\tclass={cn(\n\t\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\t\"appearance-none bg-transparent font-normal\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</FormPrimitive.Select>\n\t<ChevronDown class=\"absolute right-3 top-2.5 h-4 w-4 opacity-50\" />\n</div>\n"
-		},
-		{
-			"name": "form-radio-group.svelte",
-			"content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport * as RadioGroup from \"@/registry/default/ui/radio-group\";\n\n\ttype $$Props = RadioGroupPrimitive.Props;\n\tconst { attrStore, setValue, name, value } = getFormField();\n\n\texport let onValueChange: $$Props[\"onValueChange\"] = undefined;\n</script>\n\n<RadioGroup.Root\n\t{...$attrStore}\n\tonValueChange={(v) => {\n\t\tonValueChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</RadioGroup.Root>\n"
-		},
-		{
-			"name": "form-select-trigger.svelte",
-			"content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/default/ui/select\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\timport { getFormField } from \"formsnap\";\n\n\ttype $$Props = SelectPrimitive.TriggerProps & {\n\t\tplaceholder?: string;\n\t};\n\ttype $$Events = SelectPrimitive.TriggerEvents;\n\tconst { attrStore, value } = getFormField();\n\texport let placeholder = \"\";\n</script>\n\n<Select.Trigger {...$$restProps} {...$attrStore} on:click on:keydown type=\"button\">\n\t<slot value={$value}>\n\t\t<Select.Value {placeholder} />\n\t</slot>\n</Select.Trigger>\n"
-		},
-		{
-			"name": "form-select.svelte",
-			"content": "<script lang=\"ts\">\n\timport * as Select from \"@/registry/default/ui/select\";\n\timport { getFormField } from \"formsnap\";\n\timport type { Select as SelectPrimitive } from \"bits-ui\";\n\n\ttype $$Props = SelectPrimitive.Props<unknown>;\n\tconst { setValue, name, value } = getFormField();\n\texport let onSelectedChange: $$Props[\"onSelectedChange\"] = undefined;\n</script>\n\n<Select.Root\n\tonSelectedChange={(v) => {\n\t\tonSelectedChange?.(v);\n\t\tsetValue(v ? v.value : undefined);\n\t}}\n\t{...$$restProps}\n>\n\t<slot />\n\t<input hidden {name} value={$value} />\n</Select.Root>\n"
-		},
-		{
-			"name": "form-switch.svelte",
-			"content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { Switch as SwitchPrimitive } from \"bits-ui\";\n\timport { Switch } from \"@/registry/default/ui/switch\";\n\ttype $$Props = SwitchPrimitive.Props;\n\ttype $$Events = SwitchPrimitive.Events;\n\n\texport let onCheckedChange: $$Props[\"onCheckedChange\"] = undefined;\n\n\tconst { name, setValue, attrStore, value } = getFormField();\n</script>\n\n<Switch\n\t{...$attrStore}\n\tchecked={typeof $value === \"boolean\" ? $value : false}\n\tonCheckedChange={(v) => {\n\t\tonCheckedChange?.(v);\n\t\tsetValue(v);\n\t}}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n/>\n<input hidden {name} value={$value} />\n"
-		},
-		{
-			"name": "form-textarea.svelte",
-			"content": "<script lang=\"ts\">\n\timport { getFormField } from \"formsnap\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\timport type { TextareaGetFormField } from \".\";\n\timport { Textarea, type TextareaEvents } from \"@/registry/default/ui/textarea\";\n\n\ttype $$Props = HTMLTextareaAttributes;\n\ttype $$Events = TextareaEvents;\n\n\tconst { attrStore, value } = getFormField() as TextareaGetFormField;\n</script>\n\n<Textarea\n\t{...$attrStore}\n\tbind:value={$value}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
-		},
-		{
-			"name": "form-validation.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Form as FormPrimitive } from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Validation\n\tclass={cn(\"text-sm font-medium text-destructive\", className)}\n\t{...$$restProps}\n/>\n"
+			"name": "form-legend.svelte",
+			"content": "<script lang=\"ts\">\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils\";\n\n\ttype $$Props = FormPrimitive.LegendProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Legend\n\t{...$$restProps}\n\tclass={cn(\"data-[fs-error]:text-destructive text-sm font-medium leading-none\", className)}\n\tlet:legendAttrs\n>\n\t<slot {legendAttrs} />\n</FormPrimitive.Legend>\n"
 		},
 		{
 			"name": "index.ts",
-			"content": "import { Form as FormPrimitive, getFormField } from \"formsnap\";\nimport * as RadioGroupComp from \"@/registry/default/ui/radio-group\";\nimport * as SelectComp from \"@/registry/default/ui/select\";\nimport type { Writable } from \"svelte/store\";\nimport Item from \"./form-item.svelte\";\nimport Input from \"./form-input.svelte\";\nimport Textarea from \"./form-textarea.svelte\";\nimport Description from \"./form-description.svelte\";\nimport Label from \"./form-label.svelte\";\nimport Validation from \"./form-validation.svelte\";\nimport Checkbox from \"./form-checkbox.svelte\";\nimport Switch from \"./form-switch.svelte\";\nimport NativeSelect from \"./form-native-select.svelte\";\nimport RadioGroup from \"./form-radio-group.svelte\";\nimport Select from \"./form-select.svelte\";\nimport SelectTrigger from \"./form-select-trigger.svelte\";\nimport Button from \"./form-button.svelte\";\n\nconst Root = FormPrimitive.Root;\nconst Field = FormPrimitive.Field;\nconst Control = FormPrimitive.Control;\nconst RadioItem = RadioGroupComp.Item;\nconst NativeRadio = FormPrimitive.Radio;\nconst SelectContent = SelectComp.Content;\nconst SelectLabel = SelectComp.Label;\nconst SelectGroup = SelectComp.Group;\nconst SelectItem = SelectComp.Item;\nconst SelectSeparator = SelectComp.Separator;\n\nexport type TextareaGetFormField = Omit<ReturnType<typeof getFormField>, \"value\"> & {\n\tvalue: Writable<string>;\n};\n\nexport {\n\tRoot,\n\tField,\n\tControl,\n\tItem,\n\tInput,\n\tLabel,\n\tButton,\n\tSwitch,\n\tSelect,\n\tCheckbox,\n\tTextarea,\n\tValidation,\n\tRadioGroup,\n\tRadioItem,\n\tDescription,\n\tSelectContent,\n\tSelectLabel,\n\tSelectGroup,\n\tSelectItem,\n\tSelectSeparator,\n\tSelectTrigger,\n\tNativeSelect,\n\tNativeRadio,\n\t//\n\tRoot as Form,\n\tField as FormField,\n\tControl as FormControl,\n\tItem as FormItem,\n\tInput as FormInput,\n\tTextarea as FormTextarea,\n\tDescription as FormDescription,\n\tLabel as FormLabel,\n\tValidation as FormValidation,\n\tNativeSelect as FormNativeSelect,\n\tNativeRadio as FormNativeRadio,\n\tCheckbox as FormCheckbox,\n\tSwitch as FormSwitch,\n\tRadioGroup as FormRadioGroup,\n\tRadioItem as FormRadioItem,\n\tSelect as FormSelect,\n\tSelectContent as FormSelectContent,\n\tSelectLabel as FormSelectLabel,\n\tSelectGroup as FormSelectGroup,\n\tSelectItem as FormSelectItem,\n\tSelectSeparator as FormSelectSeparator,\n\tSelectTrigger as FormSelectTrigger,\n\tButton as FormButton,\n};\n"
+			"content": "import * as FormPrimitive from \"formsnap\";\nimport Description from \"./form-description.svelte\";\nimport Label from \"./form-label.svelte\";\nimport FieldErrors from \"./form-field-errors.svelte\";\nimport Field from \"./form-field.svelte\";\nimport Fieldset from \"./form-fieldset.svelte\";\nimport Legend from \"./form-legend.svelte\";\nimport ElementField from \"./form-element-field.svelte\";\nimport Button from \"./form-button.svelte\";\n\nconst Control = FormPrimitive.Control;\n\nexport {\n\tField,\n\tControl,\n\tLabel,\n\tButton,\n\tFieldErrors,\n\tDescription,\n\tFieldset,\n\tLegend,\n\tElementField,\n\t//\n\tField as FormField,\n\tControl as FormControl,\n\tDescription as FormDescription,\n\tLabel as FormLabel,\n\tFieldErrors as FormFieldErrors,\n\tFieldset as FormFieldset,\n\tLegend as FormLegend,\n\tElementField as FormElementField,\n\tButton as FormButton,\n};\n"
 		}
 	],
 	"type": "components:ui"
