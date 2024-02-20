@@ -73,3 +73,9 @@ When using the checkbox within a form, you'll want to use the `<Form.Checkbox />
 <div />
 
 </ComponentPreview>
+
+<ComponentPreview name="checkbox-form-multiple">
+
+<div />
+
+</ComponentPreview>

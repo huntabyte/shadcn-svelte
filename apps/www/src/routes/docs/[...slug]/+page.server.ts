@@ -8,6 +8,7 @@ import { formSchema as switchSchema } from "@/registry/default/example/switch-fo
 import { formSchema as textareaSchema } from "@/registry/default/example/textarea-form.svelte";
 import { formSchema as comboboxFormSchema } from "@/registry/default/example/combobox-form.svelte";
 import { formSchema as datePickerFormSchema } from "@/registry/default/example/date-picker-form.svelte";
+import { formSchema as checkboxMultipleSchema } from "@/registry/default/example/checkbox-form-multiple.svelte";
 
 import { fail } from "@sveltejs/kit";
 import type { AnyZodObject } from "zod";
@@ -17,6 +18,7 @@ export const load: PageServerLoad = async () => {
 	return {
 		form: await superValidate(zod(formSchema)),
 		checkboxSingle: await superValidate(zod(checkboxSingleSchema)),
+		checkboxMultiple: await superValidate(zod(checkboxMultipleSchema)),
 		radioGroup: await superValidate(zod(radioGroupSchema)),
 		select: await superValidate(zod(selectSchema)),
 		switch: await superValidate(zod(switchSchema)),
@@ -29,6 +31,7 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	username: async (e) => handleForm(e, formSchema),
 	checkboxSingle: async (e) => handleForm(e, checkboxSingleSchema),
+	checkboxMultiple: async (e) => handleForm(e, checkboxMultipleSchema),
 	radioGroup: async (e) => handleForm(e, radioGroupSchema),
 	select: async (e) => handleForm(e, selectSchema),
 	switch: async (e) => handleForm(e, switchSchema),

@@ -29,17 +29,25 @@
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import * as Command from "@/registry/new-york/ui/command";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import { tick } from "svelte";
 	import { Check, CaretSort } from "radix-icons-svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { buttonVariants } from "@/registry/default/ui/button";
+	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
 	export { data as form };
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
+		onUpdated: ({ form: f }) => {
+			if (f.valid) {
+				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+			} else {
+				toast.error("Please fix the errors in the form.");
+			}
+		},
 	});
 
 	const { form: formData, enhance } = form;
@@ -75,6 +83,7 @@
 						"Select language"}
 					<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
+				<input hidden value={$formData.language} name={attrs.name} />
 			</Form.Control>
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>
@@ -108,4 +117,5 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
+	<SuperDebug data={$formData} />
 </form>
