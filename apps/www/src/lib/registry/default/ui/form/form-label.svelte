@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Label as LabelPrimitive } from "bits-ui";
-	import { getFormControl } from "@huntabyte/fsnap";
+	import { getFormControl } from "formsnap";
 	import { cn } from "$lib/utils";
 	import { Label } from "@/registry/default/ui/label";
 

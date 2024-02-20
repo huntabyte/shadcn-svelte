@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as FormPrimitive from "@huntabyte/fsnap";
+	import * as FormPrimitive from "formsnap";
 	import { cn } from "$lib/utils";
 
 	type $$Props = FormPrimitive.FieldErrorsProps & {
@@ -12,7 +12,7 @@
 </script>
 
 <FormPrimitive.FieldErrors
-	class={cn("text-sm font-medium text-destructive", className)}
+	class={cn("text-destructive text-sm font-medium", className)}
 	{...$$restProps}
 	let:errors
 	let:fieldErrorsAttrs

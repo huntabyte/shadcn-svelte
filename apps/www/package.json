@@ -28,7 +28,6 @@
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^8.0.2",
-		"@huntabyte/fsnap": "^0.4.3",
 		"@playwright/test": "^1.36.2",
 		"@prettier/sync": "0.3.0",
 		"@sveltejs/adapter-vercel": "^3.0.3",
@@ -47,6 +46,7 @@
 		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^8.9.0",
 		"eslint-plugin-svelte": "^2.35.1",
+		"formsnap": "^0.5.0",
 		"hast-util-to-html": "^8.0.4",
 		"lodash.template": "^4.5.0",
 		"mdsx": "^0.0.3",
@@ -86,7 +86,6 @@
 		"d3-scale": "^4.0.2",
 		"embla-carousel-autoplay": "8.0.0-rc19",
 		"esm-env": "^1.0.0",
-		"formsnap": "^0.4.4",
 		"lucide-svelte": "^0.292.0",
 		"mode-watcher": "^0.1.2",
 		"nanoid": "^5.0.3",

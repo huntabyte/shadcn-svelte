@@ -37,7 +37,7 @@
 		},
 		{
 			"name": "pagination.svelte",
-			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = undefined;\n\texport let count = 0;\n\texport let perPage = 10;\n\texport let page = 1;\n\texport let siblingCount = 1;\n\texport { className as class };\n\t$: currentPage = page;\n</script>\n\n<PaginationPrimitive.Root\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tbind:page\n\tlet:builder\n\tlet:pages\n\tlet:range\n\tasChild\n\t{...$$restProps}\n>\n\t<nav {...builder} class={cn(\"mx-auto flex flex-col w-full items-center\", className)}>\n\t\t<slot {pages} {range} {currentPage} />\n\t</nav>\n</PaginationPrimitive.Root>\n"
+			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = undefined;\n\texport let count = 0;\n\texport let perPage = 10;\n\texport let page = 1;\n\texport let siblingCount = 1;\n\texport { className as class };\n\t$: currentPage = page;\n</script>\n\n<PaginationPrimitive.Root\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tbind:page\n\tlet:builder\n\tlet:pages\n\tlet:range\n\tasChild\n\t{...$$restProps}\n>\n\t<nav {...builder} class={cn(\"mx-auto flex w-full flex-col items-center\", className)}>\n\t\t<slot {pages} {range} {currentPage} />\n\t</nav>\n</PaginationPrimitive.Root>\n"
 		}
 	],
 	"type": "components:ui"

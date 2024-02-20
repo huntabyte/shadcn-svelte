@@ -17,7 +17,7 @@
 		},
 		{
 			"name": "alert-dialog-content.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport * as AlertDialog from \".\";\n\timport { cn, flyAndScale } from \"$lib/utils\";\n\texport let transition = flyAndScale;\n\texport let transitionConfig = undefined;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\t{transition}\n\t\t{transitionConfig}\n\t\tclass={cn(\n\t\t\t\"fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</AlertDialogPrimitive.Content>\n</AlertDialog.Portal>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport * as AlertDialog from \".\";\n\timport { cn, flyAndScale } from \"$lib/utils\";\n\texport let transition = flyAndScale;\n\texport let transitionConfig = undefined;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\t{transition}\n\t\t{transitionConfig}\n\t\tclass={cn(\n\t\t\t\"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<slot />\n\t</AlertDialogPrimitive.Content>\n</AlertDialog.Portal>\n"
 		},
 		{
 			"name": "alert-dialog-description.svelte",

@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts" generics="T extends Record<string, unknown>, U extends FormPath<T>">
-	import * as FormPrimitive from "@huntabyte/fsnap";
+	import * as FormPrimitive from "formsnap";
 	import { cn } from "$lib/utils";
 
 	type $$Props = FormPrimitive.FieldsetProps<T, U>;

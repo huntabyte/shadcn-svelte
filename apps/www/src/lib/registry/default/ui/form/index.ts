@@ -1,4 +1,4 @@
-import * as FormPrimitive from "@huntabyte/fsnap";
+import * as FormPrimitive from "formsnap";
 import Description from "./form-description.svelte";
 import Label from "./form-label.svelte";
 import FieldErrors from "./form-field-errors.svelte";

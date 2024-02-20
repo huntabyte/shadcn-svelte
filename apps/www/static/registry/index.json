@@ -283,7 +283,11 @@
 	},
 	{
 		"name": "form",
-		"dependencies": [],
+		"dependencies": [
+			"formsnap",
+			"zod",
+			"sveltekit-superforms"
+		],
 		"registryDependencies": [
 			"button",
 			"label"
