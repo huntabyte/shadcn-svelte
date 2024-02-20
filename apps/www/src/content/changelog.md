@@ -7,6 +7,8 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## February 2024
+
 ## January 2024 - Part 2
 
 We've added a new component to the project, [Carousel](/docs/components/carousel).
