@@ -86,7 +86,6 @@
 		"d3-scale": "^4.0.2",
 		"embla-carousel-autoplay": "8.0.0-rc19",
 		"esm-env": "^1.0.0",
-		"formsnap": "0.4.2",
 		"lucide-svelte": "^0.292.0",
 		"mode-watcher": "^0.1.2",
 		"nanoid": "^5.0.3",
