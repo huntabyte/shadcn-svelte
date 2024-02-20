@@ -9,39 +9,28 @@
 
 <script lang="ts">
 	import * as Form from "@/registry/new-york/ui/form";
-	import type { SuperValidated } from "sveltekit-superforms";
-	import type { FormOptions } from "formsnap";
-	import { toast } from "svelte-sonner";
+	import { Input } from "@/registry/new-york/ui/input";
+	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
 
-	export let form: SuperValidated<FormSchema>;
-	const options: FormOptions<FormSchema> = {
-		onSubmit() {
-			toast.info("Submitting...");
-		},
-		onResult({ result }) {
-			console.log(result);
-			if (result.status === 200) toast.success("Success!");
-			if (result.status === 400) toast.error("Error!");
-		},
-	};
+	let data: SuperValidated<Infer<FormSchema>>;
+	export { data as form };
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
-<Form.Root
-	schema={formSchema}
-	{form}
-	{options}
-	let:config
-	method="POST"
-	action="?/username"
-	class="w-2/3 space-y-6"
->
-	<Form.Field {config} name="username">
-		<Form.Item>
+<form action="?/username" method="POST" class="w-2/3 space-y-6" use:enhance>
+	<Form.Field {form} name="username">
+		<Form.Control let:attrs>
 			<Form.Label>Username</Form.Label>
-			<Form.Input />
-			<Form.Description>This is your public display name.</Form.Description>
-			<Form.Validation />
-		</Form.Item>
+			<Input {...attrs} bind:value={$formData.username} />
+		</Form.Control>
+		<Form.Description>This is your public display name.</Form.Description>
+		<Form.FieldErrors />
 	</Form.Field>
+
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+</form>

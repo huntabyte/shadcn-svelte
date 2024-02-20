@@ -5,15 +5,11 @@
 	"printWidth": 100,
 	"endOfLine": "lf",
 	"plugins": ["prettier-plugin-svelte"],
-	"pluginSearchDirs": false,
 	"overrides": [
 		{
 			"files": "*.svelte",
 			"options": {
-				"parser": "svelte",
-				"svelteIndentScriptAndStyle": true,
-				"svelteStrictMode": false,
-				"svelteSortOrder": "scripts-markup-styles-options"
+				"parser": "svelte"
 			}
 		},
 		{

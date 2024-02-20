@@ -12,40 +12,44 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/default/ui/form";
-	// Since the labels used in each radio item don't represent the field
-	// we need to use a regular label component instead of Form.Label
-	import { Label } from "@/registry/default/ui/label";
-	import type { SuperValidated } from "sveltekit-superforms";
-	export let form: SuperValidated<FormSchema> = $page.data.radioGroup;
+	import * as RadioGroup from "@/registry/default/ui/radio-group";
+	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+
+	let data: SuperValidated<Infer<FormSchema>> = $page.data.radioGroup;
+	export { data as form };
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema),
+	});
+
+	const { form: formData, enhance } = form;
 </script>
 
-<Form.Root
-	{form}
-	schema={formSchema}
-	let:config
-	method="POST"
-	action="?/radioGroup"
-	class="w-2/3 space-y-6"
->
-	<Form.Field {config} name="type">
-		<Form.Item class="space-y-3">
-			<Form.Label>Notify me about...</Form.Label>
-			<Form.RadioGroup class="flex flex-col space-y-1">
-				<Form.Item class="flex items-center space-x-3 space-y-0">
-					<Form.RadioItem value="all" id="all" />
-					<Label for="all" class="font-normal">All new messages</Label>
-				</Form.Item>
-				<Form.Item class="flex items-center space-x-3 space-y-0">
-					<Form.RadioItem value="mentions" id="mentions" />
-					<Label for="mentions" class="font-normal">Direct messages and mentions</Label>
-				</Form.Item>
-				<Form.Item class="flex items-center space-x-3 space-y-0">
-					<Form.RadioItem value="none" id="none" />
-					<Label for="none" class="font-normal">Nothing</Label>
-				</Form.Item>
-			</Form.RadioGroup>
-			<Form.Validation />
-		</Form.Item>
-	</Form.Field>
+<form method="POST" action="?/radioGroup" class="w-2/3 space-y-6" use:enhance>
+	<Form.Fieldset {form} name="type" class="space-y-3">
+		<Form.Legend>Notify me about...</Form.Legend>
+		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1">
+			<div class="flex items-center space-x-3 space-y-0">
+				<Form.Control let:attrs>
+					<RadioGroup.Item value="all" {...attrs} />
+					<Form.Label class="font-normal">All new messages</Form.Label>
+				</Form.Control>
+			</div>
+			<div class="flex items-center space-x-3 space-y-0">
+				<Form.Control let:attrs>
+					<RadioGroup.Item value="mentions" {...attrs} />
+					<Form.Label class="font-normal">Direction messages and mentions</Form.Label>
+				</Form.Control>
+			</div>
+			<div class="flex items-center space-x-3 space-y-0">
+				<Form.Control let:attrs>
+					<RadioGroup.Item value="none" {...attrs} />
+					<Form.Label class="font-normal">Nothing</Form.Label>
+				</Form.Control>
+			</div>
+		</RadioGroup.Root>
+		<Form.FieldErrors />
+	</Form.Fieldset>
 	<Form.Button>Submit</Form.Button>
-</Form.Root>
+</form>

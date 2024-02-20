@@ -42,9 +42,7 @@ export const Index = {
 				continue;
 			}
 
-			const resolveFiles = item.files.map(
-				(file) => `../src/lib/registry/${style.name}/${file}`
-			);
+			const resolveFiles = item.files.map((file) => `../src/lib/registry/${style.name}/${file}`);
 
 			const type = item.type.split(":")[1];
 			index += `
@@ -217,9 +215,7 @@ export const Index = {
 
 					const [resolvedBase, scale] = resolvedColor.split("-");
 					const color = scale
-						? colorsData[resolvedBase].find(
-								(item: any) => item.scale === parseInt(scale)
-						  )
+						? colorsData[resolvedBase].find((item: any) => item.scale === parseInt(scale))
 						: colorsData[resolvedBase];
 					if (color) {
 						base["cssVars"][mode][key] = color.hslChannel;

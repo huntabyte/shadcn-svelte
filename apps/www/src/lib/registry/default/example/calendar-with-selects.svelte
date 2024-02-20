@@ -40,14 +40,14 @@
 		? {
 				value: placeholder.year,
 				label: String(placeholder.year),
-		  }
+			}
 		: undefined;
 
 	$: defaultMonth = placeholder
 		? {
 				value: placeholder.month,
 				label: monthFmt.format(placeholder.toDate(getLocalTimeZone())),
-		  }
+			}
 		: undefined;
 
 	let className: $$Props["class"] = undefined;

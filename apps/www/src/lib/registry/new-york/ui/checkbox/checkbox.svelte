@@ -31,4 +31,5 @@
 			<Check class={cn("h-3.5 w-3.5", !isChecked && "text-transparent")} />
 		{/if}
 	</CheckboxPrimitive.Indicator>
+	<CheckboxPrimitive.Input />
 </CheckboxPrimitive.Root>
