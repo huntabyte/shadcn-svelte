@@ -15,6 +15,7 @@
 
 	let data: SuperValidated<Infer<FormSchema>>;
 	export { data as form };
+
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
 	});

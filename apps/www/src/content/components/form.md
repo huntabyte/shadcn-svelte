@@ -4,7 +4,9 @@ description: Building forms with Formsnap, Superforms, & Zod.
 ---
 
 <script>
- import { Steps, ComponentPreview, FormPreview } from '@/components/docs';
+ 	import { Steps, ComponentPreview, FormPreview } from '@/components/docs';
+
+	export let form;
 </script>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
@@ -175,7 +177,7 @@ export const actions: Actions = {
 
 That's it. You now have a fully accessible form that is type-safe and has client & server side validation.
 
-<FormPreview />
+<FormPreview {form} />
 
 </Steps>
 
