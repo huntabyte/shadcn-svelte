@@ -1,4 +1,3 @@
-@import "fonts.pcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,6 +68,38 @@
 	}
 }
 @layer base {
+	@font-face {
+		font-family: "geist-sans";
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url("/fonts/Geist/Geist-Regular.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "geist-sans";
+		font-style: normal;
+		font-weight: 500;
+		font-display: swap;
+		src: url("/fonts/Geist/Geist-Medium.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "geist-sans";
+		font-style: normal;
+		font-weight: 600;
+		font-display: swap;
+		src: url("/fonts/Geist/Geist-SemiBold.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "geist-sans";
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+		src: url("/fonts/Geist/Geist-Bold.woff2") format("woff2");
+	}
+
 	* {
 		@apply border-border;
 	}
@@ -118,6 +149,10 @@
 	.hide-scrollbar {
 		-ms-overflow-style: none;
 		scrollbar-width: none;
+	}
+	.antialised {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 }
 
