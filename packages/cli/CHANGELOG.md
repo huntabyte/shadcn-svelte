@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.8.0
+
+### Minor Changes
+
+- d7ae8b54: feat: Replaced `radix-icons-svelte` with [svelte-radix](https://github.com/shinokada/svelte-radix) for New York style
+
 ## 0.7.0
 
 ### Minor Changes
