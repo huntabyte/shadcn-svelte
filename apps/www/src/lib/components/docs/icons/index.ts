@@ -21,7 +21,6 @@ import SunMedium from "lucide-svelte/icons/sun-medium";
 import Trash from "lucide-svelte/icons/trash";
 import User from "lucide-svelte/icons/user";
 import X from "lucide-svelte/icons/x";
-import type { Icon as LucideIcon } from "lucide-svelte";
 
 import Apple from "./apple.svelte";
 import Aria from "./aria.svelte";
@@ -36,8 +35,9 @@ import Tailwind from "./tailwind.svelte";
 import Yarn from "./yarn.svelte";
 import Twitter from "./twitter.svelte";
 import Hamburger from "./hamburger.svelte";
+import type { SvelteComponent } from "svelte";
 
-export type Icon = LucideIcon;
+export type Icon = SvelteComponent;
 
 export const Icons = {
 	logo: Logo,

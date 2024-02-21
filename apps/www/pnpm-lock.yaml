@@ -125,8 +125,8 @@ devDependencies:
     specifier: ^4.5.0
     version: 4.5.0
   mdsx:
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@4.2.11)
+    specifier: ^0.0.5
+    version: 0.0.5(svelte@4.2.11)
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -3943,8 +3943,8 @@ packages:
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
-  /mdsx@0.0.4(svelte@4.2.11):
-    resolution: {integrity: sha512-QadK695Wz/i7PPBYouVruFNAOGSrGuvuAJVXMYYt7Rth7Jj7d2ta7e2leWU6lNFZyEAL4WXgp2gIFzOQNOtpUQ==}
+  /mdsx@0.0.5(svelte@4.2.11):
+    resolution: {integrity: sha512-crYbZC0L5kQjaRABvHIXj9H2O1qikIw9KKqS3bo2En4XVgvHH7TO5bJ2X86PxJK7H6QEBAubjUma9+qpbsPC5A==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:

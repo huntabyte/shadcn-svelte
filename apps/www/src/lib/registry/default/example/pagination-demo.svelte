@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Pagination from "@/registry/default/ui/pagination";
-	import { ChevronLeft, ChevronRight } from "lucide-svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { mediaQuery } from "svelte-legos";
 
 	const isDesktop = mediaQuery("(min-width: 768px)");

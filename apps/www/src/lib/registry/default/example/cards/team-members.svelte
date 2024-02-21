@@ -1,11 +1,10 @@
 <script lang="ts">
+	import ChevronDownIcon from "lucide-svelte/icons/chevron-down";
 	import * as Card from "@/registry/default/ui/card";
 	import * as Avatar from "@/registry/default/ui/avatar";
 	import * as Popover from "@/registry/default/ui/popover";
 	import * as Command from "@/registry/default/ui/command";
 	import { Button } from "@/registry/default/ui/button";
-
-	import { ChevronDownIcon } from "lucide-svelte";
 </script>
 
 <Card.Root>
