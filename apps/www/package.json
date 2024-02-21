@@ -65,6 +65,7 @@
 		"svelte-check": "^3.6.4",
 		"svelte-radix": "^1.0.1",
 		"sveltekit-superforms": "^2.3.0",
+		"tailwind-merge": "^2.2.1",
 		"tailwind-variants": "^0.1.20",
 		"tailwindcss": "^3.4.1",
 		"tslib": "^2.6.2",
@@ -94,7 +95,6 @@
 		"svelte-legos": "^0.2.2",
 		"svelte-local-storage-store": "^0.5.0",
 		"svelte-sonner": "^0.3.9",
-		"tailwind-merge": "^1.14.0",
 		"vaul-svelte": "^0.0.6"
 	}
 }
