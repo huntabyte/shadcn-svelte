@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
-	import { DotFilled } from "radix-icons-svelte";
+	import DotFilled from "svelte-radix/DotFilled.svelte";
 
 	type $$Props = ContextMenuPrimitive.RadioItemProps;
 	type $$Events = ContextMenuPrimitive.RadioItemEvents;

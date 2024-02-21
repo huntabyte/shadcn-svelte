@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "command-input.svelte",
-			"content": "<script>\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport { MagnifyingGlass } from \"radix-icons-svelte\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = undefined;\n\texport { className as class };\n\texport let value = \"\";\n</script>\n\n<div class=\"flex items-center border-b px-3\" data-cmdk-input-wrapper=\"\">\n\t<MagnifyingGlass class=\"mr-2 h-4 w-4 shrink-0 opacity-50\" />\n\t<CommandPrimitive.Input\n\t\tclass={cn(\n\t\t\t\"flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t\tbind:value\n\t/>\n</div>\n"
+			"content": "<script>\n\timport { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport MagnifyingGlass from \"svelte-radix/MagnifyingGlass.svelte\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = undefined;\n\texport { className as class };\n\texport let value = \"\";\n</script>\n\n<div class=\"flex items-center border-b px-3\" data-cmdk-input-wrapper=\"\">\n\t<MagnifyingGlass class=\"mr-2 h-4 w-4 shrink-0 opacity-50\" />\n\t<CommandPrimitive.Input\n\t\tclass={cn(\n\t\t\t\"placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t\tbind:value\n\t/>\n</div>\n"
 		},
 		{
 			"name": "command-item.svelte",

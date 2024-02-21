@@ -4,7 +4,7 @@
 	import type { Task } from "../(data)/schemas";
 	import type { TableViewModel } from "svelte-headless-table";
 	import Button from "@/registry/new-york/ui/button/button.svelte";
-	import { Cross2 } from "radix-icons-svelte";
+	import Cross2 from "svelte-radix/Cross2.svelte";
 	import { statuses, priorities } from "../(data)/data";
 	import type { Writable } from "svelte/store";
 

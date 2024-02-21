@@ -10,7 +10,7 @@
 
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { Calendar as CalendarIcon } from "radix-icons-svelte";
+	import CalendarIcon from "svelte-radix/Calendar.svelte";
 	import {
 		type DateValue,
 		DateFormatter,

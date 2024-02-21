@@ -2,7 +2,9 @@
 	import { config } from "@/stores";
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight, Code, ExternalLink } from "radix-icons-svelte";
+	import ChevronRight from "svelte-radix/ChevronRight.svelte";
+	import Code from "svelte-radix/Code.svelte";
+	import ExternalLink from "svelte-radix/ExternalLink.svelte";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { badgeVariants } from "@/registry/new-york/ui/badge";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PlusCircled } from "radix-icons-svelte";
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Separator } from "@/registry/new-york/ui/separator";
 	import * as Tabs from "@/registry/new-york/ui/tabs";

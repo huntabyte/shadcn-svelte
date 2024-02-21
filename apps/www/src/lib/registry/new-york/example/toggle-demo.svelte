@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FontBold } from "radix-icons-svelte";
+	import FontBold from "svelte-radix/FontBold.svelte";
 	import { Toggle } from "@/registry/new-york/ui/toggle";
 </script>
 

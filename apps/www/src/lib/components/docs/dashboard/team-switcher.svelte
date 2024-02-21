@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { CaretSort, Check, PlusCircled } from "radix-icons-svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "svelte-radix/Check.svelte";
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+
 	import { cn } from "$lib/utils";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
 	import { Button } from "@/registry/new-york/ui/button";

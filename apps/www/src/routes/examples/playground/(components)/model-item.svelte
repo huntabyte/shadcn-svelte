@@ -2,7 +2,7 @@
 	import type { Command as CommandPrimitive } from "cmdk-sv";
 	import * as Command from "@/registry/new-york/ui/command/index.js";
 	import type { Model } from "../(data)/models";
-	import { Check } from "radix-icons-svelte";
+	import Check from "svelte-radix/Check.svelte";
 	import { cn } from "@/utils";
 
 	type $$Props = {

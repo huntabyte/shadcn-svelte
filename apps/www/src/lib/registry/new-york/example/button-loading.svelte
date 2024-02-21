@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Reload } from "radix-icons-svelte";
+	import Reload from "svelte-radix/Reload.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 </script>
 

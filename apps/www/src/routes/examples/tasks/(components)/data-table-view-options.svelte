@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MixerHorizontal } from "radix-icons-svelte";
+	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import type { Task } from "../(data)/schemas";

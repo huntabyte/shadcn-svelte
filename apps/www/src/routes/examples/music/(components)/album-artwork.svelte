@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PlusCircled } from "radix-icons-svelte";
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import { cn } from "@/utils";
 	import * as ContextMenu from "@/registry/new-york/ui/context-menu";
 	import type { Album } from "../(data)/albums";

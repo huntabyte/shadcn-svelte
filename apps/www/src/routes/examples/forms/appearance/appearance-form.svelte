@@ -15,7 +15,7 @@
 </script>
 
 <script lang="ts">
-	import { ChevronDown } from "radix-icons-svelte";
+	import ChevronDown from "svelte-radix/ChevronDown.svelte";
 	import { browser } from "$app/environment";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";

@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Check, PaperPlane, Plus } from "radix-icons-svelte";
+	import Check from "svelte-radix/Check.svelte";
+	import PaperPlane from "svelte-radix/PaperPlane.svelte";
+	import Plus from "svelte-radix/Plus.svelte";
 	import { cn } from "$lib/utils";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
 	import * as Card from "@/registry/new-york/ui/card";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CounterClockwiseClock } from "radix-icons-svelte";
+	import CounterClockwiseClock from "svelte-radix/CounterClockwiseClock.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Label } from "@/registry/new-york/ui/label";
 	import { Separator } from "@/registry/new-york/ui/separator";

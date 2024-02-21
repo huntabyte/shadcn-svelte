@@ -38,9 +38,6 @@ dependencies:
   nanoid:
     specifier: ^5.0.3
     version: 5.0.3
-  radix-icons-svelte:
-    specifier: ^1.2.1
-    version: 1.2.1
   svelte-headless-table:
     specifier: ^0.18.0
     version: 0.18.0(svelte@4.2.11)
@@ -169,6 +166,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.4
     version: 3.6.4(postcss-load-config@4.0.1)(postcss@8.4.31)(svelte@4.2.11)
+  svelte-radix:
+    specifier: ^1.0.1
+    version: 1.0.1(svelte@4.2.11)
   sveltekit-superforms:
     specifier: ^2.3.0
     version: 2.3.0(@sveltejs/kit@1.27.1)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.18.20)(svelte@4.2.11)
@@ -4813,10 +4813,6 @@ packages:
     resolution: {integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==}
     dev: false
 
-  /radix-icons-svelte@1.2.1:
-    resolution: {integrity: sha512-svmiMd0ocpdTm9cvAz0klcZpnh639lVctj6psQiawd4pYalVzOG4cX+JizAgRckyTAsRVdzObP7D2EBrSfdghA==}
-    dev: false
-
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
@@ -5387,6 +5383,14 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.11
       typescript: 5.2.2
+    dev: true
+
+  /svelte-radix@1.0.1(svelte@4.2.11):
+    resolution: {integrity: sha512-X9RE04aygpS5klJALPdkyqeOSKigVJQDy6nycUOmycqV+7ZOQxKvzrwklMi1o8AhTUTn2QExlBVygJbYZoL58A==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      svelte: 4.2.11
     dev: true
 
   /svelte-render@2.0.0(svelte@4.2.11):

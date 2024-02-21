@@ -11,7 +11,8 @@
 	import * as Table from "@/registry/new-york/ui/table";
 	import Actions from "./data-table-actions.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { CaretSort, ChevronDown } from "radix-icons-svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import ChevronDown from "svelte-radix/ChevronDown.svelte";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";

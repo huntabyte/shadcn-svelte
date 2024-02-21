@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { ChevronDown, Circle, Plus, Star } from "radix-icons-svelte";
+	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import Circle from "svelte-radix/Circle.svelte";
+	import Plus from "svelte-radix/Plus.svelte";
+	import Star from "svelte-radix/Star.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Card from "@/registry/new-york/ui/card";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";

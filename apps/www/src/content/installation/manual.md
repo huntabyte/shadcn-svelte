@@ -35,10 +35,10 @@ If you're using the `default` style, install `lucide-svelte`:
 npm install lucide-svelte
 ```
 
-If you're using the `new-york` style, install `radix-icons`:
+If you're using the `new-york` style, install `svelte-radix`:
 
 ```bash
-npm install radix-icons-svelte
+npm install svelte-radix
 ```
 
 ### Configure path aliases

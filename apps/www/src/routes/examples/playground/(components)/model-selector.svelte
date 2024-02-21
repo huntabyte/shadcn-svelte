@@ -4,7 +4,7 @@
 	import type { ModelType, Model } from "../(data)/models";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Command from "@/registry/new-york/ui/command";
-	import { CaretSort } from "radix-icons-svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import { tick } from "svelte";
 	import ModelItem from "./model-item.svelte";
