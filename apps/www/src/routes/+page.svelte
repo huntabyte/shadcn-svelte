@@ -11,7 +11,7 @@
 	<PageHeader.Root class="pb-8">
 		<Announcement />
 		<PageHeader.Heading>Build your component library</PageHeader.Heading>
-		<PageHeader.Description>
+		<PageHeader.Description class="text-muted-foreground">
 			Beautifully designed components that you can copy and paste into your apps. Accessible.
 			Customizable. Open Source.
 		</PageHeader.Description>
