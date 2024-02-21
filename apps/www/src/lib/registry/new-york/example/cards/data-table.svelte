@@ -15,7 +15,8 @@
 	import { cn } from "$lib/utils";
 	import { Input } from "@/registry/new-york/ui/input";
 	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
-	import { ArrowUpDown, ChevronDown } from "lucide-svelte";
+	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import * as Card from "@/registry/new-york/ui/card";
 
 	type Payment = {

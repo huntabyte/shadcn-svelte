@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DotsHorizontal } from "radix-icons-svelte";
+	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 	import * as Dialog from "@/registry/new-york/ui/dialog";
 	import * as AlertDialog from "@/registry/new-york/ui/alert-dialog";
 	import { Button } from "@/registry/new-york/ui/button";

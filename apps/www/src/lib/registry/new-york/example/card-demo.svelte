@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Bell, Check } from "radix-icons-svelte";
+	import Bell from "svelte-radix/Bell.svelte";
+	import Check from "svelte-radix/Check.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Card from "@/registry/new-york/ui/card";
 	import { Switch } from "@/registry/new-york/ui/switch";

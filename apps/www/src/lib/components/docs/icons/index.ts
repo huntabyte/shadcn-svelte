@@ -1,29 +1,27 @@
-import type { Icon as LucideIcon } from "lucide-svelte";
-import {
-	AlertTriangle,
-	ArrowRight,
-	Check,
-	ChevronLeft,
-	ChevronRight,
-	ClipboardCheck,
-	Copy,
-	CreditCard,
-	File,
-	FileText,
-	HelpCircle,
-	Image,
-	Laptop,
-	Loader2,
-	Moon,
-	MoreVertical,
-	Pizza,
-	Plus,
-	Settings,
-	SunMedium,
-	Trash,
-	User,
-	X,
-} from "lucide-svelte";
+import AlertTriangle from "lucide-svelte/icons/alert-triangle";
+import ArrowRight from "lucide-svelte/icons/arrow-right";
+import Check from "lucide-svelte/icons/check";
+import ChevronLeft from "lucide-svelte/icons/chevron-left";
+import ChevronRight from "lucide-svelte/icons/chevron-right";
+import ClipboardCheck from "lucide-svelte/icons/clipboard-check";
+import Copy from "lucide-svelte/icons/copy";
+import CreditCard from "lucide-svelte/icons/credit-card";
+import File from "lucide-svelte/icons/file";
+import FileText from "lucide-svelte/icons/file-text";
+import HelpCircle from "lucide-svelte/icons/help-circle";
+import Image from "lucide-svelte/icons/image";
+import Laptop from "lucide-svelte/icons/laptop";
+import Loader2 from "lucide-svelte/icons/loader-2";
+import Moon from "lucide-svelte/icons/moon";
+import MoreVertical from "lucide-svelte/icons/more-vertical";
+import Pizza from "lucide-svelte/icons/pizza";
+import Plus from "lucide-svelte/icons/plus";
+import Settings from "lucide-svelte/icons/settings";
+import SunMedium from "lucide-svelte/icons/sun-medium";
+import Trash from "lucide-svelte/icons/trash";
+import User from "lucide-svelte/icons/user";
+import X from "lucide-svelte/icons/x";
+
 import Apple from "./apple.svelte";
 import Aria from "./aria.svelte";
 import GitHub from "./github.svelte";
@@ -37,8 +35,9 @@ import Tailwind from "./tailwind.svelte";
 import Yarn from "./yarn.svelte";
 import Twitter from "./twitter.svelte";
 import Hamburger from "./hamburger.svelte";
+import type { SvelteComponent } from "svelte";
 
-export type Icon = LucideIcon;
+export type Icon = SvelteComponent;
 
 export const Icons = {
 	logo: Logo,

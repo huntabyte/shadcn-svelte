@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { IconProps } from "lucide-svelte";
+	import type { SVGAttributes } from "svelte/elements";
 
-	type $$Props = IconProps;
+	type $$Props = SVGAttributes<SVGElement>;
 </script>
 
 <svg

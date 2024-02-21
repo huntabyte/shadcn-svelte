@@ -24,7 +24,8 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 ```svelte
 <script lang="ts">
-  import { Check, ChevronsUpDown } from "lucide-svelte";
+  import Check from "lucide-svelte/icons/check";
+  import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
   import * as Command from "@/registry/default/ui/command";
   import * as Popover from "@/registry/default/ui/popover";
   import { Button } from "@/registry/default/ui/button";

@@ -25,6 +25,8 @@
 </script>
 
 <script lang="ts">
+	import Check from "svelte-radix/Check.svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as Popover from "@/registry/new-york/ui/popover";
@@ -32,7 +34,6 @@
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import { tick } from "svelte";
-	import { Check, CaretSort } from "radix-icons-svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { buttonVariants } from "@/registry/default/ui/button";
 	import { toast } from "svelte-sonner";

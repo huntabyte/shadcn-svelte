@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rocket } from "radix-icons-svelte";
+	import Rocket from "svelte-radix/Rocket.svelte";
 	import * as Alert from "@/registry/new-york/ui/alert";
 </script>
 

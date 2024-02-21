@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Bold, Italic, Underline } from "lucide-svelte";
+	import Bold from "lucide-svelte/icons/bold";
+	import Italic from "lucide-svelte/icons/italic";
+	import Underline from "lucide-svelte/icons/underline";
 	import * as ToggleGroup from "@/registry/default/ui/toggle-group";
 </script>
 

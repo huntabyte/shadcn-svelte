@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { clickToCopyAction } from "svelte-legos";
 	import { cn } from "$lib/utils";
-	import { Check, Copy } from "radix-icons-svelte";
+	import Check from "svelte-radix/Check.svelte";
+	import Copy from "svelte-radix/Copy.svelte";
 	import { Button } from "@/registry/default/ui/button";
 	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
 

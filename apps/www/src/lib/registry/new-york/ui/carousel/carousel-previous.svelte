@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, type Props, buttonVariants } from "@/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import { ArrowLeft } from "radix-icons-svelte";
+	import ArrowLeft from "svelte-radix/ArrowLeft.svelte";
 	import type { VariantProps } from "tailwind-variants";
 	import { getEmblaContext } from "./context.js";
 

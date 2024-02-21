@@ -1,6 +1,6 @@
 <script lang="ts">
+	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import * as Collapsible from "@/registry/new-york/ui/collapsible";
-	import { CaretSort } from "radix-icons-svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 </script>
 

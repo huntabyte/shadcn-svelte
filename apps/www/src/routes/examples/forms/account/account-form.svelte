@@ -37,7 +37,9 @@
 </script>
 
 <script lang="ts">
-	import { Calendar as CalendarIcon, CaretSort, Check } from "radix-icons-svelte";
+	import CalendarIcon from "svelte-radix/Calendar.svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "svelte-radix/Check.svelte";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import * as Form from "@/registry/new-york/ui/form";

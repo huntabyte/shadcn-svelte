@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Calendar as CalendarIcon } from "radix-icons-svelte";
+	import CalendarIcon from "svelte-radix/Calendar.svelte";
 	import {
 		type DateValue,
 		DateFormatter,

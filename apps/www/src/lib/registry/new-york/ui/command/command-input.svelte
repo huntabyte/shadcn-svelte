@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Command as CommandPrimitive } from "cmdk-sv";
-	import { MagnifyingGlass } from "radix-icons-svelte";
+	import MagnifyingGlass from "svelte-radix/MagnifyingGlass.svelte";
 	import { cn } from "$lib/utils";
 
 	type $$Props = CommandPrimitive.InputProps;

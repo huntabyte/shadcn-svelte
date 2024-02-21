@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PlusCircled, Check } from "radix-icons-svelte";
+	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import Check from "svelte-radix/Check.svelte";
 	import * as Command from "@/registry/new-york/ui/command";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import { Button } from "@/registry/new-york/ui/button";

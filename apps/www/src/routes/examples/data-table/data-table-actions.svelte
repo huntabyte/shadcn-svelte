@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { Button } from "@/registry/new-york/ui/button";
-	import { DotsHorizontal } from "radix-icons-svelte";
+	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 
 	export let id: string;
 </script>

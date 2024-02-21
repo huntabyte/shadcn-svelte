@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types";
-	import { ChevronRight } from "lucide-svelte";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$components/docs";
 	import { cn } from "$lib/utils";

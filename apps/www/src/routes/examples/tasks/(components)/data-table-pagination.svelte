@@ -1,17 +1,14 @@
 <script lang="ts">
 	import { Button } from "@/registry/new-york/ui/button";
-	import {
-		ChevronRight,
-		ChevronLeft,
-		DoubleArrowRight,
-		DoubleArrowLeft,
-	} from "radix-icons-svelte";
+	import ChevronRight from "svelte-radix/ChevronRight.svelte";
+	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
+	import DoubleArrowRight from "svelte-radix/DoubleArrowRight.svelte";
+	import DoubleArrowLeft from "svelte-radix/DoubleArrowLeft.svelte";
 	import * as Select from "@/registry/new-york/ui/select";
 	import type { Task } from "../(data)/schemas";
-	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { TableViewModel } from "svelte-headless-table";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Task>;
 
 	const { pageRows, pluginStates, rows } = tableModel;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FontItalic } from "radix-icons-svelte";
+	import FontItalic from "svelte-radix/FontItalic.svelte";
 	import { Toggle } from "@/registry/new-york/ui/toggle";
 </script>
 

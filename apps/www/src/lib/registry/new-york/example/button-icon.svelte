@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronRight } from "radix-icons-svelte";
+	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 </script>
 
