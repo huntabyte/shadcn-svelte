@@ -25,6 +25,7 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { cn } from "$lib/utils";
 	import { browser } from "$app/environment";
+	import { tick } from "svelte";
 
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
 
@@ -36,6 +37,14 @@
 
 	function addUrl() {
 		$formData.urls = [...$formData.urls, ""];
+
+		tick().then(() => {
+			const urlInputs = Array.from(
+				document.querySelectorAll<HTMLElement>("#profile-form input[name='urls']")
+			);
+			const lastInput = urlInputs[urlInputs.length - 1];
+			lastInput && lastInput.focus();
+		});
 	}
 
 	$: selectedEmail = {
@@ -44,7 +53,7 @@
 	};
 </script>
 
-<form method="POST" class="space-y-8" use:enhance>
+<form method="POST" class="space-y-8" use:enhance id="profile-form">
 	<Form.Field {form} name="username">
 		<Form.Control let:attrs>
 			<Form.Label>Username</Form.Label>
