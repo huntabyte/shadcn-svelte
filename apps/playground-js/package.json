@@ -1,6 +1,6 @@
 {
 	"name": "playground-js",
-	"version": "0.0.3",
+	"version": "0.0.2",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
