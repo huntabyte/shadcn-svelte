@@ -19,7 +19,7 @@
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
 	import { Switch } from "@/registry/new-york/ui/switch";
 	import { zodClient } from "sveltekit-superforms/adapters";
-	import Checkbox from "@/registry/new-york/ui/checkbox/checkbox.svelte";
+	import { Checkbox } from "@/registry/new-york/ui/checkbox";
 	import { browser } from "$app/environment";
 
 	export let data: SuperValidated<Infer<NotificationFormSchema>>;
@@ -134,7 +134,7 @@
 					> page.
 				</Form.Description>
 			</div>
-			<input name={attrs.name} bind:value={$formData.mobile} hidden />
+			<input name={attrs.name} value={$formData.mobile} hidden />
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Update notifications</Form.Button>

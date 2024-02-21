@@ -82,10 +82,8 @@
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-start space-x-3">
 					<Form.Control let:attrs>
-						<!-- We pull out the name so it doesn't get used on the `Checkbox` underlying checkbox hidden input -->
-						{@const { name, ...rest } = attrs}
 						<Checkbox
-							{...rest}
+							{...attrs}
 							{checked}
 							onCheckedChange={(v) => {
 								if (v) {
@@ -98,8 +96,7 @@
 						<Form.Label class="font-normal">
 							{item.label}
 						</Form.Label>
-						<!-- Custom input since we are not using the standard `boolean` value -->
-						<input hidden type="checkbox" {name} value={item.id} {checked} />
+						<input hidden type="checkbox" name={attrs.name} value={item.id} {checked} />
 					</Form.Control>
 				</div>
 			{/each}

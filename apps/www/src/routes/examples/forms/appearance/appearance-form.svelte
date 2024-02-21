@@ -20,7 +20,7 @@
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
-	import Label from "@/registry/new-york/ui/label/label.svelte";
+	import { Label } from "@/registry/new-york/ui/label";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { cn } from "$lib/utils";
 	import { buttonVariants } from "@/registry/new-york/ui/button";
