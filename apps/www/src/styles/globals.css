@@ -4,8 +4,6 @@
 
 @layer base {
 	:root {
-		--font-geist-sans: "geist-sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-			Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 		--background: 0 0% 100%;
 		--foreground: 240 10% 3.9%;
 
