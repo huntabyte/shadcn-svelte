@@ -2,4 +2,4 @@
 "shadcn-svelte": minor
 ---
 
-Replaced `radix-icons-svelte` with [svelte-radix](https://github.com/shinokada/svelte-radix) for New York style
+feat: Replaced `radix-icons-svelte` with [svelte-radix](https://github.com/shinokada/svelte-radix) for New York style
