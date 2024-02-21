@@ -76,7 +76,7 @@ it("init (config-full)", async () => {
 
 	expect(execa).toHaveBeenCalledWith(
 		"pnpm",
-		["add", "tailwind-variants", "clsx", "tailwind-merge", "radix-icons-svelte"],
+		["add", "tailwind-variants", "clsx", "tailwind-merge", "svelte-radix"],
 		{ cwd: targetDir }
 	);
 

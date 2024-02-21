@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CalendarDays } from "lucide-svelte";
+	import CalendarDays from "lucide-svelte/icons/calendar-days";
 	import * as Avatar from "@/registry/default/ui/avatar";
 	import * as HoverCard from "@/registry/default/ui/hover-card";
 </script>

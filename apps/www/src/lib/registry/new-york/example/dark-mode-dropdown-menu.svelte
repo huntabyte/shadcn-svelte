@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { Sun, Moon } from "radix-icons-svelte";
+	import Sun from "svelte-radix/Sun.svelte";
+	import Moon from "svelte-radix/Moon.svelte";
 
 	import { setMode, resetMode } from "mode-watcher";
+	import { Button } from "@/registry/default/ui/button";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
 </script>
 
 <DropdownMenu.Root>

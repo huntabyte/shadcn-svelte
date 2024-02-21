@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronDown } from "radix-icons-svelte";
+	import ChevronDown from "svelte-radix/ChevronDown.svelte";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Card from "@/registry/new-york/ui/card";

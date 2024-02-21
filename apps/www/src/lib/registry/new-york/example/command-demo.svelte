@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { Calendar, EnvelopeClosed, Face, Gear, Person, Rocket } from "radix-icons-svelte";
+	import Calendar from "svelte-radix/Calendar.svelte";
+	import EnvelopeClosed from "svelte-radix/EnvelopeClosed.svelte";
+	import Face from "svelte-radix/Face.svelte";
+	import Gear from "svelte-radix/Gear.svelte";
+	import Person from "svelte-radix/Person.svelte";
+	import Rocket from "svelte-radix/Rocket.svelte";
+
 	import * as Command from "@/registry/new-york/ui/command";
 </script>
 

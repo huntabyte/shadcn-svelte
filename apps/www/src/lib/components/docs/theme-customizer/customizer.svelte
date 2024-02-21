@@ -1,9 +1,14 @@
 <script lang="ts">
+	import Check from "svelte-radix/Check.svelte";
+	import InfoCircled from "svelte-radix/InfoCircled.svelte";
+	import Moon from "svelte-radix/Moon.svelte";
+	import Reset from "svelte-radix/Reset.svelte";
+	import Sun from "svelte-radix/Sun.svelte";
+
 	import { config } from "@/stores";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import { ThemeWrapper } from "@/components/docs";
-	import { Check, InfoCircled, Moon, Reset, Sun } from "radix-icons-svelte";
 	import { Label } from "@/registry/new-york/ui/label";
 	import { cn } from "@/utils";
 	import { themes } from "@/registry";

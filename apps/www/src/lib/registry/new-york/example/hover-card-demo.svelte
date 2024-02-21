@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Calendar } from "radix-icons-svelte";
+	import Calendar from "svelte-radix/Calendar.svelte";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
 	import * as HoverCard from "@/registry/new-york/ui/hover-card";
 </script>

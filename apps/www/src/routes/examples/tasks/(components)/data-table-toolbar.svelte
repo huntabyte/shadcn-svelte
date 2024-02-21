@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { Input } from "@/registry/new-york/ui/input";
 	import { DataTableFacetedFilter, DataTableViewOptions } from ".";
-	import type { AnyPlugins } from "svelte-headless-table/lib/types/TablePlugin";
 	import type { Task } from "../(data)/schemas";
-	import type { TableViewModel } from "svelte-headless-table/lib/createViewModel";
+	import type { TableViewModel } from "svelte-headless-table";
 	import Button from "@/registry/new-york/ui/button/button.svelte";
-	import { Cross2 } from "radix-icons-svelte";
+	import Cross2 from "svelte-radix/Cross2.svelte";
 	import { statuses, priorities } from "../(data)/data";
 	import type { Writable } from "svelte/store";
 
-	export let tableModel: TableViewModel<Task, AnyPlugins>;
+	export let tableModel: TableViewModel<Task>;
 
 	const { pluginStates } = tableModel;
 	const {

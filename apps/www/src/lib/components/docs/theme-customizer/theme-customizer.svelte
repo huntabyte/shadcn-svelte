@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Check from "svelte-radix/Check.svelte";
+
 	import * as Popover from "@/registry/new-york/ui/popover";
 	import * as Drawer from "@/registry/new-york/ui/drawer";
 	import * as Tooltip from "@/registry/new-york/ui/tooltip";
@@ -6,9 +8,8 @@
 	import { mode } from "mode-watcher";
 	import { themes } from "@/registry";
 	import { cn } from "@/utils";
-	import { Check } from "radix-icons-svelte";
 	import Button from "@/registry/new-york/ui/button/button.svelte";
-	import { Paintbrush } from "lucide-svelte";
+	import Paintbrush from "lucide-svelte/icons/paintbrush";
 	import { Customizer, ThemeCopyCodeButton } from ".";
 
 	const colors = ["zinc", "rose", "blue", "green", "orange"];

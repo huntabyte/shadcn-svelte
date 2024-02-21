@@ -1,6 +1,7 @@
 <script lang="ts">
+	import Sun from "svelte-radix/Sun.svelte";
+	import Moon from "svelte-radix/Moon.svelte";
 	import { Button } from "@/registry/default/ui/button";
-	import { Sun, Moon } from "radix-icons-svelte";
 
 	import { toggleMode } from "mode-watcher";
 </script>

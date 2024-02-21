@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { Circle, File, Laptop, Moon, Sun } from "radix-icons-svelte";
+	import Circle from "svelte-radix/Circle.svelte";
+	import File from "svelte-radix/File.svelte";
+	import Laptop from "svelte-radix/Laptop.svelte";
+	import Moon from "svelte-radix/Moon.svelte";
+	import Sun from "svelte-radix/Sun.svelte";
 	import * as Command from "@/registry/new-york/ui/command";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { onMount } from "svelte";

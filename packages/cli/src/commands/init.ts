@@ -278,7 +278,7 @@ export async function runInit(cwd: string, config: Config) {
 	// TODO: add support for other icon libraries.
 	const deps = [
 		...PROJECT_DEPENDENCIES,
-		config.style === "new-york" ? "radix-icons-svelte" : "lucide-svelte",
+		config.style === "new-york" ? "svelte-radix" : "lucide-svelte",
 	];
 
 	await execa(packageManager, [packageManager === "npm" ? "install" : "add", ...deps], {

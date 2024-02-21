@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { ArrowDown, ArrowUp, CaretSort } from "radix-icons-svelte";
+	import ArrowDown from "svelte-radix/ArrowDown.svelte";
+	import ArrowUp from "svelte-radix/ArrowUp.svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { cn } from "@/utils";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";

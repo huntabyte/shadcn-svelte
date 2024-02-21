@@ -32,7 +32,8 @@
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { cn } from "@/utils";
 	import { tick } from "svelte";
-	import { Check, CaretSort } from "radix-icons-svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { buttonVariants } from "@/registry/default/ui/button";
 	import { toast } from "svelte-sonner";
@@ -81,7 +82,7 @@
 				>
 					{languages.find((f) => f.value === $formData.language)?.label ??
 						"Select language"}
-					<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
 				<input hidden value={$formData.language} name={attrs.name} />
 			</Form.Control>

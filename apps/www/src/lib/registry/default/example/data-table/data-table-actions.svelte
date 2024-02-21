@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
 	import { Button } from "@/registry/default/ui/button";
-	import { MoreHorizontal } from "lucide-svelte";
+	import MoreHorizontal from "lucide-svelte/icons/more-horizontal";
 
 	export let id: string;
 </script>

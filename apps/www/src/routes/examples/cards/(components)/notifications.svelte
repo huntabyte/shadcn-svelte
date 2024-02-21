@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Bell, EyeNone, Person } from "radix-icons-svelte";
+	import Bell from "svelte-radix/Bell.svelte";
+	import EyeNone from "svelte-radix/EyeNone.svelte";
+	import Person from "svelte-radix/Person.svelte";
 	import * as Card from "@/registry/new-york/ui/card";
 </script>
 

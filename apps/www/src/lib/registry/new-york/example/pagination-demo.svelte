@@ -1,6 +1,7 @@
 <script lang="ts">
+	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
+	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import * as Pagination from "@/registry/new-york/ui/pagination";
-	import { ChevronLeft, ChevronRight } from "radix-icons-svelte";
 	import { mediaQuery } from "svelte-legos";
 
 	const isDesktop = mediaQuery("(min-width: 768px)");

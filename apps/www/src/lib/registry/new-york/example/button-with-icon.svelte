@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { EnvelopeOpen } from "radix-icons-svelte";
+	import EnvelopeOpen from "svelte-radix/EnvelopeOpen.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 </script>
 

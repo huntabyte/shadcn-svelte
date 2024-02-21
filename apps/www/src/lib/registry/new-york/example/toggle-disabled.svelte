@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Underline } from "radix-icons-svelte";
+	import Underline from "svelte-radix/Underline.svelte";
 	import { Toggle } from "@/registry/new-york/ui/toggle";
 </script>
 

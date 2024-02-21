@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { ArrowUpCircle, CheckCircle2, Circle, HelpCircle, XCircle } from "lucide-svelte";
+	import ArrowUpCircle from "lucide-svelte/icons/arrow-up-circle";
+	import CheckCircle2 from "lucide-svelte/icons/check-circle-2";
+	import Circle from "lucide-svelte/icons/circle";
+	import HelpCircle from "lucide-svelte/icons/help-circle";
+	import XCircle from "lucide-svelte/icons/x-circle";
 	import * as Command from "@/registry/default/ui/command";
 	import * as Popover from "@/registry/default/ui/popover";
 	import { Button } from "@/registry/default/ui/button";

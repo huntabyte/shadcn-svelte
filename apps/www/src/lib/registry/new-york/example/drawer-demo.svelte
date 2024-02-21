@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Minus from "svelte-radix/Minus.svelte";
+	import Plus from "svelte-radix/Plus.svelte";
 	import { Button } from "@/registry/new-york/ui/button";
 	import * as Drawer from "@/registry/new-york/ui/drawer";
-	import { Minus, Plus } from "radix-icons-svelte";
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
 
 	const data = [
