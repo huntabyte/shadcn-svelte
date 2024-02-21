@@ -7,6 +7,28 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## February 2024 (Part 2) - Updated Icon Imports
+
+After some feedback about dev server performance, we've updated the way we import icons. With this change, we decided to move away from the unmaintained `radix-icons-svelte` to [svelte-radix](https://github.com/shinokada/svelte-radix) (shoutout to [shinokada](https://github.com/shinokada) for maintianed this package) for the `new-york` style.
+
+Instead of importing icons like this:
+
+```ts
+import { Check } from "lucide-svelte";
+// or
+import { Check } from "radix-icons-svelte";
+```
+
+We now import them directly, like this:
+
+```ts
+import AlertCircle from "lucide-svelte/icons/alert-circle";
+// or
+import Check from "svelte-radix/Check.svelte";
+```
+
+By doing this, we prevent Vite from optimizing the entire icon collections, and instead only optimize the icons that are actually used in your project. From what we've seen, this has a massive impact on dev server performance, enjoy! 🚀
+
 ## February 2024 - Major Forms Update
 
 Formsnap has been completely rewritten to be more flexible, easier to use, and less opinionated. This means we've had to make some changes to the way we use it in `shadcn-svelte`, but once you get the hang of it, you'll find it's much more powerful and less restrictive than the previous iteration.
