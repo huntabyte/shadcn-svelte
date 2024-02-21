@@ -46,6 +46,7 @@
 					> page.
 				</Form.Description>
 			</div>
+			<input name={attrs.name} value={$formData.mobile} hidden />
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>

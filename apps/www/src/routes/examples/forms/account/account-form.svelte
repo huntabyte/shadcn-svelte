@@ -138,7 +138,7 @@
 						"Select a language"}
 					<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
-				<input hidden bind:value={$formData.language} name={attrs.name} />
+				<input hidden value={$formData.language} name={attrs.name} />
 			</Form.Control>
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>

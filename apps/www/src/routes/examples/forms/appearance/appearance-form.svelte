@@ -20,7 +20,7 @@
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
-	import Label from "@/registry/new-york/ui/label/label.svelte";
+	import { Label } from "@/registry/new-york/ui/label";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { cn } from "$lib/utils";
 	import { buttonVariants } from "@/registry/new-york/ui/button";
@@ -69,7 +69,7 @@
 				<Label class="[&:has([data-state=checked])>div]:border-primary">
 					<RadioGroup.Item {...attrs} value="light" class="sr-only" />
 					<div
-						class="items-center rounded-md border-2 border-muted p-1 hover:border-accent"
+						class="border-muted hover:border-accent items-center rounded-md border-2 p-1"
 					>
 						<div class="space-y-2 rounded-sm bg-[#ecedef] p-2">
 							<div class="space-y-2 rounded-md bg-white p-2 shadow-sm">
@@ -97,7 +97,7 @@
 				<Label class="[&:has([data-state=checked])>div]:border-primary">
 					<RadioGroup.Item {...attrs} value="dark" class="sr-only" />
 					<div
-						class="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground"
+						class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground items-center rounded-md border-2 p-1"
 					>
 						<div class="space-y-2 rounded-sm bg-slate-950 p-2">
 							<div class="space-y-2 rounded-md bg-slate-800 p-2 shadow-sm">
