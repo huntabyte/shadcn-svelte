@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.3.1
     version: 1.3.1
   bits-ui:
-    specifier: 0.17.0
-    version: 0.17.0(svelte@4.2.11)
+    specifier: 0.18.2
+    version: 0.18.2(svelte@4.2.11)
   cmdk-sv:
     specifier: ^0.0.12
     version: 0.0.12(svelte@4.2.11)
@@ -993,8 +993,8 @@ packages:
       svelte: 4.2.11
     dev: false
 
-  /@melt-ui/svelte@0.71.2(svelte@4.2.11):
-    resolution: {integrity: sha512-GDUErhAphEoEOLpcBjQ84BgzRR6M3344fQE4QYFffwT7aedWak7CvNsECgeig1Y5xvfDmeEaFnGlOQXIBucJYw==}
+  /@melt-ui/svelte@0.74.2(svelte@4.2.11):
+    resolution: {integrity: sha512-bIfZakPK4h6mOeoeqFnpksUGxkGp5JO2xtfhv/eXjG2rTogsSeVZRPe8eTtE7HoCbokP1+mVM9LqWxipsYTjUA==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
@@ -1003,7 +1003,7 @@ packages:
       '@internationalized/date': 3.5.1
       dequal: 2.0.3
       focus-trap: 7.5.2
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -2024,14 +2024,14 @@ packages:
       svelte: 4.2.11
     dev: false
 
-  /bits-ui@0.17.0(svelte@4.2.11):
-    resolution: {integrity: sha512-K73jjco1qPmvGXMQtTkZG6K36UmNrPR21u+C1jzoRWmF3NnUfDP4hPJnAci0LosUycfvOxtaHB1M4awvLvQXyQ==}
+  /bits-ui@0.18.2(svelte@4.2.11):
+    resolution: {integrity: sha512-N58gPRPmkWUjRZzxH69hPEPNYjGa+wvYGqdBSYhGp0DzfAkqNeXLN7YN3qqpJxF+DFFBz5kLia6LzNLX5djuPA==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       '@internationalized/date': 3.5.1
-      '@melt-ui/svelte': 0.71.2(svelte@4.2.11)
-      nanoid: 5.0.4
+      '@melt-ui/svelte': 0.74.2(svelte@4.2.11)
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -2041,7 +2041,7 @@ packages:
       svelte: ^4.0.0
     dependencies:
       '@melt-ui/svelte': 0.61.2(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -4365,7 +4365,6 @@ packages:
     resolution: {integrity: sha512-/Veqm+QKsyMY3kqi4faWplnY1u+VuKO3dD2binyPIybP31DRO29bPF+1mszgLnrR2KqSLceFLBNw0zmvDzN1QQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
-    dev: true
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
