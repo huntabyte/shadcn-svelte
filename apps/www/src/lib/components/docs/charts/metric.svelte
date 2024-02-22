@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "./metric.pcss";
 	import { VisXYContainer, VisLine, VisTooltip, VisScatter, VisCrosshair } from "@unovis/svelte";
 	import {
 		lineColors,
@@ -37,11 +38,3 @@
 	/>
 	<VisCrosshair template={tooltipTemplate} color={crosshairPointColors} />
 </VisXYContainer>
-
-<style>
-	:global(:root) {
-		--vis-tooltip-padding: "0px";
-		--vis-tooltip-background-color: "transparent";
-		--vis-tooltip-border-color: "transparent";
-	}
-</style>
