@@ -9,6 +9,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as Select from "@/registry/new-york/ui/select";
@@ -66,5 +67,7 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

@@ -25,6 +25,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import Check from "svelte-radix/Check.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { page } from "$app/stores";
@@ -118,5 +119,7 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

@@ -7,6 +7,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/default/ui/form";
 	import { Checkbox } from "@/registry/default/ui/checkbox";
@@ -50,5 +51,7 @@
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

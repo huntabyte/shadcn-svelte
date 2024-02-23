@@ -8,6 +8,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import * as Form from "@/registry/default/ui/form";
 	import { Input } from "@/registry/default/ui/input";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
@@ -39,7 +40,8 @@
 		<Form.Description>This is your public display name.</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
-
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

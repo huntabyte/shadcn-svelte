@@ -9,6 +9,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import CalendarIcon from "lucide-svelte/icons/calendar";
 	import {
@@ -96,5 +97,7 @@
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

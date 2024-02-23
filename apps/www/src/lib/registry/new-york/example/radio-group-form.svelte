@@ -10,6 +10,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "@/registry/new-york/ui/form";
 	import * as RadioGroup from "@/registry/new-york/ui/radio-group";
@@ -61,5 +62,7 @@
 		<Form.FieldErrors />
 	</Form.Fieldset>
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>

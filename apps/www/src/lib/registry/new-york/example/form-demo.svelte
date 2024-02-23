@@ -8,6 +8,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from "$app/environment";
 	import * as Form from "@/registry/new-york/ui/form";
 	import { Input } from "@/registry/new-york/ui/input";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
@@ -42,5 +43,7 @@
 	</Form.Field>
 
 	<Form.Button>Submit</Form.Button>
-	<SuperDebug data={$formData} />
+	{#if browser}
+		<SuperDebug data={$formData} />
+	{/if}
 </form>
