@@ -1,5 +1,4 @@
 <script lang="ts">
-	import "./metric.pcss";
 	import { VisXYContainer, VisLine, VisTooltip, VisScatter, VisCrosshair } from "@unovis/svelte";
 	import {
 		lineColors,
@@ -25,7 +24,12 @@
 	const y = [(d: Data) => d.today, (d: Data) => d.average];
 </script>
 
-<VisXYContainer {data} height={200} margin={{ top: 5, right: 10, left: 10, bottom: 0 }}>
+<VisXYContainer
+	class="vis-xy-container"
+	{data}
+	height={200}
+	margin={{ top: 5, right: 10, left: 10, bottom: 0 }}
+>
 	<VisTooltip />
 	<VisLine {x} {y} lineWidth={1} color={lineColors} />
 	<VisScatter
@@ -38,3 +42,11 @@
 	/>
 	<VisCrosshair template={tooltipTemplate} color={crosshairPointColors} />
 </VisXYContainer>
+
+<style>
+	:global(.vis-xy-container) {
+		--vis-tooltip-padding: "0px";
+		--vis-tooltip-background-color: "transparent";
+		--vis-tooltip-border-color: "transparent";
+	}
+</style>
