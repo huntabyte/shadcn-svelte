@@ -83,8 +83,6 @@ npx shadcn-svelte@latest add textarea
 
 ### Form
 
-When using the textarea in a form, you'll want to use the `<Form.Textarea />` component, which is a wrapper around your existing `<Textarea />` with some additional functionality for seamless form integration.
-
 <ComponentPreview name="textarea-form">
 
 <div />
