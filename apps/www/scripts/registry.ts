@@ -11,6 +11,7 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
 	["embla-carousel-svelte", []],
+	["paneforge", []],
 ]);
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
