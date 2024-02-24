@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Select from "@/registry/new-york/ui/select";
 	import { cn } from "@/utils";
-	import type { Account } from "./data";
+	import type { Account } from "../data.js";
 
 	export let isCollapsed: boolean;
 	export let accounts: Account[];
@@ -45,7 +45,7 @@
 					<svelte:component
 						this={account.icon}
 						aria-hidden="true"
-						class="size-4 shrink-0 text-foreground"
+						class="text-foreground size-4 shrink-0"
 					/>
 					{account.email}
 				</Select.Item>

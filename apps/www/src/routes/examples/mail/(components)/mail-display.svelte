@@ -20,7 +20,7 @@
 	import { Switch } from "@/registry/new-york/ui/switch";
 	import { Textarea } from "@/registry/new-york/ui/textarea";
 	import * as Tooltip from "@/registry/new-york/ui/tooltip";
-	import type { Mail } from "./data";
+	import type { Mail } from "../data.js";
 
 	export let mail: Mail | null = null;
 

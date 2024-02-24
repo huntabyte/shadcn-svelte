@@ -1,17 +1,17 @@
 <script lang="ts">
 	import AccountSwitcher from "./account-switcher.svelte";
-	import { primaryRoutes, secondaryRoutes } from "./config";
+	import { primaryRoutes, secondaryRoutes } from "../config.js";
 	import MailDisplay from "./mail-display.svelte";
 	import MailList from "./mail-list.svelte";
 	import Nav from "./nav.svelte";
-	import { mailStore } from "./store";
+	import { mailStore } from "../store.js";
 	import { cn } from "@/utils";
 	import { Input } from "@/registry/new-york/ui/input";
 	import * as Resizable from "@/registry/new-york/ui/resizable";
 	import { Separator } from "@/registry/new-york/ui/select";
 	import * as Tabs from "@/registry/new-york/ui/tabs";
 	import Search from "lucide-svelte/icons/search";
-	import type { Account, Mail } from "./data";
+	import type { Account, Mail } from "../data.js";
 
 	export let accounts: Account[];
 	export let mails: Mail[];

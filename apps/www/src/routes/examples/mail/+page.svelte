@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { accounts, mails } from "./data";
-	import Mail from "./mail.svelte";
+	import Mail from "./(components)/mail.svelte";
 
 	export let data;
 </script>

@@ -2,7 +2,7 @@
 	import { Button } from "@/registry/new-york/ui/button";
 	import { cn } from "$lib/utils";
 	import * as Tooltip from "@/registry/new-york/ui/tooltip";
-	import type { Route } from "./config";
+	import type { Route } from "../config.js";
 
 	export let isCollapsed: boolean;
 	export let routes: Route[];
@@ -34,7 +34,7 @@
 					<Tooltip.Content side="right" class="flex items-center gap-4">
 						{route.title}
 						{#if route.label}
-							<span class="ml-auto text-muted-foreground">
+							<span class="text-muted-foreground ml-auto">
 								{route.label}
 							</span>
 						{/if}
@@ -46,7 +46,7 @@
 					variant={route.variant}
 					size="sm"
 					class={cn("justify-start", {
-						"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white":
+						"dark:bg-muted dark:hover:bg-muted dark:text-white dark:hover:text-white":
 							route.variant === "default",
 					})}
 				>

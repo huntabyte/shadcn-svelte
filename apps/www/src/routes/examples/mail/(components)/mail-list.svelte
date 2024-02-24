@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { cn } from "@/utils";
-	import { mailStore } from "./store";
-	import type { Mail } from "./data";
+	import { mailStore } from "../store.js";
+	import type { Mail } from "../data.js";
 	import { Badge } from "@/registry/new-york/ui/badge";
-	import { formatTimeAgo } from "./utils";
+	import { formatTimeAgo } from "../utils.js";
 
 	export let items: Mail[];
 
@@ -26,7 +26,7 @@
 		{#each items as item}
 			<button
 				class={cn(
-					"flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
+					"hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
 					$mailStore.selected === item.id && "bg-muted"
 				)}
 				on:click={() => mailStore.setMail(item.id)}
@@ -52,7 +52,7 @@
 					</div>
 					<div class="text-xs font-medium">{item.subject}</div>
 				</div>
-				<div class="line-clamp-2 text-xs text-muted-foreground">
+				<div class="text-muted-foreground line-clamp-2 text-xs">
 					{item.text.substring(0, 300)}
 				</div>
 				{#if item.labels.length}
