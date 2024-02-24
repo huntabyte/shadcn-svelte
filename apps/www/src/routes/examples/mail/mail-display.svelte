@@ -1,6 +1,6 @@
 <script lang="ts">
 	// import Time, { dayjs } from 'svelte-time';
-	import { today, getLocalTimeZone } from "@internationalized/date";
+	import { getLocalTimeZone, DateFormatter, now, getDayOfWeek } from "@internationalized/date";
 
 	import Archive from "lucide-svelte/icons/archive";
 	import ArchiveX from "lucide-svelte/icons/archive-x";
@@ -25,7 +25,26 @@
 
 	export let mail: Mail | null = null;
 
-	let value = today(getLocalTimeZone());
+	const fullFormatter = new DateFormatter("en-US", {
+		dateStyle: "medium",
+		timeStyle: "medium",
+	});
+
+	const relativeFormatter = new DateFormatter("en-US", {
+		weekday: "short",
+		hour: "2-digit",
+		minute: "2-digit",
+		hourCycle: "h12",
+	});
+	let todayDate = now(getLocalTimeZone());
+
+	function getClosestWeekend() {
+		const dayOfWeek = getDayOfWeek(todayDate, "en-US");
+		if (dayOfWeek === 6) {
+			return todayDate.toDate();
+		}
+		return todayDate.add({ days: 6 - dayOfWeek }).toDate();
+	}
 </script>
 
 <div class="flex h-full flex-col">
@@ -104,39 +123,36 @@
 								<Button variant="ghost" class="justify-start font-normal">
 									Later today
 									<span class="text-muted-foreground ml-auto">
-										<!-- <Time
-											timestamp={dayjs().add(4, "hours")}
-											format="ddd, h:mm A"
-										/> -->
+										{relativeFormatter.format(
+											todayDate.add({ hours: 4 }).toDate()
+										)}
 									</span>
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Tomorrow
 									<span class="text-muted-foreground ml-auto">
-										<!-- <Time
-											timestamp={dayjs().add(1, "day")}
-											format="ddd, h:mm A"
-										/> -->
+										{relativeFormatter.format(
+											todayDate.add({ days: 1 }).toDate()
+										)}
 									</span>
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									This weekend
 									<span class="text-muted-foreground ml-auto">
-										<!-- <Time timestamp={dayjs().day(6)} format="ddd, h:mm A" /> -->
+										{relativeFormatter.format(getClosestWeekend())}
 									</span>
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Next week
 									<span class="text-muted-foreground ml-auto">
-										<!-- <Time
-											timestamp={dayjs().add(1, "week")}
-											format="ddd, h:mm A"
-										/> -->
+										{relativeFormatter.format(
+											todayDate.add({ weeks: 1 }).toDate()
+										)}
 									</span>
 								</Button>
 							</div>
 						</div>
-						<Calendar bind:value initialFocus class="p-2" />
+						<Calendar bind:value={todayDate} initialFocus class="p-2" />
 					</Popover.Content>
 				</Popover.Root>
 				<Tooltip.Content>Snooze</Tooltip.Content>
@@ -212,7 +228,7 @@
 				</div>
 				{#if mail.date}
 					<div class="text-muted-foreground ml-auto text-xs">
-						<!-- <Time timestamp={new Date(mail.date)} format="MMM D, YYYY, h:mm:ss A" /> -->
+						{fullFormatter.format(new Date(mail.date))}
 					</div>
 				{/if}
 			</div>
