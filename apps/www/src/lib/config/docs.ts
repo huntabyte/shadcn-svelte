@@ -246,6 +246,12 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/range-calendar",
 					items: [],
 				},
+				{
+					title: "Resizable",
+					href: "/docs/components/resizable",
+					items: [],
+					label: "New",
+				},
 				// {
 				//   title: "Scroll Area",
 				//   href: "#",

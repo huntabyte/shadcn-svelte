@@ -7,7 +7,19 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
-## February 2024 (Part 2) - Updated Icon Imports
+## February 2024
+
+### New Component: Resizable
+
+We've added a new component to the project, [Resizable](/docs/components/resizable), which is built on top of [PaneForge](https://paneforge.com). PaneForge is still in an early stage, so be sure to raise any issues you find with the library on the [PaneForge GitHub](https://github.com/svecosystem/paneforge).
+
+<ComponentPreview name="resizable-demo">
+	
+<div />
+
+</ComponentPreview>
+
+### Updated Icon Imports
 
 After some feedback about dev server performance, we've updated the way we import icons. With this change, we've decided to move away from the unmaintained `radix-icons-svelte` package to [svelte-radix](https://github.com/shinokada/svelte-radix) for the `new-york` style.
 
@@ -29,7 +41,7 @@ import Check from "svelte-radix/Check.svelte";
 
 With deep imports, we're preventing Vite from optimizing the entire icon collections, and instead only optimizing the icons that are actually used in your project. From what we've seen, this has a massive impact on dev server performance. Enjoy! 🚀
 
-## February 2024 - Major Forms Update
+### Major Forms Update
 
 Formsnap has been completely rewritten to be more flexible, easier to use, and less opinionated. This means we've had to make some changes to the way we use it in `shadcn-svelte`, but once you get the hang of it, you'll find it's much more powerful and less restrictive than the previous iteration.
 
@@ -39,7 +51,11 @@ All of the `Form` components have been updated to use the new API, and you can s
 
 Visit the [Formsnap](https://formsnap.dev) documentation (which has also been updated) to learn more about the new API and how its used.
 
-## January 2024 - Part 2
+## January 2024
+
+We've added four new components to the project, [Carousel](/docs/components/carousel), [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).
+
+### New Component: Carousel
 
 We've added a new component to the project, [Carousel](/docs/components/carousel).
 
@@ -49,11 +65,7 @@ We've added a new component to the project, [Carousel](/docs/components/carousel
 
 </ComponentPreview>
 
-## January 2024
-
-We've added three new components to the project, [Drawer](/docs/components/drawer), [Sonner](/docs/components/sonner), & [Pagination](/docs/components/pagination).
-
-### Drawer
+### New Component: Drawer
 
 The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a port of [vaul](https://vaul.emilkowalski.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
 
@@ -63,7 +75,7 @@ The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a po
 
 </ComponentPreview>
 
-### Sonner
+### New Component: Sonner
 
 The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
 
@@ -73,7 +85,7 @@ The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel
 
 </ComponentPreview>
 
-### Pagination
+### New Component: Pagination
 
 Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagination) component from Bits UI.
 
@@ -87,7 +99,7 @@ Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagina
 
 We've added three new components to the project, [Calendar](/docs/components/calendar), [Range Calendar](/docs/components/range-calendar), & [Date Picker](/docs/components/date-picker).
 
-### Calendar
+### New Component: Calendar
 
 <ComponentPreview name="calendar-demo">
 
@@ -95,7 +107,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 </ComponentPreview>
 
-### Range Calendar
+### New Component: Range Calendar
 
 <ComponentPreview name="range-calendar-demo">
 
@@ -103,7 +115,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 </ComponentPreview>
 
-### Date Picker
+### New Component: Date Picker
 
 <ComponentPreview name="date-picker-demo">
 
@@ -111,7 +123,9 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 </ComponentPreview>
 
-## November 2023 - Toggle Group
+## November 2023
+
+### New Component: Toggle Group
 
 We've added a new component to the library, [Toggle Group](/docs/components/toggle-group).
 
@@ -121,7 +135,7 @@ We've added a new component to the library, [Toggle Group](/docs/components/togg
 
 </ComponentPreview>
 
-## October 2023 - New Components & Updates
+## October 2023
 
 We've added two new components to the library, [Command](/docs/components/command) & [Combobox](/docs/components/combobox). We've also made some updates to the `<Form.Label />` component that you'll want to be aware of.
 
