@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/new-york/ui/button";
 	import { cn } from "$lib/utils";
-	import * as Tooltip from "@/registry/default/ui/tooltip";
+	import * as Tooltip from "@/registry/new-york/ui/tooltip";
 	import type { Route } from "./config";
 
 	export let isCollapsed: boolean;
@@ -45,20 +45,18 @@
 					href="#"
 					variant={route.variant}
 					size="sm"
-					class={cn(
-						route.variant === "default" &&
-							"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-						"justify-start"
-					)}
+					class={cn("justify-start", {
+						"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white":
+							route.variant === "default",
+					})}
 				>
 					<svelte:component this={route.icon} class="mr-2 size-4" aria-hidden="true" />
 					{route.title}
 					{#if route.label}
 						<span
-							class={cn(
-								"ml-auto",
-								route.variant === "default" && "text-background dark:text-white"
-							)}
+							class={cn("ml-auto", {
+								"text-background dark:text-white": route.variant === "default",
+							})}
 						>
 							{route.label}
 						</span>

@@ -3,7 +3,7 @@
 	import { cn } from "@/utils";
 	import { mailStore } from "./store";
 	import type { Mail } from "./data";
-	import { Badge } from "@/registry/default/ui/badge";
+	import { Badge } from "@/registry/new-york/ui/badge";
 
 	export let items: Mail[];
 

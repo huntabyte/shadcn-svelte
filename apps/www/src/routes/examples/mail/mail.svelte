@@ -6,10 +6,10 @@
 	import Nav from "./nav.svelte";
 	import { mailStore } from "./store";
 	import { cn } from "@/utils";
-	import { Input } from "@/registry/default/ui/input";
-	import * as Resizable from "@/registry/default/ui/resizable";
-	import { Separator } from "@/registry/default/ui/select";
-	import * as Tabs from "@/registry/default/ui/tabs";
+	import { Input } from "@/registry/new-york/ui/input";
+	import * as Resizable from "@/registry/new-york/ui/resizable";
+	import { Separator } from "@/registry/new-york/ui/select";
+	import * as Tabs from "@/registry/new-york/ui/tabs";
 	import Search from "lucide-svelte/icons/search";
 	import type { Account, Mail } from "./data";
 

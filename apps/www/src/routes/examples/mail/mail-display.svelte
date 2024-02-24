@@ -11,16 +11,16 @@
 	import ReplyAll from "lucide-svelte/icons/reply-all";
 	import Trash2 from "lucide-svelte/icons/trash-2";
 
-	import * as Avatar from "@/registry/default/ui/avatar";
-	import { Button } from "@/registry/default/ui/button";
-	import { Calendar } from "@/registry/default/ui/calendar";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { Label } from "@/registry/default/ui/label";
-	import * as Popover from "@/registry/default/ui/popover";
-	import { Separator } from "@/registry/default/ui/separator";
-	import { Switch } from "@/registry/default/ui/switch";
-	import { Textarea } from "@/registry/default/ui/textarea";
-	import * as Tooltip from "@/registry/default/ui/tooltip";
+	import * as Avatar from "@/registry/new-york/ui/avatar";
+	import { Button } from "@/registry/new-york/ui/button";
+	import { Calendar } from "@/registry/new-york/ui/calendar";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import { Label } from "@/registry/new-york/ui/label";
+	import * as Popover from "@/registry/new-york/ui/popover";
+	import { Separator } from "@/registry/new-york/ui/separator";
+	import { Switch } from "@/registry/new-york/ui/switch";
+	import { Textarea } from "@/registry/new-york/ui/textarea";
+	import * as Tooltip from "@/registry/new-york/ui/tooltip";
 	import type { Mail } from "./data";
 
 	export let mail: Mail | null = null;
