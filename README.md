@@ -17,6 +17,16 @@ Accessible and customizable components that you can copy and paste into your app
 
 Visit https://shadcn-svelte.com/docs to view the documentation.
 
+## Sponsors
+
+This project is made possible by the following beautiful people/organizations:
+
+<p align="center">
+  <a href="https://github.com/sponsors/huntabyte">
+    <img src='https://cdn.jsdelivr.net/gh/huntabyte/static/sponsors.svg' alt="Logos from Sponsors" />
+  </a>
+</p>
+
 ## License
 
 <!-- automd:contributors license=MIT author="huntabyte" -->
