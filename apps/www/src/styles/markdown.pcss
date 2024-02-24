@@ -39,6 +39,13 @@
 	@apply inline-block min-h-[1.5rem] w-full px-4 py-0.5;
 }
 
+[data-rehype-pretty-code-figure]
+	> pre[data-language="txt"]
+	> code[data-language="txt"]
+	span[data-line] {
+	color: white;
+}
+
 [data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
 	@apply px-2;
 }
