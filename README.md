@@ -19,7 +19,7 @@ Visit https://shadcn-svelte.com/docs to view the documentation.
 
 ## Sponsors
 
-This project is made possible by the following beautiful people/organizations:
+This project is supported by the following beautiful people/organizations:
 
 <p align="center">
   <a href="https://github.com/sponsors/huntabyte">
