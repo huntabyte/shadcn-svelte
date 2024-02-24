@@ -31,17 +31,17 @@
 	 * I thought the backticks would automatically convert the JSON to a proper string that meets all these conditions https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse?
 	 */
 	function onLayoutChange(sizes: number[]) {
-		// document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
+		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
 	}
 
 	function onCollapse() {
 		isCollapsed = true;
-		// document.cookie = `PaneForge:collapsed=${JSON.stringify(true)}`;
+		document.cookie = `PaneForge:collapsed=${true}`;
 	}
 
 	function onExpand() {
 		isCollapsed = false;
-		// document.cookie = `PaneForge:collapsed=${JSON.stringify(false)}`;
+		document.cookie = `PaneForge:collapsed=${false}`;
 	}
 </script>
 

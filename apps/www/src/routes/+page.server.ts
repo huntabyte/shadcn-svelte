@@ -1,13 +1,14 @@
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async (event) => {
-	let layout = event.cookies.get("PaneForge:layout");
-	let collapsed = event.cookies.get("PaneForge:collapsed");
+	const layoutCookie = event.cookies.get("PaneForge:layout");
+	const collapsedCookie = event.cookies.get("PaneForge:collapsed");
 
-	if (layout && collapsed) {
-		layout = JSON.parse(layout);
-		collapsed = JSON.parse(collapsed);
-	}
+	let layout: number[] | undefined = undefined;
+	let collapsed: boolean | undefined = undefined;
+
+	layoutCookie && (layout = JSON.parse(layoutCookie));
+	collapsedCookie && (collapsed = JSON.parse(collapsedCookie));
 
 	return { layout, collapsed };
 };
