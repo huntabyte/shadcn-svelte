@@ -16,7 +16,7 @@
 	{...$$restProps}
 >
 	🎉 <Separator class="mx-2 h-4" orientation="vertical" />{" "}
-	<span class="sm:hidden">Major Form updates!</span>
-	<span class="hidden sm:inline"> Major updates to the Form components! </span>
+	<span class="sm:hidden">Form Updates & Resizable!</span>
+	<span class="hidden sm:inline"> Form Updates & Resizable Component! </span>
 	<Icons.arrowRight class="ml-1 h-4 w-4" />
 </a>

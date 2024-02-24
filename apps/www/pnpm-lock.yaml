@@ -124,6 +124,9 @@ devDependencies:
   mdsx:
     specifier: ^0.0.5
     version: 0.0.5(svelte@4.2.11)
+  paneforge:
+    specifier: ^0.0.2
+    version: 0.0.2(svelte@4.2.11)
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -2020,7 +2023,7 @@ packages:
     dependencies:
       '@internationalized/date': 3.5.1
       '@melt-ui/svelte': 0.67.0(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -4470,6 +4473,15 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-limit: 3.1.0
+    dev: true
+
+  /paneforge@0.0.2(svelte@4.2.11):
+    resolution: {integrity: sha512-1xNMq+uslstqum4D8CzzkPGqnTWUlevjYtMjUhuEOiuz7E0fJHFuM8ogk8+LJnVbAg3hMJJ/9Mu4A1KaxK38oQ==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      nanoid: 5.0.5
+      svelte: 4.2.11
     dev: true
 
   /parent-module@1.0.1:

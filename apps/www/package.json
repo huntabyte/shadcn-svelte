@@ -50,6 +50,7 @@
 		"hast-util-to-html": "^8.0.4",
 		"lodash.template": "^4.5.0",
 		"mdsx": "^0.0.5",
+		"paneforge": "^0.0.2",
 		"postcss": "^8.4.31",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^3.1.1",

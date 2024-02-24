@@ -13,27 +13,24 @@
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					shadcn
-				</a>
-				. Ported to Svelte by{" "}
+					shadcn</a
+				>. Ported to Svelte by
 				<a
 					href={siteConfig.links.twitter}
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					huntabyte
-				</a>
-				. The source code is available on{" "}
+					huntabyte</a
+				>. The source code is available on{" "}
 				<a
 					href={siteConfig.links.github}
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					GitHub
-				</a>
-				.
+					GitHub</a
+				>.
 			</p>
 		</div>
 	</div>

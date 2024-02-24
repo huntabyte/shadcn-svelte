@@ -446,6 +446,17 @@
 		"type": "components:ui"
 	},
 	{
+		"name": "resizable",
+		"dependencies": [],
+		"registryDependencies": [],
+		"files": [
+			"ui/resizable/index.ts",
+			"ui/resizable/resizable-handle.svelte",
+			"ui/resizable/resizable-pane-group.svelte"
+		],
+		"type": "components:ui"
+	},
+	{
 		"name": "select",
 		"dependencies": [
 			"bits-ui"
