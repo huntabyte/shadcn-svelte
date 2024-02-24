@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import Time, { dayjs } from 'svelte-time';
 	import { getLocalTimeZone, DateFormatter, now, getDayOfWeek } from "@internationalized/date";
 
 	import Archive from "lucide-svelte/icons/archive";
