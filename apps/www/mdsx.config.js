@@ -166,10 +166,16 @@ export function rehypeComponentExample() {
 						const component = Index[style.name][name];
 						const src = component.files[0];
 						let sourceCode = getComponentSourceFileContent(src);
-						if (!sourceCode) return;
+						if (!sourceCode || sourceCode === null) return;
+
 						// @ts-expect-error - not dealing with this rn
 						sourceCode = sourceCode.replaceAll(
-							`@/registry/${style.name}/`,
+							"@/registry/new-york/",
+							"$lib/components/"
+						);
+						// @ts-expect-error - not dealing with this rn
+						sourceCode = sourceCode.replaceAll(
+							"@/registry/default/",
 							"$lib/components/"
 						);
 
