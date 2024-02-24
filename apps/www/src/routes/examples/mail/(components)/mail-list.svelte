@@ -26,7 +26,7 @@
 		{#each items as item}
 			<button
 				class={cn(
-					"hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
+					"flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
 					$mailStore.selected === item.id && "bg-muted"
 				)}
 				on:click={() => mailStore.setMail(item.id)}
@@ -52,7 +52,7 @@
 					</div>
 					<div class="text-xs font-medium">{item.subject}</div>
 				</div>
-				<div class="text-muted-foreground line-clamp-2 text-xs">
+				<div class="line-clamp-2 text-xs text-muted-foreground">
 					{item.text.substring(0, 300)}
 				</div>
 				{#if item.labels.length}

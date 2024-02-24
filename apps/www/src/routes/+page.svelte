@@ -5,13 +5,10 @@
 	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "@/utils";
-	import Mail from "./examples/mail/mail.svelte";
+	import Mail from "./examples/mail/(components)/mail.svelte";
 	import { accounts, mails } from "./examples/mail/data";
 
 	export let data;
-
-	const defaultLayout = data.layout ? data.layout : undefined;
-	const defaultCollapsed = data.collapsed ? data.collapsed : false;
 </script>
 
 <div class="container relative">
@@ -71,7 +68,13 @@
 	</section>
 	<section class="hidden md:block">
 		<div class="overflow-hidden rounded-lg border bg-background shadow-lg">
-			<Mail {accounts} {mails} {defaultLayout} {defaultCollapsed} navCollapsedSize={4} />
+			<Mail
+				{accounts}
+				{mails}
+				defaultLayout={data.layout}
+				defaultCollapsed={data.collapsed}
+				navCollapsedSize={4}
+			/>
 		</div>
 	</section>
 </div>

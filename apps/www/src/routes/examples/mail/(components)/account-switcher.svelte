@@ -45,7 +45,7 @@
 					<svelte:component
 						this={account.icon}
 						aria-hidden="true"
-						class="text-foreground size-4 shrink-0"
+						class="size-4 shrink-0 text-foreground"
 					/>
 					{account.email}
 				</Select.Item>

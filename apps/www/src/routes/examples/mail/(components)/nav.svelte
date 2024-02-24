@@ -34,7 +34,7 @@
 					<Tooltip.Content side="right" class="flex items-center gap-4">
 						{route.title}
 						{#if route.label}
-							<span class="text-muted-foreground ml-auto">
+							<span class="ml-auto text-muted-foreground">
 								{route.label}
 							</span>
 						{/if}
@@ -46,7 +46,7 @@
 					variant={route.variant}
 					size="sm"
 					class={cn("justify-start", {
-						"dark:bg-muted dark:hover:bg-muted dark:text-white dark:hover:text-white":
+						"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white":
 							route.variant === "default",
 					})}
 				>

@@ -79,11 +79,11 @@
 			</div>
 			<Separator />
 			<div
-				class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
+				class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 			>
 				<form>
 					<div class="relative">
-						<Search class="text-muted-foreground absolute left-2 top-3 h-4 w-4" />
+						<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
 						<Input placeholder="Search" class="pl-8" />
 					</div>
 				</form>
