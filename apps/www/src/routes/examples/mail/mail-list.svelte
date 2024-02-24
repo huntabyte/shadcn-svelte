@@ -1,9 +1,9 @@
 <script lang="ts">
-	// import Time from 'svelte-time';
 	import { cn } from "@/utils";
 	import { mailStore } from "./store";
 	import type { Mail } from "./data";
 	import { Badge } from "@/registry/new-york/ui/badge";
+	import { formatTimeAgo } from "./utils";
 
 	export let items: Mail[];
 
@@ -47,7 +47,7 @@
 									: "text-muted-foreground"
 							)}
 						>
-							<!-- <Time relative timestamp={new Date(item.date)} /> -->
+							{formatTimeAgo(new Date(item.date))}
 						</div>
 					</div>
 					<div class="text-xs font-medium">{item.subject}</div>

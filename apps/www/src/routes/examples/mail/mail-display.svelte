@@ -32,8 +32,13 @@
 	<div class="flex items-center p-2">
 		<div class="flex items-center gap-2">
 			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="archive_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
+				<Tooltip.Trigger asChild let:builder={archive_tooltip_builder} id="archive_tooltip">
+					<Button
+						builders={[archive_tooltip_builder]}
+						variant="ghost"
+						size="icon"
+						disabled={!mail}
+					>
 						<Archive class="size-4" />
 						<span class="sr-only">Archive</span>
 					</Button>
@@ -41,8 +46,17 @@
 				<Tooltip.Content>Archive</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="move_to_junk_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
+				<Tooltip.Trigger
+					asChild
+					let:builder={move_to_junk_tooltip_builder}
+					id="move_to_junk_tooltip"
+				>
+					<Button
+						builders={[move_to_junk_tooltip_builder]}
+						variant="ghost"
+						size="icon"
+						disabled={!mail}
+					>
 						<ArchiveX class="size-4" />
 						<span class="sr-only">Move to junk</span>
 					</Button>
@@ -50,8 +64,17 @@
 				<Tooltip.Content>Move to junk</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="move_to_trash_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
+				<Tooltip.Trigger
+					asChild
+					let:builder={move_to_trash_tooltip_builder}
+					id="move_to_trash_tooltip"
+				>
+					<Button
+						builders={[move_to_trash_tooltip_builder]}
+						variant="ghost"
+						size="icon"
+						disabled={!mail}
+					>
 						<Trash2 class="size-4" />
 						<span class="sr-only">Move to trash</span>
 					</Button>
