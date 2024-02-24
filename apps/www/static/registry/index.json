@@ -447,7 +447,9 @@
 	},
 	{
 		"name": "resizable",
-		"dependencies": [],
+		"dependencies": [
+			"paneforge"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/resizable/index.ts",
