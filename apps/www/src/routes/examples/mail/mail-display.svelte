@@ -84,7 +84,7 @@
 			<Separator orientation="vertical" class="mx-1 h-6" />
 			<Tooltip.Root openDelay={0}>
 				<Popover.Root portal={null}>
-					<Tooltip.Trigger asChild let:builder={tooltip_builder} id="snooze_tooltip">
+					<Tooltip.Trigger asChild let:builder={tooltip_builder} id="snooze_popover">
 						<Popover.Trigger asChild let:builder={popover_builder} id="snooze_popover">
 							<Button
 								builders={[tooltip_builder, popover_builder]}
@@ -103,7 +103,7 @@
 							<div class="grid min-w-[250px] gap-1">
 								<Button variant="ghost" class="justify-start font-normal">
 									Later today
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										<!-- <Time
 											timestamp={dayjs().add(4, "hours")}
 											format="ddd, h:mm A"
@@ -112,7 +112,7 @@
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Tomorrow
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										<!-- <Time
 											timestamp={dayjs().add(1, "day")}
 											format="ddd, h:mm A"
@@ -121,13 +121,13 @@
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									This weekend
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										<!-- <Time timestamp={dayjs().day(6)} format="ddd, h:mm A" /> -->
 									</span>
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Next week
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										<!-- <Time
 											timestamp={dayjs().add(1, "week")}
 											format="ddd, h:mm A"
@@ -211,7 +211,7 @@
 					</div>
 				</div>
 				{#if mail.date}
-					<div class="ml-auto text-xs text-muted-foreground">
+					<div class="text-muted-foreground ml-auto text-xs">
 						<!-- <Time timestamp={new Date(mail.date)} format="MMM D, YYYY, h:mm:ss A" /> -->
 					</div>
 				{/if}
@@ -236,6 +236,6 @@
 			</div>
 		</div>
 	{:else}
-		<div class="p-8 text-center text-muted-foreground">No message selected</div>
+		<div class="text-muted-foreground p-8 text-center">No message selected</div>
 	{/if}
 </div>

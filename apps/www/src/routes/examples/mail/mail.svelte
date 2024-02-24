@@ -21,15 +21,6 @@
 
 	let isCollapsed = defaultCollapsed;
 
-	/**
-	 * Bug?
-	 * Why does doing something like this
-	 * document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`
-	 * cause
-	 * `SyntaxError: Unexpected non-whitespace character after JSON at position 1`
-	 * when I try to read the cookie in the next page load?
-	 * I thought the backticks would automatically convert the JSON to a proper string that meets all these conditions https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse?
-	 */
 	function onLayoutChange(sizes: number[]) {
 		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
 	}
@@ -88,11 +79,11 @@
 			</div>
 			<Separator />
 			<div
-				class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+				class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
 			>
 				<form>
 					<div class="relative">
-						<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
+						<Search class="text-muted-foreground absolute left-2 top-3 h-4 w-4" />
 						<Input placeholder="Search" class="pl-8" />
 					</div>
 				</form>
