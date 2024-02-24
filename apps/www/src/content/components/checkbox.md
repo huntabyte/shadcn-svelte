@@ -66,8 +66,6 @@ npm install bits-ui
 
 ### Form
 
-When using the checkbox within a form, you'll want to use the `<Form.Checkbox />` component instead. This is a wrapper around your existing `Checkbox` component with some additional functionality for forms.
-
 <ComponentPreview name="checkbox-form-single">
 
 <div />

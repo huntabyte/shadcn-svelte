@@ -57,7 +57,7 @@ npm install bits-ui
 
 ### Form
 
-When using the select component in a form, you'll want to use the `<Form.Select/>` component, which is a wrapper around your existing `<Select/>` component that makes it seamlessly integrate with forms.
+For more advanced usage and to learn how to implement `multiple` Select components in a form, check out the [Bits UI Select Recipe](https://formsnap.dev/docs/recipes/bits-ui-select) on Formsnap.
 
 <ComponentPreview name="select-form">
 

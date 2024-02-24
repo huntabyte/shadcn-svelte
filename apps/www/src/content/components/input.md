@@ -89,8 +89,6 @@ npx shadcn-svelte@latest add input
 
 ### Form
 
-When using the input within a form, you'll want to use the `<Form.Input />` component instead. This is a wrapper around your existing `<Input />` component with some additional functionality for forms.
-
 <ComponentPreview name="form-demo">
 
 <div />
