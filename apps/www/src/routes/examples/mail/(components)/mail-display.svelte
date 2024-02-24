@@ -1,15 +1,7 @@
 <script lang="ts">
 	import { getLocalTimeZone, DateFormatter, now, getDayOfWeek } from "@internationalized/date";
 
-	import Archive from "lucide-svelte/icons/archive";
-	import ArchiveX from "lucide-svelte/icons/archive-x";
-	import Clock from "lucide-svelte/icons/clock";
-	import Forward from "lucide-svelte/icons/forward";
-	import MoreVertical from "lucide-svelte/icons/more-vertical";
-	import Reply from "lucide-svelte/icons/reply";
-	import ReplyAll from "lucide-svelte/icons/reply-all";
-	import Trash2 from "lucide-svelte/icons/trash-2";
-
+	import * as Icons from "../icons.js";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Calendar } from "@/registry/new-york/ui/calendar";
@@ -57,7 +49,7 @@
 						size="icon"
 						disabled={!mail}
 					>
-						<Archive class="size-4" />
+						<Icons.Archive class="size-4" />
 						<span class="sr-only">Archive</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -75,7 +67,7 @@
 						size="icon"
 						disabled={!mail}
 					>
-						<ArchiveX class="size-4" />
+						<Icons.ArchiveX class="size-4" />
 						<span class="sr-only">Move to junk</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -93,7 +85,7 @@
 						size="icon"
 						disabled={!mail}
 					>
-						<Trash2 class="size-4" />
+						<Icons.Trash2 class="size-4" />
 						<span class="sr-only">Move to trash</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -110,7 +102,7 @@
 								size="icon"
 								disabled={!mail}
 							>
-								<Clock class="size-4" />
+								<Icons.Clock class="size-4" />
 								<span class="sr-only">Snooze</span>
 							</Button>
 						</Popover.Trigger>
@@ -161,7 +153,7 @@
 			<Tooltip.Root openDelay={0}>
 				<Tooltip.Trigger asChild let:builder id="reply_tooltip">
 					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<Reply class="size-4" />
+						<Icons.Reply class="size-4" />
 						<span class="sr-only">Reply</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -170,7 +162,7 @@
 			<Tooltip.Root openDelay={0}>
 				<Tooltip.Trigger asChild let:builder id="reply_all_tooltip">
 					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<ReplyAll class="size-4" />
+						<Icons.ReplyAll class="size-4" />
 						<span class="sr-only">Reply all</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -179,7 +171,7 @@
 			<Tooltip.Root openDelay={0}>
 				<Tooltip.Trigger asChild let:builder id="forward_tooltip">
 					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<Forward class="size-4" />
+						<Icons.Forward class="size-4" />
 						<span class="sr-only">Forward</span>
 					</Button>
 				</Tooltip.Trigger>
@@ -190,7 +182,7 @@
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild let:builder id="more_options_dropdown">
 				<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-					<MoreVertical class="size-4" />
+					<Icons.MoreVertical class="size-4" />
 					<span class="sr-only">More</span>
 				</Button>
 			</DropdownMenu.Trigger>
