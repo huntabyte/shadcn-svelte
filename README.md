@@ -19,4 +19,13 @@ Visit https://shadcn-svelte.com/docs to view the documentation.
 
 ## License
 
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+<!-- automd:contributors license=MIT author="huntabyte" -->
+
+Published under the [MIT](https://github.com/huntabyte/shadcn-svelte/blob/main/LICENSE) license.
+Made by [@huntabyte](https://github.com/huntabyte) and [community](https://github.com/huntabyte/shadcn-svelte/graphs/contributors) 💛
+<br><br>
+<a href="https://github.com/huntabyte/shadcn-svelte/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=huntabyte/shadcn-svelte" />
+</a>
+
+<!-- /automd -->
