@@ -3,7 +3,7 @@
 
 	import * as Icons from "../icons.js";
 	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
 	import { Calendar } from "@/registry/new-york/ui/calendar";
 	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
 	import { Label } from "@/registry/new-york/ui/label";
@@ -39,60 +39,43 @@
 </script>
 
 <div class="flex h-full flex-col">
-	<div class="flex items-center p-2">
+	<div class="mb-1 flex items-center p-2">
 		<div class="flex items-center gap-2">
-			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder={archive_tooltip_builder} id="archive_tooltip">
-					<Button
-						builders={[archive_tooltip_builder]}
-						variant="ghost"
-						size="icon"
-						disabled={!mail}
-					>
-						<Icons.Archive class="size-4" />
-						<span class="sr-only">Archive</span>
-					</Button>
+			<Tooltip.Root openDelay={0} group>
+				<Tooltip.Trigger
+					id="archive_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
+				>
+					<Icons.Archive class="size-4" />
+					<span class="sr-only">Archive</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Archive</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0}>
+			<Tooltip.Root openDelay={0} group>
 				<Tooltip.Trigger
-					asChild
-					let:builder={move_to_junk_tooltip_builder}
 					id="move_to_junk_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
 				>
-					<Button
-						builders={[move_to_junk_tooltip_builder]}
-						variant="ghost"
-						size="icon"
-						disabled={!mail}
-					>
-						<Icons.ArchiveX class="size-4" />
-						<span class="sr-only">Move to junk</span>
-					</Button>
+					<Icons.ArchiveX class="size-4" />
+					<span class="sr-only">Move to junk</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Move to junk</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0}>
+			<Tooltip.Root openDelay={0} group>
 				<Tooltip.Trigger
-					asChild
-					let:builder={move_to_trash_tooltip_builder}
 					id="move_to_trash_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
 				>
-					<Button
-						builders={[move_to_trash_tooltip_builder]}
-						variant="ghost"
-						size="icon"
-						disabled={!mail}
-					>
-						<Icons.Trash2 class="size-4" />
-						<span class="sr-only">Move to trash</span>
-					</Button>
+					<Icons.Trash2 class="size-4" />
+					<span class="sr-only">Move to trash</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Move to trash</Tooltip.Content>
 			</Tooltip.Root>
 			<Separator orientation="vertical" class="mx-1 h-6" />
-			<Tooltip.Root openDelay={0}>
+			<Tooltip.Root openDelay={0} group>
 				<Popover.Root portal={null}>
 					<Tooltip.Trigger asChild let:builder={tooltip_builder} id="snooze_popover">
 						<Popover.Trigger asChild let:builder={popover_builder} id="snooze_popover">
@@ -150,41 +133,49 @@
 			</Tooltip.Root>
 		</div>
 		<div class="ml-auto flex items-center gap-2">
-			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="reply_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<Icons.Reply class="size-4" />
-						<span class="sr-only">Reply</span>
-					</Button>
+			<Tooltip.Root openDelay={0} group>
+				<Tooltip.Trigger
+					id="reply_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
+				>
+					<Icons.Reply class="size-4" />
+					<span class="sr-only">Reply</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Reply</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="reply_all_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<Icons.ReplyAll class="size-4" />
-						<span class="sr-only">Reply all</span>
-					</Button>
+			<Tooltip.Root openDelay={0} group>
+				<Tooltip.Trigger
+					id="reply_all_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
+				>
+					<Icons.ReplyAll class="size-4" />
+					<span class="sr-only">Reply all</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Reply all</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0}>
-				<Tooltip.Trigger asChild let:builder id="forward_tooltip">
-					<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-						<Icons.Forward class="size-4" />
-						<span class="sr-only">Forward</span>
-					</Button>
+			<Tooltip.Root openDelay={0} group>
+				<Tooltip.Trigger
+					id="forward_tooltip"
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+					disabled={!mail}
+				>
+					<Icons.Forward class="size-4" />
+					<span class="sr-only">Forward</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content>Forward</Tooltip.Content>
 			</Tooltip.Root>
 		</div>
 		<Separator orientation="vertical" class="mx-2 h-6" />
 		<DropdownMenu.Root>
-			<DropdownMenu.Trigger asChild let:builder id="more_options_dropdown">
-				<Button builders={[builder]} variant="ghost" size="icon" disabled={!mail}>
-					<Icons.MoreVertical class="size-4" />
-					<span class="sr-only">More</span>
-				</Button>
+			<DropdownMenu.Trigger
+				id="more_options_dropdown"
+				class={buttonVariants({ variant: "ghost", size: "icon" })}
+				disabled={!mail}
+			>
+				<Icons.MoreVertical class="size-4" />
+				<span class="sr-only">More</span>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end">
 				<DropdownMenu.Item>Mark as unread</DropdownMenu.Item>
