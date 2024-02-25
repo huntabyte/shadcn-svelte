@@ -17,37 +17,34 @@
 	}}
 >
 	<Select.Trigger
-		class={cn("flex w-full items-center gap-2", {
-			"size-9 shrink-0 items-center [&>div>svg]:hidden": isCollapsed,
-		})}
+		class={cn(
+			"flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+			isCollapsed &&
+				"flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>div>svg]:hidden [&>span]:w-auto"
+		)}
 		aria-label="Select account"
 	>
-		<svelte:component
-			this={accounts.find((account) => account.email === selectedAccount.email)?.icon}
-			aria-hidden="true"
-			class={cn("size-4 shrink-0")}
-		/>
-		<Select.Value
-			placeholder="Select an Account"
-			class={cn("ml-2 line-clamp-1 flex w-full items-center gap-1 truncate text-left", {
-				"hidden w-auto": isCollapsed,
-			})}
-		/>
+		<span class="pointer-events-none">
+			<svelte:component this={selectedAccount.icon} class={cn(isCollapsed ? "ml-2" : "")} />
+			<span class={cn(isCollapsed ? "!ml-0 !hidden" : "ml-2")}>
+				{selectedAccount.label}
+			</span>
+		</span>
 	</Select.Trigger>
-	<Select.Content>
+	<Select.Content sameWidth={!isCollapsed} align={isCollapsed ? "start" : undefined}>
 		<Select.Group>
 			{#each accounts as account}
-				<Select.Item
-					value={account.email}
-					label={account.label}
-					class={cn("flex items-center gap-3", { "[&>span]:hidden": isCollapsed })}
-				>
-					<svelte:component
-						this={account.icon}
-						aria-hidden="true"
-						class="size-4 shrink-0 text-foreground"
-					/>
-					{account.email}
+				<Select.Item value={account.email} label={account.label}>
+					<div
+						class="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground"
+					>
+						<svelte:component
+							this={account.icon}
+							aria-hidden="true"
+							class="size-4 shrink-0 text-foreground"
+						/>
+						{account.email}
+					</div>
 				</Select.Item>
 			{/each}
 		</Select.Group>
