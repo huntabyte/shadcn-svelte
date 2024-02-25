@@ -82,7 +82,7 @@
 		</Resizable.Pane>
 		<Resizable.Handle withHandle />
 		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
-			<Tabs.Root value="all" class='h-full flex flex-col'>
+			<Tabs.Root value="all" class="flex h-full flex-col">
 				<div class="flex items-center px-4 py-2">
 					<h1 class="text-xl font-bold">Inbox</h1>
 					<Tabs.List class="ml-auto">

@@ -187,7 +187,7 @@
 	</div>
 	<Separator />
 	{#if mail}
-		<div class="overflow-hidden flex h-full flex-1 flex-col">
+		<div class="flex h-full flex-1 flex-col overflow-hidden">
 			<div class="flex items-start p-4">
 				<div class="flex items-start gap-4 text-sm">
 					<Avatar.Root>
@@ -215,7 +215,7 @@
 				{/if}
 			</div>
 			<Separator />
-			<div class="flex-1 whitespace-pre-wrap p-4 text-sm overflow-y-auto">
+			<div class="flex-1 overflow-y-auto whitespace-pre-wrap p-4 text-sm">
 				{mail.text}
 			</div>
 			<Separator class="mt-auto" />
