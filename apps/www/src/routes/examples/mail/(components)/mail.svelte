@@ -82,7 +82,7 @@
 		</Resizable.Pane>
 		<Resizable.Handle withHandle />
 		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
-			<Tabs.Root value="all">
+			<Tabs.Root value="all" class='h-full flex flex-col'>
 				<div class="flex items-center px-4 py-2">
 					<h1 class="text-xl font-bold">Inbox</h1>
 					<Tabs.List class="ml-auto">
@@ -105,10 +105,10 @@
 						</div>
 					</form>
 				</div>
-				<Tabs.Content value="all" class="m-0">
+				<Tabs.Content value="all" class="m-0 overflow-y-auto">
 					<MailList items={mails} />
 				</Tabs.Content>
-				<Tabs.Content value="unread" class="m-0">
+				<Tabs.Content value="unread" class="m-0 overflow-y-auto">
 					<MailList items={mails.filter((item) => !item.read)} />
 				</Tabs.Content>
 			</Tabs.Root>

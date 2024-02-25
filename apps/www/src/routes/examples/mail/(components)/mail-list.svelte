@@ -21,7 +21,7 @@
 </script>
 
 <!-- TODO: Replace with a ScrollArea component; currently the hack is to set `overflow-hidden` to the body of the doc. -->
-<section id="mail-list" class="h-svh overflow-y-auto">
+<section id="mail-list" class="overflow-y-auto">
 	<div class="flex flex-col gap-2 p-4 pt-0">
 		{#each items as item}
 			<button
