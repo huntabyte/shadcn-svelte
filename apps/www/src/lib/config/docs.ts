@@ -344,6 +344,11 @@ type Example = {
 };
 export const examples: Example[] = [
 	{
+		name: "Mail",
+		href: "/examples/mail",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/docs/mail",
+	},
+	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
 		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/docs/dashboard",

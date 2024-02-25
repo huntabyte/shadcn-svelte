@@ -1,10 +1,14 @@
 <script lang="ts">
-	import { DashboardPage, ExamplesNav, Announcement } from "@/components/docs";
+	import { ExamplesNav, Announcement } from "@/components/docs";
 	import * as PageHeader from "@/components/docs/page-header";
 	import { Icons } from "@/components/docs/icons";
 	import { buttonVariants } from "@/registry/new-york/ui/button";
 	import { siteConfig } from "$lib/config/site";
 	import { cn } from "@/utils";
+	import Mail from "./examples/mail/(components)/mail.svelte";
+	import { accounts, mails } from "./examples/mail/data";
+
+	export let data;
 </script>
 
 <div class="container relative">
@@ -48,14 +52,14 @@
 		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
 		<img
-			src="/examples/dashboard-light.png"
+			src="/examples/mail-light.png"
 			width={1280}
 			height={727}
 			alt="Dashboard"
 			class="block dark:hidden"
 		/>
 		<img
-			src="/examples/dashboard-dark.png"
+			src="/examples/mail-dark.png"
 			width={1280}
 			height={727}
 			alt="Dashboard"
@@ -64,7 +68,13 @@
 	</section>
 	<section class="hidden md:block">
 		<div class="overflow-hidden rounded-lg border bg-background shadow-lg">
-			<DashboardPage />
+			<Mail
+				{accounts}
+				{mails}
+				defaultLayout={data.layout}
+				defaultCollapsed={data.collapsed}
+				navCollapsedSize={4}
+			/>
 		</div>
 	</section>
 </div>
