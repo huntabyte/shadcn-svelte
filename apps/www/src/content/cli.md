@@ -91,7 +91,7 @@ Use the `update` command to update components in your project. This will overwri
 npx shadcn-svelte@latest update [component]
 ```
 
-We plan on improving this command in the future to improve the update experience.
+### Options
 
 ```txt
 Usage: shadcn-svelte update [options] [components...]
