@@ -1,6 +1,5 @@
 name: "Bug report"
 description: Report an issue with shadcn-svelte
-labels: ["type: bug"]
 body:
   - type: markdown
     attributes:
