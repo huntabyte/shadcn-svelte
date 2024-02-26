@@ -126,7 +126,9 @@
 								</Button>
 							</div>
 						</div>
-						<Calendar bind:value={todayDate} initialFocus class="p-2" />
+						<div class="p-2">
+							<Calendar bind:value={todayDate} initialFocus />
+						</div>
 					</Popover.Content>
 				</Popover.Root>
 				<Tooltip.Content>Snooze</Tooltip.Content>
