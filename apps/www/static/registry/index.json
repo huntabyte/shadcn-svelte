@@ -253,6 +253,7 @@
 			"ui/drawer/drawer-description.svelte",
 			"ui/drawer/drawer-footer.svelte",
 			"ui/drawer/drawer-header.svelte",
+			"ui/drawer/drawer-nested.svelte",
 			"ui/drawer/drawer-overlay.svelte",
 			"ui/drawer/drawer-title.svelte",
 			"ui/drawer/drawer.svelte",
