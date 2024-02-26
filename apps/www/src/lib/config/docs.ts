@@ -346,7 +346,7 @@ export const examples: Example[] = [
 	{
 		name: "Mail",
 		href: "/examples/mail",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/components/docs/mail",
+		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/routes/examples/mail",
 	},
 	{
 		name: "Dashboard",
