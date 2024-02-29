@@ -8,7 +8,6 @@
 		"preview": "vite preview",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"format:quick": "pretty-quick --staged",
 		"scn": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 pnpm shadcn-svelte",
 		"reset": "node ./reset.js"
 	},
@@ -27,7 +26,6 @@
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"prettier-plugin-tailwindcss": "^0.5.9",
-		"pretty-quick": "^4.0.0",
 		"svelte": "^4.2.7",
 		"tailwindcss": "^3.3.6",
 		"vite": "^5.0.3"
