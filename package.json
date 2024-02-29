@@ -1,44 +1,48 @@
 {
-	"name": "shadcn-svelte",
-	"version": "0.0.1",
-	"description": "monorepo for shadcn-svelte",
-	"author": {
-		"name": "huntabyte",
-		"url": "https://twitter.com/huntabyte"
-	},
-	"private": true,
-	"scripts": {
-		"build": "pnpm build:registry && pnpm --filter www build",
-		"build:cli": "pnpm --filter shadcn-svelte build",
-		"build:registry": "pnpm --filter www build:registry",
-		"dev": "pnpm build:registry && pnpm --filter www dev",
-		"dev:cli": "pnpm --filter shadcn-svelte start:dev",
-		"preview": "pnpm --filter www preview",
-		"test": "pnpm --filter www test",
-		"check": "pnpm --filter www check",
-		"check:watch": "pnpm --filter www check:watch",
-		"test:unit": "pnpm --filter www test:unit",
-		"lint": "pnpm -r lint",
-		"format:check": "pnpm -r format:check",
-		"format": "pnpm -r format",
-		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm -r sync",
-		"ci:publish": "changeset publish",
-		"ci:build": "pnpm --filter shadcn-svelte build",
-		"ci:release": "pnpm ci:build && pnpm ci:publish",
-		"pub:beta": "cd packages/cli && pnpm pub:beta",
-		"pub:release": "cd packages/cli && pnpm pub:release"
-	},
-	"engines": {
-		"pnpm": ">=8"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/huntabyte/shadcn-svelte.git"
-	},
-	"license": "MIT",
-	"type": "module",
-	"devDependencies": {
-		"@changesets/cli": "^2.26.2"
-	}
+  "name": "shadcn-svelte",
+  "version": "0.0.1",
+  "description": "monorepo for shadcn-svelte",
+  "author": {
+    "name": "huntabyte",
+    "url": "https://twitter.com/huntabyte"
+  },
+  "private": true,
+  "scripts": {
+    "build": "pnpm build:registry && pnpm --filter www build",
+    "build:cli": "pnpm --filter shadcn-svelte build",
+    "build:registry": "pnpm --filter www build:registry",
+    "dev": "pnpm build:registry && pnpm --filter www dev",
+    "dev:cli": "pnpm --filter shadcn-svelte start:dev",
+    "preview": "pnpm --filter www preview",
+    "test": "pnpm --filter www test",
+    "check": "pnpm --filter www check",
+    "check:watch": "pnpm --filter www check:watch",
+    "test:unit": "pnpm --filter www test:unit",
+    "lint": "pnpm -r lint",
+    "format:check": "pnpm -r format:check",
+    "format": "pnpm -r format",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpm -r sync",
+    "ci:publish": "changeset publish",
+    "ci:build": "pnpm --filter shadcn-svelte build",
+    "ci:release": "pnpm ci:build && pnpm ci:publish",
+    "pub:beta": "cd packages/cli && pnpm pub:beta",
+    "pub:release": "cd packages/cli && pnpm pub:release"
+  },
+  "engines": {
+    "pnpm": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntabyte/shadcn-svelte.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "simple-git-hooks": "^2.9.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm -r format:staged --staged"
+  }
 }
