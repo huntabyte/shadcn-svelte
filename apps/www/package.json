@@ -24,7 +24,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"format:quick": "pretty-quick --staged"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^8.0.2",

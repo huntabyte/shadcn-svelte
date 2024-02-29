@@ -40,6 +40,7 @@
 		"start": "node dist/index.js",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
+		"format:quick": "pretty-quick --staged",
 		"release": "changeset version",
 		"pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
 		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",

@@ -8,6 +8,7 @@
 		"preview": "vite preview",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
+		"format:quick": "pretty-quick --staged",
 		"scn": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 pnpm shadcn-svelte",
 		"reset": "node ./reset.js"
 	},
