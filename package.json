@@ -20,6 +20,7 @@
 		"test:unit": "pnpm --filter www test:unit",
 		"lint": "pnpm -r lint",
 		"format:check": "pnpm -r format:check",
+		"format:quick": "pnpm -r format:quick",
 		"format": "pnpm -r format",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
@@ -43,6 +44,6 @@
 		"simple-git-hooks": "^2.9.0"
 	},
 	"simple-git-hooks": {
-		"pre-commit": "pnpm -r format:quick"
+		"pre-commit": "pnpm format:quick"
 	}
 }

@@ -84,3 +84,15 @@ export interface TSConfckFindOptions {
 	 */
 	root?: string;
 }
+
+
+
+
+
+
+
+
+
+
+
+
