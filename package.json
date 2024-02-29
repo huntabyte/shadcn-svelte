@@ -39,6 +39,11 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.26.2"
+		"@changesets/cli": "^2.26.2",
+		"pretty-quick": "^4.0.0",
+		"simple-git-hooks": "^2.9.0"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pretty-quick --staged"
 	}
 }
