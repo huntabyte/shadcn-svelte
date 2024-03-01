@@ -976,7 +976,7 @@ Now that our table is configured to filter by email, let's add a search input on
 
 Since `filterValue` is a store, we can bind it to the input value and it will automatically update as the user types.
 
-See the [filter docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-table-filter) for more information on how to customize the pagination behavior.
+See the [filter docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-table-filter) for more information on how to customize the filtering behavior.
 
 </Steps>
 
@@ -1448,6 +1448,6 @@ To accommodate the checkbox, we'll need to update our table styles. We'll also a
 </div>
 ```
 
-See the [selected row docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-selected-rows) for more information on how to customize the pagination behavior.
+See the [selected row docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-selected-rows) for more information on how to customize the selection behavior.
 
 </Steps>
