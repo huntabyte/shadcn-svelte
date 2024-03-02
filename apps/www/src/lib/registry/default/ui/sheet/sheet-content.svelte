@@ -27,7 +27,7 @@
 		{inTransitionConfig}
 		{outTransition}
 		{outTransitionConfig}
-		class={cn(sheetVariants({ side }), className)}
+		class={cn("overflow-auto", sheetVariants({ side }), className)}
 		{...$$restProps}
 	>
 		<slot />
