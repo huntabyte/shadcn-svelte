@@ -154,8 +154,13 @@ export const update = new Command()
 			);
 			const payload = await fetchTree(config, tree);
 
-			for (const item of payload) {
-				spinner.text = `Updating ${item.name}...`;
+			const componentsToRemove: Record<string, string[]> = {};
+			for (const [index, item] of payload
+				.sort((a, b) => a.name.localeCompare(b.name))
+				.entries()) {
+				spinner.text = `Updating ${item.name} (${index + 1}/${
+					payload.length
+				})...`;
 				const targetDir = await getItemTargetPath(config, item);
 
 				if (!targetDir) {
@@ -166,19 +171,27 @@ export const update = new Command()
 					await fs.mkdir(targetDir, { recursive: true });
 				}
 
-				for (const file of item.files) {
-					const componentDir = path.resolve(targetDir, item.name);
+				const componentDir = path.resolve(targetDir, item.name);
+				if (!existsSync(componentDir)) {
+					await fs.mkdir(componentDir, { recursive: true });
+				}
 
-					let filePath = path.resolve(targetDir, item.name, file.name);
+				for (const file of item.files) {
+					const filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
 					const content = transformImports(file.content, config);
 
-					if (!existsSync(componentDir)) {
-						await fs.mkdir(componentDir, { recursive: true });
-					}
-
 					await fs.writeFile(filePath, content);
+				}
+
+				const installedFiles = await fs.readdir(componentDir);
+				const remoteFiles = item.files.map((f) => f.name);
+				const filesToDelete = installedFiles.filter(
+					(file) => !remoteFiles.includes(file)
+				);
+				if (filesToDelete.length > 0) {
+					componentsToRemove[item.name] = filesToDelete;
 				}
 
 				// Install dependencies.
@@ -196,7 +209,24 @@ export const update = new Command()
 					);
 				}
 			}
-			spinner.succeed(`Done.`);
+			spinner.succeed("Done.");
+
+			if (Object.keys(componentsToRemove).length > 0) {
+				for (const [component, files] of Object.entries(componentsToRemove)) {
+					const multipleFiles = files.length > 1;
+					logger.warn(
+						`\n${chalk.bold(
+							component
+						)} component no longer uses the following file${
+							multipleFiles ? "s" : ""
+						}:\n${files
+							.map((f) => chalk.bold(f))
+							.join(", ")}\nYou may want to remove ${
+							multipleFiles ? "them" : "it"
+						}.`
+					);
+				}
+			}
 		} catch (e) {
 			handleError(e);
 		}
