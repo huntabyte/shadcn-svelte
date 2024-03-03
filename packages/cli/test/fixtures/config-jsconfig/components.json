@@ -6,7 +6,7 @@
 		"baseColor": "zinc"
 	},
 	"aliases": {
-		"utils": "$lib/utils",
+		"utils": "$lib/utils.js",
 		"components": "$lib/components"
 	},
 	"typescript": false

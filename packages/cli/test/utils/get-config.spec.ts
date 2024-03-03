@@ -32,7 +32,7 @@ describe("getRawConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
+				utils: "$lib/utils.js",
 				components: "$lib/components",
 			},
 			typescript: true,
@@ -65,7 +65,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
+				utils: "$lib/utils.js",
 				components: "$lib/components",
 			},
 			resolvedPaths: {
@@ -103,7 +103,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
+				utils: "$lib/utils.js",
 				components: "$lib/components",
 			},
 			resolvedPaths: {
@@ -141,7 +141,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
+				utils: "$lib/utils.js",
 				components: "$lib/components",
 			},
 			resolvedPaths: {
@@ -179,7 +179,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
+				utils: "$lib/utils.js",
 				components: "$lib/components",
 			},
 			resolvedPaths: {
