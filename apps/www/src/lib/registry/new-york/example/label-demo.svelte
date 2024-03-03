@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/new-york/ui/checkbox";
-	import { Label } from "@/registry/new-york/ui/label";
+	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
 </script>
 
 <div>

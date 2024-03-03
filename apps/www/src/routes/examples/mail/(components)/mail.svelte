@@ -5,11 +5,11 @@
 	import MailList from "./mail-list.svelte";
 	import Nav from "./nav.svelte";
 	import { mailStore } from "../store.js";
-	import { cn } from "@/utils";
-	import { Input } from "@/registry/new-york/ui/input";
-	import * as Resizable from "@/registry/new-york/ui/resizable";
-	import { Separator } from "@/registry/new-york/ui/select";
-	import * as Tabs from "@/registry/new-york/ui/tabs";
+	import { cn } from "$lib/utils.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import * as Resizable from "@/registry/new-york/ui/resizable/index.js";
+	import { Separator } from "@/registry/new-york/ui/select/index.js";
+	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
 	import Search from "lucide-svelte/icons/search";
 	import type { Account, Mail } from "../data.js";
 
@@ -96,11 +96,11 @@
 				</div>
 				<Separator />
 				<div
-					class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+					class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
 				>
 					<form>
 						<div class="relative">
-							<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
+							<Search class="text-muted-foreground absolute left-2 top-3 h-4 w-4" />
 							<Input placeholder="Search" class="pl-8" />
 						</div>
 					</form>

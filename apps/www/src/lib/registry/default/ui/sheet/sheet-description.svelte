@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = SheetPrimitive.DescriptionProps;
 
@@ -8,6 +8,6 @@
 	export { className as class };
 </script>
 
-<SheetPrimitive.Description class={cn("text-sm text-muted-foreground", className)} {...$$restProps}>
+<SheetPrimitive.Description class={cn("text-muted-foreground text-sm", className)} {...$$restProps}>
 	<slot />
 </SheetPrimitive.Description>

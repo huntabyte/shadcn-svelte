@@ -1,9 +1,9 @@
 <script lang="ts">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import { cn } from "@/utils";
-	import * as ContextMenu from "@/registry/new-york/ui/context-menu";
-	import type { Album } from "../(data)/albums";
-	import { playlists } from "../(data)/playlists";
+	import { cn } from "$lib/utils.js";
+	import * as ContextMenu from "@/registry/new-york/ui/context-menu/index.js";
+	import type { Album } from "../(data)/albums.js";
+	import { playlists } from "../(data)/playlists.js";
 
 	let className: string | undefined | null = undefined;
 	export let album: Album;
@@ -70,6 +70,6 @@
 	</ContextMenu.Root>
 	<div class="space-y-1 text-sm">
 		<h3 class="font-medium leading-none">{album.name}</h3>
-		<p class="text-xs text-muted-foreground">{album.artist}</p>
+		<p class="text-muted-foreground text-xs">{album.artist}</p>
 	</div>
 </div>

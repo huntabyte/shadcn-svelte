@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as HoverCard from "@/registry/new-york/ui/hover-card";
-	import { Label } from "@/registry/new-york/ui/label";
-	import type { ModelType, Model } from "../(data)/models";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Command from "@/registry/new-york/ui/command";
+	import * as HoverCard from "@/registry/new-york/ui/hover-card/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import type { ModelType, Model } from "../(data)/models.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Command from "@/registry/new-york/ui/command/index.js";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import * as Popover from "@/registry/new-york/ui/popover";
+	import * as Popover from "@/registry/new-york/ui/popover/index.js";
 	import { tick } from "svelte";
 	import ModelItem from "./model-item.svelte";
 
@@ -102,13 +102,13 @@
 							<h4 class="font-medium leading-none">
 								{peekedModel.name}
 							</h4>
-							<div class="text-sm text-muted-foreground">
+							<div class="text-muted-foreground text-sm">
 								{peekedModel.description}
 							</div>
 							{#if peekedModel.strengths}
 								<div class="mt-4 grid gap-2">
 									<h5 class="text-sm font-medium leading-none">Strengths</h5>
-									<ul class="text-sm text-muted-foreground">
+									<ul class="text-muted-foreground text-sm">
 										{peekedModel.strengths}
 									</ul>
 								</div>

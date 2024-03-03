@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Minus from "svelte-radix/Minus.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Activity } from "@/components/docs/charts";
+	import * as Card from "@/registry/new-york/ui/card/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Activity } from "$lib/components/docs/charts/index.js";
 
 	let goal = 350;
 	function updateGoal(adjustment: number) {
@@ -30,7 +30,7 @@
 			</Button>
 			<div class="flex-1 text-center">
 				<div class="text-5xl font-bold tracking-tighter">{goal}</div>
-				<div class="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
+				<div class="text-muted-foreground text-[0.70rem] uppercase">Calories/day</div>
 			</div>
 
 			<Button

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
+	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
 </script>
 
 <div class="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
@@ -14,7 +14,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"
 			stroke-width="2"
-			class="h-10 w-10 text-muted-foreground"
+			class="text-muted-foreground h-10 w-10"
 			viewBox="0 0 24 24"
 		>
 			<circle cx="12" cy="11" r="1" />
@@ -25,7 +25,7 @@
 		</svg>
 
 		<h3 class="mt-4 text-lg font-semibold">No episodes added</h3>
-		<p class="mb-4 mt-2 text-sm text-muted-foreground">
+		<p class="text-muted-foreground mb-4 mt-2 text-sm">
 			You have not added any podcasts. Add one below.
 		</p>
 		<Dialog.Root>

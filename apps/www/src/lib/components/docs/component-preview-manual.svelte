@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "@/utils.js";
-	import { StyleSwitcher, ThemeWrapper } from "@/components/docs/index.js";
+	import { cn } from "$lib/utils.js";
+	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 
 	export let align: "center" | "start" | "end" = "center";
 	let className: string | null | undefined = undefined;

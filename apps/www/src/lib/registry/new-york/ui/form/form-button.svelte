@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Button from "@/registry/new-york/ui/button";
+	import * as Button from "@/registry/new-york/ui/button/index.js";
 
 	type $$Props = Button.Props;
 </script>

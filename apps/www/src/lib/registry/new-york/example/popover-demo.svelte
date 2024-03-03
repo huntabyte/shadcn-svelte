@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
+	import * as Popover from "@/registry/new-york/ui/popover/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
 </script>
 
 <Popover.Root>
@@ -13,7 +13,7 @@
 		<div class="grid gap-4">
 			<div class="space-y-2">
 				<h4 class="font-medium leading-none">Dimensions</h4>
-				<p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+				<p class="text-muted-foreground text-sm">Set the dimensions for the layer.</p>
 			</div>
 			<div class="grid gap-2">
 				<div class="grid grid-cols-3 items-center gap-4">

@@ -31,7 +31,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
-			"button"
+			"index.js"
 		],
 		"files": [
 			"ui/alert-dialog/alert-dialog-action.svelte",
@@ -102,7 +102,7 @@
 			"@internationalized/date"
 		],
 		"registryDependencies": [
-			"button"
+			"index.js"
 		],
 		"files": [
 			"ui/calendar/calendar-cell.svelte",
@@ -187,7 +187,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
-			"dialog"
+			"index.js"
 		],
 		"files": [
 			"ui/command/command-dialog.svelte",
@@ -290,8 +290,7 @@
 			"sveltekit-superforms"
 		],
 		"registryDependencies": [
-			"button",
-			"label"
+			"index.js"
 		],
 		"files": [
 			"ui/form/form-button.svelte",
@@ -368,7 +367,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
-			"button"
+			"index.js"
 		],
 		"files": [
 			"ui/pagination/index.ts",
@@ -426,7 +425,7 @@
 			"@internationalized/date"
 		],
 		"registryDependencies": [
-			"button"
+			"index.js"
 		],
 		"files": [
 			"ui/range-calendar/index.ts",
@@ -611,7 +610,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
-			"toggle"
+			"index.js"
 		],
 		"files": [
 			"ui/toggle-group/index.ts",

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Resizable from "@/registry/new-york/ui/resizable";
+	import * as Resizable from "@/registry/new-york/ui/resizable/index.js";
 </script>
 
 <Resizable.PaneGroup direction="horizontal" class="max-w-md rounded-lg border">

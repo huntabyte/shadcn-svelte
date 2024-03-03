@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Icons } from "$lib/components/docs/icons";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Input } from "@/registry/new-york/ui/input";
+	import { Icons } from "$lib/components/docs/icons/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Card from "@/registry/new-york/ui/card/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
 	import { nanoid } from "nanoid";
 
 	const id = nanoid(5);
@@ -30,7 +30,7 @@
 				<span class="w-full border-t" />
 			</div>
 			<div class="relative flex justify-center text-xs uppercase">
-				<span class="bg-card px-2 text-muted-foreground"> Or continue with </span>
+				<span class="bg-card text-muted-foreground px-2"> Or continue with </span>
 			</div>
 		</div>
 		<div class="grid gap-2">

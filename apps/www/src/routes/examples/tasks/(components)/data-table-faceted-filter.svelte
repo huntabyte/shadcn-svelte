@@ -1,13 +1,13 @@
 <script lang="ts">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import Check from "svelte-radix/Check.svelte";
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { cn } from "$lib/utils";
-	import Separator from "@/registry/default/ui/separator/separator.svelte";
-	import Badge from "@/registry/new-york/ui/badge/badge.svelte";
-	import type { statuses } from "../(data)/data";
+	import * as Command from "@/registry/new-york/ui/command/index.js";
+	import * as Popover from "@/registry/new-york/ui/popover/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Separator } from "@/registry/default/ui/separator/index.js";
+	import { Badge } from "@/registry/new-york/ui/badge/index.js";
+	import type { statuses } from "../(data)/data.js";
 
 	export let filterValues: string[] = [];
 	export let title: string;
@@ -66,7 +66,7 @@
 						>
 							<div
 								class={cn(
-									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+									"border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
 									filterValues.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"

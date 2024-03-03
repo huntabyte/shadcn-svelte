@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "@/utils";
-	import { Button } from "@/registry/new-york/ui/button";
-	import type { Playlist } from "../(data)/playlists";
+	import { cn } from "$lib/utils.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import type { Playlist } from "../(data)/playlists.js";
 
 	let className: string | null | undefined = undefined;
 	export let playlists: Playlist[];

@@ -2,8 +2,8 @@
 	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
 	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
 	import { config } from "@/stores/index.js";
-	import { cn } from "@/utils.js";
-	import { StyleSwitcher, ThemeWrapper } from "@/components/docs/index.js";
+	import { cn } from "$lib/utils.js";
+	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 	import { Icons } from "./icons/index.js";
 	export let name: string;
 	let className: string;

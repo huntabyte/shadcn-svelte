@@ -8,12 +8,12 @@
 		addHiddenColumns,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "@/registry/default/ui/table";
+	import * as Table from "@/registry/default/ui/table/index.js";
 	import Actions from "./data-table/data-table-actions.svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { cn } from "$lib/utils";
-	import { Input } from "@/registry/default/ui/input";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Input } from "@/registry/default/ui/input/index.js";
 	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
 	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
 	import ChevronDown from "lucide-svelte/icons/chevron-down";
@@ -263,7 +263,7 @@
 		</Table.Root>
 	</div>
 	<div class="flex items-center justify-end space-x-2 py-4">
-		<div class="flex-1 text-sm text-muted-foreground">
+		<div class="text-muted-foreground flex-1 text-sm">
 			{Object.keys($selectedDataIds).length} of{" "}
 			{$rows.length} row(s) selected.
 		</div>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Minus from "svelte-radix/Minus.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Drawer from "@/registry/new-york/ui/drawer";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Drawer from "@/registry/new-york/ui/drawer/index.js";
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
 
 	const data = [
@@ -95,7 +95,7 @@
 						<div class="text-7xl font-bold tracking-tighter">
 							{goal}
 						</div>
-						<div class="text-[0.70rem] uppercase text-muted-foreground">
+						<div class="text-muted-foreground text-[0.70rem] uppercase">
 							Calories/day
 						</div>
 					</div>

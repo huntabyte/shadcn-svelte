@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import * as Tooltip from "@/registry/default/ui/tooltip";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Tooltip from "@/registry/default/ui/tooltip/index.js";
 </script>
 
 <Tooltip.Root>

@@ -1,5 +1,5 @@
 import { superValidate } from "sveltekit-superforms";
-import type { Actions, PageServerLoad, RequestEvent } from "./$types";
+import type { Actions, PageServerLoad, RequestEvent } from "./$types.js";
 import { formSchema } from "@/registry/default/example/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "@/registry/default/example/checkbox-form-single.svelte";
 import { formSchema as radioGroupSchema } from "@/registry/default/example/radio-group-form.svelte";

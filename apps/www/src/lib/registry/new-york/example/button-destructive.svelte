@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 </script>
 
 <Button variant="destructive">Destructive</Button>

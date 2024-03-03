@@ -68,7 +68,7 @@ To opt out of TypeScript, set the `typescript` flag to `false` in your `componen
   },
   "typescript": false,
   "aliases": {
-    "utils": "$lib/utils",
+    "utils": "$lib/utils.js",
     "components": "$lib/components"
   }
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { priorities } from "../(data)/data";
+	import { priorities } from "../(data)/data.js";
 	export let value: string;
 	const priority = priorities.find((priority) => priority.value === value);
 	const Icon = priority?.icon;
@@ -8,7 +8,7 @@
 {#if priority}
 	<div class="flex items-center">
 		{#if Icon}
-			<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
+			<Icon class="text-muted-foreground mr-2 h-4 w-4" />
 		{/if}
 		<span>{priority.label}</span>
 	</div>

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)";
-	import { playlists } from "./(data)/playlists";
-	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Separator } from "@/registry/new-york/ui/separator/index.js";
+	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
+	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)/index.js";
+	import { playlists } from "./(data)/playlists.js";
+	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
 </script>
 
 <div class="md:hidden">
@@ -54,7 +54,7 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											Listen Now
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Top picks for you. Updated daily.
 										</p>
 									</div>
@@ -79,7 +79,7 @@
 									<h2 class="text-2xl font-semibold tracking-tight">
 										Made for You
 									</h2>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Your personal playlists. Updated daily.
 									</p>
 								</div>
@@ -109,7 +109,7 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											New Episodes
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Your favorite podcasts. Updated daily.
 										</p>
 									</div>

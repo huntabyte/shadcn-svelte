@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/new-york/ui/checkbox";
-	import { Label } from "@/registry/new-york/ui/label";
+	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
 </script>
 
 <div class="items-top flex space-x-2">
@@ -12,7 +12,7 @@
 		>
 			Accept terms and conditions
 		</Label>
-		<p class="text-sm text-muted-foreground">
+		<p class="text-muted-foreground text-sm">
 			You agree to our Terms of Service and Privacy Policy.
 		</p>
 	</div>

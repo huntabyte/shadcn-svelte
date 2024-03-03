@@ -8,16 +8,16 @@
 		addHiddenColumns,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "@/registry/new-york/ui/table";
+	import * as Table from "@/registry/new-york/ui/table/index.js";
 	import Actions from "../data-table/data-table-actions.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { cn } from "$lib/utils";
-	import { Input } from "@/registry/new-york/ui/input";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
 	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
 	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
 	import ChevronDown from "lucide-svelte/icons/chevron-down";
-	import * as Card from "@/registry/new-york/ui/card";
+	import * as Card from "@/registry/new-york/ui/card/index.js";
 
 	type Payment = {
 		id: string;
@@ -269,7 +269,7 @@
 			</Table.Root>
 		</div>
 		<div class="flex items-center justify-end space-x-2 py-4">
-			<div class="flex-1 text-sm text-muted-foreground">
+			<div class="text-muted-foreground flex-1 text-sm">
 				{Object.keys($selectedDataIds).length} of{" "}
 				{$rows.length} row(s) selected.
 			</div>

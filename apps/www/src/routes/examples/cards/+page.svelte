@@ -9,7 +9,7 @@
 		CardsNotifications,
 		DemoContainer,
 		CardsTeamMembers,
-	} from "./(components)";
+	} from "./(components)/index.js";
 </script>
 
 <div class="md:hidden">

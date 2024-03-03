@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Separator } from "@/registry/new-york/ui/separator";
+	import { Separator } from "@/registry/new-york/ui/separator/index.js";
 	import SidebarNav from "./(components)/sidebar-nav.svelte";
 
 	const sidebarNavItems = [

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Avatar from "@/registry/default/ui/avatar";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import { Input } from "@/registry/default/ui/input";
-	import * as Select from "@/registry/default/ui/select";
-	import { Separator } from "@/registry/default/ui/separator";
+	import * as Avatar from "@/registry/default/ui/avatar/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Card from "@/registry/default/ui/card/index.js";
+	import { Input } from "@/registry/default/ui/input/index.js";
+	import * as Select from "@/registry/default/ui/select/index.js";
+	import { Separator } from "@/registry/default/ui/separator/index.js";
 
 	const permissions = [
 		{
@@ -65,7 +65,7 @@
 								<p class="text-sm font-medium leading-none">
 									{person.name}
 								</p>
-								<p class="text-sm text-muted-foreground">
+								<p class="text-muted-foreground text-sm">
 									{person.email}
 								</p>
 							</div>

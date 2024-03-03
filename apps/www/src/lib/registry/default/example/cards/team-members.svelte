@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ChevronDownIcon from "lucide-svelte/icons/chevron-down";
-	import * as Card from "@/registry/default/ui/card";
-	import * as Avatar from "@/registry/default/ui/avatar";
-	import * as Popover from "@/registry/default/ui/popover";
-	import * as Command from "@/registry/default/ui/command";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card/index.js";
+	import * as Avatar from "@/registry/default/ui/avatar/index.js";
+	import * as Popover from "@/registry/default/ui/popover/index.js";
+	import * as Command from "@/registry/default/ui/command/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -21,14 +21,14 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Sofia Davis</p>
-					<p class="text-sm text-muted-foreground">m@example.com</p>
+					<p class="text-muted-foreground text-sm">m@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Owner
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -41,7 +41,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -49,7 +49,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -57,7 +57,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -65,7 +65,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>
@@ -83,14 +83,14 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Jackson Lee</p>
-					<p class="text-sm text-muted-foreground">p@example.com</p>
+					<p class="text-muted-foreground text-sm">p@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Member
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -103,7 +103,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -111,7 +111,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -119,7 +119,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -127,7 +127,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>
@@ -145,14 +145,14 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-					<p class="text-sm text-muted-foreground">i@example.com</p>
+					<p class="text-muted-foreground text-sm">i@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Member
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -165,7 +165,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -173,7 +173,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -181,7 +181,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -189,7 +189,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>

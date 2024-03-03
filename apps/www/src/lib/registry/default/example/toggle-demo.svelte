@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Bold from "lucide-svelte/icons/bold";
-	import { Toggle } from "@/registry/default/ui/toggle";
+	import { Toggle } from "@/registry/default/ui/toggle/index.js";
 </script>
 
 <Toggle aria-label="toggle bold">

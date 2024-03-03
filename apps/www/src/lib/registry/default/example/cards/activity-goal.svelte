@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Card from "@/registry/default/ui/card";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Card from "@/registry/default/ui/card/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
 	import Minus from "lucide-svelte/icons/minus";
 	import Plus from "lucide-svelte/icons/plus";
-	import { Activity } from "@/components/docs/charts";
+	import { Activity } from "$lib/components/docs/charts/index.js";
 
 	let goal = 350;
 	function updateGoal(adjustment: number) {
@@ -30,7 +30,7 @@
 			</Button>
 			<div class="flex-1 text-center">
 				<div class="text-5xl font-bold tracking-tighter">{goal}</div>
-				<div class="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
+				<div class="text-muted-foreground text-[0.70rem] uppercase">Calories/day</div>
 			</div>
 
 			<Button

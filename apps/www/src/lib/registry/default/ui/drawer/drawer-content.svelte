@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
 	import DrawerOverlay from "./drawer-overlay.svelte";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = DrawerPrimitive.ContentProps;
 
@@ -13,12 +13,12 @@
 	<DrawerOverlay />
 	<DrawerPrimitive.Content
 		class={cn(
-			"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background",
+			"bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border",
 			className
 		)}
 		{...$$restProps}
 	>
-		<div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
+		<div class="bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full" />
 		<slot />
 	</DrawerPrimitive.Content>
 </DrawerPrimitive.Portal>

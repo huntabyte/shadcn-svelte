@@ -4,9 +4,9 @@
 	import Tags from "lucide-svelte/icons/tags";
 	import Trash from "lucide-svelte/icons/trash";
 	import User from "lucide-svelte/icons/user";
-	import * as Command from "@/registry/default/ui/command";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { Button } from "@/registry/default/ui/button";
+	import * as Command from "@/registry/default/ui/command/index.js";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
 	import { tick } from "svelte";
 
 	const labels = [
@@ -37,7 +37,7 @@
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
 	<p class="text-sm font-medium leading-none">
-		<span class="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
+		<span class="bg-primary text-primary-foreground mr-2 rounded-lg px-2 py-1 text-xs">
 			{selectedLabel}
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>

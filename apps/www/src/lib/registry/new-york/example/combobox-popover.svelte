@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "@/registry/new-york/ui/command/index.js";
+	import * as Popover from "@/registry/new-york/ui/popover/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import { tick } from "svelte";
 
 	type Status = {
@@ -49,7 +49,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	<p class="text-sm text-muted-foreground">Status</p>
+	<p class="text-muted-foreground text-sm">Status</p>
 	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
 			<Button builders={[builder]} variant="outline" class="w-[150px] justify-start">

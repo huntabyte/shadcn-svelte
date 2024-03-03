@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import * as Drawer from "@/registry/default/ui/drawer";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Drawer from "@/registry/default/ui/drawer/index.js";
 	import Minus from "lucide-svelte/icons/minus";
 	import Plus from "lucide-svelte/icons/plus";
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
@@ -96,7 +96,7 @@
 						<div class="text-7xl font-bold tracking-tighter">
 							{goal}
 						</div>
-						<div class="text-[0.70rem] uppercase text-muted-foreground">
+						<div class="text-muted-foreground text-[0.70rem] uppercase">
 							Calories/day
 						</div>
 					</div>

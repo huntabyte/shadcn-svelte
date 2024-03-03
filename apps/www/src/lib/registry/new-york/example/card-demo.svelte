@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Bell from "svelte-radix/Bell.svelte";
 	import Check from "svelte-radix/Check.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Switch } from "@/registry/new-york/ui/switch";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Card from "@/registry/new-york/ui/card/index.js";
+	import { Switch } from "@/registry/new-york/ui/switch/index.js";
 
 	const notifications = [
 		{
@@ -31,7 +31,7 @@
 			<Bell />
 			<div class="flex-1 space-y-1">
 				<p class="text-sm font-medium leading-none">Push Notifications</p>
-				<p class="text-sm text-muted-foreground">Send notifications to device.</p>
+				<p class="text-muted-foreground text-sm">Send notifications to device.</p>
 			</div>
 			<Switch />
 		</div>
@@ -43,7 +43,7 @@
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
 						</p>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-muted-foreground text-sm">
 							{notification.description}
 						</p>
 					</div>

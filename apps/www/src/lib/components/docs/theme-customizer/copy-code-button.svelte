@@ -5,8 +5,8 @@
 	import { config } from "@/stores/index.js";
 	import { themes } from "@/registry/index.js";
 	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { ThemeWrapper, CustomizerCode } from "@/components/docs/index.js";
-	import { createCopyCodeButton } from "@/utils.js";
+	import { ThemeWrapper, CustomizerCode } from "$lib/components/docs/index.js";
+	import { createCopyCodeButton } from "$lib/utils.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
 	const { copied, copyCode, setCodeString } = createCopyCodeButton();

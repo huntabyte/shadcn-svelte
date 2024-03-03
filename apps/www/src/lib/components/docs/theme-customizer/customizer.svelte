@@ -8,9 +8,9 @@
 	import { config } from "@/stores/index.js";
 	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import * as Popover from "@/registry/new-york/ui/popover/index.js";
-	import { ThemeWrapper } from "@/components/docs/index.js";
+	import { ThemeWrapper } from "$lib/components/docs/index.js";
 	import { Label } from "@/registry/new-york/ui/label/index.js";
-	import { cn } from "@/utils.js";
+	import { cn } from "$lib/utils.js";
 	import { themes } from "@/registry/index.js";
 	import { mode, setMode } from "mode-watcher";
 </script>

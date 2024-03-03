@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "@/utils";
+	import { cn } from "$lib/utils.js";
 	import { page } from "$app/stores";
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import { cubicInOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
 
@@ -30,7 +30,7 @@
 		>
 			{#if isActive}
 				<div
-					class="absolute inset-0 rounded-md bg-muted"
+					class="bg-muted absolute inset-0 rounded-md"
 					in:send={{ key: "active-sidebar-tab" }}
 					out:receive={{ key: "active-sidebar-tab" }}
 				/>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Sheet from "@/registry/default/ui/sheet";
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
+	import * as Sheet from "@/registry/default/ui/sheet/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import { Input } from "@/registry/default/ui/input/index.js";
+	import { Label } from "@/registry/default/ui/label/index.js";
 
 	const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 </script>

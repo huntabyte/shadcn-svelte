@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
 	import DoubleArrowRight from "svelte-radix/DoubleArrowRight.svelte";
 	import DoubleArrowLeft from "svelte-radix/DoubleArrowLeft.svelte";
-	import * as Select from "@/registry/new-york/ui/select";
-	import type { Task } from "../(data)/schemas";
+	import * as Select from "@/registry/new-york/ui/select/index.js";
+	import type { Task } from "../(data)/schemas.js";
 	import type { TableViewModel } from "svelte-headless-table";
 
 	export let tableModel: TableViewModel<Task>;
@@ -18,7 +18,7 @@
 </script>
 
 <div class="flex items-center justify-between px-2">
-	<div class="flex-1 text-sm text-muted-foreground">
+	<div class="text-muted-foreground flex-1 text-sm">
 		{Object.keys($selectedDataIds).length} of{" "}
 		{$rows.length} row(s) selected.
 	</div>

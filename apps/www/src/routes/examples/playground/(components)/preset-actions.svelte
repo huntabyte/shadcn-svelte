@@ -1,11 +1,11 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import * as AlertDialog from "@/registry/new-york/ui/alert-dialog";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Switch } from "@/registry/new-york/ui/switch";
+	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
+	import * as AlertDialog from "@/registry/new-york/ui/alert-dialog/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Switch } from "@/registry/new-york/ui/switch/index.js";
 
 	let open = false;
 	let showDeleteDialog = false;
@@ -39,12 +39,12 @@
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="py-6">
-			<h4 class="text-sm text-muted-foreground">Playground Warnings</h4>
+			<h4 class="text-muted-foreground text-sm">Playground Warnings</h4>
 			<div class="flex items-start justify-between space-x-4 pt-3">
 				<Switch name="show" id="show" checked />
 				<Label class="grid gap-1 font-normal" for="show">
 					<span class="font-semibold"> Show a warning when content is flagged </span>
-					<span class="text-sm text-muted-foreground">
+					<span class="text-muted-foreground text-sm">
 						A warning will be shown when sexual, hateful, violent or self-harm content
 						is detected.
 					</span>

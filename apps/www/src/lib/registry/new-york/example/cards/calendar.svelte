@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card";
-	import { RangeCalendar } from "@/registry/new-york/ui/range-calendar";
+	import * as Card from "@/registry/new-york/ui/card/index.js";
+	import { RangeCalendar } from "@/registry/new-york/ui/range-calendar/index.js";
 	import { today, getLocalTimeZone } from "@internationalized/date";
 	const start = today(getLocalTimeZone());
 	const end = start.add({ days: 8 });

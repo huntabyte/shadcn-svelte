@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ComponentPreviewManual } from "@/components/docs/index.js";
+	import { ComponentPreviewManual } from "$lib/components/docs/index.js";
 	import { config } from "@/stores/index.js";
 	import type { FormSchema } from "@/registry/default/example/form-demo.svelte";
 	import DefaultFormDemo from "@/registry/default/example/form-demo.svelte";

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
-	import { cn, flyAndScale } from "$lib/utils";
+	import { cn, flyAndScale } from "$lib/utils.js";
 
 	type $$Props = ContextMenuPrimitive.SubContentProps;
 
@@ -17,7 +17,7 @@
 	{transition}
 	{transitionConfig}
 	class={cn(
-		"z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md focus:outline-none",
+		"bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-md focus:outline-none",
 		className
 	)}
 	{...$$restProps}

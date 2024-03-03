@@ -2,9 +2,9 @@
 	import ArrowDown from "svelte-radix/ArrowDown.svelte";
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import { cn } from "@/utils";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import { cn } from "$lib/utils.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -41,7 +41,7 @@
 				<Button
 					variant="ghost"
 					builders={[builder]}
-					class="-ml-3 h-8 data-[state=open]:bg-accent"
+					class="data-[state=open]:bg-accent -ml-3 h-8"
 				>
 					<slot />
 					{#if props.sort.order === "desc"}

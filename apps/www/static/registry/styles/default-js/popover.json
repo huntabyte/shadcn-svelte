@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "popover-content.svelte",
-			"content": "<script>\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport { cn, flyAndScale } from \"$lib/utils\";\n\tlet className = undefined;\n\texport let transition = flyAndScale;\n\texport let transitionConfig = undefined;\n\texport { className as class };\n</script>\n\n<PopoverPrimitive.Content\n\t{transition}\n\t{transitionConfig}\n\tclass={cn(\n\t\t\"z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</PopoverPrimitive.Content>\n"
+			"content": "<script>\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport { cn, flyAndScale } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let transition = flyAndScale;\n\texport let transitionConfig = undefined;\n\texport { className as class };\n</script>\n\n<PopoverPrimitive.Content\n\t{transition}\n\t{transitionConfig}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</PopoverPrimitive.Content>\n"
 		}
 	],
 	"type": "components:ui"

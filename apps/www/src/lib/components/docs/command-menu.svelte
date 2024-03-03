@@ -7,8 +7,8 @@
 	import * as Command from "@/registry/new-york/ui/command/index.js";
 	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import { onMount } from "svelte";
-	import { cn } from "@/utils.js";
-	import { docsConfig } from "@/config/docs.js";
+	import { cn } from "$lib/utils.js";
+	import { docsConfig } from "$lib/config/docs.js";
 	import { goto } from "$app/navigation";
 	import { resetMode, setMode } from "mode-watcher";
 

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Card from "@/registry/default/ui/card";
-	import { Button } from "@/registry/default/ui/button";
-	import { Icons } from "$lib/components/docs/icons";
-	import { Label } from "@/registry/default/ui/label";
-	import { Input } from "@/registry/default/ui/input";
-	import * as RadioGroup from "@/registry/default/ui/radio-group";
-	import * as Select from "@/registry/default/ui/select";
+	import * as Card from "@/registry/default/ui/card/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import { Icons } from "$lib/components/docs/icons/index.js";
+	import { Label } from "@/registry/default/ui/label/index.js";
+	import { Input } from "@/registry/default/ui/input/index.js";
+	import * as RadioGroup from "@/registry/default/ui/radio-group/index.js";
+	import * as Select from "@/registry/default/ui/select/index.js";
 
 	const months = [
 		"January",
@@ -32,7 +32,7 @@
 		<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
 			<Label
 				for="card"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
 			>
 				<RadioGroup.Item value="card" id="card" class="sr-only" aria-label="Card" />
 				<svg
@@ -52,7 +52,7 @@
 			</Label>
 			<Label
 				for="paypal"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
 				<Icons.paypal class="mb-3 h-6 w-6" />
@@ -60,7 +60,7 @@
 			</Label>
 			<Label
 				for="apple"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
 				<Icons.apple class="mb-3 h-6 w-6" />

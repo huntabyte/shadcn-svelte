@@ -7,7 +7,7 @@
 	import { config } from "@/stores/index.js";
 	import { mode } from "mode-watcher";
 	import { themes } from "@/registry/index.js";
-	import { cn } from "@/utils.js";
+	import { cn } from "$lib/utils.js";
 	import Button from "@/registry/new-york/ui/button/button.svelte";
 	import Paintbrush from "lucide-svelte/icons/paintbrush";
 	import { Customizer, ThemeCopyCodeButton } from "./index.js";

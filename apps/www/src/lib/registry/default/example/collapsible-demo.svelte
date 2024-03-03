@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Collapsible from "@/registry/default/ui/collapsible";
+	import * as Collapsible from "@/registry/default/ui/collapsible/index.js";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import { Button } from "@/registry/default/ui/button";
+	import { Button } from "@/registry/default/ui/button/index.js";
 </script>
 
 <Collapsible.Root class="w-[350px] space-y-2">

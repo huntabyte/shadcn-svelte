@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ExclamationTriangle from "svelte-radix/ExclamationTriangle.svelte";
-	import * as Alert from "@/registry/new-york/ui/alert";
+	import * as Alert from "@/registry/new-york/ui/alert/index.js";
 </script>
 
 <Alert.Root variant="destructive">

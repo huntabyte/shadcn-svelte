@@ -1,9 +1,9 @@
 <script lang="ts">
 	import BellRing from "lucide-svelte/icons/bell-ring";
 	import Check from "lucide-svelte/icons/check";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import { Switch } from "@/registry/default/ui/switch";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Card from "@/registry/default/ui/card/index.js";
+	import { Switch } from "@/registry/default/ui/switch/index.js";
 
 	const notifications = [
 		{
@@ -31,7 +31,7 @@
 			<BellRing />
 			<div class="flex-1 space-y-1">
 				<p class="text-sm font-medium leading-none">Push Notifications</p>
-				<p class="text-sm text-muted-foreground">Send notifications to device.</p>
+				<p class="text-muted-foreground text-sm">Send notifications to device.</p>
 			</div>
 			<Switch />
 		</div>
@@ -43,7 +43,7 @@
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
 						</p>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-muted-foreground text-sm">
 							{notification.description}
 						</p>
 					</div>

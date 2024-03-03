@@ -5,7 +5,7 @@
 	import Settings from "lucide-svelte/icons/settings";
 	import Smile from "lucide-svelte/icons/smile";
 	import User from "lucide-svelte/icons/user";
-	import * as Command from "@/registry/default/ui/command";
+	import * as Command from "@/registry/default/ui/command/index.js";
 	import { onMount } from "svelte";
 
 	let open = false;
@@ -25,10 +25,10 @@
 	});
 </script>
 
-<p class="text-sm text-muted-foreground">
+<p class="text-muted-foreground text-sm">
 	Press
 	<kbd
-		class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100"
+		class="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100"
 	>
 		<span class="text-xs">⌘</span>J
 	</kbd>

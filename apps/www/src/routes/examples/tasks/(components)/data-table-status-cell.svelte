@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { statuses } from "../(data)/data";
+	import { statuses } from "../(data)/data.js";
 
 	export let value: string;
 	const status = statuses.find((status) => status.value === value);
@@ -9,7 +9,7 @@
 {#if status}
 	<div class="flex w-[100px] items-center">
 		{#if Icon}
-			<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
+			<Icon class="text-muted-foreground mr-2 h-4 w-4" />
 		{/if}
 		<span>{status.label}</span>
 	</div>

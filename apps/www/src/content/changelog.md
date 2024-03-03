@@ -288,8 +288,8 @@ Inside the components that use transitions/animations, you'll need to remove the
 ```svelte title="src/lib/components/ui/alert-dialog-content.svelte"
 <script lang="ts">
   import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
-  import * as AlertDialog from ".";
-  import { cn, flyAndScale } from "$lib/utils";
+  import * as AlertDialog from "./index.js";
+  import { cn, flyAndScale } from "$lib/utils.js";
 
   type $$Props = AlertDialogPrimitive.ContentProps;
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import * as Drawer from "@/registry/new-york/ui/drawer";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
+	import * as Drawer from "@/registry/new-york/ui/drawer/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import { mediaQuery } from "svelte-legos";
 
 	let open = false;

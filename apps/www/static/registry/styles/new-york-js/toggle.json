@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "toggle.svelte",
-			"content": "<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { toggleVariants } from \".\";\n\timport { cn } from \"$lib/utils\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let pressed = undefined;\n\texport { className as class };\n</script>\n\n<TogglePrimitive.Root\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</TogglePrimitive.Root>\n"
+			"content": "<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { toggleVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let pressed = undefined;\n\texport { className as class };\n</script>\n\n<TogglePrimitive.Root\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</TogglePrimitive.Root>\n"
 		}
 	],
 	"type": "components:ui"

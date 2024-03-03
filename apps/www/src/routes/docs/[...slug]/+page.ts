@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types";
+import type { PageLoad } from "./$types.js";
 import { redirect } from "@sveltejs/kit";
-import { getDoc } from "$lib/utils";
+import { getDoc } from "$lib/utils.js";
 
 export const load: PageLoad = async (event) => {
 	if (event.params.slug === "components") {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { DocsSidebarNav } from "$components/docs";
-	import { docsConfig } from "$lib/config/docs";
+	import { DocsSidebarNav } from "$components/docs/index.js";
+	import { docsConfig } from "$lib/config/docs.js";
 </script>
 
 <div class="border-b">

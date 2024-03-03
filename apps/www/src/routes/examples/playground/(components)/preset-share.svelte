@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Copy from "svelte-radix/Copy.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import * as Popover from "@/registry/new-york/ui/popover";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import * as Popover from "@/registry/new-york/ui/popover/index.js";
 </script>
 
 <Popover.Root>
@@ -13,7 +13,7 @@
 	<Popover.Content class="w-[520px]" align="end">
 		<div class="flex flex-col space-y-2 text-center sm:text-left">
 			<h3 class="text-lg font-semibold">Share preset</h3>
-			<p class="text-sm text-muted-foreground">
+			<p class="text-muted-foreground text-sm">
 				Anyone who has this link and an OpenAI account will be able to view this.
 			</p>
 		</div>

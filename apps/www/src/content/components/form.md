@@ -90,7 +90,7 @@ export type FormSchema = typeof formSchema;
 ### Return the form from the route's load function
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types.js";
 import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
@@ -148,7 +148,7 @@ We'll pass the `form` from the data returned from the load function to the form 
 
 ```svelte title="src/routes/settings/+page.svelte" showLineNumbers
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import type { PageData } from "./$types.js";
   import SettingsForm from "./settings-form.svelte";
   export let data: PageData;
 </script>
@@ -159,7 +159,7 @@ We'll pass the `form` from the data returned from the load function to the form 
 ### Create an Action that handles the form submission
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,12-24}
-import type { PageServerLoad, Actions } from "./$types";
+import type { PageServerLoad, Actions } from "./$types.js";
 import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";

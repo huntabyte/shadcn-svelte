@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Bar } from "@/components/docs/charts/index.js";
+	import { Bar } from "$lib/components/docs/charts/index.js";
 </script>
 
 <Bar />

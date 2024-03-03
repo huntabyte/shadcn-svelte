@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/new-york/ui/checkbox";
+	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
 	import Label from "@/registry/new-york/ui/label/label.svelte";
 	let checked = false;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 </script>
 
 <Button

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Announcement, ExamplesNav } from "$components/docs";
-	import * as PageHeader from "@/components/docs/page-header";
-	import { Button } from "@/registry/default/ui/button";
+	import { Announcement, ExamplesNav } from "$components/docs/index.js";
+	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import { Button } from "@/registry/default/ui/button/index.js";
 </script>
 
 <div class="container relative pb-10">
@@ -20,7 +20,7 @@
 	</PageHeader.Root>
 	<section>
 		<ExamplesNav />
-		<div class="overflow-hidden rounded-[0.5rem] border bg-background shadow-xl">
+		<div class="bg-background overflow-hidden rounded-[0.5rem] border shadow-xl">
 			<slot />
 		</div>
 	</section>

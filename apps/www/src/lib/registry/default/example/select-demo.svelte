@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Select from "@/registry/default/ui/select";
+	import * as Select from "@/registry/default/ui/select/index.js";
 
 	const fruits = [
 		{ value: "apple", label: "Apple" },

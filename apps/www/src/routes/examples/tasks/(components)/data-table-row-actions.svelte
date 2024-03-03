@@ -1,9 +1,9 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { labels } from "../(data)/data";
-	import { taskSchema, type Task } from "../(data)/schemas";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import { labels } from "../(data)/data.js";
+	import { taskSchema, type Task } from "../(data)/schemas.js";
 
 	export let row: Task;
 	const task = taskSchema.parse(row);
@@ -14,7 +14,7 @@
 		<Button
 			variant="ghost"
 			builders={[builder]}
-			class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+			class="data-[state=open]:bg-muted flex h-8 w-8 p-0"
 		>
 			<DotsHorizontal class="h-4 w-4" />
 			<span class="sr-only">Open menu</span>

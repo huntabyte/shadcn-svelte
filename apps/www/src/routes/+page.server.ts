@@ -1,4 +1,4 @@
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types.js";
 
 export const load: PageServerLoad = async (event) => {
 	const layoutCookie = event.cookies.get("PaneForge:layout");

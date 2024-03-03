@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 
 	let position = "bottom";
 </script>

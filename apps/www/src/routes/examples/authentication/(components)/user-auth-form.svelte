@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Icons } from "$components/docs";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { cn } from "$lib/utils";
+	import { Icons } from "$components/docs/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -46,7 +46,7 @@
 			<span class="w-full border-t" />
 		</div>
 		<div class="relative flex justify-center text-xs uppercase">
-			<span class="bg-background px-2 text-muted-foreground"> Or continue with </span>
+			<span class="bg-background text-muted-foreground px-2"> Or continue with </span>
 		</div>
 	</div>
 	<Button variant="outline" type="button" disabled={isLoading}>

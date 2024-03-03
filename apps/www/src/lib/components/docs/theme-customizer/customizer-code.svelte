@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { config } from "@/stores/index.js";
 	import { themes } from "@/registry/index.js";
-	import { ThemeWrapper } from "@/components/docs/index.js";
+	import { ThemeWrapper } from "$lib/components/docs/index.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
 	export let setCodeString: (node: HTMLElement) => void;
