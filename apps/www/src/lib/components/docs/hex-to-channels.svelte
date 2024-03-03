@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { hexToHsl, hexToRgb } from "$lib/utils";
-	import { CopyButton } from ".";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { hexToHsl, hexToRgb } from "$lib/utils.js";
+	import { CopyButton } from "./index.js";
 
 	let hex = "#030711";
 	let hsl: [number, number, number] = [0, 0, 0];
@@ -17,7 +17,7 @@
 </script>
 
 <div
-	class="mt-2 flex h-[300px] items-center justify-center rounded-md border ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+	class="ring-offset-background focus-visible:ring-ring mt-2 flex h-[300px] items-center justify-center rounded-md border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
 >
 	<div class="mx-auto w-full max-w-sm space-y-6 py-4">
 		<div class="grid gap-2">

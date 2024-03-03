@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Alert from "@/registry/new-york/ui/alert";
+	import * as Alert from "@/registry/new-york/ui/alert/index.js";
 </script>
 
 <Alert.Root {...$$restProps} class="mt-2">

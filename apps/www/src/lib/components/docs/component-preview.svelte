@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { Index as RegistryIndex } from "../../../../__registry__";
-	import { config } from "@/stores";
-	import { cn } from "@/utils";
-	import { StyleSwitcher, ThemeWrapper } from "@/components/docs";
-	import { Icons } from "./icons";
+	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
+	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
+	import { config } from "@/stores/index.js";
+	import { cn } from "@/utils.js";
+	import { StyleSwitcher, ThemeWrapper } from "@/components/docs/index.js";
+	import { Icons } from "./icons/index.js";
 	export let name: string;
 	let className: string;
 	export let align: "center" | "start" | "end" = "center";
@@ -30,13 +30,13 @@
 			<Tabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
 				<Tabs.Trigger
 					value="preview"
-					class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Preview
 				</Tabs.Trigger>
 				<Tabs.Trigger
 					value="code"
-					class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Code
 				</Tabs.Trigger>
@@ -61,17 +61,17 @@
 				>
 					<slot name="example">
 						{#await component}
-							<div class="flex items-center text-sm text-muted-foreground">
+							<div class="text-muted-foreground flex items-center text-sm">
 								<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 								Loading...
 							</div>
 						{:then Component}
 							<svelte:component this={Component} {form} />
 						{:catch}
-							<p class="text-sm text-muted-foreground">
+							<p class="text-muted-foreground text-sm">
 								Component{" "}
 								<code
-									class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+									class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm"
 								>
 									{name}
 								</code>{" "}

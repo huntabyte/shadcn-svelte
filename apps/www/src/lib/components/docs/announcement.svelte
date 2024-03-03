@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import { cn } from "$lib/utils";
-	import { Icons } from "./icons";
+	import { Separator } from "@/registry/new-york/ui/separator/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Icons } from "./icons/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -10,7 +10,7 @@
 <a
 	href="/docs/changelog"
 	class={cn(
-		"inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium",
+		"bg-muted inline-flex items-center rounded-lg px-3 py-1 text-sm font-medium",
 		className
 	)}
 	{...$$restProps}

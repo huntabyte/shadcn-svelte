@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ComponentPreviewManual } from "@/components/docs";
-	import { config } from "@/stores";
+	import { ComponentPreviewManual } from "@/components/docs/index.js";
+	import { config } from "@/stores/index.js";
 	import type { FormSchema } from "@/registry/default/example/form-demo.svelte";
 	import DefaultFormDemo from "@/registry/default/example/form-demo.svelte";
 	import NewYorkFormDemo from "@/registry/new-york/example/form-demo.svelte";

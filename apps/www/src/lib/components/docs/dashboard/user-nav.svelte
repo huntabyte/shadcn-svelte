@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import * as Avatar from "@/registry/new-york/ui/avatar/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>
@@ -17,7 +17,7 @@
 		<DropdownMenu.Label class="font-normal">
 			<div class="flex flex-col space-y-1">
 				<p class="text-sm font-medium leading-none">shadcn</p>
-				<p class="text-xs leading-none text-muted-foreground">m@example.com</p>
+				<p class="text-muted-foreground text-xs leading-none">m@example.com</p>
 			</div>
 		</DropdownMenu.Label>
 		<DropdownMenu.Separator />

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TableOfContents } from "$lib/types/docs";
-	import { cn } from "$lib/utils";
+	import type { TableOfContents } from "$lib/types/docs.js";
+	import { cn } from "$lib/utils.js";
 
 	export let tree: TableOfContents = {
 		items: [],
@@ -16,10 +16,10 @@
 				<a
 					href={item.url}
 					class={cn(
-						"inline-block no-underline transition-colors hover:text-foreground",
+						"hover:text-foreground inline-block no-underline transition-colors",
 						item.url === `#${activeItem}` ||
 							item.items?.some((i) => i.url === `#${activeItem}`)
-							? "font-medium text-foreground"
+							? "text-foreground font-medium"
 							: "text-muted-foreground"
 					)}
 				>

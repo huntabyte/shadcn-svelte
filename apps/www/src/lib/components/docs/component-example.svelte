@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { cn } from "$lib/utils";
-	import { StyleSwitcher, ThemeWrapper, CopyButton } from "@/components/docs";
+	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
+	import { cn } from "$lib/utils.js";
+	import { StyleSwitcher, ThemeWrapper, CopyButton } from "@/components/docs/index.js";
 
 	let codeString: string;
 
@@ -19,13 +19,13 @@
 			<Tabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
 				<Tabs.Trigger
 					value="preview"
-					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Preview
 				</Tabs.Trigger>
 				<Tabs.Trigger
 					value="code"
-					class="relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Code
 				</Tabs.Trigger>

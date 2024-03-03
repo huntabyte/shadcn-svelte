@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { clickToCopyAction } from "svelte-legos";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
+	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
 
 	let copied = false;
 	let commands: Record<"npm" | "yarn" | "pnpm" | "bun", string> = {
@@ -101,7 +101,7 @@
 {:else}
 	<button
 		class={cn(
-			"absolute right-4 top-4 z-10 inline-flex h-6 w-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+			"focus-visible:ring-ring absolute right-4 top-4 z-10 inline-flex h-6 w-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
 			className
 		)}
 		use:clickToCopyAction={value}

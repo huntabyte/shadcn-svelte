@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Select from "@/registry/new-york/ui/select";
-	import { config } from "@/stores";
-	import { styles } from "@/registry/styles";
+	import * as Select from "@/registry/new-york/ui/select/index.js";
+	import { config } from "@/stores/index.js";
+	import { styles } from "@/registry/styles.js";
 
 	let styleLabel = styles.filter((s) => s.name === $config.style)[0].label;
 	let selected = { value: $config.style, label: styleLabel };

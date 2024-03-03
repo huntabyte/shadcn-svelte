@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { config } from "@/stores";
-	import { cn } from "@/utils";
+	import { config } from "$lib/stores/index.js";
+	import { cn } from "$lib/utils.js";
 	export let defaultTheme: string | undefined = undefined;
 	let className: string | undefined | null = undefined;
 	export { className as class };

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SidebarNavItem } from "$lib/types/nav";
+	import type { SidebarNavItem } from "$lib/types/nav.js";
 	import { page } from "$app/stores";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	export let items: SidebarNavItem[] = [];
 </script>
@@ -16,7 +16,7 @@
 						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
 						item.disabled && "cursor-not-allowed opacity-60",
 						$page.url.pathname === item.href
-							? "font-medium text-foreground"
+							? "text-foreground font-medium"
 							: "text-muted-foreground"
 					)}
 					target={item.external ? "_blank" : ""}
@@ -33,7 +33,7 @@
 				</a>
 			{:else}
 				<span
-					class="flex w-full cursor-not-allowed items-center rounded-md p-2 text-muted-foreground hover:underline"
+					class="text-muted-foreground flex w-full cursor-not-allowed items-center rounded-md p-2 hover:underline"
 				>
 					{item.title}
 				</span>

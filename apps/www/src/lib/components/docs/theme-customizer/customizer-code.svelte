@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { config } from "@/stores";
-	import { themes } from "@/registry";
-	import { ThemeWrapper } from "@/components/docs";
+	import { config } from "@/stores/index.js";
+	import { themes } from "@/registry/index.js";
+	import { ThemeWrapper } from "@/components/docs/index.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
 	export let setCodeString: (node: HTMLElement) => void;
@@ -22,7 +22,7 @@
 		<pre
 			class="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 dark:bg-zinc-900"
 			use:setCodeString>
-            <code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+            <code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
                 <span class="line text-white">@layer base &#123;</span>
                 <span class="line text-white">  :root &#123;</span>
                 <span class="line text-white">    --background:{" "}{activeTheme?.cssVars.light[

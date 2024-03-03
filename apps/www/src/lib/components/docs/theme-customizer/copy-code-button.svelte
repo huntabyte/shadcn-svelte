@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import { config } from "@/stores";
-	import { themes } from "@/registry";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { ThemeWrapper, CustomizerCode } from "@/components/docs";
-	import { createCopyCodeButton } from "@/utils";
+	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
+	import { config } from "@/stores/index.js";
+	import { themes } from "@/registry/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { ThemeWrapper, CustomizerCode } from "@/components/docs/index.js";
+	import { createCopyCodeButton } from "@/utils.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
 	const { copied, copyCode, setCodeString } = createCopyCodeButton();
@@ -32,7 +32,7 @@
 						on:click={() => {
 							copyCode();
 						}}
-						class="absolute right-4 top-4 bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground"
+						class="bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground absolute right-4 top-4"
 					>
 						{#if $copied}
 							<Check class="mr-2 h-4 w-4" />

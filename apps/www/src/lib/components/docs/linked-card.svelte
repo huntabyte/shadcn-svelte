@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "@/utils";
+	import { cn } from "$lib/utils.js";
 	export let href: string;
 
 	let className: string | undefined | null = undefined;
@@ -9,7 +9,7 @@
 <a
 	{href}
 	class={cn(
-		"flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
+		"bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
 		className
 	)}
 >

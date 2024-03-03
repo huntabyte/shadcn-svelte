@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { config } from "@/stores";
-	import type { Style } from "@/registry/styles";
+	import { config } from "@/stores/index.js";
+	import type { Style } from "@/registry/styles.js";
 
 	export let styleName: Style["name"];
 </script>

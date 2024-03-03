@@ -1,9 +1,9 @@
 <script lang="ts">
-	import * as Sheet from "@/registry/new-york/ui/sheet";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { docsConfig } from "$lib/config/docs";
-	import { siteConfig } from "$lib/config/site";
-	import { Icons } from "../icons";
+	import * as Sheet from "@/registry/new-york/ui/sheet/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { docsConfig } from "$lib/config/docs.js";
+	import { siteConfig } from "$lib/config/site.js";
+	import { Icons } from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
 
 	let open = false;

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Icons, ModeToggle, MainNav, MobileNav, CommandMenu } from "@/components/docs";
-	import { buttonVariants } from "@/registry/new-york/ui/button";
-	import { siteConfig } from "$lib/config/site";
-	import { cn } from "$lib/utils";
+	import { Icons, ModeToggle, MainNav, MobileNav, CommandMenu } from "@/components/docs/index.js";
+	import { buttonVariants } from "@/registry/new-york/ui/button/index.js";
+	import { siteConfig } from "$lib/config/site.js";
+	import { cn } from "$lib/utils.js";
 </script>
 
 <header
-	class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+	class="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur"
 >
 	<div class="container flex h-14 max-w-screen-2xl items-center">
 		<MainNav />

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Collapsible from "@/registry/new-york/ui/collapsible";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { cn } from "$lib/utils";
+	import * as Collapsible from "@/registry/new-york/ui/collapsible/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

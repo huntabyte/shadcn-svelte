@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
-	import { color } from "./helpers";
+	import { color } from "./helpers.js";
 
 	const data = [
 		{

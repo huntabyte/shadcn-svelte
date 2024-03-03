@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { NavItem, NavItemWithChildren } from "$lib/types/nav";
+	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
 	import { page } from "$app/stores";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { docsConfig } from "$lib/config/docs";
-	import { Icons } from "./icons";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { docsConfig } from "$lib/config/docs.js";
+	import { Icons } from "./icons/index.js";
 
 	let pager: ReturnType<typeof getPagerForDoc>;
 

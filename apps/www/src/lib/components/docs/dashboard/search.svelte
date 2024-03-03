@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input } from "@/registry/new-york/ui/input";
+	import { Input } from "@/registry/new-york/ui/input/index.js";
 </script>
 
 <div>

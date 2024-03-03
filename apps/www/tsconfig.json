@@ -9,7 +9,8 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler",
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext",
 		"verbatimModuleSyntax": true
 	}
 }

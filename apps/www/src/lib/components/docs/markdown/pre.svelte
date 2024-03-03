@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { CopyButton } from "$components/docs";
-	import { cn } from "$lib/utils";
+	import { CopyButton } from "$components/docs/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

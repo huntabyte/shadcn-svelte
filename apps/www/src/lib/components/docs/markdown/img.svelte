@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HTMLImgAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

@@ -4,11 +4,11 @@
 	import Laptop from "svelte-radix/Laptop.svelte";
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-	import * as Command from "@/registry/new-york/ui/command";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "@/registry/new-york/ui/command/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
 	import { onMount } from "svelte";
-	import { cn } from "@/utils";
-	import { docsConfig } from "@/config/docs";
+	import { cn } from "@/utils.js";
+	import { docsConfig } from "@/config/docs.js";
 	import { goto } from "$app/navigation";
 	import { resetMode, setMode } from "mode-watcher";
 
@@ -40,7 +40,7 @@
 <Button
 	variant="outline"
 	class={cn(
-		"relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+		"text-muted-foreground relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
 	)}
 	on:click={() => (open = true)}
 	{...$$restProps}
@@ -48,7 +48,7 @@
 	<span class="hidden lg:inline-flex"> Search documentation... </span>
 	<span class="inline-flex lg:hidden">Search...</span>
 	<kbd
-		class="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
+		class="bg-muted pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
 	>
 		<span class="text-xs">⌘</span>K
 	</kbd>

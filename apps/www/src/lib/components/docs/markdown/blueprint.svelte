@@ -20,7 +20,7 @@
 		th,
 		tr,
 		ul,
-	} from "$components/docs/markdown";
+	} from "$components/docs/markdown/index.js";
 
 	export {
 		a,

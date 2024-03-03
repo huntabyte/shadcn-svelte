@@ -92,7 +92,6 @@ function remarkRemovePrettierIgnore() {
 	return async (tree) => {
 		visit(tree, "code", (node) => {
 			node.value = node.value
-				// @ts-expect-error - not dealing with this rn
 				.replaceAll("<!-- prettier-ignore -->\n", "")
 				.replaceAll("// prettier-ignore\n", "");
 		});
@@ -149,11 +148,17 @@ const styles = [
 	},
 ];
 
+/**
+ * 
+ * @returns {HastTransformer}
+ */
 export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
+			// @ts-ignore
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
+				// @ts-ignore
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
@@ -163,17 +168,16 @@ export function rehypeComponentExample() {
 
 				try {
 					for (const style of styles) {
+						// @ts-ignore
 						const component = Index[style.name][name];
 						const src = component.files[0];
 						let sourceCode = getComponentSourceFileContent(src);
 						if (!sourceCode || sourceCode === null) return;
 
-						// @ts-expect-error - not dealing with this rn
 						sourceCode = sourceCode.replaceAll(
 							"@/registry/new-york/",
 							"$lib/components/"
 						);
-						// @ts-expect-error - not dealing with this rn
 						sourceCode = sourceCode.replaceAll(
 							"@/registry/default/",
 							"$lib/components/"
@@ -203,7 +207,8 @@ export function rehypeComponentExample() {
 							],
 						});
 						if (!index) return;
-						parent.children.splice(index + 1, 0, sourceCodeNode);
+						// @ts-ignore
+						parent?.children.splice(index + 1, 0, sourceCodeNode);
 					}
 				} catch (e) {
 					console.error(e);

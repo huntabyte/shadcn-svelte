@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { VisXYContainer, VisLine, VisScatter } from "@unovis/svelte";
-	import { color, scatterPointColors, scatterPointStrokeColors } from "./helpers";
+	import { color, scatterPointColors, scatterPointStrokeColors } from "./helpers.js";
 
 	const data = [
 		{ id: 1, revenue: 10400 },

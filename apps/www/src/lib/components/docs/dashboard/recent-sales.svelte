@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Avatar from "@/registry/new-york/ui/avatar";
+	import * as Avatar from "@/registry/new-york/ui/avatar/index.js";
 </script>
 
 <div class="space-y-8">
