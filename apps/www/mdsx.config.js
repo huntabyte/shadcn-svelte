@@ -156,9 +156,9 @@ export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			// @ts-ignore
+			// @ts-expect-error - this is fine
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
-				// @ts-ignore
+				// @ts-expect-error - this is fine
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
@@ -168,7 +168,7 @@ export function rehypeComponentExample() {
 
 				try {
 					for (const style of styles) {
-						// @ts-ignore
+						// @ts-expect-error - this is fine for now.
 						const component = Index[style.name][name];
 						const src = component.files[0];
 						let sourceCode = getComponentSourceFileContent(src);
@@ -207,7 +207,7 @@ export function rehypeComponentExample() {
 							],
 						});
 						if (!index) return;
-						// @ts-ignore
+						// @ts-expect-error - this is fine
 						parent?.children.splice(index + 1, 0, sourceCodeNode);
 					}
 				} catch (e) {
