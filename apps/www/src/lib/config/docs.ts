@@ -1,4 +1,4 @@
-import type { NavItem, SidebarNavItem } from "$lib/types/nav";
+import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 
 interface DocsConfig {
 	mainNav: NavItem[];

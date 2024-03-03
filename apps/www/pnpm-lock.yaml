@@ -12,8 +12,8 @@ dependencies:
     specifier: 0.18.2
     version: 0.18.2(svelte@4.2.11)
   cmdk-sv:
-    specifier: ^0.0.12
-    version: 0.0.12(svelte@4.2.11)
+    specifier: ^0.0.14
+    version: 0.0.14(svelte@4.2.11)
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
@@ -27,8 +27,8 @@ dependencies:
     specifier: ^0.303.0
     version: 0.303.0(svelte@4.2.11)
   mode-watcher:
-    specifier: ^0.1.2
-    version: 0.1.2(svelte@4.2.11)
+    specifier: ^0.2.2
+    version: 0.2.2(svelte@4.2.11)
   nanoid:
     specifier: ^5.0.3
     version: 5.0.3
@@ -2314,13 +2314,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cmdk-sv@0.0.12(svelte@4.2.11):
-    resolution: {integrity: sha512-d+eILSOb2W+/3U/j7xGTgGRrZkFB/z4Xlvj0ADrWhf34y9YLzJon3JCGP2hMil5IrVm0P/+IFIeCF5l3//kcjA==}
+  /cmdk-sv@0.0.14(svelte@4.2.11):
+    resolution: {integrity: sha512-6S0dTwOpW8K1v49eoUUwhi99zHaujoJKaJqNfzXzn8+hczS6Skl9tHsketRFymQpdlTWOi8gPbMSl3LUyYpZkw==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       bits-ui: 0.9.8(svelte@4.2.11)
-      nanoid: 5.0.4
+      nanoid: 5.0.5
       svelte: 4.2.11
     dev: false
 
@@ -4519,8 +4519,8 @@ packages:
       ufo: 1.4.0
     dev: true
 
-  /mode-watcher@0.1.2(svelte@4.2.11):
-    resolution: {integrity: sha512-XTdPCdqC3kqSvB+Q262Kor983YJkkB2Z3vj9uqg5IqKQpOdiz+xB99Jihp8sWbyM67drC7KKp0Nt5FzCypZi2g==}
+  /mode-watcher@0.2.2(svelte@4.2.11):
+    resolution: {integrity: sha512-QjkHQL9pXrr7Vb0P3WbOWAF8mv1Q6jEwUZ5GUyCnI9eEoXH234zuaOGChUF7ZQtjxwtmXDzKFSW/36TvLDg1/A==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
@@ -4573,12 +4573,6 @@ packages:
 
   /nanoid@5.0.3:
     resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-    dev: false
-
-  /nanoid@5.0.4:
-    resolution: {integrity: sha512-vAjmBf13gsmhXSgBrtIclinISzFFy22WwCYoyilZlsrRXNIHSwgFQ1bEdjRwMT3aoadeIF6HMuDRlOxzfXV8ig==}
     engines: {node: ^18 || >=20}
     hasBin: true
     dev: false
