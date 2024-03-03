@@ -17,7 +17,7 @@
 </script>
 
 <div
-	class="ring-offset-background focus-visible:ring-ring mt-2 flex h-[300px] items-center justify-center rounded-md border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+	class="mt-2 flex h-[300px] items-center justify-center rounded-md border ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 >
 	<div class="mx-auto w-full max-w-sm space-y-6 py-4">
 		<div class="grid gap-2">

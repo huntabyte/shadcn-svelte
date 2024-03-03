@@ -35,7 +35,7 @@
 		<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
 			<Label
 				for="card-{id}"
-				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
+				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
 				<RadioGroup.Item value="card" id="card-{id}" class="sr-only" aria-label="Card" />
 				<svg
@@ -55,7 +55,7 @@
 			</Label>
 			<Label
 				for="paypal-{id}"
-				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
+				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
 				<RadioGroup.Item
 					value="paypal"
@@ -68,7 +68,7 @@
 			</Label>
 			<Label
 				for="apple-{id}"
-				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
+				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
 				<RadioGroup.Item value="apple" id="apple-{id}" class="sr-only" aria-label="Apple" />
 				<Icons.apple class="mb-3 h-6 w-6" />

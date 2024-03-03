@@ -31,7 +31,7 @@
 			<Bell />
 			<div class="flex-1 space-y-1">
 				<p class="text-sm font-medium leading-none">Push Notifications</p>
-				<p class="text-muted-foreground text-sm">Send notifications to device.</p>
+				<p class="text-sm text-muted-foreground">Send notifications to device.</p>
 			</div>
 			<Switch />
 		</div>
@@ -43,7 +43,7 @@
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
 						</p>
-						<p class="text-muted-foreground text-sm">
+						<p class="text-sm text-muted-foreground">
 							{notification.description}
 						</p>
 					</div>

@@ -13,7 +13,7 @@
 	<Popover.Content class="w-[520px]" align="end">
 		<div class="flex flex-col space-y-2 text-center sm:text-left">
 			<h3 class="text-lg font-semibold">Share preset</h3>
-			<p class="text-muted-foreground text-sm">
+			<p class="text-sm text-muted-foreground">
 				Anyone who has this link and an OpenAI account will be able to view this.
 			</p>
 		</div>

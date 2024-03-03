@@ -66,7 +66,7 @@
 						>
 							<div
 								class={cn(
-									"border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
+									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
 									filterValues.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"

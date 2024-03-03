@@ -39,12 +39,12 @@
 			</Dialog.Description>
 		</Dialog.Header>
 		<div class="py-6">
-			<h4 class="text-muted-foreground text-sm">Playground Warnings</h4>
+			<h4 class="text-sm text-muted-foreground">Playground Warnings</h4>
 			<div class="flex items-start justify-between space-x-4 pt-3">
 				<Switch name="show" id="show" checked />
 				<Label class="grid gap-1 font-normal" for="show">
 					<span class="font-semibold"> Show a warning when content is flagged </span>
-					<span class="text-muted-foreground text-sm">
+					<span class="text-sm text-muted-foreground">
 						A warning will be shown when sexual, hateful, violent or self-harm content
 						is detected.
 					</span>

@@ -16,7 +16,7 @@
 						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
 						item.disabled && "cursor-not-allowed opacity-60",
 						$page.url.pathname === item.href
-							? "text-foreground font-medium"
+							? "font-medium text-foreground"
 							: "text-muted-foreground"
 					)}
 					target={item.external ? "_blank" : ""}
@@ -33,7 +33,7 @@
 				</a>
 			{:else}
 				<span
-					class="text-muted-foreground flex w-full cursor-not-allowed items-center rounded-md p-2 hover:underline"
+					class="flex w-full cursor-not-allowed items-center rounded-md p-2 text-muted-foreground hover:underline"
 				>
 					{item.title}
 				</span>

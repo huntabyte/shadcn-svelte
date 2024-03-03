@@ -23,7 +23,7 @@
 	{alignOffset}
 	{side}
 	class={cn(
-		"bg-popover text-popover-foreground z-50 min-w-[12rem] rounded-md border p-1 shadow-md focus:outline-none",
+		"z-50 min-w-[12rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-md focus:outline-none",
 		className
 	)}
 	{...$$restProps}

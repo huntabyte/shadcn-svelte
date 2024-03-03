@@ -9,7 +9,7 @@
 
 <p
 	class={cn(
-		"text-muted-foreground max-w-[750px] text-center text-lg sm:text-xl",
+		"max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl",
 		balanced && "text-balance",
 		className
 	)}

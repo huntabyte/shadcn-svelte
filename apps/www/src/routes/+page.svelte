@@ -49,7 +49,7 @@
 	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section
-		class="bg-background overflow-hidden rounded-lg border shadow-md md:hidden md:shadow-xl"
+		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
 		<img
 			src="/examples/mail-light.png"
@@ -67,7 +67,7 @@
 		/>
 	</section>
 	<section class="hidden md:block">
-		<div class="bg-background overflow-hidden rounded-lg border shadow-lg">
+		<div class="overflow-hidden rounded-lg border bg-background shadow-lg">
 			<Mail
 				{accounts}
 				{mails}

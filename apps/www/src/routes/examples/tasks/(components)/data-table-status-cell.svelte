@@ -9,7 +9,7 @@
 {#if status}
 	<div class="flex w-[100px] items-center">
 		{#if Icon}
-			<Icon class="text-muted-foreground mr-2 h-4 w-4" />
+			<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
 		{/if}
 		<span>{status.label}</span>
 	</div>

@@ -41,7 +41,7 @@
 				<Button
 					variant="ghost"
 					builders={[builder]}
-					class="data-[state=open]:bg-accent -ml-3 h-8"
+					class="-ml-3 h-8 data-[state=open]:bg-accent"
 				>
 					<slot />
 					{#if props.sort.order === "desc"}

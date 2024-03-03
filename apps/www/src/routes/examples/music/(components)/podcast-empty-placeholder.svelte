@@ -14,7 +14,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"
 			stroke-width="2"
-			class="text-muted-foreground h-10 w-10"
+			class="h-10 w-10 text-muted-foreground"
 			viewBox="0 0 24 24"
 		>
 			<circle cx="12" cy="11" r="1" />
@@ -25,7 +25,7 @@
 		</svg>
 
 		<h3 class="mt-4 text-lg font-semibold">No episodes added</h3>
-		<p class="text-muted-foreground mb-4 mt-2 text-sm">
+		<p class="mb-4 mt-2 text-sm text-muted-foreground">
 			You have not added any podcasts. Add one below.
 		</p>
 		<Dialog.Root>

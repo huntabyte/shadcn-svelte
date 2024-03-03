@@ -66,7 +66,7 @@
 								<p class="text-sm font-medium leading-none">
 									{person.name}
 								</p>
-								<p class="text-muted-foreground text-sm">
+								<p class="text-sm text-muted-foreground">
 									{person.email}
 								</p>
 							</div>

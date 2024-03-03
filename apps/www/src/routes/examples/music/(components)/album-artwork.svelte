@@ -70,6 +70,6 @@
 	</ContextMenu.Root>
 	<div class="space-y-1 text-sm">
 		<h3 class="font-medium leading-none">{album.name}</h3>
-		<p class="text-muted-foreground text-xs">{album.artist}</p>
+		<p class="text-xs text-muted-foreground">{album.artist}</p>
 	</div>
 </div>

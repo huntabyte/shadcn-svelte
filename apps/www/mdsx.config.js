@@ -149,7 +149,7 @@ const styles = [
 ];
 
 /**
- * 
+ *
  * @returns {HastTransformer}
  */
 export function rehypeComponentExample() {

@@ -102,13 +102,13 @@
 							<h4 class="font-medium leading-none">
 								{peekedModel.name}
 							</h4>
-							<div class="text-muted-foreground text-sm">
+							<div class="text-sm text-muted-foreground">
 								{peekedModel.description}
 							</div>
 							{#if peekedModel.strengths}
 								<div class="mt-4 grid gap-2">
 									<h5 class="text-sm font-medium leading-none">Strengths</h5>
-									<ul class="text-muted-foreground text-sm">
+									<ul class="text-sm text-muted-foreground">
 										{peekedModel.strengths}
 									</ul>
 								</div>
