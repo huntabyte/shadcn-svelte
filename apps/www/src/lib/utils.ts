@@ -210,7 +210,7 @@ export async function getDoc(slug: string) {
 	const doc = await match?.resolver?.();
 
 	if (!doc || !doc.metadata) {
-		throw error(404);
+		error(404);
 	}
 
 	return {

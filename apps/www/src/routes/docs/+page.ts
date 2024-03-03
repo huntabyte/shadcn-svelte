@@ -20,7 +20,7 @@ export const load: PageLoad = async () => {
 	const doc = await match?.resolver?.();
 
 	if (!doc || !doc.metadata) {
-		throw error(404);
+		error(404);
 	}
 	return {
 		component: doc.default,
