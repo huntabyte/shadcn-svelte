@@ -521,6 +521,13 @@ export const Index = {
 			component: () => import("../src/lib/registry/default/example/resizable-vertical.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/default/example/resizable-vertical.svelte"],
 		},
+		"scroll-area-both": {
+			name: "scroll-area-both",
+			type: "components:example",
+			registryDependencies: ["index.js"],
+			component: () => import("../src/lib/registry/default/example/scroll-area-both.svelte").then((m) => m.default),
+			files: ["../src/lib/registry/default/example/scroll-area-both.svelte"],
+		},
 		"scroll-area-demo": {
 			name: "scroll-area-demo",
 			type: "components:example",
@@ -1368,6 +1375,13 @@ export const Index = {
 			registryDependencies: ["resizable"],
 			component: () => import("../src/lib/registry/new-york/example/resizable-vertical.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/new-york/example/resizable-vertical.svelte"],
+		},
+		"scroll-area-both": {
+			name: "scroll-area-both",
+			type: "components:example",
+			registryDependencies: ["index.js"],
+			component: () => import("../src/lib/registry/new-york/example/scroll-area-both.svelte").then((m) => m.default),
+			files: ["../src/lib/registry/new-york/example/scroll-area-both.svelte"],
 		},
 		"scroll-area-demo": {
 			name: "scroll-area-demo",

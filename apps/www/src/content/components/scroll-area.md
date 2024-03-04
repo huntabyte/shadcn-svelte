@@ -49,7 +49,19 @@ npx shadcn-svelte@latest add scroll-area
 
 ### Horizontal Scrolling
 
+Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
+
 <ComponentPreview name="scroll-area-horizontal">
+
+<div />
+
+</ComponentPreview>
+
+### Horizontal and Vertical Scrolling
+
+Set the `orientation` prop to `"both"` to enable both horizontal and vertical scrolling.
+
+<ComponentPreview name="scroll-area-both">
 
 <div />
 
