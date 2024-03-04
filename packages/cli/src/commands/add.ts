@@ -47,8 +47,6 @@ export const add = new Command()
 	)
 	.option("-p, --path <path>", "the path to add the component to.")
 	.action(async (components: string[], opts) => {
-		const highlight = logger.highlight;
-
 		try {
 			const options = addOptionsSchema.parse({
 				components,
@@ -123,7 +121,7 @@ export const add = new Command()
 				return;
 			}
 
-			logger.info(`Selected components:\n${highlight(selectedComponents)}`);
+			logger.info(`Selected components:\n${logger.highlight(selectedComponents)}`);
 
 			if (!options.yes) {
 				const { proceed } = await prompts({
@@ -171,9 +169,9 @@ export const add = new Command()
 				if (existingComponent.length && !options.overwrite) {
 					if (selectedComponents.includes(item.name)) {
 						logger.warn(
-							`\nComponent ${highlight(
+							`\nComponent ${logger.highlight(
 								item.name
-							)} already exists at ${highlight(
+							)} already exists at ${logger.highlight(
 								componentPath
 							)}. Use ${chalk.green("--overwrite")} to overwrite.`
 						);
@@ -207,16 +205,9 @@ export const add = new Command()
 					}
 
 					const packageManager = await getPackageManager(cwd);
-					await execa(
-						packageManager,
-						[
-							packageManager === "npm" ? "install" : "add",
-							...item.dependencies,
-						],
-						{
-							cwd,
-						}
-					);
+					await execa(packageManager, ["add", ...item.dependencies], {
+						cwd,
+					});
 				}
 
 				componentPaths.push(componentPath);
@@ -232,9 +223,8 @@ export const add = new Command()
 				);
 			}
 			spinner.succeed(`Done.`);
-			logger.info(
-				`Components installed at:\n- ${[...componentPaths].join("\n- ")}`
-			);
+			logger.info("Components installed at:");
+			logger.info(logger.highlight(componentPaths.map((path) => `- ${path}`).join("\n")));
 		} catch (error) {
 			handleError(error);
 		}
