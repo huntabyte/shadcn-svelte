@@ -13,11 +13,7 @@ async function main() {
 	const program = new Command()
 		.name("shadcn-svelte")
 		.description("Add shadcn-svelte components to your project")
-		.version(
-			packageInfo.version || "1.0.0",
-			"-v, --version",
-			"display the version number"
-		);
+		.version(packageInfo.version || "1.0.0", "-v, --version", "display the version number");
 
 	program.addCommand(init).addCommand(add).addCommand(update);
 

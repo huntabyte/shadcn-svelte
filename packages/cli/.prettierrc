@@ -3,7 +3,7 @@
 	"tabWidth": 4,
 	"singleQuote": false,
 	"trailingComma": "es5",
-	"printWidth": 90,
+	"printWidth": 100,
 	"endOfLine": "lf",
 	"pluginSearchDirs": false,
 	"plugins": [],

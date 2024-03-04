@@ -34,8 +34,7 @@ function attachCommentsToNode(traveler, state, parent, children, findHeadingComm
 			boundComments.push(comment);
 			comment = comments[++index];
 		}
-		if (boundComments.length !== 0 && parent.comments == null)
-			parent.comments = boundComments;
+		if (boundComments.length !== 0 && parent.comments == null) parent.comments = boundComments;
 	}
 	// Attach comments to children
 	for (let i = 0, { length } = children; comment != null && i < length; i++) {

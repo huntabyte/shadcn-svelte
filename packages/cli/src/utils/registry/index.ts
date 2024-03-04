@@ -75,10 +75,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 	}
 }
 
-export async function resolveTree(
-	index: z.infer<typeof registryIndexSchema>,
-	names: string[]
-) {
+export async function resolveTree(index: z.infer<typeof registryIndexSchema>, names: string[]) {
 	const tree: z.infer<typeof registryIndexSchema> = [];
 
 	for (const name of names) {
@@ -97,15 +94,11 @@ export async function resolveTree(
 	}
 
 	return tree.filter(
-		(component, index, self) =>
-			self.findIndex((c) => c.name === component.name) === index
+		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
 	);
 }
 
-export async function fetchTree(
-	config: Config,
-	tree: z.infer<typeof registryIndexSchema>
-) {
+export async function fetchTree(config: Config, tree: z.infer<typeof registryIndexSchema>) {
 	try {
 		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
 		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
@@ -132,10 +125,7 @@ export async function getItemTargetPath(
 		return null;
 	}
 
-	return path.join(
-		config.resolvedPaths[parent as keyof typeof config.resolvedPaths],
-		type
-	);
+	return path.join(config.resolvedPaths[parent as keyof typeof config.resolvedPaths], type);
 }
 
 async function fetchRegistry(paths: string[]) {
