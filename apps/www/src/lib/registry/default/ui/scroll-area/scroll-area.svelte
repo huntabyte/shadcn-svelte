@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ScrollArea as ScrollAreaPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import { Scrollbar } from "./index.js";
 
 	type $$Props = ScrollAreaPrimitive.Props & {
 		orientation?: "vertical" | "horizontal" | "both";
@@ -18,10 +19,10 @@
 		</ScrollAreaPrimitive.Content>
 	</ScrollAreaPrimitive.Viewport>
 	{#if orientation === "vertical" || orientation === "both"}
-		<ScrollAreaPrimitive.Scrollbar orientation="vertical" />
+		<Scrollbar orientation="vertical" />
 	{/if}
 	{#if orientation === "horizontal" || orientation === "both"}
-		<ScrollAreaPrimitive.Scrollbar orientation="horizontal" />
+		<Scrollbar orientation="horizontal" />
 	{/if}
 	<ScrollAreaPrimitive.Corner />
 </ScrollAreaPrimitive.Root>
