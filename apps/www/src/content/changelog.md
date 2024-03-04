@@ -7,6 +7,28 @@ description: Latest updates and announcements.
 	import { Steps, Callout, ComponentPreview } from '$components/docs'
 </script>
 
+## March 2024
+
+### New Component: Scroll Area
+
+We've added a new component to the project, [Scroll Area](/docs/components/scroll-area), which is built on top of the [Scroll Area](https://bits-ui.com/docs/components/scroll-area) component from Bits UI.
+
+It supports both vertical and horizontal scrolling, and is designed to provide a consistent experience across all browsers and platforms.
+
+#### Examples
+
+<ComponentPreview name="scroll-area-demo">
+
+<div />
+
+</ComponentPreview>
+
+<ComponentPreview name="scroll-area-horizontal">
+
+<div />
+
+</ComponentPreview>
+
 ## February 2024
 
 ### New Component: Resizable
