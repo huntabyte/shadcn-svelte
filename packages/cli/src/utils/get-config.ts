@@ -29,9 +29,7 @@ export const rawConfigSchema = z
 			// cssVariables: z.boolean().default(true)
 		}),
 		aliases: z.object({
-			components: z
-				.string()
-				.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+			components: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 		}),
 		typescript: z.boolean().default(true),
@@ -77,13 +75,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	const isSvelteKit = isUsingSvelteKit(cwd);
 	if (isSvelteKit) {
 		const packageManager = await getPackageManager(cwd);
-		await execa(
-			packageManager === "npm" ? "npx" : packageManager,
-			["svelte-kit", "sync"],
-			{
-				cwd,
-			}
-		);
+		await execa(packageManager === "npm" ? "npx" : packageManager, ["svelte-kit", "sync"], {
+			cwd,
+		});
 	}
 
 	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
@@ -144,8 +138,6 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
 		return rawConfigSchema.parse(config);
 	} catch (error) {
-		throw new Error(
-			`Invalid configuration found in ${logger.highlight(configPath)}.`
-		);
+		throw new Error(`Invalid configuration found in ${logger.highlight(configPath)}.`);
 	}
 }
