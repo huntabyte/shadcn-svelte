@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.3.1
     version: 1.3.1
   bits-ui:
-    specifier: 0.19.1
-    version: 0.19.1(svelte@4.2.11)
+    specifier: 0.19.2
+    version: 0.19.2(svelte@4.2.11)
   cmdk-sv:
     specifier: ^0.0.12
     version: 0.0.12(svelte@4.2.11)
@@ -1822,8 +1822,8 @@ packages:
       svelte: 4.2.11
     dev: false
 
-  /bits-ui@0.19.1(svelte@4.2.11):
-    resolution: {integrity: sha512-GefRQrvMGxqCe1hIlYaRlWVDXY8mdCEuZgWArD/A8n7vqquubBzCkN+56UugBGtqEaKAisARcAr8bAZZqcA7kQ==}
+  /bits-ui@0.19.2(svelte@4.2.11):
+    resolution: {integrity: sha512-cB5TZPztgd3t93BM4v3M81ve9xWPML9Mb5Db8j8NcSiZaIYEc7At7LB2GX/YCl+AkFI53R8QUa4STbIcBB5isQ==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
