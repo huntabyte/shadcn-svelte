@@ -82,7 +82,7 @@
 		</Resizable.Pane>
 		<Resizable.Handle withHandle />
 		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
-			<Tabs.Root value="all" class="flex h-full flex-col">
+			<Tabs.Root value="all">
 				<div class="flex items-center px-4 py-2">
 					<h1 class="text-xl font-bold">Inbox</h1>
 					<Tabs.List class="ml-auto">
@@ -96,19 +96,19 @@
 				</div>
 				<Separator />
 				<div
-					class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+					class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
 				>
 					<form>
 						<div class="relative">
-							<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
+							<Search class="text-muted-foreground absolute left-2 top-3 h-4 w-4" />
 							<Input placeholder="Search" class="pl-8" />
 						</div>
 					</form>
 				</div>
-				<Tabs.Content value="all" class="m-0 overflow-y-auto">
+				<Tabs.Content value="all" class="m-0">
 					<MailList items={mails} />
 				</Tabs.Content>
-				<Tabs.Content value="unread" class="m-0 overflow-y-auto">
+				<Tabs.Content value="unread" class="m-0">
 					<MailList items={mails.filter((item) => !item.read)} />
 				</Tabs.Content>
 			</Tabs.Root>

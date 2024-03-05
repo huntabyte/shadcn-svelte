@@ -3,6 +3,7 @@
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Separator } from "@/registry/new-york/ui/separator";
 	import * as Tabs from "@/registry/new-york/ui/tabs";
+	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)";
 	import { playlists } from "./(data)/playlists";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums";
@@ -54,14 +55,14 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											Listen Now
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Top picks for you. Updated daily.
 										</p>
 									</div>
 								</div>
 								<Separator class="my-4" />
 								<div class="relative">
-									<div class="overflow-x-auto">
+									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
 											{#each listenNowAlbums as album}
 												<AlbumArtwork
@@ -73,19 +74,19 @@
 												/>
 											{/each}
 										</div>
-									</div>
+									</ScrollArea>
 								</div>
 								<div class="mt-6 space-y-1">
 									<h2 class="text-2xl font-semibold tracking-tight">
 										Made for You
 									</h2>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Your personal playlists. Updated daily.
 									</p>
 								</div>
 								<Separator class="my-4" />
 								<div class="relative">
-									<div class="overflow-x-auto">
+									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
 											{#each madeForYouAlbums as album}
 												<AlbumArtwork
@@ -97,7 +98,7 @@
 												/>
 											{/each}
 										</div>
-									</div>
+									</ScrollArea>
 								</div>
 							</Tabs.Content>
 							<Tabs.Content
@@ -109,7 +110,7 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											New Episodes
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Your favorite podcasts. Updated daily.
 										</p>
 									</div>

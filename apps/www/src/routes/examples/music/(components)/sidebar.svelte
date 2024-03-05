@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cn } from "@/utils";
 	import { Button } from "@/registry/new-york/ui/button";
+	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 	import type { Playlist } from "../(data)/playlists";
 
 	let className: string | null | undefined = undefined;
@@ -160,7 +161,7 @@
 		</div>
 		<div class="py-2">
 			<h2 class="relative px-7 text-lg font-semibold tracking-tight">Playlists</h2>
-			<div class="h-[300px] overflow-y-auto px-1">
+			<ScrollArea class="h-[300px] px-1">
 				<div class="space-y-1 p-2">
 					{#each playlists as playlist}
 						<Button variant="ghost" class="w-full justify-start font-normal">
@@ -184,7 +185,7 @@
 						</Button>
 					{/each}
 				</div>
-			</div>
+			</ScrollArea>
 		</div>
 	</div>
 </div>
