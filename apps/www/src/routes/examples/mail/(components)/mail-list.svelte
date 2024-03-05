@@ -3,6 +3,7 @@
 	import { mailStore } from "../store.js";
 	import type { Mail } from "../data.js";
 	import { Badge } from "@/registry/new-york/ui/badge";
+	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 	import { formatTimeAgo } from "../utils.js";
 
 	export let items: Mail[];
@@ -20,8 +21,7 @@
 	}
 </script>
 
-<!-- TODO: Replace with a ScrollArea component; currently the hack is to set `overflow-hidden` to the body of the doc. -->
-<section id="mail-list" class="overflow-y-auto">
+<ScrollArea class="h-screen">
 	<div class="flex flex-col gap-2 p-4 pt-0">
 		{#each items as item}
 			<button
@@ -67,4 +67,4 @@
 			</button>
 		{/each}
 	</div>
-</section>
+</ScrollArea>

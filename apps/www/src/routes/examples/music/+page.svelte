@@ -3,6 +3,7 @@
 	import { Button } from "@/registry/new-york/ui/button";
 	import { Separator } from "@/registry/new-york/ui/separator";
 	import * as Tabs from "@/registry/new-york/ui/tabs";
+	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)";
 	import { playlists } from "./(data)/playlists";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums";
@@ -61,7 +62,7 @@
 								</div>
 								<Separator class="my-4" />
 								<div class="relative">
-									<div class="overflow-x-auto">
+									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
 											{#each listenNowAlbums as album}
 												<AlbumArtwork
@@ -73,7 +74,7 @@
 												/>
 											{/each}
 										</div>
-									</div>
+									</ScrollArea>
 								</div>
 								<div class="mt-6 space-y-1">
 									<h2 class="text-2xl font-semibold tracking-tight">
@@ -85,7 +86,7 @@
 								</div>
 								<Separator class="my-4" />
 								<div class="relative">
-									<div class="overflow-x-auto">
+									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
 											{#each madeForYouAlbums as album}
 												<AlbumArtwork
@@ -97,7 +98,7 @@
 												/>
 											{/each}
 										</div>
-									</div>
+									</ScrollArea>
 								</div>
 							</Tabs.Content>
 							<Tabs.Content
