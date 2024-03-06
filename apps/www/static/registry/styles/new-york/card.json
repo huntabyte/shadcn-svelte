@@ -9,7 +9,7 @@
 		},
 		{
 			"name": "card-description.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<p class={cn(\"text-muted-foreground text-sm\", className)} {...$$restProps}>\n\t<slot />\n</p>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLParagraphElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<p class={cn(\"text-sm text-muted-foreground\", className)} {...$$restProps}>\n\t<slot />\n</p>\n"
 		},
 		{
 			"name": "card-footer.svelte",
@@ -25,7 +25,7 @@
 		},
 		{
 			"name": "card.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<!-- svelte-ignore a11y-no-static-element-interactions -->\n<div\n\tclass={cn(\"bg-card text-card-foreground rounded-xl border shadow\", className)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<!-- svelte-ignore a11y-no-static-element-interactions -->\n<div\n\tclass={cn(\"rounded-xl border bg-card text-card-foreground shadow\", className)}\n\t{...$$restProps}\n\ton:click\n\ton:focusin\n\ton:focusout\n\ton:mouseenter\n\ton:mouseleave\n>\n\t<slot />\n</div>\n"
 		},
 		{
 			"name": "index.ts",

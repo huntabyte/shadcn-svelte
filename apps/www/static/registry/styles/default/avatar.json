@@ -7,7 +7,7 @@
 	"files": [
 		{
 			"name": "avatar-fallback.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = AvatarPrimitive.FallbackProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\"bg-muted flex h-full w-full items-center justify-center rounded-full\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = AvatarPrimitive.FallbackProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\"flex h-full w-full items-center justify-center rounded-full bg-muted\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
 		},
 		{
 			"name": "avatar-image.svelte",

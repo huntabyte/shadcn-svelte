@@ -7,11 +7,11 @@
 	"files": [
 		{
 			"name": "drawer-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport DrawerOverlay from \"./drawer-overlay.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = DrawerPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full\" />\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
+			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport DrawerOverlay from \"./drawer-overlay.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = DrawerPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted\" />\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
 		},
 		{
 			"name": "drawer-description.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = DrawerPrimitive.DescriptionProps;\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
+			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = DrawerPrimitive.DescriptionProps;\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
 		},
 		{
 			"name": "drawer-footer.svelte",
