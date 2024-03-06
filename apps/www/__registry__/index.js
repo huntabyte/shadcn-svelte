@@ -531,7 +531,7 @@ export const Index = {
 		"scroll-area-demo": {
 			name: "scroll-area-demo",
 			type: "components:example",
-			registryDependencies: ["scroll-area","separator"],
+			registryDependencies: ["index.js"],
 			component: () => import("../src/lib/registry/default/example/scroll-area-demo.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/default/example/scroll-area-demo.svelte"],
 		},
@@ -1386,7 +1386,7 @@ export const Index = {
 		"scroll-area-demo": {
 			name: "scroll-area-demo",
 			type: "components:example",
-			registryDependencies: ["scroll-area","separator"],
+			registryDependencies: ["index.js"],
 			component: () => import("../src/lib/registry/new-york/example/scroll-area-demo.svelte").then((m) => m.default),
 			files: ["../src/lib/registry/new-york/example/scroll-area-demo.svelte"],
 		},

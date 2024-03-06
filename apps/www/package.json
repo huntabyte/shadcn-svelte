@@ -31,7 +31,7 @@
 		"@faker-js/faker": "^8.0.2",
 		"@playwright/test": "^1.36.2",
 		"@prettier/sync": "0.3.0",
-		"@sveltejs/adapter-vercel": "^4.0.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/d3-scale": "^4.0.6",
@@ -100,10 +100,5 @@
 		"svelte-local-storage-store": "^0.5.0",
 		"svelte-sonner": "^0.3.9",
 		"vaul-svelte": "^0.0.6"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"@unovis/svelte@1.3.6-beta.0": "patches/@unovis__svelte@1.3.6-beta.0.patch"
-		}
 	}
 }
