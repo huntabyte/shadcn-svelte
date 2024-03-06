@@ -87,7 +87,7 @@
 	"type": "module",
 	"dependencies": {
 		"@internationalized/date": "^3.5.1",
-		"bits-ui": "0.18.2",
+		"bits-ui": "0.19.3",
 		"cmdk-sv": "^0.0.14",
 		"d3-scale": "^4.0.2",
 		"embla-carousel-autoplay": "8.0.0-rc19",

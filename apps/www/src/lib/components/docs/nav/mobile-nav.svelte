@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Sheet from "@/registry/new-york/ui/sheet/index.js";
 	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { ScrollArea } from "@/registry/new-york/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { Icons } from "../icons/index.js";
@@ -25,7 +26,7 @@
 			<Icons.logo class="mr-2 h-4 w-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
-		<div class="my-4 h-[calc(100vh-8rem)] overflow-auto pb-10 pl-6">
+		<ScrollArea orientation="both" class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
@@ -58,6 +59,6 @@
 					</div>
 				{/each}
 			</div>
-		</div>
+		</ScrollArea>
 	</Sheet.Content>
 </Sheet.Root>

@@ -19,11 +19,7 @@ import {
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
 import { logger } from "../utils/logger";
-import {
-	getRegistryBaseColor,
-	getRegistryBaseColors,
-	getRegistryStyles,
-} from "../utils/registry";
+import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
@@ -79,9 +75,7 @@ export const init = new Command()
 			logger.info("");
 			logger.info(`${chalk.green("Success!")} Project initialization completed.`);
 			logger.info("");
-			logger.info(
-				"Don't forget to add the aliases you configured to your svelte.config.js!"
-			);
+			logger.info("Don't forget to add the aliases you configured to your svelte.config.js!");
 			logger.info("");
 
 			// // Update svelte.config.js
@@ -96,11 +90,7 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(
-	cwd: string,
-	defaultConfig: Config | null = null,
-	skip = false
-) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null = null, skip = false) {
 	const highlight = logger.highlight;
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
@@ -226,9 +216,7 @@ export async function runInit(cwd: string, config: Config) {
 	// Ensure all resolved paths directories exist.
 	for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
 		// Determine if the path is a file or directory.
-		let dirname = path.extname(resolvedPath)
-			? path.dirname(resolvedPath)
-			: resolvedPath;
+		let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
 
 		// If the utils alias is set to something like "@/lib/utils",
 		// assume this is a file and remove the "utils" file name.
@@ -257,11 +245,7 @@ export async function runInit(cwd: string, config: Config) {
 	// Write css file.
 	const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 	if (baseColor) {
-		await fs.writeFile(
-			config.resolvedPaths.tailwindCss,
-			baseColor.cssVarsTemplate,
-			"utf8"
-		);
+		await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
 	}
 
 	const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
@@ -281,7 +265,7 @@ export async function runInit(cwd: string, config: Config) {
 		config.style === "new-york" ? "svelte-radix" : "lucide-svelte",
 	];
 
-	await execa(packageManager, [packageManager === "npm" ? "install" : "add", ...deps], {
+	await execa(packageManager, ["add", ...deps], {
 		cwd,
 	});
 	dependenciesSpinner?.succeed();

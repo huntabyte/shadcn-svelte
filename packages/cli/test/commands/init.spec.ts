@@ -26,8 +26,7 @@ it("init (config-full)", async () => {
 			light: {},
 			dark: {},
 		},
-		inlineColorsTemplate:
-			"@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
+		inlineColorsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
 		cssVarsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
 	});
 
@@ -41,11 +40,7 @@ it("init (config-full)", async () => {
 	await runInit(targetDir, config);
 
 	// mkDir mocks
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		1,
-		expect.stringContaining("src"),
-		expect.anything()
-	);
+	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
 	expect(mockMkdir).toHaveBeenNthCalledWith(
 		2,
 		expect.stringContaining("src/lib/components"),

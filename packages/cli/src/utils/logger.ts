@@ -16,6 +16,6 @@ export const logger = {
 		console.log(chalk.green(...args));
 	},
 	highlight(...args: unknown[]) {
-		return chalk.cyan(...args);
+		return chalk.bold(chalk.cyan(...args));
 	},
 };

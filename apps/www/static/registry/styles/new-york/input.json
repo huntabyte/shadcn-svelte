@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./input.svelte\";\n\ntype FormInputEvent<T extends Event = Event> = T & {\n\tcurrentTarget: EventTarget & HTMLInputElement;\n};\nexport type InputEvents = {\n\tblur: FormInputEvent<FocusEvent>;\n\tchange: FormInputEvent<Event>;\n\tclick: FormInputEvent<MouseEvent>;\n\tfocus: FormInputEvent<FocusEvent>;\n\tfocusin: FormInputEvent<FocusEvent>;\n\tfocusout: FormInputEvent<FocusEvent>;\n\tkeydown: FormInputEvent<KeyboardEvent>;\n\tkeypress: FormInputEvent<KeyboardEvent>;\n\tkeyup: FormInputEvent<KeyboardEvent>;\n\tmouseover: FormInputEvent<MouseEvent>;\n\tmouseenter: FormInputEvent<MouseEvent>;\n\tmouseleave: FormInputEvent<MouseEvent>;\n\tpaste: FormInputEvent<ClipboardEvent>;\n\tinput: FormInputEvent<InputEvent>;\n};\n\nexport {\n\tRoot,\n\t//\n\tRoot as Input,\n};\n"
+			"content": "import Root from \"./input.svelte\";\n\nexport type FormInputEvent<T extends Event = Event> = T & {\n\tcurrentTarget: EventTarget & HTMLInputElement;\n};\nexport type InputEvents = {\n\tblur: FormInputEvent<FocusEvent>;\n\tchange: FormInputEvent<Event>;\n\tclick: FormInputEvent<MouseEvent>;\n\tfocus: FormInputEvent<FocusEvent>;\n\tfocusin: FormInputEvent<FocusEvent>;\n\tfocusout: FormInputEvent<FocusEvent>;\n\tkeydown: FormInputEvent<KeyboardEvent>;\n\tkeypress: FormInputEvent<KeyboardEvent>;\n\tkeyup: FormInputEvent<KeyboardEvent>;\n\tmouseover: FormInputEvent<MouseEvent>;\n\tmouseenter: FormInputEvent<MouseEvent>;\n\tmouseleave: FormInputEvent<MouseEvent>;\n\tpaste: FormInputEvent<ClipboardEvent>;\n\tinput: FormInputEvent<InputEvent>;\n};\n\nexport {\n\tRoot,\n\t//\n\tRoot as Input,\n};\n"
 		},
 		{
 			"name": "input.svelte",

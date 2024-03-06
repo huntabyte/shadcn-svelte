@@ -459,6 +459,19 @@
 		"type": "components:ui"
 	},
 	{
+		"name": "scroll-area",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"files": [
+			"ui/scroll-area/index.ts",
+			"ui/scroll-area/scroll-area-scrollbar.svelte",
+			"ui/scroll-area/scroll-area.svelte"
+		],
+		"type": "components:ui"
+	},
+	{
 		"name": "select",
 		"dependencies": [
 			"bits-ui"

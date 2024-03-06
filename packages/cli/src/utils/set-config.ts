@@ -86,10 +86,7 @@ export async function addAliases(dir: string = "./src/lib/components/ui") {
 					return;
 				}
 
-				if (
-					aliasProp.type === "Property" &&
-					aliasProp.value.type === "ObjectExpression"
-				) {
+				if (aliasProp.type === "Property" && aliasProp.value.type === "ObjectExpression") {
 					aliasProp.value.properties.push(...createAliasProperties());
 				}
 			}

@@ -82,9 +82,7 @@ export const update = new Command()
 			});
 			for (const file of files) {
 				if (file.isDirectory()) {
-					const component = registryIndex.find(
-						(comp) => comp.name === file.name
-					);
+					const component = registryIndex.find((comp) => comp.name === file.name);
 					if (component) {
 						// is a valid shadcn component
 						existingComponents.push(component);
@@ -98,9 +96,7 @@ export const update = new Command()
 				files: [],
 			});
 
-			let selectedComponents: typeof registryIndex = options.all
-				? existingComponents
-				: [];
+			let selectedComponents: typeof registryIndex = options.all ? existingComponents : [];
 			if (!selectedComponents.length && components !== undefined) {
 				selectedComponents = existingComponents.filter((component) =>
 					components.includes(component.name)
@@ -137,9 +133,7 @@ export const update = new Command()
 				const utilsPath = config.resolvedPaths.utils + extension;
 
 				if (!existsSync(utilsPath)) {
-					spinner.fail(
-						`utils at ${logger.highlight(utilsPath)} does not exist.`
-					);
+					spinner.fail(`utils at ${logger.highlight(utilsPath)} does not exist.`);
 					process.exitCode = 1;
 					return;
 				}
@@ -152,10 +146,15 @@ export const update = new Command()
 				registryIndex,
 				selectedComponents.map((com) => com.name)
 			);
-			const payload = await fetchTree(config, tree);
+			const payload = (await fetchTree(config, tree)).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			);
 
-			for (const item of payload) {
-				spinner.text = `Updating ${item.name}...`;
+			const componentsToRemove: Record<string, string[]> = {};
+			for (const [index, item] of payload.entries()) {
+				spinner.text = `Updating ${logger.highlight(item.name)} (${index + 1}/${
+					payload.length
+				})...`;
 				const targetDir = await getItemTargetPath(config, item);
 
 				if (!targetDir) {
@@ -166,37 +165,53 @@ export const update = new Command()
 					await fs.mkdir(targetDir, { recursive: true });
 				}
 
-				for (const file of item.files) {
-					const componentDir = path.resolve(targetDir, item.name);
+				const componentDir = path.resolve(targetDir, item.name);
+				if (!existsSync(componentDir)) {
+					await fs.mkdir(componentDir, { recursive: true });
+				}
 
-					let filePath = path.resolve(targetDir, item.name, file.name);
+				for (const file of item.files) {
+					const filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
 					const content = transformImports(file.content, config);
 
-					if (!existsSync(componentDir)) {
-						await fs.mkdir(componentDir, { recursive: true });
-					}
-
 					await fs.writeFile(filePath, content);
+				}
+
+				const installedFiles = await fs.readdir(componentDir);
+				const remoteFiles = item.files.map((file) => file.name);
+				const filesToDelete = installedFiles
+					.filter((file) => !remoteFiles.includes(file))
+					.map((file) => path.resolve(targetDir, item.name, file));
+
+				if (filesToDelete.length > 0) {
+					componentsToRemove[item.name] = filesToDelete;
 				}
 
 				// Install dependencies.
 				if (item.dependencies?.length) {
 					const packageManager = await getPackageManager(cwd);
-					await execa(
-						packageManager,
-						[
-							packageManager === "npm" ? "install" : "add",
-							...item.dependencies,
-						],
-						{
-							cwd,
-						}
-					);
+					await execa(packageManager, ["add", ...item.dependencies], {
+						cwd,
+					});
 				}
 			}
-			spinner.succeed(`Done.`);
+			spinner.succeed("Done.");
+
+			for (const [component, files] of Object.entries(componentsToRemove)) {
+				logger.warn(
+					`\nThe ${logger.highlight(
+						component
+					)} component does not use the following files:`
+				);
+				logger.warn(
+					files.map((file) => chalk.white(`- ${path.relative(cwd, file)}`)).join("\n")
+				);
+			}
+			if (Object.keys(componentsToRemove)) {
+				logger.warn("\nYou may want to remove them.");
+			}
 		} catch (e) {
 			handleError(e);
 		}

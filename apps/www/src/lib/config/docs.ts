@@ -250,15 +250,13 @@ export const docsConfig: DocsConfig = {
 					title: "Resizable",
 					href: "/docs/components/resizable",
 					items: [],
-					label: "New",
 				},
-				// {
-				//   title: "Scroll Area",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Scroll Area",
+					href: "/docs/components/scroll-area",
+					label: "New",
+					items: [],
+				},
 				{
 					title: "Select",
 					href: "/docs/components/select",
