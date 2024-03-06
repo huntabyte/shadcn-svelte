@@ -11,7 +11,7 @@
 	"files": [
 		{
 			"name": "form-button.svelte",
-			"content": "<script lang=\"ts\">\n\timport * as Button from \"@/registry/default/ui/button/index.js\";\n\n\ttype $$Props = Button.Props;\n</script>\n\n<Button.Root type=\"submit\" {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport * as Button from \"@/registry/default/ui/button/index.js\";\n\n\ttype $$Props = Button.Props;\n\ttype $$Events = Button.Events;\n</script>\n\n<Button.Root type=\"submit\" on:click on:keydown {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
 		},
 		{
 			"name": "form-description.svelte",
