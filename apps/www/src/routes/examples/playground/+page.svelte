@@ -19,23 +19,13 @@
 	} from "./(components)/index.js";
 	import { models, types } from "./(data)/models.js";
 	import { presets } from "./(data)/presets.js";
+	import PlaygroundLight from "$lib/img/examples/playground-light.png?enhanced";
+	import PlaygroundDark from "$lib/img/examples/playground-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<img
-		src="/examples/playground-light.png"
-		width={1280}
-		height={916}
-		alt="Playground"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/examples/playground-dark.png"
-		width={1280}
-		height={916}
-		alt="Playground"
-		class="hidden dark:block"
-	/>
+	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden" />
+	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block" />
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div

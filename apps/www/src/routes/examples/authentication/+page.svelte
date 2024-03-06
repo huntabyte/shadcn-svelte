@@ -1,23 +1,13 @@
 <script lang="ts">
 	import { Button } from "@/registry/default/ui/button/index.js";
 	import UserAuthForm from "./(components)/user-auth-form.svelte";
+	import AuthenticationLight from "$lib/img/examples/authentication-light.png?enhanced";
+	import AuthenticationDark from "$lib/img/examples/authentication-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<img
-		src="/examples/authentication-light.png"
-		width={1280}
-		height={843}
-		alt="Authentication"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/examples/authentication-dark.png"
-		width={1280}
-		height={843}
-		alt="Authentication"
-		class="hidden dark:block"
-	/>
+	<enhanced:img src={AuthenticationLight} alt="Authentication" class="block dark:hidden" />
+	<enhanced:img src={AuthenticationDark} alt="Authentication" class="hidden dark:block" />
 </div>
 <div
 	class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"

@@ -32,6 +32,7 @@
 		"@playwright/test": "^1.36.2",
 		"@prettier/sync": "0.3.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/enhanced-img": "^0.1.8",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/d3-scale": "^4.0.6",
