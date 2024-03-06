@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^6.9.0
     version: 6.9.0(eslint@8.52.0)(typescript@5.2.2)
   '@unovis/svelte':
-    specifier: ^1.3.5
-    version: 1.3.5(@unovis/ts@1.3.5)(svelte@4.2.11)
+    specifier: 1.3.6-beta.0
+    version: 1.3.6-beta.0(@unovis/ts@1.3.5)(svelte@4.2.11)
   '@unovis/ts':
     specifier: ^1.3.5
     version: 1.3.5
@@ -1822,10 +1822,10 @@ packages:
       lodash-es: 4.17.21
     dev: true
 
-  /@unovis/svelte@1.3.5(@unovis/ts@1.3.5)(svelte@4.2.11):
-    resolution: {integrity: sha512-bE6cuwEoi+lBix/7p8/DF5Mg5a5TEDrU4qjgOyj5sd8WDtujolhpAKOZig723dtK+oR1sgF2hiiFQ6k+Uafq1Q==}
+  /@unovis/svelte@1.3.6-beta.0(@unovis/ts@1.3.5)(svelte@4.2.11):
+    resolution: {integrity: sha512-A2FrFzOZW1QwY+TMLTN0mjE415LHN9k0Xhq4OzNEKFvzBJzxHWeoS/Sgh+rMxuNFEf9ViL7EUBJF9zVmq0BEyg==}
     peerDependencies:
-      '@unovis/ts': 1.3.5
+      '@unovis/ts': 1.3.6-beta.0
       svelte: ^3.48.0 || ^4.0.0
     dependencies:
       '@unovis/ts': 1.3.5
