@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/accordion
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$components/docs';
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">

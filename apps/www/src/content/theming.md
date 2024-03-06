@@ -4,7 +4,7 @@ description: Use CSS Variables to customize the look and feel of your applicatio
 ---
 
 <script>
-  import { Callout, HexToChannels } from '$components/docs';
+  import { Callout, HexToChannels } from '$lib/components/docs';
 </script>
 
 We use CSS variables for styling. This allows you to easily change the colors of components without having to update class names.

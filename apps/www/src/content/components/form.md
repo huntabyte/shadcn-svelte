@@ -4,7 +4,7 @@ description: Building forms with Formsnap, Superforms, & Zod.
 ---
 
 <script>
- 	import { Steps, ComponentPreview, FormPreview } from '@/components/docs';
+ 	import { Steps, ComponentPreview, FormPreview } from '$lib/components/docs';
 
 	export let form;
 </script>

@@ -4,7 +4,7 @@ description: Adding dark mode to your site.
 ---
 
 <script>
-  import { Steps, ComponentPreview } from "$components/docs/index.js";
+  import { Steps, ComponentPreview } from "$lib/components/docs";
 </script>
 
 We use the `class` strategy from Tailwind CSS to support dark mode toggling. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) for more information.

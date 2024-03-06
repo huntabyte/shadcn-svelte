@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout, Steps } from '@/components/docs'
+    import { ComponentPreview, ManualInstall, Callout, Steps } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="data-table-demo">

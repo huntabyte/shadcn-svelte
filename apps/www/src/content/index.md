@@ -4,8 +4,8 @@ description: Re-usable components built with Bits UI, Melt UI, and Tailwind CSS.
 ---
 
 <script>
-  import * as Accordion from '@/registry/default/ui/accordion';
-  import { Callout } from '$components/docs';
+  import * as Accordion from '@/registry/new-york/ui/accordion';
+  import { Callout } from '$lib/components/docs';
   import AlertCircle from "lucide-svelte/icons/alert-circle";
 </script>
 
