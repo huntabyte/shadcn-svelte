@@ -31,7 +31,7 @@
 		"@faker-js/faker": "^8.0.2",
 		"@playwright/test": "^1.36.2",
 		"@prettier/sync": "0.3.0",
-		"@sveltejs/adapter-vercel": "^3.0.3",
+		"@sveltejs/adapter-cloudflare": "2.3.4",
 		"@sveltejs/kit": "^1.27.1",
 		"@types/d3-scale": "^4.0.6",
 		"@types/hast": "^3.0.4",

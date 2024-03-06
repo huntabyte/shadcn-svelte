@@ -1,4 +1,4 @@
-import adapter from "@sveltejs/adapter-vercel";
+import adapter from "@sveltejs/adapter-cloudflare";
 import { vitePreprocess } from "@sveltejs/kit/vite";
 import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
