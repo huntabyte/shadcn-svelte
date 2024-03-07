@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import * as Calendar from "@/registry/default/ui/calendar/index.js";
-	import * as Select from "@/registry/default/ui/select/index.js";
+	import * as Calendar from "$lib/registry/default/ui/calendar/index.js";
+	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 

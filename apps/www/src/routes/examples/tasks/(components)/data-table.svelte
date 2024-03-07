@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { get, readable } from "svelte/store";
 	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
-	import * as Table from "@/registry/new-york/ui/table/index.js";
+	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 	import {
 		addColumnFilters,
 		addHiddenColumns,

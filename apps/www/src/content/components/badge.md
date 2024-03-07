@@ -7,7 +7,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 
 <script>
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
-  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '@/registry/default/example'
+  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '$lib/registry/default/example'
 </script>
 
 <ComponentPreview name="badge-demo">

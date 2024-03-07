@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Separator } from "@/registry/new-york/ui/separator/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import NotificationsForm from "./notifications-form.svelte";
 	import type { PageData } from "./$types.js";
 

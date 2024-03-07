@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Card from "@/registry/default/ui/card/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import { Revenue, Subscription } from "$lib/components/docs/charts/index.js";
 </script>
 

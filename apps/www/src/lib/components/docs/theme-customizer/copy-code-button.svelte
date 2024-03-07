@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
-	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
-	import { config } from "@/stores/index.js";
-	import { themes } from "@/registry/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { config } from "$lib/stores/index.js";
+	import { themes } from "$lib/registry/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { ThemeWrapper, CustomizerCode } from "$lib/components/docs/index.js";
 	import { createCopyCodeButton } from "$lib/utils.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);

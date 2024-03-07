@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import { page } from "$app/stores";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { cubicInOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
 

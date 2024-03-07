@@ -4,7 +4,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 ---
 
 <script>
-  import { Alert, AlertDescription } from "@/registry/new-york/ui/alert";
+  import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
   import { Steps } from "$lib/components/docs";
 </script>
 

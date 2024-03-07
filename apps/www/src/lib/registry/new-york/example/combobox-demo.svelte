@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import * as Command from "@/registry/new-york/ui/command/index.js";
-	import * as Popover from "@/registry/new-york/ui/popover/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { tick } from "svelte";
 

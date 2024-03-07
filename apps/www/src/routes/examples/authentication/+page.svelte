@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import UserAuthForm from "./(components)/user-auth-form.svelte";
 	import AuthenticationLight from "$lib/img/examples/authentication-light.png?enhanced";
 	import AuthenticationDark from "$lib/img/examples/authentication-dark.png?enhanced";

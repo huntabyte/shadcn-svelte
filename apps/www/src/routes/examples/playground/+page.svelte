@@ -1,11 +1,11 @@
 <script lang="ts">
 	import CounterClockwiseClock from "svelte-radix/CounterClockwiseClock.svelte";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
-	import { Separator } from "@/registry/new-york/ui/separator/index.js";
-	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
-	import { Textarea } from "@/registry/new-york/ui/textarea/index.js";
-	import * as HoverCard from "@/registry/new-york/ui/hover-card/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 	import {
 		CodeViewer,
 		MaxLengthSelector,

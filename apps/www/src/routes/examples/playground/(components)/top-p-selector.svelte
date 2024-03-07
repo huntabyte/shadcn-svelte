@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Slider as SliderPrimitive } from "bits-ui";
-	import * as HoverCard from "@/registry/new-york/ui/hover-card/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
-	import { Slider } from "@/registry/new-york/ui/slider/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Slider } from "$lib/registry/new-york/ui/slider/index.js";
 
 	export let value: SliderPrimitive.Props["value"];
 </script>

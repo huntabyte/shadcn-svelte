@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Bell from "svelte-radix/Bell.svelte";
 	import Check from "svelte-radix/Check.svelte";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import { Switch } from "@/registry/new-york/ui/switch/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 
 	const notifications = [
 		{

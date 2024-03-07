@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as Card from "@/registry/default/ui/card/index.js";
-	import * as Select from "@/registry/default/ui/select/index.js";
-	import { Input } from "@/registry/default/ui/input/index.js";
-	import { Label } from "@/registry/default/ui/label/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import * as Select from "$lib/registry/default/ui/select/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
+	import { Label } from "$lib/registry/default/ui/label/index.js";
 
 	const frameworks = [
 		{

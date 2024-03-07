@@ -3,13 +3,13 @@
 	import PaperPlane from "svelte-radix/PaperPlane.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
 	import { cn } from "$lib/utils.js";
-	import * as Avatar from "@/registry/new-york/ui/avatar/index.js";
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import * as Command from "@/registry/new-york/ui/command/index.js";
-	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
-	import * as Tooltip from "@/registry/new-york/ui/tooltip/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
 	const users = [
 		{

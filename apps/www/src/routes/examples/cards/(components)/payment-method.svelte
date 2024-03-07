@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import * as RadioGroup from "@/registry/new-york/ui/radio-group/index.js";
-	import * as Select from "@/registry/new-york/ui/select/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 
 	const months = [
 		"January",

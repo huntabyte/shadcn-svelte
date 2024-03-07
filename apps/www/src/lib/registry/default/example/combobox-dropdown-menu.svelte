@@ -4,9 +4,9 @@
 	import Tags from "lucide-svelte/icons/tags";
 	import Trash from "lucide-svelte/icons/trash";
 	import User from "lucide-svelte/icons/user";
-	import * as Command from "@/registry/default/ui/command/index.js";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
-	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { tick } from "svelte";
 
 	const labels = [

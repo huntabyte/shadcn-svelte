@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import { Textarea } from "@/registry/default/ui/textarea/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 </script>
 
 <div class="grid w-full gap-2">

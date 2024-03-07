@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Textarea } from "@/registry/new-york/ui/textarea/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 </script>
 
 <div class="grid w-full gap-2">

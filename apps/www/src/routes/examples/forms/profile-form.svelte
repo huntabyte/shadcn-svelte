@@ -15,11 +15,11 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/new-york/ui/form/index.js";
-	import * as Select from "@/registry/new-york/ui/select/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Textarea } from "@/registry/new-york/ui/textarea/index.js";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, type Props, buttonVariants } from "@/registry/new-york/ui/button/index.js";
+	import { Button, type Props, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import ArrowRight from "svelte-radix/ArrowRight.svelte";
 	import type { VariantProps } from "tailwind-variants";

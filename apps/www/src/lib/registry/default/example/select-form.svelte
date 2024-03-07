@@ -11,8 +11,8 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
-	import * as Form from "@/registry/default/ui/form/index.js";
-	import * as Select from "@/registry/default/ui/select/index.js";
+	import * as Form from "$lib/registry/default/ui/form/index.js";
+	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";

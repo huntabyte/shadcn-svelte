@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import * as Select from "@/registry/new-york/ui/select/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
-	import { Textarea } from "@/registry/new-york/ui/textarea/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import { nanoid } from "nanoid";
 	const areas = [
 		{

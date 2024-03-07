@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as HoverCard from "@/registry/new-york/ui/hover-card/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import type { ModelType, Model } from "../(data)/models.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import * as Command from "@/registry/new-york/ui/command/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import * as Popover from "@/registry/new-york/ui/popover/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { tick } from "svelte";
 	import ModelItem from "./model-item.svelte";
 

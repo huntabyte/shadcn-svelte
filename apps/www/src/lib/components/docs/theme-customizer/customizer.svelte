@@ -5,13 +5,13 @@
 	import Reset from "svelte-radix/Reset.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
 
-	import { config } from "@/stores/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import * as Popover from "@/registry/new-york/ui/popover/index.js";
+	import { config } from "$lib/stores/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { ThemeWrapper } from "$lib/components/docs/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
-	import { themes } from "@/registry/index.js";
+	import { themes } from "$lib/registry/index.js";
 	import { mode, setMode } from "mode-watcher";
 </script>
 

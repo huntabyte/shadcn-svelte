@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { config } from "@/stores/index.js";
-	import { themes } from "@/registry/index.js";
+	import { config } from "$lib/stores/index.js";
+	import { themes } from "$lib/registry/index.js";
 	import { ThemeWrapper } from "$lib/components/docs/index.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Pagination as PaginationPrimitive } from "bits-ui";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import { Button } from "@/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type $$Props = PaginationPrimitive.NextButtonProps;

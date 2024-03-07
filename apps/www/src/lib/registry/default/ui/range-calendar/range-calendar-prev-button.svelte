@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import { buttonVariants } from "@/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type $$Props = RangeCalendarPrimitive.PrevButtonProps;

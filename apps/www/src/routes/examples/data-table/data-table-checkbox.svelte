@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
+	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import type { Writable } from "svelte/store";
 
 	export let checked: Writable<boolean>;

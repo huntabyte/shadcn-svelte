@@ -1,9 +1,9 @@
 <script lang="ts">
 	import BellRing from "lucide-svelte/icons/bell-ring";
 	import Check from "lucide-svelte/icons/check";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as Card from "@/registry/default/ui/card/index.js";
-	import { Switch } from "@/registry/default/ui/switch/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import { Switch } from "$lib/registry/default/ui/switch/index.js";
 
 	const notifications = [
 		{

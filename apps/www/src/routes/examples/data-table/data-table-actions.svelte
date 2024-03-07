@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 
 	export let id: string;

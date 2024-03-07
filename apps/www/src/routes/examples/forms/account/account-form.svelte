@@ -42,12 +42,12 @@
 	import Check from "svelte-radix/Check.svelte";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
-	import * as Form from "@/registry/new-york/ui/form/index.js";
-	import * as Popover from "@/registry/new-york/ui/popover/index.js";
-	import * as Command from "@/registry/new-york/ui/command/index.js";
-	import { Calendar } from "@/registry/new-york/ui/calendar/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import { buttonVariants } from "@/registry/new-york/ui/button/index.js";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 	import {

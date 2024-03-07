@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Input } from "@/registry/new-york/ui/input/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import type { Task } from "../(data)/schemas.js";
 	import type { TableViewModel } from "svelte-headless-table";
-	import Button from "@/registry/new-york/ui/button/button.svelte";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 	import Cross2 from "svelte-radix/Cross2.svelte";
 	import { statuses, priorities } from "../(data)/data.js";
 	import type { Writable } from "svelte/store";

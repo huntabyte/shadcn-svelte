@@ -1,5 +1,5 @@
 import type { VariantProps } from "tailwind-variants";
-import type { toggleVariants } from "@/registry/default/ui/toggle/index.js";
+import type { toggleVariants } from "$lib/registry/default/ui/toggle/index.js";
 import { getContext, setContext } from "svelte";
 import Root from "./toggle-group.svelte";
 import Item from "./toggle-group-item.svelte";

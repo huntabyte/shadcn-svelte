@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
 
 <div class="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">

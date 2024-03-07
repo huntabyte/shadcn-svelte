@@ -35,8 +35,8 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "@/registry/new-york/ui/form/index.js";
-	import * as Checkbox from "@/registry/new-york/ui/checkbox/index.js";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
+	import * as Checkbox from "$lib/registry/new-york/ui/checkbox/index.js";
 	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";

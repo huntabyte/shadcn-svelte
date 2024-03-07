@@ -10,7 +10,7 @@ export type TransformOpts = {
 
 export function transformImports(content: string, config: Config) {
 	const s = new MagicString(content);
-	s.replaceAll(/@\/registry\/[^/]+/g, config.aliases.components);
+	s.replaceAll(/\$lib\/registry\/[^/]+/g, config.aliases.components);
 	s.replaceAll(/\$lib\/utils/g, config.aliases.utils);
 	return s.toString();
 }

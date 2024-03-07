@@ -14,8 +14,8 @@
 	import UserPlus from "lucide-svelte/icons/user-plus";
 	import Users from "lucide-svelte/icons/users";
 
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>

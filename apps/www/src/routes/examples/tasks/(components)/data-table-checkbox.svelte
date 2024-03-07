@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
+	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import type { HTMLButtonAttributes } from "svelte/elements";
 	import type { Writable } from "svelte/store";
 

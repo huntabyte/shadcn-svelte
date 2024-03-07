@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Input } from "@/registry/new-york/ui/input/index.js";
-	import { Label } from "@/registry/new-york/ui/label/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { hexToHsl, hexToRgb } from "$lib/utils.js";
 	import { CopyButton } from "./index.js";
 

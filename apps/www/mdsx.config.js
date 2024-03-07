@@ -175,11 +175,11 @@ export function rehypeComponentExample() {
 						if (!sourceCode || sourceCode === null) return;
 
 						sourceCode = sourceCode.replaceAll(
-							"@/registry/new-york/",
+							"$lib/registry/new-york/",
 							"$lib/components/"
 						);
 						sourceCode = sourceCode.replaceAll(
-							"@/registry/default/",
+							"$lib/registry/default/",
 							"$lib/components/"
 						);
 

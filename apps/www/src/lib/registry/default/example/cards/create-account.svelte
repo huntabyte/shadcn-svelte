@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Icons } from "$lib/components/docs/icons/index.js";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as Card from "@/registry/default/ui/card/index.js";
-	import { Label } from "@/registry/default/ui/label/index.js";
-	import { Input } from "@/registry/default/ui/input/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import { Label } from "$lib/registry/default/ui/label/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
 </script>
 
 <Card.Root>

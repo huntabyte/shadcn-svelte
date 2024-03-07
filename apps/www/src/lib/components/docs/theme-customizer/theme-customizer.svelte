@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 
-	import * as Popover from "@/registry/new-york/ui/popover/index.js";
-	import * as Drawer from "@/registry/new-york/ui/drawer/index.js";
-	import * as Tooltip from "@/registry/new-york/ui/tooltip/index.js";
-	import { config } from "@/stores/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { config } from "$lib/stores/index.js";
 	import { mode } from "mode-watcher";
-	import { themes } from "@/registry/index.js";
+	import { themes } from "$lib/registry/index.js";
 	import { cn } from "$lib/utils.js";
-	import Button from "@/registry/new-york/ui/button/button.svelte";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 	import Paintbrush from "lucide-svelte/icons/paintbrush";
 	import { Customizer, ThemeCopyCodeButton } from "./index.js";
 

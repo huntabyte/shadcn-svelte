@@ -3,8 +3,8 @@
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

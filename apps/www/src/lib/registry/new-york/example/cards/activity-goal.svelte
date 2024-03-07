@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Minus from "svelte-radix/Minus.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";
 
 	let goal = 350;

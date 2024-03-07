@@ -3,13 +3,13 @@
 	import Send from "lucide-svelte/icons/send";
 	import Plus from "lucide-svelte/icons/plus";
 	import { cn } from "$lib/utils.js";
-	import * as Avatar from "@/registry/default/ui/avatar/index.js";
-	import * as Card from "@/registry/default/ui/card/index.js";
-	import * as Command from "@/registry/default/ui/command/index.js";
-	import * as Dialog from "@/registry/default/ui/dialog/index.js";
-	import * as Tooltip from "@/registry/default/ui/tooltip/index.js";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import { Input } from "@/registry/default/ui/input/index.js";
+	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
+	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
 
 	const users = [
 		{

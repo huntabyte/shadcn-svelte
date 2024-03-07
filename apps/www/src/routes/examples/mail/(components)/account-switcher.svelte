@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Select from "@/registry/new-york/ui/select/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 	import type { Account } from "../data.js";
 

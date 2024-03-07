@@ -6,7 +6,7 @@
 		MobileNav,
 		CommandMenu,
 	} from "$lib/components/docs/index.js";
-	import { buttonVariants } from "@/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { DocsSidebarNav } from "$lib/components/docs/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Avatar from "@/registry/new-york/ui/avatar/index.js";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 </script>
 
 <Avatar.Root>

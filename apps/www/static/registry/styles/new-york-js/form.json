@@ -12,7 +12,7 @@
 	"files": [
 		{
 			"name": "form-button.svelte",
-			"content": "<script>\n\timport * as Button from \"@/registry/new-york/ui/button/index.js\";\n</script>\n\n<Button.Root type=\"submit\" on:click on:keydown {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
+			"content": "<script>\n\timport * as Button from \"$lib/registry/new-york/ui/button/index.js\";\n</script>\n\n<Button.Root type=\"submit\" on:click on:keydown {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
 		},
 		{
 			"name": "form-description.svelte",
@@ -36,7 +36,7 @@
 		},
 		{
 			"name": "form-label.svelte",
-			"content": "<script>\n\timport { getFormControl } from \"formsnap\";\n\timport { Label } from \"@/registry/new-york/ui/label/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n\tconst { labelAttrs } = getFormControl();\n</script>\n\n<Label {...$labelAttrs} class={cn(\"data-[fs-error]:text-destructive\", className)} {...$$restProps}>\n\t<slot {labelAttrs} />\n</Label>\n"
+			"content": "<script>\n\timport { getFormControl } from \"formsnap\";\n\timport { Label } from \"$lib/registry/new-york/ui/label/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n\tconst { labelAttrs } = getFormControl();\n</script>\n\n<Label {...$labelAttrs} class={cn(\"data-[fs-error]:text-destructive\", className)} {...$$restProps}>\n\t<slot {labelAttrs} />\n</Label>\n"
 		},
 		{
 			"name": "form-legend.svelte",

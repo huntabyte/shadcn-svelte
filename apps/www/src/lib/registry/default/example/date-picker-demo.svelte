@@ -2,9 +2,9 @@
 	import CalendarIcon from "lucide-svelte/icons/calendar";
 	import { type DateValue, DateFormatter, getLocalTimeZone } from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import { Calendar } from "@/registry/default/ui/calendar/index.js";
-	import * as Popover from "@/registry/default/ui/popover/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Calendar } from "$lib/registry/default/ui/calendar/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "long",

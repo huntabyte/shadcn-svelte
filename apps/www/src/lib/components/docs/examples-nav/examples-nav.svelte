@@ -5,7 +5,7 @@
 	import { cubicInOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
 	import ExampleCodeLink from "./example-code-link.svelte";
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

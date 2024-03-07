@@ -1,4 +1,4 @@
-import type { Theme } from "@/registry/index.js";
+import type { Theme } from "$lib/registry/index.js";
 import template from "lodash.template";
 
 export { default as ThemeCopyCodeButton } from "./copy-code-button.svelte";

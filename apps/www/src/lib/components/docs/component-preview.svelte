@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
-	import { config } from "@/stores/index.js";
+	import { config } from "$lib/stores/index.js";
 	import { cn } from "$lib/utils.js";
 	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 	import { Icons } from "./icons/index.js";

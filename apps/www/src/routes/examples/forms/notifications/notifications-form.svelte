@@ -15,11 +15,11 @@
 
 <script lang="ts">
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
-	import * as Form from "@/registry/new-york/ui/form/index.js";
-	import * as RadioGroup from "@/registry/new-york/ui/radio-group/index.js";
-	import { Switch } from "@/registry/new-york/ui/switch/index.js";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
+	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
+	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 	import { zodClient } from "sveltekit-superforms/adapters";
-	import { Checkbox } from "@/registry/new-york/ui/checkbox/index.js";
+	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import { browser } from "$app/environment";
 
 	export let data: SuperValidated<Infer<NotificationFormSchema>>;

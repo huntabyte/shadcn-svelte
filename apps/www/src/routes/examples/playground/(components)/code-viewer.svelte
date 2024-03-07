@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Dialog from "@/registry/new-york/ui/dialog/index.js";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Dialog.Root>

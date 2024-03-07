@@ -4,9 +4,9 @@
 	import DollarSign from "lucide-svelte/icons/dollar-sign";
 	import Download from "lucide-svelte/icons/download";
 	import Users from "lucide-svelte/icons/users";
-	import { Button } from "@/registry/new-york/ui/button/index.js";
-	import * as Card from "@/registry/new-york/ui/card/index.js";
-	import * as Tabs from "@/registry/new-york/ui/tabs/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import {
 		DashboardMainNav,
 		Overview,
@@ -15,7 +15,7 @@
 		UserNav,
 		TeamSwitcher,
 	} from "./index.js";
-	import DatePickerWithRange from "@/registry/new-york/example/date-picker-with-range.svelte";
+	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
 	import DashboardLight from "$lib/img/examples/dashboard-light.png?enhanced";
 	import DashboardDark from "$lib/img/examples/dashboard-dark.png?enhanced";
 </script>

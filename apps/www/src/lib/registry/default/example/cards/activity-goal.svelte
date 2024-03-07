@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Card from "@/registry/default/ui/card/index.js";
-	import { Button } from "@/registry/default/ui/button/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import Minus from "lucide-svelte/icons/minus";
 	import Plus from "lucide-svelte/icons/plus";
 	import { Activity } from "$lib/components/docs/charts/index.js";

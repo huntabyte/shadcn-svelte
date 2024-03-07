@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Terminal from "lucide-svelte/icons/terminal";
-	import * as Alert from "@/registry/default/ui/alert/index.js";
+	import * as Alert from "$lib/registry/default/ui/alert/index.js";
 </script>
 
 <Alert.Root>
