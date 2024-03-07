@@ -36,7 +36,7 @@
 	import { cn } from "$lib/utils.js";
 	import { tick } from "svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
-	import { buttonVariants } from "@/registry/default/ui/button/index.js";
+	import { buttonVariants } from "@/registry/new-york/ui/button/index.js";
 	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
 	export { data as form };

@@ -3,8 +3,8 @@
 	import { cn } from "$lib/utils.js";
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
 
 	let copied = false;
 	let commands: Record<"npm" | "yarn" | "pnpm" | "bun", string> = {

@@ -3,8 +3,8 @@
 	import Moon from "svelte-radix/Moon.svelte";
 
 	import { setMode, resetMode } from "mode-watcher";
-	import { Button } from "@/registry/default/ui/button/index.js";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "@/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>

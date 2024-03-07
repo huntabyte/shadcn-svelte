@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
-	import { buttonVariants } from "@/registry/default/ui/button/index.js";
+	import { buttonVariants } from "@/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type $$Props = AlertDialogPrimitive.ActionProps;
