@@ -5,12 +5,12 @@
 		"bits-ui"
 	],
 	"registryDependencies": [
-		"index.js"
+		"dialog"
 	],
 	"files": [
 		{
 			"name": "command-dialog.svelte",
-			"content": "<script>\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"@/registry/default/ui/dialog/index.js\";\n\texport let open = false;\n\texport let value = undefined;\n</script>\n\n<Dialog.Root bind:open {...$$restProps}>\n\t<Dialog.Content class=\"overflow-hidden p-0\">\n\t\t<Command\n\t\t\tclass=\"[&_[data-cmdk-group-heading]]:px-2 [&_[data-cmdk-group-heading]]:font-medium [&_[data-cmdk-group-heading]]:text-muted-foreground [&_[data-cmdk-group]:not([hidden])_~[data-cmdk-group]]:pt-0 [&_[data-cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[data-cmdk-input]]:h-12 [&_[data-cmdk-item]]:px-2 [&_[data-cmdk-item]]:py-3 [&_[data-cmdk-item]_svg]:h-5 [&_[data-cmdk-item]_svg]:w-5\"\n\t\t\t{...$$restProps}\n\t\t\tbind:value\n\t\t>\n\t\t\t<slot />\n\t\t</Command>\n\t</Dialog.Content>\n</Dialog.Root>\n"
+			"content": "<script>\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"@/registry/new-york/ui/dialog/index.js\";\n\texport let open = false;\n\texport let value = undefined;\n</script>\n\n<Dialog.Root bind:open {...$$restProps}>\n\t<Dialog.Content class=\"overflow-hidden p-0\">\n\t\t<Command\n\t\t\tclass=\"[&_[data-cmdk-group-heading]]:px-2 [&_[data-cmdk-group-heading]]:font-medium [&_[data-cmdk-group-heading]]:text-muted-foreground [&_[data-cmdk-group]:not([hidden])_~[data-cmdk-group]]:pt-0 [&_[data-cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[data-cmdk-input]]:h-12 [&_[data-cmdk-item]]:px-2 [&_[data-cmdk-item]]:py-3 [&_[data-cmdk-item]_svg]:h-5 [&_[data-cmdk-item]_svg]:w-5\"\n\t\t\t{...$$restProps}\n\t\t\tbind:value\n\t\t>\n\t\t\t<slot />\n\t\t</Command>\n\t</Dialog.Content>\n</Dialog.Root>\n"
 		},
 		{
 			"name": "command-empty.svelte",

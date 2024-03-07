@@ -5,7 +5,7 @@
 		"@internationalized/date"
 	],
 	"registryDependencies": [
-		"index.js"
+		"button"
 	],
 	"files": [
 		{

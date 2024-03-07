@@ -6,7 +6,8 @@
 		"sveltekit-superforms"
 	],
 	"registryDependencies": [
-		"index.js"
+		"button",
+		"label"
 	],
 	"files": [
 		{
@@ -35,7 +36,7 @@
 		},
 		{
 			"name": "form-label.svelte",
-			"content": "<script>\n\timport { getFormControl } from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { Label } from \"@/registry/new-york/ui/label/index.js\";\n\tlet className = undefined;\n\texport { className as class };\n\tconst { labelAttrs } = getFormControl();\n</script>\n\n<Label {...$labelAttrs} class={cn(\"data-[fs-error]:text-destructive\", className)} {...$$restProps}>\n\t<slot {labelAttrs} />\n</Label>\n"
+			"content": "<script>\n\timport { getFormControl } from \"formsnap\";\n\timport { Label } from \"@/registry/new-york/ui/label/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n\tconst { labelAttrs } = getFormControl();\n</script>\n\n<Label {...$labelAttrs} class={cn(\"data-[fs-error]:text-destructive\", className)} {...$$restProps}>\n\t<slot {labelAttrs} />\n</Label>\n"
 		},
 		{
 			"name": "form-legend.svelte",

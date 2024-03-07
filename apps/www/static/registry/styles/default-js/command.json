@@ -5,7 +5,7 @@
 		"bits-ui"
 	],
 	"registryDependencies": [
-		"index.js"
+		"dialog"
 	],
 	"files": [
 		{

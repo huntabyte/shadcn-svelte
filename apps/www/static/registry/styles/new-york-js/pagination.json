@@ -4,7 +4,7 @@
 		"bits-ui"
 	],
 	"registryDependencies": [
-		"index.js"
+		"button"
 	],
 	"files": [
 		{
@@ -25,7 +25,7 @@
 		},
 		{
 			"name": "pagination-link.svelte",
-			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"@/registry/new-york/ui/button/index.js\";\n\tlet className = undefined;\n\texport let page;\n\texport let size = \"icon\";\n\texport let isActive = false;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.Page\n\tbind:page\n\tclass={cn(\n\t\tbuttonVariants({\n\t\t\tvariant: isActive ? \"outline\" : \"ghost\",\n\t\t\tsize,\n\t\t}),\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n>\n\t<slot>{page.value}</slot>\n</PaginationPrimitive.Page>\n"
+			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"@/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let page;\n\texport let size = \"icon\";\n\texport let isActive = false;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.Page\n\tbind:page\n\tclass={cn(\n\t\tbuttonVariants({\n\t\t\tvariant: isActive ? \"outline\" : \"ghost\",\n\t\t\tsize,\n\t\t}),\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:click\n>\n\t<slot>{page.value}</slot>\n</PaginationPrimitive.Page>\n"
 		},
 		{
 			"name": "pagination-next-button.svelte",

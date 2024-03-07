@@ -155,7 +155,7 @@ async function getDependencies(filename: string) {
 				}
 
 				if (source.startsWith(REGISTRY_DEPENDENCY)) {
-					const component = source.split("/").at(-1)!;
+					const component = source.split("/").at(-2)!;
 					registryDependencies.add(component);
 				}
 			}

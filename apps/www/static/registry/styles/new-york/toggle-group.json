@@ -4,7 +4,7 @@
 		"bits-ui"
 	],
 	"registryDependencies": [
-		"index.js"
+		"toggle"
 	],
 	"files": [
 		{

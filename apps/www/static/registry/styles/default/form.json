@@ -6,7 +6,8 @@
 		"sveltekit-superforms"
 	],
 	"registryDependencies": [
-		"index.js"
+		"button",
+		"label"
 	],
 	"files": [
 		{
