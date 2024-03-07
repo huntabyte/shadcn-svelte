@@ -4,7 +4,7 @@ description: Latest updates and announcements.
 ---
 
 <script>
-	import { Steps, Callout, ComponentPreview } from '$components/docs'
+	import { Steps, Callout, ComponentPreview } from '$lib/components/docs'
 </script>
 
 ## March 2024

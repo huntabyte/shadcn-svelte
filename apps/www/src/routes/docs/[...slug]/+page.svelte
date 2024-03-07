@@ -6,7 +6,7 @@
 	import Code from "svelte-radix/Code.svelte";
 	import ExternalLink from "svelte-radix/ExternalLink.svelte";
 	import { page } from "$app/stores";
-	import { DocsPager, TableOfContents } from "$components/docs/index.js";
+	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { badgeVariants } from "@/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 

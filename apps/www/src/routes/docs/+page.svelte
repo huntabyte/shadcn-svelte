@@ -3,7 +3,7 @@
 	import type { PageData } from "./$types.js";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { page } from "$app/stores";
-	import { DocsPager, TableOfContents } from "$components/docs/index.js";
+	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { cn } from "$lib/utils.js";
 
 	export let data: PageData;

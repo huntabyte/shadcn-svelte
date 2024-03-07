@@ -1,4 +1,4 @@
-import type { Icons } from "$components/docs/icons/index.js";
+import type { Icons } from "$lib/components/docs/icons/index.js";
 
 export type NavItem = {
 	title: string;

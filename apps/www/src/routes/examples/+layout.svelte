@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Announcement, ExamplesNav } from "$components/docs/index.js";
+	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { Button } from "@/registry/default/ui/button/index.js";
 </script>

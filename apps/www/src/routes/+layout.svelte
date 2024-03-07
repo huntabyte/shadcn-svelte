@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { dev } from "$app/environment";
-	import { Metadata, SiteFooter, SiteHeader, TailwindIndicator } from "$components/docs/index.js";
+	import {
+		Metadata,
+		SiteFooter,
+		SiteHeader,
+		TailwindIndicator,
+	} from "$lib/components/docs/index.js";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
 	import { config } from "$lib/stores/index.js";
