@@ -39,9 +39,10 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "simple-git-hooks": "^2.9.0",
-    "@unovis/svelte": "1.3.6-beta.0"
+    "@changesets/cli": "^2.27.1",
+    "@unovis/svelte": "1.3.6-beta.0",
+    "pretty-quick": "^4.0.0",
+    "simple-git-hooks": "^2.10.0"
   },
   "pnpm": {
     "patchedDependencies": {
