@@ -18,7 +18,7 @@
     "check": "pnpm --filter www check",
     "check:watch": "pnpm --filter www check:watch",
     "test:unit": "pnpm --filter www test:unit",
-    "lint": "pnpm --filter www --filter shadcn-svelte lint",
+    "lint": "pnpm -r lint",
     "format:check": "pnpm -r format:check",
     "format": "pnpm -r format",
     "preinstall": "npx only-allow pnpm",
