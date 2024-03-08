@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 </script>
 
 <ScrollArea class="h-[200px] w-[200px] rounded-md border p-4" orientation="both">

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Switch } from "@/registry/new-york/ui/switch";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 	import { nanoid } from "nanoid";
 
 	const id = nanoid(5);

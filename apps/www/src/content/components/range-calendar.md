@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/range-calendar
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$components/docs';
+    import { ComponentPreview, ManualInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="range-calendar-demo">

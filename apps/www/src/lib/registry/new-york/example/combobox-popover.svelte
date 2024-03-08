@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { tick } from "svelte";
 
 	type Status = {

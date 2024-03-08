@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Table from "@/registry/default/ui/table";
+	import * as Table from "$lib/registry/default/ui/table/index.js";
 
 	const invoices = [
 		{

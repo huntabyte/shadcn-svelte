@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { Index as RegistryIndex } from "../../../../__registry__";
-	import { config } from "@/stores";
-	import { cn } from "@/utils";
-	import { StyleSwitcher, ThemeWrapper } from "@/components/docs";
-	import { Icons } from "./icons";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
+	import { config } from "$lib/stores/index.js";
+	import { cn } from "$lib/utils.js";
+	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
+	import { Icons } from "./icons/index.js";
 	export let name: string;
 	let className: string;
 	export let align: "center" | "start" | "end" = "center";

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import * as Collapsible from "@/registry/new-york/ui/collapsible";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Collapsible from "$lib/registry/new-york/ui/collapsible/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Collapsible.Root class="w-[350px] space-y-2">

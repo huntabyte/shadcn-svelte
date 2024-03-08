@@ -8,12 +8,12 @@
 		addHiddenColumns,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "@/registry/default/ui/table";
+	import * as Table from "$lib/registry/default/ui/table/index.js";
 	import Actions from "./data-table/data-table-actions.svelte";
-	import { Button } from "@/registry/default/ui/button";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { cn } from "$lib/utils";
-	import { Input } from "@/registry/default/ui/input";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import DataTableCheckbox from "./data-table/data-table-checkbox.svelte";
 	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
 	import ChevronDown from "lucide-svelte/icons/chevron-down";

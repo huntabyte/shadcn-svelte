@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout, Steps } from '@/components/docs'
+    import { ComponentPreview, ManualInstall, Callout, Steps } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="data-table-demo">
@@ -1208,11 +1208,11 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
   import { readable } from "svelte/store";
   import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
   import ChevronDown from "lucide-svelte/icons/chevron-down";
-  import * as Table from "@/registry/new-york/ui/table";
+  import * as Table from "$lib/registry/new-york/ui/table/index.js";
   import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "@/registry/new-york/ui/button";
-  import { Input } from "@/registry/new-york/ui/input";
-  import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+  import { Button } from "$lib/registry/new-york/ui/button/index.js";
+  import { Input } from "$lib/registry/new-york/ui/input/index.js";
+  import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
   import DataTableCheckbox from "./data-table-checkbox.svelte";
 
   type Payment = {

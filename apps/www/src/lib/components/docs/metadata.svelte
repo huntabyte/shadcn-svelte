@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { siteConfig } from "$lib/config/site";
+	import { siteConfig } from "$lib/config/site.js";
 
 	export let title: string = siteConfig.name;
 

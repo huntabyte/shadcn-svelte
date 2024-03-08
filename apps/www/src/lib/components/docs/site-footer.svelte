@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { siteConfig } from "$lib/config/site";
+	import { siteConfig } from "$lib/config/site.js";
 </script>
 
 <footer class="py-6 md:px-8 md:py-0">

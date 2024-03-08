@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Skeleton } from "@/registry/default/ui/skeleton";
+	import { Skeleton } from "$lib/registry/default/ui/skeleton/index.js";
 </script>
 
 <div class="flex items-center space-x-4">

@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-cloudflare";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
 import { dirname, join } from "path";
@@ -24,14 +24,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		alias: {
-			$components: "src/lib/components",
-			"$components/*": "src/lib/components/*",
-			$primitives: "src/lib/primitives",
-			"$primitives/*": "src/lib/primitives/*",
-			"@": "src/lib",
-			"@/*": "src/lib/*",
-		},
 	},
 };
 

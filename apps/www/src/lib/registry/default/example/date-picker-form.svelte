@@ -20,11 +20,11 @@
 		CalendarDate,
 		today,
 	} from "@internationalized/date";
-	import { cn } from "$lib/utils";
-	import { Button, buttonVariants } from "@/registry/default/ui/button";
-	import { Calendar } from "@/registry/default/ui/calendar";
-	import * as Popover from "@/registry/default/ui/popover";
-	import * as Form from "@/registry/default/ui/form";
+	import { cn } from "$lib/utils.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Calendar } from "$lib/registry/default/ui/calendar/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
+	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import type { SuperValidated, Infer } from "sveltekit-superforms";
 	import SuperDebug, { superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";

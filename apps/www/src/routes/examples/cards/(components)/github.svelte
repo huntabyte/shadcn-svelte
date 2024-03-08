@@ -3,10 +3,10 @@
 	import Circle from "svelte-radix/Circle.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
 	import Star from "svelte-radix/Star.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Separator } from "@/registry/new-york/ui/separator";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 </script>
 
 <Card.Root>

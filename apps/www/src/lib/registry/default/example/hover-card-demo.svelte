@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CalendarDays from "lucide-svelte/icons/calendar-days";
-	import * as Avatar from "@/registry/default/ui/avatar";
-	import * as HoverCard from "@/registry/default/ui/hover-card";
+	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
+	import * as HoverCard from "$lib/registry/default/ui/hover-card/index.js";
 </script>
 
 <HoverCard.Root>

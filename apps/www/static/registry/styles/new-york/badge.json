@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "badge.svelte",
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils\";\n\timport { badgeVariants, type Variant } from \".\";\n\n\tlet className: string | undefined | null = undefined;\n\texport let href: string | undefined = undefined;\n\texport let variant: Variant = \"default\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport { badgeVariants, type Variant } from \"./index.js\";\n\n\tlet className: string | undefined | null = undefined;\n\texport let href: string | undefined = undefined;\n\texport let variant: Variant = \"default\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
 		},
 		{
 			"name": "index.ts",

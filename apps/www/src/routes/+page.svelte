@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { ExamplesNav, Announcement } from "@/components/docs";
-	import * as PageHeader from "@/components/docs/page-header";
-	import { Icons } from "@/components/docs/icons";
-	import { buttonVariants } from "@/registry/new-york/ui/button";
-	import { siteConfig } from "$lib/config/site";
-	import { cn } from "@/utils";
+	import { ExamplesNav, Announcement } from "$lib/components/docs/index.js";
+	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import { Icons } from "$lib/components/docs/icons/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { siteConfig } from "$lib/config/site.js";
+	import { cn } from "$lib/utils.js";
 	import Mail from "./examples/mail/(components)/mail.svelte";
-	import { accounts, mails } from "./examples/mail/data";
+	import { accounts, mails } from "./examples/mail/data.js";
 
 	export let data;
 </script>

@@ -1,14 +1,14 @@
 import { superValidate } from "sveltekit-superforms";
-import type { Actions, PageServerLoad, RequestEvent } from "./$types";
-import { formSchema } from "@/registry/default/example/form-demo.svelte";
-import { formSchema as checkboxSingleSchema } from "@/registry/default/example/checkbox-form-single.svelte";
-import { formSchema as radioGroupSchema } from "@/registry/default/example/radio-group-form.svelte";
-import { formSchema as selectSchema } from "@/registry/default/example/select-form.svelte";
-import { formSchema as switchSchema } from "@/registry/default/example/switch-form.svelte";
-import { formSchema as textareaSchema } from "@/registry/default/example/textarea-form.svelte";
-import { formSchema as comboboxFormSchema } from "@/registry/default/example/combobox-form.svelte";
-import { formSchema as datePickerFormSchema } from "@/registry/default/example/date-picker-form.svelte";
-import { formSchema as checkboxMultipleSchema } from "@/registry/default/example/checkbox-form-multiple.svelte";
+import type { Actions, PageServerLoad, RequestEvent } from "./$types.js";
+import { formSchema } from "$lib/registry/default/example/form-demo.svelte";
+import { formSchema as checkboxSingleSchema } from "$lib/registry/default/example/checkbox-form-single.svelte";
+import { formSchema as radioGroupSchema } from "$lib/registry/default/example/radio-group-form.svelte";
+import { formSchema as selectSchema } from "$lib/registry/default/example/select-form.svelte";
+import { formSchema as switchSchema } from "$lib/registry/default/example/switch-form.svelte";
+import { formSchema as textareaSchema } from "$lib/registry/default/example/textarea-form.svelte";
+import { formSchema as comboboxFormSchema } from "$lib/registry/default/example/combobox-form.svelte";
+import { formSchema as datePickerFormSchema } from "$lib/registry/default/example/date-picker-form.svelte";
+import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/example/checkbox-form-multiple.svelte";
 
 import { fail } from "@sveltejs/kit";
 import type { AnyZodObject } from "zod";

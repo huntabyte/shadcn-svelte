@@ -2,7 +2,7 @@
 	import AtSign from "lucide-svelte/icons/at-sign";
 	import Bell from "lucide-svelte/icons/bell";
 	import BellOff from "lucide-svelte/icons/bell-off";
-	import * as Card from "@/registry/default/ui/card";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>
 
 <Card.Root>

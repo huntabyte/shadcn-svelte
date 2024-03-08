@@ -2,16 +2,16 @@
 	import { getLocalTimeZone, DateFormatter, now, getDayOfWeek } from "@internationalized/date";
 
 	import * as Icons from "../icons.js";
-	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import { Button, buttonVariants } from "@/registry/new-york/ui/button";
-	import { Calendar } from "@/registry/new-york/ui/calendar";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Label } from "@/registry/new-york/ui/label";
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import { Switch } from "@/registry/new-york/ui/switch";
-	import { Textarea } from "@/registry/new-york/ui/textarea";
-	import * as Tooltip from "@/registry/new-york/ui/tooltip";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 	import type { Mail } from "../data.js";
 
 	export let mail: Mail | null = null;

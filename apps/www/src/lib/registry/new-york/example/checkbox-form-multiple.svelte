@@ -39,8 +39,8 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
-	import * as Form from "@/registry/new-york/ui/form";
-	import { Checkbox } from "@/registry/new-york/ui/checkbox";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
+	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";

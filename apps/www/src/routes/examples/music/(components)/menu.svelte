@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Menubar from "@/registry/new-york/ui/menubar";
+	import * as Menubar from "$lib/registry/new-york/ui/menubar/index.js";
 </script>
 
 <Menubar.Root class="rounded-none border-b border-none px-2 lg:px-4">

@@ -24,10 +24,10 @@ export { default as ModeToggle } from "./mode-toggle.svelte";
 export { default as Announcement } from "./announcement.svelte";
 export { default as LinkedCard } from "./linked-card.svelte";
 
-export * from "./icons";
-export * from "./page-header";
-export * from "./nav";
-export * from "./examples-nav";
-export * from "./dashboard";
-export * from "./theme-customizer";
-export * from "./forms";
+export * from "./icons/index.js";
+export * from "./page-header/index.js";
+export * from "./nav/index.js";
+export * from "./examples-nav/index.js";
+export * from "./dashboard/index.js";
+export * from "./theme-customizer/index.js";
+export * from "./forms/index.js";

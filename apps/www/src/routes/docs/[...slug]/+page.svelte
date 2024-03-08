@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { config } from "@/stores";
+	import { config } from "$lib/stores/index.js";
 	import type { SvelteComponent } from "svelte";
-	import type { PageData } from "./$types";
+	import type { PageData } from "./$types.js";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import Code from "svelte-radix/Code.svelte";
 	import ExternalLink from "svelte-radix/ExternalLink.svelte";
 	import { page } from "$app/stores";
-	import { DocsPager, TableOfContents } from "$components/docs";
-	import { badgeVariants } from "@/registry/new-york/ui/badge";
-	import { cn } from "$lib/utils";
+	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
+	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
+	import { cn } from "$lib/utils.js";
 
 	export let data: PageData;
 	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any

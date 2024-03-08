@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import { cn } from "$lib/utils";
-	import { Icons } from "./icons";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import { cn } from "$lib/utils.js";
+	import { Icons } from "./icons/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

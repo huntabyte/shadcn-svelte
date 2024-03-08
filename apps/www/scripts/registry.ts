@@ -19,7 +19,8 @@ const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
 	["calendar", ["@internationalized/date"]],
 	["range-calendar", ["@internationalized/date"]],
 ]);
-const REGISTRY_DEPENDENCY = "@/";
+const REGISTRY_DEPENDENCY = "$lib/";
+const UTILS_PATH = "$lib/utils.js";
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
 type RegistryItem = ArrayItem<Registry>;
@@ -154,8 +155,8 @@ async function getDependencies(filename: string) {
 					peerDeps.forEach((dep) => dependencies.add(dep));
 				}
 
-				if (source.startsWith(REGISTRY_DEPENDENCY)) {
-					const component = source.split("/").at(-1)!;
+				if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
+					const component = source.split("/").at(-2)!;
 					registryDependencies.add(component);
 				}
 			}

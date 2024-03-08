@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Select from "@/registry/new-york/ui/select";
-	import { cn } from "@/utils";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import { cn } from "$lib/utils.js";
 	import type { Account } from "../data.js";
 
 	export let isCollapsed: boolean;

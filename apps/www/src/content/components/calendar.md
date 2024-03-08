@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/calendar
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout } from '$components/docs';
+    import { ComponentPreview, ManualInstall, Callout } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="calendar-demo">

@@ -4,7 +4,7 @@ description: Configuration for your project.
 ---
 
 <script>
-    import { Callout, ComponentPreview } from '@/components/docs'
+    import { Callout, ComponentPreview } from '$lib/components/docs'
 </script>
 
 The `components.json` file holds configuration for your project.
@@ -106,7 +106,7 @@ Import alias for your utility functions.
 ```json title="components.json"
 {
   "aliases": {
-    "utils": "$lib/utils"
+    "utils": "$lib/utils.js"
   }
 }
 ```

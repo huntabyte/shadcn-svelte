@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { get, readable } from "svelte/store";
 	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
-	import * as Table from "@/registry/new-york/ui/table";
+	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 	import {
 		addColumnFilters,
 		addHiddenColumns,
@@ -19,9 +19,9 @@
 		DataTableColumnHeader,
 		DataTableToolbar,
 		DataTablePagination,
-	} from ".";
+	} from "./index.js";
 
-	import type { Task } from "../(data)/schemas";
+	import type { Task } from "../(data)/schemas.js";
 
 	export let data: Task[];
 

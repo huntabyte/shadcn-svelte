@@ -4,8 +4,8 @@ description: How to setup shadcn-svelte in a Vite project.
 ---
 
 <script>
-  import { Alert, AlertDescription } from "@/registry/default/ui/alert";
-  import { Steps } from "$components/docs";
+  import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
+  import { Steps } from "$lib/components/docs";
 </script>
 
 ## Setup your project

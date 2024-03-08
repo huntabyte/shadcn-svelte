@@ -2,7 +2,7 @@
 	import FontBold from "svelte-radix/FontBold.svelte";
 	import FontItalic from "svelte-radix/FontItalic.svelte";
 	import Underline from "svelte-radix/Underline.svelte";
-	import * as ToggleGroup from "@/registry/new-york/ui/toggle-group";
+	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root type="single">

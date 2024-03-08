@@ -8,7 +8,7 @@
 		tooltipTemplate,
 		crosshairPointColors,
 		crosshairStrokeWidths,
-	} from "./helpers";
+	} from "./helpers.js";
 
 	const data: Data[] = [
 		{ id: 1, average: 400, today: 240 },

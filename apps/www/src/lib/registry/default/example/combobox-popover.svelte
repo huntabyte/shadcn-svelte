@@ -4,10 +4,10 @@
 	import Circle from "lucide-svelte/icons/circle";
 	import HelpCircle from "lucide-svelte/icons/help-circle";
 	import XCircle from "lucide-svelte/icons/x-circle";
-	import * as Command from "@/registry/default/ui/command";
-	import * as Popover from "@/registry/default/ui/popover";
-	import { Button } from "@/registry/default/ui/button";
-	import { cn } from "$lib/utils";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 	import { tick, type ComponentType } from "svelte";
 
 	type Status = {

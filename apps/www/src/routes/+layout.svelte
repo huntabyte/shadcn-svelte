@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { dev } from "$app/environment";
-	import { Metadata, SiteFooter, SiteHeader, TailwindIndicator } from "$components/docs";
-	import { updateTheme } from "@/utils";
+	import {
+		Metadata,
+		SiteFooter,
+		SiteHeader,
+		TailwindIndicator,
+	} from "$lib/components/docs/index.js";
+	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
-	import { config } from "@/stores";
+	import { config } from "$lib/stores/index.js";
 	import { ModeWatcher } from "mode-watcher";
-	import { Toaster as DefaultSonner } from "@/registry/default/ui/sonner";
-	import { Toaster as NYSonner } from "@/registry/new-york/ui/sonner";
+	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
+	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
 
 	$: updateTheme($config.theme, $page.url.pathname);
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TableOfContents } from "$lib/types/docs";
-	import { cn } from "$lib/utils";
+	import type { TableOfContents } from "$lib/types/docs.js";
+	import { cn } from "$lib/utils.js";
 
 	export let tree: TableOfContents = {
 		items: [],

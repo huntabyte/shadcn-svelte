@@ -4,28 +4,25 @@
 	import DollarSign from "lucide-svelte/icons/dollar-sign";
 	import Download from "lucide-svelte/icons/download";
 	import Users from "lucide-svelte/icons/users";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { DashboardMainNav, Overview, RecentSales, Search, UserNav, TeamSwitcher } from ".";
-	import DatePickerWithRange from "@/registry/new-york/example/date-picker-with-range.svelte";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import {
+		DashboardMainNav,
+		Overview,
+		RecentSales,
+		Search,
+		UserNav,
+		TeamSwitcher,
+	} from "./index.js";
+	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
+	import DashboardLight from "$lib/img/examples/dashboard-light.png?enhanced";
+	import DashboardDark from "$lib/img/examples/dashboard-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<img
-		src="/examples/dashboard-light.png"
-		width={1280}
-		height={866}
-		alt="Dashboard"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/examples/dashboard-dark.png"
-		width={1280}
-		height={866}
-		alt="Dashboard"
-		class="hidden dark:block"
-	/>
+	<enhanced:img src={DashboardLight} alt="Dashboard Light" class="block dark:hidden" />
+	<enhanced:img src={DashboardDark} alt="Dashboard Dark" class="hidden dark:block" />
 </div>
 <div class="hidden flex-col md:flex">
 	<div class="border-b">

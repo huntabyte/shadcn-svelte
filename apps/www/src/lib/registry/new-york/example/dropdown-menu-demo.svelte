@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>

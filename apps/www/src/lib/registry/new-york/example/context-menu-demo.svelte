@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ContextMenu from "@/registry/new-york/ui/context-menu";
+	import * as ContextMenu from "$lib/registry/new-york/ui/context-menu/index.js";
 
 	let showBookmarks = false;
 	let showFullURLs = true;

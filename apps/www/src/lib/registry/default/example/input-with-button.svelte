@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
 </script>
 
 <form class="flex w-full max-w-sm items-center space-x-2">

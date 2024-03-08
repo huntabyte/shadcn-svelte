@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Pagination from "@/registry/default/ui/pagination";
+	import * as Pagination from "$lib/registry/default/ui/pagination/index.js";
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { mediaQuery } from "svelte-legos";

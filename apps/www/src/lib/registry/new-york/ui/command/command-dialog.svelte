@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Command from "./command.svelte";
-	import * as Dialog from "@/registry/default/ui/dialog";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import type { Dialog as DialogPrimitive } from "bits-ui";
 	import type { Command as CommandPrimitive } from "cmdk-sv";
 

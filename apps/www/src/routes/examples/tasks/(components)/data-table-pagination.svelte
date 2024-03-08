@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
 	import DoubleArrowRight from "svelte-radix/DoubleArrowRight.svelte";
 	import DoubleArrowLeft from "svelte-radix/DoubleArrowLeft.svelte";
-	import * as Select from "@/registry/new-york/ui/select";
-	import type { Task } from "../(data)/schemas";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import type { Task } from "../(data)/schemas.js";
 	import type { TableViewModel } from "svelte-headless-table";
 
 	export let tableModel: TableViewModel<Task>;

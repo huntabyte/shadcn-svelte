@@ -1,29 +1,19 @@
 <script lang="ts">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
-	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)";
-	import { playlists } from "./(data)/playlists";
-	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)/index.js";
+	import { playlists } from "./(data)/playlists.js";
+	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
+	import MusicLight from "$lib/img/examples/music-light.png?enhanced";
+	import MusicDark from "$lib/img/examples/music-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<img
-		src="/examples/music-light.png"
-		width={1280}
-		height={1114}
-		alt="Music"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/examples/music-dark.png"
-		width={1280}
-		height={1114}
-		alt="Music"
-		class="hidden dark:block"
-	/>
+	<enhanced:img src={MusicLight} alt="Music" class="block dark:hidden" />
+	<enhanced:img src={MusicDark} alt="Music" class="hidden dark:block" />
 </div>
 <div class="hidden md:block">
 	<Menu />

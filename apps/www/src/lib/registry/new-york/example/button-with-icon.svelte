@@ -1,6 +1,6 @@
 <script lang="ts">
 	import EnvelopeOpen from "svelte-radix/EnvelopeOpen.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Button>

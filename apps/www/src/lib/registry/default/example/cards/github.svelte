@@ -3,10 +3,10 @@
 	import Circle from "lucide-svelte/icons/circle";
 	import Plus from "lucide-svelte/icons/plus";
 	import Star from "lucide-svelte/icons/star";
-	import { Button } from "@/registry/default/ui/button";
-	import * as Card from "@/registry/default/ui/card";
-	import * as DropdownMenu from "@/registry/default/ui/dropdown-menu";
-	import { Separator } from "@/registry/default/ui/separator";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
+	import { Separator } from "$lib/registry/default/ui/separator/index.js";
 </script>
 
 <Card.Root>

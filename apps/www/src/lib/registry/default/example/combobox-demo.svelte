@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Check from "lucide-svelte/icons/check";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import * as Command from "@/registry/default/ui/command";
-	import * as Popover from "@/registry/default/ui/popover";
-	import { Button } from "@/registry/default/ui/button";
-	import { cn } from "$lib/utils";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
 	import { tick } from "svelte";
 
 	const frameworks = [

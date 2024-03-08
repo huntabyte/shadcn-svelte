@@ -3,15 +3,15 @@
 	import Check from "svelte-radix/Check.svelte";
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 
-	import { cn } from "$lib/utils";
-	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import * as Popover from "@/registry/new-york/ui/popover";
-	import * as Select from "@/registry/new-york/ui/select";
+	import { cn } from "$lib/utils.js";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { tick } from "svelte";
 
 	let className: string | undefined | null = undefined;

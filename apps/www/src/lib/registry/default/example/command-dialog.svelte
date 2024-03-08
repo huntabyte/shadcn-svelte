@@ -5,7 +5,7 @@
 	import Settings from "lucide-svelte/icons/settings";
 	import Smile from "lucide-svelte/icons/smile";
 	import User from "lucide-svelte/icons/user";
-	import * as Command from "@/registry/default/ui/command";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
 	import { onMount } from "svelte";
 
 	let open = false;

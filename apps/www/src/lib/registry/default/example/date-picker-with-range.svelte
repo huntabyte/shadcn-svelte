@@ -7,10 +7,10 @@
 		getLocalTimeZone,
 		type DateValue,
 	} from "@internationalized/date";
-	import { cn } from "$lib/utils";
-	import { Button } from "@/registry/default/ui/button";
-	import { RangeCalendar } from "@/registry/default/ui/range-calendar";
-	import * as Popover from "@/registry/default/ui/popover";
+	import { cn } from "$lib/utils.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { RangeCalendar } from "$lib/registry/default/ui/range-calendar/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 
 	const df = new DateFormatter("en-US", {
 		dateStyle: "medium",

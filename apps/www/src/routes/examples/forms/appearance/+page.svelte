@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import type { PageData } from "./$types";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import type { PageData } from "./$types.js";
 	import AppearanceForm from "./appearance-form.svelte";
 
 	export let data: PageData;

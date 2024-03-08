@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
-	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Card from "@/registry/new-york/ui/card";
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as Popover from "@/registry/new-york/ui/popover";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 </script>
 
 <Card.Root>

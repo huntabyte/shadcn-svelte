@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button, buttonVariants } from "@/registry/default/ui/button";
-	import * as Dialog from "@/registry/default/ui/dialog";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
+	import { Label } from "$lib/registry/default/ui/label/index.js";
 </script>
 
 <Dialog.Root>

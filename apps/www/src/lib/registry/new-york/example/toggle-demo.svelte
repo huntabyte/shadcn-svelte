@@ -1,6 +1,6 @@
 <script lang="ts">
 	import FontBold from "svelte-radix/FontBold.svelte";
-	import { Toggle } from "@/registry/new-york/ui/toggle";
+	import { Toggle } from "$lib/registry/new-york/ui/toggle/index.js";
 </script>
 
 <Toggle aria-label="toggle bold">

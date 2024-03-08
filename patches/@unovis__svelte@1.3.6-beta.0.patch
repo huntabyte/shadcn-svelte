@@ -1,0 +1,9 @@
+diff --git a/index.js b/index.js
+index 095f3e45eb10366fc5362e8e366e6cc48e5fe4ce..b559adb13f1b8d3bf45740d88fd9a22ba03c9eac 100644
+--- a/index.js
++++ b/index.js
+@@ -1,2 +1,2 @@
+-export * from './containers';
+-export * from './components';
++export * from './containers.js';
++export * from './components.js';

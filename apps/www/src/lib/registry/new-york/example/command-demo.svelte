@@ -6,7 +6,7 @@
 	import Person from "svelte-radix/Person.svelte";
 	import Rocket from "svelte-radix/Rocket.svelte";
 
-	import * as Command from "@/registry/new-york/ui/command";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 </script>
 
 <Command.Root class="max-w-[450px] rounded-lg border shadow-md">

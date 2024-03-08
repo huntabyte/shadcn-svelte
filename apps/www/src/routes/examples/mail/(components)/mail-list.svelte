@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn } from "@/utils";
+	import { cn } from "$lib/utils.js";
 	import { mailStore } from "../store.js";
 	import type { Mail } from "../data.js";
-	import { Badge } from "@/registry/new-york/ui/badge";
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
+	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { formatTimeAgo } from "../utils.js";
 
 	export let items: Mail[];

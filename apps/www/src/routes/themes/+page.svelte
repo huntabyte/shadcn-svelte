@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ThemeCustomizer, ThemeWrapper, Announcement } from "@/components/docs";
-	import * as PageHeader from "@/components/docs/page-header";
-	import { CardsNewYork } from "@/registry/new-york/example/cards";
-	import { CardsDefault } from "@/registry/default/example/cards";
-	import { config } from "@/stores";
+	import { ThemeCustomizer, ThemeWrapper, Announcement } from "$lib/components/docs/index.js";
+	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import { CardsNewYork } from "$lib/registry/new-york/example/cards/index.js";
+	import { CardsDefault } from "$lib/registry/default/example/cards/index.js";
+	import { config } from "$lib/stores/index.js";
 </script>
 
 <svelte:head>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { hexToHsl, hexToRgb } from "$lib/utils";
-	import { CopyButton } from ".";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { hexToHsl, hexToRgb } from "$lib/utils.js";
+	import { CopyButton } from "./index.js";
 
 	let hex = "#030711";
 	let hsl: [number, number, number] = [0, 0, 0];

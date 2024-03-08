@@ -1,7 +1,7 @@
-import type { DocResolver } from "$lib/types/docs";
-import type { PageLoad } from "./$types";
+import type { DocResolver } from "$lib/types/docs.js";
+import type { PageLoad } from "./$types.js";
 import { error } from "@sveltejs/kit";
-import { slugFromPath } from "$lib/utils";
+import { slugFromPath } from "$lib/utils.js";
 
 export const load: PageLoad = async () => {
 	// there's definitely a better way to do this for the index page
@@ -20,7 +20,7 @@ export const load: PageLoad = async () => {
 	const doc = await match?.resolver?.();
 
 	if (!doc || !doc.metadata) {
-		throw error(404);
+		error(404);
 	}
 	return {
 		component: doc.default,

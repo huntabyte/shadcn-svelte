@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Icons } from "$components/docs";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { cn } from "$lib/utils";
+	import { Icons } from "$lib/components/docs/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

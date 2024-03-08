@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { priorities } from "../(data)/data";
+	import { priorities } from "../(data)/data.js";
 	export let value: string;
 	const priority = priorities.find((priority) => priority.value === value);
 	const Icon = priority?.icon;

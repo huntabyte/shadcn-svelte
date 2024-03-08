@@ -1,11 +1,11 @@
 <script lang="ts">
 	import CounterClockwiseClock from "svelte-radix/CounterClockwiseClock.svelte";
-	import { Button } from "@/registry/new-york/ui/button";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Separator } from "@/registry/new-york/ui/separator";
-	import * as Tabs from "@/registry/new-york/ui/tabs";
-	import { Textarea } from "@/registry/new-york/ui/textarea";
-	import * as HoverCard from "@/registry/new-york/ui/hover-card";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 	import {
 		CodeViewer,
 		MaxLengthSelector,
@@ -16,26 +16,16 @@
 		PresetShare,
 		TemperatureSelector,
 		TopPSelector,
-	} from "./(components)";
-	import { models, types } from "./(data)/models";
-	import { presets } from "./(data)/presets";
+	} from "./(components)/index.js";
+	import { models, types } from "./(data)/models.js";
+	import { presets } from "./(data)/presets.js";
+	import PlaygroundLight from "$lib/img/examples/playground-light.png?enhanced";
+	import PlaygroundDark from "$lib/img/examples/playground-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<img
-		src="/examples/playground-light.png"
-		width={1280}
-		height={916}
-		alt="Playground"
-		class="block dark:hidden"
-	/>
-	<img
-		src="/examples/playground-dark.png"
-		width={1280}
-		height={916}
-		alt="Playground"
-		class="hidden dark:block"
-	/>
+	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden" />
+	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block" />
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Checkbox } from "@/registry/default/ui/checkbox";
-	import { Label } from "@/registry/default/ui/label";
+	import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
+	import { Label } from "$lib/registry/default/ui/label/index.js";
 </script>
 
 <div class="flex items-center space-x-2">

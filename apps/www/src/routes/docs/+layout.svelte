@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
-	import { DocsSidebarNav } from "$components/docs";
-	import { docsConfig } from "$lib/config/docs";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import { DocsSidebarNav } from "$lib/components/docs/index.js";
+	import { docsConfig } from "$lib/config/docs.js";
 </script>
 
 <div class="border-b">

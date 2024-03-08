@@ -10,9 +10,9 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
-	import * as Form from "@/registry/default/ui/form";
+	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
-	import { Switch } from "@/registry/default/ui/switch";
+	import { Switch } from "$lib/registry/default/ui/switch/index.js";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.switch;

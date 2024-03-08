@@ -1,11 +1,11 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import * as AlertDialog from "@/registry/new-york/ui/alert-dialog";
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Label } from "@/registry/new-york/ui/label";
-	import { Switch } from "@/registry/new-york/ui/switch";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 
 	let open = false;
 	let showDeleteDialog = false;

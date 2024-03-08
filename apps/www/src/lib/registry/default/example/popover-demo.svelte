@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "@/registry/default/ui/button";
-	import { Input } from "@/registry/default/ui/input";
-	import { Label } from "@/registry/default/ui/label";
-	import * as Popover from "@/registry/default/ui/popover";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Input } from "$lib/registry/default/ui/input/index.js";
+	import { Label } from "$lib/registry/default/ui/label/index.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 </script>
 
 <Popover.Root portal={null}>

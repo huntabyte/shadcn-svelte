@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Calendar as CalendarPrimitive } from "bits-ui";
-	import * as Calendar from ".";
-	import { cn } from "$lib/utils";
+	import * as Calendar from "./index.js";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = CalendarPrimitive.Props;
 	type $$Events = CalendarPrimitive.Events;

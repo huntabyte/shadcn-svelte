@@ -1,4 +1,4 @@
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { preprocess } from "svelte/compiler";
 import ts from "typescript";
 import prettier from "prettier";

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Calendar from "svelte-radix/Calendar.svelte";
-	import * as Avatar from "@/registry/new-york/ui/avatar";
-	import * as HoverCard from "@/registry/new-york/ui/hover-card";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 </script>
 
 <HoverCard.Root>

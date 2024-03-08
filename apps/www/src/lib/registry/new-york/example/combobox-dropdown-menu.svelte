@@ -1,8 +1,8 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import * as Command from "@/registry/new-york/ui/command";
-	import * as DropdownMenu from "@/registry/new-york/ui/dropdown-menu";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { tick } from "svelte";
 
 	const labels = [

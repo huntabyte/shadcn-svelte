@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 
 	export let href: string;
 	export let open: boolean;

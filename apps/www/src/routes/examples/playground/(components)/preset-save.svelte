@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from "@/registry/new-york/ui/button";
-	import * as Dialog from "@/registry/new-york/ui/dialog";
-	import { Input } from "@/registry/new-york/ui/input";
-	import { Label } from "@/registry/new-york/ui/label";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
 
 <Dialog.Root>

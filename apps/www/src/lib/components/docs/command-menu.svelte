@@ -4,11 +4,11 @@
 	import Laptop from "svelte-radix/Laptop.svelte";
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-	import * as Command from "@/registry/new-york/ui/command";
-	import { Button } from "@/registry/new-york/ui/button";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { onMount } from "svelte";
-	import { cn } from "@/utils";
-	import { docsConfig } from "@/config/docs";
+	import { cn } from "$lib/utils.js";
+	import { docsConfig } from "$lib/config/docs.js";
 	import { goto } from "$app/navigation";
 	import { resetMode, setMode } from "mode-watcher";
 

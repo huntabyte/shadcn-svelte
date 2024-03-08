@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MoreHorizontal from "lucide-svelte/icons/more-horizontal";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	type $$Props = HTMLAttributes<HTMLSpanElement>;
