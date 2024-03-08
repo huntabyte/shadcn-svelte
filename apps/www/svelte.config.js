@@ -23,7 +23,30 @@ const config = {
 	extensions: [".svelte", ".md"],
 
 	kit: {
-		adapter: adapter(),
+		// https://kit.svelte.dev/docs/adapter-cloudflare#options
+		adapter: adapter({
+			routes: {
+				// Since we have so many static assets, we'll manually define
+				// the globs for them to save our 100 include/exclude limit
+				exclude: [
+					"<build>",
+					"<prerendered>",
+					"/registry/*",
+					"/avatars/*",
+					"/fonts/*",
+					"/android-chrome-192x192.png",
+					"/android-chrome-512x512.png",
+					"/apple-touch-icon.png",
+					"/docs/hex-to-hsl.png",
+					"/favicon-16x16.png",
+					"/favicon-32x32.png",
+					"/favicon.ico",
+					"/og.png",
+					"/schema.json",
+					"/site.webmanifest",
+				],
+			},
+		}),
 	},
 };
 
