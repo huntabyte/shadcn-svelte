@@ -8,7 +8,7 @@
 	import Mail from "./examples/mail/(components)/mail.svelte";
 	import { accounts, mails } from "./examples/mail/data.js";
 	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/playground-dark.png?enhanced";
+	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
 	export let data;
 </script>
