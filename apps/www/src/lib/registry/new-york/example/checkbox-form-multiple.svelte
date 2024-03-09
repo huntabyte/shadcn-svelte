@@ -69,7 +69,7 @@
 	}
 </script>
 
-<form action="?/checkboxMultiple" method="POST" class="space-y-8" use:enhance>
+<form action="/docs?/checkboxMultiple" method="POST" class="space-y-8" use:enhance>
 	<Form.Fieldset {form} name="items" class="space-y-0">
 		<div class="mb-4">
 			<Form.Legend class="text-base">Sidebar</Form.Legend>

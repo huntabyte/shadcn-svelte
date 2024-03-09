@@ -57,7 +57,7 @@
 	let placeholder: DateValue = today(getLocalTimeZone());
 </script>
 
-<form method="POST" action="?/datePicker" class="space-y-8" use:enhance>
+<form method="POST" action="/docs?/datePicker" class="space-y-8" use:enhance>
 	<Form.Field {form} name="dob" class="flex flex-col">
 		<Form.Control let:attrs>
 			<Form.Label>Date of birth</Form.Label>

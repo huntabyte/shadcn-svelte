@@ -35,7 +35,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="?/radioGroup" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" action="/docs?/radioGroup" class="w-2/3 space-y-6" use:enhance>
 	<Form.Fieldset {form} name="type" class="space-y-3">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1">
