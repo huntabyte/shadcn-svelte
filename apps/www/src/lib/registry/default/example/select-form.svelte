@@ -40,7 +40,7 @@
 		: undefined;
 </script>
 
-<form method="POST" action="/docs?/select" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" action="/?/select" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="email">
 		<Form.Control let:attrs>
 			<Form.Label>Email</Form.Label>

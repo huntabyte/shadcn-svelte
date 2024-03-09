@@ -31,7 +31,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form action="/docs?/checkboxSingle" method="POST" class="space-y-6" use:enhance>
+<form action="/?/checkboxSingle" method="POST" class="space-y-6" use:enhance>
 	<Form.Field
 		{form}
 		name="mobile"
