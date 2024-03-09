@@ -1,5 +1,4 @@
 import { error } from "@sveltejs/kit";
-import { slugFromPath } from "$lib/utils.js";
 import type { DocResolver } from "$lib/types/docs.js";
 import type { PageLoad } from "./$types.js";
 
@@ -8,16 +7,16 @@ export const load: PageLoad = async () => {
 	// but I'll sort this out later - works for now :)
 	const modules = import.meta.glob(`/src/content/**/index.md`);
 
-	let match: { path?: string; resolver?: DocResolver } = {};
+	let resolver;
 
-	for (const [path, resolver] of Object.entries(modules)) {
-		if (slugFromPath(path) === "index") {
-			match = { path, resolver: resolver as unknown as DocResolver };
+	for (const [path, res] of Object.entries(modules)) {
+		if (path === "/src/content/index.md") {
+			resolver = res as DocResolver;
 			break;
 		}
 	}
 
-	const doc = await match?.resolver?.();
+	const doc = await resolver?.();
 
 	if (!doc || !doc.metadata) {
 		error(404);
