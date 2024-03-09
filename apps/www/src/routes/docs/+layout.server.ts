@@ -1,4 +1,4 @@
-import type { PageServerLoad } from "./$types.js";
+import type { LayoutServerLoad } from "./$types.js";
 
 import { formSchema } from "$lib/registry/default/example/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "$lib/registry/default/example/checkbox-form-single.svelte";
@@ -13,7 +13,7 @@ import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/exam
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 
-export const load: PageServerLoad = async () => {
+export const load: LayoutServerLoad = async () => {
 	return {
 		form: await superValidate(zod(formSchema)),
 		checkboxSingle: await superValidate(zod(checkboxSingleSchema)),
