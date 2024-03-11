@@ -9,6 +9,16 @@ description: Latest updates and announcements.
 
 ## March 2024
 
+### New Component: Breadcrumb
+
+We've added a new component to the project, [Breadcrumb](/docs/components/breadcrumb).
+
+<ComponentPreview name="breadcrumb-demo">
+
+<div />
+
+</ComponentPreview>
+
 ### New Component: Scroll Area
 
 We've added a new component to the project, [Scroll Area](/docs/components/scroll-area), which is built on top of the [Scroll Area](https://bits-ui.com/docs/components/scroll-area) component from Bits UI.
