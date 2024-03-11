@@ -7,8 +7,6 @@
 	import { cn } from "$lib/utils.js";
 	import Mail from "./examples/mail/(components)/mail.svelte";
 	import { accounts, mails } from "./examples/mail/data.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
 	export let data;
 </script>
@@ -53,10 +51,7 @@
 	<section
 		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
-		<div class="md:hidden">
-			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
-		</div>
+		<div class="md:hidden"></div>
 	</section>
 	<section class="hidden md:block">
 		<div class="overflow-hidden rounded-lg border bg-background shadow-lg">

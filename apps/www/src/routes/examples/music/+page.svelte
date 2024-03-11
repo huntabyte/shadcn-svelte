@@ -7,14 +7,9 @@
 	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
-	import MusicLight from "$lib/img/examples/music-light.png?enhanced";
-	import MusicDark from "$lib/img/examples/music-dark.png?enhanced";
 </script>
 
-<div class="md:hidden">
-	<enhanced:img src={MusicLight} alt="Music" class="block dark:hidden" />
-	<enhanced:img src={MusicDark} alt="Music" class="hidden dark:block" />
-</div>
+<div class="md:hidden"></div>
 <div class="hidden md:block">
 	<Menu />
 	<div class="border-t">

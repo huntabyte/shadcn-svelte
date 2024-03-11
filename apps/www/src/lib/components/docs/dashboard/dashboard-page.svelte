@@ -16,14 +16,8 @@
 		TeamSwitcher,
 	} from "./index.js";
 	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
-	import DashboardLight from "$lib/img/examples/dashboard-light.png?enhanced";
-	import DashboardDark from "$lib/img/examples/dashboard-dark.png?enhanced";
 </script>
 
-<div class="md:hidden">
-	<enhanced:img src={DashboardLight} alt="Dashboard Light" class="block dark:hidden" />
-	<enhanced:img src={DashboardDark} alt="Dashboard Dark" class="hidden dark:block" />
-</div>
 <div class="hidden flex-col md:flex">
 	<div class="border-b">
 		<div class="flex h-16 items-center px-4">
