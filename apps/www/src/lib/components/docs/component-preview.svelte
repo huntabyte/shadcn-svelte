@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
+	import { Index as RegistryIndex } from "$lib/../__registry__/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { cn } from "$lib/utils.js";
 	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";

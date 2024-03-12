@@ -12,7 +12,7 @@ import { buildRegistry } from "./registry";
 import { transformContent } from "./transformers";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
 
-const REGISTRY_PATH = path.join(process.cwd(), "static/registry");
+const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
 
 async function main() {
@@ -42,9 +42,7 @@ export const Index = {
 				continue;
 			}
 
-			const resolveFiles = item.files.map(
-				(file) => `../src/lib/registry/${style.name}/${file}`
-			);
+			const resolveFiles = item.files.map((file) => `../lib/registry/${style.name}/${file}`);
 
 			const type = item.type.split(":")[1];
 			index += `
@@ -52,7 +50,7 @@ export const Index = {
 			name: "${item.name}",
 			type: "${item.type}",
 			registryDependencies: ${JSON.stringify(item.registryDependencies)},
-			component: () => import("../src/lib/registry/${style.name}/${type}/${
+			component: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
 			}.svelte").then((m) => m.default),
 			files: [${resolveFiles.map((file) => `"${file}"`)}],
@@ -68,8 +66,9 @@ export const Index = {
 `;
 
 	// Write style index.
-	rimraf.sync(path.join(process.cwd(), "__registry__/index.js"));
-	fs.writeFileSync(path.join(process.cwd(), "__registry__/index.js"), index);
+	const registryPath = path.resolve("src", "__registry__", "index.js");
+	rimraf.sync(registryPath);
+	fs.writeFileSync(registryPath, index);
 
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/[style]/[name].json.
@@ -95,7 +94,7 @@ export const Index = {
 
 			const files = item.files?.map((file) => {
 				const content = fs.readFileSync(
-					path.join(process.cwd(), "src/lib/registry", style.name, file),
+					path.resolve("src", "lib", "registry", style.name, file),
 					"utf8"
 				);
 

@@ -10,7 +10,7 @@ import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
 import { u } from "unist-builder";
-import { Index } from "./__registry__/index.js";
+import { Index } from "./src/__registry__/index.js";
 import { getHighlighter } from "shiki";
 import { defineConfig } from "mdsx";
 
