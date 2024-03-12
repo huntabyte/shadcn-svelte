@@ -170,7 +170,7 @@ export function rehypeComponentExample() {
 					for (const style of styles) {
 						// @ts-expect-error - this is fine for now.
 						const component = Index[style.name][name];
-						const src = component.files[0];
+						const src = component.files[0].replace("/lib/", "/src/lib/");
 						let sourceCode = getComponentSourceFileContent(src);
 						if (!sourceCode || sourceCode === null) return;
 
