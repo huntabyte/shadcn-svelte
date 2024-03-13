@@ -33,7 +33,7 @@
 					disabled={isLoading}
 				/>
 			</div>
-			<Button disabled={isLoading}>
+			<Button type="submit" disabled={isLoading}>
 				{#if isLoading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{/if}
