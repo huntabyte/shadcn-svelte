@@ -158,7 +158,7 @@ We'll pass the `form` from the data returned from the load function to the form 
 
 ### Create an Action that handles the form submission
 
-```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,12-24}
+```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,13-25}
 import type { PageServerLoad, Actions } from "./$types.js";
 import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
