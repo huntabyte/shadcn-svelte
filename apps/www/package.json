@@ -79,7 +79,7 @@
 		"@internationalized/date": "^3.5.2",
 		"@unovis/svelte": "1.3.6-beta.1",
 		"@unovis/ts": "1.3.6-beta.1",
-		"bits-ui": "0.19.3",
+		"bits-ui": "0.19.6",
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.15",
 		"d3-scale": "^4.0.2",

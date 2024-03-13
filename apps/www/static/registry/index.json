@@ -84,6 +84,22 @@
 		"type": "components:ui"
 	},
 	{
+		"name": "breadcrumb",
+		"dependencies": [],
+		"registryDependencies": [],
+		"files": [
+			"ui/breadcrumb/breadcrumb-ellipsis.svelte",
+			"ui/breadcrumb/breadcrumb-item.svelte",
+			"ui/breadcrumb/breadcrumb-link.svelte",
+			"ui/breadcrumb/breadcrumb-list.svelte",
+			"ui/breadcrumb/breadcrumb-page.svelte",
+			"ui/breadcrumb/breadcrumb-separator.svelte",
+			"ui/breadcrumb/breadcrumb.svelte",
+			"ui/breadcrumb/index.ts"
+		],
+		"type": "components:ui"
+	},
+	{
 		"name": "button",
 		"dependencies": [
 			"bits-ui"
