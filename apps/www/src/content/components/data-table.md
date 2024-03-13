@@ -442,7 +442,7 @@ We'll start by creating a new component called `data-table-actions.svelte` which
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
-  import MoreHorizontal from "lucide-svelte/icons/more-horizontal";
+  import Ellipsis from "lucide-svelte/icons/ellipsis";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import { Button } from "$lib/components/ui/button";
 
@@ -458,7 +458,7 @@ We'll start by creating a new component called `data-table-actions.svelte` which
       class="relative h-8 w-8 p-0"
     >
       <span class="sr-only">Open menu</span>
-      <MoreHorizontal class="h-4 w-4" />
+      <Ellipsis class="h-4 w-4" />
     </Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content>
