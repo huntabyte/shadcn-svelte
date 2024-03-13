@@ -1,13 +1,13 @@
 <script lang="ts">
-	import ArrowUpCircle from "lucide-svelte/icons/arrow-up-circle";
-	import CheckCircle2 from "lucide-svelte/icons/check-circle-2";
-	import Circle from "lucide-svelte/icons/circle";
-	import HelpCircle from "lucide-svelte/icons/help-circle";
-	import XCircle from "lucide-svelte/icons/x-circle";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+	import Circle from "lucide-svelte/icons/circle";
+	import CircleArrowUp from "lucide-svelte/icons/circle-arrow-up";
+	import CircleCheck from "lucide-svelte/icons/circle-check";
+	import CircleHelp from "lucide-svelte/icons/circle-help";
+	import CircleX from "lucide-svelte/icons/circle-x";
 	import { tick, type ComponentType } from "svelte";
 
 	type Status = {
@@ -20,7 +20,7 @@
 		{
 			value: "backlog",
 			label: "Backlog",
-			icon: HelpCircle,
+			icon: CircleHelp,
 		},
 		{
 			value: "todo",
@@ -30,17 +30,17 @@
 		{
 			value: "in progress",
 			label: "In Progress",
-			icon: ArrowUpCircle,
+			icon: CircleArrowUp,
 		},
 		{
 			value: "done",
 			label: "Done",
-			icon: CheckCircle2,
+			icon: CircleCheck,
 		},
 		{
 			value: "canceled",
 			label: "Canceled",
-			icon: XCircle,
+			icon: CircleX,
 		},
 	];
 

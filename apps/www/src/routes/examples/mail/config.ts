@@ -1,7 +1,7 @@
 import * as Icons from "./icons.js";
 
-import type { ComponentType } from "svelte";
 import type { Icon } from "lucide-svelte";
+import type { ComponentType } from "svelte";
 
 export type Route = {
 	title: string;
@@ -59,7 +59,7 @@ export const secondaryRoutes: Route[] = [
 	{
 		title: "Updates",
 		label: "342",
-		icon: Icons.AlertCircle,
+		icon: Icons.CircleAlert,
 		variant: "ghost",
 	},
 	{

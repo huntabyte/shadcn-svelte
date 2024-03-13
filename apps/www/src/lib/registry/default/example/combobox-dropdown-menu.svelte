@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import Calendar from "lucide-svelte/icons/calendar";
-	import MoreHorizontal from "lucide-svelte/icons/more-horizontal";
+	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import Tags from "lucide-svelte/icons/tags";
 	import Trash from "lucide-svelte/icons/trash";
 	import User from "lucide-svelte/icons/user";
-	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { tick } from "svelte";
 
 	const labels = [
@@ -45,7 +45,7 @@
 	<DropdownMenu.Root bind:open let:ids>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button builders={[builder]} variant="ghost" size="sm" aria-label="Open menu">
-				<MoreHorizontal />
+				<Ellipsis />
 			</Button>
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
