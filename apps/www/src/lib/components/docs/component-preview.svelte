@@ -1,22 +1,19 @@
 <script lang="ts">
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import { Index as RegistryIndex } from "../../../../__registry__/index.js";
+	import { Index } from "$lib/../__registry__/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { cn } from "$lib/utils.js";
 	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 	import { Icons } from "./icons/index.js";
-	export let name: string;
-	let className: string;
+	import type { ComponentType } from "svelte";
+
+	export let name: keyof (typeof Index)["default"];
 	export let align: "center" | "start" | "end" = "center";
 
-	/* eslint-disable @typescript-eslint/no-explicit-any */
-	const Index = RegistryIndex as Record<string, any>;
-
-	let component = Index[$config.style][name]?.component();
-
+	let className: string;
 	export { className as class };
 
-	$: component = Index[$config.style][name]?.component();
+	$: component = Index[$config.style][name]?.component() as Promise<ComponentType>;
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	export let form: any;
@@ -66,7 +63,7 @@
 								Loading...
 							</div>
 						{:then Component}
-							<svelte:component this={Component} {form} />
+							<Component {form} />
 						{:catch}
 							<p class="text-sm text-muted-foreground">
 								Component{" "}

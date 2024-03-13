@@ -7,1280 +7,1228 @@ export const Index = {
 			type: "components:example",
 			registryDependencies: ["accordion"],
 			component: () =>
-				import("../src/lib/registry/default/example/accordion-demo.svelte").then(
+				import("../lib/registry/default/example/accordion-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/accordion-demo.svelte"],
+			files: ["../lib/registry/default/example/accordion-demo.svelte"],
 		},
 		"alert-demo": {
 			name: "alert-demo",
 			type: "components:example",
 			registryDependencies: ["alert"],
 			component: () =>
-				import("../src/lib/registry/default/example/alert-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/alert-demo.svelte"],
+				import("../lib/registry/default/example/alert-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/alert-demo.svelte"],
 		},
 		"alert-destructive": {
 			name: "alert-destructive",
 			type: "components:example",
 			registryDependencies: ["alert"],
 			component: () =>
-				import("../src/lib/registry/default/example/alert-destructive.svelte").then(
+				import("../lib/registry/default/example/alert-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/alert-destructive.svelte"],
+			files: ["../lib/registry/default/example/alert-destructive.svelte"],
 		},
 		"alert-dialog-demo": {
 			name: "alert-dialog-demo",
 			type: "components:example",
 			registryDependencies: ["alert-dialog", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/alert-dialog-demo.svelte").then(
+				import("../lib/registry/default/example/alert-dialog-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/alert-dialog-demo.svelte"],
+			files: ["../lib/registry/default/example/alert-dialog-demo.svelte"],
 		},
 		"aspect-ratio-demo": {
 			name: "aspect-ratio-demo",
 			type: "components:example",
 			registryDependencies: ["aspect-ratio"],
 			component: () =>
-				import("../src/lib/registry/default/example/aspect-ratio-demo.svelte").then(
+				import("../lib/registry/default/example/aspect-ratio-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/aspect-ratio-demo.svelte"],
+			files: ["../lib/registry/default/example/aspect-ratio-demo.svelte"],
 		},
 		"avatar-demo": {
 			name: "avatar-demo",
 			type: "components:example",
 			registryDependencies: ["avatar"],
 			component: () =>
-				import("../src/lib/registry/default/example/avatar-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/avatar-demo.svelte"],
+				import("../lib/registry/default/example/avatar-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/avatar-demo.svelte"],
 		},
 		"badge-demo": {
 			name: "badge-demo",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/default/example/badge-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/badge-demo.svelte"],
+				import("../lib/registry/default/example/badge-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/badge-demo.svelte"],
 		},
 		"badge-destructive": {
 			name: "badge-destructive",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/default/example/badge-destructive.svelte").then(
+				import("../lib/registry/default/example/badge-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/badge-destructive.svelte"],
+			files: ["../lib/registry/default/example/badge-destructive.svelte"],
 		},
 		"badge-outline": {
 			name: "badge-outline",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/default/example/badge-outline.svelte").then(
+				import("../lib/registry/default/example/badge-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/badge-outline.svelte"],
+			files: ["../lib/registry/default/example/badge-outline.svelte"],
 		},
 		"badge-secondary": {
 			name: "badge-secondary",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/default/example/badge-secondary.svelte").then(
+				import("../lib/registry/default/example/badge-secondary.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/badge-secondary.svelte"],
+			files: ["../lib/registry/default/example/badge-secondary.svelte"],
 		},
 		"breadcrumb-demo": {
 			name: "breadcrumb-demo",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-demo.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-demo.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-demo.svelte"],
 		},
 		"breadcrumb-dropdown": {
 			name: "breadcrumb-dropdown",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-dropdown.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-dropdown.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-dropdown.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-dropdown.svelte"],
 		},
 		"breadcrumb-ellipsis": {
 			name: "breadcrumb-ellipsis",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-ellipsis.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-ellipsis.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-ellipsis.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-ellipsis.svelte"],
 		},
 		"breadcrumb-link": {
 			name: "breadcrumb-link",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-link.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-link.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-link.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-link.svelte"],
 		},
 		"breadcrumb-responsive": {
 			name: "breadcrumb-responsive",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "drawer", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-responsive.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-responsive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-responsive.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-responsive.svelte"],
 		},
 		"breadcrumb-separator": {
 			name: "breadcrumb-separator",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-separator.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-separator.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-separator.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-separator.svelte"],
 		},
 		"button-demo": {
 			name: "button-demo",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/button-demo.svelte"],
+				import("../lib/registry/default/example/button-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/button-demo.svelte"],
 		},
 		"button-destructive": {
 			name: "button-destructive",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-destructive.svelte").then(
+				import("../lib/registry/default/example/button-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-destructive.svelte"],
+			files: ["../lib/registry/default/example/button-destructive.svelte"],
 		},
 		"button-ghost": {
 			name: "button-ghost",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-ghost.svelte").then(
+				import("../lib/registry/default/example/button-ghost.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-ghost.svelte"],
+			files: ["../lib/registry/default/example/button-ghost.svelte"],
 		},
 		"button-icon": {
 			name: "button-icon",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-icon.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/button-icon.svelte"],
+				import("../lib/registry/default/example/button-icon.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/button-icon.svelte"],
 		},
 		"button-link": {
 			name: "button-link",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-link.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/button-link.svelte"],
+				import("../lib/registry/default/example/button-link.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/button-link.svelte"],
 		},
 		"button-loading": {
 			name: "button-loading",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-loading.svelte").then(
+				import("../lib/registry/default/example/button-loading.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-loading.svelte"],
+			files: ["../lib/registry/default/example/button-loading.svelte"],
 		},
 		"button-outline": {
 			name: "button-outline",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-outline.svelte").then(
+				import("../lib/registry/default/example/button-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-outline.svelte"],
+			files: ["../lib/registry/default/example/button-outline.svelte"],
 		},
 		"button-secondary": {
 			name: "button-secondary",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-secondary.svelte").then(
+				import("../lib/registry/default/example/button-secondary.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-secondary.svelte"],
+			files: ["../lib/registry/default/example/button-secondary.svelte"],
 		},
 		"button-with-icon": {
 			name: "button-with-icon",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/button-with-icon.svelte").then(
+				import("../lib/registry/default/example/button-with-icon.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/button-with-icon.svelte"],
+			files: ["../lib/registry/default/example/button-with-icon.svelte"],
 		},
 		"calendar-demo": {
 			name: "calendar-demo",
 			type: "components:example",
 			registryDependencies: ["calendar"],
 			component: () =>
-				import("../src/lib/registry/default/example/calendar-demo.svelte").then(
+				import("../lib/registry/default/example/calendar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/calendar-demo.svelte"],
+			files: ["../lib/registry/default/example/calendar-demo.svelte"],
 		},
 		"calendar-with-selects": {
 			name: "calendar-with-selects",
 			type: "components:example",
 			registryDependencies: ["calendar", "select"],
 			component: () =>
-				import("../src/lib/registry/default/example/calendar-with-selects.svelte").then(
+				import("../lib/registry/default/example/calendar-with-selects.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/calendar-with-selects.svelte"],
+			files: ["../lib/registry/default/example/calendar-with-selects.svelte"],
 		},
 		"card-demo": {
 			name: "card-demo",
 			type: "components:example",
 			registryDependencies: ["button", "card", "switch"],
 			component: () =>
-				import("../src/lib/registry/default/example/card-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/card-demo.svelte"],
+				import("../lib/registry/default/example/card-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/card-demo.svelte"],
 		},
 		"card-with-form": {
 			name: "card-with-form",
 			type: "components:example",
 			registryDependencies: ["button", "card", "select", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/card-with-form.svelte").then(
+				import("../lib/registry/default/example/card-with-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/card-with-form.svelte"],
+			files: ["../lib/registry/default/example/card-with-form.svelte"],
 		},
 		"carousel-api": {
 			name: "carousel-api",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-api.svelte").then(
+				import("../lib/registry/default/example/carousel-api.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-api.svelte"],
+			files: ["../lib/registry/default/example/carousel-api.svelte"],
 		},
 		"carousel-demo": {
 			name: "carousel-demo",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-demo.svelte").then(
+				import("../lib/registry/default/example/carousel-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-demo.svelte"],
+			files: ["../lib/registry/default/example/carousel-demo.svelte"],
 		},
 		"carousel-orientation": {
 			name: "carousel-orientation",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-orientation.svelte").then(
+				import("../lib/registry/default/example/carousel-orientation.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-orientation.svelte"],
+			files: ["../lib/registry/default/example/carousel-orientation.svelte"],
 		},
 		"carousel-plugin": {
 			name: "carousel-plugin",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-plugin.svelte").then(
+				import("../lib/registry/default/example/carousel-plugin.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-plugin.svelte"],
+			files: ["../lib/registry/default/example/carousel-plugin.svelte"],
 		},
 		"carousel-size": {
 			name: "carousel-size",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-size.svelte").then(
+				import("../lib/registry/default/example/carousel-size.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-size.svelte"],
+			files: ["../lib/registry/default/example/carousel-size.svelte"],
 		},
 		"carousel-spacing": {
 			name: "carousel-spacing",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/default/example/carousel-spacing.svelte").then(
+				import("../lib/registry/default/example/carousel-spacing.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/carousel-spacing.svelte"],
+			files: ["../lib/registry/default/example/carousel-spacing.svelte"],
 		},
 		"checkbox-demo": {
 			name: "checkbox-demo",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/checkbox-demo.svelte").then(
+				import("../lib/registry/default/example/checkbox-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/checkbox-demo.svelte"],
+			files: ["../lib/registry/default/example/checkbox-demo.svelte"],
 		},
 		"checkbox-disabled": {
 			name: "checkbox-disabled",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/checkbox-disabled.svelte").then(
+				import("../lib/registry/default/example/checkbox-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/checkbox-disabled.svelte"],
+			files: ["../lib/registry/default/example/checkbox-disabled.svelte"],
 		},
 		"checkbox-form-multiple": {
 			name: "checkbox-form-multiple",
 			type: "components:example",
 			registryDependencies: ["form", "checkbox"],
 			component: () =>
-				import("../src/lib/registry/default/example/checkbox-form-multiple.svelte").then(
+				import("../lib/registry/default/example/checkbox-form-multiple.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/checkbox-form-multiple.svelte"],
+			files: ["../lib/registry/default/example/checkbox-form-multiple.svelte"],
 		},
 		"checkbox-form-single": {
 			name: "checkbox-form-single",
 			type: "components:example",
 			registryDependencies: ["form", "checkbox"],
 			component: () =>
-				import("../src/lib/registry/default/example/checkbox-form-single.svelte").then(
+				import("../lib/registry/default/example/checkbox-form-single.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/checkbox-form-single.svelte"],
+			files: ["../lib/registry/default/example/checkbox-form-single.svelte"],
 		},
 		"checkbox-with-text": {
 			name: "checkbox-with-text",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/checkbox-with-text.svelte").then(
+				import("../lib/registry/default/example/checkbox-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/checkbox-with-text.svelte"],
+			files: ["../lib/registry/default/example/checkbox-with-text.svelte"],
 		},
 		"collapsible-demo": {
 			name: "collapsible-demo",
 			type: "components:example",
 			registryDependencies: ["collapsible", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/collapsible-demo.svelte").then(
+				import("../lib/registry/default/example/collapsible-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/collapsible-demo.svelte"],
+			files: ["../lib/registry/default/example/collapsible-demo.svelte"],
 		},
 		"combobox-demo": {
 			name: "combobox-demo",
 			type: "components:example",
 			registryDependencies: ["command", "popover", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/combobox-demo.svelte").then(
+				import("../lib/registry/default/example/combobox-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/combobox-demo.svelte"],
+			files: ["../lib/registry/default/example/combobox-demo.svelte"],
 		},
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
 			registryDependencies: ["command", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/combobox-dropdown-menu.svelte").then(
+				import("../lib/registry/default/example/combobox-dropdown-menu.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/combobox-dropdown-menu.svelte"],
+			files: ["../lib/registry/default/example/combobox-dropdown-menu.svelte"],
 		},
 		"combobox-form": {
 			name: "combobox-form",
 			type: "components:example",
 			registryDependencies: ["form", "popover", "command", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/combobox-form.svelte").then(
+				import("../lib/registry/default/example/combobox-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/combobox-form.svelte"],
+			files: ["../lib/registry/default/example/combobox-form.svelte"],
 		},
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
 			registryDependencies: ["command", "popover", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/combobox-popover.svelte").then(
+				import("../lib/registry/default/example/combobox-popover.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/combobox-popover.svelte"],
+			files: ["../lib/registry/default/example/combobox-popover.svelte"],
 		},
 		"command-demo": {
 			name: "command-demo",
 			type: "components:example",
 			registryDependencies: ["command"],
 			component: () =>
-				import("../src/lib/registry/default/example/command-demo.svelte").then(
+				import("../lib/registry/default/example/command-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/command-demo.svelte"],
+			files: ["../lib/registry/default/example/command-demo.svelte"],
 		},
 		"command-dialog": {
 			name: "command-dialog",
 			type: "components:example",
 			registryDependencies: ["command"],
 			component: () =>
-				import("../src/lib/registry/default/example/command-dialog.svelte").then(
+				import("../lib/registry/default/example/command-dialog.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/command-dialog.svelte"],
+			files: ["../lib/registry/default/example/command-dialog.svelte"],
 		},
 		"context-menu-demo": {
 			name: "context-menu-demo",
 			type: "components:example",
 			registryDependencies: ["context-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/context-menu-demo.svelte").then(
+				import("../lib/registry/default/example/context-menu-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/context-menu-demo.svelte"],
+			files: ["../lib/registry/default/example/context-menu-demo.svelte"],
 		},
 		"dark-mode-dropdown-menu": {
 			name: "dark-mode-dropdown-menu",
 			type: "components:example",
 			registryDependencies: ["button", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/dark-mode-dropdown-menu.svelte").then(
+				import("../lib/registry/default/example/dark-mode-dropdown-menu.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/dark-mode-dropdown-menu.svelte"],
+			files: ["../lib/registry/default/example/dark-mode-dropdown-menu.svelte"],
 		},
 		"dark-mode-light-switch": {
 			name: "dark-mode-light-switch",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/dark-mode-light-switch.svelte").then(
+				import("../lib/registry/default/example/dark-mode-light-switch.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/dark-mode-light-switch.svelte"],
+			files: ["../lib/registry/default/example/dark-mode-light-switch.svelte"],
 		},
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
 			registryDependencies: ["table", "button", "dropdown-menu", "input"],
 			component: () =>
-				import("../src/lib/registry/default/example/data-table-demo.svelte").then(
+				import("../lib/registry/default/example/data-table-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/data-table-demo.svelte"],
+			files: ["../lib/registry/default/example/data-table-demo.svelte"],
 		},
 		"date-picker-demo": {
 			name: "date-picker-demo",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover"],
 			component: () =>
-				import("../src/lib/registry/default/example/date-picker-demo.svelte").then(
+				import("../lib/registry/default/example/date-picker-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/date-picker-demo.svelte"],
+			files: ["../lib/registry/default/example/date-picker-demo.svelte"],
 		},
 		"date-picker-form": {
 			name: "date-picker-form",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover", "form"],
 			component: () =>
-				import("../src/lib/registry/default/example/date-picker-form.svelte").then(
+				import("../lib/registry/default/example/date-picker-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/date-picker-form.svelte"],
+			files: ["../lib/registry/default/example/date-picker-form.svelte"],
 		},
 		"date-picker-with-presets": {
 			name: "date-picker-with-presets",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover", "select"],
 			component: () =>
-				import("../src/lib/registry/default/example/date-picker-with-presets.svelte").then(
+				import("../lib/registry/default/example/date-picker-with-presets.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/date-picker-with-presets.svelte"],
+			files: ["../lib/registry/default/example/date-picker-with-presets.svelte"],
 		},
 		"date-picker-with-range": {
 			name: "date-picker-with-range",
 			type: "components:example",
 			registryDependencies: ["button", "range-calendar", "popover"],
 			component: () =>
-				import("../src/lib/registry/default/example/date-picker-with-range.svelte").then(
+				import("../lib/registry/default/example/date-picker-with-range.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/date-picker-with-range.svelte"],
+			files: ["../lib/registry/default/example/date-picker-with-range.svelte"],
 		},
 		"dialog-demo": {
 			name: "dialog-demo",
 			type: "components:example",
 			registryDependencies: ["button", "dialog", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/dialog-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/dialog-demo.svelte"],
+				import("../lib/registry/default/example/dialog-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/dialog-demo.svelte"],
 		},
 		"drawer-demo": {
 			name: "drawer-demo",
 			type: "components:example",
 			registryDependencies: ["button", "drawer"],
 			component: () =>
-				import("../src/lib/registry/default/example/drawer-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/drawer-demo.svelte"],
+				import("../lib/registry/default/example/drawer-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/drawer-demo.svelte"],
 		},
 		"drawer-dialog": {
 			name: "drawer-dialog",
 			type: "components:example",
 			registryDependencies: ["dialog", "drawer", "input", "label", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/drawer-dialog.svelte").then(
+				import("../lib/registry/default/example/drawer-dialog.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/drawer-dialog.svelte"],
+			files: ["../lib/registry/default/example/drawer-dialog.svelte"],
 		},
 		"dropdown-menu-checkboxes": {
 			name: "dropdown-menu-checkboxes",
 			type: "components:example",
 			registryDependencies: ["dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/dropdown-menu-checkboxes.svelte").then(
+				import("../lib/registry/default/example/dropdown-menu-checkboxes.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/dropdown-menu-checkboxes.svelte"],
+			files: ["../lib/registry/default/example/dropdown-menu-checkboxes.svelte"],
 		},
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
 			registryDependencies: ["button", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/dropdown-menu-demo.svelte").then(
+				import("../lib/registry/default/example/dropdown-menu-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/dropdown-menu-demo.svelte"],
+			files: ["../lib/registry/default/example/dropdown-menu-demo.svelte"],
 		},
 		"dropdown-menu-radio-group": {
 			name: "dropdown-menu-radio-group",
 			type: "components:example",
 			registryDependencies: ["dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/dropdown-menu-radio-group.svelte").then(
+				import("../lib/registry/default/example/dropdown-menu-radio-group.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/dropdown-menu-radio-group.svelte"],
+			files: ["../lib/registry/default/example/dropdown-menu-radio-group.svelte"],
 		},
 		"form-demo": {
 			name: "form-demo",
 			type: "components:example",
 			registryDependencies: ["form", "input"],
 			component: () =>
-				import("../src/lib/registry/default/example/form-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/form-demo.svelte"],
+				import("../lib/registry/default/example/form-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/form-demo.svelte"],
 		},
 		"hover-card-demo": {
 			name: "hover-card-demo",
 			type: "components:example",
 			registryDependencies: ["avatar", "hover-card"],
 			component: () =>
-				import("../src/lib/registry/default/example/hover-card-demo.svelte").then(
+				import("../lib/registry/default/example/hover-card-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/hover-card-demo.svelte"],
+			files: ["../lib/registry/default/example/hover-card-demo.svelte"],
 		},
 		"input-demo": {
 			name: "input-demo",
 			type: "components:example",
 			registryDependencies: ["input"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/input-demo.svelte"],
+				import("../lib/registry/default/example/input-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/input-demo.svelte"],
 		},
 		"input-disabled": {
 			name: "input-disabled",
 			type: "components:example",
 			registryDependencies: ["input"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-disabled.svelte").then(
+				import("../lib/registry/default/example/input-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/input-disabled.svelte"],
+			files: ["../lib/registry/default/example/input-disabled.svelte"],
 		},
 		"input-file": {
 			name: "input-file",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-file.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/input-file.svelte"],
+				import("../lib/registry/default/example/input-file.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/input-file.svelte"],
 		},
 		"input-with-button": {
 			name: "input-with-button",
 			type: "components:example",
 			registryDependencies: ["button", "input"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-with-button.svelte").then(
+				import("../lib/registry/default/example/input-with-button.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/input-with-button.svelte"],
+			files: ["../lib/registry/default/example/input-with-button.svelte"],
 		},
 		"input-with-label": {
 			name: "input-with-label",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-with-label.svelte").then(
+				import("../lib/registry/default/example/input-with-label.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/input-with-label.svelte"],
+			files: ["../lib/registry/default/example/input-with-label.svelte"],
 		},
 		"input-with-text": {
 			name: "input-with-text",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/input-with-text.svelte").then(
+				import("../lib/registry/default/example/input-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/input-with-text.svelte"],
+			files: ["../lib/registry/default/example/input-with-text.svelte"],
 		},
 		"label-demo": {
 			name: "label-demo",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/label-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/label-demo.svelte"],
+				import("../lib/registry/default/example/label-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/label-demo.svelte"],
 		},
 		"menubar-demo": {
 			name: "menubar-demo",
 			type: "components:example",
 			registryDependencies: ["menubar"],
 			component: () =>
-				import("../src/lib/registry/default/example/menubar-demo.svelte").then(
+				import("../lib/registry/default/example/menubar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/menubar-demo.svelte"],
+			files: ["../lib/registry/default/example/menubar-demo.svelte"],
 		},
 		"pagination-demo": {
 			name: "pagination-demo",
 			type: "components:example",
 			registryDependencies: ["pagination"],
 			component: () =>
-				import("../src/lib/registry/default/example/pagination-demo.svelte").then(
+				import("../lib/registry/default/example/pagination-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/pagination-demo.svelte"],
+			files: ["../lib/registry/default/example/pagination-demo.svelte"],
 		},
 		"popover-demo": {
 			name: "popover-demo",
 			type: "components:example",
 			registryDependencies: ["button", "input", "label", "popover"],
 			component: () =>
-				import("../src/lib/registry/default/example/popover-demo.svelte").then(
+				import("../lib/registry/default/example/popover-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/popover-demo.svelte"],
+			files: ["../lib/registry/default/example/popover-demo.svelte"],
 		},
 		"progress-demo": {
 			name: "progress-demo",
 			type: "components:example",
 			registryDependencies: ["progress"],
 			component: () =>
-				import("../src/lib/registry/default/example/progress-demo.svelte").then(
+				import("../lib/registry/default/example/progress-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/progress-demo.svelte"],
+			files: ["../lib/registry/default/example/progress-demo.svelte"],
 		},
 		"radio-group-demo": {
 			name: "radio-group-demo",
 			type: "components:example",
 			registryDependencies: ["radio-group", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/radio-group-demo.svelte").then(
+				import("../lib/registry/default/example/radio-group-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/radio-group-demo.svelte"],
+			files: ["../lib/registry/default/example/radio-group-demo.svelte"],
 		},
 		"radio-group-form": {
 			name: "radio-group-form",
 			type: "components:example",
 			registryDependencies: ["form", "radio-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/radio-group-form.svelte").then(
+				import("../lib/registry/default/example/radio-group-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/radio-group-form.svelte"],
+			files: ["../lib/registry/default/example/radio-group-form.svelte"],
 		},
 		"range-calendar-demo": {
 			name: "range-calendar-demo",
 			type: "components:example",
 			registryDependencies: ["range-calendar"],
 			component: () =>
-				import("../src/lib/registry/default/example/range-calendar-demo.svelte").then(
+				import("../lib/registry/default/example/range-calendar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/range-calendar-demo.svelte"],
+			files: ["../lib/registry/default/example/range-calendar-demo.svelte"],
 		},
 		"resizable-demo": {
 			name: "resizable-demo",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/default/example/resizable-demo.svelte").then(
+				import("../lib/registry/default/example/resizable-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/resizable-demo.svelte"],
+			files: ["../lib/registry/default/example/resizable-demo.svelte"],
 		},
 		"resizable-handle": {
 			name: "resizable-handle",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/default/example/resizable-handle.svelte").then(
+				import("../lib/registry/default/example/resizable-handle.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/resizable-handle.svelte"],
+			files: ["../lib/registry/default/example/resizable-handle.svelte"],
 		},
 		"resizable-vertical": {
 			name: "resizable-vertical",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/default/example/resizable-vertical.svelte").then(
+				import("../lib/registry/default/example/resizable-vertical.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/resizable-vertical.svelte"],
+			files: ["../lib/registry/default/example/resizable-vertical.svelte"],
 		},
 		"scroll-area-both": {
 			name: "scroll-area-both",
 			type: "components:example",
 			registryDependencies: ["scroll-area"],
 			component: () =>
-				import("../src/lib/registry/default/example/scroll-area-both.svelte").then(
+				import("../lib/registry/default/example/scroll-area-both.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/scroll-area-both.svelte"],
+			files: ["../lib/registry/default/example/scroll-area-both.svelte"],
 		},
 		"scroll-area-demo": {
 			name: "scroll-area-demo",
 			type: "components:example",
 			registryDependencies: ["scroll-area", "separator"],
 			component: () =>
-				import("../src/lib/registry/default/example/scroll-area-demo.svelte").then(
+				import("../lib/registry/default/example/scroll-area-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/scroll-area-demo.svelte"],
+			files: ["../lib/registry/default/example/scroll-area-demo.svelte"],
 		},
 		"scroll-area-horizontal": {
 			name: "scroll-area-horizontal",
 			type: "components:example",
 			registryDependencies: ["scroll-area"],
 			component: () =>
-				import("../src/lib/registry/default/example/scroll-area-horizontal.svelte").then(
+				import("../lib/registry/default/example/scroll-area-horizontal.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/scroll-area-horizontal.svelte"],
+			files: ["../lib/registry/default/example/scroll-area-horizontal.svelte"],
 		},
 		"select-demo": {
 			name: "select-demo",
 			type: "components:example",
 			registryDependencies: ["select"],
 			component: () =>
-				import("../src/lib/registry/default/example/select-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/select-demo.svelte"],
+				import("../lib/registry/default/example/select-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/select-demo.svelte"],
 		},
 		"select-form": {
 			name: "select-form",
 			type: "components:example",
 			registryDependencies: ["form", "select"],
 			component: () =>
-				import("../src/lib/registry/default/example/select-form.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/select-form.svelte"],
+				import("../lib/registry/default/example/select-form.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/select-form.svelte"],
 		},
 		"separator-demo": {
 			name: "separator-demo",
 			type: "components:example",
 			registryDependencies: ["separator"],
 			component: () =>
-				import("../src/lib/registry/default/example/separator-demo.svelte").then(
+				import("../lib/registry/default/example/separator-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/separator-demo.svelte"],
+			files: ["../lib/registry/default/example/separator-demo.svelte"],
 		},
 		"sheet-demo": {
 			name: "sheet-demo",
 			type: "components:example",
 			registryDependencies: ["sheet", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/sheet-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/sheet-demo.svelte"],
+				import("../lib/registry/default/example/sheet-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/sheet-demo.svelte"],
 		},
 		"sheet-side": {
 			name: "sheet-side",
 			type: "components:example",
 			registryDependencies: ["sheet", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/sheet-side.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/sheet-side.svelte"],
+				import("../lib/registry/default/example/sheet-side.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/sheet-side.svelte"],
 		},
 		"skeleton-demo": {
 			name: "skeleton-demo",
 			type: "components:example",
 			registryDependencies: ["skeleton"],
 			component: () =>
-				import("../src/lib/registry/default/example/skeleton-demo.svelte").then(
+				import("../lib/registry/default/example/skeleton-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/skeleton-demo.svelte"],
+			files: ["../lib/registry/default/example/skeleton-demo.svelte"],
 		},
 		"slider-demo": {
 			name: "slider-demo",
 			type: "components:example",
 			registryDependencies: ["slider"],
 			component: () =>
-				import("../src/lib/registry/default/example/slider-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/slider-demo.svelte"],
+				import("../lib/registry/default/example/slider-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/slider-demo.svelte"],
 		},
 		"sonner-demo": {
 			name: "sonner-demo",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/default/example/sonner-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/sonner-demo.svelte"],
+				import("../lib/registry/default/example/sonner-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/sonner-demo.svelte"],
 		},
 		"switch-demo": {
 			name: "switch-demo",
 			type: "components:example",
 			registryDependencies: ["label", "switch"],
 			component: () =>
-				import("../src/lib/registry/default/example/switch-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/switch-demo.svelte"],
+				import("../lib/registry/default/example/switch-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/switch-demo.svelte"],
 		},
 		"switch-form": {
 			name: "switch-form",
 			type: "components:example",
 			registryDependencies: ["form", "switch"],
 			component: () =>
-				import("../src/lib/registry/default/example/switch-form.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/switch-form.svelte"],
+				import("../lib/registry/default/example/switch-form.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/switch-form.svelte"],
 		},
 		"table-demo": {
 			name: "table-demo",
 			type: "components:example",
 			registryDependencies: ["table"],
 			component: () =>
-				import("../src/lib/registry/default/example/table-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/table-demo.svelte"],
+				import("../lib/registry/default/example/table-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/table-demo.svelte"],
 		},
 		"tabs-demo": {
 			name: "tabs-demo",
 			type: "components:example",
 			registryDependencies: ["tabs", "card", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/default/example/tabs-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/tabs-demo.svelte"],
+				import("../lib/registry/default/example/tabs-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/tabs-demo.svelte"],
 		},
 		"textarea-demo": {
 			name: "textarea-demo",
 			type: "components:example",
 			registryDependencies: ["textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-demo.svelte").then(
+				import("../lib/registry/default/example/textarea-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-demo.svelte"],
+			files: ["../lib/registry/default/example/textarea-demo.svelte"],
 		},
 		"textarea-disabled": {
 			name: "textarea-disabled",
 			type: "components:example",
 			registryDependencies: ["textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-disabled.svelte").then(
+				import("../lib/registry/default/example/textarea-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-disabled.svelte"],
+			files: ["../lib/registry/default/example/textarea-disabled.svelte"],
 		},
 		"textarea-form": {
 			name: "textarea-form",
 			type: "components:example",
 			registryDependencies: ["form", "textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-form.svelte").then(
+				import("../lib/registry/default/example/textarea-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-form.svelte"],
+			files: ["../lib/registry/default/example/textarea-form.svelte"],
 		},
 		"textarea-with-button": {
 			name: "textarea-with-button",
 			type: "components:example",
 			registryDependencies: ["button", "textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-with-button.svelte").then(
+				import("../lib/registry/default/example/textarea-with-button.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-with-button.svelte"],
+			files: ["../lib/registry/default/example/textarea-with-button.svelte"],
 		},
 		"textarea-with-label": {
 			name: "textarea-with-label",
 			type: "components:example",
 			registryDependencies: ["label", "textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-with-label.svelte").then(
+				import("../lib/registry/default/example/textarea-with-label.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-with-label.svelte"],
+			files: ["../lib/registry/default/example/textarea-with-label.svelte"],
 		},
 		"textarea-with-text": {
 			name: "textarea-with-text",
 			type: "components:example",
 			registryDependencies: ["label", "textarea"],
 			component: () =>
-				import("../src/lib/registry/default/example/textarea-with-text.svelte").then(
+				import("../lib/registry/default/example/textarea-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/textarea-with-text.svelte"],
+			files: ["../lib/registry/default/example/textarea-with-text.svelte"],
 		},
 		"toggle-demo": {
 			name: "toggle-demo",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/toggle-demo.svelte"],
+				import("../lib/registry/default/example/toggle-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/toggle-demo.svelte"],
 		},
 		"toggle-disabled": {
 			name: "toggle-disabled",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-disabled.svelte").then(
+				import("../lib/registry/default/example/toggle-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-disabled.svelte"],
+			files: ["../lib/registry/default/example/toggle-disabled.svelte"],
 		},
 		"toggle-group-demo": {
 			name: "toggle-group-demo",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-demo.svelte").then(
+				import("../lib/registry/default/example/toggle-group-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-demo.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-demo.svelte"],
 		},
 		"toggle-group-disabled": {
 			name: "toggle-group-disabled",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-disabled.svelte").then(
+				import("../lib/registry/default/example/toggle-group-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-disabled.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-disabled.svelte"],
 		},
 		"toggle-group-lg": {
 			name: "toggle-group-lg",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-lg.svelte").then(
+				import("../lib/registry/default/example/toggle-group-lg.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-lg.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-lg.svelte"],
 		},
 		"toggle-group-outline": {
 			name: "toggle-group-outline",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-outline.svelte").then(
+				import("../lib/registry/default/example/toggle-group-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-outline.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-outline.svelte"],
 		},
 		"toggle-group-single": {
 			name: "toggle-group-single",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-single.svelte").then(
+				import("../lib/registry/default/example/toggle-group-single.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-single.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-single.svelte"],
 		},
 		"toggle-group-sm": {
 			name: "toggle-group-sm",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-group-sm.svelte").then(
+				import("../lib/registry/default/example/toggle-group-sm.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-group-sm.svelte"],
+			files: ["../lib/registry/default/example/toggle-group-sm.svelte"],
 		},
 		"toggle-lg": {
 			name: "toggle-lg",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-lg.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/toggle-lg.svelte"],
+				import("../lib/registry/default/example/toggle-lg.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/toggle-lg.svelte"],
 		},
 		"toggle-outline": {
 			name: "toggle-outline",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-outline.svelte").then(
+				import("../lib/registry/default/example/toggle-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-outline.svelte"],
+			files: ["../lib/registry/default/example/toggle-outline.svelte"],
 		},
 		"toggle-sm": {
 			name: "toggle-sm",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-sm.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/default/example/toggle-sm.svelte"],
+				import("../lib/registry/default/example/toggle-sm.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/toggle-sm.svelte"],
 		},
 		"toggle-with-text": {
 			name: "toggle-with-text",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/default/example/toggle-with-text.svelte").then(
+				import("../lib/registry/default/example/toggle-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/toggle-with-text.svelte"],
+			files: ["../lib/registry/default/example/toggle-with-text.svelte"],
 		},
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
 			registryDependencies: ["button", "tooltip"],
 			component: () =>
-				import("../src/lib/registry/default/example/tooltip-demo.svelte").then(
+				import("../lib/registry/default/example/tooltip-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/tooltip-demo.svelte"],
+			files: ["../lib/registry/default/example/tooltip-demo.svelte"],
 		},
 		"typography-blockquote": {
 			name: "typography-blockquote",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-blockquote.svelte").then(
+				import("../lib/registry/default/example/typography-blockquote.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-blockquote.svelte"],
+			files: ["../lib/registry/default/example/typography-blockquote.svelte"],
 		},
 		"typography-demo": {
 			name: "typography-demo",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-demo.svelte").then(
+				import("../lib/registry/default/example/typography-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-demo.svelte"],
+			files: ["../lib/registry/default/example/typography-demo.svelte"],
 		},
 		"typography-h1": {
 			name: "typography-h1",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-h1.svelte").then(
+				import("../lib/registry/default/example/typography-h1.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-h1.svelte"],
+			files: ["../lib/registry/default/example/typography-h1.svelte"],
 		},
 		"typography-h2": {
 			name: "typography-h2",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-h2.svelte").then(
+				import("../lib/registry/default/example/typography-h2.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-h2.svelte"],
+			files: ["../lib/registry/default/example/typography-h2.svelte"],
 		},
 		"typography-h3": {
 			name: "typography-h3",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-h3.svelte").then(
+				import("../lib/registry/default/example/typography-h3.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-h3.svelte"],
+			files: ["../lib/registry/default/example/typography-h3.svelte"],
 		},
 		"typography-h4": {
 			name: "typography-h4",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-h4.svelte").then(
+				import("../lib/registry/default/example/typography-h4.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-h4.svelte"],
+			files: ["../lib/registry/default/example/typography-h4.svelte"],
 		},
 		"typography-inline-code": {
 			name: "typography-inline-code",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-inline-code.svelte").then(
+				import("../lib/registry/default/example/typography-inline-code.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-inline-code.svelte"],
+			files: ["../lib/registry/default/example/typography-inline-code.svelte"],
 		},
 		"typography-large": {
 			name: "typography-large",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-large.svelte").then(
+				import("../lib/registry/default/example/typography-large.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-large.svelte"],
+			files: ["../lib/registry/default/example/typography-large.svelte"],
 		},
 		"typography-lead": {
 			name: "typography-lead",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-lead.svelte").then(
+				import("../lib/registry/default/example/typography-lead.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-lead.svelte"],
+			files: ["../lib/registry/default/example/typography-lead.svelte"],
 		},
 		"typography-list": {
 			name: "typography-list",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-list.svelte").then(
+				import("../lib/registry/default/example/typography-list.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-list.svelte"],
+			files: ["../lib/registry/default/example/typography-list.svelte"],
 		},
 		"typography-muted": {
 			name: "typography-muted",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-muted.svelte").then(
+				import("../lib/registry/default/example/typography-muted.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-muted.svelte"],
+			files: ["../lib/registry/default/example/typography-muted.svelte"],
 		},
 		"typography-p": {
 			name: "typography-p",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-p.svelte").then(
+				import("../lib/registry/default/example/typography-p.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-p.svelte"],
+			files: ["../lib/registry/default/example/typography-p.svelte"],
 		},
 		"typography-small": {
 			name: "typography-small",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-small.svelte").then(
+				import("../lib/registry/default/example/typography-small.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-small.svelte"],
+			files: ["../lib/registry/default/example/typography-small.svelte"],
 		},
 		"typography-table": {
 			name: "typography-table",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/default/example/typography-table.svelte").then(
+				import("../lib/registry/default/example/typography-table.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/typography-table.svelte"],
+			files: ["../lib/registry/default/example/typography-table.svelte"],
 		},
 	},
 	"new-york": {
@@ -1289,1280 +1237,1254 @@ export const Index = {
 			type: "components:example",
 			registryDependencies: ["accordion"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/accordion-demo.svelte").then(
+				import("../lib/registry/new-york/example/accordion-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/accordion-demo.svelte"],
+			files: ["../lib/registry/new-york/example/accordion-demo.svelte"],
 		},
 		"alert-demo": {
 			name: "alert-demo",
 			type: "components:example",
 			registryDependencies: ["alert"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/alert-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/alert-demo.svelte"],
+				import("../lib/registry/new-york/example/alert-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/alert-demo.svelte"],
 		},
 		"alert-destructive": {
 			name: "alert-destructive",
 			type: "components:example",
 			registryDependencies: ["alert"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/alert-destructive.svelte").then(
+				import("../lib/registry/new-york/example/alert-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/alert-destructive.svelte"],
+			files: ["../lib/registry/new-york/example/alert-destructive.svelte"],
 		},
 		"alert-dialog-demo": {
 			name: "alert-dialog-demo",
 			type: "components:example",
 			registryDependencies: ["alert-dialog", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/alert-dialog-demo.svelte").then(
+				import("../lib/registry/new-york/example/alert-dialog-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/alert-dialog-demo.svelte"],
+			files: ["../lib/registry/new-york/example/alert-dialog-demo.svelte"],
 		},
 		"aspect-ratio-demo": {
 			name: "aspect-ratio-demo",
 			type: "components:example",
 			registryDependencies: ["aspect-ratio"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/aspect-ratio-demo.svelte").then(
+				import("../lib/registry/new-york/example/aspect-ratio-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/aspect-ratio-demo.svelte"],
+			files: ["../lib/registry/new-york/example/aspect-ratio-demo.svelte"],
 		},
 		"avatar-demo": {
 			name: "avatar-demo",
 			type: "components:example",
 			registryDependencies: ["avatar"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/avatar-demo.svelte").then(
+				import("../lib/registry/new-york/example/avatar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/avatar-demo.svelte"],
+			files: ["../lib/registry/new-york/example/avatar-demo.svelte"],
 		},
 		"badge-demo": {
 			name: "badge-demo",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/badge-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/badge-demo.svelte"],
+				import("../lib/registry/new-york/example/badge-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/badge-demo.svelte"],
 		},
 		"badge-destructive": {
 			name: "badge-destructive",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/badge-destructive.svelte").then(
+				import("../lib/registry/new-york/example/badge-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/badge-destructive.svelte"],
+			files: ["../lib/registry/new-york/example/badge-destructive.svelte"],
 		},
 		"badge-outline": {
 			name: "badge-outline",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/badge-outline.svelte").then(
+				import("../lib/registry/new-york/example/badge-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/badge-outline.svelte"],
+			files: ["../lib/registry/new-york/example/badge-outline.svelte"],
 		},
 		"badge-secondary": {
 			name: "badge-secondary",
 			type: "components:example",
 			registryDependencies: ["badge"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/badge-secondary.svelte").then(
+				import("../lib/registry/new-york/example/badge-secondary.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/badge-secondary.svelte"],
+			files: ["../lib/registry/new-york/example/badge-secondary.svelte"],
 		},
 		"breadcrumb-demo": {
 			name: "breadcrumb-demo",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-demo.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-demo.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-demo.svelte"],
 		},
 		"breadcrumb-dropdown": {
 			name: "breadcrumb-dropdown",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-dropdown.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-dropdown.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-dropdown.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-dropdown.svelte"],
 		},
 		"breadcrumb-ellipsis": {
 			name: "breadcrumb-ellipsis",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-ellipsis.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-ellipsis.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-ellipsis.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-ellipsis.svelte"],
 		},
 		"breadcrumb-link": {
 			name: "breadcrumb-link",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-link.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-link.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-link.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-link.svelte"],
 		},
 		"breadcrumb-responsive": {
 			name: "breadcrumb-responsive",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "drawer", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-responsive.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-responsive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-responsive.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-responsive.svelte"],
 		},
 		"breadcrumb-separator": {
 			name: "breadcrumb-separator",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-separator.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-separator.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-separator.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-separator.svelte"],
 		},
 		"button-demo": {
 			name: "button-demo",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-demo.svelte").then(
+				import("../lib/registry/new-york/example/button-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-demo.svelte"],
+			files: ["../lib/registry/new-york/example/button-demo.svelte"],
 		},
 		"button-destructive": {
 			name: "button-destructive",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-destructive.svelte").then(
+				import("../lib/registry/new-york/example/button-destructive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-destructive.svelte"],
+			files: ["../lib/registry/new-york/example/button-destructive.svelte"],
 		},
 		"button-ghost": {
 			name: "button-ghost",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-ghost.svelte").then(
+				import("../lib/registry/new-york/example/button-ghost.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-ghost.svelte"],
+			files: ["../lib/registry/new-york/example/button-ghost.svelte"],
 		},
 		"button-icon": {
 			name: "button-icon",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-icon.svelte").then(
+				import("../lib/registry/new-york/example/button-icon.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-icon.svelte"],
+			files: ["../lib/registry/new-york/example/button-icon.svelte"],
 		},
 		"button-link": {
 			name: "button-link",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-link.svelte").then(
+				import("../lib/registry/new-york/example/button-link.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-link.svelte"],
+			files: ["../lib/registry/new-york/example/button-link.svelte"],
 		},
 		"button-loading": {
 			name: "button-loading",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-loading.svelte").then(
+				import("../lib/registry/new-york/example/button-loading.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-loading.svelte"],
+			files: ["../lib/registry/new-york/example/button-loading.svelte"],
 		},
 		"button-outline": {
 			name: "button-outline",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-outline.svelte").then(
+				import("../lib/registry/new-york/example/button-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-outline.svelte"],
+			files: ["../lib/registry/new-york/example/button-outline.svelte"],
 		},
 		"button-secondary": {
 			name: "button-secondary",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-secondary.svelte").then(
+				import("../lib/registry/new-york/example/button-secondary.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-secondary.svelte"],
+			files: ["../lib/registry/new-york/example/button-secondary.svelte"],
 		},
 		"button-with-icon": {
 			name: "button-with-icon",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/button-with-icon.svelte").then(
+				import("../lib/registry/new-york/example/button-with-icon.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/button-with-icon.svelte"],
+			files: ["../lib/registry/new-york/example/button-with-icon.svelte"],
 		},
 		"calendar-demo": {
 			name: "calendar-demo",
 			type: "components:example",
 			registryDependencies: ["calendar"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/calendar-demo.svelte").then(
+				import("../lib/registry/new-york/example/calendar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/calendar-demo.svelte"],
+			files: ["../lib/registry/new-york/example/calendar-demo.svelte"],
 		},
 		"calendar-with-selects": {
 			name: "calendar-with-selects",
 			type: "components:example",
 			registryDependencies: ["calendar", "select"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/calendar-with-selects.svelte").then(
+				import("../lib/registry/new-york/example/calendar-with-selects.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/calendar-with-selects.svelte"],
+			files: ["../lib/registry/new-york/example/calendar-with-selects.svelte"],
 		},
 		"card-demo": {
 			name: "card-demo",
 			type: "components:example",
 			registryDependencies: ["button", "card", "switch"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/card-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/card-demo.svelte"],
+				import("../lib/registry/new-york/example/card-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/card-demo.svelte"],
 		},
 		"card-with-form": {
 			name: "card-with-form",
 			type: "components:example",
 			registryDependencies: ["button", "card", "select", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/card-with-form.svelte").then(
+				import("../lib/registry/new-york/example/card-with-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/card-with-form.svelte"],
+			files: ["../lib/registry/new-york/example/card-with-form.svelte"],
 		},
 		"carousel-api": {
 			name: "carousel-api",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-api.svelte").then(
+				import("../lib/registry/new-york/example/carousel-api.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-api.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-api.svelte"],
 		},
 		"carousel-demo": {
 			name: "carousel-demo",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-demo.svelte").then(
+				import("../lib/registry/new-york/example/carousel-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-demo.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-demo.svelte"],
 		},
 		"carousel-orientation": {
 			name: "carousel-orientation",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-orientation.svelte").then(
+				import("../lib/registry/new-york/example/carousel-orientation.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-orientation.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-orientation.svelte"],
 		},
 		"carousel-plugin": {
 			name: "carousel-plugin",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-plugin.svelte").then(
+				import("../lib/registry/new-york/example/carousel-plugin.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-plugin.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-plugin.svelte"],
 		},
 		"carousel-size": {
 			name: "carousel-size",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-size.svelte").then(
+				import("../lib/registry/new-york/example/carousel-size.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-size.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-size.svelte"],
 		},
 		"carousel-spacing": {
 			name: "carousel-spacing",
 			type: "components:example",
 			registryDependencies: ["card", "carousel"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/carousel-spacing.svelte").then(
+				import("../lib/registry/new-york/example/carousel-spacing.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/carousel-spacing.svelte"],
+			files: ["../lib/registry/new-york/example/carousel-spacing.svelte"],
 		},
 		"checkbox-demo": {
 			name: "checkbox-demo",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/checkbox-demo.svelte").then(
+				import("../lib/registry/new-york/example/checkbox-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/checkbox-demo.svelte"],
+			files: ["../lib/registry/new-york/example/checkbox-demo.svelte"],
 		},
 		"checkbox-disabled": {
 			name: "checkbox-disabled",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/checkbox-disabled.svelte").then(
+				import("../lib/registry/new-york/example/checkbox-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/checkbox-disabled.svelte"],
+			files: ["../lib/registry/new-york/example/checkbox-disabled.svelte"],
 		},
 		"checkbox-form-multiple": {
 			name: "checkbox-form-multiple",
 			type: "components:example",
 			registryDependencies: ["form", "checkbox"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/checkbox-form-multiple.svelte").then(
+				import("../lib/registry/new-york/example/checkbox-form-multiple.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/checkbox-form-multiple.svelte"],
+			files: ["../lib/registry/new-york/example/checkbox-form-multiple.svelte"],
 		},
 		"checkbox-form-single": {
 			name: "checkbox-form-single",
 			type: "components:example",
 			registryDependencies: ["form", "checkbox"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/checkbox-form-single.svelte").then(
+				import("../lib/registry/new-york/example/checkbox-form-single.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/checkbox-form-single.svelte"],
+			files: ["../lib/registry/new-york/example/checkbox-form-single.svelte"],
 		},
 		"checkbox-with-text": {
 			name: "checkbox-with-text",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/checkbox-with-text.svelte").then(
+				import("../lib/registry/new-york/example/checkbox-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/checkbox-with-text.svelte"],
+			files: ["../lib/registry/new-york/example/checkbox-with-text.svelte"],
 		},
 		"collapsible-demo": {
 			name: "collapsible-demo",
 			type: "components:example",
 			registryDependencies: ["collapsible", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/collapsible-demo.svelte").then(
+				import("../lib/registry/new-york/example/collapsible-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/collapsible-demo.svelte"],
+			files: ["../lib/registry/new-york/example/collapsible-demo.svelte"],
 		},
 		"combobox-demo": {
 			name: "combobox-demo",
 			type: "components:example",
 			registryDependencies: ["command", "popover", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/combobox-demo.svelte").then(
+				import("../lib/registry/new-york/example/combobox-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/combobox-demo.svelte"],
+			files: ["../lib/registry/new-york/example/combobox-demo.svelte"],
 		},
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
 			registryDependencies: ["command", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/combobox-dropdown-menu.svelte").then(
+				import("../lib/registry/new-york/example/combobox-dropdown-menu.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/combobox-dropdown-menu.svelte"],
+			files: ["../lib/registry/new-york/example/combobox-dropdown-menu.svelte"],
 		},
 		"combobox-form": {
 			name: "combobox-form",
 			type: "components:example",
 			registryDependencies: ["form", "popover", "command", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/combobox-form.svelte").then(
+				import("../lib/registry/new-york/example/combobox-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/combobox-form.svelte"],
+			files: ["../lib/registry/new-york/example/combobox-form.svelte"],
 		},
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
 			registryDependencies: ["command", "popover", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/combobox-popover.svelte").then(
+				import("../lib/registry/new-york/example/combobox-popover.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/combobox-popover.svelte"],
+			files: ["../lib/registry/new-york/example/combobox-popover.svelte"],
 		},
 		"command-demo": {
 			name: "command-demo",
 			type: "components:example",
 			registryDependencies: ["command"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/command-demo.svelte").then(
+				import("../lib/registry/new-york/example/command-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/command-demo.svelte"],
+			files: ["../lib/registry/new-york/example/command-demo.svelte"],
 		},
 		"command-dialog": {
 			name: "command-dialog",
 			type: "components:example",
 			registryDependencies: ["command"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/command-dialog.svelte").then(
+				import("../lib/registry/new-york/example/command-dialog.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/command-dialog.svelte"],
+			files: ["../lib/registry/new-york/example/command-dialog.svelte"],
 		},
 		"context-menu-demo": {
 			name: "context-menu-demo",
 			type: "components:example",
 			registryDependencies: ["context-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/context-menu-demo.svelte").then(
+				import("../lib/registry/new-york/example/context-menu-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/context-menu-demo.svelte"],
+			files: ["../lib/registry/new-york/example/context-menu-demo.svelte"],
 		},
 		"dark-mode-dropdown-menu": {
 			name: "dark-mode-dropdown-menu",
 			type: "components:example",
 			registryDependencies: ["button", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/dark-mode-dropdown-menu.svelte").then(
+				import("../lib/registry/new-york/example/dark-mode-dropdown-menu.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/dark-mode-dropdown-menu.svelte"],
+			files: ["../lib/registry/new-york/example/dark-mode-dropdown-menu.svelte"],
 		},
 		"dark-mode-light-switch": {
 			name: "dark-mode-light-switch",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/dark-mode-light-switch.svelte").then(
+				import("../lib/registry/new-york/example/dark-mode-light-switch.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/dark-mode-light-switch.svelte"],
+			files: ["../lib/registry/new-york/example/dark-mode-light-switch.svelte"],
 		},
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
 			registryDependencies: ["table", "button", "dropdown-menu", "input"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/data-table-demo.svelte").then(
+				import("../lib/registry/new-york/example/data-table-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/data-table-demo.svelte"],
+			files: ["../lib/registry/new-york/example/data-table-demo.svelte"],
 		},
 		"date-picker-demo": {
 			name: "date-picker-demo",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/date-picker-demo.svelte").then(
+				import("../lib/registry/new-york/example/date-picker-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/date-picker-demo.svelte"],
+			files: ["../lib/registry/new-york/example/date-picker-demo.svelte"],
 		},
 		"date-picker-form": {
 			name: "date-picker-form",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover", "form"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/date-picker-form.svelte").then(
+				import("../lib/registry/new-york/example/date-picker-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/date-picker-form.svelte"],
+			files: ["../lib/registry/new-york/example/date-picker-form.svelte"],
 		},
 		"date-picker-with-presets": {
 			name: "date-picker-with-presets",
 			type: "components:example",
 			registryDependencies: ["button", "calendar", "popover", "select"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/date-picker-with-presets.svelte").then(
+				import("../lib/registry/new-york/example/date-picker-with-presets.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/date-picker-with-presets.svelte"],
+			files: ["../lib/registry/new-york/example/date-picker-with-presets.svelte"],
 		},
 		"date-picker-with-range": {
 			name: "date-picker-with-range",
 			type: "components:example",
 			registryDependencies: ["button", "range-calendar", "popover"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/date-picker-with-range.svelte").then(
+				import("../lib/registry/new-york/example/date-picker-with-range.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/date-picker-with-range.svelte"],
+			files: ["../lib/registry/new-york/example/date-picker-with-range.svelte"],
 		},
 		"dialog-demo": {
 			name: "dialog-demo",
 			type: "components:example",
 			registryDependencies: ["button", "dialog", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/dialog-demo.svelte").then(
+				import("../lib/registry/new-york/example/dialog-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/dialog-demo.svelte"],
+			files: ["../lib/registry/new-york/example/dialog-demo.svelte"],
 		},
 		"drawer-demo": {
 			name: "drawer-demo",
 			type: "components:example",
 			registryDependencies: ["button", "drawer"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/drawer-demo.svelte").then(
+				import("../lib/registry/new-york/example/drawer-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/drawer-demo.svelte"],
+			files: ["../lib/registry/new-york/example/drawer-demo.svelte"],
 		},
 		"drawer-dialog": {
 			name: "drawer-dialog",
 			type: "components:example",
 			registryDependencies: ["dialog", "drawer", "input", "label", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/drawer-dialog.svelte").then(
+				import("../lib/registry/new-york/example/drawer-dialog.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/drawer-dialog.svelte"],
+			files: ["../lib/registry/new-york/example/drawer-dialog.svelte"],
 		},
 		"dropdown-menu-checkboxes": {
 			name: "dropdown-menu-checkboxes",
 			type: "components:example",
 			registryDependencies: ["dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/dropdown-menu-checkboxes.svelte").then(
+				import("../lib/registry/new-york/example/dropdown-menu-checkboxes.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/dropdown-menu-checkboxes.svelte"],
+			files: ["../lib/registry/new-york/example/dropdown-menu-checkboxes.svelte"],
 		},
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
 			registryDependencies: ["button", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/dropdown-menu-demo.svelte").then(
+				import("../lib/registry/new-york/example/dropdown-menu-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/dropdown-menu-demo.svelte"],
+			files: ["../lib/registry/new-york/example/dropdown-menu-demo.svelte"],
 		},
 		"dropdown-menu-radio-group": {
 			name: "dropdown-menu-radio-group",
 			type: "components:example",
 			registryDependencies: ["dropdown-menu", "button"],
 			component: () =>
-				import(
-					"../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte"
-				).then((m) => m.default),
-			files: ["../src/lib/registry/new-york/example/dropdown-menu-radio-group.svelte"],
+				import("../lib/registry/new-york/example/dropdown-menu-radio-group.svelte").then(
+					(m) => m.default
+				),
+			files: ["../lib/registry/new-york/example/dropdown-menu-radio-group.svelte"],
 		},
 		"form-demo": {
 			name: "form-demo",
 			type: "components:example",
 			registryDependencies: ["form", "input"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/form-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/form-demo.svelte"],
+				import("../lib/registry/new-york/example/form-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/form-demo.svelte"],
 		},
 		"hover-card-demo": {
 			name: "hover-card-demo",
 			type: "components:example",
 			registryDependencies: ["avatar", "hover-card"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/hover-card-demo.svelte").then(
+				import("../lib/registry/new-york/example/hover-card-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/hover-card-demo.svelte"],
+			files: ["../lib/registry/new-york/example/hover-card-demo.svelte"],
 		},
 		"input-demo": {
 			name: "input-demo",
 			type: "components:example",
 			registryDependencies: ["input"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/input-demo.svelte"],
+				import("../lib/registry/new-york/example/input-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/input-demo.svelte"],
 		},
 		"input-disabled": {
 			name: "input-disabled",
 			type: "components:example",
 			registryDependencies: ["input"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-disabled.svelte").then(
+				import("../lib/registry/new-york/example/input-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/input-disabled.svelte"],
+			files: ["../lib/registry/new-york/example/input-disabled.svelte"],
 		},
 		"input-file": {
 			name: "input-file",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-file.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/input-file.svelte"],
+				import("../lib/registry/new-york/example/input-file.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/input-file.svelte"],
 		},
 		"input-with-button": {
 			name: "input-with-button",
 			type: "components:example",
 			registryDependencies: ["button", "input"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-with-button.svelte").then(
+				import("../lib/registry/new-york/example/input-with-button.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/input-with-button.svelte"],
+			files: ["../lib/registry/new-york/example/input-with-button.svelte"],
 		},
 		"input-with-label": {
 			name: "input-with-label",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-with-label.svelte").then(
+				import("../lib/registry/new-york/example/input-with-label.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/input-with-label.svelte"],
+			files: ["../lib/registry/new-york/example/input-with-label.svelte"],
 		},
 		"input-with-text": {
 			name: "input-with-text",
 			type: "components:example",
 			registryDependencies: ["input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/input-with-text.svelte").then(
+				import("../lib/registry/new-york/example/input-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/input-with-text.svelte"],
+			files: ["../lib/registry/new-york/example/input-with-text.svelte"],
 		},
 		"label-demo": {
 			name: "label-demo",
 			type: "components:example",
 			registryDependencies: ["checkbox", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/label-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/label-demo.svelte"],
+				import("../lib/registry/new-york/example/label-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/label-demo.svelte"],
 		},
 		"menubar-demo": {
 			name: "menubar-demo",
 			type: "components:example",
 			registryDependencies: ["menubar"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/menubar-demo.svelte").then(
+				import("../lib/registry/new-york/example/menubar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/menubar-demo.svelte"],
+			files: ["../lib/registry/new-york/example/menubar-demo.svelte"],
 		},
 		"pagination-demo": {
 			name: "pagination-demo",
 			type: "components:example",
 			registryDependencies: ["pagination"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/pagination-demo.svelte").then(
+				import("../lib/registry/new-york/example/pagination-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/pagination-demo.svelte"],
+			files: ["../lib/registry/new-york/example/pagination-demo.svelte"],
 		},
 		"popover-demo": {
 			name: "popover-demo",
 			type: "components:example",
 			registryDependencies: ["button", "input", "label", "popover"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/popover-demo.svelte").then(
+				import("../lib/registry/new-york/example/popover-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/popover-demo.svelte"],
+			files: ["../lib/registry/new-york/example/popover-demo.svelte"],
 		},
 		"progress-demo": {
 			name: "progress-demo",
 			type: "components:example",
 			registryDependencies: ["progress"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/progress-demo.svelte").then(
+				import("../lib/registry/new-york/example/progress-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/progress-demo.svelte"],
+			files: ["../lib/registry/new-york/example/progress-demo.svelte"],
 		},
 		"radio-group-demo": {
 			name: "radio-group-demo",
 			type: "components:example",
 			registryDependencies: ["radio-group", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/radio-group-demo.svelte").then(
+				import("../lib/registry/new-york/example/radio-group-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/radio-group-demo.svelte"],
+			files: ["../lib/registry/new-york/example/radio-group-demo.svelte"],
 		},
 		"radio-group-form": {
 			name: "radio-group-form",
 			type: "components:example",
 			registryDependencies: ["form", "radio-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/radio-group-form.svelte").then(
+				import("../lib/registry/new-york/example/radio-group-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/radio-group-form.svelte"],
+			files: ["../lib/registry/new-york/example/radio-group-form.svelte"],
 		},
 		"range-calendar-demo": {
 			name: "range-calendar-demo",
 			type: "components:example",
 			registryDependencies: ["range-calendar"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/range-calendar-demo.svelte").then(
+				import("../lib/registry/new-york/example/range-calendar-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/range-calendar-demo.svelte"],
+			files: ["../lib/registry/new-york/example/range-calendar-demo.svelte"],
 		},
 		"resizable-demo": {
 			name: "resizable-demo",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/resizable-demo.svelte").then(
+				import("../lib/registry/new-york/example/resizable-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/resizable-demo.svelte"],
+			files: ["../lib/registry/new-york/example/resizable-demo.svelte"],
 		},
 		"resizable-handle": {
 			name: "resizable-handle",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/resizable-handle.svelte").then(
+				import("../lib/registry/new-york/example/resizable-handle.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/resizable-handle.svelte"],
+			files: ["../lib/registry/new-york/example/resizable-handle.svelte"],
 		},
 		"resizable-vertical": {
 			name: "resizable-vertical",
 			type: "components:example",
 			registryDependencies: ["resizable"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/resizable-vertical.svelte").then(
+				import("../lib/registry/new-york/example/resizable-vertical.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/resizable-vertical.svelte"],
+			files: ["../lib/registry/new-york/example/resizable-vertical.svelte"],
 		},
 		"scroll-area-both": {
 			name: "scroll-area-both",
 			type: "components:example",
 			registryDependencies: ["scroll-area"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/scroll-area-both.svelte").then(
+				import("../lib/registry/new-york/example/scroll-area-both.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/scroll-area-both.svelte"],
+			files: ["../lib/registry/new-york/example/scroll-area-both.svelte"],
 		},
 		"scroll-area-demo": {
 			name: "scroll-area-demo",
 			type: "components:example",
 			registryDependencies: ["scroll-area", "separator"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/scroll-area-demo.svelte").then(
+				import("../lib/registry/new-york/example/scroll-area-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/scroll-area-demo.svelte"],
+			files: ["../lib/registry/new-york/example/scroll-area-demo.svelte"],
 		},
 		"scroll-area-horizontal": {
 			name: "scroll-area-horizontal",
 			type: "components:example",
 			registryDependencies: ["scroll-area"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/scroll-area-horizontal.svelte").then(
+				import("../lib/registry/new-york/example/scroll-area-horizontal.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/scroll-area-horizontal.svelte"],
+			files: ["../lib/registry/new-york/example/scroll-area-horizontal.svelte"],
 		},
 		"select-demo": {
 			name: "select-demo",
 			type: "components:example",
 			registryDependencies: ["select"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/select-demo.svelte").then(
+				import("../lib/registry/new-york/example/select-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/select-demo.svelte"],
+			files: ["../lib/registry/new-york/example/select-demo.svelte"],
 		},
 		"select-form": {
 			name: "select-form",
 			type: "components:example",
 			registryDependencies: ["form", "select"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/select-form.svelte").then(
+				import("../lib/registry/new-york/example/select-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/select-form.svelte"],
+			files: ["../lib/registry/new-york/example/select-form.svelte"],
 		},
 		"separator-demo": {
 			name: "separator-demo",
 			type: "components:example",
 			registryDependencies: ["separator"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/separator-demo.svelte").then(
+				import("../lib/registry/new-york/example/separator-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/separator-demo.svelte"],
+			files: ["../lib/registry/new-york/example/separator-demo.svelte"],
 		},
 		"sheet-demo": {
 			name: "sheet-demo",
 			type: "components:example",
 			registryDependencies: ["sheet", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/sheet-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/sheet-demo.svelte"],
+				import("../lib/registry/new-york/example/sheet-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/sheet-demo.svelte"],
 		},
 		"sheet-side": {
 			name: "sheet-side",
 			type: "components:example",
 			registryDependencies: ["sheet", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/sheet-side.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/sheet-side.svelte"],
+				import("../lib/registry/new-york/example/sheet-side.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/sheet-side.svelte"],
 		},
 		"skeleton-demo": {
 			name: "skeleton-demo",
 			type: "components:example",
 			registryDependencies: ["skeleton"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/skeleton-demo.svelte").then(
+				import("../lib/registry/new-york/example/skeleton-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/skeleton-demo.svelte"],
+			files: ["../lib/registry/new-york/example/skeleton-demo.svelte"],
 		},
 		"slider-demo": {
 			name: "slider-demo",
 			type: "components:example",
 			registryDependencies: ["slider"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/slider-demo.svelte").then(
+				import("../lib/registry/new-york/example/slider-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/slider-demo.svelte"],
+			files: ["../lib/registry/new-york/example/slider-demo.svelte"],
 		},
 		"sonner-demo": {
 			name: "sonner-demo",
 			type: "components:example",
 			registryDependencies: ["button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/sonner-demo.svelte").then(
+				import("../lib/registry/new-york/example/sonner-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/sonner-demo.svelte"],
+			files: ["../lib/registry/new-york/example/sonner-demo.svelte"],
 		},
 		"switch-demo": {
 			name: "switch-demo",
 			type: "components:example",
 			registryDependencies: ["label", "switch"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/switch-demo.svelte").then(
+				import("../lib/registry/new-york/example/switch-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/switch-demo.svelte"],
+			files: ["../lib/registry/new-york/example/switch-demo.svelte"],
 		},
 		"switch-form": {
 			name: "switch-form",
 			type: "components:example",
 			registryDependencies: ["form", "switch"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/switch-form.svelte").then(
+				import("../lib/registry/new-york/example/switch-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/switch-form.svelte"],
+			files: ["../lib/registry/new-york/example/switch-form.svelte"],
 		},
 		"table-demo": {
 			name: "table-demo",
 			type: "components:example",
 			registryDependencies: ["table"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/table-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/table-demo.svelte"],
+				import("../lib/registry/new-york/example/table-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/table-demo.svelte"],
 		},
 		"tabs-demo": {
 			name: "tabs-demo",
 			type: "components:example",
 			registryDependencies: ["tabs", "card", "button", "input", "label"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/tabs-demo.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/tabs-demo.svelte"],
+				import("../lib/registry/new-york/example/tabs-demo.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/tabs-demo.svelte"],
 		},
 		"textarea-demo": {
 			name: "textarea-demo",
 			type: "components:example",
 			registryDependencies: ["textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-demo.svelte").then(
+				import("../lib/registry/new-york/example/textarea-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-demo.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-demo.svelte"],
 		},
 		"textarea-disabled": {
 			name: "textarea-disabled",
 			type: "components:example",
 			registryDependencies: ["textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-disabled.svelte").then(
+				import("../lib/registry/new-york/example/textarea-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-disabled.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-disabled.svelte"],
 		},
 		"textarea-form": {
 			name: "textarea-form",
 			type: "components:example",
 			registryDependencies: ["form", "textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-form.svelte").then(
+				import("../lib/registry/new-york/example/textarea-form.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-form.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-form.svelte"],
 		},
 		"textarea-with-button": {
 			name: "textarea-with-button",
 			type: "components:example",
 			registryDependencies: ["button", "textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-with-button.svelte").then(
+				import("../lib/registry/new-york/example/textarea-with-button.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-with-button.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-with-button.svelte"],
 		},
 		"textarea-with-label": {
 			name: "textarea-with-label",
 			type: "components:example",
 			registryDependencies: ["label", "textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-with-label.svelte").then(
+				import("../lib/registry/new-york/example/textarea-with-label.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-with-label.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-with-label.svelte"],
 		},
 		"textarea-with-text": {
 			name: "textarea-with-text",
 			type: "components:example",
 			registryDependencies: ["label", "textarea"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/textarea-with-text.svelte").then(
+				import("../lib/registry/new-york/example/textarea-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/textarea-with-text.svelte"],
+			files: ["../lib/registry/new-york/example/textarea-with-text.svelte"],
 		},
 		"toggle-demo": {
 			name: "toggle-demo",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-demo.svelte").then(
+				import("../lib/registry/new-york/example/toggle-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-demo.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-demo.svelte"],
 		},
 		"toggle-disabled": {
 			name: "toggle-disabled",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-disabled.svelte").then(
+				import("../lib/registry/new-york/example/toggle-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-disabled.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-disabled.svelte"],
 		},
 		"toggle-group-demo": {
 			name: "toggle-group-demo",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-demo.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-demo.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-demo.svelte"],
 		},
 		"toggle-group-disabled": {
 			name: "toggle-group-disabled",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-disabled.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-disabled.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-disabled.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-disabled.svelte"],
 		},
 		"toggle-group-lg": {
 			name: "toggle-group-lg",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-lg.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-lg.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-lg.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-lg.svelte"],
 		},
 		"toggle-group-outline": {
 			name: "toggle-group-outline",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-outline.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-outline.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-outline.svelte"],
 		},
 		"toggle-group-single": {
 			name: "toggle-group-single",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-single.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-single.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-single.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-single.svelte"],
 		},
 		"toggle-group-sm": {
 			name: "toggle-group-sm",
 			type: "components:example",
 			registryDependencies: ["toggle-group"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-group-sm.svelte").then(
+				import("../lib/registry/new-york/example/toggle-group-sm.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-group-sm.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-group-sm.svelte"],
 		},
 		"toggle-lg": {
 			name: "toggle-lg",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-lg.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/toggle-lg.svelte"],
+				import("../lib/registry/new-york/example/toggle-lg.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/toggle-lg.svelte"],
 		},
 		"toggle-outline": {
 			name: "toggle-outline",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-outline.svelte").then(
+				import("../lib/registry/new-york/example/toggle-outline.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-outline.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-outline.svelte"],
 		},
 		"toggle-sm": {
 			name: "toggle-sm",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-sm.svelte").then(
-					(m) => m.default
-				),
-			files: ["../src/lib/registry/new-york/example/toggle-sm.svelte"],
+				import("../lib/registry/new-york/example/toggle-sm.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/toggle-sm.svelte"],
 		},
 		"toggle-with-text": {
 			name: "toggle-with-text",
 			type: "components:example",
 			registryDependencies: ["toggle"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/toggle-with-text.svelte").then(
+				import("../lib/registry/new-york/example/toggle-with-text.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/toggle-with-text.svelte"],
+			files: ["../lib/registry/new-york/example/toggle-with-text.svelte"],
 		},
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
 			registryDependencies: ["button", "tooltip"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/tooltip-demo.svelte").then(
+				import("../lib/registry/new-york/example/tooltip-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/tooltip-demo.svelte"],
+			files: ["../lib/registry/new-york/example/tooltip-demo.svelte"],
 		},
 		"typography-blockquote": {
 			name: "typography-blockquote",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-blockquote.svelte").then(
+				import("../lib/registry/new-york/example/typography-blockquote.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-blockquote.svelte"],
+			files: ["../lib/registry/new-york/example/typography-blockquote.svelte"],
 		},
 		"typography-demo": {
 			name: "typography-demo",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-demo.svelte").then(
+				import("../lib/registry/new-york/example/typography-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-demo.svelte"],
+			files: ["../lib/registry/new-york/example/typography-demo.svelte"],
 		},
 		"typography-h1": {
 			name: "typography-h1",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-h1.svelte").then(
+				import("../lib/registry/new-york/example/typography-h1.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-h1.svelte"],
+			files: ["../lib/registry/new-york/example/typography-h1.svelte"],
 		},
 		"typography-h2": {
 			name: "typography-h2",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-h2.svelte").then(
+				import("../lib/registry/new-york/example/typography-h2.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-h2.svelte"],
+			files: ["../lib/registry/new-york/example/typography-h2.svelte"],
 		},
 		"typography-h3": {
 			name: "typography-h3",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-h3.svelte").then(
+				import("../lib/registry/new-york/example/typography-h3.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-h3.svelte"],
+			files: ["../lib/registry/new-york/example/typography-h3.svelte"],
 		},
 		"typography-h4": {
 			name: "typography-h4",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-h4.svelte").then(
+				import("../lib/registry/new-york/example/typography-h4.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-h4.svelte"],
+			files: ["../lib/registry/new-york/example/typography-h4.svelte"],
 		},
 		"typography-inline-code": {
 			name: "typography-inline-code",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-inline-code.svelte").then(
+				import("../lib/registry/new-york/example/typography-inline-code.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-inline-code.svelte"],
+			files: ["../lib/registry/new-york/example/typography-inline-code.svelte"],
 		},
 		"typography-large": {
 			name: "typography-large",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-large.svelte").then(
+				import("../lib/registry/new-york/example/typography-large.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-large.svelte"],
+			files: ["../lib/registry/new-york/example/typography-large.svelte"],
 		},
 		"typography-lead": {
 			name: "typography-lead",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-lead.svelte").then(
+				import("../lib/registry/new-york/example/typography-lead.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-lead.svelte"],
+			files: ["../lib/registry/new-york/example/typography-lead.svelte"],
 		},
 		"typography-list": {
 			name: "typography-list",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-list.svelte").then(
+				import("../lib/registry/new-york/example/typography-list.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-list.svelte"],
+			files: ["../lib/registry/new-york/example/typography-list.svelte"],
 		},
 		"typography-muted": {
 			name: "typography-muted",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-muted.svelte").then(
+				import("../lib/registry/new-york/example/typography-muted.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-muted.svelte"],
+			files: ["../lib/registry/new-york/example/typography-muted.svelte"],
 		},
 		"typography-p": {
 			name: "typography-p",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-p.svelte").then(
+				import("../lib/registry/new-york/example/typography-p.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-p.svelte"],
+			files: ["../lib/registry/new-york/example/typography-p.svelte"],
 		},
 		"typography-small": {
 			name: "typography-small",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-small.svelte").then(
+				import("../lib/registry/new-york/example/typography-small.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-small.svelte"],
+			files: ["../lib/registry/new-york/example/typography-small.svelte"],
 		},
 		"typography-table": {
 			name: "typography-table",
 			type: "components:example",
 			registryDependencies: [],
 			component: () =>
-				import("../src/lib/registry/new-york/example/typography-table.svelte").then(
+				import("../lib/registry/new-york/example/typography-table.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/typography-table.svelte"],
+			files: ["../lib/registry/new-york/example/typography-table.svelte"],
 		},
 	},
 };

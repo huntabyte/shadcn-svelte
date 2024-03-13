@@ -35,7 +35,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="?/textarea" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" action="/?/textarea" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="bio">
 		<Form.Control let:attrs>
 			<Form.Label>Bio</Form.Label>

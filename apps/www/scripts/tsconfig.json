@@ -10,6 +10,5 @@
 		"sourceMap": true,
 		"strict": true
 	},
-	"include": ["/**/*.ts", "../__registry__/index.js"],
-	"exclude": ["node_modules"]
+	"include": ["."]
 }

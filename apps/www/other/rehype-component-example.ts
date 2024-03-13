@@ -1,5 +1,5 @@
 import { visit } from "unist-util-visit";
-import { Index } from "../__registry__";
+import { Index } from "../src/__registry__/index.js";
 import { styles } from "../src/lib/registry";
 import path from "path";
 import prettier from "prettier";

@@ -10,7 +10,7 @@ import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
 import { u } from "unist-builder";
-import { Index } from "./__registry__/index.js";
+import { Index } from "./src/__registry__/index.js";
 import { getHighlighter } from "shiki";
 import { defineConfig } from "mdsx";
 
@@ -170,7 +170,7 @@ export function rehypeComponentExample() {
 					for (const style of styles) {
 						// @ts-expect-error - this is fine for now.
 						const component = Index[style.name][name];
-						const src = component.files[0];
+						const src = component.files[0].replace("/lib/", "/src/lib/");
 						let sourceCode = getComponentSourceFileContent(src);
 						if (!sourceCode || sourceCode === null) return;
 

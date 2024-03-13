@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types.js";
 import { redirect } from "@sveltejs/kit";
 import { getDoc } from "$lib/utils.js";
+import type { PageLoad, EntryGenerator } from "./$types.js";
 
 export const load: PageLoad = async (event) => {
 	if (event.params.slug === "components") {
@@ -13,6 +13,18 @@ export const load: PageLoad = async (event) => {
 		component,
 		metadata,
 		title,
-		...event.data,
 	};
+};
+
+export const entries: EntryGenerator = () => {
+	console.log("Prerendering /docs");
+	const modules = import.meta.glob("/src/content/**/*.md");
+	const entries = [];
+
+	for (const path of Object.keys(modules)) {
+		const slug = path.replace("/src/content/", "").replace(".md", "").replace("/index", "");
+		entries.push({ slug });
+	}
+
+	return entries;
 };

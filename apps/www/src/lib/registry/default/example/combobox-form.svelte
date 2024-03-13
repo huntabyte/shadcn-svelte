@@ -67,7 +67,7 @@
 	}
 </script>
 
-<form method="POST" action="?/combobox" class="space-y-6" use:enhance>
+<form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
 		<Popover.Root bind:open let:ids>
 			<Form.Control let:attrs>
