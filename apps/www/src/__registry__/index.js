@@ -101,60 +101,60 @@ export const Index = {
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-demo.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-demo.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-demo.svelte"],
 		},
 		"breadcrumb-dropdown": {
 			name: "breadcrumb-dropdown",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-dropdown.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-dropdown.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-dropdown.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-dropdown.svelte"],
 		},
 		"breadcrumb-ellipsis": {
 			name: "breadcrumb-ellipsis",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-ellipsis.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-ellipsis.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-ellipsis.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-ellipsis.svelte"],
 		},
 		"breadcrumb-link": {
 			name: "breadcrumb-link",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-link.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-link.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-link.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-link.svelte"],
 		},
 		"breadcrumb-responsive": {
 			name: "breadcrumb-responsive",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "drawer", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-responsive.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-responsive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-responsive.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-responsive.svelte"],
 		},
 		"breadcrumb-separator": {
 			name: "breadcrumb-separator",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/default/example/breadcrumb-separator.svelte").then(
+				import("../lib/registry/default/example/breadcrumb-separator.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/default/example/breadcrumb-separator.svelte"],
+			files: ["../lib/registry/default/example/breadcrumb-separator.svelte"],
 		},
 		"button-demo": {
 			name: "button-demo",
@@ -1333,60 +1333,60 @@ export const Index = {
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-demo.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-demo.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-demo.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-demo.svelte"],
 		},
 		"breadcrumb-dropdown": {
 			name: "breadcrumb-dropdown",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "dropdown-menu"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-dropdown.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-dropdown.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-dropdown.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-dropdown.svelte"],
 		},
 		"breadcrumb-ellipsis": {
 			name: "breadcrumb-ellipsis",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-ellipsis.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-ellipsis.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-ellipsis.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-ellipsis.svelte"],
 		},
 		"breadcrumb-link": {
 			name: "breadcrumb-link",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-link.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-link.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-link.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-link.svelte"],
 		},
 		"breadcrumb-responsive": {
 			name: "breadcrumb-responsive",
 			type: "components:example",
 			registryDependencies: ["breadcrumb", "drawer", "dropdown-menu", "button"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-responsive.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-responsive.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-responsive.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-responsive.svelte"],
 		},
 		"breadcrumb-separator": {
 			name: "breadcrumb-separator",
 			type: "components:example",
 			registryDependencies: ["breadcrumb"],
 			component: () =>
-				import("../src/lib/registry/new-york/example/breadcrumb-separator.svelte").then(
+				import("../lib/registry/new-york/example/breadcrumb-separator.svelte").then(
 					(m) => m.default
 				),
-			files: ["../src/lib/registry/new-york/example/breadcrumb-separator.svelte"],
+			files: ["../lib/registry/new-york/example/breadcrumb-separator.svelte"],
 		},
 		"button-demo": {
 			name: "button-demo",
