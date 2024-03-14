@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AvatarImg from "$lib/img/avatars/01.png";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -8,7 +9,7 @@
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
 			<Avatar.Root class="h-8 w-8">
-				<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
+				<Avatar.Image src={AvatarImg} alt="@shadcn" />
 				<Avatar.Fallback>SC</Avatar.Fallback>
 			</Avatar.Root>
 		</Button>

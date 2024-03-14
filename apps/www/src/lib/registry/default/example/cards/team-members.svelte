@@ -1,5 +1,8 @@
 <script lang="ts">
 	import ChevronDownIcon from "lucide-svelte/icons/chevron-down";
+	import AvatarImg1 from "$lib/img/avatars/01.png";
+	import AvatarImg2 from "$lib/img/avatars/02.png";
+	import AvatarImg3 from "$lib/img/avatars/03.png";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
@@ -16,7 +19,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src="/avatars/01.png" alt="Image" />
+					<Avatar.Image src={AvatarImg1} alt="Image" />
 					<Avatar.Fallback>OM</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -78,7 +81,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src="/avatars/02.png" alt="Image" />
+					<Avatar.Image src={AvatarImg2} alt="Image" />
 					<Avatar.Fallback>JL</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -140,7 +143,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src="/avatars/03.png" alt="Image" />
+					<Avatar.Image src={AvatarImg3} alt="Image" />
 					<Avatar.Fallback>IN</Avatar.Fallback>
 				</Avatar.Root>
 				<div>

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import AvatarImg1 from "$lib/img/avatars/01.png";
+	import AvatarImg2 from "$lib/img/avatars/02.png";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
@@ -16,7 +18,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root>
-					<Avatar.Image src="/avatars/01.png" alt="Sofia Davis" />
+					<Avatar.Image src={AvatarImg1} alt="Sofia Davis" />
 					<Avatar.Fallback>SD</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -70,7 +72,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root>
-					<Avatar.Image src="/avatars/02.png" alt="Jackson Lee" />
+					<Avatar.Image src={AvatarImg2} alt="Jackson Lee" />
 					<Avatar.Fallback>JL</Avatar.Fallback>
 				</Avatar.Root>
 				<div>

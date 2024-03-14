@@ -3,6 +3,7 @@
 	import PaperPlane from "svelte-radix/PaperPlane.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
 	import { cn } from "$lib/utils.js";
+	import AvatarImg from "$lib/img/avatars/01.png";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
@@ -71,7 +72,7 @@
 	<Card.Header class="flex flex-row items-center">
 		<div class="flex items-center space-x-4">
 			<Avatar.Root>
-				<Avatar.Image src="/avatars/01.png" alt="Image" />
+				<Avatar.Image src={AvatarImg} alt="Image" />
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
 			<div>
