@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "breadcrumb-ellipsis.svelte",
-			"content": "<script>\n\timport MoreHorizontal from \"lucide-svelte/icons/more-horizontal\";\n\timport { cn } from \"$lib/utils.js\";\n\texport let el = undefined;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={el}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...$$restProps}\n>\n\t<MoreHorizontal class=\"h-4 w-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
+			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\texport let el = undefined;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={el}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...$$restProps}\n>\n\t<Ellipsis class=\"h-4 w-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-item.svelte",
