@@ -411,7 +411,7 @@ export const Index = {
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["command", "dropdown-menu", "button"],
+			registryDependencies: ["button", "command", "dropdown-menu"],
 			component: () =>
 				import("../lib/registry/default/example/combobox-dropdown-menu.svelte").then(
 					(m) => m.default
@@ -431,7 +431,7 @@ export const Index = {
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
-			registryDependencies: ["command", "popover", "button"],
+			registryDependencies: ["button", "command", "popover"],
 			component: () =>
 				import("../lib/registry/default/example/combobox-popover.svelte").then(
 					(m) => m.default
@@ -1649,7 +1649,7 @@ export const Index = {
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["command", "dropdown-menu", "button"],
+			registryDependencies: ["button", "command", "dropdown-menu"],
 			component: () =>
 				import("../lib/registry/new-york/example/combobox-dropdown-menu.svelte").then(
 					(m) => m.default
@@ -1669,7 +1669,7 @@ export const Index = {
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
-			registryDependencies: ["command", "popover", "button"],
+			registryDependencies: ["button", "command", "popover"],
 			component: () =>
 				import("../lib/registry/new-york/example/combobox-popover.svelte").then(
 					(m) => m.default
