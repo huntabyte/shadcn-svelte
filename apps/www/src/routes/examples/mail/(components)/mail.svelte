@@ -12,8 +12,8 @@
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import Search from "lucide-svelte/icons/search";
 	import type { Account, Mail } from "../data.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
+	import MailLight from "$lib/img/examples/mail-light.png";
+	import MailDark from "$lib/img/examples/mail-dark.png";
 
 	export let accounts: Account[];
 	export let mails: Mail[];
@@ -39,8 +39,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-	<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+	<img src={MailLight} width={1280} height={1114} alt="Mail" class="block dark:hidden" />
+	<img src={MailDark} width={1280} height={1114} alt="Mail" class="hidden dark:block" />
 </div>
 <div class="hidden md:block">
 	<Resizable.PaneGroup
