@@ -32,7 +32,6 @@ const config = {
 					"<build>",
 					"/docs/*",
 					"/registry/*",
-					"/avatars/*",
 					"/fonts/*",
 					"/android-chrome-192x192.png",
 					"/android-chrome-512x512.png",
