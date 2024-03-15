@@ -61,7 +61,6 @@
 	},
 	"devDependencies": {
 		"@antfu/ni": "^0.21.12",
-		"@ianvs/prettier-plugin-sort-imports": "^3.7.2",
 		"@types/estree": "^1.0.5",
 		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^18.19.22",
@@ -72,7 +71,7 @@
 		"cross-env": "^7.0.3",
 		"estree-walker": "^3.0.3",
 		"magic-string": "^0.30.8",
-		"prettier": "^2.8.8",
+		"prettier": "^3.0.0",
 		"rimraf": "^4.4.1",
 		"tsconfck": "^2.1.2",
 		"tsup": "^6.7.0",
