@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Avatars from "$lib/img/avatars/index.js";
+	import AvatarImgs from "$lib/img/avatars/index.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
@@ -22,19 +22,19 @@
 		{
 			name: "Olivia Martin",
 			email: "m@example.com",
-			avatar: Avatars.Img3,
+			avatar: AvatarImgs[2],
 			permission: permissions[1],
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "b@example.com",
-			avatar: Avatars.Img5,
+			avatar: AvatarImgs[4],
 			permission: permissions[0],
 		},
 		{
 			name: "Sofia Davis",
 			email: "p@example.com",
-			avatar: Avatars.Img1,
+			avatar: AvatarImgs[0],
 			permission: permissions[0],
 		},
 	];

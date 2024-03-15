@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
-	import * as Avatars from "$lib/img/avatars/index.js";
+	import AvatarImgs from "$lib/img/avatars/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -17,7 +17,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={Avatars.Img1} alt="Image" />
+					<Avatar.Image src={AvatarImgs[0]} alt="Image" />
 					<Avatar.Fallback>OM</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -79,7 +79,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={Avatars.Img2} alt="Image" />
+					<Avatar.Image src={AvatarImgs[1]} alt="Image" />
 					<Avatar.Fallback>JL</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -141,7 +141,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={Avatars.Img3} alt="Image" />
+					<Avatar.Image src={AvatarImgs[2]} alt="Image" />
 					<Avatar.Fallback>IN</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
