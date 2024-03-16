@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-fix: Fix line of log incorrectly showing
+fix: Fixed component update warning and malformed filename for `utils`
