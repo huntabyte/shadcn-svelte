@@ -209,7 +209,7 @@ export const update = new Command()
 					files.map((file) => chalk.white(`- ${path.relative(cwd, file)}`)).join("\n")
 				);
 			}
-			if (Object.keys(componentsToRemove)) {
+			if (Object.keys(componentsToRemove).length > 0) {
 				logger.warn("\nYou may want to remove them.");
 			}
 		} catch (e) {

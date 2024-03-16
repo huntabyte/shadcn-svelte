@@ -12,7 +12,7 @@ import { resolveImport } from "./resolve-imports";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
-export const DEFAULT_UTILS = "$lib/utils.js";
+export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
