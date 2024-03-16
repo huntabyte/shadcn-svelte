@@ -1,7 +1,7 @@
 import { existsSync, promises as fs } from "fs";
 import path from "path";
 import type { Config } from "../utils/get-config";
-import chalk from "chalk";
+import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import {
@@ -16,14 +16,13 @@ import {
 } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
-import { logger } from "../utils/logger";
 import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/intro.js";
-import color from "chalk";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
+const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 export const init = new Command()
 	.command("init")
@@ -52,14 +51,13 @@ export const init = new Command()
 			await runInit(cwd, config);
 			p.note("Don't forget to add the aliases you configured to your svelte.config.js!");
 
-			p.outro(`${chalk.green("Success!")} Project initialization completed.`);
+			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
 			handleError(e);
 		}
 	});
 
 async function promptForConfig(cwd: string, defaultConfig: Config | null = null, skip = false) {
-	const highlight = logger.highlight;
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
@@ -160,7 +158,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null,
 	}
 
 	if (config.tailwind.config.endsWith(".cjs")) {
-		logger.info("Your tailwind.config.cjs has been renamed to tailwind.config.js.");
+		p.log.info(`Your tailwind config has been renamed to ${highlight("tailwind.config.js")}.`);
 		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
