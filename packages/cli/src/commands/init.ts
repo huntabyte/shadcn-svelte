@@ -39,14 +39,14 @@ export const init = new Command()
 		try {
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
-				p.log.error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
+				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 				process.exitCode = 1;
 				return;
 			}
 
 			// Read config.
 			const existingConfig = await getConfig(cwd);
-			const config = await promptForConfig(cwd, existingConfig, options.yes);
+			const config = await promptForConfig(cwd, existingConfig);
 
 			await runInit(cwd, config);
 			p.note("Don't forget to add the aliases you configured to your svelte.config.js!");
@@ -57,7 +57,7 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null = null, skip = false) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null = null) {
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
@@ -146,17 +146,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null,
 		},
 	});
 
-	if (!skip) {
-		const proceed = await p.confirm({
-			message: `Write configuration to ${highlight("components.json")}. Proceed?`,
-			initialValue: true,
-		});
-
-		if (!proceed) {
-			process.exitCode = 0;
-		}
-	}
-
 	if (config.tailwind.config.endsWith(".cjs")) {
 		p.log.info(`Your tailwind config has been renamed to ${highlight("tailwind.config.js")}.`);
 		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
@@ -167,10 +156,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null,
 
 	// Write to file.
 	const spinner = p.spinner();
-	spinner.start(`Writing components.json`);
+	spinner.start(`Creating config file ${highlight("components.json")}`);
 	const targetPath = path.resolve(cwd, "components.json");
 	await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
-	spinner.stop(`${highlight("components.json")} created`);
+	spinner.stop(`Config file ${highlight("components.json")} created`);
 
 	return configPaths;
 }
