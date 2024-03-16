@@ -172,7 +172,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null,
 	spinner.start(`Writing components.json...`);
 	const targetPath = path.resolve(cwd, "components.json");
 	await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
-	spinner.stop(`Created ${highlight("components.json")}`);
+	spinner.stop(`${highlight("components.json")} created`);
 
 	return configPaths;
 }
@@ -221,7 +221,7 @@ export async function runInit(cwd: string, config: Config) {
 	// Write cn file.
 	await fs.writeFile(utilsPath, utilsTemplate, "utf8");
 
-	spinner.stop("Initialized project");
+	spinner.stop("Project initialized");
 
 	// Install dependencies.
 	const dependenciesSpinner = p.spinner();
@@ -236,5 +236,5 @@ export async function runInit(cwd: string, config: Config) {
 	await execa(packageManager, ["add", ...deps], {
 		cwd,
 	});
-	dependenciesSpinner.stop("Installed dependencies");
+	dependenciesSpinner.stop("Dependencies installed");
 }
