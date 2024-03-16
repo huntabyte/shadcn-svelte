@@ -48,11 +48,13 @@
 		"test": "vitest"
 	},
 	"dependencies": {
+		"@clack/core": "^0.3.4",
 		"chalk": "5.2.0",
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
 		"fs-extra": "^11.2.0",
 		"https-proxy-agent": "^7.0.4",
+		"is-unicode-supported": "^2.0.0",
 		"node-fetch": "^3.3.2",
 		"ora": "^6.3.1",
 		"prompts": "^2.4.2",
@@ -73,6 +75,7 @@
 		"magic-string": "^0.30.8",
 		"prettier": "^3.0.0",
 		"rimraf": "^4.4.1",
+		"sisteransi": "^1.0.5",
 		"tsconfck": "^2.1.2",
 		"tsup": "^6.7.0",
 		"type-fest": "^3.13.1",

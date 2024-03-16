@@ -380,6 +380,9 @@ importers:
 
   packages/cli:
     dependencies:
+      '@clack/core':
+        specifier: ^0.3.4
+        version: 0.3.4
       chalk:
         specifier: 5.2.0
         version: 5.2.0
@@ -395,6 +398,9 @@ importers:
       https-proxy-agent:
         specifier: ^7.0.4
         version: 7.0.4
+      is-unicode-supported:
+        specifier: ^2.0.0
+        version: 2.0.0
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
@@ -450,6 +456,9 @@ importers:
       rimraf:
         specifier: ^4.4.1
         version: 4.4.1
+      sisteransi:
+        specifier: ^1.0.5
+        version: 1.0.5
       tsconfck:
         specifier: ^2.1.2
         version: 2.1.2(typescript@5.3.3)
@@ -717,6 +726,13 @@ packages:
       human-id: 1.0.2
       prettier: 2.8.8
     dev: true
+
+  /@clack/core@0.3.4:
+    resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
+    dependencies:
+      picocolors: 1.0.0
+      sisteransi: 1.0.5
+    dev: false
 
   /@cloudflare/workers-types@4.20240222.0:
     resolution: {integrity: sha512-luO0BdK3rLlCv3B240+cTrfqm+XSbHtpk+88aJtGwzyVK9QF/Xz8lBgE/oZZLN8nCTmOvxAZnszyxUuZ8GP8Cg==}
@@ -5265,6 +5281,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /is-unicode-supported@2.0.0:
+    resolution: {integrity: sha512-FRdAyx5lusK1iHG0TWpVtk9+1i+GjrzRffhDg4ovQ7mcidMQ6mj+MhKPmvh7Xwyv5gIS06ns49CA7Sqg7lC22Q==}
+    engines: {node: '>=18'}
+    dev: false
+
   /is-weakref@1.0.2:
     resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==}
     dependencies:
@@ -7259,7 +7280,6 @@ packages:
 
   /sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
-    dev: false
 
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
