@@ -56,7 +56,6 @@
 		"https-proxy-agent": "^7.0.4",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch": "^3.3.2",
-		"prompts": "^2.4.2",
 		"tsconfig-paths": "^4.2.0",
 		"zod": "^3.22.4"
 	},
