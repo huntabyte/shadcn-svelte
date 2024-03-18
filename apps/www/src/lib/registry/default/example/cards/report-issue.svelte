@@ -79,7 +79,7 @@
 				<Select.Root selected={securityLevels[1]}>
 					<Select.Trigger
 						id="security-level-{id}"
-						class="w-full overflow-hidden truncate"
+						class="w-full truncate"
 					>
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
