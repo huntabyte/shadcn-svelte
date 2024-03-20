@@ -48,7 +48,13 @@ export const init = new Command()
 			const config = await promptForConfig(cwd, existingConfig);
 
 			await runInit(cwd, config);
-			p.note("Don't forget to add the aliases you configured to your svelte.config.js!");
+
+			if (
+				!config.aliases.components.startsWith("$lib") ||
+				!config.aliases.utils.startsWith("$lib")
+			) {
+				p.note("Don't forget to add the aliases you configured to your svelte.config.js!");
+			}
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
