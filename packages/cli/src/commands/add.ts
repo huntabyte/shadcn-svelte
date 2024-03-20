@@ -195,12 +195,10 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		}
 
 		// Add dependencies to the install list
-		if (item.dependencies.length) {
-			if (options.nodep) {
-				item.dependencies.forEach((dep) => skippedDeps.add(dep));
-			} else {
-				item.dependencies.forEach((dep) => dependencies.add(dep));
-			}
+		if (options.nodep) {
+			item.dependencies.forEach((dep) => skippedDeps.add(dep));
+		} else {
+			item.dependencies.forEach((dep) => dependencies.add(dep));
 		}
 
 		installSpinner.stop(`${highlight(item.name)} installed at ${color.gray(componentPath)}`);
