@@ -191,6 +191,7 @@ async function runUpdate(
 	spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies`);
 
 	const componentsToRemove: Record<string, string[]> = {};
+	const dependencies = new Set<string>();
 	for (const [index, item] of payload.entries()) {
 		spinner.message(`Updating ${highlight(item.name)} (${index + 1}/${payload.length})`);
 		const targetDir = await getItemTargetPath(config, item);
@@ -227,14 +228,20 @@ async function runUpdate(
 			componentsToRemove[item.name] = filesToDelete;
 		}
 
-		// Install dependencies.
-		if (item.dependencies.length) {
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...item.dependencies], {
-				cwd,
-			});
-		}
+		// Add dependencies to the install list
+		item.dependencies.forEach((dep) => dependencies.add(dep));
 	}
+
+	// Install dependencies.
+	if (dependencies.size > 0) {
+		spinner.message("Installing package dependencies");
+
+		const packageManager = await getPackageManager(cwd);
+		await execa(packageManager, ["add", ...dependencies], {
+			cwd,
+		});
+	}
+
 	spinner.stop("Components updated");
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
