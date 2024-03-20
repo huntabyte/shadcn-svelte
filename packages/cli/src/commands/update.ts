@@ -96,6 +96,7 @@ async function runUpdate(
 		process.exit(1);
 	}
 
+	// Retrieve existing components in user's project
 	const existingComponents: typeof registryIndex = [];
 	const files = await fs.readdir(componentDir, {
 		withFileTypes: true,
