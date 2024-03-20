@@ -84,7 +84,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 				}),
 			tailwindBaseColor: ({}) =>
 				p.select({
-					message: `Which color would you like to use as ${highlight("base color")}?`,
+					message: `Which ${highlight("base color")} would you like to use?`,
 					initialValue: defaultConfig?.tailwind.baseColor,
 					options: baseColors.map((color) => ({
 						label: color.label,
@@ -112,7 +112,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
 						}
-						return `${color.cyan.bold(value)} does not exist. Please enter a valid path.`;
+						return `${color.bold(value)} does not exist. Please enter a valid path.`;
 					},
 				}),
 			components: () =>
