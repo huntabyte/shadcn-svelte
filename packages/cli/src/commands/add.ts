@@ -99,10 +99,14 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: registryIndex.map(({ name }) => ({
-				label: name,
-				value: name,
-			})),
+			options: registryIndex.map(({ name, dependencies, registryDependencies }) => {
+				const deps = [...(options.nodep ? [] : dependencies), ...registryDependencies];
+				return {
+					label: name,
+					value: name,
+					hint: deps.length ? `also installs: ${deps.join(", ")}` : undefined,
+				};
+			}),
 		});
 
 		if (p.isCancel(components)) {
@@ -194,7 +198,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		}
 
 		// Install dependencies.
-		if (item.dependencies?.length) {
+		if (item.dependencies.length) {
 			if (options.nodep) {
 				item.dependencies.forEach((dep) => skippedDeps.add(dep));
 				installSpinner.stop(`${highlight(item.name)} installed at ${color.gray(componentPath)}`);
