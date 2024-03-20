@@ -126,11 +126,35 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		process.exit(0);
 	}
 
-	if (options.overwrite === false) {
+	// build a list of existing components
+	const existingComponents: string[] = [];
+	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
+	for (const item of payload) {
+		if (selectedComponents.includes(item.name) === false) continue;
+
+		const targetDir = getItemTargetPath(config, item, targetPath);
+		if (targetDir === null) continue;
+
+		const componentExists = item.files.some((file) => {
+			return existsSync(path.resolve(targetDir, item.name, file.name));
+		});
+
+		if (componentExists) {
+			existingComponents.push(item.name);
+		}
+	}
+
+	// prompt if the user wants to overwrite ALL components or individually
+	if (options.overwrite === false && existingComponents.length > 0) {
+		const prettyList = prettifyList(existingComponents);
+		p.log.warn(
+			`The following components ${color.bold.yellow("already exists")}:\n${color.gray(prettyList)}`
+		);
+
 		const overwrite = await p.confirm({
-			message: `Would you like to ${color.bold.red("overwrite")} existing components?`,
+			message: `Would you like to ${color.bold.red("overwrite")} all existing components?`,
 			active: "Yes, overwrite everything",
-			inactive: "No, let me choose individually",
+			inactive: "No, let me decide individually",
 			initialValue: false,
 		});
 
@@ -158,12 +182,8 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	const dependencies = new Set<string>();
 
 	for (const item of payload) {
-		const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
-		const targetDir = await getItemTargetPath(config, item, targetPath);
-
-		if (targetDir === null) {
-			continue;
-		}
+		const targetDir = getItemTargetPath(config, item, targetPath);
+		if (targetDir === null) continue;
 
 		if (!existsSync(targetDir)) {
 			await fs.mkdir(targetDir, { recursive: true });
@@ -171,11 +191,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 
 		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
 
-		const existingComponent = item.files.filter((file) => {
-			return existsSync(path.resolve(targetDir, item.name, file.name));
-		});
-
-		if (!options.overwrite && existingComponent.length > 0) {
+		if (!options.overwrite && existingComponents.includes(item.name)) {
 			// Only confirm overwrites for selected components and not transitive dependencies
 			if (selectedComponents.includes(item.name)) {
 				p.log.warn(
