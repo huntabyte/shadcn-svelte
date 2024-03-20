@@ -70,8 +70,8 @@ export const update = new Command()
 
 			await runUpdate(cwd, config, options);
 
-			p.note(
-				"This command does not update your dependencies to latest - consider updating them as well."
+			p.log.info(
+				`This command does not update your ${highlight("dependencies")} to ${color.blueBright("latest")} - consider updating them as well.`
 			);
 
 			p.outro(`${color.green("Success!")} Component update completed.`);
@@ -182,17 +182,13 @@ async function runUpdate(
 		}
 	}
 
-	const spinner = p.spinner();
-	spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies`);
-
 	// `update utils` - update the utils.(ts|js) file
 	if (selectedComponents.find((item) => item.name === "utils")) {
 		const extension = config.typescript ? ".ts" : ".js";
 		const utilsPath = config.resolvedPaths.utils + extension;
 
 		if (!existsSync(utilsPath)) {
-			spinner.stop(`${highlight("utils")} at ${color.gray(utilsPath)} does not exist.`);
-			p.cancel(`${highlight("utils")} at ${color.gray(utilsPath)} does not exist.`);
+			p.cancel(`Failed to find ${highlight("utils")} at ${color.gray(utilsPath)}`);
 			process.exit(1);
 		}
 
@@ -205,6 +201,9 @@ async function runUpdate(
 		selectedComponents.map((com) => com.name)
 	);
 	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
+
+	const spinner = p.spinner();
+	spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies`);
 
 	const componentsToRemove: Record<string, string[]> = {};
 	for (const [index, item] of payload.entries()) {
