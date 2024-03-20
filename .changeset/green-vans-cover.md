@@ -2,4 +2,4 @@
 "shadcn-svelte": minor
 ---
 
-feat: Added support for the `--proxy` flag for `update`
+feat: Added support for the `--proxy` flag to the `update` command
