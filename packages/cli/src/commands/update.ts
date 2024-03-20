@@ -187,13 +187,11 @@ async function runUpdate(
 	);
 	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
-	const spinner = p.spinner();
-	spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies`);
-
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	for (const [index, item] of payload.entries()) {
-		spinner.message(`Updating ${highlight(item.name)} (${index + 1}/${payload.length})`);
+		const updateSpinner = p.spinner();
+		updateSpinner.start(`Updating ${highlight(item.name)}`);
 		const targetDir = await getItemTargetPath(config, item);
 
 		if (!targetDir) {
@@ -230,19 +228,23 @@ async function runUpdate(
 
 		// Add dependencies to the install list
 		item.dependencies.forEach((dep) => dependencies.add(dep));
+
+		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+		updateSpinner.stop(`${highlight(item.name)} updated at ${color.gray(componentPath)}`);
 	}
 
 	// Install dependencies.
 	if (dependencies.size > 0) {
-		spinner.message("Installing package dependencies");
+		const spinner = p.spinner();
+		spinner.start("Installing new package dependencies");
 
 		const packageManager = await getPackageManager(cwd);
 		await execa(packageManager, ["add", ...dependencies], {
 			cwd,
 		});
-	}
 
-	spinner.stop("Components updated");
+		spinner.stop("Dependencies installed");
+	}
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(
