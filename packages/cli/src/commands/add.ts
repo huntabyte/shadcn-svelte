@@ -180,7 +180,6 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
-
 	for (const item of payload) {
 		const targetDir = getItemTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
