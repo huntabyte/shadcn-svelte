@@ -131,6 +131,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 			message: `Would you like to ${color.bold.red("overwrite")} existing components?`,
 			active: "Yes, overwrite everything",
 			inactive: "No, let me choose individually",
+			initialValue: false,
 		});
 
 		if (p.isCancel(overwrite)) {
