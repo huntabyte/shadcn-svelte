@@ -92,7 +92,7 @@ async function runUpdate(
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
-		p.cancel(`Component directory '${componentDir}' does not exist.`);
+		p.cancel(`Component directory ${color.cyan(componentDir)} does not exist.`);
 		process.exit(1);
 	}
 
@@ -118,16 +118,13 @@ async function runUpdate(
 		registryDependencies: [],
 	});
 
-	let selectedComponents: typeof registryIndex = options.all ? existingComponents : [];
-	if (!selectedComponents.length && components !== undefined) {
+	// If the user specifies component args
+	let selectedComponents = options.all ? existingComponents : [];
+	if (selectedComponents.length === 0 && components !== undefined) {
+		// ...only add valid components to the list
 		selectedComponents = existingComponents.filter((component) =>
 			components.includes(component.name)
 		);
-	}
-
-	if (existingComponents.length === 0) {
-		p.log.info(`No shadcn components detected in '${componentDir}'.`);
-		process.exit(0);
 	}
 
 	// If user didn't specify any component arguments
@@ -173,7 +170,7 @@ async function runUpdate(
 		const utilsPath = config.resolvedPaths.utils + extension;
 
 		if (!existsSync(utilsPath)) {
-			p.cancel(`Failed to find ${highlight("utils")} at ${color.gray(utilsPath)}`);
+			p.cancel(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
 			process.exit(1);
 		}
 
@@ -189,7 +186,7 @@ async function runUpdate(
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
-	for (const [index, item] of payload.entries()) {
+	for (const item of payload) {
 		const updateSpinner = p.spinner();
 		updateSpinner.start(`Updating ${highlight(item.name)}`);
 		const targetDir = await getItemTargetPath(config, item);
