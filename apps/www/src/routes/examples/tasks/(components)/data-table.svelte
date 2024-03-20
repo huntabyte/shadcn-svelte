@@ -215,6 +215,13 @@
 						</Table.Row>
 					</Subscribe>
 				{/each}
+				{#if $pageRows.length === 0}
+					<Table.Row>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">
+							No tasks found.
+						</Table.Cell>
+					</Table.Row>
+				{/if}
 			</Table.Body>
 		</Table.Root>
 	</div>
