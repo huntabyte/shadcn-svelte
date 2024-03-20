@@ -142,11 +142,8 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 
 	// TODO: registryDependencies are not considered
 	for (const item of payload) {
-		const targetDir = await getItemTargetPath(
-			config,
-			item,
-			options.path ? path.resolve(cwd, options.path) : undefined
-		);
+		const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
+		const targetDir = await getItemTargetPath(config, item, targetPath);
 
 		// TODO: what is this case?
 		if (!targetDir) {
