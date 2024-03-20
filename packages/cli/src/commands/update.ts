@@ -7,13 +7,7 @@ import { z } from "zod";
 import { getConfig, type Config } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
-import {
-	RegistryItem,
-	fetchTree,
-	getItemTargetPath,
-	getRegistryIndex,
-	resolveTree,
-} from "../utils/registry";
+import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS } from "../utils/templates";
 import { transformImports } from "../utils/transformers";
 import * as p from "../utils/prompts.js";
@@ -44,7 +38,7 @@ export const update = new Command()
 	.action(async (components, opts) => {
 		intro();
 		p.note(
-			"This command will overwrite existing files.\n\nMake sure you have committed your changes before proceeding."
+			"This action will overwrite existing files.\n\nMake sure you have committed your changes before proceeding."
 		);
 
 		try {
@@ -71,7 +65,7 @@ export const update = new Command()
 			await runUpdate(cwd, config, options);
 
 			p.log.info(
-				`This command does not update your ${highlight("dependencies")} to ${color.blueBright("latest")} - consider updating them as well.`
+				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions. Consider updating them as well.`
 			);
 
 			p.outro(`${color.green("Success!")} Component update completed.`);
@@ -254,11 +248,10 @@ async function runUpdate(
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(
-			`The ${highlight(component)} component does not use the following files:
-${files.map((file) => color.white(`- ${color.gray(path.relative(cwd, file))}`)).join("\n")}`
+			`The ${highlight(component)} component does not use the following files:\n${files.map((file) => color.white(`- ${color.gray(path.relative(cwd, file))}`)).join("\n")}`
 		);
 	}
 	if (Object.keys(componentsToRemove).length > 0) {
-		p.log.message("You may want to remove them.");
+		p.log.message(color.bold("You may want to delete them."));
 	}
 }
