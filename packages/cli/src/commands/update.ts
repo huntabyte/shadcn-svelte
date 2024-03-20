@@ -37,9 +37,6 @@ export const update = new Command()
 	)
 	.action(async (components, opts) => {
 		intro();
-		p.note(
-			"This action will overwrite existing files.\n\nMake sure you have committed your changes before proceeding."
-		);
 
 		try {
 			const options = updateOptionsSchema.parse({
@@ -64,8 +61,8 @@ export const update = new Command()
 
 			await runUpdate(cwd, config, options);
 
-			p.log.info(
-				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions. Consider updating them as well.`
+			p.note(
+				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions.\n\nConsider updating them as well.`
 			);
 
 			p.outro(`${color.green("Success!")} Component update completed.`);
@@ -166,7 +163,7 @@ async function runUpdate(
 
 	if (options.yes === false) {
 		const proceed = await p.confirm({
-			message: `Ready to update ${highlight("components")}?`,
+			message: `Ready to update ${highlight("components")}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
 			initialValue: true,
 		});
 
