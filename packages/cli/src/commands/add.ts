@@ -79,15 +79,13 @@ export const add = new Command()
 	});
 
 async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOptionsSchema>) {
-	const chosenProxy = options.proxy ?? getEnvProxy();
-	if (chosenProxy) {
+	const proxy = options.proxy ?? getEnvProxy();
+	if (proxy) {
 		const isCustom = !!options.proxy;
 		if (isCustom) process.env.HTTP_PROXY = options.proxy;
 
 		p.log.warn(
-			`You are using a ${
-				isCustom ? "provided" : "system environment"
-			} proxy: ${color.green(chosenProxy)}`
+			`You are using a ${isCustom ? "provided" : "system environment"} proxy: ${color.green(proxy)}`
 		);
 	}
 

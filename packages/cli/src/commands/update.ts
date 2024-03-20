@@ -18,11 +18,13 @@ import { UTILS } from "../utils/templates";
 import { transformImports } from "../utils/transformers";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
 	components: z.array(z.string()).optional(),
 	cwd: z.string(),
+	proxy: z.string().optional(),
 });
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -31,12 +33,13 @@ export const update = new Command()
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-a, --all", "update all existing components.", false)
+	.option("--proxy <proxy>", "fetch components from registry using a proxy.")
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.action(async (comps, opts) => {
+	.action(async (components, opts) => {
 		intro();
 		p.note(
 			"This command will overwrite existing files.\nMake sure you have committed your changes before proceeding."
@@ -44,7 +47,7 @@ export const update = new Command()
 
 		try {
 			const options = updateOptionsSchema.parse({
-				components: comps,
+				components,
 				...opts,
 			});
 
@@ -108,6 +111,17 @@ async function runUpdate(
 	options: z.infer<typeof updateOptionsSchema>
 ) {
 	const components = options.components;
+
+	const proxy = options.proxy ?? getEnvProxy();
+	if (proxy) {
+		const isCustom = !!options.proxy;
+		if (isCustom) process.env.HTTP_PROXY = options.proxy;
+
+		p.log.warn(
+			`You are using a ${isCustom ? "provided" : "system environment"} proxy: ${color.green(proxy)}`
+		);
+	}
+
 	const registryIndex = await getRegistryIndex();
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
