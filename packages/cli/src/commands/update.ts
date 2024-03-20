@@ -78,33 +78,6 @@ export const update = new Command()
 		}
 	});
 
-async function promptForComponents(components: RegistryItem[]): Promise<RegistryItem[]> {
-	const { selectedComponents } = await p.group(
-		{
-			selectedComponents: () =>
-				p.multiselect({
-					message: "Which components would you like to update?",
-					maxItems: 10,
-					options: components.map((component) => ({
-						label: component.name,
-						value: component,
-						hint: component.registryDependencies.length
-							? `also updates: ${component.registryDependencies.join(", ")}`
-							: undefined,
-					})),
-				}),
-		},
-		{
-			onCancel: () => {
-				p.cancel("Operation cancelled.");
-				process.exit(0);
-			},
-		}
-	);
-
-	return selectedComponents;
-}
-
 async function runUpdate(
 	cwd: string,
 	config: Config,
@@ -166,7 +139,24 @@ async function runUpdate(
 
 	// If user didn't specify any component arguments
 	if (selectedComponents.length === 0) {
-		selectedComponents = await promptForComponents(existingComponents);
+		const selected = await p.multiselect({
+			message: "Which components would you like to update?",
+			maxItems: 10,
+			options: existingComponents.map((component) => ({
+				label: component.name,
+				value: component,
+				hint: component.registryDependencies.length
+					? `also updates: ${component.registryDependencies.join(", ")}`
+					: undefined,
+			})),
+		});
+
+		if (p.isCancel(selected)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		selectedComponents = selected;
 	}
 
 	const spinner = p.spinner();
@@ -246,10 +236,12 @@ async function runUpdate(
 	spinner.stop("Finished updating");
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
-		p.log.warn(`\nThe ${highlight(component)} component does not use the following files:`);
-		p.log.warn(files.map((file) => color.white(`- ${path.relative(cwd, file)}`)).join("\n"));
+		p.log.warn(
+			`The ${highlight(component)} component does not use the following files:
+${files.map((file) => color.white(`- ${color.gray(path.relative(cwd, file))}`)).join("\n")}`
+		);
 	}
 	if (Object.keys(componentsToRemove).length > 0) {
-		p.log.warn("\nYou may want to remove them.");
+		p.log.message("You may want to remove them.");
 	}
 }
