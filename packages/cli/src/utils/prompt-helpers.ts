@@ -15,11 +15,12 @@ export function cancel() {
 }
 
 /**
- * Prettifies the list by joining on `,` and printing a new line on every 8th element.
+ * Prettifies the list by joining on `,` and printing a new line on every Nth element.
+ *
  */
-export function prettifyList(arr: string[]): string {
+export function prettifyList(arr: string[], max: number = 9): string {
 	return arr.reduce((pre, curr, i) => {
-		if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
+		if (i % max === 0) return `${pre},\n${curr}`;
 		return `${pre}, ${curr}`;
 	});
 }

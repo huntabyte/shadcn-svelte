@@ -214,7 +214,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	}
 
 	if (options.nodep) {
-		const prettyList = prettifyList([...skippedDeps]);
+		const prettyList = prettifyList([...skippedDeps], 7);
 		p.log.warn(
 			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
