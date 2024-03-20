@@ -13,3 +13,13 @@ export function cancel() {
 	p.cancel("Operation cancelled.");
 	process.exit(0);
 }
+
+/**
+ * Prettifies the list by joining on `,` and printing a new line on every 8th element.
+ */
+export function prettifyList(arr: string[]): string {
+	return arr.reduce((pre, curr, i) => {
+		if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
+		return `${pre}, ${curr}`;
+	});
+}

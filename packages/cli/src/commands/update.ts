@@ -11,7 +11,7 @@ import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../
 import { UTILS } from "../utils/templates";
 import { transformImports } from "../utils/transformers";
 import * as p from "../utils/prompts.js";
-import { intro } from "../utils/prompt-helpers.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 
 const updateOptionsSchema = z.object({
@@ -151,13 +151,7 @@ async function runUpdate(
 
 		selectedComponents = selected;
 	} else {
-		const prettyList = selectedComponents
-			.map(({ name }) => name)
-			// prettifies the list by printing a new line on every 8th element
-			.reduce((pre, curr, i) => {
-				if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
-				return `${pre}, ${curr}`;
-			});
+		const prettyList = prettifyList(selectedComponents.map(({ name }) => name));
 		p.log.step(`Components to update:\n${color.gray(prettyList)}`);
 	}
 
@@ -216,7 +210,7 @@ async function runUpdate(
 
 		for (const file of item.files) {
 			const filePath = path.resolve(targetDir, item.name, file.name);
-      
+
 			// Run transformers.
 			const content = transformImports(file.content, config);
 

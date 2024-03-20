@@ -17,7 +17,7 @@ import {
 } from "../utils/registry";
 import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
-import { intro } from "../utils/prompt-helpers.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -113,11 +113,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		}
 		selectedComponents = components;
 	} else {
-		// prettifies the list by printing a new line on every 8th element
-		const prettyList = selectedComponents.reduce((pre, curr, i) => {
-			if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
-			return `${pre}, ${curr}`;
-		});
+		const prettyList = prettifyList(selectedComponents);
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
@@ -218,10 +214,9 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	}
 
 	if (options.nodep) {
+		const prettyList = prettifyList([...skippedDeps]);
 		p.log.warn(
-			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(
-				[...skippedDeps].join(", ")
-			)}`
+			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
 	}
 }
