@@ -157,6 +157,15 @@ async function runUpdate(
 		}
 
 		selectedComponents = selected;
+	} else {
+		const prettyList = selectedComponents
+			.map(({ name }) => name)
+			// prettifies the list by printing a new line on every 8th element
+			.reduce((pre, curr, i) => {
+				if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
+				return `${pre}, ${curr}`;
+			});
+		p.log.step(`Components to update:\n${color.gray(prettyList)}`);
 	}
 
 	const spinner = p.spinner();
@@ -173,8 +182,8 @@ async function runUpdate(
 		const utilsPath = config.resolvedPaths.utils + extension;
 
 		if (!existsSync(utilsPath)) {
-			spinner.stop(`utils at ${highlight(utilsPath)} does not exist.`);
-			p.cancel(`utils at ${highlight(utilsPath)} does not exist.`);
+			spinner.stop(`${highlight("utils")} at ${color.gray(utilsPath)} does not exist.`);
+			p.cancel(`${highlight("utils")} at ${color.gray(utilsPath)} does not exist.`);
 			process.exit(1);
 		}
 

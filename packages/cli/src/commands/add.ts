@@ -113,7 +113,12 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		}
 		selectedComponents = components;
 	} else {
-		p.log.step(`Components to install:\n${color.gray(selectedComponents.join(", "))}`);
+		// prettifies the list by printing a new line on every 8th element
+		const prettyList = selectedComponents.reduce((pre, curr, i) => {
+			if ((i + 1) % 9 === 0) return `${pre},\n${curr}`;
+			return `${pre}, ${curr}`;
+		});
+		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
 	const tree = await resolveTree(registryIndex, selectedComponents);
