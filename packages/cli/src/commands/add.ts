@@ -36,7 +36,7 @@ export const add = new Command()
 	.command("add")
 	.description("add components to your project")
 	.argument("[components...]", "name of components")
-	.option("--nodep", "disables adding & installing dependencies.", false)
+	.option("--nodep", "skips adding & installing package dependencies.", false)
 	.option("-a, --all", "install all components to your project.", false)
 	.option("-y, --yes", "skip confirmation prompt.", false)
 	.option("-o, --overwrite", "overwrite existing files.", false)
@@ -145,8 +145,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 		const targetDir = await getItemTargetPath(config, item, targetPath);
 
-		// TODO: what is this case?
-		if (!targetDir) {
+		if (targetDir === null) {
 			continue;
 		}
 
