@@ -8,3 +8,8 @@ export function intro() {
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
 }
+
+export function cancel() {
+	p.cancel("Operation cancelled.");
+	process.exit(0);
+}

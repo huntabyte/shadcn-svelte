@@ -19,7 +19,7 @@ import { handleError } from "../utils/handle-error";
 import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
-import { intro } from "../utils/intro.js";
+import { intro } from "../utils/prompt-helpers.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
