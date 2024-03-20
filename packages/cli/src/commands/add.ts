@@ -138,7 +138,9 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		}
 	}
 
-	let skippedDeps = new Set<string>();
+	const skippedDeps = new Set<string>();
+	const depsToInstall = new Set<string>();
+	const packageManager = await getPackageManager(cwd);
 
 	// TODO: registryDependencies are not considered
 	for (const item of payload) {
@@ -197,17 +199,22 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		if (item.dependencies.length) {
 			if (options.nodep) {
 				item.dependencies.forEach((dep) => skippedDeps.add(dep));
-				installSpinner.stop(`${highlight(item.name)} installed at ${color.gray(componentPath)}`);
-				continue;
+			} else {
+				item.dependencies.forEach((dep) => depsToInstall.add(dep));
 			}
-
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...item.dependencies], {
-				cwd,
-			});
 		}
 
 		installSpinner.stop(`${highlight(item.name)} installed at ${color.gray(componentPath)}`);
+	}
+
+	// Install dependencies.
+	if (depsToInstall.size > 0) {
+		const spinner = p.spinner();
+		spinner.start("Installing package dependencies");
+		await execa(packageManager, ["add", ...depsToInstall], {
+			cwd,
+		});
+		spinner.stop("Dependencies installed");
 	}
 
 	if (options.nodep) {
