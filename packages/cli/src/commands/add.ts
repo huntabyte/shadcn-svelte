@@ -139,8 +139,7 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	}
 
 	const skippedDeps = new Set<string>();
-	const depsToInstall = new Set<string>();
-	const packageManager = await getPackageManager(cwd);
+	const dependencies = new Set<string>();
 
 	// TODO: registryDependencies are not considered
 	for (const item of payload) {
@@ -195,12 +194,12 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 			await fs.writeFile(filePath, content);
 		}
 
-		// Install dependencies.
+		// Add dependencies to the install list
 		if (item.dependencies.length) {
 			if (options.nodep) {
 				item.dependencies.forEach((dep) => skippedDeps.add(dep));
 			} else {
-				item.dependencies.forEach((dep) => depsToInstall.add(dep));
+				item.dependencies.forEach((dep) => dependencies.add(dep));
 			}
 		}
 
@@ -208,12 +207,15 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	}
 
 	// Install dependencies.
-	if (depsToInstall.size > 0) {
+	if (dependencies.size > 0) {
 		const spinner = p.spinner();
 		spinner.start("Installing package dependencies");
-		await execa(packageManager, ["add", ...depsToInstall], {
+
+		const packageManager = await getPackageManager(cwd);
+		await execa(packageManager, ["add", ...dependencies], {
 			cwd,
 		});
+
 		spinner.stop("Dependencies installed");
 	}
 
