@@ -1,15 +1,12 @@
 import { existsSync, promises as fs } from "fs";
 import path from "path";
-import chalk from "chalk";
+import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import ora from "ora";
-import prompts from "prompts";
 import { z } from "zod";
 import { getConfig } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
-import { logger } from "../utils/logger";
 import {
 	RegistryItem,
 	fetchTree,
@@ -19,12 +16,15 @@ import {
 } from "../utils/registry";
 import { UTILS } from "../utils/templates";
 import { transformImports } from "../utils/transformers";
+import * as p from "../utils/prompts.js";
+import { intro } from "../utils/prompt-helpers.js";
 
 const updateOptionsSchema = z.object({
 	all: z.boolean(),
 	components: z.array(z.string()).optional(),
 	cwd: z.string(),
 });
+const highlight = (msg: string) => color.bold.cyan(msg);
 
 export const update = new Command()
 	.command("update")
@@ -37,9 +37,10 @@ export const update = new Command()
 		process.cwd()
 	)
 	.action(async (comps, opts) => {
-		logger.warn("Running the following command will overwrite existing files.");
-		logger.warn("Make sure you have committed your changes before proceeding.");
-		logger.warn("");
+		intro();
+		p.log.warn(
+			"Running the following command will overwrite existing files.\nMake sure you have committed your changes before proceeding."
+		);
 
 		try {
 			const options = updateOptionsSchema.parse({
@@ -51,29 +52,24 @@ export const update = new Command()
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				logger.error(`The path ${cwd} does not exist. Please try again.`);
-				process.exitCode = 1;
-				return;
+				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
+				process.exit(1);
 			}
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				logger.warn(
-					`Configuration is missing. Please run ${chalk.green(
-						`init`
-					)} to create a components.json file.`
+				p.cancel(
+					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
-				process.exitCode = 1;
-				return;
+				process.exit(1);
 			}
 
 			const registryIndex = await getRegistryIndex();
 
 			const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 			if (!existsSync(componentDir)) {
-				logger.error(`Component dir '${componentDir}' does not exist.`);
-				process.exitCode = 1;
-				return;
+				p.cancel(`Component directory '${componentDir}' does not exist.`);
+				process.exit(1);
 			}
 
 			const existingComponents: typeof registryIndex = [];
@@ -104,27 +100,21 @@ export const update = new Command()
 			}
 
 			if (existingComponents.length === 0) {
-				logger.info(`No shadcn components detected in '${componentDir}'.`);
-				process.exitCode = 0;
-				return;
+				p.log.info(`No shadcn components detected in '${componentDir}'.`);
+				process.exit(0);
 			}
 
 			// If user didn't specify any component arguments
 			if (selectedComponents.length === 0) {
-				selectedComponents = await promptForComponents(
-					existingComponents,
-					"Which component(s) would you like to update?"
-				);
+				selectedComponents = await promptForComponents(existingComponents);
 			}
 
-			const spinner = ora(
-				`Updating ${selectedComponents.length} component(s) and dependencies...`
-			).start();
+			const spinner = p.spinner();
+			spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies...`);
 
 			if (selectedComponents.length === 0) {
-				spinner.info("No components selected. Nothing to update.");
-				process.exitCode = 0;
-				return;
+				spinner.stop("No components selected. Nothing to update.");
+				process.exit(0);
 			}
 
 			// `update utils` - update the utils.(ts|js) file
@@ -133,9 +123,9 @@ export const update = new Command()
 				const utilsPath = config.resolvedPaths.utils + extension;
 
 				if (!existsSync(utilsPath)) {
-					spinner.fail(`utils at ${logger.highlight(utilsPath)} does not exist.`);
-					process.exitCode = 1;
-					return;
+					spinner.stop(`utils at ${highlight(utilsPath)} does not exist.`);
+					p.cancel(`utils at ${highlight(utilsPath)} does not exist.`);
+					process.exit(1);
 				}
 
 				// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
@@ -146,15 +136,11 @@ export const update = new Command()
 				registryIndex,
 				selectedComponents.map((com) => com.name)
 			);
-			const payload = (await fetchTree(config, tree)).sort((a, b) =>
-				a.name.localeCompare(b.name)
-			);
+			const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 			const componentsToRemove: Record<string, string[]> = {};
 			for (const [index, item] of payload.entries()) {
-				spinner.text = `Updating ${logger.highlight(item.name)} (${index + 1}/${
-					payload.length
-				})...`;
+				spinner.message(`Updating ${highlight(item.name)} (${index + 1}/${payload.length})...`);
 				const targetDir = await getItemTargetPath(config, item);
 
 				if (!targetDir) {
@@ -197,41 +183,45 @@ export const update = new Command()
 					});
 				}
 			}
-			spinner.succeed("Done.");
+			spinner.stop("Finished updating");
 
 			for (const [component, files] of Object.entries(componentsToRemove)) {
-				logger.warn(
-					`\nThe ${logger.highlight(
-						component
-					)} component does not use the following files:`
-				);
-				logger.warn(
-					files.map((file) => chalk.white(`- ${path.relative(cwd, file)}`)).join("\n")
-				);
+				p.log.warn(`\nThe ${highlight(component)} component does not use the following files:`);
+				p.log.warn(files.map((file) => color.white(`- ${path.relative(cwd, file)}`)).join("\n"));
 			}
-			if (Object.keys(componentsToRemove)) {
-				logger.warn("\nYou may want to remove them.");
+			if (Object.keys(componentsToRemove).length > 0) {
+				p.log.warn("\nYou may want to remove them.");
 			}
+			p.note(
+				"This command does not update your dependencies to latest - consider updating them as well."
+			);
+
+			p.outro("Update completed.");
 		} catch (e) {
 			handleError(e);
 		}
 	});
 
-async function promptForComponents(
-	components: RegistryItem[],
-	message: string
-): Promise<RegistryItem[]> {
-	const { components: selectedComponents } = await prompts({
-		type: "multiselect",
-		name: "components",
-		message,
-		hint: "<SPACE> to select. <A> to select all.",
-		instructions: false,
-		choices: components.map((component) => ({
-			title: component.name,
-			value: component,
-		})),
-	});
+async function promptForComponents(components: RegistryItem[]): Promise<RegistryItem[]> {
+	const { selectedComponents } = await p.group(
+		{
+			selectedComponents: () =>
+				p.multiselect({
+					message: "Which components would you like to update?",
+					maxItems: 10,
+					options: components.map((component) => ({
+						label: component.name,
+						value: component,
+					})),
+				}),
+		},
+		{
+			onCancel: () => {
+				p.cancel("Operation cancelled.");
+				process.exit(0);
+			},
+		}
+	);
 
 	return selectedComponents;
 }
