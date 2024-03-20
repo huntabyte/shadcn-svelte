@@ -106,7 +106,7 @@ export async function fetchTree(config: Config, tree: z.infer<typeof schemas.reg
 	}
 }
 
-export async function getItemTargetPath(
+export function getItemTargetPath(
 	config: Config,
 	item: Pick<z.infer<typeof schemas.registryItemWithContentSchema>, "type">,
 	override?: string

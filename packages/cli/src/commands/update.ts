@@ -190,7 +190,7 @@ async function runUpdate(
 	for (const item of payload) {
 		const updateSpinner = p.spinner();
 		updateSpinner.start(`Updating ${highlight(item.name)}`);
-		const targetDir = await getItemTargetPath(config, item);
+		const targetDir = getItemTargetPath(config, item);
 
 		if (!targetDir) {
 			continue;
