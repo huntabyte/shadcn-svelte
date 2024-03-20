@@ -53,7 +53,7 @@ export const init = new Command()
 				!config.aliases.components.startsWith("$lib") ||
 				!config.aliases.utils.startsWith("$lib")
 			) {
-				p.note("Don't forget to add the aliases you configured to your svelte.config.js!");
+				p.note("Don't forget to add the import aliases you configured to your svelte.config.js!");
 			}
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
