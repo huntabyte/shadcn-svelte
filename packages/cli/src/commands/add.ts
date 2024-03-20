@@ -126,6 +126,21 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 		process.exit(0);
 	}
 
+	if (options.overwrite === false) {
+		const overwrite = await p.confirm({
+			message: `Would you like to ${color.bold.red("overwrite")} existing components?`,
+			active: "Yes, overwrite everything",
+			inactive: "No, let me choose individually",
+		});
+
+		if (p.isCancel(overwrite)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		options.overwrite = overwrite;
+	}
+
 	if (options.yes === false) {
 		const proceed = await p.confirm({
 			message: `Ready to install ${highlight("components")}${options.nodep ? "?" : ` and ${highlight("dependencies")}?`}`,
