@@ -141,7 +141,6 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
 
-	// TODO: registryDependencies are not considered
 	for (const item of payload) {
 		const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 		const targetDir = await getItemTargetPath(config, item, targetPath);
@@ -161,7 +160,8 @@ async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOp
 			return existsSync(path.resolve(targetDir, item.name, file.name));
 		});
 
-		if (existingComponent.length && !options.overwrite) {
+		if (!options.overwrite && existingComponent.length > 0) {
+			// Only confirm overwrites for selected components and not transitive dependencies
 			if (selectedComponents.includes(item.name)) {
 				p.log.warn(
 					`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
