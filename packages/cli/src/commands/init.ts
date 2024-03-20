@@ -26,7 +26,7 @@ const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 export const init = new Command()
 	.command("init")
-	.description("Configure your SvelteKit project.")
+	.description("initialize your project and install dependencies")
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
