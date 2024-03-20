@@ -1,11 +1,11 @@
 import path from "node:path";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import fetch from "node-fetch";
-import type { RequestInit } from "node-fetch";
 import * as z from "zod";
-import { Config } from "../get-config.js";
-import { getEnvProxy } from "../get-env-proxy.js";
+import type { RequestInit } from "node-fetch";
 import * as schemas from "./schema.js";
+import { getEnvProxy } from "../get-env-proxy.js";
+import type { Config } from "../get-config.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
