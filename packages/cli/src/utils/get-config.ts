@@ -1,13 +1,13 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 import color from "chalk";
 import { execa } from "execa";
 import { parseNative } from "tsconfck";
 import * as z from "zod";
-import { find } from "./find-tsconfig";
-import { isUsingSvelteKit } from "./get-package-info";
-import { getPackageManager } from "./get-package-manager";
-import { resolveImport } from "./resolve-imports";
+import { find } from "./find-tsconfig.js";
+import { isUsingSvelteKit } from "./get-package-info.js";
+import { getPackageManager } from "./get-package-manager.js";
+import { resolveImport } from "./resolve-imports.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";

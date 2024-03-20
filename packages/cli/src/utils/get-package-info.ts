@@ -1,7 +1,7 @@
 // Credit to @shadcn for the original code. It has been slightly modified to fit the needs of this project.
 
-import path from "path";
-import { fileURLToPath } from "url";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
 import { type PackageJson } from "type-fest";
 

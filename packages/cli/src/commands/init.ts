@@ -1,6 +1,5 @@
-import { existsSync, promises as fs } from "fs";
-import path from "path";
-import type { Config } from "../utils/get-config";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
@@ -14,8 +13,9 @@ import {
 	rawConfigSchema,
 	resolveConfigPaths,
 } from "../utils/get-config";
-import { getPackageManager } from "../utils/get-package-manager";
-import { handleError } from "../utils/handle-error";
+import type { Config } from "../utils/get-config.js";
+import { getPackageManager } from "../utils/get-package-manager.js";
+import { handleError } from "../utils/handle-error.js";
 import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";

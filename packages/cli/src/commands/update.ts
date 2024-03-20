@@ -3,7 +3,7 @@ import path from "path";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import { z } from "zod";
+import * as z from "zod";
 import { getConfig, type Config } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";

@@ -1,5 +1,5 @@
 import MagicString from "magic-string";
-import { Config } from "./get-config";
+import { Config } from "./get-config.js";
 
 export type TransformOpts = {
 	filename: string;

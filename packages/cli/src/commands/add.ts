@@ -1,9 +1,9 @@
-import { existsSync, promises as fs } from "fs";
-import path from "path";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import { z } from "zod";
+import * as z from "zod";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
