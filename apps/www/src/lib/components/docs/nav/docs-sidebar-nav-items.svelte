@@ -13,7 +13,7 @@
 				<a
 					href={item.href}
 					class={cn(
-						"w-full rounded-md border border-transparent px-2 py-1 hover:underline",
+						"group w-full rounded-md border border-transparent px-2 py-1",
 						item.disabled && "cursor-not-allowed opacity-60",
 						$page.url.pathname === item.href
 							? "font-medium text-foreground"
@@ -22,7 +22,7 @@
 					target={item.external ? "_blank" : ""}
 					rel={item.external ? "noreferrer" : ""}
 				>
-					{item.title}
+					<span class="group-hover:underline">{item.title}</span>
 					{#if item.label}
 						<span
 							class="inline-block ml-1 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000]"
