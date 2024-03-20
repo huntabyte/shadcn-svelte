@@ -216,7 +216,7 @@ async function runUpdate(
 
 		for (const file of item.files) {
 			const filePath = path.resolve(targetDir, item.name, file.name);
-
+      
 			// Run transformers.
 			const content = transformImports(file.content, config);
 
