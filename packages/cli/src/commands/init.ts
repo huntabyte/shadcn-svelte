@@ -40,8 +40,7 @@ export const init = new Command()
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
 				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
-				process.exitCode = 1;
-				return;
+				process.exit(1);
 			}
 
 			// Read config.
