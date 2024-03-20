@@ -25,6 +25,7 @@ const updateOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
 	cwd: z.string(),
 	proxy: z.string().optional(),
+	yes: z.boolean(),
 });
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -33,6 +34,7 @@ export const update = new Command()
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-a, --all", "update all existing components.", false)
+	.option("-y, --yes", "skip confirmation prompt.", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy.")
 	.option(
 		"-c, --cwd <cwd>",
@@ -42,7 +44,7 @@ export const update = new Command()
 	.action(async (components, opts) => {
 		intro();
 		p.note(
-			"This command will overwrite existing files.\nMake sure you have committed your changes before proceeding."
+			"This command will overwrite existing files.\n\nMake sure you have committed your changes before proceeding."
 		);
 
 		try {
@@ -168,13 +170,20 @@ async function runUpdate(
 		p.log.step(`Components to update:\n${color.gray(prettyList)}`);
 	}
 
+	if (options.yes === false) {
+		const proceed = await p.confirm({
+			message: `Ready to update ${highlight("components")}?`,
+			initialValue: true,
+		});
+
+		if (p.isCancel(proceed) || proceed === false) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+	}
+
 	const spinner = p.spinner();
 	spinner.start(`Updating ${selectedComponents.length} component(s) and dependencies`);
-
-	if (selectedComponents.length === 0) {
-		spinner.stop("No components selected. Nothing to update.");
-		process.exit(0);
-	}
 
 	// `update utils` - update the utils.(ts|js) file
 	if (selectedComponents.find((item) => item.name === "utils")) {
@@ -242,7 +251,7 @@ async function runUpdate(
 			});
 		}
 	}
-	spinner.stop("Finished updating");
+	spinner.stop("Components updated");
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(
