@@ -1,15 +1,12 @@
 import path from "node:path";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import fetch from "node-fetch";
 import * as z from "zod";
-import type { RequestInit } from "node-fetch";
+import fetch from "node-fetch";
+import { HttpsProxyAgent } from "https-proxy-agent";
 import * as schemas from "./schema.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { Config } from "../get-config.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
-
-const proxyUrl = getEnvProxy();
 
 export type RegistryItem = z.infer<typeof schemas.registryItemSchema>;
 
@@ -125,16 +122,12 @@ export function getItemTargetPath(
 }
 
 async function fetchRegistry(paths: string[]) {
+	const proxyUrl = getEnvProxy();
+	const agent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
 	try {
-		let options: RequestInit = {};
-
-		if (proxyUrl) {
-			options.agent = new HttpsProxyAgent(proxyUrl);
-		}
-
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const response = await fetch(`${baseUrl}/registry/${path}`, options);
+				const response = await fetch(`${baseUrl}/registry/${path}`, { agent });
 				return await response.json();
 			})
 		);
