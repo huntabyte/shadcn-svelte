@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 0.9.0
+
+### Minor Changes
+
+- 66931b3: feat: Added support for the `--proxy` flag to the `update` command
+- 66931b3: feat: Graphical overhaul, replacing `prompts` for `@clack/prompts`
+- 66931b3: feat: Added a prompt to overwrite existing components to the `add` command
+
+### Patch Changes
+
+- 66931b3: perf: Optimized dependency installation
+
 ## 0.8.3
 
 ### Patch Changes
