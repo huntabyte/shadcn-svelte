@@ -57,7 +57,7 @@
 				<Button
 					variant="ghost"
 					builders={[builder]}
-					class="data-[state=open]:bg-accent -ml-3 h-8"
+					class="-ml-3 h-8 data-[state=open]:bg-accent"
 					size="sm"
 				>
 					<slot />
@@ -72,16 +72,16 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
 				<DropdownMenu.Item on:click={handleAscSort}>
-					<ArrowUp class="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
+					<ArrowUp class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
 					Asc
 				</DropdownMenu.Item>
 				<DropdownMenu.Item on:click={handleDescSort}>
-					<ArrowDown class="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
+					<ArrowDown class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item on:click={handleHide}>
-					<EyeNone class="text-muted-foreground/70 mr-2 h-3.5 w-3.5" />
+					<EyeNone class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>
