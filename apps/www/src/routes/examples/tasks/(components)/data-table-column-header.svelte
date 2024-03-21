@@ -37,7 +37,11 @@
 		if (props.sort.order === "desc") {
 			return;
 		}
-		props.sort.toggle(e);
+		if (props.sort.order === undefined) {
+			// We can only toggle, so we toggle from undefined to 'asc' first
+			props.sort.toggle(e);
+		}
+		props.sort.toggle(e); // Then we toggle from 'asc' to 'desc'
 	}
 
 	function handleHide() {
