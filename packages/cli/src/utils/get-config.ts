@@ -1,14 +1,13 @@
-import { promises as fs } from "fs";
-import path from "path";
-import chalk from "chalk";
+import { promises as fs } from "node:fs";
+import path from "node:path";
+import color from "chalk";
 import { execa } from "execa";
 import { parseNative } from "tsconfck";
 import * as z from "zod";
-import { find } from "./find-tsconfig";
-import { isUsingSvelteKit } from "./get-package-info";
-import { getPackageManager } from "./get-package-manager";
-import { logger } from "./logger";
-import { resolveImport } from "./resolve-imports";
+import { find } from "./find-tsconfig.js";
+import { isUsingSvelteKit } from "./get-package-info.js";
+import { getPackageManager } from "./get-package-manager.js";
+import { resolveImport } from "./resolve-imports.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
@@ -17,6 +16,8 @@ export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
+
+const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 export const rawConfigSchema = z
 	.object({
@@ -84,7 +85,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (tsconfigPath === null) {
 		const configToFind = config.typescript ? "tsconfig.json" : "jsconfig.json";
-		throw new Error(`Failed to find ${logger.highlight(configToFind)}.`);
+		throw new Error(`Failed to find ${highlight(configToFind)}.`);
 	}
 
 	const parsedConfig = await parseNative(tsconfigPath);
@@ -94,9 +95,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
-			`Specify a ${logger.highlight("paths")} field in your ${logger.highlight(
+			`Specify a ${highlight("paths")} field in your ${highlight(
 				"tsconfig.json"
-			)} and define your path aliases. \n\nSee: ${chalk.green(
+			)} and define your path aliases. \n\nSee: ${color.green(
 				"https://www.shadcn-svelte.com/docs/installation#setup-path-aliases"
 			)}`
 		);
@@ -138,6 +139,6 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
 		return rawConfigSchema.parse(config);
 	} catch (error) {
-		throw new Error(`Invalid configuration found in ${logger.highlight(configPath)}.`);
+		throw new Error(`Invalid configuration found in ${highlight(configPath)}.`);
 	}
 }

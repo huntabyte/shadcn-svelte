@@ -1,7 +1,7 @@
 // Sourced from tsconfck v2
 
-import { promises as fs } from "fs";
-import path from "path";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 /**
  * find the closest tsconfig.json file
