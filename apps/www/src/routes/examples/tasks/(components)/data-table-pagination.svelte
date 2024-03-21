@@ -18,7 +18,7 @@
 </script>
 
 <div class="flex items-center justify-between px-2">
-	<div class="flex-1 text-sm text-muted-foreground">
+	<div class="text-muted-foreground flex-1 text-sm">
 		{Object.keys($selectedDataIds).length} of{" "}
 		{$rows.length} row(s) selected.
 	</div>
@@ -29,7 +29,7 @@
 				onSelectedChange={(selected) => pageSize.set(Number(selected?.value))}
 				selected={{ value: 10, label: "10" }}
 			>
-				<Select.Trigger class="w-[180px]">
+				<Select.Trigger class="h-8 w-[70px]">
 					<Select.Value placeholder="Select page size" />
 				</Select.Trigger>
 				<Select.Content>
