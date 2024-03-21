@@ -180,10 +180,12 @@
 								>
 									<Table.Head {...attrs}>
 										{#if cell.id !== "select" && cell.id !== "actions"}
-											<DataTableColumnHeader {props}
-												><Render
-													of={cell.render()}
-												/></DataTableColumnHeader
+											<DataTableColumnHeader
+												{props}
+												{tableModel}
+												cellId={cell.id}
+											>
+												<Render of={cell.render()} /></DataTableColumnHeader
 											>
 										{:else}
 											<Render of={cell.render()} />

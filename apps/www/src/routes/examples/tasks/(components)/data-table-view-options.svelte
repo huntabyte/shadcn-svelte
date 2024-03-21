@@ -9,13 +9,14 @@
 	const { pluginStates, flatColumns } = tableModel;
 	const { hiddenColumnIds } = pluginStates.hide;
 
-	const ids = flatColumns.map((col: { id: string }) => col.id);
-
-	let hideForId = Object.fromEntries(ids.map((id: string) => [id, true]));
-
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => !hide)
-		.map(([id]) => id);
+	function handleHide(id: string) {
+		hiddenColumnIds.update((ids: string[]) => {
+			if (ids.includes(id)) {
+				return ids.filter((i) => i !== id);
+			}
+			return [...ids, id];
+		});
+	}
 
 	const hidableCols = ["title", "status", "priority"];
 </script>
@@ -32,7 +33,10 @@
 		<DropdownMenu.Separator />
 		{#each flatColumns as col}
 			{#if hidableCols.includes(col.id)}
-				<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
+				<DropdownMenu.CheckboxItem
+					checked={!$hiddenColumnIds.includes(col.id)}
+					on:click={() => handleHide(col.id)}
+				>
 					{col.header}
 				</DropdownMenu.CheckboxItem>
 			{/if}
