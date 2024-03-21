@@ -35,16 +35,12 @@
 	"scripts": {
 		"dev": "tsup --watch",
 		"build": "tsup --minify",
-		"typecheck": "tsc --noEmit",
+		"check": "tsc --noEmit",
 		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 node dist/index.js",
 		"start": "node dist/index.js",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"release": "changeset version",
-		"pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
-		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
-		"pub:release": "pnpm build && pnpm publish --access public",
-		"temp": "pnpm build && pnpm start config",
 		"test": "vitest"
 	},
 	"dependencies": {
