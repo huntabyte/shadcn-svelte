@@ -38,7 +38,7 @@ export const Index = {
 
 		// Build style index.
 		for (const item of result.data) {
-			if (item.type === "components:ui") {
+			if (item.type === "components:ui" || item.style !== "default") {
 				continue;
 			}
 
