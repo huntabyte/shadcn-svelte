@@ -2,7 +2,7 @@
 	"name": "select",
 	"dependencies": [
 		"bits-ui",
-		"lucide-svelte"
+		"svelte-radix"
 	],
 	"registryDependencies": [],
 	"files": [

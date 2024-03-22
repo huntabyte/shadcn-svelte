@@ -3,7 +3,7 @@
 	"dependencies": [
 		"cmdk-sv",
 		"bits-ui",
-		"lucide-svelte"
+		"svelte-radix"
 	],
 	"registryDependencies": [
 		"dialog"

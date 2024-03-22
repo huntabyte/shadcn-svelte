@@ -1,7 +1,7 @@
 {
 	"name": "pagination",
 	"dependencies": [
-		"lucide-svelte",
+		"svelte-radix",
 		"bits-ui"
 	],
 	"registryDependencies": [

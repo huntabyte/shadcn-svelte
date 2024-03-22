@@ -3,7 +3,7 @@
 	"dependencies": [
 		"bits-ui",
 		"@internationalized/date",
-		"lucide-svelte"
+		"svelte-radix"
 	],
 	"registryDependencies": [
 		"button"

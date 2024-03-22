@@ -2,7 +2,7 @@
 	"name": "accordion",
 	"dependencies": [
 		"bits-ui",
-		"lucide-svelte"
+		"svelte-radix"
 	],
 	"registryDependencies": [],
 	"files": [
