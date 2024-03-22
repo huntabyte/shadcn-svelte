@@ -10,7 +10,7 @@
 	import { cn } from "$lib/utils.js";
 
 	export let data: PageData;
-	$: MarkdownContent = data.component;
+	$: markdown = data.component;
 	$: doc = data.metadata;
 	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
 </script>
@@ -59,7 +59,7 @@
 			</div>
 		{/if}
 		<div class="markdown pb-12 pt-8" id="markdown">
-			<MarkdownContent form={data.form} />
+			<svelte:component this={markdown} form={data.form} />
 		</div>
 		<DocsPager />
 	</div>
