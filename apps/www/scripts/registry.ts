@@ -4,6 +4,7 @@ import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
 
+// [Dependency, [...PeerDependencies]]
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
@@ -13,6 +14,7 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["embla-carousel-svelte", []],
 	["paneforge", []],
 ]);
+const ICON_DEPENDENCIES = ["lucide-svelte", "svelte-radix"];
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
@@ -158,6 +160,11 @@ async function getDependencies(filename: string) {
 				if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
 					const component = source.split("/").at(-2)!;
 					registryDependencies.add(component);
+				}
+
+				const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
+				if (iconDep !== undefined) {
+					dependencies.add(iconDep);
 				}
 			}
 		},
