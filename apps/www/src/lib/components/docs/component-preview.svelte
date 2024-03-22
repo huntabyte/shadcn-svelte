@@ -15,8 +15,7 @@
 
 	$: component = Index[$config.style][name]?.component() as Promise<ComponentType>;
 
-	/* eslint-disable @typescript-eslint/no-explicit-any */
-	export let form: any;
+	export let form: unknown;
 
 	export let style = "";
 </script>

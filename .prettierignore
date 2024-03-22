@@ -12,3 +12,12 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 CHANGELOG.md
+
+
+
+# docs site specific
+apps/www/src/__registry__/index.js
+apps/www/other/themes/dark.json
+apps/www/other/themes/light.json
+apps/www/static
+
