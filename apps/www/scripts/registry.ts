@@ -1,5 +1,5 @@
-import { readdir, readFile } from "node:fs/promises";
-import { resolve, join } from "node:path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { parse, preprocess, walk } from "svelte/compiler";
 import config from "../svelte.config";
 import type { Registry } from "../src/lib/registry";
@@ -28,17 +28,26 @@ type ArrayItem<T> = T extends Array<infer X> ? X : never;
 type RegistryItem = ArrayItem<Registry>;
 
 export async function buildRegistry() {
-	const ui_path = resolve("./src/lib/registry/default/ui");
-	const uiRegistry = await crawlUI(ui_path);
+	const registryRootPath = path.resolve("src", "lib", "registry");
+	const rootDirs = await fs.readdir(registryRootPath, { withFileTypes: true });
+	const styles = rootDirs.filter((dirent) => dirent.isDirectory()).map((dirent) => dirent.name);
+	const registry: Registry = [];
 
-	const example_path = resolve("./src/lib/registry/default/example");
-	const exampleRegistry = await crawlExample(example_path);
+	for (const style of styles) {
+		const uiPath = path.resolve(registryRootPath, style, "ui");
+		const uiRegistry = await crawlUI(uiPath, style);
 
-	return uiRegistry.concat(exampleRegistry);
+		const examplePath = path.resolve(registryRootPath, style, "example");
+		const exampleRegistry = await crawlExample(examplePath, style);
+
+		registry.push(...uiRegistry, ...exampleRegistry);
+	}
+
+	return registry;
 }
 
-async function crawlUI(rootPath: string) {
-	const dir = await readdir(rootPath, {
+async function crawlUI(rootPath: string, style: string) {
+	const dir = await fs.readdir(rootPath, {
 		recursive: true,
 		withFileTypes: true,
 	});
@@ -48,19 +57,18 @@ async function crawlUI(rootPath: string) {
 	for (const dirent of dir) {
 		if (!dirent.isDirectory()) continue;
 
-		const componentPath = resolve(rootPath, dirent.name);
-
-		const ui = await buildUIRegistry(componentPath, dirent.name);
+		const componentPath = path.resolve(rootPath, dirent.name);
+		const ui = await buildUIRegistry(componentPath, dirent.name, style);
 		uiRegistry.push(ui);
 	}
 
 	return uiRegistry;
 }
 
-async function crawlExample(rootPath: string) {
+async function crawlExample(rootPath: string, style: string) {
 	const type = "components:example";
 
-	const dir = await readdir(rootPath, {
+	const dir = await fs.readdir(rootPath, {
 		// recursive: true, // ignoring examples with directories for now...
 		withFileTypes: true,
 	});
@@ -72,15 +80,19 @@ async function crawlExample(rootPath: string) {
 
 		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
 			const [name] = dirent.name.split(".svelte");
-			const file_path = join("example", dirent.name);
-			const { dependencies, registryDependencies } = await getDependencies(
-				join(rootPath, dirent.name)
-			);
+
+			const filepath = path.join(rootPath, dirent.name);
+			const source = await fs.readFile(filepath, { encoding: "utf8" });
+			const relativePath = path.join("example", dirent.name);
+
+			const file = { name: dirent.name, content: source, path: relativePath };
+			const { dependencies, registryDependencies } = await getDependencies(filepath, source);
 
 			exampleRegistry.push({
 				name,
 				type,
-				files: [file_path],
+				style,
+				files: [file],
 				registryDependencies: Array.from(registryDependencies),
 				dependencies: Array.from(dependencies),
 			});
@@ -101,12 +113,12 @@ async function crawlExample(rootPath: string) {
 	return exampleRegistry;
 }
 
-async function buildUIRegistry(componentPath: string, componentName: string) {
-	const dir = await readdir(componentPath, {
+async function buildUIRegistry(componentPath: string, componentName: string, style: string) {
+	const dir = await fs.readdir(componentPath, {
 		withFileTypes: true,
 	});
 
-	const files: string[] = [];
+	const files = [];
 	const dependencies = new Set<string>();
 	const registryDependencies = new Set<string>();
 	const type = "components:ui";
@@ -114,12 +126,15 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
 
-		const file_path = join("ui", componentName, dirent.name);
-		files.push(file_path);
+		const filepath = path.join(componentPath, dirent.name);
+		const relativePath = path.join("ui", componentName, dirent.name);
+		const source = await fs.readFile(filepath, { encoding: "utf8" });
+
+		files.push({ name: dirent.name, content: source, path: relativePath });
 
 		// only grab deps from the svelte files
 		if (!dirent.name.endsWith(".svelte")) continue;
-		const deps = await getDependencies(join(componentPath, dirent.name));
+		const deps = await getDependencies(filepath, source);
 
 		deps.dependencies.forEach((dep) => dependencies.add(dep));
 		REQUIRED_COMPONENT_DEPS.get(componentName)?.forEach((dep) => dependencies.add(dep));
@@ -128,17 +143,16 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	}
 
 	return {
-		name: componentName,
+		style,
 		type,
 		files,
+		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
 		dependencies: Array.from(dependencies),
 	} satisfies RegistryItem;
 }
 
-async function getDependencies(filename: string) {
-	const source = await readFile(filename, { encoding: "utf8" });
-
+async function getDependencies(filename: string, source: string) {
 	const { code } = await preprocess(source, config.preprocess, { filename });
 	const ast = parse(code, { filename });
 
