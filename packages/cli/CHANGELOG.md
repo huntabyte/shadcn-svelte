@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.9.2
+
+### Patch Changes
+
+- 7f39dbf: fix: Icons are now installed in the `add` command
+
 ## 0.9.1
 
 ### Patch Changes
