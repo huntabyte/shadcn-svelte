@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-chore: Cleaned up dependencies
+chore: Optimized dependencies
