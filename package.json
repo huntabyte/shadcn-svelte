@@ -29,7 +29,8 @@
     "ci:release": "pnpm ci:build && pnpm ci:publish"
   },
   "engines": {
-    "pnpm": ">=8"
+    "pnpm": ">=8",
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
