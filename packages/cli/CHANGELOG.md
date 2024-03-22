@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 0.9.1
+
+### Patch Changes
+
+- 8c43ad3: chore: Optimized dependencies and minified package
+- 8c43ad3: chore: Replaced `zod` for `valibot`
+
 ## 0.9.0
 
 ### Minor Changes
