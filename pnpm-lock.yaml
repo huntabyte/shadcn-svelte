@@ -414,9 +414,6 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
-      magic-string:
-        specifier: ^0.30.8
-        version: 0.30.8
       prettier:
         specifier: ^3.0.0
         version: 3.2.5

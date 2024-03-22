@@ -54,7 +54,6 @@
 	"devDependencies": {
 		"@types/node": "^18.19.22",
 		"cross-env": "^7.0.3",
-		"magic-string": "^0.30.8",
 		"prettier": "^3.0.0",
 		"sisteransi": "^1.0.5",
 		"tsconfck": "^2.1.2",
