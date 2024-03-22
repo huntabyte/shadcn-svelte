@@ -48,8 +48,7 @@
 		"https-proxy-agent": "^7.0.4",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch": "^3.3.2",
-		"tsconfig-paths": "^4.2.0",
-		"zod": "^3.22.4"
+		"tsconfig-paths": "^4.2.0"
 	},
 	"devDependencies": {
 		"@antfu/ni": "^0.21.12",
@@ -62,6 +61,7 @@
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",
+		"valibot": "^0.30.0",
 		"vitest": "^0.34.6"
 	},
 	"peerDependencies": {

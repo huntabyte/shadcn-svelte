@@ -3,7 +3,7 @@ import path from "path";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import * as z from "zod";
+import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config";
 import { getPackageManager } from "../utils/get-package-manager";
 import { handleError } from "../utils/handle-error";
@@ -14,14 +14,17 @@ import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 
-const updateOptionsSchema = z.object({
-	all: z.boolean(),
-	components: z.array(z.string()).optional(),
-	cwd: z.string(),
-	proxy: z.string().optional(),
-	yes: z.boolean(),
-});
 const highlight = (msg: string) => color.bold.cyan(msg);
+
+const updateOptionsSchema = v.object({
+	all: v.boolean(),
+	components: v.optional(v.array(v.string())),
+	cwd: v.string(),
+	proxy: v.optional(v.string()),
+	yes: v.boolean(),
+});
+
+type UpdateOptions = v.Output<typeof updateOptionsSchema>;
 
 export const update = new Command()
 	.command("update")
@@ -39,7 +42,7 @@ export const update = new Command()
 		intro();
 
 		try {
-			const options = updateOptionsSchema.parse({
+			const options = v.parse(updateOptionsSchema, {
 				components,
 				...opts,
 			});
@@ -71,11 +74,7 @@ export const update = new Command()
 		}
 	});
 
-async function runUpdate(
-	cwd: string,
-	config: Config,
-	options: z.infer<typeof updateOptionsSchema>
-) {
+async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	const components = options.components;
 
 	const proxy = options.proxy ?? getEnvProxy();

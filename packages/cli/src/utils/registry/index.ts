@@ -1,5 +1,5 @@
 import path from "node:path";
-import * as z from "zod";
+import * as v from "valibot";
 import fetch from "node-fetch";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import * as schemas from "./schema.js";
@@ -8,13 +8,13 @@ import type { Config } from "../get-config.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
-export type RegistryItem = z.infer<typeof schemas.registryItemSchema>;
+export type RegistryItem = v.Output<typeof schemas.registryItemSchema>;
 
 export async function getRegistryIndex() {
 	try {
 		const [result] = await fetchRegistry(["index.json"]);
 
-		return schemas.registryIndexSchema.parse(result);
+		return v.parse(schemas.registryIndexSchema, result);
 	} catch (error) {
 		throw new Error(`Failed to fetch components from registry.`);
 	}
@@ -24,7 +24,7 @@ export async function getRegistryStyles() {
 	try {
 		const [result] = await fetchRegistry(["styles/index.json"]);
 
-		return schemas.stylesSchema.parse(result);
+		return v.parse(schemas.stylesSchema, result);
 	} catch (error) {
 		throw new Error(`Failed to fetch styles from registry.`);
 	}
@@ -59,17 +59,15 @@ export async function getRegistryBaseColor(baseColor: string) {
 	try {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
-		return schemas.registryBaseColorSchema.parse(result);
+		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (error) {
 		throw new Error(`Failed to fetch base color from registry.`);
 	}
 }
 
-export async function resolveTree(
-	index: z.infer<typeof schemas.registryIndexSchema>,
-	names: string[]
-) {
-	const tree: z.infer<typeof schemas.registryIndexSchema> = [];
+type RegistryIndex = v.Output<typeof schemas.registryIndexSchema>;
+export async function resolveTree(index: RegistryIndex, names: string[]) {
+	const tree: RegistryIndex = [];
 
 	for (const name of names) {
 		const entry = index.find((entry) => entry.name === name);
@@ -91,13 +89,13 @@ export async function resolveTree(
 	);
 }
 
-export async function fetchTree(config: Config, tree: z.infer<typeof schemas.registryIndexSchema>) {
+export async function fetchTree(config: Config, tree: RegistryIndex) {
 	try {
 		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
 		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
 		const result = await fetchRegistry(paths);
 
-		return schemas.registryWithContentSchema.parse(result);
+		return v.parse(schemas.registryWithContentSchema, result);
 	} catch (error) {
 		throw new Error(`Failed to fetch tree from registry.`);
 	}
@@ -105,7 +103,7 @@ export async function fetchTree(config: Config, tree: z.infer<typeof schemas.reg
 
 export function getItemTargetPath(
 	config: Config,
-	item: Pick<z.infer<typeof schemas.registryItemWithContentSchema>, "type">,
+	item: Pick<v.Output<typeof schemas.registryItemWithContentSchema>, "type">,
 	override?: string
 ) {
 	// Allow overrides for all items but ui.

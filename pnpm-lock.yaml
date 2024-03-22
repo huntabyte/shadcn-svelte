@@ -404,9 +404,6 @@ importers:
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
     devDependencies:
       '@antfu/ni':
         specifier: ^0.21.12
@@ -438,6 +435,9 @@ importers:
       typescript:
         specifier: ^5.0.0
         version: 5.3.3
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
       vitest:
         specifier: ^0.34.6
         version: 0.34.6
@@ -7989,6 +7989,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /valibot@0.30.0:
+    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
+    dev: true
 
   /validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
