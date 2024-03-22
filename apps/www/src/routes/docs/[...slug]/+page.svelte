@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { config } from "$lib/stores/index.js";
-	import type { SvelteComponent } from "svelte";
 	import type { PageData } from "./$types.js";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import Code from "svelte-radix/Code.svelte";
@@ -11,9 +10,7 @@
 	import { cn } from "$lib/utils.js";
 
 	export let data: PageData;
-	// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any
-	type Component = $$Generic<typeof SvelteComponent<any, any, any>>;
-	$: component = data.component as unknown as Component;
+	$: MarkdownContent = data.component;
 	$: doc = data.metadata;
 	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
 </script>
@@ -62,7 +59,7 @@
 			</div>
 		{/if}
 		<div class="markdown pb-12 pt-8" id="markdown">
-			<svelte:component this={component} form={data.form} />
+			<MarkdownContent form={data.form} />
 		</div>
 		<DocsPager />
 	</div>
