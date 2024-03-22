@@ -1,7 +1,8 @@
 {
 	"name": "dialog",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui",
+		"lucide-svelte"
 	],
 	"registryDependencies": [],
 	"files": [

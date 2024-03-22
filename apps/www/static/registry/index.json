@@ -2,7 +2,8 @@
 	{
 		"name": "accordion",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -85,7 +86,9 @@
 	},
 	{
 		"name": "breadcrumb",
-		"dependencies": [],
+		"dependencies": [
+			"lucide-svelte"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/breadcrumb/breadcrumb-ellipsis.svelte",
@@ -115,7 +118,8 @@
 		"name": "calendar",
 		"dependencies": [
 			"bits-ui",
-			"@internationalized/date"
+			"@internationalized/date",
+			"lucide-svelte"
 		],
 		"registryDependencies": [
 			"button"
@@ -156,7 +160,8 @@
 	{
 		"name": "carousel",
 		"dependencies": [
-			"embla-carousel-svelte"
+			"embla-carousel-svelte",
+			"lucide-svelte"
 		],
 		"registryDependencies": [
 			"button"
@@ -175,7 +180,8 @@
 	{
 		"name": "checkbox",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -200,7 +206,8 @@
 		"name": "command",
 		"dependencies": [
 			"cmdk-sv",
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [
 			"dialog"
@@ -222,7 +229,8 @@
 	{
 		"name": "context-menu",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -243,7 +251,8 @@
 	{
 		"name": "dialog",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -280,7 +289,8 @@
 	{
 		"name": "dropdown-menu",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -359,7 +369,8 @@
 	{
 		"name": "menubar",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -381,6 +392,7 @@
 	{
 		"name": "pagination",
 		"dependencies": [
+			"lucide-svelte",
 			"bits-ui"
 		],
 		"registryDependencies": [
@@ -425,7 +437,8 @@
 	{
 		"name": "radio-group",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -439,7 +452,8 @@
 		"name": "range-calendar",
 		"dependencies": [
 			"bits-ui",
-			"@internationalized/date"
+			"@internationalized/date",
+			"lucide-svelte"
 		],
 		"registryDependencies": [
 			"button"
@@ -465,6 +479,7 @@
 	{
 		"name": "resizable",
 		"dependencies": [
+			"lucide-svelte",
 			"paneforge"
 		],
 		"registryDependencies": [],
@@ -491,7 +506,8 @@
 	{
 		"name": "select",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -519,7 +535,8 @@
 	{
 		"name": "sheet",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui",
+			"lucide-svelte"
 		],
 		"registryDependencies": [],
 		"files": [

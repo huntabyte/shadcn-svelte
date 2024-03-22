@@ -221,12 +221,7 @@ export async function runInit(cwd: string, config: Config) {
 	dependenciesSpinner.start(`Installing dependencies`);
 	const packageManager = await getPackageManager(cwd);
 
-	const deps = [
-		...PROJECT_DEPENDENCIES,
-		config.style === "new-york" ? "svelte-radix" : "lucide-svelte",
-	];
-
-	await execa(packageManager, ["add", ...deps], {
+	await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
 		cwd,
 	});
 	dependenciesSpinner.stop("Dependencies installed");
