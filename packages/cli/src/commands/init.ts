@@ -4,16 +4,7 @@ import color from "chalk";
 import * as v from "valibot";
 import { Command } from "commander";
 import { execa } from "execa";
-import {
-	DEFAULT_COMPONENTS,
-	DEFAULT_TAILWIND_CONFIG,
-	DEFAULT_TAILWIND_CSS,
-	DEFAULT_TYPESCRIPT,
-	DEFAULT_UTILS,
-	getConfig,
-	rawConfigSchema,
-	resolveConfigPaths,
-} from "../utils/get-config";
+import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
 import { handleError } from "../utils/handle-error.js";
@@ -45,7 +36,7 @@ export const init = new Command()
 			}
 
 			// Read config.
-			const existingConfig = await getConfig(cwd);
+			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig);
 
 			await runInit(cwd, config);
@@ -72,7 +63,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			typescript: () =>
 				p.confirm({
 					message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
-					initialValue: defaultConfig?.typescript ?? DEFAULT_TYPESCRIPT,
+					initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
 				}),
 			style: ({}) =>
 				p.select({
@@ -95,8 +86,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindCss: () =>
 				p.text({
 					message: `Where is your ${highlight("global CSS")} file?`,
-					initialValue: defaultConfig?.tailwind.css ?? DEFAULT_TAILWIND_CSS,
-					placeholder: DEFAULT_TAILWIND_CSS,
+					initialValue: defaultConfig?.tailwind.css ?? cliConfig.DEFAULT_TAILWIND_CSS,
+					placeholder: cliConfig.DEFAULT_TAILWIND_CSS,
 					validate: (value) => {
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
@@ -107,8 +98,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindConfig: () =>
 				p.text({
 					message: `Where is your ${highlight("Tailwind config")} located?`,
-					initialValue: defaultConfig?.tailwind.config ?? DEFAULT_TAILWIND_CONFIG,
-					placeholder: DEFAULT_TAILWIND_CONFIG,
+					initialValue: defaultConfig?.tailwind.config ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
+					placeholder: cliConfig.DEFAULT_TAILWIND_CONFIG,
 					validate: (value) => {
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
@@ -119,14 +110,14 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			components: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("components")}:`,
-					initialValue: defaultConfig?.aliases["components"] ?? DEFAULT_COMPONENTS,
-					placeholder: DEFAULT_COMPONENTS,
+					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
+					placeholder: cliConfig.DEFAULT_COMPONENTS,
 				}),
 			utils: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
-					initialValue: defaultConfig?.aliases["utils"] ?? DEFAULT_UTILS,
-					placeholder: DEFAULT_UTILS,
+					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
+					placeholder: cliConfig.DEFAULT_UTILS,
 				}),
 		},
 		{
@@ -137,7 +128,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 		}
 	);
 
-	const config = v.parse(rawConfigSchema, {
+	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
 		typescript: options.typescript,
@@ -158,7 +149,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
 
-	const configPaths = await resolveConfigPaths(cwd, config);
+	const configPaths = await cliConfig.resolveConfigPaths(cwd, config);
 
 	// Write to file.
 	const spinner = p.spinner();
