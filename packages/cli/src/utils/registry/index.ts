@@ -112,6 +112,8 @@ export function getItemTargetPath(
 	}
 
 	const [parent, type] = item.type.split(":");
+	if (!parent || !type) return null;
+
 	if (!(parent in config.resolvedPaths)) {
 		return null;
 	}

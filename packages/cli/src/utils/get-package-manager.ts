@@ -63,7 +63,7 @@ async function detect(cwd: string) {
 	}
 
 	// detect based on lock
-	if (!agent && lockPath) agent = LOCKS[path.basename(lockPath)];
+	if (!agent && lockPath) agent = LOCKS[path.basename(lockPath)]!;
 
 	return agent;
 }

@@ -7,7 +7,7 @@ process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
 const currentVersion = process.versions.node;
-const currentMajorVersion = parseInt(currentVersion.split(".")[0], 10);
+const currentMajorVersion = parseInt(currentVersion.split(".")[0]!, 10);
 const minimumMajorVersion = 18;
 
 if (currentMajorVersion < minimumMajorVersion) {
