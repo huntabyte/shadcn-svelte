@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from "fs";
-import path, { basename } from "path";
+import path from "path";
 import template from "lodash.template";
 import { rimraf } from "rimraf";
 
@@ -38,11 +38,13 @@ export const Index = {
 
 		// Build style index.
 		for (const item of result.data) {
-			if (item.type === "components:ui") {
+			if (item.type === "components:ui" || item.style !== "default") {
 				continue;
 			}
 
-			const resolveFiles = item.files.map((file) => `../lib/registry/${style.name}/${file}`);
+			const resolveFiles = item.files.map(
+				(file) => `../lib/registry/${style.name}/${file.path}`
+			);
 
 			const type = item.type.split(":")[1];
 			index += `
@@ -73,6 +75,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/[style]/[name].json.
 	// ----------------------------------------------------------------------------
+	// Create the style directories.
 	for (const style of styles) {
 		const targetPath = path.join(REGISTRY_PATH, "styles", style.name);
 		const targetJsPath = targetPath + "-js";
@@ -86,71 +89,78 @@ export const Index = {
 		if (!fs.existsSync(targetJsPath)) {
 			fs.mkdirSync(targetJsPath, { recursive: true });
 		}
+	}
 
-		for (const item of result.data) {
-			if (item.type !== "components:ui") {
-				continue;
-			}
+	for (const item of result.data) {
+		if (item.type !== "components:ui") continue;
 
-			const files = item.files?.map((file) => {
-				const content = fs.readFileSync(
-					path.resolve("src", "lib", "registry", style.name, file),
-					"utf8"
-				);
+		const targetPath = path.join(REGISTRY_PATH, "styles", item.style);
+		const targetJsPath = targetPath + "-js";
 
+		// discard `path` prop
+		const files = item.files.map((file) => ({ ...file, path: undefined }));
+
+		const jsFiles = await Promise.all(
+			files.map(async (file) => {
+				const content = await transformContent(file.content, file.name);
+				const fileName = file.name.replace(".ts", ".js");
 				return {
-					name: basename(file),
+					name: fileName,
 					content,
 				};
-			});
+			})
+		);
 
-			const jsFiles = await Promise.all(
-				files.map(async (file) => {
-					const content = await transformContent(file.content, file.name);
-					const fileName = file.name.replace(".ts", ".js");
-					return {
-						name: fileName,
-						content,
-					};
-				})
-			);
+		const payload = {
+			...item,
+			files,
+			style: undefined, // discard `style` prop
+		};
 
-			const payload = {
-				...item,
-				files,
-			};
+		const jsPayload = {
+			...item,
+			files: jsFiles,
+			style: undefined, // discard `style` prop
+		};
 
-			const jsPayload = {
-				...item,
-				files: jsFiles,
-			};
+		fs.writeFileSync(
+			path.join(targetPath, `${item.name}.json`),
+			JSON.stringify(payload, null, "\t"),
+			"utf8"
+		);
 
-			fs.writeFileSync(
-				path.join(targetPath, `${item.name}.json`),
-				JSON.stringify(payload, null, "\t"),
-				"utf8"
-			);
-
-			fs.writeFileSync(
-				path.join(targetJsPath, `${item.name}.json`),
-				JSON.stringify(jsPayload, null, "\t"),
-				"utf8"
-			);
-		}
+		fs.writeFileSync(
+			path.join(targetJsPath, `${item.name}.json`),
+			JSON.stringify(jsPayload, null, "\t"),
+			"utf8"
+		);
 	}
 
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/index.json.
 	// ----------------------------------------------------------------------------
 	const stylesJson = JSON.stringify(styles, null, "\t");
-	fs.writeFileSync(path.join(REGISTRY_PATH, "styles/index.json"), stylesJson, "utf8");
+	fs.writeFileSync(path.join(REGISTRY_PATH, "styles", "index.json"), stylesJson, "utf8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/index.json.
 	// ----------------------------------------------------------------------------
-	const names = result.data.filter(
-		(item) => item.type === "components:ui" && !REGISTRY_IGNORE.includes(item.name)
-	);
+	const names = result.data
+		.filter(
+			(item) =>
+				item.type === "components:ui" &&
+				!REGISTRY_IGNORE.includes(item.name) &&
+				// We'll use the `default` style as the reference for the index
+				item.style === "default"
+		)
+		.map((item) => ({
+			...item,
+			style: undefined, // discard `style`
+			// The `default` style uses `lucide-svelte`, so we'll discard it for the purposes of the index
+			dependencies: item.dependencies.filter((dep) => dep !== "lucide-svelte"),
+			// We only want the relative file paths
+			files: item.files.map((file) => file.path),
+		}));
 	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
 	fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8");
@@ -234,7 +244,7 @@ export const Index = {
 		});
 
 		fs.writeFileSync(
-			path.join(REGISTRY_PATH, `colors/${baseColor}.json`),
+			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
 			JSON.stringify(base, null, "\t"),
 			"utf8"
 		);

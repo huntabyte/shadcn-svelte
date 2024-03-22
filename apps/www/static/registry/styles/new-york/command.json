@@ -2,7 +2,8 @@
 	"name": "command",
 	"dependencies": [
 		"cmdk-sv",
-		"bits-ui"
+		"bits-ui",
+		"svelte-radix"
 	],
 	"registryDependencies": [
 		"dialog"

@@ -1,6 +1,8 @@
 {
 	"name": "breadcrumb",
-	"dependencies": [],
+	"dependencies": [
+		"svelte-radix"
+	],
 	"registryDependencies": [],
 	"files": [
 		{
