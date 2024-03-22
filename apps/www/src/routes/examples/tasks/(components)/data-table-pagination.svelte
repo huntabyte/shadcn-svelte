@@ -29,7 +29,7 @@
 				onSelectedChange={(selected) => pageSize.set(Number(selected?.value))}
 				selected={{ value: 10, label: "10" }}
 			>
-				<Select.Trigger class="w-[180px]">
+				<Select.Trigger class="h-8 w-[70px]">
 					<Select.Value placeholder="Select page size" />
 				</Select.Trigger>
 				<Select.Content>

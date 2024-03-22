@@ -180,10 +180,12 @@
 								>
 									<Table.Head {...attrs}>
 										{#if cell.id !== "select" && cell.id !== "actions"}
-											<DataTableColumnHeader {props}
-												><Render
-													of={cell.render()}
-												/></DataTableColumnHeader
+											<DataTableColumnHeader
+												{props}
+												{tableModel}
+												cellId={cell.id}
+											>
+												<Render of={cell.render()} /></DataTableColumnHeader
 											>
 										{:else}
 											<Render of={cell.render()} />
@@ -196,25 +198,33 @@
 				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row (row.id)}
-					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
-							{#each row.cells as cell (cell.id)}
-								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs}>
-										{#if cell.id === "task"}
-											<div class="w-[80px]">
+				{#if $pageRows.length}
+					{#each $pageRows as row (row.id)}
+						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+							<Table.Row {...rowAttrs}>
+								{#each row.cells as cell (cell.id)}
+									<Subscribe attrs={cell.attrs()} let:attrs>
+										<Table.Cell {...attrs}>
+											{#if cell.id === "task"}
+												<div class="w-[80px]">
+													<Render of={cell.render()} />
+												</div>
+											{:else}
 												<Render of={cell.render()} />
-											</div>
-										{:else}
-											<Render of={cell.render()} />
-										{/if}
-									</Table.Cell>
-								</Subscribe>
-							{/each}
-						</Table.Row>
-					</Subscribe>
-				{/each}
+											{/if}
+										</Table.Cell>
+									</Subscribe>
+								{/each}
+							</Table.Row>
+						</Subscribe>
+					{/each}
+				{:else}
+					<Table.Row>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">
+							No results.
+						</Table.Cell>
+					</Table.Row>
+				{/if}
 			</Table.Body>
 		</Table.Root>
 	</div>
