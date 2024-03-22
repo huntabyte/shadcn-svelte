@@ -3,7 +3,7 @@ import path from "node:path";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import * as z from "zod";
+import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
@@ -21,16 +21,18 @@ import { intro, prettifyList } from "../utils/prompt-helpers.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
-const addOptionsSchema = z.object({
-	components: z.array(z.string()).optional(),
-	yes: z.boolean(),
-	all: z.boolean(),
-	overwrite: z.boolean(),
-	cwd: z.string(),
-	path: z.string().optional(),
-	nodep: z.boolean(),
-	proxy: z.string().optional(),
+const addOptionsSchema = v.object({
+	components: v.optional(v.array(v.string())),
+	yes: v.boolean(),
+	all: v.boolean(),
+	overwrite: v.boolean(),
+	cwd: v.string(),
+	path: v.optional(v.string()),
+	nodep: v.boolean(),
+	proxy: v.optional(v.string()),
 });
+
+type AddOptions = v.Output<typeof addOptionsSchema>;
 
 export const add = new Command()
 	.command("add")
@@ -50,7 +52,7 @@ export const add = new Command()
 	.action(async (components, opts) => {
 		try {
 			intro();
-			const options = addOptionsSchema.parse({
+			const options = v.parse(addOptionsSchema, {
 				components,
 				...opts,
 			});
@@ -78,7 +80,7 @@ export const add = new Command()
 		}
 	});
 
-async function runAdd(cwd: string, config: Config, options: z.infer<typeof addOptionsSchema>) {
+async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const proxy = options.proxy ?? getEnvProxy();
 	if (proxy) {
 		const isCustom = !!options.proxy;

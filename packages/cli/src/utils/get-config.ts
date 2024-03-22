@@ -3,7 +3,7 @@ import path from "node:path";
 import color from "chalk";
 import { execa } from "execa";
 import { parseNative } from "tsconfck";
-import * as z from "zod";
+import * as v from "valibot";
 import { find } from "./find-tsconfig.js";
 import { isUsingSvelteKit } from "./get-package-info.js";
 import { getPackageManager } from "./get-package-manager.js";
@@ -19,36 +19,37 @@ export const DEFAULT_TYPESCRIPT = true;
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
-export const rawConfigSchema = z
-	.object({
-		$schema: z.string().optional(),
-		style: z.string(),
-		tailwind: z.object({
-			config: z.string(),
-			css: z.string(),
-			baseColor: z.string(),
-			// cssVariables: z.boolean().default(true)
-		}),
-		aliases: z.object({
-			components: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
-			utils: z.string().transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
-		}),
-		typescript: z.boolean().default(true),
-	})
-	.strict();
-
-export type RawConfig = z.infer<typeof rawConfigSchema>;
-
-export const configSchema = rawConfigSchema.extend({
-	resolvedPaths: z.object({
-		tailwindConfig: z.string(),
-		tailwindCss: z.string(),
-		utils: z.string(),
-		components: z.string(),
+export const rawConfigSchema = v.object({
+	$schema: v.optional(v.string()),
+	style: v.string(),
+	tailwind: v.object({
+		config: v.string(),
+		css: v.string(),
+		baseColor: v.string(),
+		// cssVariables: v.boolean().default(true)
 	}),
+	aliases: v.object({
+		components: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+		utils: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+	}),
+	typescript: v.optional(v.boolean(), true),
 });
 
-export type Config = z.infer<typeof configSchema>;
+export type RawConfig = v.Output<typeof rawConfigSchema>;
+
+export const configSchema = v.merge([
+	rawConfigSchema,
+	v.object({
+		resolvedPaths: v.object({
+			tailwindConfig: v.string(),
+			tailwindCss: v.string(),
+			utils: v.string(),
+			components: v.string(),
+		}),
+	}),
+]);
+
+export type Config = v.Output<typeof configSchema>;
 
 export async function getConfig(cwd: string) {
 	const config = await getRawConfig(cwd);
@@ -110,7 +111,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	const utilsPath = await resolveImport(config.aliases.utils, importOpts);
 	const componentsPath = await resolveImport(config.aliases.components, importOpts);
 
-	return configSchema.parse({
+	return v.parse(configSchema, {
 		...config,
 		resolvedPaths: {
 			tailwindConfig: path.resolve(cwd, config.tailwind.config),
@@ -137,7 +138,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
 		const config = JSON.parse(configResult);
 
-		return rawConfigSchema.parse(config);
+		return v.parse(rawConfigSchema, config);
 	} catch (error) {
 		throw new Error(`Invalid configuration found in ${highlight(configPath)}.`);
 	}

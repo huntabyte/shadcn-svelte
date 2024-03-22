@@ -2,9 +2,6 @@
 	"name": "shadcn-svelte",
 	"version": "0.9.0",
 	"description": "Add components to your apps.",
-	"publishConfig": {
-		"access": "public"
-	},
 	"license": "MIT",
 	"author": {
 		"name": "huntabyte & shadcn",
@@ -15,6 +12,10 @@
 		"url": "https://github.com/huntabyte/shadcn-svelte.git",
 		"directory": "packages/cli"
 	},
+	"type": "module",
+	"exports": "./dist/index.js",
+	"main": "./dist/index.js",
+	"bin": "./dist/index.js",
 	"files": [
 		"dist"
 	],
@@ -28,23 +29,15 @@
 		"sveltekit",
 		"radix-svelte"
 	],
-	"type": "module",
-	"exports": "./dist/index.js",
-	"bin": "./dist/index.js",
 	"scripts": {
 		"dev": "tsup --watch",
-		"build": "tsup",
-		"typecheck": "tsc --noEmit",
-		"clean": "rimraf dist && rimraf components",
+		"build": "tsup --minify",
+		"check": "tsc --noEmit",
 		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 node dist/index.js",
 		"start": "node dist/index.js",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"release": "changeset version",
-		"pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
-		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
-		"pub:release": "pnpm build && pnpm publish --access public",
-		"temp": "pnpm build && pnpm start config",
 		"test": "vitest"
 	},
 	"dependencies": {
@@ -52,32 +45,22 @@
 		"chalk": "5.2.0",
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
-		"fs-extra": "^11.2.0",
+		"find-up": "^7.0.0",
 		"https-proxy-agent": "^7.0.4",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch": "^3.3.2",
-		"tsconfig-paths": "^4.2.0",
-		"zod": "^3.22.4"
+		"tsconfig-paths": "^4.2.0"
 	},
 	"devDependencies": {
-		"@antfu/ni": "^0.21.12",
-		"@types/estree": "^1.0.5",
-		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^18.19.22",
-		"@types/prettier": "^2.7.3",
-		"@types/prompts": "^2.4.9",
-		"acorn": "^8.11.3",
-		"astring": "^1.8.6",
 		"cross-env": "^7.0.3",
-		"estree-walker": "^3.0.3",
-		"magic-string": "^0.30.8",
 		"prettier": "^3.0.0",
-		"rimraf": "^4.4.1",
 		"sisteransi": "^1.0.5",
 		"tsconfck": "^2.1.2",
-		"tsup": "^6.7.0",
+		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",
+		"valibot": "^0.30.0",
 		"vitest": "^0.34.6"
 	},
 	"peerDependencies": {

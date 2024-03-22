@@ -1,6 +1,7 @@
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import color from "chalk";
+import * as v from "valibot";
 import { Command } from "commander";
 import { execa } from "execa";
 import {
@@ -136,7 +137,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 		}
 	);
 
-	const config = rawConfigSchema.parse({
+	const config = v.parse(rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
 		typescript: options.typescript,
