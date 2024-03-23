@@ -28,6 +28,8 @@ body:
 
         To get started, you can use the following StackBlitz template:
         https://shadcn-svelte.com/repro
+
+        ***Do not simply add a code snippet or a screenshot. We need a reproduction that we can easily run to recreate the issue.***
       placeholder: Reproduction
     validations:
       required: true
@@ -41,7 +43,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap,cmdk-sv --binaries --browsers`
+      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap,cmdk-sv,svelte-radix,lucide-svelte,svelte-sonner --binaries --browsers`
       render: bash
       placeholder: System, Binaries, Browsers
     validations:
