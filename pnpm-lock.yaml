@@ -230,8 +230,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(svelte@4.2.12)
       svelte-radix:
-        specifier: ^1.0.3
-        version: 1.0.3(svelte@4.2.12)
+        specifier: ^1.1.0
+        version: 1.1.0(svelte@4.2.12)
       svelte-sonner:
         specifier: ^0.3.19
         version: 0.3.19(svelte@4.2.12)
@@ -7366,8 +7366,8 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /svelte-radix@1.0.3(svelte@4.2.12):
-    resolution: {integrity: sha512-Du3q9kvrPM5JCJqTUTEKyt136SRbx7AiLAKmJPHmB4chTXc6xOIWjJupDqZRRnaN70WmT8v4VOPSFFSnZnbvWw==}
+  /svelte-radix@1.1.0(svelte@4.2.12):
+    resolution: {integrity: sha512-kyE9wZiJV937INGb+wiBkAjmGtQUUYRPkVL2Q+/gj+9Vog1Ewd2wNvNmpNMUd+c+euxoc5u5YZMuCUgky9EUPw==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
     dependencies:
@@ -7423,23 +7423,6 @@ packages:
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
-    peerDependenciesMeta:
-      '@sinclair/typebox':
-        optional: true
-      '@vinejs/vine':
-        optional: true
-      arktype:
-        optional: true
-      joi:
-        optional: true
-      superstruct:
-        optional: true
-      valibot:
-        optional: true
-      yup:
-        optional: true
-      zod:
-        optional: true
     dependencies:
       '@sveltejs/kit': 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.1.5)
       devalue: 4.3.2
