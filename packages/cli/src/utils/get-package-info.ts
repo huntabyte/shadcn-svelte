@@ -31,5 +31,5 @@ function readJSONSync(path: string): unknown {
 export function isUsingSvelteKit(cwd: string): boolean {
 	const packageJSON = loadProjectPackageInfo(cwd);
 	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
-	return Object.keys(deps).some((dep) => dep === "@sveltejs/kit");
+	return deps["@sveltejs/kit"] !== undefined;
 }
