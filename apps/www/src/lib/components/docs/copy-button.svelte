@@ -76,9 +76,9 @@
 			>
 				<span class="sr-only">Copy</span>
 				{#if copied}
-					<Check class="h-3 w-3" />
+					<Check class="h-3 w-3" tabindex="-1" />
 				{:else}
-					<Copy class="h-3 w-3" />
+					<Copy class="h-3 w-3" tabindex="-1" />
 				{/if}
 			</Button>
 		</DropdownMenu.Trigger>
@@ -111,9 +111,9 @@
 	>
 		<span class="sr-only">Copy</span>
 		{#if copied}
-			<Check class="h-3 w-3" />
+			<Check class="h-3 w-3" tabindex="-1" />
 		{:else}
-			<Copy class="h-3 w-3" />
+			<Copy class="h-3 w-3" tabindex="-1" />
 		{/if}
 	</button>
 {/if}
