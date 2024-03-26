@@ -1,4 +1,4 @@
-export const lambdaStudioBlackout: any = {
+export const lambdaStudioBlackout: Record<string, unknown> = {
 	name: "Lambda Studio — Blackout",
 	semanticHighlighting: true,
 	colors: {
