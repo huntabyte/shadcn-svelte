@@ -17,22 +17,13 @@
 	import { Icons } from "$lib/components/docs/icons/index.js";
 	import BlockCopyCodeButton from "../block-copy-code-button.svelte";
 	import type { PaneAPI } from "paneforge";
+	import type { Block } from "$lib/registry/schema.js";
 
 	let isLoading = true;
 
 	let ref: PaneAPI;
 
-	const block = {
-		name: "authentication-01",
-		container: {
-			height: "400px",
-			class: "w-full",
-		},
-		code: "",
-		description: "",
-		style: "new-york",
-		highlightedCode: "",
-	};
+	export let block: Block;
 </script>
 
 {#if $config.style === block.style}
@@ -40,7 +31,7 @@
 		id={block.name}
 		value="preview"
 		class="relative grid w-full scroll-m-20 gap-4"
-		style="height: {block.container.height}"
+		style={block.container?.height ? "height: {block.container.height}" : ""}
 	>
 		<div class="flex flex-col items-center gap-4 sm:flex-row">
 			<div class="flex items-center gap-2">

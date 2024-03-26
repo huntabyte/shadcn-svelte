@@ -24,6 +24,10 @@ export const docsConfig: DocsConfig = {
 			href: "/examples/dashboard",
 		},
 		{
+			title: "Blocks",
+			href: "/blocks",
+		},
+		{
 			title: "GitHub",
 			href: "https://github.com/huntabyte/shadcn-svelte",
 			external: true,

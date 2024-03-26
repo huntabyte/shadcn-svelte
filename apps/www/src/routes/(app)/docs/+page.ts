@@ -4,7 +4,7 @@ import type { PageLoad } from "./$types.js";
 
 export const load: PageLoad = async () => {
 	// @ts-expect-error import doesn't recognize *.md modules _yet_
-	const doc: DocFile = await import("../../content/index.md");
+	const doc: DocFile = await import("../../../content/index.md");
 
 	if (!doc || !doc.metadata) {
 		error(404);
