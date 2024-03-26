@@ -10,3 +10,7 @@ export const styles = [
 ] as const;
 
 export type Style = (typeof styles)[number];
+
+export function isStyle(s: string): s is Style["name"] {
+	return styles.some((style) => style.name === s);
+}
