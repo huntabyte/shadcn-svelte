@@ -1,5 +1,7 @@
 import { getAllBlockIds, getBlock } from "$lib/blocks.js";
 
+export const prerender = true;
+
 export const load = async () => {
 	const blockIds = await getAllBlockIds();
 	const defaultBlocks = blockIds.map(async (name) => getBlock(name, "default"));
