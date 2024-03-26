@@ -35,12 +35,16 @@ export async function buildRegistry() {
 
 	for (const style of styles) {
 		const uiPath = path.resolve(registryRootPath, style, "ui");
-		const uiRegistry = await crawlUI(uiPath, style);
-
 		const examplePath = path.resolve(registryRootPath, style, "example");
-		const exampleRegistry = await crawlExample(examplePath, style);
+		const blockPath = path.resolve(registryRootPath, style, "block");
 
-		registry.push(...uiRegistry, ...exampleRegistry);
+		const [ui, example, block] = await Promise.all([
+			crawlUI(uiPath, style),
+			crawlExample(examplePath, style),
+			crawlBlocks(blockPath, style),
+		]);
+
+		registry.push(...ui, ...example, ...block);
 	}
 
 	return registry;
@@ -111,6 +115,43 @@ async function crawlExample(rootPath: string, style: string) {
 	}
 
 	return exampleRegistry;
+}
+
+async function crawlBlocks(rootPath: string, style: string) {
+	const type = "components:block";
+
+	const dir = await fs.readdir(rootPath, {
+		// recursive: true, // ignoring examples with directories for now...
+		withFileTypes: true,
+	});
+
+	const blockRegistry: Registry = [];
+
+	for (const dirent of dir) {
+		if (!dirent.name.endsWith(".svelte")) continue;
+
+		if (dirent.isFile() && dirent.name.endsWith(".svelte")) {
+			const [name] = dirent.name.split(".svelte");
+
+			const filepath = path.join(rootPath, dirent.name);
+			const source = await fs.readFile(filepath, { encoding: "utf8" });
+			const relativePath = path.join("block", dirent.name);
+
+			const file = { name: dirent.name, content: source, path: relativePath };
+			const { dependencies, registryDependencies } = await getDependencies(filepath, source);
+
+			blockRegistry.push({
+				name,
+				type,
+				style,
+				files: [file],
+				registryDependencies: Array.from(registryDependencies),
+				dependencies: Array.from(dependencies),
+			});
+		}
+	}
+
+	return blockRegistry;
 }
 
 async function buildUIRegistry(componentPath: string, componentName: string, style: string) {
