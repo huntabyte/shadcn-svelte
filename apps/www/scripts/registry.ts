@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { parse, preprocess, walk } from "svelte/compiler";
-import config from "../svelte.config";
 import { styles, type Registry } from "../src/lib/registry";
+import config from "../svelte.config.js";
 
 // [Dependency, [...PeerDependencies]]
 const DEPENDENCIES = new Map<string, string[]>([
