@@ -69,21 +69,13 @@ describe("getConfig", () => {
 				components: "$lib/components",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./src/lib/components"
-				),
+				components: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/components"),
 				tailwindConfig: path.resolve(
 					__dirname,
 					"../fixtures/config-partial",
 					"./tailwind.config.js"
 				),
-				tailwindCss: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./src/app.pcss"
-				),
+				tailwindCss: path.resolve(__dirname, "../fixtures/config-partial", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/utils"),
 			},
 			typescript: true,
@@ -103,16 +95,8 @@ describe("getConfig", () => {
 				components: "$lib/components",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-full",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-full",
-					"./tailwind.config.js"
-				),
+				components: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/components"),
+				tailwindConfig: path.resolve(__dirname, "../fixtures/config-full", "./tailwind.config.js"),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-full", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/utils"),
 			},
@@ -133,16 +117,8 @@ describe("getConfig", () => {
 				components: "$lib/components",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-vite",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-vite",
-					"./tailwind.config.js"
-				),
+				components: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/components"),
+				tailwindConfig: path.resolve(__dirname, "../fixtures/config-vite", "./tailwind.config.js"),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-vite", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/utils"),
 			},
@@ -163,21 +139,13 @@ describe("getConfig", () => {
 				components: "$lib/components",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./src/lib/components"
-				),
+				components: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/components"),
 				tailwindConfig: path.resolve(
 					__dirname,
 					"../fixtures/config-jsconfig",
 					"./tailwind.config.js"
 				),
-				tailwindCss: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./src/app.pcss"
-				),
+				tailwindCss: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/utils"),
 			},
 			typescript: false,

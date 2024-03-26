@@ -19,7 +19,6 @@ const config = {
 			},
 		}),
 	],
-
 	extensions: [".svelte", ".md"],
 
 	kit: {
@@ -45,6 +44,9 @@ const config = {
 				],
 			},
 		}),
+		prerender: {
+			handleMissingId: "warn",
+		},
 	},
 };
 
