@@ -14,7 +14,7 @@
 		<PageHeader.Actions>
 			<Button href="#blocks">Browse</Button>
 			<Button
-				href="https://github.com/shadcn-ui/ui/issues/new/choose"
+				href="https://github.com/shadcn-ui/ui/discussions/new?category=blocks-request"
 				target="_blank"
 				variant="outline"
 			>
