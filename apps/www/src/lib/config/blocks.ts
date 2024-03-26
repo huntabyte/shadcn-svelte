@@ -83,7 +83,7 @@ export const blockMeta: Record<Style["name"], Record<string, BlockConfig>> = {
 				"A login page with two columns. The first column has the login form with email and password. There's a Forgot your passwork link and a link to sign up if you do not have an account. The second column has a cover image.",
 		},
 		"dashboard-01": {
-			iframeHeight: "825px",
+			iframeHeight: "730px",
 			className: "w-full h-full",
 			description:
 				"An application shell with a header and main content area. The header has a navbar, a search input and and a user nav dropdown. The user nav is toggled by a button with an avatar image.",
@@ -95,7 +95,7 @@ export const blockMeta: Record<Style["name"], Record<string, BlockConfig>> = {
 				"A products dashboard with a sidebar navigation and a main content area. The dashboard has a header with a search input and a user menu. The sidebar has a logo, navigation links, and a card with a call to action. The main content area shows an empty state with a call to action.",
 		},
 		"dashboard-03": {
-			iframeHeight: "740px",
+			iframeHeight: "720px",
 			className: "w-full h-full",
 			description:
 				"An AI playground with a sidebar navigation and a main content area. The playground has a header with a settings drawer and a share button. The sidebar has navigation links and a user menu. The main content area shows a form to configure the model and messages.",

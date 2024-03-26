@@ -27,12 +27,7 @@
 </script>
 
 {#if $config.style === block.style}
-	<Tabs.Root
-		id={block.name}
-		value="preview"
-		class="relative grid w-full scroll-m-20 gap-4"
-		style={block.container?.height ? "height: {block.container.height}" : ""}
-	>
+	<Tabs.Root id={block.name} value="preview" class="relative grid w-full scroll-m-20 gap-4">
 		<div class="flex flex-col items-center gap-4 sm:flex-row">
 			<div class="flex items-center gap-2">
 				<Tabs.List class="hidden sm:flex">
