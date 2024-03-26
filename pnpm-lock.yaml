@@ -209,8 +209,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1(svelte@4.2.12)(sveltekit-superforms@2.8.1)
       lucide-svelte:
-        specifier: ^0.356.0
-        version: 0.356.0(svelte@4.2.12)
+        specifier: ^0.363.0
+        version: 0.363.0(svelte@4.2.12)
       mode-watcher:
         specifier: ^0.2.2
         version: 0.2.2(svelte@4.2.12)
@@ -5216,8 +5216,8 @@ packages:
       svelte: 4.2.12
     dev: false
 
-  /lucide-svelte@0.356.0(svelte@4.2.12):
-    resolution: {integrity: sha512-aUr+L9uJkRvT15egByH4KLPoIXh47fG7Dm03b4G1Dk2nfTDuuLebloUaBKUzFsBUcVrBKBje+L5/Xnz3OoUyCg==}
+  /lucide-svelte@0.363.0(svelte@4.2.12):
+    resolution: {integrity: sha512-zpUBFtMEEOOjILgiDX48ijibUww3JUCLrMo5YDGX/De/m6I+vn+oWIGvdyZtuc8nz/P8xHW9vWLKzIWeMrRYbA==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
     dependencies:
