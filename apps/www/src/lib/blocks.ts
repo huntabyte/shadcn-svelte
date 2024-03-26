@@ -13,6 +13,7 @@ export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE
 }
 
 export async function getBlock(name: string, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
+	/** @ts-expect-error - annoying */
 	const entry = Index[style][name];
 
 	const content = await _getBlockContent(name, style);
@@ -32,6 +33,7 @@ async function _getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 }
 
 async function _getBlockCode(name: string, style: Style["name"]) {
+	/** @ts-expect-error - annoying */
 	const entry = Index[style][name];
 	return await entry.raw();
 }
