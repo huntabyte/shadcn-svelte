@@ -9,6 +9,16 @@ description: Latest updates and announcements.
 
 ## March 2024
 
+### Introducing Blocks
+
+[Blocks](/blocks) are ready-made components that you can use to build your apps. They are fully responsive, accessible, and composable, meaning they are built using the same principles as the rest of the components in shadcn-svelte.
+
+<img src="/images/dashboard-1-dark.jpg" alt="A screenshot of the dashboard-01 block" class="h-full w-full hidden dark:block mt-6" />
+
+<img src="/images/dashboard-1.jpg" alt="A screenshot of the dashboard-01 block" class="h-full w-full block dark:hidden mt-6" />
+
+[v0](https://v0.dev) only supports React at the moment, so you can't customize them like you can the original from [shadcn/ui](https://ui.shadcn.com). However, if having support for Svelte interests you, I'm sure the v0 team would love to hear about it. :)
+
 ### New Component: Breadcrumb
 
 We've added a new component to the project, [Breadcrumb](/docs/components/breadcrumb).
