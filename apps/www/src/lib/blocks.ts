@@ -39,7 +39,10 @@ async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 
 async function getBlockCode(name: DemoName, style: Style["name"]) {
 	const entry = Index[style][name];
-	return await entry.raw();
+	const code = await entry.raw();
+	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
+	const detabbed = code.replaceAll("\t", "  ");
+	return detabbed;
 }
 
 async function getBlockContent(name: DemoName, style: Style["name"]) {
