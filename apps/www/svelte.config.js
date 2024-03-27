@@ -47,7 +47,10 @@ const config = {
 			},
 		}),
 		prerender: {
-			handleMissingId: "warn",
+			handleMissingId: (details) => {
+				if (details.id === "#") return;
+				console.warn(details.message);
+			},
 		},
 	},
 };
