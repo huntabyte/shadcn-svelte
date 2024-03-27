@@ -1,5 +1,5 @@
 export const lambdaStudioBlackout: Record<string, unknown> = {
-	name: "Lambda Studio — Blackout",
+	name: "Lambda Studio - Blackout",
 	semanticHighlighting: true,
 	colors: {
 		"editorLink.activeForeground": "#ca8a0488",

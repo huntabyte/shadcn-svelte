@@ -2,8 +2,8 @@ import { blockSchema, registryEntrySchema, type Style } from "$lib/registry/inde
 import { z } from "zod";
 import { Index } from "../__registry__/index.js";
 import { blockMeta } from "./config/blocks.js";
-import { getHighlighter, type Highlighter } from "shiki";
 import { lambdaStudioBlackout } from "../styles/dark.js";
+import { type Highlighter, getHighlighter } from "shiki";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
@@ -65,11 +65,7 @@ export async function highlightCode(code: string) {
 	if (!highlighter) {
 		highlighter = await getHighlighter({
 			langs: ["svelte"],
-			themes: [],
-		});
-		await highlighter.loadTheme({
-			...lambdaStudioBlackout,
-			name: "Lambda Studio - Blackout",
+			themes: [lambdaStudioBlackout],
 		});
 	}
 
