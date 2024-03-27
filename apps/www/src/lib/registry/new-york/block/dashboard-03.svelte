@@ -245,7 +245,7 @@
 								<Label for="role">Role</Label>
 								<Select.Root selected={{ value: "system", label: "System" }}>
 									<Select.Trigger>
-										<Select.Value placeholder="Select. a role" />
+										<Select.Value placeholder="Select a role" />
 									</Select.Trigger>
 									<Select.Content>
 										<Select.Item value="system">System</Select.Item>
@@ -279,7 +279,7 @@
 									id="model"
 									class="items-start [&_[data-description]]:hidden"
 								>
-									<Select.Value placeholder="Select. a model" />
+									<Select.Value placeholder="Select a model" />
 								</Select.Trigger>
 								<Select.Content>
 									<Select.Item value="genesis">
@@ -355,7 +355,7 @@
 							<Label for="role">Role</Label>
 							<Select.Root selected={{ value: "system", label: "System" }}>
 								<Select.Trigger>
-									<Select.Value placeholder="Select. a role" />
+									<Select.Value placeholder="Select a role" />
 								</Select.Trigger>
 								<Select.Content>
 									<Select.Item value="system">System</Select.Item>
