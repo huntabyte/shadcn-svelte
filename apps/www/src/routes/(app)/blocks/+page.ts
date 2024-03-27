@@ -4,8 +4,8 @@ export const prerender = true;
 
 export const load = async () => {
 	const blockIds = await getAllBlockIds();
-	const defaultBlocks = blockIds.map(async (name) => getBlock(name, "default"));
-	const newYorkBlocks = blockIds.map(async (name) => getBlock(name, "new-york"));
+	const defaultBlocks = blockIds.map((name) => getBlock(name, "default"));
+	const newYorkBlocks = blockIds.map((name) => getBlock(name, "new-york"));
 	const blocks = await Promise.all([...defaultBlocks, ...newYorkBlocks]);
 
 	blocks.sort((a, b) => {
