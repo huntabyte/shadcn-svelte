@@ -32,6 +32,10 @@ const config = {
 					// prerendered content
 					"/docs/*",
 					"/blocks/*",
+					"/blocks.html",
+					"/docs.html",
+					// misc
+					"/404.html",
 					// static
 					"/registry/*",
 					"/fonts/*",
