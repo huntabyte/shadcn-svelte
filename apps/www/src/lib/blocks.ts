@@ -7,13 +7,14 @@ import { lambdaStudioBlackout } from "../styles/dark.js";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
+type DemoName = keyof (typeof Index)["default"];
+
 export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = await _getAllBlocks(style);
 	return blocks.map((block) => block.name);
 }
 
-export async function getBlock(name: string, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	/** @ts-expect-error - annoying */
+export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const entry = Index[style][name];
 
 	const content = await _getBlockContent(name, style);
@@ -32,18 +33,16 @@ async function _getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	return Object.values(index).filter((block) => block.type === "components:block");
 }
 
-async function _getBlockCode(name: string, style: Style["name"]) {
-	/** @ts-expect-error - annoying */
+async function _getBlockCode(name: DemoName, style: Style["name"]) {
 	const entry = Index[style][name];
 	return await entry.raw();
 }
 
-async function _getBlockContent(name: string, style: Style["name"]) {
+async function _getBlockContent(name: DemoName, style: Style["name"]) {
 	const raw = await _getBlockCode(name, style);
 	const { description, iframeHeight, className } = blockMeta[style][name];
 
-	let code = raw;
-	code = code.replaceAll(`$lib/registry/${style}/`, "$lib/components/");
+	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");
 
 	return {
 		description,
@@ -69,7 +68,7 @@ export async function highlightCode(code: string) {
 		});
 	}
 
-	const html = await highlighter.codeToHtml(code, {
+	const html = highlighter.codeToHtml(code, {
 		lang: "svelte",
 		theme: "Lambda Studio - Blackout",
 	});
