@@ -1,3 +1,4 @@
+import type { ComponentType } from "svelte";
 import * as z from "zod";
 
 export const registrySchema = z.array(
@@ -43,7 +44,7 @@ export type RegistryIndex = z.infer<typeof registryIndexSchema>;
 export const blockSchema = registryEntrySchema.extend({
 	type: z.literal("components:block"),
 	style: z.enum(["default", "new-york"]),
-	component: z.any(),
+	component: z.function().args().returns(z.promise(z.custom<ComponentType>())),
 	container: z
 		.object({
 			height: z.string().optional(),
