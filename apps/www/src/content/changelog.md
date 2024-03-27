@@ -5,8 +5,8 @@ description: Latest updates and announcements.
 
 <script>
 	import { Steps, Callout, ComponentPreview } from '$lib/components/docs'
-  import DashboardDark from '$lib/img/blocks/dashboard-1-dark.jpg';
-  import DashboardLight from '$lib/img/blocks/dashboard-1.jpg';
+	import DashboardDark from '$lib/img/blocks/dashboard-1-dark.jpg';
+	import DashboardLight from '$lib/img/blocks/dashboard-1.jpg';
 </script>
 
 ## March 2024
