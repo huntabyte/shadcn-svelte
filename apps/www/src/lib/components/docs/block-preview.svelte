@@ -54,66 +54,64 @@
 					</div>
 				</div>
 			</div>
-			{#if block.code}
-				<div class="flex items-center gap-2 pr-[14px] sm:ml-auto">
-					<div
-						class="hidden h-[28px] items-center gap-1.5 rounded-md border p-[2px] shadow-sm md:flex"
+			<div class="flex items-center gap-2 pr-[14px] sm:ml-auto">
+				<div
+					class="hidden h-[28px] items-center gap-1.5 rounded-md border p-[2px] shadow-sm md:flex"
+				>
+					<ToggleGroup.Root
+						type="single"
+						value="100"
+						onValueChange={(value) => {
+							if (ref && value) {
+								ref.resize(parseInt(value));
+							}
+						}}
 					>
-						<ToggleGroup.Root
-							type="single"
-							value="100"
-							onValueChange={(value) => {
-								if (ref && value) {
-									ref.resize(parseInt(value));
-								}
-							}}
-						>
-							<ToggleGroup.Item value="100" class="h-[22px] w-[22px] rounded-sm p-0">
-								<Monitor class="h-3.5 w-3.5" />
-							</ToggleGroup.Item>
-							<ToggleGroup.Item value="60" class="h-[22px] w-[22px] rounded-sm p-0">
-								<Tablet class="h-3.5 w-3.5" />
-							</ToggleGroup.Item>
-							<ToggleGroup.Item value="25" class="h-[22px] w-[22px] rounded-sm p-0">
-								<Smartphone class="h-3.5 w-3.5" />
-							</ToggleGroup.Item>
-						</ToggleGroup.Root>
-					</div>
-					<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
-					<StyleSwitcher class="h-7" />
-					<Popover.Root>
-						<Popover.Trigger
-							class="hidden text-muted-foreground hover:text-foreground sm:flex"
-						>
-							<CircleHelp class="h-3.5 w-3.5" />
-							<span class="sr-only">Block description</span>
-						</Popover.Trigger>
-						<Popover.Content
-							side="top"
-							sideOffset={20}
-							class="space-y-3 rounded-[0.5rem] text-sm"
-						>
-							<p class="font-medium">
-								What is the difference between the New York and Default style?
-							</p>
-							<p>
-								A style comes with its own set of components, animations, icons and
-								more.
-							</p>
-							<p>
-								The <span class="font-medium">Default</span> style has larger inputs,
-								uses lucide-react for icons and tailwindcss-animate for animations.
-							</p>
-							<p>
-								The <span class="font-medium">New York</span> style ships with smaller
-								buttons and inputs. It also uses shadows on cards and buttons.
-							</p>
-						</Popover.Content>
-					</Popover.Root>
-					<Separator orientation="vertical" class="mx-2 h-4" />
-					<BlockCopyCodeButton code={block.code} />
+						<ToggleGroup.Item value="100" class="h-[22px] w-[22px] rounded-sm p-0">
+							<Monitor class="h-3.5 w-3.5" />
+						</ToggleGroup.Item>
+						<ToggleGroup.Item value="60" class="h-[22px] w-[22px] rounded-sm p-0">
+							<Tablet class="h-3.5 w-3.5" />
+						</ToggleGroup.Item>
+						<ToggleGroup.Item value="25" class="h-[22px] w-[22px] rounded-sm p-0">
+							<Smartphone class="h-3.5 w-3.5" />
+						</ToggleGroup.Item>
+					</ToggleGroup.Root>
 				</div>
-			{/if}
+				<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
+				<StyleSwitcher class="h-7" />
+				<Popover.Root>
+					<Popover.Trigger
+						class="hidden text-muted-foreground hover:text-foreground sm:flex"
+					>
+						<CircleHelp class="h-3.5 w-3.5" />
+						<span class="sr-only">Block description</span>
+					</Popover.Trigger>
+					<Popover.Content
+						side="top"
+						sideOffset={20}
+						class="space-y-3 rounded-[0.5rem] text-sm"
+					>
+						<p class="font-medium">
+							What is the difference between the New York and Default style?
+						</p>
+						<p>
+							A style comes with its own set of components, animations, icons and
+							more.
+						</p>
+						<p>
+							The <span class="font-medium">Default</span> style has larger inputs, uses
+							lucide-react for icons and tailwindcss-animate for animations.
+						</p>
+						<p>
+							The <span class="font-medium">New York</span> style ships with smaller buttons
+							and inputs. It also uses shadows on cards and buttons.
+						</p>
+					</Popover.Content>
+				</Popover.Root>
+				<Separator orientation="vertical" class="mx-2 h-4" />
+				<BlockCopyCodeButton code={block.code} />
+			</div>
 		</div>
 		<Tabs.Content
 			value="preview"

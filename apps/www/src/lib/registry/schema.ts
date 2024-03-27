@@ -40,10 +40,11 @@ export const registryIndexSchema = z.array(registryEntrySchema);
 
 export type RegistryIndex = z.infer<typeof registryIndexSchema>;
 
-export const blockSchema = registryEntrySchema.extend({
+export const blockSchema = z.object({
+	name: z.string(),
 	type: z.literal("components:block"),
+	description: z.string(),
 	style: z.enum(["default", "new-york"]),
-	component: z.any(),
 	container: z
 		.object({
 			height: z.string().optional(),

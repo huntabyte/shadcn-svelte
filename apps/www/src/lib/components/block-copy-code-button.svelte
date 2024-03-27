@@ -7,12 +7,10 @@
 	let hasCopied = false;
 	export let code: string;
 
-	$: {
-		if (hasCopied) {
-			setTimeout(() => {
-				hasCopied = false;
-			}, 2000);
-		}
+	$: if (hasCopied) {
+		setTimeout(() => {
+			hasCopied = false;
+		}, 2000);
 	}
 </script>
 
