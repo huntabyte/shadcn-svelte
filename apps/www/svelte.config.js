@@ -29,7 +29,10 @@ const config = {
 				// the globs for them to save our 100 include/exclude limit
 				exclude: [
 					"<build>",
+					// prerendered content
 					"/docs/*",
+					"/blocks/*",
+					// static
 					"/registry/*",
 					"/fonts/*",
 					"/avatars/*",
