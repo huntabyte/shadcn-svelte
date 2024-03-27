@@ -21,12 +21,12 @@ export const load = async (event) => {
 	if (!isDemo(name)) error(404, "Block not found");
 
 	const block = await getBlock(name, style);
-	const component = await block.component();
 
 	return {
 		block: {
-			...block,
-			component,
+			name: name,
+			style: style,
+			container: block.container,
 		},
 	};
 };

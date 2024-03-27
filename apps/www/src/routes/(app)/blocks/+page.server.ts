@@ -21,6 +21,13 @@ export const load = async () => {
 	});
 
 	return {
-		blocks,
+		blocks: blocks.map(({ highlightedCode, name, style, description, code, container }) => ({
+			highlightedCode,
+			code,
+			name,
+			style,
+			description,
+			container,
+		})),
 	};
 };
