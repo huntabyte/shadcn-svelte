@@ -10,14 +10,14 @@ const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 type DemoName = keyof (typeof Index)["default"];
 
 export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const blocks = await _getAllBlocks(style);
+	const blocks = await getAllBlocks(style);
 	return blocks.map((block) => block.name);
 }
 
 export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const entry = Index[style][name];
 
-	const content = await _getBlockContent(name, style);
+	const content = await getBlockContent(name, style);
 
 	return blockSchema.parse({
 		style,
@@ -28,18 +28,18 @@ export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BL
 	});
 }
 
-async function _getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
+async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const index = z.record(registryEntrySchema).parse(Index[style]);
 	return Object.values(index).filter((block) => block.type === "components:block");
 }
 
-async function _getBlockCode(name: DemoName, style: Style["name"]) {
+async function getBlockCode(name: DemoName, style: Style["name"]) {
 	const entry = Index[style][name];
 	return await entry.raw();
 }
 
-async function _getBlockContent(name: DemoName, style: Style["name"]) {
-	const raw = await _getBlockCode(name, style);
+async function getBlockContent(name: DemoName, style: Style["name"]) {
+	const raw = await getBlockCode(name, style);
 	const { description, iframeHeight, className } = blockMeta[style][name];
 
 	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");
