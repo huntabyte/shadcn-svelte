@@ -11,12 +11,11 @@ type DemoName = keyof (typeof Index)["default"];
 
 export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = await getAllBlocks(style);
-	return blocks.map((block) => block.name);
+	return blocks.map((block) => block.name as DemoName);
 }
 
 export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const entry = Index[style][name];
-
 	const content = await getBlockContent(name, style);
 
 	return blockSchema.parse({
@@ -26,6 +25,12 @@ export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BL
 		...content,
 		type: "components:block",
 	});
+}
+
+export function isDemo(name: string): name is DemoName {
+	// @ts-expect-error we're smarter than you, tsc
+	const demo = Index["default"][name];
+	return demo !== undefined;
 }
 
 async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
