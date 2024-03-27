@@ -6,6 +6,7 @@ import type { EntryGenerator } from "./$types.js";
 export const prerender = true;
 
 export const entries: EntryGenerator = async () => {
+	console.log("Prerendering /blocks/[style]/[name]");
 	const blockIds = await getAllBlockIds();
 	return styles
 		.map((style) => {
