@@ -19,11 +19,10 @@ export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BL
 	const content = await getBlockContent(name, style);
 
 	return blockSchema.parse({
-		style,
-		highlightedCode: content.code ? await highlightCode(content.code) : "",
 		...entry,
 		...content,
-		type: "components:block",
+		style,
+		highlightedCode: await highlightCode(content.code),
 	});
 }
 
