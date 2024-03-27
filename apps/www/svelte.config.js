@@ -33,6 +33,7 @@ const config = {
 					"/registry/*",
 					"/fonts/*",
 					"/avatars/*",
+					"/images/*",
 					"/android-chrome-192x192.png",
 					"/android-chrome-512x512.png",
 					"/apple-touch-icon.png",
