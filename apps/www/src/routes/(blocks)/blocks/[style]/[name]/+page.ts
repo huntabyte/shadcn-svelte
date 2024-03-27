@@ -8,11 +8,11 @@ export const prerender = true;
 export const entries: EntryGenerator = async () => {
 	console.log("Prerendering /blocks/[style]/[name]");
 	const blockIds = await getAllBlockIds();
-	return styles
-		.map((style) => {
-			return blockIds.map((name) => ({ name, style: style.name }));
-		})
-		.flat();
+	const entries = styles.flatMap((style) => {
+		return blockIds.map((name) => ({ name, style: style.name }));
+	});
+
+	return entries;
 };
 
 export const load = async (event) => {
