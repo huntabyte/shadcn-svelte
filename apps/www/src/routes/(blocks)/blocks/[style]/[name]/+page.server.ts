@@ -1,4 +1,5 @@
-import { getAllBlockIds, getBlock, isDemo } from "$lib/blocks.js";
+import { getAllBlockIds, isDemo } from "$lib/blocks.js";
+import { blockMeta } from "$lib/config/blocks.js";
 import { isStyle, styles } from "$lib/registry/styles.js";
 import { error } from "@sveltejs/kit";
 import type { EntryGenerator } from "./$types.js";
@@ -20,13 +21,16 @@ export const load = async (event) => {
 	if (!isStyle(style)) error(404, "Style not found");
 	if (!isDemo(name)) error(404, "Block not found");
 
-	const block = await getBlock(name, style);
+	const { className, iframeHeight } = blockMeta[style][name];
 
 	return {
 		block: {
 			name: name,
 			style: style,
-			container: block.container,
+			container: {
+				height: iframeHeight,
+				className,
+			},
 		},
 	};
 };
