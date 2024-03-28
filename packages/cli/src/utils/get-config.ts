@@ -162,6 +162,6 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
 		return v.parse(rawConfigSchema, config);
 	} catch (error) {
-		throw new Error(`Invalid configuration found in ${highlight(configPath)}.`);
+		throw new Error(`[components.json]: Invalid configuration found in ${highlight(configPath)}.`);
 	}
 }

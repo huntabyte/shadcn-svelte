@@ -7,7 +7,7 @@ import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError } from "../utils/handle-error.js";
+import { error, handleError } from "../utils/handle-error.js";
 import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
@@ -31,8 +31,7 @@ export const init = new Command()
 		try {
 			// Ensure target directory exists.
 			if (!existsSync(cwd)) {
-				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
-				process.exit(1);
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
 			// Read config.

@@ -17,3 +17,7 @@ export function handleError(error: unknown) {
 	p.cancel("Something went wrong. Please try again.");
 	process.exit(1);
 }
+
+export function error(msg: string) {
+	return new Error(msg);
+}

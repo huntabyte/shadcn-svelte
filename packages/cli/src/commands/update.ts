@@ -4,12 +4,12 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { getConfig, type Config } from "../utils/get-config";
-import { getPackageManager } from "../utils/get-package-manager";
-import { handleError } from "../utils/handle-error";
+import { getConfig, type Config } from "../utils/get-config.js";
+import { getPackageManager } from "../utils/get-package-manager.js";
+import { handleError, error } from "../utils/handle-error.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
-import { UTILS } from "../utils/templates";
-import { transformImports } from "../utils/transformers";
+import { UTILS } from "../utils/templates.js";
+import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
@@ -50,16 +50,14 @@ export const update = new Command()
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
-				process.exit(1);
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				p.cancel(
+				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
-				process.exit(1);
 			}
 
 			await runUpdate(cwd, config, options);
@@ -91,8 +89,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
-		p.cancel(`Component directory ${color.cyan(componentDir)} does not exist.`);
-		process.exit(1);
+		throw error(`Component directory ${color.cyan(componentDir)} does not exist.`);
 	}
 
 	// Retrieve existing components in user's project
@@ -170,8 +167,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		const utilsPath = config.resolvedPaths.utils + extension;
 
 		if (!existsSync(utilsPath)) {
-			p.cancel(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
-			process.exit(1);
+			throw error(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
 		}
 
 		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
