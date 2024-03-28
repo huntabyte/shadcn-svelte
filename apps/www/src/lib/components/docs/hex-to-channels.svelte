@@ -25,14 +25,20 @@
 			<Input name="hex" bind:value={hex} maxlength={7} />
 		</div>
 		<div class="relative grid gap-2">
-			<CopyButton class="absolute right-2 top-[30px]" value={hslString} />
 			<Label for="hsl">HSL</Label>
 			<Input name="hsl" value={hslString} readonly />
+			<CopyButton
+				class="absolute right-2 top-[28.5px] text-primary hover:bg-accent hover:text-primary"
+				value={hslString}
+			/>
 		</div>
 		<div class="relative grid gap-2">
-			<CopyButton class="absolute right-2 top-[30px]" value={rgbString} />
 			<Label for="rgb">RGB</Label>
 			<Input name="rgb" value={rgbString} readonly />
+			<CopyButton
+				class="absolute right-2 top-[28.5px] text-primary hover:bg-accent hover:text-primary"
+				value={rgbString}
+			/>
 		</div>
 	</div>
 </div>

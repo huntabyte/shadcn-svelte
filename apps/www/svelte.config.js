@@ -19,7 +19,6 @@ const config = {
 			},
 		}),
 	],
-
 	extensions: [".svelte", ".md"],
 
 	kit: {
@@ -30,9 +29,16 @@ const config = {
 				// the globs for them to save our 100 include/exclude limit
 				exclude: [
 					"<build>",
+					// prerendered content
 					"/docs/*",
+					"/blocks/*",
+					"/blocks.html",
+					"/docs.html",
+					// static
 					"/registry/*",
 					"/fonts/*",
+					"/avatars/*",
+					"/images/*",
 					"/android-chrome-192x192.png",
 					"/android-chrome-512x512.png",
 					"/apple-touch-icon.png",
@@ -45,6 +51,12 @@ const config = {
 				],
 			},
 		}),
+		prerender: {
+			handleMissingId: (details) => {
+				if (details.id === "#") return;
+				console.warn(details.message);
+			},
+		},
 	},
 };
 

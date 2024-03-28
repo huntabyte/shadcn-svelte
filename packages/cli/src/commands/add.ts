@@ -7,7 +7,7 @@ import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError } from "../utils/handle-error.js";
+import { error, handleError } from "../utils/handle-error.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -60,16 +60,14 @@ export const add = new Command()
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
-				process.exit(1);
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				p.cancel(
+				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
-				process.exit(1);
 			}
 
 			await runAdd(cwd, config, options);
@@ -177,6 +175,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
+	const tasks: p.Task[] = [];
 	for (const item of payload) {
 		const targetDir = getItemTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
@@ -204,23 +203,6 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			}
 		}
 
-		const installSpinner = p.spinner();
-		installSpinner.start(`Installing ${highlight(item.name)}`);
-
-		for (const file of item.files) {
-			const componentDir = path.resolve(targetDir, item.name);
-			let filePath = path.resolve(targetDir, item.name, file.name);
-
-			// Run transformers.
-			const content = transformImports(file.content, config);
-
-			if (!existsSync(componentDir)) {
-				await fs.mkdir(componentDir, { recursive: true });
-			}
-
-			await fs.writeFile(filePath, content);
-		}
-
 		// Add dependencies to the install list
 		if (options.nodep) {
 			item.dependencies.forEach((dep) => skippedDeps.add(dep));
@@ -228,21 +210,43 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			item.dependencies.forEach((dep) => dependencies.add(dep));
 		}
 
-		installSpinner.stop(`${highlight(item.name)} installed at ${color.gray(componentPath)}`);
+		// Install Component
+		tasks.push({
+			title: `Installing ${highlight(item.name)}`,
+			async task() {
+				for (const file of item.files) {
+					const componentDir = path.resolve(targetDir, item.name);
+					let filePath = path.resolve(targetDir, item.name, file.name);
+
+					// Run transformers.
+					const content = transformImports(file.content, config);
+
+					if (!existsSync(componentDir)) {
+						await fs.mkdir(componentDir, { recursive: true });
+					}
+
+					await fs.writeFile(filePath, content);
+				}
+
+				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
+			},
+		});
 	}
 
 	// Install dependencies.
-	if (dependencies.size > 0) {
-		const spinner = p.spinner();
-		spinner.start("Installing package dependencies");
+	tasks.push({
+		title: "Installing package dependencies",
+		enabled: dependencies.size > 0,
+		async task() {
+			const packageManager = await getPackageManager(cwd);
+			await execa(packageManager, ["add", ...dependencies], {
+				cwd,
+			});
+			return "Dependencies installed";
+		},
+	});
 
-		const packageManager = await getPackageManager(cwd);
-		await execa(packageManager, ["add", ...dependencies], {
-			cwd,
-		});
-
-		spinner.stop("Dependencies installed");
-	}
+	await p.tasks(tasks);
 
 	if (options.nodep) {
 		const prettyList = prettifyList([...skippedDeps], 7);

@@ -54,6 +54,17 @@
 			Examples
 		</a>
 		<a
+			href="/blocks"
+			class={cn(
+				"transition-colors hover:text-foreground/80",
+				$page.url.pathname.startsWith("/examples")
+					? "text-foreground"
+					: "text-foreground/60"
+			)}
+		>
+			Blocks
+		</a>
+		<a
 			href={siteConfig.links.github}
 			target="_blank"
 			rel="noopener noreferrer"

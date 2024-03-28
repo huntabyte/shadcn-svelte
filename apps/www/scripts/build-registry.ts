@@ -56,6 +56,9 @@ export const Index = {
 				item.name
 			}.svelte").then((m) => m.default),
 			files: [${resolveFiles.map((file) => `"${file}"`)}],
+			raw: () => import("../lib/registry/${style.name}/${type}/${
+				item.name
+			}.svelte?raw").then((m) => m.default),
 		},`;
 		}
 

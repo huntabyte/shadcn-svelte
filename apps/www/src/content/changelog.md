@@ -5,9 +5,21 @@ description: Latest updates and announcements.
 
 <script>
 	import { Steps, Callout, ComponentPreview } from '$lib/components/docs'
+	import DashboardDark from '$lib/img/blocks/dashboard-1-dark.jpg';
+	import DashboardLight from '$lib/img/blocks/dashboard-1.jpg';
 </script>
 
 ## March 2024
+
+### Introducing Blocks
+
+[Blocks](/blocks) are ready-made components that you can use to build your apps. They are fully responsive, accessible, and composable, meaning they are built using the same principles as the rest of the components in shadcn-svelte.
+
+<img src={DashboardDark} alt="A screenshot of the dashboard-01 block" class="h-full w-full hidden dark:block mt-6" />
+
+<img src={DashboardLight} alt="A screenshot of the dashboard-01 block" class="h-full w-full block dark:hidden mt-6" />
+
+[v0](https://v0.dev) only supports React at the moment, so you can't customize them like you can the original from [shadcn/ui](https://ui.shadcn.com). However, if having support for Svelte interests you, I'm sure the v0 team would love to hear about it. :)
 
 ### New Component: Breadcrumb
 

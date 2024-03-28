@@ -1,12 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { dev } from "$app/environment";
-	import {
-		Metadata,
-		SiteFooter,
-		SiteHeader,
-		TailwindIndicator,
-	} from "$lib/components/docs/index.js";
+	import { Metadata } from "$lib/components/docs/index.js";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
 	import { config } from "$lib/stores/index.js";
@@ -26,12 +20,5 @@
 {/if}
 
 <div class="relative flex min-h-screen flex-col bg-background" id="page" data-vaul-drawer-wrapper>
-	<SiteHeader />
-	<div class="flex-1">
-		<slot />
-	</div>
-	<SiteFooter />
-	{#if dev}
-		<TailwindIndicator />
-	{/if}
+	<slot />
 </div>

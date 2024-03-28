@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 0.9.4
+
+### Patch Changes
+
+- 226f09e: chore: Removed `typescript` as a peer dependency
+- 226f09e: chore: Provide a descriptive error when import aliases do not reference a valid `[tsconfig|jsconfig].json` path alias
+
 ## 0.9.3
 
 ### Patch Changes
