@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-chore: Provide a descriptive error when import aliases are not defined
+chore: Provide a descriptive error when import aliases do not reference a valid `[tsconfig|jsconfig].json` path alias
