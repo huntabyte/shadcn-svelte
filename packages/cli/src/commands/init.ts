@@ -82,7 +82,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			style: () =>
 				p.select({
 					message: `Which ${highlight("style")} would you like to use?`,
-					initialValue: defaultConfig?.style,
+					initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
 					options: styles.map((style) => ({
 						label: style.label,
 						value: style.name,
@@ -91,7 +91,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindBaseColor: () =>
 				p.select({
 					message: `Which ${highlight("base color")} would you like to use?`,
-					initialValue: defaultConfig?.tailwind.baseColor,
+					initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 					options: baseColors.map((color) => ({
 						label: color.label,
 						value: color.name,
