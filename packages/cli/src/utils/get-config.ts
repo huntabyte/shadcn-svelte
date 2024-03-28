@@ -2,9 +2,8 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import color from "chalk";
 import { execa } from "execa";
-import { parseNative } from "tsconfck";
+import { parse, find, type TSConfckParseResult } from "tsconfck";
 import * as v from "valibot";
-import { find } from "./find-tsconfig.js";
 import { isUsingSvelteKit } from "./get-package-info.js";
 import { getPackageManager } from "./get-package-manager.js";
 import { resolveImport } from "./resolve-imports.js";
@@ -89,10 +88,11 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		throw new Error(`Failed to find ${highlight(configToFind)}.`);
 	}
 
-	const parsedConfig = await parseNative(tsconfigPath);
+	const parsedConfig = await parse(tsconfigPath);
+	const resolvedPaths = resolveTSConfigPaths(parsedConfig);
 
-	const absoluteBaseUrl: string | undefined = parsedConfig.result.options.pathsBasePath;
-	let paths: Record<string, string[]> | undefined = parsedConfig.result.options.paths;
+	const absoluteBaseUrl = resolvedPaths?.pathsBasePath;
+	const paths = resolvedPaths?.paths;
 
 	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
@@ -120,6 +120,20 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 			components: componentsPath,
 		},
 	});
+}
+
+function resolveTSConfigPaths(parsedConfig: TSConfckParseResult) {
+	for (const config of parsedConfig.extended ?? [parsedConfig]) {
+		const paths: Record<string, string[]> | undefined = config.tsconfig.compilerOptions.paths;
+		if (paths === undefined) continue;
+
+		const baseUrl: string = config.tsconfig.compilerOptions.baseUrl ?? ".";
+		const configPath = config.tsconfigFile;
+		// removes `tsconfig.json` from path
+		const configDir = configPath.split(path.sep).slice(0, -1).join(path.sep);
+		const pathsBasePath = path.resolve(configDir, baseUrl);
+		return { pathsBasePath, paths };
+	}
 }
 
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
