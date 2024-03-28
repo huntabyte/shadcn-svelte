@@ -76,7 +76,7 @@
 			<div class="grid gap-2">
 				<Label for="security-level-{id}">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level-{id}" class="line-clamp-1 truncate">
+					<Select.Trigger id="security-level-{id}" class="truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
