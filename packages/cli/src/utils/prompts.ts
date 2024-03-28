@@ -659,7 +659,7 @@ export const spinner = () => {
 		// Reference Signal Events: https://nodejs.org/api/process.html#signal-events
 		process.on("SIGINT", signalEventHandler);
 		process.on("SIGTERM", signalEventHandler);
-		process.on("exit", handleExit);
+		// process.on("exit", handleExit);
 	};
 
 	const clearHooks = () => {
@@ -667,7 +667,7 @@ export const spinner = () => {
 		process.removeListener("unhandledRejection", errorEventHandler);
 		process.removeListener("SIGINT", signalEventHandler);
 		process.removeListener("SIGTERM", signalEventHandler);
-		process.removeListener("exit", handleExit);
+		// process.removeListener("exit", handleExit);
 	};
 
 	const start = (msg: string = ""): void => {
