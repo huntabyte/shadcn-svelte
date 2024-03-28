@@ -7,7 +7,7 @@ import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError } from "../utils/handle-error.js";
+import { error, handleError } from "../utils/handle-error.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -60,16 +60,14 @@ export const add = new Command()
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				p.cancel(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
-				process.exit(1);
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				p.cancel(
+				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
-				process.exit(1);
 			}
 
 			await runAdd(cwd, config, options);

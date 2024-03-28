@@ -1,6 +1,6 @@
 import path from "node:path";
 
-export async function resolveImport(
+export function resolveImport(
 	importPath: string,
 	config: { paths: Record<string, string[]>; absoluteBaseUrl: string }
 ) {
