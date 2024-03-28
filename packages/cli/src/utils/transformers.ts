@@ -1,4 +1,4 @@
-import { Config } from "./get-config.js";
+import type { Config } from "./get-config.js";
 
 export type TransformOpts = {
 	filename: string;
