@@ -113,7 +113,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	const aliasError = (type: string, alias: string) =>
 		new Error(
-			`[components.json]: Invalid ${highlight(type)} path alias: ${highlight(alias)}. Aliases ${color.underline("must use")} path aliases defined in your ${highlight(tsconfigType)}. See ${color.green("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
+			`[components.json]: Invalid ${highlight(type)} import alias: ${highlight(alias)}. Aliases ${color.underline("must use")} path aliases defined in your ${highlight(tsconfigType)}. See ${color.green("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
 		);
 
 	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
