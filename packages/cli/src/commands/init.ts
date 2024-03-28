@@ -12,6 +12,8 @@ import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
+import { resolveImport } from "../utils/resolve-imports.js";
+import { syncSvelteKit } from "../utils/sync-sveltekit.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -54,17 +56,35 @@ export const init = new Command()
 	});
 
 async function promptForConfig(cwd: string, defaultConfig: Config | null = null) {
+	// if it's a SvelteKit project, run sync so that the aliases are always up to date
+	await syncSvelteKit(cwd);
+
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
+	const typescript = await p.confirm({
+		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+		initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
+	});
+	if (p.isCancel(typescript)) {
+		p.cancel("Operation cancelled.");
+		process.exit(0);
+	}
+	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
+	let tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
+
+	const validateImportAlias = (alias: string) => {
+		tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
+		const resolvedPath = resolveImport(alias, tsconfig);
+		if (resolvedPath !== undefined) {
+			return;
+		}
+		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	};
+
 	const options = await p.group(
 		{
-			typescript: () =>
-				p.confirm({
-					message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
-					initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
-				}),
-			style: ({}) =>
+			style: () =>
 				p.select({
 					message: `Which ${highlight("style")} would you like to use?`,
 					initialValue: defaultConfig?.style,
@@ -73,7 +93,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						value: style.name,
 					})),
 				}),
-			tailwindBaseColor: ({}) =>
+			tailwindBaseColor: () =>
 				p.select({
 					message: `Which ${highlight("base color")} would you like to use?`,
 					initialValue: defaultConfig?.tailwind.baseColor,
@@ -91,7 +111,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
 						}
-						return `${color.bold(value)} does not exist. Please enter a valid path.`;
+						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
 				}),
 			tailwindConfig: () =>
@@ -103,7 +123,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
 						}
-						return `${color.bold(value)} does not exist. Please enter a valid path.`;
+						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
 				}),
 			components: () =>
@@ -111,12 +131,14 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 					message: `Configure the import alias for ${highlight("components")}:`,
 					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
+					validate: validateImportAlias,
 				}),
 			utils: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
 					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
+					validate: validateImportAlias,
 				}),
 		},
 		{
@@ -130,7 +152,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
-		typescript: options.typescript,
+		typescript: typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
