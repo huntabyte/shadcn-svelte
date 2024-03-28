@@ -414,6 +414,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      get-tsconfig:
+        specifier: ^4.7.3
+        version: 4.7.3
       prettier:
         specifier: ^3.0.0
         version: 3.2.5
