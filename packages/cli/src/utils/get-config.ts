@@ -81,11 +81,14 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		});
 	}
 
-	const tsconfigPath = await find(path.resolve(cwd, "package.json"), { root: cwd });
+	const tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
+	const tsconfigPath = await find(path.resolve(cwd, "package.json"), {
+		root: cwd,
+		configName: tsconfigType,
+	});
 
 	if (tsconfigPath === null) {
-		const configToFind = config.typescript ? "tsconfig.json" : "jsconfig.json";
-		throw new Error(`Failed to find ${highlight(configToFind)}.`);
+		throw new Error(`Failed to find ${highlight(tsconfigType)}.`);
 	}
 
 	const parsedConfig = await parse(tsconfigPath);
@@ -96,11 +99,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
-			`Specify a ${highlight("paths")} field in your ${highlight(
-				"tsconfig.json"
-			)} and define your path aliases. \n\nSee: ${color.green(
-				"https://www.shadcn-svelte.com/docs/installation#setup-path-aliases"
-			)}`
+			`Specify a ${highlight("paths")} field in your ${highlight(tsconfigType)} and define your path aliases. \n\nSee: ${color.green("https://www.shadcn-svelte.com/docs/installation#setup-path-aliases")}`
 		);
 	}
 
