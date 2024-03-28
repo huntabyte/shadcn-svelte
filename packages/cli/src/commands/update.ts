@@ -182,62 +182,68 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
+	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const updateSpinner = p.spinner();
-		updateSpinner.start(`Updating ${highlight(item.name)}`);
 		const targetDir = getItemTargetPath(config, item);
-
 		if (!targetDir) {
 			continue;
-		}
-
-		if (!existsSync(targetDir)) {
-			await fs.mkdir(targetDir, { recursive: true });
-		}
-
-		const componentDir = path.resolve(targetDir, item.name);
-		if (!existsSync(componentDir)) {
-			await fs.mkdir(componentDir, { recursive: true });
-		}
-
-		for (const file of item.files) {
-			const filePath = path.resolve(targetDir, item.name, file.name);
-
-			// Run transformers.
-			const content = transformImports(file.content, config);
-
-			await fs.writeFile(filePath, content);
-		}
-
-		const installedFiles = await fs.readdir(componentDir);
-		const remoteFiles = item.files.map((file) => file.name);
-		const filesToDelete = installedFiles
-			.filter((file) => !remoteFiles.includes(file))
-			.map((file) => path.resolve(targetDir, item.name, file));
-
-		if (filesToDelete.length > 0) {
-			componentsToRemove[item.name] = filesToDelete;
 		}
 
 		// Add dependencies to the install list
 		item.dependencies.forEach((dep) => dependencies.add(dep));
 
-		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
-		updateSpinner.stop(`${highlight(item.name)} updated at ${color.gray(componentPath)}`);
+		// Update Components
+		tasks.push({
+			title: `Updating ${highlight(item.name)}`,
+			async task() {
+				if (!existsSync(targetDir)) {
+					await fs.mkdir(targetDir, { recursive: true });
+				}
+
+				const componentDir = path.resolve(targetDir, item.name);
+				if (!existsSync(componentDir)) {
+					await fs.mkdir(componentDir, { recursive: true });
+				}
+
+				for (const file of item.files) {
+					const filePath = path.resolve(targetDir, item.name, file.name);
+
+					// Run transformers.
+					const content = transformImports(file.content, config);
+
+					await fs.writeFile(filePath, content);
+				}
+
+				const installedFiles = await fs.readdir(componentDir);
+				const remoteFiles = item.files.map((file) => file.name);
+				const filesToDelete = installedFiles
+					.filter((file) => !remoteFiles.includes(file))
+					.map((file) => path.resolve(targetDir, item.name, file));
+
+				if (filesToDelete.length > 0) {
+					componentsToRemove[item.name] = filesToDelete;
+				}
+
+				const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+				return `${highlight(item.name)} updated at ${color.gray(componentPath)}`;
+			},
+		});
 	}
 
 	// Install dependencies.
-	if (dependencies.size > 0) {
-		const spinner = p.spinner();
-		spinner.start("Installing new package dependencies");
+	tasks.push({
+		title: "Installing package dependencies",
+		enabled: dependencies.size > 0,
+		async task() {
+			const packageManager = await getPackageManager(cwd);
+			await execa(packageManager, ["add", ...dependencies], {
+				cwd,
+			});
+			return "Dependencies installed";
+		},
+	});
 
-		const packageManager = await getPackageManager(cwd);
-		await execa(packageManager, ["add", ...dependencies], {
-			cwd,
-		});
-
-		spinner.stop("Dependencies installed");
-	}
+	await p.tasks(tasks);
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(
