@@ -98,7 +98,6 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	const absoluteBaseUrl = resolvedPaths?.pathsBasePath;
 	const paths = resolvedPaths?.paths;
-
 	if (absoluteBaseUrl === undefined || paths === undefined) {
 		throw new Error(
 			`Specify a ${highlight("paths")} field in your ${highlight(tsconfigType)} and define your path aliases. See: ${color.green("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`
