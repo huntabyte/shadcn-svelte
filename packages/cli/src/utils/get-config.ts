@@ -1,4 +1,4 @@
-import { promises as fs } from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import color from "chalk";
 import { execa } from "execa";
@@ -28,7 +28,7 @@ export const rawConfigSchema = v.object({
 		// cssVariables: v.boolean().default(true)
 	}),
 	aliases: v.object({
-		components: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+		components: v.transform(v.string("hello"), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 		utils: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 	}),
 	typescript: v.optional(v.boolean(), true),
@@ -108,8 +108,16 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		absoluteBaseUrl,
 		paths,
 	};
-	const utilsPath = await resolveImport(config.aliases.utils, importOpts);
-	const componentsPath = await resolveImport(config.aliases.components, importOpts);
+	const utilsPath = resolveImport(config.aliases.utils, importOpts);
+	const componentsPath = resolveImport(config.aliases.components, importOpts);
+
+	const aliasError = (type: string, alias: string) =>
+		new Error(
+			`[components.json]: Invalid ${highlight(type)} path alias: ${highlight(alias)}. Aliases ${color.underline("must use")} path aliases defined in your ${highlight(tsconfigType)}. See ${color.green("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
+		);
+
+	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
+	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
 
 	return v.parse(configSchema, {
 		...config,
@@ -139,7 +147,7 @@ function resolveTSConfigPaths(parsedConfig: TSConfckParseResult) {
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	const configPath = path.resolve(cwd, "components.json");
 	try {
-		const configResult = await fs
+		const configResult = await fs.promises
 			.readFile(configPath, {
 				encoding: "utf8",
 			})
