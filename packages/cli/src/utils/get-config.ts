@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import color from "chalk";
-import { getTsconfig, createPathsMatcher, type TsConfigResult } from "get-tsconfig";
+import { getTsconfig } from "get-tsconfig";
 import * as v from "valibot";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sync-sveltekit.js";
