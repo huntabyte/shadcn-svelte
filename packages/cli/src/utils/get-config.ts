@@ -60,17 +60,6 @@ export async function getConfig(cwd: string) {
 	return await resolveConfigPaths(cwd, config);
 }
 
-export async function getAliases() {
-	const SVELTE_CONFIG_PATH = path.resolve(process.cwd(), "svelte.config.js");
-	const IMPORT_SVELTE_CONFIG_PATH = "file://" + SVELTE_CONFIG_PATH;
-
-	const { default: svelteConfig } = await import(IMPORT_SVELTE_CONFIG_PATH);
-
-	const aliases: Record<string, string> | undefined = svelteConfig.kit.alias;
-
-	return aliases;
-}
-
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	const isSvelteKit = isUsingSvelteKit(cwd);
