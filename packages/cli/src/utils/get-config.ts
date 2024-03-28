@@ -28,7 +28,7 @@ export const rawConfigSchema = v.object({
 		// cssVariables: v.boolean().default(true)
 	}),
 	aliases: v.object({
-		components: v.transform(v.string("hello"), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+		components: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 		utils: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
 	}),
 	typescript: v.optional(v.boolean(), true),
