@@ -48,14 +48,14 @@
 		"find-up": "^7.0.0",
 		"https-proxy-agent": "^7.0.4",
 		"is-unicode-supported": "^2.0.0",
-		"node-fetch": "^3.3.2"
+		"node-fetch": "^3.3.2",
+		"tsconfck": "^3.0.3"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
 		"cross-env": "^7.0.3",
 		"prettier": "^3.0.0",
 		"sisteransi": "^1.0.5",
-		"tsconfck": "^3.0.3",
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",

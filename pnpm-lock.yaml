@@ -404,6 +404,9 @@ importers:
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
+      tsconfck:
+        specifier: ^3.0.3
+        version: 3.0.3(typescript@5.3.3)
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -417,9 +420,6 @@ importers:
       sisteransi:
         specifier: ^1.0.5
         version: 1.0.5
-      tsconfck:
-        specifier: ^3.0.3
-        version: 3.0.3(typescript@5.3.3)
       tsup:
         specifier: ^8.0.0
         version: 8.0.2(typescript@5.3.3)
@@ -7687,7 +7687,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.3.3
-    dev: true
+    dev: false
 
   /tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
@@ -7853,7 +7853,6 @@ packages:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /ufo@1.4.0:
     resolution: {integrity: sha512-Hhy+BhRBleFjpJ2vchUNN40qgkh0366FWJGqVLYBHev0vpHTrXSA0ryT+74UiW6KWsldNurQMKGqCm1M2zBciQ==}
