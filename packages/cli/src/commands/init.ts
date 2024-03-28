@@ -62,27 +62,25 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
-	const typescript = await p.confirm({
-		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
-		initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
-	});
-	if (p.isCancel(typescript)) {
-		p.cancel("Operation cancelled.");
-		process.exit(0);
-	}
-
-	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
-	const validateImportAlias = (alias: string) => {
-		const tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
-		const resolvedPath = resolveImport(alias, tsconfig);
-		if (resolvedPath !== undefined) {
-			return;
-		}
-		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	const validateImportAlias = (typescript: boolean) => {
+		const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
+		return (alias: string) => {
+			const tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
+			const resolvedPath = resolveImport(alias, tsconfig);
+			if (resolvedPath !== undefined) {
+				return;
+			}
+			return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+		};
 	};
 
 	const options = await p.group(
 		{
+			typescript: () =>
+				p.confirm({
+					message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+					initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
+				}),
 			style: () =>
 				p.select({
 					message: `Which ${highlight("style")} would you like to use?`,
@@ -125,19 +123,19 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
 				}),
-			components: () =>
+			components: ({ results }) =>
 				p.text({
 					message: `Configure the import alias for ${highlight("components")}:`,
 					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
-					validate: validateImportAlias,
+					validate: validateImportAlias(results.typescript!),
 				}),
-			utils: () =>
+			utils: ({ results }) =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
 					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
-					validate: validateImportAlias,
+					validate: validateImportAlias(results.typescript!),
 				}),
 		},
 		{
@@ -151,7 +149,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
-		typescript: typescript,
+		typescript: options.typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
