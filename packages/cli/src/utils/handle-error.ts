@@ -1,6 +1,9 @@
 import * as p from "./prompts.js";
 
 export function handleError(error: unknown) {
+	// provide a newline gap
+	p.log.message();
+
 	if (typeof error === "string") {
 		p.cancel(error);
 		process.exit(1);
