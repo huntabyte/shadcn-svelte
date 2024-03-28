@@ -70,11 +70,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 		p.cancel("Operation cancelled.");
 		process.exit(0);
 	}
-	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
-	let tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
 
+	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
 	const validateImportAlias = (alias: string) => {
-		tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
+		const tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
 		const resolvedPath = resolveImport(alias, tsconfig);
 		if (resolvedPath !== undefined) {
 			return;
