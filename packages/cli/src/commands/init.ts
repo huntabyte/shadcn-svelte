@@ -12,6 +12,8 @@ import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
+import { resolveImport } from "../utils/resolve-imports.js";
+import { syncSvelteKit } from "../utils/sync-sveltekit.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -40,13 +42,6 @@ export const init = new Command()
 
 			await runInit(cwd, config);
 
-			if (
-				!config.aliases.components.startsWith("$lib") ||
-				!config.aliases.utils.startsWith("$lib")
-			) {
-				p.note("Don't forget to add the import aliases you configured to your svelte.config.js!");
-			}
-
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
 			handleError(e);
@@ -54,29 +49,49 @@ export const init = new Command()
 	});
 
 async function promptForConfig(cwd: string, defaultConfig: Config | null = null) {
+	// if it's a SvelteKit project, run sync so that the aliases are always up to date
+	await syncSvelteKit(cwd);
+
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
 
+	const typescript = await p.confirm({
+		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+		initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
+	});
+	if (p.isCancel(typescript)) {
+		p.cancel("Operation cancelled.");
+		process.exit(0);
+	}
+
+	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
+	// throws if the tsconfig is missing
+	cliConfig.getTSConfig(cwd, tsconfigName);
+
+	const validateImportAlias = (alias: string) => {
+		const tsconfig = cliConfig.getTSConfig(cwd, tsconfigName);
+		const resolvedPath = resolveImport(alias, tsconfig);
+		if (resolvedPath !== undefined) {
+			return;
+		}
+		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	};
+
 	const options = await p.group(
 		{
-			typescript: () =>
-				p.confirm({
-					message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
-					initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
-				}),
-			style: ({}) =>
+			style: () =>
 				p.select({
 					message: `Which ${highlight("style")} would you like to use?`,
-					initialValue: defaultConfig?.style,
+					initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
 					options: styles.map((style) => ({
 						label: style.label,
 						value: style.name,
 					})),
 				}),
-			tailwindBaseColor: ({}) =>
+			tailwindBaseColor: () =>
 				p.select({
 					message: `Which ${highlight("base color")} would you like to use?`,
-					initialValue: defaultConfig?.tailwind.baseColor,
+					initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 					options: baseColors.map((color) => ({
 						label: color.label,
 						value: color.name,
@@ -91,7 +106,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
 						}
-						return `${color.bold(value)} does not exist. Please enter a valid path.`;
+						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
 				}),
 			tailwindConfig: () =>
@@ -103,7 +118,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 						if (existsSync(path.resolve(cwd, value))) {
 							return;
 						}
-						return `${color.bold(value)} does not exist. Please enter a valid path.`;
+						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
 				}),
 			components: () =>
@@ -111,12 +126,14 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 					message: `Configure the import alias for ${highlight("components")}:`,
 					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
+					validate: validateImportAlias,
 				}),
 			utils: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
 					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
+					validate: validateImportAlias,
 				}),
 		},
 		{
@@ -130,7 +147,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
-		typescript: options.typescript,
+		typescript: typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,
@@ -149,70 +166,80 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 	}
 
 	const configPaths = await cliConfig.resolveConfigPaths(cwd, config);
-
-	// Write to file.
-	const spinner = p.spinner();
-	spinner.start(`Creating config file ${highlight("components.json")}`);
-	const targetPath = path.resolve(cwd, "components.json");
-	await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
-	spinner.stop(`Config file ${highlight("components.json")} created`);
-
 	return configPaths;
 }
 
 export async function runInit(cwd: string, config: Config) {
-	const spinner = p.spinner();
-	spinner.start(`Initializing project`);
+	// Write to file.
+	const createConfig: p.Task = {
+		title: "Creating config file",
+		async task() {
+			const targetPath = path.resolve(cwd, "components.json");
+			const conf = v.parse(cliConfig.rawConfigSchema, config); // inefficient, but it'll do
+			await fs.writeFile(targetPath, JSON.stringify(conf, null, "\t"), "utf8");
+			return `Config file ${highlight("components.json")} created`;
+		},
+	};
 
-	// Ensure all resolved paths directories exist.
-	for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
-		// Determine if the path is a file or directory.
-		let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
+	const init: p.Task = {
+		title: "Initializing project",
+		async task() {
+			// Ensure all resolved paths directories exist.
+			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
+				// Determine if the path is a file or directory.
+				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
 
-		// If the utils alias is set to something like "@/lib/utils",
-		// assume this is a file and remove the "utils" file name.
-		// TODO: In future releases we should add support for individual utils.
-		if (key === "utils" && resolvedPath.endsWith("/utils")) {
-			// Remove /utils at the end.
-			dirname = dirname.replace(/\/utils$/, "");
-		}
+				// If the utils alias is set to something like "@/lib/utils",
+				// assume this is a file and remove the "utils" file name.
+				// TODO: In future releases we should add support for individual utils.
+				if (key === "utils" && resolvedPath.endsWith("/utils")) {
+					// Remove /utils at the end.
+					dirname = dirname.replace(/\/utils$/, "");
+				}
 
-		if (!existsSync(dirname) && key !== "utils") {
-			await fs.mkdir(dirname, { recursive: true });
-		}
-	}
+				if (!existsSync(dirname) && key !== "utils") {
+					await fs.mkdir(dirname, { recursive: true });
+				}
+			}
 
-	// Write tailwind config.
-	await fs.writeFile(
-		config.resolvedPaths.tailwindConfig,
-		templates.TAILWIND_CONFIG_WITH_VARIABLES,
-		"utf8"
-	);
+			// Write tailwind config.
+			await fs.writeFile(
+				config.resolvedPaths.tailwindConfig,
+				templates.TAILWIND_CONFIG_WITH_VARIABLES,
+				"utf8"
+			);
 
-	// Delete tailwind.config.cjs, if present
-	const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
-	if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
+			// Delete tailwind.config.cjs, if present
+			const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
+			if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
-	// Write css file.
-	const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
-	if (baseColor) {
-		await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
-	}
+			// Write css file.
+			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
+			if (baseColor) {
+				await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
+			}
 
-	const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
-	const utilsTemplate = config.typescript ? templates.UTILS : templates.UTILS_JS;
-	// Write cn file.
-	await fs.writeFile(utilsPath, utilsTemplate, "utf8");
+			const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
+			const utilsTemplate = config.typescript ? templates.UTILS : templates.UTILS_JS;
+			// Write cn file.
+			await fs.writeFile(utilsPath, utilsTemplate, "utf8");
 
-	spinner.stop("Project initialized");
+			return "Project initialized";
+		},
+	};
 
 	// Install dependencies.
-	const dependenciesSpinner = p.spinner();
-	dependenciesSpinner.start(`Installing dependencies`);
-	const packageManager = await getPackageManager(cwd);
+	const installDeps: p.Task = {
+		title: "Installing dependencies",
+		async task() {
+			const packageManager = await getPackageManager(cwd);
 
-	await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
-		cwd,
-	});
-	dependenciesSpinner.stop("Dependencies installed");
+			await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
+				cwd,
+			});
+			return "Dependencies installed";
+		},
+	};
+
+	await p.tasks([createConfig, init, installDeps]);
 }

@@ -49,21 +49,21 @@ it("init (config-full)", async () => {
 
 	// writeFile mocks
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		1,
+		2,
 		expect.stringContaining("tailwind.config"),
 		expect.stringContaining(`import { fontFamily } from "tailwindcss/defaultTheme"`),
 		"utf8"
 	);
 
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		2,
+		3,
 		expect.stringContaining("app.pcss"),
 		expect.stringContaining(`@tailwind base`),
 		"utf8"
 	);
 
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		3,
+		4,
 		expect.stringContaining("utils.ts"),
 		expect.stringContaining('import { type ClassValue, clsx } from "clsx"'),
 		"utf8"
