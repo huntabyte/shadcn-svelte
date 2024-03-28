@@ -175,7 +175,8 @@ export async function runInit(cwd: string, config: Config) {
 		title: "Creating config file",
 		async task() {
 			const targetPath = path.resolve(cwd, "components.json");
-			await fs.writeFile(targetPath, JSON.stringify(config, null, 2), "utf8");
+			const conf = v.parse(cliConfig.rawConfigSchema, config); // inefficient, but it'll do
+			await fs.writeFile(targetPath, JSON.stringify(conf, null, "\t"), "utf8");
 			return `Config file ${highlight("components.json")} created`;
 		},
 	};
