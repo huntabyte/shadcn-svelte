@@ -14,6 +14,7 @@ import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sync-sveltekit.js";
+import { detectConfigs } from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -48,12 +49,13 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null = null) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
+	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
 	const typescript = await p.confirm({
 		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
@@ -100,7 +102,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindCss: () =>
 				p.text({
 					message: `Where is your ${highlight("global CSS")} file?`,
-					initialValue: defaultConfig?.tailwind.css ?? cliConfig.DEFAULT_TAILWIND_CSS,
+					initialValue:
+						defaultConfig?.tailwind.css ??
+						detectedConfigs.cssPath ??
+						cliConfig.DEFAULT_TAILWIND_CSS,
 					placeholder: cliConfig.DEFAULT_TAILWIND_CSS,
 					validate: (value) => {
 						if (existsSync(path.resolve(cwd, value))) {
@@ -112,7 +117,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindConfig: () =>
 				p.text({
 					message: `Where is your ${highlight("Tailwind config")} located?`,
-					initialValue: defaultConfig?.tailwind.config ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
+					initialValue:
+						defaultConfig?.tailwind.config ??
+						detectedConfigs.tailwindPath ??
+						cliConfig.DEFAULT_TAILWIND_CONFIG,
 					placeholder: cliConfig.DEFAULT_TAILWIND_CONFIG,
 					validate: (value) => {
 						if (existsSync(path.resolve(cwd, value))) {
