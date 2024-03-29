@@ -110,10 +110,17 @@ export const flyAndScale = (
 	};
 };`;
 
-export const TAILWIND_CONFIG_WITH_VARIABLES = `import { fontFamily } from "tailwindcss/defaultTheme";
+const TAILWIND_JS = `import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
-const config = {
+const config = {`;
+
+const TAILWIND_TS = `import { fontFamily } from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
+
+const config: Config = {`;
+
+const TAILWIND_WITH_VARIABLES = `
 	darkMode: ["class"],
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	safelist: ["dark"],
@@ -175,6 +182,11 @@ const config = {
 
 export default config;
 `;
+
+export const TAILWIND_CONFIG_WITH_VARIABLES = {
+	TS: TAILWIND_TS + TAILWIND_WITH_VARIABLES,
+	JS: TAILWIND_JS + TAILWIND_WITH_VARIABLES,
+};
 
 export const TAILWIND_CONFIG = `import { fontFamily } from "tailwindcss/defaultTheme";
 
