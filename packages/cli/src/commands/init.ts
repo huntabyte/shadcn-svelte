@@ -167,8 +167,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 		},
 	});
 
+	// Delete `tailwind.config.cjs` and rename to `.js`
 	if (config.tailwind.config.endsWith(".cjs")) {
 		p.log.info(`Your tailwind config has been renamed to ${highlight("tailwind.config.js")}.`);
+		await fs.unlink(config.tailwind.config).catch(() => null);
 		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
@@ -216,10 +218,6 @@ export async function runInit(cwd: string, config: Config) {
 				templates.TAILWIND_CONFIG_WITH_VARIABLES,
 				"utf8"
 			);
-
-			// Delete tailwind.config.cjs, if present
-			const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
-			if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 			// Write css file.
 			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
