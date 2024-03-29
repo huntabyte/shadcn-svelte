@@ -17,7 +17,6 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	let tailwindPath;
 	let cssPath;
 	const paths = findFiles(cwd, []);
-	console.dir(paths, { maxArrayLength: Infinity, maxStringLength: Infinity, depth: Infinity });
 	for (const filepath of paths) {
 		const filename = path.parse(filepath).base;
 		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
