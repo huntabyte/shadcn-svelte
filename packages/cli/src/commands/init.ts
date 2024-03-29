@@ -217,11 +217,9 @@ export async function runInit(cwd: string, config: Config) {
 			}
 
 			// Write tailwind config.
-			await fs.writeFile(
-				config.resolvedPaths.tailwindConfig,
-				templates.TAILWIND_CONFIG_WITH_VARIABLES,
-				"utf8"
-			);
+			const { TS, JS } = templates.TAILWIND_CONFIG_WITH_VARIABLES;
+			const tailwindConfigContent = config.resolvedPaths.tailwindConfig.endsWith(".ts") ? TS : JS;
+			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
 			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
