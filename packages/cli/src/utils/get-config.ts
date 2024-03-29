@@ -74,10 +74,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
 	const componentsPath = resolveImport(config.aliases.components, pathAliases);
-
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
-			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}).
+			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
    - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigType)} (e.g. "${type}": "$lib/${type}").
    - See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
 		);
