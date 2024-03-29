@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 0.10.0
+
+### Minor Changes
+
+- 231f674: feat: Added TypeScript support for the tailwind config
+
+### Patch Changes
+
+- ebd04c4: chore: Added import path validators for the `init` command
+- c5afe89: chore: Improved printed error messages
+- c5afe89: chore: Certain config files can now be auto-detected and suggested during `init`
+
 ## 0.9.4
 
 ### Patch Changes
