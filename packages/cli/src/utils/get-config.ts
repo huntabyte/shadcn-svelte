@@ -5,7 +5,7 @@ import * as v from "valibot";
 import { ConfigError, error } from "./errors.js";
 import { getTsconfig } from "get-tsconfig";
 import { resolveImport } from "./resolve-imports.js";
-import { syncSvelteKit } from "./sync-sveltekit.js";
+import { syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";

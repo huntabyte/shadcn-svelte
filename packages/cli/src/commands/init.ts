@@ -13,7 +13,7 @@ import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sync-sveltekit.js";
+import { syncSvelteKit } from "../utils/sveltekit.js";
 import { detectConfigs } from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;

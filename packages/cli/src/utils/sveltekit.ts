@@ -1,6 +1,6 @@
 import { execa } from "execa";
 import { getPackageManager } from "./get-package-manager.js";
-import { isUsingSvelteKit } from "./get-package-info.js";
+import { loadProjectPackageInfo } from "./get-package-info.js";
 
 // if it's a SvelteKit project, run sync so that the aliases are always up to date
 export async function syncSvelteKit(cwd: string) {
@@ -11,4 +11,13 @@ export async function syncSvelteKit(cwd: string) {
 			cwd,
 		});
 	}
+}
+
+/**
+ * Loads the user's `package.json` and check if `@sveltejs/kit` is a dependency.
+ */
+export function isUsingSvelteKit(cwd: string): boolean {
+	const packageJSON = loadProjectPackageInfo(cwd);
+	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
+	return deps["@sveltejs/kit"] !== undefined;
 }

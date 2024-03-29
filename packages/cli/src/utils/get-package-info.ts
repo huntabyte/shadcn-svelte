@@ -23,12 +23,3 @@ function readJSONSync(path: string): unknown {
 	const content = fs.readFileSync(path, { encoding: "utf8" });
 	return JSON.parse(content);
 }
-
-/**
- * Loads the user's `package.json` and check if `@sveltejs/kit` is a dependency.
- */
-export function isUsingSvelteKit(cwd: string): boolean {
-	const packageJSON = loadProjectPackageInfo(cwd);
-	const deps = { ...packageJSON.devDependencies, ...packageJSON.dependencies };
-	return deps["@sveltejs/kit"] !== undefined;
-}
