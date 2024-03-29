@@ -6,7 +6,7 @@ import { execa } from "execa";
 import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError, error } from "../utils/handle-error.js";
+import { handleError, error } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
@@ -32,7 +32,7 @@ export const update = new Command()
 	.argument("[components...]", "name of components")
 	.option("-a, --all", "update all existing components.", false)
 	.option("-y, --yes", "skip confirmation prompt.", false)
-	.option("--proxy <proxy>", "fetch components from registry using a proxy.")
+	.option("--proxy <proxy>", "fetch components from registry using a proxy.", getEnvProxy())
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
@@ -73,18 +73,12 @@ export const update = new Command()
 	});
 
 async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
-	const components = options.components;
-
-	const proxy = options.proxy ?? getEnvProxy();
-	if (proxy) {
-		const isCustom = !!options.proxy;
-		if (isCustom) process.env.HTTP_PROXY = options.proxy;
-
-		p.log.warn(
-			`You are using a ${isCustom ? "provided" : "system environment"} proxy: ${color.green(proxy)}`
-		);
+	if (options.proxy !== undefined) {
+		process.env.HTTP_PROXY = options.proxy;
+		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
+	const components = options.components;
 	const registryIndex = await getRegistryIndex();
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");

@@ -7,13 +7,14 @@ import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { error, handleError } from "../utils/handle-error.js";
+import { error, handleError } from "../utils/errors.js";
 import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sync-sveltekit.js";
+import { syncSvelteKit } from "../utils/sveltekit.js";
+import { detectConfigs } from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -48,12 +49,13 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null = null) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
 	const styles = await getRegistryStyles();
 	const baseColors = await getRegistryBaseColors();
+	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
 	const typescript = await p.confirm({
 		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
@@ -100,10 +102,13 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindCss: () =>
 				p.text({
 					message: `Where is your ${highlight("global CSS")} file?`,
-					initialValue: defaultConfig?.tailwind.css ?? cliConfig.DEFAULT_TAILWIND_CSS,
-					placeholder: cliConfig.DEFAULT_TAILWIND_CSS,
+					initialValue:
+						defaultConfig?.tailwind.css ??
+						detectedConfigs.cssPath ??
+						cliConfig.DEFAULT_TAILWIND_CSS,
+					placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
 					validate: (value) => {
-						if (existsSync(path.resolve(cwd, value))) {
+						if (value && existsSync(path.resolve(cwd, value))) {
 							return;
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
@@ -112,10 +117,13 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			tailwindConfig: () =>
 				p.text({
 					message: `Where is your ${highlight("Tailwind config")} located?`,
-					initialValue: defaultConfig?.tailwind.config ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
-					placeholder: cliConfig.DEFAULT_TAILWIND_CONFIG,
+					initialValue:
+						defaultConfig?.tailwind.config ??
+						detectedConfigs.tailwindPath ??
+						cliConfig.DEFAULT_TAILWIND_CONFIG,
+					placeholder: detectedConfigs.tailwindPath ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
 					validate: (value) => {
-						if (existsSync(path.resolve(cwd, value))) {
+						if (value && existsSync(path.resolve(cwd, value))) {
 							return;
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
@@ -124,14 +132,18 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 			components: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("components")}:`,
-					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
+					initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
 					validate: validateImportAlias,
 				}),
-			utils: () =>
+			utils: ({ results: { components } }) =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
-					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
+					initialValue:
+						defaultConfig?.aliases.utils ??
+						// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
+						components?.split("/").slice(0, -1).join("/") + "/utils" ??
+						cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
 					validate: validateImportAlias,
 				}),
@@ -159,8 +171,10 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null = null)
 		},
 	});
 
+	// Delete `tailwind.config.cjs` and rename to `.js`
 	if (config.tailwind.config.endsWith(".cjs")) {
 		p.log.info(`Your tailwind config has been renamed to ${highlight("tailwind.config.js")}.`);
+		await fs.unlink(config.tailwind.config).catch(() => null);
 		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
 		config.tailwind.config = renamedTailwindConfigPath;
 	}
@@ -208,10 +222,6 @@ export async function runInit(cwd: string, config: Config) {
 				templates.TAILWIND_CONFIG_WITH_VARIABLES,
 				"utf8"
 			);
-
-			// Delete tailwind.config.cjs, if present
-			const cjsConfig = config.resolvedPaths.tailwindConfig.replace(".js", ".cjs");
-			if (cjsConfig.endsWith(".cjs")) await fs.unlink(cjsConfig).catch((e) => e); // throws when it DNE
 
 			// Write css file.
 			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);

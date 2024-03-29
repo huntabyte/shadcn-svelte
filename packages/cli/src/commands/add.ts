@@ -7,7 +7,7 @@ import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { error, handleError } from "../utils/handle-error.js";
+import { ConfigError, error, handleError } from "../utils/errors.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -42,7 +42,7 @@ export const add = new Command()
 	.option("-a, --all", "install all components to your project.", false)
 	.option("-y, --yes", "skip confirmation prompt.", false)
 	.option("-o, --overwrite", "overwrite existing files.", false)
-	.option("--proxy <proxy>", "fetch components from registry using a proxy.")
+	.option("--proxy <proxy>", "fetch components from registry using a proxy.", getEnvProxy())
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
@@ -65,7 +65,7 @@ export const add = new Command()
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				throw error(
+				throw new ConfigError(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
@@ -79,14 +79,9 @@ export const add = new Command()
 	});
 
 async function runAdd(cwd: string, config: Config, options: AddOptions) {
-	const proxy = options.proxy ?? getEnvProxy();
-	if (proxy) {
-		const isCustom = !!options.proxy;
-		if (isCustom) process.env.HTTP_PROXY = options.proxy;
-
-		p.log.warn(
-			`You are using a ${isCustom ? "provided" : "system environment"} proxy: ${color.green(proxy)}`
-		);
+	if (options.proxy !== undefined) {
+		process.env.HTTP_PROXY = options.proxy;
+		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
 	const registryIndex = await getRegistryIndex();
