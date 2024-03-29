@@ -106,9 +106,9 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 						defaultConfig?.tailwind.css ??
 						detectedConfigs.cssPath ??
 						cliConfig.DEFAULT_TAILWIND_CSS,
-					placeholder: cliConfig.DEFAULT_TAILWIND_CSS,
+					placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
 					validate: (value) => {
-						if (existsSync(path.resolve(cwd, value))) {
+						if (value && existsSync(path.resolve(cwd, value))) {
 							return;
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
@@ -121,9 +121,9 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 						defaultConfig?.tailwind.config ??
 						detectedConfigs.tailwindPath ??
 						cliConfig.DEFAULT_TAILWIND_CONFIG,
-					placeholder: cliConfig.DEFAULT_TAILWIND_CONFIG,
+					placeholder: detectedConfigs.tailwindPath ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
 					validate: (value) => {
-						if (existsSync(path.resolve(cwd, value))) {
+						if (value && existsSync(path.resolve(cwd, value))) {
 							return;
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
