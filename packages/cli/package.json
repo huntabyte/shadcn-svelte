@@ -30,7 +30,7 @@
 		"radix-svelte"
 	],
 	"scripts": {
-		"dev": "tsup --watch",
+		"dev": "tsup --watch --sourcemap",
 		"build": "tsup --minify",
 		"check": "tsc --noEmit",
 		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 node dist/index.js",
