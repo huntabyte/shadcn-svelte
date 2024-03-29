@@ -65,19 +65,3 @@ function findFiles(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]):
 
 	return paths;
 }
-
-function parseGitIgnore(filepath: string) {
-	const input = fs.readFileSync(filepath, { encoding: "utf8" });
-	const lines = input.split(/\r\n?|\n/);
-	const patterns = new Set<string>();
-
-	for (const line of lines) {
-		const value = line.trim();
-		if (value.startsWith("#")) continue;
-		if (value !== "") {
-			patterns.add(value);
-		}
-	}
-
-	return Array.from(patterns);
-}
