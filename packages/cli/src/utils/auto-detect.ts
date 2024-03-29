@@ -14,8 +14,7 @@ const TAILWIND_CONFIGS = [
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
-	let tailwindPath;
-	let cssPath;
+	let tailwindPath, cssPath;
 	const paths = findFiles(cwd);
 	for (const filepath of paths) {
 		const filename = path.parse(filepath).base;
