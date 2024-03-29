@@ -6,7 +6,7 @@ import { execa } from "execa";
 import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError, error } from "../utils/handle-error.js";
+import { handleError, error } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";

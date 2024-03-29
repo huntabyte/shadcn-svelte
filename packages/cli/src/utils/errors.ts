@@ -9,8 +9,14 @@ export function handleError(error: unknown) {
 		process.exit(1);
 	}
 
+	if (error instanceof CLIError || error instanceof ConfigError) {
+		p.cancel(`[${error.name}]: ${error.message}`);
+		process.exit(1);
+	}
+
+	// unexpected error
 	if (error instanceof Error) {
-		p.cancel(error.message);
+		p.cancel(error.stack);
 		process.exit(1);
 	}
 
@@ -19,5 +25,13 @@ export function handleError(error: unknown) {
 }
 
 export function error(msg: string) {
-	return new Error(msg);
+	return new CLIError(msg);
+}
+
+export class CLIError extends Error {
+	name = "CLI Error";
+}
+
+export class ConfigError extends Error {
+	name = "Config Error";
 }

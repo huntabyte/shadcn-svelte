@@ -7,7 +7,7 @@ import * as v from "valibot";
 import { getConfig, type Config } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { error, handleError } from "../utils/handle-error.js";
+import { ConfigError, error, handleError } from "../utils/errors.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -65,7 +65,7 @@ export const add = new Command()
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				throw error(
+				throw new ConfigError(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
