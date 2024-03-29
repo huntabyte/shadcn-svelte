@@ -136,10 +136,14 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
 					validate: validateImportAlias,
 				}),
-			utils: () =>
+			utils: ({ results: { components } }) =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
-					initialValue: defaultConfig?.aliases.utils ?? cliConfig.DEFAULT_UTILS,
+					initialValue:
+						defaultConfig?.aliases.utils ??
+						// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
+						components?.split("/").slice(0, -1).join("/") + "/utils" ??
+						cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
 					validate: validateImportAlias,
 				}),
