@@ -16,7 +16,7 @@ const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	let tailwindPath;
 	let cssPath;
-	const paths = findFiles(cwd, []);
+	const paths = findFiles(cwd);
 	for (const filepath of paths) {
 		const filename = path.parse(filepath).base;
 		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
@@ -30,15 +30,18 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 }
 
 /**
- * Walks down the directory tree, returning file paths that are not ignored from their respective `.gitignore`'s
+ * Walks down the directory tree, returning file paths that are _not_ ignored from their respective `.gitignore`'s
  */
-function findFiles(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): string[] {
+function findFiles(dirPath: string) {
+	return find(dirPath, []);
+}
+
+function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): string[] {
 	const paths: string[] = [];
 	const files = fs.readdirSync(dirPath, { withFileTypes: true });
 	const ignorePath = path.join(dirPath, ".gitignore");
 	if (fs.existsSync(ignorePath)) {
 		const gitignore = fs.readFileSync(ignorePath, { encoding: "utf8" });
-		// const ignorePatterns = parseGitIgnore(ignorePath);
 		const ig = ignore().add(gitignore);
 		ignores.push({ dirPath, ig });
 	}
@@ -59,7 +62,7 @@ function findFiles(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]):
 		if (ignored) continue;
 
 		if (file.isFile()) paths.push(filepath);
-		if (file.isDirectory()) paths.push(...findFiles(filepath, ignores));
+		if (file.isDirectory()) paths.push(...find(filepath, ignores));
 	}
 
 	return paths;
