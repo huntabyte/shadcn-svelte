@@ -132,14 +132,14 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 			components: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("components")}:`,
-					initialValue: defaultConfig?.aliases["components"] ?? cliConfig.DEFAULT_COMPONENTS,
+					initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
 					validate: validateImportAlias,
 				}),
 			utils: () =>
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
-					initialValue: defaultConfig?.aliases["utils"] ?? cliConfig.DEFAULT_UTILS,
+					initialValue: defaultConfig?.aliases.utils ?? cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
 					validate: validateImportAlias,
 				}),
