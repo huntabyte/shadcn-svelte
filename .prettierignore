@@ -1,11 +1,11 @@
+.changeset
+.github
 .DS_Store
 node_modules
 **/build
 **/.svelte-kit
 **/package
 **/dist
-**/.github
-**/.changeset
 .env
 .env.*
 !.env.example
