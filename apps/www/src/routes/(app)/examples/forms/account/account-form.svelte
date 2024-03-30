@@ -112,7 +112,7 @@
 								validate("dob");
 								return;
 							}
-							$formData.dob = value.toDate(getLocalTimeZone()).toISOString();
+							$formData.dob = value.toDate("UTC").toISOString();
 							validate("dob");
 						}}
 					/>
