@@ -1,3 +1,4 @@
+import type { BlockName } from "$lib/registry/schema.js";
 import type { Style } from "$lib/registry/styles.js";
 
 type BlockConfig = {
@@ -6,7 +7,7 @@ type BlockConfig = {
 	description: string;
 };
 
-export const blockMeta: Record<Style["name"], Record<string, BlockConfig>> = {
+export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = {
 	default: {
 		"authentication-01": {
 			description:
@@ -55,6 +56,24 @@ export const blockMeta: Record<Style["name"], Record<string, BlockConfig>> = {
 			className: "w-full h-full",
 			description:
 				"A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.",
+		},
+		"dashboard-05": {
+			iframeHeight: "1112px",
+			className: "w-full h-full",
+			description:
+				"An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of recent orders with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information.",
+		},
+		"dashboard-06": {
+			iframeHeight: "938px",
+			className: "w-full h-full",
+			description:
+				"An products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
+		},
+		"dashboard-07": {
+			iframeHeight: "1200px",
+			className: "w-full h-full",
+			description:
+				"A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.",
 		},
 	},
 	"new-york": {
@@ -105,6 +124,24 @@ export const blockMeta: Record<Style["name"], Record<string, BlockConfig>> = {
 			className: "w-full h-full",
 			description:
 				"A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.",
+		},
+		"dashboard-05": {
+			iframeHeight: "956px",
+			className: "w-full h-full",
+			description:
+				"An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of recent orders with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information.",
+		},
+		"dashboard-06": {
+			iframeHeight: "820px",
+			className: "w-full h-full",
+			description:
+				"An products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
+		},
+		"dashboard-07": {
+			iframeHeight: "1100px",
+			className: "w-full h-full",
+			description:
+				"A product edit page. The product edit page has a form to edit the product details, stock, product category, product status, and product images. The product edit page has a sidebar navigation and a main content area. The main content area has a form to edit the product details, stock, product category, product status, and product images. The sidebar navigation has links to product details, stock, product category, product status, and product images.",
 		},
 	},
 };
