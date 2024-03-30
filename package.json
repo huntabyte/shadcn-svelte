@@ -41,7 +41,7 @@
 	"devDependencies": {
 		"@antfu/eslint-config": "^2.11.6",
 		"@changesets/cli": "^2.27.1",
-		"eslint": "9.0.0-rc.0",
+		"eslint": "^8.57.0",
 		"eslint-plugin-antfu": "^2.1.2",
 		"eslint-plugin-svelte": "2.36.0-next.13",
 		"prettier": "^3.2.5",
