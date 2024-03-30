@@ -7,7 +7,7 @@
 	type Status = {
 		value: string;
 		label: string;
-	}
+	};
 
 	const statuses: Status[] = [
 		{

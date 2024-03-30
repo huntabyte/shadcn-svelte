@@ -3,7 +3,7 @@ import { type Mail, mails } from "./data.js";
 
 type MailStore = {
 	selected: Mail["id"] | null;
-}
+};
 
 function createMailStore() {
 	const store = writable<MailStore>({ selected: mails[0].id });

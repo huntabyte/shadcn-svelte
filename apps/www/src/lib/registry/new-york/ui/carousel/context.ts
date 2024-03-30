@@ -38,7 +38,7 @@ type EmblaContext = {
 	options: Writable<CarouselOptions>;
 	plugins: Writable<CarouselPlugins>;
 	onInit: (e: CustomEvent<CarouselAPI>) => void;
-}
+};
 
 export function setEmblaContex(config: EmblaContext): EmblaContext {
 	setContext(EMBLA_CAROUSEL_CONTEXT, config);

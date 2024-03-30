@@ -12,7 +12,6 @@ import { formSchema as comboboxFormSchema } from "$lib/registry/default/example/
 import { formSchema as datePickerFormSchema } from "$lib/registry/default/example/date-picker-form.svelte";
 import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/example/checkbox-form-multiple.svelte";
 
-
 export const load: LayoutServerLoad = async () => {
 	return {
 		form: await superValidate(zod(formSchema)),

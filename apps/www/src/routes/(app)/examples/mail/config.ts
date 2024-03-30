@@ -1,4 +1,3 @@
-
 import type { Icon } from "lucide-svelte";
 import type { ComponentType } from "svelte";
 import * as Icons from "./icons.js";
@@ -8,7 +7,7 @@ export type Route = {
 	label: string;
 	icon: ComponentType<Icon>;
 	variant: "default" | "ghost";
-}
+};
 
 export const primaryRoutes: Route[] = [
 	{

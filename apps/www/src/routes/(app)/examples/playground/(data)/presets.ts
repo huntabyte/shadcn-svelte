@@ -1,7 +1,7 @@
 export type Preset = {
 	id: string;
 	name: string;
-}
+};
 
 export const presets: Preset[] = [
 	{

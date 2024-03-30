@@ -7,7 +7,7 @@ type Config = {
 	style: Style["name"];
 	theme: Theme["name"];
 	radius: number;
-}
+};
 
 export const config = persisted<Config>("config", {
 	style: "new-york",

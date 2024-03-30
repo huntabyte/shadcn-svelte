@@ -14,7 +14,7 @@
 		value: string;
 		label: string;
 		icon: ComponentType;
-	}
+	};
 
 	const statuses: Status[] = [
 		{

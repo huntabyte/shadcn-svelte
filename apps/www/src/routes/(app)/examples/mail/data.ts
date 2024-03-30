@@ -4,7 +4,6 @@ import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
 
-
 export const mails = [
 	{
 		id: "6c84fb90-12c4-11e1-840d-7b25c5ee775a",
@@ -184,7 +183,7 @@ export type Account = {
 	label: string;
 	email: string;
 	icon: ComponentType<Icon>;
-}
+};
 
 export const accounts: Account[] = [
 	{

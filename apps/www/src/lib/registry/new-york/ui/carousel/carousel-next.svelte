@@ -3,7 +3,11 @@
 	import type { VariantProps } from "tailwind-variants";
 	import { getEmblaContext } from "./context.js";
 	import { cn } from "$lib/utils.js";
-	import type { Button , type Props, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import {
+		Button,
+		type Props,
+		type buttonVariants,
+	} from "$lib/registry/new-york/ui/button/index.js";
 
 	type $$Props = Props;
 

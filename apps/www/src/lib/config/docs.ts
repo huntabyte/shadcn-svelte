@@ -3,7 +3,7 @@ import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 type DocsConfig = {
 	mainNav: NavItem[];
 	sidebarNav: SidebarNavItem[];
-}
+};
 
 export const docsConfig: DocsConfig = {
 	mainNav: [
@@ -346,7 +346,7 @@ type Example = {
 	href: string;
 	label?: string;
 	code: string;
-}
+};
 export const examples: Example[] = [
 	{
 		name: "Mail",

@@ -38,6 +38,9 @@ importers:
       simple-git-hooks:
         specifier: ^2.10.0
         version: 2.10.0
+      svelte:
+        specifier: ^4.2.12
+        version: 4.2.12
       svelte-eslint-parser:
         specifier: ^0.33.1
         version: 0.33.1(svelte@4.2.12)
