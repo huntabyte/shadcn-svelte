@@ -1,9 +1,10 @@
+import type { PageServerLoad } from "./$types.js";
 import { getAllBlockIds, getBlock } from "$lib/blocks.js";
 import { blockNames } from "$lib/registry/schema.js";
 
 export const prerender = true;
 
-export async function load() {
+export const load: PageServerLoad = async () => {
 	const blockIds = await getAllBlockIds();
 	const defaultBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "default")));
 	const newYorkBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "new-york")));
@@ -19,4 +20,4 @@ export async function load() {
 	return {
 		blocks,
 	};
-}
+};

@@ -8,7 +8,7 @@
 
 	export let data: PageData;
 
-	type Component = $$Generic<ComponentType<any, any, any>>;
+	type Component = $$Generic<ComponentType>;
 	$: component = data.component as unknown as Component;
 	$: doc = data.metadata;
 </script>
