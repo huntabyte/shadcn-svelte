@@ -31,7 +31,7 @@ export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = 
 			iframeHeight: "800px",
 			className: "w-full h-full p-4 lg:p-0",
 			description:
-				"A login page with two columns. The first column has the login form with email and password. There's a Forgot your passwork link and a link to sign up if you do not have an account. The second column has a cover image.",
+				"A login page with two columns. The first column has the login form with email and password. There's a Forgot your password link and a link to sign up if you do not have an account. The second column has a cover image.",
 		},
 		"dashboard-01": {
 			iframeHeight: "825px",
@@ -67,7 +67,7 @@ export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = 
 			iframeHeight: "938px",
 			className: "w-full h-full",
 			description:
-				"An products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
+				"A products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
 		},
 		"dashboard-07": {
 			iframeHeight: "1200px",
@@ -99,7 +99,7 @@ export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = 
 			iframeHeight: "800px",
 			className: "w-full h-full p-4 lg:p-0",
 			description:
-				"A login page with two columns. The first column has the login form with email and password. There's a Forgot your passwork link and a link to sign up if you do not have an account. The second column has a cover image.",
+				"A login page with two columns. The first column has the login form with email and password. There's a Forgot your password link and a link to sign up if you do not have an account. The second column has a cover image.",
 		},
 		"dashboard-01": {
 			iframeHeight: "730px",
@@ -135,7 +135,7 @@ export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = 
 			iframeHeight: "820px",
 			className: "w-full h-full",
 			description:
-				"An products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
+				"A products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.",
 		},
 		"dashboard-07": {
 			iframeHeight: "1100px",
