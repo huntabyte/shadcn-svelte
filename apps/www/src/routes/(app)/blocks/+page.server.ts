@@ -1,24 +1,20 @@
 import { getAllBlockIds, getBlock } from "$lib/blocks.js";
+import { blockNames } from "$lib/registry/schema.js";
 
 export const prerender = true;
 
 export const load = async () => {
 	const blockIds = await getAllBlockIds();
-	const defaultBlocks = blockIds.map((name) => getBlock(name, "default"));
-	const newYorkBlocks = blockIds.map((name) => getBlock(name, "new-york"));
-	const blocks = await Promise.all([...defaultBlocks, ...newYorkBlocks]);
+	const defaultBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "default")));
+	const newYorkBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "new-york")));
 
-	blocks.sort((a, b) => {
-		const prefixA = a.name.split("-")[0];
-		const prefixB = b.name.split("-")[0];
-		if (prefixA === "dashboard" && prefixB === "authentication") {
-			return -1;
-		}
-		if (prefixA === "authentication" && prefixB === "dashboard") {
-			return 1;
-		}
-		return a.name.localeCompare(b.name);
-	});
+	const blocks = [];
+	for (const name of blockNames) {
+		const defaultBlock = defaultBlocks.find((b) => b.name === name);
+		const newYorkBlock = newYorkBlocks.find((b) => b.name === name);
+		if (!defaultBlock || !newYorkBlock) throw new Error("Missing blocks");
+		blocks.push(defaultBlock, newYorkBlock);
+	}
 
 	return {
 		blocks,

@@ -58,7 +58,7 @@ export const blockNames = [
 export type BlockName = (typeof blockNames)[number];
 
 export const blockSchema = z.object({
-	name: z.enum([...blockNames]),
+	name: z.enum(blockNames),
 	type: z.literal("components:block"),
 	description: z.string(),
 	style: z.enum(["default", "new-york"]),
