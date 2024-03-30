@@ -41,10 +41,6 @@
 	$: hoverCardIsOpen = open && peekedModel !== undefined;
 
 	function handlePeek(model: Model) {
-		console.log("current model", peekedModel?.name);
-		console.log("incoming model", model.name);
-		console.log("popover open", open);
-		console.log("hovercard open ", hoverCardIsOpen);
 		if (peekedModel === undefined) {
 			if (!open) return;
 			peekedModel = model;

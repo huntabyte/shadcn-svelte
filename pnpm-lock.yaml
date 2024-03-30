@@ -11,6 +11,15 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      prettier-plugin-svelte:
+        specifier: ^3.2.2
+        version: 3.2.2(prettier@3.2.5)(svelte@4.2.12)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.5.12
+        version: 0.5.12(prettier-plugin-svelte@3.2.2)(prettier@3.2.5)
       pretty-quick:
         specifier: ^4.0.0
         version: 4.0.0(prettier@3.2.5)
@@ -322,7 +331,7 @@ importers:
         version: 0.5.12(prettier-plugin-svelte@3.2.2)(prettier@3.2.5)
       rehype-pretty-code:
         specifier: ^0.13.0
-        version: 0.13.0(shiki@1.2.0)
+        version: 0.13.0(shiki@1.2.1)
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -336,8 +345,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1
       shiki:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       svelte:
         specifier: ^4.2.12
         version: 4.2.12
@@ -1757,8 +1766,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@shikijs/core@1.2.0:
-    resolution: {integrity: sha512-OlFvx+nyr5C8zpcMBnSGir0YPD6K11uYhouqhNmm1qLiis4GA7SsGtu07r9gKS9omks8RtQqHrJL4S+lqWK01A==}
+  /@shikijs/core@1.2.1:
+    resolution: {integrity: sha512-KaIS0H4EQ3KI2d++TjYqRNgwp8E3M/68e9veR4QtInzA7kKFgcjeiJqb80fuXW+blDy5fmd11PN9g9soz/3ANQ==}
     dev: true
 
   /@sideway/address@4.1.5:
@@ -6566,7 +6575,7 @@ packages:
       unified: 11.0.4
     dev: true
 
-  /rehype-pretty-code@0.13.0(shiki@1.2.0):
+  /rehype-pretty-code@0.13.0(shiki@1.2.1):
     resolution: {integrity: sha512-+22dz1StXlF7dlMyOySNaVxgcGhMI4BCxq0JxJJPWYGiKsI6cu5jyuIKGHXHvH18D8sv1rdKtvsY9UEfN3++SQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -6576,7 +6585,7 @@ packages:
       hast-util-to-string: 3.0.0
       parse-numeric-range: 1.3.0
       rehype-parse: 9.0.0
-      shiki: 1.2.0
+      shiki: 1.2.1
       unified: 11.0.4
       unist-util-visit: 5.0.0
     dev: true
@@ -6848,10 +6857,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  /shiki@1.2.0:
-    resolution: {integrity: sha512-xLhiTMOIUXCv5DqJ4I70GgQCtdlzsTqFLZWcMHHG3TAieBUbvEGthdrlPDlX4mL/Wszx9C6rEcxU6kMlg4YlxA==}
+  /shiki@1.2.1:
+    resolution: {integrity: sha512-u+XW6o0vCkUNlneZb914dLO+AayEIwK5tI62WeS//R5HIXBFiYaj/Hc5xcq27Yh83Grr4JbNtUBV8W6zyK4hWg==}
     dependencies:
-      '@shikijs/core': 1.2.0
+      '@shikijs/core': 1.2.1
     dev: true
 
   /side-channel@1.0.6:
@@ -7426,23 +7435,6 @@ packages:
     peerDependencies:
       '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x || >=5.0.0-next.51
-    peerDependenciesMeta:
-      '@sinclair/typebox':
-        optional: true
-      '@vinejs/vine':
-        optional: true
-      arktype:
-        optional: true
-      joi:
-        optional: true
-      superstruct:
-        optional: true
-      valibot:
-        optional: true
-      yup:
-        optional: true
-      zod:
-        optional: true
     dependencies:
       '@sveltejs/kit': 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.1.5)
       devalue: 4.3.2

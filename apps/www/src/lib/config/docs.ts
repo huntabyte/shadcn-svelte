@@ -126,7 +126,6 @@ export const docsConfig: DocsConfig = {
 					title: "Breadcrumb",
 					href: "/docs/components/breadcrumb",
 					items: [],
-					label: "New",
 				},
 				{
 					title: "Button",
@@ -201,7 +200,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Form",
 					href: "/docs/components/form",
-					label: "Updated",
 					items: [],
 				},
 				{
@@ -264,7 +262,6 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Scroll Area",
 					href: "/docs/components/scroll-area",
-					label: "New",
 					items: [],
 				},
 				{

@@ -20,5 +20,7 @@
 				"printWidth": 79
 			}
 		}
-	]
+	],
+	"tailwindConfig": "./apps/www/tailwind.config.js",
+	"tailwindFunctions": ["clsx", "cn", "tv"]
 }

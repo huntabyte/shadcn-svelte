@@ -40,8 +40,25 @@ export const registryIndexSchema = z.array(registryEntrySchema);
 
 export type RegistryIndex = z.infer<typeof registryIndexSchema>;
 
+// This also defines the order they appear on the blocks page.
+export const blockNames = [
+	"dashboard-05",
+	"dashboard-06",
+	"dashboard-07",
+	"dashboard-01",
+	"dashboard-02",
+	"dashboard-03",
+	"dashboard-04",
+	"authentication-01",
+	"authentication-02",
+	"authentication-03",
+	"authentication-04",
+] as const;
+
+export type BlockName = (typeof blockNames)[number];
+
 export const blockSchema = z.object({
-	name: z.string(),
+	name: z.enum(blockNames),
 	type: z.literal("components:block"),
 	description: z.string(),
 	style: z.enum(["default", "new-york"]),
