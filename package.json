@@ -44,7 +44,11 @@
 		"prettier-plugin-svelte": "^3.2.2",
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"pretty-quick": "^4.0.0",
-		"simple-git-hooks": "^2.10.0"
+		"simple-git-hooks": "^2.10.0",
+		"@antfu/eslint-config": "^2.11.6",
+		"eslint": "9.0.0-rc.0",
+		"eslint-plugin-svelte": "2.36.0-next.13",
+		"svelte-eslint-parser": "^0.33.1"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"
