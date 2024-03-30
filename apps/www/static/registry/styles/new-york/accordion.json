@@ -8,7 +8,7 @@
 	"files": [
 		{
 			"name": "accordion-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { slide } from \"svelte/transition\";\n\n\ttype $$Props = AccordionPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let transition: $$Props[\"transition\"] = slide;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = {\n\t\tduration: 200,\n\t};\n\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Content\n\tclass={cn(\"overflow-hidden text-sm\", className)}\n\t{transition}\n\t{transitionConfig}\n\t{...$$restProps}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t<slot />\n\t</div>\n</AccordionPrimitive.Content>\n"
+			"content": "<script lang=\"ts\">\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport { slide } from \"svelte/transition\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = AccordionPrimitive.ContentProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let transition: $$Props[\"transition\"] = slide;\n\texport let transitionConfig: $$Props[\"transitionConfig\"] = {\n\t\tduration: 200,\n\t};\n\n\texport { className as class };\n</script>\n\n<AccordionPrimitive.Content\n\tclass={cn(\"overflow-hidden text-sm\", className)}\n\t{transition}\n\t{transitionConfig}\n\t{...$$restProps}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t<slot />\n\t</div>\n</AccordionPrimitive.Content>\n"
 		},
 		{
 			"name": "accordion-item.svelte",

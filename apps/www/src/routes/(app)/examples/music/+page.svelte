@@ -1,12 +1,12 @@
 <script lang="ts">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
+	import { playlists } from "./(data)/playlists.js";
+	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import { AlbumArtwork, Sidebar, Menu, PodcastEmptyPlaceholder } from "./(components)/index.js";
-	import { playlists } from "./(data)/playlists.js";
-	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
 	import MusicLight from "$lib/img/examples/music-light.png";
 	import MusicDark from "$lib/img/examples/music-dark.png";
 </script>

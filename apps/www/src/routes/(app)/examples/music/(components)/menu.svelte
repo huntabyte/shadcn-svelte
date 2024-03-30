@@ -73,7 +73,7 @@
 			<Menubar.Item disabled>Burn Playlist to Disc...</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Item>
-				Show in Finder <Menubar.Shortcut>⇧⌘R</Menubar.Shortcut>{" "}
+				Show in Finder <Menubar.Shortcut>⇧⌘R</Menubar.Shortcut>
 			</Menubar.Item>
 			<Menubar.Item>Convert</Menubar.Item>
 			<Menubar.Separator />
@@ -111,7 +111,7 @@
 			</Menubar.Item>
 			<Menubar.Separator />
 			<Menubar.Item>
-				Smart Dictation...{" "}
+				Smart Dictation...
 				<Menubar.Shortcut>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@
 				</Menubar.Shortcut>
 			</Menubar.Item>
 			<Menubar.Item>
-				Emoji & Symbols{" "}
+				Emoji & Symbols
 				<Menubar.Shortcut>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

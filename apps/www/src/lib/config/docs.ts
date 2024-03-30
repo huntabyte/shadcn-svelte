@@ -1,9 +1,9 @@
 import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 
-interface DocsConfig {
+type DocsConfig = {
 	mainNav: NavItem[];
 	sidebarNav: SidebarNavItem[];
-}
+};
 
 export const docsConfig: DocsConfig = {
 	mainNav: [

@@ -8,12 +8,12 @@
 </script>
 
 <script lang="ts">
+	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
-	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 
 	let data: SuperValidated<Infer<FormSchema>>;
 	export { data as form };
@@ -21,7 +21,7 @@
 		validators: zodClient(formSchema),
 		onUpdated: ({ form: f }) => {
 			if (f.valid) {
-				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
 				toast.error("Please fix the errors in the form.");
 			}

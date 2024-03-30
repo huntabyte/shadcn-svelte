@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Pagination from "$lib/registry/default/ui/pagination/index.js";
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { mediaQuery } from "svelte-legos";
+	import * as Pagination from "$lib/registry/default/ui/pagination/index.js";
 
 	const isDesktop = mediaQuery("(min-width: 768px)");
 
@@ -26,7 +26,7 @@
 				</Pagination.Item>
 			{:else}
 				<Pagination.Item>
-					<Pagination.Link {page} isActive={currentPage == page.value}>
+					<Pagination.Link {page} isActive={currentPage === page.value}>
 						{page.value}
 					</Pagination.Link>
 				</Pagination.Item>

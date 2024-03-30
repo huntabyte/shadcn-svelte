@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
 	import Slash from "svelte-radix/Slash.svelte";
+	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 </script>
 
 <Breadcrumb.Root>

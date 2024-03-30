@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import UserAuthForm from "./(components)/user-auth-form.svelte";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import AuthenticationLight from "$lib/img/examples/authentication-light.png";
 	import AuthenticationDark from "$lib/img/examples/authentication-dark.png";
 </script>
@@ -63,11 +63,11 @@
 			</div>
 			<UserAuthForm />
 			<p class="px-8 text-center text-sm text-muted-foreground">
-				By clicking continue, you agree to our{" "}
+				By clicking continue, you agree to our
 				<a href="/terms" class="underline underline-offset-4 hover:text-primary">
 					Terms of Service
-				</a>{" "}
-				and{" "}
+				</a>
+				and
 				<a href="/privacy" class="underline underline-offset-4 hover:text-primary">
 					Privacy Policy
 				</a>

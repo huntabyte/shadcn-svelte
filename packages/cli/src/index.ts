@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import process from "node:process";
 import { Command } from "commander";
 import { add, init, update } from "./commands";
 import { getPackageInfo } from "./utils/get-package-info.js";
@@ -7,7 +8,7 @@ process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
 const currentVersion = process.versions.node;
-const currentMajorVersion = parseInt(currentVersion.split(".")[0]!, 10);
+const currentMajorVersion = Number.parseInt(currentVersion.split(".")[0]!, 10);
 const minimumMajorVersion = 18;
 
 if (currentMajorVersion < minimumMajorVersion) {

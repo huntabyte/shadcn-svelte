@@ -29,7 +29,7 @@
 			<Button variant="outline" class="w-full">Login with Google</Button>
 		</div>
 		<div class="mt-4 text-center text-sm">
-			Don&apos;t have an account?{" "}
+			Don&apos;t have an account?
 			<a href="##" class="underline">Sign up</a>
 		</div>
 	</Card.Content>

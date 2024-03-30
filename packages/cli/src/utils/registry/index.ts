@@ -1,11 +1,12 @@
 import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
 import fetch from "node-fetch";
 import { HttpsProxyAgent } from "https-proxy-agent";
-import * as schemas from "./schema.js";
 import { error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { Config } from "../get-config.js";
+import * as schemas from "./schema.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Command as CommandPrimitive } from "cmdk-sv";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import type { Model } from "../(data)/models.js";
 	import Check from "svelte-radix/Check.svelte";
+	import type { Model } from "../(data)/models.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type $$Props = {

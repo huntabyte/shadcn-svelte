@@ -7,7 +7,7 @@
 	"files": [
 		{
 			"name": "button.svelte",
-			"content": "<script>\n\timport { Button as ButtonPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"./index.js\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let builders = [];\n\texport { className as class };\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\ttype=\"button\"\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
+			"content": "<script>\n\timport { Button as ButtonPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let builders = [];\n\texport { className as class };\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\ttype=\"button\"\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
 		},
 		{
 			"name": "index.js",

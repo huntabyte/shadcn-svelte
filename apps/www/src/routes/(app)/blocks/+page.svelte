@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BlockPreview from "$lib/components/docs/block-preview.svelte";
 	import type { PageData } from "./$types.js";
+	import BlockPreview from "$lib/components/docs/block-preview.svelte";
 
 	export let data: PageData;
 </script>

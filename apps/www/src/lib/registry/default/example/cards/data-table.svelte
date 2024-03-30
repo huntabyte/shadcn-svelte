@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { createTable, Subscribe, Render, createRender } from "svelte-headless-table";
+	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
 	import {
-		addSortBy,
-		addPagination,
-		addTableFilter,
-		addSelectedRows,
 		addHiddenColumns,
+		addPagination,
+		addSelectedRows,
+		addSortBy,
+		addTableFilter,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "$lib/registry/default/ui/table/index.js";
+	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import Actions from "../data-table/data-table-actions.svelte";
+	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
+	import * as Table from "$lib/registry/default/ui/table/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
-	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
-	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
-	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 
 	type Payment = {
@@ -269,8 +269,7 @@
 		</div>
 		<div class="flex items-center justify-end space-x-2 py-4">
 			<div class="flex-1 text-sm text-muted-foreground">
-				{Object.keys($selectedDataIds).length} of{" "}
-				{$rows.length} row(s) selected.
+				{Object.keys($selectedDataIds).length} of {$rows.length} row(s) selected.
 			</div>
 			<Button
 				variant="outline"

@@ -76,5 +76,5 @@ export const Icons = {
 	google: Google,
 	apple: Apple,
 	paypal: PayPal,
-	Hamburger: Hamburger,
+	Hamburger,
 };

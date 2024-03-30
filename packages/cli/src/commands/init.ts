@@ -1,5 +1,6 @@
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
+import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
 import { Command } from "commander";
@@ -142,7 +143,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 					initialValue:
 						defaultConfig?.aliases.utils ??
 						// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
-						components?.split("/").slice(0, -1).join("/") + "/utils" ??
+						`${components?.split("/").slice(0, -1).join("/")}/utils` ??
 						cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
 					validate: validateImportAlias,
@@ -159,7 +160,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style: options.style,
-		typescript: typescript,
+		typescript,
 		tailwind: {
 			config: options.tailwindConfig,
 			css: options.tailwindCss,

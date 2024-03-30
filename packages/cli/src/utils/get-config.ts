@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import color from "chalk";
 import * as v from "valibot";
-import { ConfigError, error } from "./errors.js";
 import { getTsconfig } from "get-tsconfig";
+import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
 
@@ -113,7 +113,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 			.readFile(configPath, {
 				encoding: "utf8",
 			})
-			.catch((e) => null);
+			.catch(() => null);
 
 		// no predefined config exists
 		if (!configResult) {

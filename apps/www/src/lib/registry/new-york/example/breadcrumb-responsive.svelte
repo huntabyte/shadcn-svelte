@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { mediaQuery } from "svelte-legos";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { mediaQuery } from "svelte-legos";
 
 	const items = [
 		{ href: "#", label: "Home" },

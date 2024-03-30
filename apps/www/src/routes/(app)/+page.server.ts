@@ -1,8 +1,8 @@
 import { fail } from "@sveltejs/kit";
 import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
-import type { Actions, RequestEvent, PageServerLoad } from "./$types.js";
 import type { AnyZodObject } from "zod";
+import type { Actions, PageServerLoad, RequestEvent } from "./$types.js";
 
 import { formSchema } from "$lib/registry/default/example/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "$lib/registry/default/example/checkbox-form-single.svelte";
@@ -42,8 +42,8 @@ export const load: PageServerLoad = async (event) => {
 	const layoutCookie = event.cookies.get("PaneForge:layout");
 	const collapsedCookie = event.cookies.get("PaneForge:collapsed");
 
-	let layout: number[] | undefined = undefined;
-	let collapsed: boolean | undefined = undefined;
+	let layout: number[] | undefined;
+	let collapsed: boolean | undefined;
 
 	layoutCookie && (layout = JSON.parse(layoutCookie));
 	collapsedCookie && (collapsed = JSON.parse(collapsedCookie));

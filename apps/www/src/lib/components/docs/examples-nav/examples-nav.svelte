@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { page } from "$app/stores";
-	import { examples } from "$lib/config/docs.js";
-	import { cn } from "$lib/utils.js";
 	import { cubicInOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
 	import ExampleCodeLink from "./example-code-link.svelte";
+	import { page } from "$app/stores";
+	import { examples } from "$lib/config/docs.js";
+	import { cn } from "$lib/utils.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
 	let className: string | undefined | null = undefined;
@@ -44,7 +44,7 @@
 							/>
 						{/if}
 						<div class="relative">
-							{example.name}{" "}
+							{example.name}
 							{#if example.label}
 								<span
 									class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs font-medium leading-none text-[#000000] no-underline group-hover:no-underline"

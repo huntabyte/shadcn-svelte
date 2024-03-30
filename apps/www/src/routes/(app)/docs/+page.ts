@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
-import type { DocFile } from "$lib/types/docs.js";
 import type { PageLoad } from "./$types.js";
+import type { DocFile } from "$lib/types/docs.js";
 
 export const load: PageLoad = async () => {
 	// @ts-expect-error import doesn't recognize *.md modules _yet_

@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { Icons } from "./icons/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
-	import { Icons } from "./icons/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -15,7 +15,7 @@
 	)}
 	{...$$restProps}
 >
-	🎉 <Separator class="mx-2 h-4" orientation="vertical" />{" "}
+	🎉 <Separator class="mx-2 h-4" orientation="vertical" />
 	<span class="sm:hidden">Introducing Blocks</span>
 	<span class="hidden sm:inline"> Introducing Blocks </span>
 	<Icons.arrowRight class="ml-1 h-4 w-4" />

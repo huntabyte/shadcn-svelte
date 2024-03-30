@@ -3,6 +3,7 @@
 	import Check from "svelte-radix/Check.svelte";
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 
+	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -12,7 +13,6 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { tick } from "svelte";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

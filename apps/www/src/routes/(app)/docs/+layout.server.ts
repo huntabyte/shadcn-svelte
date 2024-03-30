@@ -1,3 +1,5 @@
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
 import type { LayoutServerLoad } from "./$types.js";
 
 import { formSchema } from "$lib/registry/default/example/form-demo.svelte";
@@ -9,9 +11,6 @@ import { formSchema as textareaSchema } from "$lib/registry/default/example/text
 import { formSchema as comboboxFormSchema } from "$lib/registry/default/example/combobox-form.svelte";
 import { formSchema as datePickerFormSchema } from "$lib/registry/default/example/date-picker-form.svelte";
 import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/example/checkbox-form-multiple.svelte";
-
-import { superValidate } from "sveltekit-superforms";
-import { zod } from "sveltekit-superforms/adapters";
 
 export const load: LayoutServerLoad = async () => {
 	return {

@@ -8,7 +8,7 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import Handle from \"./resizable-handle.svelte\";\nimport PaneGroup from \"./resizable-pane-group.svelte\";\nimport { Pane } from \"paneforge\";\nexport {\n\tPaneGroup,\n\tPane,\n\tHandle,\n\t//\n\tPaneGroup as ResizablePaneGroup,\n\tPane as ResizablePane,\n\tHandle as ResizableHandle,\n};\n"
+			"content": "import { Pane } from \"paneforge\";\nimport Handle from \"./resizable-handle.svelte\";\nimport PaneGroup from \"./resizable-pane-group.svelte\";\nexport {\n\tPaneGroup,\n\tPane,\n\tHandle,\n\t//\n\tPaneGroup as ResizablePaneGroup,\n\tPane as ResizablePane,\n\tHandle as ResizableHandle,\n};\n"
 		},
 		{
 			"name": "resizable-handle.svelte",

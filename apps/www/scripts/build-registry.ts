@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import template from "lodash.template";
 import { rimraf } from "rimraf";
 
@@ -81,7 +81,7 @@ export const Index = {
 	// Create the style directories.
 	for (const style of styles) {
 		const targetPath = path.join(REGISTRY_PATH, "styles", style.name);
-		const targetJsPath = targetPath + "-js";
+		const targetJsPath = `${targetPath}-js`;
 
 		// Create directory if it doesn't exist.
 		if (!fs.existsSync(targetPath)) {
@@ -98,7 +98,7 @@ export const Index = {
 		if (item.type !== "components:ui") continue;
 
 		const targetPath = path.join(REGISTRY_PATH, "styles", item.style);
-		const targetJsPath = targetPath + "-js";
+		const targetJsPath = `${targetPath}-js`;
 
 		// discard `path` prop
 		const files = item.files.map((file) => ({ ...file, path: undefined }));
@@ -177,7 +177,6 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const colorsData: Record<string, any> = {};
 	for (const [color, value] of Object.entries(colors)) {
 		if (typeof value === "string") {
@@ -220,30 +219,30 @@ export const Index = {
 			cssVars: {},
 		};
 		for (const [mode, values] of Object.entries(colorMapping)) {
-			base["inlineColors"][mode] = {};
-			base["cssVars"][mode] = {};
+			base.inlineColors[mode] = {};
+			base.cssVars[mode] = {};
 			for (const [key, value] of Object.entries(values)) {
 				if (typeof value === "string") {
 					const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
-					base["inlineColors"][mode][key] = resolvedColor;
+					base.inlineColors[mode][key] = resolvedColor;
 
 					const [resolvedBase, scale] = resolvedColor.split("-");
 					const color = scale
 						? colorsData[resolvedBase].find(
-								(item: any) => item.scale === parseInt(scale)
+								(item: any) => item.scale === Number.parseInt(scale)
 							)
 						: colorsData[resolvedBase];
 					if (color) {
-						base["cssVars"][mode][key] = color.hslChannel;
+						base.cssVars[mode][key] = color.hslChannel;
 					}
 				}
 			}
 		}
 
 		// Build css vars.
-		base["inlineColorsTemplate"] = template(BASE_STYLES)({});
-		base["cssVarsTemplate"] = template(BASE_STYLES_WITH_VARIABLES)({
-			colors: base["cssVars"],
+		base.inlineColorsTemplate = template(BASE_STYLES)({});
+		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
+			colors: base.cssVars,
 		});
 
 		fs.writeFileSync(
@@ -269,7 +268,7 @@ export const Index = {
 
 	fs.writeFileSync(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf8");
 
-	console.log("✅ Done!");
+	console.info("✅ Done!");
 }
 
 await main();

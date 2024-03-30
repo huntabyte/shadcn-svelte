@@ -36,7 +36,7 @@
 		},
 		{
 			"name": "menubar-shortcut.svelte",
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\"ml-auto text-xs tracking-widest text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\"ml-auto text-xs tracking-widest text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
 		},
 		{
 			"name": "menubar-sub-content.svelte",

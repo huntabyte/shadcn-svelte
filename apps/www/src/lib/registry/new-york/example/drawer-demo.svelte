@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Minus from "svelte-radix/Minus.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
+	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
-	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
 
 	const data = [
 		{
@@ -111,7 +111,7 @@
 				</div>
 				<div class="mt-3 h-[120px]">
 					<VisXYContainer {data} height={60}>
-						<VisGroupedBar {x} {y} color={"hsl(var(--primary) / 0.2)"} />
+						<VisGroupedBar {x} {y} color="hsl(var(--primary) / 0.2)" />
 					</VisXYContainer>
 				</div>
 			</div>

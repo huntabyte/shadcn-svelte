@@ -5,6 +5,7 @@
 	import Reset from "svelte-radix/Reset.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
 
+	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -12,7 +13,6 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";
-	import { mode, setMode } from "mode-watcher";
 </script>
 
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
@@ -132,7 +132,7 @@
 			<Label class="text-xs">Radius</Label>
 			<div class="grid grid-cols-5 gap-2">
 				{#each ["0", "0.3", "0.5", "0.75", "1.0"] as value, _ (value)}
-					{@const valueFloat = parseFloat(value)}
+					{@const valueFloat = Number.parseFloat(value)}
 					<Button
 						variant="outline"
 						size="sm"

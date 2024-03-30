@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { DateFormatter, getDayOfWeek, getLocalTimeZone, now } from "@internationalized/date";
 
+	import type { Mail } from "../data.js";
+	import * as Icons from "../icons.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
@@ -11,8 +13,6 @@
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
-	import type { Mail } from "../data.js";
-	import * as Icons from "../icons.js";
 
 	export let mail: Mail | null = null;
 

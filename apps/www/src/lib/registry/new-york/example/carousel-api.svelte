@@ -12,7 +12,6 @@
 		current = api.selectedScrollSnap() + 1;
 
 		api.on("select", () => {
-			console.log("current");
 			current = api.selectedScrollSnap() + 1;
 		});
 	}

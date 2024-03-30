@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { ExamplesNav, Announcement } from "$lib/components/docs/index.js";
+	import Mail from "./examples/mail/(components)/mail.svelte";
+	import { accounts, mails } from "./examples/mail/data.js";
+	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
-	import Mail from "./examples/mail/(components)/mail.svelte";
-	import { accounts, mails } from "./examples/mail/data.js";
 	import MailLight from "$lib/img/examples/mail-light.png";
 	import MailDark from "$lib/img/examples/mail-dark.png";
 

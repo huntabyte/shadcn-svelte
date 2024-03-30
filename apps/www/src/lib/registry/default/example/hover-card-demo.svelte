@@ -23,7 +23,7 @@
 				<h4 class="text-sm font-semibold">@sveltejs</h4>
 				<p class="text-sm">Cybernetically enhanced web apps.</p>
 				<div class="flex items-center pt-2">
-					<CalendarDays class="mr-2 h-4 w-4 opacity-70" />{" "}
+					<CalendarDays class="mr-2 h-4 w-4 opacity-70" />
 					<span class="text-xs text-muted-foreground"> Joined September 2022 </span>
 				</div>
 			</div>

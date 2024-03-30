@@ -4,17 +4,17 @@
 	import DollarSign from "lucide-svelte/icons/dollar-sign";
 	import Download from "lucide-svelte/icons/download";
 	import Users from "lucide-svelte/icons/users";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import {
 		DashboardMainNav,
 		Overview,
 		RecentSales,
 		Search,
-		UserNav,
 		TeamSwitcher,
+		UserNav,
 	} from "./index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
 	import DashboardLight from "$lib/img/examples/dashboard-light.png";
 	import DashboardDark from "$lib/img/examples/dashboard-dark.png";

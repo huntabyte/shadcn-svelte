@@ -19,9 +19,9 @@
 		"check": "pnpm -F www check",
 		"check:watch": "pnpm -F www check:watch",
 		"test:unit": "pnpm -F www test:unit",
-		"lint": "pnpm -r lint",
+		"lint": "prettier --check . && eslint .",
 		"format:check": "pnpm -r format:check",
-		"format": "pnpm -r format",
+		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
 		"ci:publish": "changeset publish",
@@ -39,12 +39,18 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
+		"@antfu/eslint-config": "^2.11.6",
 		"@changesets/cli": "^2.27.1",
+		"eslint": "^8.57.0",
+		"eslint-plugin-antfu": "^2.1.2",
+		"eslint-plugin-svelte": "2.36.0-next.13",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"pretty-quick": "^4.0.0",
-		"simple-git-hooks": "^2.10.0"
+		"simple-git-hooks": "^2.10.0",
+		"svelte": "^4.2.12",
+		"svelte-eslint-parser": "^0.33.1"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"

@@ -57,7 +57,7 @@
 						class="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
 					>
 						<Package class="h-4 w-4" />
-						Products{" "}
+						Products
 					</a>
 					<a
 						href="##"

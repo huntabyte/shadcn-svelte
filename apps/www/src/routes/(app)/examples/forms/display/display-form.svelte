@@ -35,11 +35,11 @@
 </script>
 
 <script lang="ts">
-	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	import * as Checkbox from "$lib/registry/new-york/ui/checkbox/index.js";
-	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import * as Checkbox from "$lib/registry/new-york/ui/checkbox/index.js";
+	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { browser } from "$app/environment";
 
 	export let data: SuperValidated<Infer<DisplayFormSchema>>;

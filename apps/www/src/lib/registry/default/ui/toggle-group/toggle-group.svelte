@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { VariantProps } from "tailwind-variants";
 	import { ToggleGroup as ToggleGroupPrimitive } from "bits-ui";
-	import type { toggleVariants } from "$lib/registry/default/ui/toggle/index.js";
 	import { setToggleGroupCtx } from "./index.js";
+	import type { toggleVariants } from "$lib/registry/default/ui/toggle/index.js";
 	import { cn } from "$lib/utils.js";
 
 	type T = $$Generic<"single" | "multiple">;

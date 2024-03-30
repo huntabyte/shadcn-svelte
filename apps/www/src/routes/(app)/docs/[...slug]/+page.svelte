@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { config } from "$lib/stores/index.js";
-	import type { PageData } from "./$types.js";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import Code from "svelte-radix/Code.svelte";
 	import ExternalLink from "svelte-radix/ExternalLink.svelte";
+	import type { PageData } from "./$types.js";
+	import { config } from "$lib/stores/index.js";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";

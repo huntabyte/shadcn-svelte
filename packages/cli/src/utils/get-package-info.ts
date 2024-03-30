@@ -9,7 +9,7 @@ export function getPackageInfo() {
 }
 
 function getPackageFilePath(filePath: string) {
-	let distPath = fileURLToPath(new URL(`.`, import.meta.url));
+	const distPath = fileURLToPath(new URL(`.`, import.meta.url));
 
 	return path.resolve(distPath, filePath);
 }

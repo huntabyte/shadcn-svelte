@@ -1,14 +1,15 @@
+import process from "node:process";
+import type { State } from "@clack/core";
 import {
-	block,
 	ConfirmPrompt,
 	GroupMultiSelectPrompt,
-	isCancel,
 	MultiSelectPrompt,
 	PasswordPrompt,
 	SelectKeyPrompt,
 	SelectPrompt,
-	State,
 	TextPrompt,
+	block,
+	isCancel,
 } from "@clack/core";
 import isUnicodeSupported from "is-unicode-supported";
 import color from "chalk";
@@ -44,7 +45,7 @@ const S_SUCCESS = s("◆", "*");
 const S_WARN = s("▲", "!");
 const S_ERROR = s("■", "x");
 
-const symbol = (state: State) => {
+function symbol(state: State) {
 	switch (state) {
 		case "initial":
 		case "active":
@@ -56,20 +57,21 @@ const symbol = (state: State) => {
 		case "submit":
 			return color.green(S_STEP_SUBMIT);
 	}
-};
+}
 
-interface LimitOptionsParams<TOption> {
+type LimitOptionsParams<TOption> = {
 	options: TOption[];
 	maxItems: number | undefined;
 	cursor: number;
 	style: (option: TOption, active: boolean) => string;
-}
+};
 
-const limitOptions = <TOption>(params: LimitOptionsParams<TOption>): string[] => {
+function limitOptions<TOption>(params: LimitOptionsParams<TOption>): string[] {
 	const { cursor, options, style } = params;
 
 	// We clamp to minimum 5 because anything less doesn't make sense UX wise
-	const maxItems = params.maxItems === undefined ? Infinity : Math.max(params.maxItems, 5);
+	const maxItems =
+		params.maxItems === undefined ? Number.POSITIVE_INFINITY : Math.max(params.maxItems, 5);
 	let slidingWindowLocation = 0;
 
 	if (cursor >= slidingWindowLocation + maxItems - 3) {
@@ -91,16 +93,16 @@ const limitOptions = <TOption>(params: LimitOptionsParams<TOption>): string[] =>
 				? color.dim("...")
 				: style(option, i + slidingWindowLocation === cursor);
 		});
-};
+}
 
-export interface TextOptions {
+export type TextOptions = {
 	message: string;
 	placeholder?: string;
 	defaultValue?: string;
 	initialValue?: string;
 	validate?: (value: string) => string | void;
-}
-export const text = (opts: TextOptions) => {
+};
+export function text(opts: TextOptions) {
 	return new TextPrompt({
 		validate: opts.validate,
 		placeholder: opts.placeholder,
@@ -123,20 +125,20 @@ export const text = (opts: TextOptions) => {
 				case "cancel":
 					return `${title}${color.gray(S_BAR)}  ${color.strikethrough(
 						color.dim(this.value ?? "")
-					)}${this.value?.trim() ? "\n" + color.gray(S_BAR) : ""}`;
+					)}${this.value?.trim() ? `\n${color.gray(S_BAR)}` : ""}`;
 				default:
 					return `${title}${color.cyan(S_BAR)}  ${value}\n${color.cyan(S_BAR_END)}\n`;
 			}
 		},
 	}).prompt() as Promise<string | symbol>;
-};
+}
 
-export interface PasswordOptions {
+export type PasswordOptions = {
 	message: string;
 	mask?: string;
 	validate?: (value: string) => string | void;
-}
-export const password = (opts: PasswordOptions) => {
+};
+export function password(opts: PasswordOptions) {
 	return new PasswordPrompt({
 		validate: opts.validate,
 		mask: opts.mask ?? S_PASSWORD_MASK,
@@ -154,22 +156,22 @@ export const password = (opts: PasswordOptions) => {
 					return `${title}${color.gray(S_BAR)}  ${color.dim(masked)}`;
 				case "cancel":
 					return `${title}${color.gray(S_BAR)}  ${color.strikethrough(color.dim(masked ?? ""))}${
-						masked ? "\n" + color.gray(S_BAR) : ""
+						masked ? `\n${color.gray(S_BAR)}` : ""
 					}`;
 				default:
 					return `${title}${color.cyan(S_BAR)}  ${value}\n${color.cyan(S_BAR_END)}\n`;
 			}
 		},
 	}).prompt() as Promise<string | symbol>;
-};
+}
 
-export interface ConfirmOptions {
+export type ConfirmOptions = {
 	message: string;
 	active?: string;
 	inactive?: string;
 	initialValue?: boolean;
-}
-export const confirm = (opts: ConfirmOptions) => {
+};
+export function confirm(opts: ConfirmOptions) {
 	const active = opts.active ?? "Yes";
 	const inactive = opts.inactive ?? "No";
 	return new ConfirmPrompt({
@@ -201,7 +203,7 @@ export const confirm = (opts: ConfirmOptions) => {
 			}
 		},
 	}).prompt() as Promise<boolean | symbol>;
-};
+}
 
 type Primitive = Readonly<string | boolean | number>;
 
@@ -209,14 +211,14 @@ type Option<Value> = Value extends Primitive
 	? { value: Value; label?: string; hint?: string }
 	: { value: Value; label: string; hint?: string };
 
-export interface SelectOptions<Value> {
+export type SelectOptions<Value> = {
 	message: string;
 	options: Option<Value>[];
 	initialValue?: Value;
 	maxItems?: number;
-}
+};
 
-export const select = <Value>(opts: SelectOptions<Value>) => {
+export function select<Value>(opts: SelectOptions<Value>) {
 	const opt = (option: Option<Value>, state: "inactive" | "active" | "selected" | "cancelled") => {
 		const label = option.label ?? String(option.value);
 		switch (state) {
@@ -258,9 +260,9 @@ export const select = <Value>(opts: SelectOptions<Value>) => {
 			}
 		},
 	}).prompt() as Promise<Value | symbol>;
-};
+}
 
-export const selectKey = <Value extends string>(opts: SelectOptions<Value>) => {
+export function selectKey<Value extends string>(opts: SelectOptions<Value>) {
 	const opt = (
 		option: Option<Value>,
 		state: "inactive" | "active" | "selected" | "cancelled" = "inactive"
@@ -304,17 +306,17 @@ export const selectKey = <Value extends string>(opts: SelectOptions<Value>) => {
 			}
 		},
 	}).prompt() as Promise<Value | symbol>;
-};
+}
 
-export interface MultiSelectOptions<Value> {
+export type MultiSelectOptions<Value> = {
 	message: string;
 	options: Option<Value>[];
 	initialValues?: Value[];
 	maxItems?: number;
 	required?: boolean;
 	cursorAt?: Value;
-}
-export const multiselect = <Value>(opts: MultiSelectOptions<Value>) => {
+};
+export function multiselect<Value>(opts: MultiSelectOptions<Value>) {
 	const opt = (
 		option: Option<Value>,
 		state: "inactive" | "active" | "selected" | "active-selected" | "submitted" | "cancelled"
@@ -354,7 +356,7 @@ export const multiselect = <Value>(opts: MultiSelectOptions<Value>) => {
 				)}`;
 		},
 		render() {
-			let title = `${color.gray(S_BAR)}\n${symbol(this.state)}  ${opts.message}\n`;
+			const title = `${color.gray(S_BAR)}\n${symbol(this.state)}  ${opts.message}\n`;
 
 			const styleOption = (option: Option<Value>, active: boolean) => {
 				const selected = this.value.includes(option.value);
@@ -392,20 +394,12 @@ export const multiselect = <Value>(opts: MultiSelectOptions<Value>) => {
 							i === 0 ? `${color.yellow(S_BAR_END)}  ${color.yellow(ln)}` : `   ${ln}`
 						)
 						.join("\n");
-					return (
-						title +
-						color.yellow(S_BAR) +
-						"  " +
-						limitOptions({
-							options: this.options,
-							cursor: this.cursor,
-							maxItems: opts.maxItems,
-							style: styleOption,
-						}).join(`\n${color.yellow(S_BAR)}  `) +
-						"\n" +
-						footer +
-						"\n"
-					);
+					return `${title + color.yellow(S_BAR)}  ${limitOptions({
+						options: this.options,
+						cursor: this.cursor,
+						maxItems: opts.maxItems,
+						style: styleOption,
+					}).join(`\n${color.yellow(S_BAR)}  `)}\n${footer}\n`;
 				}
 				default: {
 					return `${title}${color.cyan(S_BAR)}  ${limitOptions({
@@ -418,16 +412,16 @@ export const multiselect = <Value>(opts: MultiSelectOptions<Value>) => {
 			}
 		},
 	}).prompt() as Promise<Value[] | symbol>;
-};
+}
 
-export interface GroupMultiSelectOptions<Value> {
+export type GroupMultiSelectOptions<Value> = {
 	message: string;
 	options: Record<string, Option<Value>[]>;
 	initialValues?: Value[];
 	required?: boolean;
 	cursorAt?: Value;
-}
-export const groupMultiselect = <Value>(opts: GroupMultiSelectOptions<Value>) => {
+};
+export function groupMultiselect<Value>(opts: GroupMultiSelectOptions<Value>) {
 	const opt = (
 		option: Option<Value>,
 		state:
@@ -485,7 +479,7 @@ export const groupMultiselect = <Value>(opts: GroupMultiSelectOptions<Value>) =>
 				)}`;
 		},
 		render() {
-			let title = `${color.gray(S_BAR)}\n${symbol(this.state)}  ${opts.message}\n`;
+			const title = `${color.gray(S_BAR)}\n${symbol(this.state)}  ${opts.message}\n`;
 
 			switch (this.state) {
 				case "submit": {
@@ -560,10 +554,10 @@ export const groupMultiselect = <Value>(opts: GroupMultiSelectOptions<Value>) =>
 			}
 		},
 	}).prompt() as Promise<Value[] | symbol>;
-};
+}
 
 const strip = (str: string) => str.replace(ansiRegex(), "");
-export const note = (message = "", title = "") => {
+export function note(message = "", title = "") {
 	const lines = `\n${message}\n`.split("\n");
 	const titleLen = strip(title).length;
 	const len =
@@ -587,19 +581,19 @@ export const note = (message = "", title = "") => {
 			S_BAR_H.repeat(Math.max(len - titleLen - 1, 1)) + S_CORNER_TOP_RIGHT
 		)}\n${msg}\n${color.gray(S_CONNECT_LEFT + S_BAR_H.repeat(len + 2) + S_CORNER_BOTTOM_RIGHT)}\n`
 	);
-};
+}
 
-export const cancel = (message = "") => {
+export function cancel(message = "") {
 	process.stdout.write(`${color.gray(S_BAR_END)}  ${color.red(message)}\n\n`);
-};
+}
 
-export const intro = (title = "") => {
+export function intro(title = "") {
 	process.stdout.write(`${color.gray(S_BAR_START)}  ${title}\n`);
-};
+}
 
-export const outro = (message = "") => {
+export function outro(message = "") {
 	process.stdout.write(`${color.gray(S_BAR)}\n${color.gray(S_BAR_END)}  ${message}\n\n`);
-};
+}
 
 export type LogMessageOptions = {
 	symbol?: string;
@@ -634,7 +628,7 @@ export const log = {
 	},
 };
 
-export const spinner = () => {
+export function spinner() {
 	const frames = unicode ? ["◒", "◐", "◓", "◑"] : ["•", "o", "O", "0"];
 	const delay = unicode ? 80 : 120;
 
@@ -643,15 +637,15 @@ export const spinner = () => {
 	let isSpinnerActive: boolean = false;
 	let _message: string = "";
 
-	const handleExit = (code: number) => {
+	function handleExit(code: number) {
 		const msg = code > 1 ? "Something went wrong" : "Canceled";
 		if (isSpinnerActive) stop(msg, code);
-	};
+	}
 
 	const errorEventHandler = () => handleExit(2);
 	const signalEventHandler = () => handleExit(1);
 
-	const registerHooks = () => {
+	function registerHooks() {
 		// Reference: https://nodejs.org/api/process.html#event-uncaughtexception
 		process.on("uncaughtExceptionMonitor", errorEventHandler);
 		// Reference: https://nodejs.org/api/process.html#event-unhandledrejection
@@ -660,17 +654,17 @@ export const spinner = () => {
 		process.on("SIGINT", signalEventHandler);
 		process.on("SIGTERM", signalEventHandler);
 		// process.on("exit", handleExit);
-	};
+	}
 
-	const clearHooks = () => {
+	function clearHooks() {
 		process.removeListener("uncaughtExceptionMonitor", errorEventHandler);
 		process.removeListener("unhandledRejection", errorEventHandler);
 		process.removeListener("SIGINT", signalEventHandler);
 		process.removeListener("SIGTERM", signalEventHandler);
 		// process.removeListener("exit", handleExit);
-	};
+	}
 
-	const start = (msg: string = ""): void => {
+	function start(msg: string = ""): void {
 		isSpinnerActive = true;
 		unblock = block();
 		_message = msg.replace(/\.+$/, "");
@@ -687,9 +681,9 @@ export const spinner = () => {
 			frameIndex = frameIndex + 1 < frames.length ? frameIndex + 1 : 0;
 			dotsTimer = dotsTimer < frames.length ? dotsTimer + 0.125 : 0;
 		}, delay);
-	};
+	}
 
-	const stop = (msg: string = "", code: number = 0): void => {
+	function stop(msg: string = "", code: number = 0): void {
 		_message = msg ?? _message;
 		isSpinnerActive = false;
 		clearInterval(loop);
@@ -704,7 +698,7 @@ export const spinner = () => {
 		process.stdout.write(`${step}  ${_message}\n`);
 		clearHooks();
 		unblock();
-	};
+	}
 
 	const message = (msg: string = ""): void => {
 		_message = msg ?? _message;
@@ -715,7 +709,7 @@ export const spinner = () => {
 		stop,
 		message,
 	};
-};
+}
 
 // Adapted from https://github.com/chalk/ansi-regex
 // @see LICENSE
@@ -732,16 +726,17 @@ export type PromptGroupAwaitedReturn<T> = {
 	[P in keyof T]: Exclude<Awaited<T[P]>, symbol>;
 };
 
-export interface PromptGroupOptions<T> {
+export type PromptGroupOptions<T> = {
 	/**
 	 * Control how the group can be canceled
 	 * if one of the prompts is canceled.
 	 */
 	onCancel?: (opts: { results: Prettify<Partial<PromptGroupAwaitedReturn<T>>> }) => void;
-}
+};
 
 type Prettify<T> = {
 	[P in keyof T]: T[P];
+	// eslint-disable-next-line ts/ban-types
 } & {};
 
 export type PromptGroup<T> = {
@@ -754,10 +749,10 @@ export type PromptGroup<T> = {
  * Define a group of prompts to be displayed
  * and return a results of objects within the group
  */
-export const group = async <T>(
+export async function group<T>(
 	prompts: PromptGroup<T>,
 	opts?: PromptGroupOptions<T>
-): Promise<Prettify<PromptGroupAwaitedReturn<T>>> => {
+): Promise<Prettify<PromptGroupAwaitedReturn<T>>> {
 	const results = {} as any;
 	const promptNames = Object.keys(prompts);
 
@@ -780,7 +775,7 @@ export const group = async <T>(
 	}
 
 	return results;
-};
+}
 
 export type Task = {
 	/**
@@ -801,7 +796,7 @@ export type Task = {
 /**
  * Define a group of tasks to be executed
  */
-export const tasks = async (tasks: Task[]) => {
+export async function tasks(tasks: Task[]) {
 	for (const task of tasks) {
 		if (task.enabled === false) continue;
 
@@ -810,4 +805,4 @@ export const tasks = async (tasks: Task[]) => {
 		const result = await task.task(s.message);
 		s.stop(result || task.title);
 	}
-};
+}

@@ -1,10 +1,11 @@
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
+import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { getConfig, type Config } from "../utils/get-config.js";
+import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
@@ -216,7 +217,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			async task() {
 				for (const file of item.files) {
 					const componentDir = path.resolve(targetDir, item.name);
-					let filePath = path.resolve(targetDir, item.name, file.name);
+					const filePath = path.resolve(targetDir, item.name, file.name);
 
 					// Run transformers.
 					const content = transformImports(file.content, config);

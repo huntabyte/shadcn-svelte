@@ -54,7 +54,7 @@ function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): stri
 		const ignored = ignores.some((parent) => {
 			// make the path relative to the parent
 			const relative = path.relative(parent.dirPath, filepath);
-			if (ignore.isPathValid(relative) === false) return;
+			if (ignore.isPathValid(relative) === false) return false;
 
 			return parent.ig.ignores(relative);
 		});

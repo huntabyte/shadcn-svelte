@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { mails, type Mail } from "./data.js";
+import { type Mail, mails } from "./data.js";
 
 type MailStore = {
 	selected: Mail["id"] | null;

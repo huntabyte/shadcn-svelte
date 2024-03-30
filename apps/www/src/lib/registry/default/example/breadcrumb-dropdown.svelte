@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
-	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import Slash from "lucide-svelte/icons/slash";
+	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 </script>
 
 <Breadcrumb.Root>

@@ -342,7 +342,7 @@ export const Index = {
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["button","command","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","command","button"],
 			component: () => import("../lib/registry/default/example/combobox-dropdown-menu.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/combobox-dropdown-menu.svelte"],
 			raw: () => import("../lib/registry/default/example/combobox-dropdown-menu.svelte?raw").then((m) => m.default),
@@ -358,7 +358,7 @@ export const Index = {
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
-			registryDependencies: ["button","command","popover"],
+			registryDependencies: ["popover","command","button"],
 			component: () => import("../lib/registry/default/example/combobox-popover.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/combobox-popover.svelte"],
 			raw: () => import("../lib/registry/default/example/combobox-popover.svelte?raw").then((m) => m.default),
@@ -390,7 +390,7 @@ export const Index = {
 		"dark-mode-dropdown-menu": {
 			name: "dark-mode-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/default/example/dark-mode-dropdown-menu.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/dark-mode-dropdown-menu.svelte"],
 			raw: () => import("../lib/registry/default/example/dark-mode-dropdown-menu.svelte?raw").then((m) => m.default),
@@ -454,7 +454,7 @@ export const Index = {
 		"drawer-demo": {
 			name: "drawer-demo",
 			type: "components:example",
-			registryDependencies: ["button","drawer"],
+			registryDependencies: ["drawer","button"],
 			component: () => import("../lib/registry/default/example/drawer-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/drawer-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/drawer-demo.svelte?raw").then((m) => m.default),
@@ -1455,7 +1455,7 @@ export const Index = {
 		"combobox-dropdown-menu": {
 			name: "combobox-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["button","command","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","command","button"],
 			component: () => import("../lib/registry/new-york/example/combobox-dropdown-menu.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/combobox-dropdown-menu.svelte"],
 			raw: () => import("../lib/registry/new-york/example/combobox-dropdown-menu.svelte?raw").then((m) => m.default),
@@ -1471,7 +1471,7 @@ export const Index = {
 		"combobox-popover": {
 			name: "combobox-popover",
 			type: "components:example",
-			registryDependencies: ["button","command","popover"],
+			registryDependencies: ["popover","command","button"],
 			component: () => import("../lib/registry/new-york/example/combobox-popover.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/combobox-popover.svelte"],
 			raw: () => import("../lib/registry/new-york/example/combobox-popover.svelte?raw").then((m) => m.default),
@@ -1503,7 +1503,7 @@ export const Index = {
 		"dark-mode-dropdown-menu": {
 			name: "dark-mode-dropdown-menu",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/new-york/example/dark-mode-dropdown-menu.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/dark-mode-dropdown-menu.svelte"],
 			raw: () => import("../lib/registry/new-york/example/dark-mode-dropdown-menu.svelte?raw").then((m) => m.default),
@@ -1567,7 +1567,7 @@ export const Index = {
 		"drawer-demo": {
 			name: "drawer-demo",
 			type: "components:example",
-			registryDependencies: ["button","drawer"],
+			registryDependencies: ["drawer","button"],
 			component: () => import("../lib/registry/new-york/example/drawer-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/drawer-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/drawer-demo.svelte?raw").then((m) => m.default),

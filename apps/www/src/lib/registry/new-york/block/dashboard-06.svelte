@@ -565,8 +565,7 @@
 						</Card.Content>
 						<Card.Footer>
 							<div class="text-xs text-muted-foreground">
-								Showing <strong>1-10</strong> of <strong>32</strong>{" "}
-								products
+								Showing <strong>1-10</strong> of <strong>32</strong> products
 							</div>
 						</Card.Footer>
 					</Card.Root>

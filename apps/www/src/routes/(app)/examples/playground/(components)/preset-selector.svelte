@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import type { Preset } from "../(data)/presets.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import Check from "svelte-radix/Check.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { tick } from "svelte";
+	import type { Preset } from "../(data)/presets.js";
+	import { cn } from "$lib/utils.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 
 	export let presets: Preset[];
 	let open = false;

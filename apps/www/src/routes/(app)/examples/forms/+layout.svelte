@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import SidebarNav from "./(components)/sidebar-nav.svelte";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import FormsLight from "$lib/img/examples/forms-light.png";
 	import FormsDark from "$lib/img/examples/forms-dark.png";
 

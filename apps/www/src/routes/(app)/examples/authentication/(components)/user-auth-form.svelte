@@ -55,7 +55,6 @@
 		{:else}
 			<Icons.gitHub class="mr-2 h-4 w-4" />
 		{/if}
-		{" "}
 		GitHub
 	</Button>
 </div>

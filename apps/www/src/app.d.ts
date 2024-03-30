@@ -8,6 +8,7 @@ declare global {
 		// interface Platform {}
 	}
 	namespace svelteHTML {
+		// eslint-disable-next-line ts/consistent-type-definitions
 		interface HTMLAttributes<T> {
 			"on:copy-done"?: (e: CustomEvent<T>) => void;
 			"on:copy-error"?: (e: CustomEvent<T>) => void;
