@@ -168,7 +168,7 @@
 										<Select.Value placeholder="Select a model" />
 									</Select.Trigger>
 									<Select.Content>
-										<Select.Item value="genesis">
+										<Select.Item value="genesis" label="Neural Genesis">
 											<div
 												class="flex items-start gap-3 text-muted-foreground"
 											>
@@ -186,7 +186,7 @@
 												</div>
 											</div>
 										</Select.Item>
-										<Select.Item value="explorer">
+										<Select.Item value="explorer" label="Neural Explorer">
 											<div
 												class="flex items-start gap-3 text-muted-foreground"
 											>
@@ -204,7 +204,7 @@
 												</div>
 											</div>
 										</Select.Item>
-										<Select.Item value="quantum">
+										<Select.Item value="quantum" label="Neural Quantum">
 											<div
 												class="flex items-start gap-3 text-muted-foreground"
 											>

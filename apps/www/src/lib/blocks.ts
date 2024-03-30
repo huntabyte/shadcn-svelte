@@ -1,4 +1,9 @@
-import { blockSchema, registryEntrySchema, type Style } from "$lib/registry/index.js";
+import {
+	blockSchema,
+	registryEntrySchema,
+	type BlockName,
+	type Style,
+} from "$lib/registry/index.js";
 import { z } from "zod";
 import { Index } from "../__registry__/index.js";
 import { blockMeta } from "./config/blocks.js";
@@ -7,14 +12,12 @@ import { type Highlighter, getHighlighter } from "shiki";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
-type DemoName = keyof (typeof Index)["default"];
-
 export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = await getAllBlocks(style);
-	return blocks.map((block) => block.name as DemoName);
+	return blocks.map((block) => block.name as BlockName);
 }
 
-export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
+export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const entry = Index[style][name];
 	const content = await getBlockContent(name, style);
 
@@ -26,7 +29,7 @@ export async function getBlock(name: DemoName, style: Style["name"] = DEFAULT_BL
 	});
 }
 
-export function isDemo(name: string): name is DemoName {
+export function isDemo(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
 	const demo = Index["default"][name];
 	return demo !== undefined;
@@ -37,7 +40,7 @@ async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	return Object.values(index).filter((block) => block.type === "components:block");
 }
 
-async function getBlockCode(name: DemoName, style: Style["name"]) {
+async function getBlockCode(name: BlockName, style: Style["name"]) {
 	const entry = Index[style][name];
 	const code = await entry.raw();
 	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
@@ -45,7 +48,7 @@ async function getBlockCode(name: DemoName, style: Style["name"]) {
 	return detabbed;
 }
 
-async function getBlockContent(name: DemoName, style: Style["name"]) {
+async function getBlockContent(name: BlockName, style: Style["name"]) {
 	const raw = await getBlockCode(name, style);
 	const { description, iframeHeight, className } = blockMeta[style][name];
 
