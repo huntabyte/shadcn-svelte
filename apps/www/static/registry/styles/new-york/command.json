@@ -11,7 +11,7 @@
 	"files": [
 		{
 			"name": "command-dialog.svelte",
-			"content": "<script lang=\"ts\">\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"$lib/registry/new-york/ui/dialog/index.js\";\n\timport type { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Command as CommandPrimitive } from \"cmdk-sv\";\n\n\ttype $$Props = DialogPrimitive.Props & CommandPrimitive.CommandProps;\n\n\texport let open: $$Props[\"open\"] = false;\n\texport let value: $$Props[\"value\"] = undefined;\n</script>\n\n<Dialog.Root bind:open {...$$restProps}>\n\t<Dialog.Content class=\"overflow-hidden p-0\">\n\t\t<Command\n\t\t\tclass=\"[&_[data-cmdk-group-heading]]:px-2 [&_[data-cmdk-group-heading]]:font-medium [&_[data-cmdk-group-heading]]:text-muted-foreground [&_[data-cmdk-group]:not([hidden])_~[data-cmdk-group]]:pt-0 [&_[data-cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[data-cmdk-input]]:h-12 [&_[data-cmdk-item]]:px-2 [&_[data-cmdk-item]]:py-3 [&_[data-cmdk-item]_svg]:h-5 [&_[data-cmdk-item]_svg]:w-5\"\n\t\t\t{...$$restProps}\n\t\t\tbind:value\n\t\t>\n\t\t\t<slot />\n\t\t</Command>\n\t</Dialog.Content>\n</Dialog.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport type { Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Command as CommandPrimitive } from \"cmdk-sv\";\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"$lib/registry/new-york/ui/dialog/index.js\";\n\n\ttype $$Props = DialogPrimitive.Props & CommandPrimitive.CommandProps;\n\n\texport let open: $$Props[\"open\"] = false;\n\texport let value: $$Props[\"value\"] = undefined;\n</script>\n\n<Dialog.Root bind:open {...$$restProps}>\n\t<Dialog.Content class=\"overflow-hidden p-0\">\n\t\t<Command\n\t\t\tclass=\"[&_[data-cmdk-group-heading]]:px-2 [&_[data-cmdk-group-heading]]:font-medium [&_[data-cmdk-group-heading]]:text-muted-foreground [&_[data-cmdk-group]:not([hidden])_~[data-cmdk-group]]:pt-0 [&_[data-cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[data-cmdk-input]]:h-12 [&_[data-cmdk-item]]:px-2 [&_[data-cmdk-item]]:py-3 [&_[data-cmdk-item]_svg]:h-5 [&_[data-cmdk-item]_svg]:w-5\"\n\t\t\t{...$$restProps}\n\t\t\tbind:value\n\t\t>\n\t\t\t<slot />\n\t\t</Command>\n\t</Dialog.Content>\n</Dialog.Root>\n"
 		},
 		{
 			"name": "command-empty.svelte",
@@ -39,7 +39,7 @@
 		},
 		{
 			"name": "command-shortcut.svelte",
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\"ml-auto text-xs tracking-widest text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement>;\n\n\tlet className: string | undefined | null = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tclass={cn(\"ml-auto text-xs tracking-widest text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
 		},
 		{
 			"name": "command.svelte",

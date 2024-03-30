@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "card-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"p-6 pt-0\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
 		},
 		{
 			"name": "card-description.svelte",
@@ -21,7 +21,7 @@
 		},
 		{
 			"name": "card-title.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\timport type { HeadingLevel } from \"./index.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\ttag?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let tag: $$Props[\"tag\"] = \"h3\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { HeadingLevel } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLHeadingElement> & {\n\t\ttag?: HeadingLevel;\n\t};\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport let tag: $$Props[\"tag\"] = \"h3\";\n\texport { className as class };\n</script>\n\n<svelte:element\n\tthis={tag}\n\tclass={cn(\"font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</svelte:element>\n"
 		},
 		{
 			"name": "card.svelte",
