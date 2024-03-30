@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { setEmblaContex, type CarouselProps, type CarouselAPI } from "./context.js";
-	import { cn } from "$lib/utils.js";
 	import { writable } from "svelte/store";
 	import { onDestroy } from "svelte";
+	import { type CarouselAPI, type CarouselProps, setEmblaContex } from "./context.js";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = CarouselProps;
 

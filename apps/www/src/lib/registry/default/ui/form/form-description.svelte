@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as FormPrimitive from "formsnap";
-	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = HTMLAttributes<HTMLSpanElement>;
 	let className: string | undefined | null = undefined;

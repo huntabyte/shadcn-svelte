@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { Icons } from "../icons/index.js";
+	import MobileLink from "./mobile-link.svelte";
 	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 	import { siteConfig } from "$lib/config/site.js";
-	import { Icons } from "../icons/index.js";
-	import MobileLink from "./mobile-link.svelte";
 
 	let open = false;
 </script>

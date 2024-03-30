@@ -5,7 +5,7 @@ type BlockConfig = {
 	iframeHeight: string;
 	className: string;
 	description: string;
-};
+}
 
 export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = {
 	default: {

@@ -8,7 +8,7 @@ export type Model<Type = string> = {
 	description: string;
 	strengths?: string;
 	type: Type;
-};
+}
 
 export const models: Model<ModelType>[] = [
 	{

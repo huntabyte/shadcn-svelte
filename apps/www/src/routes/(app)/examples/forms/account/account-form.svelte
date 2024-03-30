@@ -30,7 +30,7 @@
 			// we're setting it optional so the user can clear the date and we don't run into
 			// type issues, but we refine it to make sure it's not undefined
 			.optional()
-			.refine((date) => (date === undefined ? false : true), "Please select a valid date."),
+			.refine((date) => (date !== undefined), "Please select a valid date."),
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
@@ -40,8 +40,14 @@
 	import CalendarIcon from "svelte-radix/Calendar.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import Check from "svelte-radix/Check.svelte";
-	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import {
+		DateFormatter,
+		type DateValue,
+		getLocalTimeZone,
+		parseDate,
+	} from "@internationalized/date";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
@@ -50,12 +56,6 @@
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
-	import {
-		DateFormatter,
-		getLocalTimeZone,
-		type DateValue,
-		parseDate,
-	} from "@internationalized/date";
 
 	export let data: SuperValidated<Infer<AccountFormSchema>>;
 

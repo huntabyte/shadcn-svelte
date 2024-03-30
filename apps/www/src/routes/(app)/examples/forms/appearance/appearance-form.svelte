@@ -16,12 +16,12 @@
 
 <script lang="ts">
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
 	import { browser } from "$app/environment";
-	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { zodClient } from "sveltekit-superforms/adapters";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	export let data: SuperValidated<Infer<AppearanceFormSchema>>;

@@ -4,8 +4,8 @@ import { cubicOut } from "svelte/easing";
 import { writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
-import type { DocResolver } from "$lib/types/docs.js";
 import { error } from "@sveltejs/kit";
+import type { DocResolver } from "$lib/types/docs.js";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -21,9 +21,9 @@ export function hexToHsl(hex: string): [number, number, number] {
 	if (hex) {
 		const sanitizedHex = hex.replace("#", "");
 
-		const red = parseInt(sanitizedHex.substring(0, 2), 16);
-		const green = parseInt(sanitizedHex.substring(2, 4), 16);
-		const blue = parseInt(sanitizedHex.substring(4, 6), 16);
+		const red = Number.parseInt(sanitizedHex.substring(0, 2), 16);
+		const green = Number.parseInt(sanitizedHex.substring(2, 4), 16);
+		const blue = Number.parseInt(sanitizedHex.substring(4, 6), 16);
 
 		const normalizedRed = red / 255;
 		const normalizedGreen = green / 255;
@@ -72,9 +72,9 @@ export function hexToRgb(hex: string): [number, number, number] {
 	if (hex) {
 		const sanitizedHex = hex.replace("#", "");
 
-		const red = parseInt(sanitizedHex.substring(0, 2), 16);
-		const green = parseInt(sanitizedHex.substring(2, 4), 16);
-		const blue = parseInt(sanitizedHex.substring(4, 6), 16);
+		const red = Number.parseInt(sanitizedHex.substring(0, 2), 16);
+		const green = Number.parseInt(sanitizedHex.substring(2, 4), 16);
+		const blue = Number.parseInt(sanitizedHex.substring(4, 6), 16);
 
 		return [red, green, blue];
 	}
@@ -101,9 +101,9 @@ export function createCopyCodeButton() {
 	}
 
 	return {
-		copied: copied,
-		copyCode: copyCode,
-		setCodeString: setCodeString,
+		copied,
+		copyCode,
+		setCodeString,
 	};
 }
 
@@ -128,10 +128,10 @@ type FlyAndScaleParams = {
 	duration?: number;
 };
 
-export const flyAndScale = (
+export function flyAndScale(
 	node: Element,
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
-): TransitionConfig => {
+): TransitionConfig {
 	const style = getComputedStyle(node);
 	const transform = style.transform === "none" ? "" : style.transform;
 
@@ -152,7 +152,7 @@ export const flyAndScale = (
 	const styleToString = (style: Record<string, number | string | undefined>): string => {
 		return Object.keys(style).reduce((str, key) => {
 			if (style[key] === undefined) return str;
-			return str + `${key}:${style[key]};`;
+			return `${str}${key}:${style[key]};`;
 		}, "");
 	};
 
@@ -171,7 +171,7 @@ export const flyAndScale = (
 		},
 		easing: cubicOut,
 	};
-};
+}
 
 type Modules = Record<string, () => Promise<unknown>>;
 

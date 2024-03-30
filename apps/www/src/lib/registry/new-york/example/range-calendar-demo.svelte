@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { getLocalTimeZone, today } from "@internationalized/date";
 	import { RangeCalendar } from "$lib/registry/new-york/ui/range-calendar/index.js";
-	import { today, getLocalTimeZone } from "@internationalized/date";
 
 	const start = today(getLocalTimeZone());
 	const end = start.add({ days: 7 });

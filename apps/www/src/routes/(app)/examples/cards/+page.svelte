@@ -2,13 +2,13 @@
 	import {
 		CardsCookieSettings,
 		CardsCreateAccount,
-		CardsPaymentMethod,
-		CardsShare,
-		CardsReportIssue,
 		CardsGithub,
 		CardsNotifications,
-		DemoContainer,
+		CardsPaymentMethod,
+		CardsReportIssue,
+		CardsShare,
 		CardsTeamMembers,
+		DemoContainer,
 	} from "./(components)/index.js";
 	import CardsLight from "$lib/img/examples/cards-light.png";
 	import CardsDark from "$lib/img/examples/cards-dark.png";

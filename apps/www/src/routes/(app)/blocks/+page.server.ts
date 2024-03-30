@@ -3,7 +3,7 @@ import { blockNames } from "$lib/registry/schema.js";
 
 export const prerender = true;
 
-export const load = async () => {
+export async function load() {
 	const blockIds = await getAllBlockIds();
 	const defaultBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "default")));
 	const newYorkBlocks = await Promise.all(blockIds.map((name) => getBlock(name, "new-york")));
@@ -19,4 +19,4 @@ export const load = async () => {
 	return {
 		blocks,
 	};
-};
+}

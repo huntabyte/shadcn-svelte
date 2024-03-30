@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { nanoid } from "nanoid";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
@@ -6,7 +7,6 @@
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { nanoid } from "nanoid";
 
 	const months = [
 		"January",

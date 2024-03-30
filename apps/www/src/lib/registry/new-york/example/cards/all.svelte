@@ -1,17 +1,17 @@
 <script lang="ts">
 	import {
 		CardsActivityGoal,
-		CardsMetric,
-		CardsCookieSettings,
-		CardsPaymentMethod,
-		CardsCreateAccount,
 		CardsCalendar,
+		CardsChat,
+		CardsCookieSettings,
+		CardsCreateAccount,
 		CardsDataTable,
+		CardsMetric,
+		CardsPaymentMethod,
 		CardsReportIssue,
 		CardsShare,
 		CardsStats,
 		CardsTeamMembers,
-		CardsChat,
 	} from "./index.js";
 </script>
 

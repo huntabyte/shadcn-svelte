@@ -22,7 +22,7 @@ export type Metadata = {
 		images: string[];
 		creator: string;
 	};
-};
+}
 
 export type FrontMatter = {
 	title: string;
@@ -34,12 +34,12 @@ export type FrontMatter = {
 		url: string;
 	};
 	bits?: string;
-};
+}
 
 export type DocFile = {
 	default: import("svelte").ComponentType;
 	metadata: FrontMatter;
-};
+}
 
 export type DocResolver = () => Promise<DocFile>;
 
@@ -47,8 +47,8 @@ export type TableOfContentsItem = {
 	title: string;
 	url: string;
 	items?: TableOfContentsItem[];
-};
+}
 
 export type TableOfContents = {
 	items: TableOfContentsItem[];
-};
+}

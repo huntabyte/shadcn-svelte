@@ -7,7 +7,7 @@ export type TransformOpts = {
 	filename: string;
 	content: string;
 	// baseColor?: z.infer<typeof registryBaseColorSchema>; - will use later
-};
+}
 
 const sharedPrettierConfig = {
 	useTabs: true,

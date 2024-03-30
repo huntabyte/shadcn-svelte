@@ -1,3 +1,4 @@
+import process from "node:process";
 import * as p from "./prompts.js";
 
 export function handleError(error: unknown) {

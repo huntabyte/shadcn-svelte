@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { mediaQuery } from "svelte-legos";
 	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
-	import { mediaQuery } from "svelte-legos";
 
 	let open = false;
 	const isDesktop = mediaQuery("(min-width: 768px)");

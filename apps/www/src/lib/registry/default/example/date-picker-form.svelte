@@ -9,26 +9,26 @@
 </script>
 
 <script lang="ts">
-	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
 	import CalendarIcon from "lucide-svelte/icons/calendar";
 	import {
-		type DateValue,
+		CalendarDate,
 		DateFormatter,
+		type DateValue,
 		getLocalTimeZone,
 		parseDate,
-		CalendarDate,
 		today,
 	} from "@internationalized/date";
+	import type { Infer, SuperValidated } from "sveltekit-superforms";
+	import SuperDebug, { superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
+	import { browser } from "$app/environment";
+	import { page } from "$app/stores";
 	import { cn } from "$lib/utils.js";
 	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { Calendar } from "$lib/registry/default/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
-	import type { SuperValidated, Infer } from "sveltekit-superforms";
-	import SuperDebug, { superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
-	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
 	export { data as form };
 
@@ -37,7 +37,7 @@
 		taintedMessage: null,
 		onUpdated: ({ form: f }) => {
 			if (f.valid) {
-				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+				toast.success(`You submitted${  JSON.stringify(f.data, null, 2)}`);
 			} else {
 				toast.error("Please fix the errors in the form.");
 			}

@@ -34,7 +34,7 @@
 			<Button variant="outline" class="w-full">Sign up with GitHub</Button>
 		</div>
 		<div class="mt-4 text-center text-sm">
-			Already have an account?{" "}
+			Already have an account?
 			<a href="##" class="underline"> Sign in </a>
 		</div>
 	</Card.Content>

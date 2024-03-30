@@ -1,12 +1,13 @@
-import { existsSync, promises as fs } from "fs";
-import path from "path";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { getConfig, type Config } from "../utils/get-config.js";
+import { type Config, getConfig } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
-import { handleError, error } from "../utils/errors.js";
+import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";

@@ -4,7 +4,7 @@
 	type Artwork = {
 		artist: string;
 		art: string;
-	};
+	}
 
 	const works: Artwork[] = [
 		{

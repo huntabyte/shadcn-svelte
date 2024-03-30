@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button, type Props, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
 	import ArrowRight from "svelte-radix/ArrowRight.svelte";
 	import type { VariantProps } from "tailwind-variants";
 	import { getEmblaContext } from "./context.js";
+	import { cn } from "$lib/utils.js";
+	import type { Button , type Props, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	type $$Props = Props;
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CalendarIcon from "svelte-radix/Calendar.svelte";
-	import { type DateValue, DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";

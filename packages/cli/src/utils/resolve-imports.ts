@@ -1,4 +1,4 @@
-import { createPathsMatcher, type TsConfigResult } from "get-tsconfig";
+import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 
 export function resolveImport(importPath: string, config: TsConfigResult) {
 	const matcher = createPathsMatcher(config);

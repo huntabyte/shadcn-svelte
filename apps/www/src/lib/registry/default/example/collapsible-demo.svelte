@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Collapsible from "$lib/registry/default/ui/collapsible/index.js";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import * as Collapsible from "$lib/registry/default/ui/collapsible/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 </script>
 

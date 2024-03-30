@@ -2,7 +2,7 @@ export function color(opacity: string = "1") {
 	return () => `hsl(var(--primary) / ${opacity})`;
 }
 
-export type Data = { average: number; today: number; id: number };
+export type Data = { average: number; today: number; id: number }
 
 /**
  * If you want to set color for multiple lines at once, you'll have to define a colors array in your component and reference colors by index in the accessor function.

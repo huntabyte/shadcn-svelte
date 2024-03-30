@@ -1,14 +1,14 @@
+import { z } from "zod";
+import { type Highlighter, getHighlighter } from "shiki";
+import { Index } from "../__registry__/index.js";
+import { lambdaStudioBlackout } from "../styles/dark.js";
+import { blockMeta } from "./config/blocks.js";
 import {
-	blockSchema,
-	registryEntrySchema,
 	type BlockName,
 	type Style,
+	blockSchema,
+	registryEntrySchema,
 } from "$lib/registry/index.js";
-import { z } from "zod";
-import { Index } from "../__registry__/index.js";
-import { blockMeta } from "./config/blocks.js";
-import { lambdaStudioBlackout } from "../styles/dark.js";
-import { type Highlighter, getHighlighter } from "shiki";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
@@ -31,7 +31,7 @@ export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_B
 
 export function isDemo(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
-	const demo = Index["default"][name];
+	const demo = Index.default[name];
 	return demo !== undefined;
 }
 

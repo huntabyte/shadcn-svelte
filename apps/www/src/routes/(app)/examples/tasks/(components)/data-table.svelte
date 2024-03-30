@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { get, readable } from "svelte/store";
 	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
-	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 	import {
 		addColumnFilters,
 		addHiddenColumns,
@@ -10,18 +9,19 @@
 		addSortBy,
 		addTableFilter,
 	} from "svelte-headless-table/plugins";
+	import type { Task } from "../(data)/schemas.js";
 	import {
 		DataTableCheckbox,
-		DataTableTitleCell,
-		DataTableStatusCell,
-		DataTableRowActions,
-		DataTablePriorityCell,
 		DataTableColumnHeader,
-		DataTableToolbar,
 		DataTablePagination,
+		DataTablePriorityCell,
+		DataTableRowActions,
+		DataTableStatusCell,
+		DataTableTitleCell,
+		DataTableToolbar,
 	} from "./index.js";
 
-	import type { Task } from "../(data)/schemas.js";
+	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
 	export let data: Task[];
 

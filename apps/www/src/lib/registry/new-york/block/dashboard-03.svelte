@@ -175,7 +175,7 @@
 												<Rabbit class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
-														Neural{" "}
+														Neural
 														<span class="font-medium text-foreground">
 															Genesis
 														</span>
@@ -193,7 +193,7 @@
 												<Bird class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
-														Neural{" "}
+														Neural
 														<span class="font-medium text-foreground">
 															Explorer
 														</span>
@@ -211,7 +211,7 @@
 												<Turtle class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
-														Neural{" "}
+														Neural
 														<span class="font-medium text-foreground">
 															Quantum
 														</span>
@@ -287,7 +287,7 @@
 											<Rabbit class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
-													Neural{" "}
+													Neural
 													<span class="font-medium text-foreground">
 														Genesis
 													</span>
@@ -303,7 +303,7 @@
 											<Bird class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
-													Neural{" "}
+													Neural
 													<span class="font-medium text-foreground">
 														Explorer
 													</span>
@@ -319,7 +319,7 @@
 											<Turtle class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
-													Neural{" "}
+													Neural
 													<span class="font-medium text-foreground">
 														Quantum
 													</span>

@@ -1,6 +1,6 @@
 import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 
-interface DocsConfig {
+type DocsConfig = {
 	mainNav: NavItem[];
 	sidebarNav: SidebarNavItem[];
 }
@@ -346,7 +346,7 @@ type Example = {
 	href: string;
 	label?: string;
 	code: string;
-};
+}
 export const examples: Example[] = [
 	{
 		name: "Mail",

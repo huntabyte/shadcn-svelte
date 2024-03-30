@@ -17,7 +17,7 @@ type TextareaEvents = {
 	mouseleave: FormTextareaEvent<MouseEvent>;
 	paste: FormTextareaEvent<ClipboardEvent>;
 	input: FormTextareaEvent<InputEvent>;
-};
+}
 
 export {
 	Root,

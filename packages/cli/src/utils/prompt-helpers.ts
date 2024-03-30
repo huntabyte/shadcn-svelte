@@ -1,3 +1,4 @@
+import process from "node:process";
 import color from "chalk";
 import * as p from "./prompts.js";
 import { getPackageInfo } from "./get-package-info.js";

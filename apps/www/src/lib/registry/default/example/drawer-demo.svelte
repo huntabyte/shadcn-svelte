@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
-	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import Minus from "lucide-svelte/icons/minus";
 	import Plus from "lucide-svelte/icons/plus";
-	import { VisXYContainer, VisGroupedBar } from "@unovis/svelte";
+	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
+	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 
 	const data = [
 		{
@@ -113,7 +113,7 @@
 				</div>
 				<div class="mt-3 h-[120px]">
 					<VisXYContainer {data} height={60}>
-						<VisGroupedBar {x} {y} color={"hsl(var(--primary) / 0.2)"} />
+						<VisGroupedBar {x} {y} color="hsl(var(--primary) / 0.2)" />
 					</VisXYContainer>
 				</div>
 			</div>

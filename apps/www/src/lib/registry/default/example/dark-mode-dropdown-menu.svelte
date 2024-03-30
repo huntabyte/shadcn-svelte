@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import Sun from "lucide-svelte/icons/sun";
 	import Moon from "lucide-svelte/icons/moon";
 
-	import { setMode, resetMode } from "mode-watcher";
+	import { resetMode, setMode } from "mode-watcher";
+	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>

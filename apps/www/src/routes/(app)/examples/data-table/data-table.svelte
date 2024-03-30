@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { createTable, Subscribe, Render, createRender } from "svelte-headless-table";
+	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
 	import {
-		addSortBy,
-		addPagination,
-		addTableFilter,
-		addSelectedRows,
 		addHiddenColumns,
+		addPagination,
+		addSelectedRows,
+		addSortBy,
+		addTableFilter,
 	} from "svelte-headless-table/plugins";
 	import { readable } from "svelte/store";
-	import * as Table from "$lib/registry/new-york/ui/table/index.js";
-	import Actions from "./data-table-actions.svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import Actions from "./data-table-actions.svelte";
+	import DataTableCheckbox from "./data-table-checkbox.svelte";
+	import * as Table from "$lib/registry/new-york/ui/table/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import DataTableCheckbox from "./data-table-checkbox.svelte";
 
 	type Payment = {
 		id: string;
@@ -239,8 +239,7 @@
 	</div>
 	<div class="flex items-center justify-end space-x-2 py-4">
 		<div class="flex-1 text-sm text-muted-foreground">
-			{Object.keys($selectedDataIds).length} of{" "}
-			{$rows.length} row(s) selected.
+			{Object.keys($selectedDataIds).length} of {$rows.length} row(s) selected.
 		</div>
 		<Button
 			variant="outline"

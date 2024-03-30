@@ -5,18 +5,18 @@
 	import Smartphone from "lucide-svelte/icons/smartphone";
 	import Tablet from "lucide-svelte/icons/tablet";
 
+	import type { PaneAPI } from "paneforge";
+	import BlockCopyCodeButton from "../block-copy-code-button.svelte";
+	import StyleSwitcher from "./style-switcher.svelte";
 	import { config } from "$lib/stores/config.js";
 
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
-	import StyleSwitcher from "./style-switcher.svelte";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
-	import BlockCopyCodeButton from "../block-copy-code-button.svelte";
-	import type { PaneAPI } from "paneforge";
 	import type { Block } from "$lib/registry/schema.js";
 
 	let isLoading = true;
@@ -63,7 +63,7 @@
 						value="100"
 						onValueChange={(value) => {
 							if (ref && value) {
-								ref.resize(parseInt(value));
+								ref.resize(Number.parseInt(value));
 							}
 						}}
 					>
@@ -153,6 +153,7 @@
 				data-rehype-pretty-code-fragment
 				class="w-full overflow-hidden rounded-md [&_pre]:my-0 [&_pre]:h-[--container-height] [&_pre]:overflow-auto [&_pre]:whitespace-break-spaces [&_pre]:p-6 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed"
 			>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html block.highlightedCode}
 			</div>
 		</Tabs.Content>

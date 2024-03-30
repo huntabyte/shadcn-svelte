@@ -1,9 +1,9 @@
 <script lang="ts">
 	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
+	import type { TableViewModel } from "svelte-headless-table";
+	import type { Task } from "../(data)/schemas.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import type { Task } from "../(data)/schemas.js";
-	import type { TableViewModel } from "svelte-headless-table";
 
 	export let tableModel: TableViewModel<Task>;
 	const { pluginStates, flatColumns } = tableModel;

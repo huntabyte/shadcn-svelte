@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
+	import { resetMode, setMode } from "mode-watcher";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { resetMode, setMode } from "mode-watcher";
 </script>
 
 <DropdownMenu.Root>

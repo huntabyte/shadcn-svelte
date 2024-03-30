@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { onMount } from "svelte";
-	import { Tree } from "$lib/components/docs/index.js";
 	import { writable } from "svelte/store";
+	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
+	import { Tree } from "$lib/components/docs/index.js";
 
 	let filteredHeadingsList: TableOfContents;
 
@@ -20,7 +20,7 @@
 		const newIdSet: Set<string> = new Set();
 		let count = 1;
 		headings.forEach((heading: HTMLHeadingElement) => {
-			const level = parseInt(heading.tagName.charAt(1));
+			const level = Number.parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
 				let newId = heading.innerText
 					.replaceAll(/[^a-zA-Z0-9 ]/g, "")

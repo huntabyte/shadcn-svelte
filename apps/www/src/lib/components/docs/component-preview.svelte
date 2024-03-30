@@ -1,11 +1,11 @@
 <script lang="ts">
+	import type { ComponentType } from "svelte";
+	import { Icons } from "./icons/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { Index } from "$lib/../__registry__/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { cn } from "$lib/utils.js";
 	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
-	import { Icons } from "./icons/index.js";
-	import type { ComponentType } from "svelte";
 
 	export let name: keyof (typeof Index)["default"];
 	export let align: "center" | "start" | "end" = "center";
@@ -65,12 +65,12 @@
 							<Component {form} />
 						{:catch}
 							<p class="text-sm text-muted-foreground">
-								Component{" "}
+								Component
 								<code
 									class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
 								>
 									{name}
-								</code>{" "}
+								</code>
 								not found in registry.
 							</p>
 						{/await}

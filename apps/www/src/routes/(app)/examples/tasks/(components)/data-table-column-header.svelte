@@ -3,11 +3,11 @@
 	import ArrowDown from "svelte-radix/ArrowDown.svelte";
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import type { TableViewModel } from "svelte-headless-table";
+	import type { Task } from "../(data)/schemas.js";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import type { TableViewModel } from "svelte-headless-table";
-	import type { Task } from "../(data)/schemas.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -15,7 +15,7 @@
 		select: never;
 		sort: {
 			order: "desc" | "asc" | undefined;
-			toggle: (event: Event) => void;
+			toggle: (_: Event) => void;
 			clear: () => void;
 			disabled: boolean;
 		};

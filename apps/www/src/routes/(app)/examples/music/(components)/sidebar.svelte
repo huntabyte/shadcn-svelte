@@ -1,8 +1,8 @@
 <script lang="ts">
+	import type { Playlist } from "../(data)/playlists.js";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import type { Playlist } from "../(data)/playlists.js";
 
 	let className: string | null | undefined = undefined;
 	export let playlists: Playlist[];

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { VisXYContainer, VisLine, VisTooltip, VisScatter, VisCrosshair } from "@unovis/svelte";
+	import { VisCrosshair, VisLine, VisScatter, VisTooltip, VisXYContainer } from "@unovis/svelte";
 	import {
-		lineColors,
 		type Data,
+		crosshairPointColors,
+		crosshairStrokeWidths,
+		lineColors,
 		scatterPointColors,
 		scatterPointStrokeColors,
 		tooltipTemplate,
-		crosshairPointColors,
-		crosshairStrokeWidths,
 	} from "./helpers.js";
 
 	const data: Data[] = [

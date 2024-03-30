@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = HTMLAttributes<HTMLSpanElement>;
 

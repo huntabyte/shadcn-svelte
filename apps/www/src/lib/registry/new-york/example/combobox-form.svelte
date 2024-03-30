@@ -25,19 +25,19 @@
 </script>
 
 <script lang="ts">
-	import { browser } from "$app/environment";
 	import Check from "svelte-radix/Check.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
+	import { tick } from "svelte";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { toast } from "svelte-sonner";
+	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
 	import { cn } from "$lib/utils.js";
-	import { tick } from "svelte";
-	import { zodClient } from "sveltekit-superforms/adapters";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { toast } from "svelte-sonner";
 	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
 	export { data as form };
 
@@ -45,7 +45,7 @@
 		validators: zodClient(formSchema),
 		onUpdated: ({ form: f }) => {
 			if (f.valid) {
-				toast.success("You submitted" + JSON.stringify(f.data, null, 2));
+				toast.success(`You submitted${  JSON.stringify(f.data, null, 2)}`);
 			} else {
 				toast.error("Please fix the errors in the form.");
 			}
