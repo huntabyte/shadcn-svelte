@@ -14,6 +14,9 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
+      '@huntabyte/eslint-config':
+        specifier: ^0.0.1
+        version: 0.0.1(@vue/compiler-sfc@3.4.21)(eslint-plugin-svelte@2.36.0-next.13)(eslint@8.57.0)(svelte-eslint-parser@0.33.1)(svelte@4.2.12)(typescript@5.3.3)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1522,6 +1525,49 @@ packages:
 
   /@humanwhocodes/object-schema@2.0.2:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    dev: true
+
+  /@huntabyte/eslint-config@0.0.1(@vue/compiler-sfc@3.4.21)(eslint-plugin-svelte@2.36.0-next.13)(eslint@8.57.0)(svelte-eslint-parser@0.33.1)(svelte@4.2.12)(typescript@5.3.3):
+    resolution: {integrity: sha512-MECyX8LHzJ12yzkY8oVKVOJaJVoIku2a1h5XygWlI2uy3pYXAhjcnHYTArSvbnPeF5zdyRGmGXNamWYTj4hI6A==}
+    peerDependencies:
+      eslint: '>=8.40.0'
+      eslint-plugin-svelte: ^2.35.1
+      svelte-eslint-parser: ^0.33.1
+    dependencies:
+      '@antfu/eslint-config': 2.11.6(@vue/compiler-sfc@3.4.21)(eslint-plugin-svelte@2.36.0-next.13)(eslint@8.57.0)(svelte-eslint-parser@0.33.1)(svelte@4.2.12)(typescript@5.3.3)
+      '@antfu/install-pkg': 0.3.2
+      '@clack/prompts': 0.7.0
+      '@huntabyte/eslint-plugin': 0.0.1(eslint@8.57.0)
+      chalk: 5.3.0
+      eslint: 8.57.0
+      eslint-flat-config-utils: 0.1.2
+      eslint-plugin-svelte: 2.36.0-next.13(eslint@8.57.0)(svelte@4.2.12)
+      local-pkg: 0.5.0
+      svelte-eslint-parser: 0.33.1(svelte@4.2.12)
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@unocss/eslint-plugin'
+      - '@vue/compiler-sfc'
+      - astro-eslint-parser
+      - eslint-plugin-astro
+      - eslint-plugin-format
+      - eslint-plugin-react
+      - eslint-plugin-react-hooks
+      - eslint-plugin-react-refresh
+      - prettier-plugin-astro
+      - prettier-plugin-slidev
+      - supports-color
+      - svelte
+      - typescript
+      - vitest
+    dev: true
+
+  /@huntabyte/eslint-plugin@0.0.1(eslint@8.57.0):
+    resolution: {integrity: sha512-Ksf//Ey+BcnUxvzKHTzyjZXzrfdnEda2rrNv9ygl4dlQHSI9WY9fhlh9Fn1LPqrWUz66mQHk0Bw/4wEf4R+XIw==}
+    peerDependencies:
+      eslint: '*'
+    dependencies:
+      eslint: 8.57.0
     dev: true
 
   /@internationalized/date@3.5.2:
@@ -3274,6 +3320,11 @@ packages:
     resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: false
+
+  /chalk@5.3.0:
+    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: true
 
   /character-entities-html4@2.1.0:
     resolution: {integrity: sha512-1v7fgQRj6hnSwFpq1Eu0ynr/CDEw0rXo2B61qXrLNdHZmPKgb7fqS1a2JwF0rISo9q77jDI8VMEHoApn8qDoZA==}
