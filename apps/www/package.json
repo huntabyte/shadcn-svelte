@@ -13,7 +13,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "ll -h node_modules/.cache/imagetools && vite build && ll -h node_modules/.cache/imagetools",
+		"build": "ls node_modules/.cache/imagetools && vite build && ls node_modules/.cache/imagetools",
 		"build:registry": "tsx scripts/build-registry.ts",
 		"br": "pnpm build:registry",
 		"preview": "vite preview",
