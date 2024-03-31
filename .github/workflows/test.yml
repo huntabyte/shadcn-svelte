@@ -63,6 +63,7 @@ jobs:
               with:
                   path: '**/node_modules/.cache/imagetools'
                   key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
+                  save-always: true
                   restore-keys: |
                       ${{ runner.os }}-image-cache-
 
