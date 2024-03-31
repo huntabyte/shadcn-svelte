@@ -7,8 +7,8 @@
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
-	import MailLight from "$lib/img/examples/mail-light.png";
-	import MailDark from "$lib/img/examples/mail-dark.png";
+	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
+	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
 	export let data;
 </script>
@@ -54,8 +54,8 @@
 		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
 		<div class="md:hidden">
-			<img src={MailLight} width={1280} height={727} alt="Mail" class="block dark:hidden" />
-			<img src={MailDark} width={1280} height={727} alt="Mail" class="hidden dark:block" />
+			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
+			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
 		</div>
 	</section>
 	<section class="hidden md:block">
