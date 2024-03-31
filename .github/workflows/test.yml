@@ -63,7 +63,6 @@ jobs:
               with:
                   path: '**/node_modules/.cache/imagetools'
                   key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
-                  save-always: true
                   restore-keys: |
                       ${{ runner.os }}-image-cache-
 
@@ -72,3 +71,9 @@ jobs:
 
             - name: Build site
               run: pnpm build
+
+            - name: Save image cache
+              uses: actions/cache/save@v4
+              with:
+                  path: '**/node_modules/.cache/imagetools'
+                  key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
