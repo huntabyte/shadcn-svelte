@@ -15,13 +15,13 @@
 
 	let open = false;
 
-	const handleSelect = (currentValue: string) => {
+	function handleSelect(currentValue: string) {
 		if (Array.isArray(filterValues) && filterValues.includes(currentValue)) {
 			filterValues = filterValues.filter((v) => v !== currentValue);
 		} else {
 			filterValues = [...(Array.isArray(filterValues) ? filterValues : []), currentValue];
 		}
-	};
+	}
 </script>
 
 <Popover.Root bind:open>
