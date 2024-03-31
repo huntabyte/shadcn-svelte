@@ -13,7 +13,7 @@
 #
 #################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
 
-name: Docs - Preview Deployment
+name: DUMMY TEST
 on:
     pull_request: 
         paths:
