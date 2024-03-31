@@ -62,7 +62,7 @@ jobs:
               uses: actions/cache@v4
               with:
                   path: '**/node_modules/.cache/imagetools'
-                  key: ${{ runner.os }}-image-cache-${{ github.sha }}
+                  key: ${{ runner.os }}-image-cache-${{ github.head_ref }}
                   restore-keys: |
                       ${{ runner.os }}-image-cache-
 
