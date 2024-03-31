@@ -31,7 +31,7 @@ jobs:
             pull-requests: write
             deployments: write
         runs-on: ubuntu-latest
-        name: Deploy Preview to Cloudflare Pages (admin)
+        name: Deploy Preview to Cloudflare Pages
         steps:
             - uses: actions/checkout@v3
               with:
