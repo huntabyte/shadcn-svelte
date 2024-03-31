@@ -57,6 +57,15 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-pnpm-store-
 
+            # Image cache setup
+            - name: Setup Image cache
+              uses: actions/cache@v3
+              with:
+                  path: '**/node_modules/.cache/imagetools'
+                  key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
+                  restore-keys: |
+                      ${{ runner.os }}-image-cache-
+
             - name: Install dependencies
               run: pnpm install
 
