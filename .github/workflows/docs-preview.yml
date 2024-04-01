@@ -63,8 +63,6 @@ jobs:
               with:
                   path: '**/node_modules/.cache/imagetools'
                   key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
-                  restore-keys: |
-                      ${{ runner.os }}-image-cache-
 
             - name: Install dependencies
               run: pnpm install
