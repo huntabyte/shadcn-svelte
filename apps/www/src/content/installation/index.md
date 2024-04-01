@@ -101,7 +101,7 @@ One option is to add a `.eslintrc` file in the directory where you define your c
       "warn",
       {
         "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^\\$\\$(Props|Events|Slots|Generic)$"
+        "varsIgnorePattern": "^\\\\$\\\\$(Props|Events|Slots|Generic)$"
       }
     ]
   }
