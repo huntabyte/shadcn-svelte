@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.1
+
+### Patch Changes
+
+- 7f487a5: fix: Updating `utils` in JS mode now updates with the proper syntax
+
 ## 0.10.0
 
 ### Minor Changes
