@@ -9,7 +9,7 @@ import { type Config, getConfig } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
 import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
-import { UTILS } from "../utils/templates.js";
+import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
@@ -166,7 +166,11 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		}
 
 		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
-		await fs.writeFile(utilsPath, UTILS);
+		if (config.typescript) {
+			await fs.writeFile(utilsPath, UTILS);
+		} else {
+			await fs.writeFile(utilsPath, UTILS_JS);
+		}
 	}
 
 	const tree = await resolveTree(
