@@ -166,11 +166,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		}
 
 		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
-		if (config.typescript) {
-			await fs.writeFile(utilsPath, UTILS);
-		} else {
-			await fs.writeFile(utilsPath, UTILS_JS);
-		}
+		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
 	}
 
 	const tree = await resolveTree(
