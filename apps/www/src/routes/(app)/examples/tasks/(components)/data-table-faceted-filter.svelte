@@ -58,6 +58,7 @@
 				<Command.Empty>No results found.</Command.Empty>
 				<Command.Group>
 					{#each options as option}
+						{@const Icon = option.icon}
 						<Command.Item
 							value={option.value}
 							onSelect={(currentValue) => {
@@ -74,6 +75,7 @@
 							>
 								<Check className={cn("h-4 w-4")} />
 							</div>
+							<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
 							<span>
 								{option.label}
 							</span>
