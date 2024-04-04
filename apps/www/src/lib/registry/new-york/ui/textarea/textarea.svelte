@@ -10,9 +10,8 @@
 	export let value: $$Props["value"] = undefined;
 	export { className as class };
 
-	// workaround for https://github.com/sveltejs/svelte/issues/9305 - there's a bug preventing false
-	// values for readonly from behaving as expected when spread into the textarea element. Fixed in
-	// svelte 5, but not backported to 4.x.
+	// Workaround for https://github.com/sveltejs/svelte/issues/9305
+	// Fixed in Svelte 5, but not backported to 4.x.
 	export let readonly: $$Props["readonly"] = undefined;
 </script>
 
