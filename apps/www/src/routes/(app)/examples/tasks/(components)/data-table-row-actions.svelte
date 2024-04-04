@@ -17,7 +17,9 @@
 			class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
 		>
 			<DotsHorizontal class="h-4 w-4" />
-			<span class="sr-only">Open menu</span>
+			<span class="relative">
+				<span class="sr-only">Open Menu</span>
+			</span>
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-[160px]" align="end">
