@@ -9,6 +9,22 @@
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
 	export let tableModel: TableViewModel<Task>;
+	export let data: Task[];
+
+	const counts = data.reduce<{
+		status: { [index: string]: number };
+		priority: { [index: string]: number };
+	}>(
+		(acc, { status, priority }) => {
+			acc.status[status] = (acc.status[status] || 0) + 1;
+			acc.priority[priority] = (acc.priority[priority] || 0) + 1;
+			return acc;
+		},
+		{
+			status: {},
+			priority: {},
+		}
+	);
 
 	const { pluginStates } = tableModel;
 	const {
@@ -42,11 +58,13 @@
 			bind:filterValues={$filterValues.status}
 			title="Status"
 			options={statuses}
+			counts={counts.status}
 		/>
 		<DataTableFacetedFilter
 			bind:filterValues={$filterValues.priority}
 			title="Priority"
 			options={priorities}
+			counts={counts.priority}
 		/>
 		{#if showReset}
 			<Button

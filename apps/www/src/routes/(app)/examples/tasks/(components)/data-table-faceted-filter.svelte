@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Task } from "./../(data)/schemas.ts";
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import Check from "svelte-radix/Check.svelte";
 	import type { statuses } from "../(data)/data.js";
@@ -12,6 +13,7 @@
 	export let filterValues: string[] = [];
 	export let title: string;
 	export let options = [] as typeof statuses;
+	export let counts: { [index: string]: number } = {};
 
 	let open = false;
 
@@ -79,6 +81,13 @@
 							<span>
 								{option.label}
 							</span>
+							{#if counts[option.value]}
+								<span
+									class="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs"
+								>
+									{counts[option.value]}
+								</span>
+							{/if}
 						</Command.Item>
 					{/each}
 				</Command.Group>
