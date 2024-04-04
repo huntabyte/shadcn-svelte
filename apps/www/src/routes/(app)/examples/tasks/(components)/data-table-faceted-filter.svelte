@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { Task } from "./../(data)/schemas.ts";
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import Check from "svelte-radix/Check.svelte";
 	import type { statuses } from "../(data)/data.js";
