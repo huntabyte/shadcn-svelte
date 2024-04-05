@@ -18,6 +18,7 @@ export type InputEvents = {
 	mouseleave: FormInputEvent<MouseEvent>;
 	paste: FormInputEvent<ClipboardEvent>;
 	input: FormInputEvent<InputEvent>;
+	wheel: FormInputEvent<WheelEvent>;
 };
 
 export {
