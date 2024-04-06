@@ -36,5 +36,6 @@
 	on:mouseleave
 	on:paste
 	on:input
+	on:wheel
 	{...$$restProps}
 />
