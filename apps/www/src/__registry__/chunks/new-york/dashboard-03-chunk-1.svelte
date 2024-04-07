@@ -1,114 +1,46 @@
 <script lang="ts">
-	import Rabbit from "lucide-svelte/icons/rabbit";
-	import Bird from "lucide-svelte/icons/bird";
-	import Turtle from "lucide-svelte/icons/turtle";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import Paperclip from "lucide-svelte/icons/paperclip";
+	import Mic from "lucide-svelte/icons/mic";
+	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 </script>
 
-<div
-	class="relative hidden flex-col items-start gap-8 md:flex"
+<form
+	class="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
 	data-x-chunk-name="chunk-1"
-	data-x-chunk-description="A settings form a configuring an AI model and messages."
+	data-x-chunk-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
 >
-	<form class="grid w-full items-start gap-6">
-		<fieldset class="grid gap-6 rounded-lg border p-4">
-			<legend class="-ml-1 px-1 text-sm font-medium"> Settings </legend>
-			<div class="grid gap-3">
-				<Label for="model">Model</Label>
-				<Select.Root>
-					<Select.Trigger
-						id="model"
-						class="items-start [&_[data-description]]:hidden"
-					>
-						<Select.Value placeholder="Select a model" />
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Item value="genesis" label="Neural Genesis">
-							<div class="flex items-start gap-3 text-muted-foreground">
-								<Rabbit class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="font-medium text-foreground"> Genesis </span>
-									</p>
-									<p class="text-xs" data-description>
-										Our fastest model for general use cases.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
-						<Select.Item value="explorer" label="Neural Explorer">
-							<div class="flex items-start gap-3 text-muted-foreground">
-								<Bird class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="font-medium text-foreground"> Explorer </span>
-									</p>
-									<p class="text-xs" data-description>
-										Performance and speed for efficiency.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
-						<Select.Item value="quantum">
-							<div class="flex items-start gap-3 text-muted-foreground">
-								<Turtle class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="font-medium text-foreground"> Quantum </span>
-									</p>
-									<p class="text-xs" data-description>
-										The most powerful model for complex computations.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
-					</Select.Content>
-				</Select.Root>
-			</div>
-			<div class="grid gap-3">
-				<Label for="temperature">Temperature</Label>
-				<Input id="temperature" type="number" placeholder="0.4" />
-			</div>
-			<div class="grid grid-cols-2 gap-4">
-				<div class="grid gap-3">
-					<Label for="top-p">Top P</Label>
-					<Input id="top-p" type="number" placeholder="0.7" />
-				</div>
-				<div class="grid gap-3">
-					<Label for="top-k">Top K</Label>
-					<Input id="top-k" type="number" placeholder="0.0" />
-				</div>
-			</div>
-		</fieldset>
-		<fieldset class="grid gap-6 rounded-lg border p-4">
-			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
-			<div class="grid gap-3">
-				<Label for="role">Role</Label>
-				<Select.Root selected={{ value: "system", label: "System" }}>
-					<Select.Trigger>
-						<Select.Value placeholder="Select a role" />
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Item value="system">System</Select.Item>
-						<Select.Item value="user">User</Select.Item>
-						<Select.Item value="assistant">Assistant</Select.Item>
-					</Select.Content>
-				</Select.Root>
-			</div>
-			<div class="grid gap-3">
-				<Label for="content">Content</Label>
-				<Textarea
-					id="content"
-					placeholder="You are a..."
-					class="min-h-[9.5rem]"
-				/>
-			</div>
-		</fieldset>
-	</form>
-</div>
+	<Label for="message" class="sr-only">Message</Label>
+	<Textarea
+		id="message"
+		placeholder="Type your message here..."
+		class="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
+	/>
+	<div class="flex items-center p-3 pt-0">
+		<Tooltip.Root>
+			<Tooltip.Trigger asChild let:builder>
+				<Button builders={[builder]} variant="ghost" size="icon">
+					<Paperclip class="size-4" />
+					<span class="sr-only">Attach file</span>
+				</Button>
+			</Tooltip.Trigger>
+			<Tooltip.Content side="top">Attach File</Tooltip.Content>
+		</Tooltip.Root>
+		<Tooltip.Root>
+			<Tooltip.Trigger asChild>
+				<Button variant="ghost" size="icon">
+					<Mic class="size-4" />
+					<span class="sr-only">Use Microphone</span>
+				</Button>
+			</Tooltip.Trigger>
+			<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
+		</Tooltip.Root>
+		<Button type="submit" size="sm" class="ml-auto gap-1.5">
+			Send Message
+			<CornerDownLeft class="size-3.5" />
+		</Button>
+	</div>
+</form>
