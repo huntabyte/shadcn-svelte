@@ -11,6 +11,7 @@ import { themes } from "../src/lib/registry/themes";
 import { buildRegistry } from "./registry";
 import { transformContent } from "./transformers";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
+import { getChunks } from "./transform-chunks.js";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
@@ -25,6 +26,34 @@ async function main() {
 	}
 
 	// ----------------------------------------------------------------------------
+	// Build __registry__/chunks/[style]/[block]-[chunk].svelte
+	// ----------------------------------------------------------------------------
+	const registryChunksDirPath = path.resolve("src", "__registry__", "chunks");
+	const libPath = path.resolve("src", "lib", "registry");
+	rimraf.sync(registryChunksDirPath);
+	// Create the __registry__/chunks/[style] dir
+	for (const style of styles) {
+		const chunkStyleDir = path.resolve(registryChunksDirPath, style.name);
+		// Create directory if it doesn't exist.
+		if (!fs.existsSync(chunkStyleDir)) {
+			fs.mkdirSync(chunkStyleDir, { recursive: true });
+		}
+	}
+	// Creates chunk files
+	for (const block of result.data) {
+		if (block.type !== "components:block") continue;
+		const file = block.files[0];
+		const blockPath = path.resolve(libPath, block.style, "block", file.name);
+		const chunkDir = path.resolve(registryChunksDirPath, block.style);
+
+		const chunks = getChunks(file.content, blockPath);
+		for (const chunk of chunks) {
+			const chunkPath = path.resolve(chunkDir, `${block.name}-${chunk.name}.svelte`);
+			fs.writeFileSync(chunkPath, chunk.content, { encoding: "utf8" });
+		}
+	}
+
+	// ----------------------------------------------------------------------------
 	// Build __registry__/index.js.
 	// ----------------------------------------------------------------------------
 	let index = `
@@ -36,9 +65,34 @@ export const Index = {
 	for (const style of styles) {
 		index += `	"${style.name}": {`;
 
+		const chunkFiles = fs.readdirSync(path.resolve(registryChunksDirPath, style.name));
+
 		// Build style index.
 		for (const item of result.data) {
 			if (item.type === "components:ui" || item.style !== "default") {
+				continue;
+			}
+			const type = item.type.split(":")[1];
+
+			// a bit crude, but it can be improved later
+			// blocks are added a bit differently, where the `files`
+			if (item.type === "components:block") {
+				const resolvedFiles = chunkFiles
+					.filter((file) => file.startsWith(item.name))
+					// chops off `.svelte` from the name
+					.map((file) => file.slice(0, -7));
+				index += `
+		"${item.name}": {
+			name: "${item.name}",
+			type: "${item.type}",
+			component: () => import("../lib/registry/${style.name}/${type}/${
+				item.name
+			}.svelte").then((m) => m.default),
+			chunks: [${resolvedFiles.map((chunk) => `{ name: "${chunk.slice(item.name.length + 1)}", raw: () => import("./chunks/${style.name}/${chunk}.svelte?raw").then((m) => m.default) }`)}],
+			raw: () => import("../lib/registry/${style.name}/${type}/${
+				item.name
+			}.svelte?raw").then((m) => m.default),
+		},`;
 				continue;
 			}
 
@@ -46,7 +100,6 @@ export const Index = {
 				(file) => `../lib/registry/${style.name}/${file.path}`
 			);
 
-			const type = item.type.split(":")[1];
 			index += `
 		"${item.name}": {
 			name: "${item.name}",
