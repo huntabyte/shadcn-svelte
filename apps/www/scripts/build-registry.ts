@@ -88,7 +88,8 @@ export const Index = {
 			component: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
 			}.svelte").then((m) => m.default),
-			chunks: [${resolvedFiles.map((chunk) => `{ name: "${chunk.slice(item.name.length + 1)}", raw: () => import("./chunks/${style.name}/${chunk}.svelte?raw").then((m) => m.default) }`)}],
+			files: [],
+			chunks: [${resolvedFiles.map((chunk) => `{ name: "${chunk.slice(item.name.length + 1)}", raw: () => import("./chunks/${style.name}/${chunk}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${chunk}.svelte").then((m) => m.default) }`)}],
 			raw: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
 			}.svelte?raw").then((m) => m.default),
