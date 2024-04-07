@@ -250,7 +250,7 @@
 				</div>
 				<div class="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
 					<div class="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-						<Card.Root>
+						<Card.Root data-x-chunk="A card with a form to edit the product details">
 							<Card.Header>
 								<Card.Title>Product Details</Card.Title>
 								<Card.Description>
@@ -279,7 +279,9 @@
 								</div>
 							</Card.Content>
 						</Card.Root>
-						<Card.Root>
+						<Card.Root
+							data-x-chunk="A card with a form to edit the product stock and variants"
+						>
 							<Card.Header>
 								<Card.Title>Stock</Card.Title>
 								<Card.Description>
@@ -373,7 +375,9 @@
 								</Button>
 							</Card.Footer>
 						</Card.Root>
-						<Card.Root>
+						<Card.Root
+							data-x-chunk="A card with a form to edit the product category and subcategory"
+						>
 							<Card.Header>
 								<Card.Title>Product Category</Card.Title>
 							</Card.Header>
@@ -437,7 +441,7 @@
 						</Card.Root>
 					</div>
 					<div class="grid auto-rows-max items-start gap-4 lg:gap-8">
-						<Card.Root>
+						<Card.Root data-x-chunk="A card with a form to edit the product status">
 							<Card.Header>
 								<Card.Title>Product Status</Card.Title>
 							</Card.Header>
@@ -465,7 +469,10 @@
 								</div>
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="overflow-hidden">
+						<Card.Root
+							class="overflow-hidden"
+							data-x-chunk="A card with a form to upload product images"
+						>
 							<Card.Header>
 								<Card.Title>Product Images</Card.Title>
 								<Card.Description>
@@ -510,7 +517,9 @@
 								</div>
 							</Card.Content>
 						</Card.Root>
-						<Card.Root>
+						<Card.Root
+							data-x-chunk="A card with a call to action to archive the product"
+						>
 							<Card.Header>
 								<Card.Title>Archive Product</Card.Title>
 								<Card.Description>

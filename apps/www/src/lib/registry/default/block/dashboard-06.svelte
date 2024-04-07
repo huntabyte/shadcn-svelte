@@ -279,7 +279,9 @@
 					</div>
 				</div>
 				<Tabs.Content value="all">
-					<Card.Root>
+					<Card.Root
+						data-x-chunk="A list of products in a table with actions. Each row has an image, name, status, price, total sales, created at and actions."
+					>
 						<Card.Header>
 							<Card.Title>Products</Card.Title>
 							<Card.Description>

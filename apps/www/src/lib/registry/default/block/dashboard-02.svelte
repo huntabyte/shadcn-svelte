@@ -76,7 +76,7 @@
 				</nav>
 			</div>
 			<div class="mt-auto p-4">
-				<Card.Root>
+				<Card.Root data-x-chunk="A card with a call to action">
 					<Card.Header class="p-2 pt-0 md:p-4">
 						<Card.Title>Upgrade to Pro</Card.Title>
 						<Card.Description>
@@ -206,6 +206,7 @@
 				<h1 class="text-lg font-semibold md:text-2xl">Inventory</h1>
 			</div>
 			<div
+				data-x-chunk="An empty state showing no products with a heading, description and a call to action to add a product."
 				class="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
 			>
 				<div class="flex flex-col items-center gap-1 text-center">
