@@ -11,7 +11,7 @@
 <div
 	class="relative hidden flex-col items-start gap-8 md:flex"
 	data-x-chunk-name="chunk-0"
-	data-x-description="A settings form a configuring an AI model and messages."
+	data-x-chunk-description="A settings form a configuring an AI model and messages."
 >
 	<form class="grid w-full items-start gap-6">
 		<fieldset class="grid gap-6 rounded-lg border p-4">

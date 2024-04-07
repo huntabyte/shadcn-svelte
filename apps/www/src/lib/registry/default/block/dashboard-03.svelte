@@ -271,7 +271,7 @@
 			<div
 				class="relative hidden flex-col items-start gap-8 md:flex"
 				data-x-chunk-name="chunk-0"
-				data-x-description="A settings form a configuring an AI model and messages."
+				data-x-chunk-description="A settings form a configuring an AI model and messages."
 			>
 				<form class="grid w-full items-start gap-6">
 					<fieldset class="grid gap-6 rounded-lg border p-4">
@@ -387,7 +387,7 @@
 				<form
 					class="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
 					data-x-chunk-name="chunk-1"
-					data-x-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
+					data-x-chunk-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
 				>
 					<Label for="message" class="sr-only">Message</Label>
 					<Textarea

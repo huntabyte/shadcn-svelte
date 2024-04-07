@@ -6,7 +6,7 @@
 
 <Card.Root
 	data-x-chunk-name="chunk-1"
-	data-x-description="A form to update the store name."
+	data-x-chunk-description="A form to update the store name."
 >
 	<Card.Header>
 		<Card.Title>Store Name</Card.Title>

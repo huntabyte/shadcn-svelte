@@ -5,7 +5,7 @@
 
 <Card.Root
 	data-x-chunk-name="chunk-0"
-	data-x-description="A card with a call to action"
+	data-x-chunk-description="A card with a call to action"
 >
 	<Card.Header class="p-2 pt-0 md:p-4">
 		<Card.Title>Upgrade to Pro</Card.Title>

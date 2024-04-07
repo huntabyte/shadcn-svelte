@@ -5,7 +5,8 @@
 
 	export let data: PageData;
 
-	$: component = Index[data.block.style][data.block.name]?.component() as Promise<ComponentType>;
+	$: entry = Index[data.block.style][data.block.name];
+	$: component = entry?.component() as Promise<ComponentType>;
 </script>
 
 <div class={data.block.container?.className}>

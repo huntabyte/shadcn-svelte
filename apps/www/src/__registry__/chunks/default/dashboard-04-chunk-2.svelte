@@ -7,7 +7,7 @@
 
 <Card.Root
 	data-x-chunk-name="chunk-2"
-	data-x-description="A form to update the plugins directory with a checkbox to allow administrators to change the directory."
+	data-x-chunk-description="A form to update the plugins directory with a checkbox to allow administrators to change the directory."
 >
 	<Card.Header>
 		<Card.Title>Plugins Directory</Card.Title>

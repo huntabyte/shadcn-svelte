@@ -20,10 +20,15 @@ export function getChunks(source: string, filename: string) {
 			if (chunkNode.type !== "Element" && chunkNode.type !== "InlineComponent") return;
 
 			const attrs: Attribute[] = chunkNode.attributes;
-			const dataNode = attrs.find((a) => a.name === "data-x-chunk-name");
-			if (dataNode === undefined) return;
+			const nameNode = attrs.find((a) => a.name === "data-x-chunk-name");
+			const descriptionNode = attrs.find((a) => a.name === "data-x-chunk-description");
+			if (descriptionNode === undefined || nameNode === undefined) return;
 
-			const name: string = dataNode.value[0].data;
+			const containerNode = attrs.find((a) => a.name === "data-x-chunk-container");
+
+			const name: string = nameNode.value[0].data;
+			const description: string = descriptionNode.value[0].data;
+			const containerClassName: string = containerNode?.value[0].data || "";
 			const dependencies = new Set<string>();
 
 			// discard any prop members
@@ -43,10 +48,14 @@ export function getChunks(source: string, filename: string) {
 
 			const chunk = {
 				name,
+				description,
 				dependencies: [...dependencies],
 				start: chunkNode.start,
 				end: chunkNode.end,
 				content: "",
+				container: {
+					className: containerClassName,
+				},
 			};
 			chunks.push({ ...chunk, content: transformChunk(source, chunk) });
 			// don't traverse the rest of this node
