@@ -9,6 +9,8 @@ type Chunk = {
 	start: number;
 	end: number;
 	content: string;
+	description: string;
+	container: { className: string };
 };
 export function getChunks(source: string, filename: string) {
 	const ast = parse(source, { filename });
@@ -46,7 +48,7 @@ export function getChunks(source: string, filename: string) {
 				},
 			});
 
-			const chunk = {
+			const chunk: Chunk = {
 				name,
 				description,
 				dependencies: [...dependencies],
