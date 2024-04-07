@@ -116,8 +116,7 @@ async function crawlDemo(rootPath: string, style: string, demoType: "example" | 
 	const registry: Registry = [];
 
 	for (const dirent of dir) {
-		if (!dirent.name.endsWith(".svelte") || !dirent.isFile() || dirent.name.includes("chunk"))
-			continue;
+		if (!dirent.name.endsWith(".svelte") || !dirent.isFile()) continue;
 
 		const [name] = dirent.name.split(".svelte");
 
