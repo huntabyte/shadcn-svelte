@@ -19,7 +19,7 @@ CHANGELOG.md
 
 
 # docs site specific
-apps/www/src/__registry__/index.js
+apps/www/src/__registry__/*
 apps/www/other/themes/dark.json
 apps/www/other/themes/light.json
 apps/www/static
