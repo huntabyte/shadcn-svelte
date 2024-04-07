@@ -76,7 +76,10 @@
 				</nav>
 			</div>
 			<div class="mt-auto p-4">
-				<Card.Root data-x-chunk="A card with a call to action">
+				<Card.Root
+					data-x-chunk-name="chunk-0"
+					data-x-chunk-description="A card with a call to action"
+				>
 					<Card.Header class="p-2 pt-0 md:p-4">
 						<Card.Title>Upgrade to Pro</Card.Title>
 						<Card.Description>
@@ -207,7 +210,8 @@
 			</div>
 			<div
 				class="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
-				data-x-chunk="An empty state showing no products with a heading, description and a call to action to add a product."
+				data-x-chunk-name="chunk-1"
+				data-x-chunk-description="An empty state showing no products with a heading, description and a call to action to add a product."
 			>
 				<div class="flex flex-col items-center gap-1 text-center">
 					<h3 class="text-2xl font-bold tracking-tight">You have no products</h3>
