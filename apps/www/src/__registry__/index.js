@@ -1059,6 +1059,14 @@ export const Index = {
 			files: ["../lib/registry/default/block/authentication-04.svelte"],
 			raw: () => import("../lib/registry/default/block/authentication-04.svelte?raw").then((m) => m.default),
 		},
+		"dashboard-01-chunk-0": {
+			name: "dashboard-01-chunk-0",
+			type: "components:block",
+			registryDependencies: [],
+			component: () => import("../lib/registry/default/block/dashboard-01-chunk-0.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/block/dashboard-01-chunk-0.svelte"],
+			raw: () => import("../lib/registry/default/block/dashboard-01-chunk-0.svelte?raw").then((m) => m.default),
+		},
 		"dashboard-01": {
 			name: "dashboard-01",
 			type: "components:block",
@@ -2171,6 +2179,14 @@ export const Index = {
 			component: () => import("../lib/registry/new-york/block/authentication-04.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/block/authentication-04.svelte"],
 			raw: () => import("../lib/registry/new-york/block/authentication-04.svelte?raw").then((m) => m.default),
+		},
+		"dashboard-01-chunk-0": {
+			name: "dashboard-01-chunk-0",
+			type: "components:block",
+			registryDependencies: [],
+			component: () => import("../lib/registry/new-york/block/dashboard-01-chunk-0.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/block/dashboard-01-chunk-0.svelte"],
+			raw: () => import("../lib/registry/new-york/block/dashboard-01-chunk-0.svelte?raw").then((m) => m.default),
 		},
 		"dashboard-01": {
 			name: "dashboard-01",

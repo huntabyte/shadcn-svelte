@@ -14,6 +14,7 @@ export const load: PageServerLoad = async () => {
 		const defaultBlock = defaultBlocks.find((b) => b.name === name);
 		const newYorkBlock = newYorkBlocks.find((b) => b.name === name);
 		if (!defaultBlock || !newYorkBlock) throw new Error("Missing blocks");
+
 		blocks.push(defaultBlock, newYorkBlock);
 	}
 

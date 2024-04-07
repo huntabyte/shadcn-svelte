@@ -1,10 +1,11 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
+import { persisted } from "svelte-local-storage-store";
 import type { DocResolver } from "$lib/types/docs.js";
 
 export function cn(...inputs: ClassValue[]) {
@@ -222,4 +223,21 @@ export async function getDoc(slug: string) {
 
 export function slugFromPathname(pathname: string) {
 	return pathname.split("/").pop() ?? "";
+}
+
+const liftMode = persisted<string[]>("lift-mode", []);
+
+export function getLiftMode(name: string) {
+	function toggleLiftMode(name: string) {
+		liftMode.update((prev) => {
+			return prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
+		});
+	}
+
+	const isLiftMode = derived(liftMode, ($configStore) => $configStore.includes(name));
+
+	return {
+		isLiftMode,
+		toggleLiftMode,
+	};
 }
