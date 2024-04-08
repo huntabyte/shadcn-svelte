@@ -1,10 +1,21 @@
 import { type Highlighter, getHighlighter } from "shiki";
+import type { ComponentType } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "./config/blocks.js";
 import { type BlockName, type Style, blockSchema } from "$lib/registry/index.js";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
+
+export type RawBlockChunk = {
+	name: string;
+	description: string;
+	container: {
+		className: string;
+	};
+	raw: () => Promise<string>;
+	component: () => Promise<ComponentType>;
+};
 
 export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = Object.values(Blocks[style]);

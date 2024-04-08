@@ -542,7 +542,7 @@
 					<Card.Header class="flex flex-row items-start bg-muted/50">
 						<div class="grid gap-0.5">
 							<Card.Title class="group flex items-center gap-2 text-lg">
-								Order ID: Oe31b70H
+								Order Oe31b70H
 								<Button
 									size="icon"
 									variant="outline"

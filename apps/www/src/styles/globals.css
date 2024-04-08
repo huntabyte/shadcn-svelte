@@ -140,6 +140,15 @@
 		@apply ml-[-50px] mt-[-4px];
 		content: counter(step);
 	}
+
+	.chunk-container {
+		@apply shadow-none;
+	}
+
+	.chunk-container::after {
+		content: "";
+		@apply absolute -inset-4 rounded-xl border shadow-xl;
+	}
 }
 
 @media (max-width: 640px) {
