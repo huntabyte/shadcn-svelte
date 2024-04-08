@@ -221,7 +221,7 @@
 							width={36}
 							height={36}
 							alt="Avatar"
-							class="overflow-hidden"
+							class="overflow-hidden rounded-full"
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
@@ -242,7 +242,7 @@
 				<div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
 					<Card.Root
 						class="sm:col-span-2"
-						data-x-chunk-name="chunk-0"
+						data-x-chunk-name="dashboard-05-chunk-0"
 						data-x-chunk-description="A card for an orders dashboard with a description and a button to create a new order."
 					>
 						<Card.Header class="pb-3">
@@ -257,7 +257,7 @@
 						</Card.Footer>
 					</Card.Root>
 					<Card.Root
-						data-x-chunk-name="chunk-1"
+						data-x-chunk-name="dashboard-05-chunk-1"
 						data-x-chunk-description="A stats card showing this week's total sales in USD, the percentage difference from last week, and a progress bar."
 					>
 						<Card.Header class="pb-2">
@@ -272,7 +272,7 @@
 						</Card.Footer>
 					</Card.Root>
 					<Card.Root
-						data-x-chunk-name="chunk-2"
+						data-x-chunk-name="dashboard-05-chunk-2"
 						data-x-chunk-description="A stats card showing this month's total sales in USD, the percentage difference from last month, and a progress bar."
 					>
 						<Card.Header class="pb-2">
@@ -325,7 +325,7 @@
 					</div>
 					<Tabs.Content value="week">
 						<Card.Root
-							data-x-chunk-name="chunk-3"
+							data-x-chunk-name="dashboard-05-chunk-3"
 							data-x-chunk-description="A table of recent orders showing the following columns: Customer, Type, Status, Date, and Amount."
 						>
 							<Card.Header class="px-7">
@@ -536,7 +536,7 @@
 			<div>
 				<Card.Root
 					class="overflow-hidden"
-					data-x-chunk-name="chunk-4"
+					data-x-chunk-name="dashboard-05-chunk-4"
 					data-x-chunk-description="An order details card with order details, shipping information, customer information and payment information."
 				>
 					<Card.Header class="flex flex-row items-start bg-muted/50">

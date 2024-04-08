@@ -6,7 +6,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-0"
+	data-x-chunk-name="dashboard-07-chunk-0"
 	data-x-chunk-description="A card with a form to edit the product details"
 >
 	<Card.Header>

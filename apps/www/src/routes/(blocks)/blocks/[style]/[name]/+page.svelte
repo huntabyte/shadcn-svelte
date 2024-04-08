@@ -4,6 +4,7 @@
 	import { Blocks } from "$lib/../__registry__/blocks.js";
 	import BlockChunk from "$lib/components/docs/block-chunk.svelte";
 	import { cn } from "$lib/utils.js";
+	import BlockWrapper from "$lib/components/docs/block-wrapper.svelte";
 
 	export let data: PageData;
 
@@ -14,16 +15,18 @@
 </script>
 
 <div class={cn(data.block.container?.className || "", "theme-zinc")}>
-	{#await component then Component}
-		<Component />
-	{/await}
-	{#each chunks as chunk}
-		<BlockChunk block={data.block} {chunk}>
-			{#await chunk.component() then Component}
-				<Component />
-			{:catch}
-				<div class="text-center text-gray-500">Error loading chunk</div>
-			{/await}
-		</BlockChunk>
-	{/each}
+	<BlockWrapper {block}>
+		{#await component then Component}
+			<Component />
+		{/await}
+		{#each chunks as chunk}
+			<BlockChunk block={data.block} {chunk}>
+				{#await chunk.component() then Component}
+					<Component />
+				{:catch}
+					<div class="text-center text-gray-500">Error loading chunk</div>
+				{/await}
+			</BlockChunk>
+		{/each}
+	</BlockWrapper>
 </div>

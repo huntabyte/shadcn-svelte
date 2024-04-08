@@ -108,7 +108,7 @@
 		>
 			<nav
 				class="grid gap-4 text-sm text-muted-foreground"
-				data-x-chunk-name="chunk-0"
+				data-x-chunk-name="dashboard-04-chunk-0"
 				data-x-chunk-description="A sidebar navigation with links to general, security, integrations, support, organizations, and advanced settings."
 				data-x-chunk-container="chunk-container after:right-0"
 			>
@@ -121,7 +121,7 @@
 			</nav>
 			<div class="grid gap-6">
 				<Card.Root
-					data-x-chunk-name="chunk-1"
+					data-x-chunk-name="dashboard-04-chunk-1"
 					data-x-chunk-description="A form to update the store name."
 				>
 					<Card.Header>
@@ -140,7 +140,7 @@
 					</Card.Footer>
 				</Card.Root>
 				<Card.Root
-					data-x-chunk-name="chunk-2"
+					data-x-chunk-name="dashboard-04-chunk-2"
 					data-x-chunk-description="A form to update the plugins directory with a checkbox to allow administrators to change the directory."
 				>
 					<Card.Header>

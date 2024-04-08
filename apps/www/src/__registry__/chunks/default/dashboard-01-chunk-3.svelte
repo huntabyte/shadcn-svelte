@@ -4,7 +4,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-3"
+	data-x-chunk-name="dashboard-01-chunk-3"
 	data-x-chunk-description="A card showing the total active users and the percentage difference from last hour."
 >
 	<Card.Header

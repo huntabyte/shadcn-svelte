@@ -7,7 +7,7 @@
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
 	import type { Block } from "$lib/registry/schema.js";
-	import { cn, getLiftMode } from "$lib/utils.js";
+	import { cn, getLiftMode, styleToString } from "$lib/utils.js";
 
 	let isLoading = true;
 
@@ -16,10 +16,19 @@
 	export let block: Block;
 
 	const { isLiftMode } = getLiftMode(block.name);
+
+	$: tabStyle = block.container?.height
+		? styleToString({ "--container-height": block.container.height })
+		: "";
 </script>
 
 {#if $config.style === block.style}
-	<Tabs.Root id={block.name} value="preview" class="relative grid w-full scroll-m-20 gap-4">
+	<Tabs.Root
+		id={block.name}
+		value="preview"
+		class="relative grid w-full scroll-m-20 gap-4"
+		style={tabStyle}
+	>
 		<BlockToolbar {block} {resizablePaneRef} />
 		<Tabs.Content
 			value="preview"
@@ -56,7 +65,7 @@
 				<Resizable.Handle
 					class={cn(
 						"relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 sm:block",
-						isLiftMode && "invisible"
+						$isLiftMode && "invisible"
 					)}
 				/>
 				<Resizable.Pane defaultSize={0} minSize={0} />

@@ -129,6 +129,13 @@ type FlyAndScaleParams = {
 	duration?: number;
 };
 
+export function styleToString(style: Record<string, number | string | undefined>): string {
+	return Object.keys(style).reduce((str, key) => {
+		if (style[key] === undefined) return str;
+		return `${str}${key}:${style[key]};`;
+	}, "");
+}
+
 export function flyAndScale(
 	node: Element,
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
@@ -148,13 +155,6 @@ export function flyAndScale(
 		const valueB = percentage * (maxB - minB) + minB;
 
 		return valueB;
-	};
-
-	const styleToString = (style: Record<string, number | string | undefined>): string => {
-		return Object.keys(style).reduce((str, key) => {
-			if (style[key] === undefined) return str;
-			return `${str}${key}:${style[key]};`;
-		}, "");
 	};
 
 	return {

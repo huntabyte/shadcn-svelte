@@ -4,7 +4,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-5"
+	data-x-chunk-name="dashboard-07-chunk-5"
 	data-x-chunk-description="A card with a call to action to archive the product"
 >
 	<Card.Header>

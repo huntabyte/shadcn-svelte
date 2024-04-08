@@ -10,7 +10,7 @@
 
 <form
 	class="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
-	data-x-chunk-name="chunk-1"
+	data-x-chunk-name="dashboard-03-chunk-1"
 	data-x-chunk-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
 >
 	<Label for="message" class="sr-only">Message</Label>

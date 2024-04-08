@@ -5,7 +5,7 @@
 
 <Card.Root
 	class="overflow-hidden"
-	data-x-chunk-name="chunk-4"
+	data-x-chunk-name="dashboard-07-chunk-4"
 	data-x-chunk-description="A card with a form to upload product images"
 >
 	<Card.Header>

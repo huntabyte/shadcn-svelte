@@ -4,7 +4,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-5"
+	data-x-chunk-name="dashboard-01-chunk-5"
 	data-x-chunk-description="A card showing a list of recent sales with customer names and email addresses."
 >
 	<Card.Header>

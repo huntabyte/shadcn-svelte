@@ -4,7 +4,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-1"
+	data-x-chunk-name="dashboard-01-chunk-1"
 	data-x-chunk-description="A card showing the total subscriptions and the percentage difference from last month."
 >
 	<Card.Header

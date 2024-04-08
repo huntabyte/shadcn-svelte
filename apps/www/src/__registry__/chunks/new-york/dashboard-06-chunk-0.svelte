@@ -4,7 +4,7 @@
 
 <Breadcrumb.Root
 	class="hidden md:flex"
-	data-x-chunk-name="chunk-0"
+	data-x-chunk-name="dashboard-06-chunk-0"
 	data-x-chunk-description="A breadcrumb with two links and a page indicator."
 >
 	<Breadcrumb.List>

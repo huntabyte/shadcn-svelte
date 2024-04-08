@@ -10,7 +10,7 @@
 
 <div
 	class="relative hidden flex-col items-start gap-8 md:flex"
-	data-x-chunk-name="chunk-0"
+	data-x-chunk-name="dashboard-03-chunk-0"
 	data-x-chunk-description="A settings form a configuring an AI model and messages."
 >
 	<form class="grid w-full items-start gap-6">

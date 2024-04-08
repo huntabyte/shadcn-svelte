@@ -14,7 +14,7 @@
 
 <Card.Root
 	class="overflow-hidden"
-	data-x-chunk-name="chunk-4"
+	data-x-chunk-name="dashboard-05-chunk-4"
 	data-x-chunk-description="An order details card with order details, shipping information, customer information and payment information."
 >
 	<Card.Header class="flex flex-row items-start bg-muted/50">

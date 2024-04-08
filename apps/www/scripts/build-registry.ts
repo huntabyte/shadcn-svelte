@@ -53,7 +53,7 @@ export const Blocks = {
 
 			const chunks = getChunks(file.content, blockPath);
 			for (const chunk of chunks) {
-				const chunkPath = path.resolve(chunkDir, `${block.name}-${chunk.name}.svelte`);
+				const chunkPath = path.resolve(chunkDir, `${chunk.name}.svelte`);
 				fs.writeFileSync(chunkPath, chunk.content, { encoding: "utf8" });
 			}
 
@@ -61,7 +61,7 @@ export const Blocks = {
 		"${block.name}": {
 			name: "${block.name}",
 			type: "${block.type}",
-			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", container: { className: "${chunk.container.className}" }, raw: () => import("./chunks/${style.name}/${block.name}-${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${block.name}-${chunk.name}.svelte").then((m) => m.default) }`)}],
+			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", container: { className: "${chunk.container.className}" }, raw: () => import("./chunks/${style.name}/${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${chunk.name}.svelte").then((m) => m.default) }`)}],
 			component: () => import("../lib/registry/${style.name}/block/${block.name}.svelte").then((m) => m.default),
 			raw: () => import("../lib/registry/${style.name}/block/${block.name}.svelte?raw").then((m) => m.default),
 		},`;

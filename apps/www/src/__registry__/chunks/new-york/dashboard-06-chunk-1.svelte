@@ -8,7 +8,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-1"
+	data-x-chunk-name="dashboard-06-chunk-1"
 	data-x-chunk-description="A list of products in a table with actions. Each row has an image, name, status, price, total sales, created at and actions."
 >
 	<Card.Header>

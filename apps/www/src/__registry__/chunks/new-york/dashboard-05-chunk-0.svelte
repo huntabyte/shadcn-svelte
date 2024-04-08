@@ -5,7 +5,7 @@
 
 <Card.Root
 	class="sm:col-span-2"
-	data-x-chunk-name="chunk-0"
+	data-x-chunk-name="dashboard-05-chunk-0"
 	data-x-chunk-description="A card for an orders dashboard with a description and a button to create a new order."
 >
 	<Card.Header class="pb-3">

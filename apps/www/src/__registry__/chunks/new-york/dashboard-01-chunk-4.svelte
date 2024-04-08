@@ -8,7 +8,7 @@
 
 <Card.Root
 	class="xl:col-span-2"
-	data-x-chunk-name="chunk-4"
+	data-x-chunk-name="dashboard-01-chunk-4"
 	data-x-chunk-description="A card showing a table of recent transactions with a link to view all transactions."
 >
 	<Card.Header class="flex flex-row items-center">

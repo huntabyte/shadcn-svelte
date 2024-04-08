@@ -251,7 +251,7 @@
 				<div class="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
 					<div class="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
 						<Card.Root
-							data-x-chunk-name="chunk-0"
+							data-x-chunk-name="dashboard-07-chunk-0"
 							data-x-chunk-description="A card with a form to edit the product details"
 						>
 							<Card.Header>
@@ -283,7 +283,7 @@
 							</Card.Content>
 						</Card.Root>
 						<Card.Root
-							data-x-chunk-name="chunk-1"
+							data-x-chunk-name="dashboard-07-chunk-1"
 							data-x-chunk-description="A card with a form to edit the product stock and variants"
 						>
 							<Card.Header>
@@ -380,7 +380,7 @@
 							</Card.Footer>
 						</Card.Root>
 						<Card.Root
-							data-x-chunk-name="chunk-2"
+							data-x-chunk-name="dashboard-07-chunk-2"
 							data-x-chunk-description="A card with a form to edit the product category and subcategory"
 						>
 							<Card.Header>
@@ -447,7 +447,7 @@
 					</div>
 					<div class="grid auto-rows-max items-start gap-4 lg:gap-8">
 						<Card.Root
-							data-x-chunk-name="chunk-3"
+							data-x-chunk-name="dashboard-07-chunk-3"
 							data-x-chunk-description="A card with a form to edit the product status"
 						>
 							<Card.Header>
@@ -479,7 +479,7 @@
 						</Card.Root>
 						<Card.Root
 							class="overflow-hidden"
-							data-x-chunk-name="chunk-4"
+							data-x-chunk-name="dashboard-07-chunk-4"
 							data-x-chunk-description="A card with a form to upload product images"
 						>
 							<Card.Header>
@@ -527,7 +527,7 @@
 							</Card.Content>
 						</Card.Root>
 						<Card.Root
-							data-x-chunk-name="chunk-5"
+							data-x-chunk-name="dashboard-07-chunk-5"
 							data-x-chunk-description="A card with a call to action to archive the product"
 						>
 							<Card.Header>

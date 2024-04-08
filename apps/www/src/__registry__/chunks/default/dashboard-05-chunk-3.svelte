@@ -5,7 +5,7 @@
 </script>
 
 <Card.Root
-	data-x-chunk-name="chunk-3"
+	data-x-chunk-name="dashboard-05-chunk-3"
 	data-x-chunk-description="A table of recent orders showing the following columns: Customer, Type, Status, Date, and Amount."
 >
 	<Card.Header class="px-7">

@@ -3,7 +3,7 @@
 </script>
 
 <div
-	data-x-chunk-name="chunk-1"
+	data-x-chunk-name="dashboard-02-chunk-1"
 	data-x-chunk-description="An empty state showing no products with a heading, description and a call to action to add a product."
 	class="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
 >
