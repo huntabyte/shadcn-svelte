@@ -1,17 +1,5 @@
 import * as z from "zod";
 
-export const blockChunkSchema = z.object({
-	name: z.string(),
-	description: z.string(),
-	component: z.any(),
-	code: z.string().optional(),
-	container: z
-		.object({
-			className: z.string().nullish(),
-		})
-		.optional(),
-});
-
 export const registrySchema = z.array(
 	z.object({
 		name: z.string(),
@@ -44,7 +32,6 @@ export const registryEntrySchema = z.object({
 	]),
 	category: z.string().optional(),
 	subcategory: z.string().optional(),
-	chunks: z.array(blockChunkSchema).optional(),
 });
 
 export type RegistryEntry = z.infer<typeof registryEntrySchema>;
@@ -70,6 +57,17 @@ export const blockNames = [
 
 export type BlockName = (typeof blockNames)[number];
 
+export const blockChunkSchema = z.object({
+	name: z.string(),
+	description: z.string(),
+	code: z.string().optional(),
+	container: z
+		.object({
+			className: z.string().nullish(),
+		})
+		.optional(),
+});
+
 export const blockSchema = z.object({
 	name: z.enum(blockNames),
 	type: z.literal("components:block"),
@@ -83,7 +81,14 @@ export const blockSchema = z.object({
 		.optional(),
 	code: z.string(),
 	highlightedCode: z.string(),
-	chunks: z.array(blockChunkSchema).optional(),
+	chunks: z.array(blockChunkSchema),
+});
+
+export const blocksEntrySchema = z.object({
+	name: z.string(),
+	description: z.string().optional(),
+	type: z.literal("components:block"),
+	chunks: z.array(blockChunkSchema),
 });
 
 export type Block = z.infer<typeof blockSchema>;

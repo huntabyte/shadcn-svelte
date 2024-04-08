@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { ComponentType } from "svelte";
 	import type { PageData } from "./$types.js";
-	import { Index } from "$lib/../__registry__/index.js";
+	import { Blocks } from "$lib/../__registry__/blocks.js";
 
 	export let data: PageData;
 
-	$: entry = Index[data.block.style][data.block.name];
-	$: component = entry?.component() as Promise<ComponentType>;
+	$: block = Blocks[data.block.style][data.block.name];
+	$: component = block?.component() as Promise<ComponentType>;
 </script>
 
 <div class={data.block.container?.className}>

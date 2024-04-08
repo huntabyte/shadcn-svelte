@@ -1,14 +1,9 @@
 import { z } from "zod";
 import { type Highlighter, getHighlighter } from "shiki";
-import { Index } from "../__registry__/index.js";
+import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "./config/blocks.js";
-import {
-	type BlockName,
-	type Style,
-	blockSchema,
-	registryEntrySchema,
-} from "$lib/registry/index.js";
+import { type BlockName, type Style, blockSchema, blocksEntrySchema } from "$lib/registry/index.js";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
@@ -18,7 +13,7 @@ export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE
 }
 
 export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const entry = Index[style][name];
+	const entry = Blocks[style][name];
 	const content = await getBlockContent(name, style);
 
 	return blockSchema.parse({
@@ -29,19 +24,19 @@ export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_B
 	});
 }
 
-export function isDemo(name: string): name is BlockName {
+export function isBlock(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
-	const demo = Index.default[name];
+	const demo = Blocks.default[name];
 	return demo !== undefined;
 }
 
 async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const index = z.record(registryEntrySchema).parse(Index[style]);
+	const index = z.record(blocksEntrySchema).parse(Blocks[style]);
 	return Object.values(index).filter((block) => block.type === "components:block");
 }
 
 async function getBlockCode(name: BlockName, style: Style["name"]) {
-	const entry = Index[style][name];
+	const entry = Blocks[style][name];
 	const code = await entry.raw();
 	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
 	const detabbed = code.replaceAll("\t", "  ");
