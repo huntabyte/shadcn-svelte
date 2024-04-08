@@ -60,7 +60,7 @@ export type BlockName = (typeof blockNames)[number];
 export const blockChunkSchema = z.object({
 	name: z.string(),
 	description: z.string(),
-	code: z.string().optional(),
+	code: z.string(),
 	container: z
 		.object({
 			className: z.string().nullish(),
@@ -81,13 +81,6 @@ export const blockSchema = z.object({
 		.optional(),
 	code: z.string(),
 	highlightedCode: z.string(),
-	chunks: z.array(blockChunkSchema),
-});
-
-export const blocksEntrySchema = z.object({
-	name: z.string(),
-	description: z.string().optional(),
-	type: z.literal("components:block"),
 	chunks: z.array(blockChunkSchema),
 });
 
