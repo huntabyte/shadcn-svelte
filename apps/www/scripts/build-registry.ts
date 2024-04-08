@@ -61,7 +61,7 @@ export const Blocks = {
 		"${block.name}": {
 			name: "${block.name}",
 			type: "${block.type}",
-			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", raw: () => import("./chunks/${style.name}/${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${chunk.name}.svelte").then((m) => m.default) }`)}],
+			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", raw: () => import("./chunks/${style.name}/${block.name}-${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${block.name}-${chunk.name}.svelte").then((m) => m.default) }`)}],
 			component: () => import("../lib/registry/${style.name}/block/${block.name}.svelte").then((m) => m.default),
 			raw: () => import("../lib/registry/${style.name}/block/${block.name}.svelte?raw").then((m) => m.default),
 		},`;
