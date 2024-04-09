@@ -124,7 +124,7 @@
 				</ToggleGroup.Root>
 			</div>
 			<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
-			<BlockCopyCodeButton name={block.name} code={block.code} disabled={isLiftMode} />
+			<BlockCopyCodeButton name={block.name} code={block.code} disabled={$isLiftMode} />
 		</div>
 	{/if}
 </div>
