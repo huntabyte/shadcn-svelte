@@ -9,6 +9,10 @@
 
 	const { isLiftMode } = getLiftMode(block.name);
 
+	/**
+	 * Gets the non "lifted" chunks in the block, which we use to apply styles
+	 * to the lifted chunks.
+	 */
 	function getBlockChunks() {
 		return Array.from(document.querySelectorAll<HTMLElement>("[data-x-chunk-name]")).filter(
 			(el) => {
@@ -19,6 +23,9 @@
 		);
 	}
 
+	/**
+	 * Gets a lifted chunk by name.
+	 */
 	function getChunkByName(name: string) {
 		return Array.from(
 			document.querySelectorAll<HTMLElement>(`[data-x-chunk-name="${name}"]`)
@@ -29,6 +36,10 @@
 		})[0];
 	}
 
+	/**
+	 * Applies styles to the lifted chunks in the block based on
+	 * the non-lifted chunks.
+	 */
 	function updateChunkStyles(_?: boolean) {
 		if (!isBrowser) return;
 		tick().then(() => {
