@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentType } from "svelte";
+	import { type ComponentType } from "svelte";
 	import type { PageData } from "./$types.js";
 	import { Blocks } from "$lib/../__registry__/blocks.js";
 	import BlockChunk from "$lib/components/docs/block-chunk.svelte";
@@ -11,22 +11,35 @@
 	$: block = Blocks[data.block.style][data.block.name];
 	$: chunks = block.chunks;
 
-	$: component = block?.component() as Promise<ComponentType>;
+	async function getComponents() {
+		const components: Promise<ComponentType>[] = [];
+		for (const chunk of chunks) {
+			components.push(chunk.component());
+		}
+		const chunkComponentsPromise = Promise.all(components);
+		const componentPromise = block.component();
+		const [chunkComponents, Component] = await Promise.all([
+			chunkComponentsPromise,
+			componentPromise,
+		]);
+
+		return {
+			chunkComponents,
+			Component,
+		};
+	}
 </script>
 
 <div class={cn(data.block.container?.className || "", "theme-zinc")}>
-	<BlockWrapper {block}>
-		{#await component then Component}
+	{#await getComponents() then { chunkComponents, Component }}
+		<BlockWrapper {block}>
 			<Component />
-		{/await}
-		{#each chunks as chunk}
-			<BlockChunk block={data.block} {chunk}>
-				{#await chunk.component() then Component}
-					<Component />
-				{:catch}
-					<div class="text-center text-gray-500">Error loading chunk</div>
-				{/await}
-			</BlockChunk>
-		{/each}
-	</BlockWrapper>
+			{#each chunks as chunk, i (`${chunk.name + data.block.style}`)}
+				{@const ChunkComponent = chunkComponents[i]}
+				<BlockChunk block={data.block} {chunk}>
+					<ChunkComponent />
+				</BlockChunk>
+			{/each}
+		</BlockWrapper>
+	{/await}
 </div>

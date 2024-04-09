@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import { fade } from "svelte/transition";
-	import { cubicIn, cubicOut } from "svelte/easing";
 	import BlockCopyCodeButton from "../block-copy-code-button.svelte";
 	import { cn, getLiftMode } from "$lib/utils.js";
 	import type { RawBlockChunk } from "$lib/blocks.js";
@@ -24,28 +22,25 @@
 	const { isLiftMode } = getLiftMode(block.name);
 </script>
 
-{#if chunk && $isLiftMode}
-	<div
-		in:fade={{ duration: 200, easing: cubicIn }}
-		out:fade={{ duration: 200, easing: cubicOut }}
-		class={cn(
-			"group rounded-xl bg-background shadow-xl transition",
-			chunk.container?.className
-		)}
-		data-x-chunk-container={chunk.name}
-		{...$$restProps}
-	>
-		<div class="relative z-30">
-			<slot />
-		</div>
-		{#await chunk.raw() then code}
-			<div
-				class="absolute inset-x-0 top-0 z-20 flex px-4 py-3 opacity-0 transition-all duration-200 ease-in group-hover:-translate-y-12 group-hover:opacity-100"
-			>
-				<div class="flex w-full items-center justify-end gap-2">
-					<BlockCopyCodeButton name={chunk.name} {code} />
-				</div>
-			</div>
-		{/await}
+<div
+	class={cn(
+		"group rounded-xl bg-background shadow-xl",
+		!$isLiftMode && "invisible",
+		chunk.container?.className
+	)}
+	data-x-chunk-container-for={chunk.name}
+	{...$$restProps}
+>
+	<div class="relative z-30">
+		<slot />
 	</div>
-{/if}
+	{#await chunk.raw() then code}
+		<div
+			class="absolute inset-x-0 top-0 z-20 flex px-4 py-3 opacity-0 transition-all duration-200 ease-in group-hover:-translate-y-12 group-hover:opacity-100"
+		>
+			<div class="flex w-full items-center justify-end gap-2">
+				<BlockCopyCodeButton name={chunk.name} {code} />
+			</div>
+		</div>
+	{/await}
+</div>

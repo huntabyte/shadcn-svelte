@@ -9,19 +9,37 @@
 
 	const { isLiftMode } = getLiftMode(block.name);
 
-	function updateChunkStyles(chunks: (typeof block)["chunks"], _: boolean) {
+	function getBlockChunks() {
+		return Array.from(document.querySelectorAll<HTMLElement>("[data-x-chunk-name]")).filter(
+			(el) => {
+				const anscestorContainer = el.closest("[data-x-chunk-container-for]");
+				if (!anscestorContainer) return true;
+				return false;
+			}
+		);
+	}
+
+	function getChunkByName(name: string) {
+		return Array.from(
+			document.querySelectorAll<HTMLElement>(`[data-x-chunk-name="${name}"]`)
+		).filter((el) => {
+			const anscestorContainer = el.closest("[data-x-chunk-container-for]");
+			if (!anscestorContainer) return false;
+			return true;
+		})[0];
+	}
+
+	function updateChunkStyles(_?: boolean) {
 		if (!isBrowser) return;
 		tick().then(() => {
-			const components = document.querySelectorAll<HTMLElement>("[data-x-chunk-name]");
-
-			for (let i = 0; i < chunks.length; i++) {
-				const chunk = chunks[i];
-				const chunkEl = document.querySelector<HTMLElement>(
-					`[data-x-chunk-name="${chunk.name}"]`
-				);
+			const components = getBlockChunks();
+			for (let i = 0; i < block.chunks.length; i++) {
+				const chunk = block.chunks[i];
+				if (!chunk) continue;
+				const chunkEl = getChunkByName(block.chunks[i].name);
 
 				const wrapperEl = document.querySelector<HTMLElement>(
-					`[data-x-chunk-container="${chunk.name}"]`
+					`[data-x-chunk-container-for="${chunk.name}"]`
 				);
 
 				const componentEl = components[i];
@@ -45,13 +63,14 @@
 		});
 	}
 
-	$: updateChunkStyles(block.chunks, $isLiftMode);
+	$: updateChunkStyles($isLiftMode);
 </script>
 
 <slot />
 {#if $isLiftMode}
 	<div
-		class="fill-mode-backwards absolute inset-0 z-30 bg-background/90"
+		class="absolute inset-0 z-30 bg-background/90"
+		style="animation-fill-mode: backwards;"
 		in:fade={{ duration: 200, delay: 180, easing: cubicOut }}
 		out:fade={{ duration: 380, delay: 0, easing: cubicOut }}
 	></div>

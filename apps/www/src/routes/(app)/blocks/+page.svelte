@@ -5,6 +5,6 @@
 	export let data: PageData;
 </script>
 
-{#each data.blocks as block}
+{#each data.blocks as block (block.name + block.style)}
 	<BlockPreview {block} />
 {/each}

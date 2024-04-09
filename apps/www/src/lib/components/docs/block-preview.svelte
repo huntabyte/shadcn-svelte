@@ -42,7 +42,7 @@
 						$isLiftMode ? "border-border/50" : "border-border"
 					)}
 					defaultSize={100}
-					minSize={25}
+					minSize={30}
 				>
 					{#if isLoading}
 						<div
