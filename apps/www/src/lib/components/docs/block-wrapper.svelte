@@ -2,10 +2,10 @@
 	import { fade } from "svelte/transition";
 	import { cubicOut } from "svelte/easing";
 	import { tick } from "svelte";
-	import type { Blocks } from "../../../__registry__/blocks.js";
 	import { getLiftMode, isBrowser } from "$lib/utils.js";
+	import type { RawBlock } from "$lib/blocks.js";
 
-	export let block: (typeof Blocks)["default"]["dashboard-01"];
+	export let block: RawBlock;
 
 	const { isLiftMode } = getLiftMode(block.name);
 
@@ -16,8 +16,8 @@
 	function getBlockChunks() {
 		return Array.from(document.querySelectorAll<HTMLElement>("[data-x-chunk-name]")).filter(
 			(el) => {
-				const anscestorContainer = el.closest("[data-x-chunk-container-for]");
-				if (!anscestorContainer) return true;
+				const ancestorContainer = el.closest("[data-x-chunk-container-for]");
+				if (!ancestorContainer) return true;
 				return false;
 			}
 		);
@@ -30,8 +30,8 @@
 		return Array.from(
 			document.querySelectorAll<HTMLElement>(`[data-x-chunk-name="${name}"]`)
 		).filter((el) => {
-			const anscestorContainer = el.closest("[data-x-chunk-container-for]");
-			if (!anscestorContainer) return false;
+			const ancestorContainer = el.closest("[data-x-chunk-container-for]");
+			if (!ancestorContainer) return false;
 			return true;
 		})[0];
 	}

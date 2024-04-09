@@ -30,7 +30,7 @@ export function getChunks(source: string, filename: string) {
 
 			const name: string = nameNode.value[0].data;
 			const description: string = descriptionNode.value[0].data;
-			const containerClassName: string = containerNode?.value[0].data || "";
+			const containerClassName: string = containerNode?.value[0].data ?? "";
 			const dependencies = new Set<string>();
 
 			// discard any prop members

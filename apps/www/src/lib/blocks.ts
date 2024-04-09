@@ -17,6 +17,14 @@ export type RawBlockChunk = {
 	component: () => Promise<ComponentType>;
 };
 
+export type RawBlock = {
+	name: string;
+	type: string;
+	chunks: RawBlockChunk[];
+	raw: () => Promise<string>;
+	component: () => Promise<ComponentType>;
+};
+
 export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = Object.values(Blocks[style]);
 	return blocks.map((block) => block.name as BlockName);

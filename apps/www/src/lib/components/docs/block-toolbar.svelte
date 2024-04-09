@@ -59,7 +59,7 @@
 				</p>
 				<p>A style comes with its own set of components, animations, icons and more.</p>
 				<p>
-					The <span class="font-medium">Default</span> style has larger inputs, uses lucide-react
+					The <span class="font-medium">Default</span> style has larger inputs, uses lucide-svelte
 					for icons and tailwindcss-animate for animations.
 				</p>
 				<p>
