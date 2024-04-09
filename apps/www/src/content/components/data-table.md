@@ -677,7 +677,7 @@ Let's make the email column sortable.
 
 Let's enable the `addSortBy` plugin and import the icon we'll use to indicate the sort option for the column.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,13,34,41-45,50-54,70-74,82-86}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,10,34,41-45,50-54,70-74,82-86}
 <script lang="ts">
   import {
     createTable,
@@ -831,7 +831,7 @@ Let's add a search input to filter emails in our table.
 
 We'll start by enabling the `addTableFilter` plugin and importing the `<Input />` component we'll use for the search input.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,54-56,66-68,89-91,112}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,54-56,66-68,89-91,104-106,115}
 <script lang="ts">
   import {
     createTable,
@@ -935,6 +935,9 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
         sort: {
           disable: true,
         },
+        filter: {
+          exclude: true,
+        },
       },
     }),
   ]);
@@ -988,7 +991,7 @@ Let's add the ability to control which columns are visible in our table.
 
 ### Enable `addHiddenColumns` plugin
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,18,20,40,44,115,120,122-123,125-127,129}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,16,21,45,119,124,126-127,129-131,133}
 <script lang="ts">
   import {
     createTable,
@@ -1094,6 +1097,9 @@ Let's add the ability to control which columns are visible in our table.
         sort: {
           disable: true,
         },
+        filter: {
+          exclude: true,
+        },
       },
     }),
   ]);
@@ -1190,7 +1196,7 @@ We'll start by creating a new component called `data-table-checkbox.svelte` whic
 
 Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,22,48,54-67,124,125,130}
+```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,23,49,55-68,137,143}
 <script lang="ts">
   import {
     createTable,
@@ -1208,11 +1214,11 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
   import { readable } from "svelte/store";
   import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
   import ChevronDown from "lucide-svelte/icons/chevron-down";
-  import * as Table from "$lib/registry/new-york/ui/table/index.js";
+  import * as Table from "$lib/components/ui/table";
   import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/registry/new-york/ui/button/index.js";
-  import { Input } from "$lib/registry/new-york/ui/input/index.js";
-  import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+  import { Button } from "$lib/components/ui/button";
+  import { Input } from "$lib/components/ui/input";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import DataTableCheckbox from "./data-table-checkbox.svelte";
 
   type Payment = {
@@ -1260,6 +1266,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         });
       },
       plugins: {
+        sort: {
+          disable: true,
+        },
         filter: {
           exclude: true,
         },
@@ -1269,6 +1278,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       accessor: "status",
       header: "Status",
       plugins: {
+        sort: {
+          disable: true,
+        },
         filter: {
           exclude: true,
         },
@@ -1289,6 +1301,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
         return formatted;
       },
       plugins: {
+        sort: {
+          disable: true,
+        },
         filter: {
           exclude: true,
         },
@@ -1303,6 +1318,9 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
       plugins: {
         sort: {
           disable: true,
+        },
+        filter: {
+          exclude: true,
         },
       },
     }),
