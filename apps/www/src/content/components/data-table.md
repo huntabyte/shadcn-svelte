@@ -675,7 +675,7 @@ Let's make the email column sortable.
 
 ### Enable the `addSortBy` plugin
 
-Let's enable the `addSortBy` plugin and import the icon we'll use to indicate the sort option for the column.
+Let's enable the `addSortBy` plugin and import the `<ArrowUpDown />` icon which we'll use to indicate the sort option for the column.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,10,34,41-45,50-54,70-74,82-86}
 <script lang="ts">
@@ -991,6 +991,8 @@ Let's add the ability to control which columns are visible in our table.
 
 ### Enable `addHiddenColumns` plugin
 
+We'll start by enabling the `addHiddenColumns` plugin. We'll also need a `<ChevronDown />` icon and the `<DropdownMenu />` component in the next step.
+
 ```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,16,21,45,119,124,126-127,129-131,133}
 <script lang="ts">
   import {
@@ -1128,9 +1130,11 @@ Let's add the ability to control which columns are visible in our table.
 </script>
 ```
 
+We're setting the `hiddenColumnIds` store from the plugin whenever `hideForId` changes to reflect our newly chosen hidden/shown columns.
+
 ### Add column visibility controls
 
-We'll use the `<DropdownMenu />` we imported in the previous step to render a menu of columns that can be hidden.
+Now we'll use the icon and `<DropdownMenu />` we imported in the previous step to render a menu of columns that can be hidden.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte" {9-24}
 <div>
@@ -1168,6 +1172,8 @@ We'll use the `<DropdownMenu />` we imported in the previous step to render a me
   </div>
 </div>
 ```
+
+See the [hidden columns docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-hidden-columns) for more information.
 
 </Steps>
 
