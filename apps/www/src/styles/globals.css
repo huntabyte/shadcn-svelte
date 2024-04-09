@@ -271,3 +271,9 @@
 .super-debug--code .boolean {
 	@apply !text-[#FFF8];
 }
+
+.vis-xy-container {
+	--vis-tooltip-padding: "0px";
+	--vis-tooltip-background-color: "transparent";
+	--vis-tooltip-border-color: "transparent";
+}

@@ -42,11 +42,3 @@
 	/>
 	<VisCrosshair template={tooltipTemplate} color={crosshairPointColors} />
 </VisXYContainer>
-
-<style lang="postcss">
-	:global(.vis-xy-container) {
-		--vis-tooltip-padding: "0px";
-		--vis-tooltip-background-color: "transparent";
-		--vis-tooltip-border-color: "transparent";
-	}
-</style>
