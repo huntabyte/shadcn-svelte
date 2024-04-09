@@ -25,7 +25,7 @@ export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const block = Blocks[style][name];
 	const content = await getBlockContent(name, style);
-	const chunks = await getChunks(name, style);
+	const chunks = block.chunks.map((chunk) => chunk.name);
 
 	return blockSchema.parse({
 		...block,
@@ -42,26 +42,6 @@ async function getBlockCode(name: BlockName, style: Style["name"]) {
 	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
 	const detabbed = code.replaceAll("\t", "  ");
 	return detabbed;
-}
-
-async function getChunks(name: BlockName, style: Style["name"]) {
-	const block = Blocks[style][name];
-	const chunks = await Promise.all(
-		block.chunks.map(async (chunk) => {
-			return {
-				name: chunk.name,
-				description: chunk.description,
-				code: await chunk
-					.raw()
-					.then((code) =>
-						code
-							.replaceAll("\t", "  ")
-							.replaceAll(`$lib/registry/${style}/`, "$lib/components/")
-					),
-			};
-		})
-	);
-	return chunks;
 }
 
 async function getBlockContent(name: BlockName, style: Style["name"]) {
@@ -100,6 +80,6 @@ export async function highlightCode(code: string) {
 
 export function isBlock(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
-	const demo = Blocks.default[name];
-	return demo !== undefined;
+	const block = Blocks.default[name];
+	return block !== undefined;
 }

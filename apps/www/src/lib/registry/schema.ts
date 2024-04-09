@@ -81,7 +81,7 @@ export const blockSchema = z.object({
 		.optional(),
 	code: z.string(),
 	highlightedCode: z.string(),
-	chunks: z.array(blockChunkSchema),
+	chunks: z.array(z.string()),
 });
 
 export type Block = z.infer<typeof blockSchema>;
