@@ -39,10 +39,10 @@
 		</PageHeader.Root>
 	</ThemeWrapper>
 	<ThemeWrapper>
-		{#if $config.style === "default"}
-			<CardsDefault />
-		{:else}
+		{#if $config.style === "new-york"}
 			<CardsNewYork />
+		{:else}
+			<CardsDefault />
 		{/if}
 	</ThemeWrapper>
 </div>
