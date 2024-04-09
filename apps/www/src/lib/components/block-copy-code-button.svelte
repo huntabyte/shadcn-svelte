@@ -35,5 +35,5 @@
 			{/if}
 		</Button>
 	</Tooltip.Trigger>
-	<Tooltip.Content>Copy code</Tooltip.Content>
+	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
 </Tooltip.Root>
