@@ -5,7 +5,7 @@
 	import Tablet from "lucide-svelte/icons/tablet";
 
 	import type { PaneAPI } from "paneforge";
-	import BlockCopyCodeButton from "../block-copy-code-button.svelte";
+	import BlockCopyCodeButton from "./block-copy-code-button.svelte";
 	import StyleSwitcher from "./style-switcher.svelte";
 	import { cn, getLiftMode } from "$lib/utils.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
