@@ -57,9 +57,7 @@
 			href="/blocks"
 			class={cn(
 				"transition-colors hover:text-foreground/80",
-				$page.url.pathname.startsWith("/examples")
-					? "text-foreground"
-					: "text-foreground/60"
+				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Blocks
