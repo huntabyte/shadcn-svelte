@@ -216,7 +216,7 @@
 							width={36}
 							height={36}
 							alt="Avatar"
-							class="overflow-hidden"
+							class="overflow-hidden rounded-full"
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
