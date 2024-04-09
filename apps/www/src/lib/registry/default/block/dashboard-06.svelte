@@ -214,7 +214,7 @@
 							width={36}
 							height={36}
 							alt="Avatar"
-							class="overflow-hidden"
+							class="overflow-hidden rounded-full"
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
@@ -279,7 +279,10 @@
 					</div>
 				</div>
 				<Tabs.Content value="all">
-					<Card.Root>
+					<Card.Root
+						data-x-chunk-name="dashboard-06-chunk-0"
+						data-x-chunk-description="A list of products in a table with actions. Each row has an image, name, status, price, total sales, created at and actions."
+					>
 						<Card.Header>
 							<Card.Title>Products</Card.Title>
 							<Card.Description>

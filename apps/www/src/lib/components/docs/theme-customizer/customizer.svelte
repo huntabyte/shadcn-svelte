@@ -28,11 +28,8 @@
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
 			on:click={() => {
-				config.update((prev) => ({
-					...prev,
-					theme: "zinc",
-					radius: 0.5,
-				}));
+				$config.radius = 0.5;
+				$config.theme = "zinc";
 			}}
 		>
 			<Reset />
@@ -76,11 +73,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() =>
-						config.update((prev) => ({
-							...prev,
-							style: "default",
-						}))}
+					on:click={() => ($config.style = "default")}
 					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
@@ -88,11 +81,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() =>
-						config.update((prev) => ({
-							...prev,
-							style: "new-york",
-						}))}
+					on:click={() => ($config.style = "new-york")}
 					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
@@ -108,10 +97,7 @@
 						variant="outline"
 						size="sm"
 						on:click={() => {
-							config.update((prev) => ({
-								...prev,
-								theme: theme.name,
-							}));
+							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-2 border-primary")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
@@ -137,10 +123,7 @@
 						variant="outline"
 						size="sm"
 						on:click={() => {
-							config.update((prev) => ({
-								...prev,
-								radius: valueFloat,
-							}));
+							$config.radius = valueFloat;
 						}}
 						class={cn($config.radius === valueFloat && "border-2 border-primary")}
 					>

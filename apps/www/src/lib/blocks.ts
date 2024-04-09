@@ -1,48 +1,52 @@
-import { z } from "zod";
 import { type Highlighter, getHighlighter } from "shiki";
-import { Index } from "../__registry__/index.js";
+import type { ComponentType } from "svelte";
+import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "./config/blocks.js";
-import {
-	type BlockName,
-	type Style,
-	blockSchema,
-	registryEntrySchema,
-} from "$lib/registry/index.js";
+import { type BlockName, type Style, blockSchema } from "$lib/registry/index.js";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
 
-export async function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const blocks = await getAllBlocks(style);
+export type RawBlockChunk = {
+	name: string;
+	description: string;
+	container: {
+		className: string;
+	};
+	raw: () => Promise<string>;
+	component: () => Promise<ComponentType>;
+};
+
+export type RawBlock = {
+	name: string;
+	type: string;
+	chunks: RawBlockChunk[];
+	raw: () => Promise<string>;
+	component: () => Promise<ComponentType>;
+};
+
+export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
+	const blocks = Object.values(Blocks[style]);
 	return blocks.map((block) => block.name as BlockName);
 }
 
 export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const entry = Index[style][name];
+	const block = Blocks[style][name];
 	const content = await getBlockContent(name, style);
+	const chunks = block.chunks.map((chunk) => chunk.name);
 
 	return blockSchema.parse({
-		...entry,
+		...block,
 		...content,
 		style,
 		highlightedCode: await highlightCode(content.code),
+		chunks,
 	});
 }
 
-export function isDemo(name: string): name is BlockName {
-	// @ts-expect-error we're smarter than you, tsc
-	const demo = Index.default[name];
-	return demo !== undefined;
-}
-
-async function getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const index = z.record(registryEntrySchema).parse(Index[style]);
-	return Object.values(index).filter((block) => block.type === "components:block");
-}
-
 async function getBlockCode(name: BlockName, style: Style["name"]) {
-	const entry = Index[style][name];
-	const code = await entry.raw();
+	const block = Blocks[style][name];
+	const code = await block.raw();
 	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
 	const detabbed = code.replaceAll("\t", "  ");
 	return detabbed;
@@ -80,4 +84,10 @@ export async function highlightCode(code: string) {
 	});
 
 	return html;
+}
+
+export function isBlock(name: string): name is BlockName {
+	// @ts-expect-error we're smarter than you, tsc
+	const block = Blocks.default[name];
+	return block !== undefined;
 }

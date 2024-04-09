@@ -19,12 +19,13 @@
 		<Button
 			size="icon"
 			variant="outline"
-			class="h-7 w-7 [&_svg]:size-3.5"
+			class="h-7 w-7 rounded-[6px] [&_svg]:size-3.5"
 			builders={[builder]}
 			on:click={() => {
 				navigator.clipboard.writeText(code);
 				hasCopied = true;
 			}}
+			{...$$restProps}
 		>
 			<span class="sr-only">Copy</span>
 			{#if hasCopied}
@@ -34,5 +35,5 @@
 			{/if}
 		</Button>
 	</Tooltip.Trigger>
-	<Tooltip.Content>Copy code</Tooltip.Content>
+	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
 </Tooltip.Root>

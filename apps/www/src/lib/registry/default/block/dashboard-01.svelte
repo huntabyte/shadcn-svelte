@@ -101,7 +101,10 @@
 	</header>
 	<main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
 		<div class="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-			<Card.Root>
+			<Card.Root
+				data-x-chunk-name="dashboard-01-chunk-0"
+				data-x-chunk-description="A card showing the total revenue in USD and the percentage difference from last month."
+			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
 					<DollarSign class="h-4 w-4 text-muted-foreground" />
@@ -111,7 +114,10 @@
 					<p class="text-xs text-muted-foreground">+20.1% from last month</p>
 				</Card.Content>
 			</Card.Root>
-			<Card.Root>
+			<Card.Root
+				data-x-chunk-name="dashboard-01-chunk-1"
+				data-x-chunk-description="A card showing the total subscriptions and the percentage difference from last month."
+			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
 					<Users class="h-4 w-4 text-muted-foreground" />
@@ -121,7 +127,10 @@
 					<p class="text-xs text-muted-foreground">+180.1% from last month</p>
 				</Card.Content>
 			</Card.Root>
-			<Card.Root>
+			<Card.Root
+				data-x-chunk-name="dashboard-01-chunk-2"
+				data-x-chunk-description="A card showing the total sales and the percentage difference from last month."
+			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Sales</Card.Title>
 					<CreditCard class="h-4 w-4 text-muted-foreground" />
@@ -131,7 +140,10 @@
 					<p class="text-xs text-muted-foreground">+19% from last month</p>
 				</Card.Content>
 			</Card.Root>
-			<Card.Root>
+			<Card.Root
+				data-x-chunk-name="dashboard-01-chunk-3"
+				data-x-chunk-description="A card showing the total active users and the percentage difference from last hour."
+			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Active Now</Card.Title>
 					<Activity class="h-4 w-4 text-muted-foreground" />
@@ -143,7 +155,11 @@
 			</Card.Root>
 		</div>
 		<div class="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-			<Card.Root class="xl:col-span-2">
+			<Card.Root
+				class="xl:col-span-2"
+				data-x-chunk-name="dashboard-01-chunk-4"
+				data-x-chunk-description="A card showing a table of recent transactions with a link to view all transactions."
+			>
 				<Card.Header class="flex flex-row items-center">
 					<div class="grid gap-2">
 						<Card.Title>Transactions</Card.Title>
@@ -262,7 +278,10 @@
 					</Table.Root>
 				</Card.Content>
 			</Card.Root>
-			<Card.Root>
+			<Card.Root
+				data-x-chunk-name="dashboard-01-chunk-5"
+				data-x-chunk-description="A card showing a list of recent sales with customer names and email addresses."
+			>
 				<Card.Header>
 					<Card.Title>Recent Sales</Card.Title>
 				</Card.Header>
