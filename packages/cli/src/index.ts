@@ -11,6 +11,13 @@ const currentVersion = process.versions.node;
 const currentMajorVersion = Number.parseInt(currentVersion.split(".")[0]!, 10);
 const minimumMajorVersion = 18;
 
+// @ts-expect-error types for these globals are not defined
+if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
+	console.error("You are currently using an unsupported runtime!");
+	console.error(`Please use Node.js v${minimumMajorVersion} or higher.`);
+	process.exit(1);
+}
+
 if (currentMajorVersion < minimumMajorVersion) {
 	console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
 	console.error(`Please use Node.js v${minimumMajorVersion} or higher.`);
