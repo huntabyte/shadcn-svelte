@@ -13,7 +13,7 @@ export function intro() {
 	// @ts-expect-error types for these globals are not defined
 	if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
 		p.log.warn(
-			`You are currently using an unsupported runtime. Only Node.js v${minimumMajorVersion} or higher is supported. Continue at your own risk.`
+			`You are currently using an unsupported runtime. Only Node.js v${minimumMajorVersion} or higher is officially supported. Continue at your own risk.`
 		);
 	}
 }
