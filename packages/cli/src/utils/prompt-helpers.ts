@@ -1,5 +1,6 @@
 import process from "node:process";
 import color from "chalk";
+import { minimumMajorVersion } from "../index.js";
 import * as p from "./prompts.js";
 import { getPackageInfo } from "./get-package-info.js";
 
@@ -8,6 +9,13 @@ export function intro() {
 	const title = color.bgHex("#FF5500").black(" shadcn-svelte ");
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
+
+	// @ts-expect-error types for these globals are not defined
+	if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
+		p.log.warn(
+			`You are currently using an unsupported runtime. Only Node.js v${minimumMajorVersion} or higher is supported. Continue at your own risk.`
+		);
+	}
 }
 
 export function cancel() {
