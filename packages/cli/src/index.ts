@@ -9,7 +9,7 @@ process.on("SIGTERM", () => process.exit(0));
 
 const currentVersion = process.versions.node;
 const currentMajorVersion = Number.parseInt(currentVersion.split(".")[0]!, 10);
-export const minimumMajorVersion = 18;
+const minimumMajorVersion = 18;
 
 if (currentMajorVersion < minimumMajorVersion) {
 	console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
