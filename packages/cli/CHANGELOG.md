@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.2
+
+### Patch Changes
+
+- 9c20e7a: fix: Added an error for unsupported runtimes
+
 ## 0.10.1
 
 ### Patch Changes
