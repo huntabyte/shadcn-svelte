@@ -8,6 +8,13 @@ export function intro() {
 	const title = color.bgHex("#FF5500").black(" shadcn-svelte ");
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
+
+	// @ts-expect-error types for these globals are not defined
+	if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
+		p.log.warn(
+			`You are currently using an unsupported runtime. Only Node.js v18 or higher is officially supported. Continue at your own risk.`
+		);
+	}
 }
 
 export function cancel() {
