@@ -23,7 +23,7 @@ This project is supported by the following beautiful people/organizations:
 
 <p align="center">
   <a href="https://github.com/sponsors/huntabyte">
-    <img src='https://cdn.jsdelivr.net/gh/huntabyte/static@main/sponsors.svg' alt="Logos from Sponsors" />
+    <img src='https://github.com/huntabyte/static/blob/main/sponsors.svg?raw=true' alt="Logos from Sponsors" />
   </a>
 </p>
 
