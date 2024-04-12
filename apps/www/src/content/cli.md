@@ -103,6 +103,7 @@ Arguments:
 
 Options:
   -a, --all        update all existing components. (default: false)
+  -y, --yes        skip confirmation prompt. (default: false)
   -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
 ```
