@@ -1,0 +1,186 @@
+{
+   "usage":"Persist this file inside your repositories as .codescene/code-health-rules.json Keep the rules you want to override, remove the rest for simplicity and an easy overview.Override the code health rules by changing the default 1.0 value to a lower relative weight. A value of 0.0 disables the rule. A value of 0.5 still implies a code health hit but only at 50% of the default impact. Note that you can specify multiple rule sets and use the matching-content-path to control to which parts or languages the rules apply. This makes it possible to differentiate between test vs application code, or tailor rules to specific languages. In case multiple rule sets match a piece of content, then we prioritize the first mathcing set of rules.",
+   "rule_sets":[
+      {
+         "thresholds":[
+            {
+               "name":"constructor_max_arguments",
+               "value":5
+            },
+            {
+               "name":"file_lines_of_code_for_alert",
+               "value":5000
+            },
+            {
+               "name":"file_lines_of_code_for_critical_alert",
+               "value":10000
+            },
+            {
+               "name":"file_lines_of_code_for_warning",
+               "value":1000
+            },
+            {
+               "name":"file_mean_cyclomatic_complexity_warning",
+               "value":4
+            },
+            {
+               "name":"file_primitive_obsession_percentage_for_warning",
+               "value":0.3
+            },
+            {
+               "name":"function_bumpy_road_bumps_for_warning",
+               "value":2
+            },
+            {
+               "name":"function_bumpy_road_nesting_level_depth",
+               "value":2
+            },
+            {
+               "name":"function_complex_conditional_branches_alert",
+               "value":10
+            },
+            {
+               "name":"function_complex_conditional_branches_warning",
+               "value":2
+            },
+            {
+               "name":"function_cyclomatic_complexity_alert",
+               "value":100
+            },
+            {
+               "name":"function_cyclomatic_complexity_warning",
+               "value":9
+            },
+            {
+               "name":"function_embedded_content_lines_of_code_alert",
+               "value":"-"
+            },
+            {
+               "name":"function_embedded_content_lines_of_code_warning",
+               "value":"-"
+            },
+            {
+               "name":"function_lines_of_code_alert",
+               "value":500
+            },
+            {
+               "name":"function_lines_of_code_warning",
+               "value":70
+            },
+            {
+               "name":"function_max_arguments",
+               "value":4
+            },
+            {
+               "name":"function_nesting_depth_warning",
+               "value":4
+            },
+            {
+               "name":"unit_test_consecutive_asserts_for_large_block",
+               "value":4
+            },
+            {
+               "name":"unit_test_suite_number_of_large_assertion_blocks",
+               "value":4
+            }
+         ],
+         "thresholds_doc":"The thresholds let you redefine the details of the code health issues. For example, specifying what a Complex Method means to you. Be restrictive with overrides.",
+         "matching_content_path":"**/*",
+         "matching_content_path_doc":"Specify a glob pattern relative to this repo root. **/* means all code, **/*.js means just JavaScript, test/** means all code in a top-level test folder.",
+         "rules":[
+            {
+               "name":"Brain Method",
+               "weight":1.0
+            },
+            {
+               "name":"Bumpy Road Ahead",
+               "weight":1.0
+            },
+            {
+               "name":"Code Duplication",
+               "weight":1.0
+            },
+            {
+               "name":"Complex Conditional",
+               "weight":1.0
+            },
+            {
+               "name":"Complex Method",
+               "weight":1.0
+            },
+            {
+               "name":"Constructor Over-Injection",
+               "weight":1.0
+            },
+            {
+               "name":"Deep, Global Nested Complexity",
+               "weight":1.0
+            },
+            {
+               "name":"Deep, Nested Complexity",
+               "weight":1.0
+            },
+            {
+               "name":"Duplicated Assertion Blocks",
+               "weight":1.0
+            },
+            {
+               "name":"Excess Number of Function Arguments",
+               "weight":1.0
+            },
+            {
+               "name":"Global Conditionals",
+               "weight":1.0
+            },
+            {
+               "name":"Large Assertion Blocks",
+               "weight":1.0
+            },
+            {
+               "name":"Large Embedded Code Block",
+               "weight":1.0
+            },
+            {
+               "name":"Large Method",
+               "weight":1.0
+            },
+            {
+               "name":"Lines of Code in a Single File",
+               "weight":1.0
+            },
+            {
+               "name":"Lines of Declarations in a Single File",
+               "weight":1.0
+            },
+            {
+               "name":"Low Cohesion",
+               "weight":1.0
+            },
+            {
+               "name":"Missing Arguments Abstractions",
+               "weight":1.0
+            },
+            {
+               "name":"Number of Functions in a Single Module",
+               "weight":1.0
+            },
+            {
+               "name":"Overall Code Complexity",
+               "weight":1.0
+            },
+            {
+               "name":"Overall Function Size",
+               "weight":1.0
+            },
+            {
+               "name":"Primitive Obsession",
+               "weight":1.0
+            },
+            {
+               "name":"String Heavy Function Arguments",
+               "weight":1.0
+            }
+         ]
+      }
+   ]
+}
