@@ -118,9 +118,9 @@ For this example, we'll be passing the `form` returned from the load function as
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
 
-  export let data: SuperValidated<Infer<FormSchema>>;
+  export let data;
 
-  const form = superForm(data, {
+  const form = superForm(data.form, {
     validators: zodClient(formSchema),
   });
 
