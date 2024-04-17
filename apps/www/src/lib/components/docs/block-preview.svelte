@@ -60,7 +60,7 @@
 							isLoading = false;
 						}}
 						title="Block preview"
-					/>
+					></iframe>
 				</Resizable.Pane>
 				<Resizable.Handle
 					class={cn(

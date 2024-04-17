@@ -33,4 +33,4 @@
 	on:paste
 	on:input
 	{...$$restProps}
-/>
+></textarea>
