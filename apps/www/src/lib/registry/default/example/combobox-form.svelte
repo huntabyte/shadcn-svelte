@@ -94,7 +94,7 @@
 					<Command.Group>
 						{#each languages as language}
 							<Command.Item
-								value={language.value}
+								value={language.label}
 								onSelect={() => {
 									$formData.language = language.value;
 									closeAndFocusTrigger(ids.trigger);
