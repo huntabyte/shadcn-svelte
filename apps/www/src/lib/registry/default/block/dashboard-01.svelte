@@ -83,7 +83,12 @@
 			</form>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="secondary" size="icon" class="rounded-full">
+					<Button
+						builders={[builder]}
+						variant="secondary"
+						size="icon"
+						class="rounded-full"
+					>
 						<CircleUser class="h-5 w-5" />
 						<span class="sr-only">Toggle user menu</span>
 					</Button>
