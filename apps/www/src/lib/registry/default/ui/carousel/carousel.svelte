@@ -20,6 +20,8 @@
 	const canScrollNext = writable(false);
 	const optionsStore = writable(opts);
 	const pluginStore = writable(plugins);
+	const scrollSnapsStore = writable<number[]>([]);
+	const selectedIndexStore = writable(0);
 
 	$: orientationStore.set(orientation);
 	$: pluginStore.set(plugins);
@@ -30,6 +32,9 @@
 	}
 	function scrollNext() {
 		api?.scrollNext();
+	}
+	function scrollTo(index: number, jump?: boolean) {
+		api?.scrollTo(index, jump);
 	}
 
 	function onSelect(api: CarouselAPI) {
@@ -65,6 +70,9 @@
 		options: optionsStore,
 		plugins: pluginStore,
 		onInit,
+		scrollSnaps: scrollSnapsStore,
+		selectedIndex: selectedIndexStore,
+		scrollTo,
 	});
 
 	function onInit(event: CustomEvent<CarouselAPI>) {

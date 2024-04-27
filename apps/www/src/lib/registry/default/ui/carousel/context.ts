@@ -38,6 +38,9 @@ type EmblaContext = {
 	options: Writable<CarouselOptions>;
 	plugins: Writable<CarouselPlugins>;
 	onInit: (e: CustomEvent<CarouselAPI>) => void;
+	scrollTo: (index: number, jump?: boolean) => void;
+	scrollSnaps: Readable<number[]>;
+	selectedIndex: Readable<number>;
 };
 
 export function setEmblaContext(config: EmblaContext): EmblaContext {
