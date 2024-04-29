@@ -1,8 +1,6 @@
-name: Build Test
+name: Build Img Test
 on:
-    pull_request: 
-        paths:
-            - apps/www/**
+    pull_request:
 
 # cancel in-progress runs on new commits to same PR (github.event.number)
 concurrency:
