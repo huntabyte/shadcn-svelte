@@ -68,7 +68,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 }
 
 type RegistryIndex = v.Output<typeof schemas.registryIndexSchema>;
-export async function resolveTree(index: RegistryIndex, names: string[]) {
+export async function resolveTree(index: RegistryIndex, names: string[], includeRegDeps = true) {
 	const tree: RegistryIndex = [];
 
 	for (const name of names) {
@@ -80,7 +80,7 @@ export async function resolveTree(index: RegistryIndex, names: string[]) {
 
 		tree.push(entry);
 
-		if (entry.registryDependencies) {
+		if (includeRegDeps && entry.registryDependencies) {
 			const dependencies = await resolveTree(index, entry.registryDependencies);
 			tree.push(...dependencies);
 		}
