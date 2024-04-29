@@ -1,8 +1,8 @@
 <script lang="ts">
 	import SidebarNav from "./(components)/sidebar-nav.svelte";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	import FormsLight from "$lib/img/examples/forms-light.png";
-	import FormsDark from "$lib/img/examples/forms-dark.png";
+	import FormsLight from "$lib/img/examples/forms-light.png?enhanced";
+	import FormsDark from "$lib/img/examples/forms-dark.png?enhanced";
 
 	const sidebarNavItems = [
 		{
@@ -29,8 +29,8 @@
 </script>
 
 <div class="md:hidden">
-	<img src={FormsLight} width={1280} height={791} alt="Forms" class="block dark:hidden" />
-	<img src={FormsDark} width={1280} height={791} alt="Forms" class="hidden dark:block" />
+	<enhanced:img src={FormsLight} alt="Forms" class="block dark:hidden" />
+	<enhanced:img src={FormsDark} alt="Forms" class="hidden dark:block" />
 </div>
 <div class="hidden space-y-6 p-10 pb-16 md:block">
 	<div class="space-y-0.5">

@@ -27,6 +27,7 @@
 		"@playwright/test": "^1.42.1",
 		"@prettier/sync": "0.3.0",
 		"@sveltejs/adapter-cloudflare": "4.1.0",
+		"@sveltejs/enhanced-img": "^0.2.0",
 		"@sveltejs/kit": "^2.5.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@types/d3-scale": "^4.0.8",
