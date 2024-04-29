@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   vite-imagetools@7.0.1:
-    hash: ukkln3vs2pvtltcqor3im5guye
+    hash: r7tby3lpiixpbgq6pvloy3vfmq
     path: patches/vite-imagetools@7.0.1.patch
 
 importers:
@@ -2221,7 +2221,7 @@ packages:
     dependencies:
       magic-string: 0.30.8
       svelte-parse-markup: 0.1.2(svelte@4.2.12)
-      vite-imagetools: 7.0.1(patch_hash=ukkln3vs2pvtltcqor3im5guye)
+      vite-imagetools: 7.0.1(patch_hash=r7tby3lpiixpbgq6pvloy3vfmq)
     transitivePeerDependencies:
       - rollup
       - svelte
@@ -9287,7 +9287,7 @@ packages:
       vfile-message: 4.0.2
     dev: true
 
-  /vite-imagetools@7.0.1(patch_hash=ukkln3vs2pvtltcqor3im5guye):
+  /vite-imagetools@7.0.1(patch_hash=r7tby3lpiixpbgq6pvloy3vfmq):
     resolution: {integrity: sha512-23jnLhkTH0HR9Vd9LxMYnajOLeo0RJNEAHhtlsQP6kfPuOBoTzt54rWbEWB9jmhEXAOflLQpM+FrmilVPAoyGA==}
     engines: {node: '>=18.0.0'}
     dependencies:

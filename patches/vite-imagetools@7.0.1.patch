@@ -1,15 +1,14 @@
 diff --git a/dist/index.js b/dist/index.js
-index b67e7418e853d74eb418e074f342ea5356c9e728..18de018234978f57910c8f36aa1c2ab2cf347c01 100644
+index b67e7418e853d74eb418e074f342ea5356c9e728..fd5f8060e8f5f65ef60b0217d7907e8da4147442 100644
 --- a/dist/index.js
 +++ b/dist/index.js
-@@ -19,8 +19,8 @@ async function generateImageID(url, config, imageBuffer) {
+@@ -19,8 +19,7 @@ async function generateImageID(url, config, imageBuffer) {
      // baseURL isn't a valid URL, but just a string used for an identifier
      // use a relative path in the local case so that it's consistent across machines
      const baseURL = new URL(url.protocol + path.relative(process.cwd(), url.pathname));
 -    const { mtime } = statSync(path.resolve(process.cwd(), decodeURIComponent(url.pathname)));
 -    return hash([baseURL.href, JSON.stringify(config), mtime.getTime().toString()]);
-+    const { size } = statSync(path.resolve(process.cwd(), decodeURIComponent(url.pathname)));
-+    return hash([baseURL.href, JSON.stringify(config), size.toString()]);
++    return hash([baseURL.href, JSON.stringify(config), imageBuffer]);
  }
  function hash(keyParts) {
      let hash = createHash('sha1');
