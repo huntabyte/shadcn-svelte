@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.4
+
+### Patch Changes
+
+- ba14ef5: fix: Allow a registry dependency to optionally be overwritten
+
 ## 0.10.3
 
 ### Patch Changes
