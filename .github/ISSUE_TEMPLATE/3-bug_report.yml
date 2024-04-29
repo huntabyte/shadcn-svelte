@@ -10,7 +10,7 @@ body:
       value: |
         #### If you aren't sure if something is a bug or not, please do not create an issue, instead ask in one of the following channels:
         - [Discussions](https://github.com/huntabyte/shadcn-svelte/discussions/new?category=help)
-        - [Discord](https://hbyt.us/discord)
+        - [Discord](https://discord.gg/fdXy3Sk8Gq)
   - type: textarea
     id: bug-description
     attributes:

@@ -46,9 +46,9 @@ function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): stri
 	}
 
 	for (const file of files) {
-		const filepath = path.join(file.path, file.name);
+		const filepath = path.join(dirPath, file.name);
 		// ignore any of the common suspects
-		if (IGNORE.some((name) => file.path.includes(name))) continue;
+		if (IGNORE.some((name) => dirPath.includes(name))) continue;
 
 		// check if file is ignored
 		const ignored = ignores.some((parent) => {

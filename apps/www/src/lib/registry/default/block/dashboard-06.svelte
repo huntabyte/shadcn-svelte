@@ -214,7 +214,7 @@
 							width={36}
 							height={36}
 							alt="Avatar"
-							class="overflow-hidden"
+							class="overflow-hidden rounded-full"
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
@@ -279,7 +279,10 @@
 					</div>
 				</div>
 				<Tabs.Content value="all">
-					<Card.Root>
+					<Card.Root
+						data-x-chunk-name="dashboard-06-chunk-0"
+						data-x-chunk-description="A list of products in a table with actions. Each row has an image, name, status, price, total sales, created at and actions."
+					>
 						<Card.Header>
 							<Card.Title>Products</Card.Title>
 							<Card.Description>
@@ -290,16 +293,16 @@
 							<Table.Root>
 								<Table.Header>
 									<Table.Row>
-										<Table.Head class="sm:table.-cell hidden w-[100px]">
+										<Table.Head class="hidden w-[100px] sm:table-cell">
 											<span class="sr-only">Image</span>
 										</Table.Head>
 										<Table.Head>Name</Table.Head>
 										<Table.Head>Status</Table.Head>
-										<Table.Head class="md:table.-cell hidden">Price</Table.Head>
-										<Table.Head class="md:table.-cell hidden">
+										<Table.Head class="hidden md:table-cell">Price</Table.Head>
+										<Table.Head class="hidden md:table-cell">
 											Total Sales
 										</Table.Head>
-										<Table.Head class="md:table.-cell hidden">
+										<Table.Head class="hidden md:table-cell">
 											Created at
 										</Table.Head>
 										<Table.Head>
@@ -309,7 +312,7 @@
 								</Table.Header>
 								<Table.Body>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product example"
 												class="aspect-square rounded-md object-cover"
@@ -324,11 +327,11 @@
 										<Table.Cell>
 											<Badge variant="outline">Draft</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">
 											$499.99
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">25</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">25</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2023-07-12 10:42 AM
 										</Table.Cell>
 										<Table.Cell>
@@ -353,7 +356,7 @@
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
@@ -368,11 +371,11 @@
 										<Table.Cell>
 											<Badge variant="outline">Active</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">
 											$129.99
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">100</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">100</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2023-10-18 03:21 PM
 										</Table.Cell>
 										<Table.Cell>
@@ -397,7 +400,7 @@
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
@@ -412,11 +415,9 @@
 										<Table.Cell>
 											<Badge variant="outline">Active</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
-											$39.99
-										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">50</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">$39.99</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">50</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2023-11-29 08:15 AM
 										</Table.Cell>
 										<Table.Cell>
@@ -441,7 +442,7 @@
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
@@ -456,9 +457,9 @@
 										<Table.Cell>
 											<Badge variant="secondary">Draft</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">$2.99</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">0</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">$2.99</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">0</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2023-12-25 11:59 PM
 										</Table.Cell>
 										<Table.Cell>
@@ -483,7 +484,7 @@
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
@@ -498,11 +499,9 @@
 										<Table.Cell>
 											<Badge variant="outline">Active</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
-											$59.99
-										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">75</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">$59.99</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">75</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2024-01-01 12:00 AM
 										</Table.Cell>
 										<Table.Cell>
@@ -527,7 +526,7 @@
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row>
-										<Table.Cell class="sm:table.-cell hidden">
+										<Table.Cell class="hidden sm:table-cell">
 											<img
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
@@ -542,11 +541,11 @@
 										<Table.Cell>
 											<Badge variant="outline">Active</Badge>
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">
 											$199.99
 										</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">30</Table.Cell>
-										<Table.Cell class="md:table.-cell hidden">
+										<Table.Cell class="hidden md:table-cell">30</Table.Cell>
+										<Table.Cell class="hidden md:table-cell">
 											2024-02-14 02:14 PM
 										</Table.Cell>
 										<Table.Cell>

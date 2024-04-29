@@ -38,9 +38,12 @@ type EmblaContext = {
 	options: Writable<CarouselOptions>;
 	plugins: Writable<CarouselPlugins>;
 	onInit: (e: CustomEvent<CarouselAPI>) => void;
+	scrollTo: (index: number, jump?: boolean) => void;
+	scrollSnaps: Readable<number[]>;
+	selectedIndex: Readable<number>;
 };
 
-export function setEmblaContex(config: EmblaContext): EmblaContext {
+export function setEmblaContext(config: EmblaContext): EmblaContext {
 	setContext(EMBLA_CAROUSEL_CONTEXT, config);
 	return config;
 }
@@ -49,5 +52,5 @@ export function getEmblaContext(name = "This component") {
 	if (!hasContext(EMBLA_CAROUSEL_CONTEXT)) {
 		throw new Error(`${name} must be used within a <Carousel.Root> component`);
 	}
-	return getContext<ReturnType<typeof setEmblaContex>>(EMBLA_CAROUSEL_CONTEXT);
+	return getContext<ReturnType<typeof setEmblaContext>>(EMBLA_CAROUSEL_CONTEXT);
 }

@@ -57,6 +57,17 @@ export const blockNames = [
 
 export type BlockName = (typeof blockNames)[number];
 
+export const blockChunkSchema = z.object({
+	name: z.string(),
+	description: z.string(),
+	code: z.string(),
+	container: z
+		.object({
+			className: z.string().nullish(),
+		})
+		.optional(),
+});
+
 export const blockSchema = z.object({
 	name: z.enum(blockNames),
 	type: z.literal("components:block"),
@@ -70,6 +81,8 @@ export const blockSchema = z.object({
 		.optional(),
 	code: z.string(),
 	highlightedCode: z.string(),
+	chunks: z.array(z.string()),
 });
 
 export type Block = z.infer<typeof blockSchema>;
+export type BlockChunk = z.infer<typeof blockChunkSchema>;

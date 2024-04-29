@@ -1,5 +1,23 @@
 # shadcn-svelte
 
+## 0.10.3
+
+### Patch Changes
+
+- 6a30f8a: fix: Changed unsupported runtime error into a warning and fixed a Bun specific issue
+
+## 0.10.2
+
+### Patch Changes
+
+- 9c20e7a: fix: Added an error for unsupported runtimes
+
+## 0.10.1
+
+### Patch Changes
+
+- 7f487a5: fix: Updating `utils` in JS mode now updates with the proper syntax
+
 ## 0.10.0
 
 ### Minor Changes

@@ -11,7 +11,6 @@
 	export let perPage: $$Props["perPage"] = 10;
 	export let page: $$Props["page"] = 1;
 	export let siblingCount: $$Props["siblingCount"] = 1;
-
 	export { className as class };
 
 	$: currentPage = page;

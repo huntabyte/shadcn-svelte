@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from "$app/environment";
 	import { page } from "$app/stores";
 	import { siteConfig } from "$lib/config/site.js";
 
@@ -31,4 +32,11 @@
 	<meta property="og:locale" content="EN_US" />
 	<link rel="shortcut icon" href="/favicon-16x16.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	{#if !dev}
+		<script
+			defer
+			data-domain="shadcn-svelte.com"
+			src="https://server.hj.run/js/script.js"
+		></script>
+	{/if}
 </svelte:head>

@@ -1,10 +1,11 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
+import { persisted } from "svelte-local-storage-store";
 import type { DocResolver } from "$lib/types/docs.js";
 
 export function cn(...inputs: ClassValue[]) {
@@ -128,6 +129,13 @@ type FlyAndScaleParams = {
 	duration?: number;
 };
 
+export function styleToString(style: Record<string, number | string | undefined>): string {
+	return Object.keys(style).reduce((str, key) => {
+		if (style[key] === undefined) return str;
+		return `${str}${key}:${style[key]};`;
+	}, "");
+}
+
 export function flyAndScale(
 	node: Element,
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
@@ -147,13 +155,6 @@ export function flyAndScale(
 		const valueB = percentage * (maxB - minB) + minB;
 
 		return valueB;
-	};
-
-	const styleToString = (style: Record<string, number | string | undefined>): string => {
-		return Object.keys(style).reduce((str, key) => {
-			if (style[key] === undefined) return str;
-			return `${str}${key}:${style[key]};`;
-		}, "");
 	};
 
 	return {
@@ -222,4 +223,21 @@ export async function getDoc(slug: string) {
 
 export function slugFromPathname(pathname: string) {
 	return pathname.split("/").pop() ?? "";
+}
+
+const liftMode = persisted<string[]>("lift-mode", []);
+
+export function getLiftMode(name: string) {
+	function toggleLiftMode(name: string) {
+		liftMode.update((prev) => {
+			return prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
+		});
+	}
+
+	const isLiftMode = derived(liftMode, ($configStore) => $configStore.includes(name));
+
+	return {
+		isLiftMode,
+		toggleLiftMode,
+	};
 }

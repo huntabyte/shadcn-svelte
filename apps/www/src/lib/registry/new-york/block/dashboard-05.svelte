@@ -221,7 +221,7 @@
 							width={36}
 							height={36}
 							alt="Avatar"
-							class="overflow-hidden"
+							class="overflow-hidden rounded-full"
 						/>
 					</Button>
 				</DropdownMenu.Trigger>
@@ -240,7 +240,11 @@
 		>
 			<div class="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
 				<div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-					<Card.Root class="sm:col-span-2">
+					<Card.Root
+						class="sm:col-span-2"
+						data-x-chunk-name="dashboard-05-chunk-0"
+						data-x-chunk-description="A card for an orders dashboard with a description and a button to create a new order."
+					>
 						<Card.Header class="pb-3">
 							<Card.Title>Your Orders</Card.Title>
 							<Card.Description class="max-w-lg text-balance leading-relaxed">
@@ -252,7 +256,10 @@
 							<Button>Create New Order</Button>
 						</Card.Footer>
 					</Card.Root>
-					<Card.Root>
+					<Card.Root
+						data-x-chunk-name="dashboard-05-chunk-1"
+						data-x-chunk-description="A stats card showing this week's total sales in USD, the percentage difference from last week, and a progress bar."
+					>
 						<Card.Header class="pb-2">
 							<Card.Description>This Week</Card.Description>
 							<Card.Title class="text-4xl">$1329</Card.Title>
@@ -264,7 +271,10 @@
 							<Progress value={25} aria-label="25% increase" />
 						</Card.Footer>
 					</Card.Root>
-					<Card.Root>
+					<Card.Root
+						data-x-chunk-name="dashboard-05-chunk-2"
+						data-x-chunk-description="A stats card showing this month's total sales in USD, the percentage difference from last month, and a progress bar."
+					>
 						<Card.Header class="pb-2">
 							<Card.Description>This Month</Card.Description>
 							<Card.Title class="text-3xl">$5,329</Card.Title>
@@ -314,7 +324,10 @@
 						</div>
 					</div>
 					<Tabs.Content value="week">
-						<Card.Root>
+						<Card.Root
+							data-x-chunk-name="dashboard-05-chunk-3"
+							data-x-chunk-description="A table of recent orders showing the following columns: Customer, Type, Status, Date, and Amount."
+						>
 							<Card.Header class="px-7">
 								<Card.Title>Orders</Card.Title>
 								<Card.Description>Recent orders from your store.</Card.Description>
@@ -521,11 +534,15 @@
 				</Tabs.Root>
 			</div>
 			<div>
-				<Card.Root class="overflow-hidden">
+				<Card.Root
+					class="overflow-hidden"
+					data-x-chunk-name="dashboard-05-chunk-4"
+					data-x-chunk-description="An order details card with order details, shipping information, customer information and payment information."
+				>
 					<Card.Header class="flex flex-row items-start bg-muted/50">
 						<div class="grid gap-0.5">
 							<Card.Title class="group flex items-center gap-2 text-lg">
-								Order ID: Oe31b70H
+								Order Oe31b70H
 								<Button
 									size="icon"
 									variant="outline"
