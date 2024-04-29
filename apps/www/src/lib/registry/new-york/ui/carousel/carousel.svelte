@@ -78,6 +78,7 @@
 	function onInit(event: CustomEvent<CarouselAPI>) {
 		api = event.detail;
 		apiStore.set(api);
+		scrollSnapsStore.set(api.scrollSnapList());
 	}
 
 	onDestroy(() => {
