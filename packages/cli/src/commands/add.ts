@@ -87,9 +87,16 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	const registryIndex = await getRegistryIndex();
 
-	let selectedComponents = options.all ? registryIndex.map(({ name }) => name) : options.components;
+	let selectedComponents = new Set(
+		options.all ? registryIndex.map(({ name }) => name) : options.components
+	);
 
-	if (selectedComponents === undefined || selectedComponents.length === 0) {
+	const registryDepMap = new Map<string, string[]>();
+	for (const item of registryIndex) {
+		registryDepMap.set(item.name, item.registryDependencies);
+	}
+
+	if (selectedComponents === undefined || selectedComponents.size === 0) {
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
@@ -107,13 +114,19 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			p.cancel("Operation cancelled.");
 			process.exit(0);
 		}
-		selectedComponents = components;
+		selectedComponents = new Set(components);
 	} else {
-		const prettyList = prettifyList(selectedComponents);
+		const prettyList = prettifyList(Array.from(selectedComponents));
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
-	const tree = await resolveTree(registryIndex, selectedComponents);
+	// adds `registryDependency` to `selectedComponents` so that they can be individually overwritten
+	for (const name of selectedComponents) {
+		const regDeps = registryDepMap.get(name);
+		regDeps?.forEach((dep) => selectedComponents.add(dep));
+	}
+
+	const tree = await resolveTree(registryIndex, Array.from(selectedComponents), false);
 	const payload = await fetchTree(config, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
@@ -126,7 +139,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const existingComponents: string[] = [];
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of payload) {
-		if (selectedComponents.includes(item.name) === false) continue;
+		if (selectedComponents.has(item.name) === false) continue;
 
 		const targetDir = getItemTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
@@ -189,7 +202,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 		if (!options.overwrite && existingComponents.includes(item.name)) {
 			// Only confirm overwrites for selected components and not transitive dependencies
-			if (selectedComponents.includes(item.name)) {
+			if (selectedComponents.has(item.name)) {
 				p.log.warn(
 					`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
 				);
