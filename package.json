@@ -55,10 +55,5 @@
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"vite-imagetools@7.0.1": "patches/vite-imagetools@7.0.1.patch"
-		}
 	}
 }
