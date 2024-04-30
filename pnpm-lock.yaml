@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  vite-imagetools@7.0.1:
-    hash: r7tby3lpiixpbgq6pvloy3vfmq
-    path: patches/vite-imagetools@7.0.1.patch
-
 importers:
 
   .:
@@ -2219,9 +2214,9 @@ packages:
   /@sveltejs/enhanced-img@0.2.0(svelte@4.2.12):
     resolution: {integrity: sha512-W6wG0RxQYoL13LmUl8IBHeQatMXSd2ybrjg/WQuE5EoIJq+wUkf1hUDaMp9PHe4ubpnzWK/c0QaE5Ls+zjHimA==}
     dependencies:
-      magic-string: 0.30.8
+      magic-string: 0.30.9
       svelte-parse-markup: 0.1.2(svelte@4.2.12)
-      vite-imagetools: 7.0.1(patch_hash=r7tby3lpiixpbgq6pvloy3vfmq)
+      vite-imagetools: 7.0.2
     transitivePeerDependencies:
       - rollup
       - svelte
@@ -9307,8 +9302,8 @@ packages:
       vfile-message: 4.0.2
     dev: true
 
-  /vite-imagetools@7.0.1(patch_hash=r7tby3lpiixpbgq6pvloy3vfmq):
-    resolution: {integrity: sha512-23jnLhkTH0HR9Vd9LxMYnajOLeo0RJNEAHhtlsQP6kfPuOBoTzt54rWbEWB9jmhEXAOflLQpM+FrmilVPAoyGA==}
+  /vite-imagetools@7.0.2:
+    resolution: {integrity: sha512-sA98fIhfIqPdt5qKAMMrQtBzdqK44dlmv4jEUlJMmn4GzR8CdXjKGiyU/GKUFxjReuPi0fK/dd0JhiZixZt06A==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@rollup/pluginutils': 5.1.0
@@ -9316,7 +9311,6 @@ packages:
     transitivePeerDependencies:
       - rollup
     dev: true
-    patched: true
 
   /vite-node@0.34.6(@types/node@18.19.22):
     resolution: {integrity: sha512-nlBMJ9x6n7/Amaz6F3zJ97EBwR2FkzhBRxF5e+jE6LA3yi6Wtc2lyTij1OnDMIr34v5g/tVQtsVAzhT0jc5ygA==}
