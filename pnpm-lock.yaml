@@ -111,9 +111,27 @@ importers:
 
   apps/playground-ts:
     dependencies:
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      lucide-svelte:
+        specifier: ^0.378.0
+        version: 0.378.0(svelte@4.2.12)
+      mode-watcher:
+        specifier: ^0.3.0
+        version: 0.3.0(svelte@4.2.12)
       shadcn-svelte:
         specifier: workspace:^
         version: link:../../packages/cli
+      svelte-sonner:
+        specifier: ^0.3.22
+        version: 0.3.22(svelte@4.2.12)
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.3.0
+      tailwind-variants:
+        specifier: ^0.1.20
+        version: 0.1.20(tailwindcss@3.4.1)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.1.1
@@ -478,6 +496,10 @@ packages:
 
   '@babel/runtime@7.24.0':
     resolution: {integrity: sha512-Chk32uHMg6TnQdvw2e9IlqPpFX/6NLuK0Ys2PqLb7/gL5uFn9mXvK715FGLlOLQrcO4qIkNHkvPGktzzXexsFw==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.24.5':
+    resolution: {integrity: sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.24.0':
@@ -3543,6 +3565,11 @@ packages:
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
+  lucide-svelte@0.378.0:
+    resolution: {integrity: sha512-T7hV1sfOc94AWE5GOJ6r9wGEsR4h4TJr8d4Z0sM8O0e3IBcmeIvEGRAA6jCp7NGy4PeGrn5Tju6Y2JwJQntNrQ==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
   magic-string@0.30.8:
     resolution: {integrity: sha512-ISQTe55T2ao7XtlAStud6qwYPZjE4GK1S/BeVPus4jrq6JuOnQ00YKQC581RWhR122W7msZV263KzVeLoqidyQ==}
     engines: {node: '>=12'}
@@ -3776,6 +3803,11 @@ packages:
 
   mode-watcher@0.2.2:
     resolution: {integrity: sha512-QjkHQL9pXrr7Vb0P3WbOWAF8mv1Q6jEwUZ5GUyCnI9eEoXH234zuaOGChUF7ZQtjxwtmXDzKFSW/36TvLDg1/A==}
+    peerDependencies:
+      svelte: ^4.0.0
+
+  mode-watcher@0.3.0:
+    resolution: {integrity: sha512-k8jjuTx94HaaRKWO6JDf8wL761hFatrTIHJKl+E+3JWcnv+GnMBH062zcLsy0lbCI3n7RZxxHaWi66auFnUO4g==}
     peerDependencies:
       svelte: ^4.0.0
 
@@ -4790,6 +4822,9 @@ packages:
   tailwind-merge@2.2.1:
     resolution: {integrity: sha512-o+2GTLkthfa5YUt4JxPfzMIpQzZ3adD1vLVkvKE1Twl9UAhGsEbIZhHHZVRttyW177S8PDJI3bTQNaebyofK3Q==}
 
+  tailwind-merge@2.3.0:
+    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+
   tailwind-variants@0.1.20:
     resolution: {integrity: sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
@@ -5449,6 +5484,10 @@ snapshots:
       '@babel/types': 7.24.0
 
   '@babel/runtime@7.24.0':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
+  '@babel/runtime@7.24.5':
     dependencies:
       regenerator-runtime: 0.14.1
 
@@ -8900,6 +8939,10 @@ snapshots:
     dependencies:
       svelte: 4.2.12
 
+  lucide-svelte@0.378.0(svelte@4.2.12):
+    dependencies:
+      svelte: 4.2.12
+
   magic-string@0.30.8:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -9357,6 +9400,10 @@ snapshots:
       svelte: 4.2.12
 
   mode-watcher@0.2.2(svelte@4.2.12):
+    dependencies:
+      svelte: 4.2.12
+
+  mode-watcher@0.3.0(svelte@4.2.12):
     dependencies:
       svelte: 4.2.12
 
@@ -10407,6 +10454,10 @@ snapshots:
   tailwind-merge@2.2.1:
     dependencies:
       '@babel/runtime': 7.24.0
+
+  tailwind-merge@2.3.0:
+    dependencies:
+      '@babel/runtime': 7.24.5
 
   tailwind-variants@0.1.20(tailwindcss@3.4.1):
     dependencies:
