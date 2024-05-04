@@ -47,6 +47,7 @@ Install Svelte using the Astro CLI:
 ```bash
 npx astro add svelte
 ```
+
 <Callout className="mt-4">
 
 Answer `Yes` to all the question prompted by the CLI when installing Svelte.
@@ -126,7 +127,6 @@ import '@/styles/globals.css'
 
 ### Update Astro's Tailwind config
 
-
 To prevent serving the Tailwind base styles twice, we need to tell Astro not to apply the base styles, since we already include them in our own `globals.css` file. To do this, set the `applyBaseStyles` config option for the tailwind plugin in `astro.config.mjs` to `false`.
 
 ```ts {3-5} showLineNumbers
@@ -137,7 +137,7 @@ export default defineConfig({
     }),
     // ...
   ],
-})
+});
 ```
 
 ### Update tailwind.config.mjs
@@ -148,9 +148,9 @@ When running `npx shadcn-svelte@latest init`, your Tailwind config for content w
 const config = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   // ...
-}
+};
 // ...
-export default config
+export default config;
 ```
 
 ### That's it
