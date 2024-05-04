@@ -59,7 +59,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
 	const typescript = await p.confirm({
-		message: `Would you like to use ${highlight("TypeScript")} (recommended)?`,
+		message: `Would you like to use ${highlight("TypeScript")}? ${color.gray("(recommended)")}`,
 		initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
 	});
 	if (p.isCancel(typescript)) {
@@ -102,7 +102,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 				}),
 			tailwindCss: () =>
 				p.text({
-					message: `Where is your ${highlight("global CSS")} file?`,
+					message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
 					initialValue:
 						defaultConfig?.tailwind.css ??
 						detectedConfigs.cssPath ??
@@ -117,7 +117,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 				}),
 			tailwindConfig: () =>
 				p.text({
-					message: `Where is your ${highlight("Tailwind config")} located?`,
+					message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
 					initialValue:
 						defaultConfig?.tailwind.config ??
 						detectedConfigs.tailwindPath ??
