@@ -1,6 +1,6 @@
 ---
 title: Dark mode
-description: Adding dark mode to your site.
+description: Adding dark mode to your Svelte site.
 ---
 
 <script>

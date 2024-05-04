@@ -10,8 +10,11 @@ description: How to install dependencies and structure your app.
 ## Guides
 
 <div class="grid sm:grid-cols-2 gap-4 mt-8 sm:gap-6">
-  <LinkedCard href="/docs/installation/sveltekit" class="sm:col-span-2">
+  <LinkedCard href="/docs/installation/sveltekit">
     <p class="font-medium text-xl">SvelteKit</p>
+  </LinkedCard>
+  <LinkedCard href="/docs/installation/astro">
+    <p class="font-medium text-xl">Astro</p>
   </LinkedCard>
   <LinkedCard href="/docs/installation/vite">
     <p class="font-medium text-xl">Vite</p>
