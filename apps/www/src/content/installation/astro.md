@@ -107,7 +107,7 @@ Import the `app.css` file in the `src/pages/index.astro` file:
 
 ```ts title="src/pages/index.astro" {2} showLineNumbers
 ---
-import '$lib/styles/app.css'
+import "$lib/styles/app.css";
 ---
 ```
 
@@ -173,7 +173,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```astro title="index.astro" {2,10} showLineNumbers
 ---
-import { Button } from "$lib/components/ui/button"
+import { Button } from "$lib/components/ui/button";
 ---
 
 <html lang="en">
