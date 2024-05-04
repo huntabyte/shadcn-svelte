@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.5
+
+### Patch Changes
+
+- 2d80e21: chore: Added an overwrite notice for the global stylesheet and tailwind config
+
 ## 0.10.4
 
 ### Patch Changes
