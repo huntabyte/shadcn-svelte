@@ -2,7 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 
-const STYLESHEETS = ["app.css", "app.pcss", "app.postcss", "main.css", "main.pcss", "main.postcss"];
+const STYLESHEETS = [
+	"app.css",
+	"app.pcss",
+	"app.postcss",
+	"main.css",
+	"main.pcss",
+	"main.postcss",
+	"globals.css",
+	"globals.pcss",
+	"globals.postcss",
+];
 const TAILWIND_CONFIGS = [
 	"tailwind.config.js",
 	"tailwind.config.cjs",
