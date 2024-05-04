@@ -9,7 +9,7 @@ description: Adding dark mode to your Astro site.
 
 Just like in regular Svelte, we use the `class` strategy from Tailwind CSS to support dark mode toggling. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) for more information.
 
-How you add the `dark` class to the `html` element is up to you. In this guide, we will take a look at enabling dark mode toggling with [mode-watcher](https://github.com/svecosystem/mode-watcher).
+How you add the `dark` class to the `html` element is up to you. In this guide, we'll take a look at enabling dark mode toggling with [mode-watcher](https://github.com/svecosystem/mode-watcher).
 
 ## Usage
 
@@ -17,7 +17,7 @@ How you add the `dark` class to the `html` element is up to you. In this guide, 
 
 ### Create an inline theme script
 
-This script will, in part, keep and track the dark mode value on `localStorage` and prevent [FUOC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content).
+This script will, in part, keep and track the dark mode value in `localStorage` and prevent [FUOC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
 ```astro title="src/pages/index.astro" {5-27} showLineNumbers
 ---
@@ -103,7 +103,7 @@ Create a mode toggle on your site to toggle between light and dark mode:
 
 ### Add mode toggle to page
 
-And finally add the mode toggle to the page (also with the `client:load` directive):
+Add the mode toggle to the page (also with the `client:load` directive):
 
 ```astro title="src/pages/index.astro" {4,12} showLineNumbers
 ---

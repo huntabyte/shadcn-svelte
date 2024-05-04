@@ -150,7 +150,7 @@ export default defineConfig({
 
 ### Update tailwind.config.mjs
 
-When running `npx shadcn-svelte@latest init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
+When running `shadcn-svelte@latest init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
 
 ```js title="tailwind.config.mjs" {1-4} showLineNumbers
 const config = {
