@@ -13,7 +13,7 @@ function deleteSCNArtifacts() {
 	fs.unlinkSync('./components.json');
 
 	// delete './src/lib/components' directory
-	fs.rmdirSync('./src/lib/components', { recursive: true });
+	fs.rmSync('./src/lib/components', { recursive: true });
 
 	// delete './src/lib/utils.js' file
 	fs.unlinkSync('./src/lib/utils.js');
