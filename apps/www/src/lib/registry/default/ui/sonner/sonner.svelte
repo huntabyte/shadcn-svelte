@@ -1,11 +1,11 @@
 <script lang="ts">
-	import AlertTriangle from "lucide-svelte/icons/triangle-alert";
-	import Check from "lucide-svelte/icons/check";
-	import Info from "lucide-svelte/icons/info";
-	import Loader from "lucide-svelte/icons/loader";
-	import CircleX from "lucide-svelte/icons/circle-x";
-	import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
 	import { mode } from "mode-watcher";
+	import {
+		Icon,
+		Loader,
+		Toaster as Sonner,
+		type ToasterProps as SonnerProps,
+	} from "svelte-sonner";
 
 	type $$Props = SonnerProps;
 </script>
@@ -23,9 +23,9 @@
 	}}
 	{...$$restProps}
 >
-	<slot slot="loading-icon" name="loading-icon"><Loader class="animate-spin" /></slot>
-	<slot slot="success-icon" name="success-icon"><Check /></slot>
-	<slot slot="error-icon" name="error-icon"><CircleX /></slot>
-	<slot slot="warning-icon" name="warning-icon"><AlertTriangle /></slot>
-	<slot slot="info-icon" name="info-icon"><Info /></slot>
+	<slot slot="loading-icon" name="loading-icon"><Loader visible={true} /></slot>
+	<slot slot="success-icon" name="success-icon"><Icon type="success" /></slot>
+	<slot slot="error-icon" name="error-icon"><Icon type="error" /></slot>
+	<slot slot="warning-icon" name="warning-icon"><Icon type="warning" /></slot>
+	<slot slot="info-icon" name="info-icon"><Icon type="info" /></slot>
 </Sonner>

@@ -1,7 +1,6 @@
 {
 	"name": "sonner",
 	"dependencies": [
-		"lucide-svelte",
 		"svelte-sonner",
 		"mode-watcher"
 	],
@@ -13,7 +12,7 @@
 		},
 		{
 			"name": "sonner.svelte",
-			"content": "<script>\n\timport AlertTriangle from \"lucide-svelte/icons/triangle-alert\";\n\timport Check from \"lucide-svelte/icons/check\";\n\timport Info from \"lucide-svelte/icons/info\";\n\timport Loader from \"lucide-svelte/icons/loader\";\n\timport CircleX from \"lucide-svelte/icons/circle-x\";\n\timport { Toaster as Sonner } from \"svelte-sonner\";\n\timport { mode } from \"mode-watcher\";\n</script>\n\n<Sonner\n\ttheme={$mode}\n\tclass=\"toaster group\"\n\ttoastOptions={{\n\t\tclasses: {\n\t\t\ttoast: \"group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg\",\n\t\t\tdescription: \"group-[.toast]:text-muted-foreground\",\n\t\t\tactionButton: \"group-[.toast]:bg-primary group-[.toast]:text-primary-foreground\",\n\t\t\tcancelButton: \"group-[.toast]:bg-muted group-[.toast]:text-muted-foreground\",\n\t\t},\n\t}}\n\t{...$$restProps}\n>\n\t<slot slot=\"loading-icon\" name=\"loading-icon\"><Loader class=\"animate-spin\" /></slot>\n\t<slot slot=\"success-icon\" name=\"success-icon\"><Check /></slot>\n\t<slot slot=\"error-icon\" name=\"error-icon\"><CircleX /></slot>\n\t<slot slot=\"warning-icon\" name=\"warning-icon\"><AlertTriangle /></slot>\n\t<slot slot=\"info-icon\" name=\"info-icon\"><Info /></slot>\n</Sonner>\n"
+			"content": "<script>\n\timport { mode } from \"mode-watcher\";\n\timport { Icon, Loader, Toaster as Sonner } from \"svelte-sonner\";\n</script>\n\n<Sonner\n\ttheme={$mode}\n\tclass=\"toaster group\"\n\ttoastOptions={{\n\t\tclasses: {\n\t\t\ttoast: \"group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg\",\n\t\t\tdescription: \"group-[.toast]:text-muted-foreground\",\n\t\t\tactionButton: \"group-[.toast]:bg-primary group-[.toast]:text-primary-foreground\",\n\t\t\tcancelButton: \"group-[.toast]:bg-muted group-[.toast]:text-muted-foreground\",\n\t\t},\n\t}}\n\t{...$$restProps}\n>\n\t<slot slot=\"loading-icon\" name=\"loading-icon\"><Loader visible={true} /></slot>\n\t<slot slot=\"success-icon\" name=\"success-icon\"><Icon type=\"success\" /></slot>\n\t<slot slot=\"error-icon\" name=\"error-icon\"><Icon type=\"error\" /></slot>\n\t<slot slot=\"warning-icon\" name=\"warning-icon\"><Icon type=\"warning\" /></slot>\n\t<slot slot=\"info-icon\" name=\"info-icon\"><Icon type=\"info\" /></slot>\n</Sonner>\n"
 		}
 	],
 	"type": "components:ui"
