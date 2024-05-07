@@ -25,7 +25,7 @@ npm create svelte@latest my-app
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
 ```bash
-npx svelte-add@latest tailwindcss
+npx @svelte-add/tailwindcss@latest
 ```
 
 ### Install dependencies
