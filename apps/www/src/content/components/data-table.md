@@ -631,7 +631,7 @@ Next, we'll add pagination to our table
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.pagination;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
@@ -770,7 +770,7 @@ Let's enable the `addSortBy` plugin and import the `<ArrowUpDown />` icon which 
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.pagination;
+  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
@@ -945,7 +945,7 @@ We'll start by enabling the `addTableFilter` plugin and importing the `<Input />
   const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
     table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.pagination;
+  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
 </script>
 ```
@@ -1115,7 +1115,7 @@ We'll start by enabling the `addHiddenColumns` plugin. We'll also need a `<Chevr
     flatColumns,
   } = table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.pagination;
+  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
   const { hiddenColumnIds } = pluginStates.hide;
 
@@ -1342,7 +1342,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     rows,
   } = table.createViewModel(columns);
 
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.pagination;
+  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
   const { filterValue } = pluginStates.filter;
   const { hiddenColumnIds } = pluginStates.hide;
   const { selectedDataIds } = pluginStates.select;
