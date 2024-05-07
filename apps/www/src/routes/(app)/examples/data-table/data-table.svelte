@@ -60,7 +60,7 @@
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
-		pagination: addPagination(),
+		page: addPagination(),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.includes(filterValue),
 		}),
@@ -146,7 +146,7 @@
 		.filter(([, hide]) => !hide)
 		.map(([id]) => id);
 
-	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.pagination;
+	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 
 	const { selectedDataIds } = pluginStates.select;

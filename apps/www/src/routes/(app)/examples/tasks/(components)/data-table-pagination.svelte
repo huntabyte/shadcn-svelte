@@ -12,8 +12,7 @@
 
 	const { pageRows, pluginStates, rows } = tableModel;
 
-	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } =
-		pluginStates.pagination;
+	const { hasNextPage, hasPreviousPage, pageIndex, pageCount, pageSize } = pluginStates.page;
 
 	const { selectedDataIds } = pluginStates.select;
 </script>
