@@ -31,7 +31,7 @@ jobs:
             pull-requests: write
             deployments: write
         runs-on: ubuntu-latest
-        name: Deploy Preview to Cloudflare Pages (admin)
+        name: Deploy Preview to Cloudflare Pages
         steps:
             - uses: actions/checkout@v3
               with:
@@ -56,6 +56,13 @@ jobs:
                   key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
                   restore-keys: |
                       ${{ runner.os }}-pnpm-store-
+
+            # Image cache setup
+            - name: Setup Image cache
+              uses: actions/cache@v3
+              with:
+                  path: '**/node_modules/.cache/imagetools'
+                  key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
 
             - name: Install dependencies
               run: pnpm install

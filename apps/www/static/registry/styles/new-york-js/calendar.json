@@ -2,7 +2,8 @@
 	"name": "calendar",
 	"dependencies": [
 		"bits-ui",
-		"@internationalized/date"
+		"@internationalized/date",
+		"svelte-radix"
 	],
 	"registryDependencies": [
 		"button"

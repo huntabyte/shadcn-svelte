@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { tick } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { tick } from "svelte";
 
 	type Status = {
 		value: string;

@@ -5,6 +5,7 @@
 	import Reset from "svelte-radix/Reset.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
 
+	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -12,7 +13,6 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";
-	import { mode, setMode } from "mode-watcher";
 </script>
 
 <ThemeWrapper defaultTheme="zinc" class="flex flex-col space-y-4 md:space-y-6">
@@ -28,11 +28,8 @@
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
 			on:click={() => {
-				config.update((prev) => ({
-					...prev,
-					theme: "zinc",
-					radius: 0.5,
-				}));
+				$config.radius = 0.5;
+				$config.theme = "zinc";
 			}}
 		>
 			<Reset />
@@ -76,11 +73,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() =>
-						config.update((prev) => ({
-							...prev,
-							style: "default",
-						}))}
+					on:click={() => ($config.style = "default")}
 					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
@@ -88,11 +81,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() =>
-						config.update((prev) => ({
-							...prev,
-							style: "new-york",
-						}))}
+					on:click={() => ($config.style = "new-york")}
 					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
@@ -108,10 +97,7 @@
 						variant="outline"
 						size="sm"
 						on:click={() => {
-							config.update((prev) => ({
-								...prev,
-								theme: theme.name,
-							}));
+							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-2 border-primary")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
@@ -132,15 +118,12 @@
 			<Label class="text-xs">Radius</Label>
 			<div class="grid grid-cols-5 gap-2">
 				{#each ["0", "0.3", "0.5", "0.75", "1.0"] as value, _ (value)}
-					{@const valueFloat = parseFloat(value)}
+					{@const valueFloat = Number.parseFloat(value)}
 					<Button
 						variant="outline"
 						size="sm"
 						on:click={() => {
-							config.update((prev) => ({
-								...prev,
-								radius: valueFloat,
-							}));
+							$config.radius = valueFloat;
 						}}
 						class={cn($config.radius === valueFloat && "border-2 border-primary")}
 					>

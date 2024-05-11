@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from "bits-ui";
 	import X from "lucide-svelte/icons/x";
+	import { fly } from "svelte/transition";
 	import {
 		SheetOverlay,
 		SheetPortal,
+		type Side,
 		sheetTransitions,
 		sheetVariants,
-		type Side,
 	} from "./index.js";
 	import { cn } from "$lib/utils.js";
-	import { fly } from "svelte/transition";
 
 	type $$Props = SheetPrimitive.ContentProps & {
 		side?: Side;
@@ -20,10 +20,10 @@
 	export { className as class };
 	export let inTransition: $$Props["inTransition"] = fly;
 	export let inTransitionConfig: $$Props["inTransitionConfig"] =
-		sheetTransitions[side ? side : "right"]["in"];
+		sheetTransitions[side ?? "right"].in;
 	export let outTransition: $$Props["outTransition"] = fly;
 	export let outTransitionConfig: $$Props["outTransitionConfig"] =
-		sheetTransitions[side ? side : "right"]["out"];
+		sheetTransitions[side ?? "right"].out;
 </script>
 
 <SheetPortal>

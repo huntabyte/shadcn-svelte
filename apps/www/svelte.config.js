@@ -1,9 +1,9 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import adapter from "@sveltejs/adapter-cloudflare";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,7 +19,6 @@ const config = {
 			},
 		}),
 	],
-
 	extensions: [".svelte", ".md"],
 
 	kit: {
@@ -30,9 +29,16 @@ const config = {
 				// the globs for them to save our 100 include/exclude limit
 				exclude: [
 					"<build>",
+					// prerendered content
 					"/docs/*",
+					"/blocks/*",
+					"/blocks.html",
+					"/docs.html",
+					// static
 					"/registry/*",
 					"/fonts/*",
+					"/avatars/*",
+					"/images/*",
 					"/android-chrome-192x192.png",
 					"/android-chrome-512x512.png",
 					"/apple-touch-icon.png",
@@ -45,6 +51,12 @@ const config = {
 				],
 			},
 		}),
+		prerender: {
+			handleMissingId: (details) => {
+				if (details.id === "#") return;
+				console.warn(details.message);
+			},
+		},
 	},
 };
 

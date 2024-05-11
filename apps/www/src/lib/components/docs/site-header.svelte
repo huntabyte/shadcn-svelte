@@ -1,10 +1,10 @@
 <script lang="ts">
 	import {
+		CommandMenu,
 		Icons,
-		ModeToggle,
 		MainNav,
 		MobileNav,
-		CommandMenu,
+		ModeToggle,
 	} from "$lib/components/docs/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";

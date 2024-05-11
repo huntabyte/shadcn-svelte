@@ -1,0 +1,26 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"singleQuote": false,
+	"trailingComma": "es5",
+	"printWidth": 100,
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		},
+		{
+			"files": "*.md",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false,
+				"printWidth": 79
+			}
+		}
+	],
+	"tailwindConfig": "./apps/www/tailwind.config.js",
+	"tailwindFunctions": ["clsx", "cn", "tv"]
+}

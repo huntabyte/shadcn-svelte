@@ -61,7 +61,7 @@ export { default as ToggleLg } from "./toggle-lg.svelte";
 export { default as ToggleOutline } from "./toggle-outline.svelte";
 export { default as ToggleSm } from "./toggle-sm.svelte";
 export { default as ToggleWithText } from "./toggle-with-text.svelte";
-export { default as TooltipDemo } from "./toolltip-demo.svelte";
+export { default as TooltipDemo } from "./tooltip-demo.svelte";
 export { default as TypographyBlockquote } from "./typography-blockquote.svelte";
 export { default as TypographyH1 } from "./typography-h1.svelte";
 export { default as TypographyH2 } from "./typography-h2.svelte";

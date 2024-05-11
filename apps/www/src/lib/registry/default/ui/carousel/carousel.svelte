@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { setEmblaContex, type CarouselProps, type CarouselAPI } from "./context.js";
-	import { cn } from "$lib/utils.js";
 	import { writable } from "svelte/store";
 	import { onDestroy } from "svelte";
+	import { type CarouselAPI, type CarouselProps, setEmblaContext } from "./context.js";
+	import { cn } from "$lib/utils.js";
 
 	type $$Props = CarouselProps;
 
@@ -20,6 +20,8 @@
 	const canScrollNext = writable(false);
 	const optionsStore = writable(opts);
 	const pluginStore = writable(plugins);
+	const scrollSnapsStore = writable<number[]>([]);
+	const selectedIndexStore = writable(0);
 
 	$: orientationStore.set(orientation);
 	$: pluginStore.set(plugins);
@@ -30,6 +32,9 @@
 	}
 	function scrollNext() {
 		api?.scrollNext();
+	}
+	function scrollTo(index: number, jump?: boolean) {
+		api?.scrollTo(index, jump);
 	}
 
 	function onSelect(api: CarouselAPI) {
@@ -54,7 +59,7 @@
 		}
 	}
 
-	setEmblaContex({
+	setEmblaContext({
 		api: apiStore,
 		scrollPrev,
 		scrollNext,
@@ -65,11 +70,15 @@
 		options: optionsStore,
 		plugins: pluginStore,
 		onInit,
+		scrollSnaps: scrollSnapsStore,
+		selectedIndex: selectedIndexStore,
+		scrollTo,
 	});
 
 	function onInit(event: CustomEvent<CarouselAPI>) {
 		api = event.detail;
 		apiStore.set(api);
+		scrollSnapsStore.set(api.scrollSnapList());
 	}
 
 	onDestroy(() => {

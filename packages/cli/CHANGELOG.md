@@ -1,5 +1,85 @@
 # shadcn-svelte
 
+## 0.10.5
+
+### Patch Changes
+
+- 2d80e21: chore: Added an overwrite notice for the global stylesheet and tailwind config
+
+## 0.10.4
+
+### Patch Changes
+
+- ba14ef5: fix: Allow a registry dependency to optionally be overwritten
+
+## 0.10.3
+
+### Patch Changes
+
+- 6a30f8a: fix: Changed unsupported runtime error into a warning and fixed a Bun specific issue
+
+## 0.10.2
+
+### Patch Changes
+
+- 9c20e7a: fix: Added an error for unsupported runtimes
+
+## 0.10.1
+
+### Patch Changes
+
+- 7f487a5: fix: Updating `utils` in JS mode now updates with the proper syntax
+
+## 0.10.0
+
+### Minor Changes
+
+- 231f674: feat: Added TypeScript support for the tailwind config
+
+### Patch Changes
+
+- ebd04c4: chore: Added import path validators for the `init` command
+- c5afe89: chore: Improved printed error messages
+- c5afe89: chore: Certain config files can now be auto-detected and suggested during `init`
+
+## 0.9.4
+
+### Patch Changes
+
+- 226f09e: chore: Removed `typescript` as a peer dependency
+- 226f09e: chore: Provide a descriptive error when import aliases do not reference a valid `[tsconfig|jsconfig].json` path alias
+
+## 0.9.3
+
+### Patch Changes
+
+- 222f462: chore: Replaced `tsconfig-paths` for a custom path alias resolver
+
+## 0.9.2
+
+### Patch Changes
+
+- 7f39dbf: fix: Icons are now installed in the `add` command
+
+## 0.9.1
+
+### Patch Changes
+
+- 8c43ad3: chore: Optimized dependencies and minified package
+- 8c43ad3: chore: Replaced `zod` for `valibot`
+
+## 0.9.0
+
+### Minor Changes
+
+- 66931b3: feat: Added support for the `--proxy` flag to the `update` command
+- 66931b3: feat: Graphical overhaul, replacing `prompts` for `@clack/prompts`
+- 66931b3: feat: Added a prompt to overwrite existing components to the `add` command
+
+### Patch Changes
+
+- 66931b3: perf: Optimized dependency installation
+
 ## 0.8.3
 
 ### Patch Changes

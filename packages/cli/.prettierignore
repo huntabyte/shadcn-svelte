@@ -12,5 +12,3 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 CHANGELOG.md
-
-apps/www/src/routes/api/components/components.json

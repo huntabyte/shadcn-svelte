@@ -1,166 +1,196 @@
-import { existsSync, promises as fs } from "fs";
-import path from "path";
-import chalk from "chalk";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
-import ora from "ora";
-import prompts from "prompts";
-import { z } from "zod";
-import { getConfig } from "../utils/get-config";
-import { getPackageManager } from "../utils/get-package-manager";
-import { handleError } from "../utils/handle-error";
-import { logger } from "../utils/logger";
-import {
-	RegistryItem,
-	fetchTree,
-	getItemTargetPath,
-	getRegistryIndex,
-	resolveTree,
-} from "../utils/registry";
-import { UTILS } from "../utils/templates";
-import { transformImports } from "../utils/transformers";
+import * as v from "valibot";
+import { type Config, getConfig } from "../utils/get-config.js";
+import { getPackageManager } from "../utils/get-package-manager.js";
+import { error, handleError } from "../utils/errors.js";
+import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
+import { UTILS, UTILS_JS } from "../utils/templates.js";
+import { transformImports } from "../utils/transformers.js";
+import * as p from "../utils/prompts.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
 
-const updateOptionsSchema = z.object({
-	all: z.boolean(),
-	components: z.array(z.string()).optional(),
-	cwd: z.string(),
+const highlight = (msg: string) => color.bold.cyan(msg);
+
+const updateOptionsSchema = v.object({
+	all: v.boolean(),
+	components: v.optional(v.array(v.string())),
+	cwd: v.string(),
+	proxy: v.optional(v.string()),
+	yes: v.boolean(),
 });
+
+type UpdateOptions = v.Output<typeof updateOptionsSchema>;
 
 export const update = new Command()
 	.command("update")
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-a, --all", "update all existing components.", false)
+	.option("-y, --yes", "skip confirmation prompt.", false)
+	.option("--proxy <proxy>", "fetch components from registry using a proxy.", getEnvProxy())
 	.option(
 		"-c, --cwd <cwd>",
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.action(async (comps, opts) => {
-		logger.warn("Running the following command will overwrite existing files.");
-		logger.warn("Make sure you have committed your changes before proceeding.");
-		logger.warn("");
+	.action(async (components, opts) => {
+		intro();
 
 		try {
-			const options = updateOptionsSchema.parse({
-				components: comps,
+			const options = v.parse(updateOptionsSchema, {
+				components,
 				...opts,
 			});
 
-			const components = options.components;
 			const cwd = path.resolve(options.cwd);
 
 			if (!existsSync(cwd)) {
-				logger.error(`The path ${cwd} does not exist. Please try again.`);
-				process.exitCode = 1;
-				return;
+				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
 			const config = await getConfig(cwd);
 			if (!config) {
-				logger.warn(
-					`Configuration is missing. Please run ${chalk.green(
-						`init`
-					)} to create a components.json file.`
-				);
-				process.exitCode = 1;
-				return;
-			}
-
-			const registryIndex = await getRegistryIndex();
-
-			const componentDir = path.resolve(config.resolvedPaths.components, "ui");
-			if (!existsSync(componentDir)) {
-				logger.error(`Component dir '${componentDir}' does not exist.`);
-				process.exitCode = 1;
-				return;
-			}
-
-			const existingComponents: typeof registryIndex = [];
-			const files = await fs.readdir(componentDir, {
-				withFileTypes: true,
-			});
-			for (const file of files) {
-				if (file.isDirectory()) {
-					const component = registryIndex.find((comp) => comp.name === file.name);
-					if (component) {
-						// is a valid shadcn component
-						existingComponents.push(component);
-					}
-				}
-			}
-			// add `utils` option to the end
-			existingComponents.push({
-				name: "utils",
-				type: "components:ui",
-				files: [],
-			});
-
-			let selectedComponents: typeof registryIndex = options.all ? existingComponents : [];
-			if (!selectedComponents.length && components !== undefined) {
-				selectedComponents = existingComponents.filter((component) =>
-					components.includes(component.name)
+				throw error(
+					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
 
-			if (existingComponents.length === 0) {
-				logger.info(`No shadcn components detected in '${componentDir}'.`);
-				process.exitCode = 0;
-				return;
-			}
+			await runUpdate(cwd, config, options);
 
-			// If user didn't specify any component arguments
-			if (selectedComponents.length === 0) {
-				selectedComponents = await promptForComponents(
-					existingComponents,
-					"Which component(s) would you like to update?"
-				);
-			}
-
-			const spinner = ora(
-				`Updating ${selectedComponents.length} component(s) and dependencies...`
-			).start();
-
-			if (selectedComponents.length === 0) {
-				spinner.info("No components selected. Nothing to update.");
-				process.exitCode = 0;
-				return;
-			}
-
-			// `update utils` - update the utils.(ts|js) file
-			if (selectedComponents.find((item) => item.name === "utils")) {
-				const extension = config.typescript ? ".ts" : ".js";
-				const utilsPath = config.resolvedPaths.utils + extension;
-
-				if (!existsSync(utilsPath)) {
-					spinner.fail(`utils at ${logger.highlight(utilsPath)} does not exist.`);
-					process.exitCode = 1;
-					return;
-				}
-
-				// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
-				await fs.writeFile(utilsPath, UTILS);
-			}
-
-			const tree = await resolveTree(
-				registryIndex,
-				selectedComponents.map((com) => com.name)
-			);
-			const payload = (await fetchTree(config, tree)).sort((a, b) =>
-				a.name.localeCompare(b.name)
+			p.note(
+				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions.\n\nConsider updating them as well.`
 			);
 
-			const componentsToRemove: Record<string, string[]> = {};
-			for (const [index, item] of payload.entries()) {
-				spinner.text = `Updating ${logger.highlight(item.name)} (${index + 1}/${
-					payload.length
-				})...`;
-				const targetDir = await getItemTargetPath(config, item);
+			p.outro(`${color.green("Success!")} Component update completed.`);
+		} catch (e) {
+			handleError(e);
+		}
+	});
 
-				if (!targetDir) {
-					continue;
-				}
+async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
+	if (options.proxy !== undefined) {
+		process.env.HTTP_PROXY = options.proxy;
+		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
+	}
 
+	const components = options.components;
+	const registryIndex = await getRegistryIndex();
+
+	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
+	if (!existsSync(componentDir)) {
+		throw error(`Component directory ${color.cyan(componentDir)} does not exist.`);
+	}
+
+	// Retrieve existing components in user's project
+	const existingComponents: typeof registryIndex = [];
+	const files = await fs.readdir(componentDir, {
+		withFileTypes: true,
+	});
+	for (const file of files) {
+		if (file.isDirectory()) {
+			const component = registryIndex.find((comp) => comp.name === file.name);
+			if (component) {
+				// is a valid shadcn component
+				existingComponents.push(component);
+			}
+		}
+	}
+	// add `utils` option to the end
+	existingComponents.push({
+		name: "utils",
+		type: "components:ui",
+		files: [],
+		dependencies: [],
+		registryDependencies: [],
+	});
+
+	// If the user specifies component args
+	let selectedComponents = options.all ? existingComponents : [];
+	if (selectedComponents.length === 0 && components !== undefined) {
+		// ...only add valid components to the list
+		selectedComponents = existingComponents.filter((component) =>
+			components.includes(component.name)
+		);
+	}
+
+	// If user didn't specify any component arguments
+	if (selectedComponents.length === 0) {
+		const selected = await p.multiselect({
+			message: "Which components would you like to update?",
+			maxItems: 10,
+			options: existingComponents.map((component) => ({
+				label: component.name,
+				value: component,
+				hint: component.registryDependencies.length
+					? `also updates: ${component.registryDependencies.join(", ")}`
+					: undefined,
+			})),
+		});
+
+		if (p.isCancel(selected)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		selectedComponents = selected;
+	} else {
+		const prettyList = prettifyList(selectedComponents.map(({ name }) => name));
+		p.log.step(`Components to update:\n${color.gray(prettyList)}`);
+	}
+
+	if (options.yes === false) {
+		const proceed = await p.confirm({
+			message: `Ready to update ${highlight("components")}? ${color.gray("(Make sure you have committed your changes before proceeding!)")}`,
+			initialValue: true,
+		});
+
+		if (p.isCancel(proceed) || proceed === false) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+	}
+
+	// `update utils` - update the utils.(ts|js) file
+	if (selectedComponents.find((item) => item.name === "utils")) {
+		const extension = config.typescript ? ".ts" : ".js";
+		const utilsPath = config.resolvedPaths.utils + extension;
+
+		if (!existsSync(utilsPath)) {
+			throw error(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
+		}
+
+		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
+		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
+	}
+
+	const tree = await resolveTree(
+		registryIndex,
+		selectedComponents.map((com) => com.name)
+	);
+	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
+
+	const componentsToRemove: Record<string, string[]> = {};
+	const dependencies = new Set<string>();
+	const tasks: p.Task[] = [];
+	for (const item of payload) {
+		const targetDir = getItemTargetPath(config, item);
+		if (!targetDir) {
+			continue;
+		}
+
+		// Add dependencies to the install list
+		item.dependencies.forEach((dep) => dependencies.add(dep));
+
+		// Update Components
+		tasks.push({
+			title: `Updating ${highlight(item.name)}`,
+			async task() {
 				if (!existsSync(targetDir)) {
 					await fs.mkdir(targetDir, { recursive: true });
 				}
@@ -189,49 +219,33 @@ export const update = new Command()
 					componentsToRemove[item.name] = filesToDelete;
 				}
 
-				// Install dependencies.
-				if (item.dependencies?.length) {
-					const packageManager = await getPackageManager(cwd);
-					await execa(packageManager, ["add", ...item.dependencies], {
-						cwd,
-					});
-				}
-			}
-			spinner.succeed("Done.");
+				const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+				return `${highlight(item.name)} updated at ${color.gray(componentPath)}`;
+			},
+		});
+	}
 
-			for (const [component, files] of Object.entries(componentsToRemove)) {
-				logger.warn(
-					`\nThe ${logger.highlight(
-						component
-					)} component does not use the following files:`
-				);
-				logger.warn(
-					files.map((file) => chalk.white(`- ${path.relative(cwd, file)}`)).join("\n")
-				);
-			}
-			if (Object.keys(componentsToRemove).length > 0) {
-				logger.warn("\nYou may want to remove them.");
-			}
-		} catch (e) {
-			handleError(e);
-		}
+	// Install dependencies.
+	tasks.push({
+		title: "Installing package dependencies",
+		enabled: dependencies.size > 0,
+		async task() {
+			const packageManager = await getPackageManager(cwd);
+			await execa(packageManager, ["add", ...dependencies], {
+				cwd,
+			});
+			return "Dependencies installed";
+		},
 	});
 
-async function promptForComponents(
-	components: RegistryItem[],
-	message: string
-): Promise<RegistryItem[]> {
-	const { components: selectedComponents } = await prompts({
-		type: "multiselect",
-		name: "components",
-		message,
-		hint: "<SPACE> to select. <A> to select all.",
-		instructions: false,
-		choices: components.map((component) => ({
-			title: component.name,
-			value: component,
-		})),
-	});
+	await p.tasks(tasks);
 
-	return selectedComponents;
+	for (const [component, files] of Object.entries(componentsToRemove)) {
+		p.log.warn(
+			`The ${highlight(component)} component does not use the following files:\n${files.map((file) => color.white(`- ${color.gray(path.relative(cwd, file))}`)).join("\n")}`
+		);
+	}
+	if (Object.keys(componentsToRemove).length > 0) {
+		p.log.message(color.bold("You may want to delete them."));
+	}
 }

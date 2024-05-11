@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
-	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import * as Popover from "$lib/registry/default/ui/popover/index.js";
-	import { cn } from "$lib/utils.js";
 	import Circle from "lucide-svelte/icons/circle";
 	import CircleArrowUp from "lucide-svelte/icons/circle-arrow-up";
 	import CircleCheck from "lucide-svelte/icons/circle-check";
 	import CircleHelp from "lucide-svelte/icons/circle-help";
 	import CircleX from "lucide-svelte/icons/circle-x";
-	import { tick, type ComponentType } from "svelte";
+	import { type ComponentType, tick } from "svelte";
+	import { cn } from "$lib/utils.js";
+	import * as Popover from "$lib/registry/default/ui/popover/index.js";
+	import * as Command from "$lib/registry/default/ui/command/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 
 	type Status = {
 		value: string;

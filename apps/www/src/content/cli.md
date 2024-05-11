@@ -74,8 +74,8 @@ Arguments:
 
 Options:
   --nodep            disable adding & installing dependencies (advanced) (default: false)
-  -a, --all          Add all components to your project. (default: false)
-  -y, --yes          Skip confirmation prompt. (default: false)
+  -a, --all          add all components to your project. (default: false)
+  -y, --yes          skip confirmation prompt. (default: false)
   -o, --overwrite    overwrite existing files. (default: false)
   --proxy            fetch components from registry using a proxy.
   -c, --cwd <cwd>    the working directory. (default: the current directory)
@@ -103,6 +103,7 @@ Arguments:
 
 Options:
   -a, --all        update all existing components. (default: false)
+  -y, --yes        skip confirmation prompt. (default: false)
   -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
 ```

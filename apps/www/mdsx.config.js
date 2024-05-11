@@ -1,18 +1,19 @@
 //@ts-check
-import { readFileSync } from "fs";
-import { join, resolve } from "path";
-import { fileURLToPath } from "url";
+import { readFileSync } from "node:fs";
+import process from "node:process";
+import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import prettier from "@prettier/sync";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
 import { u } from "unist-builder";
-import { Index } from "./src/__registry__/index.js";
 import { getHighlighter } from "shiki";
 import { defineConfig } from "mdsx";
+import { Index } from "./src/__registry__/index.js";
+import { codeBlockPrettierConfig } from "./other/code-block-prettier.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -86,7 +87,7 @@ export const mdsxConfig = defineConfig({
  * itself and checking for it in the code block, but that's not something we need
  * at the moment.
  *
- * @returns {MdastTransformer}
+ * @returns {MdastTransformer} - Unified Transformer
  */
 function remarkRemovePrettierIgnore() {
 	return async (tree) => {
@@ -100,7 +101,7 @@ function remarkRemovePrettierIgnore() {
 
 /**
  *
- * @returns {HastTransformer}
+ * @returns {HastTransformer} - Unified Transformer
  */
 function rehypePreData() {
 	return (tree) => {
@@ -150,7 +151,7 @@ const styles = [
 
 /**
  *
- * @returns {HastTransformer}
+ * @returns {HastTransformer} - Unified Transformer
  */
 export function rehypeComponentExample() {
 	return (tree) => {
@@ -223,7 +224,7 @@ export function rehypeComponentExample() {
  * We use this to style elements within the `<figure>` differently if a `<figcaption>`
  * is present.
  *
- * @returns {HastTransformer}
+ * @returns {HastTransformer} - Unified Transformer
  */
 function rehypeHandleMetadata() {
 	return async (tree) => {

@@ -1,43 +1,45 @@
-import * as z from "zod";
+import * as v from "valibot";
 
-// TODO: Extract this to a shared package.
-export const registryItemSchema = z.object({
-	name: z.string(),
-	dependencies: z.array(z.string()).optional(),
-	registryDependencies: z.array(z.string()).optional(),
-	files: z.array(z.string()),
-	type: z.enum(["components:ui", "components:component", "components:example"]),
+export const registryItemSchema = v.object({
+	name: v.string(),
+	dependencies: v.array(v.string()),
+	registryDependencies: v.array(v.string()),
+	files: v.array(v.string()),
+	type: v.picklist(["components:ui", "components:component", "components:example"]),
 });
 
-export const registryIndexSchema = z.array(registryItemSchema);
+export const registryIndexSchema = v.array(registryItemSchema);
 
-export const registryItemWithContentSchema = registryItemSchema.extend({
-	files: z.array(
-		z.object({
-			name: z.string(),
-			content: z.string(),
-		})
-	),
-});
+export const registryItemWithContentSchema = v.merge([
+	registryItemSchema,
+	v.object({
+		files: v.array(
+			v.object({
+				name: v.string(),
+				content: v.string(),
+			})
+		),
+	}),
+]);
 
-export const registryWithContentSchema = z.array(registryItemWithContentSchema);
+export const registryWithContentSchema = v.array(registryItemWithContentSchema);
 
-export const stylesSchema = z.array(
-	z.object({
-		name: z.string(),
-		label: z.string(),
+export const stylesSchema = v.array(
+	v.object({
+		name: v.string(),
+		label: v.string(),
 	})
 );
 
-export const registryBaseColorSchema = z.object({
-	inlineColors: z.object({
-		light: z.record(z.string(), z.string()),
-		dark: z.record(z.string(), z.string()),
+export const registryBaseColorSchema = v.object({
+	inlineColors: v.object({
+		light: v.record(v.string(), v.string()),
+		dark: v.record(v.string(), v.string()),
 	}),
-	cssVars: z.object({
-		light: z.record(z.string(), z.string()),
-		dark: z.record(z.string(), z.string()),
+	cssVars: v.object({
+		light: v.record(v.string(), v.string()),
+		dark: v.record(v.string(), v.string()),
 	}),
-	inlineColorsTemplate: z.string(),
-	cssVarsTemplate: z.string(),
+	inlineColorsTemplate: v.string(),
+	cssVarsTemplate: v.string(),
 });

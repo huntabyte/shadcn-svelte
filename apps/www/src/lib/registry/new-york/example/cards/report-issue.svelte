@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { nanoid } from "nanoid";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
-	import { nanoid } from "nanoid";
 	const areas = [
 		{
 			value: "team",
@@ -76,7 +76,7 @@
 			<div class="grid gap-2">
 				<Label for="security-level-{id}">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level-{id}" class="line-clamp-1 truncate">
+					<Select.Trigger id="security-level-{id}" class="truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>

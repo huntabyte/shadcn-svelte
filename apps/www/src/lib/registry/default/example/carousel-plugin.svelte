@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Autoplay from "embla-carousel-autoplay";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Carousel from "$lib/registry/default/ui/carousel/index.js";
-	import Autoplay from "embla-carousel-autoplay";
 
 	const plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
 </script>

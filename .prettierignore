@@ -1,0 +1,26 @@
+.changeset
+.github
+.DS_Store
+node_modules
+**/build
+**/.svelte-kit
+**/package
+**/dist
+.env
+.env.*
+!.env.example
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+CHANGELOG.md
+
+
+
+# docs site specific
+apps/www/src/__registry__/*
+apps/www/other/themes/dark.json
+apps/www/other/themes/light.json
+apps/www/static
+

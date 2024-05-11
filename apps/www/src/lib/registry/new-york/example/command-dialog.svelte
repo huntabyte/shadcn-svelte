@@ -6,8 +6,8 @@
 	import Person from "svelte-radix/Person.svelte";
 	import Rocket from "svelte-radix/Rocket.svelte";
 
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { onMount } from "svelte";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	let open = false;
 
 	onMount(() => {

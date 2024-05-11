@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ChevronDown from "svelte-radix/ChevronDown.svelte";
-	import AvatarImgs from "$lib/img/avatars/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -17,7 +16,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={AvatarImgs[0]} alt="Image" />
+					<Avatar.Image src="/avatars/01.png" alt="Image" />
 					<Avatar.Fallback>OM</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -28,7 +27,7 @@
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Owner{" "}
+						Owner
 						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
@@ -79,7 +78,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={AvatarImgs[1]} alt="Image" />
+					<Avatar.Image src="/avatars/02.png" alt="Image" />
 					<Avatar.Fallback>JL</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -90,7 +89,7 @@
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member{" "}
+						Member
 						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
@@ -141,7 +140,7 @@
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
 				<Avatar.Root class="h-8 w-8">
-					<Avatar.Image src={AvatarImgs[2]} alt="Image" />
+					<Avatar.Image src="/avatars/03.png" alt="Image" />
 					<Avatar.Fallback>IN</Avatar.Fallback>
 				</Avatar.Root>
 				<div>
@@ -152,7 +151,7 @@
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member{" "}
+						Member
 						<ChevronDown class="ml-2 h-4 w-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>

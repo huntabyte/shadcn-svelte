@@ -7,6 +7,8 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/re
 
 <script>
   import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+
+  export let form;
 </script>
 
 <ComponentPreview name="input-demo">
@@ -89,7 +91,7 @@ npx shadcn-svelte@latest add input
 
 ### Form
 
-<ComponentPreview name="form-demo">
+<ComponentPreview name="form-demo" {form}>
 
 <div />
 

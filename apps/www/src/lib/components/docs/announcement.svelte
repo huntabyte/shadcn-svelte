@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Blocks from "lucide-svelte/icons/blocks";
+	import { Icons } from "./icons/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
-	import { Icons } from "./icons/index.js";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -15,8 +16,8 @@
 	)}
 	{...$$restProps}
 >
-	🎉 <Separator class="mx-2 h-4" orientation="vertical" />{" "}
-	<span class="sm:hidden">New Component: Scroll Area</span>
-	<span class="hidden sm:inline"> New Component: Scroll Area </span>
-	<Icons.arrowRight class="ml-1 h-4 w-4" />
+	<Blocks class="size-4" />
+	<Separator class="mx-2 h-4" orientation="vertical" />
+	<span>Introducing Lift Mode</span>
+	<Icons.arrowRight class="ml-1 size-4" />
 </a>

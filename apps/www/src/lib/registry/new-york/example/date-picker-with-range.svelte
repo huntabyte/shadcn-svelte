@@ -4,8 +4,8 @@
 	import {
 		CalendarDate,
 		DateFormatter,
-		getLocalTimeZone,
 		type DateValue,
+		getLocalTimeZone,
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";

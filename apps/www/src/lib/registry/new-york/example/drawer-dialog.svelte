@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { mediaQuery } from "svelte-legos";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { mediaQuery } from "svelte-legos";
 
 	let open = false;
 	const isDesktop = mediaQuery("(min-width: 768px)");

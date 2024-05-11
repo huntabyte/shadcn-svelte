@@ -1,7 +1,7 @@
 <script lang="ts">
+	import DocsSidebarNavItems from "./docs-sidebar-nav-items.svelte";
 	import type { SidebarNavItem } from "$lib/types/nav.js";
 	import { cn } from "$lib/utils.js";
-	import DocsSidebarNavItems from "./docs-sidebar-nav-items.svelte";
 
 	export let items: SidebarNavItem[] = [];
 </script>

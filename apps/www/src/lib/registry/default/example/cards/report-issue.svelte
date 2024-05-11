@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { nanoid } from "nanoid";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
-	import { nanoid } from "nanoid";
 
 	const areas = [
 		{
@@ -77,7 +77,7 @@
 			<div class="grid gap-2">
 				<Label for="security-level-{id}">Security Level</Label>
 				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger id="security-level-{id}" class="line-clamp-1 w-full truncate">
+					<Select.Trigger id="security-level-{id}" class="w-full truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>

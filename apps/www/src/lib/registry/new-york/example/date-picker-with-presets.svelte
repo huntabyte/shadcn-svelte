@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CalendarIcon from "svelte-radix/Calendar.svelte";
 	import {
-		type DateValue,
 		DateFormatter,
+		type DateValue,
 		getLocalTimeZone,
 		today,
 	} from "@internationalized/date";

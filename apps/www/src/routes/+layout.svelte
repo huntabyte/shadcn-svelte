@@ -1,16 +1,10 @@
 <script lang="ts">
+	import { ModeWatcher } from "mode-watcher";
 	import { page } from "$app/stores";
-	import { dev } from "$app/environment";
-	import {
-		Metadata,
-		SiteFooter,
-		SiteHeader,
-		TailwindIndicator,
-	} from "$lib/components/docs/index.js";
+	import { Metadata } from "$lib/components/docs/index.js";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
 	import { config } from "$lib/stores/index.js";
-	import { ModeWatcher } from "mode-watcher";
 	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
 	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
 
@@ -26,12 +20,5 @@
 {/if}
 
 <div class="relative flex min-h-screen flex-col bg-background" id="page" data-vaul-drawer-wrapper>
-	<SiteHeader />
-	<div class="flex-1">
-		<slot />
-	</div>
-	<SiteFooter />
-	{#if dev}
-		<TailwindIndicator />
-	{/if}
+	<slot />
 </div>

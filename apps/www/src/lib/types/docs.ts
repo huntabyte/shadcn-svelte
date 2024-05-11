@@ -37,7 +37,7 @@ export type FrontMatter = {
 };
 
 export type DocFile = {
-	default: import("svelte").SvelteComponent;
+	default: import("svelte").ComponentType;
 	metadata: FrontMatter;
 };
 

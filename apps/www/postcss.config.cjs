@@ -1,6 +1,6 @@
+const path = require("node:path");
 const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
-const path = require("path");
 
 const config = {
 	plugins: [

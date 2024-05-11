@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Alert from "$lib/registry/default/ui/alert/index.js";
 	import CircleAlert from "lucide-svelte/icons/circle-alert";
+	import * as Alert from "$lib/registry/default/ui/alert/index.js";
 </script>
 
 <Alert.Root variant="destructive">

@@ -1,3 +1,3 @@
-export * from "./add";
-export * from "./init";
-export * from "./update";
+export * from "./add.js";
+export * from "./init.js";
+export * from "./update.js";

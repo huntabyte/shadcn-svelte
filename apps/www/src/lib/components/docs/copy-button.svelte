@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { clickToCopyAction } from "svelte-legos";
-	import { cn } from "$lib/utils.js";
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
+	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
@@ -76,9 +76,9 @@
 			>
 				<span class="sr-only">Copy</span>
 				{#if copied}
-					<Check class="h-3 w-3" />
+					<Check class="h-3 w-3" tabindex="-1" />
 				{:else}
-					<Copy class="h-3 w-3" />
+					<Copy class="h-3 w-3" tabindex="-1" />
 				{/if}
 			</Button>
 		</DropdownMenu.Trigger>
@@ -111,9 +111,9 @@
 	>
 		<span class="sr-only">Copy</span>
 		{#if copied}
-			<Check class="h-3 w-3" />
+			<Check class="h-3 w-3" tabindex="-1" />
 		{:else}
-			<Copy class="h-3 w-3" />
+			<Copy class="h-3 w-3" tabindex="-1" />
 		{/if}
 	</button>
 {/if}

@@ -1,10 +1,10 @@
-import type { ConfigLoaderSuccessResult } from "tsconfig-paths";
-import { createMatchPath } from "tsconfig-paths";
+import { type TsConfigResult, createPathsMatcher } from "get-tsconfig";
 
-export async function resolveImport(
-	importPath: string,
-	config: Pick<ConfigLoaderSuccessResult, "absoluteBaseUrl" | "paths">
-) {
-	const matchPath = createMatchPath(config.absoluteBaseUrl, config.paths);
-	return matchPath(importPath, undefined, () => true, [".ts", ".svelte", ".js"]);
+export function resolveImport(importPath: string, config: TsConfigResult) {
+	const matcher = createPathsMatcher(config);
+	if (matcher === null) {
+		return;
+	}
+	const paths = matcher(importPath);
+	return paths[0];
 }

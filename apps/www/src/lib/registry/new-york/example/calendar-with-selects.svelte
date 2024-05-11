@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Calendar from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
-	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 
 	type $$Props = CalendarPrimitive.Props;
 	type $$Events = CalendarPrimitive.Events;

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { Icons } from "../icons/index.js";
 	import { page } from "$app/stores";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
-	import { Icons } from "../icons/index.js";
 </script>
 
 <div class="mr-4 hidden md:flex">
@@ -52,6 +52,15 @@
 			)}
 		>
 			Examples
+		</a>
+		<a
+			href="/blocks"
+			class={cn(
+				"transition-colors hover:text-foreground/80",
+				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
+			)}
+		>
+			Blocks
 		</a>
 		<a
 			href={siteConfig.links.github}

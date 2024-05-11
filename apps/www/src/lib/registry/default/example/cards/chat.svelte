@@ -3,7 +3,6 @@
 	import Send from "lucide-svelte/icons/send";
 	import Plus from "lucide-svelte/icons/plus";
 	import { cn } from "$lib/utils.js";
-	import AvatarImgs from "$lib/img/avatars/index.js";
 	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
@@ -16,27 +15,27 @@
 		{
 			name: "Olivia Martin",
 			email: "m@example.com",
-			avatar: AvatarImgs[0],
+			avatar: "/avatars/01.png",
 		},
 		{
 			name: "Isabella Nguyen",
 			email: "isabella.nguyen@email.com",
-			avatar: AvatarImgs[2],
+			avatar: "/avatars/03.png",
 		},
 		{
 			name: "Emma Wilson",
 			email: "emma@example.com",
-			avatar: AvatarImgs[4],
+			avatar: "/avatars/05.png",
 		},
 		{
 			name: "Jackson Lee",
 			email: "lee@example.com",
-			avatar: AvatarImgs[1],
+			avatar: "/avatars/02.png",
 		},
 		{
 			name: "William Kim",
 			email: "will@email.com",
-			avatar: AvatarImgs[3],
+			avatar: "/avatars/04.png",
 		},
 	] as const;
 
@@ -72,7 +71,7 @@
 	<Card.Header class="flex flex-row items-center">
 		<div class="flex items-center space-x-4">
 			<Avatar.Root>
-				<Avatar.Image src={AvatarImgs[0]} alt="Image" />
+				<Avatar.Image src="/avatars/01.png" alt="Image" />
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
 			<div>
