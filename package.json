@@ -42,8 +42,5 @@
     "@changesets/cli": "^2.27.1",
     "pretty-quick": "^4.0.0",
     "simple-git-hooks": "^2.10.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm -r format:staged --staged"
   }
 }
