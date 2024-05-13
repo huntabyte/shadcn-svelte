@@ -7,7 +7,8 @@ description: Use the CLI to add components to your project.
 
 Use the `init` command to initialize dependencies for a new project.
 
-The `init` command installs dependencies, adds the `cn` util, configures `tailwind.config.cjs`, and creates CSS variables for the project.
+The `init` command installs dependencies, adds the `cn` util, configures `tailwind.config.cjs`, and creates CSS
+variables for the project.
 
 ```bash
 npx shadcn-svelte@latest init
@@ -85,7 +86,8 @@ Options:
 
 ## update
 
-Use the `update` command to update components in your project. This will overwrite any modifications you've made to the components, so be sure to commit your changes before running this command.
+Use the `update` command to update components in your project. This will overwrite any modifications you've made to the
+components, so be sure to commit your changes before running this command.
 
 ```bash
 npx shadcn-svelte@latest update [component]
@@ -110,6 +112,11 @@ Options:
 
 ## Outgoing Requests
 
-### proxy
+### Proxy
 
-A proxy to use for outgoing request to fetch from `shadcn` registry. If `HTTP_PROXY` or `http_proxy` environment variables are set, the underlying request library will honor proxy settings.
+This enables the use of a proxy when sending out requests to fetch from the `shadcn` registry. If the `HTTP_PROXY`
+or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
+
+```bash
+HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
+```
