@@ -1,6 +1,14 @@
 import process from "node:process";
 
 export function getEnvProxy(): string | undefined {
-	const { HTTP_PROXY, http_proxy } = process.env;
-	return HTTP_PROXY || http_proxy;
+	const { env } = process;
+	return (
+		env.HTTP_PROXY ||
+		env.http_proxy ||
+		env.HTTPS_PROXY ||
+		env.https_proxy ||
+		env.npm_config_http_proxy ||
+		env.npm_config_proxy ||
+		env.npm_config_https_proxy
+	);
 }
