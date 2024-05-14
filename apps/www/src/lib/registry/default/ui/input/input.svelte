@@ -34,7 +34,7 @@
 	on:mouseover
 	on:mouseenter
 	on:mouseleave
-  	on:mousemove
+	on:mousemove
 	on:paste
 	on:input
 	on:wheel|passive
