@@ -86,8 +86,7 @@ Options:
 
 ## update
 
-Use the `update` command to update components in your project. This will overwrite any modifications you've made to the
-components, so be sure to commit your changes before running this command.
+Use the `update` command to update components in your project. This will overwrite any modifications you've made to the components, so be sure to commit your changes before running this command.
 
 ```bash
 npx shadcn-svelte@latest update [component]
