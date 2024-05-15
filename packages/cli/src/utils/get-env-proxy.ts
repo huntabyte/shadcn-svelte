@@ -7,7 +7,6 @@ export function getEnvProxy(): string | undefined {
 		env.http_proxy ||
 		env.HTTPS_PROXY ||
 		env.https_proxy ||
-		env.npm_config_http_proxy ||
 		env.npm_config_proxy ||
 		env.npm_config_https_proxy
 	);
