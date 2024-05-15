@@ -112,8 +112,7 @@ Options:
 
 ### Proxy
 
-This enables the use of a proxy when sending out requests to fetch from the `shadcn` registry. If the `HTTP_PROXY`
-or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
+This enables the use of a proxy when sending out requests to fetch from the `shadcn` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
 
 ```bash
 HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
