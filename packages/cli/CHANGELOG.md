@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.6
+
+### Patch Changes
+
+- becb41d: chore: Added more http proxy options
+
 ## 0.10.5
 
 ### Patch Changes
