@@ -38,8 +38,8 @@
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
-	export { data as form };
+
+	export let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

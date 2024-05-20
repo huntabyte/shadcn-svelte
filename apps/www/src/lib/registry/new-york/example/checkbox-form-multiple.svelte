@@ -44,8 +44,8 @@
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.checkboxMultiple;
-	export { data as form };
+
+	export let data: SuperValidated<Infer<FormSchema>> = $page.data.checkboxMultiple;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

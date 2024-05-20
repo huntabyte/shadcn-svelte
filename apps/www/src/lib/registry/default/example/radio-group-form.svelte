@@ -18,8 +18,7 @@
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import * as RadioGroup from "$lib/registry/default/ui/radio-group/index.js";
 
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.radioGroup;
-	export { data as form };
+	export let data: SuperValidated<Infer<FormSchema>> = $page.data.radioGroup;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

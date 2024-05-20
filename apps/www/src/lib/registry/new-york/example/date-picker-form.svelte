@@ -29,8 +29,8 @@
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
-	export { data as form };
+
+	export let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

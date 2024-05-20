@@ -16,8 +16,8 @@
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.select;
-	export { data as form };
+
+	export let data: SuperValidated<Infer<FormSchema>> = $page.data.select;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

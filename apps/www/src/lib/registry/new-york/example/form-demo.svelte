@@ -15,8 +15,7 @@
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
-	let data: SuperValidated<Infer<FormSchema>>;
-	export { data as form };
+	export let data: SuperValidated<Infer<FormSchema>>;
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
