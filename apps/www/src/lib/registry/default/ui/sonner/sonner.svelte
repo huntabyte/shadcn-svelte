@@ -1,6 +1,11 @@
 <script lang="ts">
-	import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
 	import { mode } from "mode-watcher";
+	import {
+		Icon,
+		Loader,
+		Toaster as Sonner,
+		type ToasterProps as SonnerProps,
+	} from "svelte-sonner";
 
 	type $$Props = SonnerProps;
 </script>
@@ -17,4 +22,10 @@
 		},
 	}}
 	{...$$restProps}
-/>
+>
+	<slot slot="loading-icon" name="loading-icon"><Loader visible={true} /></slot>
+	<slot slot="success-icon" name="success-icon"><Icon type="success" /></slot>
+	<slot slot="error-icon" name="error-icon"><Icon type="error" /></slot>
+	<slot slot="warning-icon" name="warning-icon"><Icon type="warning" /></slot>
+	<slot slot="info-icon" name="info-icon"><Icon type="info" /></slot>
+</Sonner>
