@@ -123,8 +123,6 @@ For this example, we'll be passing the `form` returned from the load function as
   const form = superForm(data, {
     validators: zodClient(formSchema),
   });
-
-  const { form: formData, enhance } = form;
 </script>
 
 <form method="POST" use:enhance>
