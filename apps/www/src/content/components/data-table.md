@@ -1248,6 +1248,7 @@ Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` co
     page: addPagination(),
     sort: addSortBy({ disableMultiSort: true }),
     filter: addTableFilter({
+      includeHiddenColumns: true,
       fn: ({ filterValue, value }) => value.includes(filterValue),
     }),
     hide: addHiddenColumns(),
