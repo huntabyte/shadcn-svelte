@@ -90,7 +90,9 @@
 				>
 					<form>
 						<div class="relative">
-							<Search class="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
+							<Search
+								class="absolute left-2 top-[50%] h-4 w-4 translate-y-[-50%] text-muted-foreground"
+							/>
 							<Input placeholder="Search" class="pl-8" />
 						</div>
 					</form>
