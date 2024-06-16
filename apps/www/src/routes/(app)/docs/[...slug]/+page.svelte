@@ -3,6 +3,7 @@
 	import Code from "svelte-radix/Code.svelte";
 	import ExternalLink from "svelte-radix/ExternalLink.svelte";
 	import type { PageData } from "./$types.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
@@ -64,9 +65,11 @@
 		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">
-		<div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-4">
+		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
 			{#key $page.url.pathname}
-				<TableOfContents />
+				<ScrollArea class="h-full">
+					<TableOfContents />
+				</ScrollArea>
 			{/key}
 		</div>
 	</div>
