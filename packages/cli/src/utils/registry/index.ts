@@ -1,8 +1,8 @@
 import path from "node:path";
 import process from "node:process";
 import * as v from "valibot";
-import fetch from "node-fetch";
-import { HttpsProxyAgent } from "https-proxy-agent";
+import { fetch } from "node-fetch-native";
+import { createProxy } from "node-fetch-native/proxy";
 import { error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { Config } from "../get-config.js";
@@ -125,11 +125,13 @@ export function getItemTargetPath(
 
 async function fetchRegistry(paths: string[]) {
 	const proxyUrl = getEnvProxy();
-	const agent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
+	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
 	try {
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const response = await fetch(`${baseUrl}/registry/${path}`, { agent });
+				const response = await fetch(`${baseUrl}/registry/${path}`, {
+					...proxy,
+				});
 				return await response.json();
 			})
 		);
