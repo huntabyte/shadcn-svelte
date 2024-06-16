@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-chore: replaced `node-fetch` for `node-fetch-native`
+chore: Replaced `node-fetch` for `node-fetch-native`
