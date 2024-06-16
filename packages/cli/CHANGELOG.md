@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.10.7
+
+### Patch Changes
+
+- f201baa: chore: Replaced `node-fetch` for `node-fetch-native`
+
 ## 0.10.6
 
 ### Patch Changes
