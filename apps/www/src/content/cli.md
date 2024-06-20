@@ -16,10 +16,11 @@ npx shadcn-svelte@latest init
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
+Would you like to use TypeScript? (recommended) › Yes
 Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.pcss
-Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
+Which base color would you like to use? › Slate
+Where is your global CSS file? (this file will be overwritten) › src/app.css
+Where is your Tailwind config located? (this file will be overwritten) › tailwind.config.[cjs|js|ts]
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 ```
@@ -32,7 +33,6 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -y, --yes        skip confirmation prompt. (default: false)
   -c, --cwd <cwd>  the working directory. (default: the current directory)
   -h, --help       display help for command
 ```
