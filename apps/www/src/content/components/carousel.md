@@ -171,7 +171,7 @@ Use reactive state and the `bind:api` directive to get an instance of the carous
 
 ```svelte showLineNumbers {2,5,18}
 <script lang="ts">
-  import { type CarouselApi } from "$lib/components/ui/carousel/context.js";
+  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 
   let api: CarouselAPI;
@@ -202,7 +202,7 @@ You can listen to events using the api instance from `bind:api`.
 
 ```svelte showLineNumbers {2,5,7-11,14}
 <script lang="ts">
-  import { type CarouselApi } from "$lib/components/ui/carousel/context.js";
+  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 
   let api: CarouselAPI;
