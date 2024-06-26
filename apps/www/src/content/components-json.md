@@ -76,7 +76,7 @@ Path to the CSS file that imports Tailwind CSS into your project.
 ```json title="components.json"
 {
   "tailwind": {
-    "css": "src/app.pcss"
+    "css": "src/app.{p,post}css"
   }
 }
 ```
@@ -120,5 +120,13 @@ Import alias for your components.
   "aliases": {
     "components": "$lib/components"
   }
+}
+```
+
+## Typescript
+
+```json title="components.json"
+{
+  "typescript": true | false
 }
 ```
