@@ -115,6 +115,36 @@ The main benefit of adding an additional `.eslintrc` file just to `$lib/componen
 
 If this is not important to you, then another option is to use a similar rule override in your global ESLint configuration file, usually `.eslintrc.cjs`. For inspiration, please refer to [this gist](https://gist.github.com/huntabyte/b73073a93a7a664f3cbad7c50376c9c9).
 
+If your global ESLint configuration is using the [flat config format](https://eslint.org/docs/latest/use/configure/configuration-files) or you would like to migrate to the flat config format [Configuration Migration Guide](https://eslint.org/docs/latest/use/configure/migration-guide) you could add another rule block in your `eslint.config.js` for example:
+
+```js title="src/eslint.config.js"
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export default [
+  /* ... */
+  {
+    files: ["**/*.svelte"],
+    languageOptions: {
+      parserOptions: {
+        parser: ts.parser,
+      },
+    },
+  },
+  {
+    /* location of your components where you would like to apply these rules  */
+    files: ["**/components/ui/**/*.svelte"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^\\$\\$(Props|Events|Slots|Generic)$",
+        },
+      ],
+    },
+  },
+];
+```
+
 ## VSCode extension
 
 Install the shadcn-svelte [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Selemondev.vscode-shadcn-svelte) by [@selemondev](https://github.com/selemondev) in Visual Studio Code to easily add Shadcn Svelte components to your project.
