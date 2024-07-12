@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Blocks from "lucide-svelte/icons/blocks";
+	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import { Icons } from "./icons/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, ...restProps }: HTMLAnchorAttributes = $props();
 </script>
 
 <a
@@ -14,7 +14,7 @@
 		"inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
 	<Blocks class="size-4" />
 	<Separator class="mx-2 h-4" orientation="vertical" />

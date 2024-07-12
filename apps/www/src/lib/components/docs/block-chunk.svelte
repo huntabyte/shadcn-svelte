@@ -4,7 +4,7 @@
 	import { cn, getLiftMode } from "$lib/utils.js";
 	import type { RawBlockChunk } from "$lib/blocks.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
+	type Props = HTMLAttributes<HTMLDivElement> & {
 		chunk: RawBlockChunk;
 		block: {
 			name: string;
@@ -16,8 +16,7 @@
 		};
 	};
 
-	export let block: $$Props["block"];
-	export let chunk: $$Props["chunk"];
+	let { chunk, block, children, ...restProps }: Props = $props();
 
 	const { isLiftMode } = getLiftMode(block.name);
 </script>
@@ -29,10 +28,10 @@
 		chunk.container?.className
 	)}
 	data-x-chunk-container-for={chunk.name}
-	{...$$restProps}
+	{...restProps}
 >
 	<div class="relative z-30">
-		<slot />
+		{@render children?.()}
 	</div>
 	{#await chunk.raw() then code}
 		<div

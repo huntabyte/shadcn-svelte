@@ -7,19 +7,15 @@
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
 	import type { Block } from "$lib/registry/schema.js";
-	import { cn, getLiftMode, styleToString } from "$lib/utils.js";
+	import { cn, getLiftMode } from "$lib/utils.js";
 
-	let isLoading = true;
+	let isLoading = $state(true);
 
-	let resizablePaneRef: PaneAPI;
+	let resizablePaneRef = $state<PaneAPI>() as PaneAPI;
 
-	export let block: Block;
+	let { block }: { block: Block } = $props();
 
 	const { isLiftMode } = getLiftMode(block.name);
-
-	$: tabStyle = block.container?.height
-		? styleToString({ "--container-height": block.container.height })
-		: "";
 </script>
 
 {#if $config.style === block.style}
@@ -27,7 +23,9 @@
 		id={block.name}
 		value="preview"
 		class="relative grid w-full scroll-m-20 gap-4"
-		style={tabStyle}
+		style={{
+			"--container-height": block.container?.height ?? "",
+		}}
 	>
 		<BlockToolbar {block} {resizablePaneRef} />
 		<Tabs.Content
@@ -56,7 +54,7 @@
 						src={`/blocks/${block.style}/${block.name}`}
 						height={block.container?.height}
 						class="chunk-mode relative z-20 w-full bg-background"
-						on:load={() => {
+						onload={() => {
 							isLoading = false;
 						}}
 						title="Block preview"

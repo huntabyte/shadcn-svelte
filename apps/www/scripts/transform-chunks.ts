@@ -1,7 +1,10 @@
-import { parse, walk } from "svelte/compiler";
+import { parse } from "svelte/compiler";
+import { walk } from "estree-walker";
 import prettier from "@prettier/sync";
-import type { Attribute, TemplateNode } from "svelte/types/compiler/interfaces";
 import { codeBlockPrettierConfig } from "../other/code-block-prettier.js";
+
+type Attribute = any;
+type TemplateNode = any;
 
 type Chunk = {
 	name: string;

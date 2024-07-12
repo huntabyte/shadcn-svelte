@@ -2,11 +2,13 @@
 	import type { TableOfContents } from "$lib/types/docs.js";
 	import { cn } from "$lib/utils.js";
 
-	export let tree: TableOfContents = {
-		items: [],
+	type Props = {
+		tree?: TableOfContents;
+		activeItem: string | undefined;
+		level?: number;
 	};
-	export let activeItem: string | undefined;
-	export let level = 1;
+
+	let { tree = { items: [] }, activeItem, level = 1 }: Props = $props();
 </script>
 
 <ul class={cn("m-0 list-none", { "pl-4": level !== 1 })}>

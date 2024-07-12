@@ -1,20 +1,30 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Clipboard from "svelte-radix/Clipboard.svelte";
+	import type { HTMLButtonAttributes } from "svelte/elements";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 
-	let hasCopied = false;
-	export let code: string;
+	let {
+		code,
+		...restProps
+	}: HTMLButtonAttributes & {
+		code: string;
+	} = $props();
 
-	$: if (hasCopied) {
-		setTimeout(() => {
-			hasCopied = false;
-		}, 2000);
-	}
+	let hasCopied = $state(false);
+
+	$effect(() => {
+		if (hasCopied) {
+			setTimeout(() => {
+				hasCopied = false;
+			}, 2000);
+		}
+	});
 
 	function copyToClipboard() {
 		// Remove data-x-chunk-name and data-x-chunk-description attributes from the code
+		// eslint-disable-next-line regexp/no-super-linear-backtracking
 		const re = /<([a-zA-Z0-9.]+)([^>]*)data-x-chunk-name="[^"]*"([^>]*)>/g;
 
 		const result = code.replace(re, (_all, elementName, p2, p3) => {
@@ -30,25 +40,27 @@
 </script>
 
 <Tooltip.Root>
-	<Tooltip.Trigger asChild let:builder>
-		<Button
-			size="icon"
-			variant="outline"
-			class="h-7 w-7 rounded-[6px] [&_svg]:size-3.5"
-			builders={[builder]}
-			on:click={() => {
-				copyToClipboard();
-				hasCopied = true;
-			}}
-			{...$$restProps}
-		>
-			<span class="sr-only">Copy</span>
-			{#if hasCopied}
-				<Check />
-			{:else}
-				<Clipboard />
-			{/if}
-		</Button>
+	<Tooltip.Trigger>
+		{#snippet child({ props })}
+			<Button
+				size="icon"
+				variant="outline"
+				class="h-7 w-7 rounded-[6px] [&_svg]:size-3.5"
+				on:click={() => {
+					copyToClipboard();
+					hasCopied = true;
+				}}
+				{...props}
+				{...restProps}
+			>
+				<span class="sr-only">Copy</span>
+				{#if hasCopied}
+					<Check />
+				{:else}
+					<Clipboard />
+				{/if}
+			</Button>
+		{/snippet}
 	</Tooltip.Trigger>
 	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
 </Tooltip.Root>
