@@ -1,7 +1,6 @@
 import { Dialog as SheetPrimitive } from "bits-ui";
 import { type VariantProps, tv } from "tailwind-variants";
 
-import Portal from "./sheet-portal.svelte";
 import Overlay from "./sheet-overlay.svelte";
 import Content from "./sheet-content.svelte";
 import Header from "./sheet-header.svelte";
@@ -12,6 +11,7 @@ import Description from "./sheet-description.svelte";
 const Root = SheetPrimitive.Root;
 const Close = SheetPrimitive.Close;
 const Trigger = SheetPrimitive.Trigger;
+const Portal = SheetPrimitive.Portal;
 
 export {
 	Root,
