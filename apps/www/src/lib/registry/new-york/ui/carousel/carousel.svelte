@@ -4,15 +4,15 @@
 	import { type CarouselAPI, type CarouselProps, setEmblaContext } from "./context.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = CarouselProps;
-
-	export let opts = {};
-	export let plugins: NonNullable<$$Props["plugins"]> = [];
-	export let api: $$Props["api"] = undefined;
-	export let orientation: NonNullable<$$Props["orientation"]> = "horizontal";
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		opts = {},
+		plugins = [],
+		api = $bindable(),
+		orientation = "horizontal",
+		class: className,
+		children,
+		...restProps
+	}: CarouselProps = $props();
 
 	const apiStore = writable<CarouselAPI | undefined>(undefined);
 	const orientationStore = writable(orientation);
@@ -86,13 +86,6 @@
 	});
 </script>
 
-<div
-	class={cn("relative", className)}
-	on:mouseenter
-	on:mouseleave
-	role="region"
-	aria-roledescription="carousel"
-	{...$$restProps}
->
-	<slot />
+<div class={cn("relative", className)} role="region" aria-roledescription="carousel" {...restProps}>
+	{@render children?.()}
 </div>

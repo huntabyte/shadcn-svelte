@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLParagraphElement>;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveElementAttributes = $props();
 </script>
 
-<p class={cn("text-sm text-muted-foreground", className)} {...$$restProps}>
-	<slot />
+<p bind:this={ref} class={cn("text-sm text-muted-foreground", className)} {...restProps}>
+	{@render children?.()}
 </p>

@@ -3,6 +3,7 @@ import type emblaCarouselSvelte from "embla-carousel-svelte";
 import { getContext, hasContext, setContext } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 import type { Readable, Writable } from "svelte/store";
+import type { PrimitiveDivAttributes } from "$lib/utils.js";
 
 export type CarouselAPI =
 	NonNullable<NonNullable<EmblaCarouselSvelteType["$$_attributes"]>["on:emblaInit"]> extends (
@@ -23,7 +24,7 @@ export type CarouselProps = {
 	plugins?: CarouselPlugins;
 	api?: CarouselAPI;
 	orientation?: "horizontal" | "vertical";
-} & HTMLAttributes<HTMLDivElement>;
+} & PrimitiveDivAttributes;
 
 const EMBLA_CAROUSEL_CONTEXT = Symbol("EMBLA_CAROUSEL_CONTEXT");
 

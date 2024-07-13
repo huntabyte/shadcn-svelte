@@ -1,15 +1,18 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveSpanAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLSpanElement>;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveSpanAttributes = $props();
 </script>
 
 <span
+	bind:this={ref}
 	class={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </span>

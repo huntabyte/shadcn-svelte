@@ -1,18 +1,25 @@
 <script lang="ts">
 	import { type Variant, badgeVariants } from "./index.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export let href: string | undefined = undefined;
-	export let variant: Variant = "default";
-	export { className as class };
+	let {
+		class: className,
+		href = undefined,
+		variant = "default",
+		children,
+		ref = $bindable(null),
+		...restProps
+	}: PrimitiveAnchorAttributes & {
+		variant?: Variant;
+	} = $props();
 </script>
 
 <svelte:element
 	this={href ? "a" : "span"}
+	bind:this={ref}
 	{href}
 	class={cn(badgeVariants({ variant, className }))}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

@@ -1,20 +1,17 @@
 <script lang="ts">
 	import ArrowLeft from "svelte-radix/ArrowLeft.svelte";
-	import type { VariantProps } from "tailwind-variants";
+	import type { WithoutChildren } from "bits-ui";
 	import { getEmblaContext } from "./context.js";
 	import { cn } from "$lib/utils.js";
-	import {
-		Button,
-		type Props,
-		type buttonVariants,
-	} from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, type Props } from "$lib/registry/new-york/ui/button/index.js";
 
-	type $$Props = Props;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
-	export let variant: VariantProps<typeof buttonVariants>["variant"] = "outline";
-	export let size: VariantProps<typeof buttonVariants>["size"] = "icon";
+	let {
+		ref = $bindable(null),
+		class: className,
+		variant = "outline",
+		size = "icon",
+		...restProps
+	}: WithoutChildren<Props> = $props();
 
 	const { orientation, canScrollPrev, scrollPrev, handleKeyDown } =
 		getEmblaContext("<Carousel.Previous/>");
@@ -31,9 +28,10 @@
 		className
 	)}
 	disabled={!$canScrollPrev}
-	on:click={scrollPrev}
-	on:keydown={handleKeyDown}
-	{...$$restProps}
+	onclick={scrollPrev}
+	onkeydown={handleKeyDown}
+	{...restProps}
+	bind:ref
 >
 	<ArrowLeft class="h-4 w-4" />
 	<span class="sr-only">Previous slide</span>

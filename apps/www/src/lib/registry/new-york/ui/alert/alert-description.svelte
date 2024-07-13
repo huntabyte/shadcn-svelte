@@ -1,10 +1,14 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
-	let { class: className, children, ...restProps }: HTMLAttributes<HTMLDivElement> = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveDivAttributes = $props();
 </script>
 
-<div class={cn("text-sm [&_p]:leading-relaxed", className)} {...restProps}>
+<div bind:this={ref} class={cn("text-sm [&_p]:leading-relaxed", className)} {...restProps}>
 	{@render children?.()}
 </div>

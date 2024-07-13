@@ -6,6 +6,17 @@ import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
 import { persisted } from "svelte-local-storage-store";
+import type { WithElementRef } from "bits-ui";
+import type {
+	HTMLAnchorAttributes,
+	HTMLAttributes,
+	HTMLButtonAttributes,
+	HTMLInputAttributes,
+	HTMLLabelAttributes,
+	HTMLLiAttributes,
+	HTMLOlAttributes,
+	HTMLTextareaAttributes,
+} from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
 
 export function cn(...inputs: ClassValue[]) {
@@ -241,3 +252,16 @@ export function getLiftMode(name: string) {
 		toggleLiftMode,
 	};
 }
+
+export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;
+export type PrimitiveElementAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
+export type PrimitiveAnchorAttributes = WithElementRef<HTMLAnchorAttributes>;
+export type PrimitiveButtonAttributes = WithElementRef<HTMLButtonAttributes>;
+export type PrimitiveInputAttributes = WithElementRef<HTMLInputAttributes>;
+export type PrimitiveSpanAttributes = WithElementRef<HTMLAttributes<HTMLSpanElement>>;
+export type PrimitiveTextareaAttributes = WithElementRef<HTMLTextareaAttributes>;
+export type PrimitiveHeadingAttributes = WithElementRef<HTMLAttributes<HTMLHeadingElement>>;
+export type PrimitiveLiAttributes = WithElementRef<HTMLLiAttributes>;
+export type PrimitiveOlAttributes = WithElementRef<HTMLOlAttributes>;
+export type PrimitiveLabelAttributes = WithElementRef<HTMLLabelAttributes>;
+export type PrimitiveUlAttributes = WithElementRef<HTMLAttributes<HTMLUListElement>>;

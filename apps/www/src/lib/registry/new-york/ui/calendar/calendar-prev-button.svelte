@@ -4,24 +4,39 @@
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = CalendarPrimitive.PrevButtonProps;
-	type $$Events = CalendarPrimitive.PrevButtonEvents;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		child: childProp,
+		children: childrenProp,
+		...restProps
+	}: CalendarPrimitive.PrevButtonProps = $props();
 </script>
 
-<CalendarPrimitive.PrevButton
-	on:click
-	class={cn(
-		buttonVariants({ variant: "outline" }),
-		"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-		className
-	)}
-	{...$$restProps}
-	let:builder
->
-	<slot {builder}>
-		<ChevronLeft class="h-4 w-4" />
-	</slot>
-</CalendarPrimitive.PrevButton>
+{#snippet Fallback()}
+	<ChevronLeft class="h-4 w-4" />
+{/snippet}
+
+{#if childProp}
+	<CalendarPrimitive.NextButton
+		bind:ref
+		class={cn(
+			buttonVariants({ variant: "outline" }),
+			"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+			className
+		)}
+		{...restProps}
+		child={childProp}
+	/>
+{:else}
+	<CalendarPrimitive.NextButton
+		bind:ref
+		class={cn(
+			buttonVariants({ variant: "outline" }),
+			"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+			className
+		)}
+		{...restProps}
+		children={childrenProp || Fallback}
+	/>
+{/if}

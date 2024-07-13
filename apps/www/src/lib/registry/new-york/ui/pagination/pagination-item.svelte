@@ -1,13 +1,16 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveLiAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLLIElement>;
-	let className: $$Props["class"] = undefined;
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveLiAttributes = $props();
 
 	export { className as class };
 </script>
 
-<li class={cn("", className)} {...$$restProps}>
-	<slot />
+<li bind:this={ref} class={cn("", className)} {...restProps}>
+	{@render children?.()}
 </li>

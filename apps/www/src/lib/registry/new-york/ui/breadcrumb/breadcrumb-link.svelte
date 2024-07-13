@@ -1,31 +1,30 @@
 <script lang="ts">
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import type { Snippet } from "svelte";
+	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAnchorAttributes & {
-		el?: HTMLAnchorElement;
-		asChild?: boolean;
-	};
+	let {
+		ref = $bindable(null),
+		class: className,
+		href = undefined,
+		child,
+		children,
+		...restProps
+	}: PrimitiveAnchorAttributes & {
+		child?: Snippet<[{ props: HTMLAnchorAttributes }]>;
+	} = $props();
 
-	export let href: $$Props["href"] = undefined;
-	export let el: $$Props["el"] = undefined;
-	export let asChild: $$Props["asChild"] = false;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
-
-	let attrs: Record<string, unknown>;
-
-	$: attrs = {
+	const attrs = $derived({
 		class: cn("transition-colors hover:text-foreground", className),
 		href,
-		...$$restProps,
-	};
+		...restProps,
+	});
 </script>
 
-{#if asChild}
-	<slot {attrs} />
+{#if child}
+	{@render child({ props: attrs })}
 {:else}
-	<a bind:this={el} {...attrs} {href}>
-		<slot {attrs} />
+	<a bind:this={ref} {...attrs}>
+		{@render children?.()}
 	</a>
 {/if}

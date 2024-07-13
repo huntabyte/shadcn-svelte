@@ -1,16 +1,19 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
 	import { getEmblaContext } from "./context.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement>;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveDivAttributes = $props();
 
 	const { orientation } = getEmblaContext("<Carousel.Item/>");
 </script>
 
 <div
+	bind:this={ref}
 	role="group"
 	aria-roledescription="slide"
 	class={cn(
@@ -19,7 +22,7 @@
 		className
 	)}
 	data-embla-slide=""
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </div>
