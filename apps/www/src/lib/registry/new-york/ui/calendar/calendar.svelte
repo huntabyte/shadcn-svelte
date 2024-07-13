@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import { Calendar as CalendarPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import * as Calendar from "./index.js";
 	import { cn } from "$lib/utils.js";
 
@@ -10,7 +10,7 @@
 		class: className,
 		weekdayFormat = "short",
 		...restProps
-	}: CalendarPrimitive.RootProps = $props();
+	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> = $props();
 </script>
 
 <CalendarPrimitive.Root
@@ -19,7 +19,7 @@
 	bind:placeholder={placeholder as any}
 	{weekdayFormat}
 	class={cn("p-3", className)}
-	{...restProps}
+	{...restProps as any}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>

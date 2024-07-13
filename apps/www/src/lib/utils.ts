@@ -15,7 +15,10 @@ import type {
 	HTMLLabelAttributes,
 	HTMLLiAttributes,
 	HTMLOlAttributes,
+	HTMLTableAttributes,
+	HTMLTdAttributes,
 	HTMLTextareaAttributes,
+	HTMLThAttributes,
 } from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
 
@@ -265,3 +268,11 @@ export type PrimitiveLiAttributes = WithElementRef<HTMLLiAttributes>;
 export type PrimitiveOlAttributes = WithElementRef<HTMLOlAttributes>;
 export type PrimitiveLabelAttributes = WithElementRef<HTMLLabelAttributes>;
 export type PrimitiveUlAttributes = WithElementRef<HTMLAttributes<HTMLUListElement>>;
+export type PrimitiveTableAttributes = WithElementRef<HTMLTableAttributes>;
+export type PrimitiveTdAttributes = WithElementRef<HTMLTdAttributes>;
+export type PrimitiveTrAttributes = WithElementRef<HTMLAttributes<HTMLTableRowElement>>;
+export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
+export type PrimitiveTheadAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
+export type PrimitiveTfootAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
+export type PrimitiveTbodyAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
+export type PrimitiveTcaptionAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;

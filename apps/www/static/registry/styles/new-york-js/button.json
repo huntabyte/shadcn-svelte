@@ -1,13 +1,11 @@
 {
 	"name": "button",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": [],
 	"registryDependencies": [],
 	"files": [
 		{
 			"name": "button.svelte",
-			"content": "<script>\n\timport { Button as ButtonPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let builders = [];\n\texport { className as class };\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\ttype=\"button\"\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
+			"content": "<script>\n\timport { buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet {\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tsize = \"default\",\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t} = $props();\n</script>\n\n<button\n\tbind:this={ref}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\ttype=\"button\"\n\t{...restProps}\n>\n\t{@render children?.()}\n</button>\n"
 		},
 		{
 			"name": "index.js",

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { mediaQuery } from "svelte-legos";
+	import { MediaQuery } from "runed";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	const items = [
 		{ href: "#", label: "Home" },
@@ -17,7 +17,7 @@
 
 	let open = false;
 
-	const isDesktop = mediaQuery("(min-width: 768px)");
+	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 
 <Breadcrumb.Root>
@@ -30,7 +30,7 @@
 		<Breadcrumb.Separator />
 		{#if items.length > ITEMS_TO_DISPLAY}
 			<Breadcrumb.Item>
-				{#if $isDesktop}
+				{#if isDesktop.matches}
 					<DropdownMenu.Root bind:open>
 						<DropdownMenu.Trigger
 							class="flex items-center gap-1"
@@ -66,8 +66,8 @@
 								{/each}
 							</div>
 							<Drawer.Footer class="pt-4">
-								<Drawer.Close asChild let:builder>
-									<Button variant="outline" builders={[builder]}>Close</Button>
+								<Drawer.Close class={buttonVariants({ variant: "outline" })}>
+									Close
 								</Drawer.Close>
 							</Drawer.Footer>
 						</Drawer.Content>

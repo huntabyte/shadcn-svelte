@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveTbodyAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLTableSectionElement>;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveTbodyAttributes = $props();
 </script>
 
-<tbody class={cn("[&_tr:last-child]:border-0", className)} {...$$restProps}>
-	<slot />
+<tbody bind:this={ref} class={cn("[&_tr:last-child]:border-0", className)} {...restProps}>
+	{@render children?.()}
 </tbody>

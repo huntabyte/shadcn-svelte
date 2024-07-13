@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { mediaQuery } from "svelte-legos";
+	import { MediaQuery } from "runed";
 	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -7,10 +7,10 @@
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 
 	let open = false;
-	const isDesktop = mediaQuery("(min-width: 768px)");
+	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 
-{#if $isDesktop}
+{#if isDesktop.matches}
 	<Dialog.Root bind:open>
 		<Dialog.Trigger asChild let:builder>
 			<Button variant="outline" builders={[builder]}>Edit Profile</Button>

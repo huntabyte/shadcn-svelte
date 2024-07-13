@@ -1,7 +1,15 @@
 <script lang="ts">
 	import { Pagination as PaginationPrimitive, type WithoutChild } from "bits-ui";
-	import { type Props, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import {
+		type Props as ButtonProps,
+		buttonVariants,
+	} from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
+
+	type Props = WithoutChild<PaginationPrimitive.PageProps> &
+		ButtonProps & {
+			isActive?: boolean;
+		};
 
 	let {
 		ref = $bindable(null),
@@ -11,11 +19,12 @@
 		page,
 		children,
 		...restProps
-	}: WithoutChild<PaginationPrimitive.PageProps> &
-		Props & {
-			isActive: boolean;
-		} = $props();
+	}: Props = $props();
 </script>
+
+{#snippet Fallback()}
+	{page.value}
+{/snippet}
 
 <PaginationPrimitive.Page
 	{page}
@@ -28,10 +37,5 @@
 		className
 	)}
 	{...restProps}
->
-	{#if children}
-		{@render children?.()}
-	{:else}
-		{page.value}
-	{/if}
-</PaginationPrimitive.Page>
+	children={children || Fallback}
+/>

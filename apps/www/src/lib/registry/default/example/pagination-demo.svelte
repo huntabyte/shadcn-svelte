@@ -1,14 +1,14 @@
 <script lang="ts">
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import { mediaQuery } from "svelte-legos";
+	import { MediaQuery } from "runed";
 	import * as Pagination from "$lib/registry/default/ui/pagination/index.js";
 
-	const isDesktop = mediaQuery("(min-width: 768px)");
+	const isDesktop = new MediaQuery("(min-width: 768px)");
 
 	let count = 20;
-	$: perPage = $isDesktop ? 3 : 8;
-	$: siblingCount = $isDesktop ? 1 : 0;
+	$: perPage = isDesktop.matches ? 3 : 8;
+	$: siblingCount = isDesktop.matches ? 1 : 0;
 </script>
 
 <Pagination.Root {count} {perPage} {siblingCount} let:pages let:currentPage>

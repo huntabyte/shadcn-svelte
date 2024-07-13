@@ -1,16 +1,9 @@
 <script lang="ts">
-	import { type PrimitiveLiAttributes, cn } from "$lib/utils.js";
+	import { type PrimitiveLiAttributes } from "$lib/utils.js";
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		children,
-		...restProps
-	}: PrimitiveLiAttributes = $props();
-
-	export { className as class };
+	let { ref = $bindable(null), children, ...restProps }: PrimitiveLiAttributes = $props();
 </script>
 
-<li bind:this={ref} class={cn("", className)} {...restProps}>
+<li bind:this={ref} {...restProps}>
 	{@render children?.()}
 </li>
