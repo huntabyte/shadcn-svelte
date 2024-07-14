@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
-import { Command, type Option, type OptionValues } from "commander";
+import { Command, Option, type OptionValues } from "commander";
 import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
