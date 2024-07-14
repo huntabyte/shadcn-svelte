@@ -256,6 +256,8 @@ export function getLiftMode(name: string) {
 	};
 }
 
+// Wrappers around svelte's `HTMLAttributes` types to add a `ref` prop can be bound to
+// to get a reference to the underlying DOM element the component is rendering.
 export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;
 export type PrimitiveElementAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
 export type PrimitiveAnchorAttributes = WithElementRef<HTMLAnchorAttributes>;
@@ -272,7 +274,6 @@ export type PrimitiveTableAttributes = WithElementRef<HTMLTableAttributes>;
 export type PrimitiveTdAttributes = WithElementRef<HTMLTdAttributes>;
 export type PrimitiveTrAttributes = WithElementRef<HTMLAttributes<HTMLTableRowElement>>;
 export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
-export type PrimitiveTheadAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
-export type PrimitiveTfootAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
-export type PrimitiveTbodyAttributes = WithElementRef<HTMLAttributes<HTMLTableSectionElement>>;
-export type PrimitiveTcaptionAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
+export type PrimitiveTableSectionAttributes = WithElementRef<
+	HTMLAttributes<HTMLTableSectionElement>
+>;

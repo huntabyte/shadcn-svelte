@@ -6,7 +6,6 @@ import Content from "./context-menu-content.svelte";
 import Shortcut from "./context-menu-shortcut.svelte";
 import RadioItem from "./context-menu-radio-item.svelte";
 import Separator from "./context-menu-separator.svelte";
-import RadioGroup from "./context-menu-radio-group.svelte";
 import SubContent from "./context-menu-sub-content.svelte";
 import SubTrigger from "./context-menu-sub-trigger.svelte";
 import CheckboxItem from "./context-menu-checkbox-item.svelte";
@@ -15,6 +14,7 @@ const Sub = ContextMenuPrimitive.Sub;
 const Root = ContextMenuPrimitive.Root;
 const Trigger = ContextMenuPrimitive.Trigger;
 const Group = ContextMenuPrimitive.Group;
+const RadioGroup = ContextMenuPrimitive.RadioGroup;
 
 export {
 	Sub,

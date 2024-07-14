@@ -1,23 +1,25 @@
 <script lang="ts">
-	import type { HeadingLevel } from "./index.js";
-	import { type PrimitiveHeadingAttributes, cn } from "$lib/utils.js";
+	import type { AlertHeadingLevel } from "./index.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		level = "h5",
 		children,
+		level = 3,
 		...restProps
-	}: PrimitiveHeadingAttributes & {
-		level?: HeadingLevel;
+	}: PrimitiveDivAttributes & {
+		level?: AlertHeadingLevel;
 	} = $props();
+
+
 </script>
 
-<svelte:element
-	this={level}
+<div
 	bind:this={ref}
+	aria-level={level}
 	class={cn("mb-1 font-medium leading-none tracking-tight", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</svelte:element>
+</div>

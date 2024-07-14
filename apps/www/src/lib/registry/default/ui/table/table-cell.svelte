@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { HTMLTdAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveTdAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLTdAttributes;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveTdAttributes = $props();
 </script>
 
 <td
+	bind:this={ref}
 	class={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
-	{...$$restProps}
-	on:click
-	on:keydown
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </td>

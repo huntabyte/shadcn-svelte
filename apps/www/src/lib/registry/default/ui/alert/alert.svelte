@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import { type Variant, alertVariants } from "./index.js";
+	import { type AlertVariant, alertVariants } from "./index.js";
 	import { cn } from "$lib/utils.js";
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
-		variant?: Variant;
+		variant?: AlertVariant;
 	};
 
 	let className: $$Props["class"] = undefined;

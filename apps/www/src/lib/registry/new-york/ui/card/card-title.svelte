@@ -1,23 +1,24 @@
 <script lang="ts">
-	import type { HeadingLevel } from "./index.js";
+	import type { CardHeadingLevel } from "./index.js";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		tag = "h3",
+		level = 3,
 		children,
 		...restProps
 	}: PrimitiveElementAttributes & {
-		tag?: HeadingLevel;
+		level?: CardHeadingLevel;
 	} = $props();
 </script>
 
-<svelte:element
-	this={tag}
+<div
+	role="heading"
+	aria-level={level}
 	bind:this={ref}
 	class={cn("font-semibold leading-none tracking-tight", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</svelte:element>
+</div>

@@ -1,19 +1,21 @@
 <script lang="ts">
-	import type { HTMLThAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveThAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLThAttributes;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveThAttributes = $props();
 </script>
 
 <th
+	bind:this={ref}
 	class={cn(
 		"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </th>

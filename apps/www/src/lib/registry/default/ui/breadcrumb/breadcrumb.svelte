@@ -1,15 +1,14 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
+	import type { PrimitiveElementAttributes } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLElement> & {
-		el?: HTMLElement;
-	};
-
-	export let el: $$Props["el"] = undefined;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveElementAttributes = $props();
 </script>
 
-<nav class={className} bind:this={el} aria-label="breadcrumb" {...$$restProps}>
-	<slot />
+<nav bind:this={ref} class={className} aria-label="breadcrumb" {...restProps}>
+	{@render children?.()}
 </nav>

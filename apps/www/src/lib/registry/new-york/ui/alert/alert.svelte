@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Variant, alertVariants } from "./index.js";
+	import { type AlertVariant, alertVariants } from "./index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
 	let {
@@ -9,7 +9,7 @@
 		children,
 		...restProps
 	}: PrimitiveDivAttributes & {
-		variant?: Variant;
+		variant?: AlertVariant;
 	} = $props();
 </script>
 

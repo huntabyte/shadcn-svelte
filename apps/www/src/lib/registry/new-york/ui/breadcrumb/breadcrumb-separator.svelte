@@ -20,6 +20,6 @@
 	{#if children}
 		{@render children?.()}
 	{:else}
-		<ChevronRight tabindex="-1" />
+		<ChevronRight />
 	{/if}
 </li>

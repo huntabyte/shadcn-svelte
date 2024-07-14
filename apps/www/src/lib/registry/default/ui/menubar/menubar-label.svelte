@@ -2,18 +2,18 @@
 	import { Menubar as MenubarPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = MenubarPrimitive.LabelProps & {
+	let {
+		ref = $bindable(null),
+		class: className,
+		inset = undefined,
+		...restProps
+	}: MenubarPrimitive.LabelProps & {
 		inset?: boolean;
-	};
-
-	let className: $$Props["class"] = undefined;
-	export let inset: $$Props["inset"] = undefined;
-	export { className as class };
+	} = $props();
 </script>
 
 <MenubarPrimitive.Label
+	bind:ref
 	class={cn("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
-	{...$$restProps}
->
-	<slot />
-</MenubarPrimitive.Label>
+	{...restProps}
+/>

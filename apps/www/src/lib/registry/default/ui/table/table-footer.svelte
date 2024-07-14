@@ -1,13 +1,18 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveTableSectionAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLTableSectionElement>;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveTableSectionAttributes = $props();
 </script>
 
-<tfoot class={cn("bg-primary font-medium text-primary-foreground", className)} {...$$restProps}>
-	<slot />
+<tfoot
+	bind:this={ref}
+	class={cn("bg-primary font-medium text-primary-foreground", className)}
+	{...restProps}
+>
+	{@render children?.()}
 </tfoot>

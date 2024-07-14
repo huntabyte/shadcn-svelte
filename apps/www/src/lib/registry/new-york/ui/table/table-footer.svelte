@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { type PrimitiveTfootAttributes, cn } from "$lib/utils.js";
+	import { type PrimitiveTableSectionAttributes, cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveTfootAttributes = $props();
+	}: PrimitiveTableSectionAttributes = $props();
 </script>
 
 <tfoot
