@@ -79,7 +79,7 @@
 		"paneforge": "^0.0.2",
 		"svelte-headless-table": "^0.18.2",
 		"svelte-legos": "^0.2.2",
-		"svelte-local-storage-store": "^0.5.0",
+		"svelte-persisted-store": "^0.11.0",
 		"svelte-radix": "^1.1.0",
 		"svelte-sonner": "^0.3.19",
 		"sveltekit-superforms": "^2.11.0",
