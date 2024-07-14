@@ -3,13 +3,13 @@ import path from "node:path";
 import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
-import { Command, Option, OptionValues } from "commander";
+import { Command, type Option, type OptionValues } from "commander";
 import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
 import { error, handleError } from "../utils/errors.js";
-import { getRegistryBaseColor, getBaseColors, getStyles } from "../utils/registry";
+import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
@@ -33,19 +33,17 @@ export const init = new Command()
 	)
 	.option("-ts, --typescript", `use TypeScript`)
 	.addOption(
-		new Option('-s, --style <name>', 'the style').choices(
-			styles.map(style => style.name)
-		)
+		new Option("-s, --style <name>", "the style").choices(styles.map((style) => style.name))
 	)
 	.addOption(
-		new Option('-bc, --base-color <name>', 'the base color for the components').choices(
-			baseColors.map(color => color.name)
+		new Option("-bc, --base-color <name>", "the base color for the components").choices(
+			baseColors.map((color) => color.name)
 		)
 	)
-	.option('-gc, --global-css <path>', 'path to the global css file')
-	.option('-tc, --tailwind-config <path>', 'path to the tailwind config file')
-	.option('-ca, --component-alias <path>', 'import alias for components')
-	.option('-ua, --utils-alias <path>', 'import alias for utils')
+	.option("-gc, --global-css <path>", "path to the global css file")
+	.option("-tc, --tailwind-config <path>", "path to the tailwind config file")
+	.option("-ca, --component-alias <path>", "import alias for components")
+	.option("-ua, --utils-alias <path>", "import alias for utils")
 	.action(async (options) => {
 		intro();
 		const cwd = path.resolve(options.cwd);
@@ -76,7 +74,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	let typescript = options.typescript;
 
-	if (options.typescript == undefined) {
+	if (options.typescript === undefined) {
 		typescript = await p.confirm({
 			message: `Would you like to use ${highlight("TypeScript")}? ${color.gray("(recommended)")}`,
 			initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
@@ -102,9 +100,11 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// -- get style --
 
-	let style: string | symbol | undefined = styles.find(style => style.name == options.style)?.name;
+	let style: string | symbol | undefined = styles.find(
+		(style) => style.name === options.style
+	)?.name;
 
-	if (style == undefined) {
+	if (style === undefined) {
 		style = await p.select({
 			message: `Which ${highlight("style")} would you like to use?`,
 			initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
@@ -122,10 +122,12 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// -- get base color --
 
-	let tailwindBaseColor: string | symbol | undefined = baseColors.find(color => color.name == options.baseColor)?.name;
+	let tailwindBaseColor: string | symbol | undefined = baseColors.find(
+		(color) => color.name === options.baseColor
+	)?.name;
 
-	if (tailwindBaseColor == undefined) {
-		tailwindBaseColor = await  p.select({
+	if (tailwindBaseColor === undefined) {
+		tailwindBaseColor = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
 			initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 			options: baseColors.map((color) => ({
@@ -144,17 +146,15 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	let globalCss: string | undefined = options.globalCss;
 
-	if (globalCss == undefined || !existsSync(path.resolve(cwd, globalCss))) {
-		if (globalCss != undefined) {
-			throw error(`"${color.bold(globalCss)}" does not exist. Please enter a valid path.`)
+	if (globalCss === undefined || !existsSync(path.resolve(cwd, globalCss))) {
+		if (globalCss !== undefined) {
+			throw error(`"${color.bold(globalCss)}" does not exist. Please enter a valid path.`);
 		}
 
-		let promptResult = await p.text({
+		const promptResult = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
 			initialValue:
-				defaultConfig?.tailwind.css ??
-				detectedConfigs.cssPath ??
-				cliConfig.DEFAULT_TAILWIND_CSS,
+				defaultConfig?.tailwind.css ?? detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
 			placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
 			validate: (value) => {
 				if (value && existsSync(path.resolve(cwd, value))) {
@@ -171,17 +171,17 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 		globalCss = promptResult;
 	}
-	
+
 	// -- get tailwind config --
 
 	let tailwindConfig: string | undefined = options.tailwindConfig;
 
-	if (tailwindConfig == undefined || !existsSync(path.resolve(cwd, tailwindConfig))) {
-		if (tailwindConfig != undefined) {
-			throw error(`"${color.bold(tailwindConfig)}" does not exist. Please enter a valid path.`)
+	if (tailwindConfig === undefined || !existsSync(path.resolve(cwd, tailwindConfig))) {
+		if (tailwindConfig !== undefined) {
+			throw error(`"${color.bold(tailwindConfig)}" does not exist. Please enter a valid path.`);
 		}
 
-		let promptResult = await p.text({
+		const promptResult = await p.text({
 			message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
 			initialValue:
 				defaultConfig?.tailwind.config ??
@@ -206,16 +206,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// -- get component alias --
 
-	let componentAlias: string | undefined = options.componentAlias; 
+	let componentAlias: string | undefined = options.componentAlias;
 
 	const importAliasValidationResult = componentAlias ? validateImportAlias(componentAlias) : "";
 
-	if (componentAlias == undefined || typeof importAliasValidationResult == "string") {
-		if (componentAlias != undefined && typeof importAliasValidationResult == "string") {
-			throw error(importAliasValidationResult)
+	if (componentAlias === undefined || typeof importAliasValidationResult == "string") {
+		if (componentAlias !== undefined && typeof importAliasValidationResult == "string") {
+			throw error(importAliasValidationResult);
 		}
 
-		let promptResult = await p.text({
+		const promptResult = await p.text({
 			message: `Configure the import alias for ${highlight("components")}:`,
 			initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
 			placeholder: cliConfig.DEFAULT_COMPONENTS,
@@ -232,16 +232,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// -- get utils alias --
 
-	let utilsAlias: string | undefined = options.utilsAlias; 
+	let utilsAlias: string | undefined = options.utilsAlias;
 
 	const utilsAliasValidationResult = utilsAlias ? validateImportAlias(utilsAlias) : "";
 
-	if (utilsAlias == undefined || typeof utilsAliasValidationResult == "string") {
-		if (utilsAlias != undefined && typeof utilsAliasValidationResult == "string") {
-			throw error(utilsAliasValidationResult)
+	if (utilsAlias === undefined || typeof utilsAliasValidationResult == "string") {
+		if (utilsAlias !== undefined && typeof utilsAliasValidationResult == "string") {
+			throw error(utilsAliasValidationResult);
 		}
 
-		let promptResult = await p.text({
+		const promptResult = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
 			initialValue:
 				defaultConfig?.aliases.utils ??
@@ -262,7 +262,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
-		style: style,
+		style,
 		typescript,
 		tailwind: {
 			config: tailwindConfig,

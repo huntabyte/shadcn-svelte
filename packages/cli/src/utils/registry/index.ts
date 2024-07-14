@@ -50,14 +50,14 @@ export function getBaseColors() {
 export function getStyles() {
 	return [
 		{
-			"name": "default",
-			"label": "Default"
+			name: "default",
+			label: "Default",
 		},
 		{
-			"name": "new-york",
-			"label": "New York"
-		}
-	]
+			name: "new-york",
+			label: "New York",
+		},
+	];
 }
 
 export async function getRegistryBaseColor(baseColor: string) {
