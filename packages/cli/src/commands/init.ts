@@ -42,10 +42,10 @@ export const init = new Command()
 			baseColors.map(color => color.name)
 		)
 	)
-	.option('-gc, --global-css <path>', 'path to the global css file', "src/app.css")
-	.option('-tc, --tailwind-config <path>', 'path to the tailwind config file', "tailwind.config.[cjs|js|ts]")
-	.option('-ca, --component-alias <path>', 'import alias for components', "$lib/components")
-	.option('-ua, --utils-alias <path>', 'import alias for utils', "$lib/utils")
+	.option('-gc, --global-css <path>', 'path to the global css file')
+	.option('-tc, --tailwind-config <path>', 'path to the tailwind config file')
+	.option('-ca, --component-alias <path>', 'import alias for components')
+	.option('-ua, --utils-alias <path>', 'import alias for utils')
 	.action(async (options) => {
 		intro();
 		const cwd = path.resolve(options.cwd);
@@ -100,137 +100,178 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
 	};
 
-	const configOptions = await p.group(
-		{
-			style: () => {
-				if (options.style != undefined) return new Promise<string>((res) => {
-					res(styles.find(style => style.name == options.style)?.name ?? "")
-				});
+	// -- get style --
 
-				return p.select({
-					message: `Which ${highlight("style")} would you like to use?`,
-					initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
-					options: styles.map((style) => ({
-						label: style.label,
-						value: style.name,
-					})),
-				});
-			},
-			tailwindBaseColor: () => {
-				if (options.baseColor != undefined) return new Promise<string>((res) => {
-					res(baseColors.find(color => color.name == options.baseColor)?.name ?? "")
-				});
+	let style: string | symbol | undefined = styles.find(style => style.name == options.style)?.name;
 
-				return p.select({
-					message: `Which ${highlight("base color")} would you like to use?`,
-					initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
-					options: baseColors.map((color) => ({
-						label: color.label,
-						value: color.name,
-					})),
-				});
-			},
-			globalCss: () => {
-				if (options.globalCss != undefined) {
-					if (existsSync(path.resolve(cwd, options.globalCss))) {
-						return options.globalCss;
-					}
-					// if invalid just ask again
-				}
+	if (style == undefined) {
+		style = await p.select({
+			message: `Which ${highlight("style")} would you like to use?`,
+			initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
+			options: styles.map((style) => ({
+				label: style.label,
+				value: style.name,
+			})),
+		});
+	}
 
-				p.text({
-					message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
-					initialValue:
-						defaultConfig?.tailwind.css ??
-						detectedConfigs.cssPath ??
-						cliConfig.DEFAULT_TAILWIND_CSS,
-					placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
-					validate: (value) => {
-						if (value && existsSync(path.resolve(cwd, value))) {
-							return;
-						}
-						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
-					},
-				});
-			},
-			tailwindConfig: () => {
-				if (options.tailwindConfig != undefined) {
-					if (existsSync(path.resolve(cwd, options.tailwindConfig))) {
-						return options.tailwindConfig;
-					}
-					// if invalid just ask again
-				}
+	if (p.isCancel(style)) {
+		p.cancel("Operation cancelled.");
+		process.exit(0);
+	}
 
-				p.text({
-					message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
-					initialValue:
-						defaultConfig?.tailwind.config ??
-						detectedConfigs.tailwindPath ??
-						cliConfig.DEFAULT_TAILWIND_CONFIG,
-					placeholder: detectedConfigs.tailwindPath ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
-					validate: (value) => {
-						if (value && existsSync(path.resolve(cwd, value))) {
-							return;
-						}
-						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
-					},
-				});
-			},
-			components: () => {
-				if (options.componentAlias != undefined) {
-					if (validateImportAlias(options.componentAlias) == undefined) {
-						return options.componentAlias;
-					}
-					// if invalid just ask again
-				}
+	// -- get base color --
 
-				p.text({
-					message: `Configure the import alias for ${highlight("components")}:`,
-					initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
-					placeholder: cliConfig.DEFAULT_COMPONENTS,
-					validate: validateImportAlias,
-				});
-			},
-			utils: ({ results: { components } }) => {
-				if (options.utilsAlias != undefined) {
-					if (validateImportAlias(options.utilsAlias) == undefined) {
-						return options.utilsAlias;
-					}
-					// if invalid just ask again
-				}
+	let tailwindBaseColor: string | symbol | undefined = baseColors.find(color => color.name == options.baseColor)?.name;
 
-				p.text({
-					message: `Configure the import alias for ${highlight("utils")}:`,
-					initialValue:
-						defaultConfig?.aliases.utils ??
-						// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
-						`${components?.split("/").slice(0, -1).join("/")}/utils` ??
-						cliConfig.DEFAULT_UTILS,
-					placeholder: cliConfig.DEFAULT_UTILS,
-					validate: validateImportAlias,
-				});
-			},
-		},
-		{
-			onCancel: () => {
-				p.cancel("Operation cancelled.");
-				process.exit(0);
-			},
+	if (tailwindBaseColor == undefined) {
+		tailwindBaseColor = await  p.select({
+			message: `Which ${highlight("base color")} would you like to use?`,
+			initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
+			options: baseColors.map((color) => ({
+				label: color.label,
+				value: color.name,
+			})),
+		});
+	}
+
+	if (p.isCancel(tailwindBaseColor)) {
+		p.cancel("Operation cancelled.");
+		process.exit(0);
+	}
+
+	// -- get global css file --
+
+	let globalCss: string | undefined = options.globalCss;
+
+	if (globalCss == undefined || !existsSync(path.resolve(cwd, globalCss))) {
+		if (globalCss != undefined) {
+			throw error(`"${color.bold(globalCss)}" does not exist. Please enter a valid path.`)
 		}
-	);
+
+		let promptResult = await p.text({
+			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
+			initialValue:
+				defaultConfig?.tailwind.css ??
+				detectedConfigs.cssPath ??
+				cliConfig.DEFAULT_TAILWIND_CSS,
+			placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
+			validate: (value) => {
+				if (value && existsSync(path.resolve(cwd, value))) {
+					return;
+				}
+				return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
+			},
+		});
+
+		if (p.isCancel(promptResult)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		globalCss = promptResult;
+	}
+	
+	// -- get tailwind config --
+
+	let tailwindConfig: string | undefined = options.tailwindConfig;
+
+	if (tailwindConfig == undefined || !existsSync(path.resolve(cwd, tailwindConfig))) {
+		if (tailwindConfig != undefined) {
+			throw error(`"${color.bold(tailwindConfig)}" does not exist. Please enter a valid path.`)
+		}
+
+		let promptResult = await p.text({
+			message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
+			initialValue:
+				defaultConfig?.tailwind.config ??
+				detectedConfigs.tailwindPath ??
+				cliConfig.DEFAULT_TAILWIND_CONFIG,
+			placeholder: detectedConfigs.tailwindPath ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
+			validate: (value) => {
+				if (value && existsSync(path.resolve(cwd, value))) {
+					return;
+				}
+				return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
+			},
+		});
+
+		if (p.isCancel(promptResult)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		tailwindConfig = promptResult;
+	}
+
+	// -- get component alias --
+
+	let componentAlias: string | undefined = options.componentAlias; 
+
+	const importAliasValidationResult = componentAlias ? validateImportAlias(componentAlias) : "";
+
+	if (componentAlias == undefined || typeof importAliasValidationResult == "string") {
+		if (componentAlias != undefined && typeof importAliasValidationResult == "string") {
+			throw error(importAliasValidationResult)
+		}
+
+		let promptResult = await p.text({
+			message: `Configure the import alias for ${highlight("components")}:`,
+			initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
+			placeholder: cliConfig.DEFAULT_COMPONENTS,
+			validate: validateImportAlias,
+		});
+
+		if (p.isCancel(promptResult)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		componentAlias = promptResult;
+	}
+
+	// -- get utils alias --
+
+	let utilsAlias: string | undefined = options.utilsAlias; 
+
+	const utilsAliasValidationResult = utilsAlias ? validateImportAlias(utilsAlias) : "";
+
+	if (utilsAlias == undefined || typeof utilsAliasValidationResult == "string") {
+		if (utilsAlias != undefined && typeof utilsAliasValidationResult == "string") {
+			throw error(utilsAliasValidationResult)
+		}
+
+		let promptResult = await p.text({
+			message: `Configure the import alias for ${highlight("utils")}:`,
+			initialValue:
+				defaultConfig?.aliases.utils ??
+				// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
+				`${componentAlias?.split("/").slice(0, -1).join("/")}/utils` ??
+				cliConfig.DEFAULT_UTILS,
+			placeholder: cliConfig.DEFAULT_UTILS,
+			validate: validateImportAlias,
+		});
+
+		if (p.isCancel(promptResult)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		utilsAlias = promptResult;
+	}
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
-		style: configOptions.style,
+		style: style,
 		typescript,
 		tailwind: {
-			config: configOptions.tailwindConfig,
-			css: configOptions.globalCss,
-			baseColor: configOptions.tailwindBaseColor,
+			config: tailwindConfig,
+			css: globalCss,
+			baseColor: tailwindBaseColor,
 		},
 		aliases: {
-			utils: configOptions.utils,
-			components: configOptions.components,
+			utils: utilsAlias,
+			components: componentAlias,
 		},
 	});
 
