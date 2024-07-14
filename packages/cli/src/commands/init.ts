@@ -31,7 +31,7 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.option("-ts, --typescript", "Use TypeScript")
+	.option("-ts, --typescript", `use TypeScript`)
 	.addOption(
 		new Option('-s, --style <name>', 'the style').choices(
 			styles.map(style => style.name)
