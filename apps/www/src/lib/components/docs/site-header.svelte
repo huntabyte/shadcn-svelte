@@ -29,7 +29,7 @@
 								size: "sm",
 								variant: "ghost",
 							}),
-							"w-9 px-0"
+							"h-8 w-8 px-0"
 						)}
 					>
 						<Icons.gitHub class="h-4 w-4" />
@@ -43,7 +43,7 @@
 								size: "sm",
 								variant: "ghost",
 							}),
-							"w-9 px-0"
+							"h-8 w-8 px-0"
 						)}
 					>
 						<Icons.twitter class="h-3 w-3 fill-current" />
