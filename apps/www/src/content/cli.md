@@ -33,7 +33,7 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <cwd>                the working directory. defaults to the current directory. (default: "E:\\github\\shadcn-svelte\\packages\\cli")
+  -c, --cwd <cwd>                the working directory. defaults to the current directory.
   -ts, --typescript              use TypeScript
   -s, --style <name>             the style (choices: "default", "new-york")
   -bc, --base-color <name>       the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
