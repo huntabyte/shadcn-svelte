@@ -3,13 +3,13 @@ import path from "node:path";
 import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
-import { Command } from "commander";
+import { Command, Option } from "commander";
 import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { getPackageManager } from "../utils/get-package-manager.js";
 import { error, handleError } from "../utils/errors.js";
-import { getRegistryBaseColor, getRegistryBaseColors, getRegistryStyles } from "../utils/registry";
+import { getRegistryBaseColor, getBaseColors, getStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
@@ -20,6 +20,9 @@ import { detectConfigs } from "../utils/auto-detect.js";
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
+const baseColors = getBaseColors();
+const styles = getStyles();
+
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
@@ -28,6 +31,21 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
+	.option("--ts", "Use TypeScript")
+	.addOption(
+		new Option('-s, --style <name>', 'the style').choices(
+			styles.map(style => style.name)
+		)
+	)
+	.addOption(
+		new Option('-bc, --base-color <name>', 'the base color for the components').choices(
+			baseColors.map(color => color.name)
+		)
+	)
+	.option('-gc, --global-css <path>', 'path to the global css file', "src/app.css")
+	.option('-tc, --tailwind-config <path>', 'path to the tailwind config file', "tailwind.config.[cjs|js|ts]")
+	.option('-ca, --component-alias <path>', 'import alias for components', "$lib/components")
+	.option('-ua, --utils-alias <path>', 'import alias for utils', "$lib/utils")
 	.action(async (options) => {
 		intro();
 		const cwd = path.resolve(options.cwd);
@@ -54,8 +72,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
-	const styles = await getRegistryStyles();
-	const baseColors = await getRegistryBaseColors();
 	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
 	const typescript = await p.confirm({

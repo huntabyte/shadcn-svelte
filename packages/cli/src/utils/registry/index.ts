@@ -22,17 +22,7 @@ export async function getRegistryIndex() {
 	}
 }
 
-export async function getRegistryStyles() {
-	try {
-		const [result] = await fetchRegistry(["styles/index.json"]);
-
-		return v.parse(schemas.stylesSchema, result);
-	} catch (e) {
-		throw error(`Failed to fetch styles from registry.`);
-	}
-}
-
-export async function getRegistryBaseColors() {
+export function getBaseColors() {
 	return [
 		{
 			name: "slate",
@@ -55,6 +45,19 @@ export async function getRegistryBaseColors() {
 			label: "Stone",
 		},
 	];
+}
+
+export function getStyles() {
+	return [
+		{
+			"name": "default",
+			"label": "Default"
+		},
+		{
+			"name": "new-york",
+			"label": "New York"
+		}
+	]
 }
 
 export async function getRegistryBaseColor(baseColor: string) {
