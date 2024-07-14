@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
-import { Command, Option } from "commander";
+import { Command, Option, OptionValues } from "commander";
 import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
@@ -31,7 +31,7 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.option("--ts", "Use TypeScript")
+	.option("-ts, --typescript", "Use TypeScript")
 	.addOption(
 		new Option('-s, --style <name>', 'the style').choices(
 			styles.map(style => style.name)
@@ -58,7 +58,7 @@ export const init = new Command()
 
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);
-			const config = await promptForConfig(cwd, existingConfig);
+			const config = await promptForConfig(cwd, existingConfig, options);
 
 			await runInit(cwd, config);
 
@@ -68,19 +68,23 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null, options: OptionValues) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
 	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
-	const typescript = await p.confirm({
-		message: `Would you like to use ${highlight("TypeScript")}? ${color.gray("(recommended)")}`,
-		initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
-	});
-	if (p.isCancel(typescript)) {
-		p.cancel("Operation cancelled.");
-		process.exit(0);
+	let typescript = options.typescript;
+
+	if (options.typescript == undefined) {
+		typescript = await p.confirm({
+			message: `Would you like to use ${highlight("TypeScript")}? ${color.gray("(recommended)")}`,
+			initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
+		});
+		if (p.isCancel(typescript)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
 	}
 
 	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
@@ -96,27 +100,44 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
 	};
 
-	const options = await p.group(
+	const configOptions = await p.group(
 		{
-			style: () =>
-				p.select({
+			style: () => {
+				if (options.style != undefined) return new Promise<string>((res) => {
+					res(styles.find(style => style.name == options.style)?.name ?? "")
+				});
+
+				return p.select({
 					message: `Which ${highlight("style")} would you like to use?`,
 					initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
 					options: styles.map((style) => ({
 						label: style.label,
 						value: style.name,
 					})),
-				}),
-			tailwindBaseColor: () =>
-				p.select({
+				});
+			},
+			tailwindBaseColor: () => {
+				if (options.baseColor != undefined) return new Promise<string>((res) => {
+					res(baseColors.find(color => color.name == options.baseColor)?.name ?? "")
+				});
+
+				return p.select({
 					message: `Which ${highlight("base color")} would you like to use?`,
 					initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 					options: baseColors.map((color) => ({
 						label: color.label,
 						value: color.name,
 					})),
-				}),
-			tailwindCss: () =>
+				});
+			},
+			globalCss: () => {
+				if (options.globalCss != undefined) {
+					if (existsSync(path.resolve(cwd, options.globalCss))) {
+						return options.globalCss;
+					}
+					// if invalid just ask again
+				}
+
 				p.text({
 					message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
 					initialValue:
@@ -130,8 +151,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
-				}),
-			tailwindConfig: () =>
+				});
+			},
+			tailwindConfig: () => {
+				if (options.tailwindConfig != undefined) {
+					if (existsSync(path.resolve(cwd, options.tailwindConfig))) {
+						return options.tailwindConfig;
+					}
+					// if invalid just ask again
+				}
+
 				p.text({
 					message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
 					initialValue:
@@ -145,15 +174,31 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 						}
 						return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
 					},
-				}),
-			components: () =>
+				});
+			},
+			components: () => {
+				if (options.componentAlias != undefined) {
+					if (validateImportAlias(options.componentAlias) == undefined) {
+						return options.componentAlias;
+					}
+					// if invalid just ask again
+				}
+
 				p.text({
 					message: `Configure the import alias for ${highlight("components")}:`,
 					initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
 					placeholder: cliConfig.DEFAULT_COMPONENTS,
 					validate: validateImportAlias,
-				}),
-			utils: ({ results: { components } }) =>
+				});
+			},
+			utils: ({ results: { components } }) => {
+				if (options.utilsAlias != undefined) {
+					if (validateImportAlias(options.utilsAlias) == undefined) {
+						return options.utilsAlias;
+					}
+					// if invalid just ask again
+				}
+
 				p.text({
 					message: `Configure the import alias for ${highlight("utils")}:`,
 					initialValue:
@@ -163,7 +208,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 						cliConfig.DEFAULT_UTILS,
 					placeholder: cliConfig.DEFAULT_UTILS,
 					validate: validateImportAlias,
-				}),
+				});
+			},
 		},
 		{
 			onCancel: () => {
@@ -175,16 +221,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null) {
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
-		style: options.style,
+		style: configOptions.style,
 		typescript,
 		tailwind: {
-			config: options.tailwindConfig,
-			css: options.tailwindCss,
-			baseColor: options.tailwindBaseColor,
+			config: configOptions.tailwindConfig,
+			css: configOptions.globalCss,
+			baseColor: configOptions.tailwindBaseColor,
 		},
 		aliases: {
-			utils: options.utils,
-			components: options.components,
+			utils: configOptions.utils,
+			components: configOptions.components,
 		},
 	});
 
