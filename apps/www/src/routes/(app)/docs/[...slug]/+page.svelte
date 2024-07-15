@@ -43,7 +43,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Component Source
-						<Code class="h-3.5 w-3.5" />
+						<Code class="size-3.5" />
 					</a>
 				{/if}
 				{#if doc.bits}

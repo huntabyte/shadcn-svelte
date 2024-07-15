@@ -248,7 +248,7 @@
 									size="sm"
 									class="h-8 gap-1"
 								>
-									<ListFilter class="h-3.5 w-3.5" />
+									<ListFilter class="size-3.5" />
 									<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
 										Filter
 									</span>
@@ -265,13 +265,13 @@
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 						<Button size="sm" variant="outline" class="h-8 gap-1">
-							<File class="h-3.5 w-3.5" />
+							<File class="size-3.5" />
 							<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
 								Export
 							</span>
 						</Button>
 						<Button size="sm" class="h-8 gap-1">
-							<CirclePlus class="h-3.5 w-3.5" />
+							<CirclePlus class="size-3.5" />
 							<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
 								Add Product
 							</span>

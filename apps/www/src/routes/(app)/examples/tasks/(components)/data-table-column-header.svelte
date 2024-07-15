@@ -76,16 +76,16 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
 				<DropdownMenu.Item on:click={handleAscSort}>
-					<ArrowUp class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+					<ArrowUp class="mr-2 size-3.5 text-muted-foreground/70" />
 					Asc
 				</DropdownMenu.Item>
 				<DropdownMenu.Item on:click={handleDescSort}>
-					<ArrowDown class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+					<ArrowDown class="mr-2 size-3.5 text-muted-foreground/70" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item on:click={handleHide}>
-					<EyeNone class="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+					<EyeNone class="mr-2 size-3.5 text-muted-foreground/70" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

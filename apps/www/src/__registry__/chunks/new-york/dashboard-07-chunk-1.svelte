@@ -88,7 +88,7 @@
 	</Card.Content>
 	<Card.Footer class="justify-center border-t p-4">
 		<Button size="sm" variant="ghost" class="gap-1">
-			<CirclePlus class="h-3.5 w-3.5" />
+			<CirclePlus class="size-3.5" />
 			Add Variant
 		</Button>
 	</Card.Footer>
