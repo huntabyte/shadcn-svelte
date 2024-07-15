@@ -1,33 +1,32 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { WithoutChildren } from "bits-ui";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { styles } from "$lib/registry/styles.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveButtonAttributes, cn } from "$lib/utils.js";
 
-	let styleLabel = styles.filter((s) => s.name === $config.style)[0].label;
-	let selected = { value: $config.style, label: styleLabel };
-	let className: string | undefined | null = undefined;
+	let {
+		class: className,
+		...restProps
+	}: WithoutChildren<Omit<PrimitiveButtonAttributes, "disabled" | "style" | "id">> = $props();
 
-	type $$Props = HTMLButtonAttributes;
+	const styleLabel = $derived(styles.filter((s) => s.name === $config.style)[0].label);
 
-	export { className as class };
+	let value = $state($config.style);
 
-	$: config.update((prev) => ({ ...prev, style: selected.value }));
-	$: styleLabel = styles.filter((s) => s.name === $config.style)[0].label;
+	$effect(() => {
+		config.update((prev) => ({ ...prev, style: value }));
+	});
 </script>
 
-<Select.Root bind:selected>
-	<Select.Trigger
-		class={cn("h-7 w-[145px] text-xs [&_svg]:h-4 [&_svg]:w-4", className)}
-		{...$$restProps}
-	>
+<Select.Root bind:value>
+	<Select.Trigger class={cn("h-7 w-[145px] text-xs [&_svg]:size-4", className)} {...restProps}>
 		<span class="text-muted-foreground">Style: </span>
 		{styleLabel}
 	</Select.Trigger>
 	<Select.Content>
 		{#each styles as style}
-			<Select.Item value={style.name} label={style.label} class="text-xs">
+			<Select.Item value={style.name} textValue={style.label} class="text-xs">
 				{style.label}
 			</Select.Item>
 		{/each}

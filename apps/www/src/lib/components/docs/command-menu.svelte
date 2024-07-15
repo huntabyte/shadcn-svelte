@@ -4,7 +4,7 @@
 	import Laptop from "svelte-radix/Laptop.svelte";
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-	import { onMount } from "svelte";
+	import { type ComponentProps, onMount } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -12,7 +12,9 @@
 	import { docsConfig } from "$lib/config/docs.js";
 	import { goto } from "$app/navigation";
 
-	let open = false;
+	let restProps: ComponentProps<typeof Button> = $props();
+
+	let open = $state(false);
 
 	onMount(() => {
 		function handleKeydown(e: KeyboardEvent) {
@@ -42,8 +44,8 @@
 	class={cn(
 		"relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
 	)}
-	on:click={() => (open = true)}
-	{...$$restProps}
+	onclick={() => (open = true)}
+	{...restProps}
 >
 	<span class="hidden lg:inline-flex"> Search documentation... </span>
 	<span class="inline-flex lg:hidden">Search...</span>

@@ -1,19 +1,28 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import { CopyButton, StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 
-	let codeString: string;
+	let {
+		class: className,
+		align = "center",
+		children,
+		example,
+		...restProps
+	}: PrimitiveDivAttributes & {
+		align?: "start" | "center" | "end";
+		example?: Snippet;
+	} = $props();
+
+	let codeString = $state("");
 
 	function copyCodeToClipboard(node: HTMLElement) {
 		codeString = node.innerText ?? "";
 	}
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let align: "start" | "center" | "end" = "center";
 </script>
 
-<div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...$$restProps}>
+<div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...restProps}>
 	<Tabs.Root value="preview" class="relative mr-auto w-full">
 		<div class="flex items-center justify-between pb-3">
 			<Tabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
@@ -43,7 +52,7 @@
 						"items-end": align === "end",
 					})}
 				>
-					<slot name="example" />
+					{@render example?.()}
 				</div>
 			</ThemeWrapper>
 		</Tabs.Content>
@@ -53,7 +62,7 @@
 				class="w-full rounded-md [&_button]:hidden [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
 				use:copyCodeToClipboard
 			>
-				<slot />
+				{@render children?.()}
 			</div>
 		</Tabs.Content>
 	</Tabs.Root>

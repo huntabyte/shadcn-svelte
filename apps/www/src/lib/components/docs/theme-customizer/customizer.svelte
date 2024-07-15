@@ -27,7 +27,7 @@
 			variant="ghost"
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
-			on:click={() => {
+			onclick={() => {
 				$config.radius = 0.5;
 				$config.theme = "zinc";
 			}}
@@ -73,7 +73,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "default")}
+					onclick={() => ($config.style = "default")}
 					class={cn($config.style === "default" && "border-2 border-primary")}
 				>
 					Default
@@ -81,7 +81,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "new-york")}
+					onclick={() => ($config.style = "new-york")}
 					class={cn($config.style === "new-york" && "border-2 border-primary")}
 				>
 					New York
@@ -96,7 +96,7 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-2 border-primary")}
@@ -122,7 +122,7 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.radius = valueFloat;
 						}}
 						class={cn($config.radius === valueFloat && "border-2 border-primary")}
@@ -138,7 +138,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("light")}
+					onclick={() => setMode("light")}
 					class={cn($mode === "light" && "border-2 border-primary")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
@@ -147,7 +147,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("dark")}
+					onclick={() => setMode("dark")}
 					class={cn($mode === "dark" && "border-2 border-primary")}
 				>
 					<Moon class="mr-1 -translate-x-1" />

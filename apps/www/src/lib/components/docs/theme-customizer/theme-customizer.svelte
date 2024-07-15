@@ -10,7 +10,7 @@
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";
 	import { cn } from "$lib/utils.js";
-	import Button from "$lib/registry/new-york/ui/button/button.svelte";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	const colors = ["zinc", "rose", "blue", "green", "orange"];
 </script>
@@ -22,35 +22,33 @@
 			{@const isActive = $config.theme === color}
 			{#if theme}
 				<Tooltip.Root>
-					<Tooltip.Trigger asChild let:builder>
-						<button
-							{...builder}
-							use:builder.action
-							on:click={() => {
-								config.update((prev) => ({
-									...prev,
-									theme: theme.name,
-								}));
-							}}
+					<Tooltip.Trigger
+						style={{
+							"--theme-primary": `hsl(${
+								theme?.activeColor[$mode === "dark" ? "dark" : "light"]
+							}`,
+						}}
+						class={cn(
+							"flex size-9 items-center justify-center rounded-full border-2 text-xs",
+							isActive ? "border-[--theme-primary]" : "border-transparent"
+						)}
+						onclick={() => {
+							config.update((prev) => ({
+								...prev,
+								theme: theme.name,
+							}));
+						}}
+					>
+						<span
 							class={cn(
-								"flex size-9 items-center justify-center rounded-full border-2 text-xs",
-								isActive ? "border-[--theme-primary]" : "border-transparent"
+								"flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
 							)}
-							style="--theme-primary: hsl({theme?.activeColor[
-								$mode === 'dark' ? 'dark' : 'light'
-							]}"
 						>
-							<span
-								class={cn(
-									"flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
-								)}
-							>
-								{#if isActive}
-									<Check class="size-4 text-white" />
-								{/if}
-							</span>
-							<span class="sr-only">{theme.label}</span>
-						</button>
+							{#if isActive}
+								<Check class="size-4 text-white" />
+							{/if}
+						</span>
+						<span class="sr-only">{theme.label}</span>
 					</Tooltip.Trigger>
 					<Tooltip.Content
 						align="center"
@@ -64,11 +62,9 @@
 	</div>
 	<div class="block md:hidden">
 		<Drawer.Root>
-			<Drawer.Trigger asChild let:builder>
-				<Button variant="outline" builders={[builder]}>
-					<Paintbrush class="mr-2 size-4" />
-					Customize
-				</Button>
+			<Drawer.Trigger class={cn(buttonVariants({ variant: "outline" }))}>
+				<Paintbrush class="mr-2 size-4" />
+				Customize
 			</Drawer.Trigger>
 			<Drawer.Content class="bg-white p-6 dark:bg-zinc-950">
 				<Customizer />
@@ -77,11 +73,9 @@
 	</div>
 	<div class="hidden md:block">
 		<Popover.Root>
-			<Popover.Trigger asChild let:builder>
-				<Button variant="outline" builders={[builder]}>
-					<Paintbrush class="mr-2 size-4" />
-					Customize
-				</Button>
+			<Popover.Trigger class={cn(buttonVariants({ variant: "outline" }))}>
+				<Paintbrush class="mr-2 size-4" />
+				Customize
 			</Popover.Trigger>
 			<Popover.Content
 				class="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"

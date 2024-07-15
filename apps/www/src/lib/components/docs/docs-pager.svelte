@@ -5,8 +5,6 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
-	let pager: ReturnType<typeof getPagerForDoc>;
-
 	function getPagerForDoc(slug: string) {
 		const flattenedLinks = [null, ...flatten(docsConfig.sidebarNav), null];
 		let activeIndex: number;
@@ -33,7 +31,7 @@
 			.filter((link) => !link?.disabled);
 	}
 
-	$: pager = getPagerForDoc($page.params.slug);
+	const pager = $derived(getPagerForDoc($page.params.slug));
 </script>
 
 <div class="flex flex-row items-center justify-between">

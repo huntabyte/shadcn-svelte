@@ -1,15 +1,18 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Clipboard from "svelte-radix/Clipboard.svelte";
-	import type { HTMLButtonAttributes } from "svelte/elements";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import type { TooltipTriggerProps } from "bits-ui";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		code,
+		disabled = false,
 		...restProps
-	}: HTMLButtonAttributes & {
+	}: TooltipTriggerProps & {
 		code: string;
+		disabled?: boolean;
 	} = $props();
 
 	let hasCopied = $state(false);
@@ -40,27 +43,27 @@
 </script>
 
 <Tooltip.Root>
-	<Tooltip.Trigger>
-		{#snippet child({ props })}
-			<Button
-				size="icon"
-				variant="outline"
-				class="size-7 rounded-[6px] [&_svg]:size-3.5"
-				on:click={() => {
-					copyToClipboard();
-					hasCopied = true;
-				}}
-				{...props}
-				{...restProps}
-			>
-				<span class="sr-only">Copy</span>
-				{#if hasCopied}
-					<Check />
-				{:else}
-					<Clipboard />
-				{/if}
-			</Button>
-		{/snippet}
+	<Tooltip.Trigger
+		class={cn(
+			buttonVariants({
+				variant: "outline",
+				size: "icon",
+				class: "size-7 rounded-[6px] [&_svg]:size-3.5",
+			})
+		)}
+		onclick={() => {
+			copyToClipboard();
+			hasCopied = true;
+		}}
+		{disabled}
+		{...restProps}
+	>
+		<span class="sr-only">Copy</span>
+		{#if hasCopied}
+			<Check />
+		{:else}
+			<Clipboard />
+		{/if}
 	</Tooltip.Trigger>
 	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
 </Tooltip.Root>

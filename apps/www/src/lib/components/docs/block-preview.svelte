@@ -10,7 +10,6 @@
 	import { cn, getLiftMode } from "$lib/utils.js";
 
 	let isLoading = $state(true);
-
 	let resizablePaneRef = $state<PaneAPI>() as PaneAPI;
 
 	let { block }: { block: Block } = $props();

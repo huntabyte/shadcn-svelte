@@ -1,18 +1,24 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/new-york/ui/collapsible/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let expandButtonTitle = "View Code";
-	let open = false;
+	let {
+		class: className,
+		expandButtonTitle = "View Code",
+		children,
+		...restProps
+	}: PrimitiveDivAttributes & {
+		expandButtonTitle?: string;
+	} = $props();
+
+	let open = $state(false);
 </script>
 
 <Collapsible.Root bind:open>
-	<div class={cn("relative overflow-hidden", className)} {...$$restProps}>
+	<div class={cn("relative overflow-hidden", className)} {...restProps}>
 		<div class={cn("h-full overflow-hidden", !open && "max-h-32")}>
-			<slot />
+			{@render children?.()}
 		</div>
 		<div
 			class={cn(
@@ -26,10 +32,10 @@
 					open ? "inset-x-0 bottom-0 h-12" : "inset-0"
 				)}
 			>
-				<Collapsible.Trigger asChild let:builder>
-					<Button variant="secondary" builders={[builder]} class="h-8 text-xs">
-						{open ? "Collapse" : expandButtonTitle}
-					</Button>
+				<Collapsible.Trigger
+					class={cn(buttonVariants({ variant: "secondary", class: "h-8 text-xs" }))}
+				>
+					{open ? "Collapse" : expandButtonTitle}
 				</Collapsible.Trigger>
 			</div>
 		</div>

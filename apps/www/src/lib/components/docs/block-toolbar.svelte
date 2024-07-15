@@ -17,8 +17,7 @@
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import type { Block } from "$lib/registry/schema.js";
 
-	export let block: Block;
-	export let resizablePaneRef: PaneAPI;
+	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: PaneAPI } = $props();
 
 	const { isLiftMode, toggleLiftMode } = getLiftMode(block.name);
 </script>

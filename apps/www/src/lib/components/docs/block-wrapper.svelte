@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	import { cubicOut } from "svelte/easing";
-	import { tick } from "svelte";
+	import { type Snippet, tick } from "svelte";
 	import { getLiftMode, isBrowser } from "$lib/utils.js";
 	import type { RawBlock } from "$lib/blocks.js";
 
-	export let block: RawBlock;
+	let { block, children }: { block: RawBlock; children: Snippet } = $props();
 
 	const { isLiftMode } = getLiftMode(block.name);
 
@@ -74,10 +74,12 @@
 		});
 	}
 
-	$: updateChunkStyles($isLiftMode);
+	$effect(() => {
+		updateChunkStyles($isLiftMode);
+	});
 </script>
 
-<slot />
+{@render children?.()}
 {#if $isLiftMode}
 	<div
 		class="absolute inset-0 z-30 bg-background/90"
