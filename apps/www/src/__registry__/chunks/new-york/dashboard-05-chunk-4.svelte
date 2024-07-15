@@ -24,7 +24,7 @@
 				<Button
 					size="icon"
 					variant="outline"
-					class="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
+					class="size-6 opacity-0 transition-opacity group-hover:opacity-100"
 				>
 					<Copy class="h-3 w-3" />
 					<span class="sr-only">Copy Order ID</span>
@@ -157,13 +157,13 @@
 		<Pagination.Root count={10} class="ml-auto mr-0 w-auto">
 			<Pagination.Content>
 				<Pagination.Item>
-					<Button size="icon" variant="outline" class="h-6 w-6">
+					<Button size="icon" variant="outline" class="size-6">
 						<ChevronLeft class="size-3.5" />
 						<span class="sr-only">Previous Order</span>
 					</Button>
 				</Pagination.Item>
 				<Pagination.Item>
-					<Button size="icon" variant="outline" class="h-6 w-6">
+					<Button size="icon" variant="outline" class="size-6">
 						<ChevronRight class="size-3.5" />
 						<span class="sr-only">Next Order</span>
 					</Button>

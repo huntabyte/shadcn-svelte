@@ -23,7 +23,7 @@
 		<div class="flex h-full max-h-screen flex-col gap-2">
 			<div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
 				<a href="/" class="flex items-center gap-2 font-semibold">
-					<Package2 class="h-6 w-6" />
+					<Package2 class="size-6" />
 					<span class="">Acme Inc</span>
 				</a>
 				<Button variant="outline" size="icon" class="ml-auto h-8 w-8">
@@ -47,7 +47,7 @@
 						<ShoppingCart class="size-4" />
 						Orders
 						<Badge
-							class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+							class="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full"
 						>
 							6
 						</Badge>
@@ -110,7 +110,7 @@
 				<Sheet.Content side="left" class="flex flex-col">
 					<nav class="grid gap-2 text-lg font-medium">
 						<a href="##" class="flex items-center gap-2 text-lg font-semibold">
-							<Package2 class="h-6 w-6" />
+							<Package2 class="size-6" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
@@ -127,7 +127,7 @@
 							<ShoppingCart class="size-5" />
 							Orders
 							<Badge
-								class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+								class="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full"
 							>
 								6
 							</Badge>

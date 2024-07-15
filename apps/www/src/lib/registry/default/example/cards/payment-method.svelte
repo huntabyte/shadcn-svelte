@@ -43,7 +43,7 @@
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="2"
-					class="mb-3 h-6 w-6"
+					class="mb-3 size-6"
 				>
 					<rect width="20" height="14" x="2" y="5" rx="2" />
 					<path d="M2 10h20" />
@@ -55,7 +55,7 @@
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
-				<Icons.paypal class="mb-3 h-6 w-6" />
+				<Icons.paypal class="mb-3 size-6" />
 				Paypal
 			</Label>
 			<Label
@@ -63,7 +63,7 @@
 				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
-				<Icons.apple class="mb-3 h-6 w-6" />
+				<Icons.apple class="mb-3 size-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>

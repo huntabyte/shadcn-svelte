@@ -42,7 +42,7 @@
 						>
 							<span
 								class={cn(
-									"flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+									"flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
 								)}
 							>
 								{#if isActive}
