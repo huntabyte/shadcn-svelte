@@ -3,7 +3,7 @@
 	import Circle from "lucide-svelte/icons/circle";
 	import Plus from "lucide-svelte/icons/plus";
 	import Star from "lucide-svelte/icons/star";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import { Separator } from "$lib/registry/default/ui/separator/index.js";
@@ -24,10 +24,10 @@
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-						<ChevronDown class="size-4 text-secondary-foreground" />
-					</Button>
+				<DropdownMenu.Trigger
+					class={buttonVariants({ variant: "secondary", class: "px-2 shadow-none" })}
+				>
+					<ChevronDown class="size-4 text-secondary-foreground" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>

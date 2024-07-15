@@ -31,6 +31,7 @@
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
+	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
@@ -65,12 +66,13 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+	const triggerId = useId();
 </script>
 
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
-		<Popover.Root bind:open let:ids>
-			<Form.Control let:attrs>
+		<Popover.Root bind:open>
+			<Form.Control let:attrs id={triggerId}>
 				<Form.Label>Language</Form.Label>
 				<Popover.Trigger
 					class={cn(
@@ -97,7 +99,7 @@
 								value={language.label}
 								onSelect={() => {
 									$formData.language = language.value;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{language.label}

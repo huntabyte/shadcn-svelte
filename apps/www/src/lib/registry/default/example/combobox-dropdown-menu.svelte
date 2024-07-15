@@ -5,9 +5,10 @@
 	import Trash from "lucide-svelte/icons/trash";
 	import User from "lucide-svelte/icons/user";
 	import { tick } from "svelte";
+	import { useId } from "bits-ui";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	const labels = [
 		"feature",
@@ -19,8 +20,8 @@
 		"maintenance",
 	];
 
-	let open = false;
-	let selectedLabel = "feature";
+	let open = $state(false);
+	let selectedLabel = $state("feature");
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -31,6 +32,8 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+
+	let triggerId = useId();
 </script>
 
 <div
@@ -42,11 +45,13 @@
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
-	<DropdownMenu.Root bind:open let:ids>
-		<DropdownMenu.Trigger asChild let:builder>
-			<Button builders={[builder]} variant="ghost" size="sm" aria-label="Open menu">
-				<Ellipsis />
-			</Button>
+	<DropdownMenu.Root bind:open>
+		<DropdownMenu.Trigger
+			id={triggerId}
+			class={buttonVariants({ variant: "ghost", size: "sm" })}
+			aria-label="Open menu"
+		>
+			<Ellipsis />
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
@@ -76,7 +81,7 @@
 											value={label}
 											onSelect={(value) => {
 												selectedLabel = value;
-												closeAndFocusTrigger(ids.trigger);
+												closeAndFocusTrigger(triggerId);
 											}}
 										>
 											{label}

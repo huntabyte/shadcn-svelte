@@ -70,14 +70,15 @@
 								</p>
 							</div>
 						</div>
-						<Select.Root selected={person.permission}>
+						<Select.Root value={person.permission.value}>
 							<Select.Trigger class="ml-auto w-[110px]">
 								<Select.Value placeholder="Select" />
 							</Select.Trigger>
 							<Select.Content>
 								{#each permissions as permission}
-									<Select.Item value={permission.value} label={permission.label}
-										>{permission.label}</Select.Item
+									<Select.Item
+										value={permission.value}
+										textValue={permission.label}>{permission.label}</Select.Item
 									>
 								{/each}
 							</Select.Content>

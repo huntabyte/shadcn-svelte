@@ -5,10 +5,11 @@
 	import CircleHelp from "lucide-svelte/icons/circle-help";
 	import CircleX from "lucide-svelte/icons/circle-x";
 	import { type ComponentType, tick } from "svelte";
+	import { useId } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	type Status = {
 		value: string;
@@ -44,10 +45,10 @@
 		},
 	];
 
-	let open = false;
-	let value = "";
+	let open = $state(false);
+	let value = $state("");
 
-	$: selectedStatus = statuses.find((s) => s.value === value) ?? null;
+	const selectedStatus = $derived(statuses.find((s) => s.value === value));
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -58,25 +59,26 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+	const triggerId = useId();
 </script>
 
 <div class="flex items-center space-x-4">
 	<p class="text-sm text-muted-foreground">Status</p>
-	<Popover.Root bind:open let:ids>
-		<Popover.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="outline"
-				size="sm"
-				class="w-[150px] justify-start"
-			>
-				{#if selectedStatus}
-					<svelte:component this={selectedStatus.icon} class="mr-2 size-4 shrink-0" />
-					{selectedStatus.label}
-				{:else}
-					+ Set status
-				{/if}
-			</Button>
+	<Popover.Root bind:open>
+		<Popover.Trigger
+			id={triggerId}
+			class={buttonVariants({
+				variant: "outline",
+				size: "sm",
+				class: "w-[150px] justify-start",
+			})}
+		>
+			{#if selectedStatus}
+				<svelte:component this={selectedStatus.icon} class="mr-2 size-4 shrink-0" />
+				{selectedStatus.label}
+			{:else}
+				+ Set status
+			{/if}
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0" side="right" align="start">
 			<Command.Root>
@@ -89,7 +91,7 @@
 								value={status.value}
 								onSelect={(currentValue) => {
 									value = currentValue;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								<svelte:component

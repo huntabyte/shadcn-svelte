@@ -50,11 +50,13 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined;
+	let value = $state<DateValue | undefined>();
 
-	$: value = $formData.dob ? parseDate($formData.dob) : undefined;
+	$effect(() => {
+		value = $formData.dob ? parseDate($formData.dob) : undefined;
+	});
 
-	let placeholder: DateValue = today(getLocalTimeZone());
+	let placeholder = $state<DateValue>(today(getLocalTimeZone()));
 </script>
 
 <form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
@@ -75,12 +77,12 @@
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" side="top">
 					<Calendar
-						{value}
+						type="single"
+						value={value as DateValue}
 						bind:placeholder
 						minValue={new CalendarDate(1900, 1, 1)}
 						maxValue={today(getLocalTimeZone())}
 						calendarLabel="Date of birth"
-						initialFocus
 						onValueChange={(v) => {
 							if (v) {
 								$formData.dob = v.toString();

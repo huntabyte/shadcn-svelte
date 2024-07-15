@@ -1,11 +1,11 @@
 <script lang="ts">
 	import * as AlertDialog from "$lib/registry/default/ui/alert-dialog/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 </script>
 
 <AlertDialog.Root>
-	<AlertDialog.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Show Dialog</Button>
+	<AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}>
+		Show Dialog
 	</AlertDialog.Trigger>
 	<AlertDialog.Content>
 		<AlertDialog.Header>

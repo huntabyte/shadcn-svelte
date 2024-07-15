@@ -2,9 +2,10 @@
 	import Check from "lucide-svelte/icons/check";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
+	import { useId } from "bits-ui";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
 	const frameworks = [
@@ -30,10 +31,10 @@
 		},
 	];
 
-	let open = false;
-	let value = "";
+	let open = $state(false);
+	let value = $state("");
 
-	$: selectedValue = frameworks.find((f) => f.value === value)?.label ?? "Select a framework...";
+	const selectedValue = $derived(frameworks.find((f) => f.value === value)?.label);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -44,20 +45,19 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+
+	const triggerId = useId()
 </script>
 
-<Popover.Root bind:open let:ids>
-	<Popover.Trigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="w-[200px] justify-between"
-		>
-			{selectedValue}
-			<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
-		</Button>
+<Popover.Root bind:open>
+	<Popover.Trigger
+		id={triggerId}
+		role="combobox"
+		aria-expanded={open}
+		class={buttonVariants({ variant: "outline", class: "w-[200px] justify-between" })}
+	>
+		{selectedValue}
+		<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0">
 		<Command.Root>
@@ -69,7 +69,7 @@
 						value={framework.value}
 						onSelect={(currentValue) => {
 							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
+							closeAndFocusTrigger(triggerId);
 						}}
 					>
 						<Check

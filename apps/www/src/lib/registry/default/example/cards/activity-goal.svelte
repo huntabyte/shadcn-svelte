@@ -5,7 +5,7 @@
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";
 
-	let goal = 350;
+	let goal = $state(350);
 	function updateGoal(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
@@ -22,7 +22,7 @@
 				variant="outline"
 				size="icon"
 				class="size-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(-10)}
+				onclick={() => updateGoal(-10)}
 				disabled={goal <= 200}
 			>
 				<Minus class="size-4" />
@@ -37,7 +37,7 @@
 				variant="outline"
 				size="icon"
 				class="size-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(10)}
+				onclick={() => updateGoal(10)}
 				disabled={goal >= 400}
 			>
 				<Plus class="size-4" />
