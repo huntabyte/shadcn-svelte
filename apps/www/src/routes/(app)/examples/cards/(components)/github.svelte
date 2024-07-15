@@ -21,7 +21,7 @@
 		</div>
 		<div class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
 			<Button variant="secondary" class="px-3 shadow-none">
-				<Star class="mr-2 size-4" />
+				<Star class="mr-2 h-4 w-4" />
 				Star
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
