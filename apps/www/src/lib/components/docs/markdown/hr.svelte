@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, ...restProps }: PrimitiveElementAttributes = $props();
 </script>
 
-<hr class={cn("my-4 md:my-8", className)} {...$$restProps} />
+<hr class={cn("my-4 md:my-8", className)} {...restProps} />

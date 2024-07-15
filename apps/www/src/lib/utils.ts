@@ -11,6 +11,7 @@ import type {
 	HTMLAnchorAttributes,
 	HTMLAttributes,
 	HTMLButtonAttributes,
+	HTMLImgAttributes,
 	HTMLInputAttributes,
 	HTMLLabelAttributes,
 	HTMLLiAttributes,
@@ -277,3 +278,4 @@ export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
 export type PrimitiveTableSectionAttributes = WithElementRef<
 	HTMLAttributes<HTMLTableSectionElement>
 >;
+export type PrimitiveImgAttributes = WithElementRef<HTMLImgAttributes>;

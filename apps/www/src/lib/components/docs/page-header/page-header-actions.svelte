@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	let { class: className, children, ...restProps }: PrimitiveDivAttributes = $props();
 </script>
 
-<div class={cn("flex w-full items-center justify-center space-x-4 py-4 md:pb-10", className)}>
-	<slot />
+<div
+	class={cn("flex w-full items-center justify-center space-x-4 py-4 md:pb-10", className)}
+	{...restProps}
+>
+	{@render children?.()}
 </div>

@@ -3,7 +3,9 @@
 	import { page } from "$app/stores";
 	import { examples } from "$lib/config/docs.js";
 
-	$: example = examples.find((example) => $page.url.pathname.startsWith(example.href));
+	const example = $derived(
+		examples.find((example) => $page.url.pathname.startsWith(example.href))
+	);
 </script>
 
 {#if example?.code}

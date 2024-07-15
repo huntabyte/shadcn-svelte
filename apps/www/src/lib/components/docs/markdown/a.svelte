@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let href: string;
-	$: internal = href.startsWith("/") || href.startsWith("#");
+	let { class: className, children, href, ...restProps }: PrimitiveAnchorAttributes = $props();
 
-	$: rel = !internal ? "noopener noreferrer" : undefined;
-	$: target = !internal ? "_blank" : undefined;
+	const internal = $derived(href?.startsWith("/") || href?.startsWith("#"));
+	const rel = $derived(!internal ? "noopener noreferrer" : undefined);
+	const target = $derived(!internal ? "_blank" : undefined);
 </script>
 
 <a
@@ -15,7 +13,7 @@
 	{target}
 	{rel}
 	class={cn("font-medium underline underline-offset-4", className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </a>

@@ -3,7 +3,7 @@
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils.js";
 
-	export let items: SidebarNavItem[] = [];
+	let { items }: { items: SidebarNavItem[] } = $props();
 </script>
 
 {#if items.length}

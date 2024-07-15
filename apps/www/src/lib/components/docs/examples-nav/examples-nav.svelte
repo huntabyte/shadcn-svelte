@@ -4,11 +4,10 @@
 	import ExampleCodeLink from "./example-code-link.svelte";
 	import { page } from "$app/stores";
 	import { examples } from "$lib/config/docs.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, ...restProps }: PrimitiveElementAttributes = $props();
 
 	const [send, receive] = crossfade({
 		duration: 250,
@@ -21,7 +20,7 @@
 		<ScrollArea orientation="both" scrollbarXClasses="invisible">
 			<div
 				class={cn("mb-4 flex items-center overflow-y-auto pb-3 md:pb-0", className)}
-				{...$$restProps}
+				{...restProps}
 			>
 				{#each examples as example, index (index)}
 					{@const isActive =
@@ -41,7 +40,7 @@
 								class="absolute inset-0 rounded-full bg-muted"
 								in:send={{ key: "activetab" }}
 								out:receive={{ key: "activetab" }}
-							/>
+							></div>
 						{/if}
 						<div class="relative">
 							{example.name}

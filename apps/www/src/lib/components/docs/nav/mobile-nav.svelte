@@ -2,24 +2,26 @@
 	import { Icons } from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
 	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 	import { siteConfig } from "$lib/config/site.js";
+	import { cn } from "$lib/utils.js";
 
-	let open = false;
+	let open = $state(false);
 </script>
 
 <Sheet.Root bind:open>
-	<Sheet.Trigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			variant="ghost"
-			class="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
-		>
-			<Icons.Hamburger class="size-5" />
-			<span class="sr-only">Toggle Menu</span>
-		</Button>
+	<Sheet.Trigger
+		class={cn(
+			buttonVariants({
+				variant: "ghost",
+				class: "mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden",
+			})
+		)}
+	>
+		<Icons.Hamburger class="size-5" />
+		<span class="sr-only">Toggle Menu</span>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center" bind:open>
