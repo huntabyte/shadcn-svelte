@@ -208,9 +208,9 @@ importers:
       svelte-legos:
         specifier: ^0.2.2
         version: 0.2.2(svelte@4.2.12)
-      svelte-local-storage-store:
-        specifier: ^0.5.0
-        version: 0.5.0(svelte@4.2.12)
+      svelte-persisted-store:
+        specifier: ^0.11.0
+        version: 0.11.0(svelte@4.2.12)
       svelte-radix:
         specifier: ^1.1.0
         version: 1.1.0(svelte@4.2.12)
@@ -8409,11 +8409,11 @@ packages:
       svelte: 4.2.12
     dev: false
 
-  /svelte-local-storage-store@0.5.0(svelte@4.2.12):
-    resolution: {integrity: sha512-SEDrpapeia6fUqta+r1NvSLlJYPkZ4pBcl15EYIOSPNzy6vhpoXu8cnzUDmZxsWl7fZGAHxrVH9UyZCbyO4W+g==}
+  /svelte-persisted-store@0.11.0(svelte@4.2.12):
+    resolution: {integrity: sha512-9RgJ5DrawGyyfK22A80cfu8Jose3CV8YjEZKz9Tn94rQ0tWyEmYr+XI+wrVF6wjRbW99JMDSVcFRiM3XzVJj/w==}
     engines: {node: '>=0.14'}
     peerDependencies:
-      svelte: ^3.48.0 || ^4.0.0
+      svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
     dependencies:
       svelte: 4.2.12
     dev: false

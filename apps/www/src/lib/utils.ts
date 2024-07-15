@@ -5,7 +5,7 @@ import { derived, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
-import { persisted } from "svelte-local-storage-store";
+import { persisted } from "svelte-persisted-store";
 import type { DocResolver } from "$lib/types/docs.js";
 
 export function cn(...inputs: ClassValue[]) {
