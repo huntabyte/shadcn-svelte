@@ -138,7 +138,7 @@
 					<nav class="grid gap-6 text-lg font-medium">
 						<a
 							href="##"
-							class="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+							class="group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
 						>
 							<Package2 class="size-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>

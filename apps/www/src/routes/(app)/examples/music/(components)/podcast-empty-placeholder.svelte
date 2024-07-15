@@ -14,7 +14,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"
 			stroke-width="2"
-			class="h-10 w-10 text-muted-foreground"
+			class="size-10 text-muted-foreground"
 			viewBox="0 0 24 24"
 		>
 			<circle cx="12" cy="11" r="1" />

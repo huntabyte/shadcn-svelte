@@ -15,7 +15,7 @@
 		},
 		{
 			"name": "avatar.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tclass={cn(\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tclass={cn(\"relative flex size-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "index.ts",
