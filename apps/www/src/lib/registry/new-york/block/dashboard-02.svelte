@@ -103,7 +103,7 @@
 						class="shrink-0 md:hidden"
 						builders={[builder]}
 					>
-						<Menu class="h-5 w-5" />
+						<Menu class="size-5" />
 						<span class="sr-only">Toggle navigation menu</span>
 					</Button>
 				</Sheet.Trigger>
@@ -117,14 +117,14 @@
 							href="##"
 							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
 						>
-							<Home class="h-5 w-5" />
+							<Home class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
 							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
 						>
-							<ShoppingCart class="h-5 w-5" />
+							<ShoppingCart class="size-5" />
 							Orders
 							<Badge
 								class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
@@ -136,21 +136,21 @@
 							href="##"
 							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
 						>
-							<Package class="h-5 w-5" />
+							<Package class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
 							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
 						>
-							<Users class="h-5 w-5" />
+							<Users class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
 							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
 						>
-							<LineChart class="h-5 w-5" />
+							<LineChart class="size-5" />
 							Analytics
 						</a>
 					</nav>
@@ -190,7 +190,7 @@
 						size="icon"
 						class="rounded-full"
 					>
-						<CircleUser class="h-5 w-5" />
+						<CircleUser class="size-5" />
 						<span class="sr-only">Toggle user menu</span>
 					</Button>
 				</DropdownMenu.Trigger>

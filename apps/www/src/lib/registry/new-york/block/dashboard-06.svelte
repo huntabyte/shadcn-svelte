@@ -43,7 +43,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<Home class="h-5 w-5" />
+						<Home class="size-5" />
 						<span class="sr-only">Dashboard</span>
 					</a>
 				</Tooltip.Trigger>
@@ -57,7 +57,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<ShoppingCart class="h-5 w-5" />
+						<ShoppingCart class="size-5" />
 						<span class="sr-only">Orders</span>
 					</a>
 				</Tooltip.Trigger>
@@ -71,7 +71,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<Package class="h-5 w-5" />
+						<Package class="size-5" />
 						<span class="sr-only">Products</span>
 					</a>
 				</Tooltip.Trigger>
@@ -85,7 +85,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<UsersRound class="h-5 w-5" />
+						<UsersRound class="size-5" />
 						<span class="sr-only">Customers</span>
 					</a>
 				</Tooltip.Trigger>
@@ -99,7 +99,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<LineChart class="h-5 w-5" />
+						<LineChart class="size-5" />
 						<span class="sr-only">Analytics</span>
 					</a>
 				</Tooltip.Trigger>
@@ -115,7 +115,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<Settings class="h-5 w-5" />
+						<Settings class="size-5" />
 						<span class="sr-only">Settings</span>
 					</a>
 				</Tooltip.Trigger>
@@ -130,7 +130,7 @@
 			<Sheet.Root>
 				<Sheet.Trigger asChild let:builder>
 					<Button builders={[builder]} size="icon" variant="outline" class="sm:hidden">
-						<PanelLeft class="h-5 w-5" />
+						<PanelLeft class="size-5" />
 						<span class="sr-only">Toggle Menu</span>
 					</Button>
 				</Sheet.Trigger>
@@ -140,39 +140,39 @@
 							href="##"
 							class="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
 						>
-							<Package2 class="h-5 w-5 transition-all group-hover:scale-110" />
+							<Package2 class="size-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
 							href="##"
 							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 						>
-							<Home class="h-5 w-5" />
+							<Home class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
 							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 						>
-							<ShoppingCart class="h-5 w-5" />
+							<ShoppingCart class="size-5" />
 							Orders
 						</a>
 						<a href="##" class="flex items-center gap-4 px-2.5 text-foreground">
-							<Package class="h-5 w-5" />
+							<Package class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
 							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 						>
-							<UsersRound class="h-5 w-5" />
+							<UsersRound class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
 							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 						>
-							<LineChart class="h-5 w-5" />
+							<LineChart class="size-5" />
 							Settings
 						</a>
 					</nav>

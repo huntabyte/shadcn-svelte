@@ -67,7 +67,7 @@
 				aria-label="Select a team"
 				class={cn("w-[200px] justify-between", className)}
 			>
-				<Avatar.Root class="mr-2 h-5 w-5">
+				<Avatar.Root class="mr-2 size-5">
 					<Avatar.Image
 						src="https://avatar.vercel.sh/${selectedTeam.value}.png"
 						alt={selectedTeam.label}
@@ -95,7 +95,7 @@
 									value={team.label}
 									class="text-sm"
 								>
-									<Avatar.Root class="mr-2 h-5 w-5">
+									<Avatar.Root class="mr-2 size-5">
 										<Avatar.Image
 											src="https://avatar.vercel.sh/${team.value}.png"
 											alt={team.label}
@@ -124,7 +124,7 @@
 								showTeamDialog = true;
 							}}
 						>
-							<PlusCircled class="mr-2 h-5 w-5" />
+							<PlusCircled class="mr-2 size-5" />
 							Create Team
 						</Command.Item>
 					</Command.Group>

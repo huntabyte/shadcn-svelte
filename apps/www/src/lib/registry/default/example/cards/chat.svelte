@@ -181,7 +181,7 @@
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<Check class="ml-auto flex h-5 w-5 text-primary" />
+								<Check class="ml-auto flex size-5 text-primary" />
 							{/if}
 						</Command.Item>
 					{/each}

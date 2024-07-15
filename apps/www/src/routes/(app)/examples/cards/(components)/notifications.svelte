@@ -14,7 +14,7 @@
 		<div
 			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
 		>
-			<Bell class="mt-px h-5 w-5" />
+			<Bell class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Everything</p>
 				<p class="text-sm text-muted-foreground">Email digest, mentions & all activity.</p>
@@ -23,7 +23,7 @@
 		<div
 			class="-mx-2 flex items-start space-x-4 rounded-md bg-accent p-2 text-accent-foreground transition-all"
 		>
-			<Person class="mt-px h-5 w-5" />
+			<Person class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
 				<p class="text-sm text-muted-foreground">Only mentions and comments.</p>
@@ -32,7 +32,7 @@
 		<div
 			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
 		>
-			<EyeNone class="mt-px h-5 w-5" />
+			<EyeNone class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
 				<p class="text-sm text-muted-foreground">Turn off all notifications.</p>

@@ -45,7 +45,7 @@
 					class="shrink-0 md:hidden"
 					builders={[builder]}
 				>
-					<Menu class="h-5 w-5" />
+					<Menu class="size-5" />
 					<span class="sr-only">Toggle navigation menu</span>
 				</Button>
 			</Sheet.Trigger>
@@ -82,7 +82,7 @@
 						size="icon"
 						class="rounded-full"
 					>
-						<CircleUser class="h-5 w-5" />
+						<CircleUser class="size-5" />
 						<span class="sr-only">Toggle user menu</span>
 					</Button>
 				</DropdownMenu.Trigger>
