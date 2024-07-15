@@ -14,7 +14,7 @@
 		<Button
 			variant="ghost"
 			builders={[builder]}
-			class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+			class="flex size-8 p-0 data-[state=open]:bg-muted"
 		>
 			<DotsHorizontal class="size-4" />
 			<span class="sr-only">Open Menu</span>

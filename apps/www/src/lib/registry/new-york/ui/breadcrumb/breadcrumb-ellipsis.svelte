@@ -13,7 +13,7 @@
 	bind:this={ref}
 	role="presentation"
 	aria-hidden="true"
-	class={cn("flex h-9 w-9 items-center justify-center", className)}
+	class={cn("flex size-9 items-center justify-center", className)}
 	{...restProps}
 >
 	<DotsHorizontal class="size-4 outline-none" tabindex="-1" />

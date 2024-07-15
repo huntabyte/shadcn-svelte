@@ -7,7 +7,7 @@
 	"files": [
 		{
 			"name": "breadcrumb-ellipsis.svelte",
-			"content": "<script lang=\"ts\">\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\timport type { WithoutChildren } from \"bits-ui\";\n\timport { type PrimitiveSpanAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<PrimitiveSpanAttributes> = $props();\n\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
+			"content": "<script lang=\"ts\">\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\timport type { WithoutChildren } from \"bits-ui\";\n\timport { type PrimitiveSpanAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<PrimitiveSpanAttributes> = $props();\n\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-item.svelte",

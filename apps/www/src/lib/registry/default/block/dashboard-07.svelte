@@ -32,7 +32,7 @@
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a
 				href="##"
-				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+				class="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
 			>
 				<Package2 class="size-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
@@ -41,7 +41,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -55,7 +55,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -69,7 +69,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -83,7 +83,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -97,7 +97,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -113,7 +113,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>

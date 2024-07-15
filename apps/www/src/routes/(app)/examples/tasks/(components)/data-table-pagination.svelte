@@ -46,7 +46,7 @@
 		<div class="flex items-center space-x-2">
 			<Button
 				variant="outline"
-				class="hidden h-8 w-8 p-0 lg:flex"
+				class="hidden size-8 p-0 lg:flex"
 				on:click={() => ($pageIndex = 0)}
 				disabled={!$hasPreviousPage}
 			>
@@ -55,7 +55,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="h-8 w-8 p-0"
+				class="size-8 p-0"
 				on:click={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}
 			>
@@ -64,7 +64,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="h-8 w-8 p-0"
+				class="size-8 p-0"
 				disabled={!$hasNextPage}
 				on:click={() => ($pageIndex = $pageIndex + 1)}
 			>
@@ -73,7 +73,7 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="hidden h-8 w-8 p-0 lg:flex"
+				class="hidden size-8 p-0 lg:flex"
 				disabled={!$hasNextPage}
 				on:click={() => ($pageIndex = Math.ceil($rows.length / $pageRows.length) - 1)}
 			>

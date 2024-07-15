@@ -8,7 +8,7 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} class="p- relative h-8 w-8">
+		<Button variant="ghost" builders={[builder]} class="p- relative size-8">
 			<span class="sr-only">Open menu</span>
 			<DotsHorizontal class="size-4" />
 		</Button>

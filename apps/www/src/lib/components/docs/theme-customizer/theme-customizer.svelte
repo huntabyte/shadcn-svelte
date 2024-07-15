@@ -33,7 +33,7 @@
 								}));
 							}}
 							class={cn(
-								"flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
+								"flex size-9 items-center justify-center rounded-full border-2 text-xs",
 								isActive ? "border-[--theme-primary]" : "border-transparent"
 							)}
 							style="--theme-primary: hsl({theme?.activeColor[
