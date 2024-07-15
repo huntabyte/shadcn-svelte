@@ -9,7 +9,7 @@
 		<h4 class="text-sm font-semibold">@huntabyte starred 3 repositories</h4>
 		<Collapsible.Trigger asChild let:builder>
 			<Button builders={[builder]} variant="ghost" size="sm" class="w-9 p-0">
-				<CaretSort class="h-4 w-4" />
+				<CaretSort class="size-4" />
 				<span class="sr-only">Toggle</span>
 			</Button>
 		</Collapsible.Trigger>

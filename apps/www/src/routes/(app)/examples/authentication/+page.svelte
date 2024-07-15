@@ -6,8 +6,10 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={AuthenticationLight} alt="Authentication" class="block dark:hidden" />
-	<enhanced:img src={AuthenticationDark} alt="Authentication" class="hidden dark:block" />
+	<enhanced:img src={AuthenticationLight} alt="Authentication" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src={AuthenticationDark} alt="Authentication" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div
 	class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
@@ -25,7 +27,7 @@
 			style="
 				background-image:
 					url(https://images.unsplash.com/photo-1590069261209-f8e9b8642343?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80);"
-		/>
+		></div>
 		<div class="relative z-20 flex items-center text-lg font-medium">
 			<!-- <Command class="mr-2 h-6 w-6" /> -->
 			Acme Inc

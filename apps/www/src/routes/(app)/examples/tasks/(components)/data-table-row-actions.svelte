@@ -16,7 +16,7 @@
 			builders={[builder]}
 			class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
 		>
-			<DotsHorizontal class="h-4 w-4" />
+			<DotsHorizontal class="size-4" />
 			<span class="sr-only">Open Menu</span>
 		</Button>
 	</DropdownMenu.Trigger>

@@ -4,5 +4,5 @@
 </script>
 
 <Toggle aria-label="toggle bold">
-	<FontBold class="h-4 w-4" />
+	<FontBold class="size-4" />
 </Toggle>

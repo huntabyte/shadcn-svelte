@@ -17,7 +17,7 @@
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.PrevButton>
-					<ChevronLeft class="h-4 w-4" />
+					<ChevronLeft class="size-4" />
 					<span class="hidden sm:block">Previous</span>
 				</Pagination.PrevButton>
 			</Pagination.Item>
@@ -37,7 +37,7 @@
 			<Pagination.Item>
 				<Pagination.NextButton>
 					<span class="hidden sm:block">Next</span>
-					<ChevronRight class="h-4 w-4" />
+					<ChevronRight class="size-4" />
 				</Pagination.NextButton>
 			</Pagination.Item>
 		</Pagination.Content>

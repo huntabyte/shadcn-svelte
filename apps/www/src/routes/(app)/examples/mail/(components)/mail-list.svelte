@@ -36,7 +36,7 @@
 						<div class="flex items-center gap-2">
 							<div class="font-semibold">{item.name}</div>
 							{#if !item.read}
-								<span class="flex h-2 w-2 rounded-full bg-blue-600" />
+								<span class="flex size-2 rounded-full bg-blue-600"></span>
 							{/if}
 						</div>
 						<div

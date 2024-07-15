@@ -28,7 +28,7 @@
 >
 	<span class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
 		<SelectPrimitive.ItemIndicator>
-			<Check class="h-4 w-4" />
+			<Check class="size-4" />
 		</SelectPrimitive.ItemIndicator>
 	</span>
 	<slot>

@@ -35,9 +35,9 @@
 						class="absolute right-4 top-4 bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground"
 					>
 						{#if $copied}
-							<Check class="mr-2 h-4 w-4" />
+							<Check class="mr-2 size-4" />
 						{:else}
-							<Copy class="mr-2 h-4 w-4" />
+							<Copy class="mr-2 size-4" />
 						{/if}
 						Copy
 					</Button>

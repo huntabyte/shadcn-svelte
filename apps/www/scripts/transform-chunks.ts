@@ -3,7 +3,9 @@ import { walk } from "estree-walker";
 import prettier from "@prettier/sync";
 import { codeBlockPrettierConfig } from "../other/code-block-prettier.js";
 
+// eslint-disable-next-line ts/no-explicit-any
 type Attribute = any;
+// eslint-disable-next-line ts/no-explicit-any
 type TemplateNode = any;
 
 type Chunk = {
@@ -19,6 +21,7 @@ export function getChunks(source: string, filename: string) {
 	const ast = parse(source, { filename });
 	const chunks: Chunk[] = [];
 
+	// eslint-disable-next-line ts/no-explicit-any
 	walk(ast as any, {
 		enter(n) {
 			const chunkNode = n as TemplateNode;
@@ -41,6 +44,7 @@ export function getChunks(source: string, filename: string) {
 			dependencies.add(componentName);
 
 			// walk the chunk to acquire all component dependencies
+			// eslint-disable-next-line ts/no-explicit-any
 			walk(chunkNode as any, {
 				enter(n) {
 					const node = n as TemplateNode;

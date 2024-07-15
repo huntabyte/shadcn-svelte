@@ -38,7 +38,7 @@
 		<div>
 			{#each notifications as notification, idx (idx)}
 				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-					<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+					<span class="flex size-4 translate-y-1 rounded-full bg-sky-500" />
 					<div class="space-y-1">
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
@@ -53,7 +53,7 @@
 	</Card.Content>
 	<Card.Footer>
 		<Button class="w-full">
-			<Check class="mr-2 h-4 w-4" /> Mark all as read
+			<Check class="mr-2 size-4" /> Mark all as read
 		</Button>
 	</Card.Footer>
 </Card.Root>

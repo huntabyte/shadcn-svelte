@@ -4,5 +4,5 @@
 </script>
 
 <Toggle aria-label="Toggle underline" disabled>
-	<Underline class="h-4 w-4" />
+	<Underline class="size-4" />
 </Toggle>

@@ -10,7 +10,7 @@
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="ghost" builders={[builder]} class="p- relative h-8 w-8">
 			<span class="sr-only">Open menu</span>
-			<DotsHorizontal class="h-4 w-4" />
+			<DotsHorizontal class="size-4" />
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>

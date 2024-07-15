@@ -34,7 +34,7 @@
 				href="##"
 				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
 			>
-				<Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
+				<Package2 class="size-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<Tooltip.Root>
@@ -196,7 +196,7 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 			<div class="relative ml-auto flex-1 md:grow-0">
-				<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+				<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
 				<Input
 					type="search"
 					placeholder="Search..."
@@ -234,7 +234,7 @@
 			<div class="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
 				<div class="flex items-center gap-4">
 					<Button variant="outline" size="icon" class="h-7 w-7">
-						<ChevronLeft class="h-4 w-4" />
+						<ChevronLeft class="size-4" />
 						<span class="sr-only">Back</span>
 					</Button>
 					<h1
@@ -519,7 +519,7 @@
 										<button
 											class="flex aspect-square w-full items-center justify-center rounded-md border border-dashed"
 										>
-											<Upload class="h-4 w-4 text-muted-foreground" />
+											<Upload class="size-4 text-muted-foreground" />
 											<span class="sr-only">Upload</span>
 										</button>
 									</div>

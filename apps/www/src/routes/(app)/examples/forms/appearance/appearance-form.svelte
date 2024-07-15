@@ -79,13 +79,13 @@
 							<div
 								class="flex items-center space-x-2 rounded-md bg-white p-2 shadow-sm"
 							>
-								<div class="h-4 w-4 rounded-full bg-[#ecedef]" />
+								<div class="size-4 rounded-full bg-[#ecedef]" />
 								<div class="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
 							</div>
 							<div
 								class="flex items-center space-x-2 rounded-md bg-white p-2 shadow-sm"
 							>
-								<div class="h-4 w-4 rounded-full bg-[#ecedef]" />
+								<div class="size-4 rounded-full bg-[#ecedef]" />
 								<div class="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
 							</div>
 						</div>
@@ -107,13 +107,13 @@
 							<div
 								class="flex items-center space-x-2 rounded-md bg-slate-800 p-2 shadow-sm"
 							>
-								<div class="h-4 w-4 rounded-full bg-slate-400" />
+								<div class="size-4 rounded-full bg-slate-400" />
 								<div class="h-2 w-[100px] rounded-lg bg-slate-400" />
 							</div>
 							<div
 								class="flex items-center space-x-2 rounded-md bg-slate-800 p-2 shadow-sm"
 							>
-								<div class="h-4 w-4 rounded-full bg-slate-400" />
+								<div class="size-4 rounded-full bg-slate-400" />
 								<div class="h-2 w-[100px] rounded-lg bg-slate-400" />
 							</div>
 						</div>

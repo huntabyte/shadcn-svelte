@@ -66,7 +66,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+					<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
 					<Input
 						type="search"
 						placeholder="Search products..."

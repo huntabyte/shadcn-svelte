@@ -66,7 +66,7 @@
 							navItem.href && goto(navItem.href);
 						})}
 				>
-					<File class="mr-2 h-4 w-4" />
+					<File class="mr-2 size-4" />
 					{navItem.title}
 				</Command.Item>
 			{/each}
@@ -81,7 +81,7 @@
 								navItem.href && goto(navItem.href);
 							})}
 					>
-						<div class="mr-2 flex h-4 w-4 items-center justify-center">
+						<div class="mr-2 flex size-4 items-center justify-center">
 							<Circle class="h-3 w-3" />
 						</div>
 						{navItem.title}
@@ -92,15 +92,15 @@
 		<Command.Separator />
 		<Command.Group heading="Theme">
 			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
-				<Sun class="mr-2 h-4 w-4" />
+				<Sun class="mr-2 size-4" />
 				Light
 			</Command.Item>
 			<Command.Item value="dark" onSelect={() => runCommand(() => setMode("dark"))}>
-				<Moon class="mr-2 h-4 w-4" />
+				<Moon class="mr-2 size-4" />
 				Dark
 			</Command.Item>
 			<Command.Item value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Laptop class="mr-2 h-4 w-4" />
+				<Laptop class="mr-2 size-4" />
 				System
 			</Command.Item>
 		</Command.Group>

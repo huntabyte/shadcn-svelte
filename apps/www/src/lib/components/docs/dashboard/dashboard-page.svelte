@@ -41,7 +41,7 @@
 			<div class="flex items-center space-x-2">
 				<DatePickerWithRange />
 				<Button size="sm">
-					<Download class="mr-2 h-4 w-4" />
+					<Download class="mr-2 size-4" />
 					Download
 				</Button>
 			</div>
@@ -60,7 +60,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-							<DollarSign class="h-4 w-4 text-muted-foreground" />
+							<DollarSign class="size-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">$45,231.89</div>
@@ -72,7 +72,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-							<Users class="h-4 w-4 text-muted-foreground" />
+							<Users class="size-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+2350</div>
@@ -84,7 +84,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Sales</Card.Title>
-							<CreditCard class="h-4 w-4 text-muted-foreground" />
+							<CreditCard class="size-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+12,234</div>
@@ -96,7 +96,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-							<Activity class="h-4 w-4 text-muted-foreground" />
+							<Activity class="size-4 text-muted-foreground" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+573</div>

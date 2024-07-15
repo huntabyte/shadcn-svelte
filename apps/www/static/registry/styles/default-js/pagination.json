@@ -18,7 +18,7 @@
 		},
 		{
 			"name": "pagination-ellipsis.svelte",
-			"content": "<script>\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<span\n\taria-hidden\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...$$restProps}\n>\n\t<Ellipsis class=\"h-4 w-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n"
+			"content": "<script>\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<span\n\taria-hidden\n\tclass={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n\t{...$$restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n"
 		},
 		{
 			"name": "pagination-item.svelte",
@@ -30,11 +30,11 @@
 		},
 		{
 			"name": "pagination-next-button.svelte",
-			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"lucide-svelte/icons/chevron-right\";\n\timport { Button } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.NextButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pr-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<slot>\n\t\t\t<span>Next</span>\n\t\t\t<ChevronRight class=\"h-4 w-4\" />\n\t\t</slot>\n\t</Button>\n</PaginationPrimitive.NextButton>\n"
+			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"lucide-svelte/icons/chevron-right\";\n\timport { Button } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.NextButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pr-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<slot>\n\t\t\t<span>Next</span>\n\t\t\t<ChevronRight class=\"size-4\" />\n\t\t</slot>\n\t</Button>\n</PaginationPrimitive.NextButton>\n"
 		},
 		{
 			"name": "pagination-prev-button.svelte",
-			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronLeft from \"lucide-svelte/icons/chevron-left\";\n\timport { Button } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.PrevButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pl-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<slot>\n\t\t\t<ChevronLeft class=\"h-4 w-4\" />\n\t\t\t<span>Previous</span>\n\t\t</slot>\n\t</Button>\n</PaginationPrimitive.PrevButton>\n"
+			"content": "<script>\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronLeft from \"lucide-svelte/icons/chevron-left\";\n\timport { Button } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<PaginationPrimitive.PrevButton asChild let:builder>\n\t<Button\n\t\tvariant=\"ghost\"\n\t\tclass={cn(\"gap-1 pl-2.5\", className)}\n\t\tbuilders={[builder]}\n\t\ton:click\n\t\t{...$$restProps}\n\t>\n\t\t<slot>\n\t\t\t<ChevronLeft class=\"size-4\" />\n\t\t\t<span>Previous</span>\n\t\t</slot>\n\t</Button>\n</PaginationPrimitive.PrevButton>\n"
 		},
 		{
 			"name": "pagination.svelte",

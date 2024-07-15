@@ -87,7 +87,7 @@
 					class="ml-auto rounded-full"
 					on:click={() => (open = true)}
 				>
-					<Plus class="h-4 w-4" />
+					<Plus class="size-4" />
 					<span class="sr-only">New message</span>
 				</Button>
 			</Tooltip.Trigger>
@@ -134,7 +134,7 @@
 				bind:value={input}
 			/>
 			<Button type="submit" size="icon" disabled={inputLength === 0}>
-				<PaperPlane class="h-4 w-4" />
+				<PaperPlane class="size-4" />
 				<span class="sr-only">Send</span>
 			</Button>
 		</form>

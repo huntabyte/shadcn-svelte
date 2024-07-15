@@ -20,7 +20,7 @@
 	<div class="mx-auto w-full min-w-0">
 		<div class="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
 			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
-			<ChevronRight class="h-4 w-4" />
+			<ChevronRight class="size-4" />
 			<div class="font-medium text-foreground">{doc.title}</div>
 		</div>
 		<div class="space-y-2">

@@ -23,7 +23,7 @@
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center" bind:open>
-			<Icons.logo class="mr-2 h-4 w-4" />
+			<Icons.logo class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
 		<ScrollArea orientation="both" class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">

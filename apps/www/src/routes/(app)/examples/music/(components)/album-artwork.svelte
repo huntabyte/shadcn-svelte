@@ -35,7 +35,7 @@
 				<ContextMenu.SubTrigger>Add to Playlist</ContextMenu.SubTrigger>
 				<ContextMenu.SubContent class="w-48">
 					<ContextMenu.Item>
-						<PlusCircled class="mr-2 h-4 w-4" /> New Playlist
+						<PlusCircled class="mr-2 size-4" /> New Playlist
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					{#each playlists as playlist}
@@ -47,7 +47,7 @@
 								stroke-linecap="round"
 								stroke-linejoin="round"
 								stroke-width="2"
-								class="mr-2 h-4 w-4"
+								class="mr-2 size-4"
 								viewBox="0 0 24 24"
 							>
 								<path

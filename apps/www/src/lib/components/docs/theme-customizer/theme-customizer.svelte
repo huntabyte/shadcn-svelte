@@ -46,7 +46,7 @@
 								)}
 							>
 								{#if isActive}
-									<Check class="h-4 w-4 text-white" />
+									<Check class="size-4 text-white" />
 								{/if}
 							</span>
 							<span class="sr-only">{theme.label}</span>
@@ -66,7 +66,7 @@
 		<Drawer.Root>
 			<Drawer.Trigger asChild let:builder>
 				<Button variant="outline" builders={[builder]}>
-					<Paintbrush class="mr-2 h-4 w-4" />
+					<Paintbrush class="mr-2 size-4" />
 					Customize
 				</Button>
 			</Drawer.Trigger>
@@ -79,7 +79,7 @@
 		<Popover.Root>
 			<Popover.Trigger asChild let:builder>
 				<Button variant="outline" builders={[builder]}>
-					<Paintbrush class="mr-2 h-4 w-4" />
+					<Paintbrush class="mr-2 size-4" />
 					Customize
 				</Button>
 			</Popover.Trigger>

@@ -39,7 +39,7 @@
 				href="##"
 				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
 			>
-				<Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
+				<Package2 class="size-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<Tooltip.Root>
@@ -201,7 +201,7 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 			<div class="relative ml-auto flex-1 md:grow-0">
-				<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+				<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
 				<Input
 					type="search"
 					placeholder="Search..."
@@ -662,7 +662,7 @@
 							<dl class="grid gap-3">
 								<div class="flex items-center justify-between">
 									<dt class="flex items-center gap-1 text-muted-foreground">
-										<CreditCard class="h-4 w-4" />
+										<CreditCard class="size-4" />
 										Visa
 									</dt>
 									<dd>**** **** **** 4532</dd>

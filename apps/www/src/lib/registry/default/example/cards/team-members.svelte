@@ -28,7 +28,7 @@
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Owner
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -90,7 +90,7 @@
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Member
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
@@ -152,7 +152,7 @@
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
 						Member
-						<ChevronDownIcon class="ml-2 h-4 w-4 text-muted-foreground" />
+						<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
 					</Button>
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">

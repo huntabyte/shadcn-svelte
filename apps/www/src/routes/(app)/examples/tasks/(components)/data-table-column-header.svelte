@@ -66,11 +66,11 @@
 				>
 					<slot />
 					{#if props.sort.order === "desc"}
-						<ArrowDown class="ml-2 h-4 w-4" />
+						<ArrowDown class="ml-2 size-4" />
 					{:else if props.sort.order === "asc"}
-						<ArrowUp class="ml-2 h-4 w-4" />
+						<ArrowUp class="ml-2 size-4" />
 					{:else}
-						<CaretSort class="ml-2 h-4 w-4" />
+						<CaretSort class="ml-2 size-4" />
 					{/if}
 				</Button>
 			</DropdownMenu.Trigger>

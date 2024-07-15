@@ -14,6 +14,6 @@
 		class="absolute right-0 top-0 hidden items-center rounded-[0.5rem] text-sm font-medium md:flex"
 	>
 		View Code
-		<ArrowRight class="ml-1 h-4 w-4" />
+		<ArrowRight class="ml-1 size-4" />
 	</a>
 {/if}

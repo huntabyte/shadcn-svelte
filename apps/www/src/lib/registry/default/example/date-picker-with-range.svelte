@@ -35,7 +35,7 @@
 				)}
 				builders={[builder]}
 			>
-				<CalendarIcon class="mr-2 h-4 w-4" />
+				<CalendarIcon class="mr-2 size-4" />
 				{#if value && value.start}
 					{#if value.end}
 						{df.format(value.start.toDate(getLocalTimeZone()))} - {df.format(

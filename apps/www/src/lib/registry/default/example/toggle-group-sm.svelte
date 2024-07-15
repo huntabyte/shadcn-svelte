@@ -7,12 +7,12 @@
 
 <ToggleGroup.Root size="sm" type="multiple">
 	<ToggleGroup.Item value="bold" aria-label="Toggle bold">
-		<Bold class="h-4 w-4" />
+		<Bold class="size-4" />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="italic" aria-label="Toggle italic">
-		<Italic class="h-4 w-4" />
+		<Italic class="size-4" />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="strikethrough" aria-label="Toggle strikethrough">
-		<Underline class="h-4 w-4" />
+		<Underline class="size-4" />
 	</ToggleGroup.Item>
 </ToggleGroup.Root>

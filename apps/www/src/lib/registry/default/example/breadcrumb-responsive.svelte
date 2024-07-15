@@ -36,7 +36,7 @@
 							class="flex items-center gap-1"
 							aria-label="Toggle menu"
 						>
-							<Breadcrumb.Ellipsis class="h-4 w-4" />
+							<Breadcrumb.Ellipsis class="size-4" />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
 							{#each items.slice(1, -2) as item}
@@ -49,7 +49,7 @@
 				{:else}
 					<Drawer.Root bind:open>
 						<Drawer.Trigger aria-label="Toggle Menu">
-							<Breadcrumb.Ellipsis class="h-4 w-4" />
+							<Breadcrumb.Ellipsis class="size-4" />
 						</Drawer.Trigger>
 						<Drawer.Content>
 							<Drawer.Header class="text-left">

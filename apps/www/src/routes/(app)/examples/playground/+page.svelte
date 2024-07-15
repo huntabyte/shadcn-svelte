@@ -243,7 +243,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -263,7 +263,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -296,7 +296,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>

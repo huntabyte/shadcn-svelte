@@ -4,5 +4,5 @@
 </script>
 
 <Toggle variant="outline" aria-label="Toggle italic">
-	<FontItalic class="h-4 w-4" />
+	<FontItalic class="size-4" />
 </Toggle>

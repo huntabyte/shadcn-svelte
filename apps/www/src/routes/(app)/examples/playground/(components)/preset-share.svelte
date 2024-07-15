@@ -29,7 +29,7 @@
 			</div>
 			<Button type="submit" size="sm" class="px-3">
 				<span class="sr-only"> Copy </span>
-				<Copy class="h-4 w-4" />
+				<Copy class="size-4" />
 			</Button>
 		</div>
 	</Popover.Content>

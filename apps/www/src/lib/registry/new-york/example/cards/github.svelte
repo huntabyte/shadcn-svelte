@@ -23,14 +23,14 @@
 		</div>
 		<div class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
 			<Button variant="secondary" class="px-3 shadow-none">
-				<Star class="mr-2 h-4 w-4" />
+				<Star class="mr-2 size-4" />
 				Star
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-						<ChevronDown class="h-4 w-4 text-secondary-foreground" />
+						<ChevronDown class="size-4 text-secondary-foreground" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
@@ -47,7 +47,7 @@
 					>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<Plus class="mr-2 h-4 w-4" /> Create List
+						<Plus class="mr-2 size-4" /> Create List
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>

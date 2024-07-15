@@ -32,7 +32,7 @@
 							"w-9 px-0"
 						)}
 					>
-						<Icons.gitHub class="h-4 w-4" />
+						<Icons.gitHub class="size-4" />
 						<span class="sr-only">GitHub</span>
 					</div>
 				</a>

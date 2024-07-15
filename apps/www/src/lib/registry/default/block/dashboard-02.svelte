@@ -27,7 +27,7 @@
 					<span class="">Acme Inc</span>
 				</a>
 				<Button variant="outline" size="icon" class="ml-auto h-8 w-8">
-					<Bell class="h-4 w-4" />
+					<Bell class="size-4" />
 					<span class="sr-only">Toggle notifications</span>
 				</Button>
 			</div>
@@ -37,14 +37,14 @@
 						href="##"
 						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 					>
-						<Home class="h-4 w-4" />
+						<Home class="size-4" />
 						Dashboard
 					</a>
 					<a
 						href="##"
 						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 					>
-						<ShoppingCart class="h-4 w-4" />
+						<ShoppingCart class="size-4" />
 						Orders
 						<Badge
 							class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
@@ -56,21 +56,21 @@
 						href="##"
 						class="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
 					>
-						<Package class="h-4 w-4" />
+						<Package class="size-4" />
 						Products
 					</a>
 					<a
 						href="##"
 						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 					>
-						<Users class="h-4 w-4" />
+						<Users class="size-4" />
 						Customers
 					</a>
 					<a
 						href="##"
 						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 					>
-						<LineChart class="h-4 w-4" />
+						<LineChart class="size-4" />
 						Analytics
 					</a>
 				</nav>
@@ -173,7 +173,7 @@
 			<div class="w-full flex-1">
 				<form>
 					<div class="relative">
-						<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+						<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
 						<Input
 							type="search"
 							placeholder="Search products..."

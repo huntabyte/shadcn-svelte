@@ -140,7 +140,7 @@
 			<dl class="grid gap-3">
 				<div class="flex items-center justify-between">
 					<dt class="flex items-center gap-1 text-muted-foreground">
-						<CreditCard class="h-4 w-4" />
+						<CreditCard class="size-4" />
 						Visa
 					</dt>
 					<dd>**** **** **** 4532</dd>

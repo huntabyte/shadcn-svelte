@@ -36,7 +36,7 @@
 			class="flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
 		>
 			{selectedValue}
-			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="w-full p-0 md:w-[200px] lg:w-[300px]">
@@ -57,7 +57,7 @@
 							{preset.name}
 							<Check
 								class={cn(
-									"ml-auto h-4 w-4",
+									"ml-auto size-4",
 									value === preset.name ? "opacity-100" : "opacity-0"
 								)}
 							/>

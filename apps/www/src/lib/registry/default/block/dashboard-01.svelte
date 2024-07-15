@@ -73,7 +73,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+					<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -112,7 +112,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-					<DollarSign class="h-4 w-4 text-muted-foreground" />
+					<DollarSign class="size-4 text-muted-foreground" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">$45,231.89</div>
@@ -125,7 +125,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-					<Users class="h-4 w-4 text-muted-foreground" />
+					<Users class="size-4 text-muted-foreground" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+2350</div>
@@ -138,7 +138,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Sales</Card.Title>
-					<CreditCard class="h-4 w-4 text-muted-foreground" />
+					<CreditCard class="size-4 text-muted-foreground" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+12,234</div>
@@ -151,7 +151,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-					<Activity class="h-4 w-4 text-muted-foreground" />
+					<Activity class="size-4 text-muted-foreground" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+573</div>
@@ -172,7 +172,7 @@
 					</div>
 					<Button href="##" size="sm" class="ml-auto gap-1">
 						View All
-						<ArrowUpRight class="h-4 w-4" />
+						<ArrowUpRight class="size-4" />
 					</Button>
 				</Card.Header>
 				<Card.Content>

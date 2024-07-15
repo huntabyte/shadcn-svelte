@@ -34,7 +34,7 @@
 								</Tabs.List>
 								<div class="ml-auto mr-4">
 									<Button>
-										<PlusCircled class="mr-2 h-4 w-4" />
+										<PlusCircled class="mr-2 size-4" />
 										Add music
 									</Button>
 								</div>

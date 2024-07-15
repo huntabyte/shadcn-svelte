@@ -16,7 +16,7 @@
 		},
 		{
 			"name": "accordion-trigger.svelte",
-			"content": "<script>\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport ChevronDown from \"svelte-radix/ChevronDown.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet { class: className, level = 3, children, ref = $bindable(null), ...restProps } = $props();\n</script>\n\n<AccordionPrimitive.Header {level} class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t<ChevronDown\n\t\t\tclass=\"h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200\"\n\t\t/>\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
+			"content": "<script>\n\timport { Accordion as AccordionPrimitive } from \"bits-ui\";\n\timport ChevronDown from \"svelte-radix/ChevronDown.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet { class: className, level = 3, children, ref = $bindable(null), ...restProps } = $props();\n</script>\n\n<AccordionPrimitive.Header {level} class=\"flex\">\n\t<AccordionPrimitive.Trigger\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t\t<ChevronDown\n\t\t\tclass=\"size-4 shrink-0 text-muted-foreground transition-transform duration-200\"\n\t\t/>\n\t</AccordionPrimitive.Trigger>\n</AccordionPrimitive.Header>\n"
 		},
 		{
 			"name": "index.js",

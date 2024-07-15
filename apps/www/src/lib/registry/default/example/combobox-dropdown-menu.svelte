@@ -52,17 +52,17 @@
 			<DropdownMenu.Group>
 				<DropdownMenu.Label>Actions</DropdownMenu.Label>
 				<DropdownMenu.Item>
-					<User class="mr-2 h-4 w-4" />
+					<User class="mr-2 size-4" />
 					Assign to...
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<Calendar class="mr-2 h-4 w-4" />
+					<Calendar class="mr-2 size-4" />
 					Set due date...
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Sub>
 					<DropdownMenu.SubTrigger>
-						<Tags class="mr-2 h-4 w-4" />
+						<Tags class="mr-2 size-4" />
 						Apply label
 					</DropdownMenu.SubTrigger>
 					<DropdownMenu.SubContent class="p-0">
@@ -89,7 +89,7 @@
 				</DropdownMenu.Sub>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item class="text-red-600">
-					<Trash class="mr-2 h-4 w-4" />
+					<Trash class="mr-2 size-4" />
 					Delete
 					<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>

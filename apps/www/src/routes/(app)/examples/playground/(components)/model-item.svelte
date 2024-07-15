@@ -50,7 +50,7 @@
 	>
 		{model.name}
 		{#if isSelected}
-			<Check className={cn("ml-auto h-4 w-4")} />
+			<Check className={cn("ml-auto size-4")} />
 		{/if}
 	</div>
 </Command.Item>

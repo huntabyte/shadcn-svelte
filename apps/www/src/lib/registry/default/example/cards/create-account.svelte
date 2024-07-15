@@ -14,11 +14,11 @@
 	<Card.Content class="grid gap-4">
 		<div class="grid grid-cols-2 gap-6">
 			<Button variant="outline">
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<Icons.gitHub class="mr-2 size-4" />
 				GitHub
 			</Button>
 			<Button variant="outline">
-				<Icons.google class="mr-2 h-4 w-4" />
+				<Icons.google class="mr-2 size-4" />
 				Google
 			</Button>
 		</div>

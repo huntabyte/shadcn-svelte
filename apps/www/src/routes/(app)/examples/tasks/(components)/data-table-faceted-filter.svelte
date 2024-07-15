@@ -28,7 +28,7 @@
 <Popover.Root bind:open>
 	<Popover.Trigger asChild let:builder>
 		<Button builders={[builder]} variant="outline" size="sm" class="h-8 border-dashed">
-			<PlusCircled class="mr-2 h-4 w-4" />
+			<PlusCircled class="mr-2 size-4" />
 			{title}
 
 			{#if filterValues.length > 0}
@@ -68,21 +68,21 @@
 						>
 							<div
 								class={cn(
-									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+									"mr-2 flex size-4 items-center justify-center rounded-sm border border-primary",
 									filterValues.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
 								)}
 							>
-								<Check className={cn("h-4 w-4")} />
+								<Check className={cn("size-4")} />
 							</div>
-							<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
+							<Icon class="mr-2 size-4 text-muted-foreground" />
 							<span>
 								{option.label}
 							</span>
 							{#if counts[option.value]}
 								<span
-									class="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs"
+									class="ml-auto flex size-4 items-center justify-center font-mono text-xs"
 								>
 									{counts[option.value]}
 								</span>

@@ -83,7 +83,7 @@
 				>
 					{languages.find((f) => f.value === $formData.language)?.label ??
 						"Select language"}
-					<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
 				<input hidden value={$formData.language} name={attrs.name} />
 			</Form.Control>
@@ -103,7 +103,7 @@
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto h-4 w-4",
+										"ml-auto size-4",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

@@ -24,6 +24,6 @@
 		{...restProps}
 	>
 		{@render children?.()}
-		<ChevronDown class="h-4 w-4 transition-transform duration-200" />
+		<ChevronDown class="size-4 transition-transform duration-200" />
 	</AccordionPrimitive.Trigger>
 </AccordionPrimitive.Header>

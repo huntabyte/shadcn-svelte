@@ -15,7 +15,7 @@
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="secondary" builders={[builder]}>
 			<span class="sr-only">Actions</span>
-			<DotsHorizontal class="h-4 w-4" />
+			<DotsHorizontal class="size-4" />
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">

@@ -23,7 +23,7 @@
 			)}
 			builders={[builder]}
 		>
-			<CalendarIcon class="mr-2 h-4 w-4" />
+			<CalendarIcon class="mr-2 size-4" />
 			{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 		</Button>
 	</Popover.Trigger>

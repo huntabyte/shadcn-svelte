@@ -71,7 +71,7 @@
 				class="w-[150px] justify-start"
 			>
 				{#if selectedStatus}
-					<svelte:component this={selectedStatus.icon} class="mr-2 h-4 w-4 shrink-0" />
+					<svelte:component this={selectedStatus.icon} class="mr-2 size-4 shrink-0" />
 					{selectedStatus.label}
 				{:else}
 					+ Set status
@@ -95,7 +95,7 @@
 								<svelte:component
 									this={status.icon}
 									class={cn(
-										"mr-2 h-4 w-4",
+										"mr-2 size-4",
 										status.value !== selectedStatus?.value &&
 											"text-foreground/40"
 									)}

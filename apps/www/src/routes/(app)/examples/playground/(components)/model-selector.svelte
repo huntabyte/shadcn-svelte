@@ -82,7 +82,7 @@
 				class="w-[200px] justify-between "
 			>
 				{selectedValue}
-				<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+				<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 			</Button>
 		</Popover.Trigger>
 		<Popover.Content class="w-[250px] p-0">

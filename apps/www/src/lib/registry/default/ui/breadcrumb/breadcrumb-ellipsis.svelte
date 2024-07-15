@@ -19,6 +19,6 @@
 	class={cn("flex h-9 w-9 items-center justify-center", className)}
 	{...restProps}
 >
-	<Ellipsis class="h-4 w-4" />
+	<Ellipsis class="size-4" />
 	<span class="sr-only">More</span>
 </span>

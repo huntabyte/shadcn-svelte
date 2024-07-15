@@ -76,7 +76,7 @@
 					<Avatar.Fallback>SC</Avatar.Fallback>
 				</Avatar.Root>
 				{selectedTeam.label}
-				<CaretSort class="ml-auto h-4 w-4 shrink-0 opacity-50" />
+				<CaretSort class="ml-auto size-4 shrink-0 opacity-50" />
 			</Button>
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
@@ -106,7 +106,7 @@
 									{team.label}
 									<Check
 										class={cn(
-											"ml-auto h-4 w-4",
+											"ml-auto size-4",
 											selectedTeam.value !== team.value && "text-transparent"
 										)}
 									/>

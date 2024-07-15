@@ -63,7 +63,7 @@
 									variant="ghost"
 									builders={[builder]}
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>
@@ -103,7 +103,7 @@
 									size="icon"
 									variant="ghost"
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>
@@ -143,7 +143,7 @@
 									size="icon"
 									variant="ghost"
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>
@@ -183,7 +183,7 @@
 									size="icon"
 									variant="ghost"
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>
@@ -223,7 +223,7 @@
 									size="icon"
 									variant="ghost"
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>
@@ -263,7 +263,7 @@
 									size="icon"
 									variant="ghost"
 								>
-									<Ellipsis class="h-4 w-4" />
+									<Ellipsis class="size-4" />
 									<span class="sr-only">Toggle menu</span>
 								</Button>
 							</DropdownMenu.Trigger>

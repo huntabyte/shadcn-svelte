@@ -175,7 +175,7 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
 					<Button variant="outline" class="ml-auto" builders={[builder]}>
-						Columns <ChevronDown class="ml-2 h-4 w-4" />
+						Columns <ChevronDown class="ml-2 size-4" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content>
@@ -221,7 +221,7 @@
 														class={cn(
 															$sortKeys[0]?.id === cell.id &&
 																"text-foreground",
-															"ml-2 h-4 w-4"
+															"ml-2 size-4"
 														)}
 													/>
 												</Button>

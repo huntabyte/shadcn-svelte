@@ -56,7 +56,7 @@
 			class="w-[200px] justify-between"
 		>
 			{selectedValue}
-			<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0">
@@ -74,7 +74,7 @@
 					>
 						<Check
 							class={cn(
-								"mr-2 h-4 w-4",
+								"mr-2 size-4",
 								value !== framework.value && "text-transparent"
 							)}
 						/>

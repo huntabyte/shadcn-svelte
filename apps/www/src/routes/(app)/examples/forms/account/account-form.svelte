@@ -91,7 +91,7 @@
 					)}
 					{...attrs}
 				>
-					<CalendarIcon class="mr-2 h-4 w-4" />
+					<CalendarIcon class="mr-2 size-4" />
 					{dobValue ? df.format(dobValue.toDate(getLocalTimeZone())) : "Pick a date"}
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" align="start">

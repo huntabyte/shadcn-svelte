@@ -16,6 +16,6 @@
 	class={cn("flex h-9 w-9 items-center justify-center", className)}
 	{...restProps}
 >
-	<DotsHorizontal class="h-4 w-4 outline-none" tabindex="-1" />
+	<DotsHorizontal class="size-4 outline-none" tabindex="-1" />
 	<span class="sr-only">More</span>
 </span>

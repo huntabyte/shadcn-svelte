@@ -44,7 +44,7 @@
 				href={siteConfig.links.github}
 				class={cn(buttonVariants({ variant: "outline" }))}
 			>
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<Icons.gitHub class="mr-2 size-4" />
 				GitHub
 			</a>
 		</div>
