@@ -6,7 +6,8 @@
 	import { themes } from "$lib/registry/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { CustomizerCode, ThemeWrapper } from "$lib/components/docs/index.js";
-	import { createCopyCodeButton } from "$lib/utils.js";
+	import { cn, createCopyCodeButton } from "$lib/utils.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
 	const { copied, copyCode, setCodeString } = createCopyCodeButton();
@@ -14,9 +15,7 @@
 
 {#if activeTheme}
 	<Dialog.Root>
-		<Dialog.Trigger asChild let:builder>
-			<Button class="flex" builders={[builder]}>Copy Code</Button>
-		</Dialog.Trigger>
+		<Dialog.Trigger class={cn(buttonVariants({ class: "flex" }))}>Copy Code</Dialog.Trigger>
 		<Dialog.Content class="max-w-2xl outline-none">
 			<Dialog.Header>
 				<Dialog.Title>Theme</Dialog.Title>
@@ -29,9 +28,7 @@
 				{#if activeTheme}
 					<Button
 						size="sm"
-						on:click={() => {
-							copyCode();
-						}}
+						onclick={copyCode}
 						class="absolute right-4 top-4 bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground"
 					>
 						{#if $copied}

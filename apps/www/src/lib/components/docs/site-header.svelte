@@ -46,7 +46,7 @@
 							"w-9 px-0"
 						)}
 					>
-						<Icons.twitter class="h-3 w-3 fill-current" />
+						<Icons.twitter class="size-3 fill-current" />
 						<span class="sr-only">X (formerly known as Twitter)</span>
 					</div>
 				</a>

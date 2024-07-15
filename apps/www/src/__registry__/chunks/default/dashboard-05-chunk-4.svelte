@@ -26,7 +26,7 @@
 					variant="outline"
 					class="size-6 opacity-0 transition-opacity group-hover:opacity-100"
 				>
-					<Copy class="h-3 w-3" />
+					<Copy class="size-3" />
 					<span class="sr-only">Copy Order ID</span>
 				</Button>
 			</Card.Title>

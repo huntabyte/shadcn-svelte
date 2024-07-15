@@ -80,9 +80,9 @@
 				>
 					<span class="sr-only">Copy</span>
 					{#if copied}
-						<Check class="h-3 w-3" tabindex="-1" />
+						<Check class="size-3" tabindex="-1" />
 					{:else}
-						<Copy class="h-3 w-3" tabindex="-1" />
+						<Copy class="size-3" tabindex="-1" />
 					{/if}
 				</Button>
 			{/snippet}
@@ -113,9 +113,9 @@
 	>
 		<span class="sr-only">Copy</span>
 		{#if copied}
-			<Check class="h-3 w-3" tabindex="-1" />
+			<Check class="size-3" tabindex="-1" />
 		{:else}
-			<Copy class="h-3 w-3" tabindex="-1" />
+			<Copy class="size-3" tabindex="-1" />
 		{/if}
 	</button>
 {/if}

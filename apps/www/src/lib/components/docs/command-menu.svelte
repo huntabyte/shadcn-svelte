@@ -82,7 +82,7 @@
 							})}
 					>
 						<div class="mr-2 flex size-4 items-center justify-center">
-							<Circle class="h-3 w-3" />
+							<Circle class="size-3" />
 						</div>
 						{navItem.title}
 					</Command.Item>

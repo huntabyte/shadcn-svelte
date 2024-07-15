@@ -54,7 +54,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Primitive API Reference
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLink class="size-3" />
 					</a>
 				{/if}
 			</div>

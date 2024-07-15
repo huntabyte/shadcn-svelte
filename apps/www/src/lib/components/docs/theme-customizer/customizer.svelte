@@ -42,7 +42,7 @@
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
 					<Popover.Trigger>
-						<InfoCircled class="ml-1 h-3 w-3" />
+						<InfoCircled class="ml-1 size-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content

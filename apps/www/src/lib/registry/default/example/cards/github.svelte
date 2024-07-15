@@ -46,11 +46,11 @@
 	<Card.Content>
 		<div class="flex space-x-4 text-sm text-muted-foreground">
 			<div class="flex items-center">
-				<Circle class="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
+				<Circle class="mr-1 size-3 fill-sky-400 text-sky-400" />
 				TypeScript
 			</div>
 			<div class="flex items-center">
-				<Star class="mr-1 h-3 w-3" />
+				<Star class="mr-1 size-3" />
 				1k
 			</div>
 			<div>Updated April 2023</div>
