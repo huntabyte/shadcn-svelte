@@ -45,7 +45,7 @@
 			<Button
 				size="icon"
 				variant="outline"
-				class="h-7 w-7 rounded-[6px] [&_svg]:size-3.5"
+				class="size-7 rounded-[6px] [&_svg]:size-3.5"
 				on:click={() => {
 					copyToClipboard();
 					hasCopied = true;
