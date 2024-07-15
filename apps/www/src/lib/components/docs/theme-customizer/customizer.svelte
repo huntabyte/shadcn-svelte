@@ -37,7 +37,7 @@
 		</Button>
 	</div>
 	<div class="flex flex-1 flex-col space-y-4 md:space-y-6">
-		<div class="5 space-y-1">
+		<div class="space-y-1">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
