@@ -567,7 +567,7 @@
 										builders={[builder]}
 										size="icon"
 										variant="outline"
-										class="h-8 w-8"
+										class="size-8"
 									>
 										<EllipsisVertical class="size-3.5" />
 										<span class="sr-only">More</span>

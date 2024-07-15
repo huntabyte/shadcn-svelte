@@ -13,7 +13,7 @@
 <CalendarPrimitive.Day
 	class={cn(
 		buttonVariants({ variant: "ghost" }),
-		"h-8 w-8 p-0 font-normal",
+		"size-8 p-0 font-normal",
 		// Today
 		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground",
 		// Selected

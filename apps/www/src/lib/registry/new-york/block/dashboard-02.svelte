@@ -26,7 +26,7 @@
 					<Package2 class="size-6" />
 					<span class="">Acme Inc</span>
 				</a>
-				<Button variant="outline" size="icon" class="ml-auto h-8 w-8">
+				<Button variant="outline" size="icon" class="ml-auto size-8">
 					<Bell class="size-4" />
 					<span class="sr-only">Toggle notifications</span>
 				</Button>

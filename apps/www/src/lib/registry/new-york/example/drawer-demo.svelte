@@ -84,7 +84,7 @@
 					<Button
 						variant="outline"
 						size="icon"
-						class="h-8 w-8 shrink-0 rounded-full"
+						class="size-8 shrink-0 rounded-full"
 						on:click={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
@@ -102,7 +102,7 @@
 					<Button
 						variant="outline"
 						size="icon"
-						class="h-8 w-8 shrink-0 rounded-full"
+						class="size-8 shrink-0 rounded-full"
 						on:click={() => handleClick(10)}
 					>
 						<Plus class="size-4" />
