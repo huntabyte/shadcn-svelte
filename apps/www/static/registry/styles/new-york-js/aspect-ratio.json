@@ -7,7 +7,7 @@
 	"files": [
 		{
 			"name": "aspect-ratio.svelte",
-			"content": "<script>\n\timport { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\tlet { ratio = 4 / 3, ref = $bindable(null), ...restProps } = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref {ratio} {...restProps} />\n"
+			"content": "<script>import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\nlet {\n  ratio = 4 / 3,\n  ref = $bindable(null),\n  ...restProps\n} = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref {ratio} {...restProps} />\n"
 		},
 		{
 			"name": "index.js",

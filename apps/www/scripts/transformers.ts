@@ -33,13 +33,14 @@ const registryJSPrettierConfig = {
 };
 
 export async function transformContent(content: string, filename: string) {
-	// The rest is for transforming typescript to javascript
 	if (filename.endsWith(".svelte")) {
+		return transformSvelteTStoJS(content, filename);
 		return prettier.format(
 			await transformSvelteTStoJS(content, filename),
 			registrySveltePrettierConfig
 		);
 	} else {
+		return transformTStoJS(content, filename);
 		return prettier.format(transformTStoJS(content, filename), registryJSPrettierConfig);
 	}
 }

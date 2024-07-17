@@ -7,35 +7,35 @@
 	"files": [
 		{
 			"name": "breadcrumb-ellipsis.svelte",
-			"content": "<script>\n\timport DotsHorizontal from \"svelte-radix/DotsHorizontal.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet { ref = $bindable(null), class: className, ...restProps } = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<DotsHorizontal class=\"size-4 outline-none\" tabindex=\"-1\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
+			"content": "<script>import DotsHorizontal from \"svelte-radix/DotsHorizontal.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<DotsHorizontal class=\"size-4 outline-none\" tabindex=\"-1\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-item.svelte",
-			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet { ref = $bindable(null), class: className, children, ...restProps } = $props();\n</script>\n\n<li bind:this={ref} class={cn(\"inline-flex items-center gap-1.5\", className)} {...restProps}>\n\t{@render children?.()}\n</li>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<li bind:this={ref} class={cn(\"inline-flex items-center gap-1.5\", className)} {...restProps}>\n\t{@render children?.()}\n</li>\n"
 		},
 		{
 			"name": "breadcrumb-link.svelte",
-			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\thref = undefined,\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t} = $props();\n\tconst attrs = $derived({\n\t\tclass: cn(\"transition-colors hover:text-foreground\", className),\n\t\thref,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  href = undefined,\n  child,\n  children,\n  ...restProps\n} = $props();\nconst attrs = $derived({\n  class: cn(\"transition-colors hover:text-foreground\", className),\n  href,\n  ...restProps\n});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n"
 		},
 		{
 			"name": "breadcrumb-list.svelte",
-			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet { ref = $bindable(null), class: className, children, ...restProps } = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n"
 		},
 		{
 			"name": "breadcrumb-page.svelte",
-			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet { ref = $bindable(null), class: className, children, ...restProps } = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"font-normal text-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"font-normal text-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-separator.svelte",
-			"content": "<script>\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet { ref = $bindable(null), class: className, children, ...restProps } = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight tabindex=\"-1\" />\n\t{/if}\n</li>\n"
+			"content": "<script>import ChevronRight from \"svelte-radix/ChevronRight.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
 		},
 		{
 			"name": "breadcrumb.svelte",
-			"content": "<script>\n\tlet { ref = $bindable(), class: className, children, ...restProps } = $props();\n</script>\n\n<nav class={className} bind:this={ref} aria-label=\"breadcrumb\" {...restProps}>\n\t{@render children?.()}\n</nav>\n"
+			"content": "<script>let {\n  ref = $bindable(),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<nav class={className} bind:this={ref} aria-label=\"breadcrumb\" {...restProps}>\n\t{@render children?.()}\n</nav>\n"
 		},
 		{
 			"name": "index.js",
-			"content": "import Root from \"./breadcrumb.svelte\";\nimport Ellipsis from \"./breadcrumb-ellipsis.svelte\";\nimport Item from \"./breadcrumb-item.svelte\";\nimport Separator from \"./breadcrumb-separator.svelte\";\nimport Link from \"./breadcrumb-link.svelte\";\nimport List from \"./breadcrumb-list.svelte\";\nimport Page from \"./breadcrumb-page.svelte\";\nexport {\n\tRoot,\n\tEllipsis,\n\tItem,\n\tSeparator,\n\tLink,\n\tList,\n\tPage,\n\t//\n\tRoot as Breadcrumb,\n\tEllipsis as BreadcrumbEllipsis,\n\tItem as BreadcrumbItem,\n\tSeparator as BreadcrumbSeparator,\n\tLink as BreadcrumbLink,\n\tList as BreadcrumbList,\n\tPage as BreadcrumbPage,\n};\n"
+			"content": "import Root from \"./breadcrumb.svelte\";\nimport Ellipsis from \"./breadcrumb-ellipsis.svelte\";\nimport Item from \"./breadcrumb-item.svelte\";\nimport Separator from \"./breadcrumb-separator.svelte\";\nimport Link from \"./breadcrumb-link.svelte\";\nimport List from \"./breadcrumb-list.svelte\";\nimport Page from \"./breadcrumb-page.svelte\";\nexport { Root, Ellipsis, Item, Separator, Link, List, Page, \n//\nRoot as Breadcrumb, Ellipsis as BreadcrumbEllipsis, Item as BreadcrumbItem, Separator as BreadcrumbSeparator, Link as BreadcrumbLink, List as BreadcrumbList, Page as BreadcrumbPage, };\n"
 		}
 	],
 	"type": "components:ui"

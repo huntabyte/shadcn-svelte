@@ -186,12 +186,9 @@
 	},
 	{
 		"name": "collapsible",
-		"dependencies": [
-			"bits-ui"
-		],
+		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
-			"ui/collapsible/collapsible-content.svelte",
 			"ui/collapsible/index.ts"
 		],
 		"type": "components:ui"
@@ -230,7 +227,6 @@
 			"ui/context-menu/context-menu-content.svelte",
 			"ui/context-menu/context-menu-item.svelte",
 			"ui/context-menu/context-menu-label.svelte",
-			"ui/context-menu/context-menu-radio-group.svelte",
 			"ui/context-menu/context-menu-radio-item.svelte",
 			"ui/context-menu/context-menu-separator.svelte",
 			"ui/context-menu/context-menu-shortcut.svelte",
@@ -252,7 +248,6 @@
 			"ui/dialog/dialog-footer.svelte",
 			"ui/dialog/dialog-header.svelte",
 			"ui/dialog/dialog-overlay.svelte",
-			"ui/dialog/dialog-portal.svelte",
 			"ui/dialog/dialog-title.svelte",
 			"ui/dialog/index.ts"
 		],
@@ -288,7 +283,6 @@
 			"ui/dropdown-menu/dropdown-menu-content.svelte",
 			"ui/dropdown-menu/dropdown-menu-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-label.svelte",
-			"ui/dropdown-menu/dropdown-menu-radio-group.svelte",
 			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-separator.svelte",
 			"ui/dropdown-menu/dropdown-menu-shortcut.svelte",
@@ -448,8 +442,6 @@
 			"ui/range-calendar/index.ts",
 			"ui/range-calendar/range-calendar-cell.svelte",
 			"ui/range-calendar/range-calendar-day.svelte",
-			"ui/range-calendar/range-calendar-grid-body.svelte",
-			"ui/range-calendar/range-calendar-grid-head.svelte",
 			"ui/range-calendar/range-calendar-grid-row.svelte",
 			"ui/range-calendar/range-calendar-grid.svelte",
 			"ui/range-calendar/range-calendar-head-cell.svelte",
@@ -529,7 +521,6 @@
 			"ui/sheet/sheet-footer.svelte",
 			"ui/sheet/sheet-header.svelte",
 			"ui/sheet/sheet-overlay.svelte",
-			"ui/sheet/sheet-portal.svelte",
 			"ui/sheet/sheet-title.svelte"
 		],
 		"type": "components:ui"

@@ -7,11 +7,11 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import Root from \"./label.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Label,\n};\n"
+			"content": "import Root from \"./label.svelte\";\nexport { Root, \n//\nRoot as Label, };\n"
 		},
 		{
 			"name": "label.svelte",
-			"content": "<script>\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<LabelPrimitive.Root\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:mousedown\n>\n\t<slot />\n</LabelPrimitive.Root>\n"
+			"content": "<script>import { Label as LabelPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<LabelPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

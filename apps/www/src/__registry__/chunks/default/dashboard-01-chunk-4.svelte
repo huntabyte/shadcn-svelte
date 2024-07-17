@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Table from "$lib/registry/default/ui/table/index.js";
 </script>

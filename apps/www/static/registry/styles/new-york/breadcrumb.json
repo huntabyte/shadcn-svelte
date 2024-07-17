@@ -27,7 +27,7 @@
 		},
 		{
 			"name": "breadcrumb-separator.svelte",
-			"content": "<script lang=\"ts\">\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { type PrimitiveLiAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveLiAttributes = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight tabindex=\"-1\" />\n\t{/if}\n</li>\n"
+			"content": "<script lang=\"ts\">\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { type PrimitiveLiAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveLiAttributes = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
 		},
 		{
 			"name": "breadcrumb.svelte",

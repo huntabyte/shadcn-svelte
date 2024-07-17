@@ -9,7 +9,7 @@
 
 	let {
 		name,
-		align,
+		align = "center",
 		class: className,
 		example,
 		children,
@@ -32,22 +32,24 @@
 </script>
 
 {#snippet ExampleFallback()}
-	{#await component}
-		<div class="flex items-center text-sm text-muted-foreground">
-			<Icons.spinner class="mr-2 size-4 animate-spin" />
-			Loading...
-		</div>
-	{:then Component}
-		<Component {form} />
-	{:catch}
-		<p class="text-sm text-muted-foreground">
-			Component
-			<code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
-				{name}
-			</code>
-			not found in registry.
-		</p>
-	{/await}
+	{#if component}
+		{#await component}
+			<div class="flex items-center text-sm text-muted-foreground">
+				<Icons.spinner class="mr-2 size-4 animate-spin" />
+				Loading...
+			</div>
+		{:then Component}
+			<Component {form} />
+		{:catch}
+			<p class="text-sm text-muted-foreground">
+				Component
+				<code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+					{name}
+				</code>
+				not found in registry.
+			</p>
+		{/await}
+	{/if}
 {/snippet}
 
 <div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...restProps}>

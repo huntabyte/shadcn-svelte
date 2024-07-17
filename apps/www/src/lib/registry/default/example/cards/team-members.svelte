@@ -139,6 +139,7 @@
 		</div>
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
+				<img src="avatars/03.png" alt="Avatar" class="h-8 w-8 rounded-full" />
 				<Avatar.Root class="size-8">
 					<Avatar.Image src="/avatars/03.png" alt="Image" />
 					<Avatar.Fallback>IN</Avatar.Fallback>

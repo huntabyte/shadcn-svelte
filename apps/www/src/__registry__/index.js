@@ -478,7 +478,7 @@ export const Index = {
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/default/example/dropdown-menu-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/dropdown-menu-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/dropdown-menu-demo.svelte?raw").then((m) => m.default),
@@ -910,7 +910,7 @@ export const Index = {
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
-			registryDependencies: ["button","tooltip"],
+			registryDependencies: ["tooltip"],
 			component: () => import("../lib/registry/default/example/tooltip-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/tooltip-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/tooltip-demo.svelte?raw").then((m) => m.default),
@@ -1503,7 +1503,7 @@ export const Index = {
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/new-york/example/dropdown-menu-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/dropdown-menu-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/dropdown-menu-demo.svelte?raw").then((m) => m.default),
@@ -1935,7 +1935,7 @@ export const Index = {
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
-			registryDependencies: ["button","tooltip"],
+			registryDependencies: ["tooltip"],
 			component: () => import("../lib/registry/new-york/example/tooltip-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/tooltip-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/tooltip-demo.svelte?raw").then((m) => m.default),

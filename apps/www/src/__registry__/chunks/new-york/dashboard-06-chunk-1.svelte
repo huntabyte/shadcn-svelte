@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
@@ -56,16 +55,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-									builders={[builder]}
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -96,16 +94,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -136,16 +133,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -176,16 +172,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -216,16 +211,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -256,16 +250,15 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="size-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>

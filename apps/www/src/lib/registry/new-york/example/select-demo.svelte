@@ -10,17 +10,16 @@
 	];
 </script>
 
-<Select.Root>
+<Select.Root name="favoriteFruit">
 	<Select.Trigger class="w-[180px]">
 		<Select.Value placeholder="Select a fruit" />
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
-			<Select.Label>Fruits</Select.Label>
+			<Select.GroupLabel>Fruits</Select.GroupLabel>
 			{#each fruits as fruit}
 				<Select.Item value={fruit.value} textValue={fruit.label}>{fruit.label}</Select.Item>
 			{/each}
 		</Select.Group>
 	</Select.Content>
-	<Select.Input name="favoriteFruit" />
 </Select.Root>
