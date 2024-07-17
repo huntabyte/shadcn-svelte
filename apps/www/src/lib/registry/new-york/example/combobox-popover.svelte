@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { tick } from "svelte";
+	import { useId } from "bits-ui";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	type Status = {
 		value: string;
@@ -32,10 +33,10 @@
 		},
 	];
 
-	let open = false;
-	let value = "";
+	let open = $state(false);
+	let value = $state("");
 
-	$: selectedStatus = statuses.find((s) => s.value === value) ?? null;
+	const selectedStatus = $derived(statuses.find((s) => s.value === value) ?? null);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -46,15 +47,18 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+
+	const triggerId = useId();
 </script>
 
 <div class="flex items-center space-x-4">
 	<p class="text-sm text-muted-foreground">Status</p>
-	<Popover.Root bind:open let:ids>
-		<Popover.Trigger asChild let:builder>
-			<Button builders={[builder]} variant="outline" class="w-[150px] justify-start">
-				{selectedStatus ? selectedStatus.label : "+ Set status"}
-			</Button>
+	<Popover.Root bind:open>
+		<Popover.Trigger
+			class={buttonVariants({ variant: "outline", class: "w-[150px] justify-start" })}
+			id={triggerId}
+		>
+			{selectedStatus ? selectedStatus.label : "+ Set status"}
 		</Popover.Trigger>
 		<Popover.Content class="p-0" align="start" side="right">
 			<Command.Root>
@@ -67,7 +71,7 @@
 								value={status.value}
 								onSelect={(currentValue) => {
 									value = currentValue;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{status.label}

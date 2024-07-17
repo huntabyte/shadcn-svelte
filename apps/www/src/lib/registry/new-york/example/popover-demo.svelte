@@ -1,14 +1,12 @@
 <script lang="ts">
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 </script>
 
 <Popover.Root>
-	<Popover.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open</Button>
-	</Popover.Trigger>
+	<Popover.Trigger class={buttonVariants({ variant: "outline" })}>Open</Popover.Trigger>
 	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">

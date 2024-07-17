@@ -10,7 +10,7 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined = undefined;
+	let value = $state<DateValue | undefined>();
 </script>
 
 <Popover.Root>

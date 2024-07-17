@@ -10,7 +10,7 @@
 	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
 	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="container relative">
@@ -54,8 +54,8 @@
 		class="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"
 	>
 		<div class="md:hidden">
-			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden"></enhanced:img>
+			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block"></enhanced:img>
 		</div>
 	</section>
 	<section class="hidden md:block">

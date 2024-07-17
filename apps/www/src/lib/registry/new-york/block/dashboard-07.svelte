@@ -14,7 +14,7 @@
 
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
@@ -38,88 +38,94 @@
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<Home class="size-5" />
-						<span class="sr-only">Dashboard</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<Home class="size-5" />
+							<span class="sr-only">Dashboard</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<ShoppingCart class="size-5" />
-						<span class="sr-only">Orders</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<ShoppingCart class="size-5" />
+							<span class="sr-only">Orders</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Orders</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<Package class="size-5" />
-						<span class="sr-only">Products</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<Package class="size-5" />
+							<span class="sr-only">Products</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Products</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<UsersRound class="size-5" />
-						<span class="sr-only">Customers</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<UsersRound class="size-5" />
+							<span class="sr-only">Customers</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Customers</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<LineChart class="size-5" />
-						<span class="sr-only">Analytics</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<LineChart class="size-5" />
+							<span class="sr-only">Analytics</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Analytics</Tooltip.Content>
 			</Tooltip.Root>
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<Settings class="size-5" />
-						<span class="sr-only">Settings</span>
-					</a>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<a
+							href="##"
+							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							{...props}
+						>
+							<Settings class="size-5" />
+							<span class="sr-only">Settings</span>
+						</a>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Settings</Tooltip.Content>
 			</Tooltip.Root>
@@ -130,11 +136,11 @@
 			class="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
-				<Sheet.Trigger asChild let:builder>
-					<Button builders={[builder]} size="icon" variant="outline" class="sm:hidden">
-						<PanelLeft class="size-5" />
-						<span class="sr-only">Toggle Menu</span>
-					</Button>
+				<Sheet.Trigger
+					class={buttonVariants({ variant: "outline", size: "icon", class: "sm:hidden" })}
+				>
+					<PanelLeft class="size-5" />
+					<span class="sr-only">Toggle Menu</span>
 				</Sheet.Trigger>
 				<Sheet.Content side="left" class="sm:max-w-xs">
 					<nav class="grid gap-6 text-lg font-medium">
@@ -204,21 +210,20 @@
 				/>
 			</div>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="outline"
-						size="icon"
+				<DropdownMenu.Trigger
+					class={buttonVariants({
+						variant: "outline",
+						size: "icon",
+						class: "overflow-hidden rounded-full",
+					})}
+				>
+					<img
+						src="/images/placeholder-user.jpg"
+						width={36}
+						height={36}
+						alt="Avatar"
 						class="overflow-hidden rounded-full"
-					>
-						<img
-							src="/images/placeholder-user.jpg"
-							width={36}
-							height={36}
-							alt="Avatar"
-							class="overflow-hidden rounded-full"
-						/>
-					</Button>
+					/>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Label>My Account</DropdownMenu.Label>
@@ -398,18 +403,18 @@
 												<Select.Value placeholder="Select category" />
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="clothing" label="Clothing"
+												<Select.Item value="clothing" textValue="Clothing"
 													>Clothing</Select.Item
 												>
 												<Select.Item
 													value="electronics"
-													label="Electronics"
+													textValue="Electronics"
 												>
 													Electronics
 												</Select.Item>
 												<Select.Item
 													value="accessories"
-													label="Accessories"
+													textValue="Accessories"
 												>
 													Accessories
 												</Select.Item>
@@ -426,15 +431,15 @@
 												<Select.Value placeholder="Select subcategory" />
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="t-shirts" label="T-Shirts"
+												<Select.Item value="t-shirts" textValue="T-Shirts"
 													>T-Shirts</Select.Item
 												>
-												<Select.Item value="hoodies" label="Hoodies"
+												<Select.Item value="hoodies" textValue="Hoodies"
 													>Hoodies</Select.Item
 												>
 												<Select.Item
 													value="sweatshirts"
-													label="Sweatshirts"
+													textValue="Sweatshirts"
 												>
 													Sweatshirts
 												</Select.Item>
@@ -462,13 +467,13 @@
 												<Select.Value placeholder="Select status" />
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="draft" label="Draft"
+												<Select.Item value="draft" textValue="Draft"
 													>Draft</Select.Item
 												>
-												<Select.Item value="published" label="Active"
+												<Select.Item value="published" textValue="Active"
 													>Active</Select.Item
 												>
-												<Select.Item value="archived" label="Archived"
+												<Select.Item value="archived" textValue="Archived"
 													>Archived</Select.Item
 												>
 											</Select.Content>

@@ -14,14 +14,12 @@
 	import UserPlus from "lucide-svelte/icons/user-plus";
 	import Users from "lucide-svelte/icons/users";
 
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open</Button>
-	</DropdownMenu.Trigger>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Label>My Account</DropdownMenu.Label>
 		<DropdownMenu.Separator />

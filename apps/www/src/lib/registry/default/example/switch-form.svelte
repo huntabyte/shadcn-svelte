@@ -15,8 +15,8 @@
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Switch } from "$lib/registry/default/ui/switch/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.switch;
-	export { data as form };
+
+	let { form: data = $page.data.switch }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -48,7 +48,7 @@
 							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+					<Switch {...attrs} bind:checked={$formData.marketing_emails} />
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -67,7 +67,6 @@
 						{...attrs}
 						aria-readonly
 						disabled
-						includeInput
 						bind:checked={$formData.security_emails}
 					/>
 				</Form.Control>

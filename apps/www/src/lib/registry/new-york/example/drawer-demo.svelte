@@ -2,7 +2,7 @@
 	import Minus from "svelte-radix/Minus.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
 	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 
 	const data = [
@@ -70,9 +70,7 @@
 </script>
 
 <Drawer.Root>
-	<Drawer.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open Drawer</Button>
-	</Drawer.Trigger>
+	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
 		<div class="mx-auto w-full max-w-sm">
 			<Drawer.Header>
@@ -117,9 +115,7 @@
 			</div>
 			<Drawer.Footer>
 				<Button>Submit</Button>
-				<Drawer.Close asChild let:builder>
-					<Button builders={[builder]} variant="outline">Cancel</Button>
-				</Drawer.Close>
+				<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
 			</Drawer.Footer>
 		</div>
 	</Drawer.Content>

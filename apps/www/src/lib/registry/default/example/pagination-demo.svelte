@@ -6,37 +6,41 @@
 
 	const isDesktop = new MediaQuery("(min-width: 768px)");
 
-	let count = 20;
-	$: perPage = isDesktop.matches ? 3 : 8;
-	$: siblingCount = isDesktop.matches ? 1 : 0;
+	const count = 20;
+	let currentPage = $state(1);
+
+	const perPage = $derived(isDesktop.matches ? 3 : 8);
+	const siblingCount = $derived(isDesktop.matches ? 1 : 0);
 </script>
 
-<Pagination.Root {count} {perPage} {siblingCount} let:pages let:currentPage>
-	<Pagination.Content>
-		<Pagination.Item>
-			<Pagination.PrevButton>
-				<ChevronLeft class="size-4" />
-				<span class="hidden sm:block">Previous</span>
-			</Pagination.PrevButton>
-		</Pagination.Item>
-		{#each pages as page (page.key)}
-			{#if page.type === "ellipsis"}
-				<Pagination.Item>
-					<Pagination.Ellipsis />
-				</Pagination.Item>
-			{:else}
-				<Pagination.Item>
-					<Pagination.Link {page} isActive={currentPage === page.value}>
-						{page.value}
-					</Pagination.Link>
-				</Pagination.Item>
-			{/if}
-		{/each}
-		<Pagination.Item>
-			<Pagination.NextButton>
-				<span class="hidden sm:block">Next</span>
-				<ChevronRight class="size-4" />
-			</Pagination.NextButton>
-		</Pagination.Item>
-	</Pagination.Content>
+<Pagination.Root {count} {perPage} {siblingCount} bind:page={currentPage}>
+	{#snippet children({ pages })}
+		<Pagination.Content>
+			<Pagination.Item>
+				<Pagination.PrevButton>
+					<ChevronLeft class="size-4" />
+					<span class="hidden sm:block">Previous</span>
+				</Pagination.PrevButton>
+			</Pagination.Item>
+			{#each pages as page (page.key)}
+				{#if page.type === "ellipsis"}
+					<Pagination.Item>
+						<Pagination.Ellipsis />
+					</Pagination.Item>
+				{:else}
+					<Pagination.Item>
+						<Pagination.Link {page} isActive={currentPage === page.value}>
+							{page.value}
+						</Pagination.Link>
+					</Pagination.Item>
+				{/if}
+			{/each}
+			<Pagination.Item>
+				<Pagination.NextButton>
+					<span class="hidden sm:block">Next</span>
+					<ChevronRight class="size-4" />
+				</Pagination.NextButton>
+			</Pagination.Item>
+		</Pagination.Content>
+	{/snippet}
 </Pagination.Root>

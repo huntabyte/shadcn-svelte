@@ -5,7 +5,7 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";
 
-	let goal = 350;
+	let goal = $state(350);
 	function updateGoal(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}

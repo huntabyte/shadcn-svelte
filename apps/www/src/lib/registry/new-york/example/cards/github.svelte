@@ -3,14 +3,14 @@
 	import Circle from "svelte-radix/Circle.svelte";
 	import Plus from "svelte-radix/Plus.svelte";
 	import Star from "svelte-radix/Star.svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 
-	let futureIdeas = true;
-	let myStack = false;
-	let inspiration = false;
+	let futureIdeas = $state(true);
+	let myStack = $state(false);
+	let inspiration = $state(false);
 </script>
 
 <Card.Root>
@@ -28,10 +28,10 @@
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
-						<ChevronDown class="size-4 text-secondary-foreground" />
-					</Button>
+				<DropdownMenu.Trigger
+					class={buttonVariants({ variant: "secondary", class: "px-2 shadow-none" })}
+				>
+					<ChevronDown class="size-4 text-secondary-foreground" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
@@ -39,12 +39,12 @@
 					<DropdownMenu.CheckboxItem bind:checked={futureIdeas}>
 						Future Ideas
 					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem bind:checked={myStack}
-						>My Stack</DropdownMenu.CheckboxItem
-					>
-					<DropdownMenu.CheckboxItem bind:checked={inspiration}
-						>Inspiration</DropdownMenu.CheckboxItem
-					>
+					<DropdownMenu.CheckboxItem bind:checked={myStack}>
+						My Stack
+					</DropdownMenu.CheckboxItem>
+					<DropdownMenu.CheckboxItem bind:checked={inspiration}>
+						Inspiration
+					</DropdownMenu.CheckboxItem>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
 						<Plus class="mr-2 size-4" /> Create List

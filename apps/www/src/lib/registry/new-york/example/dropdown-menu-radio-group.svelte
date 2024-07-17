@@ -1,14 +1,12 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
-	let position = "bottom";
+	let position = $state("bottom");
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="outline" builders={[builder]}>Open</Button>
-	</DropdownMenu.Trigger>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Label>Panel Position</DropdownMenu.Label>
 		<DropdownMenu.Separator />

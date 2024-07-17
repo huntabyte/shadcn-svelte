@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { nanoid } from "nanoid";
+	import { useId } from "bits-ui";
 	import { Icons } from "$lib/components/docs/icons/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
-	const id = nanoid(5);
+	const id = useId();
 </script>
 
 <Card.Root>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="relative">
 			<div class="absolute inset-0 flex items-center">
-				<span class="w-full border-t" />
+				<span class="w-full border-t"></span>
 			</div>
 			<div class="relative flex justify-center text-xs uppercase">
 				<span class="bg-card px-2 text-muted-foreground"> Or continue with </span>

@@ -7,7 +7,7 @@
 		today,
 	} from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
@@ -16,7 +16,7 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined = undefined;
+	let value = $state<DateValue | undefined>();
 
 	const items = [
 		{ value: 0, label: "Today" },
@@ -26,26 +26,24 @@
 	];
 </script>
 
-<Popover.Root openFocus>
-	<Popover.Trigger asChild let:builder>
-		<Button
-			variant="outline"
-			class={cn(
-				"w-[240px] justify-start text-left font-normal",
-				!value && "text-muted-foreground"
-			)}
-			builders={[builder]}
-		>
-			<CalendarIcon class="mr-2 size-4" />
-			{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-		</Button>
+<Popover.Root>
+	<Popover.Trigger
+		class={cn(
+			buttonVariants({
+				variant: "outline",
+				class: "w-[240px] justify-start text-left font-normal",
+			}),
+			!value && "text-muted-foreground"
+		)}
+	>
+		<CalendarIcon class="mr-2 size-4" />
+		{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 	</Popover.Trigger>
 	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">
 		<Select.Root
-			{items}
-			onSelectedChange={(v) => {
+			onValueChange={(v) => {
 				if (!v) return;
-				value = today(getLocalTimeZone()).add({ days: v.value });
+				value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
 			}}
 		>
 			<Select.Trigger>
@@ -53,12 +51,12 @@
 			</Select.Trigger>
 			<Select.Content>
 				{#each items as item}
-					<Select.Item value={item.value}>{item.label}</Select.Item>
+					<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
 				{/each}
 			</Select.Content>
 		</Select.Root>
 		<div class="rounded-md border">
-			<Calendar bind:value />
+			<Calendar type="single" bind:value />
 		</div>
 	</Popover.Content>
 </Popover.Root>

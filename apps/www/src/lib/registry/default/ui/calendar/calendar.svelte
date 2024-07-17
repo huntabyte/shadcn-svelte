@@ -15,8 +15,8 @@
 
 <CalendarPrimitive.Root
 	bind:ref
-	bind:value={value as any}
-	bind:placeholder={placeholder as any}
+	bind:value
+	bind:placeholder
 	{weekdayFormat}
 	class={cn("p-3", className)}
 	{...restProps as any}

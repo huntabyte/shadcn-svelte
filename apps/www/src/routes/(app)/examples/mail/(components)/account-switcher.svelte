@@ -3,19 +3,18 @@
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 
-	export let isCollapsed: boolean;
-	export let accounts: Account[];
+	let {
+		isCollapsed,
+		accounts,
+	}: {
+		isCollapsed: boolean;
+		accounts: Account[];
+	} = $props();
 
 	let selectedAccount = accounts[0];
 </script>
 
-<Select.Root
-	portal={null}
-	selected={{ value: selectedAccount.email, label: selectedAccount.label }}
-	onSelectedChange={(e) => {
-		selectedAccount = accounts.find((account) => account.email === e?.value) || accounts[0];
-	}}
->
+<Select.Root value={accounts[0].email}>
 	<Select.Trigger
 		class={cn(
 			"flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
@@ -34,7 +33,7 @@
 	<Select.Content sameWidth={!isCollapsed} align={isCollapsed ? "start" : undefined}>
 		<Select.Group>
 			{#each accounts as account}
-				<Select.Item value={account.email} label={account.label}>
+				<Select.Item value={account.email} textValue={account.label}>
 					<div
 						class="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground"
 					>
@@ -49,5 +48,4 @@
 			{/each}
 		</Select.Group>
 	</Select.Content>
-	<Select.Input hidden name="account" />
 </Select.Root>

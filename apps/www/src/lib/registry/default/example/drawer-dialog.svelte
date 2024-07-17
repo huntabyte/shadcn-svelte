@@ -4,7 +4,7 @@
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	let open = false;
 	const isDesktop = new MediaQuery("(min-width: 768px)");
@@ -12,9 +12,7 @@
 
 {#if isDesktop.matches}
 	<Dialog.Root bind:open>
-		<Dialog.Trigger asChild let:builder>
-			<Button variant="outline" builders={[builder]}>Edit Profile</Button>
-		</Dialog.Trigger>
+		<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Edit Profile</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
@@ -37,9 +35,7 @@
 	</Dialog.Root>
 {:else}
 	<Drawer.Root bind:open>
-		<Drawer.Trigger asChild let:builder>
-			<Button variant="outline" builders={[builder]}>Edit Profile</Button>
-		</Drawer.Trigger>
+		<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Edit Profile</Drawer.Trigger>
 		<Drawer.Content>
 			<Drawer.Header class="text-left">
 				<Drawer.Title>Edit profile</Drawer.Title>
@@ -59,9 +55,7 @@
 				<Button type="submit">Save changes</Button>
 			</form>
 			<Drawer.Footer class="pt-2">
-				<Drawer.Close asChild let:builder>
-					<Button variant="outline" builders={[builder]}>Cancel</Button>
-				</Drawer.Close>
+				<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
 			</Drawer.Footer>
 		</Drawer.Content>
 	</Drawer.Root>

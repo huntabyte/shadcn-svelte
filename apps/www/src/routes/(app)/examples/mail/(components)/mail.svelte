@@ -15,13 +15,21 @@
 	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
 	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
-	export let accounts: Account[];
-	export let mails: Mail[];
-	export let defaultLayout = [265, 440, 655];
-	export let defaultCollapsed = false;
-	export let navCollapsedSize: number;
+	let {
+		accounts,
+		mails,
+		defaultLayout = [265, 440, 655],
+		defaultCollapsed = false,
+		navCollapsedSize,
+	}: {
+		accounts: Account[];
+		mails: Mail[];
+		defaultLayout?: number[];
+		defaultCollapsed?: boolean;
+		navCollapsedSize: number;
+	} = $props();
 
-	let isCollapsed = defaultCollapsed;
+	let isCollapsed = $state(defaultCollapsed);
 
 	function onLayoutChange(sizes: number[]) {
 		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
@@ -39,8 +47,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-	<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+	<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden"></enhanced:img>
+	<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block"></enhanced:img>
 </div>
 <div class="hidden md:block">
 	<Resizable.PaneGroup

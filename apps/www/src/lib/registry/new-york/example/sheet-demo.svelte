@@ -1,14 +1,12 @@
 <script lang="ts">
 	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
 
 <Sheet.Root>
-	<Sheet.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open</Button>
-	</Sheet.Trigger>
+	<Sheet.Trigger class={buttonVariants({ variant: "outline" })}>Open</Sheet.Trigger>
 	<Sheet.Content side="right">
 		<Sheet.Header>
 			<Sheet.Title>Edit profile</Sheet.Title>
@@ -27,8 +25,8 @@
 			</div>
 		</div>
 		<Sheet.Footer>
-			<Sheet.Close asChild let:builder>
-				<Button builders={[builder]} type="submit">Save changes</Button>
+			<Sheet.Close class={buttonVariants({ variant: "outline" })} type="submit">
+				Save changes
 			</Sheet.Close>
 		</Sheet.Footer>
 	</Sheet.Content>

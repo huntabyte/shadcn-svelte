@@ -3,7 +3,7 @@
 	import Plus from "lucide-svelte/icons/plus";
 	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	const data = [
 		{
@@ -63,7 +63,7 @@
 	const x = (d: { goal: number; id: number }) => d.id;
 	const y = (d: { goal: number; id: number }) => d.goal;
 
-	let goal = 350;
+	let goal = $state(350);
 
 	function handleClick(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
@@ -71,9 +71,7 @@
 </script>
 
 <Drawer.Root>
-	<Drawer.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open Drawer</Button>
-	</Drawer.Trigger>
+	<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Open Drawer</Drawer.Trigger>
 	<Drawer.Content>
 		<div class="mx-auto w-full max-w-sm">
 			<Drawer.Header>
@@ -86,7 +84,7 @@
 						variant="outline"
 						size="icon"
 						class="size-8 shrink-0 rounded-full"
-						on:click={() => handleClick(-10)}
+						onclick={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
 						<Minus class="size-4" />
@@ -104,7 +102,7 @@
 						variant="outline"
 						size="icon"
 						class="size-8 shrink-0 rounded-full"
-						on:click={() => handleClick(10)}
+						onclick={() => handleClick(10)}
 						disabled={goal >= 400}
 					>
 						<Plus class="size-4" />
@@ -119,9 +117,7 @@
 			</div>
 			<Drawer.Footer>
 				<Button>Submit</Button>
-				<Drawer.Close asChild let:builder>
-					<Button builders={[builder]} variant="outline">Cancel</Button>
-				</Drawer.Close>
+				<Drawer.Close class={buttonVariants({ variant: "outline" })}>Cancel</Drawer.Close>
 			</Drawer.Footer>
 		</div>
 	</Drawer.Content>

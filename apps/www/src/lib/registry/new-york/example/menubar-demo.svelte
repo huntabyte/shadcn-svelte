@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Menubar from "$lib/registry/new-york/ui/menubar/index.js";
 
-	let bookmarks = false;
-	let fullUrls = true;
+	let bookmarks = $state(false);
+	let fullUrls = $state(true);
 
-	const profileRadioValue = "benoit";
+	let profileRadioValue = $state("benoit");
 </script>
 
 <Menubar.Root>
@@ -84,7 +84,7 @@
 	<Menubar.Menu>
 		<Menubar.Trigger>Profiles</Menubar.Trigger>
 		<Menubar.Content>
-			<Menubar.RadioGroup value={profileRadioValue}>
+			<Menubar.RadioGroup bind:value={profileRadioValue}>
 				<Menubar.RadioItem value="andy">Andy</Menubar.RadioItem>
 				<Menubar.RadioItem value="benoit">Benoit</Menubar.RadioItem>
 				<Menubar.RadioItem value="Luis">Luis</Menubar.RadioItem>

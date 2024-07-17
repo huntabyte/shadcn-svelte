@@ -7,7 +7,7 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
-	let open = false;
+	let open = $state(false);
 	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 

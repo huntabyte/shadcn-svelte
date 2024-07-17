@@ -29,8 +29,9 @@
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
-	export { data as form };
+
+	let { form: data = $page.data.datePicker }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -50,11 +51,13 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined;
+	let value = $state<DateValue | undefined>();
 
-	$: value = $formData.dob ? parseDate($formData.dob) : undefined;
+	$effect(() => {
+		value = $formData.dob ? parseDate($formData.dob) : undefined;
+	});
 
-	let placeholder: DateValue = today(getLocalTimeZone());
+	let placeholder = $state(today(getLocalTimeZone()));
 </script>
 
 <form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
@@ -75,12 +78,12 @@
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" side="top">
 					<Calendar
+						type="single"
 						{value}
 						bind:placeholder
 						minValue={new CalendarDate(1900, 1, 1)}
 						maxValue={today(getLocalTimeZone())}
 						calendarLabel="Date of birth"
-						initialFocus
 						onValueChange={(v) => {
 							if (v) {
 								$formData.dob = v.toString();

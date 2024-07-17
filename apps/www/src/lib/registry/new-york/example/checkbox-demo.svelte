@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import Label from "$lib/registry/new-york/ui/label/label.svelte";
-	let checked = false;
+
+	let checked = $state(false);
 </script>
 
 <div class="flex items-center space-x-2">

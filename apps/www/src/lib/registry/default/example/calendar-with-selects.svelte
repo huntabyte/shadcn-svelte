@@ -10,7 +10,6 @@
 	import { cn } from "$lib/utils.js";
 
 	let {
-		type: _type = "single",
 		value = $bindable(),
 		placeholder = $bindable(),
 		weekdayFormat,
@@ -59,12 +58,11 @@
 </script>
 
 <CalendarPrimitive.Root
-	type="single"
 	{weekdayFormat}
 	class={cn("rounded-md border p-3", className)}
-	{...restProps}
-	bind:value={value as any}
+	bind:value
 	bind:placeholder
+	{...restProps as any}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
@@ -72,7 +70,7 @@
 				<Select.Root
 					value={defaultMonth?.value}
 					onValueChange={(v) => {
-						if (!v || !placeholder) return;
+						if (!placeholder) return;
 						if (v === `${placeholder.month}`) return;
 						placeholder = placeholder.set({ month: Number.parseInt(v) });
 					}}

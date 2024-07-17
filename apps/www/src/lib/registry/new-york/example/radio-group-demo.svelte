@@ -3,7 +3,7 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
 
-<RadioGroup.Root value="comfortable">
+<RadioGroup.Root value="comfortable" name="spacing">
 	<div class="flex items-center space-x-2">
 		<RadioGroup.Item value="default" id="r1" />
 		<Label for="r1">Default</Label>
@@ -16,5 +16,4 @@
 		<RadioGroup.Item value="compact" id="r3" />
 		<Label for="r3">Compact</Label>
 	</div>
-	<RadioGroup.Input name="spacing" />
 </RadioGroup.Root>

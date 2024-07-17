@@ -5,15 +5,11 @@
 <Breadcrumb.Root>
 	<Breadcrumb.List>
 		<Breadcrumb.Item>
-			<Breadcrumb.Link asChild let:attrs>
-				<a href="/" {...attrs}>Home</a>
-			</Breadcrumb.Link>
+			<Breadcrumb.Link href="/">Home</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator />
 		<Breadcrumb.Item>
-			<Breadcrumb.Link asChild let:attrs>
-				<a href="/components" {...attrs}>Components</a>
-			</Breadcrumb.Link>
+			<Breadcrumb.Link href="/components">Components</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator />
 		<Breadcrumb.Item>

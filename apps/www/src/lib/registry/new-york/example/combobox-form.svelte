@@ -31,6 +31,7 @@
 	import { tick } from "svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
+	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
@@ -38,8 +39,9 @@
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
-	export { data as form };
+
+	let { form: data = $page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -54,7 +56,7 @@
 
 	const { form: formData, enhance } = form;
 
-	let open = false;
+	let open = $state(false);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -65,12 +67,14 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+
+	const triggerId = useId();
 </script>
 
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
-		<Popover.Root bind:open let:ids>
-			<Form.Control let:attrs>
+		<Popover.Root bind:open>
+			<Form.Control let:attrs id={triggerId}>
 				<Form.Label>Language</Form.Label>
 				<Popover.Trigger
 					class={cn(
@@ -97,7 +101,7 @@
 								value={language.value}
 								onSelect={() => {
 									$formData.language = language.value;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{language.label}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
-	let checked = false;
+	let checked = $state(false);
 </script>
 
 <div class="flex items-center space-x-2">

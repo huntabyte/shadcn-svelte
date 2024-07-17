@@ -15,7 +15,7 @@
 
 	const ITEMS_TO_DISPLAY = 3;
 
-	let open = false;
+	let open = $state(false);
 
 	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
@@ -40,8 +40,10 @@
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
 							{#each items.slice(1, -2) as item}
-								<DropdownMenu.Item href={item.href ? item.href : "#"}>
-									{item.label}
+								<DropdownMenu.Item>
+									<a href={item.href ? item.href : "#"}>
+										{item.label}
+									</a>
 								</DropdownMenu.Item>
 							{/each}
 						</DropdownMenu.Content>

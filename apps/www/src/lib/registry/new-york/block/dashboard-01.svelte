@@ -11,7 +11,7 @@
 
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
@@ -45,16 +45,15 @@
 			</a>
 		</nav>
 		<Sheet.Root>
-			<Sheet.Trigger asChild let:builder>
-				<Button
-					variant="outline"
-					size="icon"
-					class="shrink-0 md:hidden"
-					builders={[builder]}
-				>
-					<Menu class="size-5" />
-					<span class="sr-only">Toggle navigation menu</span>
-				</Button>
+			<Sheet.Trigger
+				class={buttonVariants({
+					variant: "outline",
+					size: "icon",
+					class: "shrink-0 md:hidden",
+				})}
+			>
+				<Menu class="size-5" />
+				<span class="sr-only">Toggle navigation menu</span>
 			</Sheet.Trigger>
 			<Sheet.Content side="left">
 				<nav class="grid gap-6 text-lg font-medium">
@@ -82,16 +81,15 @@
 				</div>
 			</form>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="secondary"
-						size="icon"
-						class="rounded-full"
-					>
-						<CircleUser class="size-5" />
-						<span class="sr-only">Toggle user menu</span>
-					</Button>
+				<DropdownMenu.Trigger
+					class={buttonVariants({
+						variant: "secondary",
+						size: "icon",
+						class: "rounded-full",
+					})}
+				>
+					<CircleUser class="size-5" />
+					<span class="sr-only">Toggle user menu</span>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Label>My Account</DropdownMenu.Label>

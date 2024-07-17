@@ -4,7 +4,7 @@
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -25,11 +25,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Owner
-						<ChevronDown class="ml-2 size-4 text-muted-foreground" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Owner
+					<ChevronDown class="ml-2 size-4 text-muted-foreground" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -87,11 +87,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member
-						<ChevronDown class="ml-2 size-4 text-muted-foreground" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Member
+					<ChevronDown class="ml-2 size-4 text-muted-foreground" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -149,11 +149,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member
-						<ChevronDown class="ml-2 size-4 text-muted-foreground" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Member
+					<ChevronDown class="ml-2 size-4 text-muted-foreground" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>

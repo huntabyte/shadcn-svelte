@@ -6,7 +6,7 @@
 
 	const isDesktop = new MediaQuery("(min-width: 768px)");
 
-	let count = 20;
+	const count = 20;
 	const perPage = $derived(isDesktop.matches ? 3 : 8);
 	const siblingCount = $derived(isDesktop.matches ? 1 : 0);
 	let currentPage = $state(1);

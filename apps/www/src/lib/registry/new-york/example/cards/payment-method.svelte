@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { nanoid } from "nanoid";
+	import { useId } from "bits-ui";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Icons } from "$lib/components/docs/icons/index.js";
@@ -23,7 +23,7 @@
 		"December",
 	];
 
-	const id = nanoid(5);
+	const id = useId();
 </script>
 
 <Card.Root>
@@ -96,7 +96,7 @@
 					</Select.Trigger>
 					<Select.Content>
 						{#each months as month, i}
-							<Select.Item value={i + 1} label={month}>{month}</Select.Item>
+							<Select.Item value={`${i + 1}`} textValue={month}>{month}</Select.Item>
 						{/each}
 					</Select.Content>
 				</Select.Root>
@@ -111,7 +111,7 @@
 						{#each { length: 10 } as _, i}
 							<Select.Item
 								value={`${new Date().getFullYear() + i}`}
-								label={`${new Date().getFullYear() + i}`}
+								textValue={`${new Date().getFullYear() + i}`}
 							>
 								{new Date().getFullYear() + i}
 							</Select.Item>

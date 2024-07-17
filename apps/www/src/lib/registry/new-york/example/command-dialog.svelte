@@ -8,7 +8,8 @@
 
 	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	let open = false;
+
+	let open = $state(false);
 
 	onMount(() => {
 		function handleKeydown(e: KeyboardEvent) {
