@@ -13,7 +13,7 @@
 	import Actions from "./data-table-actions.svelte";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
@@ -140,11 +140,13 @@
 
 	const { hiddenColumnIds } = pluginStates.hide;
 	const ids = flatColumns.map((c) => c.id);
-	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
+	let hideForId = $state(Object.fromEntries(ids.map((id) => [id, true])));
 
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => !hide)
-		.map(([id]) => id);
+	$effect(() => {
+		$hiddenColumnIds = Object.entries(hideForId)
+			.filter(([, hide]) => !hide)
+			.map(([id]) => id);
+	});
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
@@ -163,10 +165,13 @@
 			bind:value={$filterValue}
 		/>
 		<DropdownMenu.Root>
-			<DropdownMenu.Trigger asChild let:builder>
-				<Button variant="outline" class="ml-auto" builders={[builder]}>
-					Columns <ChevronDown class="ml-2 size-4" />
-				</Button>
+			<DropdownMenu.Trigger
+				class={buttonVariants({
+					variant: "outline",
+					class: "ml-auto",
+				})}
+			>
+				Columns <ChevronDown class="ml-2 size-4" />
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
 				{#each flatColumns as col}

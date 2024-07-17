@@ -10,10 +10,13 @@
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 
-	export let data: PageData;
-	$: markdown = data.component;
-	$: doc = data.metadata;
-	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
+	let { data }: { data: PageData } = $props();
+
+	const markdown = $derived(data.component);
+	const doc = $derived(data.metadata);
+	const componentSource = $derived(
+		data.metadata.source?.replace("default", $config.style ?? "default")
+	);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">

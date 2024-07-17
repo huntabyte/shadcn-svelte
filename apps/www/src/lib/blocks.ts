@@ -1,5 +1,5 @@
 import { type Highlighter, getHighlighter } from "shiki";
-import type { ComponentType } from "svelte";
+import type { Component, ComponentType } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "./config/blocks.js";
@@ -14,7 +14,7 @@ export type RawBlockChunk = {
 		className: string;
 	};
 	raw: () => Promise<string>;
-	component: () => Promise<ComponentType>;
+	component: () => Promise<Component>;
 };
 
 export type RawBlock = {
@@ -22,7 +22,7 @@ export type RawBlock = {
 	type: string;
 	chunks: RawBlockChunk[];
 	raw: () => Promise<string>;
-	component: () => Promise<ComponentType>;
+	component: () => Promise<Component>;
 };
 
 export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {

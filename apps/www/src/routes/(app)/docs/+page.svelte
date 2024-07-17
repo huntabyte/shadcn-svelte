@@ -1,16 +1,14 @@
 <script lang="ts">
-	import type { ComponentType } from "svelte";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { PageData } from "./$types.js";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { cn } from "$lib/utils.js";
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
-	type Component = $$Generic<ComponentType>;
-	$: component = data.component as unknown as Component;
-	$: doc = data.metadata;
+	const component = $derived(data.component);
+	const doc = $derived(data.metadata);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">

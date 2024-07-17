@@ -8,7 +8,11 @@
 	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
 	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
 
-	$: updateTheme($config.theme, $page.url.pathname);
+	let { children } = $props();
+
+	$effect(() => {
+		updateTheme($config.theme, $page.url.pathname);
+	});
 </script>
 
 <ModeWatcher />
@@ -20,5 +24,5 @@
 {/if}
 
 <div class="relative flex min-h-screen flex-col bg-background" id="page" data-vaul-drawer-wrapper>
-	<slot />
+	{@render children?.()}
 </div>

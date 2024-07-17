@@ -27,7 +27,7 @@
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 
-	export let data: SuperValidated<Infer<ProfileFormSchema>>;
+	let { data }: { data: SuperValidated<Infer<ProfileFormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(profileFormSchema),
@@ -46,11 +46,6 @@
 			lastInput && lastInput.focus();
 		});
 	}
-
-	$: selectedEmail = {
-		label: $formData.email,
-		value: $formData.email,
-	};
 </script>
 
 <form method="POST" class="space-y-8" use:enhance id="profile-form">
@@ -69,27 +64,22 @@
 	<Form.Field {form} name="email">
 		<Form.Control let:attrs>
 			<Form.Label>Email</Form.Label>
-			<Select.Root
-				selected={selectedEmail}
-				onSelectedChange={(s) => {
-					s && ($formData.email = s.value);
-				}}
-			>
+			<Select.Root bind:value={$formData.email}>
 				<Select.Trigger {...attrs}>
 					<Select.Value placeholder="Select a verified email to display" />
 				</Select.Trigger>
 				<Select.Content>
-					<Select.Item value="m@example.com" label="m@example.com" />
-					<Select.Item value="m@google.com" label="m@google.com" />
-					<Select.Item value="m@support.com" label="m@supporte.com" />
+					<Select.Item value="m@example.com" textValue="m@example.com" />
+					<Select.Item value="m@google.com" textValue="m@google.com" />
+					<Select.Item value="m@support.com" textValue="m@supporte.com" />
 				</Select.Content>
 			</Select.Root>
 			<input hidden name={attrs.name} bind:value={$formData.email} />
 		</Form.Control>
 		<Form.Description>
-			You can manage verified email addresses in your <a href="/examples/forms"
-				>email settings</a
-			>.
+			You can manage verified email addresses in your <a href="/examples/forms">
+				email settings
+			</a>.
 		</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>

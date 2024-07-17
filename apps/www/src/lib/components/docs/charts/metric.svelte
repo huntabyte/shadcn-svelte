@@ -40,5 +40,5 @@
 		strokeColor={scatterPointStrokeColors}
 		strokeWidth={crosshairStrokeWidths}
 	/>
-	<VisCrosshair template={tooltipTemplate} color={crosshairPointColors} />
+	<VisCrosshair template={tooltipTemplate} color={crosshairPointColors} {x} {y} />
 </VisXYContainer>

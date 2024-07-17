@@ -1,8 +1,11 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
 	import SidebarNav from "./(components)/sidebar-nav.svelte";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import FormsLight from "$lib/img/examples/forms-light.png?enhanced";
 	import FormsDark from "$lib/img/examples/forms-dark.png?enhanced";
+
+	let { children }: { children?: Snippet } = $props();
 
 	const sidebarNavItems = [
 		{
@@ -29,8 +32,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={FormsLight} alt="Forms" class="block dark:hidden" />
-	<enhanced:img src={FormsDark} alt="Forms" class="hidden dark:block" />
+	<enhanced:img src={FormsLight} alt="Forms" class="block dark:hidden"></enhanced:img>
+	<enhanced:img src={FormsDark} alt="Forms" class="hidden dark:block"></enhanced:img>
 </div>
 <div class="hidden space-y-6 p-10 pb-16 md:block">
 	<div class="space-y-0.5">
@@ -45,7 +48,7 @@
 			<SidebarNav items={sidebarNavItems} />
 		</aside>
 		<div class="flex-1 lg:max-w-2xl">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 </div>

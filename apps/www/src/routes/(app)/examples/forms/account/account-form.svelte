@@ -57,7 +57,7 @@
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 
-	export let data: SuperValidated<Infer<AccountFormSchema>>;
+	let { data }: { data: SuperValidated<Infer<AccountFormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(accountFormSchema),
@@ -68,7 +68,9 @@
 		dateStyle: "long",
 	});
 
-	let dobValue: DateValue | undefined = $formData.dob ? parseDate($formData.dob) : undefined;
+	let dobValue = $state<DateValue | undefined>(
+		$formData.dob ? parseDate($formData.dob) : undefined
+	);
 </script>
 
 <form method="POST" class="space-y-8" use:enhance>
@@ -96,6 +98,7 @@
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" align="start">
 					<Calendar
+						type="single"
 						bind:value={dobValue}
 						isDateDisabled={(currDate) => {
 							const currDateObj = currDate.toDate(getLocalTimeZone());
@@ -108,7 +111,7 @@
 						}}
 						onValueChange={(value) => {
 							if (value === undefined) {
-								$formData.dob = undefined;
+								$formData.dob = undefined as any
 								validate("dob");
 								return;
 							}

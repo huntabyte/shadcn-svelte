@@ -485,12 +485,16 @@
 		"dependencies": [
 			"bits-ui"
 		],
-		"registryDependencies": [],
+		"registryDependencies": [
+			"select"
+		],
 		"files": [
 			"ui/select/index.ts",
 			"ui/select/select-content.svelte",
+			"ui/select/select-group-label.svelte",
 			"ui/select/select-item.svelte",
-			"ui/select/select-label.svelte",
+			"ui/select/select-scroll-down-button.svelte",
+			"ui/select/select-scroll-up-button.svelte",
 			"ui/select/select-separator.svelte",
 			"ui/select/select-trigger.svelte"
 		],

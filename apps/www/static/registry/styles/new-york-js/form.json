@@ -12,7 +12,7 @@
 	"files": [
 		{
 			"name": "form-button.svelte",
-			"content": "<script>import * as Button from \"$lib/registry/new-york/ui/button/index.js\";\n</script>\n\n<Button.Root type=\"submit\" on:click on:keydown {...$$restProps}>\n\t<slot />\n</Button.Root>\n"
+			"content": "<script>import * as Button from \"$lib/registry/new-york/ui/button/index.js\";\nlet { ref = $bindable(null), ...restProps } = $props();\n</script>\n\n<Button.Root type=\"submit\" bind:ref {...restProps} />\n"
 		},
 		{
 			"name": "form-description.svelte",
