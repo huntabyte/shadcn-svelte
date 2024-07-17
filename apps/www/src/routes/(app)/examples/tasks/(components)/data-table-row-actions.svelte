@@ -2,23 +2,23 @@
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 	import { labels } from "../(data)/data.js";
 	import { type Task, taskSchema } from "../(data)/schemas.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	export let row: Task;
+	let { row }: { row: Task } = $props();
+
 	const task = taskSchema.parse(row);
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button
-			variant="ghost"
-			builders={[builder]}
-			class="flex size-8 p-0 data-[state=open]:bg-muted"
-		>
-			<DotsHorizontal class="size-4" />
-			<span class="sr-only">Open Menu</span>
-		</Button>
+	<DropdownMenu.Trigger
+		class={buttonVariants({
+			variant: "ghost",
+			class: "flex size-8 p-0 data-[state=open]:bg-muted",
+		})}
+	>
+		<DotsHorizontal class="size-4" />
+		<span class="sr-only">Open Menu</span>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-[160px]" align="end">
 		<DropdownMenu.Item>Edit</DropdownMenu.Item>

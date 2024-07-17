@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { statuses } from "../(data)/data.js";
 
-	export let value: string;
+	let { value }: { value: string } = $props();
+
 	const status = statuses.find((status) => status.value === value);
 	const Icon = status?.icon;
 </script>

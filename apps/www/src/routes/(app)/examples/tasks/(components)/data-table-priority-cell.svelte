@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { priorities } from "../(data)/data.js";
-	export let value: string;
+
+	let { value }: { value: string } = $props();
+
 	const priority = priorities.find((priority) => priority.value === value);
 	const Icon = priority?.icon;
 </script>

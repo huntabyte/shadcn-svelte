@@ -23,7 +23,7 @@
 
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
-	export let data: Task[];
+	let { data }: { data: Task[] } = $props();
 
 	const table = createTable(readable(data), {
 		select: addSelectedRows(),

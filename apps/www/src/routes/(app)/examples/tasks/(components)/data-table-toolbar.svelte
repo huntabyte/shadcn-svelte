@@ -8,8 +8,7 @@
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
-	export let tableModel: TableViewModel<Task>;
-	export let data: Task[];
+	let { tableModel, data }: { tableModel: TableViewModel<Task>; data: Task[] } = $props();
 
 	const counts = data.reduce<{
 		status: { [index: string]: number };
@@ -42,7 +41,16 @@
 		}>;
 	} = pluginStates.colFilter;
 
-	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
+	const showReset = $derived(
+		Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0)
+	);
+
+	if ($filterValues.status === undefined) {
+		$filterValues.status = [];
+	}
+	if ($filterValues.priority === undefined) {
+		$filterValues.priority = [];
+	}
 </script>
 
 <div class="flex items-center justify-between">

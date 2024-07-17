@@ -1,17 +1,17 @@
 <script lang="ts">
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} class="relative size-8 rounded-full">
-			<Avatar.Root class="size-9">
-				<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
-				<Avatar.Fallback>SC</Avatar.Fallback>
-			</Avatar.Root>
-		</Button>
+	<DropdownMenu.Trigger
+		class={buttonVariants({ variant: "ghost", class: "relative size-8 rounded-full" })}
+	>
+		<Avatar.Root class="size-9">
+			<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
+			<Avatar.Fallback>SC</Avatar.Fallback>
+		</Avatar.Root>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Label class="font-normal">

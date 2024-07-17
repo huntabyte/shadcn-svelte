@@ -4,17 +4,21 @@
 	import type { statuses } from "../(data)/data.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Separator } from "$lib/registry/default/ui/separator/index.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 
-	export let filterValues: string[] = [];
-	export let title: string;
-	export let options = [] as typeof statuses;
-	export let counts: { [index: string]: number } = {};
+	type Props = {
+		filterValues: string[];
+		title: string;
+		options: typeof statuses;
+		counts: { [index: string]: number };
+	};
 
-	let open = false;
+	let { filterValues = $bindable([]), title, options, counts }: Props = $props();
+
+	let open = $state(false);
 
 	function handleSelect(currentValue: string) {
 		if (Array.isArray(filterValues) && filterValues.includes(currentValue)) {
@@ -26,31 +30,35 @@
 </script>
 
 <Popover.Root bind:open>
-	<Popover.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline" size="sm" class="h-8 border-dashed">
-			<PlusCircled class="mr-2 size-4" />
-			{title}
+	<Popover.Trigger
+		class={buttonVariants({
+			variant: "outline",
+			size: "sm",
+			class: "h-8 border-dashed",
+		})}
+	>
+		<PlusCircled class="mr-2 size-4" />
+		{title}
 
-			{#if filterValues.length > 0}
-				<Separator orientation="vertical" class="mx-2 h-4" />
-				<Badge variant="secondary" class="rounded-sm px-1 font-normal lg:hidden">
-					{filterValues.length}
-				</Badge>
-				<div class="hidden space-x-1 lg:flex">
-					{#if filterValues.length > 2}
+		{#if filterValues.length > 0}
+			<Separator orientation="vertical" class="mx-2 h-4" />
+			<Badge variant="secondary" class="rounded-sm px-1 font-normal lg:hidden">
+				{filterValues.length}
+			</Badge>
+			<div class="hidden space-x-1 lg:flex">
+				{#if filterValues.length > 2}
+					<Badge variant="secondary" class="rounded-sm px-1 font-normal">
+						{filterValues.length} Selected
+					</Badge>
+				{:else}
+					{#each filterValues as option}
 						<Badge variant="secondary" class="rounded-sm px-1 font-normal">
-							{filterValues.length} Selected
+							{option}
 						</Badge>
-					{:else}
-						{#each filterValues as option}
-							<Badge variant="secondary" class="rounded-sm px-1 font-normal">
-								{option}
-							</Badge>
-						{/each}
-					{/if}
-				</div>
-			{/if}
-		</Button>
+					{/each}
+				{/if}
+			</div>
+		{/if}
 	</Popover.Trigger>
 	<Popover.Content class="w-[200px] p-0" align="start" side="bottom">
 		<Command.Root>

@@ -2,10 +2,11 @@
 	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
 	import type { TableViewModel } from "svelte-headless-table";
 	import type { Task } from "../(data)/schemas.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	export let tableModel: TableViewModel<Task>;
+	let { tableModel }: { tableModel: TableViewModel<Task> } = $props();
+
 	const { pluginStates, flatColumns } = tableModel;
 	const { hiddenColumnIds } = pluginStates.hide;
 
@@ -22,11 +23,15 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="outline" size="sm" class="ml-auto hidden h-8 lg:flex" builders={[builder]}>
-			<MixerHorizontal class="mr-2 size-4" />
-			View
-		</Button>
+	<DropdownMenu.Trigger
+		class={buttonVariants({
+			variant: "outline",
+			size: "sm",
+			class: "ml-auto hidden h-8 lg:flex",
+		})}
+	>
+		<MixerHorizontal class="mr-2 size-4" />
+		View
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>
