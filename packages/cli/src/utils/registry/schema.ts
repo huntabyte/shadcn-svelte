@@ -10,17 +10,17 @@ export const registryItemSchema = v.object({
 
 export const registryIndexSchema = v.array(registryItemSchema);
 
-export const registryItemWithContentSchema = v.merge([
-	registryItemSchema,
-	v.object({
+export const registryItemWithContentSchema = v.object({
+	...registryItemSchema.entries,
+	...v.object({
 		files: v.array(
 			v.object({
 				name: v.string(),
 				content: v.string(),
 			})
 		),
-	}),
-]);
+	}).entries,
+});
 
 export const registryWithContentSchema = v.array(registryItemWithContentSchema);
 

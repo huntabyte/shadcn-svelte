@@ -10,7 +10,7 @@ import * as schemas from "./schema.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
-export type RegistryItem = v.Output<typeof schemas.registryItemSchema>;
+export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
 export async function getRegistryIndex() {
 	try {
@@ -22,17 +22,7 @@ export async function getRegistryIndex() {
 	}
 }
 
-export async function getRegistryStyles() {
-	try {
-		const [result] = await fetchRegistry(["styles/index.json"]);
-
-		return v.parse(schemas.stylesSchema, result);
-	} catch (e) {
-		throw error(`Failed to fetch styles from registry.`);
-	}
-}
-
-export async function getRegistryBaseColors() {
+export function getBaseColors() {
 	return [
 		{
 			name: "slate",
@@ -57,6 +47,19 @@ export async function getRegistryBaseColors() {
 	];
 }
 
+export function getStyles() {
+	return [
+		{
+			name: "default",
+			label: "Default",
+		},
+		{
+			name: "new-york",
+			label: "New York",
+		},
+	];
+}
+
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
@@ -67,7 +70,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 	}
 }
 
-type RegistryIndex = v.Output<typeof schemas.registryIndexSchema>;
+type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
 export async function resolveTree(index: RegistryIndex, names: string[], includeRegDeps = true) {
 	const tree: RegistryIndex = [];
 
@@ -105,7 +108,7 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 
 export function getItemTargetPath(
 	config: Config,
-	item: Pick<v.Output<typeof schemas.registryItemWithContentSchema>, "type">,
+	item: Pick<v.InferOutput<typeof schemas.registryItemWithContentSchema>, "type">,
 	override?: string
 ) {
 	// Allow overrides for all items but ui.

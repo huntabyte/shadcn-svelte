@@ -59,7 +59,7 @@
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",
-		"valibot": "^0.30.0",
+		"valibot": "^0.36.0",
 		"vitest": "^0.34.6"
 	}
 }
