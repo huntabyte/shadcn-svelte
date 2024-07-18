@@ -27,27 +27,33 @@ export const rawConfigSchema = v.object({
 		// cssVariables: v.boolean().default(true)
 	}),
 	aliases: v.object({
-		components: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
-		utils: v.transform(v.string(), (v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, "")),
+		components: v.pipe(
+			v.string(),
+			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+		),
+		utils: v.pipe(
+			v.string(),
+			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+		),
 	}),
 	typescript: v.optional(v.boolean(), true),
 });
 
-export type RawConfig = v.Output<typeof rawConfigSchema>;
+export type RawConfig = v.InferOutput<typeof rawConfigSchema>;
 
-export const configSchema = v.merge([
-	rawConfigSchema,
-	v.object({
+export const configSchema = v.object({
+	...rawConfigSchema.entries,
+	...v.object({
 		resolvedPaths: v.object({
 			tailwindConfig: v.string(),
 			tailwindCss: v.string(),
 			utils: v.string(),
 			components: v.string(),
 		}),
-	}),
-]);
+	}).entries,
+});
 
-export type Config = v.Output<typeof configSchema>;
+export type Config = v.InferOutput<typeof configSchema>;
 
 export async function getConfig(cwd: string) {
 	const config = await getRawConfig(cwd);

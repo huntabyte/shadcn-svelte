@@ -25,7 +25,7 @@ const updateOptionsSchema = v.object({
 	yes: v.boolean(),
 });
 
-type UpdateOptions = v.Output<typeof updateOptionsSchema>;
+type UpdateOptions = v.InferOutput<typeof updateOptionsSchema>;
 
 export const update = new Command()
 	.command("update")

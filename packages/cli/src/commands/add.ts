@@ -33,7 +33,7 @@ const addOptionsSchema = v.object({
 	proxy: v.optional(v.string()),
 });
 
-type AddOptions = v.Output<typeof addOptionsSchema>;
+type AddOptions = v.InferOutput<typeof addOptionsSchema>;
 
 export const add = new Command()
 	.command("add")
