@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import color from "chalk";
 import * as v from "valibot";
-import { Command, Option, type OptionValues } from "commander";
+import { Command, Option } from "commander";
 import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
@@ -23,6 +23,19 @@ const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 const baseColors = getBaseColors();
 const styles = getStyles();
 
+const initOptionsSchema = v.object({
+	cwd: v.string(),
+	typescript: v.optional(v.boolean()),
+	style: v.optional(v.string()),
+	baseColor: v.optional(v.string()),
+	css: v.optional(v.string()),
+	tailwindConfig: v.optional(v.string()),
+	componentsAlias: v.optional(v.string()),
+	utilsAlias: v.optional(v.string()),
+});
+
+type InitOptions = v.InferOutput<typeof initOptionsSchema>;
+
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
@@ -31,21 +44,24 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.option("-ts, --typescript", `use TypeScript`)
+	.option("-T, --typescript", `use TypeScript`)
 	.addOption(
-		new Option("-s, --style <name>", "the style").choices(styles.map((style) => style.name))
+		new Option("--style <name>", "the style for the components").choices(
+			styles.map((style) => style.name)
+		)
 	)
 	.addOption(
-		new Option("-bc, --base-color <name>", "the base color for the components").choices(
+		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
 		)
 	)
-	.option("-gc, --global-css <path>", "path to the global css file")
-	.option("-tc, --tailwind-config <path>", "path to the tailwind config file")
-	.option("-ca, --component-alias <path>", "import alias for components")
-	.option("-ua, --utils-alias <path>", "import alias for utils")
-	.action(async (options) => {
+	.option("--css <path>", "path to the global CSS file")
+	.option("--tailwind-config <path>", "path to the tailwind config file")
+	.option("--components-alias <path>", "import alias for components")
+	.option("--utils-alias <path>", "import alias for utils")
+	.action(async (opts) => {
 		intro();
+		const options = v.parse(initOptionsSchema, opts);
 		const cwd = path.resolve(options.cwd);
 
 		try {
@@ -66,7 +82,7 @@ export const init = new Command()
 		}
 	});
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null, options: OptionValues) {
+async function promptForConfig(cwd: string, defaultConfig: Config | null, options: InitOptions) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
@@ -75,14 +91,17 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	let typescript = options.typescript;
 
 	if (options.typescript === undefined) {
-		typescript = await p.confirm({
+		const input = await p.confirm({
 			message: `Would you like to use ${highlight("TypeScript")}? ${color.gray("(recommended)")}`,
 			initialValue: defaultConfig?.typescript ?? cliConfig.DEFAULT_TYPESCRIPT,
 		});
-		if (p.isCancel(typescript)) {
+
+		if (p.isCancel(input)) {
 			p.cancel("Operation cancelled.");
 			process.exit(0);
 		}
+
+		typescript = input;
 	}
 
 	const tsconfigName = typescript ? "tsconfig.json" : "jsconfig.json";
@@ -98,14 +117,11 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
 	};
 
-	// -- get style --
-
-	let style: string | symbol | undefined = styles.find(
-		(style) => style.name === options.style
-	)?.name;
+	// Styles
+	let style = styles.find((style) => style.name === options.style)?.name;
 
 	if (style === undefined) {
-		style = await p.select({
+		const input = await p.select({
 			message: `Which ${highlight("style")} would you like to use?`,
 			initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
 			options: styles.map((style) => ({
@@ -113,21 +129,20 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 				value: style.name,
 			})),
 		});
+
+		if (p.isCancel(input)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		style = input;
 	}
 
-	if (p.isCancel(style)) {
-		p.cancel("Operation cancelled.");
-		process.exit(0);
-	}
-
-	// -- get base color --
-
-	let tailwindBaseColor: string | symbol | undefined = baseColors.find(
-		(color) => color.name === options.baseColor
-	)?.name;
+	// Base Color
+	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
 
 	if (tailwindBaseColor === undefined) {
-		tailwindBaseColor = await p.select({
+		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
 			initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 			options: baseColors.map((color) => ({
@@ -135,23 +150,24 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 				value: color.name,
 			})),
 		});
+
+		if (p.isCancel(input)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		tailwindBaseColor = input;
 	}
 
-	if (p.isCancel(tailwindBaseColor)) {
-		p.cancel("Operation cancelled.");
-		process.exit(0);
-	}
-
-	// -- get global css file --
-
-	let globalCss: string | undefined = options.globalCss;
+	// Global CSS File
+	let globalCss = options.css;
 
 	if (globalCss === undefined || !existsSync(path.resolve(cwd, globalCss))) {
 		if (globalCss !== undefined) {
 			throw error(`"${color.bold(globalCss)}" does not exist. Please enter a valid path.`);
 		}
 
-		const promptResult = await p.text({
+		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
 			initialValue:
 				defaultConfig?.tailwind.css ?? detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
@@ -164,24 +180,22 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(promptResult)) {
+		if (p.isCancel(input)) {
 			p.cancel("Operation cancelled.");
 			process.exit(0);
 		}
-
-		globalCss = promptResult;
+		globalCss = input;
 	}
 
-	// -- get tailwind config --
-
-	let tailwindConfig: string | undefined = options.tailwindConfig;
+	// Tailwind Config
+	let tailwindConfig = options.tailwindConfig;
 
 	if (tailwindConfig === undefined || !existsSync(path.resolve(cwd, tailwindConfig))) {
 		if (tailwindConfig !== undefined) {
 			throw error(`"${color.bold(tailwindConfig)}" does not exist. Please enter a valid path.`);
 		}
 
-		const promptResult = await p.text({
+		const input = await p.text({
 			message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
 			initialValue:
 				defaultConfig?.tailwind.config ??
@@ -196,18 +210,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(promptResult)) {
+		if (p.isCancel(input)) {
 			p.cancel("Operation cancelled.");
 			process.exit(0);
 		}
 
-		tailwindConfig = promptResult;
+		tailwindConfig = input;
 	}
 
-	// -- get component alias --
-
-	let componentAlias: string | undefined = options.componentAlias;
-
+	// Components Alias
+	let componentAlias = options.componentsAlias;
 	const importAliasValidationResult = componentAlias ? validateImportAlias(componentAlias) : "";
 
 	if (componentAlias === undefined || typeof importAliasValidationResult == "string") {
@@ -230,10 +242,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		componentAlias = promptResult;
 	}
 
-	// -- get utils alias --
-
-	let utilsAlias: string | undefined = options.utilsAlias;
-
+	// Utils Alias
+	let utilsAlias = options.utilsAlias;
 	const utilsAliasValidationResult = utilsAlias ? validateImportAlias(utilsAlias) : "";
 
 	if (utilsAlias === undefined || typeof utilsAliasValidationResult == "string") {
@@ -241,7 +251,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			throw error(utilsAliasValidationResult);
 		}
 
-		const promptResult = await p.text({
+		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
 			initialValue:
 				defaultConfig?.aliases.utils ??
@@ -252,12 +262,12 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: validateImportAlias,
 		});
 
-		if (p.isCancel(promptResult)) {
+		if (p.isCancel(input)) {
 			p.cancel("Operation cancelled.");
 			process.exit(0);
 		}
 
-		utilsAlias = promptResult;
+		utilsAlias = input;
 	}
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
