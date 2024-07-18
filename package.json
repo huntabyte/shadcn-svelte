@@ -13,7 +13,7 @@
 		"build:registry": "pnpm -F www build:registry",
 		"build:site": "pnpm -F www build",
 		"dev": "pnpm build:registry && pnpm -F www dev",
-		"dev:cli": "pnpm -F shadcn-svelte start:dev",
+		"dev:cli": "pnpm -F shadcn-svelte dev",
 		"preview": "pnpm -F www preview",
 		"test": "pnpm -F www test",
 		"check": "pnpm -F www check",
