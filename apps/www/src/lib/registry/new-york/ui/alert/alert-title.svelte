@@ -6,13 +6,11 @@
 		ref = $bindable(null),
 		class: className,
 		children,
-		level = 3,
+		level = 5,
 		...restProps
 	}: PrimitiveDivAttributes & {
 		level?: AlertHeadingLevel;
 	} = $props();
-
-
 </script>
 
 <div

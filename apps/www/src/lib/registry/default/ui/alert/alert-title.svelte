@@ -1,14 +1,15 @@
 <script lang="ts">
+	import type { AlertHeadingLevel } from "./index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		level = 3,
+		level = 5,
 		children,
 		...restProps
 	}: PrimitiveDivAttributes & {
-		level?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+		level?: AlertHeadingLevel;
 	} = $props();
 </script>
 
