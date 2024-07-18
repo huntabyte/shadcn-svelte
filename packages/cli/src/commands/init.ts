@@ -85,7 +85,7 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 	if (options.css) {
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
-				`The provided global CSS file path: ${color.cyan(options.css)} does not exist. Please enter a valid path.`
+				`The provided global CSS file path ${color.cyan(options.css)} does not exist. Please enter a valid path.`
 			);
 		}
 	}
@@ -93,7 +93,7 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 	if (options.tailwindConfig) {
 		if (!existsSync(path.resolve(cwd, options.tailwindConfig))) {
 			throw error(
-				`The provided tailwind config file path: ${color.cyan(options.tailwindConfig)} does not exist. Please enter a valid path.`
+				`The provided tailwind config file path ${color.cyan(options.tailwindConfig)} does not exist. Please enter a valid path.`
 			);
 		}
 	}
