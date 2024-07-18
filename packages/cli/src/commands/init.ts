@@ -85,7 +85,7 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 	if (options.css) {
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
-				`The provided css path: "${color.bold(options.css)}" does not exist. Please enter a valid path.`
+				`The provided global CSS file path: ${color.cyan(options.css)} does not exist. Please enter a valid path.`
 			);
 		}
 	}
@@ -93,7 +93,7 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 	if (options.tailwindConfig) {
 		if (!existsSync(path.resolve(cwd, options.tailwindConfig))) {
 			throw error(
-				`The provided tailwind.config path: "${color.bold(options.tailwindConfig)}" does not exist. Please enter a valid path.`
+				`The provided tailwind config file path: ${color.cyan(options.tailwindConfig)} does not exist. Please enter a valid path.`
 			);
 		}
 	}
@@ -122,7 +122,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const langConfig = detectLanguage(cwd);
 	if (langConfig === undefined) {
 		throw error(
-			`Failed to find a ${color.cyan("tsconfig.json")} or ${color.cyan("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
 		);
 	}
 
