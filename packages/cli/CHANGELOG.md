@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 0.11.0
+
+### Minor Changes
+
+- 6c9b9ee: feat: Added CLI flags for each option for `init`
+- 6c9b9ee: feat: Removed TypeScript prompt in favor of auto detection
+
 ## 0.10.7
 
 ### Patch Changes
