@@ -77,7 +77,7 @@ To opt out of TypeScript, set the `typescript` flag to `false` in your `componen
 }
 ```
 
-To configure import aliases, you need to create a `jsconfig.json`:
+To configure import aliases, create a `jsconfig.json` file:
 
 ```json {4} title="jsconfig.json"
 {
