@@ -33,15 +33,15 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <cwd>                the working directory. defaults to the current directory.
-  -ts, --typescript              use TypeScript
-  -s, --style <name>             the style (choices: "default", "new-york")
-  -bc, --base-color <name>       the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
-  -gc, --global-css <path>       path to the global css file
-  -tc, --tailwind-config <path>  path to the tailwind config file
-  -ca, --component-alias <path>  import alias for components
-  -ua, --utils-alias <path>      import alias for utils
-  -h, --help                     display help for command
+  -c, --cwd <cwd>            the working directory. defaults to the current directory. (default: the current directory)
+  -T, --typescript           use TypeScript
+  --style <name>             the style for the components (choices: "default", "new-york")
+  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
+  --css <path>               path to the global CSS file
+  --tailwind-config <path>   path to the tailwind config file
+  --components-alias <path>  import alias for components
+  --utils-alias <path>       import alias for utils
+  -h, --help                 display help for command
 ```
 
 ## add
