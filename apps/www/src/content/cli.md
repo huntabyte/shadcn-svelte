@@ -16,7 +16,6 @@ npx shadcn-svelte@latest init
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Would you like to use TypeScript? (recommended) › Yes
 Which style would you like to use? › Default
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/app.css
@@ -34,7 +33,6 @@ initialize your project and install dependencies
 
 Options:
   -c, --cwd <cwd>            the working directory. defaults to the current directory. (default: the current directory)
-  -T, --typescript           use TypeScript
   --style <name>             the style for the components (choices: "default", "new-york")
   --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
   --css <path>               path to the global CSS file
