@@ -114,20 +114,11 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 
 export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	const configPath = path.resolve(cwd, "components.json");
+	if (!fs.existsSync(configPath)) return null;
+
 	try {
-		const configResult = await fs.promises
-			.readFile(configPath, {
-				encoding: "utf8",
-			})
-			.catch(() => null);
-
-		// no predefined config exists
-		if (!configResult) {
-			return null;
-		}
-
+		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
-
 		return v.parse(rawConfigSchema, config);
 	} catch (err) {
 		throw new ConfigError(`Invalid configuration found in ${highlight(configPath)}.`);
