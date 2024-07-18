@@ -220,7 +220,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	}
 
 	// Components Alias
-	let componentAlias = options.tailwindConfig;
+	let componentAlias = options.componentsAlias;
 	if (componentAlias === undefined) {
 		const promptResult = await p.text({
 			message: `Configure the import alias for ${highlight("components")}:`,
@@ -238,7 +238,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	}
 
 	// Utils Alias
-	let utilsAlias = options.tailwindConfig;
+	let utilsAlias = options.utilsAlias;
 	if (utilsAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
