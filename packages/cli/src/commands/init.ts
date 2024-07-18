@@ -15,7 +15,7 @@ import * as p from "../utils/prompts.js";
 import { intro } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import { detectConfigs, detectLanguage, DetectLanguageResult } from "../utils/auto-detect.js";
+import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -81,6 +81,38 @@ export const init = new Command()
 		}
 	});
 
+function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLanguageResult) {
+	if (options.css) {
+		if (!existsSync(path.resolve(cwd, options.css))) {
+			throw error(
+				`The provided css path: "${color.bold(options.css)}" does not exist. Please enter a valid path.`
+			);
+		}
+	}
+
+	if (options.tailwindConfig) {
+		if (!existsSync(path.resolve(cwd, options.tailwindConfig))) {
+			throw error(
+				`The provided tailwind.config path: "${color.bold(options.tailwindConfig)}" does not exist. Please enter a valid path.`
+			);
+		}
+	}
+
+	if (options.componentsAlias) {
+		const validationResult = validateImportAlias(options.componentsAlias, langConfig);
+		if (validationResult) {
+			throw error(validationResult);
+		}
+	}
+
+	if (options.utilsAlias) {
+		const validationResult = validateImportAlias(options.utilsAlias, langConfig);
+		if (validationResult) {
+			throw error(validationResult);
+		}
+	}
+}
+
 async function promptForConfig(cwd: string, defaultConfig: Config | null, options: InitOptions) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
@@ -88,58 +120,17 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const detectedConfigs = detectConfigs(cwd, { relative: true });
 
 	const langConfig = detectLanguage(cwd);
-
-	if (langConfig == null) {
-		throw error("We couldn't find your tsconfig.json/jsconfig.json file.");
+	if (langConfig === undefined) {
+		throw error(
+			`Failed to find a ${color.cyan("tsconfig.json")} or ${color.cyan("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+		);
 	}
 
 	// Validation for any paths provided by flags
-
-	let globalCss: string | undefined = undefined;
-
-	if (options.css) {
-		if (!existsSync(path.resolve(cwd, options.css))) {
-			throw error(`The provided css path: "${color.bold(options.css)}" does not exist. Please enter a valid path.`);
-		}
-
-		globalCss = options.css;
-	}	
-
-	let tailwindConfig: string | undefined = undefined;
-
-	if (options.tailwindConfig) {
-		if (!existsSync(path.resolve(cwd, options.tailwindConfig))) {
-			throw error(`The provided tailwind.config path: "${color.bold(tailwindConfig)}" does not exist. Please enter a valid path.`);
-		}
-
-		tailwindConfig = options.tailwindConfig;
-	}
-
-	let componentAlias: string | undefined = undefined;
-
-	if (options.componentsAlias) {
-		const validationResult = validateImportAlias(options.componentsAlias, langConfig);
-		if (typeof validationResult == "string") {
-			throw error(validationResult);
-		}
-
-		componentAlias = options.componentsAlias;
-	}
-
-	let utilsAlias: string | undefined = undefined;
-	
-	if (options.utilsAlias) {
-		const validationResult = validateImportAlias(options.utilsAlias, langConfig);
-		if (typeof validationResult == "string") {
-			throw error(validationResult);
-		}
-
-		utilsAlias = options.utilsAlias;
-	}
+	validateOptions(cwd, options, langConfig);
 
 	// Styles
 	let style = styles.find((style) => style.name === options.style)?.name;
-
 	if (style === undefined) {
 		const input = await p.select({
 			message: `Which ${highlight("style")} would you like to use?`,
@@ -160,7 +151,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// Base Color
 	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
-
 	if (tailwindBaseColor === undefined) {
 		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
@@ -179,7 +169,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		tailwindBaseColor = input;
 	}
 
-	// Global CSS File if not already provided by a flag
+	// Global CSS File
+	let globalCss = options.css;
 	if (globalCss === undefined) {
 		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
@@ -202,7 +193,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		globalCss = input;
 	}
 
-	// Tailwind Config if not already provided by a flag
+	// Tailwind Config
+	let tailwindConfig = options.tailwindConfig;
 	if (tailwindConfig === undefined) {
 		const input = await p.text({
 			message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
@@ -227,7 +219,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		tailwindConfig = input;
 	}
 
-	// Components Alias if not already provided by a flag
+	// Components Alias
+	let componentAlias = options.tailwindConfig;
 	if (componentAlias === undefined) {
 		const promptResult = await p.text({
 			message: `Configure the import alias for ${highlight("components")}:`,
@@ -244,7 +237,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		componentAlias = promptResult;
 	}
 
-	// Utils Alias if not already provided by a flag
+	// Utils Alias
+	let utilsAlias = options.tailwindConfig;
 	if (utilsAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
@@ -268,7 +262,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style,
-		typescript: langConfig.type == "tsconfig.json",
+		typescript: langConfig.type === "tsconfig.json",
 		tailwind: {
 			config: tailwindConfig,
 			css: globalCss,
@@ -292,13 +286,13 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	return configPaths;
 }
 
-const validateImportAlias = (alias: string, langConfig: DetectLanguageResult) => {
+function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	const resolvedPath = resolveImport(alias, langConfig.config);
 	if (resolvedPath !== undefined) {
 		return;
 	}
 	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
-};
+}
 
 export async function runInit(cwd: string, config: Config) {
 	// Write to file.
