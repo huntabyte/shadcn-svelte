@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.11.1
+
+### Patch Changes
+
+- c2d1ed6: fix: Fixes bug with incorrect flag assignments
+
 ## 0.11.0
 
 ### Minor Changes
