@@ -37,7 +37,7 @@ it("init (config-full)", async () => {
 	const config = await getConfig(targetDir);
 	if (config === null) throw new Error("config is null");
 
-	await runInit(targetDir, config, { nodeps: false, cwd: targetDir });
+	await runInit(targetDir, config, { deps: true, cwd: targetDir });
 
 	// mkDir mocks
 	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
