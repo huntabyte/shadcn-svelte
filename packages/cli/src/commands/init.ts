@@ -12,7 +12,7 @@ import { error, handleError } from "../utils/errors.js";
 import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
-import { intro } from "../utils/prompt-helpers.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
@@ -25,13 +25,13 @@ const styles = getStyles();
 
 const initOptionsSchema = v.object({
 	cwd: v.string(),
-	typescript: v.optional(v.boolean()),
 	style: v.optional(v.string()),
 	baseColor: v.optional(v.string()),
 	css: v.optional(v.string()),
 	tailwindConfig: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
+	nodeps: v.boolean(),
 });
 
 type InitOptions = v.InferOutput<typeof initOptionsSchema>;
@@ -44,6 +44,7 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
+	.option("--nodeps", "disable adding & installing dependencies (advanced) (default: false)", false)
 	.addOption(
 		new Option("--style <name>", "the style for the components").choices(
 			styles.map((style) => style.name)
@@ -73,7 +74,7 @@ export const init = new Command()
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
-			await runInit(cwd, config);
+			await runInit(cwd, config, options);
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
 		} catch (e) {
@@ -294,9 +295,11 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
 }
 
-export async function runInit(cwd: string, config: Config) {
+export async function runInit(cwd: string, config: Config, options: InitOptions) {
+	const tasks: p.Task[] = [];
+
 	// Write to file.
-	const createConfig: p.Task = {
+	tasks.push({
 		title: "Creating config file",
 		async task() {
 			const targetPath = path.resolve(cwd, "components.json");
@@ -304,9 +307,10 @@ export async function runInit(cwd: string, config: Config) {
 			await fs.writeFile(targetPath, JSON.stringify(conf, null, "\t"), "utf8");
 			return `Config file ${highlight("components.json")} created`;
 		},
-	};
+	});
 
-	const init: p.Task = {
+	// Initialize project
+	tasks.push({
 		title: "Initializing project",
 		async task() {
 			// Ensure all resolved paths directories exist.
@@ -345,20 +349,29 @@ export async function runInit(cwd: string, config: Config) {
 
 			return "Project initialized";
 		},
-	};
+	});
 
 	// Install dependencies.
-	const installDeps: p.Task = {
-		title: "Installing dependencies",
-		async task() {
-			const packageManager = await getPackageManager(cwd);
+	if (!options.nodeps) {
+		tasks.push({
+			title: "Installing dependencies",
+			async task() {
+				const packageManager = await getPackageManager(cwd);
 
-			await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
-				cwd,
-			});
-			return "Dependencies installed";
-		},
-	};
+				await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
+					cwd,
+				});
+				return "Dependencies installed";
+			},
+		});
+	}
 
-	await p.tasks([createConfig, init, installDeps]);
+	await p.tasks(tasks);
+
+	if (options.nodeps) {
+		const prettyList = prettifyList([...PROJECT_DEPENDENCIES], 7);
+		p.log.warn(
+			`shadcn-svelte has been initialized ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
+		);
+	}
 }
