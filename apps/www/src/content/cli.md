@@ -3,10 +3,6 @@ title: CLI
 description: Use the CLI to add components to your project.
 ---
 
-<script>
-  import { ManualInstall } from '$lib/components/docs';
-</script>
-
 ## init
 
 Use the `init` command to initialize dependencies for a new project.
@@ -46,16 +42,6 @@ Options:
   --utils-alias <path>       import alias for utils
   -h, --help                 display help for command
 ```
-
-<ManualInstall title="Install after --nodeps">
-
-1. Install `tailwind-variants, clsx, and tailwind-merge`:
-
-```bash
-npm install tailwind-variants clsx tailwind-merge
-```
-
-</ManualInstall>
 
 ## add
 
