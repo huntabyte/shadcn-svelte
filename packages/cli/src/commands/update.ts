@@ -31,14 +31,10 @@ export const update = new Command()
 	.command("update")
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
-	.option("-a, --all", "update all existing components.", false)
-	.option("-y, --yes", "skip confirmation prompt.", false)
-	.option("--proxy <proxy>", "fetch components from registry using a proxy.", getEnvProxy())
-	.option(
-		"-c, --cwd <cwd>",
-		"the working directory. defaults to the current directory.",
-		process.cwd()
-	)
+	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("-a, --all", "update all existing components", false)
+	.option("-y, --yes", "skip confirmation prompt", false)
+	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
 	.action(async (components, opts) => {
 		intro();
 

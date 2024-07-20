@@ -29,7 +29,7 @@ const addOptionsSchema = v.object({
 	overwrite: v.boolean(),
 	cwd: v.string(),
 	path: v.optional(v.string()),
-	nodep: v.boolean(),
+	noDeps: v.boolean(),
 	proxy: v.optional(v.string()),
 });
 
@@ -39,17 +39,13 @@ export const add = new Command()
 	.command("add")
 	.description("add components to your project")
 	.argument("[components...]", "name of components")
-	.option("--nodep", "skips adding & installing package dependencies.", false)
-	.option("-a, --all", "install all components to your project.", false)
-	.option("-y, --yes", "skip confirmation prompt.", false)
-	.option("-o, --overwrite", "overwrite existing files.", false)
-	.option("--proxy <proxy>", "fetch components from registry using a proxy.", getEnvProxy())
-	.option(
-		"-c, --cwd <cwd>",
-		"the working directory. defaults to the current directory.",
-		process.cwd()
-	)
-	.option("-p, --path <path>", "the path to add the component to.")
+	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("--no-deps", "skips adding & installing package dependencies", false)
+	.option("-a, --all", "install all components to your project", false)
+	.option("-y, --yes", "skip confirmation prompt", false)
+	.option("-o, --overwrite", "overwrite existing files", false)
+	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
+	.option("-p, --path <path>", "the path to add the component to")
 	.action(async (components, opts) => {
 		try {
 			intro();
@@ -101,7 +97,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
 			options: registryIndex.map(({ name, dependencies, registryDependencies }) => {
-				const deps = [...(options.nodep ? [] : dependencies), ...registryDependencies];
+				const deps = [...(options.noDeps ? [] : dependencies), ...registryDependencies];
 				return {
 					label: name,
 					value: name,
@@ -177,7 +173,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	if (options.yes === false) {
 		const proceed = await p.confirm({
-			message: `Ready to install ${highlight("components")}${options.nodep ? "?" : ` and ${highlight("dependencies")}?`}`,
+			message: `Ready to install ${highlight("components")}${options.noDeps ? "?" : ` and ${highlight("dependencies")}?`}`,
 			initialValue: true,
 		});
 
@@ -218,7 +214,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 		}
 
 		// Add dependencies to the install list
-		if (options.nodep) {
+		if (options.noDeps) {
 			item.dependencies.forEach((dep) => skippedDeps.add(dep));
 		} else {
 			item.dependencies.forEach((dep) => dependencies.add(dep));
@@ -262,7 +258,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	await p.tasks(tasks);
 
-	if (options.nodep) {
+	if (options.noDeps) {
 		const prettyList = prettifyList([...skippedDeps], 7);
 		p.log.warn(
 			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`

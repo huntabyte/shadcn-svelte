@@ -31,7 +31,7 @@ const initOptionsSchema = v.object({
 	tailwindConfig: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
-	nodeps: v.boolean(),
+	noDeps: v.boolean(),
 });
 
 type InitOptions = v.InferOutput<typeof initOptionsSchema>;
@@ -39,12 +39,8 @@ type InitOptions = v.InferOutput<typeof initOptionsSchema>;
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
-	.option(
-		"-c, --cwd <cwd>",
-		"the working directory. defaults to the current directory.",
-		process.cwd()
-	)
-	.option("--nodeps", "disable adding & installing dependencies (advanced)", false)
+	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("--no-deps", "disable adding & installing dependencies", false)
 	.addOption(
 		new Option("--style <name>", "the style for the components").choices(
 			styles.map((style) => style.name)
@@ -352,7 +348,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	if (!options.nodeps) {
+	if (!options.noDeps) {
 		tasks.push({
 			title: "Installing dependencies",
 			async task() {
@@ -368,7 +364,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	await p.tasks(tasks);
 
-	if (options.nodeps) {
+	if (options.noDeps) {
 		const prettyList = prettifyList([...PROJECT_DEPENDENCIES], 7);
 		p.log.warn(
 			`shadcn-svelte has been initialized ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
