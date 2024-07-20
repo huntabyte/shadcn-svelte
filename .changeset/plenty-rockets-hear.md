@@ -2,4 +2,4 @@
 "shadcn-svelte": minor
 ---
 
-feat: Adds `--nodeps` flag to init command
+feat: Added `--no-deps` flag to `init` command
