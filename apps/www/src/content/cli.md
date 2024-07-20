@@ -3,6 +3,10 @@ title: CLI
 description: Use the CLI to add components to your project.
 ---
 
+<script>
+  import { ManualInstall } from '$lib/components/docs';
+</script>
+
 ## init
 
 Use the `init` command to initialize dependencies for a new project.
@@ -32,7 +36,8 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <cwd>            the working directory. defaults to the current directory. (default: the current directory)
+  -c, --cwd <cwd>            the working directory. defaults to the current directory.
+  --nodeps                   disable adding & installing dependencies (advanced) (default: false)
   --style <name>             the style for the components (choices: "default", "new-york")
   --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
   --css <path>               path to the global CSS file
@@ -41,6 +46,16 @@ Options:
   --utils-alias <path>       import alias for utils
   -h, --help                 display help for command
 ```
+
+<ManualInstall title="Install after --nodeps">
+
+1. Install `tailwind-variants, clsx, and tailwind-merge`:
+
+```bash
+npm install tailwind-variants clsx tailwind-merge
+```
+
+</ManualInstall>
 
 ## add
 

@@ -44,7 +44,7 @@ export const init = new Command()
 		"the working directory. defaults to the current directory.",
 		process.cwd()
 	)
-	.option("--nodeps", "disable adding & installing dependencies (advanced) (default: false)", false)
+	.option("--nodeps", "disable adding & installing dependencies (advanced)", false)
 	.addOption(
 		new Option("--style <name>", "the style for the components").choices(
 			styles.map((style) => style.name)
