@@ -1,5 +1,15 @@
 # shadcn-svelte
 
+## 0.12.0
+
+### Minor Changes
+
+- b6b4601: feat: Added `--no-deps` flag to `init` command
+
+### Patch Changes
+
+- b6b4601: breaking: Changed `--nodep` flag to `--no-deps` for `add` command
+
 ## 0.11.1
 
 ### Patch Changes
