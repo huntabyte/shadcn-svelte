@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.12.1
+
+### Patch Changes
+
+- d43d140: fix: Use correct cwd when syncing SvelteKit projects
+
 ## 0.12.0
 
 ### Minor Changes
