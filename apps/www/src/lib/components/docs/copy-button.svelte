@@ -5,6 +5,7 @@
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { selectedCommand } from "$lib/utils.js";
 
 	let copied = false;
 	let commands: Record<"npm" | "yarn" | "pnpm" | "bun", string> = {
@@ -49,7 +50,11 @@
 		}
 	}
 
-	function handleCopyDone() {
+	function handleCopyDone(key: string) {
+		if (typeof key === "string") {
+			selectedCommand.set(key);
+		}
+
 		copied = true;
 		setTimeout(() => {
 			copied = false;
@@ -59,9 +64,41 @@
 	function handleCopyError() {
 		console.error("Error copying");
 	}
+	function copyCommand() {
+		// Directly check if $selectedCommand is one of the allowed types and assign accordingly to appease typescript!
+		let command = $selectedCommand as "npm" | "yarn" | "pnpm" | "bun";
+
+		const commandValue = commands[command];
+		if (!commandValue) return;
+
+		navigator.clipboard
+			.writeText(commandValue)
+			.then(() => handleCopyDone($selectedCommand))
+			.catch(handleCopyError);
+	}
 </script>
 
 {#if Object.values(commands).filter(Boolean).length > 1}
+	{#if $selectedCommand}
+		<Button
+			size="icon"
+			variant="outline"
+			on:click={() => copyCommand()}
+			class={cn(
+				"relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50",
+				className
+			)}
+			{...$$restProps}
+		>
+			<span class="sr-only">Copy</span>
+			{#if copied}
+				<Check class="h-3 w-3" tabindex="-1" />
+			{:else}
+				<span class="absolute right-8">{$selectedCommand}</span>
+			{/if}
+		</Button>
+	{/if}
+	<!-- else content here -->
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
@@ -78,7 +115,9 @@
 				{#if copied}
 					<Check class="h-3 w-3" tabindex="-1" />
 				{:else}
-					<Copy class="h-3 w-3" tabindex="-1" />
+					<span class="flex items-center gap-1">
+						<Copy class="h-3 w-3" tabindex="-1" />
+					</span>
 				{/if}
 			</Button>
 		</DropdownMenu.Trigger>
@@ -89,7 +128,7 @@
 						on:click={() =>
 							navigator.clipboard
 								.writeText(command)
-								.then(handleCopyDone)
+								.then(() => handleCopyDone(key))
 								.catch(handleCopyError)}
 					>
 						{key}
