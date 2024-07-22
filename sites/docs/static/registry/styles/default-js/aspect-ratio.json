@@ -1,0 +1,12 @@
+{
+	"name": "aspect-ratio",
+	"dependencies": [],
+	"registryDependencies": [],
+	"files": [
+		{
+			"name": "index.js",
+			"content": "import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\nconst Root = AspectRatioPrimitive.Root;\nexport { Root, Root as AspectRatio };\n"
+		}
+	],
+	"type": "components:ui"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "alert",
+	"dependencies": [],
+	"registryDependencies": [],
+	"files": [
+		{
+			"name": "alert-description.svelte",
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+		},
+		{
+			"name": "alert-title.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { AlertHeadingLevel } from \"./index.js\";\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\tlevel = 5,\n\t\t...restProps\n\t}: PrimitiveDivAttributes & {\n\t\tlevel?: AlertHeadingLevel;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\taria-level={level}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+		},
+		{
+			"name": "alert.svelte",
+			"content": "<script lang=\"ts\">\n\timport { type AlertVariant, alertVariants } from \"./index.js\";\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes & {\n\t\tvariant?: AlertVariant;\n\t} = $props();\n</script>\n\n<div bind:this={ref} class={cn(alertVariants({ variant }), className)} {...restProps} role=\"alert\">\n\t{@render children?.()}\n</div>\n"
+		},
+		{
+			"name": "index.ts",
+			"content": "import { type VariantProps, tv } from \"tailwind-variants\";\n\nimport Root from \"./alert.svelte\";\nimport Description from \"./alert-description.svelte\";\nimport Title from \"./alert-title.svelte\";\n\nexport const alertVariants = tv({\n\tbase: \"relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7\",\n\tvariants: {\n\t\tvariant: {\n\t\t\tdefault: \"bg-background text-foreground\",\n\t\t\tdestructive:\n\t\t\t\t\"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n\t\t},\n\t},\n\tdefaultVariants: {\n\t\tvariant: \"default\",\n\t},\n});\n\nexport type AlertVariant = VariantProps<typeof alertVariants>[\"variant\"];\nexport type AlertHeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;\n\nexport {\n\tRoot,\n\tDescription,\n\tTitle,\n\t//\n\tRoot as Alert,\n\tDescription as AlertDescription,\n\tTitle as AlertTitle,\n};\n"
+		}
+	],
+	"type": "components:ui"
+}
