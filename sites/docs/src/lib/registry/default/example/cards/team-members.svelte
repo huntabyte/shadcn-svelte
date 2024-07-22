@@ -21,7 +21,7 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Sofia Davis</p>
-					<p class="text-sm text-muted-foreground">m@example.com</p>
+					<p class="text-muted-foreground text-sm">m@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
@@ -29,7 +29,7 @@
 					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
 				>
 					Owner
-					<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -41,7 +41,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -49,7 +49,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -57,7 +57,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -65,7 +65,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>
@@ -83,7 +83,7 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Jackson Lee</p>
-					<p class="text-sm text-muted-foreground">p@example.com</p>
+					<p class="text-muted-foreground text-sm">p@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
@@ -91,7 +91,7 @@
 					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
 				>
 					Member
-					<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -103,7 +103,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -111,7 +111,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -119,7 +119,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -127,7 +127,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>
@@ -146,7 +146,7 @@
 				</Avatar.Root>
 				<div>
 					<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-					<p class="text-sm text-muted-foreground">i@example.com</p>
+					<p class="text-muted-foreground text-sm">i@example.com</p>
 				</div>
 			</div>
 			<Popover.Root>
@@ -154,7 +154,7 @@
 					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
 				>
 					Member
-					<ChevronDownIcon class="ml-2 size-4 text-muted-foreground" />
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -166,7 +166,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Viewer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view and comment.
 									</p>
 								</Command.Item>
@@ -174,7 +174,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Developer</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and edit.
 									</p>
 								</Command.Item>
@@ -182,7 +182,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Billing</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Can view, comment and manage billing.
 									</p>
 								</Command.Item>
@@ -190,7 +190,7 @@
 									class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
 								>
 									<p>Owner</p>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Admin-level access to all resources.
 									</p>
 								</Command.Item>

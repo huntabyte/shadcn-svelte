@@ -16,7 +16,6 @@ npx shadcn-svelte@latest init
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Would you like to use TypeScript? (recommended) › Yes
 Which style would you like to use? › Default
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/app.css
@@ -33,8 +32,15 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <cwd>  the working directory. (default: the current directory)
-  -h, --help       display help for command
+  -c, --cwd <cwd>            the working directory (default: the current directory)
+  --no-deps                  disable adding & installing dependencies
+  --style <name>             the style for the components (choices: "default", "new-york")
+  --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
+  --css <path>               path to the global CSS file
+  --tailwind-config <path>   path to the tailwind config file
+  --components-alias <path>  import alias for components
+  --utils-alias <path>       import alias for utils
+  -h, --help                 display help for command
 ```
 
 ## add
@@ -73,13 +79,13 @@ Arguments:
   components         name of components
 
 Options:
-  --nodep            disable adding & installing dependencies (advanced) (default: false)
-  -a, --all          add all components to your project. (default: false)
-  -y, --yes          skip confirmation prompt. (default: false)
-  -o, --overwrite    overwrite existing files. (default: false)
-  --proxy            fetch components from registry using a proxy.
-  -c, --cwd <cwd>    the working directory. (default: the current directory)
-  -p, --path <path>  the path to add the component to.
+  -c, --cwd <cwd>    the working directory (default: the current directory)
+  --no-deps          skips adding & installing package dependencies
+  -a, --all          install all components to your project (default: false)
+  -y, --yes          skip confirmation prompt (default: false)
+  -o, --overwrite    overwrite existing files (default: false)
+  --proxy <proxy>    fetch components from registry using a proxy
+  -p, --path <path>  the path to add the component to
   -h, --help         display help for command
 ```
 
@@ -102,9 +108,10 @@ Arguments:
   components       name of components
 
 Options:
-  -a, --all        update all existing components. (default: false)
-  -y, --yes        skip confirmation prompt. (default: false)
-  -c, --cwd <cwd>  the working directory. (default: the current directory)
+  -c, --cwd <cwd>  the working directory (default: the current directory)
+  -a, --all        update all existing components (default: false)
+  -y, --yes        skip confirmation prompt (default: false)
+  --proxy <proxy>  fetch components from registry using a proxy
   -h, --help       display help for command
 ```
 

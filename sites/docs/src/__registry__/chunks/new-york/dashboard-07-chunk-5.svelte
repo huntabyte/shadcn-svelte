@@ -8,9 +8,7 @@
 >
 	<Card.Header>
 		<Card.Title>Archive Product</Card.Title>
-		<Card.Description>
-			Lipsum dolor sit amet, consectetur adipiscing elit.
-		</Card.Description>
+		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div></div>

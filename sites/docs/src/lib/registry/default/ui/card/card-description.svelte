@@ -9,6 +9,6 @@
 	}: PrimitiveElementAttributes = $props();
 </script>
 
-<p bind:this={ref} class={cn("text-sm text-muted-foreground", className)} {...restProps}>
+<p bind:this={ref} class={cn("text-muted-foreground text-sm", className)} {...restProps}>
 	{@render children?.()}
 </p>

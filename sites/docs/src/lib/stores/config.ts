@@ -1,4 +1,4 @@
-import { persisted } from "svelte-local-storage-store";
+import { persisted } from "svelte-persisted-store";
 
 import type { Style } from "$lib/registry/styles.js";
 import type { Theme } from "$lib/registry/themes.js";

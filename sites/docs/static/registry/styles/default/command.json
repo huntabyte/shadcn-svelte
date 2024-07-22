@@ -1,13 +1,7 @@
 {
 	"name": "command",
-	"dependencies": [
-		"cmdk-sv",
-		"bits-ui",
-		"lucide-svelte"
-	],
-	"registryDependencies": [
-		"dialog"
-	],
+	"dependencies": ["cmdk-sv", "bits-ui", "lucide-svelte"],
+	"registryDependencies": ["dialog"],
 	"files": [
 		{
 			"name": "command-dialog.svelte",

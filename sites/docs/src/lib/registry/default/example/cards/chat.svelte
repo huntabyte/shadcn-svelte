@@ -77,7 +77,7 @@
 			</Avatar.Root>
 			<div>
 				<p class="text-sm font-medium leading-none">Sofia Davis</p>
-				<p class="text-sm text-muted-foreground">m@example.com</p>
+				<p class="text-muted-foreground text-sm">m@example.com</p>
 			</div>
 		</div>
 		<Tooltip.Root delayDuration={0}>
@@ -102,7 +102,7 @@
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
 						message.role === "user"
-							? "ml-auto bg-primary text-primary-foreground"
+							? "bg-primary text-primary-foreground ml-auto"
 							: "bg-muted"
 					)}
 				>
@@ -174,12 +174,12 @@
 								<p class="text-sm font-medium leading-none">
 									{user.name}
 								</p>
-								<p class="text-sm text-muted-foreground">
+								<p class="text-muted-foreground text-sm">
 									{user.email}
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<Check class="ml-auto flex size-5 text-primary" />
+								<Check class="text-primary ml-auto flex size-5" />
 							{/if}
 						</Command.Item>
 					{/each}
@@ -190,14 +190,14 @@
 			{#if selectedUsers.length}
 				<div class="flex -space-x-2 overflow-hidden">
 					{#each selectedUsers as user}
-						<Avatar.Root class="inline-block border-2 border-background">
+						<Avatar.Root class="border-background inline-block border-2">
 							<Avatar.Image src={user.avatar} />
 							<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 						</Avatar.Root>
 					{/each}
 				</div>
 			{:else}
-				<p class="text-sm text-muted-foreground">Select users to add to this thread.</p>
+				<p class="text-muted-foreground text-sm">Select users to add to this thread.</p>
 			{/if}
 			<Button disabled={selectedUsers.length < 2} onclick={() => (open = false)}>
 				Continue

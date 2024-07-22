@@ -76,7 +76,7 @@
 						>
 							<div
 								class={cn(
-									"mr-2 flex size-4 items-center justify-center rounded-sm border border-primary",
+									"border-primary mr-2 flex size-4 items-center justify-center rounded-sm border",
 									filterValues.includes(option.value)
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
@@ -84,7 +84,7 @@
 							>
 								<Check className={cn("size-4")} />
 							</div>
-							<Icon class="mr-2 size-4 text-muted-foreground" />
+							<Icon class="text-muted-foreground mr-2 size-4" />
 							<span>
 								{option.label}
 							</span>

@@ -103,7 +103,7 @@
 		@apply !bg-muted;
 	}
 	::-webkit-scrollbar-thumb {
-		@apply rounded-sm !bg-muted-foreground/30;
+		@apply !bg-muted-foreground/30 rounded-sm;
 	}
 
 	/* Firefox */
@@ -136,7 +136,7 @@
 	}
 
 	.step:before {
-		@apply absolute inline-flex size-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
+		@apply border-background bg-muted absolute inline-flex size-9 items-center justify-center rounded-full border-4 text-center -indent-px font-mono text-base font-medium;
 		@apply ml-[-50px] mt-[-4px];
 		content: counter(step);
 	}
@@ -158,7 +158,7 @@
 }
 
 .markdown code {
-	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
+	@apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm;
 }
 
 [data-theme="default"] {

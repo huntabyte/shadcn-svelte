@@ -13,7 +13,7 @@ description: Powered by amazing open source projects.
 - [Bits UI](https://bits-ui.com) - The headless components that power this project.
 - [Formsnap](https://formsnap.dev) - The form components that power this project.
 - [Paneforge](https://paneforge.com) - The resizable components that power this project.
-- [Vaul Svelte](https://vaulsvelte.com) - The drawer components that power this project.
+- [Vaul Svelte](https://vaul-svelte.com) - The drawer components that power this project.
 - [cmdk-sv](https://cmdk-sv.com) - The command menu components that power this project.
 - [Melt UI](https://melt-ui.com) - The headless primitive component builders that power this project.
 - [Radix UI](https://radix-ui.com) - The headless components and examples that the original [shadcn/ui](https://ui.shadcn.com) was built on.

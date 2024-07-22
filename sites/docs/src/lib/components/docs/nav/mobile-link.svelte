@@ -3,7 +3,6 @@
 	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
 	let {
-		// eslint-disable-next-line unused-imports/no-unused-vars, ts/no-unused-vars
 		open = $bindable(false),
 		href,
 		class: className,

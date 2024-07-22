@@ -6,8 +6,7 @@
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveDivAttributes = $props()
-
+	}: PrimitiveDivAttributes = $props();
 </script>
 
 <div bind:this={ref} class={cn("p-6 pt-0", className)} {...restProps}>

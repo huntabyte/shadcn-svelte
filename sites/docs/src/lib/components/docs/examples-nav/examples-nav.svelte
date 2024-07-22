@@ -31,13 +31,13 @@
 						href={example.href}
 						data-sveltekit-noscroll
 						class={cn(
-							"relative flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
-							isActive ? "font-medium text-primary" : "text-muted-foreground"
+							"hover:text-primary relative flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors",
+							isActive ? "text-primary font-medium" : "text-muted-foreground"
 						)}
 					>
 						{#if isActive}
 							<div
-								class="absolute inset-0 rounded-full bg-muted"
+								class="bg-muted absolute inset-0 rounded-full"
 								in:send={{ key: "activetab" }}
 								out:receive={{ key: "activetab" }}
 							></div>

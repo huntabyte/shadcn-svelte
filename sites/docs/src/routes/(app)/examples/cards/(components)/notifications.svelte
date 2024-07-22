@@ -12,30 +12,30 @@
 	</Card.Header>
 	<Card.Content class="grid gap-1">
 		<div
-			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
+			class="hover:bg-accent hover:text-accent-foreground -mx-2 flex items-start space-x-4 rounded-md p-2 transition-all"
 		>
 			<Bell class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Everything</p>
-				<p class="text-sm text-muted-foreground">Email digest, mentions & all activity.</p>
+				<p class="text-muted-foreground text-sm">Email digest, mentions & all activity.</p>
 			</div>
 		</div>
 		<div
-			class="-mx-2 flex items-start space-x-4 rounded-md bg-accent p-2 text-accent-foreground transition-all"
+			class="bg-accent text-accent-foreground -mx-2 flex items-start space-x-4 rounded-md p-2 transition-all"
 		>
 			<Person class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
-				<p class="text-sm text-muted-foreground">Only mentions and comments.</p>
+				<p class="text-muted-foreground text-sm">Only mentions and comments.</p>
 			</div>
 		</div>
 		<div
-			class="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
+			class="hover:bg-accent hover:text-accent-foreground -mx-2 flex items-start space-x-4 rounded-md p-2 transition-all"
 		>
 			<EyeNone class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
-				<p class="text-sm text-muted-foreground">Turn off all notifications.</p>
+				<p class="text-muted-foreground text-sm">Turn off all notifications.</p>
 			</div>
 		</div>
 	</Card.Content>

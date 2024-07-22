@@ -19,7 +19,7 @@
 </script>
 
 <div class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-	<div class="hidden border-r bg-muted/40 md:block">
+	<div class="bg-muted/40 hidden border-r md:block">
 		<div class="flex h-full max-h-screen flex-col gap-2">
 			<div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
 				<a href="/" class="flex items-center gap-2 font-semibold">
@@ -35,14 +35,14 @@
 				<nav class="grid items-start px-2 text-sm font-medium lg:px-4">
 					<a
 						href="##"
-						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
 						<Home class="size-4" />
 						Dashboard
 					</a>
 					<a
 						href="##"
-						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
 						<ShoppingCart class="size-4" />
 						Orders
@@ -54,21 +54,21 @@
 					</a>
 					<a
 						href="##"
-						class="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+						class="bg-muted text-primary hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
 						<Package class="size-4" />
 						Products
 					</a>
 					<a
 						href="##"
-						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
 						<Users class="size-4" />
 						Customers
 					</a>
 					<a
 						href="##"
-						class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
 						<LineChart class="size-4" />
 						Analytics
@@ -94,7 +94,7 @@
 		</div>
 	</div>
 	<div class="flex flex-col">
-		<header class="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+		<header class="bg-muted/40 flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6">
 			<Sheet.Root>
 				<Sheet.Trigger
 					class={buttonVariants({
@@ -114,14 +114,14 @@
 						</a>
 						<a
 							href="##"
-							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
 							<Home class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
-							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
+							class="bg-muted text-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
 							<ShoppingCart class="size-5" />
 							Orders
@@ -133,21 +133,21 @@
 						</a>
 						<a
 							href="##"
-							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
 							<Package class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
-							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
 							<Users class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
-							class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
 							<LineChart class="size-5" />
 							Analytics
@@ -172,11 +172,11 @@
 			<div class="w-full flex-1">
 				<form>
 					<div class="relative">
-						<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+						<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 						<Input
 							type="search"
 							placeholder="Search products..."
-							class="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+							class="bg-background w-full appearance-none pl-8 shadow-none md:w-2/3 lg:w-1/3"
 						/>
 					</div>
 				</form>
@@ -213,7 +213,7 @@
 			>
 				<div class="flex flex-col items-center gap-1 text-center">
 					<h3 class="text-2xl font-bold tracking-tight">You have no products</h3>
-					<p class="text-sm text-muted-foreground">
+					<p class="text-muted-foreground text-sm">
 						You can start selling as soon as you add a product.
 					</p>
 					<Button class="mt-4">Add Product</Button>

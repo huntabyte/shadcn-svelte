@@ -67,7 +67,7 @@
 				class={buttonVariants({
 					variant: "ghost",
 					size: "sm",
-					class: "-ml-3 h-8 data-[state=open]:bg-accent",
+					class: "data-[state=open]:bg-accent -ml-3 h-8",
 				})}
 			>
 				{@render children?.()}
@@ -81,16 +81,16 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
 				<DropdownMenu.Item on:click={handleAscSort}>
-					<ArrowUp class="mr-2 size-3.5 text-muted-foreground/70" />
+					<ArrowUp class="text-muted-foreground/70 mr-2 size-3.5" />
 					Asc
 				</DropdownMenu.Item>
 				<DropdownMenu.Item on:click={handleDescSort}>
-					<ArrowDown class="mr-2 size-3.5 text-muted-foreground/70" />
+					<ArrowDown class="text-muted-foreground/70 mr-2 size-3.5" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item on:click={handleHide}>
-					<EyeNone class="mr-2 size-3.5 text-muted-foreground/70" />
+					<EyeNone class="text-muted-foreground/70 mr-2 size-3.5" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

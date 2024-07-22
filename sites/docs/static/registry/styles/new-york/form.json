@@ -1,14 +1,7 @@
 {
 	"name": "form",
-	"dependencies": [
-		"formsnap",
-		"zod",
-		"sveltekit-superforms"
-	],
-	"registryDependencies": [
-		"button",
-		"label"
-	],
+	"dependencies": ["formsnap", "zod", "sveltekit-superforms"],
+	"registryDependencies": ["button", "label"],
 	"files": [
 		{
 			"name": "form-button.svelte",

@@ -19,13 +19,13 @@
 	{...restProps}
 >
 	{#snippet children({ thumbs })}
-		<span class="relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20">
-			<SliderPrimitive.Range class="absolute h-full bg-primary" />
+		<span class="bg-primary/20 relative h-1.5 w-full grow overflow-hidden rounded-full">
+			<SliderPrimitive.Range class="bg-primary absolute h-full" />
 		</span>
 		{#each thumbs as thumb}
 			<SliderPrimitive.Thumb
 				index={thumb}
-				class="block size-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+				class="border-primary/50 bg-background focus-visible:ring-ring block size-4 rounded-full border shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
 			/>
 		{/each}
 	{/snippet}

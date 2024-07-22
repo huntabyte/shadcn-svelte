@@ -11,7 +11,7 @@
 
 <span
 	bind:this={ref}
-	class={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)}
+	class={cn("text-muted-foreground ml-auto text-xs tracking-widest", className)}
 	{...restProps}
 >
 	{@render children?.()}

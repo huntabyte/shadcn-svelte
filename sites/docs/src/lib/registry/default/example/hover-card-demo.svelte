@@ -24,7 +24,7 @@
 				<p class="text-sm">Cybernetically enhanced web apps.</p>
 				<div class="flex items-center pt-2">
 					<CalendarDays class="mr-2 size-4 opacity-70" />
-					<span class="text-xs text-muted-foreground"> Joined September 2022 </span>
+					<span class="text-muted-foreground text-xs"> Joined September 2022 </span>
 				</div>
 			</div>
 		</div>

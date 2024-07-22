@@ -14,7 +14,7 @@
 	<DropdownMenu.Trigger
 		class={buttonVariants({
 			variant: "ghost",
-			class: "flex size-8 p-0 data-[state=open]:bg-muted",
+			class: "data-[state=open]:bg-muted flex size-8 p-0",
 		})}
 	>
 		<DotsHorizontal class="size-4" />

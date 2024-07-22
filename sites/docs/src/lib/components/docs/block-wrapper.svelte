@@ -82,7 +82,7 @@
 {@render children?.()}
 {#if $isLiftMode}
 	<div
-		class="absolute inset-0 z-30 bg-background/90"
+		class="bg-background/90 absolute inset-0 z-30"
 		style="animation-fill-mode: backwards;"
 		in:fade={{ duration: 200, delay: 180, easing: cubicOut }}
 		out:fade={{ duration: 380, delay: 0, easing: cubicOut }}

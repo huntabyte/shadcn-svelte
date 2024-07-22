@@ -1,8 +1,6 @@
 {
 	"name": "hover-card",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": ["bits-ui"],
 	"registryDependencies": [],
 	"files": [
 		{

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
+import { type TsConfigResult, getTsconfig } from "get-tsconfig";
 
 const STYLESHEETS = [
 	"app.css",
@@ -75,4 +76,18 @@ function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): stri
 	}
 
 	return paths;
+}
+
+export type DetectLanguageResult = {
+	config: TsConfigResult;
+	type: "jsconfig.json" | "tsconfig.json";
+};
+
+export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
+	const rootPath = path.resolve(cwd, "package.json");
+	const tsConfig = getTsconfig(rootPath, "tsconfig.json");
+	if (tsConfig !== null) return { type: "tsconfig.json", config: tsConfig };
+
+	const jsConfig = getTsconfig(rootPath, "jsconfig.json");
+	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
 }

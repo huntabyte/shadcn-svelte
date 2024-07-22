@@ -1,5 +1,34 @@
 # shadcn-svelte
 
+## 0.12.1
+
+### Patch Changes
+
+- d43d140: fix: Use correct cwd when syncing SvelteKit projects
+
+## 0.12.0
+
+### Minor Changes
+
+- b6b4601: feat: Added `--no-deps` flag to `init` command
+
+### Patch Changes
+
+- b6b4601: breaking: Changed `--nodep` flag to `--no-deps` for `add` command
+
+## 0.11.1
+
+### Patch Changes
+
+- c2d1ed6: fix: Fixes bug with incorrect flag assignments
+
+## 0.11.0
+
+### Minor Changes
+
+- 6c9b9ee: feat: Added CLI flags for each option for `init`
+- 6c9b9ee: feat: Removed TypeScript prompt in favor of auto detection
+
 ## 0.10.7
 
 ### Patch Changes

@@ -19,10 +19,7 @@
 			<div class="grid gap-3">
 				<Label for="model">Model</Label>
 				<Select.Root>
-					<Select.Trigger
-						id="model"
-						class="items-start [&_[data-description]]:hidden"
-					>
+					<Select.Trigger id="model" class="items-start [&_[data-description]]:hidden">
 						<Select.Value placeholder="Select a model" />
 					</Select.Trigger>
 					<Select.Content>
@@ -103,11 +100,7 @@
 			</div>
 			<div class="grid gap-3">
 				<Label for="content">Content</Label>
-				<Textarea
-					id="content"
-					placeholder="You are a..."
-					class="min-h-[9.5rem]"
-				/>
+				<Textarea id="content" placeholder="You are a..." class="min-h-[9.5rem]" />
 			</div>
 		</fieldset>
 	</form>

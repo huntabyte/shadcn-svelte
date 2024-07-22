@@ -35,7 +35,7 @@
 				<Table.Row>
 					<Table.Cell>
 						<div class="font-medium">Liam Johnson</div>
-						<div class="hidden text-sm text-muted-foreground md:inline">
+						<div class="text-muted-foreground hidden text-sm md:inline">
 							liam@example.com
 						</div>
 					</Table.Cell>
@@ -51,7 +51,7 @@
 				<Table.Row>
 					<Table.Cell>
 						<div class="font-medium">Olivia Smith</div>
-						<div class="hidden text-sm text-muted-foreground md:inline">
+						<div class="text-muted-foreground hidden text-sm md:inline">
 							olivia@example.com
 						</div>
 					</Table.Cell>
@@ -67,7 +67,7 @@
 				<Table.Row>
 					<Table.Cell>
 						<div class="font-medium">Noah Williams</div>
-						<div class="hidden text-sm text-muted-foreground md:inline">
+						<div class="text-muted-foreground hidden text-sm md:inline">
 							noah@example.com
 						</div>
 					</Table.Cell>
@@ -83,7 +83,7 @@
 				<Table.Row>
 					<Table.Cell>
 						<div class="font-medium">Emma Brown</div>
-						<div class="hidden text-sm text-muted-foreground md:inline">
+						<div class="text-muted-foreground hidden text-sm md:inline">
 							emma@example.com
 						</div>
 					</Table.Cell>
@@ -99,7 +99,7 @@
 				<Table.Row>
 					<Table.Cell>
 						<div class="font-medium">Liam Johnson</div>
-						<div class="hidden text-sm text-muted-foreground md:inline">
+						<div class="text-muted-foreground hidden text-sm md:inline">
 							liam@example.com
 						</div>
 					</Table.Cell>

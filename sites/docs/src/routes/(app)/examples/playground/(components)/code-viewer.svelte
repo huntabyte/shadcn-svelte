@@ -17,7 +17,7 @@
 		</Dialog.Header>
 		<div class="grid gap-4">
 			<div class="rounded-md bg-black p-6">
-				<pre><code class="grid gap-1 text-sm text-muted-foreground [&_span]:h-4"
+				<pre><code class="text-muted-foreground grid gap-1 text-sm [&_span]:h-4"
 						><span><span class="text-sky-300">import</span> os</span><span
 							><span class="text-sky-300">import</span> openai</span
 						><span /><span
@@ -38,7 +38,7 @@
 					></pre>
 			</div>
 			<div>
-				<p class="text-sm text-muted-foreground">
+				<p class="text-muted-foreground text-sm">
 					Your API Key can be found here. You should use environment variables or a secret
 					management tool to expose your key to your applications.
 				</p>

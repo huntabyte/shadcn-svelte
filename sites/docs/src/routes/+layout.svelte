@@ -23,6 +23,6 @@
 	<DefaultSonner />
 {/if}
 
-<div class="relative flex min-h-screen flex-col bg-background" id="page" data-vaul-drawer-wrapper>
+<div class="bg-background relative flex min-h-screen flex-col" id="page" data-vaul-drawer-wrapper>
 	{@render children?.()}
 </div>

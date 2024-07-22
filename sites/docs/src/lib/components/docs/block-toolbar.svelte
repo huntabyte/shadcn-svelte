@@ -47,7 +47,7 @@
 		<Popover.Root>
 			<Popover.Trigger
 				disabled={$isLiftMode}
-				class="hidden text-muted-foreground hover:text-foreground disabled:opacity-50 sm:flex"
+				class="text-muted-foreground hover:text-foreground hidden disabled:opacity-50 sm:flex"
 			>
 				<CircleHelp class="size-3.5" />
 				<span class="sr-only">Block description</span>

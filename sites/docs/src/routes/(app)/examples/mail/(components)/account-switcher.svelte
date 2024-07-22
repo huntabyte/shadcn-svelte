@@ -35,12 +35,12 @@
 			{#each accounts as account}
 				<Select.Item value={account.email} textValue={account.label}>
 					<div
-						class="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground"
+						class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
 					>
 						<svelte:component
 							this={account.icon}
 							aria-hidden="true"
-							class="size-4 shrink-0 text-foreground"
+							class="text-foreground size-4 shrink-0"
 						/>
 						{account.email}
 					</div>

@@ -40,7 +40,7 @@
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
 	<p class="text-sm font-medium leading-none">
-		<span class="mr-2 rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
+		<span class="bg-primary text-primary-foreground mr-2 rounded-lg px-2 py-1 text-xs">
 			{selectedLabel}
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
