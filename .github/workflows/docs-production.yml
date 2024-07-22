@@ -44,5 +44,5 @@ jobs:
                   githubToken: ${{ secrets.GITHUB_TOKEN }}
                   projectName: shadcn-svelte
                   directory: ./.svelte-kit/cloudflare
-                  workingDirectory: apps/www
+                  workingDirectory: sites/docs
                   deploymentName: Production
