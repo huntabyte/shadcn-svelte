@@ -5,7 +5,7 @@
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	let open = $state(false);
 	const isDesktop = new MediaQuery("(min-width: 768px)");

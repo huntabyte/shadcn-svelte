@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Slash from "svelte-radix/Slash.svelte";
-	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
+	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
 </script>
 
 <Breadcrumb.Root>

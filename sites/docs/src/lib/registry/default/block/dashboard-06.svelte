@@ -25,113 +25,117 @@
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 </script>
 
-<div class="flex min-h-screen w-full flex-col bg-muted/40">
-	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+<div class="bg-muted/40 flex min-h-screen w-full flex-col">
+	<aside class="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a
 				href="##"
-				class="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+				class="bg-primary text-primary-foreground group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
 			>
 				<Package2 class="size-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<Home class="size-5" />
-							<span class="sr-only">Dashboard</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<ShoppingCart class="size-5" />
-							<span class="sr-only">Orders</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Orders</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<Package class="size-5" />
-							<span class="sr-only">Products</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Products</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<UsersRound class="size-5" />
-							<span class="sr-only">Customers</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Customers</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<LineChart class="size-5" />
-							<span class="sr-only">Analytics</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Analytics</Tooltip.Content>
-			</Tooltip.Root>
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<Home class="size-5" />
+								<span class="sr-only">Dashboard</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Dashboard</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="bg-accent text-accent-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<ShoppingCart class="size-5" />
+								<span class="sr-only">Orders</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Orders</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<Package class="size-5" />
+								<span class="sr-only">Products</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Products</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<UsersRound class="size-5" />
+								<span class="sr-only">Customers</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Customers</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<LineChart class="size-5" />
+								<span class="sr-only">Analytics</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Analytics</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					{#snippet child({ props })}
-						<a
-							href="##"
-							class="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-							{...props}
-						>
-							<Settings class="size-5" />
-							<span class="sr-only">Settings</span>
-						</a>
-					{/snippet}
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Settings</Tooltip.Content>
-			</Tooltip.Root>
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<Settings class="size-5" />
+								<span class="sr-only">Settings</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Settings</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 	</aside>
 	<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
 		<header
-			class="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
+			class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
 				<Sheet.Trigger
@@ -144,39 +148,39 @@
 					<nav class="grid gap-6 text-lg font-medium">
 						<a
 							href="##"
-							class="group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+							class="bg-primary text-primary-foreground group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
 						>
 							<Package2 class="size-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<Home class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<ShoppingCart class="size-5" />
 							Orders
 						</a>
-						<a href="##" class="flex items-center gap-4 px-2.5 text-foreground">
+						<a href="##" class="text-foreground flex items-center gap-4 px-2.5">
 							<Package class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<UsersRound class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<LineChart class="size-5" />
 							Settings
@@ -200,11 +204,11 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 			<div class="relative ml-auto flex-1 md:grow-0">
-				<Search class="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+				<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 				<Input
 					type="search"
 					placeholder="Search..."
-					class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+					class="bg-background w-full rounded-lg pl-8 md:w-[200px] lg:w-[336px]"
 				/>
 			</div>
 			<DropdownMenu.Root>
@@ -562,7 +566,7 @@
 							</Table.Root>
 						</Card.Content>
 						<Card.Footer>
-							<div class="text-xs text-muted-foreground">
+							<div class="text-muted-foreground text-xs">
 								Showing <strong>1-10</strong> of <strong>32</strong> products
 							</div>
 						</Card.Footer>

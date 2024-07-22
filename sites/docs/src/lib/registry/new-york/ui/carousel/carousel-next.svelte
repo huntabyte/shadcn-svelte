@@ -13,8 +13,7 @@
 		...restProps
 	}: WithoutChildren<Props> = $props();
 
-	const { orientation, canScrollNext, scrollNext, handleKeyDown } =
-		getEmblaContext("<Carousel.Next/>");
+	const emblaCtx = getEmblaContext("<Carousel.Next/>");
 </script>
 
 <Button
@@ -22,14 +21,14 @@
 	{size}
 	class={cn(
 		"absolute size-8 touch-manipulation rounded-full",
-		$orientation === "horizontal"
+		emblaCtx.orientation === "horizontal"
 			? "-right-12 top-1/2 -translate-y-1/2"
 			: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 		className
 	)}
-	disabled={!$canScrollNext}
-	onclick={scrollNext}
-	onkeydown={handleKeyDown}
+	disabled={!emblaCtx.canScrollNext}
+	onclick={emblaCtx.scrollNext}
+	onkeydown={emblaCtx.handleKeyDown}
 	bind:ref
 	{...restProps}
 >

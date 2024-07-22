@@ -24,8 +24,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden" />
-	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block" />
+	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden"></enhanced:img>
+	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block"></enhanced:img>
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div
@@ -49,14 +49,15 @@
 				<div class="hidden flex-col space-y-4 sm:flex md:order-2">
 					<div class="grid gap-2">
 						<HoverCard.Root openDelay={200}>
-							<HoverCard.Trigger asChild let:builder>
-								<span
-									class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-									use:builder.action
-									{...builder}
-								>
-									Mode
-								</span>
+							<HoverCard.Trigger>
+								{#snippet child({ props })}
+									<span
+										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+										{...props}
+									>
+										Mode
+									</span>
+								{/snippet}
 							</HoverCard.Trigger>
 							<HoverCard.Content class="w-[320px] text-sm" side="left">
 								Choose the interface that best suits your task. You can provide: a
@@ -257,7 +258,7 @@
 									placeholder="We're writing to [inset]. Congrats from OpenAI!"
 									class="h-full min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]"
 								/>
-								<div class="rounded-md border bg-muted" />
+								<div class="bg-muted rounded-md border"></div>
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>
@@ -289,8 +290,8 @@
 									</div>
 								</div>
 								<div
-									class="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]"
-								/>
+									class="bg-muted mt-[21px] min-h-[400px] rounded-md border lg:min-h-[700px]"
+								></div>
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>

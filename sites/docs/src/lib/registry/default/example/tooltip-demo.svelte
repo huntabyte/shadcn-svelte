@@ -3,9 +3,11 @@
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 </script>
 
-<Tooltip.Root>
-	<Tooltip.Trigger class={buttonVariants({ variant: "outline" })}>Hover</Tooltip.Trigger>
-	<Tooltip.Content>
-		<p>Add to library</p>
-	</Tooltip.Content>
-</Tooltip.Root>
+<Tooltip.Provider>
+	<Tooltip.Root>
+		<Tooltip.Trigger class={buttonVariants({ variant: "outline" })}>Hover</Tooltip.Trigger>
+		<Tooltip.Content>
+			<p>Add to library</p>
+		</Tooltip.Content>
+	</Tooltip.Root>
+</Tooltip.Provider>

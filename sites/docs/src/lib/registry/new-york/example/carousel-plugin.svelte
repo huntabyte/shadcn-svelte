@@ -9,8 +9,8 @@
 <Carousel.Root
 	plugins={[plugin]}
 	class="w-full max-w-xs"
-	on:mousenter={plugin.stop}
-	on:mouseleave={plugin.reset}
+	onmouseenter={plugin.stop}
+	onmouseleave={plugin.reset}
 >
 	<Carousel.Content>
 		{#each Array(5) as _, i (i)}

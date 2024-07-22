@@ -3,22 +3,23 @@
 	import * as Carousel from "$lib/registry/new-york/ui/carousel/index.js";
 	import type { CarouselAPI } from "$lib/registry/new-york/ui/carousel/context.js";
 
-	let api: CarouselAPI;
-	let current = 0;
-	let count = 0;
+	let api = $state<CarouselAPI>();
 
-	$: if (api) {
-		count = api.scrollSnapList().length;
-		current = api.selectedScrollSnap() + 1;
+	const count = $derived(api ? api.scrollSnapList().length : 0);
+	let current = $state(0);
 
-		api.on("select", () => {
+	$effect(() => {
+		if (api) {
 			current = api.selectedScrollSnap() + 1;
-		});
-	}
+			api.on("select", () => {
+				current = api!.selectedScrollSnap() + 1;
+			});
+		}
+	});
 </script>
 
 <div>
-	<Carousel.Root bind:api class="w-full max-w-xs">
+	<Carousel.Root setApi={(emblaApi) => (api = emblaApi)} class="w-full max-w-xs">
 		<Carousel.Content>
 			{#each Array(5) as _, i (i)}
 				<Carousel.Item>
@@ -33,7 +34,7 @@
 		<Carousel.Previous />
 		<Carousel.Next />
 	</Carousel.Root>
-	<div class="py-2 text-center text-sm text-muted-foreground">
+	<div class="text-muted-foreground py-2 text-center text-sm">
 		Slide {current} of {count}
 	</div>
 </div>

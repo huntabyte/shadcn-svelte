@@ -10,25 +10,30 @@
 		...restProps
 	}: PrimitiveDivAttributes = $props();
 
-	const { orientation, options, plugins, onInit } = getEmblaContext("<Carousel.Content/>");
+	const emblaCtx = getEmblaContext("<Carousel.Content/>");
 </script>
 
+<!-- svelte-ignore event_directive_deprecated -->
 <div
 	class="overflow-hidden"
 	use:emblaCarouselSvelte={{
 		options: {
 			container: "[data-embla-container]",
 			slides: "[data-embla-slide]",
-			...$options,
-			axis: $orientation === "horizontal" ? "x" : "y",
+			...emblaCtx.options,
+			axis: emblaCtx.orientation === "horizontal" ? "x" : "y",
 		},
-		plugins: $plugins,
+		plugins: emblaCtx.plugins,
 	}}
-	on:emblaInit={onInit}
+	on:emblaInit={emblaCtx.onInit}
 >
 	<div
 		bind:this={ref}
-		class={cn("flex", $orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
+		class={cn(
+			"flex",
+			emblaCtx.orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+			className
+		)}
 		data-embla-container=""
 		{...restProps}
 	>
