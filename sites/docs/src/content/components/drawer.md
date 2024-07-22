@@ -2,7 +2,7 @@
 title: Drawer
 description: A drawer component for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/drawer
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/drawer
 bits: https://www.vaul-svelte.com
 ---
 

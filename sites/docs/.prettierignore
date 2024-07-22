@@ -12,7 +12,7 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
-apps/www/src/routes/api/components/components.json
+sites/docs/src/routes/api/components/components.json
 src/routes/api/components/components.json
 static/site.webmanifest
 .vercel

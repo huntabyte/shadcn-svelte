@@ -19,8 +19,8 @@ CHANGELOG.md
 
 
 # docs site specific
-apps/www/src/__registry__/*
-apps/www/other/themes/dark.json
-apps/www/other/themes/light.json
-apps/www/static
+sites/docs/src/__registry__/*
+sites/docs/other/themes/dark.json
+sites/docs/other/themes/light.json
+sites/docs/static
 

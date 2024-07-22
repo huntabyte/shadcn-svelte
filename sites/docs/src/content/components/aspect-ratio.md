@@ -2,7 +2,7 @@
 title: Aspect Ratio
 description: Displays content within a desired ratio.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/aspect-ratio
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/aspect-ratio
 bits: https://www.bits-ui.com/docs/components/aspect-ratio
 ---
 

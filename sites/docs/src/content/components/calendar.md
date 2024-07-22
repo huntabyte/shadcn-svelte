@@ -2,7 +2,7 @@
 title: Calendar
 description: A calendar component that allows users to select dates.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/calendar
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
 bits: https://www.bits-ui.com/docs/components/calendar
 ---
 

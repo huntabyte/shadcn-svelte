@@ -2,7 +2,7 @@
 title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/hover-card
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/hover-card
 bits: https://www.bits-ui.com/docs/components/link-preview
 ---
 

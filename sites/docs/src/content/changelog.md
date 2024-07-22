@@ -58,7 +58,7 @@ It supports both vertical and horizontal scrolling, and is designed to provide a
 We've added a new component to the project, [Resizable](/docs/components/resizable), which is built on top of [PaneForge](https://paneforge.com). PaneForge is still in an early stage, so be sure to raise any issues you find with the library on the [PaneForge GitHub](https://github.com/svecosystem/paneforge).
 
 <ComponentPreview name="resizable-demo">
-	
+
 <div />
 
 </ComponentPreview>
@@ -359,7 +359,7 @@ Inside the components that use transitions/animations, you'll need to remove the
 </AlertDialog.Portal>
 ```
 
-If you're unsure which specific classes should be removed, you can reference the components in the [repo](https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/) to see the changes.
+If you're unsure which specific classes should be removed, you can reference the components in the [repo](https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/) to see the changes.
 
 ### Events
 

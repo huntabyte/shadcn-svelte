@@ -2,7 +2,7 @@
 title: Data Table
 description: Powerful table and datagrids built using Svelte Headless Table.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/example/data-table-demo.svelte
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/example/data-table-demo.svelte
 ---
 
 <script>
@@ -1453,7 +1453,7 @@ To accommodate the checkbox, we'll need to update our table styles. We'll also a
     </Table.Root>
   </div>
   <div class="flex items-center justify-end space-x-4 py-4">
-    <div class="flex-1 text-sm text-muted-foreground">
+    <div class="text-muted-foreground flex-1 text-sm">
       {Object.keys($selectedDataIds).length} of{" "}
       {$rows.length} row(s) selected.
     </div>

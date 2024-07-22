@@ -2,7 +2,7 @@
 title: Popover
 description: Displays rich content in a portal, triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/popover
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/popover
 bits: https://www.bits-ui.com/docs/components/popover
 ---
 

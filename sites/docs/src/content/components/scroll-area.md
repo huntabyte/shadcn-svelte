@@ -2,7 +2,7 @@
 title: Scroll Area
 description: Augments native scroll functionality for custom, cross-browser styling.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/apps/www/src/lib/registry/default/ui/scroll-area
+source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/scroll-area
 bits: https://bits-ui.com/docs/components/scroll-area
 ---
 
