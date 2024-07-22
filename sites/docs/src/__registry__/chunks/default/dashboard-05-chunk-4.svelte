@@ -17,7 +17,7 @@
 	data-x-chunk-name="dashboard-05-chunk-4"
 	data-x-chunk-description="An order details card with order details, shipping information, customer information and payment information."
 >
-	<Card.Header class="flex flex-row items-start bg-muted/50">
+	<Card.Header class="bg-muted/50 flex flex-row items-start">
 		<div class="grid gap-0.5">
 			<Card.Title class="group flex items-center gap-2 text-lg">
 				Order Oe31b70H
@@ -35,18 +35,11 @@
 		<div class="ml-auto flex items-center gap-1">
 			<Button size="sm" variant="outline" class="h-8 gap-1">
 				<Truck class="h-3.5 w-3.5" />
-				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-					Track Order
-				</span>
+				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap"> Track Order </span>
 			</Button>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						size="icon"
-						variant="outline"
-						class="h-8 w-8"
-					>
+					<Button builders={[builder]} size="icon" variant="outline" class="h-8 w-8">
 						<EllipsisVertical class="h-3.5 w-3.5" />
 						<span class="sr-only">More</span>
 					</Button>
@@ -101,7 +94,7 @@
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-3">
 				<div class="font-semibold">Shipping Information</div>
-				<address class="grid gap-0.5 not-italic text-muted-foreground">
+				<address class="text-muted-foreground grid gap-0.5 not-italic">
 					<span>Liam Johnson</span>
 					<span>1234 Main St.</span>
 					<span>Anytown, CA 12345</span>
@@ -139,7 +132,7 @@
 			<div class="font-semibold">Payment Information</div>
 			<dl class="grid gap-3">
 				<div class="flex items-center justify-between">
-					<dt class="flex items-center gap-1 text-muted-foreground">
+					<dt class="text-muted-foreground flex items-center gap-1">
 						<CreditCard class="h-4 w-4" />
 						Visa
 					</dt>
@@ -148,10 +141,8 @@
 			</dl>
 		</div>
 	</Card.Content>
-	<Card.Footer
-		class="flex flex-row items-center border-t bg-muted/50 px-6 py-3"
-	>
-		<div class="text-xs text-muted-foreground">
+	<Card.Footer class="bg-muted/50 flex flex-row items-center border-t px-6 py-3">
+		<div class="text-muted-foreground text-xs">
 			Updated <time dateTime="2023-11-23">November 23, 2023</time>
 		</div>
 		<Pagination.Root count={10} class="ml-auto mr-0 w-auto">

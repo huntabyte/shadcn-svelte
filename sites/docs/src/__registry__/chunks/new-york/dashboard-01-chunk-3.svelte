@@ -7,14 +7,12 @@
 	data-x-chunk-name="dashboard-01-chunk-3"
 	data-x-chunk-description="A card showing the total active users and the percentage difference from last hour."
 >
-	<Card.Header
-		class="flex flex-row items-center justify-between space-y-0 pb-2"
-	>
+	<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 		<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-		<Activity class="h-4 w-4 text-muted-foreground" />
+		<Activity class="text-muted-foreground h-4 w-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">+573</div>
-		<p class="text-xs text-muted-foreground">+201 since last hour</p>
+		<p class="text-muted-foreground text-xs">+201 since last hour</p>
 	</Card.Content>
 </Card.Root>

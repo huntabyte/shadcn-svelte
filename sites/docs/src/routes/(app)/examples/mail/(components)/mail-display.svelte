@@ -96,7 +96,7 @@
 							<div class="grid min-w-[250px] gap-1">
 								<Button variant="ghost" class="justify-start font-normal">
 									Later today
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										{relativeFormatter.format(
 											todayDate.add({ hours: 4 }).toDate()
 										)}
@@ -104,7 +104,7 @@
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Tomorrow
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										{relativeFormatter.format(
 											todayDate.add({ days: 1 }).toDate()
 										)}
@@ -112,13 +112,13 @@
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									This weekend
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										{relativeFormatter.format(getClosestWeekend())}
 									</span>
 								</Button>
 								<Button variant="ghost" class="justify-start font-normal">
 									Next week
-									<span class="ml-auto text-muted-foreground">
+									<span class="text-muted-foreground ml-auto">
 										{relativeFormatter.format(
 											todayDate.add({ weeks: 1 }).toDate()
 										)}
@@ -211,7 +211,7 @@
 					</div>
 				</div>
 				{#if mail.date}
-					<div class="ml-auto text-xs text-muted-foreground">
+					<div class="text-muted-foreground ml-auto text-xs">
 						{fullFormatter.format(new Date(mail.date))}
 					</div>
 				{/if}
@@ -236,6 +236,6 @@
 			</div>
 		</div>
 	{:else}
-		<div class="p-8 text-center text-muted-foreground">No message selected</div>
+		<div class="text-muted-foreground p-8 text-center">No message selected</div>
 	{/if}
 </div>

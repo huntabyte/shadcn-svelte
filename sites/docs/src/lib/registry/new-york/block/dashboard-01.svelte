@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex min-h-screen w-full flex-col">
-	<header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+	<header class="bg-background sticky top-0 flex h-16 items-center gap-4 border-b px-4 md:px-6">
 		<nav
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
@@ -28,19 +28,19 @@
 				<Package2 class="h-6 w-6" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
-			<a href="##" class="text-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-foreground hover:text-foreground transition-colors">
 				Dashboard
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Orders
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Products
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Customers
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Analytics
 			</a>
 		</nav>
@@ -73,7 +73,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+					<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -112,11 +112,11 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-					<DollarSign class="h-4 w-4 text-muted-foreground" />
+					<DollarSign class="text-muted-foreground h-4 w-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">$45,231.89</div>
-					<p class="text-xs text-muted-foreground">+20.1% from last month</p>
+					<p class="text-muted-foreground text-xs">+20.1% from last month</p>
 				</Card.Content>
 			</Card.Root>
 			<Card.Root
@@ -125,11 +125,11 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-					<Users class="h-4 w-4 text-muted-foreground" />
+					<Users class="text-muted-foreground h-4 w-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+2350</div>
-					<p class="text-xs text-muted-foreground">+180.1% from last month</p>
+					<p class="text-muted-foreground text-xs">+180.1% from last month</p>
 				</Card.Content>
 			</Card.Root>
 			<Card.Root
@@ -138,11 +138,11 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Sales</Card.Title>
-					<CreditCard class="h-4 w-4 text-muted-foreground" />
+					<CreditCard class="text-muted-foreground h-4 w-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+12,234</div>
-					<p class="text-xs text-muted-foreground">+19% from last month</p>
+					<p class="text-muted-foreground text-xs">+19% from last month</p>
 				</Card.Content>
 			</Card.Root>
 			<Card.Root
@@ -151,11 +151,11 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-					<Activity class="h-4 w-4 text-muted-foreground" />
+					<Activity class="text-muted-foreground h-4 w-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+573</div>
-					<p class="text-xs text-muted-foreground">+201 since last hour</p>
+					<p class="text-muted-foreground text-xs">+201 since last hour</p>
 				</Card.Content>
 			</Card.Root>
 		</div>
@@ -190,7 +190,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<div class="font-medium">Liam Johnson</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
+									<div class="text-muted-foreground hidden text-sm md:inline">
 										liam@example.com
 									</div>
 								</Table.Cell>
@@ -208,7 +208,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<div class="font-medium">Olivia Smith</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
+									<div class="text-muted-foreground hidden text-sm md:inline">
 										olivia@example.com
 									</div>
 								</Table.Cell>
@@ -226,7 +226,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<div class="font-medium">Noah Williams</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
+									<div class="text-muted-foreground hidden text-sm md:inline">
 										noah@example.com
 									</div>
 								</Table.Cell>
@@ -246,7 +246,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<div class="font-medium">Emma Brown</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
+									<div class="text-muted-foreground hidden text-sm md:inline">
 										emma@example.com
 									</div>
 								</Table.Cell>
@@ -264,7 +264,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<div class="font-medium">Liam Johnson</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
+									<div class="text-muted-foreground hidden text-sm md:inline">
 										liam@example.com
 									</div>
 								</Table.Cell>
@@ -298,7 +298,7 @@
 						</Avatar.Root>
 						<div class="grid gap-1">
 							<p class="text-sm font-medium leading-none">Olivia Martin</p>
-							<p class="text-sm text-muted-foreground">olivia.martin@email.com</p>
+							<p class="text-muted-foreground text-sm">olivia.martin@email.com</p>
 						</div>
 						<div class="ml-auto font-medium">+$1,999.00</div>
 					</div>
@@ -309,7 +309,7 @@
 						</Avatar.Root>
 						<div class="grid gap-1">
 							<p class="text-sm font-medium leading-none">Jackson Lee</p>
-							<p class="text-sm text-muted-foreground">jackson.lee@email.com</p>
+							<p class="text-muted-foreground text-sm">jackson.lee@email.com</p>
 						</div>
 						<div class="ml-auto font-medium">+$39.00</div>
 					</div>
@@ -320,7 +320,7 @@
 						</Avatar.Root>
 						<div class="grid gap-1">
 							<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-							<p class="text-sm text-muted-foreground">isabella.nguyen@email.com</p>
+							<p class="text-muted-foreground text-sm">isabella.nguyen@email.com</p>
 						</div>
 						<div class="ml-auto font-medium">+$299.00</div>
 					</div>
@@ -331,7 +331,7 @@
 						</Avatar.Root>
 						<div class="grid gap-1">
 							<p class="text-sm font-medium leading-none">William Kim</p>
-							<p class="text-sm text-muted-foreground">will@email.com</p>
+							<p class="text-muted-foreground text-sm">will@email.com</p>
 						</div>
 						<div class="ml-auto font-medium">+$99.00</div>
 					</div>
@@ -342,7 +342,7 @@
 						</Avatar.Root>
 						<div class="grid gap-1">
 							<p class="text-sm font-medium leading-none">Sofia Davis</p>
-							<p class="text-sm text-muted-foreground">sofia.davis@email.com</p>
+							<p class="text-muted-foreground text-sm">sofia.davis@email.com</p>
 						</div>
 						<div class="ml-auto font-medium">+$39.00</div>
 					</div>

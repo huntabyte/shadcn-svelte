@@ -18,7 +18,7 @@
 			</Avatar.Root>
 			<div class="grid gap-1">
 				<p class="text-sm font-medium leading-none">Olivia Martin</p>
-				<p class="text-sm text-muted-foreground">olivia.martin@email.com</p>
+				<p class="text-muted-foreground text-sm">olivia.martin@email.com</p>
 			</div>
 			<div class="ml-auto font-medium">+$1,999.00</div>
 		</div>
@@ -29,7 +29,7 @@
 			</Avatar.Root>
 			<div class="grid gap-1">
 				<p class="text-sm font-medium leading-none">Jackson Lee</p>
-				<p class="text-sm text-muted-foreground">jackson.lee@email.com</p>
+				<p class="text-muted-foreground text-sm">jackson.lee@email.com</p>
 			</div>
 			<div class="ml-auto font-medium">+$39.00</div>
 		</div>
@@ -40,7 +40,7 @@
 			</Avatar.Root>
 			<div class="grid gap-1">
 				<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-				<p class="text-sm text-muted-foreground">isabella.nguyen@email.com</p>
+				<p class="text-muted-foreground text-sm">isabella.nguyen@email.com</p>
 			</div>
 			<div class="ml-auto font-medium">+$299.00</div>
 		</div>
@@ -51,7 +51,7 @@
 			</Avatar.Root>
 			<div class="grid gap-1">
 				<p class="text-sm font-medium leading-none">William Kim</p>
-				<p class="text-sm text-muted-foreground">will@email.com</p>
+				<p class="text-muted-foreground text-sm">will@email.com</p>
 			</div>
 			<div class="ml-auto font-medium">+$99.00</div>
 		</div>
@@ -62,7 +62,7 @@
 			</Avatar.Root>
 			<div class="grid gap-1">
 				<p class="text-sm font-medium leading-none">Sofia Davis</p>
-				<p class="text-sm text-muted-foreground">sofia.davis@email.com</p>
+				<p class="text-muted-foreground text-sm">sofia.davis@email.com</p>
 			</div>
 			<div class="ml-auto font-medium">+$39.00</div>
 		</div>

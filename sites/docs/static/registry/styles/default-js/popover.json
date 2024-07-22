@@ -1,8 +1,6 @@
 {
 	"name": "popover",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": ["bits-ui"],
 	"registryDependencies": [],
 	"files": [
 		{

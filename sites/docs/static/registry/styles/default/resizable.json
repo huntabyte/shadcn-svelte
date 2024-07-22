@@ -1,9 +1,6 @@
 {
 	"name": "resizable",
-	"dependencies": [
-		"lucide-svelte",
-		"paneforge"
-	],
+	"dependencies": ["lucide-svelte", "paneforge"],
 	"registryDependencies": [],
 	"files": [
 		{

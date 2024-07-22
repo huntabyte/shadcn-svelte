@@ -257,7 +257,7 @@
 									placeholder="We're writing to [inset]. Congrats from OpenAI!"
 									class="h-full min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]"
 								/>
-								<div class="rounded-md border bg-muted" />
+								<div class="bg-muted rounded-md border" />
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>
@@ -289,7 +289,7 @@
 									</div>
 								</div>
 								<div
-									class="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]"
+									class="bg-muted mt-[21px] min-h-[400px] rounded-md border lg:min-h-[700px]"
 								/>
 							</div>
 							<div class="flex items-center space-x-2">

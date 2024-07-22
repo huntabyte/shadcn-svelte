@@ -1,12 +1,7 @@
 {
 	"name": "pagination",
-	"dependencies": [
-		"lucide-svelte",
-		"bits-ui"
-	],
-	"registryDependencies": [
-		"button"
-	],
+	"dependencies": ["lucide-svelte", "bits-ui"],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"name": "index.ts",

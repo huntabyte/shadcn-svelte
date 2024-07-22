@@ -32,7 +32,7 @@
 		<RadioGroup.Root value="card" class="grid grid-cols-3 gap-4">
 			<Label
 				for="card"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="card" id="card" class="sr-only" aria-label="Card" />
 				<svg
@@ -52,7 +52,7 @@
 			</Label>
 			<Label
 				for="paypal"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
 				<Icons.paypal class="mb-3 h-6 w-6" />
@@ -60,7 +60,7 @@
 			</Label>
 			<Label
 				for="apple"
-				class="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
+				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
 				<Icons.apple class="mb-3 h-6 w-6" />

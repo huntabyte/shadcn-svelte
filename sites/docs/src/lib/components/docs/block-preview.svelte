@@ -32,13 +32,13 @@
 		<BlockToolbar {block} {resizablePaneRef} />
 		<Tabs.Content
 			value="preview"
-			class="relative after:absolute after:inset-0 after:right-3 after:z-0 after:rounded-lg after:bg-muted"
+			class="after:bg-muted relative after:absolute after:inset-0 after:right-3 after:z-0 after:rounded-lg"
 		>
 			<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 				<Resizable.Pane
 					bind:pane={resizablePaneRef}
 					class={cn(
-						"relative rounded-lg border bg-background",
+						"bg-background relative rounded-lg border",
 						$isLiftMode ? "border-border/50" : "border-border"
 					)}
 					defaultSize={100}
@@ -46,7 +46,7 @@
 				>
 					{#if isLoading}
 						<div
-							class="absolute inset-0 z-10 flex h-[--container-height] w-full items-center justify-center gap-2 text-sm text-muted-foreground"
+							class="text-muted-foreground absolute inset-0 z-10 flex h-[--container-height] w-full items-center justify-center gap-2 text-sm"
 						>
 							<Icons.spinner class="h-4 w-4 animate-spin" />
 							Loading...
@@ -55,7 +55,7 @@
 					<iframe
 						src={`/blocks/${block.style}/${block.name}`}
 						height={block.container?.height}
-						class="chunk-mode relative z-20 w-full bg-background"
+						class="chunk-mode bg-background relative z-20 w-full"
 						on:load={() => {
 							isLoading = false;
 						}}
@@ -64,7 +64,7 @@
 				</Resizable.Pane>
 				<Resizable.Handle
 					class={cn(
-						"relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 sm:block",
+						"after:bg-border relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:transition-all after:hover:h-10 sm:block",
 						$isLiftMode && "invisible"
 					)}
 				/>

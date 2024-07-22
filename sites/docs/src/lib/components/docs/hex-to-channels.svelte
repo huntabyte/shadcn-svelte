@@ -17,7 +17,7 @@
 </script>
 
 <div
-	class="mt-2 flex h-[300px] items-center justify-center rounded-md border ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+	class="ring-offset-background focus-visible:ring-ring mt-2 flex h-[300px] items-center justify-center rounded-md border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
 >
 	<div class="mx-auto w-full max-w-sm space-y-6 py-4">
 		<div class="grid gap-2">
@@ -28,7 +28,7 @@
 			<Label for="hsl">HSL</Label>
 			<Input name="hsl" value={hslString} readonly />
 			<CopyButton
-				class="absolute right-2 top-[28.5px] text-primary hover:bg-accent hover:text-primary"
+				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px]"
 				value={hslString}
 			/>
 		</div>
@@ -36,7 +36,7 @@
 			<Label for="rgb">RGB</Label>
 			<Input name="rgb" value={rgbString} readonly />
 			<CopyButton
-				class="absolute right-2 top-[28.5px] text-primary hover:bg-accent hover:text-primary"
+				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px]"
 				value={rgbString}
 			/>
 		</div>

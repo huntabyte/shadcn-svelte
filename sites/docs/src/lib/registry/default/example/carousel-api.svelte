@@ -33,7 +33,7 @@
 		<Carousel.Previous />
 		<Carousel.Next />
 	</Carousel.Root>
-	<div class="py-2 text-center text-sm text-muted-foreground">
+	<div class="text-muted-foreground py-2 text-center text-sm">
 		Slide {current} of {count}
 	</div>
 </div>

@@ -12,7 +12,7 @@
 		<Card.Title class="text-4xl">$1329</Card.Title>
 	</Card.Header>
 	<Card.Content>
-		<div class="text-xs text-muted-foreground">+25% from last week</div>
+		<div class="text-muted-foreground text-xs">+25% from last week</div>
 	</Card.Content>
 	<Card.Footer>
 		<Progress value={25} aria-label="25% increase" />

@@ -95,7 +95,7 @@
 						<div class="text-7xl font-bold tracking-tighter">
 							{goal}
 						</div>
-						<div class="text-[0.70rem] uppercase text-muted-foreground">
+						<div class="text-muted-foreground text-[0.70rem] uppercase">
 							Calories/day
 						</div>
 					</div>

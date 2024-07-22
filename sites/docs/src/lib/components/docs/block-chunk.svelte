@@ -24,7 +24,7 @@
 
 <div
 	class={cn(
-		"group rounded-xl bg-background shadow-xl",
+		"bg-background group rounded-xl shadow-xl",
 		!$isLiftMode && "invisible",
 		chunk.container?.className
 	)}

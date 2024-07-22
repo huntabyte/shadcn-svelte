@@ -1,8 +1,6 @@
 {
 	"name": "slider",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": ["bits-ui"],
 	"registryDependencies": [],
 	"files": [
 		{

@@ -4,10 +4,7 @@
 	"properties": {
 		"style": {
 			"type": "string",
-			"enum": [
-				"default",
-				"new-york"
-			]
+			"enum": ["default", "new-york"]
 		},
 		"tailwind": {
 			"type": "object",
@@ -22,11 +19,7 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"config",
-				"css",
-				"baseColor"
-			]
+			"required": ["config", "css", "baseColor"]
 		},
 		"aliases": {
 			"type": "object",
@@ -38,15 +31,8 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"utils",
-				"components"
-			]
+			"required": ["utils", "components"]
 		}
 	},
-	"required": [
-		"style",
-		"tailwind",
-		"aliases"
-	]
+	"required": ["style", "tailwind", "aliases"]
 }

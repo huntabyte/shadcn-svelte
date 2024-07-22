@@ -1,9 +1,6 @@
 {
 	"name": "select",
-	"dependencies": [
-		"bits-ui",
-		"lucide-svelte"
-	],
+	"dependencies": ["bits-ui", "lucide-svelte"],
 	"registryDependencies": [],
 	"files": [
 		{

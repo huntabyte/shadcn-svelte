@@ -1,8 +1,6 @@
 {
 	"name": "drawer",
-	"dependencies": [
-		"vaul-svelte"
-	],
+	"dependencies": ["vaul-svelte"],
 	"registryDependencies": [],
 	"files": [
 		{

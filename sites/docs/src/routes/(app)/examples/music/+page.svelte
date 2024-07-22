@@ -45,7 +45,7 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											Listen Now
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Top picks for you. Updated daily.
 										</p>
 									</div>
@@ -70,7 +70,7 @@
 									<h2 class="text-2xl font-semibold tracking-tight">
 										Made for You
 									</h2>
-									<p class="text-sm text-muted-foreground">
+									<p class="text-muted-foreground text-sm">
 										Your personal playlists. Updated daily.
 									</p>
 								</div>
@@ -100,7 +100,7 @@
 										<h2 class="text-2xl font-semibold tracking-tight">
 											New Episodes
 										</h2>
-										<p class="text-sm text-muted-foreground">
+										<p class="text-muted-foreground text-sm">
 											Your favorite podcasts. Updated daily.
 										</p>
 									</div>

@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex min-h-screen w-full flex-col">
-	<header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+	<header class="bg-background sticky top-0 flex h-16 items-center gap-4 border-b px-4 md:px-6">
 		<nav
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
@@ -21,19 +21,19 @@
 				<Package2 class="h-6 w-6" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Dashboard
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Orders
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Products
 			</a>
-			<a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
 				Customers
 			</a>
-			<a href="##" class="text-foreground transition-colors hover:text-foreground">
+			<a href="##" class="text-foreground hover:text-foreground transition-colors">
 				Settings
 			</a>
 		</nav>
@@ -66,7 +66,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+					<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -98,7 +98,7 @@
 		</div>
 	</header>
 	<main
-		class="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10"
+		class="bg-muted/40 flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10"
 	>
 		<div class="mx-auto grid w-full max-w-6xl gap-2">
 			<h1 class="text-3xl font-semibold">Settings</h1>
@@ -107,12 +107,12 @@
 			class="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]"
 		>
 			<nav
-				class="grid gap-4 text-sm text-muted-foreground"
+				class="text-muted-foreground grid gap-4 text-sm"
 				data-x-chunk-name="dashboard-04-chunk-0"
 				data-x-chunk-description="A sidebar navigation with links to general, security, integrations, support, organizations, and advanced settings."
 				data-x-chunk-container="chunk-container after:right-0"
 			>
-				<a href="##" class="font-semibold text-primary"> General </a>
+				<a href="##" class="text-primary font-semibold"> General </a>
 				<a href="##">Security</a>
 				<a href="##">Integrations</a>
 				<a href="##">Support</a>

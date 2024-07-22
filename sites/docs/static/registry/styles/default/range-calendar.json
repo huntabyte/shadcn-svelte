@@ -1,13 +1,7 @@
 {
 	"name": "range-calendar",
-	"dependencies": [
-		"bits-ui",
-		"@internationalized/date",
-		"lucide-svelte"
-	],
-	"registryDependencies": [
-		"button"
-	],
+	"dependencies": ["bits-ui", "@internationalized/date", "lucide-svelte"],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"name": "index.ts",

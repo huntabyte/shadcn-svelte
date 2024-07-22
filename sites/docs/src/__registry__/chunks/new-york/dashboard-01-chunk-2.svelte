@@ -7,14 +7,12 @@
 	data-x-chunk-name="dashboard-01-chunk-2"
 	data-x-chunk-description="A card showing the total sales and the percentage difference from last month."
 >
-	<Card.Header
-		class="flex flex-row items-center justify-between space-y-0 pb-2"
-	>
+	<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 		<Card.Title class="text-sm font-medium">Sales</Card.Title>
-		<CreditCard class="h-4 w-4 text-muted-foreground" />
+		<CreditCard class="text-muted-foreground h-4 w-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">+12,234</div>
-		<p class="text-xs text-muted-foreground">+19% from last month</p>
+		<p class="text-muted-foreground text-xs">+19% from last month</p>
 	</Card.Content>
 </Card.Root>

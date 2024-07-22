@@ -1,11 +1,7 @@
 {
 	"name": "toggle-group",
-	"dependencies": [
-		"bits-ui"
-	],
-	"registryDependencies": [
-		"toggle"
-	],
+	"dependencies": ["bits-ui"],
+	"registryDependencies": ["toggle"],
 	"files": [
 		{
 			"name": "index.js",

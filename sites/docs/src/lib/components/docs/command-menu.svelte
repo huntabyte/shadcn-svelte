@@ -40,7 +40,7 @@
 <Button
 	variant="outline"
 	class={cn(
-		"relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+		"text-muted-foreground relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
 	)}
 	on:click={() => (open = true)}
 	{...$$restProps}
@@ -48,7 +48,7 @@
 	<span class="hidden lg:inline-flex"> Search documentation... </span>
 	<span class="inline-flex lg:hidden">Search...</span>
 	<kbd
-		class="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
+		class="bg-muted pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
 	>
 		<span class="text-xs">⌘</span>K
 	</kbd>

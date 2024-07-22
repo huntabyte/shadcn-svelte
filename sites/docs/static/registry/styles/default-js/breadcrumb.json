@@ -1,8 +1,6 @@
 {
 	"name": "breadcrumb",
-	"dependencies": [
-		"lucide-svelte"
-	],
+	"dependencies": ["lucide-svelte"],
 	"registryDependencies": [],
 	"files": [
 		{

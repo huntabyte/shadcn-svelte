@@ -20,7 +20,7 @@
 	</PageHeader.Root>
 	<section>
 		<ExamplesNav />
-		<div class="overflow-hidden rounded-[0.5rem] border bg-background shadow-xl">
+		<div class="bg-background overflow-hidden rounded-[0.5rem] border shadow-xl">
 			<slot />
 		</div>
 	</section>

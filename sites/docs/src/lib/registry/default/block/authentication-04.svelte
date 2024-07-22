@@ -9,7 +9,7 @@
 		<div class="mx-auto grid w-[350px] gap-6">
 			<div class="grid gap-2 text-center">
 				<h1 class="text-3xl font-bold">Login</h1>
-				<p class="text-balance text-muted-foreground">
+				<p class="text-muted-foreground text-balance">
 					Enter your email below to login to your account
 				</p>
 			</div>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="hidden bg-muted lg:block">
+	<div class="bg-muted hidden lg:block">
 		<img
 			src="/images/placeholder.svg"
 			alt="placeholder"

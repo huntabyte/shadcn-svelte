@@ -32,12 +32,12 @@
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 </script>
 
-<div class="flex min-h-screen w-full flex-col bg-muted/40">
-	<aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+<div class="bg-muted/40 flex min-h-screen w-full flex-col">
+	<aside class="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
 		<nav class="flex flex-col items-center gap-4 px-2 py-4">
 			<a
 				href="##"
-				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+				class="bg-primary text-primary-foreground group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
 			>
 				<Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
@@ -46,7 +46,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -60,7 +60,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="bg-accent text-accent-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -74,7 +74,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -88,7 +88,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -102,7 +102,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -118,7 +118,7 @@
 				<Tooltip.Trigger asChild let:builder>
 					<a
 						href="##"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 						use:builder.action
 						{...builder}
 					>
@@ -132,7 +132,7 @@
 	</aside>
 	<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
 		<header
-			class="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
+			class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
 				<Sheet.Trigger asChild let:builder>
@@ -145,39 +145,39 @@
 					<nav class="grid gap-6 text-lg font-medium">
 						<a
 							href="##"
-							class="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+							class="bg-primary text-primary-foreground group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
 						>
 							<Package2 class="h-5 w-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<Home class="h-5 w-5" />
 							Dashboard
 						</a>
-						<a href="##" class="flex items-center gap-4 px-2.5 text-foreground">
+						<a href="##" class="text-foreground flex items-center gap-4 px-2.5">
 							<ShoppingCart class="h-5 w-5" />
 							Orders
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<Package class="h-5 w-5" />
 							Products
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<UsersRound class="h-5 w-5" />
 							Customers
 						</a>
 						<a
 							href="##"
-							class="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
 							<LineChart class="h-5 w-5" />
 							Settings
@@ -201,11 +201,11 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 			<div class="relative ml-auto flex-1 md:grow-0">
-				<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+				<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 				<Input
 					type="search"
 					placeholder="Search..."
-					class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
+					class="bg-background w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
 				/>
 			</div>
 			<DropdownMenu.Root>
@@ -265,7 +265,7 @@
 							<Card.Title class="text-4xl">$1329</Card.Title>
 						</Card.Header>
 						<Card.Content>
-							<div class="text-xs text-muted-foreground">+25% from last week</div>
+							<div class="text-muted-foreground text-xs">+25% from last week</div>
 						</Card.Content>
 						<Card.Footer>
 							<Progress value={25} aria-label="25% increase" />
@@ -280,7 +280,7 @@
 							<Card.Title class="text-3xl">$5,329</Card.Title>
 						</Card.Header>
 						<Card.Content>
-							<div class="text-xs text-muted-foreground">+10% from last month</div>
+							<div class="text-muted-foreground text-xs">+10% from last month</div>
 						</Card.Content>
 						<Card.Footer>
 							<Progress value={12} aria-label="12% increase" />
@@ -354,7 +354,7 @@
 											<Table.Cell>
 												<div class="font-medium">Liam Johnson</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													liam@example.com
 												</div>
@@ -376,7 +376,7 @@
 											<Table.Cell>
 												<div class="font-medium">Olivia Smith</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													olivia@example.com
 												</div>
@@ -398,7 +398,7 @@
 											<Table.Cell>
 												<div class="font-medium">Liam Johnson</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													liam@example.com
 												</div>
@@ -420,7 +420,7 @@
 											<Table.Cell>
 												<div class="font-medium">Noah Williams</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													noah@example.com
 												</div>
@@ -442,7 +442,7 @@
 											<Table.Cell>
 												<div class="font-medium">Emma Brown</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													emma@example.com
 												</div>
@@ -464,7 +464,7 @@
 											<Table.Cell>
 												<div class="font-medium">Liam Johnson</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													liam@example.com
 												</div>
@@ -486,7 +486,7 @@
 											<Table.Cell>
 												<div class="font-medium">Olivia Smith</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													olivia@example.com
 												</div>
@@ -508,7 +508,7 @@
 											<Table.Cell>
 												<div class="font-medium">Emma Brown</div>
 												<div
-													class="hidden text-sm text-muted-foreground md:inline"
+													class="text-muted-foreground hidden text-sm md:inline"
 												>
 													emma@example.com
 												</div>
@@ -539,7 +539,7 @@
 					data-x-chunk-name="dashboard-05-chunk-4"
 					data-x-chunk-description="An order details card with order details, shipping information, customer information and payment information."
 				>
-					<Card.Header class="flex flex-row items-start bg-muted/50">
+					<Card.Header class="bg-muted/50 flex flex-row items-start">
 						<div class="grid gap-0.5">
 							<Card.Title class="group flex items-center gap-2 text-lg">
 								Order Oe31b70H
@@ -623,7 +623,7 @@
 						<div class="grid grid-cols-2 gap-4">
 							<div class="grid gap-3">
 								<div class="font-semibold">Shipping Information</div>
-								<address class="grid gap-0.5 not-italic text-muted-foreground">
+								<address class="text-muted-foreground grid gap-0.5 not-italic">
 									<span>Liam Johnson</span>
 									<span>1234 Main St.</span>
 									<span>Anytown, CA 12345</span>
@@ -661,7 +661,7 @@
 							<div class="font-semibold">Payment Information</div>
 							<dl class="grid gap-3">
 								<div class="flex items-center justify-between">
-									<dt class="flex items-center gap-1 text-muted-foreground">
+									<dt class="text-muted-foreground flex items-center gap-1">
 										<CreditCard class="h-4 w-4" />
 										Visa
 									</dt>
@@ -670,8 +670,8 @@
 							</dl>
 						</div>
 					</Card.Content>
-					<Card.Footer class="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
-						<div class="text-xs text-muted-foreground">
+					<Card.Footer class="bg-muted/50 flex flex-row items-center border-t px-6 py-3">
+						<div class="text-muted-foreground text-xs">
 							Updated <time dateTime="2023-11-23">November 23, 2023</time>
 						</div>
 						<Pagination.Root count={10} class="ml-auto mr-0 w-auto">

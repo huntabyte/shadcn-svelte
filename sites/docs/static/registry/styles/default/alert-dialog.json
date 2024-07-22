@@ -1,11 +1,7 @@
 {
 	"name": "alert-dialog",
-	"dependencies": [
-		"bits-ui"
-	],
-	"registryDependencies": [
-		"button"
-	],
+	"dependencies": ["bits-ui"],
+	"registryDependencies": ["button"],
 	"files": [
 		{
 			"name": "alert-dialog-action.svelte",

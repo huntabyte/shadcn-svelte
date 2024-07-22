@@ -30,7 +30,7 @@
 	<aside class="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
 		<div class="border-b p-2">
 			<Button variant="outline" size="icon" aria-label="Home">
-				<Triangle class="size-5 fill-foreground" />
+				<Triangle class="fill-foreground size-5" />
 			</Button>
 		</div>
 		<nav class="grid gap-1 p-2">
@@ -39,7 +39,7 @@
 					<Button
 						variant="ghost"
 						size="icon"
-						class="rounded-lg bg-muted"
+						class="bg-muted rounded-lg"
 						aria-label="Playground"
 						builders={[builder]}
 					>
@@ -138,7 +138,7 @@
 	</aside>
 	<div class="flex flex-col">
 		<header
-			class="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4"
+			class="bg-background sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b px-4"
 		>
 			<h1 class="text-xl font-semibold">Playground</h1>
 			<Drawer.Root>
@@ -170,13 +170,13 @@
 									<Select.Content>
 										<Select.Item value="genesis" label="Neural Genesis">
 											<div
-												class="flex items-start gap-3 text-muted-foreground"
+												class="text-muted-foreground flex items-start gap-3"
 											>
 												<Rabbit class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
 														Neural
-														<span class="font-medium text-foreground">
+														<span class="text-foreground font-medium">
 															Genesis
 														</span>
 													</p>
@@ -188,13 +188,13 @@
 										</Select.Item>
 										<Select.Item value="explorer" label="Neural Explorer">
 											<div
-												class="flex items-start gap-3 text-muted-foreground"
+												class="text-muted-foreground flex items-start gap-3"
 											>
 												<Bird class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
 														Neural
-														<span class="font-medium text-foreground">
+														<span class="text-foreground font-medium">
 															Explorer
 														</span>
 													</p>
@@ -206,13 +206,13 @@
 										</Select.Item>
 										<Select.Item value="quantum" label="Neural Quantum">
 											<div
-												class="flex items-start gap-3 text-muted-foreground"
+												class="text-muted-foreground flex items-start gap-3"
 											>
 												<Turtle class="size-5" />
 												<div class="grid gap-0.5">
 													<p>
 														Neural
-														<span class="font-medium text-foreground">
+														<span class="text-foreground font-medium">
 															Quantum
 														</span>
 													</p>
@@ -287,12 +287,12 @@
 								</Select.Trigger>
 								<Select.Content>
 									<Select.Item value="genesis" label="Neural Genesis">
-										<div class="flex items-start gap-3 text-muted-foreground">
+										<div class="text-muted-foreground flex items-start gap-3">
 											<Rabbit class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
 													Neural
-													<span class="font-medium text-foreground">
+													<span class="text-foreground font-medium">
 														Genesis
 													</span>
 												</p>
@@ -303,12 +303,12 @@
 										</div>
 									</Select.Item>
 									<Select.Item value="explorer" label="Neural Explorer">
-										<div class="flex items-start gap-3 text-muted-foreground">
+										<div class="text-muted-foreground flex items-start gap-3">
 											<Bird class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
 													Neural
-													<span class="font-medium text-foreground">
+													<span class="text-foreground font-medium">
 														Explorer
 													</span>
 												</p>
@@ -319,12 +319,12 @@
 										</div>
 									</Select.Item>
 									<Select.Item value="quantum">
-										<div class="flex items-start gap-3 text-muted-foreground">
+										<div class="text-muted-foreground flex items-start gap-3">
 											<Turtle class="size-5" />
 											<div class="grid gap-0.5">
 												<p>
 													Neural
-													<span class="font-medium text-foreground">
+													<span class="text-foreground font-medium">
 														Quantum
 													</span>
 												</p>
@@ -380,12 +380,12 @@
 				</form>
 			</div>
 			<div
-				class="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2"
+				class="bg-muted/50 relative flex h-full min-h-[50vh] flex-col rounded-xl p-4 lg:col-span-2"
 			>
 				<Badge variant="outline" class="absolute right-3 top-3">Output</Badge>
 				<div class="flex-1" />
 				<form
-					class="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
+					class="bg-background focus-within:ring-ring relative overflow-hidden rounded-lg border focus-within:ring-1"
 					data-x-chunk-name="dashboard-03-chunk-1"
 					data-x-chunk-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
 				>

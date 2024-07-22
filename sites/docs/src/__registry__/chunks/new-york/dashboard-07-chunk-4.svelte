@@ -10,9 +10,7 @@
 >
 	<Card.Header>
 		<Card.Title>Product Images</Card.Title>
-		<Card.Description>
-			Lipsum dolor sit amet, consectetur adipiscing elit
-		</Card.Description>
+		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="grid gap-2">
@@ -45,7 +43,7 @@
 				<button
 					class="flex aspect-square w-full items-center justify-center rounded-md border border-dashed"
 				>
-					<Upload class="h-4 w-4 text-muted-foreground" />
+					<Upload class="text-muted-foreground h-4 w-4" />
 					<span class="sr-only">Upload</span>
 				</button>
 			</div>

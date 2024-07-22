@@ -1,9 +1,6 @@
 {
 	"name": "dialog",
-	"dependencies": [
-		"bits-ui",
-		"svelte-radix"
-	],
+	"dependencies": ["bits-ui", "svelte-radix"],
 	"registryDependencies": [],
 	"files": [
 		{

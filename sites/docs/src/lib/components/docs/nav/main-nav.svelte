@@ -16,7 +16,7 @@
 		<a
 			href="/docs"
 			class={cn(
-				"transition-colors hover:text-foreground/80",
+				"hover:text-foreground/80 transition-colors",
 				$page.url.pathname === "/docs" ? "text-foreground" : "text-foreground/60"
 			)}
 		>
@@ -25,7 +25,7 @@
 		<a
 			href="/docs/components"
 			class={cn(
-				"transition-colors hover:text-foreground/80",
+				"hover:text-foreground/80 transition-colors",
 				$page.url.pathname.startsWith("/docs/components")
 					? "text-foreground"
 					: "text-foreground/60"
@@ -36,7 +36,7 @@
 		<a
 			href="/themes"
 			class={cn(
-				"transition-colors hover:text-foreground/80",
+				"hover:text-foreground/80 transition-colors",
 				$page.url.pathname.startsWith("/themes") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
@@ -45,7 +45,7 @@
 		<a
 			href="/examples"
 			class={cn(
-				"transition-colors hover:text-foreground/80",
+				"hover:text-foreground/80 transition-colors",
 				$page.url.pathname.startsWith("/examples")
 					? "text-foreground"
 					: "text-foreground/60"
@@ -56,7 +56,7 @@
 		<a
 			href="/blocks"
 			class={cn(
-				"transition-colors hover:text-foreground/80",
+				"hover:text-foreground/80 transition-colors",
 				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
@@ -67,7 +67,7 @@
 			target="_blank"
 			rel="noopener noreferrer"
 			class={cn(
-				"hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
+				"text-foreground/60 hover:text-foreground/80 hidden transition-colors lg:block"
 			)}
 		>
 			GitHub

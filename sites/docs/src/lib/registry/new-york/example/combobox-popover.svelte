@@ -49,7 +49,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	<p class="text-sm text-muted-foreground">Status</p>
+	<p class="text-muted-foreground text-sm">Status</p>
 	<Popover.Root bind:open let:ids>
 		<Popover.Trigger asChild let:builder>
 			<Button builders={[builder]} variant="outline" class="w-[150px] justify-start">
