@@ -17,7 +17,7 @@ name: Docs - Preview Deployment
 on:
     pull_request_target:
         paths:
-            - apps/www/**
+            - sites/docs/**
 
 # cancel in-progress runs on new commits to same PR (github.event.number)
 concurrency:
@@ -33,29 +33,12 @@ jobs:
         runs-on: ubuntu-latest
         name: Deploy Preview to Cloudflare Pages
         steps:
-            - uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.event.pull_request.head.ref }}
-                  repository: ${{ github.event.pull_request.head.repo.full_name }}
-            - uses: pnpm/action-setup@v2
-              with:
-                  version: 8
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
-
-            # PNPM Store cache setup
-            - name: Get pnpm store directory
-              id: pnpm-cache
-              run: |
-                  echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-            - name: Setup pnpm cache
-              uses: actions/cache@v3
-              with:
-                  path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-pnpm-store-
+                  cache: pnpm
 
             # Image cache setup
             - name: Setup Image cache
@@ -79,5 +62,5 @@ jobs:
                   githubToken: ${{ secrets.GITHUB_TOKEN }}
                   projectName: shadcn-svelte
                   directory: ./.svelte-kit/cloudflare
-                  workingDirectory: apps/www
+                  workingDirectory: sites/docs
                   deploymentName: Preview

@@ -4,7 +4,7 @@ on:
         branches:
             - main
         paths:
-            - apps/www/**
+            - sites/docs/**
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -16,26 +16,12 @@ jobs:
             deployments: write
         name: Publish to Cloudflare Pages
         steps:
-            - uses: actions/checkout@v3
-            - uses: pnpm/action-setup@v2
-              with:
-                  version: 8
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 20
-
-            # PNPM Store cache setup
-            - name: Get pnpm store directory
-              id: pnpm-cache
-              run: |
-                  echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-            - name: Setup pnpm cache
-              uses: actions/cache@v3
-              with:
-                  path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-pnpm-store-
+                  cache: pnpm
 
             # Image cache setup
             - name: Setup Image cache
@@ -43,7 +29,7 @@ jobs:
               with:
                   path: '**/node_modules/.cache/imagetools'
                   key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
-            
+
             - name: Install dependencies
               run: pnpm install
 
@@ -58,5 +44,5 @@ jobs:
                   githubToken: ${{ secrets.GITHUB_TOKEN }}
                   projectName: shadcn-svelte
                   directory: ./.svelte-kit/cloudflare
-                  workingDirectory: apps/www
+                  workingDirectory: sites/docs
                   deploymentName: Production
