@@ -1,5 +1,5 @@
 import { type Highlighter, getHighlighter } from "shiki";
-import type { Component, ComponentType } from "svelte";
+import type { Component } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "./config/blocks.js";
