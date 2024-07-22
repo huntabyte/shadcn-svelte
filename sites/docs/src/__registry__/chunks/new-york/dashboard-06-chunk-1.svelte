@@ -272,7 +272,7 @@
 		</Table.Root>
 	</Card.Content>
 	<Card.Footer>
-		<div class="text-xs text-muted-foreground">
+		<div class="text-muted-foreground text-xs">
 			Showing <strong>1-10</strong> of <strong>32</strong> products
 		</div>
 	</Card.Footer>

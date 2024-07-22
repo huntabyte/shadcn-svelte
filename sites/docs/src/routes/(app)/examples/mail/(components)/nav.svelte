@@ -15,37 +15,39 @@
 	>
 		{#each routes as route}
 			{#if isCollapsed}
-				<Tooltip.Root delayDuration={0}>
-					<Tooltip.Trigger
-						class={cn(
-							buttonVariants({
-								variant: route.variant,
-								size: "icon",
-								class: "size-9",
-							}),
-							route.variant === "default" &&
-								"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
-						)}
-					>
-						<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
-						<span class="sr-only">{route.title}</span>
-					</Tooltip.Trigger>
-					<Tooltip.Content side="right" class="flex items-center gap-4">
-						{route.title}
-						{#if route.label}
-							<span class="ml-auto text-muted-foreground">
-								{route.label}
-							</span>
-						{/if}
-					</Tooltip.Content>
-				</Tooltip.Root>
+				<Tooltip.Provider delayDuration={0}>
+					<Tooltip.Root>
+						<Tooltip.Trigger
+							class={cn(
+								buttonVariants({
+									variant: route.variant,
+									size: "icon",
+									class: "size-9",
+								}),
+								route.variant === "default" &&
+									"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+							)}
+						>
+							<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
+							<span class="sr-only">{route.title}</span>
+						</Tooltip.Trigger>
+						<Tooltip.Content side="right" class="flex items-center gap-4">
+							{route.title}
+							{#if route.label}
+								<span class="text-muted-foreground ml-auto">
+									{route.label}
+								</span>
+							{/if}
+						</Tooltip.Content>
+					</Tooltip.Root>
+				</Tooltip.Provider>
 			{:else}
 				<Button
 					href="#"
 					variant={route.variant}
 					size="sm"
 					class={cn("justify-start", {
-						"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white":
+						"dark:bg-muted dark:hover:bg-muted dark:text-white dark:hover:text-white":
 							route.variant === "default",
 					})}
 				>

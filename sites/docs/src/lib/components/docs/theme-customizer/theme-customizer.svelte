@@ -21,42 +21,44 @@
 			{@const theme = themes.find((theme) => theme.name === color)}
 			{@const isActive = $config.theme === color}
 			{#if theme}
-				<Tooltip.Root>
-					<Tooltip.Trigger
-						style={{
-							"--theme-primary": `hsl(${
-								theme?.activeColor[$mode === "dark" ? "dark" : "light"]
-							}`,
-						}}
-						class={cn(
-							"flex size-9 items-center justify-center rounded-full border-2 text-xs",
-							isActive ? "border-[--theme-primary]" : "border-transparent"
-						)}
-						onclick={() => {
-							config.update((prev) => ({
-								...prev,
-								theme: theme.name,
-							}));
-						}}
-					>
-						<span
+				<Tooltip.Provider>
+					<Tooltip.Root>
+						<Tooltip.Trigger
+							style={{
+								"--theme-primary": `hsl(${
+									theme?.activeColor[$mode === "dark" ? "dark" : "light"]
+								}`,
+							}}
 							class={cn(
-								"flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
+								"flex size-9 items-center justify-center rounded-full border-2 text-xs",
+								isActive ? "border-[--theme-primary]" : "border-transparent"
 							)}
+							onclick={() => {
+								config.update((prev) => ({
+									...prev,
+									theme: theme.name,
+								}));
+							}}
 						>
-							{#if isActive}
-								<Check class="size-4 text-white" />
-							{/if}
-						</span>
-						<span class="sr-only">{theme.label}</span>
-					</Tooltip.Trigger>
-					<Tooltip.Content
-						align="center"
-						class="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
-					>
-						{theme.label}
-					</Tooltip.Content>
-				</Tooltip.Root>
+							<span
+								class={cn(
+									"flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
+								)}
+							>
+								{#if isActive}
+									<Check class="size-4 text-white" />
+								{/if}
+							</span>
+							<span class="sr-only">{theme.label}</span>
+						</Tooltip.Trigger>
+						<Tooltip.Content
+							align="center"
+							class="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
+						>
+							{theme.label}
+						</Tooltip.Content>
+					</Tooltip.Root>
+				</Tooltip.Provider>
 			{/if}
 		{/each}
 	</div>

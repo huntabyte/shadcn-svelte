@@ -8,7 +8,7 @@
 </script>
 
 <form
-	class="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
+	class="bg-background focus-within:ring-ring relative overflow-hidden rounded-lg border focus-within:ring-1"
 	data-x-chunk-name="dashboard-03-chunk-1"
 	data-x-chunk-description="A form for sending a message to an AI chatbot. The form has a textarea and buttons to upload files and record audio."
 >
@@ -19,24 +19,26 @@
 		class="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
 	/>
 	<div class="flex items-center p-3 pt-0">
-		<Tooltip.Root>
-			<Tooltip.Trigger
-				class={buttonVariants({ variant: "ghost", size: "icon" })}
-			>
-				<Paperclip class="size-4" />
-				<span class="sr-only">Attach file</span>
-			</Tooltip.Trigger>
-			<Tooltip.Content side="top">Attach File</Tooltip.Content>
-		</Tooltip.Root>
-		<Tooltip.Root>
-			<Tooltip.Trigger
-				class={buttonVariants({ variant: "ghost", size: "icon" })}
-			>
-				<Mic class="size-4" />
-				<span class="sr-only">Use Microphone</span>
-			</Tooltip.Trigger>
-			<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
-		</Tooltip.Root>
+		<Tooltip.Provider>
+			<Tooltip.Root>
+				<Tooltip.Trigger
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+				>
+					<Paperclip class="size-4" />
+					<span class="sr-only">Attach file</span>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="top">Attach File</Tooltip.Content>
+			</Tooltip.Root>
+			<Tooltip.Root>
+				<Tooltip.Trigger
+					class={buttonVariants({ variant: "ghost", size: "icon" })}
+				>
+					<Mic class="size-4" />
+					<span class="sr-only">Use Microphone</span>
+				</Tooltip.Trigger>
+				<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
+			</Tooltip.Root>
+		</Tooltip.Provider>
 		<Button type="submit" size="sm" class="ml-auto gap-1.5">
 			Send Message
 			<CornerDownLeft class="size-3.5" />

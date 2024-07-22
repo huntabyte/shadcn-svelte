@@ -45,7 +45,7 @@
 				<button
 					class="flex aspect-square w-full items-center justify-center rounded-md border border-dashed"
 				>
-					<Upload class="size-4 text-muted-foreground" />
+					<Upload class="text-muted-foreground size-4" />
 					<span class="sr-only">Upload</span>
 				</button>
 			</div>

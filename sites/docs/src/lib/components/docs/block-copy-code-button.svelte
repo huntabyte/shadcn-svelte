@@ -42,28 +42,30 @@
 	}
 </script>
 
-<Tooltip.Root>
-	<Tooltip.Trigger
-		class={cn(
-			buttonVariants({
-				variant: "outline",
-				size: "icon",
-				class: "size-7 rounded-[6px] [&_svg]:size-3.5",
-			})
-		)}
-		onclick={() => {
-			copyToClipboard();
-			hasCopied = true;
-		}}
-		{disabled}
-		{...restProps}
-	>
-		<span class="sr-only">Copy</span>
-		{#if hasCopied}
-			<Check />
-		{:else}
-			<Clipboard />
-		{/if}
-	</Tooltip.Trigger>
-	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
-</Tooltip.Root>
+<Tooltip.Provider>
+	<Tooltip.Root>
+		<Tooltip.Trigger
+			class={cn(
+				buttonVariants({
+					variant: "outline",
+					size: "icon",
+					class: "size-7 rounded-[6px] [&_svg]:size-3.5",
+				})
+			)}
+			onclick={() => {
+				copyToClipboard();
+				hasCopied = true;
+			}}
+			{disabled}
+			{...restProps}
+		>
+			<span class="sr-only">Copy</span>
+			{#if hasCopied}
+				<Check />
+			{:else}
+				<Clipboard />
+			{/if}
+		</Tooltip.Trigger>
+		<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
+	</Tooltip.Root>
+</Tooltip.Provider>
