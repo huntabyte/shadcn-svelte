@@ -11,7 +11,7 @@ source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -69,7 +69,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -77,7 +77,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-with-range">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -85,7 +85,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-with-presets">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,6 +93,6 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

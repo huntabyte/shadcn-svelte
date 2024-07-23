@@ -12,7 +12,7 @@ bits: https://bits-ui.com/docs/components/scroll-area
 
 <ComponentPreview name="scroll-area-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -53,7 +53,7 @@ Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
 <ComponentPreview name="scroll-area-horizontal">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -63,6 +63,6 @@ Set the `orientation` prop to `"both"` to enable both horizontal and vertical sc
 
 <ComponentPreview name="scroll-area-both">
 
-<div />
+<div></div>
 
 </ComponentPreview>

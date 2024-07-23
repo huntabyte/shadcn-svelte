@@ -12,7 +12,7 @@ bits: https://github.com/huntabyte/cmdk-sv
 
 <ComponentPreview name="command-demo" align="start" >
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -76,7 +76,7 @@ npm install cmdk-sv bits-ui
 
 <ComponentPreview name="command-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

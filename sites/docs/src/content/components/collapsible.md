@@ -13,7 +13,7 @@ bits: https://www.bits-ui.com/docs/components/collapsible
 
 <ComponentPreview name="collapsible-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

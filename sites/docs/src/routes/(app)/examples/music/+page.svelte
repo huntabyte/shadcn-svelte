@@ -7,13 +7,13 @@
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import MusicLight from "$lib/img/examples/music-light.png?enhanced";
-	import MusicDark from "$lib/img/examples/music-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MusicLight} alt="Music" class="block dark:hidden" />
-	<enhanced:img src={MusicDark} alt="Music" class="hidden dark:block" />
+	<enhanced:img src="$lib/img/examples/music-light.png" alt="Music" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src="$lib/img/examples/music-dark.png" alt="Music" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden md:block">
 	<Menu />

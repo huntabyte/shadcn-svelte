@@ -25,7 +25,7 @@
 
 	let { data }: { data: Task[] } = $props();
 
-	const table = createTable(readable(data), {
+	const table = createTable(readable($state.snapshot(data)), {
 		select: addSelectedRows(),
 		sort: addSortBy({
 			toggleOrder: ["asc", "desc"],

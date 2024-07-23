@@ -1,7 +1,9 @@
 [
 	{
 		"name": "accordion",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/accordion/accordion-content.svelte",
@@ -25,8 +27,12 @@
 	},
 	{
 		"name": "alert-dialog",
-		"dependencies": ["bits-ui"],
-		"registryDependencies": ["button"],
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button"
+		],
 		"files": [
 			"ui/alert-dialog/alert-dialog-action.svelte",
 			"ui/alert-dialog/alert-dialog-cancel.svelte",
@@ -52,7 +58,9 @@
 	},
 	{
 		"name": "avatar",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/avatar/avatar-fallback.svelte",
@@ -66,7 +74,10 @@
 		"name": "badge",
 		"dependencies": [],
 		"registryDependencies": [],
-		"files": ["ui/badge/badge.svelte", "ui/badge/index.ts"],
+		"files": [
+			"ui/badge/badge.svelte",
+			"ui/badge/index.ts"
+		],
 		"type": "components:ui"
 	},
 	{
@@ -87,15 +98,25 @@
 	},
 	{
 		"name": "button",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/button/button.svelte", "ui/button/index.ts"],
+		"files": [
+			"ui/button/button.svelte",
+			"ui/button/index.ts"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "calendar",
-		"dependencies": ["bits-ui", "@internationalized/date"],
-		"registryDependencies": ["button"],
+		"dependencies": [
+			"bits-ui",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button"
+		],
 		"files": [
 			"ui/calendar/calendar-cell.svelte",
 			"ui/calendar/calendar-day.svelte",
@@ -131,8 +152,12 @@
 	},
 	{
 		"name": "carousel",
-		"dependencies": ["embla-carousel-svelte"],
-		"registryDependencies": ["button"],
+		"dependencies": [
+			"embla-carousel-svelte"
+		],
+		"registryDependencies": [
+			"button"
+		],
 		"files": [
 			"ui/carousel/carousel-content.svelte",
 			"ui/carousel/carousel-item.svelte",
@@ -146,9 +171,14 @@
 	},
 	{
 		"name": "checkbox",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/checkbox/checkbox.svelte", "ui/checkbox/index.ts"],
+		"files": [
+			"ui/checkbox/checkbox.svelte",
+			"ui/checkbox/index.ts"
+		],
 		"type": "components:ui"
 	},
 	{
@@ -162,8 +192,13 @@
 	},
 	{
 		"name": "command",
-		"dependencies": ["cmdk-sv", "bits-ui"],
-		"registryDependencies": ["dialog"],
+		"dependencies": [
+			"cmdk-sv",
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"dialog"
+		],
 		"files": [
 			"ui/command/command-dialog.svelte",
 			"ui/command/command-empty.svelte",
@@ -180,7 +215,9 @@
 	},
 	{
 		"name": "context-menu",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/context-menu/context-menu-checkbox-item.svelte",
@@ -198,7 +235,9 @@
 	},
 	{
 		"name": "dialog",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/dialog/dialog-content.svelte",
@@ -213,7 +252,9 @@
 	},
 	{
 		"name": "drawer",
-		"dependencies": ["vaul-svelte"],
+		"dependencies": [
+			"vaul-svelte"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/drawer/drawer-content.svelte",
@@ -230,7 +271,9 @@
 	},
 	{
 		"name": "dropdown-menu",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
@@ -248,8 +291,15 @@
 	},
 	{
 		"name": "form",
-		"dependencies": ["formsnap", "zod", "sveltekit-superforms"],
-		"registryDependencies": ["button", "label"],
+		"dependencies": [
+			"formsnap",
+			"zod",
+			"sveltekit-superforms"
+		],
+		"registryDependencies": [
+			"button",
+			"label"
+		],
 		"files": [
 			"ui/form/form-button.svelte",
 			"ui/form/form-description.svelte",
@@ -265,28 +315,43 @@
 	},
 	{
 		"name": "hover-card",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/hover-card/hover-card-content.svelte", "ui/hover-card/index.ts"],
+		"files": [
+			"ui/hover-card/hover-card-content.svelte",
+			"ui/hover-card/index.ts"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "input",
 		"dependencies": [],
 		"registryDependencies": [],
-		"files": ["ui/input/index.ts", "ui/input/input.svelte"],
+		"files": [
+			"ui/input/index.ts",
+			"ui/input/input.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "label",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/label/index.ts", "ui/label/label.svelte"],
+		"files": [
+			"ui/label/index.ts",
+			"ui/label/label.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "menubar",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/menubar/index.ts",
@@ -306,8 +371,12 @@
 	},
 	{
 		"name": "pagination",
-		"dependencies": ["bits-ui"],
-		"registryDependencies": ["button"],
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button"
+		],
 		"files": [
 			"ui/pagination/index.ts",
 			"ui/pagination/pagination-content.svelte",
@@ -322,21 +391,33 @@
 	},
 	{
 		"name": "popover",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/popover/index.ts", "ui/popover/popover-content.svelte"],
+		"files": [
+			"ui/popover/index.ts",
+			"ui/popover/popover-content.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "progress",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/progress/index.ts", "ui/progress/progress.svelte"],
+		"files": [
+			"ui/progress/index.ts",
+			"ui/progress/progress.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "radio-group",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/radio-group/index.ts",
@@ -347,8 +428,13 @@
 	},
 	{
 		"name": "range-calendar",
-		"dependencies": ["bits-ui", "@internationalized/date"],
-		"registryDependencies": ["button"],
+		"dependencies": [
+			"bits-ui",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button"
+		],
 		"files": [
 			"ui/range-calendar/index.ts",
 			"ui/range-calendar/range-calendar-cell.svelte",
@@ -367,7 +453,9 @@
 	},
 	{
 		"name": "resizable",
-		"dependencies": ["paneforge"],
+		"dependencies": [
+			"paneforge"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/resizable/index.ts",
@@ -378,7 +466,9 @@
 	},
 	{
 		"name": "scroll-area",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/scroll-area/index.ts",
@@ -409,14 +499,21 @@
 	},
 	{
 		"name": "separator",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/separator/index.ts", "ui/separator/separator.svelte"],
+		"files": [
+			"ui/separator/index.ts",
+			"ui/separator/separator.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "sheet",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/sheet/index.ts",
@@ -433,28 +530,47 @@
 		"name": "skeleton",
 		"dependencies": [],
 		"registryDependencies": [],
-		"files": ["ui/skeleton/index.ts", "ui/skeleton/skeleton.svelte"],
+		"files": [
+			"ui/skeleton/index.ts",
+			"ui/skeleton/skeleton.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "slider",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/slider/index.ts", "ui/slider/slider.svelte"],
+		"files": [
+			"ui/slider/index.ts",
+			"ui/slider/slider.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "sonner",
-		"dependencies": ["svelte-sonner", "mode-watcher"],
+		"dependencies": [
+			"svelte-sonner",
+			"mode-watcher"
+		],
 		"registryDependencies": [],
-		"files": ["ui/sonner/index.ts", "ui/sonner/sonner.svelte"],
+		"files": [
+			"ui/sonner/index.ts",
+			"ui/sonner/sonner.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "switch",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/switch/index.ts", "ui/switch/switch.svelte"],
+		"files": [
+			"ui/switch/index.ts",
+			"ui/switch/switch.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
@@ -476,7 +592,9 @@
 	},
 	{
 		"name": "tabs",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/tabs/index.ts",
@@ -490,20 +608,32 @@
 		"name": "textarea",
 		"dependencies": [],
 		"registryDependencies": [],
-		"files": ["ui/textarea/index.ts", "ui/textarea/textarea.svelte"],
+		"files": [
+			"ui/textarea/index.ts",
+			"ui/textarea/textarea.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "toggle",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/toggle/index.ts", "ui/toggle/toggle.svelte"],
+		"files": [
+			"ui/toggle/index.ts",
+			"ui/toggle/toggle.svelte"
+		],
 		"type": "components:ui"
 	},
 	{
 		"name": "toggle-group",
-		"dependencies": ["bits-ui"],
-		"registryDependencies": ["toggle"],
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"toggle"
+		],
 		"files": [
 			"ui/toggle-group/index.ts",
 			"ui/toggle-group/toggle-group-item.svelte",
@@ -513,9 +643,14 @@
 	},
 	{
 		"name": "tooltip",
-		"dependencies": ["bits-ui"],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
-		"files": ["ui/tooltip/index.ts", "ui/tooltip/tooltip-content.svelte"],
+		"files": [
+			"ui/tooltip/index.ts",
+			"ui/tooltip/tooltip-content.svelte"
+		],
 		"type": "components:ui"
 	}
 ]

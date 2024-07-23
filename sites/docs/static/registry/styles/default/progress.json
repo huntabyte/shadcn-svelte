@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "progress.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tmax = 100,\n\t\tvalue,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ProgressPrimitive.RootProps> = $props();\n</script>\n\n<ProgressPrimitive.Root\n\tbind:ref\n\tclass={cn(\"relative h-4 w-full overflow-hidden rounded-full bg-secondary\", className)}\n\t{value}\n\t{max}\n\t{...restProps}\n>\n\t<div\n\t\tclass=\"h-full w-full flex-1 bg-primary transition-all\"\n\t\tstyle={`transform: translateX(-${100 - (100 * (value ?? 0)) / (max ?? 1)}%)`}\n\t></div>\n</ProgressPrimitive.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tmax = 100,\n\t\tvalue,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ProgressPrimitive.RootProps> = $props();\n</script>\n\n<ProgressPrimitive.Root\n\tbind:ref\n\tclass={cn(\"bg-secondary relative h-4 w-full overflow-hidden rounded-full\", className)}\n\t{value}\n\t{max}\n\t{...restProps}\n>\n\t<div\n\t\tclass=\"bg-primary h-full w-full flex-1 transition-all\"\n\t\tstyle={`transform: translateX(-${100 - (100 * (value ?? 0)) / (max ?? 1)}%)`}\n\t></div>\n</ProgressPrimitive.Root>\n"
 		}
 	],
 	"type": "components:ui"

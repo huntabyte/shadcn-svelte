@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -50,7 +50,7 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -58,7 +58,7 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,7 +66,7 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -74,7 +74,7 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-sm">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -82,7 +82,7 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-lg">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -90,6 +90,6 @@ npm install bits-ui
 
 <ComponentPreview name="toggle-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>

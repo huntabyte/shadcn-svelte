@@ -13,7 +13,7 @@ bits: https://www.bits-ui.com/docs/components/alert-dialog
 
 <ComponentPreview name="alert-dialog-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

@@ -11,10 +11,10 @@
 		class="flex flex-row items-center justify-between space-y-0 pb-2"
 	>
 		<Card.Title class="text-sm font-medium">Sales</Card.Title>
-		<CreditCard class="size-4 text-muted-foreground" />
+		<CreditCard class="text-muted-foreground size-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">+12,234</div>
-		<p class="text-xs text-muted-foreground">+19% from last month</p>
+		<p class="text-muted-foreground text-xs">+19% from last month</p>
 	</Card.Content>
 </Card.Root>

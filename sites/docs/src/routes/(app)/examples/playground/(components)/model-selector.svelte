@@ -1,24 +1,24 @@
 <script lang="ts">
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { tick } from "svelte";
+	import { useId } from "bits-ui";
 	import type { Model, ModelType } from "../(data)/models.js";
 	import ModelItem from "./model-item.svelte";
 	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 
-	export let types: ModelType[];
-	export let models: Model[];
+	let { types, models }: { types: ModelType[]; models: Model[] } = $props();
 
-	let selectedModel = models[0];
-	let peekedModel: Model | undefined = undefined;
-	let open = false;
+	let selectedModel = $state(models[0]);
+	let peekedModel = $state<Model | undefined>();
+	let open = $state(false);
 
-	let value = "";
+	let value = $state("");
 
-	$: selectedValue = models.find((f) => f.id === value)?.name ?? "Select a model...";
+	const selectedValue = models.find((f) => f.id === value)?.name ?? "Select a model...";
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -38,7 +38,8 @@
 		}
 	}
 
-	$: hoverCardIsOpen = open && peekedModel !== undefined;
+	const hoverCardIsOpen = $derived(open && peekedModel !== undefined);
+	let triggerId = useId();
 
 	function handlePeek(model: Model) {
 		if (peekedModel === undefined) {
@@ -56,10 +57,12 @@
 
 <div class="grid gap-2">
 	<HoverCard.Root openDelay={200}>
-		<HoverCard.Trigger asChild let:builder>
-			<div use:builder.action {...builder}>
-				<Label for="model">Model</Label>
-			</div>
+		<HoverCard.Trigger>
+			{#snippet child({ props })}
+				<div {...props}>
+					<Label for="model">Model</Label>
+				</div>
+			{/snippet}
 		</HoverCard.Trigger>
 		<HoverCard.Content class="w-[260px] text-sm" align="start" side="left">
 			The model which will generate the completion. Some models are suitable for natural
@@ -67,32 +70,24 @@
 		</HoverCard.Content>
 	</HoverCard.Root>
 
-	<Popover.Root
-		bind:open
-		let:ids
-		onOutsideClick={onPopoverOutsideClick}
-		onOpenChange={onPopoverOpenChange}
-	>
-		<Popover.Trigger asChild let:builder>
-			<Button
-				builders={[builder]}
-				variant="outline"
-				role="combobox"
-				aria-expanded={open}
-				class="w-[200px] justify-between "
-			>
-				{selectedValue}
-				<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
-			</Button>
+	<Popover.Root bind:open onOpenChange={onPopoverOpenChange}>
+		<Popover.Trigger
+			class={buttonVariants({ variant: "outline", class: "w-[200px] justify-between" })}
+			role="combobox"
+			aria-expanded={open}
+			id={triggerId}
+		>
+			{selectedValue}
+			<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 		</Popover.Trigger>
-		<Popover.Content class="w-[250px] p-0">
-			<HoverCard.Root
-				closeOnOutsideClick={false}
-				open={hoverCardIsOpen}
-				openDelay={0}
-				portal={null}
-			>
-				<HoverCard.Content class="-ml-2 min-h-[280px]" side="left" align="start">
+		<Popover.Content class="w-[250px] p-0" onInteractOutside={onPopoverOutsideClick}>
+			<HoverCard.Root open={hoverCardIsOpen} openDelay={0}>
+				<HoverCard.Content
+					interactOutsideBehavior="ignore"
+					class="-ml-2 min-h-[280px]"
+					side="left"
+					align="start"
+				>
 					{#if peekedModel && hoverCardIsOpen}
 						<div class="grid gap-2">
 							<h4 class="font-medium leading-none">
@@ -119,25 +114,22 @@
 						{#each types as type}
 							<Command.Group heading={type}>
 								{#each models.filter((model) => model.type === type) as model}
-									<HoverCard.Trigger asChild let:builder>
-										<div
-											use:builder.action
-											{...builder}
-											role="button"
-											tabindex={0}
-										>
-											<ModelItem
-												{model}
-												onSelect={() => {
-													value = model.id;
-													closeAndFocusTrigger(ids.trigger);
-												}}
-												onPeek={() => {
-													handlePeek(model);
-												}}
-												isSelected={value === model.id}
-											/>
-										</div>
+									<HoverCard.Trigger>
+										{#snippet child({ props })}
+											<div {...props} role="button" tabindex={0}>
+												<ModelItem
+													{model}
+													onSelect={() => {
+														value = model.id;
+														closeAndFocusTrigger(triggerId);
+													}}
+													onPeek={() => {
+														handlePeek(model);
+													}}
+													isSelected={value === model.id}
+												/>
+											</div>
+										{/snippet}
 									</HoverCard.Trigger>
 								{/each}
 							</Command.Group>

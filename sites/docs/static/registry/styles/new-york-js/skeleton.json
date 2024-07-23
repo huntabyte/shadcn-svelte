@@ -9,7 +9,7 @@
 		},
 		{
 			"name": "skeleton.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"animate-pulse rounded-md bg-primary/10\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"bg-primary/10 animate-pulse rounded-md\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
 		}
 	],
 	"type": "components:ui"

@@ -1,12 +1,10 @@
 <script lang="ts">
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger asChild let:builder>
-		<Button variant="secondary" builders={[builder]}>View code</Button>
-	</Dialog.Trigger>
+	<Dialog.Trigger class={buttonVariants({ variant: "secondary" })}>View code</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[625px]">
 		<Dialog.Header>
 			<Dialog.Title>View code</Dialog.Title>
@@ -20,13 +18,12 @@
 				<pre><code class="text-muted-foreground grid gap-1 text-sm [&_span]:h-4"
 						><span><span class="text-sky-300">import</span> os</span><span
 							><span class="text-sky-300">import</span> openai</span
-						><span /><span
+						><span></span><span
 							>openai.api_key = os.getenv(<span class="text-green-300"
 								>&quot;OPENAI_API_KEY&quot;</span
 							>)</span
-						><span /><span>response = openai.Completion.create(</span><span> model=<span
-								class="text-green-300">&quot;davinci&quot;</span
-							>,</span
+						><span></span><span>response = openai.Completion.create(</span
+						><span> model=<span class="text-green-300">&quot;davinci&quot;</span>,</span
 						><span> prompt=<span class="text-amber-300">&quot;&quot;</span>,</span
 						><span> temperature=<span class="text-amber-300">0.9</span>,</span
 						><span> max_tokens=<span class="text-amber-300">5</span>,</span

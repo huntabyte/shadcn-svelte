@@ -2,18 +2,27 @@
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import * as ContextMenu from "$lib/registry/new-york/ui/context-menu/index.js";
 
-	let className: string | undefined | null = undefined;
-	export let album: Album;
-	export let aspectRatio: "portrait" | "square" = "square";
-	export let width: number;
-	export let height: number;
-	export { className as class };
+	type Props = {
+		album: Album;
+		aspectRatio?: "portrait" | "square";
+		width: number;
+		height: number;
+	} & PrimitiveDivAttributes;
+
+	let {
+		album,
+		class: className,
+		aspectRatio = "square",
+		width,
+		height,
+		...restProps
+	}: Props = $props();
 </script>
 
-<div class={cn("space-y-3", className)} {...$$restProps}>
+<div class={cn("space-y-3", className)} {...restProps}>
 	<ContextMenu.Root>
 		<ContextMenu.Trigger>
 			<div class="overflow-hidden rounded-md">

@@ -2,18 +2,24 @@
 	import Check from "svelte-radix/Check.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import { tick } from "svelte";
+	import { useId } from "bits-ui";
 	import type { Preset } from "../(data)/presets.js";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 
-	export let presets: Preset[];
-	let open = false;
+	let { presets }: { presets: Preset[] } = $props();
 
-	let value = "";
+	let open = $state(false);
 
-	$: selectedValue = presets.find((f) => f.name === value)?.name ?? "Load a preset...";
+	let value = $state("");
+
+	const selectedValue = $derived(
+		presets.find((f) => f.name === value)?.name ?? "Load a preset..."
+	);
+
+	let triggerId = useId();
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -26,18 +32,18 @@
 	}
 </script>
 
-<Popover.Root bind:open let:ids>
-	<Popover.Trigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
-		>
-			{selectedValue}
-			<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
-		</Button>
+<Popover.Root bind:open>
+	<Popover.Trigger
+		class={buttonVariants({
+			variant: "outline",
+			class: "flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]",
+		})}
+		role="combobox"
+		aria-expanded={open}
+		id={triggerId}
+	>
+		{selectedValue}
+		<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 	</Popover.Trigger>
 	<Popover.Content class="w-full p-0 md:w-[200px] lg:w-[300px]">
 		<Command.Root>
@@ -51,7 +57,7 @@
 							class="aria-selected:bg-primary aria-selected:text-primary-foreground"
 							onSelect={(currentValue) => {
 								value = currentValue;
-								closeAndFocusTrigger(ids.trigger);
+								closeAndFocusTrigger(triggerId);
 							}}
 						>
 							{preset.name}

@@ -12,7 +12,7 @@ bits: https://paneforge.com
 
 <ComponentPreview name="resizable-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -60,7 +60,7 @@ Use the `direction` prop to set the direction of the resizable panels.
 
 <ComponentPreview name="resizable-vertical">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -82,7 +82,7 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 <ComponentPreview name="resizable-handle">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

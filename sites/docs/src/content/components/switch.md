@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/switch
 
 <ComponentPreview name="switch-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -50,6 +50,6 @@ npm install bits-ui
 
 <ComponentPreview name="switch-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

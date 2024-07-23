@@ -12,8 +12,6 @@
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/select/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
 	let {
 		accounts,
@@ -47,8 +45,10 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden"></enhanced:img>
-	<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block"></enhanced:img>
+	<enhanced:img src="$lib/img/examples/mail-light.png" alt="Mail" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden md:block">
 	<Resizable.PaneGroup

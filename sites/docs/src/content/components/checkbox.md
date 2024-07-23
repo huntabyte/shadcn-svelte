@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/checkbox
 
 <ComponentPreview name="checkbox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -52,7 +52,7 @@ npm install bits-ui
 
 <ComponentPreview name="checkbox-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -60,7 +60,7 @@ npm install bits-ui
 
 <ComponentPreview name="checkbox-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -68,12 +68,12 @@ npm install bits-ui
 
 <ComponentPreview name="checkbox-form-single">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 <ComponentPreview name="checkbox-form-multiple">
 
-<div />
+<div></div>
 
 </ComponentPreview>

@@ -7,11 +7,11 @@
 	"files": [
 		{
 			"name": "drawer-content.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport DrawerOverlay from \"./drawer-overlay.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted\"></div>\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport DrawerOverlay from \"./drawer-overlay.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full\"></div>\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
 		},
 		{
 			"name": "drawer-description.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
 		},
 		{
 			"name": "drawer-footer.svelte",

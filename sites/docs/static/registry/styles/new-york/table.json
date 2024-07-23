@@ -13,7 +13,7 @@
 		},
 		{
 			"name": "table-caption.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveElementAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveElementAttributes = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"mt-4 text-sm text-muted-foreground\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveElementAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveElementAttributes = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"text-muted-foreground mt-4 text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n"
 		},
 		{
 			"name": "table-cell.svelte",
@@ -21,11 +21,11 @@
 		},
 		{
 			"name": "table-footer.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveTableSectionAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveTableSectionAttributes = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary font-medium text-primary-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveTableSectionAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveTableSectionAttributes = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary text-primary-foreground font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n"
 		},
 		{
 			"name": "table-head.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveThAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveThAttributes = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveThAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveThAttributes = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground h-10 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n"
 		},
 		{
 			"name": "table-header.svelte",
@@ -33,7 +33,7 @@
 		},
 		{
 			"name": "table-row.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveTrAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveTrAttributes = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveTrAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveTrAttributes = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n"
 		},
 		{
 			"name": "table.svelte",

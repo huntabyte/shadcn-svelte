@@ -81,6 +81,7 @@
 		"runed": "^0.15.0",
 		"svelte-headless-table": "^0.18.2",
 		"svelte-local-storage-store": "^0.6.4",
+		"svelte-persisted-store": "^0.11.0",
 		"svelte-radix": "^1.1.0",
 		"svelte-sonner": "^0.3.25",
 		"sveltekit-superforms": "^2.16.0",

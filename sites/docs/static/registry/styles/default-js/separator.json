@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "separator.svelte",
-			"content": "<script>import { Separator as SeparatorPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  orientation = \"horizontal\",\n  ...restProps\n} = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"shrink-0 bg-border\",\n\t\torientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n\t\tclassName\n\t)}\n\t{orientation}\n\t{...restProps}\n/>\n"
+			"content": "<script>import { Separator as SeparatorPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  orientation = \"horizontal\",\n  ...restProps\n} = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"bg-border shrink-0\",\n\t\torientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n\t\tclassName\n\t)}\n\t{orientation}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

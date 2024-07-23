@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/calendar
 
 <ComponentPreview name="calendar-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -50,7 +50,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -68,6 +68,6 @@ Here's an example of how you could create a calendar with month and year select 
 
 <ComponentPreview name="calendar-with-selects">
 
-<div />
+<div></div>
 
 </ComponentPreview>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
@@ -29,8 +29,8 @@
 			You have not added any podcasts. Add one below.
 		</p>
 		<Dialog.Root>
-			<Dialog.Trigger asChild let:builder>
-				<Button size="sm" builders={[builder]} class="relative">Add Podcast</Button>
+			<Dialog.Trigger class={buttonVariants({ size: "sm", class: "relative" })}>
+				Add Podcast
 			</Dialog.Trigger>
 			<Dialog.Content>
 				<Dialog.Header>

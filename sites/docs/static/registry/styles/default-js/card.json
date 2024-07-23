@@ -9,7 +9,7 @@
 		},
 		{
 			"name": "card-description.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<p bind:this={ref} class={cn(\"text-sm text-muted-foreground\", className)} {...restProps}>\n\t{@render children?.()}\n</p>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<p bind:this={ref} class={cn(\"text-muted-foreground text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</p>\n"
 		},
 		{
 			"name": "card-footer.svelte",
@@ -25,7 +25,7 @@
 		},
 		{
 			"name": "card.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"rounded-lg border bg-card text-card-foreground shadow-sm\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-card text-card-foreground rounded-lg border shadow-sm\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "index.js",

@@ -16,13 +16,19 @@
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
-	import DashboardLight from "$lib/img/examples/dashboard-light.png?enhanced";
-	import DashboardDark from "$lib/img/examples/dashboard-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={DashboardLight} alt="Dashboard" class="block dark:hidden"></enhanced:img>
-	<enhanced:img src={DashboardDark} alt="Dashboard" class="hidden dark:block"></enhanced:img>
+	<enhanced:img
+		src="$lib/img/examples/dashboard-light.png"
+		alt="Dashboard"
+		class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img
+		src="$lib/img/examples/dashboard-dark.png"
+		alt="Dashboard"
+		class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden flex-col md:flex">
 	<div class="border-b">

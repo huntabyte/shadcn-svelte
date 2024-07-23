@@ -44,7 +44,7 @@ Place a mode toggle on your site to toggle between light and dark mode.
 
 <ComponentPreview name="dark-mode-light-switch">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -52,7 +52,7 @@ Place a mode toggle on your site to toggle between light and dark mode.
 
 <ComponentPreview name="dark-mode-dropdown-menu">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

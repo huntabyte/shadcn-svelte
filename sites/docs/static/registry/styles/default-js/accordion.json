@@ -8,7 +8,7 @@
 	"files": [
 		{
 			"name": "accordion-content.svelte",
-			"content": "<script>import { Accordion as AccordionPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<AccordionPrimitive.Content\n\tbind:ref\n\tclass={cn(\n\t\t\"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t{@render children?.()}\n\t</div>\n</AccordionPrimitive.Content>\n"
+			"content": "<script>import { Accordion as AccordionPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<AccordionPrimitive.Content\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm transition-all\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div class=\"pb-4 pt-0\">\n\t\t{@render children?.()}\n\t</div>\n</AccordionPrimitive.Content>\n"
 		},
 		{
 			"name": "accordion-item.svelte",

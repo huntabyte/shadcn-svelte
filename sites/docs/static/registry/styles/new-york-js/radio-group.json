@@ -12,7 +12,7 @@
 		},
 		{
 			"name": "radio-group-item.svelte",
-			"content": "<script>import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\nimport Check from \"svelte-radix/Check.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"aspect-square size-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Check class=\"size-3.5 fill-primary\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
+			"content": "<script>import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\nimport Check from \"svelte-radix/Check.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"border-primary text-primary focus-visible:ring-ring aspect-square size-4 rounded-full border shadow focus:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Check class=\"fill-primary size-3.5\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
 		},
 		{
 			"name": "radio-group.svelte",

@@ -11,10 +11,10 @@
 		class="flex flex-row items-center justify-between space-y-0 pb-2"
 	>
 		<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-		<Activity class="size-4 text-muted-foreground" />
+		<Activity class="text-muted-foreground size-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">+573</div>
-		<p class="text-xs text-muted-foreground">+201 since last hour</p>
+		<p class="text-muted-foreground text-xs">+201 since last hour</p>
 	</Card.Content>
 </Card.Root>

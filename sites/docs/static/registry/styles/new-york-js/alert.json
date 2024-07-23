@@ -17,7 +17,7 @@
 		},
 		{
 			"name": "index.js",
-			"content": "import { tv } from \"tailwind-variants\";\nimport Root from \"./alert.svelte\";\nimport Description from \"./alert-description.svelte\";\nimport Title from \"./alert-title.svelte\";\nexport const alertVariants = tv({\n    base: \"relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7\",\n    variants: {\n        variant: {\n            default: \"bg-background text-foreground\",\n            destructive: \"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n        },\n    },\n    defaultVariants: {\n        variant: \"default\",\n    },\n});\nexport { Root, Description, Title, \n//\nRoot as Alert, Description as AlertDescription, Title as AlertTitle, };\n"
+			"content": "import { tv } from \"tailwind-variants\";\nimport Root from \"./alert.svelte\";\nimport Description from \"./alert-description.svelte\";\nimport Title from \"./alert-title.svelte\";\nexport const alertVariants = tv({\n    base: \"[&>svg]:text-foreground relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7\",\n    variants: {\n        variant: {\n            default: \"bg-background text-foreground\",\n            destructive: \"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n        },\n    },\n    defaultVariants: {\n        variant: \"default\",\n    },\n});\nexport { Root, Description, Title, \n//\nRoot as Alert, Description as AlertDescription, Title as AlertTitle, };\n"
 		}
 	],
 	"type": "components:ui"

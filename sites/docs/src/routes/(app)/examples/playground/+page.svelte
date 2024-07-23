@@ -19,13 +19,19 @@
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
-	import PlaygroundLight from "$lib/img/examples/playground-light.png?enhanced";
-	import PlaygroundDark from "$lib/img/examples/playground-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden"></enhanced:img>
-	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block"></enhanced:img>
+	<enhanced:img
+		src="$lib/img/examples/playground-light.png"
+		alt="Playground"
+		class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img
+		src="$lib/img/examples/playground-dark.png"
+		alt="Playground"
+		class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div

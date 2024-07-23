@@ -2,21 +2,19 @@
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 
-	let open = false;
-	let showDeleteDialog = false;
+	let open = $state(false);
+	let showDeleteDialog = $state(false);
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="secondary" builders={[builder]}>
-			<span class="sr-only">Actions</span>
-			<DotsHorizontal class="size-4" />
-		</Button>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "secondary" })}>
+		<span class="sr-only">Actions</span>
+		<DotsHorizontal class="size-4" />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
 		<DropdownMenu.Item on:click={() => (open = true)}>

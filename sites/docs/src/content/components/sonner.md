@@ -11,7 +11,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="sonner-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

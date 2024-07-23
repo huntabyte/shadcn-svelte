@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/accordion
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

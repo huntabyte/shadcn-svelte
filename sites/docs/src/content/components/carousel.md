@@ -12,7 +12,7 @@ bits: https://www.embla-carousel.com/get-started/svelte/
 
 <ComponentPreview name="carousel-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -64,7 +64,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 <ComponentPreview name="carousel-size">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -96,7 +96,7 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 
 <ComponentPreview name="carousel-spacing">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -126,7 +126,7 @@ Use the `orientation` prop to set the orientation of the carousel.
 
 <ComponentPreview name="carousel-orientation">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -165,7 +165,7 @@ Use reactive state and the `setApi` callback to get an instance of the carousel 
 
 <ComponentPreview name="carousel-api">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -249,7 +249,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 
 <ComponentPreview name="carousel-plugin">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

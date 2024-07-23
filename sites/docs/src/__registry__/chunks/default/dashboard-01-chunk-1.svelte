@@ -11,10 +11,10 @@
 		class="flex flex-row items-center justify-between space-y-0 pb-2"
 	>
 		<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-		<Users class="size-4 text-muted-foreground" />
+		<Users class="text-muted-foreground size-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">+2350</div>
-		<p class="text-xs text-muted-foreground">+180.1% from last month</p>
+		<p class="text-muted-foreground text-xs">+180.1% from last month</p>
 	</Card.Content>
 </Card.Root>

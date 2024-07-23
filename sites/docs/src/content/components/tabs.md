@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/tabs
 
 <ComponentPreview name="tabs-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

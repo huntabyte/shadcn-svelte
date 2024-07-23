@@ -10,7 +10,7 @@ component: true
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -120,7 +120,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -128,7 +128,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-popover">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -136,7 +136,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-dropdown-menu">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -148,6 +148,6 @@ Note: You must be on version `0.5.0` or higher of `formsnap` for this to work co
 
 <ComponentPreview name="combobox-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

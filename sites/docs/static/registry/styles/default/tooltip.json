@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "tooltip-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

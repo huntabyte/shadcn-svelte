@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "tooltip-content.svelte",
-			"content": "<script>import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  sideOffset = 4,\n  ...restProps\n} = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script>import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  sideOffset = 4,\n  ...restProps\n} = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-primary text-primary-foreground z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

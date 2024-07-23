@@ -13,7 +13,7 @@
 		},
 		{
 			"name": "table-caption.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"mt-4 text-sm text-muted-foreground\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"text-muted-foreground mt-4 text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n"
 		},
 		{
 			"name": "table-cell.svelte",
@@ -21,11 +21,11 @@
 		},
 		{
 			"name": "table-footer.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary font-medium text-primary-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary text-primary-foreground font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n"
 		},
 		{
 			"name": "table-head.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n"
 		},
 		{
 			"name": "table-header.svelte",
@@ -33,7 +33,7 @@
 		},
 		{
 			"name": "table-row.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n"
 		},
 		{
 			"name": "table.svelte",

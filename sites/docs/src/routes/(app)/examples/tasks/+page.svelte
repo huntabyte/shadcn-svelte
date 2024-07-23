@@ -1,14 +1,12 @@
 <script lang="ts">
-	import DataTable from "./(components)/data-table.svelte";
 	import UserNav from "./(components)/user-nav.svelte";
-	import data from "./(data)/tasks.json";
-	import TasksLight from "$lib/img/examples/tasks-light.png?enhanced";
-	import TasksDark from "$lib/img/examples/tasks-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={TasksLight} alt="Tasks" class="block dark:hidden"></enhanced:img>
-	<enhanced:img src={TasksDark} alt="Tasks" class="hidden dark:block"></enhanced:img>
+	<enhanced:img src="$lib/img/examples/tasks-light.png" alt="Tasks" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src="$lib/img/examples/tasks-dark.png" alt="Tasks" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
 	<div class="flex items-center justify-between space-y-2">
@@ -20,5 +18,5 @@
 			<UserNav />
 		</div>
 	</div>
-	<DataTable {data} />
+	<!-- <DataTable {data} /> -->
 </div>

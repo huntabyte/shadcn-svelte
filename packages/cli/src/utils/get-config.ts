@@ -120,7 +120,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
 		return v.parse(rawConfigSchema, config);
-	} catch (err) {
+	} catch {
 		throw new ConfigError(`Invalid configuration found in ${highlight(configPath)}.`);
 	}
 }

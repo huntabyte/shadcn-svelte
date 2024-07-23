@@ -17,11 +17,11 @@
 		},
 		{
 			"name": "alert-dialog-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChild } from \"bits-ui\";\n\timport * as AlertDialog from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</AlertDialog.Portal>\n"
+			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChild } from \"bits-ui\";\n\timport * as AlertDialog from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();\n</script>\n\n<AlertDialog.Portal>\n\t<AlertDialog.Overlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</AlertDialog.Portal>\n"
 		},
 		{
 			"name": "alert-dialog-description.svelte",
-			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.DescriptionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.DescriptionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "alert-dialog-footer.svelte",
@@ -33,7 +33,7 @@
 		},
 		{
 			"name": "alert-dialog-overlay.svelte",
-			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.OverlayProps = $props();\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\n\t\t\"fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AlertDialogPrimitive.OverlayProps = $props();\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0  fixed inset-0 z-50 bg-black/80\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "alert-dialog-portal.svelte",
