@@ -1,27 +1,23 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
 	import * as AlertDialog from "./index.js";
-	import { cn, flyAndScale } from "$lib/utils.js";
+	import { cn } from "$lib/utils.js";
 
-	type $$Props = AlertDialogPrimitive.ContentProps;
-
-	let className: $$Props["class"] = undefined;
-	export let transition: $$Props["transition"] = flyAndScale;
-	export let transitionConfig: $$Props["transitionConfig"] = undefined;
-	export { className as class };
+	let {
+		class: className,
+		ref = $bindable(null),
+		...restProps
+	}: AlertDialogPrimitive.ContentProps = $props();
 </script>
 
 <AlertDialog.Portal>
 	<AlertDialog.Overlay />
 	<AlertDialogPrimitive.Content
-		{transition}
-		{transitionConfig}
+		bind:ref
 		class={cn(
-			"bg-background fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg  sm:rounded-lg md:w-full",
+			"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg",
 			className
 		)}
-		{...$$restProps}
-	>
-		<slot />
-	</AlertDialogPrimitive.Content>
+		{...restProps}
+	/>
 </AlertDialog.Portal>

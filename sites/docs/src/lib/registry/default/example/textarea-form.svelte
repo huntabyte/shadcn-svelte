@@ -18,8 +18,8 @@
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.textarea;
-	export { data as form };
+	let { form: data = $page.data.textarea }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Table from "$lib/registry/default/ui/table/index.js";
 </script>
@@ -18,7 +17,7 @@
 		</div>
 		<Button href="##" size="sm" class="ml-auto gap-1">
 			View All
-			<ArrowUpRight class="h-4 w-4" />
+			<ArrowUpRight class="size-4" />
 		</Button>
 	</Card.Header>
 	<Card.Content>

@@ -5,17 +5,14 @@
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = {
+	type Props = {
 		model: Model;
 		isSelected: boolean;
 		onSelect: () => void;
 		onPeek: (model: Model) => void;
 	} & CommandPrimitive.ItemProps;
 
-	export let model: $$Props["model"];
-	export let isSelected: $$Props["isSelected"];
-	export let onSelect: $$Props["onSelect"];
-	export let onPeek: $$Props["onPeek"];
+	let { model, isSelected, onSelect, onPeek, ...restProps }: Props = $props();
 
 	function mutationObserverAction(node: HTMLElement) {
 		const observer = new MutationObserver((mutations) => {
@@ -45,12 +42,12 @@
 		{...attrs}
 		use:mutationObserverAction
 		use:action
-		{...$$restProps}
+		{...restProps}
 		class="aria-selected:bg-primary aria-selected:text-primary-foreground relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
 	>
 		{model.name}
 		{#if isSelected}
-			<Check className={cn("ml-auto h-4 w-4")} />
+			<Check className={cn("ml-auto size-4")} />
 		{/if}
 	</div>
 </Command.Item>

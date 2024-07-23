@@ -31,6 +31,7 @@
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
+	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
@@ -65,12 +66,13 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+	const triggerId = useId();
 </script>
 
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
-		<Popover.Root bind:open let:ids>
-			<Form.Control let:attrs>
+		<Popover.Root bind:open>
+			<Form.Control let:attrs id={triggerId}>
 				<Form.Label>Language</Form.Label>
 				<Popover.Trigger
 					class={cn(
@@ -83,7 +85,7 @@
 				>
 					{languages.find((f) => f.value === $formData.language)?.label ??
 						"Select language"}
-					<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
 				<input hidden value={$formData.language} name={attrs.name} />
 			</Form.Control>
@@ -97,13 +99,13 @@
 								value={language.label}
 								onSelect={() => {
 									$formData.language = language.value;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto h-4 w-4",
+										"ml-auto size-4",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

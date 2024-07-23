@@ -6,7 +6,7 @@
 	import DefaultFormDemo from "$lib/registry/default/example/form-demo.svelte";
 	import NewYorkFormDemo from "$lib/registry/new-york/example/form-demo.svelte";
 
-	export let form: SuperValidated<Infer<FormSchema>>;
+	let { form }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 </script>
 
 <ComponentPreviewManual>

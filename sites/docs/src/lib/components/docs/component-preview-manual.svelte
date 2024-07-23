@@ -1,13 +1,18 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
 
-	export let align: "center" | "start" | "end" = "center";
-	let className: string | null | undefined = undefined;
-	export { className as class };
+	let {
+		class: className,
+		align = "center",
+		children,
+		...restProps
+	}: PrimitiveDivAttributes & {
+		align?: "center" | "start" | "end";
+	} = $props();
 </script>
 
-<div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...$$restProps}>
+<div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...restProps}>
 	<div class="relative mr-auto w-full">
 		<div class="relative rounded-md border">
 			<div class="flex items-center justify-between p-4">
@@ -25,7 +30,7 @@
 						className
 					)}
 				>
-					<slot />
+					{@render children?.()}
 				</div>
 			</ThemeWrapper>
 		</div>

@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 <ComponentPreview name="sheet-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -63,6 +63,6 @@ Pass the `side` property to `<SheetContent />` to indicate the edge of the scree
 
 <ComponentPreview name="sheet-side">
 
-<div />
+<div></div>
 
 </ComponentPreview>

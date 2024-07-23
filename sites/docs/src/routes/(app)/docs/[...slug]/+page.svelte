@@ -10,17 +10,20 @@
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 
-	export let data: PageData;
-	$: markdown = data.component;
-	$: doc = data.metadata;
-	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
+	let { data }: { data: PageData } = $props();
+
+	const markdown = $derived(data.component);
+	const doc = $derived(data.metadata);
+	const componentSource = $derived(
+		data.metadata.source?.replace("default", $config.style ?? "default")
+	);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
 		<div class="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
 			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
-			<ChevronRight class="h-4 w-4" />
+			<ChevronRight class="size-4" />
 			<div class="text-foreground font-medium">{doc.title}</div>
 		</div>
 		<div class="space-y-2">
@@ -43,7 +46,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Component Source
-						<Code class="h-3.5 w-3.5" />
+						<Code class="size-3.5" />
 					</a>
 				{/if}
 				{#if doc.bits}
@@ -54,7 +57,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Primitive API Reference
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLink class="size-3" />
 					</a>
 				{/if}
 			</div>

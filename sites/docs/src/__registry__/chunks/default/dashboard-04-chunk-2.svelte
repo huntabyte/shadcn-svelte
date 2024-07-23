@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";

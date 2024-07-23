@@ -12,16 +12,22 @@
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/select/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
-	export let accounts: Account[];
-	export let mails: Mail[];
-	export let defaultLayout = [265, 440, 655];
-	export let defaultCollapsed = false;
-	export let navCollapsedSize: number;
+	let {
+		accounts,
+		mails,
+		defaultLayout = [265, 440, 655],
+		defaultCollapsed = false,
+		navCollapsedSize,
+	}: {
+		accounts: Account[];
+		mails: Mail[];
+		defaultLayout?: number[];
+		defaultCollapsed?: boolean;
+		navCollapsedSize: number;
+	} = $props();
 
-	let isCollapsed = defaultCollapsed;
+	let isCollapsed = $state(defaultCollapsed);
 
 	function onLayoutChange(sizes: number[]) {
 		document.cookie = `PaneForge:layout=${JSON.stringify(sizes)}`;
@@ -39,8 +45,10 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-	<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+	<enhanced:img src="$lib/img/examples/mail-light.png" alt="Mail" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden md:block">
 	<Resizable.PaneGroup
@@ -91,7 +99,7 @@
 					<form>
 						<div class="relative">
 							<Search
-								class="text-muted-foreground absolute left-2 top-[50%] h-4 w-4 translate-y-[-50%]"
+								class="text-muted-foreground absolute left-2 top-[50%] size-4 translate-y-[-50%]"
 							/>
 							<Input placeholder="Search" class="pl-8" />
 						</div>

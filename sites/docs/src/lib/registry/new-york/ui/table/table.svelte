@@ -1,15 +1,16 @@
 <script lang="ts">
-	import type { HTMLTableAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveTableAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLTableAttributes;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveTableAttributes = $props();
 </script>
 
 <div class="relative w-full overflow-auto">
-	<table class={cn("w-full caption-bottom text-sm", className)} {...$$restProps}>
-		<slot />
+	<table bind:this={ref} class={cn("w-full caption-bottom text-sm", className)} {...restProps}>
+		{@render children?.()}
 	</table>
 </div>

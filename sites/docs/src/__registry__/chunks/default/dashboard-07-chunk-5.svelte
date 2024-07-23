@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>
 
@@ -9,7 +8,9 @@
 >
 	<Card.Header>
 		<Card.Title>Archive Product</Card.Title>
-		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit.</Card.Description>
+		<Card.Description>
+			Lipsum dolor sit amet, consectetur adipiscing elit.
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div></div>

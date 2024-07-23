@@ -1,8 +1,7 @@
 import type { EmblaCarouselSvelteType } from "embla-carousel-svelte";
 import type emblaCarouselSvelte from "embla-carousel-svelte";
 import { getContext, hasContext, setContext } from "svelte";
-import type { HTMLAttributes } from "svelte/elements";
-import type { Readable, Writable } from "svelte/store";
+import type { PrimitiveDivAttributes } from "$lib/utils.js";
 
 export type CarouselAPI =
 	NonNullable<NonNullable<EmblaCarouselSvelteType["$$_attributes"]>["on:emblaInit"]> extends (
@@ -21,26 +20,26 @@ export type CarouselPlugins = EmblaCarouselConfig["plugins"];
 export type CarouselProps = {
 	opts?: CarouselOptions;
 	plugins?: CarouselPlugins;
-	api?: CarouselAPI;
+	setApi?: (api: CarouselAPI | undefined) => void;
 	orientation?: "horizontal" | "vertical";
-} & HTMLAttributes<HTMLDivElement>;
+} & PrimitiveDivAttributes;
 
 const EMBLA_CAROUSEL_CONTEXT = Symbol("EMBLA_CAROUSEL_CONTEXT");
 
-type EmblaContext = {
-	api: Writable<CarouselAPI | undefined>;
-	orientation: Writable<"horizontal" | "vertical">;
+export type EmblaContext = {
+	api: CarouselAPI | undefined;
+	orientation: "horizontal" | "vertical";
 	scrollNext: () => void;
 	scrollPrev: () => void;
-	canScrollNext: Readable<boolean>;
-	canScrollPrev: Readable<boolean>;
+	canScrollNext: boolean;
+	canScrollPrev: boolean;
 	handleKeyDown: (e: KeyboardEvent) => void;
-	options: Writable<CarouselOptions>;
-	plugins: Writable<CarouselPlugins>;
+	options: CarouselOptions;
+	plugins: CarouselPlugins;
 	onInit: (e: CustomEvent<CarouselAPI>) => void;
 	scrollTo: (index: number, jump?: boolean) => void;
-	scrollSnaps: Readable<number[]>;
-	selectedIndex: Readable<number>;
+	scrollSnaps: number[];
+	selectedIndex: number;
 };
 
 export function setEmblaContext(config: EmblaContext): EmblaContext {

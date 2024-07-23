@@ -4,7 +4,7 @@
 	import { ThemeWrapper } from "$lib/components/docs/index.js";
 	const activeTheme = themes.find((theme) => theme.name === $config.theme);
 
-	export let setCodeString: (node: HTMLElement) => void;
+	let { setCodeString }: { setCodeString: (node: HTMLElement) => void } = $props();
 
 	const prefixes = [
 		"card",
@@ -51,7 +51,7 @@
 				>
                   <span class="line text-white">    --radius: {$config.radius}rem;</span>
                   <span class="line text-white">  &#125;</span>
-                  <span class="line text-white" />
+                  <span class="line text-white"></span>
                   <span class="line text-white">  .dark &#123;</span>
                   <span class="line text-white">    --background: {activeTheme?.cssVars.dark
 						.background};</span

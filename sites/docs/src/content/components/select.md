@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/select
 
 <ComponentPreview name="select-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -61,6 +61,6 @@ For more advanced usage and to learn how to implement `multiple` Select componen
 
 <ComponentPreview name="select-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

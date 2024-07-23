@@ -17,7 +17,7 @@
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -34,106 +34,103 @@
 			</Button>
 		</div>
 		<nav class="grid gap-1 p-2">
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="bg-muted rounded-lg"
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Playground"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "bg-muted rounded-lg",
+						})}
 					>
 						<SquareTerminal class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Playground</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="rounded-lg"
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Playground</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Models"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "rounded-lg",
+						})}
 					>
 						<Bot class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Models</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="rounded-lg"
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Models</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="API"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "rounded-lg",
+						})}
 					>
 						<CodeXML class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>API</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="rounded-lg"
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>API</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Documentation"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "rounded-lg",
+						})}
 					>
 						<Book class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Documentation</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="rounded-lg"
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Documentation</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Settings"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "rounded-lg",
+						})}
 					>
 						<Settings2 class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Settings</Tooltip.Content>
-			</Tooltip.Root>
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Settings</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 		<nav class="mt-auto grid gap-1 p-2">
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="mt-auto rounded-lg"
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Help"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "mt-auto rounded-lg",
+						})}
 					>
 						<LifeBuoy class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Help</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<Button
-						variant="ghost"
-						size="icon"
-						class="mt-auto rounded-lg"
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Help</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger
 						aria-label="Account"
-						builders={[builder]}
+						class={buttonVariants({
+							variant: "ghost",
+							size: "icon",
+							class: "mt-auto rounded-lg",
+						})}
 					>
 						<SquareUser class="size-5" />
-					</Button>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right" sideOffset={5}>Account</Tooltip.Content>
-			</Tooltip.Root>
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right" sideOffset={5}>Account</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 	</aside>
 	<div class="flex flex-col">
@@ -142,11 +139,11 @@
 		>
 			<h1 class="text-xl font-semibold">Playground</h1>
 			<Drawer.Root>
-				<Drawer.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="ghost" size="icon" class="md:hidden">
-						<Settings class="size-4" />
-						<span class="sr-only">Settings</span>
-					</Button>
+				<Drawer.Trigger
+					class={buttonVariants({ variant: "ghost", size: "icon", class: "md:hidden" })}
+				>
+					<Settings class="size-4" />
+					<span class="sr-only">Settings</span>
 				</Drawer.Trigger>
 				<Drawer.Content class="max-h-[80vh]">
 					<Drawer.Header>
@@ -168,7 +165,7 @@
 										<Select.Value placeholder="Select a model" />
 									</Select.Trigger>
 									<Select.Content>
-										<Select.Item value="genesis" label="Neural Genesis">
+										<Select.Item value="genesis" textValue="Neural Genesis">
 											<div
 												class="text-muted-foreground flex items-start gap-3"
 											>
@@ -186,7 +183,7 @@
 												</div>
 											</div>
 										</Select.Item>
-										<Select.Item value="explorer" label="Neural Explorer">
+										<Select.Item value="explorer" textValue="Neural Explorer">
 											<div
 												class="text-muted-foreground flex items-start gap-3"
 											>
@@ -204,7 +201,7 @@
 												</div>
 											</div>
 										</Select.Item>
-										<Select.Item value="quantum" label="Neural Quantum">
+										<Select.Item value="quantum" textValue="Neural Quantum">
 											<div
 												class="text-muted-foreground flex items-start gap-3"
 											>
@@ -243,7 +240,7 @@
 							<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 							<div class="grid gap-3">
 								<Label for="role">Role</Label>
-								<Select.Root selected={{ value: "system", label: "System" }}>
+								<Select.Root value="system">
 									<Select.Trigger>
 										<Select.Value placeholder="Select a role" />
 									</Select.Trigger>
@@ -357,7 +354,7 @@
 						<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 						<div class="grid gap-3">
 							<Label for="role">Role</Label>
-							<Select.Root selected={{ value: "system", label: "system" }}>
+							<Select.Root value="system">
 								<Select.Trigger>
 									<Select.Value placeholder="Select a role" />
 								</Select.Trigger>
@@ -383,7 +380,7 @@
 				class="bg-muted/50 relative flex h-full min-h-[50vh] flex-col rounded-xl p-4 lg:col-span-2"
 			>
 				<Badge variant="outline" class="absolute right-3 top-3">Output</Badge>
-				<div class="flex-1" />
+				<div class="flex-1"></div>
 				<form
 					class="bg-background focus-within:ring-ring relative overflow-hidden rounded-lg border focus-within:ring-1"
 					data-x-chunk-name="dashboard-03-chunk-1"
@@ -396,24 +393,27 @@
 						class="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
 					/>
 					<div class="flex items-center p-3 pt-0">
-						<Tooltip.Root>
-							<Tooltip.Trigger asChild let:builder>
-								<Button variant="ghost" size="icon" builders={[builder]}>
+						<Tooltip.Provider>
+							<Tooltip.Root>
+								<Tooltip.Trigger
+									class={buttonVariants({ variant: "ghost", size: "icon" })}
+								>
 									<Paperclip class="size-4" />
 									<span class="sr-only">Attach file</span>
-								</Button>
-							</Tooltip.Trigger>
-							<Tooltip.Content side="top">Attach File</Tooltip.Content>
-						</Tooltip.Root>
-						<Tooltip.Root>
-							<Tooltip.Trigger asChild let:builder>
-								<Button variant="ghost" size="icon" builders={[builder]}>
+								</Tooltip.Trigger>
+								<Tooltip.Content side="top">Attach File</Tooltip.Content>
+							</Tooltip.Root>
+							<Tooltip.Root>
+								<Tooltip.Trigger
+									class={buttonVariants({ variant: "ghost", size: "icon" })}
+								>
 									<Mic class="size-4" />
 									<span class="sr-only">Use Microphone</span>
-								</Button>
-							</Tooltip.Trigger>
-							<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
-						</Tooltip.Root>
+								</Tooltip.Trigger>
+								<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
+							</Tooltip.Root>
+						</Tooltip.Provider>
+
 						<Button type="submit" size="sm" class="ml-auto gap-1.5">
 							Send Message
 							<CornerDownLeft class="size-3.5" />

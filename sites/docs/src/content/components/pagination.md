@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/pagination
 
 <ComponentPreview name="pagination-demo" >
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

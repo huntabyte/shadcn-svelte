@@ -13,7 +13,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 <ComponentPreview name="dialog-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

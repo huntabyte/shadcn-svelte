@@ -46,11 +46,14 @@
 </script>
 
 <script lang="ts">
-	export let title = "";
-	export let description = "";
-	export let source = "";
-	export let component = "";
-	export let radix = "";
+	type Props = {
+		title: string;
+		description: string;
+		source: string;
+		component: string;
+		radix: string;
+	};
+	let { title, description, source, component, radix }: Props = $props();
 </script>
 
 <slot {title} {description} {source} {component} {radix} />

@@ -11,7 +11,7 @@
 
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
@@ -25,7 +25,7 @@
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
 			<a href="##" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-				<Package2 class="h-6 w-6" />
+				<Package2 class="size-6" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<a href="##" class="text-foreground hover:text-foreground transition-colors">
@@ -45,21 +45,20 @@
 			</a>
 		</nav>
 		<Sheet.Root>
-			<Sheet.Trigger asChild let:builder>
-				<Button
-					variant="outline"
-					size="icon"
-					class="shrink-0 md:hidden"
-					builders={[builder]}
-				>
-					<Menu class="h-5 w-5" />
-					<span class="sr-only">Toggle navigation menu</span>
-				</Button>
+			<Sheet.Trigger
+				class={buttonVariants({
+					variant: "outline",
+					size: "icon",
+					class: "shrink-0 md:hidden",
+				})}
+			>
+				<Menu class="size-5" />
+				<span class="sr-only">Toggle navigation menu</span>
 			</Sheet.Trigger>
 			<Sheet.Content side="left">
 				<nav class="grid gap-6 text-lg font-medium">
 					<a href="##" class="flex items-center gap-2 text-lg font-semibold">
-						<Package2 class="h-6 w-6" />
+						<Package2 class="size-6" />
 						<span class="sr-only">Acme Inc</span>
 					</a>
 					<a href="##" class="hover:text-foreground"> Dashboard </a>
@@ -73,7 +72,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
+					<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -82,16 +81,15 @@
 				</div>
 			</form>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="secondary"
-						size="icon"
-						class="rounded-full"
-					>
-						<CircleUser class="h-5 w-5" />
-						<span class="sr-only">Toggle user menu</span>
-					</Button>
+				<DropdownMenu.Trigger
+					class={buttonVariants({
+						variant: "secondary",
+						size: "icon",
+						class: "rounded-full",
+					})}
+				>
+					<CircleUser class="size-5" />
+					<span class="sr-only">Toggle user menu</span>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Label>My Account</DropdownMenu.Label>
@@ -112,7 +110,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-					<DollarSign class="text-muted-foreground h-4 w-4" />
+					<DollarSign class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">$45,231.89</div>
@@ -125,7 +123,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-					<Users class="text-muted-foreground h-4 w-4" />
+					<Users class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+2350</div>
@@ -138,7 +136,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Sales</Card.Title>
-					<CreditCard class="text-muted-foreground h-4 w-4" />
+					<CreditCard class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+12,234</div>
@@ -151,7 +149,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-					<Activity class="text-muted-foreground h-4 w-4" />
+					<Activity class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+573</div>
@@ -172,7 +170,7 @@
 					</div>
 					<Button href="##" size="sm" class="ml-auto gap-1">
 						View All
-						<ArrowUpRight class="h-4 w-4" />
+						<ArrowUpRight class="size-4" />
 					</Button>
 				</Card.Header>
 				<Card.Content>
@@ -292,7 +290,7 @@
 				</Card.Header>
 				<Card.Content class="grid gap-8">
 					<div class="flex items-center gap-4">
-						<Avatar.Root class="hidden h-9 w-9 sm:flex">
+						<Avatar.Root class="hidden size-9 sm:flex">
 							<Avatar.Image src="/avatars/01.png" alt="Avatar" />
 							<Avatar.Fallback>OM</Avatar.Fallback>
 						</Avatar.Root>
@@ -303,7 +301,7 @@
 						<div class="ml-auto font-medium">+$1,999.00</div>
 					</div>
 					<div class="flex items-center gap-4">
-						<Avatar.Root class="hidden h-9 w-9 sm:flex">
+						<Avatar.Root class="hidden size-9 sm:flex">
 							<Avatar.Image src="/avatars/02.png" alt="Avatar" />
 							<Avatar.Fallback>JL</Avatar.Fallback>
 						</Avatar.Root>
@@ -314,7 +312,7 @@
 						<div class="ml-auto font-medium">+$39.00</div>
 					</div>
 					<div class="flex items-center gap-4">
-						<Avatar.Root class="hidden h-9 w-9 sm:flex">
+						<Avatar.Root class="hidden size-9 sm:flex">
 							<Avatar.Image src="/avatars/03.png" alt="Avatar" />
 							<Avatar.Fallback>IN</Avatar.Fallback>
 						</Avatar.Root>
@@ -325,7 +323,7 @@
 						<div class="ml-auto font-medium">+$299.00</div>
 					</div>
 					<div class="flex items-center gap-4">
-						<Avatar.Root class="hidden h-9 w-9 sm:flex">
+						<Avatar.Root class="hidden size-9 sm:flex">
 							<Avatar.Image src="/avatars/04.png" alt="Avatar" />
 							<Avatar.Fallback>WK</Avatar.Fallback>
 						</Avatar.Root>
@@ -336,7 +334,7 @@
 						<div class="ml-auto font-medium">+$99.00</div>
 					</div>
 					<div class="flex items-center gap-4">
-						<Avatar.Root class="hidden h-9 w-9 sm:flex">
+						<Avatar.Root class="hidden size-9 sm:flex">
 							<Avatar.Image src="/avatars/05.png" alt="Avatar" />
 							<Avatar.Fallback>SD</Avatar.Fallback>
 						</Avatar.Root>

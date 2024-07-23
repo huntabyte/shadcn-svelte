@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	export let balanced = true;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let {
+		class: className,
+		children,
+		balanced = true,
+		...restProps
+	}: PrimitiveElementAttributes & { balanced?: boolean } = $props();
 </script>
 
 <p
@@ -13,7 +15,7 @@
 		balanced && "text-balance",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </p>

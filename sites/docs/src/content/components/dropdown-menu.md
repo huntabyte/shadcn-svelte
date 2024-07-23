@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -62,7 +62,7 @@ npm install bits-ui
 
 <ComponentPreview name="dropdown-menu-checkboxes">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -70,6 +70,6 @@ npm install bits-ui
 
 <ComponentPreview name="dropdown-menu-radio-group">
 
-<div />
+<div></div>
 
 </ComponentPreview>

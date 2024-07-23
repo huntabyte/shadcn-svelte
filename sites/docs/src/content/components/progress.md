@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/progress
 
 <ComponentPreview name="progress-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

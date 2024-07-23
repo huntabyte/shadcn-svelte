@@ -4,7 +4,7 @@
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { Tree } from "$lib/components/docs/index.js";
 
-	let filteredHeadingsList: TableOfContents;
+	let filteredHeadingsList = $state<TableOfContents>();
 
 	function getHeadingsWithHierarchy(divId: string) {
 		const div = document.getElementById(divId);
@@ -23,7 +23,7 @@
 			const level = Number.parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
 				let newId = heading.innerText
-					.replaceAll(/[^a-zA-Z0-9 ]/g, "")
+					.replaceAll(/[^a-z0-9 ]/gi, "")
 					.replaceAll(" ", "-")
 					.toLowerCase();
 				if (newIdSet.has(newId)) {
@@ -90,7 +90,7 @@
 	onMount(() => {
 		getHeadingsWithHierarchy("markdown");
 		const allItemIds: string[] = [];
-		filteredHeadingsList.items.forEach((item) => {
+		filteredHeadingsList?.items.forEach((item) => {
 			allItemIds.push(item.url.replace("#", ""));
 			if (!item.items) return;
 			item.items.forEach((subItem) => {

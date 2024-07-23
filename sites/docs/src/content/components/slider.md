@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/slider
 
 <ComponentPreview name="slider-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

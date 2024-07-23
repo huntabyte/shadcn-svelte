@@ -22,7 +22,7 @@
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import { browser } from "$app/environment";
 
-	export let data: SuperValidated<Infer<NotificationFormSchema>>;
+	let { data }: { data: SuperValidated<Infer<NotificationFormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(notificationsFormSchema),
@@ -35,7 +35,7 @@
 	<Form.Fieldset {form} name="type">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<Form.Control>
-			<RadioGroup.Root bind:value={$formData.type}>
+			<RadioGroup.Root bind:value={$formData.type} name="type">
 				<div class="flex items-center space-x-3">
 					<Form.Control let:attrs>
 						<RadioGroup.Item value="all" {...attrs} />
@@ -54,7 +54,6 @@
 						<Form.Label>Nothing</Form.Label>
 					</Form.Control>
 				</div>
-				<RadioGroup.Input name="type" />
 			</RadioGroup.Root>
 		</Form.Control>
 	</Form.Fieldset>
@@ -73,7 +72,7 @@
 							Receive emails about your account activity.
 						</Form.Description>
 					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.communication_emails} />
+					<Switch {...attrs} bind:checked={$formData.communication_emails} />
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -88,7 +87,7 @@
 							Receive emails about new products, features, and more.
 						</Form.Description>
 					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+					<Switch {...attrs} bind:checked={$formData.marketing_emails} />
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -103,7 +102,7 @@
 							Receive emails for friend requests, follows, and more.
 						</Form.Description>
 					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.social_emails} />
+					<Switch {...attrs} bind:checked={$formData.social_emails} />
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -118,7 +117,7 @@
 							Receive emails about your account activity and security.
 						</Form.Description>
 					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.security_emails} />
+					<Switch {...attrs} bind:checked={$formData.security_emails} />
 				</Form.Control>
 			</Form.Field>
 		</div>

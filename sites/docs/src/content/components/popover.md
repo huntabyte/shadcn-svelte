@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/popover
 
 <ComponentPreview name="popover-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

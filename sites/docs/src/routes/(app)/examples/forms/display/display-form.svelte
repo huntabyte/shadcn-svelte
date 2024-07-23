@@ -42,7 +42,7 @@
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { browser } from "$app/environment";
 
-	export let data: SuperValidated<Infer<DisplayFormSchema>>;
+	let { data }: { data: SuperValidated<Infer<DisplayFormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(displayFormSchema),

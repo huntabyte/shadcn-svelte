@@ -215,7 +215,10 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 					componentsToRemove[item.name] = filesToDelete;
 				}
 
-				const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+				const componentPath = path.relative(
+					process.cwd(),
+					path.resolve(targetDir, item.name)
+				);
 				return `${highlight(item.name)} updated at ${color.gray(componentPath)}`;
 			},
 		});

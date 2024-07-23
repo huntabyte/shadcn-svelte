@@ -7,10 +7,8 @@
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="container relative">
@@ -44,7 +42,7 @@
 				href={siteConfig.links.github}
 				class={cn(buttonVariants({ variant: "outline" }))}
 			>
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<Icons.gitHub class="mr-2 size-4" />
 				GitHub
 			</a>
 		</div>
@@ -54,8 +52,13 @@
 		class="bg-background overflow-hidden rounded-lg border shadow-md md:hidden md:shadow-xl"
 	>
 		<div class="md:hidden">
-			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+			<enhanced:img
+				src="$lib/img/examples/mail-light.png"
+				alt="Mail"
+				class="block dark:hidden"
+			></enhanced:img>
+			<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
+			></enhanced:img>
 		</div>
 	</section>
 	<section class="hidden md:block">

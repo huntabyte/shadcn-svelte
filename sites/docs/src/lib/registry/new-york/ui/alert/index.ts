@@ -18,8 +18,8 @@ export const alertVariants = tv({
 	},
 });
 
-export type Variant = VariantProps<typeof alertVariants>["variant"];
-export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type AlertVariant = VariantProps<typeof alertVariants>["variant"];
+export type AlertHeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export {
 	Root,

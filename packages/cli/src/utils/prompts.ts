@@ -75,7 +75,10 @@ function limitOptions<TOption>(params: LimitOptionsParams<TOption>): string[] {
 	let slidingWindowLocation = 0;
 
 	if (cursor >= slidingWindowLocation + maxItems - 3) {
-		slidingWindowLocation = Math.max(Math.min(cursor - maxItems + 3, options.length - maxItems), 0);
+		slidingWindowLocation = Math.max(
+			Math.min(cursor - maxItems + 3, options.length - maxItems),
+			0
+		);
 	} else if (cursor < slidingWindowLocation + 2) {
 		slidingWindowLocation = Math.max(cursor - 2, 0);
 	}
@@ -219,7 +222,10 @@ export type SelectOptions<Value> = {
 };
 
 export function select<Value>(opts: SelectOptions<Value>) {
-	const opt = (option: Option<Value>, state: "inactive" | "active" | "selected" | "cancelled") => {
+	const opt = (
+		option: Option<Value>,
+		state: "inactive" | "active" | "selected" | "cancelled"
+	) => {
 		const label = option.label ?? String(option.value);
 		switch (state) {
 			case "selected":
@@ -436,8 +442,10 @@ export function groupMultiselect<Value>(opts: GroupMultiSelectOptions<Value>) {
 		options: Option<Value>[] = []
 	) => {
 		const label = option.label ?? String(option.value);
+		// eslint-disable-next-line ts/no-explicit-any
 		const isItem = typeof (option as any).group === "string";
 		const next = isItem && (options[options.indexOf(option) + 1] ?? { group: true });
+		// eslint-disable-next-line ts/no-explicit-any
 		const isLast = isItem && (next as any).group === true;
 		const prefix = isItem ? `${isLast ? S_BAR_END : S_BAR} ` : "";
 
@@ -515,7 +523,11 @@ export function groupMultiselect<Value>(opts: GroupMultiSelectOptions<Value>) {
 								typeof option.group === "string" &&
 								this.options[this.cursor]!.value === option.group;
 							if (groupActive) {
-								return opt(option, selected ? "group-active-selected" : "group-active", options);
+								return opt(
+									option,
+									selected ? "group-active-selected" : "group-active",
+									options
+								);
 							}
 							if (active && selected) {
 								return opt(option, "active-selected", options);
@@ -539,7 +551,11 @@ export function groupMultiselect<Value>(opts: GroupMultiSelectOptions<Value>) {
 								typeof option.group === "string" &&
 								this.options[this.cursor]!.value === option.group;
 							if (groupActive) {
-								return opt(option, selected ? "group-active-selected" : "group-active", options);
+								return opt(
+									option,
+									selected ? "group-active-selected" : "group-active",
+									options
+								);
 							}
 							if (active && selected) {
 								return opt(option, "active-selected", options);
@@ -603,7 +619,10 @@ export const log = {
 		const parts = [`${color.gray(S_BAR)}`];
 		if (message) {
 			const [firstLine, ...lines] = message.split("\n");
-			parts.push(`${symbol}  ${firstLine}`, ...lines.map((ln) => `${color.gray(S_BAR)}  ${ln}`));
+			parts.push(
+				`${symbol}  ${firstLine}`,
+				...lines.map((ln) => `${color.gray(S_BAR)}  ${ln}`)
+			);
 		}
 		process.stdout.write(`${parts.join("\n")}\n`);
 	},
@@ -714,6 +733,7 @@ export function spinner() {
 // Adapted from https://github.com/chalk/ansi-regex
 // @see LICENSE
 function ansiRegex() {
+	// eslint-disable-next-line regexp/no-useless-non-capturing-group, regexp/no-trivially-nested-quantifier, regexp/no-useless-quantifier, regexp/prefer-w, regexp/no-useless-escape
 	const pattern = [
 		"[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
 		"(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))",
@@ -736,7 +756,6 @@ export type PromptGroupOptions<T> = {
 
 type Prettify<T> = {
 	[P in keyof T]: T[P];
-	// eslint-disable-next-line ts/ban-types
 } & {};
 
 export type PromptGroup<T> = {
@@ -753,6 +772,7 @@ export async function group<T>(
 	prompts: PromptGroup<T>,
 	opts?: PromptGroupOptions<T>
 ): Promise<Prettify<PromptGroupAwaitedReturn<T>>> {
+	// eslint-disable-next-line ts/no-explicit-any
 	const results = {} as any;
 	const promptNames = Object.keys(prompts);
 

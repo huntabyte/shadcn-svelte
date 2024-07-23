@@ -47,7 +47,7 @@ The style for your components. **This cannot be changed after initialization.**
 
 <ComponentPreview name="card-with-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

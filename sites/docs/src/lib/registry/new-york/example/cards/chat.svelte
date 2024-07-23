@@ -8,7 +8,7 @@
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
 	const users = [
@@ -41,10 +41,10 @@
 
 	type User = (typeof users)[number];
 
-	let open = false;
-	let selectedUsers: User[] = [];
+	let open = $state(false);
+	let selectedUsers = $state<User[]>([]);
 
-	let messages = [
+	let messages = $state([
 		{
 			role: "agent",
 			content: "Hi, how can I help you today?",
@@ -61,10 +61,10 @@
 			role: "user",
 			content: "I can't log in.",
 		},
-	];
+	]);
 
-	let input = "";
-	$: inputLength = input.trim().length;
+	let input = $state("");
+	const inputLength = $derived(input.trim().length);
 </script>
 
 <Card.Root>
@@ -79,20 +79,22 @@
 				<p class="text-muted-foreground text-sm">m@example.com</p>
 			</div>
 		</div>
-		<Tooltip.Root openDelay={0}>
-			<Tooltip.Trigger asChild>
-				<Button
-					size="icon"
-					variant="outline"
-					class="ml-auto rounded-full"
-					on:click={() => (open = true)}
+		<Tooltip.Provider delayDuration={0}>
+			<Tooltip.Root>
+				<Tooltip.Trigger
+					class={buttonVariants({
+						variant: "outline",
+						size: "icon",
+						class: "ml-auto rounded-full",
+					})}
+					onclick={() => (open = true)}
 				>
-					<Plus class="h-4 w-4" />
+					<Plus class="size-4" />
 					<span class="sr-only">New message</span>
-				</Button>
-			</Tooltip.Trigger>
-			<Tooltip.Content sideOffset={10}>New message</Tooltip.Content>
-		</Tooltip.Root>
+				</Tooltip.Trigger>
+				<Tooltip.Content sideOffset={10}>New message</Tooltip.Content>
+			</Tooltip.Root>
+		</Tooltip.Provider>
 	</Card.Header>
 	<Card.Content>
 		<div class="space-y-4">
@@ -112,16 +114,13 @@
 	</Card.Content>
 	<Card.Footer>
 		<form
-			on:submit={(event) => {
+			onsubmit={(event) => {
 				event.preventDefault();
 				if (inputLength === 0) return;
-				messages = [
-					...messages,
-					{
-						role: "user",
-						content: input,
-					},
-				];
+				messages.push({
+					role: "user",
+					content: input,
+				});
 				input = "";
 			}}
 			class="flex w-full items-center space-x-2"
@@ -134,7 +133,7 @@
 				bind:value={input}
 			/>
 			<Button type="submit" size="icon" disabled={inputLength === 0}>
-				<PaperPlane class="h-4 w-4" />
+				<PaperPlane class="size-4" />
 				<span class="sr-only">Send</span>
 			</Button>
 		</form>
@@ -181,7 +180,7 @@
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<Check class="text-primary ml-auto flex h-5 w-5" />
+								<Check class="text-primary ml-auto flex size-5" />
 							{/if}
 						</Command.Item>
 					{/each}

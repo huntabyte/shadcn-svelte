@@ -19,7 +19,10 @@
 			<div class="grid gap-3">
 				<Label for="model">Model</Label>
 				<Select.Root>
-					<Select.Trigger id="model" class="items-start [&_[data-description]]:hidden">
+					<Select.Trigger
+						id="model"
+						class="items-start [&_[data-description]]:hidden"
+					>
 						<Select.Value placeholder="Select a model" />
 					</Select.Trigger>
 					<Select.Content>
@@ -87,7 +90,7 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 			<div class="grid gap-3">
 				<Label for="role">Role</Label>
-				<Select.Root selected={{ value: "system", label: "system" }}>
+				<Select.Root value="system">
 					<Select.Trigger>
 						<Select.Value placeholder="Select a role" />
 					</Select.Trigger>
@@ -100,7 +103,11 @@
 			</div>
 			<div class="grid gap-3">
 				<Label for="content">Content</Label>
-				<Textarea id="content" placeholder="You are a..." class="min-h-[9.5rem]" />
+				<Textarea
+					id="content"
+					placeholder="You are a..."
+					class="min-h-[9.5rem]"
+				/>
 			</div>
 		</fieldset>
 	</form>

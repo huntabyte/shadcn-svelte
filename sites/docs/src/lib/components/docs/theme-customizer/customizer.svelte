@@ -27,7 +27,7 @@
 			variant="ghost"
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
-			on:click={() => {
+			onclick={() => {
 				$config.radius = 0.5;
 				$config.theme = "zinc";
 			}}
@@ -37,12 +37,12 @@
 		</Button>
 	</div>
 	<div class="flex flex-1 flex-col space-y-4 md:space-y-6">
-		<div class="5 space-y-1">
+		<div class="space-y-1">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
 					<Popover.Trigger>
-						<InfoCircled class="ml-1 h-3 w-3" />
+						<InfoCircled class="ml-1 size-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content
@@ -73,7 +73,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "default")}
+					onclick={() => ($config.style = "default")}
 					class={cn($config.style === "default" && "border-primary border-2")}
 				>
 					Default
@@ -81,7 +81,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "new-york")}
+					onclick={() => ($config.style = "new-york")}
 					class={cn($config.style === "new-york" && "border-primary border-2")}
 				>
 					New York
@@ -96,17 +96,17 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-primary border-2")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
 					>
 						<span
-							class="mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+							class="mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
 						>
 							{#if isActive}
-								<Check class="h-4 w-4 text-white" />
+								<Check class="size-4 text-white" />
 							{/if}
 						</span>
 						{theme.label}
@@ -122,7 +122,7 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.radius = valueFloat;
 						}}
 						class={cn($config.radius === valueFloat && "border-primary border-2")}
@@ -138,7 +138,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("light")}
+					onclick={() => setMode("light")}
 					class={cn($mode === "light" && "border-primary border-2")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
@@ -147,7 +147,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("dark")}
+					onclick={() => setMode("dark")}
 					class={cn($mode === "dark" && "border-primary border-2")}
 				>
 					<Moon class="mr-1 -translate-x-1" />

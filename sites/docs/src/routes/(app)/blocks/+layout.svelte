@@ -2,6 +2,8 @@
 	import { Announcement } from "$lib/components/docs/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+
+	let { children } = $props();
 </script>
 
 <div class="container relative">
@@ -23,6 +25,6 @@
 		</PageHeader.Actions>
 	</PageHeader.Root>
 	<section id="blocks" class="grid scroll-mt-24 gap-24 lg:gap-48">
-		<slot />
+		{@render children?.()}
 	</section>
 </div>

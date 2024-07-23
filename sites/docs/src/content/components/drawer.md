@@ -12,7 +12,7 @@ bits: https://www.vaul-svelte.com
 
 <ComponentPreview name="drawer-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -68,6 +68,6 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 
 <ComponentPreview name="drawer-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>

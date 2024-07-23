@@ -2,7 +2,8 @@
 	import type { PageData } from "./$types.js";
 	import ProfileForm from "./profile-form.svelte";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	export let data: PageData;
+
+	let { data }: { data: PageData } = $props();
 </script>
 
 <div class="space-y-6">

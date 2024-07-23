@@ -2,7 +2,7 @@
 	import * as Accordion from "$lib/registry/new-york/ui/accordion/index.js";
 </script>
 
-<Accordion.Root>
+<Accordion.Root type="single">
 	<Accordion.Item value="manual-installation">
 		<Accordion.Trigger>Manual Installation</Accordion.Trigger>
 		<Accordion.Content>

@@ -32,7 +32,6 @@ import Logo from "./logo.svelte";
 import Npm from "./npm.svelte";
 import PayPal from "./paypal.svelte";
 import Pnpm from "./pnpm.svelte";
-import RadixSvelte from "./radix-svelte.svelte";
 import Tailwind from "./tailwind.svelte";
 import Twitter from "./twitter.svelte";
 import Yarn from "./yarn.svelte";
@@ -66,8 +65,6 @@ export const Icons = {
 	moon: Moon,
 	laptop: Laptop,
 	gitHub: GitHub,
-	radix: RadixSvelte,
-	"Radix Svelte": RadixSvelte,
 	aria: Aria,
 	npm: Npm,
 	yarn: Yarn,

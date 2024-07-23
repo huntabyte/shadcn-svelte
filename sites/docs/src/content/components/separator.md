@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/separator
 
 <ComponentPreview name="separator-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

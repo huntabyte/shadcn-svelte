@@ -23,9 +23,9 @@
 
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
-	export let data: Task[];
+	let { data }: { data: Task[] } = $props();
 
-	const table = createTable(readable(data), {
+	const table = createTable(readable($state.snapshot(data)), {
 		select: addSelectedRows(),
 		sort: addSortBy({
 			toggleOrder: ["asc", "desc"],

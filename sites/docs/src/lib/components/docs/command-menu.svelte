@@ -4,7 +4,7 @@
 	import Laptop from "svelte-radix/Laptop.svelte";
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-	import { onMount } from "svelte";
+	import { type ComponentProps, onMount } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -12,7 +12,9 @@
 	import { docsConfig } from "$lib/config/docs.js";
 	import { goto } from "$app/navigation";
 
-	let open = false;
+	let restProps: ComponentProps<typeof Button> = $props();
+
+	let open = $state(false);
 
 	onMount(() => {
 		function handleKeydown(e: KeyboardEvent) {
@@ -42,8 +44,8 @@
 	class={cn(
 		"text-muted-foreground relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
 	)}
-	on:click={() => (open = true)}
-	{...$$restProps}
+	onclick={() => (open = true)}
+	{...restProps}
 >
 	<span class="hidden lg:inline-flex"> Search documentation... </span>
 	<span class="inline-flex lg:hidden">Search...</span>
@@ -66,7 +68,7 @@
 							navItem.href && goto(navItem.href);
 						})}
 				>
-					<File class="mr-2 h-4 w-4" />
+					<File class="mr-2 size-4" />
 					{navItem.title}
 				</Command.Item>
 			{/each}
@@ -81,8 +83,8 @@
 								navItem.href && goto(navItem.href);
 							})}
 					>
-						<div class="mr-2 flex h-4 w-4 items-center justify-center">
-							<Circle class="h-3 w-3" />
+						<div class="mr-2 flex size-4 items-center justify-center">
+							<Circle class="size-3" />
 						</div>
 						{navItem.title}
 					</Command.Item>
@@ -92,15 +94,15 @@
 		<Command.Separator />
 		<Command.Group heading="Theme">
 			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
-				<Sun class="mr-2 h-4 w-4" />
+				<Sun class="mr-2 size-4" />
 				Light
 			</Command.Item>
 			<Command.Item value="dark" onSelect={() => runCommand(() => setMode("dark"))}>
-				<Moon class="mr-2 h-4 w-4" />
+				<Moon class="mr-2 size-4" />
 				Dark
 			</Command.Item>
 			<Command.Item value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Laptop class="mr-2 h-4 w-4" />
+				<Laptop class="mr-2 size-4" />
 				System
 			</Command.Item>
 		</Command.Group>

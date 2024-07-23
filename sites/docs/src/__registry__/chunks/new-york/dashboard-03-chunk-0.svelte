@@ -19,11 +19,14 @@
 			<div class="grid gap-3">
 				<Label for="model">Model</Label>
 				<Select.Root>
-					<Select.Trigger id="model" class="items-start [&_[data-description]]:hidden">
+					<Select.Trigger
+						id="model"
+						class="items-start [&_[data-description]]:hidden"
+					>
 						<Select.Value placeholder="Select a model" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="genesis" label="Neural Genesis">
+						<Select.Item value="genesis" textValue="Neural Genesis">
 							<div class="text-muted-foreground flex items-start gap-3">
 								<Rabbit class="size-5" />
 								<div class="grid gap-0.5">
@@ -37,7 +40,7 @@
 								</div>
 							</div>
 						</Select.Item>
-						<Select.Item value="explorer" label="Neural Explorer">
+						<Select.Item value="explorer" textValue="Neural Explorer">
 							<div class="text-muted-foreground flex items-start gap-3">
 								<Bird class="size-5" />
 								<div class="grid gap-0.5">
@@ -87,7 +90,7 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 			<div class="grid gap-3">
 				<Label for="role">Role</Label>
-				<Select.Root selected={{ value: "system", label: "System" }}>
+				<Select.Root value="system">
 					<Select.Trigger>
 						<Select.Value placeholder="Select a role" />
 					</Select.Trigger>
@@ -100,7 +103,11 @@
 			</div>
 			<div class="grid gap-3">
 				<Label for="content">Content</Label>
-				<Textarea id="content" placeholder="You are a..." class="min-h-[9.5rem]" />
+				<Textarea
+					id="content"
+					placeholder="You are a..."
+					class="min-h-[9.5rem]"
+				/>
 			</div>
 		</fieldset>
 	</form>

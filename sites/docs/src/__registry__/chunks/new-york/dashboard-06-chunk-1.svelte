@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
@@ -13,7 +12,9 @@
 >
 	<Card.Header>
 		<Card.Title>Products</Card.Title>
-		<Card.Description>Manage your products and view their sales performance.</Card.Description>
+		<Card.Description>
+			Manage your products and view their sales performance.
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Table.Root>
@@ -49,19 +50,20 @@
 					</Table.Cell>
 					<Table.Cell>$499.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">25</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-07-12 10:42 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-07-12 10:42 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-									builders={[builder]}
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -87,19 +89,20 @@
 					</Table.Cell>
 					<Table.Cell>$129.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">100</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-10-18 03:21 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-10-18 03:21 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -125,19 +128,20 @@
 					</Table.Cell>
 					<Table.Cell>$39.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">50</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-11-29 08:15 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-11-29 08:15 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -163,19 +167,20 @@
 					</Table.Cell>
 					<Table.Cell>$2.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">0</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-12-25 11:59 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-12-25 11:59 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -201,19 +206,20 @@
 					</Table.Cell>
 					<Table.Cell>$59.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">75</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2024-01-01 12:00 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2024-01-01 12:00 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>
@@ -239,19 +245,20 @@
 					</Table.Cell>
 					<Table.Cell>$199.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">30</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2024-02-14 02:14 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2024-02-14 02:14 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger
+								class={buttonVariants({
+									variant: "ghost",
+									size: "icon"
+								})}
+								aria-haspopup="true"
+							>
+								<Ellipsis class="size-4" />
+								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Label>Actions</DropdownMenu.Label>

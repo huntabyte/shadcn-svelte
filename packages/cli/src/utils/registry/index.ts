@@ -17,7 +17,7 @@ export async function getRegistryIndex() {
 		const [result] = await fetchRegistry(["index.json"]);
 
 		return v.parse(schemas.registryIndexSchema, result);
-	} catch (e) {
+	} catch {
 		throw error(`Failed to fetch components from registry.`);
 	}
 }
@@ -65,7 +65,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
-	} catch (e) {
+	} catch {
 		throw error(`Failed to fetch base color from registry.`);
 	}
 }
@@ -101,7 +101,7 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
-	} catch (e) {
+	} catch {
 		throw error(`Failed to fetch tree from registry.`);
 	}
 }
@@ -140,7 +140,7 @@ async function fetchRegistry(paths: string[]) {
 		);
 
 		return results;
-	} catch (e) {
+	} catch {
 		throw error(`Failed to fetch registry from ${baseUrl}.`);
 	}
 }

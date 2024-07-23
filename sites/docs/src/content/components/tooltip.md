@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/tooltip
 
 <ComponentPreview name="tooltip-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

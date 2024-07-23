@@ -5,8 +5,6 @@ description: Latest updates and announcements.
 
 <script>
 	import { Steps, Callout, ComponentPreview } from '$lib/components/docs'
-	import DashboardDark from '$lib/img/blocks/dashboard-1-dark.jpg?enhanced';
-	import DashboardLight from '$lib/img/blocks/dashboard-1.jpg?enhanced';
 </script>
 
 ## March 2024
@@ -15,9 +13,9 @@ description: Latest updates and announcements.
 
 [Blocks](/blocks) are ready-made components that you can use to build your apps. They are fully responsive, accessible, and composable, meaning they are built using the same principles as the rest of the components in shadcn-svelte.
 
-<enhanced:img src={DashboardDark} alt="A screenshot of the dashboard-01 block" class="h-full w-full hidden dark:block mt-6" />
+<enhanced:img src="$lib/img/blocks/dashboard-1-dark.jpg" alt="A screenshot of the dashboard-01 block" class="h-full w-full hidden dark:block mt-6" />
 
-<enhanced:img src={DashboardLight} alt="A screenshot of the dashboard-01 block" class="h-full w-full block dark:hidden mt-6" />
+<enhanced:img src="$lib/img/blocks/dashboard-1-light.jpg" alt="A screenshot of the dashboard-01 block" class="h-full w-full block dark:hidden mt-6" />
 
 [v0](https://v0.dev) only supports React at the moment, so you can't customize them like you can the original from [shadcn/ui](https://ui.shadcn.com). However, if having support for Svelte interests you, I'm sure the v0 team would love to hear about it. :)
 
@@ -27,7 +25,7 @@ We've added a new component to the project, [Breadcrumb](/docs/components/breadc
 
 <ComponentPreview name="breadcrumb-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -41,13 +39,13 @@ It supports both vertical and horizontal scrolling, and is designed to provide a
 
 <ComponentPreview name="scroll-area-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 <ComponentPreview name="scroll-area-horizontal">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -59,7 +57,7 @@ We've added a new component to the project, [Resizable](/docs/components/resizab
 
 <ComponentPreview name="resizable-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -105,7 +103,7 @@ We've added a new component to the project, [Carousel](/docs/components/carousel
 
 <ComponentPreview name="carousel-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -175,7 +173,7 @@ We've added a new component to the library, [Toggle Group](/docs/components/togg
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -189,7 +187,7 @@ Command is a component that allows you to create a command palette. It's built o
 
 <ComponentPreview name="command-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -201,7 +199,7 @@ Combobox is a combination of the `<Command />` & `<Popover />` components. It al
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

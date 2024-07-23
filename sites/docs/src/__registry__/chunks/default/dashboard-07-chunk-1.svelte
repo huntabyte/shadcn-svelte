@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CirclePlus from "lucide-svelte/icons/circle-plus";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
@@ -14,7 +13,9 @@
 >
 	<Card.Header>
 		<Card.Title>Stock</Card.Title>
-		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
+		<Card.Description>
+			Lipsum dolor sit amet, consectetur adipiscing elit
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Table.Root>
@@ -86,7 +87,7 @@
 	</Card.Content>
 	<Card.Footer class="justify-center border-t p-4">
 		<Button size="sm" variant="ghost" class="gap-1">
-			<CirclePlus class="h-3.5 w-3.5" />
+			<CirclePlus class="size-3.5" />
 			Add Variant
 		</Button>
 	</Card.Footer>

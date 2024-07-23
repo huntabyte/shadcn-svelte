@@ -13,7 +13,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -45,7 +45,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -53,7 +53,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -61,7 +61,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-with-label">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -69,7 +69,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -77,7 +77,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-with-button">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -85,7 +85,7 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="input-file">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,6 +93,6 @@ npx shadcn-svelte@latest add input
 
 <ComponentPreview name="form-demo" {form}>
 
-<div />
+<div></div>
 
 </ComponentPreview>
