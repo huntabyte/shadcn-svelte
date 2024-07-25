@@ -1,15 +1,21 @@
 {
 	"name": "calendar",
-	"dependencies": ["bits-ui", "@internationalized/date", "lucide-svelte"],
-	"registryDependencies": ["button"],
+	"dependencies": [
+		"bits-ui",
+		"@internationalized/date",
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"button"
+	],
 	"files": [
 		{
 			"name": "calendar-cell.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.CellProps;\n\n\texport let date: $$Props[\"date\"];\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Cell\n\t{date}\n\tclass={cn(\n\t\t\"relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:rounded-md [&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.Cell>\n"
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.CellProps;\n\n\texport let date: $$Props[\"date\"];\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Cell\n\t{date}\n\tclass={cn(\n\t\t\"[&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50 relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:rounded-md\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.Cell>\n"
 		},
 		{
 			"name": "calendar-day.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.DayProps;\n\ttype $$Events = CalendarPrimitive.DayEvents;\n\n\texport let date: $$Props[\"date\"];\n\texport let month: $$Props[\"month\"];\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Day\n\ton:click\n\t{date}\n\t{month}\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"h-9 w-9 p-0 font-normal \",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selected\n\t\t\"data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:opacity-100 data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground\",\n\t\t// Disabled\n\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:pointer-events-none data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground [&[data-outside-month][data-selected]]:opacity-30\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\tlet:selected\n\tlet:disabled\n\tlet:unavailable\n\tlet:builder\n>\n\t<slot {selected} {disabled} {unavailable} {builder}>\n\t\t{date.day}\n\t</slot>\n</CalendarPrimitive.Day>\n"
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.DayProps;\n\ttype $$Events = CalendarPrimitive.DayEvents;\n\n\texport let date: $$Props[\"date\"];\n\texport let month: $$Props[\"month\"];\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.Day\n\ton:click\n\t{date}\n\t{month}\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"h-9 w-9 p-0 font-normal \",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selected\n\t\t\"data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground data-[selected]:opacity-100\",\n\t\t// Disabled\n\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:pointer-events-none data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\tlet:selected\n\tlet:disabled\n\tlet:unavailable\n\tlet:builder\n>\n\t<slot {selected} {disabled} {unavailable} {builder}>\n\t\t{date.day}\n\t</slot>\n</CalendarPrimitive.Day>\n"
 		},
 		{
 			"name": "calendar-grid-body.svelte",
@@ -29,7 +35,7 @@
 		},
 		{
 			"name": "calendar-head-cell.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.HeadCellProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.HeadCell\n\tclass={cn(\"w-9 rounded-md text-[0.8rem] font-normal text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.HeadCell>\n"
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = CalendarPrimitive.HeadCellProps;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<CalendarPrimitive.HeadCell\n\tclass={cn(\"text-muted-foreground w-9 rounded-md text-[0.8rem] font-normal\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</CalendarPrimitive.HeadCell>\n"
 		},
 		{
 			"name": "calendar-header.svelte",

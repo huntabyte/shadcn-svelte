@@ -1,7 +1,12 @@
 {
 	"name": "pagination",
-	"dependencies": ["svelte-radix", "bits-ui"],
-	"registryDependencies": ["button"],
+	"dependencies": [
+		"svelte-radix",
+		"bits-ui"
+	],
+	"registryDependencies": [
+		"button"
+	],
 	"files": [
 		{
 			"name": "index.js",

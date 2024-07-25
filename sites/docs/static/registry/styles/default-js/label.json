@@ -1,6 +1,8 @@
 {
 	"name": "label",
-	"dependencies": ["bits-ui"],
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{

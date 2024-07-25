@@ -1,7 +1,14 @@
 {
 	"name": "form",
-	"dependencies": ["formsnap", "zod", "sveltekit-superforms"],
-	"registryDependencies": ["button", "label"],
+	"dependencies": [
+		"formsnap",
+		"zod",
+		"sveltekit-superforms"
+	],
+	"registryDependencies": [
+		"button",
+		"label"
+	],
 	"files": [
 		{
 			"name": "form-button.svelte",
@@ -9,7 +16,7 @@
 		},
 		{
 			"name": "form-description.svelte",
-			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-sm text-muted-foreground\", className)}\n\t{...$$restProps}\n\tlet:descriptionAttrs\n>\n\t<slot {descriptionAttrs} />\n</FormPrimitive.Description>\n"
+			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Description\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...$$restProps}\n\tlet:descriptionAttrs\n>\n\t<slot {descriptionAttrs} />\n</FormPrimitive.Description>\n"
 		},
 		{
 			"name": "form-element-field.svelte",
@@ -17,7 +24,7 @@
 		},
 		{
 			"name": "form-field-errors.svelte",
-			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n\texport let errorClasses = undefined;\n</script>\n\n<FormPrimitive.FieldErrors\n\tclass={cn(\"text-sm font-medium text-destructive\", className)}\n\t{...$$restProps}\n\tlet:errors\n\tlet:fieldErrorsAttrs\n\tlet:errorAttrs\n>\n\t<slot {errors} {fieldErrorsAttrs} {errorAttrs}>\n\t\t{#each errors as error}\n\t\t\t<div {...errorAttrs} class={cn(errorClasses)}>{error}</div>\n\t\t{/each}\n\t</slot>\n</FormPrimitive.FieldErrors>\n"
+			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n\texport let errorClasses = undefined;\n</script>\n\n<FormPrimitive.FieldErrors\n\tclass={cn(\"text-destructive text-sm font-medium\", className)}\n\t{...$$restProps}\n\tlet:errors\n\tlet:fieldErrorsAttrs\n\tlet:errorAttrs\n>\n\t<slot {errors} {fieldErrorsAttrs} {errorAttrs}>\n\t\t{#each errors as error}\n\t\t\t<div {...errorAttrs} class={cn(errorClasses)}>{error}</div>\n\t\t{/each}\n\t</slot>\n</FormPrimitive.FieldErrors>\n"
 		},
 		{
 			"name": "form-field.svelte",
@@ -33,7 +40,7 @@
 		},
 		{
 			"name": "form-legend.svelte",
-			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Legend\n\t{...$$restProps}\n\tclass={cn(\"text-sm font-medium leading-none data-[fs-error]:text-destructive\", className)}\n\tlet:legendAttrs\n>\n\t<slot {legendAttrs} />\n</FormPrimitive.Legend>\n"
+			"content": "<script>\n\timport * as FormPrimitive from \"formsnap\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<FormPrimitive.Legend\n\t{...$$restProps}\n\tclass={cn(\"data-[fs-error]:text-destructive text-sm font-medium leading-none\", className)}\n\tlet:legendAttrs\n>\n\t<slot {legendAttrs} />\n</FormPrimitive.Legend>\n"
 		},
 		{
 			"name": "index.js",

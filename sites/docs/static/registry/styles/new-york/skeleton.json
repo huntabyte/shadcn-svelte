@@ -9,7 +9,7 @@
 		},
 		{
 			"name": "skeleton.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"animate-pulse rounded-md bg-primary/10\", className)} {...$$restProps}></div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLDivElement>;\n\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<div class={cn(\"bg-primary/10 animate-pulse rounded-md\", className)} {...$$restProps}></div>\n"
 		}
 	],
 	"type": "components:ui"
