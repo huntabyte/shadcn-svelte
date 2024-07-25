@@ -1,6 +1,8 @@
 {
 	"name": "breadcrumb",
-	"dependencies": ["lucide-svelte"],
+	"dependencies": [
+		"lucide-svelte"
+	],
 	"registryDependencies": [],
 	"files": [
 		{
@@ -13,15 +15,15 @@
 		},
 		{
 			"name": "breadcrumb-link.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAnchorAttributes & {\n\t\tel?: HTMLAnchorElement;\n\t\tasChild?: boolean;\n\t};\n\n\texport let href: $$Props[\"href\"] = undefined;\n\texport let el: $$Props[\"el\"] = undefined;\n\texport let asChild: $$Props[\"asChild\"] = false;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tlet attrs: Record<string, unknown>;\n\n\t$: attrs = {\n\t\tclass: cn(\"transition-colors hover:text-foreground\", className),\n\t\thref,\n\t\t...$$restProps,\n\t};\n</script>\n\n{#if asChild}\n\t<slot {attrs} />\n{:else}\n\t<a bind:this={el} {...attrs} {href}>\n\t\t<slot {attrs} />\n\t</a>\n{/if}\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAnchorAttributes & {\n\t\tel?: HTMLAnchorElement;\n\t\tasChild?: boolean;\n\t};\n\n\texport let href: $$Props[\"href\"] = undefined;\n\texport let el: $$Props[\"el\"] = undefined;\n\texport let asChild: $$Props[\"asChild\"] = false;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n\n\tlet attrs: Record<string, unknown>;\n\n\t$: attrs = {\n\t\tclass: cn(\"hover:text-foreground transition-colors\", className),\n\t\thref,\n\t\t...$$restProps,\n\t};\n</script>\n\n{#if asChild}\n\t<slot {attrs} />\n{:else}\n\t<a bind:this={el} {...attrs} {href}>\n\t\t<slot {attrs} />\n\t</a>\n{/if}\n"
 		},
 		{
 			"name": "breadcrumb-list.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLOlAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLOlAttributes & {\n\t\tel?: HTMLOListElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ol\n\tbind:this={el}\n\tclass={cn(\n\t\t\"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</ol>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLOlAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLOlAttributes & {\n\t\tel?: HTMLOListElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\tlet className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<ol\n\tbind:this={el}\n\tclass={cn(\n\t\t\"text-muted-foreground flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</ol>\n"
 		},
 		{
 			"name": "breadcrumb-page.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement> & {\n\t\tel?: HTMLSpanElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\texport let className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={el}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"font-normal text-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = HTMLAttributes<HTMLSpanElement> & {\n\t\tel?: HTMLSpanElement;\n\t};\n\n\texport let el: $$Props[\"el\"] = undefined;\n\texport let className: $$Props[\"class\"] = undefined;\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={el}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"text-foreground font-normal\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-separator.svelte",

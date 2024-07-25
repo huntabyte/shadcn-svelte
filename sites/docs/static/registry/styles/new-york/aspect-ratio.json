@@ -1,6 +1,8 @@
 {
 	"name": "aspect-ratio",
-	"dependencies": ["bits-ui"],
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{

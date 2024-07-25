@@ -1,7 +1,12 @@
 {
 	"name": "carousel",
-	"dependencies": ["embla-carousel-svelte", "lucide-svelte"],
-	"registryDependencies": ["button"],
+	"dependencies": [
+		"embla-carousel-svelte",
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"button"
+	],
 	"files": [
 		{
 			"name": "carousel-content.svelte",

@@ -15,52 +15,55 @@
 
 name: Docs - Preview Deployment
 on:
-    pull_request_target:
-        paths:
-            - sites/docs/**
+  pull_request_target:
+    paths:
+      - sites/docs/**
 
 # cancel in-progress runs on new commits to same PR (github.event.number)
 concurrency:
-    group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
 
 jobs:
-    deploy-preview:
-        permissions:
-            contents: read
-            pull-requests: write
-            deployments: write
-        runs-on: ubuntu-latest
-        name: Deploy Preview to Cloudflare Pages
-        steps:
-            - uses: actions/checkout@v4
-            - uses: pnpm/action-setup@v4
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: pnpm
+  deploy-preview:
+    permissions:
+      contents: read
+      pull-requests: write
+      deployments: write
+    runs-on: ubuntu-latest
+    name: Deploy Preview to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
-            # Image cache setup
-            - name: Setup Image cache
-              uses: actions/cache@v3
-              with:
-                  path: '**/node_modules/.cache/imagetools'
-                  key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
+      # Image cache setup
+      - name: Setup Image cache
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules/.cache/imagetools"
+          key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
 
-            - name: Install dependencies
-              run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-            - name: Build site
-              run: pnpm build
+      - name: Build site
+        run: pnpm build
 
-            - name: Deploy to Cloudflare Pages
-              id: cloudflare-pages-deploy
-              uses: AdrianGonz97/refined-cf-pages-action@v1
-              with:
-                  apiToken: ${{ secrets.CF_API_TOKEN }}
-                  accountId: ${{ secrets.CF_ACCOUNT_ID }}
-                  githubToken: ${{ secrets.GITHUB_TOKEN }}
-                  projectName: shadcn-svelte
-                  directory: ./.svelte-kit/cloudflare
-                  workingDirectory: sites/docs
-                  deploymentName: Preview
+      - name: Deploy to Cloudflare Pages
+        id: cloudflare-pages-deploy
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: shadcn-svelte
+          directory: ./.svelte-kit/cloudflare
+          workingDirectory: sites/docs
+          deploymentName: Preview

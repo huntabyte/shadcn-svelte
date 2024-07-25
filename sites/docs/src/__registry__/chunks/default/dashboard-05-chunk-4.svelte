@@ -35,11 +35,18 @@
 		<div class="ml-auto flex items-center gap-1">
 			<Button size="sm" variant="outline" class="h-8 gap-1">
 				<Truck class="h-3.5 w-3.5" />
-				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap"> Track Order </span>
+				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
+					Track Order
+				</span>
 			</Button>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button builders={[builder]} size="icon" variant="outline" class="h-8 w-8">
+					<Button
+						builders={[builder]}
+						size="icon"
+						variant="outline"
+						class="h-8 w-8"
+					>
 						<EllipsisVertical class="h-3.5 w-3.5" />
 						<span class="sr-only">More</span>
 					</Button>
@@ -141,7 +148,9 @@
 			</dl>
 		</div>
 	</Card.Content>
-	<Card.Footer class="bg-muted/50 flex flex-row items-center border-t px-6 py-3">
+	<Card.Footer
+		class="bg-muted/50 flex flex-row items-center border-t px-6 py-3"
+	>
 		<div class="text-muted-foreground text-xs">
 			Updated <time dateTime="2023-11-23">November 23, 2023</time>
 		</div>

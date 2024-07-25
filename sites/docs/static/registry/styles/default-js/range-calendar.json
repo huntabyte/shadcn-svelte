@@ -1,7 +1,13 @@
 {
 	"name": "range-calendar",
-	"dependencies": ["bits-ui", "@internationalized/date", "lucide-svelte"],
-	"registryDependencies": ["button"],
+	"dependencies": [
+		"bits-ui",
+		"@internationalized/date",
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"button"
+	],
 	"files": [
 		{
 			"name": "index.js",
@@ -9,11 +15,11 @@
 		},
 		{
 			"name": "range-calendar-cell.svelte",
-			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\texport let date;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Cell\n\t{date}\n\tclass={cn(\n\t\t\"relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:bg-accent first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md [&:has([data-selected][data-outside-month])]:bg-accent/50 [&:has([data-selected][data-selection-end])]:rounded-r-md [&:has([data-selected][data-selection-start])]:rounded-l-md\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</RangeCalendarPrimitive.Cell>\n"
+			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\texport let date;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Cell\n\t{date}\n\tclass={cn(\n\t\t\"[&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50 relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md [&:has([data-selected][data-selection-end])]:rounded-r-md [&:has([data-selected][data-selection-start])]:rounded-l-md\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</RangeCalendarPrimitive.Cell>\n"
 		},
 		{
 			"name": "range-calendar-day.svelte",
-			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\texport let date;\n\texport let month;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Day\n\ton:click\n\t{date}\n\t{month}\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"h-9 w-9 p-0 font-normal data-[selected]:opacity-100\",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selection Start\n\t\t\"data-[selection-start]:bg-primary data-[selection-start]:text-primary-foreground data-[selection-start]:hover:bg-primary data-[selection-start]:hover:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground\",\n\t\t// Selection End\n\t\t\"data-[selection-end]:bg-primary data-[selection-end]:text-primary-foreground data-[selection-end]:hover:bg-primary data-[selection-end]:hover:text-primary-foreground data-[selection-end]:focus:bg-primary data-[selection-end]:focus:text-primary-foreground\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:pointer-events-none data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground [&[data-outside-month][data-selected]]:opacity-30\",\n\t\t// Disabled\n\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\tlet:disabled\n\tlet:unavailable\n\tlet:builder\n>\n\t<slot {disabled} {unavailable} {builder}>\n\t\t{date.day}\n\t</slot>\n</RangeCalendarPrimitive.Day>\n"
+			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\texport let date;\n\texport let month;\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Day\n\ton:click\n\t{date}\n\t{month}\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"h-9 w-9 p-0 font-normal data-[selected]:opacity-100\",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selection Start\n\t\t\"data-[selection-start]:bg-primary data-[selection-start]:text-primary-foreground data-[selection-start]:hover:bg-primary data-[selection-start]:hover:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground\",\n\t\t// Selection End\n\t\t\"data-[selection-end]:bg-primary data-[selection-end]:text-primary-foreground data-[selection-end]:hover:bg-primary data-[selection-end]:hover:text-primary-foreground data-[selection-end]:focus:bg-primary data-[selection-end]:focus:text-primary-foreground\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:pointer-events-none data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30\",\n\t\t// Disabled\n\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\tlet:disabled\n\tlet:unavailable\n\tlet:builder\n>\n\t<slot {disabled} {unavailable} {builder}>\n\t\t{date.day}\n\t</slot>\n</RangeCalendarPrimitive.Day>\n"
 		},
 		{
 			"name": "range-calendar-grid-body.svelte",
@@ -33,7 +39,7 @@
 		},
 		{
 			"name": "range-calendar-head-cell.svelte",
-			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.HeadCell\n\tclass={cn(\"w-9 rounded-md text-[0.8rem] font-normal text-muted-foreground\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</RangeCalendarPrimitive.HeadCell>\n"
+			"content": "<script>\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.HeadCell\n\tclass={cn(\"text-muted-foreground w-9 rounded-md text-[0.8rem] font-normal\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</RangeCalendarPrimitive.HeadCell>\n"
 		},
 		{
 			"name": "range-calendar-header.svelte",
