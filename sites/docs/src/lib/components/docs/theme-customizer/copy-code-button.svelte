@@ -8,7 +8,8 @@
 	import { CustomizerCode, ThemeWrapper } from "$lib/components/docs/index.js";
 	import { cn, createCopyCodeButton } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
-	const activeTheme = themes.find((theme) => theme.name === $config.theme);
+
+	const activeTheme = $derived(themes.find((theme) => theme.name === $config.theme));
 
 	const { copied, copyCode, setCodeString } = createCopyCodeButton();
 </script>

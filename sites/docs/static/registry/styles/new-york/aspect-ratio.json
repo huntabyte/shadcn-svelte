@@ -1,17 +1,11 @@
 {
 	"name": "aspect-ratio",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": [],
 	"registryDependencies": [],
 	"files": [
 		{
-			"name": "aspect-ratio.svelte",
-			"content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tratio = 4 / 3,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AspectRatioPrimitive.Props = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref {ratio} {...restProps} />\n"
-		},
-		{
 			"name": "index.ts",
-			"content": "import Root from \"./aspect-ratio.svelte\";\n\nexport { Root, Root as AspectRatio };\n"
+			"content": "import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\nconst Root = AspectRatioPrimitive.Root;\n\nexport { Root, Root as AspectRatio };\n"
 		}
 	],
 	"type": "components:ui"

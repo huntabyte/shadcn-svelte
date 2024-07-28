@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
-
 	import { mode } from "mode-watcher";
 	import Paintbrush from "lucide-svelte/icons/paintbrush";
 	import { Customizer, ThemeCopyCodeButton } from "./index.js";

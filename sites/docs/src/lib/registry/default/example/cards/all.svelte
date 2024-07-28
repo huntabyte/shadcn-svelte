@@ -8,7 +8,7 @@
 	import CardsShare from "./share.svelte";
 	import CardsStats from "./stats.svelte";
 	import CardsCalendar from "./calendar.svelte";
-	import CardsDataTable from "./data-table.svelte";
+	// import CardsDataTable from "./data-table.svelte";
 	import CardsTeamMembers from "./team-members.svelte";
 	import CardsChat from "./chat.svelte";
 </script>
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		<div class="hidden md:block">
-			<CardsDataTable />
+			<!-- <CardsDataTable /> -->
 		</div>
 		<CardsShare />
 		<div class="xl:hidden">

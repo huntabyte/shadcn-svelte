@@ -30,7 +30,7 @@
 			</span>
 		</span>
 	</Select.Trigger>
-	<Select.Content sameWidth={!isCollapsed} align={isCollapsed ? "start" : undefined}>
+	<Select.Content align={isCollapsed ? "start" : undefined} class="w-fit">
 		<Select.Group>
 			{#each accounts as account}
 				<Select.Item value={account.email} textValue={account.label}>

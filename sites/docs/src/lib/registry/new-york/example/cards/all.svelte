@@ -5,7 +5,6 @@
 		CardsChat,
 		CardsCookieSettings,
 		CardsCreateAccount,
-		CardsDataTable,
 		CardsMetric,
 		CardsPaymentMethod,
 		CardsReportIssue,
@@ -53,7 +52,7 @@
 			</div>
 		</div>
 		<div class="hidden md:block">
-			<CardsDataTable />
+			<!-- <CardsDataTable /> -->
 		</div>
 		<CardsShare />
 		<div class="xl:hidden">

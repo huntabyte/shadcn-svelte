@@ -7,7 +7,7 @@
 	"files": [
 		{
 			"name": "hover-card-content.svelte",
-			"content": "<script>import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\nimport { cn, flyAndScale } from \"$lib/utils.js\";\nlet className = undefined;\nexport let transition = flyAndScale;\nexport let transitionConfig = undefined;\nexport let align = \"center\";\nexport let sideOffset = 4;\nexport { className as class };\n</script>\n\n<HoverCardPrimitive.Content\n\t{transition}\n\t{transitionConfig}\n\t{align}\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 mt-3 w-64 rounded-md border p-4 shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...$$restProps}\n>\n\t<slot />\n</HoverCardPrimitive.Content>\n"
+			"content": "<script>import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  align = \"center\",\n  sideOffset = 4,\n  ...restProps\n} = $props();\n</script>\n\n<HoverCardPrimitive.Content\n\tbind:ref\n\t{align}\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 mt-3 w-64 rounded-md border p-4 shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "index.js",

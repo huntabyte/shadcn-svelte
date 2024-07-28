@@ -8,7 +8,7 @@
 	let {
 		class: className,
 		...restProps
-	}: WithoutChildren<Omit<PrimitiveButtonAttributes, "disabled" | "style" | "id">> = $props();
+	}: WithoutChildren<Omit<PrimitiveButtonAttributes, "style" | "id">> = $props();
 
 	const styleLabel = $derived(styles.filter((s) => s.name === $config.style)[0].label);
 

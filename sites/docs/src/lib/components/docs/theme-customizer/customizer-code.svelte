@@ -2,7 +2,8 @@
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";
 	import { ThemeWrapper } from "$lib/components/docs/index.js";
-	const activeTheme = themes.find((theme) => theme.name === $config.theme);
+
+	const activeTheme = $derived(themes.find((theme) => theme.name === $config.theme));
 
 	let { setCodeString }: { setCodeString: (node: HTMLElement) => void } = $props();
 

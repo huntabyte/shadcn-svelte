@@ -3,11 +3,11 @@
 	import MagnifyingGlass from "svelte-radix/MagnifyingGlass.svelte";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = CommandPrimitive.InputProps;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let value: string = "";
+	let {
+		class: className,
+		value = $bindable(""),
+		...restProps
+	}: CommandPrimitive.InputProps = $props();
 </script>
 
 <div class="flex items-center border-b px-3" data-cmdk-input-wrapper="">
@@ -17,7 +17,7 @@
 			"placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50",
 			className
 		)}
-		{...$$restProps}
+		{...restProps}
 		bind:value
 	/>
 </div>
