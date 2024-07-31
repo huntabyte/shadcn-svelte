@@ -3,19 +3,17 @@
 	import { cn } from "$lib/utils.js";
 
 	let {
+		ref = $bindable(null),
+		this: paneGroup = $bindable(),
 		class: className,
-		direction,
-		paneGroup = $bindable(),
-		children,
 		...restProps
-	}: ResizablePrimitive.PaneGroupProps = $props();
+	}: ResizablePrimitive.PaneGroupProps & {
+		this?: ResizablePrimitive.PaneGroup;
+	} = $props();
 </script>
 
 <ResizablePrimitive.PaneGroup
-	bind:paneGroup
-	{direction}
+	bind:this={paneGroup}
 	class={cn("flex h-full w-full data-[direction=vertical]:flex-col", className)}
 	{...restProps}
->
-	{@render children?.()}
-</ResizablePrimitive.PaneGroup>
+/>

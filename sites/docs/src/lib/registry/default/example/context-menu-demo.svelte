@@ -49,10 +49,12 @@
 		</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value>
-			<ContextMenu.Label inset>People</ContextMenu.Label>
-			<ContextMenu.Separator />
-			<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
-			<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
+			<ContextMenu.Group>
+				<ContextMenu.GroupLabel inset>People</ContextMenu.GroupLabel>
+				<ContextMenu.Separator />
+				<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
+				<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
+			</ContextMenu.Group>
 		</ContextMenu.RadioGroup>
 	</ContextMenu.Content>
 </ContextMenu.Root>

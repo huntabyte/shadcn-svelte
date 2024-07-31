@@ -8,12 +8,14 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
-		<DropdownMenu.Label>Panel Position</DropdownMenu.Label>
-		<DropdownMenu.Separator />
-		<DropdownMenu.RadioGroup bind:value={position}>
-			<DropdownMenu.RadioItem value="top">Top</DropdownMenu.RadioItem>
-			<DropdownMenu.RadioItem value="bottom">Bottom</DropdownMenu.RadioItem>
-			<DropdownMenu.RadioItem value="right">Right</DropdownMenu.RadioItem>
-		</DropdownMenu.RadioGroup>
+		<DropdownMenu.Group>
+			<DropdownMenu.GroupLabel>Panel Position</DropdownMenu.GroupLabel>
+			<DropdownMenu.Separator />
+			<DropdownMenu.RadioGroup bind:value={position}>
+				<DropdownMenu.RadioItem value="top">Top</DropdownMenu.RadioItem>
+				<DropdownMenu.RadioItem value="bottom">Bottom</DropdownMenu.RadioItem>
+				<DropdownMenu.RadioItem value="right">Right</DropdownMenu.RadioItem>
+			</DropdownMenu.RadioGroup>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

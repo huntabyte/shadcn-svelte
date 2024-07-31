@@ -66,9 +66,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -105,9 +107,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -144,9 +148,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -183,9 +189,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -222,9 +230,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -261,9 +271,11 @@
 								<span class="sr-only">Toggle menu</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>

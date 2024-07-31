@@ -463,7 +463,7 @@ We'll start by creating a new component called `data-table-actions.svelte` which
   </DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.Label>Actions</DropdownMenu.Label>
+      <DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
       <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
         Copy payment ID
       </DropdownMenu.Item>

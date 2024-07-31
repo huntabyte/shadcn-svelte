@@ -26,7 +26,7 @@
 							style={{
 								"--theme-primary": `hsl(${
 									theme?.activeColor[$mode === "dark" ? "dark" : "light"]
-								}`,
+								})`,
 							}}
 							class={cn(
 								"flex size-9 items-center justify-center rounded-full border-2 text-xs",

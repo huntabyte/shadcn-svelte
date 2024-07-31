@@ -10,14 +10,16 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
-		<DropdownMenu.Label>Appearance</DropdownMenu.Label>
-		<DropdownMenu.Separator />
-		<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>
-			Status Bar
-		</DropdownMenu.CheckboxItem>
-		<DropdownMenu.CheckboxItem bind:checked={showActivityBar} disabled>
-			Activity Bar
-		</DropdownMenu.CheckboxItem>
-		<DropdownMenu.CheckboxItem bind:checked={showPanel}>Panel</DropdownMenu.CheckboxItem>
+		<DropdownMenu.Group>
+			<DropdownMenu.GroupLabel>Appearance</DropdownMenu.GroupLabel>
+			<DropdownMenu.Separator />
+			<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>
+				Status Bar
+			</DropdownMenu.CheckboxItem>
+			<DropdownMenu.CheckboxItem bind:checked={showActivityBar} disabled>
+				Activity Bar
+			</DropdownMenu.CheckboxItem>
+			<DropdownMenu.CheckboxItem bind:checked={showPanel}>Panel</DropdownMenu.CheckboxItem>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

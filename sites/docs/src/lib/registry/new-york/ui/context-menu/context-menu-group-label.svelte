@@ -7,7 +7,7 @@
 		class: className,
 		inset,
 		...restProps
-	}: ContextMenuPrimitive.LabelProps & {
+	}: ContextMenuPrimitive.GroupLabelProps & {
 		inset?: boolean;
 	} = $props();
 </script>

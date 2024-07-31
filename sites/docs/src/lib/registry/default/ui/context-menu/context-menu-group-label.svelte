@@ -7,12 +7,12 @@
 		class: className,
 		inset,
 		...restProps
-	}: ContextMenuPrimitive.LabelProps & {
+	}: ContextMenuPrimitive.GroupLabelProps & {
 		inset?: boolean;
 	} = $props();
 </script>
 
-<ContextMenuPrimitive.Label
+<ContextMenuPrimitive.GroupLabel
 	bind:ref
 	class={cn("text-foreground px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
 	{...restProps}

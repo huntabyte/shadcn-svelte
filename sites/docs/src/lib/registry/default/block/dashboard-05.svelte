@@ -235,12 +235,14 @@
 					/>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
-					<DropdownMenu.Label>My Account</DropdownMenu.Label>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Settings</DropdownMenu.Item>
-					<DropdownMenu.Item>Support</DropdownMenu.Item>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					<DropdownMenu.Group>
+						<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Settings</DropdownMenu.Item>
+						<DropdownMenu.Item>Support</DropdownMenu.Item>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</header>
@@ -315,13 +317,19 @@
 									<span class="sr-only sm:not-sr-only">Filter</span>
 								</DropdownMenu.Trigger>
 								<DropdownMenu.Content align="end">
-									<DropdownMenu.Label>Filter by</DropdownMenu.Label>
-									<DropdownMenu.Separator />
-									<DropdownMenu.CheckboxItem checked>
-										Fulfilled
-									</DropdownMenu.CheckboxItem>
-									<DropdownMenu.CheckboxItem>Declined</DropdownMenu.CheckboxItem>
-									<DropdownMenu.CheckboxItem>Refunded</DropdownMenu.CheckboxItem>
+									<DropdownMenu.Group>
+										<DropdownMenu.GroupLabel>Filter by</DropdownMenu.GroupLabel>
+										<DropdownMenu.Separator />
+										<DropdownMenu.CheckboxItem checked>
+											Fulfilled
+										</DropdownMenu.CheckboxItem>
+										<DropdownMenu.CheckboxItem>
+											Declined
+										</DropdownMenu.CheckboxItem>
+										<DropdownMenu.CheckboxItem>
+											Refunded
+										</DropdownMenu.CheckboxItem>
+									</DropdownMenu.Group>
 								</DropdownMenu.Content>
 							</DropdownMenu.Root>
 							<Button size="sm" variant="outline" class="h-7 gap-1 text-sm">

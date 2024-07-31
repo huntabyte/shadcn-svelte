@@ -232,12 +232,14 @@
 					/>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
-					<DropdownMenu.Label>My Account</DropdownMenu.Label>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Settings</DropdownMenu.Item>
-					<DropdownMenu.Item>Support</DropdownMenu.Item>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					<DropdownMenu.Group>
+						<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Settings</DropdownMenu.Item>
+						<DropdownMenu.Item>Support</DropdownMenu.Item>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</header>
@@ -267,13 +269,15 @@
 								</span>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Filter by</DropdownMenu.Label>
-								<DropdownMenu.Separator />
-								<DropdownMenu.CheckboxItem checked>
-									Active
-								</DropdownMenu.CheckboxItem>
-								<DropdownMenu.CheckboxItem>Draft</DropdownMenu.CheckboxItem>
-								<DropdownMenu.CheckboxItem>Archived</DropdownMenu.CheckboxItem>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupLabel>Filter by</DropdownMenu.GroupLabel>
+									<DropdownMenu.Separator />
+									<DropdownMenu.CheckboxItem checked>
+										Active
+									</DropdownMenu.CheckboxItem>
+									<DropdownMenu.CheckboxItem>Draft</DropdownMenu.CheckboxItem>
+									<DropdownMenu.CheckboxItem>Archived</DropdownMenu.CheckboxItem>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 						<Button size="sm" variant="outline" class="h-7 gap-1">
@@ -357,9 +361,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -398,9 +407,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -439,9 +453,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -480,9 +499,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -521,9 +545,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -562,9 +591,14 @@
 													<span class="sr-only">Toggle menu</span>
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupLabel>
+															Actions
+														</DropdownMenu.GroupLabel>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>

@@ -222,8 +222,8 @@
 		"files": [
 			"ui/context-menu/context-menu-checkbox-item.svelte",
 			"ui/context-menu/context-menu-content.svelte",
+			"ui/context-menu/context-menu-group-label.svelte",
 			"ui/context-menu/context-menu-item.svelte",
-			"ui/context-menu/context-menu-label.svelte",
 			"ui/context-menu/context-menu-radio-item.svelte",
 			"ui/context-menu/context-menu-separator.svelte",
 			"ui/context-menu/context-menu-shortcut.svelte",
@@ -278,8 +278,8 @@
 		"files": [
 			"ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-content.svelte",
+			"ui/dropdown-menu/dropdown-menu-group-label.svelte",
 			"ui/dropdown-menu/dropdown-menu-item.svelte",
-			"ui/dropdown-menu/dropdown-menu-label.svelte",
 			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-separator.svelte",
 			"ui/dropdown-menu/dropdown-menu-shortcut.svelte",

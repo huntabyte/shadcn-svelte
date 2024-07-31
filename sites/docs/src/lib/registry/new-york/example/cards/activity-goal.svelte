@@ -22,7 +22,7 @@
 				variant="outline"
 				size="icon"
 				class="size-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(-10)}
+				onclick={() => updateGoal(-10)}
 				disabled={goal <= 200}
 			>
 				<Minus class="size-4" />
@@ -37,7 +37,7 @@
 				variant="outline"
 				size="icon"
 				class="size-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(10)}
+				onclick={() => updateGoal(10)}
 				disabled={goal >= 400}
 			>
 				<Plus class="size-4" />

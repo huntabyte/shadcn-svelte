@@ -34,17 +34,19 @@
 		View
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
-		<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>
-		<DropdownMenu.Separator />
-		{#each flatColumns as col}
-			{#if hidableCols.includes(col.id)}
-				<DropdownMenu.CheckboxItem
-					checked={!$hiddenColumnIds.includes(col.id)}
-					on:click={() => handleHide(col.id)}
-				>
-					{col.header}
-				</DropdownMenu.CheckboxItem>
-			{/if}
-		{/each}
+		<DropdownMenu.Group>
+			<DropdownMenu.GroupLabel>Toggle columns</DropdownMenu.GroupLabel>
+			<DropdownMenu.Separator />
+			{#each flatColumns as col}
+				{#if hidableCols.includes(col.id)}
+					<DropdownMenu.CheckboxItem
+						checked={!$hiddenColumnIds.includes(col.id)}
+						on:click={() => handleHide(col.id)}
+					>
+						{col.header}
+					</DropdownMenu.CheckboxItem>
+				{/if}
+			{/each}
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

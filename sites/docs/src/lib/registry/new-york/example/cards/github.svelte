@@ -34,21 +34,23 @@
 					<ChevronDown class="text-secondary-foreground size-4" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
-					<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
-					<DropdownMenu.Separator />
-					<DropdownMenu.CheckboxItem bind:checked={futureIdeas}>
-						Future Ideas
-					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem bind:checked={myStack}>
-						My Stack
-					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.CheckboxItem bind:checked={inspiration}>
-						Inspiration
-					</DropdownMenu.CheckboxItem>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>
-						<Plus class="mr-2 size-4" /> Create List
-					</DropdownMenu.Item>
+					<DropdownMenu.Group>
+						<DropdownMenu.GroupLabel>Suggested Lists</DropdownMenu.GroupLabel>
+						<DropdownMenu.Separator />
+						<DropdownMenu.CheckboxItem bind:checked={futureIdeas}>
+							Future Ideas
+						</DropdownMenu.CheckboxItem>
+						<DropdownMenu.CheckboxItem bind:checked={myStack}>
+							My Stack
+						</DropdownMenu.CheckboxItem>
+						<DropdownMenu.CheckboxItem bind:checked={inspiration}>
+							Inspiration
+						</DropdownMenu.CheckboxItem>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>
+							<Plus class="mr-2 size-4" /> Create List
+						</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</div>

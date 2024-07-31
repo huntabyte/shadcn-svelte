@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Announcement, ThemeCustomizer, ThemeWrapper } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { CardsNewYork } from "$lib/registry/new-york/example/cards/index.js";
 	import { CardsDefault } from "$lib/registry/default/example/cards/index.js";
+	import { CardsNewYork } from "$lib/registry/new-york/example/cards/index.js";
 	import { config } from "$lib/stores/index.js";
 </script>
 
