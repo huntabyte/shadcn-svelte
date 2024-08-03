@@ -20,6 +20,7 @@
 		"check:watch": "pnpm -F docs check:watch",
 		"test:unit": "pnpm -F docs test:unit",
 		"lint": "prettier --check . && eslint .",
+		"lint:fix": "eslint --fix .",
 		"format:check": "pnpm -r format:check",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
