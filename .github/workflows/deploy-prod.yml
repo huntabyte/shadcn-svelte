@@ -1,4 +1,4 @@
-name: Docs Production Deployment
+name: Production Deployment
 on:
   push:
     branches:
@@ -6,24 +6,24 @@ on:
     paths:
       - sites/docs/**
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
 jobs:
-  publish:
+  deploy-production:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       deployments: write
-    name: Publish to Cloudflare Pages
+    name: Deploy Production Site to Cloudflare Pages
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      # Image cache setup
+          # Image cache setup
       - name: Setup Image cache
         uses: actions/cache@v3
         with:
