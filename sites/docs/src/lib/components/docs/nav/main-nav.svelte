@@ -67,7 +67,7 @@
 			href="/colors"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/examples")
+				$page.url.pathname.startsWith("/colors")
 					? "text-foreground"
 					: "text-foreground/60"
 			)}
