@@ -10,7 +10,7 @@ import List from "./command-list.svelte";
 import Separator from "./command-separator.svelte";
 import Shortcut from "./command-shortcut.svelte";
 
-const Loading = CommandPrimitive.Loading;
+const Loading: typeof CommandPrimitive.Loading = CommandPrimitive.Loading;
 
 export {
 	Root,

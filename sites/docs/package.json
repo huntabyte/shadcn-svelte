@@ -86,7 +86,7 @@
 		"svelte-sonner": "^0.3.25",
 		"sveltekit-superforms": "^2.16.0",
 		"tailwindcss-animate": "^1.0.7",
-		"vaul-svelte": "^0.3.2",
+		"vaul-svelte": "https://pkg.pr.new/vaul-svelte@6917149",
 		"zod": "^3.23.8"
 	}
 }

@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\nconst Root = CollapsiblePrimitive.Root;\nconst Trigger = CollapsiblePrimitive.Trigger;\nconst Content = CollapsiblePrimitive.Content;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n"
+			"content": "import { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\nconst Root: typeof CollapsiblePrimitive.Root = CollapsiblePrimitive.Root;\nconst Trigger: typeof CollapsiblePrimitive.Trigger = CollapsiblePrimitive.Trigger;\nconst Content: typeof CollapsiblePrimitive.Content = CollapsiblePrimitive.Content;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n"
 		}
 	],
 	"type": "components:ui"

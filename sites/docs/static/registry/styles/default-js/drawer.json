@@ -7,35 +7,35 @@
 	"files": [
 		{
 			"name": "drawer-content.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport DrawerOverlay from \"./drawer-overlay.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tclass={cn(\n\t\t\t\"bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border\",\n\t\t\tclassName\n\t\t)}\n\t\t{...$$restProps}\n\t>\n\t\t<div class=\"bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full\"></div>\n\t\t<slot />\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport DrawerOverlay from \"./drawer-overlay.svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.Portal>\n\t<DrawerOverlay />\n\t<DrawerPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t>\n\t\t<div class=\"bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full\"></div>\n\t\t{@render children?.()}\n\t</DrawerPrimitive.Content>\n</DrawerPrimitive.Portal>\n"
 		},
 		{
 			"name": "drawer-description.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Description\n\tbind:el\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Description>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "drawer-footer.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<div bind:this={el} class={cn(\"mt-auto flex flex-col gap-2 p-4\", className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"mt-auto flex flex-col gap-2 p-4\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "drawer-header.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<div\n\tbind:this={el}\n\tclass={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</div>\n"
+			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "drawer-nested.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nexport let shouldScaleBackground = true;\nexport let open = false;\nexport let activeSnapPoint = undefined;\n</script>\n\n<DrawerPrimitive.NestedRoot {shouldScaleBackground} bind:open bind:activeSnapPoint {...$$restProps}>\n\t<slot />\n</DrawerPrimitive.NestedRoot>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nlet {\n  shouldScaleBackground = true,\n  open = $bindable(false),\n  activeSnapPoint = $bindable(null),\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.NestedRoot {shouldScaleBackground} bind:open bind:activeSnapPoint {...restProps} />\n"
 		},
 		{
 			"name": "drawer-overlay.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Overlay\n\tbind:el\n\tclass={cn(\"fixed inset-0 z-50 bg-black/80\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Overlay>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\"fixed inset-0 z-50 bg-black/80\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "drawer-title.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nexport let el = undefined;\nlet className = undefined;\nexport { className as class };\n</script>\n\n<DrawerPrimitive.Title\n\tbind:el\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</DrawerPrimitive.Title>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-lg font-semibold leading-none tracking-tight\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "drawer.svelte",
-			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nexport let shouldScaleBackground = true;\nexport let open = false;\nexport let activeSnapPoint = undefined;\n</script>\n\n<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...$$restProps}>\n\t<slot />\n</DrawerPrimitive.Root>\n"
+			"content": "<script>import { Drawer as DrawerPrimitive } from \"vaul-svelte\";\nlet {\n  shouldScaleBackground = true,\n  open = $bindable(false),\n  activeSnapPoint = $bindable(),\n  ...restProps\n} = $props();\n</script>\n\n<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...restProps} />\n"
 		},
 		{
 			"name": "index.js",

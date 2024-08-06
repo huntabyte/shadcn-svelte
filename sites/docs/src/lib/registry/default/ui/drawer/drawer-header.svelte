@@ -1,19 +1,18 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
-		el?: HTMLDivElement;
-	};
-	export let el: $$Props["el"] = undefined;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveDivAttributes = $props();
 </script>
 
 <div
-	bind:this={el}
+	bind:this={ref}
 	class={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </div>

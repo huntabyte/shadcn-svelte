@@ -7,7 +7,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		checked = $bindable(),
+		checked = $bindable(false),
 		...restProps
 	}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();
 </script>
