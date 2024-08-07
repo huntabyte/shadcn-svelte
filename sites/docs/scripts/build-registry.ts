@@ -230,6 +230,7 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
+	// eslint-disable-next-line ts/no-explicit-any
 	const colorsData: Record<string, any> = {};
 	for (const [color, value] of Object.entries(colors)) {
 		if (typeof value === "string") {
@@ -267,6 +268,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 
 	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
+		// eslint-disable-next-line ts/no-explicit-any
 		const base: Record<string, any> = {
 			inlineColors: {},
 			cssVars: {},
@@ -276,12 +278,14 @@ export const Index = {
 			base.cssVars[mode] = {};
 			for (const [key, value] of Object.entries(values)) {
 				if (typeof value === "string") {
+					// eslint-disable-next-line regexp/strict
 					const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
 					base.inlineColors[mode][key] = resolvedColor;
 
 					const [resolvedBase, scale] = resolvedColor.split("-");
 					const color = scale
 						? colorsData[resolvedBase].find(
+								// eslint-disable-next-line ts/no-explicit-any
 								(item: any) => item.scale === Number.parseInt(scale)
 							)
 						: colorsData[resolvedBase];

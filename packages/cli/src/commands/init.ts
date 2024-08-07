@@ -151,7 +151,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	if (tailwindBaseColor === undefined) {
 		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
-			initialValue: defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
+			initialValue:
+				defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
 			options: baseColors.map((color) => ({
 				label: color.label,
 				value: color.name,
@@ -172,7 +173,9 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
 			initialValue:
-				defaultConfig?.tailwind.css ?? detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
+				defaultConfig?.tailwind.css ??
+				detectedConfigs.cssPath ??
+				cliConfig.DEFAULT_TAILWIND_CSS,
 			placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
 			validate: (value) => {
 				if (value && existsSync(path.resolve(cwd, value))) {
@@ -312,7 +315,9 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			// Ensure all resolved paths directories exist.
 			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
 				// Determine if the path is a file or directory.
-				let dirname = path.extname(resolvedPath) ? path.dirname(resolvedPath) : resolvedPath;
+				let dirname = path.extname(resolvedPath)
+					? path.dirname(resolvedPath)
+					: resolvedPath;
 
 				// If the utils alias is set to something like "@/lib/utils",
 				// assume this is a file and remove the "utils" file name.
@@ -329,13 +334,19 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 			// Write tailwind config.
 			const { TS, JS } = templates.TAILWIND_CONFIG_WITH_VARIABLES;
-			const tailwindConfigContent = config.resolvedPaths.tailwindConfig.endsWith(".ts") ? TS : JS;
+			const tailwindConfigContent = config.resolvedPaths.tailwindConfig.endsWith(".ts")
+				? TS
+				: JS;
 			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
 			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 			if (baseColor) {
-				await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
+				await fs.writeFile(
+					config.resolvedPaths.tailwindCss,
+					baseColor.cssVarsTemplate,
+					"utf8"
+				);
 			}
 
 			const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");

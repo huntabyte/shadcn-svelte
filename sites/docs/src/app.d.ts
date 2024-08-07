@@ -14,6 +14,8 @@ declare global {
 			"on:copy-error"?: (e: CustomEvent<T>) => void;
 		}
 	}
+
+	declare module "*.png?enhanced";
 }
 
 export {};

@@ -21,7 +21,6 @@
 		"test:unit": "pnpm -F docs test:unit",
 		"lint": "prettier --check . && eslint .",
 		"lint:fix": "eslint --fix .",
-		"format:check": "pnpm -r format:check",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
@@ -41,19 +40,18 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@antfu/eslint-config": "^2.11.6",
 		"@changesets/cli": "^2.27.1",
-		"@huntabyte/eslint-config": "^0.0.1",
-		"eslint": "^8.57.0",
-		"eslint-plugin-antfu": "^2.1.2",
-		"eslint-plugin-svelte": "2.36.0-next.13",
+		"@huntabyte/eslint-config": "^0.3.2",
+		"@huntabyte/eslint-plugin": "^0.1.0",
+		"eslint": "^9.0.0",
+		"eslint-plugin-svelte": "^2.37.0",
 		"prettier": "^3.2.5",
-		"prettier-plugin-svelte": "^3.2.3",
-		"prettier-plugin-tailwindcss": "^0.5.12",
+		"prettier-plugin-svelte": "^3.2.2",
+		"prettier-plugin-tailwindcss": "0.5.13",
 		"pretty-quick": "^4.0.0",
 		"simple-git-hooks": "^2.10.0",
 		"svelte": "^4.2.12",
-		"svelte-eslint-parser": "^0.33.1"
+		"svelte-eslint-parser": "^0.41.0"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"
