@@ -7,8 +7,9 @@ export const load: PageServerLoad = async (event) => {
 	let layout: number[] | undefined;
 	let collapsed: boolean | undefined;
 
-	layoutCookie && (layout = JSON.parse(layoutCookie));
-	collapsedCookie && (collapsed = JSON.parse(collapsedCookie));
+	if (layoutCookie) layout = JSON.parse(layoutCookie);
+
+	if (collapsedCookie) collapsed = JSON.parse(collapsedCookie);
 
 	return { layout, collapsed };
 };

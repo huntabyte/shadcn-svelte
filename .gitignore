@@ -10,6 +10,8 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .turbo
 
+**/.svelte-kit/**/*
+
 # Logs
 logs
 *.log

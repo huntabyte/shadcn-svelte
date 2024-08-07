@@ -23,7 +23,7 @@
 			const level = Number.parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
 				let newId = heading.innerText
-					.replaceAll(/[^a-zA-Z0-9 ]/g, "")
+					.replaceAll(/[^a-z0-9 ]/gi, "")
 					.replaceAll(" ", "-")
 					.toLowerCase();
 				if (newIdSet.has(newId)) {

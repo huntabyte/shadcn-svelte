@@ -53,6 +53,7 @@
 		>
 			Examples
 		</a>
+
 		<a
 			href="/blocks"
 			class={cn(
@@ -61,6 +62,15 @@
 			)}
 		>
 			Blocks
+		</a>
+		<a
+			href="/colors"
+			class={cn(
+				"hover:text-foreground/80 transition-colors",
+				$page.url.pathname.startsWith("/colors") ? "text-foreground" : "text-foreground/60"
+			)}
+		>
+			Colors
 		</a>
 		<a
 			href={siteConfig.links.github}

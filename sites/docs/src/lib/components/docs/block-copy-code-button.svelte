@@ -15,6 +15,7 @@
 
 	function copyToClipboard() {
 		// Remove data-x-chunk-name and data-x-chunk-description attributes from the code
+		// eslint-disable-next-line regexp/no-super-linear-backtracking
 		const re = /<([a-zA-Z0-9.]+)([^>]*)data-x-chunk-name="[^"]*"([^>]*)>/g;
 
 		const result = code.replace(re, (_all, elementName, p2, p3) => {
