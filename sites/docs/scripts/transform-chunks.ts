@@ -3,11 +3,6 @@ import { walk } from "estree-walker";
 import prettier from "@prettier/sync";
 import { codeBlockPrettierConfig } from "../other/code-block-prettier.js";
 
-// eslint-disable-next-line ts/no-explicit-any
-type Attribute = any;
-// eslint-disable-next-line ts/no-explicit-any
-type TemplateNode = any;
-
 type Chunk = {
 	name: string;
 	dependencies: string[];
@@ -18,38 +13,38 @@ type Chunk = {
 	container: { className: string };
 };
 export function getChunks(source: string, filename: string) {
-	const ast = parse(source, { filename });
+	type TemplateNode = typeof ast["fragment"]["nodes"] extends Array<infer T> ? T : typeof ast["fragment"]["nodes"];
+	const ast = parse(source, { filename, modern: true });
 	const chunks: Chunk[] = [];
 
-	// eslint-disable-next-line ts/no-explicit-any
-	walk(ast as any, {
-		enter(n) {
+	// @ts-expect-error yea, stfu
+	walk(ast, {
+		enter(n: TemplateNode) {
 			const chunkNode = n as TemplateNode;
-			if (chunkNode.type !== "Element" && chunkNode.type !== "InlineComponent") return;
+			if (chunkNode.type !== "RegularElement" && chunkNode.type !== "Component") return;
 
-			const attrs: Attribute[] = chunkNode.attributes;
+			const attrs = chunkNode.attributes.filter(a => a.type === "Attribute");
 			const nameNode = attrs.find((a) => a.name === "data-x-chunk-name");
 			const descriptionNode = attrs.find((a) => a.name === "data-x-chunk-description");
 			if (descriptionNode === undefined || nameNode === undefined) return;
 
 			const containerNode = attrs.find((a) => a.name === "data-x-chunk-container");
 
-			const name: string = nameNode.value[0].data;
-			const description: string = descriptionNode.value[0].data;
-			const containerClassName: string = containerNode?.value[0].data ?? "";
+			const name = extractAttributeValue(nameNode)!;
+			const description = extractAttributeValue(descriptionNode)!;
+			const containerClassName = containerNode ? extractAttributeValue(containerNode)! : "";
 			const dependencies = new Set<string>();
 
 			// discard any prop members
-			const [componentName] = chunkNode.name.split(".") as string[];
+			const [componentName] = chunkNode.name.split(".");
 			dependencies.add(componentName);
 
 			// walk the chunk to acquire all component dependencies
-			// eslint-disable-next-line ts/no-explicit-any
-			walk(chunkNode as any, {
-				enter(n) {
-					const node = n as TemplateNode;
-					if (node.type === "InlineComponent") {
-						const [componentName] = node.name.split(".") as string[];
+			// @ts-expect-error stfu
+			walk(chunkNode.fragment, {
+				enter(node: TemplateNode) {
+					if (node.type === "Component") {
+						const [componentName] = node.name.split(".");
 						dependencies.add(componentName);
 					}
 				},
@@ -75,6 +70,13 @@ export function getChunks(source: string, filename: string) {
 	return chunks;
 }
 
+// eslint-disable-next-line ts/no-explicit-any
+function extractAttributeValue(attribute: any): string | undefined {
+	if (Array.isArray(attribute.value) && attribute.value[0].type === "Text") {
+		return attribute.value[0].data;
+	}
+}
+
 export function transformChunk(source: string, chunk: Chunk): string {
 	const html = source.substring(chunk.start, chunk.end);
 	const lines = source.split("\n");
@@ -83,7 +85,7 @@ export function transformChunk(source: string, chunk: Chunk): string {
 		// we only want to look at the script tag...
 		.slice(0, scriptEndIdx)
 		// spaced on the edges to prevent false positives (e.g. `CreditCard` could be falsely triggered by `Card`)
-		.filter((line) => chunk.dependencies.some((dep) => line.includes(` ${dep} `)));
+		.filter((line) => chunk.dependencies.some((dep) => line.includes(` ${dep} `) || line.includes(` ${dep},`)));
 
 	let template = `<script lang="ts">\n`;
 	template += imports.join("\n");
