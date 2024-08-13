@@ -1,19 +1,20 @@
 import { existsSync, promises as fs } from "node:fs";
+import { EOL } from "node:os";
 import path from "node:path";
 import process from "node:process";
-import color from "chalk";
-import { Command } from "commander";
 import { execa } from "execa";
+import { Command } from "commander";
+import color from "chalk";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
+import { handleDependencies } from "../utils/dependencies.js";
 import { error, handleError } from "../utils/errors.js";
+import { type Config, getConfig } from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -225,15 +226,19 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
+	const { packageManager, dependencies: missingDeps } = await handleDependencies(
+		cwd,
+		dependencies
+	);
+
 	tasks.push({
-		title: "Installing package dependencies",
-		enabled: dependencies.size > 0,
+		title: `${highlight(packageManager)} Installing package dependencies`,
+		enabled: missingDeps.length > 0,
 		async task() {
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...dependencies], {
+			await execa(packageManager, ["add", ...missingDeps], {
 				cwd,
 			});
-			return "Dependencies installed";
+			return `Dependencies installed:${EOL}\t${color.gray(prettifyList(missingDeps))}`;
 		},
 	});
 

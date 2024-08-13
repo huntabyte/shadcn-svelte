@@ -1,14 +1,17 @@
 import { existsSync, promises as fs } from "node:fs";
+import { EOL } from "node:os";
 import path from "node:path";
 import process from "node:process";
-import color from "chalk";
-import { Command } from "commander";
 import { execa } from "execa";
+import { Command } from "commander";
+import color from "chalk";
 import * as v from "valibot";
+import { handleDependencies } from "../utils/dependencies.js";
+import { ConfigError, error, handleError } from "../utils/errors.js";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
-import { ConfigError, error, handleError } from "../utils/errors.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -17,8 +20,6 @@ import {
 	resolveTree,
 } from "../utils/registry";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -244,15 +245,19 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	}
 
 	// Install dependencies.
+	const { packageManager, dependencies: missingDeps } = await handleDependencies(
+		cwd,
+		dependencies
+	);
+
 	tasks.push({
-		title: "Installing package dependencies",
-		enabled: dependencies.size > 0,
+		title: `${highlight(packageManager)} Installing package dependencies`,
+		enabled: missingDeps.length > 0,
 		async task() {
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...dependencies], {
+			await execa(packageManager, ["add", ...missingDeps], {
 				cwd,
 			});
-			return "Dependencies installed";
+			return `Dependencies installed:${EOL}\t${color.gray(prettifyList(missingDeps))}`;
 		},
 	});
 

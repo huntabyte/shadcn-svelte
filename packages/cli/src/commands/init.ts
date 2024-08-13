@@ -1,21 +1,22 @@
 import { existsSync, promises as fs } from "node:fs";
+import { EOL } from "node:os";
 import path from "node:path";
 import process from "node:process";
+import { execa } from "execa";
+import { Command, Option } from "commander";
 import color from "chalk";
 import * as v from "valibot";
-import { Command, Option } from "commander";
-import { execa } from "execa";
-import * as cliConfig from "../utils/get-config.js";
-import type { Config } from "../utils/get-config.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
+import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
+import { handleDependencies } from "../utils/dependencies.js";
 import { error, handleError } from "../utils/errors.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
-import * as templates from "../utils/templates.js";
-import * as p from "../utils/prompts.js";
+import type { Config } from "../utils/get-config.js";
+import * as cliConfig from "../utils/get-config.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
+import * as templates from "../utils/templates.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -360,15 +361,19 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	// Install dependencies.
 	if (options.deps) {
-		tasks.push({
-			title: "Installing dependencies",
-			async task() {
-				const packageManager = await getPackageManager(cwd);
+		const { packageManager, dependencies: missingDeps } = await handleDependencies(
+			cwd,
+			new Set(PROJECT_DEPENDENCIES)
+		);
 
-				await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
+		tasks.push({
+			title: `${highlight(packageManager)} Installing package dependencies`,
+			enabled: missingDeps.length > 0,
+			async task() {
+				await execa(packageManager, ["add", ...missingDeps], {
 					cwd,
 				});
-				return "Dependencies installed";
+				return `Dependencies installed:${EOL}\t${color.gray(prettifyList(missingDeps))}`;
 			},
 		});
 	}
