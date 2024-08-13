@@ -4,6 +4,14 @@ import process from "node:process";
 import { findUp } from "find-up";
 
 export async function getPackageManager(targetDir: string) {
+	const userAgent = process.env.npm_config_user_agent;
+	if (userAgent) {
+		// try to determine the PM via the user agent first
+		if (userAgent === undefined) return "npm";
+		if (userAgent.startsWith("yarn")) return "yarn";
+		if (userAgent.startsWith("pnpm")) return "pnpm";
+	}
+
 	const packageManager = await detect(targetDir);
 
 	if (packageManager === "yarn@berry") return "yarn";
@@ -11,12 +19,6 @@ export async function getPackageManager(targetDir: string) {
 
 	// ni successfully detected a PM
 	if (packageManager !== null) return packageManager;
-
-	// ni couldn't find a lockfile, so we'll try to determine the PM via the user agent
-	const userAgent = process.env.npm_config_user_agent;
-	if (userAgent === undefined) return "npm";
-	if (userAgent.startsWith("yarn")) return "yarn";
-	if (userAgent.startsWith("pnpm")) return "pnpm";
 
 	// default to npm as the last resort
 	return "npm";
