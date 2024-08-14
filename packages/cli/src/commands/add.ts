@@ -5,9 +5,9 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
+import { detect } from "package-manager-detector";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import {
 	fetchTree,
@@ -248,8 +248,9 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 		title: "Installing package dependencies",
 		enabled: dependencies.size > 0,
 		async task() {
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...dependencies], {
+			const packageManager = await detect({ cwd });
+			const agent = (packageManager?.agent || "npm").split('@')[0] as string;
+			await execa(agent, ["add", ...dependencies], {
 				cwd,
 			});
 			return "Dependencies installed";

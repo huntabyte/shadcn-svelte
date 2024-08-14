@@ -5,8 +5,8 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
+import { detect } from "package-manager-detector";
 import { type Config, getConfig } from "../utils/get-config.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
 import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
@@ -229,8 +229,9 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		title: "Installing package dependencies",
 		enabled: dependencies.size > 0,
 		async task() {
-			const packageManager = await getPackageManager(cwd);
-			await execa(packageManager, ["add", ...dependencies], {
+			const packageManager = await detect({ cwd });
+			const agent = (packageManager?.agent || "npm").split('@')[0] as string;
+			await execa(agent, ["add", ...dependencies], {
 				cwd,
 			});
 			return "Dependencies installed";

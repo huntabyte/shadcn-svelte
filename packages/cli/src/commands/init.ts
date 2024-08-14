@@ -5,9 +5,9 @@ import color from "chalk";
 import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
+import { detect } from "package-manager-detector";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
-import { getPackageManager } from "../utils/get-package-manager.js";
 import { error, handleError } from "../utils/errors.js";
 import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
 import * as templates from "../utils/templates.js";
@@ -363,9 +363,10 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 		tasks.push({
 			title: "Installing dependencies",
 			async task() {
-				const packageManager = await getPackageManager(cwd);
-
-				await execa(packageManager, ["add", ...PROJECT_DEPENDENCIES], {
+				const packageManager = await detect({ cwd });
+				const agent = (packageManager?.agent || "npm").split('@')[0] as string;
+	
+				await execa(agent, ["add", ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
 				return "Dependencies installed";
