@@ -4,7 +4,6 @@ import { execa } from "execa";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import { getConfig } from "../../src/utils/get-config";
-import * as getPackageManager from "../../src/utils/get-package-manager";
 import * as registry from "../../src/utils/registry";
 
 vi.mock("execa");
@@ -16,7 +15,6 @@ vi.mock("fs/promises", () => ({
 vi.mock("ora");
 
 it("init (config-full)", async () => {
-	vi.spyOn(getPackageManager, "getPackageManager").mockResolvedValue("pnpm");
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
 		inlineColors: {
 			light: {},
