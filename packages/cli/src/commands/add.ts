@@ -6,6 +6,7 @@ import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
 import { detect } from "package-manager-detector";
+import { COMMANDS } from "package-manager-detector/agents";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
@@ -248,9 +249,9 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 		title: "Installing package dependencies",
 		enabled: dependencies.size > 0,
 		async task() {
-			const packageManager = await detect({ cwd });
-			const agent = (packageManager?.agent || "npm").split('@')[0] as string;
-			await execa(agent, ["add", ...dependencies], {
+			const { agent } = await detect({ cwd });
+			const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
+			await execa(pm, [add, ...dependencies], {
 				cwd,
 			});
 			return "Dependencies installed";

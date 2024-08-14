@@ -6,6 +6,7 @@ import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
 import { detect } from "package-manager-detector";
+import { COMMANDS } from "package-manager-detector/agents";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
@@ -363,10 +364,9 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 		tasks.push({
 			title: "Installing dependencies",
 			async task() {
-				const packageManager = await detect({ cwd });
-				const agent = (packageManager?.agent || "npm").split('@')[0] as string;
-	
-				await execa(agent, ["add", ...PROJECT_DEPENDENCIES], {
+				const { agent } = await detect({ cwd });
+				const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
+				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
 				return "Dependencies installed";
