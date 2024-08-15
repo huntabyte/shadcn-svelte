@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.12.2
+
+### Patch Changes
+
+- e67c1fd: chore: use `package-manager-detector`
+
 ## 0.12.1
 
 ### Patch Changes
