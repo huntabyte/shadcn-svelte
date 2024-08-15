@@ -69,7 +69,7 @@ You will be asked a few questions to configure `components.json`:
 Would you like to use TypeScript (recommended)? › Yes
 Which style would you like to use? › Default
 Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.pcss
+Where is your global CSS file? › src/app.css
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
