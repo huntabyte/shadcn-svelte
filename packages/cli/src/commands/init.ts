@@ -361,11 +361,11 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	// Install dependencies.
 	if (options.deps) {
+		const { agent = "npm" } = await detect({ cwd });
 		tasks.push({
-			title: "Installing dependencies",
+			title: `${highlight(agent)} Installing dependencies`,
 			async task() {
-				const { agent } = await detect({ cwd });
-				const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
+				const [pm, add] = COMMANDS[agent].add.split(" ") as [string, string];
 				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});

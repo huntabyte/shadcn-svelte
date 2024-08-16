@@ -226,12 +226,13 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
+	const { agent = "npm" } = await detect({ cwd });
+
 	tasks.push({
-		title: "Installing package dependencies",
+		title: `${highlight(agent)} Installing package dependencies`,
 		enabled: dependencies.size > 0,
 		async task() {
-			const { agent } = await detect({ cwd });
-			const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
+			const [pm, add] = COMMANDS[agent].add.split(" ") as [string, string];
 			await execa(pm, [add, ...dependencies], {
 				cwd,
 			});
