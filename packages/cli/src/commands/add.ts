@@ -248,7 +248,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	if (commands) {
 		const [pm, add] = commands.add.split(" ") as [string, string];
 		tasks.push({
-			title: `${highlight(pm)}: Installing package dependencies`,
+			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
 				await execa(pm, [add, ...dependencies], {
