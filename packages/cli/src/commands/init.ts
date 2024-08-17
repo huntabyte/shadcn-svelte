@@ -16,7 +16,12 @@ import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
+import {
+	type DetectLanguageResult,
+	detectConfigs,
+	detectLanguage,
+	detectPM,
+} from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -360,16 +365,17 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	if (options.deps) {
-		const { agent = "npm" } = await detect({ cwd });
+	const commands = await detectPM(cwd, options.deps);
+	if (commands) {
+		const [pm, add] = commands.add.split(" ") as [string, string];
 		tasks.push({
-			title: `${highlight(agent)} Installing dependencies`,
+			title: `${highlight(pm)}: Installing dependencies`,
+			enabled: options.deps,
 			async task() {
-				const [pm, add] = COMMANDS[agent].add.split(" ") as [string, string];
 				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
-				return "Dependencies installed";
+				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
 	}

@@ -15,6 +15,7 @@ import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -226,19 +227,20 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
-	const { agent = "npm" } = await detect({ cwd });
-
-	tasks.push({
-		title: `${highlight(agent)} Installing package dependencies`,
-		enabled: dependencies.size > 0,
-		async task() {
-			const [pm, add] = COMMANDS[agent].add.split(" ") as [string, string];
-			await execa(pm, [add, ...dependencies], {
-				cwd,
-			});
-			return "Dependencies installed";
-		},
-	});
+	const commands = await detectPM(cwd, true);
+	if (commands) {
+		const [pm, add] = commands.add.split(" ") as [string, string];
+		tasks.push({
+			title: `${highlight(pm)}: Installing package dependencies`,
+			enabled: dependencies.size > 0,
+			async task() {
+				await execa(pm, [add, ...dependencies], {
+					cwd,
+				});
+				return `Dependencies installed with ${highlight(pm)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 
