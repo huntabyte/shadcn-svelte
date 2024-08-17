@@ -5,8 +5,6 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { detect } from "package-manager-detector";
-import { COMMANDS } from "package-manager-detector/agents";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
@@ -15,6 +13,7 @@ import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -226,18 +225,20 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
-	tasks.push({
-		title: "Installing package dependencies",
-		enabled: dependencies.size > 0,
-		async task() {
-			const { agent } = await detect({ cwd });
-			const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
-			await execa(pm, [add, ...dependencies], {
-				cwd,
-			});
-			return "Dependencies installed";
-		},
-	});
+	const commands = await detectPM(cwd, true);
+	if (commands) {
+		const [pm, add] = commands.add.split(" ") as [string, string];
+		tasks.push({
+			title: `${highlight(pm)}: Installing dependencies`,
+			enabled: dependencies.size > 0,
+			async task() {
+				await execa(pm, [add, ...dependencies], {
+					cwd,
+				});
+				return `Dependencies installed with ${highlight(pm)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 

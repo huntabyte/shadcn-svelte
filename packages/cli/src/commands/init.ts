@@ -5,8 +5,6 @@ import color from "chalk";
 import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
-import { detect } from "package-manager-detector";
-import { COMMANDS } from "package-manager-detector/agents";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
@@ -16,7 +14,12 @@ import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
+import {
+	type DetectLanguageResult,
+	detectConfigs,
+	detectLanguage,
+	detectPM,
+} from "../utils/auto-detect.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -360,16 +363,17 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	if (options.deps) {
+	const commands = await detectPM(cwd, options.deps);
+	if (commands) {
+		const [pm, add] = commands.add.split(" ") as [string, string];
 		tasks.push({
-			title: "Installing dependencies",
+			title: `${highlight(pm)}: Installing dependencies`,
+			enabled: options.deps,
 			async task() {
-				const { agent } = await detect({ cwd });
-				const [pm, add] = COMMANDS[agent ?? "npm"].add.split(" ") as [string, string];
 				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
-				return "Dependencies installed";
+				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
 	}

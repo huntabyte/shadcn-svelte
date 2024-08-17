@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
+import { detect } from "package-manager-detector";
+import { AGENTS, type Agent, COMMANDS } from "package-manager-detector/agents";
+import * as p from "./prompts.js";
+import { cancel } from "./prompt-helpers.js";
 
 const STYLESHEETS = [
 	"app.css",
@@ -90,4 +94,29 @@ export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
 
 	const jsConfig = getTsconfig(rootPath, "jsconfig.json");
 	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
+}
+
+type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
+export async function detectPM(cwd: string, prompt: boolean) {
+	let { agent } = await detect({ cwd });
+
+	if (agent === undefined && prompt) {
+		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
+			value: pm,
+			label: pm,
+		}));
+		options.unshift({ label: "None", value: undefined });
+
+		const res = await p.select({
+			message: "Which package manager do you want to use?",
+			options,
+		});
+		if (p.isCancel(res)) {
+			cancel();
+		}
+
+		agent = res;
+	}
+
+	return agent ? COMMANDS[agent] : undefined;
 }
