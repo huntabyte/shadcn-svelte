@@ -5,8 +5,6 @@ import color from "chalk";
 import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
-import { detect } from "package-manager-detector";
-import { COMMANDS } from "package-manager-detector/agents";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";

@@ -5,8 +5,6 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { detect } from "package-manager-detector";
-import { COMMANDS } from "package-manager-detector/agents";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
