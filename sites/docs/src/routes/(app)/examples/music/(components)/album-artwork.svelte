@@ -20,12 +20,12 @@
 				<img
 					class={cn(
 						"h-auto w-auto object-cover transition-all hover:scale-105",
+						`w-[${width}px]`,
+						`h-[${height}px]`,
 						aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
 					)}
 					src={album.cover}
 					alt={album.name}
-					{width}
-					{height}
 				/>
 			</div>
 		</ContextMenu.Trigger>
