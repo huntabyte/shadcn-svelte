@@ -45,6 +45,8 @@ npx shadcn-svelte@latest add sonner
 	Add the Toaster component
 </Step>
 
+Note: Make sure you are adding the import from the path `"$lib/components/ui/sonner"` not `"svelte-sonner"`.
+
 ```svelte title="+layout.svelte" {2,5}
 <script lang="ts">
   import { Toaster } from "$lib/components/ui/sonner";
