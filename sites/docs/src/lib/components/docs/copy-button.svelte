@@ -82,10 +82,10 @@
 	{#if $selectedCommand}
 		<Button
 			size="icon"
-			variant="outline"
+			variant="ghost"
 			on:click={() => copyCommand()}
 			class={cn(
-				"pre-copy-btn absolute right-4 top-4 z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50"
+				"pre-copy-btn absolute right-4 top-4 z-10 h-6 w-6  bg-transparent text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50"
 			)}
 			{...$$restProps}
 		>
@@ -104,12 +104,12 @@
 				size="icon"
 				variant="ghost"
 				class={cn(
-					"relative !right-12 h-6 w-fit items-center justify-center rounded-md border border-zinc-50 p-1 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 dark:border-zinc-500",
+					"relative !right-12 h-6 w-fit items-center justify-center rounded-md border border-zinc-600 p-1 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 dark:border-zinc-700",
 					className
 				)}
 				{...$$restProps}
 			>
-				<span class="sr-only">Copy</span>
+				<span class="sr-only">select package manager</span>
 
 				<span class="flex items-center pl-1"
 					>{$selectedCommand} <CaretSort size="20" />
