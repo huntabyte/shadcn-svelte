@@ -242,4 +242,4 @@ export function getLiftMode(name: string) {
 	};
 }
 
-export let selectedCommand = writable("npm");
+export const selectedCommand = persisted<string>("package-manager", "npm");
