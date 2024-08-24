@@ -2,9 +2,10 @@
 	import { clickToCopyAction } from "svelte-legos";
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
-	import { cn } from "$lib/utils.js";
+	import { cn, selectedCommand } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { CaretSort } from "svelte-radix";
 
 	let copied = false;
 	let commands: Record<"npm" | "yarn" | "pnpm" | "bun", string> = {
@@ -49,7 +50,11 @@
 		}
 	}
 
-	function handleCopyDone() {
+	function handleCopyDone(key: string): void {
+		if (typeof key === "string") {
+			selectedCommand.set(key);
+		}
+
 		copied = true;
 		setTimeout(() => {
 			copied = false;
@@ -59,9 +64,39 @@
 	function handleCopyError() {
 		console.error("Error copying");
 	}
+
+	function copyCommand() {
+		let command = $selectedCommand as "npm" | "yarn" | "pnpm" | "bun";
+
+		const commandValue = commands[command];
+		if (!commandValue) return;
+
+		navigator.clipboard
+			.writeText(commandValue)
+			.then(() => handleCopyDone($selectedCommand))
+			.catch(handleCopyError);
+	}
 </script>
 
 {#if Object.values(commands).filter(Boolean).length > 1}
+	{#if $selectedCommand}
+		<Button
+			size="icon"
+			variant="outline"
+			on:click={() => copyCommand()}
+			class={cn(
+				"pre-copy-btn absolute right-4 top-4 z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50"
+			)}
+			{...$$restProps}
+		>
+			<span class="sr-only">Copy</span>
+			{#if copied}
+				<Check class="h-3 w-3" tabindex="-1" />
+			{:else}
+				<span class=""><Copy class="h-3 w-3" tabindex="-1" /></span>
+			{/if}
+		</Button>
+	{/if}
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
@@ -69,19 +104,19 @@
 				size="icon"
 				variant="ghost"
 				class={cn(
-					"relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50",
+					"relative !right-12 h-6 w-fit items-center justify-center rounded-md border border-zinc-50 p-1 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 dark:border-zinc-500",
 					className
 				)}
 				{...$$restProps}
 			>
 				<span class="sr-only">Copy</span>
-				{#if copied}
-					<Check class="h-3 w-3" tabindex="-1" />
-				{:else}
-					<Copy class="h-3 w-3" tabindex="-1" />
-				{/if}
+
+				<span class="flex items-center pl-1"
+					>{$selectedCommand} <CaretSort size="20" />
+				</span>
 			</Button>
 		</DropdownMenu.Trigger>
+
 		<DropdownMenu.Content align="end">
 			{#each Object.entries(commands) as [key, command]}
 				{#if command}
@@ -89,7 +124,7 @@
 						on:click={() =>
 							navigator.clipboard
 								.writeText(command)
-								.then(handleCopyDone)
+								.then(() => handleCopyDone(key))
 								.catch(handleCopyError)}
 					>
 						{key}

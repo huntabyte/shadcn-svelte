@@ -241,3 +241,5 @@ export function getLiftMode(name: string) {
 		toggleLiftMode,
 	};
 }
+
+export let selectedCommand = writable("npm");
