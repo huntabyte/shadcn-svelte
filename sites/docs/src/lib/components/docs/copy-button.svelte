@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { clickToCopyAction } from "svelte-legos";
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
+	import { CaretSort } from "svelte-radix";
+	import { clickToCopyAction } from "svelte-legos";
 	import { cn, selectedCommand } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { CaretSort } from "svelte-radix";
 
 	let copied = false;
 	let commands: Record<"npm" | "yarn" | "pnpm" | "bun", string> = {
