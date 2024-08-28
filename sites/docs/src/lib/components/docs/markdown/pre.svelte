@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { tick } from "svelte";
 	import { CopyButton } from "$lib/components/docs/index.js";
-	import { cn, createCopyCodeButton, selectedPackageManager } from "$lib/utils.js";
+	import { cn, createCopyCodeButton } from "$lib/utils.js";
+	import { getPackageManager } from "$lib/stores/package-manager.js";
+
+	const selectedPackageManager = getPackageManager();
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	export let isPackageManagerBlock = false;
 
 	const { copied, copyCode, codeString, setCodeString } = createCopyCodeButton();
 
@@ -12,7 +16,7 @@
 
 	function handleCopy() {
 		if ($selectedPackageManager && preNode) {
-			codeString.set(preNode.innerText.trim() ?? "");
+			codeString.set(preNode.innerText.trim().replaceAll("  ", " ") ?? "");
 		}
 		tick().then(() => {
 			copyCode();
@@ -31,6 +35,7 @@
 	<slot />
 </pre>
 <CopyButton
+	{isPackageManagerBlock}
 	copied={$copied}
 	copyCode={handleCopy}
 	value={$codeString}

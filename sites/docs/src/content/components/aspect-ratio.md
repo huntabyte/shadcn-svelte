@@ -26,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 
 <PMInstall command="bits-ui" />
 
-1. Copy and paste the component source files linked at the top of this page into your project.
+2. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 

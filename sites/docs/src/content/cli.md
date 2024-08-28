@@ -3,15 +3,17 @@ title: CLI
 description: Use the CLI to add components to your project.
 ---
 
+<script>
+	import { PMExecute } from '$lib/components/docs'
+</script>
+
 ## init
 
 Use the `init` command to initialize dependencies for a new project.
 
 The `init` command installs dependencies, adds the `cn` util, configures `tailwind.config.cjs`, and creates CSS variables for the project.
 
-```bash
-npx shadcn-svelte@latest init
-```
+<PMExecute command="shadcn-svelte@latest init" />
 
 You will be asked a few questions to configure `components.json`:
 
@@ -47,9 +49,7 @@ Options:
 
 Use the `add` command to add components and dependencies to your project.
 
-```bash
-npx shadcn-svelte@latest add [component]
-```
+<PMExecute command="shadcn-svelte@latest add [component]" />
 
 You will be presented with a list of components to choose from:
 
@@ -93,9 +93,7 @@ Options:
 
 Use the `update` command to update components in your project. This will overwrite any modifications you've made to the components, so be sure to commit your changes before running this command.
 
-```bash
-npx shadcn-svelte@latest update [component]
-```
+<PMExecute command="shadcn-svelte@latest update [component]" />
 
 ### Options
 

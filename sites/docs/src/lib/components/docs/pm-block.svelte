@@ -2,15 +2,17 @@
 	import Pre from "./markdown/pre.svelte";
 	import {
 		type PackageManager,
+		getPackageManager,
 		getPackageManagerInstallCmd,
 		getPackageManagerScriptCmd,
-		selectedPackageManager,
-	} from "$lib/utils.js";
+	} from "$lib/stores/package-manager.js";
 
 	type PMBlockType = "execute" | "create" | "install";
 
 	export let type: PMBlockType;
 	export let command: string = "";
+
+	const selectedPackageManager = getPackageManager();
 
 	function getCmd(type: PMBlockType, pm: PackageManager) {
 		if (type === "execute") return getPackageManagerScriptCmd(pm);
@@ -28,7 +30,12 @@
 </script>
 
 <figure data-rehype-pretty-code-figure="">
-	<Pre tabindex="0" data-language="bash" data-theme="Lambda Studio - Blackout">
+	<Pre
+		isPackageManagerBlock={true}
+		tabindex="0"
+		data-language="bash"
+		data-theme="Lambda Studio - Blackout"
+	>
 		<code data-language="bash" data-theme="Lambda Studio — Blackout" style="display: grid;">
 			<span data-line="">
 				<span style="color:#FFF;font-weight:bold">{`${cmdStart}`}</span>

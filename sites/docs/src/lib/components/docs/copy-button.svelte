@@ -3,21 +3,18 @@
 	import Copy from "svelte-radix/Copy.svelte";
 	import { CaretSort } from "svelte-radix";
 	import { tick } from "svelte";
-	import { cn, packageManagers, selectedPackageManager } from "$lib/utils.js";
+	import { cn } from "$lib/utils.js";
+	import { getPackageManager, packageManagers } from "$lib/stores/package-manager.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
 	export let copied = false;
 	export let copyCode = () => {};
 	let className: string | undefined | null = undefined;
-	export let value = "";
 	export { className as class };
+	export let isPackageManagerBlock = false;
 
-	$: isPackageManagerBlock = value && isPmCommand(value);
-
-	function isPmCommand(value: string): boolean {
-		return /^(?:pnpm|yarn|npm|bunx?|npx)/.test(value);
-	}
+	const selectedPackageManager = getPackageManager();
 </script>
 
 {#if isPackageManagerBlock}
