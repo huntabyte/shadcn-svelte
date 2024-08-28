@@ -9,11 +9,8 @@
 	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
 	import { setPackageManager } from "$lib/stores/package-manager.js";
 
-	export let data;
+	setPackageManager();
 
-	const pmStore = setPackageManager(data.packageManager);
-
-	$: pmStore.set(data.packageManager);
 	$: updateTheme($config.theme, $page.url.pathname);
 </script>
 

@@ -29,7 +29,7 @@
 	$: cmdStart = getCmd(type, $selectedPackageManager);
 </script>
 
-<figure data-rehype-pretty-code-figure="">
+<figure data-rehype-pretty-code-figure>
 	<Pre
 		isPackageManagerBlock={true}
 		tabindex="0"
@@ -37,7 +37,7 @@
 		data-theme="Lambda Studio - Blackout"
 	>
 		<code data-language="bash" data-theme="Lambda Studio — Blackout" style="display: grid;">
-			<span data-line="">
+			<span data-line>
 				<span style="color:#FFF;font-weight:bold">{`${cmdStart}`}</span>
 				{#if type === "install" || type === "create"}
 					<span style="color:#FFF8">
