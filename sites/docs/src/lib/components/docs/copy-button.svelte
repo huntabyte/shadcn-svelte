@@ -18,7 +18,7 @@
 </script>
 
 {#if isPackageManagerBlock}
-	<DropdownMenu.Root>
+	<DropdownMenu.Root preventScroll={false}>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
 				builders={[builder]}
