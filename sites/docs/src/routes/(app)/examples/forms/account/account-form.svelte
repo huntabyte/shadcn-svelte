@@ -26,11 +26,11 @@
 		language: z.enum(languages.map((lang) => lang.value) as [Language, ...Language[]]),
 		dob: z
 			.string()
-			.datetime({ message: ""})
+			.datetime({ message: "" })
 			// we're setting it optional so the user can clear the date and we don't run into
 			// type issues, but we refine it to make sure it's not undefined
 			.optional()
-			.refine((date) => date !== '', "Please select a valid date.")
+			.refine((date) => date !== "", "Please select a valid date."),
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
