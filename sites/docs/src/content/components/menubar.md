@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/menubar
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="menubar-demo">
@@ -16,17 +16,13 @@ bits: https://www.bits-ui.com/docs/components/menubar
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add menubar
-```
+<PMAddComp name="menubar" />
 
 <ManualInstall>
 
 1. Install `bits-ui`:
 
-```bash
-npm install bits-ui
-```
+<PMInstall command="bits-ui" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

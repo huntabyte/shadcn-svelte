@@ -7,6 +7,9 @@
 	import { config } from "$lib/stores/index.js";
 	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
 	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
+	import { setPackageManager } from "$lib/stores/package-manager.js";
+
+	setPackageManager();
 
 	$: updateTheme($config.theme, $page.url.pathname);
 </script>

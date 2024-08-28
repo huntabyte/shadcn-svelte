@@ -4,7 +4,7 @@ description: Adding dark mode to your Svelte site.
 ---
 
 <script>
-  import { Steps, ComponentPreview } from "$lib/components/docs";
+  import { Steps, ComponentPreview, PMInstall } from "$lib/components/docs";
 </script>
 
 We use the `class` strategy from Tailwind CSS to support dark mode toggling. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) for more information.
@@ -19,9 +19,7 @@ How you add the ` dark` class to the `html` element is up to you. In this guide,
 
 Start by installing `mode-watcher`:
 
-```bash
-npm install mode-watcher
-```
+<PMInstall command="mode-watcher" />
 
 ### Add the ModeWatcher component
 
