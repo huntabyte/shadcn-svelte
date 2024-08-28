@@ -7,7 +7,8 @@ bits: https://www.bits-ui.com/docs/components/accordion
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+	import { selectedPackageManager } from '$lib/utils'
 </script>
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
@@ -18,19 +19,15 @@ bits: https://www.bits-ui.com/docs/components/accordion
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add accordion
-```
+<PMAddComp name="accordion" />
 
 <ManualInstall>
 
 1. Install `bits-ui`:
 
-```bash
-npm install bits-ui
-```
+<PMInstall command="bits-ui" />
 
-2. Copy and paste the component source files linked at the top of this page into your project.
+1. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 

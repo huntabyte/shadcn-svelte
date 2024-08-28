@@ -7,7 +7,7 @@ bits: https://www.embla-carousel.com/get-started/svelte/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="carousel-demo">
@@ -22,9 +22,7 @@ The carousel component is built using the [Embla Carousel](https://www.embla-car
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add carousel
-```
+<PMAddComp name="carousel" />
 
 <ManualInstall>
 

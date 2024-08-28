@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="aspect-ratio-demo">
@@ -18,19 +18,15 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add aspect-ratio
-```
+<PMAddComp name="aspect-ratio" />
 
 <ManualInstall>
 
 1. Install `bits-ui`:
 
-```bash
-npm install bits-ui
-```
+<PMInstall command="bits-ui" />
 
-2. Copy and paste the component source files linked at the top of this page into your project.
+1. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 
