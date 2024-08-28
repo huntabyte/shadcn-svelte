@@ -17,7 +17,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 ## Installation
 
-<PMAddComp command="alert" />
+<PMAddComp name="alert" />
 
 <ManualInstall>
 

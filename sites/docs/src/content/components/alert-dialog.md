@@ -19,7 +19,7 @@ bits: https://www.bits-ui.com/docs/components/alert-dialog
 
 ## Installation
 
-<PMAddComp command="alert-dialog" />
+<PMAddComp name="alert-dialog" />
 
 <ManualInstall>
 
