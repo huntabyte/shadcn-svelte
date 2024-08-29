@@ -4,7 +4,7 @@ description: Building forms with Formsnap, Superforms, & Zod.
 ---
 
 <script>
- 	import { Steps, ComponentPreview, FormPreview } from '$lib/components/docs';
+ 	import { Steps, ComponentPreview, FormPreview, PMAddComp, PMInstall } from '$lib/components/docs';
 
 	export let form;
 </script>
@@ -65,9 +65,7 @@ If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add form
-```
+<PMAddComp name="form" />
 
 ## Usage
 

@@ -7,7 +7,7 @@ bits: https://bits-ui.com/docs/components/scroll-area
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="scroll-area-demo">
@@ -18,13 +18,15 @@ bits: https://bits-ui.com/docs/components/scroll-area
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add scroll-area
-```
+<PMAddComp name="scroll-area" />
 
 <ManualInstall>
 
-1. Copy and paste the component source files linked at the top of this page into your project.
+1. Install `bits-ui`:
+
+<PMInstall command="bits-ui" />
+
+2. Copy and paste the component source files linked at the top of this page into your project.
 
 </ManualInstall>
 

@@ -1,7 +1,7 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
-import { derived, writable } from "svelte/store";
+import { derived, get, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
@@ -83,13 +83,13 @@ export function hexToRgb(hex: string): [number, number, number] {
 }
 
 export function createCopyCodeButton() {
-	let codeString = "";
+	const codeString = writable("");
 	const copied = writable(false);
 	let copyTimeout = 0;
 
 	function copyCode() {
 		if (!isBrowser) return;
-		navigator.clipboard.writeText(codeString);
+		navigator.clipboard.writeText(get(codeString));
 		copied.set(true);
 		clearTimeout(copyTimeout);
 		copyTimeout = window.setTimeout(() => {
@@ -98,13 +98,14 @@ export function createCopyCodeButton() {
 	}
 
 	function setCodeString(node: HTMLElement) {
-		codeString = node.innerText.trim() ?? "";
+		codeString.set(node.innerText.trim() ?? "");
 	}
 
 	return {
 		copied,
 		copyCode,
 		setCodeString,
+		codeString,
 	};
 }
 
@@ -240,4 +241,36 @@ export function getLiftMode(name: string) {
 		isLiftMode,
 		toggleLiftMode,
 	};
+}
+
+export const packageManagers = ["pnpm", "bun", "yarn", "npm"] as const;
+export type PackageManager = (typeof packageManagers)[number];
+
+export const selectedPackageManager = persisted<PackageManager>("package-manager", "npm");
+
+const packageManagerToScriptCmd: Record<PackageManager, string> = {
+	npm: "npx",
+	yarn: "yarn dlx",
+	pnpm: "pnpm dlx",
+	bun: "bunx",
+};
+
+export function getPackageManagerScriptCmd(pm: PackageManager): string {
+	return packageManagerToScriptCmd[pm];
+}
+
+const packageManagerToInstallCmd: Record<PackageManager, string> = {
+	npm: "install",
+	yarn: "add",
+	pnpm: "add",
+	bun: "add",
+};
+
+export function getPackageManagerInstallCmd(pm: PackageManager): string {
+	return packageManagerToInstallCmd[pm];
+}
+
+// eslint-disable-next-line ts/no-explicit-any
+export function isPackageManager(value: any): value is PackageManager {
+	return packageManagers.includes(value);
 }

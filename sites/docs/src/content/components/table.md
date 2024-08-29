@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="table-demo">
@@ -17,9 +17,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add table
-```
+<PMAddComp name="table" />
 
 <ManualInstall>
 
