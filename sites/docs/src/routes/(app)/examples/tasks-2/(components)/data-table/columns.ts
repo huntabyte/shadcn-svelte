@@ -21,6 +21,7 @@ export const columns: ColumnDef<Task>[] = [
 				checked: row.getIsSelected(),
 				"aria-label": "Select row",
 				class: "translate-y-[2px]",
+				onCheckedChange: (checked) => row.toggleSelected(!!checked),
 			});
 		},
 		enableSorting: false,
