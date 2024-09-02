@@ -114,7 +114,7 @@
 				{#each $table.getHeaderGroups() as headerGroup}
 					<Table.Row>
 						{#each headerGroup.headers as header}
-							<Table.Head>
+							<Table.Head colspan={header.colSpan}>
 								{#if !header.isPlaceholder}
 									<svelte:component
 										this={flexRender(
@@ -157,7 +157,9 @@
 					{/each}
 				{:else}
 					<Table.Row>
-						<Table.Cell class="h-24 text-center">No results.</Table.Cell>
+						<Table.Cell colspan={columns.length} class="h-24 text-center">
+							No results.
+						</Table.Cell>
 					</Table.Row>
 				{/if}
 			</Table.Body>
