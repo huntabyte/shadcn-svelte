@@ -30,6 +30,7 @@
 		"@sveltejs/enhanced-img": "^0.2.0",
 		"@sveltejs/kit": "^2.5.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
+		"@tanstack/svelte-table": "^8.20.5",
 		"@types/d3-scale": "^4.0.8",
 		"@types/hast": "^3.0.4",
 		"@types/lodash.template": "^4.5.3",
