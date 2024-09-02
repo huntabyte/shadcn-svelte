@@ -11,7 +11,7 @@
 
 	export let table: Readable<Table<Task>>;
 
-	const isFiltered = $table.getState().columnFilters.length > 0;
+	$: isFiltered = $table.getState().columnFilters.length > 0;
 	let filterValue = $table.getColumn("title")?.getFilterValue();
 </script>
 
