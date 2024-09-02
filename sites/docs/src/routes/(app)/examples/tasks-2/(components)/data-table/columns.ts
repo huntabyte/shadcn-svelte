@@ -11,6 +11,7 @@ export const columns: ColumnDef<Task>[] = [
 				checked:
 					table.getIsAllPageRowsSelected() ||
 					(table.getIsSomePageRowsSelected() && "indeterminate"),
+				onCheckedChange: (checked) => table.toggleAllPageRowsSelected(!!checked),
 				"aria-label": "Select all",
 				class: "translate-y-[2px]",
 			});
