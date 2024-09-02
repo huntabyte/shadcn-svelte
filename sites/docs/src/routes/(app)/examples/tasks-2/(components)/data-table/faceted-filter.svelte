@@ -15,8 +15,23 @@
 	export let title: string | undefined = undefined;
 	export let options: typeof statuses;
 
-	const facets = column?.getFacetedUniqueValues();
-	const selectedValues = new Set(column?.getFilterValue() as string[]);
+	$: facets = column?.getFacetedUniqueValues();
+	$: selectedValues = new Set(column?.getFilterValue() as string[]);
+
+	function toggleOption(option: (typeof options)[0]) {
+		if (selectedValues.has(option.value)) {
+			selectedValues.delete(option.value);
+		} else {
+			selectedValues.add(option.value);
+		}
+
+		const filterValues = Array.from(selectedValues);
+		column?.setFilterValue(filterValues.length ? filterValues : undefined);
+	}
+
+	function clearFilters() {
+		column?.setFilterValue(undefined);
+	}
 </script>
 
 <Popover.Root>
@@ -25,7 +40,7 @@
 			<PlusCircled class="mr-2 size-4" />
 			{title}
 
-			{#if selectedValues?.size > 0}
+			{#if selectedValues.size > 0}
 				<Separator orientation="vertical" class="mx-2 h-4" />
 				<Badge variant="secondary" class="rounded-sm px-1 font-normal lg:hidden">
 					{selectedValues.size}
@@ -36,7 +51,7 @@
 							{selectedValues.size} selected
 						</Badge>
 					{:else}
-						{#each options as option}
+						{#each options.filter( (option) => selectedValues.has(option.value) ) as option}
 							<Badge
 								variant="secondary"
 								key={option.value}
@@ -59,20 +74,7 @@
 					{#each options as option}
 						{@const Icon = option.icon}
 						{@const isSelected = selectedValues.has(option.value)}
-						<Command.Item
-							value={option.value}
-							onSelect={() => {
-								if (isSelected) {
-									selectedValues.delete(option.value);
-								} else {
-									selectedValues.add(option.value);
-								}
-								const filterValues = Array.from(selectedValues);
-								column?.setFilterValue(
-									filterValues.length ? filterValues : undefined
-								);
-							}}
-						>
+						<Command.Item value={option.value} onSelect={() => toggleOption(option)}>
 							<div
 								class={cn(
 									"border-primary mr-2 flex size-4 items-center justify-center rounded-sm border",
@@ -83,10 +85,10 @@
 							>
 								<Check class={cn("size-4")} />
 							</div>
-							<Icon class="text-muted-foreground mr-2 size-4" />
-							<span>
-								{option.label}
-							</span>
+							{#if option.icon}
+								<Icon class="text-muted-foreground mr-2 size-4" />
+							{/if}
+							<span>{option.label}</span>
 							{#if facets?.get(option.value)}
 								<span
 									class="ml-auto flex size-4 items-center justify-center font-mono text-xs"
@@ -99,10 +101,7 @@
 				</Command.Group>
 				{#if selectedValues?.size > 0}
 					<Command.Separator />
-					<Command.Item
-						class="justify-center text-center"
-						onSelect={() => column?.setFilterValue(undefined)}
-					>
+					<Command.Item class="justify-center text-center" onSelect={clearFilters}>
 						Clear filters
 					</Command.Item>
 				{/if}
