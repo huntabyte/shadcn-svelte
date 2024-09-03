@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DataTable, columns } from "./(components)/data-table/index.js";
+	import { DataTable, defaultColumns } from "./(components)/data-table/index.js";
 	import UserNav from "./(components)/user-nav.svelte";
 	import tasks from "./(data)/tasks.json";
 	import TasksDark from "$lib/img/examples/tasks-dark.png?enhanced";
@@ -20,5 +20,5 @@
 			<UserNav />
 		</div>
 	</div>
-	<DataTable data={tasks} {columns} />
+	<DataTable data={tasks} {defaultColumns} />
 </div>

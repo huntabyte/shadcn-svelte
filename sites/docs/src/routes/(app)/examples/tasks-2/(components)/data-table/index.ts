@@ -7,7 +7,7 @@ import StatusCell from "./status-cell.svelte";
 import TitleCell from "./title-cell.svelte";
 import Toolbar from "./toolbar.svelte";
 import ViewOptions from "./view-options.svelte";
-import { columns } from "./columns.js";
+import { defaultColumns } from "./columns.js";
 
 export {
 	ColumnHeader,
@@ -19,5 +19,5 @@ export {
 	TitleCell,
 	Toolbar,
 	ViewOptions,
-	columns,
+	defaultColumns,
 };

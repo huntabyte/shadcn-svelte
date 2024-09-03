@@ -21,7 +21,7 @@
 	import Toolbar from "./toolbar.svelte";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
-	export let columns: ColumnDef<Task>[];
+	export let defaultColumns: ColumnDef<Task>[];
 	export let data: Task[];
 
 	let rowSelection: RowSelectionState = {};
@@ -31,7 +31,7 @@
 
 	const options = writable<TableOptions<Task>>({
 		data,
-		columns,
+		columns: defaultColumns,
 		state: {
 			sorting,
 			columnVisibility,
@@ -157,7 +157,7 @@
 					{/each}
 				{:else}
 					<Table.Row>
-						<Table.Cell colspan={columns.length} class="h-24 text-center">
+						<Table.Cell colspan={defaultColumns.length} class="h-24 text-center">
 							No results.
 						</Table.Cell>
 					</Table.Row>

@@ -1,10 +1,12 @@
-import { type ColumnDef, renderComponent } from "@tanstack/svelte-table";
+import { createColumnHelper, renderComponent } from "@tanstack/svelte-table";
 import type { Task } from "../../(data)/schema.js";
 import { ColumnHeader, PriorityCell, RowActions, StatusCell, TitleCell } from "./index.js";
 import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 
-export const columns: ColumnDef<Task>[] = [
-	{
+const columnHelper = createColumnHelper<Task>();
+
+export const defaultColumns = [
+	columnHelper.display({
 		id: "select",
 		header: ({ table }) => {
 			return renderComponent(Checkbox, {
@@ -26,9 +28,8 @@ export const columns: ColumnDef<Task>[] = [
 		},
 		enableSorting: false,
 		enableHiding: false,
-	},
-	{
-		accessorKey: "id",
+	}),
+	columnHelper.accessor("id", {
 		id: "task",
 		header: ({ column }) => {
 			return renderComponent(ColumnHeader, {
@@ -38,9 +39,8 @@ export const columns: ColumnDef<Task>[] = [
 		},
 		enableSorting: false,
 		enableHiding: false,
-	},
-	{
-		accessorKey: "title",
+	}),
+	columnHelper.accessor("title", {
 		header: ({ column }) => {
 			return renderComponent(ColumnHeader, {
 				column,
@@ -53,9 +53,8 @@ export const columns: ColumnDef<Task>[] = [
 				labelValue: row.original.label,
 			});
 		},
-	},
-	{
-		accessorKey: "status",
+	}),
+	columnHelper.accessor("status", {
 		header: ({ column }) => {
 			return renderComponent(ColumnHeader, {
 				column,
@@ -70,9 +69,8 @@ export const columns: ColumnDef<Task>[] = [
 		filterFn: (row, id, value) => {
 			return value.includes(row.getValue(id));
 		},
-	},
-	{
-		accessorKey: "priority",
+	}),
+	columnHelper.accessor("priority", {
 		header: ({ column }) => {
 			return renderComponent(ColumnHeader, {
 				column,
@@ -87,13 +85,13 @@ export const columns: ColumnDef<Task>[] = [
 		filterFn: (row, id, value) => {
 			return value.includes(row.getValue(id));
 		},
-	},
-	{
+	}),
+	columnHelper.display({
 		id: "actions",
 		cell: ({ row }) => {
 			return renderComponent(RowActions, {
 				row,
 			});
 		},
-	},
+	}),
 ];
