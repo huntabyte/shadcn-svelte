@@ -1,15 +1,14 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import type { Table } from "@tanstack/svelte-table";
 	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import DoubleArrowLeft from "svelte-radix/DoubleArrowLeft.svelte";
 	import DoubleArrowRight from "svelte-radix/DoubleArrowRight.svelte";
 	import type { Readable } from "svelte/store";
-	import type { Task } from "../../(data)/schema.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
-	export let table: Readable<Table<Task>>;
+	export let table: Readable<Table<T>>;
 </script>
 
 <div class="flex items-center justify-between px-2">

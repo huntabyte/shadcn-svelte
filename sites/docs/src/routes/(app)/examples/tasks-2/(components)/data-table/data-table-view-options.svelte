@@ -1,12 +1,11 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import type { Table } from "@tanstack/svelte-table";
 	import MixerHorizontalIcon from "svelte-radix/MixerHorizontal.svelte";
 	import type { Readable } from "svelte/store";
-	import type { Task } from "../../(data)/schema.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
-	export let table: Readable<Table<Task>>;
+	export let table: Readable<Table<T>>;
 </script>
 
 <DropdownMenu.Root>

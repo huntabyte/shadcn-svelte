@@ -8,7 +8,7 @@
 
 	export let row: Row<Task>;
 
-	const task = taskSchema.parse(row.original);
+	$: task = taskSchema.parse(row.original);
 </script>
 
 <DropdownMenu.Root>

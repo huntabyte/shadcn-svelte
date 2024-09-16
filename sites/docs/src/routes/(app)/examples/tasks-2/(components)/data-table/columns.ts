@@ -32,17 +32,22 @@ export const defaultColumns = [
 	columnHelper.accessor("id", {
 		id: "task",
 		header: ({ column }) => {
-			return renderComponent(ColumnHeader, {
+			return renderComponent(ColumnHeader<Task>, {
 				column,
 				title: "Task",
 			});
+		},
+		meta: {
+			cellProps: {
+				class: "w-[80px]",
+			},
 		},
 		enableSorting: false,
 		enableHiding: false,
 	}),
 	columnHelper.accessor("title", {
 		header: ({ column }) => {
-			return renderComponent(ColumnHeader, {
+			return renderComponent(ColumnHeader<Task>, {
 				column,
 				title: "Title",
 			});
@@ -56,7 +61,7 @@ export const defaultColumns = [
 	}),
 	columnHelper.accessor("status", {
 		header: ({ column }) => {
-			return renderComponent(ColumnHeader, {
+			return renderComponent(ColumnHeader<Task>, {
 				column,
 				title: "Status",
 			});
@@ -72,7 +77,7 @@ export const defaultColumns = [
 	}),
 	columnHelper.accessor("priority", {
 		header: ({ column }) => {
-			return renderComponent(ColumnHeader, {
+			return renderComponent(ColumnHeader<Task>, {
 				column,
 				title: "Priority",
 			});

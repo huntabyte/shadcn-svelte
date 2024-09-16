@@ -5,7 +5,7 @@
 	export let value: string;
 	export let labelValue: string;
 
-	const label = labels.find((label) => label.value === labelValue);
+	$: label = labels.find((label) => label.value === labelValue);
 </script>
 
 <div class="flex space-x-2">

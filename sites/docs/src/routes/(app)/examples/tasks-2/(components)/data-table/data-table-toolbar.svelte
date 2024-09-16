@@ -1,15 +1,14 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import type { Table } from "@tanstack/svelte-table";
 	import Cross2 from "svelte-radix/Cross2.svelte";
 	import { type Readable } from "svelte/store";
-	import type { Task } from "../../(data)/schema.js";
 	import { priorities, statuses } from "../../(data)/data.js";
-	import FacetedFilter from "./faceted-filter.svelte";
-	import ViewOptions from "./view-options.svelte";
+	import FacetedFilter from "./data-table-faceted-filter.svelte";
+	import ViewOptions from "./data-table-view-options.svelte";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
-	export let table: Readable<Table<Task>>;
+	export let table: Readable<Table<T>>;
 
 	$: isFiltered = $table.getState().columnFilters.length > 0;
 	let filterValue = $table.getColumn("title")?.getFilterValue();

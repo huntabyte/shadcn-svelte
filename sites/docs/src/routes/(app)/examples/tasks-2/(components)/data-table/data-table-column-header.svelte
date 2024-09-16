@@ -1,23 +1,22 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import type { Column } from "@tanstack/svelte-table";
 	import ArrowDown from "svelte-radix/ArrowDown.svelte";
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import EyeNone from "svelte-radix/EyeNone.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { Task } from "../../(data)/schema.js";
 	import { cn } from "$lib/utils.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & {
-		column: Column<Task>;
+		column: Column<T, string>;
 		title: string;
 	};
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
-	export let column: $$Props["column"];
+	export let column: Column<T, string>;
 	export let title: $$Props["title"];
 </script>
 

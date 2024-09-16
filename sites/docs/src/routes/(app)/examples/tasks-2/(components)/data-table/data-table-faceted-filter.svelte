@@ -1,8 +1,7 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import type { Column } from "@tanstack/svelte-table";
 	import Check from "svelte-radix/Check.svelte";
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import type { Task } from "../../(data)/schema.js";
 	import type { statuses } from "../../(data)/data.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -11,7 +10,7 @@
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
-	export let column: Column<Task> | undefined = undefined;
+	export let column: Column<T> | undefined = undefined;
 	export let title: string | undefined = undefined;
 	export let options: typeof statuses;
 

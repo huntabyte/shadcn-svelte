@@ -3,8 +3,8 @@
 
 	export let value: string;
 
-	const priority = priorities.find((priority) => priority.value === value);
-	const Icon = priority?.icon;
+	$: priority = priorities.find((priority) => priority.value === value);
+	$: Icon = priority?.icon;
 </script>
 
 {#if priority}

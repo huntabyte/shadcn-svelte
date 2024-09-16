@@ -1,11 +1,7 @@
-<script lang="ts">
+<script lang="ts" generics="T extends unknown | object | any[]">
 	import {
 		type ColumnDef,
-		type ColumnFiltersState,
-		type RowSelectionState,
-		type SortingState,
 		type TableOptions,
-		type VisibilityState,
 		createSvelteTable,
 		flexRender,
 		getCoreRowModel,
@@ -16,85 +12,17 @@
 		getSortedRowModel,
 	} from "@tanstack/svelte-table";
 	import { writable } from "svelte/store";
-	import type { Task } from "../../(data)/schema.js";
-	import Pagination from "./pagination.svelte";
-	import Toolbar from "./toolbar.svelte";
+	import Pagination from "./data-table-pagination.svelte";
+	import Toolbar from "./data-table-toolbar.svelte";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
-	export let defaultColumns: ColumnDef<Task>[];
-	export let data: Task[];
+	export let defaultColumns: ColumnDef<T>[];
+	export let data: T[];
 
-	let rowSelection: RowSelectionState = {};
-	let columnFilters: ColumnFiltersState = [];
-	let columnVisibility: VisibilityState = {};
-	let sorting: SortingState = [];
-
-	const options = writable<TableOptions<Task>>({
+	const options = writable<TableOptions<T>>({
 		data,
 		columns: defaultColumns,
-		state: {
-			sorting,
-			columnVisibility,
-			rowSelection,
-			columnFilters,
-		},
 		enableRowSelection: true,
-		onRowSelectionChange: (updater) => {
-			if (updater instanceof Function) {
-				rowSelection = updater(rowSelection);
-			} else {
-				rowSelection = updater;
-			}
-			options.update((old) => ({
-				...old,
-				state: {
-					...old.state,
-					rowSelection,
-				},
-			}));
-		},
-		onSortingChange: (updater) => {
-			if (updater instanceof Function) {
-				sorting = updater(sorting);
-			} else {
-				sorting = updater;
-			}
-			options.update((old) => ({
-				...old,
-				state: {
-					...old.state,
-					sorting,
-				},
-			}));
-		},
-		onColumnFiltersChange: (updater) => {
-			if (updater instanceof Function) {
-				columnFilters = updater(columnFilters);
-			} else {
-				columnFilters = updater;
-			}
-			options.update((old) => ({
-				...old,
-				state: {
-					...old.state,
-					columnFilters,
-				},
-			}));
-		},
-		onColumnVisibilityChange: (updater) => {
-			if (updater instanceof Function) {
-				columnVisibility = updater(columnVisibility);
-			} else {
-				columnVisibility = updater;
-			}
-			options.update((old) => ({
-				...old,
-				state: {
-					...old.state,
-					columnVisibility,
-				},
-			}));
-		},
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
@@ -134,13 +62,15 @@
 						<Table.Row data-state={row.getIsSelected() && "selected"}>
 							{#each row.getVisibleCells() as cell}
 								{#if cell.column.columnDef.id === "task"}
-									<Table.Cell class="w-[80px]">
-										<svelte:component
-											this={flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext()
-											)}
-										/>
+									<Table.Cell>
+										<div class="w-[80px]">
+											<svelte:component
+												this={flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext()
+												)}
+											/>
+										</div>
 									</Table.Cell>
 								{:else}
 									<Table.Cell>
