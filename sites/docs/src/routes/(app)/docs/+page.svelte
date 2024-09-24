@@ -7,7 +7,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	const component = $derived(data.component);
+	const Component = $derived(data.component);
 	const doc = $derived(data.metadata);
 </script>
 
@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="markdown pb-12 pt-8" id="markdown">
-			<svelte:component this={component} />
+			<Component />
 		</div>
 
 		<DocsPager />

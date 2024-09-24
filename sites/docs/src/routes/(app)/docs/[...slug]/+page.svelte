@@ -12,7 +12,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	const markdown = $derived(data.component);
+	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
 	const componentSource = $derived(
 		data.metadata.source?.replace("default", $config.style ?? "default")
@@ -63,7 +63,7 @@
 			</div>
 		{/if}
 		<div class="markdown pb-12 pt-8" id="markdown">
-			<svelte:component this={markdown} form={data.form} />
+			<Markdown form={data.form} />
 		</div>
 		<DocsPager />
 	</div>

@@ -11,7 +11,8 @@
 		accounts: Account[];
 	} = $props();
 
-	let selectedAccount = accounts[0];
+	let selectedAccount = $state(accounts[0]);
+	const SelectedIcon = $derived(selectedAccount.icon);
 </script>
 
 <Select.Root value={accounts[0].email}>
@@ -24,7 +25,7 @@
 		aria-label="Select account"
 	>
 		<span class="pointer-events-none">
-			<svelte:component this={selectedAccount.icon} class={cn(isCollapsed ? "ml-2" : "")} />
+			<SelectedIcon class={cn(isCollapsed ? "ml-2" : "")} />
 			<span class={cn(isCollapsed ? "!ml-0 !hidden" : "ml-2")}>
 				{selectedAccount.label}
 			</span>
@@ -33,15 +34,12 @@
 	<Select.Content align={isCollapsed ? "start" : undefined} class="w-fit">
 		<Select.Group>
 			{#each accounts as account}
+				{@const Icon = account.icon}
 				<Select.Item value={account.email} textValue={account.label}>
 					<div
 						class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
 					>
-						<svelte:component
-							this={account.icon}
-							aria-hidden="true"
-							class="text-foreground size-4 shrink-0"
-						/>
+						<Icon aria-hidden="true" class="text-foreground size-4 shrink-0" />
 						{account.email}
 					</div>
 				</Select.Item>

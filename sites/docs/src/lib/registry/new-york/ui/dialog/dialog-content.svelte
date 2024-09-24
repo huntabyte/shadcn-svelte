@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { Dialog as DialogPrimitive, type WithoutChild } from "bits-ui";
+	import { Dialog as DialogPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import Cross2 from "svelte-radix/Cross2.svelte";
+	import type { Snippet } from "svelte";
 	import * as Dialog from "./index.js";
 	import { cn } from "$lib/utils.js";
 
@@ -9,7 +10,9 @@
 		class: className,
 		children,
 		...restProps
-	}: WithoutChild<DialogPrimitive.ContentProps> = $props();
+	}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {
+		children: Snippet;
+	} = $props();
 </script>
 
 <Dialog.Portal>

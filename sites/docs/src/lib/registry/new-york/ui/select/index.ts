@@ -1,6 +1,6 @@
 import { Select as SelectPrimitive } from "bits-ui";
 
-import GroupLabel from "./select-group-label.svelte";
+import GroupHeading from "./select-group-heading.svelte";
 import Item from "./select-item.svelte";
 import Content from "./select-content.svelte";
 import Trigger from "./select-trigger.svelte";
@@ -16,7 +16,7 @@ export {
 	Root,
 	Item,
 	Group,
-	GroupLabel,
+	GroupHeading,
 	Value,
 	Content,
 	Trigger,
@@ -27,7 +27,7 @@ export {
 	Root as Select,
 	Item as SelectItem,
 	Group as SelectGroup,
-	GroupLabel as SelectGroupLabel,
+	GroupHeading as SelectGroupHeading,
 	Value as SelectValue,
 	Content as SelectContent,
 	Trigger as SelectTrigger,

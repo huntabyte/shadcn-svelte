@@ -4,7 +4,7 @@
 	import { cn } from "$lib/utils.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 
-	type $$Props = LabelPrimitive.Props;
+	type $$Props = LabelPrimitive.RootProps;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
