@@ -14,7 +14,7 @@
 </script>
 
 <CommandPrimitive.Group
-	class={cn("text-foreground  overflow-hidden p-1", className)}
+	class={cn("text-foreground overflow-hidden p-1", className)}
 	bind:ref
 	{...restProps}
 >
@@ -25,7 +25,5 @@
 			{heading}
 		</CommandPrimitive.GroupHeading>
 	{/if}
-	<CommandPrimitive.GroupItems>
-		{@render children?.()}
-	</CommandPrimitive.GroupItems>
+	<CommandPrimitive.GroupItems {children} />
 </CommandPrimitive.Group>

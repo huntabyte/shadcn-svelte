@@ -18,8 +18,6 @@
 		WithoutChildrenOrChild<CommandPrimitive.RootProps> & {
 			children: Snippet;
 		} = $props();
-
-	type $$Props = DialogPrimitive.RootProps & CommandPrimitive.RootProps;
 </script>
 
 <Dialog.Root bind:open {...restProps}>
@@ -29,8 +27,7 @@
 			{...restProps}
 			bind:value
 			bind:ref
-		>
-			{@render children?.()}
-		</Command>
+			{children}
+		/>
 	</Dialog.Content>
 </Dialog.Root>

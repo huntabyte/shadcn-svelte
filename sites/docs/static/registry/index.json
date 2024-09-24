@@ -196,8 +196,7 @@
 	{
 		"name": "command",
 		"dependencies": [
-			"bits-ui",
-			"cmdk-sv"
+			"bits-ui"
 		],
 		"registryDependencies": [
 			"dialog"
@@ -208,6 +207,7 @@
 			"ui/command/command-group.svelte",
 			"ui/command/command-input.svelte",
 			"ui/command/command-item.svelte",
+			"ui/command/command-link-item.svelte",
 			"ui/command/command-list.svelte",
 			"ui/command/command-separator.svelte",
 			"ui/command/command-shortcut.svelte",
@@ -495,7 +495,7 @@
 		"files": [
 			"ui/select/index.ts",
 			"ui/select/select-content.svelte",
-			"ui/select/select-group-label.svelte",
+			"ui/select/select-group-heading.svelte",
 			"ui/select/select-item.svelte",
 			"ui/select/select-scroll-down-button.svelte",
 			"ui/select/select-scroll-up-button.svelte",

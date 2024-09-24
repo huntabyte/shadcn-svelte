@@ -4,31 +4,23 @@
 	import Laptop from "svelte-radix/Laptop.svelte";
 	import Moon from "svelte-radix/Moon.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-	import { type ComponentProps, onMount } from "svelte";
+	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
-	import { goto } from "$app/navigation";
 
 	let restProps: ComponentProps<typeof Button> = $props();
 
 	let open = $state(false);
 
-	onMount(() => {
-		function handleKeydown(e: KeyboardEvent) {
-			if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-				e.preventDefault();
-				open = true;
-			}
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault();
+			open = true;
 		}
-		document.addEventListener("keydown", handleKeydown);
-
-		return () => {
-			document.removeEventListener("keydown", handleKeydown);
-		};
-	});
+	}
 
 	function runCommand(cmd: () => void) {
 		open = false;
@@ -38,6 +30,8 @@
 	const mainNav = docsConfig.mainNav.filter((item) => !item.external);
 	const sidebarNav = docsConfig.sidebarNav;
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <Button
 	variant="outline"
@@ -61,33 +55,29 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Links">
 			{#each mainNav as navItem}
-				<Command.Item
+				<Command.LinkItem
 					value={navItem.title}
-					onSelect={() =>
-						runCommand(() => {
-							navItem.href && goto(navItem.href);
-						})}
+					href={navItem.href}
+					onSelect={() => (open = false)}
 				>
 					<File class="mr-2 size-4" />
 					{navItem.title}
-				</Command.Item>
+				</Command.LinkItem>
 			{/each}
 		</Command.Group>
 		{#each sidebarNav as group}
 			<Command.Group heading={group.title}>
 				{#each group.items as navItem}
-					<Command.Item
+					<Command.LinkItem
 						value={navItem.title}
-						onSelect={() =>
-							runCommand(() => {
-								navItem.href && goto(navItem.href);
-							})}
+						href={navItem.href}
+						onSelect={() => (open = false)}
 					>
 						<div class="mr-2 flex size-4 items-center justify-center">
 							<Circle class="size-3" />
 						</div>
 						{navItem.title}
-					</Command.Item>
+					</Command.LinkItem>
 				{/each}
 			</Command.Group>
 		{/each}
