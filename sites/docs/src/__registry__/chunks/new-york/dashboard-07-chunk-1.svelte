@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";

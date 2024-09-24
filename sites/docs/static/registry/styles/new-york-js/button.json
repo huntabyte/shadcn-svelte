@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "button.svelte",
-			"content": "<script>import { buttonVariants } from \"./index.js\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  class: className,\n  variant = \"default\",\n  size = \"default\",\n  ref = $bindable(null),\n  href = undefined,\n  type = \"button\",\n  children,\n  ...restProps\n} = $props();\n</script>\n\n{#if href}\n\t<a bind:this={ref} class={cn(buttonVariants({ variant, size, className }))} {...restProps}>\n\t\t{@render children?.()}\n\t</a>\n{:else}\n\t<button\n\t\tbind:this={ref}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\t{type}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n"
+			"content": "<script>\n\timport { type Props, buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tsize = \"default\",\n\t\tref = $bindable(null),\n\t\thref = undefined,\n\t\ttype = \"button\",\n\t\tchildren,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if href}\n\t<a bind:this={ref} class={cn(buttonVariants({ variant, size, className }))} {...restProps}>\n\t\t{@render children?.()}\n\t</a>\n{:else}\n\t<button\n\t\tbind:this={ref}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\t{type}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n"
 		},
 		{
 			"name": "index.js",

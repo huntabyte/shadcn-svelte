@@ -82,7 +82,9 @@
 	},
 	{
 		"name": "breadcrumb",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/breadcrumb/breadcrumb-ellipsis.svelte",
@@ -153,7 +155,8 @@
 	{
 		"name": "carousel",
 		"dependencies": [
-			"embla-carousel-svelte"
+			"embla-carousel-svelte",
+			"bits-ui"
 		],
 		"registryDependencies": [
 			"button"
@@ -193,8 +196,8 @@
 	{
 		"name": "command",
 		"dependencies": [
-			"cmdk-sv",
-			"bits-ui"
+			"bits-ui",
+			"cmdk-sv"
 		],
 		"registryDependencies": [
 			"dialog"
@@ -222,7 +225,7 @@
 		"files": [
 			"ui/context-menu/context-menu-checkbox-item.svelte",
 			"ui/context-menu/context-menu-content.svelte",
-			"ui/context-menu/context-menu-group-label.svelte",
+			"ui/context-menu/context-menu-group-heading.svelte",
 			"ui/context-menu/context-menu-item.svelte",
 			"ui/context-menu/context-menu-radio-item.svelte",
 			"ui/context-menu/context-menu-separator.svelte",
@@ -278,7 +281,7 @@
 		"files": [
 			"ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-content.svelte",
-			"ui/dropdown-menu/dropdown-menu-group-label.svelte",
+			"ui/dropdown-menu/dropdown-menu-group-heading.svelte",
 			"ui/dropdown-menu/dropdown-menu-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-separator.svelte",
@@ -294,7 +297,8 @@
 		"dependencies": [
 			"formsnap",
 			"zod",
-			"sveltekit-superforms"
+			"sveltekit-superforms",
+			"bits-ui"
 		],
 		"registryDependencies": [
 			"button",
@@ -327,7 +331,9 @@
 	},
 	{
 		"name": "input",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/input/index.ts",
@@ -357,8 +363,8 @@
 			"ui/menubar/index.ts",
 			"ui/menubar/menubar-checkbox-item.svelte",
 			"ui/menubar/menubar-content.svelte",
+			"ui/menubar/menubar-group-heading.svelte",
 			"ui/menubar/menubar-item.svelte",
-			"ui/menubar/menubar-label.svelte",
 			"ui/menubar/menubar-radio-item.svelte",
 			"ui/menubar/menubar-separator.svelte",
 			"ui/menubar/menubar-shortcut.svelte",
@@ -454,7 +460,8 @@
 	{
 		"name": "resizable",
 		"dependencies": [
-			"paneforge"
+			"paneforge",
+			"bits-ui"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -528,7 +535,9 @@
 	},
 	{
 		"name": "skeleton",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/skeleton/index.ts",
@@ -606,7 +615,9 @@
 	},
 	{
 		"name": "textarea",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/textarea/index.ts",

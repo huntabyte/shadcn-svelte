@@ -12,11 +12,11 @@
 		},
 		{
 			"name": "radio-group-item.svelte",
-			"content": "<script>import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\nimport Circle from \"lucide-svelte/icons/circle\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Circle class=\"size-2.5 fill-current text-current\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
+			"content": "<script>\n\timport { RadioGroup as RadioGroupPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport Circle from \"lucide-svelte/icons/circle\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RadioGroupPrimitive.ItemProps> = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Circle class=\"size-2.5 fill-current text-current\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
 		},
 		{
 			"name": "radio-group.svelte",
-			"content": "<script>import { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  value = $bindable(\"\"),\n  ...restProps\n} = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn(\"grid gap-2\", className)} {...restProps} />\n"
+			"content": "<script>\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn(\"grid gap-2\", className)} {...restProps} />\n"
 		}
 	],
 	"type": "components:ui"

@@ -1,6 +1,8 @@
 {
 	"name": "skeleton",
-	"dependencies": [],
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{
@@ -9,7 +11,7 @@
 		},
 		{
 			"name": "skeleton.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-muted animate-pulse rounded-md\", className)}\n\t{...restProps}\n></div>\n"
+			"content": "<script>\n\timport type { WithoutChildren } from \"bits-ui\";\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<PrimitiveDivAttributes> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-muted animate-pulse rounded-md\", className)}\n\t{...restProps}\n></div>\n"
 		}
 	],
 	"type": "components:ui"

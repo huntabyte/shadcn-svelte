@@ -51,7 +51,7 @@
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
-				<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+				<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
 				<DropdownMenu.Item>Assign to...</DropdownMenu.Item>
 				<DropdownMenu.Item>Set due date...</DropdownMenu.Item>
 				<DropdownMenu.Separator />

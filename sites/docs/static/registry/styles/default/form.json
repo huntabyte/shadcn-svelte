@@ -3,7 +3,8 @@
 	"dependencies": [
 		"formsnap",
 		"zod",
-		"sveltekit-superforms"
+		"sveltekit-superforms",
+		"bits-ui"
 	],
 	"registryDependencies": [
 		"button",

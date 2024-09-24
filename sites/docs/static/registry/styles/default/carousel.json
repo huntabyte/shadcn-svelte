@@ -2,7 +2,8 @@
 	"name": "carousel",
 	"dependencies": [
 		"embla-carousel-svelte",
-		"lucide-svelte"
+		"lucide-svelte",
+		"bits-ui"
 	],
 	"registryDependencies": [
 		"button"

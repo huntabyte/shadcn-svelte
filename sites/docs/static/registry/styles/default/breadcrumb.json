@@ -1,7 +1,8 @@
 {
 	"name": "breadcrumb",
 	"dependencies": [
-		"lucide-svelte"
+		"lucide-svelte",
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [

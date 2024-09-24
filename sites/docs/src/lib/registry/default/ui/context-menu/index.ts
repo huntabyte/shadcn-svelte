@@ -1,7 +1,7 @@
 import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 
 import Item from "./context-menu-item.svelte";
-import GroupLabel from "./context-menu-group-label.svelte";
+import GroupHeading from "./context-menu-group-heading.svelte";
 import Content from "./context-menu-content.svelte";
 import Shortcut from "./context-menu-shortcut.svelte";
 import RadioItem from "./context-menu-radio-item.svelte";
@@ -20,7 +20,7 @@ export {
 	Sub,
 	Root,
 	Item,
-	GroupLabel,
+	GroupHeading,
 	Group,
 	Trigger,
 	Content,
@@ -35,7 +35,7 @@ export {
 	Root as ContextMenu,
 	Sub as ContextMenuSub,
 	Item as ContextMenuItem,
-	GroupLabel as ContextMenuGroupLabel,
+	GroupHeading as ContextMenuGroupHeading,
 	Group as ContextMenuGroup,
 	Content as ContextMenuContent,
 	Trigger as ContextMenuTrigger,

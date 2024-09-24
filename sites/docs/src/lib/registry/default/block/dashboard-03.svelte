@@ -17,7 +17,7 @@
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
-	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -36,67 +36,82 @@
 		<nav class="grid gap-1 p-2">
 			<Tooltip.Provider>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Playground"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "bg-muted rounded-lg",
-						})}
-					>
-						<SquareTerminal class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								variant="ghost"
+								size="icon"
+								class="bg-muted rounded-lg"
+								aria-label="Playground"
+							>
+								<SquareTerminal class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Playground</Tooltip.Content>
 				</Tooltip.Root>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Models"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "rounded-lg",
-						})}
-					>
-						<Bot class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="Models"
+								variant="ghost"
+								size="icon"
+								class="rounded-lg"
+							>
+								<Bot class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Models</Tooltip.Content>
 				</Tooltip.Root>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="API"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "rounded-lg",
-						})}
-					>
-						<CodeXML class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="API"
+								variant="ghost"
+								size="icon"
+								class="rounded-lg"
+							>
+								<CodeXML class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>API</Tooltip.Content>
 				</Tooltip.Root>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Documentation"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "rounded-lg",
-						})}
-					>
-						<Book class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="Documentation"
+								variant="ghost"
+								size="icon"
+								class="rounded-lg"
+							>
+								<Book class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Documentation</Tooltip.Content>
 				</Tooltip.Root>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Settings"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "rounded-lg",
-						})}
-					>
-						<Settings2 class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="Settings"
+								variant="ghost"
+								size="icon"
+								class="rounded-lg"
+							>
+								<Settings2 class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Settings</Tooltip.Content>
 				</Tooltip.Root>
@@ -105,28 +120,34 @@
 		<nav class="mt-auto grid gap-1 p-2">
 			<Tooltip.Provider>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Help"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "mt-auto rounded-lg",
-						})}
-					>
-						<LifeBuoy class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="Help"
+								variant="ghost"
+								size="icon"
+								class="mt-auto rounded-lg"
+							>
+								<LifeBuoy class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Help</Tooltip.Content>
 				</Tooltip.Root>
 				<Tooltip.Root>
-					<Tooltip.Trigger
-						aria-label="Account"
-						class={buttonVariants({
-							variant: "ghost",
-							size: "icon",
-							class: "mt-auto rounded-lg",
-						})}
-					>
-						<SquareUser class="size-5" />
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<Button
+								{...props}
+								aria-label="Account"
+								variant="ghost"
+								size="icon"
+								class="mt-auto rounded-lg"
+							>
+								<SquareUser class="size-5" />
+							</Button>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" sideOffset={5}>Account</Tooltip.Content>
 				</Tooltip.Root>
@@ -139,11 +160,13 @@
 		>
 			<h1 class="text-xl font-semibold">Playground</h1>
 			<Drawer.Root>
-				<Drawer.Trigger
-					class={buttonVariants({ variant: "ghost", size: "icon", class: "md:hidden" })}
-				>
-					<Settings class="size-4" />
-					<span class="sr-only">Settings</span>
+				<Drawer.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="ghost" size="icon" class="md:hidden">
+							<Settings class="size-4" />
+							<span class="sr-only">Settings</span>
+						</Button>
+					{/snippet}
 				</Drawer.Trigger>
 				<Drawer.Content class="max-h-[80vh]">
 					<Drawer.Header>
@@ -395,20 +418,24 @@
 					<div class="flex items-center p-3 pt-0">
 						<Tooltip.Provider>
 							<Tooltip.Root>
-								<Tooltip.Trigger
-									class={buttonVariants({ variant: "ghost", size: "icon" })}
-								>
-									<Paperclip class="size-4" />
-									<span class="sr-only">Attach file</span>
+								<Tooltip.Trigger>
+									{#snippet child({ props })}
+										<Button {...props} variant="ghost" size="icon">
+											<Paperclip class="size-4" />
+											<span class="sr-only">Attach file</span>
+										</Button>
+									{/snippet}
 								</Tooltip.Trigger>
 								<Tooltip.Content side="top">Attach File</Tooltip.Content>
 							</Tooltip.Root>
 							<Tooltip.Root>
-								<Tooltip.Trigger
-									class={buttonVariants({ variant: "ghost", size: "icon" })}
-								>
-									<Mic class="size-4" />
-									<span class="sr-only">Use Microphone</span>
+								<Tooltip.Trigger>
+									{#snippet child({ props })}
+										<Button {...props} variant="ghost" size="icon">
+											<Mic class="size-4" />
+											<span class="sr-only">Use Microphone</span>
+										</Button>
+									{/snippet}
 								</Tooltip.Trigger>
 								<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
 							</Tooltip.Root>

@@ -13,11 +13,11 @@
 		},
 		{
 			"name": "toggle-group-item.svelte",
-			"content": "<script>import { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\nimport { getToggleGroupCtx } from \"./index.js\";\nimport { cn } from \"$lib/utils.js\";\nimport { toggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\nlet {\n  ref = $bindable(null),\n  value = $bindable(),\n  class: className,\n  size,\n  variant,\n  ...restProps\n} = $props();\nconst ctx = getToggleGroupCtx();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\ttoggleVariants({\n\t\t\tvariant: ctx.variant || variant,\n\t\t\tsize: ctx.size || size,\n\t\t}),\n\t\tclassName\n\t)}\n\t{value}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { type ToggleVariants, getToggleGroupCtx } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { toggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize,\n\t\tvariant,\n\t\t...restProps\n\t}: ToggleGroupPrimitive.ItemProps & ToggleVariants = $props();\n\n\tconst ctx = getToggleGroupCtx();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\ttoggleVariants({\n\t\t\tvariant: ctx.variant || variant,\n\t\t\tsize: ctx.size || size,\n\t\t}),\n\t\tclassName\n\t)}\n\t{value}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "toggle-group.svelte",
-			"content": "<script>import { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\nimport { setToggleGroupCtx } from \"./index.js\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  value = $bindable(),\n  class: className,\n  size = \"default\",\n  variant = \"default\",\n  ...restProps\n} = $props();\nsetToggleGroupCtx({\n  variant,\n  size\n});\n</script>\n\n<ToggleGroupPrimitive.Root\n\tbind:ref\n\tclass={cn(\"flex items-center justify-center gap-1\", className)}\n\tbind:value={value as any}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { type ToggleVariants, setToggleGroupCtx } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: ToggleGroupPrimitive.RootProps & ToggleVariants = $props();\n\n\tsetToggleGroupCtx({\n\t\tvariant,\n\t\tsize,\n\t});\n</script>\n\n<ToggleGroupPrimitive.Root\n\tbind:ref\n\tclass={cn(\"flex items-center justify-center gap-1\", className)}\n\tbind:value={value as any}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

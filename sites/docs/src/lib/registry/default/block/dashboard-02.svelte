@@ -11,7 +11,7 @@
 	import Users from "lucide-svelte/icons/users";
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
-	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -96,15 +96,13 @@
 	<div class="flex flex-col">
 		<header class="bg-muted/40 flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6">
 			<Sheet.Root>
-				<Sheet.Trigger
-					class={buttonVariants({
-						variant: "outline",
-						size: "icon",
-						class: "shrink-0 md:hidden",
-					})}
-				>
-					<Menu class="size-5" />
-					<span class="sr-only">Toggle navigation menu</span>
+				<Sheet.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="outline" size="icon" class="shrink-0 md:hidden">
+							<Menu class="size-5" />
+							<span class="sr-only">Toggle navigation menu</span>
+						</Button>
+					{/snippet}
 				</Sheet.Trigger>
 				<Sheet.Content side="left" class="flex flex-col">
 					<nav class="grid gap-2 text-lg font-medium">
@@ -182,19 +180,17 @@
 				</form>
 			</div>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					class={buttonVariants({
-						variant: "secondary",
-						size: "icon",
-						class: "rounded-full",
-					})}
-				>
-					<CircleUser class="size-5" />
-					<span class="sr-only">Toggle user menu</span>
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="secondary" size="icon" class="rounded-full">
+							<CircleUser class="size-5" />
+							<span class="sr-only">Toggle user menu</span>
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+						<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>Settings</DropdownMenu.Item>
 						<DropdownMenu.Item>Support</DropdownMenu.Item>

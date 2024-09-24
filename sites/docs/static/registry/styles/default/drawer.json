@@ -35,7 +35,7 @@
 		},
 		{
 			"name": "drawer.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet {\n\t\tshouldScaleBackground = true,\n\t\topen = $bindable(false),\n\t\tactiveSnapPoint = $bindable(),\n\t\t...restProps\n\t}: DrawerPrimitive.RootProps = $props();\n</script>\n\n<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...restProps} />\n"
+			"content": "<script lang=\"ts\">\n\timport { Drawer as DrawerPrimitive } from \"vaul-svelte\";\n\n\tlet {\n\t\tshouldScaleBackground = true,\n\t\topen = $bindable(false),\n\t\tactiveSnapPoint = $bindable(null),\n\t\t...restProps\n\t}: DrawerPrimitive.RootProps = $props();\n</script>\n\n<DrawerPrimitive.Root {shouldScaleBackground} bind:open bind:activeSnapPoint {...restProps} />\n"
 		},
 		{
 			"name": "index.ts",

@@ -5,15 +5,15 @@
 	"files": [
 		{
 			"name": "alert-description.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "alert-title.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  level = 5,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\trole=\"heading\"\n\taria-level={level}\n\tbind:this={ref}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { AlertHeadingLevel } from \"./index.js\";\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tlevel = 5,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes & {\n\t\tlevel?: AlertHeadingLevel;\n\t} = $props();\n</script>\n\n<div\n\trole=\"heading\"\n\taria-level={level}\n\tbind:this={ref}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "alert.svelte",
-			"content": "<script>import { alertVariants } from \"./index.js\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  variant = \"default\",\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div bind:this={ref} class={cn(alertVariants({ variant }), className)} {...restProps} role=\"alert\">\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport { type AlertVariant, alertVariants } from \"./index.js\";\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes & {\n\t\tvariant?: AlertVariant;\n\t} = $props();\n</script>\n\n<div bind:this={ref} class={cn(alertVariants({ variant }), className)} {...restProps} role=\"alert\">\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "index.js",

@@ -35,7 +35,7 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupLabel>Suggested Lists</DropdownMenu.GroupLabel>
+						<DropdownMenu.GroupHeading>Suggested Lists</DropdownMenu.GroupHeading>
 						<DropdownMenu.Separator />
 						<DropdownMenu.CheckboxItem bind:checked={futureIdeas}>
 							Future Ideas

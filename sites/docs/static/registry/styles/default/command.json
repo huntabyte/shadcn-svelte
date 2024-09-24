@@ -1,8 +1,8 @@
 {
 	"name": "command",
 	"dependencies": [
-		"cmdk-sv",
 		"bits-ui",
+		"cmdk-sv",
 		"lucide-svelte"
 	],
 	"registryDependencies": [

@@ -4,7 +4,7 @@
 	import Package2 from "lucide-svelte/icons/package-2";
 	import Search from "lucide-svelte/icons/search";
 
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
@@ -38,15 +38,13 @@
 			</a>
 		</nav>
 		<Sheet.Root>
-			<Sheet.Trigger
-				class={buttonVariants({
-					variant: "outline",
-					size: "icon",
-					class: "shrink-0 md:hidden",
-				})}
-			>
-				<Menu class="size-5" />
-				<span class="sr-only">Toggle navigation menu</span>
+			<Sheet.Trigger>
+				{#snippet child({ props })}
+					<Button {...props} variant="outline" size="icon" class="shrink-0 md:hidden">
+						<Menu class="size-5" />
+						<span class="sr-only">Toggle navigation menu</span>
+					</Button>
+				{/snippet}
 			</Sheet.Trigger>
 			<Sheet.Content side="left">
 				<nav class="grid gap-6 text-lg font-medium">
@@ -74,19 +72,17 @@
 				</div>
 			</form>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					class={buttonVariants({
-						variant: "secondary",
-						size: "icon",
-						class: "rounded-full",
-					})}
-				>
-					<CircleUser class="size-5" />
-					<span class="sr-only">Toggle user menu</span>
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="secondary" size="icon" class="rounded-full">
+							<CircleUser class="size-5" />
+							<span class="sr-only">Toggle user menu</span>
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+						<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>Settings</DropdownMenu.Item>
 						<DropdownMenu.Item>Support</DropdownMenu.Item>

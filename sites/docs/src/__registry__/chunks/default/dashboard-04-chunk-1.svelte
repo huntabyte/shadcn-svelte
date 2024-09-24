@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 </script>

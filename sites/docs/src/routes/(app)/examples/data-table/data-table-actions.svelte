@@ -18,7 +18,7 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupLabel>Actions</DropdownMenu.GroupLabel>
+			<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
 			<DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
 				Copy payment ID
 			</DropdownMenu.Item>

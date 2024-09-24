@@ -1,37 +1,38 @@
 {
 	"name": "breadcrumb",
 	"dependencies": [
-		"lucide-svelte"
+		"lucide-svelte",
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [
 		{
 			"name": "breadcrumb-ellipsis.svelte",
-			"content": "<script>import Ellipsis from \"lucide-svelte/icons/ellipsis\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\nexport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
+			"content": "<script>\n\timport Ellipsis from \"lucide-svelte/icons/ellipsis\";\n\timport type { WithoutChildren } from \"bits-ui\";\n\timport { type PrimitiveSpanAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<PrimitiveSpanAttributes> = $props();\n\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<Ellipsis class=\"size-4\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-item.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<li bind:this={ref} class={cn(\"inline-flex items-center gap-1.5\", className)} {...restProps}>\n\t{@render children?.()}\n</li>\n"
+			"content": "<script>\n\timport { type PrimitiveLiAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveLiAttributes = $props();\n</script>\n\n<li bind:this={ref} class={cn(\"inline-flex items-center gap-1.5\", className)} {...restProps}>\n\t{@render children?.()}\n</li>\n"
 		},
 		{
 			"name": "breadcrumb-link.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  href = undefined,\n  child,\n  children,\n  ...restProps\n} = $props();\nconst attrs = $derived({\n  class: cn(\"hover:text-foreground transition-colors\", className),\n  href,\n  ...restProps\n});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n"
+			"content": "<script>\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\timport { type PrimitiveAnchorAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\thref = undefined,\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveAnchorAttributes & {\n\t\tchild?: Snippet<[{ props: HTMLAnchorAttributes }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\tclass: cn(\"hover:text-foreground transition-colors\", className),\n\t\thref,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n"
 		},
 		{
 			"name": "breadcrumb-list.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n"
+			"content": "<script>\n\timport { type PrimitiveOlAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveOlAttributes = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n"
 		},
 		{
 			"name": "breadcrumb-page.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\nexport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"text-foreground font-normal\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
+			"content": "<script>\n\timport { type PrimitiveSpanAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveSpanAttributes = $props();\n\n\texport { className as class };\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"text-foreground font-normal\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
 		},
 		{
 			"name": "breadcrumb-separator.svelte",
-			"content": "<script>import ChevronRight from \"lucide-svelte/icons/chevron-right\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
+			"content": "<script>\n\timport ChevronRight from \"lucide-svelte/icons/chevron-right\";\n\timport { type PrimitiveLiAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveLiAttributes = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n"
 		},
 		{
 			"name": "breadcrumb.svelte",
-			"content": "<script>let {\n  ref = $bindable(),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<nav bind:this={ref} class={className} aria-label=\"breadcrumb\" {...restProps}>\n\t{@render children?.()}\n</nav>\n"
+			"content": "<script>\n\timport type { PrimitiveElementAttributes } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveElementAttributes = $props();\n</script>\n\n<nav bind:this={ref} class={className} aria-label=\"breadcrumb\" {...restProps}>\n\t{@render children?.()}\n</nav>\n"
 		},
 		{
 			"name": "index.js",

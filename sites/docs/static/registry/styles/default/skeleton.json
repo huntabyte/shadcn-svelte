@@ -1,6 +1,8 @@
 {
 	"name": "skeleton",
-	"dependencies": [],
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{

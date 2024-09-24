@@ -9,7 +9,7 @@
 		},
 		{
 			"name": "input.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  value = $bindable(),\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { type PrimitiveInputAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tvalue = $bindable(),\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: PrimitiveInputAttributes = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

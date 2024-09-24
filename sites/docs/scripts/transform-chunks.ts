@@ -13,7 +13,10 @@ type Chunk = {
 	container: { className: string };
 };
 export function getChunks(source: string, filename: string) {
-	type TemplateNode = typeof ast["fragment"]["nodes"] extends Array<infer T> ? T : typeof ast["fragment"]["nodes"];
+	type TemplateNode =
+		(typeof ast)["fragment"]["nodes"] extends Array<infer T>
+			? T
+			: (typeof ast)["fragment"]["nodes"];
 	const ast = parse(source, { filename, modern: true });
 	const chunks: Chunk[] = [];
 
@@ -23,7 +26,7 @@ export function getChunks(source: string, filename: string) {
 			const chunkNode = n as TemplateNode;
 			if (chunkNode.type !== "RegularElement" && chunkNode.type !== "Component") return;
 
-			const attrs = chunkNode.attributes.filter(a => a.type === "Attribute");
+			const attrs = chunkNode.attributes.filter((a) => a.type === "Attribute");
 			const nameNode = attrs.find((a) => a.name === "data-x-chunk-name");
 			const descriptionNode = attrs.find((a) => a.name === "data-x-chunk-description");
 			if (descriptionNode === undefined || nameNode === undefined) return;
@@ -85,7 +88,9 @@ export function transformChunk(source: string, chunk: Chunk): string {
 		// we only want to look at the script tag...
 		.slice(0, scriptEndIdx)
 		// spaced on the edges to prevent false positives (e.g. `CreditCard` could be falsely triggered by `Card`)
-		.filter((line) => chunk.dependencies.some((dep) => line.includes(` ${dep} `) || line.includes(` ${dep},`)));
+		.filter((line) =>
+			chunk.dependencies.some((dep) => line.includes(` ${dep} `) || line.includes(` ${dep},`))
+		);
 
 	let template = `<script lang="ts">\n`;
 	template += imports.join("\n");
