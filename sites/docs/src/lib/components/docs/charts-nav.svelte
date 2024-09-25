@@ -12,31 +12,31 @@
 	const links = [
 		{
 			name: "Area Chart",
-			href: "/#area-chart",
+			href: "/charts#area-chart",
 		},
 		{
 			name: "Bar Chart",
-			href: "/#bar-chart",
+			href: "/charts#bar-chart",
 		},
 		{
 			name: "Line Chart",
-			href: "/#line-chart",
+			href: "/charts#line-chart",
 		},
 		{
 			name: "Pie Chart",
-			href: "/#pie-chart",
+			href: "/charts#pie-chart",
 		},
 		{
 			name: "Radar Chart",
-			href: "/#radar-chart",
+			href: "/charts#radar-chart",
 		},
 		{
 			name: "Radial Chart",
-			href: "/#radial-chart",
+			href: "/charts#radial-chart",
 		},
 		{
 			name: "Tooltip",
-			href: "/#tooltip",
+			href: "/charts#tooltip",
 		},
 	];
 </script>

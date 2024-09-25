@@ -6,12 +6,12 @@
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 
 	const chartData = [
-		{ month: "January", desktop: 186, mobile: 80 },
-		{ month: "February", desktop: 305, mobile: 200 },
-		{ month: "March", desktop: 237, mobile: 120 },
-		{ month: "April", desktop: 73, mobile: 190 },
-		{ month: "May", desktop: 209, mobile: 130 },
-		{ month: "June", desktop: 214, mobile: 140 },
+		{ month: "January", desktop: 186 },
+		{ month: "February", desktop: 305 },
+		{ month: "March", desktop: 237 },
+		{ month: "April", desktop: 73 },
+		{ month: "May", desktop: 209 },
+		{ month: "June", desktop: 214 },
 	];
 
 	const chartConfig = {
@@ -19,16 +19,12 @@
 			label: "Desktop",
 			color: "hsl(var(--chart-1))",
 		},
-		mobile: {
-			label: "Mobile",
-			color: "hsl(var(--chart-2))",
-		},
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Bar Chart - Multiple</Card.Title>
+		<Card.Title>Bar Chart</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -37,13 +33,10 @@
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
 				x="month"
-				series={[
-					{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color },
-					{ key: "mobile", label: "Mobile", color: chartConfig.mobile.color },
-				]}
+				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
 				seriesLayout="group"
 				props={{
-					bars: { stroke: "none", inset: 5 },
+					bars: { stroke: "none", radius: 8 },
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },

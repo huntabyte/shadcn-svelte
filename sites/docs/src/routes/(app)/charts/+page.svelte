@@ -26,7 +26,7 @@
 				<ChartDisplay name="chart-bar-multiple">
 					<Charts.ChartBarMultiple />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-donut-text">
+				<ChartDisplay name="chart-pie-donut-text" class="[&_[data-chart]]:xl:max-h-[243px]">
 					<Charts.ChartPieDonutText />
 				</ChartDisplay>
 			</div>
@@ -62,6 +62,49 @@
 				<ChartDisplay name="chart-area-axes">
 					<Charts.ChartAreaAxes />
 				</ChartDisplay>
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay name="chart-area-interactive">
+						<Charts.ChartAreaInteractive />
+					</ChartDisplay>
+				</div>
+			</div>
+			<Separator />
+			<div
+				id="bar-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay name="chart-bar-default">
+					<Charts.ChartBarDefault />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-horizontal">
+					<Charts.ChartBarHorizontal />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-multiple">
+					<Charts.ChartBarMultiple />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-label">
+					<Charts.ChartBarLabel />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-label-custom">
+					<Charts.ChartBarLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-mixed">
+					<Charts.ChartBarMixed />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-stacked">
+					<Charts.ChartBarStacked />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-active">
+					<Charts.ChartBarActive />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-negative">
+					<Charts.ChartBarNegative />
+				</ChartDisplay>
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay name="chart-bar-interactive">
+						<Charts.ChartBarInteractive />
+					</ChartDisplay>
+				</div>
 			</div>
 		</div>
 	</div>
