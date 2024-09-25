@@ -4,7 +4,6 @@
 	import Smartphone from "lucide-svelte/icons/smartphone";
 	import Tablet from "lucide-svelte/icons/tablet";
 
-	import type { PaneAPI } from "paneforge";
 	import BlockCopyCodeButton from "./block-copy-code-button.svelte";
 	import StyleSwitcher from "./style-switcher.svelte";
 	import { cn, getLiftMode } from "$lib/utils.js";
@@ -16,8 +15,9 @@
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import type { Block } from "$lib/registry/schema.js";
+	import type { ResizablePane } from "$lib/registry/new-york/ui/resizable/index.js";
 
-	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: PaneAPI } = $props();
+	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: ResizablePane } = $props();
 
 	const { isLiftMode, toggleLiftMode } = getLiftMode(block.name);
 </script>

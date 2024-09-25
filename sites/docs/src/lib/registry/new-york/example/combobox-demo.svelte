@@ -68,8 +68,8 @@
 				{#each frameworks as framework}
 					<Command.Item
 						value={framework.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
+						onSelect={() => {
+							value = framework.value;
 							closeAndFocusTrigger(triggerId);
 						}}
 					>

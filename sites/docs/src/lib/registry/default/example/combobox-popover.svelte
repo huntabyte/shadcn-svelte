@@ -74,7 +74,8 @@
 			})}
 		>
 			{#if selectedStatus}
-				<svelte:component this={selectedStatus.icon} class="mr-2 size-4 shrink-0" />
+				{@const Icon = selectedStatus.icon}
+				<Icon class="mr-2 size-4 shrink-0" />
 				{selectedStatus.label}
 			{:else}
 				+ Set status
@@ -89,13 +90,13 @@
 						{#each statuses as status}
 							<Command.Item
 								value={status.value}
-								onSelect={(currentValue) => {
-									value = currentValue;
+								onSelect={() => {
+									value = status.value;
 									closeAndFocusTrigger(triggerId);
 								}}
 							>
-								<svelte:component
-									this={status.icon}
+								{@const Icon = status.icon}
+								<Icon
 									class={cn(
 										"mr-2 size-4",
 										status.value !== selectedStatus?.value &&

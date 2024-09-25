@@ -16,7 +16,7 @@
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
-			<Select.GroupLabel>Fruits</Select.GroupLabel>
+			<Select.GroupHeading>Fruits</Select.GroupHeading>
 			{#each fruits as fruit}
 				<Select.Item value={fruit.value} textValue={fruit.label}>{fruit.label}</Select.Item>
 			{/each}

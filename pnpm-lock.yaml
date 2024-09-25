@@ -249,8 +249,8 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       paneforge:
-        specifier: https://pkg.pr.new/svecosystem/paneforge/paneforge@d819bb1
-        version: https://pkg.pr.new/svecosystem/paneforge/paneforge@d819bb1(svelte@5.0.0-next.259)
+        specifier: https://pkg.pr.new/svecosystem/paneforge/paneforge@c72c30b
+        version: https://pkg.pr.new/svecosystem/paneforge/paneforge@c72c30b(svelte@5.0.0-next.259)
       runed:
         specifier: ^0.15.2
         version: 0.15.2(svelte@5.0.0-next.259)
@@ -292,8 +292,8 @@ importers:
         specifier: 4.6.1
         version: 4.6.1(@sveltejs/kit@2.5.18(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10)))(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10)))(wrangler@3.64.0)
       '@sveltejs/enhanced-img':
-        specifier: ^0.2.0
-        version: 0.2.1(rollup@4.22.4)(svelte@5.0.0-next.259)
+        specifier: ^0.3.8
+        version: 0.3.8(rollup@4.22.4)(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10))
       '@sveltejs/kit':
         specifier: ^2.5.18
         version: 2.5.18(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10)))(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10))
@@ -1668,8 +1668,11 @@ packages:
       '@sveltejs/kit': ^2.0.0
       wrangler: ^3.28.4
 
-  '@sveltejs/enhanced-img@0.2.1':
-    resolution: {integrity: sha512-tEJCtDDSY4Od7YosS2OAHFjGwM09AOHaL97YuqDAnnKLnTpSYJvpLl3r6bLmWDht2ZqoAXfaPsbFJaG9zbQMjw==}
+  '@sveltejs/enhanced-img@0.3.8':
+    resolution: {integrity: sha512-n66u46ZeqHltiTm0BEjWptYmCrCY0EltEEvakmC7d5o5ZejDbOvOWm914mebbRKaP2Bezv65TNCod/wqvw/0KA==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0-next.0
+      vite: '>= 5.0.0'
 
   '@sveltejs/kit@2.5.18':
     resolution: {integrity: sha512-+g06hvpVAnH7b4CDjhnTDgFWBKBiQJpuSmQeGYOuzbO3SC3tdYjRNlDCrafvDtKbGiT2uxY5Dn9qdEUGVZdWOQ==}
@@ -4372,9 +4375,9 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
 
-  paneforge@https://pkg.pr.new/svecosystem/paneforge/paneforge@d819bb1:
-    resolution: {tarball: https://pkg.pr.new/svecosystem/paneforge/paneforge@d819bb1}
-    version: 0.0.5
+  paneforge@https://pkg.pr.new/svecosystem/paneforge/paneforge@c72c30b:
+    resolution: {tarball: https://pkg.pr.new/svecosystem/paneforge/paneforge@c72c30b}
+    version: 0.0.6
     peerDependencies:
       svelte: ^5.0.0-next.1
 
@@ -5296,12 +5299,6 @@ packages:
     resolution: {integrity: sha512-eKXIjLxB4C7eQWPqKEdxcGfNXm2g/qJ67zmEZK/GigCZMfrTR3m7DPY93R6MX+5uoqM1FRYxl8LZ1oy4URWi2A==}
     peerDependencies:
       svelte: ^4.0.0
-
-  svelte-toolbelt@0.3.0:
-    resolution: {integrity: sha512-kQbQgPXHm9CfuqPdOc9wO6+dTEZPqVWEpXV60jneD+EBprrCsS3khVCThNJU5TdStwNJin8OT1ZmVWteU0iKEg==}
-    engines: {node: '>=20', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.0.0-next.126
 
   svelte-toolbelt@0.3.1:
     resolution: {integrity: sha512-RL7/iOpvZQF499fjl+P76LkZUgekK6joXfbZwc3sQzFIMhl1wgBCVL3lfsYOfEF4u9SfeD8BNFlgs1pfJh09kw==}
@@ -7122,14 +7119,15 @@ snapshots:
       worktop: 0.8.0-next.18
       wrangler: 3.64.0
 
-  '@sveltejs/enhanced-img@0.2.1(rollup@4.22.4)(svelte@5.0.0-next.259)':
+  '@sveltejs/enhanced-img@0.3.8(rollup@4.22.4)(svelte@5.0.0-next.259)(vite@5.4.7(@types/node@20.14.10))':
     dependencies:
-      magic-string: 0.30.10
+      magic-string: 0.30.11
+      svelte: 5.0.0-next.259
       svelte-parse-markup: 0.1.2(svelte@5.0.0-next.259)
+      vite: 5.4.7(@types/node@20.14.10)
       vite-imagetools: 7.0.2(rollup@4.22.4)
     transitivePeerDependencies:
       - rollup
-      - svelte
 
   '@sveltejs/kit@2.5.18(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.12)(vite@5.3.3(@types/node@20.14.10)))(svelte@4.2.12)(vite@5.3.3(@types/node@20.14.10))':
     dependencies:
@@ -10481,10 +10479,10 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  paneforge@https://pkg.pr.new/svecosystem/paneforge/paneforge@d819bb1(svelte@5.0.0-next.259):
+  paneforge@https://pkg.pr.new/svecosystem/paneforge/paneforge@c72c30b(svelte@5.0.0-next.259):
     dependencies:
       svelte: 5.0.0-next.259
-      svelte-toolbelt: 0.3.0(svelte@5.0.0-next.259)
+      svelte-toolbelt: 0.3.1(svelte@5.0.0-next.259)
 
   parent-module@1.0.1:
     dependencies:
@@ -11447,14 +11445,6 @@ snapshots:
 
   svelte-subscribe@2.0.1(svelte@5.0.0-next.259):
     dependencies:
-      svelte: 5.0.0-next.259
-
-  svelte-toolbelt@0.3.0(svelte@5.0.0-next.259):
-    dependencies:
-      clsx: 2.1.1
-      scule: 1.3.0
-      style-object-to-css-string: 1.1.3
-      style-to-object: 1.0.6
       svelte: 5.0.0-next.259
 
   svelte-toolbelt@0.3.1(svelte@5.0.0-next.259):

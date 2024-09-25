@@ -55,8 +55,8 @@
 						<Command.Item
 							value={preset.name}
 							class="aria-selected:bg-primary aria-selected:text-primary-foreground"
-							onSelect={(currentValue) => {
-								value = currentValue;
+							onSelect={() => {
+								value = preset.name;
 								closeAndFocusTrigger(triggerId);
 							}}
 						>

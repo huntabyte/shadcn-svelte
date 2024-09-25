@@ -79,8 +79,8 @@
 									{#each labels as label}
 										<Command.Item
 											value={label}
-											onSelect={(value) => {
-												selectedLabel = value;
+											onSelect={() => {
+												selectedLabel = label;
 												closeAndFocusTrigger(triggerId);
 											}}
 										>
