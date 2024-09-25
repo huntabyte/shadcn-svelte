@@ -2,7 +2,7 @@
 	import { LineChart, Tooltip } from "layerchart";
 	import TrendingUp from "lucide-svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
-	import { PeriodType } from "@layerstack/utils";
+	import { PeriodType, format } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
@@ -55,7 +55,12 @@
 				<!-- TODO: How to style active do, say, add a wider radius? -->
 				<svelte:fragment slot="tooltip">
 					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
+						<Chart.Tooltip
+							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
+							config={chartConfig}
+							payload={data}
+							indicator="line"
+						/>
 					</Tooltip.Root>
 				</svelte:fragment>
 			</LineChart>
