@@ -67,7 +67,7 @@
 		"@internationalized/date": "^3.5.4",
 		"@unovis/svelte": "1.4.3",
 		"@unovis/ts": "1.4.3",
-		"bits-ui": "https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7",
+		"bits-ui": "https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a",
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"d3-scale": "^4.0.2",

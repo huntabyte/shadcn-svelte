@@ -219,8 +219,8 @@ importers:
         specifier: 1.4.3
         version: 1.4.3
       bits-ui:
-        specifier: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7
-        version: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7(svelte@5.0.0-next.259)
+        specifier: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a
+        version: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a(svelte@5.0.0-next.259)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2332,6 +2332,13 @@ packages:
     resolution: {integrity: sha512-LkdkyTtpXdkjBzPZJVJgpcre4fut6DONoprMfadHFo82HNUhph+02CxDjYEcZcThb5z4YjSxMlCYvQPZm+YtfQ==}
     peerDependencies:
       svelte: ^4.0.0
+
+  bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a:
+    resolution: {tarball: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a}
+    version: 0.21.15
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.0.0-next.1
 
   bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7:
     resolution: {tarball: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7}
@@ -8011,6 +8018,21 @@ snapshots:
       '@melt-ui/svelte': 0.61.2(svelte@5.0.0-next.259)
       nanoid: 5.0.7
       svelte: 5.0.0-next.259
+
+  bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@1f02d0a(svelte@5.0.0-next.259):
+    dependencies:
+      '@floating-ui/core': 1.6.4
+      '@floating-ui/dom': 1.6.7
+      '@internationalized/date': 3.5.4
+      clsx: 2.1.1
+      esm-env: 1.0.0
+      nanoid: 5.0.7
+      runed: 0.15.2(svelte@5.0.0-next.259)
+      scule: 1.3.0
+      style-object-to-css-string: 1.1.3
+      style-to-object: 1.0.6
+      svelte: 5.0.0-next.259
+      svelte-toolbelt: 0.3.1(svelte@5.0.0-next.259)
 
   bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7(svelte@5.0.0-next.259):
     dependencies:
