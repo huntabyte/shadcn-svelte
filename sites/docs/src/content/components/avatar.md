@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/avatar
 
 <ComponentPreview name="avatar-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 

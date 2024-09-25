@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 
 <ComponentPreview name="aspect-ratio-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 

@@ -109,7 +109,7 @@ The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a po
 
 <ComponentPreview name="drawer-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -119,7 +119,7 @@ The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel
 
 <ComponentPreview name="sonner-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -129,7 +129,7 @@ Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagina
 
 <ComponentPreview name="pagination-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -141,7 +141,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="calendar-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -149,7 +149,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="range-calendar-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -157,7 +157,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="date-picker-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
