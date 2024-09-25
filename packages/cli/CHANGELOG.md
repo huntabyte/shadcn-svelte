@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 0.13.0
+
+### Minor Changes
+
+- 06a19d8: feat: Added selection prompt for package managers if one cannot be detected
+
+## 0.12.2
+
+### Patch Changes
+
+- e67c1fd: chore: use `package-manager-detector`
+
 ## 0.12.1
 
 ### Patch Changes

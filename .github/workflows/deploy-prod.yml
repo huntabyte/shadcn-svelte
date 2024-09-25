@@ -1,0 +1,46 @@
+name: Production Deployment
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - sites/docs/**
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy Production Site to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # Image cache setup
+      - name: Setup Image cache
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules/.cache/imagetools"
+          key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Deploy to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: shadcn-svelte
+          directory: ./.svelte-kit/cloudflare
+          workingDirectory: sites/docs
+          deploymentName: Production

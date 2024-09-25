@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
   import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '$lib/registry/default/example'
 </script>
 
@@ -18,9 +18,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add badge
-```
+<PMAddComp name="badge" />
 
 <ManualInstall>
 

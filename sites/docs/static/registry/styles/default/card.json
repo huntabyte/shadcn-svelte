@@ -5,7 +5,7 @@
 	"files": [
 		{
 			"name": "card-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"p-6 pt-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"p-6\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "card-description.svelte",
@@ -17,7 +17,7 @@
 		},
 		{
 			"name": "card-header.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex flex-col space-y-1.5 p-6\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex flex-col space-y-1.5 p-6 pb-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "card-title.svelte",

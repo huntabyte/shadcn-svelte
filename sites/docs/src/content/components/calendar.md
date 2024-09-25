@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/calendar
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout } from '$lib/components/docs';
+    import { ComponentPreview, ManualInstall, Callout, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="calendar-demo">
@@ -24,17 +24,13 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add calendar
-```
+<PMAddComp name="calendar" />
 
 <ManualInstall>
 
 1. Install `bits-ui` and `@internationalized/date`:
 
-```bash
-npm install bits-ui @internationalized/date
-```
+<PMInstall command="bits-ui @internationalized/date" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

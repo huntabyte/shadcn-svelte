@@ -7,9 +7,12 @@
 	import { config } from "$lib/stores/index.js";
 	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
 	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
+	import { setPackageManager } from "$lib/stores/package-manager.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 
 	let { children } = $props();
+
+	setPackageManager();
 
 	$effect(() => {
 		updateTheme($config.theme, $page.url.pathname);

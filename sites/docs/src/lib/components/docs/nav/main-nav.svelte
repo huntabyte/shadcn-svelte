@@ -7,8 +7,8 @@
 
 <div class="mr-4 hidden md:flex">
 	<a href="/" class="mr-6 flex items-center space-x-2">
-		<Icons.logo class="size-6" />
-		<span class="hidden font-bold sm:inline-block">
+		<Icons.logo class="h-6 w-6" />
+		<span class="hidden font-bold xl:inline-block">
 			{siteConfig.name}
 		</span>
 	</a>
@@ -53,6 +53,7 @@
 		>
 			Examples
 		</a>
+
 		<a
 			href="/blocks"
 			class={cn(
@@ -63,14 +64,13 @@
 			Blocks
 		</a>
 		<a
-			href={siteConfig.links.github}
-			target="_blank"
-			rel="noopener noreferrer"
+			href="/colors"
 			class={cn(
-				"text-foreground/60 hover:text-foreground/80 hidden transition-colors lg:block"
+				"hover:text-foreground/80 transition-colors",
+				$page.url.pathname.startsWith("/colors") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
-			GitHub
+			Colors
 		</a>
 	</nav>
 </div>

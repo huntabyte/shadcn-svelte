@@ -8,7 +8,7 @@ bits: https://www.bits-ui.com/docs/components/alert-dialog
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="alert-dialog-demo">
@@ -19,17 +19,13 @@ bits: https://www.bits-ui.com/docs/components/alert-dialog
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add alert-dialog
-```
+<PMAddComp name="alert-dialog" />
 
 <ManualInstall>
 
 1. Install `bits-ui`:
 
-```bash
-npm install bits-ui
-```
+<PMInstall command="bits-ui" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

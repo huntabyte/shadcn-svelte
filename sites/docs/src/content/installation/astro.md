@@ -5,8 +5,7 @@ description: How to setup shadcn-svelte in an Astro project.
 
 <script>
   import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
-  import { Callout } from "$lib/components/docs";
-  import { Steps } from "$lib/components/docs";
+  import { Steps, Callout, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
 ## Setup your project
@@ -17,9 +16,7 @@ description: How to setup shadcn-svelte in an Astro project.
 
 Start by creating a new Astro project:
 
-```bash
-npm create astro@latest
-```
+<PMCreate command="astro@latest" />
 
 ### Configure your Astro project
 
@@ -44,9 +41,7 @@ Yes/No
 
 Install Svelte using the Astro CLI:
 
-```bash
-npx astro add svelte
-```
+<PMExecute command="astro add svelte" />
 
 <Callout className="mt-4">
 
@@ -58,9 +53,7 @@ Answer `Yes` to all the question prompted by the CLI when installing Svelte.
 
 Add Tailwind CSS using the Astro CLI:
 
-```bash
-npx astro add tailwind
-```
+<PMExecute command="astro add tailwind" />
 
 <Callout className="mt-4">
 
@@ -115,9 +108,7 @@ import "$lib/styles/app.css";
 
 Run the `shadcn-svelte` init command to setup your project:
 
-```bash
-npx shadcn-svelte@latest init
-```
+<PMExecute command="shadcn-svelte@latest init" />
 
 ### Configure components.json
 
@@ -165,9 +156,7 @@ export default config;
 
 You can now start adding components to your project.
 
-```bash
-npx shadcn-svelte@latest add button
-```
+<PMAddComp name="button" />
 
 The command above will add the `Button` component to your project. You can then import it like this:
 

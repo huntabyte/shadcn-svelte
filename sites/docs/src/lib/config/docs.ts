@@ -28,6 +28,10 @@ export const docsConfig: DocsConfig = {
 			href: "/blocks",
 		},
 		{
+			title: "Colors",
+			href: "/colors",
+		},
+		{
 			title: "GitHub",
 			href: "https://github.com/huntabyte/shadcn-svelte",
 			external: true,

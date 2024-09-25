@@ -20,7 +20,7 @@
 		"check:watch": "pnpm -F docs check:watch",
 		"test:unit": "pnpm -F docs test:unit",
 		"lint": "prettier --check . && eslint .",
-		"format:check": "pnpm -r format:check",
+		"lint:fix": "eslint --fix .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
@@ -29,10 +29,10 @@
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
 	},
 	"engines": {
-		"pnpm": ">=8",
+		"pnpm": ">=9",
 		"node": ">=18"
 	},
-	"packageManager": "pnpm@8.15.8",
+	"packageManager": "pnpm@9.7.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"

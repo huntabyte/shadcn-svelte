@@ -7,7 +7,7 @@ bits: https://www.bits-ui.com/docs/components/tabs
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="tabs-demo">
@@ -18,17 +18,13 @@ bits: https://www.bits-ui.com/docs/components/tabs
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add tabs
-```
+<PMAddComp name="tabs" />
 
 <ManualInstall>
 
 1. Install `bits-ui`:
 
-```bash
-npm install bits-ui
-```
+<PMInstall command="bits-ui" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

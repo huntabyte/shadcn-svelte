@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "0.12.1",
+	"version": "0.13.0",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -36,8 +36,6 @@
 		"start": "node dist/index.js",
 		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173 node dist/index.js",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
-		"format": "prettier --write .",
-		"format:check": "prettier --check .",
 		"release": "changeset version",
 		"test": "vitest"
 	},
@@ -46,7 +44,6 @@
 		"chalk": "5.2.0",
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
-		"find-up": "^7.0.0",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4"
 	},
@@ -55,6 +52,7 @@
 		"cross-env": "^7.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
+		"package-manager-detector": "^0.1.2",
 		"sisteransi": "^1.0.5",
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",

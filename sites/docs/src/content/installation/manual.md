@@ -4,7 +4,7 @@ description: How to setup shadcn-svelte manually.
 ---
 
 <script>
-	import { Steps, Step } from '$lib/components/docs'
+	import { Steps, Step, PMAddComp, PMInstall, PMExecute } from '$lib/components/docs'
 </script>
 
 ## Setup your project
@@ -15,31 +15,23 @@ description: How to setup shadcn-svelte manually.
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
-```bash
-npx @svelte-add/tailwindcss@latest
-```
+<PMExecute command="svelte-add@latest tailwindcss" />
 
 ### Add dependencies
 
 Add the following dependencies to your project:
 
-```bash
-npm install tailwind-variants clsx tailwind-merge
-```
+<PMInstall command="tailwind-variants clsx tailwind-merge" />
 
 ### Add icon library
 
 If you're using the `default` style, install `lucide-svelte`:
 
-```bash
-npm install lucide-svelte
-```
+<PMInstall command="lucide-svelte" />
 
 If you're using the `new-york` style, install `svelte-radix`:
 
-```bash
-npm install svelte-radix
-```
+<PMInstall command="svelte-radix" />
 
 ### Configure path aliases
 
@@ -339,5 +331,7 @@ Create `src/routes/+layout.svelte` and import the styles:
 ### That's it
 
 You can now start adding components to your project.
+
+<PMAddComp name="button" />
 
 </Steps>

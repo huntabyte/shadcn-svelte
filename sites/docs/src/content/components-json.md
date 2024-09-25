@@ -4,7 +4,7 @@ description: Configuration for your project.
 ---
 
 <script>
-    import { Callout, ComponentPreview } from '$lib/components/docs'
+    import { Callout, ComponentPreview, PMExecute } from '$lib/components/docs'
 </script>
 
 The `components.json` file holds configuration for your project.
@@ -19,9 +19,7 @@ We use it to understand how your project is set up and how to generate component
 
 You can create a `components.json` file in your project by running the following command:
 
-```bash
-npx shadcn-svelte@latest init
-```
+<PMExecute command="shadcn-svelte@latest init" />
 
 See the [CLI section](/docs/cli) for more information.
 

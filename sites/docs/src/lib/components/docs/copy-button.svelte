@@ -1,121 +1,82 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Copy from "svelte-radix/Copy.svelte";
+	import { CaretSort } from "svelte-radix";
+	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { getPackageManager, packageManagers } from "$lib/stores/package-manager.js";
+	import { Button, type ButtonProps } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	let copied = $state(false);
-
-	type Props = {
-		class?: string;
-		value?: string;
+	type Props = Omit<ButtonProps, "children"> & {
+		isPackageManagerBlock?: boolean;
+		copied?: boolean;
+		copyCode?: () => void;
 	};
 
-	let { class: className = "", value = "", ...restProps }: Props = $props();
+	let {
+		class: className,
+		isPackageManagerBlock = false,
+		copied = $bindable(false),
+		copyCode = () => {},
+		...restProps
+	}: Props = $props();
 
-	const commands = $derived.by(() => {
-		// npm install
-		if (value.startsWith("npm install")) {
-			return {
-				npm: value,
-				yarn: value.replace("npm install", "yarn add"),
-				pnpm: value.replace(/^npm/, "pnpm"),
-				bun: value.replace(/^npm/, "bun"),
-			};
-		}
-
-		// npm create
-		else if (value.startsWith("npm create")) {
-			return {
-				npm: value,
-				yarn: value.replace(/^npm/, "yarn"),
-				pnpm: value.replace(/^npm/, "pnpm"),
-				bun: value.replace(/^npm/, "bun"),
-			};
-		}
-
-		// npx
-		else if (value.startsWith("npx")) {
-			return {
-				npm: value,
-				yarn: value.replace(/^npx/, "yarn dlx"),
-				pnpm: value.replace(/^npx/, "pnpm dlx"),
-				bun: value.replace(/^npx/, "bunx"),
-			};
-		}
-		return {
-			npm: "",
-			yarn: "",
-			pnpm: "",
-			bun: "",
-		};
-	});
-
-	function handleCopyDone() {
-		copied = true;
-		setTimeout(() => {
-			copied = false;
-		}, 1000);
-	}
-
-	function handleCopyError() {
-		console.error("Error copying");
-	}
+	const selectedPackageManager = getPackageManager();
 </script>
 
-{#if Object.values(commands).filter(Boolean).length > 1}
+{#if isPackageManagerBlock}
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
 				<Button
+					{...props}
 					size="icon"
 					variant="ghost"
 					class={cn(
-						"relative z-10 size-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50",
+						"bg-background/10 text-background/70 hover:bg-background/20 hover:text-background/80 dark:bg-foreground/5 dark:text-foreground/70 dark:hover:bg-foreground/10 dark:hover:text-foreground/80 relative !right-12 h-6 w-fit items-center justify-center rounded-md p-1",
 						className
 					)}
 					{...restProps}
-					{...props}
 				>
-					<span class="sr-only">Copy</span>
-					{#if copied}
-						<Check class="size-3" tabindex="-1" />
-					{:else}
-						<Copy class="size-3" tabindex="-1" />
-					{/if}
+					<span class="sr-only">select package manager</span>
+
+					<span class="flex items-center pl-1">
+						{$selectedPackageManager}
+						<CaretSort size="20" />
+					</span>
 				</Button>
 			{/snippet}
 		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="end">
-			{#each Object.entries(commands) as [key, command]}
-				{#if command}
-					<DropdownMenu.Item
-						on:click={() =>
-							navigator.clipboard
-								.writeText(command)
-								.then(handleCopyDone)
-								.catch(handleCopyError)}
-					>
-						{key}
-					</DropdownMenu.Item>
-				{/if}
+
+		<DropdownMenu.Content align="end" preventScroll={false}>
+			{#each packageManagers as pm (pm)}
+				<DropdownMenu.Item
+					onclick={() => {
+						selectedPackageManager.set(pm);
+						tick().then(() => {
+							copyCode();
+						});
+					}}
+				>
+					{pm}
+				</DropdownMenu.Item>
 			{/each}
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
-{:else}
-	<button
-		class={cn(
-			"focus-visible:ring-ring absolute right-4 top-4 z-10 inline-flex size-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
-			className
-		)}
-		{...restProps}
-	>
-		<span class="sr-only">Copy</span>
-		{#if copied}
-			<Check class="size-3" tabindex="-1" />
-		{:else}
-			<Copy class="size-3" tabindex="-1" />
-		{/if}
-	</button>
 {/if}
+<button
+	class={cn(
+		"focus-visible:ring-ring absolute right-4 top-4 z-10 inline-flex h-6 w-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
+		className
+	)}
+	onclick={copyCode}
+	{...restProps}
+>
+	<span class="sr-only">Copy</span>
+	{#if copied}
+		<Check class="h-3 w-3" tabindex="-1" />
+	{:else}
+		<Copy class="h-3 w-3" tabindex="-1" />
+	{/if}
+</button>

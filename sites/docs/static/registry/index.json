@@ -100,9 +100,7 @@
 	},
 	{
 		"name": "button",
-		"dependencies": [
-			"bits-ui"
-		],
+		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
 			"ui/button/button.svelte",

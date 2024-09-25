@@ -7,7 +7,7 @@ bits: https://www.embla-carousel.com/get-started/svelte/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="carousel-demo">
@@ -22,17 +22,13 @@ The carousel component is built using the [Embla Carousel](https://www.embla-car
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add carousel
-```
+<PMAddComp name="carousel" />
 
 <ManualInstall>
 
 1. Install `embla-carousel-svelte`:
 
-```bash
-npm install embla-carousel-svelte -D
-```
+<PMInstall command="embla-carousel-svelte -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

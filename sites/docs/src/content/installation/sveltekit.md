@@ -5,7 +5,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 <script>
   import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
-  import { Steps } from "$lib/components/docs";
+  import { Steps, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
 ## Setup your project
@@ -16,23 +16,17 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 Use the SvelteKit CLI to create a new project.
 
-```bash
-npm create svelte@latest my-app
-```
+<PMCreate command="svelte@latest my-app" />
 
 ### Add TailwindCSS
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
-```bash
-npx @svelte-add/tailwindcss@latest
-```
+<PMExecute command="svelte-add@latest tailwindcss" />
 
 ### Install dependencies
 
-```bash
-npm install
-```
+<PMInstall />
 
 ### Setup path aliases
 
@@ -52,9 +46,7 @@ const config = {
 
 ### Run the CLI
 
-```bash
-npx shadcn-svelte@latest init
-```
+<PMExecute command="shadcn-svelte@latest init" />
 
 ### Configure components.json
 
@@ -64,7 +56,7 @@ You will be asked a few questions to configure `components.json`:
 Would you like to use TypeScript (recommended)? › Yes
 Which style would you like to use? › Default
 Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.pcss
+Where is your global CSS file? › src/app.css
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
@@ -74,9 +66,7 @@ Configure the import alias for utils: › $lib/utils
 
 You can now start adding components to your project.
 
-```bash
-npx shadcn-svelte@latest add button
-```
+<PMAddComp name="button" />
 
 The command above will add the `Button` component to your project. You can then import it like this:
 

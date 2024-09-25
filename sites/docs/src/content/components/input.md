@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, PMAddComp} from '$lib/components/docs';
 
   export let form;
 </script>
@@ -19,9 +19,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add input
-```
+<PMAddComp name="input" />
 
 <ManualInstall>
 

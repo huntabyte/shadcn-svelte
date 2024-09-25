@@ -19,6 +19,13 @@
 				"useTabs": false,
 				"printWidth": 79
 			}
+		},
+		{
+			"files": ".github/**/*",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
 		}
 	],
 	"tailwindFunctions": ["clsx", "cn", "tv"]

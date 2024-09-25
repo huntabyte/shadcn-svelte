@@ -2,6 +2,14 @@ name: Feature request
 description: Request a new feature
 labels: ["type: feature"]
 body:
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Please make sure you have checked all of the following.
+      options:
+        - label: This feature already exists in [shadcn/ui](https://github.com/shadcn/ui) - if not, it won't be considered here so don't continue with your issue.
+          required: true
+
   - type: markdown
     attributes:
       value: |
