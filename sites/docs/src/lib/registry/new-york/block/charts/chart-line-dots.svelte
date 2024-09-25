@@ -51,6 +51,7 @@
 					yAxis: { format: () => "" },
 				}}
 			>
+				<!-- TODO: How to style active do, say, add a wider radius? -->
 				<svelte:fragment slot="tooltip">
 					<Tooltip.Root let:data variant="none">
 						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
