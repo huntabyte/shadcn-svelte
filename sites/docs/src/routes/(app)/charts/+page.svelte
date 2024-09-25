@@ -144,6 +144,46 @@
 					</ChartDisplay>
 				</div>
 			</div>
+			<Separator />
+			<div
+				id="pie-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay name="chart-pie-simple">
+					<Charts.ChartPieSimple />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-separator-none">
+					<Charts.ChartPieSeparatorNone />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-label">
+					<Charts.ChartPieLabel />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-label-custom">
+					<Charts.ChartPieLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-label-list">
+					<Charts.ChartPieLabelList />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-legend">
+					<Charts.ChartPieLegend />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-donut">
+					<Charts.ChartPieDonut />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-donut-active">
+					<Charts.ChartPieDonutActive />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-donut-text">
+					<Charts.ChartPieDonutText />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-stacked">
+					<Charts.ChartPieStacked />
+				</ChartDisplay>
+				<ChartDisplay name="chart-pie-interactive">
+					<Charts.ChartPieInteractive />
+				</ChartDisplay>
+			</div>
+			<Separator />
 		</div>
 	</div>
 </div>

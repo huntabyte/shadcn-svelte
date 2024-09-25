@@ -31,4 +31,14 @@ export { default as ChartLineLabel } from "./chart-line-label.svelte";
 export { default as ChartLineLabelCustom } from "./chart-line-label-custom.svelte";
 export { default as ChartLineInteractive } from "./chart-line-interactive.svelte";
 
+export { default as ChartPieSimple } from "./chart-pie-simple.svelte";
+export { default as ChartPieSeparatorNone } from "./chart-pie-separator-none.svelte";
+export { default as ChartPieLabel } from "./chart-pie-label.svelte";
+export { default as ChartPieLabelCustom } from "./chart-pie-label-custom.svelte";
+export { default as ChartPieLabelList } from "./chart-pie-label-list.svelte";
+export { default as ChartPieLegend } from "./chart-pie-legend.svelte";
+export { default as ChartPieDonut } from "./chart-pie-donut.svelte";
+export { default as ChartPieDonutActive } from "./chart-pie-donut-active.svelte";
 export { default as ChartPieDonutText } from "./chart-pie-donut-text.svelte";
+export { default as ChartPieStacked } from "./chart-pie-stacked.svelte";
+export { default as ChartPieInteractive } from "./chart-pie-interactive.svelte";
