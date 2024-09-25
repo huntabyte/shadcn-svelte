@@ -30,7 +30,7 @@
 				Add colors. Make it yours.
 			</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
-			<PageHeader.Description balanced={false}>
+			<PageHeader.Description>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
 			<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">

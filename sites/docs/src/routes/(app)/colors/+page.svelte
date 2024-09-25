@@ -26,7 +26,7 @@
 			<Announcement />
 			<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
-			<PageHeader.Description balanced={false}>
+			<PageHeader.Description>
 				Tailwind CSS colors in HSL, RGB, and HEX formats.
 			</PageHeader.Description>
 		</PageHeader.Root>

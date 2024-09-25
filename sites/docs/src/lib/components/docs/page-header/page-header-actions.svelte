@@ -1,9 +1,13 @@
 <script lang="ts">
+	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
-	let className: string | undefined | null = undefined;
+
+	type $$Props = HTMLAttributes<HTMLDivElement>;
+
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<div class={cn("flex w-full items-center justify-center space-x-4 py-4 md:pb-10", className)}>
-	<slot />
+<div class={cn("flex w-full items-center justify-start gap-2 py-2", className)} {...$$restProps}>
+	<slot></slot>
 </div>

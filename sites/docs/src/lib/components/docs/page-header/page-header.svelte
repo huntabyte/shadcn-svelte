@@ -1,16 +1,19 @@
 <script lang="ts">
+	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
+	type $$Props = HTMLAttributes<HTMLDivElement>;
+
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
 <section
 	class={cn(
-		"mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20",
+		"mx-auto flex flex-col items-start gap-2 px-4 py-8 md:py-12 md:pb-8 lg:py-12 lg:pb-10",
 		className
 	)}
 	{...$$restProps}
 >
-	<slot />
+	<slot></slot>
 </section>
