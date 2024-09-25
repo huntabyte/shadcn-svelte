@@ -106,6 +106,44 @@
 					</ChartDisplay>
 				</div>
 			</div>
+			<Separator />
+			<div
+				id="line-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay name="chart-line-default">
+					<Charts.ChartLineDefault />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-linear">
+					<Charts.ChartLineLinear />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-step">
+					<Charts.ChartLineStep />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-multiple">
+					<Charts.ChartLineMultiple />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-dots">
+					<Charts.ChartLineDots />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-dots-custom">
+					<Charts.ChartLineDotsCustom />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-dots-colors">
+					<Charts.ChartLineDotsColors />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-label">
+					<Charts.ChartLineLabel />
+				</ChartDisplay>
+				<ChartDisplay name="chart-line-label-custom">
+					<Charts.ChartLineLabelCustom />
+				</ChartDisplay>
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay name="chart-line-interactive">
+						<Charts.ChartLineInteractive />
+					</ChartDisplay>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
