@@ -2,6 +2,7 @@
 	import { Announcement, ThemeWrapper } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import ColorCard from "$lib/components/colors/color-card.svelte";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <svelte:head>
@@ -17,22 +18,19 @@
 	</style>
 </svelte:head>
 
-<div class="container">
-	<ThemeWrapper
-		defaultTheme="zinc"
-		class="relative flex flex-col items-start md:flex-row md:items-center"
-	>
-		<PageHeader.Root>
-			<Announcement />
-			<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
-			<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
-			<PageHeader.Description>
-				Tailwind CSS colors in HSL, RGB, and HEX formats.
-			</PageHeader.Description>
-		</PageHeader.Root>
-	</ThemeWrapper>
-
-	<div class="flex flex-col gap-2">
+<ThemeWrapper defaultTheme="zinc" class="container relative">
+	<PageHeader.Root>
+		<Announcement />
+		<PageHeader.Heading>Tailwind Colors</PageHeader.Heading>
+		<PageHeader.Description>
+			Tailwind CSS colors in HSL, RGB, and HEX formats.
+		</PageHeader.Description>
+		<PageHeader.Actions>
+			<Button href="#colors" size="sm">Browse Colors</Button>
+			<Button href="/docs/theming" variant="ghost" size="sm">Documentation</Button>
+		</PageHeader.Actions>
+	</PageHeader.Root>
+	<div class="ml-4 flex flex-col gap-2">
 		<ColorCard />
 	</div>
-</div>
+</ThemeWrapper>
