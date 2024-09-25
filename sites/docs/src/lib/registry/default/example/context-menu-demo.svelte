@@ -50,7 +50,7 @@
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Group>
-				<ContextMenu.GroupLabel inset>People</ContextMenu.GroupLabel>
+				<ContextMenu.GroupHeading inset>People</ContextMenu.GroupHeading>
 				<ContextMenu.Separator />
 				<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
 				<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>

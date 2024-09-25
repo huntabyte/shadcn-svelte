@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PaneAPI } from "paneforge";
 	import BlockToolbar from "./block-toolbar.svelte";
 	import { config } from "$lib/stores/config.js";
 
@@ -10,7 +9,7 @@
 	import { cn, getLiftMode } from "$lib/utils.js";
 
 	let isLoading = $state(true);
-	let resizablePaneRef = $state<PaneAPI>() as PaneAPI;
+	let resizablePaneRef = $state<Resizable.Pane>(null!);
 
 	let { block }: { block: Block } = $props();
 
@@ -33,7 +32,7 @@
 		>
 			<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 				<Resizable.Pane
-					bind:pane={resizablePaneRef}
+					bind:this={resizablePaneRef}
 					class={cn(
 						"bg-background relative rounded-lg border",
 						$isLiftMode ? "border-border/50" : "border-border"

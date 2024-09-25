@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { Dialog as SheetPrimitive, type WithoutChild } from "bits-ui";
+	import { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import Cross2 from "svelte-radix/Cross2.svelte";
+	import type { Snippet } from "svelte";
 	import { SheetOverlay, SheetPortal, type Side, sheetVariants } from "./index.js";
 	import { cn } from "$lib/utils.js";
 
@@ -10,8 +11,9 @@
 		side = "right",
 		children,
 		...restProps
-	}: WithoutChild<SheetPrimitive.ContentProps> & {
+	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {
 		side?: Side;
+		children: Snippet;
 	} = $props();
 </script>
 

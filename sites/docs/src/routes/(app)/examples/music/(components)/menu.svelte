@@ -166,7 +166,7 @@
 		<Menubar.Trigger class="hidden md:block">Account</Menubar.Trigger>
 		<Menubar.Content>
 			<Menubar.Group>
-				<Menubar.Label inset>Switch Account</Menubar.Label>
+				<Menubar.GroupHeading inset>Switch Account</Menubar.GroupHeading>
 				<Menubar.Separator />
 				<Menubar.RadioGroup value="benoit">
 					<Menubar.RadioItem value="andy">Andy</Menubar.RadioItem>

@@ -5,7 +5,6 @@
 	import Gear from "svelte-radix/Gear.svelte";
 	import Person from "svelte-radix/Person.svelte";
 	import Rocket from "svelte-radix/Rocket.svelte";
-
 	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 

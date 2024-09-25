@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Command as CommandPrimitive } from "cmdk-sv";
+	import { Command as CommandPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = CommandPrimitive.CommandProps;
-
-	export let value: $$Props["value"] = undefined;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		value = $bindable(""),
+		class: className,
+		...restProps
+	}: CommandPrimitive.RootProps = $props();
 </script>
 
 <CommandPrimitive.Root
@@ -16,7 +16,6 @@
 		className
 	)}
 	bind:value
-	{...$$restProps}
->
-	<slot />
-</CommandPrimitive.Root>
+	bind:ref
+	{...restProps}
+/>

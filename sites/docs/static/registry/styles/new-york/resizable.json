@@ -2,7 +2,8 @@
 	"name": "resizable",
 	"dependencies": [
 		"svelte-radix",
-		"paneforge"
+		"paneforge",
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [

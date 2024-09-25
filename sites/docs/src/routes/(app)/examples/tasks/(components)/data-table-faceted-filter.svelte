@@ -70,8 +70,8 @@
 						{@const Icon = option.icon}
 						<Command.Item
 							value={option.value}
-							onSelect={(currentValue) => {
-								handleSelect(currentValue);
+							onSelect={() => {
+								handleSelect(option.value);
 							}}
 						>
 							<div

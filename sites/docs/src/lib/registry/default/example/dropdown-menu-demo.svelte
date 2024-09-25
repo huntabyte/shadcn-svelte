@@ -22,7 +22,7 @@
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+			<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>

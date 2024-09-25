@@ -2,6 +2,7 @@
 	import Paperclip from "lucide-svelte/icons/paperclip";
 	import Mic from "lucide-svelte/icons/mic";
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
@@ -21,20 +22,24 @@
 	<div class="flex items-center p-3 pt-0">
 		<Tooltip.Provider>
 			<Tooltip.Root>
-				<Tooltip.Trigger
-					class={buttonVariants({ variant: "ghost", size: "icon" })}
-				>
-					<Paperclip class="size-4" />
-					<span class="sr-only">Attach file</span>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="ghost" size="icon">
+							<Paperclip class="size-4" />
+							<span class="sr-only">Attach file</span>
+						</Button>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="top">Attach File</Tooltip.Content>
 			</Tooltip.Root>
 			<Tooltip.Root>
-				<Tooltip.Trigger
-					class={buttonVariants({ variant: "ghost", size: "icon" })}
-				>
-					<Mic class="size-4" />
-					<span class="sr-only">Use Microphone</span>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="ghost" size="icon">
+							<Mic class="size-4" />
+							<span class="sr-only">Use Microphone</span>
+						</Button>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="top">Use Microphone</Tooltip.Content>
 			</Tooltip.Root>

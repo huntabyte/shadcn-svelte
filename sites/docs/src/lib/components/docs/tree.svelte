@@ -1,9 +1,11 @@
 <script lang="ts">
-	import type { TableOfContents } from "$lib/types/docs.js";
+	// eslint-disable-next-line import/no-self-import
+	import Tree from "./tree.svelte";
+	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { cn } from "$lib/utils.js";
 
 	type Props = {
-		tree?: TableOfContents;
+		tree?: TableOfContents | TableOfContentsItem;
 		activeItem: string | undefined;
 		level?: number;
 	};
@@ -28,7 +30,7 @@
 					{item.title}
 				</a>
 				{#if item.items && item.items.length}
-					<svelte:self tree={item} level={level + 1} {activeItem} />
+					<Tree tree={item} level={level + 1} {activeItem} />
 				{/if}
 			</li>
 		{/each}

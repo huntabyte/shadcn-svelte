@@ -1,6 +1,6 @@
 import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 import Item from "./dropdown-menu-item.svelte";
-import GroupLabel from "./dropdown-menu-group-label.svelte";
+import GroupHeading from "./dropdown-menu-group-heading.svelte";
 import Content from "./dropdown-menu-content.svelte";
 import Shortcut from "./dropdown-menu-shortcut.svelte";
 import RadioItem from "./dropdown-menu-radio-item.svelte";
@@ -19,7 +19,7 @@ export {
 	Sub,
 	Root,
 	Item,
-	GroupLabel,
+	GroupHeading,
 	Group,
 	Trigger,
 	Content,
@@ -34,7 +34,7 @@ export {
 	Root as DropdownMenu,
 	Sub as DropdownMenuSub,
 	Item as DropdownMenuItem,
-	GroupLabel as DropdownMenuGroupLabel,
+	GroupHeading as DropdownMenuGroupHeading,
 	Group as DropdownMenuGroup,
 	Content as DropdownMenuContent,
 	Trigger as DropdownMenuTrigger,

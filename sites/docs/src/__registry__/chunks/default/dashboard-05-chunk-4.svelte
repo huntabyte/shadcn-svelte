@@ -5,6 +5,7 @@
 	import CreditCard from "lucide-svelte/icons/credit-card";
 	import EllipsisVertical from "lucide-svelte/icons/ellipsis-vertical";
 	import Truck from "lucide-svelte/icons/truck";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Pagination from "$lib/registry/default/ui/pagination/index.js";
@@ -39,15 +40,13 @@
 				</span>
 			</Button>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					class={buttonVariants({
-						size: "icon",
-						variant: "outline",
-						class: "size-8"
-					})}
-				>
-					<EllipsisVertical class="size-3.5" />
-					<span class="sr-only">More</span>
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} size="icon" variant="outline" class="size-8">
+							<EllipsisVertical class="size-3.5" />
+							<span class="sr-only">More</span>
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Item>Edit</DropdownMenu.Item>

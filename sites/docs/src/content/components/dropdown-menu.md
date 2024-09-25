@@ -45,7 +45,7 @@ npm install bits-ui
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+      <DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
       <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>

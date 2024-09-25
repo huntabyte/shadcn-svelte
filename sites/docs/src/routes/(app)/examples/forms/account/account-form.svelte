@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	const languages = [
@@ -111,7 +111,7 @@
 						}}
 						onValueChange={(value) => {
 							if (value === undefined) {
-								$formData.dob = undefined as any
+								$formData.dob = undefined as any;
 								validate("dob");
 								return;
 							}

@@ -1,25 +1,30 @@
 <script lang="ts">
-	import { Button as ButtonPrimitive } from "bits-ui";
-	import { type Events, type Props, buttonVariants } from "./index.js";
+	import { type Props, buttonVariants } from "./index.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = Props;
-	type $$Events = Events;
-
-	let className: $$Props["class"] = undefined;
-	export let variant: $$Props["variant"] = "default";
-	export let size: $$Props["size"] = "default";
-	export let builders: $$Props["builders"] = [];
-	export { className as class };
+	let {
+		class: className,
+		variant = "default",
+		size = "default",
+		ref = $bindable(null),
+		href = undefined,
+		type = "button",
+		children,
+		...restProps
+	}: Props = $props();
 </script>
 
-<ButtonPrimitive.Root
-	{builders}
-	class={cn(buttonVariants({ variant, size, className }))}
-	type="button"
-	{...$$restProps}
-	on:click
-	on:keydown
->
-	<slot />
-</ButtonPrimitive.Root>
+{#if href}
+	<a bind:this={ref} class={cn(buttonVariants({ variant, size, className }))} {...restProps}>
+		{@render children?.()}
+	</a>
+{:else}
+	<button
+		bind:this={ref}
+		class={cn(buttonVariants({ variant, size, className }))}
+		{type}
+		{...restProps}
+	>
+		{@render children?.()}
+	</button>
+{/if}

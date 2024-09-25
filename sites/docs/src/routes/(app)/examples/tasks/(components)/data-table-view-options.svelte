@@ -35,7 +35,7 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupLabel>Toggle columns</DropdownMenu.GroupLabel>
+			<DropdownMenu.GroupHeading>Toggle columns</DropdownMenu.GroupHeading>
 			<DropdownMenu.Separator />
 			{#each flatColumns as col}
 				{#if hidableCols.includes(col.id)}

@@ -12,27 +12,27 @@
 		},
 		{
 			"name": "sheet-content.svelte",
-			"content": "<script>import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport X from \"lucide-svelte/icons/x\";\nimport { SheetOverlay, SheetPortal, sheetVariants } from \"./index.js\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  side = \"right\",\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<SheetPortal>\n\t<SheetOverlay />\n\t<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>\n\t\t{@render children?.()}\n\t\t<SheetPrimitive.Close\n\t\t\tclass=\"ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none\"\n\t\t>\n\t\t\t<X class=\"size-4\" />\n\t\t\t<span class=\"sr-only\">Close</span>\n\t\t</SheetPrimitive.Close>\n\t</SheetPrimitive.Content>\n</SheetPortal>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport X from \"lucide-svelte/icons/x\";\n\timport type { Snippet } from \"svelte\";\n\timport { SheetOverlay, SheetPortal, type Side, sheetVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tside = \"right\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {\n\t\tside?: Side;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SheetPortal>\n\t<SheetOverlay />\n\t<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>\n\t\t{@render children?.()}\n\t\t<SheetPrimitive.Close\n\t\t\tclass=\"ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none\"\n\t\t>\n\t\t\t<X class=\"size-4\" />\n\t\t\t<span class=\"sr-only\">Close</span>\n\t\t</SheetPrimitive.Close>\n\t</SheetPrimitive.Content>\n</SheetPortal>\n"
 		},
 		{
 			"name": "sheet-description.svelte",
-			"content": "<script>import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<SheetPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.DescriptionProps = $props();\n</script>\n\n<SheetPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "sheet-footer.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "sheet-header.svelte",
-			"content": "<script>import { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  children,\n  ...restProps\n} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "sheet-overlay.svelte",
-			"content": "<script>import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\nexport { className as class };\n</script>\n\n<SheetPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\"bg-background/80 fixed inset-0 z-50 backdrop-blur-sm \", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.OverlayProps = $props();\n\n\texport { className as class };\n</script>\n\n<SheetPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\"bg-background/80 fixed inset-0 z-50 backdrop-blur-sm \", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "sheet-title.svelte",
-			"content": "<script>import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport { cn } from \"$lib/utils.js\";\nlet {\n  ref = $bindable(null),\n  class: className,\n  ...restProps\n} = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-foreground text-lg font-semibold\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-foreground text-lg font-semibold\", className)}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

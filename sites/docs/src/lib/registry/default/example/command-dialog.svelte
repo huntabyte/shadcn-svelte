@@ -5,25 +5,19 @@
 	import Settings from "lucide-svelte/icons/settings";
 	import Smile from "lucide-svelte/icons/smile";
 	import User from "lucide-svelte/icons/user";
-	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 
 	let open = $state(false);
 
-	onMount(() => {
-		function handleKeydown(e: KeyboardEvent) {
-			if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
-				e.preventDefault();
-				open = !open;
-			}
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault();
+			open = !open;
 		}
-
-		document.addEventListener("keydown", handleKeydown);
-		return () => {
-			document.removeEventListener("keydown", handleKeydown);
-		};
-	});
+	}
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <p class="text-muted-foreground text-sm">
 	Press

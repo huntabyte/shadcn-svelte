@@ -69,8 +69,8 @@
 						{#each statuses as status}
 							<Command.Item
 								value={status.value}
-								onSelect={(currentValue) => {
-									value = currentValue;
+								onSelect={() => {
+									value = status.value;
 									closeAndFocusTrigger(triggerId);
 								}}
 							>

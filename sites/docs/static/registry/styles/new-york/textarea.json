@@ -1,6 +1,8 @@
 {
 	"name": "textarea",
-	"dependencies": [],
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{

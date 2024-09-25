@@ -11,7 +11,7 @@
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupLabel>Appearance</DropdownMenu.GroupLabel>
+			<DropdownMenu.GroupHeading>Appearance</DropdownMenu.GroupHeading>
 			<DropdownMenu.Separator />
 			<DropdownMenu.CheckboxItem bind:checked={showStatusBar}>
 				Status Bar

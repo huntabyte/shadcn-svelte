@@ -14,7 +14,7 @@
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
-	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -140,11 +140,13 @@
 			class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
-				<Sheet.Trigger
-					class={buttonVariants({ variant: "outline", size: "icon", class: "sm:hidden" })}
-				>
-					<PanelLeft class="size-5" />
-					<span class="sr-only">Toggle Menu</span>
+				<Sheet.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="outline" size="icon" class="sm:hidden">
+							<PanelLeft class="size-5" />
+							<span class="sr-only">Toggle Menu</span>
+						</Button>
+					{/snippet}
 				</Sheet.Trigger>
 				<Sheet.Content side="left" class="sm:max-w-xs">
 					<nav class="grid gap-6 text-lg font-medium">
@@ -214,24 +216,27 @@
 				/>
 			</div>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					class={buttonVariants({
-						size: "icon",
-						variant: "outline",
-						class: "overflow-hidden rounded-full",
-					})}
-				>
-					<img
-						src="/images/placeholder-user.jpg"
-						width={36}
-						height={36}
-						alt="Avatar"
-						class="overflow-hidden rounded-full"
-					/>
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button
+							{...props}
+							size="icon"
+							variant="outline"
+							class="overflow-hidden rounded-full"
+						>
+							<img
+								src="/images/placeholder-user.jpg"
+								width={36}
+								height={36}
+								alt="Avatar"
+								class="overflow-hidden rounded-full"
+							/>
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupLabel>My Account</DropdownMenu.GroupLabel>
+						<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>Settings</DropdownMenu.Item>
 						<DropdownMenu.Item>Support</DropdownMenu.Item>
