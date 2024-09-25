@@ -34,7 +34,6 @@
 				xScale={scaleBand().padding(0.2)}
 				x="month"
 				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
-				seriesLayout="group"
 				props={{
 					bars: { stroke: "none", radius: 8 },
 					highlight: { area: { fill: "none" } },
@@ -45,12 +44,7 @@
 				<!-- TODO: How to add `tweened` to bars? -->
 				<svelte:fragment slot="tooltip">
 					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={data.month}
-							config={chartConfig}
-							payload={data}
-							indicator="dashed"
-						/>
+						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
 					</Tooltip.Root>
 				</svelte:fragment>
 			</BarChart>
