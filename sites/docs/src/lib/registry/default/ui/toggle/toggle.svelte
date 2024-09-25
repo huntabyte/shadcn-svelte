@@ -5,7 +5,7 @@
 
 	let {
 		ref = $bindable(null),
-		pressed = $bindable(),
+		pressed = $bindable(false),
 		class: className,
 		size = "default",
 		variant = "default",
