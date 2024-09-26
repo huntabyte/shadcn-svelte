@@ -80,16 +80,16 @@
 				{/if}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
-				<DropdownMenu.Item on:click={handleAscSort}>
+				<DropdownMenu.Item onclick={handleAscSort}>
 					<ArrowUp class="text-muted-foreground/70 mr-2 size-3.5" />
 					Asc
 				</DropdownMenu.Item>
-				<DropdownMenu.Item on:click={handleDescSort}>
+				<DropdownMenu.Item onclick={handleDescSort}>
 					<ArrowDown class="text-muted-foreground/70 mr-2 size-3.5" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item on:click={handleHide}>
+				<DropdownMenu.Item onclick={handleHide}>
 					<EyeNone class="text-muted-foreground/70 mr-2 size-3.5" />
 					Hide
 				</DropdownMenu.Item>

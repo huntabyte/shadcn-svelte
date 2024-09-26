@@ -83,7 +83,7 @@
 						variant="outline"
 						size="icon"
 						class="size-8 shrink-0 rounded-full"
-						on:click={() => handleClick(-10)}
+						onclick={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
 						<Minus class="size-4" />
@@ -101,7 +101,7 @@
 						variant="outline"
 						size="icon"
 						class="size-8 shrink-0 rounded-full"
-						on:click={() => handleClick(10)}
+						onclick={() => handleClick(10)}
 					>
 						<Plus class="size-4" />
 						<span class="sr-only">Increase</span>

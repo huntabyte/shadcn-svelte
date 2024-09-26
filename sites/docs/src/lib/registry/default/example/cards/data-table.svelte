@@ -73,6 +73,7 @@
 		table.column({
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected,
 				});
@@ -81,7 +82,7 @@
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
-
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: isSelected,
 				});
@@ -128,6 +129,7 @@
 			header: "",
 			accessor: ({ id }) => id,
 			cell: (item) => {
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(Actions, { id: item.value });
 			},
 			plugins: {
@@ -213,10 +215,7 @@
 													<Render of={cell.render()} />
 												</div>
 											{:else if cell.id === "email"}
-												<Button
-													variant="ghost"
-													on:click={props.sort.toggle}
-												>
+												<Button variant="ghost" onclick={props.sort.toggle}>
 													<Render of={cell.render()} />
 													<ArrowUpDown
 														class={cn(

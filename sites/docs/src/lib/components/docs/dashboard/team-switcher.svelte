@@ -166,7 +166,7 @@
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button variant="outline" on:click={() => (showTeamDialog = false)}>Cancel</Button>
+			<Button variant="outline" onclick={() => (showTeamDialog = false)}>Cancel</Button>
 			<Button type="submit">Continue</Button>
 		</Dialog.Footer>
 	</Dialog.Content>

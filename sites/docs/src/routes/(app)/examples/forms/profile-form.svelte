@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const profileFormSchema = z.object({
 		username: z
@@ -108,7 +108,7 @@
 				</Form.ElementField>
 			{/each}
 		</Form.Fieldset>
-		<Button type="button" variant="outline" size="sm" class="mt-2" on:click={addUrl}>
+		<Button type="button" variant="outline" size="sm" class="mt-2" onclick={addUrl}>
 			Add URL
 		</Button>
 	</div>

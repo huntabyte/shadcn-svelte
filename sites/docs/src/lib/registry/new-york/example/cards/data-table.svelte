@@ -216,7 +216,7 @@
 												<Button
 													tabindex={-1}
 													variant="ghost"
-													on:click={props.sort.toggle}
+													onclick={props.sort.toggle}
 												>
 													<Render of={cell.render()} />
 													<ArrowUpDown
@@ -277,14 +277,14 @@
 			<Button
 				variant="outline"
 				size="sm"
-				on:click={() => ($pageIndex = $pageIndex - 1)}
+				onclick={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}>Previous</Button
 			>
 			<Button
 				variant="outline"
 				size="sm"
 				disabled={!$hasNextPage}
-				on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+				onclick={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 			>
 		</div>
 	</Card.Content>

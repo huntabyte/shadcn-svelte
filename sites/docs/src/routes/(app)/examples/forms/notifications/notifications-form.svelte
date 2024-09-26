@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const notificationsFormSchema = z.object({
 		type: z.enum(["all", "mentions", "none"], {

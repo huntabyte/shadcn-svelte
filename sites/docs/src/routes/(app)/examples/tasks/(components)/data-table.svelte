@@ -45,6 +45,7 @@
 			id: "select",
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected,
 					"aria-label": "Select all",
@@ -53,6 +54,7 @@
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: isSelected,
 					"aria-label": "Select row",
@@ -83,6 +85,7 @@
 			id: "title",
 			cell: ({ value, row }) => {
 				if (row.isData()) {
+					// @ts-expect-error - tanstack table coming soon
 					return createRender(DataTableTitleCell, {
 						value,
 						labelValue: row.original.label,
@@ -96,6 +99,7 @@
 			header: "Status",
 			id: "status",
 			cell: ({ value }) => {
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableStatusCell, {
 					value,
 				});
@@ -121,6 +125,7 @@
 			id: "priority",
 			header: "Priority",
 			cell: ({ value }) => {
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTablePriorityCell, {
 					value,
 				});
@@ -149,6 +154,7 @@
 			},
 			cell: ({ row }) => {
 				if (row.isData() && row.original) {
+					// @ts-expect-error - tanstack table coming soon
 					return createRender(DataTableRowActions, {
 						row: row.original,
 					});

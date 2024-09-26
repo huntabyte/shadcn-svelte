@@ -72,6 +72,7 @@
 		table.column({
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected,
 				});
@@ -80,7 +81,7 @@
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
-
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: isSelected,
 				});
@@ -123,6 +124,7 @@
 			header: "Actions",
 			accessor: ({ id }) => id,
 			cell: (item) => {
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(Actions, { id: item.value });
 			},
 			plugins: {
@@ -204,7 +206,7 @@
 										{#if props.sort.disabled}
 											<Render of={cell.render()} />
 										{:else}
-											<Button variant="ghost" on:click={props.sort.toggle}>
+											<Button variant="ghost" onclick={props.sort.toggle}>
 												<Render of={cell.render()} />
 												<CaretSort
 													class={cn(
@@ -249,14 +251,14 @@
 		<Button
 			variant="outline"
 			size="sm"
-			on:click={() => ($pageIndex = $pageIndex - 1)}
+			onclick={() => ($pageIndex = $pageIndex - 1)}
 			disabled={!$hasPreviousPage}>Previous</Button
 		>
 		<Button
 			variant="outline"
 			size="sm"
 			disabled={!$hasNextPage}
-			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+			onclick={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 		>
 	</div>
 </div>
