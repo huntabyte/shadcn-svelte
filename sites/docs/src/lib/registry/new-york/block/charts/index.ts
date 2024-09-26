@@ -57,3 +57,10 @@ export { default as ChartRadarMultiple } from "./chart-radar-multiple.svelte";
 export { default as ChartRadarLegend } from "./chart-radar-legend.svelte";
 export { default as ChartRadarIcons } from "./chart-radar-icons.svelte";
 export { default as ChartRadarRadius } from "./chart-radar-radius.svelte";
+
+export { default as ChartRadialSimple } from "./chart-radial-simple.svelte";
+export { default as ChartRadialLabel } from "./chart-radial-label.svelte";
+export { default as ChartRadialGrid } from "./chart-radial-grid.svelte";
+export { default as ChartRadialText } from "./chart-radial-text.svelte";
+export { default as ChartRadialShape } from "./chart-radial-shape.svelte";
+export { default as ChartRadialStacked } from "./chart-radial-stacked.svelte";

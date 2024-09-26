@@ -232,6 +232,30 @@
 				</ChartDisplay>
 			</div>
 			<Separator />
+			<div
+				id="radial-chart"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay name="chart-radial-simple">
+					<Charts.ChartRadialSimple />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radial-label">
+					<Charts.ChartRadialLabel />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radial-grid">
+					<Charts.ChartRadialGrid />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radial-text">
+					<Charts.ChartRadialText />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radial-shape">
+					<Charts.ChartRadialShape />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radial-stacked">
+					<Charts.ChartRadialStacked />
+				</ChartDisplay>
+			</div>
+			<Separator />
 		</div>
 	</div>
 </div>
