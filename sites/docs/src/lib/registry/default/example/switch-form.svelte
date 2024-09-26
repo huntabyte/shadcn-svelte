@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const formSchema = z.object({
 		marketing_emails: z.boolean().default(false).optional(),

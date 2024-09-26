@@ -1,27 +1,5 @@
-<script context="module">
+<script module>
 	import "../../../../styles/markdown.pcss";
-	import {
-		a,
-		blockquote,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		hr,
-		img,
-		li,
-		ol,
-		p,
-		pre,
-		table,
-		td,
-		th,
-		tr,
-		ul,
-	} from "$lib/components/docs/markdown/index.js";
-
 	export {
 		a,
 		blockquote,
@@ -42,7 +20,7 @@
 		th,
 		tr,
 		ul,
-	};
+	} from "$lib/components/docs/markdown/index.js";
 </script>
 
 <script lang="ts">

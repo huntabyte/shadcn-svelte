@@ -41,7 +41,7 @@
 				{#if hidableCols.includes(col.id)}
 					<DropdownMenu.CheckboxItem
 						checked={!$hiddenColumnIds.includes(col.id)}
-						on:click={() => handleHide(col.id)}
+						onclick={() => handleHide(col.id)}
 					>
 						{col.header}
 					</DropdownMenu.CheckboxItem>

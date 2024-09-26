@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "toggle.svelte",
-			"content": "<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { type ToggleSize, type ToggleVariant, toggleVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpressed = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: TogglePrimitive.RootProps & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t} = $props();\n</script>\n\n<TogglePrimitive.Root\n\tbind:ref\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { type ToggleSize, type ToggleVariant, toggleVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpressed = $bindable(false),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: TogglePrimitive.RootProps & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t} = $props();\n</script>\n\n<TogglePrimitive.Root\n\tbind:ref\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

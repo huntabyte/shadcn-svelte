@@ -200,7 +200,7 @@
 			{:else}
 				<p class="text-muted-foreground text-sm">Select users to add to this thread.</p>
 			{/if}
-			<Button disabled={selectedUsers.length < 2} on:click={() => (open = false)}>
+			<Button disabled={selectedUsers.length < 2} onclick={() => (open = false)}>
 				Continue
 			</Button>
 		</Dialog.Footer>

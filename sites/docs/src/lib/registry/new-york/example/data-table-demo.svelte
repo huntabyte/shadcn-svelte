@@ -212,7 +212,7 @@
 												<Render of={cell.render()} />
 											</div>
 										{:else if cell.id === "email"}
-											<Button variant="ghost" on:click={props.sort.toggle}>
+											<Button variant="ghost" onclick={props.sort.toggle}>
 												<Render of={cell.render()} />
 												<CaretSort
 													class={cn(
@@ -265,14 +265,14 @@
 		<Button
 			variant="outline"
 			size="sm"
-			on:click={() => ($pageIndex = $pageIndex - 1)}
+			onclick={() => ($pageIndex = $pageIndex - 1)}
 			disabled={!$hasPreviousPage}>Previous</Button
 		>
 		<Button
 			variant="outline"
 			size="sm"
 			disabled={!$hasNextPage}
-			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+			onclick={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 		>
 	</div>
 </div>

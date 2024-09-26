@@ -17,11 +17,11 @@
 		<DotsHorizontal class="size-4" />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
-		<DropdownMenu.Item on:click={() => (open = true)}>
+		<DropdownMenu.Item onclick={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item on:click={() => (showDeleteDialog = true)} class="text-red-600">
+		<DropdownMenu.Item onclick={() => (showDeleteDialog = true)} class="text-red-600">
 			Delete preset
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button variant="secondary" on:click={() => (open = false)}>Close</Button>
+			<Button variant="secondary" onclick={() => (open = false)}>Close</Button>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
@@ -67,7 +67,7 @@
 			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
 			<Button
 				variant="destructive"
-				on:click={() => {
+				onclick={() => {
 					showDeleteDialog = false;
 				}}
 			>

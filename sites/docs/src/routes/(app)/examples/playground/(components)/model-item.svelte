@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Command as CommandPrimitive } from "cmdk-sv";
+	import type { Command as CommandPrimitive } from "bits-ui";
 	import Check from "svelte-radix/Check.svelte";
 	import type { Model } from "../(data)/models.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
@@ -37,11 +37,10 @@
 	}
 </script>
 
-<Command.Item value={model.name} {onSelect}>
+<Command.Item value={model.name} {onSelect} {...restProps}>
 	{#snippet child({ props })}
 		<div
 			use:mutationObserverAction
-			{...restProps}
 			{...props}
 			class="aria-selected:bg-primary aria-selected:text-primary-foreground relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
 		>
