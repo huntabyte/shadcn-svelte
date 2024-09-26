@@ -42,3 +42,18 @@ export { default as ChartPieDonutActive } from "./chart-pie-donut-active.svelte"
 export { default as ChartPieDonutText } from "./chart-pie-donut-text.svelte";
 export { default as ChartPieStacked } from "./chart-pie-stacked.svelte";
 export { default as ChartPieInteractive } from "./chart-pie-interactive.svelte";
+
+export { default as ChartRadarDefault } from "./chart-radar-default.svelte";
+export { default as ChartRadarDots } from "./chart-radar-dots.svelte";
+export { default as ChartRadarLinesOnly } from "./chart-radar-lines-only.svelte";
+export { default as ChartRadarLabelCustom } from "./chart-radar-label-custom.svelte";
+export { default as ChartRadarGridCustom } from "./chart-radar-grid-custom.svelte";
+export { default as ChartRadarGridNone } from "./chart-radar-grid-none.svelte";
+export { default as ChartRadarGridCircle } from "./chart-radar-grid-circle.svelte";
+export { default as ChartRadarGridCircleNoLines } from "./chart-radar-grid-circle-no-lines.svelte";
+export { default as ChartRadarGridCircleFill } from "./chart-radar-grid-circle-fill.svelte";
+export { default as ChartRadarGridFill } from "./chart-radar-grid-fill.svelte";
+export { default as ChartRadarMultiple } from "./chart-radar-multiple.svelte";
+export { default as ChartRadarLegend } from "./chart-radar-legend.svelte";
+export { default as ChartRadarIcons } from "./chart-radar-icons.svelte";
+export { default as ChartRadarRadius } from "./chart-radar-radius.svelte";

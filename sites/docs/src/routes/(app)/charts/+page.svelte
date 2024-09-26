@@ -184,6 +184,54 @@
 				</ChartDisplay>
 			</div>
 			<Separator />
+			<div
+				id="radar-chart"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay name="chart-radar-default">
+					<Charts.ChartRadarDefault />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-dots">
+					<Charts.ChartRadarDots />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-multiple">
+					<Charts.ChartRadarMultiple />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-lines-only">
+					<Charts.ChartRadarLinesOnly />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-label-custom">
+					<Charts.ChartRadarLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-radius">
+					<Charts.ChartRadarRadius />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-custom">
+					<Charts.ChartRadarGridCustom />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-fill">
+					<Charts.ChartRadarGridFill />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-none">
+					<Charts.ChartRadarGridNone />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-circle">
+					<Charts.ChartRadarGridCircle />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-circle-no-lines">
+					<Charts.ChartRadarGridCircleNoLines />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-grid-circle-fill">
+					<Charts.ChartRadarGridCircleFill />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-legend">
+					<Charts.ChartRadarLegend />
+				</ChartDisplay>
+				<ChartDisplay name="chart-radar-icons">
+					<Charts.ChartRadarIcons />
+				</ChartDisplay>
+			</div>
+			<Separator />
 		</div>
 	</div>
 </div>
