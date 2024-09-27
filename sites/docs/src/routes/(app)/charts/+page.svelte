@@ -47,7 +47,7 @@
 				<ChartDisplay status="Done" name="chart-area-stacked">
 					<Charts.ChartAreaStacked />
 				</ChartDisplay>
-				<ChartDisplay name="chart-area-stacked-expand">
+				<ChartDisplay status="Done" name="chart-area-stacked-expand">
 					<Charts.ChartAreaStackedExpand />
 				</ChartDisplay>
 				<ChartDisplay name="chart-area-legend">
