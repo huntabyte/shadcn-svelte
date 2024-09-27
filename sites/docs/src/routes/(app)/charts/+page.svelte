@@ -50,7 +50,7 @@
 				<ChartDisplay status="Done" name="chart-area-stacked-expand">
 					<Charts.ChartAreaStackedExpand />
 				</ChartDisplay>
-				<ChartDisplay name="chart-area-legend">
+				<ChartDisplay status="Blocked (External)" name="chart-area-legend">
 					<Charts.ChartAreaLegend />
 				</ChartDisplay>
 				<ChartDisplay status="Needs Parity" name="chart-area-icons">
