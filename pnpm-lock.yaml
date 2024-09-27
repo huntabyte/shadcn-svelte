@@ -249,8 +249,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1(svelte@4.2.18)(sveltekit-superforms@2.16.1(@sveltejs/kit@2.5.20(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.3.5(@types/node@18.19.43)))(svelte@4.2.18)(vite@5.3.5(@types/node@18.19.43)))(svelte@4.2.18))
       layerchart:
-        specifier: ^0.51.2
-        version: 0.51.2(svelte@4.2.18)(typescript@5.5.4)
+        specifier: ^0.52.1
+        version: 0.52.1(svelte@4.2.18)(typescript@5.5.4)
       lucide-svelte:
         specifier: ^0.363.0
         version: 0.363.0(svelte@4.2.18)
@@ -3536,8 +3536,8 @@ packages:
       svelte: 3 - 5 || >=5.0.0-next.120
       typescript: ^5.0.2
 
-  layerchart@0.51.2:
-    resolution: {integrity: sha512-AC4j5vcOCCB9YNSdXcA2YHy6RjHQ6s2fmkXetEVD2jDGzFxVB5F5szJUBYYe6QZnd9MzIsASz/hEe4JiHUmu7w==}
+  layerchart@0.52.1:
+    resolution: {integrity: sha512-f6W7iUoesvOBZA1xpox8eYx06iHONkLTGPPxVh0kcQJCykUNx8mUXxp5ATYALft5GA/s19G+bZv7jbMSaqpe9A==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -8806,7 +8806,7 @@ snapshots:
       svelte: 4.2.18
       typescript: 5.5.4
 
-  layerchart@0.51.2(svelte@4.2.18)(typescript@5.5.4):
+  layerchart@0.52.1(svelte@4.2.18)(typescript@5.5.4):
     dependencies:
       '@layerstack/svelte-actions': 0.0.4
       '@layerstack/svelte-stores': 0.0.4

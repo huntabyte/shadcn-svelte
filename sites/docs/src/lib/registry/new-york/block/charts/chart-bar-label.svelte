@@ -30,7 +30,7 @@
 	<Card.Content>
 		<Chart.Container>
 			<BarChart
-				labels
+				labels={{ offset: 12 }}
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
 				x="month"

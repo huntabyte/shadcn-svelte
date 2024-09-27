@@ -76,7 +76,7 @@
 		"embla-carousel-autoplay": "8.0.0-rc19",
 		"embla-carousel-svelte": "8.0.0-rc19",
 		"formsnap": "^0.5.1",
-		"layerchart": "^0.51.2",
+		"layerchart": "^0.52.1",
 		"lucide-svelte": "^0.363.0",
 		"mode-watcher": "^0.2.2",
 		"nanoid": "^5.0.6",
