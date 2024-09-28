@@ -176,7 +176,7 @@
 				<ChartDisplay name="chart-pie-donut-text">
 					<Charts.ChartPieDonutText />
 				</ChartDisplay>
-				<ChartDisplay status="In Progress" name="chart-pie-stacked">
+				<ChartDisplay status="Blocked (Internal)" name="chart-pie-stacked">
 					<Charts.ChartPieStacked />
 				</ChartDisplay>
 				<ChartDisplay name="chart-pie-interactive">

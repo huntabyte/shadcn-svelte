@@ -62,8 +62,6 @@
 		<Chart.Container class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				label="month"
-				outerRadius={-25}
-				innerRadius={-20}
 				series={[
 					// TODO: Ability to provide data in a more concise/compact format
 					// e.g `series: { [ { key: "desktop", data: desktopData }, { key: "mobile", data: mobileData } ] }`
@@ -71,11 +69,13 @@
 						key: "desktop",
 						value: "desktop",
 						data: desktopData.map((d) => ({ month: d.month, value: d.desktop })),
+						props: { innerRadius: -20 },
 					},
 					{
 						key: "mobile",
 						value: "mobile",
 						data: mobileData.map((d) => ({ month: d.month, value: d.mobile })),
+						props: { outerRadius: -30 },
 					},
 				]}
 				cRange={[
