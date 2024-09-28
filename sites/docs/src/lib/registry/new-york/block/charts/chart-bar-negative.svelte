@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Rule, Tooltip } from "layerchart";
+	import { BarChart, Tooltip } from "layerchart";
 	import TrendingUp from "lucide-svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
@@ -28,28 +28,26 @@
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container>
+			<!-- TODO: How to add `month` labels to bars and give them a custom color? -->
 			<BarChart
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
 				x="month"
 				series={[
 					{
-						key: "month",
+						key: "visitors",
+						label: "month",
 						// TODO: How to apply a color based on a condition? e.g. if visitors > 0, color: "hsl(var(--chart-1))", else color: "hsl(var(--chart-2))"
 						color: "hsl(var(--chart-1))",
 					},
 				]}
 				props={{
-					bars: { stroke: "none", inset: 5 },
+					bars: { stroke: "none", inset: 5, radius: 0 },
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
-					// yAxis: { format: () => "" },
+					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="above-marks">
-					<Rule y={0} />
-				</svelte:fragment>
-
 				<!-- TODO: How to add `tweened` to bars? -->
 				<svelte:fragment slot="tooltip">
 					<Tooltip.Root let:data variant="none">
