@@ -106,16 +106,6 @@
 		@apply !bg-muted-foreground/30 rounded-sm;
 	}
 
-	/* Firefox */
-	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
-	html {
-		scrollbar-color: hsl(215.4 16.3% 46.9% / 0.3);
-	}
-
-	html.dark {
-		scrollbar-color: hsl(215.4 16.3% 56.9% / 0.3);
-	}
-
 	.hide-scrollbar::-webkit-scrollbar {
 		display: none;
 	}
