@@ -1,39 +1,58 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { navigating } from "$app/stores";
+	import { isBrowser } from "$lib/utils.js";
+	import { beforeNavigate } from "$app/navigation";
 
-	export let carbonSrc: string =
+	const src =
 		"//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover";
+	const localId = crypto.randomUUID();
 
-	let mounted = false;
+	let container: HTMLElement | null = null;
 
 	onMount(() => {
 		refreshCarbonAds();
 
-		return () => {};
+		return () => {
+			const scriptNode = container?.querySelector(`[data-id="${localId}"]`);
+			const carbonNode = container?.querySelector(`#carbonads`);
+			scriptNode?.remove();
+			carbonNode?.remove();
+		};
 	});
 
-	$: if ($navigating && mounted) {
+	beforeNavigate((navigation) => {
+		const isDocIndex = navigation.from?.route.id === "/(app)/docs";
+		if (isDocIndex) return;
+		const goingToDocIndex = navigation.to?.route.id === "/(app)/docs";
+		if (goingToDocIndex) return;
 		refreshCarbonAds();
+	});
+
+	function createCarbonScript() {
+		const script = document.createElement("script");
+		script.async = true;
+		script.id = "_carbonads_js";
+		script.src = src;
+		script.type = "text/javascript";
+		script.dataset.id = localId;
+		return script;
 	}
 
 	function refreshCarbonAds() {
-		const carbonAdsNode = document.getElementById("carbonads");
-		const scriptNode = document.getElementById("_carbonads_js");
+		if (!isBrowser) return;
+
+		const scriptNode = container?.querySelector("[data-id='_carbonads_js']");
+		const carbonAdsNode = container?.querySelector("#carbonads");
 
 		carbonAdsNode?.remove();
 		scriptNode?.remove();
 
-		const script = document.createElement("script");
-		script.async = true;
-		script.id = "_carbonads_js";
-		script.src = carbonSrc;
-
-		const container = document.getElementById("carbon-container");
+		const script = createCarbonScript();
+		container = document.getElementById(localId);
 		if (container) {
 			container.appendChild(script);
 		}
 	}
 </script>
 
-<div id="carbon-container" class="pt-4"></div>
+<div id={localId} class="pt-4"></div>
