@@ -2,38 +2,18 @@
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import Code from "svelte-radix/Code.svelte";
 	import ExternalLink from "svelte-radix/ExternalLink.svelte";
-	import { onMount } from "svelte";
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
-	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
-	import { afterNavigate, beforeNavigate } from "$app/navigation";
+	import Carbon from "$lib/components/docs/carbon.svelte";
 
 	export let data: PageData;
 	$: markdown = data.component;
 	$: doc = data.metadata;
 	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
-
-	let mounted = false;
-
-	beforeNavigate(() => {
-		mounted = false;
-	});
-
-	afterNavigate(() => {
-		mounted = true;
-	});
-
-	onMount(() => {
-		mounted = true;
-
-		return () => {
-			mounted = false;
-		};
-	});
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
@@ -86,22 +66,10 @@
 	</div>
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
-			{#key $page.url.pathname}
-				<ScrollArea class="h-full">
-					<TableOfContents />
-					{#if mounted}
-						<div class="z-10 pt-4">
-							<script
-								async
-								type="text/javascript"
-								src="//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover"
-								id="_carbonads_js"
-								data-id="carbon-ads"
-							></script>
-						</div>
-					{/if}
-				</ScrollArea>
-			{/key}
+			<ScrollArea class="h-full">
+				<TableOfContents />
+				<Carbon />
+			</ScrollArea>
 		</div>
 	</div>
 </main>

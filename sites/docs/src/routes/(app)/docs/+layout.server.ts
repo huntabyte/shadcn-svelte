@@ -25,3 +25,5 @@ export const load: LayoutServerLoad = async () => {
 		datePicker: await superValidate(zod(datePickerFormSchema)),
 	};
 };
+
+export const prerender = true;
