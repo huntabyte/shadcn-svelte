@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div class="mb-5 flex flex-col items-center gap-2">
+<div class="mb-5 flex flex-col gap-2">
 	<div class="font-bold">Choose color format to copy:</div>
 	<RadioGroup.Root bind:value={selectedFormat} class="flex flex-row gap-5">
 		<div class="flex cursor-pointer items-center space-x-2">

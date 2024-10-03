@@ -1,19 +1,16 @@
 <script lang="ts">
+	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 
-	export let balanced = true;
+	type $$Props = HTMLAttributes<HTMLParagraphElement>;
 
-	let className: string | undefined | null = undefined;
+	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
 <p
-	class={cn(
-		"text-muted-foreground max-w-[750px] text-center text-lg sm:text-xl",
-		balanced && "text-balance",
-		className
-	)}
+	class={cn("text-foreground max-w-2xl text-balance text-lg font-light", className)}
 	{...$$restProps}
 >
-	<slot />
+	<slot></slot>
 </p>

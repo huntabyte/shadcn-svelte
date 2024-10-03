@@ -3,10 +3,8 @@
 	import { accounts, mails } from "./examples/mail/data.js";
 	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
-	import { cn } from "$lib/utils.js";
 	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
 	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
@@ -17,9 +15,8 @@
 	<PageHeader.Root class="pb-8">
 		<Announcement />
 		<PageHeader.Heading>Build your component library</PageHeader.Heading>
-		<PageHeader.Description class="text-muted-foreground">
-			Beautifully designed components that you can copy and paste into your apps. Accessible.
-			Customizable. Open Source.
+		<PageHeader.Description>
+			Beautifully designed components that you can copy and paste into your apps.
 		</PageHeader.Description>
 		<p class="text-center text-sm text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a
@@ -36,18 +33,18 @@
 				class="font-medium underline underline-offset-4">@shadcn</a
 			>.
 		</p>
-		<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
-			<a href="/docs" class={cn(buttonVariants())}> Get Started </a>
-			<a
+		<PageHeader.Actions>
+			<Button href="/docs" size="sm">Get Started</Button>
+			<Button
 				target="_blank"
 				rel="noreferrer"
 				href={siteConfig.links.github}
-				class={cn(buttonVariants({ variant: "outline" }))}
+				size="sm"
+				variant="ghost"
 			>
-				<Icons.gitHub class="mr-2 h-4 w-4" />
 				GitHub
-			</a>
-		</div>
+			</Button>
+		</PageHeader.Actions>
 	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section

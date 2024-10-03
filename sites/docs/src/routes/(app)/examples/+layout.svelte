@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <div class="container relative pb-10">
@@ -13,10 +13,10 @@
 			Dashboard, cards, authentication. Some examples built using the components. Use this as
 			a guide to build your own.
 		</PageHeader.Description>
-		<section class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
-			<Button href="/docs" class="rounded-[6px]">Get Started</Button>
-			<Button href="/components" variant="outline" class="rounded-[6px]">Components</Button>
-		</section>
+		<PageHeader.Actions>
+			<Button href="/docs" size="sm">Get Started</Button>
+			<Button href="/components" size="sm" variant="ghost">Components</Button>
+		</PageHeader.Actions>
 	</PageHeader.Root>
 	<section>
 		<ExamplesNav />
