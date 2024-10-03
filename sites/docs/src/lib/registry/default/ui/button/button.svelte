@@ -15,7 +15,7 @@
 </script>
 
 {#if href}
-	<a 
+	<a
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size, className }))}
 		{href}
