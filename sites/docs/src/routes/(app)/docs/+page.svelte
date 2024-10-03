@@ -2,6 +2,7 @@
 	import type { ComponentType } from "svelte";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { PageData } from "./$types.js";
+	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { cn } from "$lib/utils.js";
@@ -43,13 +44,7 @@
 				<TableOfContents />
 			{/key}
 			<div class="z-10 pt-4">
-				<script
-					async
-					type="text/javascript"
-					src="//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover"
-					id="_carbonads_js"
-					data-id="carbon-ads"
-				></script>
+				<Carbon />
 			</div>
 		</div>
 	</div>

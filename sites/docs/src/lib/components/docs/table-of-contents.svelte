@@ -3,6 +3,7 @@
 	import { writable } from "svelte/store";
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { Tree } from "$lib/components/docs/index.js";
+	import { page } from "$app/stores";
 
 	let filteredHeadingsList: TableOfContents;
 
@@ -101,7 +102,9 @@
 	});
 </script>
 
-<div class="space-y-2">
-	<p class="inline-flex font-medium">On This Page</p>
-	<Tree tree={filteredHeadingsList} activeItem={$activeItem} />
-</div>
+{#key $page.url.pathname}
+	<div class="space-y-2">
+		<p class="inline-flex font-medium">On This Page</p>
+		<Tree tree={filteredHeadingsList} activeItem={$activeItem} />
+	</div>
+{/key}
