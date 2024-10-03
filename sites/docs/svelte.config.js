@@ -30,10 +30,8 @@ const config = {
 				exclude: [
 					"<build>",
 					// prerendered content
-					"/docs/*",
 					"/blocks/*",
 					"/blocks.html",
-					"/docs.html",
 					// static
 					"/registry/*",
 					"/fonts/*",
