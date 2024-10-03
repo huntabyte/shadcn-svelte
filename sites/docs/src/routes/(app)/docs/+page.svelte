@@ -42,6 +42,15 @@
 			{#key $page.url.pathname}
 				<TableOfContents />
 			{/key}
+			<div class="z-10 pt-4">
+				<script
+					async
+					type="text/javascript"
+					src="//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover"
+					id="_carbonads_js"
+					data-id="carbon-ads"
+				></script>
+			</div>
 		</div>
 	</div>
 </main>
