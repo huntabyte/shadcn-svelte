@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import Home from "lucide-svelte/icons/home";
-	import LineChart from "lucide-svelte/icons/line-chart";
+	import House from "lucide-svelte/icons/house";
+	import ChartLine from "lucide-svelte/icons/chart-line";
 	import Package from "lucide-svelte/icons/package";
 	import Package2 from "lucide-svelte/icons/package-2";
 	import PanelLeft from "lucide-svelte/icons/panel-left";
@@ -45,7 +45,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<Home class="h-5 w-5" />
+						<House class="h-5 w-5" />
 						<span class="sr-only">Dashboard</span>
 					</a>
 				</Tooltip.Trigger>
@@ -101,7 +101,7 @@
 						use:builder.action
 						{...builder}
 					>
-						<LineChart class="h-5 w-5" />
+						<ChartLine class="h-5 w-5" />
 						<span class="sr-only">Analytics</span>
 					</a>
 				</Tooltip.Trigger>
@@ -149,7 +149,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<Home class="h-5 w-5" />
+							<House class="h-5 w-5" />
 							Dashboard
 						</a>
 						<a
@@ -174,7 +174,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<LineChart class="h-5 w-5" />
+							<ChartLine class="h-5 w-5" />
 							Settings
 						</a>
 					</nav>

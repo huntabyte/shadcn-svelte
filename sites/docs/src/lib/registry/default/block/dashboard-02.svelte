@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CircleUser from "lucide-svelte/icons/circle-user";
-	import LineChart from "lucide-svelte/icons/line-chart";
+	import ChartLine from "lucide-svelte/icons/chart-line";
 	import Package from "lucide-svelte/icons/package";
-	import Home from "lucide-svelte/icons/home";
+	import House from "lucide-svelte/icons/house";
 	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
 	import Bell from "lucide-svelte/icons/bell";
 	import Menu from "lucide-svelte/icons/menu";
@@ -37,7 +37,7 @@
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<Home class="h-4 w-4" />
+						<House class="h-4 w-4" />
 						Dashboard
 					</a>
 					<a
@@ -70,7 +70,7 @@
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<LineChart class="h-4 w-4" />
+						<ChartLine class="h-4 w-4" />
 						Analytics
 					</a>
 				</nav>
@@ -117,7 +117,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<Home class="h-5 w-5" />
+							<House class="h-5 w-5" />
 							Dashboard
 						</a>
 						<a
@@ -150,7 +150,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<LineChart class="h-5 w-5" />
+							<ChartLine class="h-5 w-5" />
 							Analytics
 						</a>
 					</nav>
