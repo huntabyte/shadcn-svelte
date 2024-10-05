@@ -50,7 +50,7 @@
 		"prettier-plugin-tailwindcss": "0.5.13",
 		"pretty-quick": "^4.0.0",
 		"simple-git-hooks": "^2.10.0",
-		"svelte": "^4.2.12",
+		"svelte": "^4.2.19",
 		"svelte-eslint-parser": "^0.41.0"
 	},
 	"simple-git-hooks": {
