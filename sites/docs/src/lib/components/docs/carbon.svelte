@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import { isBrowser } from "$lib/utils.js";
 	import { beforeNavigate } from "$app/navigation";
+	import { dev } from "$app/environment";
 
 	const src =
 		"//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover";
@@ -10,14 +11,16 @@
 	let container: HTMLElement | null = null;
 
 	onMount(() => {
-		refreshCarbonAds();
+		if (!dev) {
+			refreshCarbonAds();
 
-		return () => {
-			const scriptNode = container?.querySelector(`[data-id="${localId}"]`);
-			const carbonNode = container?.querySelector(`#carbonads`);
-			scriptNode?.remove();
-			carbonNode?.remove();
-		};
+			return () => {
+				const scriptNode = container?.querySelector(`[data-id="${localId}"]`);
+				const carbonNode = container?.querySelector(`#carbonads`);
+				scriptNode?.remove();
+				carbonNode?.remove();
+			};
+		}
 	});
 
 	beforeNavigate((navigation) => {
@@ -39,20 +42,24 @@
 	}
 
 	function refreshCarbonAds() {
-		if (!isBrowser) return;
+		if (!dev) {
+			if (!isBrowser) return;
 
-		const scriptNode = container?.querySelector("[data-id='_carbonads_js']");
-		const carbonAdsNode = container?.querySelector("#carbonads");
+			const scriptNode = container?.querySelector("[data-id='_carbonads_js']");
+			const carbonAdsNode = container?.querySelector("#carbonads");
 
-		carbonAdsNode?.remove();
-		scriptNode?.remove();
+			carbonAdsNode?.remove();
+			scriptNode?.remove();
 
-		const script = createCarbonScript();
-		container = document.getElementById(localId);
-		if (container) {
-			container.appendChild(script);
+			const script = createCarbonScript();
+			container = document.getElementById(localId);
+			if (container) {
+				container.appendChild(script);
+			}
 		}
 	}
 </script>
 
-<div id={localId} class="pt-4"></div>
+{#if !dev}
+	<div id={localId} class="pt-4"></div>
+{/if}

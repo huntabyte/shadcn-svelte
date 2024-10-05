@@ -9,6 +9,7 @@
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
+	import { page } from "$app/stores";
 
 	export let data: PageData;
 	$: markdown = data.component;
@@ -67,7 +68,9 @@
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
 			<ScrollArea class="h-full">
-				<TableOfContents />
+				{#key $page.url.pathname}
+					<TableOfContents />
+				{/key}
 				<Carbon />
 			</ScrollArea>
 		</div>
