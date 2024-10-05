@@ -2,18 +2,18 @@ import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import color from "chalk";
-import { Command } from "commander";
+import { Command, Option } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
+import { AGENTS, COMMANDS, detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
+import { type Config, getConfig } from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -23,6 +23,7 @@ const updateOptionsSchema = v.object({
 	cwd: v.string(),
 	proxy: v.optional(v.string()),
 	yes: v.boolean(),
+	pm: v.optional(v.picklist(AGENTS)),
 });
 
 type UpdateOptions = v.InferOutput<typeof updateOptionsSchema>;
@@ -35,6 +36,12 @@ export const update = new Command()
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
+	.addOption(
+		new Option(
+			"--pm <name>",
+			"specify the package manager. if not provided, the tool will auto-detect one based on the current project."
+		).choices(AGENTS)
+	)
 	.action(async (components, opts) => {
 		intro();
 
@@ -225,11 +232,11 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, true);
+	const commands = !options.pm ? await detectPM(cwd, true) : COMMANDS[options.pm];
 	if (commands) {
 		const [pm, add] = commands.add.split(" ") as [string, string];
 		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
+			title: `${highlight(pm)} Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
 				await execa(pm, [add, ...dependencies], {

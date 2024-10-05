@@ -2,24 +2,26 @@ import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import color from "chalk";
-import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
-import * as cliConfig from "../utils/get-config.js";
-import type { Config } from "../utils/get-config.js";
-import { error, handleError } from "../utils/errors.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
-import * as templates from "../utils/templates.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sveltekit.js";
+import * as v from "valibot";
 import {
+	AGENTS,
+	COMMANDS,
 	type DetectLanguageResult,
 	detectConfigs,
 	detectLanguage,
 	detectPM,
 } from "../utils/auto-detect.js";
+import { error, handleError } from "../utils/errors.js";
+import type { Config } from "../utils/get-config.js";
+import * as cliConfig from "../utils/get-config.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
+import { resolveImport } from "../utils/resolve-imports.js";
+import { syncSvelteKit } from "../utils/sveltekit.js";
+import * as templates from "../utils/templates.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -36,6 +38,7 @@ const initOptionsSchema = v.object({
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
 	deps: v.boolean(),
+	pm: v.optional(v.picklist(AGENTS)),
 });
 
 type InitOptions = v.InferOutput<typeof initOptionsSchema>;
@@ -50,15 +53,16 @@ export const init = new Command()
 			styles.map((style) => style.name)
 		)
 	)
-	.addOption(
-		new Option("--base-color <name>", "the base color for the components").choices(
-			baseColors.map((color) => color.name)
-		)
-	)
 	.option("--css <path>", "path to the global CSS file")
 	.option("--tailwind-config <path>", "path to the tailwind config file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--utils-alias <path>", "import alias for utils")
+	.addOption(
+		new Option(
+			"--pm <name>",
+			"specify the package manager. If not provided, the tool will auto-detect one based on the current project."
+		).choices(AGENTS)
+	)
 	.action(async (opts) => {
 		intro();
 		const options = v.parse(initOptionsSchema, opts);
@@ -363,11 +367,11 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
+	const commands = !options.pm ? await detectPM(cwd, options.deps) : COMMANDS[options.pm];
 	if (commands) {
 		const [pm, add] = commands.add.split(" ") as [string, string];
 		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
+			title: `${highlight(pm)} Installing dependencies`,
 			enabled: options.deps,
 			async task() {
 				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
