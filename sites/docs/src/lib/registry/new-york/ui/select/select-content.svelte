@@ -31,7 +31,7 @@
 			class={cn(
 				"p-1",
 				position === "floating" &&
-					"h-[var(--bits-select-trigger-height)] w-full min-w-[var(--bits-select-trigger-width)]"
+					"h-[var(--bits-select-anchor-height)] w-full min-w-[var(--bits-select-anchor-width)]"
 			)}
 		>
 			{@render children?.()}

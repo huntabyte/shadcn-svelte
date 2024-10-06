@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Select as SelectPrimitive, type WithoutChild } from "bits-ui";
-	import SelectScrollUpButton from './select-scroll-up-button.svelte'
-	import SelectScrollDownButton from './select-scroll-down-button.svelte'
+	import SelectScrollUpButton from "./select-scroll-up-button.svelte";
+	import SelectScrollDownButton from "./select-scroll-down-button.svelte";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -32,7 +32,7 @@
 			class={cn(
 				"p-1",
 				position === "floating" &&
-					"h-[var(--bits-select-trigger-height)] w-full min-w-[var(--bits-select-trigger-width)]"
+					"h-[var(--bits-select-anchor-height)] w-full min-w-[var(--bits-select-anchor-width)]"
 			)}
 		>
 			{@render children?.()}
