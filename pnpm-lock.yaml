@@ -237,8 +237,8 @@ importers:
         specifier: 2.0.0-next.0
         version: 2.0.0-next.0(svelte@5.0.0-next.262)(sveltekit-superforms@2.16.0(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.262)(vite@5.4.7(@types/node@20.14.10)))(svelte@5.0.0-next.262)(vite@5.4.7(@types/node@20.14.10)))(svelte@5.0.0-next.262))
       lucide-svelte:
-        specifier: ^0.363.0
-        version: 0.363.0(svelte@5.0.0-next.262)
+        specifier: ^0.447.0
+        version: 0.447.0(svelte@5.0.0-next.262)
       mode-watcher:
         specifier: ^0.3.1
         version: 0.3.1(svelte@5.0.0-next.262)
@@ -3995,8 +3995,8 @@ packages:
     peerDependencies:
       svelte: '>=3 <5'
 
-  lucide-svelte@0.363.0:
-    resolution: {integrity: sha512-zpUBFtMEEOOjILgiDX48ijibUww3JUCLrMo5YDGX/De/m6I+vn+oWIGvdyZtuc8nz/P8xHW9vWLKzIWeMrRYbA==}
+  lucide-svelte@0.447.0:
+    resolution: {integrity: sha512-DDCVy79q9H1IAGmrbGDG4GZmCZK+5elK3Fxzu0RzbHKr2Khg7EMc8S6C12bzWcnfW263raqo3grthEjB5gxAjw==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -7892,7 +7892,7 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.4.7(@types/node@20.14.10))':
+  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.4.7)':
     dependencies:
       '@vitest/spy': 2.1.2
       estree-walker: 3.0.3
@@ -9994,7 +9994,7 @@ snapshots:
     dependencies:
       svelte: 4.2.12
 
-  lucide-svelte@0.363.0(svelte@5.0.0-next.262):
+  lucide-svelte@0.447.0(svelte@5.0.0-next.262):
     dependencies:
       svelte: 5.0.0-next.262
 
@@ -12225,7 +12225,7 @@ snapshots:
   vitest@2.1.2(@types/node@20.14.10):
     dependencies:
       '@vitest/expect': 2.1.2
-      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.4.7(@types/node@20.14.10))
+      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.4.7)
       '@vitest/pretty-format': 2.1.2
       '@vitest/runner': 2.1.2
       '@vitest/snapshot': 2.1.2

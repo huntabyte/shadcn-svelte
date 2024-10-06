@@ -49,6 +49,7 @@
 		if (!api) return;
 		carouselState.canScrollPrev = api.canScrollPrev();
 		carouselState.canScrollNext = api.canScrollNext();
+		carouselState.selectedIndex = api.selectedScrollSnap()
 	}
 
 	$effect(() => {

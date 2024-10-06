@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import Home from "lucide-svelte/icons/home";
-	import LineChart from "lucide-svelte/icons/line-chart";
+	import House from "lucide-svelte/icons/house";
+	import ChartLine from "lucide-svelte/icons/chart-line";
 	import Package from "lucide-svelte/icons/package";
 	import Package2 from "lucide-svelte/icons/package-2";
 	import PanelLeft from "lucide-svelte/icons/panel-left";
@@ -46,7 +46,7 @@
 								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 								{...props}
 							>
-								<Home class="size-5" />
+								<House class="size-5" />
 								<span class="sr-only">Dashboard</span>
 							</a>
 						{/snippet}
@@ -106,7 +106,7 @@
 								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
 								{...props}
 							>
-								<LineChart class="size-5" />
+								<ChartLine class="size-5" />
 								<span class="sr-only">Analytics</span>
 							</a>
 						{/snippet}
@@ -161,7 +161,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<Home class="size-5" />
+							<House class="size-5" />
 							Dashboard
 						</a>
 						<a
@@ -186,7 +186,7 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<LineChart class="size-5" />
+							<ChartLine class="size-5" />
 							Settings
 						</a>
 					</nav>

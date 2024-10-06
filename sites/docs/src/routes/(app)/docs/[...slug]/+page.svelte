@@ -5,10 +5,11 @@
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
-	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
+	import Carbon from "$lib/components/docs/carbon.svelte";
+	import { page } from "$app/stores";
 
 	let { data }: { data: PageData } = $props();
 
@@ -69,11 +70,12 @@
 	</div>
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
-			{#key $page.url.pathname}
-				<ScrollArea class="h-full">
+			<ScrollArea class="h-full">
+				{#key $page.url.pathname}
 					<TableOfContents />
-				</ScrollArea>
-			{/key}
+				{/key}
+				<Carbon />
+			</ScrollArea>
 		</div>
 	</div>
 </main>
