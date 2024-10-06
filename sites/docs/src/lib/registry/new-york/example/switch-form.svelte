@@ -41,14 +41,16 @@
 				name="marketing_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label>Marketing emails</Form.Label>
-						<Form.Description>
-							Receive emails about new products, features, and more.
-						</Form.Description>
-					</div>
-					<Switch {...attrs} bind:checked={$formData.marketing_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label>Marketing emails</Form.Label>
+							<Form.Description>
+								Receive emails about new products, features, and more.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.marketing_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -56,19 +58,21 @@
 				name="security_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label>Security emails</Form.Label>
-						<Form.Description>
-							Receive emails about your account security.
-						</Form.Description>
-					</div>
-					<Switch
-						{...attrs}
-						aria-readonly
-						disabled
-						bind:checked={$formData.security_emails}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label>Security emails</Form.Label>
+							<Form.Description>
+								Receive emails about your account security.
+							</Form.Description>
+						</div>
+						<Switch
+							{...props}
+							aria-readonly
+							disabled
+							bind:checked={$formData.security_emails}
+						/>
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 		</div>

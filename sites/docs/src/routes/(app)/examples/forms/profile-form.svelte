@@ -50,9 +50,11 @@
 
 <form method="POST" class="space-y-8" use:enhance id="profile-form">
 	<Form.Field {form} name="username">
-		<Form.Control let:attrs>
-			<Form.Label>Username</Form.Label>
-			<Input placeholder="@shadcn" {...attrs} bind:value={$formData.username} />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Username</Form.Label>
+				<Input placeholder="@shadcn" {...props} bind:value={$formData.username} />
+			{/snippet}
 		</Form.Control>
 		<Form.Description>
 			This is your public display name. It can be your real name or a pseudonym. You can only
@@ -62,19 +64,21 @@
 	</Form.Field>
 
 	<Form.Field {form} name="email">
-		<Form.Control let:attrs>
-			<Form.Label>Email</Form.Label>
-			<Select.Root bind:value={$formData.email}>
-				<Select.Trigger {...attrs}>
-					<Select.Value placeholder="Select a verified email to display" />
-				</Select.Trigger>
-				<Select.Content>
-					<Select.Item value="m@example.com" textValue="m@example.com" />
-					<Select.Item value="m@google.com" textValue="m@google.com" />
-					<Select.Item value="m@support.com" textValue="m@supporte.com" />
-				</Select.Content>
-			</Select.Root>
-			<input hidden name={attrs.name} bind:value={$formData.email} />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Email</Form.Label>
+				<Select.Root bind:value={$formData.email}>
+					<Select.Trigger {...props}>
+						<Select.Value placeholder="Select a verified email to display" />
+					</Select.Trigger>
+					<Select.Content>
+						<Select.Item value="m@example.com" textValue="m@example.com" />
+						<Select.Item value="m@google.com" textValue="m@google.com" />
+						<Select.Item value="m@support.com" textValue="m@supporte.com" />
+					</Select.Content>
+				</Select.Root>
+				<input hidden name={props.name} bind:value={$formData.email} />
+			{/snippet}
 		</Form.Control>
 		<Form.Description>
 			You can manage verified email addresses in your <a href="/examples/forms">
@@ -84,9 +88,11 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Field {form} name="bio">
-		<Form.Control let:attrs>
-			<Form.Label>Bio</Form.Label>
-			<Textarea {...attrs} bind:value={$formData.bio} />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Bio</Form.Label>
+				<Textarea {...props} bind:value={$formData.bio} />
+			{/snippet}
 		</Form.Control>
 		<Form.Description>
 			You can <span>@mention</span> other users and organizations to link to them.
@@ -101,8 +107,10 @@
 					<Form.Description class={cn(i !== 0 && "sr-only")}>
 						Add links to your website, blog, or social media profiles.
 					</Form.Description>
-					<Form.Control let:attrs>
-						<Input {...attrs} bind:value={$formData.urls[i]} />
+					<Form.Control>
+						{#snippet children({ props })}
+							<Input {...props} bind:value={$formData.urls[i]} />
+						{/snippet}
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.ElementField>

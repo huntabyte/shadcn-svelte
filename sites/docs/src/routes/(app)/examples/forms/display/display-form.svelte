@@ -63,23 +63,25 @@
 			{#each items as item}
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-center space-x-3">
-					<Form.Control let:attrs>
-						{@const { name, ...rest } = attrs}
-						<Checkbox.Root
-							{...rest}
-							{checked}
-							onCheckedChange={(v) => {
-								if (v) {
-									$formData.items = [...$formData.items, item.id];
-								} else {
-									$formData.items = $formData.items.filter((i) => i !== item.id);
-								}
-							}}
-						/>
-						<Form.Label class="font-normal">
-							{item.label}
-						</Form.Label>
-						<input type="checkbox" {name} hidden value={item.id} {checked} />
+					<Form.Control>
+						{#snippet children({ props })}
+							<Checkbox.Root
+								{...props}
+								{checked}
+								onCheckedChange={(v) => {
+									if (v) {
+										$formData.items = [...$formData.items, item.id];
+									} else {
+										$formData.items = $formData.items.filter(
+											(i) => i !== item.id
+										);
+									}
+								}}
+							/>
+							<Form.Label class="font-normal">
+								{item.label}
+							</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
 			{/each}

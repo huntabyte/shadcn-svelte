@@ -74,22 +74,24 @@
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
 		<Popover.Root bind:open>
-			<Form.Control let:attrs id={triggerId}>
-				<Form.Label>Language</Form.Label>
-				<Popover.Trigger
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[200px] justify-between",
-						!$formData.language && "text-muted-foreground"
-					)}
-					role="combobox"
-					{...attrs}
-				>
-					{languages.find((f) => f.value === $formData.language)?.label ??
-						"Select language"}
-					<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
-				</Popover.Trigger>
-				<input hidden value={$formData.language} name={attrs.name} />
+			<Form.Control id={triggerId}>
+				{#snippet children({ props })}
+					<Form.Label>Language</Form.Label>
+					<Popover.Trigger
+						class={cn(
+							buttonVariants({ variant: "outline" }),
+							"w-[200px] justify-between",
+							!$formData.language && "text-muted-foreground"
+						)}
+						role="combobox"
+						{...props}
+					>
+						{languages.find((f) => f.value === $formData.language)?.label ??
+							"Select language"}
+						<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+					</Popover.Trigger>
+					<input hidden value={$formData.language} name={props.name} />
+				{/snippet}
 			</Form.Control>
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>

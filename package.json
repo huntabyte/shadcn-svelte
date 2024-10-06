@@ -43,14 +43,14 @@
 		"@changesets/cli": "^2.27.1",
 		"@huntabyte/eslint-config": "^0.3.2",
 		"eslint": "^9.0.0",
-		"eslint-plugin-svelte": "^2.43.0",
+		"eslint-plugin-svelte": "^2.44.1",
 		"prettier": "^3.2.5",
-		"prettier-plugin-svelte": "^3.2.6",
+		"prettier-plugin-svelte": "^3.2.7",
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"pretty-quick": "^4.0.0",
 		"simple-git-hooks": "^2.10.0",
-		"svelte": "5.0.0-next.259",
-		"svelte-eslint-parser": "^0.41.0"
+		"svelte": "5.0.0-next.262",
+		"svelte-eslint-parser": "^0.41.1"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"

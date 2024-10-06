@@ -487,9 +487,7 @@
 		"dependencies": [
 			"bits-ui"
 		],
-		"registryDependencies": [
-			"select"
-		],
+		"registryDependencies": [],
 		"files": [
 			"ui/select/index.ts",
 			"ui/select/select-content.svelte",

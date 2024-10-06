@@ -37,17 +37,19 @@
 
 <form method="POST" action="/?/textarea" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="bio">
-		<Form.Control let:attrs>
-			<Form.Label>Bio</Form.Label>
-			<Textarea
-				{...attrs}
-				placeholder="Tell us a little bit about yourself"
-				class="resize-none"
-				bind:value={$formData.bio}
-			/>
-			<Form.Description>
-				You can <span>@mention</span> other users and organizations.
-			</Form.Description>
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Bio</Form.Label>
+				<Textarea
+					{...props}
+					placeholder="Tell us a little bit about yourself"
+					class="resize-none"
+					bind:value={$formData.bio}
+				/>
+				<Form.Description>
+					You can <span>@mention</span> other users and organizations.
+				</Form.Description>
+			{/snippet}
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>

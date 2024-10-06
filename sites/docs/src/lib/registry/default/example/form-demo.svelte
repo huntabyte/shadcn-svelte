@@ -35,9 +35,11 @@
 
 <form action="/?/username" method="POST" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="username">
-		<Form.Control let:attrs>
-			<Form.Label>Username</Form.Label>
-			<Input {...attrs} bind:value={$formData.username} />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Username</Form.Label>
+				<Input {...props} bind:value={$formData.username} />
+			{/snippet}
 		</Form.Control>
 		<Form.Description>This is your public display name.</Form.Description>
 		<Form.FieldErrors />
