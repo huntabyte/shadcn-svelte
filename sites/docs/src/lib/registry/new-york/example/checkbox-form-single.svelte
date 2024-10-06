@@ -38,17 +38,19 @@
 		name="mobile"
 		class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
 	>
-		<Form.Control let:attrs>
-			<Checkbox {...attrs} bind:checked={$formData.mobile} />
-			<div class="space-y-1 leading-none">
-				<Form.Label>Use different settings for my mobile devices</Form.Label>
-				<Form.Description>
-					You can manage your mobile notifications in the <a href="/examples/forms"
-						>mobile settings</a
-					> page.
-				</Form.Description>
-			</div>
-			<input name={attrs.name} value={$formData.mobile} hidden />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Checkbox {...props} bind:checked={$formData.mobile} />
+				<div class="space-y-1 leading-none">
+					<Form.Label>Use different settings for my mobile devices</Form.Label>
+					<Form.Description>
+						You can manage your mobile notifications in the <a href="/examples/forms"
+							>mobile settings</a
+						> page.
+					</Form.Description>
+				</div>
+				<input name={props.name} value={$formData.mobile} hidden />
+			{/snippet}
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>

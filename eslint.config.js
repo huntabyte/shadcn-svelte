@@ -1,28 +1,29 @@
-import config from "@huntabyte/eslint-config";
+import config, { DEFAULT_IGNORES } from "@huntabyte/eslint-config";
 
-export default config({ svelte: true })
-	.override("antfu/javascript/rules", {
-		rules: {
-			"unused-imports/no-unused-vars": [
-				"error",
-				{
-					varsIgnorePattern: "^_",
-					argsIgnorePattern: "^_",
-					args: "after-used",
-				},
-			],
-			"no-unused-vars": "off",
-		},
-	})
+const ignores = ["**/extended-types"];
+
+export default config({ svelte: true, ignores: [...DEFAULT_IGNORES, ...ignores] })
 	.override("antfu/typescript/rules", {
 		rules: {
-			"unused-imports/no-unused-vars": [
-				"error",
-				{
-					args: "after-used",
-					varsIgnorePattern: "^_",
-					argsIgnorePattern: "^_",
-				},
-			],
+			"ts/consistent-type-definitions": "off",
+			"unused-imports/no-unused-imports": "off",
+			"unused-imports/no-unused-vars": "off",
+			"ts/no-unused-expressions": "off",
+			"no-unused-expressions": "off",
+			"ts/no-empty-object-type": "off",
+		},
+	})
+	.override("antfu/javascript/rules", {
+		rules: {
+			"no-unused-expressions": "off",
+			"unused-imports/no-unused-imports": "off",
+		},
+	})
+	.override("huntabyte/svelte/rules", {
+		rules: {
+			"svelte/no-at-html-tags": "off",
+			"unused-imports/no-unused-imports": "off",
+			"unused-imports/no-unused-vars": "off",
+			"import/no-self-import": "off",
 		},
 	});

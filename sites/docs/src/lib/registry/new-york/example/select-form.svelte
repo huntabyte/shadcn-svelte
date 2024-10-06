@@ -35,18 +35,20 @@
 
 <form method="POST" action="/?/select" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="email">
-		<Form.Control let:attrs>
-			<Form.Label>Email</Form.Label>
-			<Select.Root bind:value={$formData.email} name={attrs.name}>
-				<Select.Trigger {...attrs}>
-					<Select.Value placeholder="Select a verified email to display" />
-				</Select.Trigger>
-				<Select.Content>
-					<Select.Item value="m@example.com" textValue="m@example.com" />
-					<Select.Item value="m@google.com" textValue="m@google.com" />
-					<Select.Item value="m@support.com" textValue="m@support.com" />
-				</Select.Content>
-			</Select.Root>
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Email</Form.Label>
+				<Select.Root bind:value={$formData.email} name={props.name}>
+					<Select.Trigger {...props}>
+						<Select.Value placeholder="Select a verified email to display" />
+					</Select.Trigger>
+					<Select.Content>
+						<Select.Item value="m@example.com" textValue="m@example.com" />
+						<Select.Item value="m@google.com" textValue="m@google.com" />
+						<Select.Item value="m@support.com" textValue="m@support.com" />
+					</Select.Content>
+				</Select.Root>
+			{/snippet}
 		</Form.Control>
 		<Form.Description>
 			You can manage email address in your <a href="/examples/forms">email settings</a>.

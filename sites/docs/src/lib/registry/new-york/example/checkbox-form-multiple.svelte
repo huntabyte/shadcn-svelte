@@ -82,22 +82,30 @@
 			{#each items as item}
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-start space-x-3">
-					<Form.Control let:attrs>
-						<Checkbox
-							{...attrs}
-							{checked}
-							onCheckedChange={(v) => {
-								if (v) {
-									addItem(item.id);
-								} else {
-									removeItem(item.id);
-								}
-							}}
-						/>
-						<Form.Label class="text-sm font-normal">
-							{item.label}
-						</Form.Label>
-						<input hidden type="checkbox" name={attrs.name} value={item.id} {checked} />
+					<Form.Control>
+						{#snippet children({ props })}
+							<Checkbox
+								{...props}
+								{checked}
+								onCheckedChange={(v) => {
+									if (v) {
+										addItem(item.id);
+									} else {
+										removeItem(item.id);
+									}
+								}}
+							/>
+							<Form.Label class="text-sm font-normal">
+								{item.label}
+							</Form.Label>
+							<input
+								hidden
+								type="checkbox"
+								name={props.name}
+								value={item.id}
+								{checked}
+							/>
+						{/snippet}
 					</Form.Control>
 				</div>
 			{/each}

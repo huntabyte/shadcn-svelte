@@ -40,21 +40,27 @@
 		<Form.Legend>Notify me about...</Form.Legend>
 		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1" name="type">
 			<div class="flex items-center space-x-3 space-y-0">
-				<Form.Control let:attrs>
-					<RadioGroup.Item value="all" {...attrs} />
-					<Form.Label class="font-normal">All new messages</Form.Label>
+				<Form.Control>
+					{#snippet children({ props })}
+						<RadioGroup.Item value="all" {...props} />
+						<Form.Label class="font-normal">All new messages</Form.Label>
+					{/snippet}
 				</Form.Control>
 			</div>
 			<div class="flex items-center space-x-3 space-y-0">
-				<Form.Control let:attrs>
-					<RadioGroup.Item value="mentions" {...attrs} />
-					<Form.Label class="font-normal">Direction messages and mentions</Form.Label>
+				<Form.Control>
+					{#snippet children({ props })}
+						<RadioGroup.Item value="mentions" {...props} />
+						<Form.Label class="font-normal">Direction messages and mentions</Form.Label>
+					{/snippet}
 				</Form.Control>
 			</div>
 			<div class="flex items-center space-x-3 space-y-0">
-				<Form.Control let:attrs>
-					<RadioGroup.Item value="none" {...attrs} />
-					<Form.Label class="font-normal">Nothing</Form.Label>
+				<Form.Control>
+					{#snippet children({ props })}
+						<RadioGroup.Item value="none" {...props} />
+						<Form.Label class="font-normal">Nothing</Form.Label>
+					{/snippet}
 				</Form.Control>
 			</div>
 		</RadioGroup.Root>

@@ -61,41 +61,45 @@
 
 <form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
 	<Form.Field {form} name="dob" class="flex flex-col">
-		<Form.Control let:attrs>
-			<Form.Label>Date of birth</Form.Label>
-			<Popover.Root>
-				<Popover.Trigger
-					{...attrs}
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[280px] justify-start pl-4 text-left font-normal",
-						!value && "text-muted-foreground"
-					)}
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Date of birth</Form.Label>
+				<Popover.Root>
+					<Popover.Trigger
+						{...props}
+						class={cn(
+							buttonVariants({ variant: "outline" }),
+							"w-[280px] justify-start pl-4 text-left font-normal",
+							!value && "text-muted-foreground"
+						)}
+					>
+						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
+						<CalendarIcon class="ml-auto size-4 opacity-50" />
+					</Popover.Trigger>
+					<Popover.Content class="w-auto p-0" side="top">
+						<Calendar
+							type="single"
+							value={value as DateValue}
+							bind:placeholder
+							minValue={new CalendarDate(1900, 1, 1)}
+							maxValue={today(getLocalTimeZone())}
+							calendarLabel="Date of birth"
+							onValueChange={(v) => {
+								if (v) {
+									$formData.dob = v.toString();
+								} else {
+									$formData.dob = "";
+								}
+							}}
+						/>
+					</Popover.Content>
+				</Popover.Root>
+				<Form.Description
+					>Your date of birth is used to calculator your age</Form.Description
 				>
-					{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-					<CalendarIcon class="ml-auto size-4 opacity-50" />
-				</Popover.Trigger>
-				<Popover.Content class="w-auto p-0" side="top">
-					<Calendar
-						type="single"
-						value={value as DateValue}
-						bind:placeholder
-						minValue={new CalendarDate(1900, 1, 1)}
-						maxValue={today(getLocalTimeZone())}
-						calendarLabel="Date of birth"
-						onValueChange={(v) => {
-							if (v) {
-								$formData.dob = v.toString();
-							} else {
-								$formData.dob = "";
-							}
-						}}
-					/>
-				</Popover.Content>
-			</Popover.Root>
-			<Form.Description>Your date of birth is used to calculator your age</Form.Description>
-			<Form.FieldErrors />
-			<input hidden value={$formData.dob} name={attrs.name} />
+				<Form.FieldErrors />
+				<input hidden value={$formData.dob} name={props.name} />
+			{/snippet}
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
