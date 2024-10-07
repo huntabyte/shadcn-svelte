@@ -19,11 +19,17 @@
 	export let side: $$Props["side"] = "right";
 	export { className as class };
 	export let inTransition: $$Props["inTransition"] = fly;
-	export let inTransitionConfig: $$Props["inTransitionConfig"] =
-		sheetTransitions[side ?? "right"].in;
+	let inTransitionConfig: $$Props["inTransitionConfig"] = {
+		...sheetTransitions[side ?? "right"].in,
+		...$$props.inTransitionConfig,
+	};
+	delete $$restProps.inTransitionConfig;
 	export let outTransition: $$Props["outTransition"] = fly;
-	export let outTransitionConfig: $$Props["outTransitionConfig"] =
-		sheetTransitions[side ?? "right"].out;
+	let outTransitionConfig: $$Props["outTransitionConfig"] = {
+		...sheetTransitions[side ? side : "right"].out,
+		...$$props.outTransitionConfig,
+	};
+	delete $$restProps.outTransitionConfig;
 </script>
 
 <SheetPortal>
