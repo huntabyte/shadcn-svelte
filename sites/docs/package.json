@@ -65,7 +65,7 @@
 		"@internationalized/date": "^3.5.6",
 		"@unovis/svelte": "1.4.3",
 		"@unovis/ts": "1.4.3",
-		"bits-ui": "1.0.0-next.13",
+		"bits-ui": "1.0.0-next.14",
 		"clsx": "^2.1.1",
 		"d3-scale": "^4.0.2",
 		"embla-carousel-autoplay": "8.1.6",

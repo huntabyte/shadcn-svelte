@@ -1,15 +1,14 @@
 <script lang="ts">
 	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import type { WithoutChildren } from "bits-ui";
-	import { type PrimitiveSpanAttributes, cn } from "$lib/utils.js";
+	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		...restProps
-	}: WithoutChildren<PrimitiveSpanAttributes> = $props();
-
-	export { className as class };
+	}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLSpanElement>>> = $props();
 </script>
 
 <span

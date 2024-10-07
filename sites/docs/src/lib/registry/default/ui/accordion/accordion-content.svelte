@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Accordion as AccordionPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import type { Snippet } from "svelte";
+	import { Accordion as AccordionPrimitive, type WithoutChild } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -8,9 +7,7 @@
 		class: className,
 		children,
 		...restProps
-	}: WithoutChildrenOrChild<AccordionPrimitive.ContentProps> & {
-		children: Snippet;
-	} = $props();
+	}: WithoutChild<AccordionPrimitive.ContentProps> = $props();
 </script>
 
 <AccordionPrimitive.Content

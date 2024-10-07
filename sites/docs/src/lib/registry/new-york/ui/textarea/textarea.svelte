@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { WithoutChildren } from "bits-ui";
-	import { type PrimitiveTextareaAttributes, cn } from "$lib/utils.js";
+	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import type { HTMLTextareaAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		value = $bindable(),
 		class: className,
 		...restProps
-	}: WithoutChildren<PrimitiveTextareaAttributes> = $props();
+	}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();
 </script>
 
 <textarea

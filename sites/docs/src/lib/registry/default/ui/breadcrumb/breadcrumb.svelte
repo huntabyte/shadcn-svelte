@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { PrimitiveElementAttributes } from "$lib/utils.js";
+	import type { WithElementRef } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveElementAttributes = $props();
+	}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();
 </script>
 
 <nav bind:this={ref} class={className} aria-label="breadcrumb" {...restProps}>
