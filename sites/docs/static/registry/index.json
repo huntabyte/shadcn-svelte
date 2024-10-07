@@ -15,13 +15,16 @@
 	},
 	{
 		"name": "alert",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/alert/alert-description.svelte",
 			"ui/alert/alert-title.svelte",
 			"ui/alert/alert.svelte",
-			"ui/alert/index.ts"
+			"ui/alert/index.ts",
+			"ui/alert/variants.ts"
 		],
 		"type": "components:ui"
 	},
@@ -41,7 +44,6 @@
 			"ui/alert-dialog/alert-dialog-footer.svelte",
 			"ui/alert-dialog/alert-dialog-header.svelte",
 			"ui/alert-dialog/alert-dialog-overlay.svelte",
-			"ui/alert-dialog/alert-dialog-portal.svelte",
 			"ui/alert-dialog/alert-dialog-title.svelte",
 			"ui/alert-dialog/index.ts"
 		],

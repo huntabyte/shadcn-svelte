@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { WithElementRef } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveDivAttributes = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
 <div

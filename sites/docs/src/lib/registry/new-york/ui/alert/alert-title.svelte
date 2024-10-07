@@ -1,15 +1,16 @@
 <script lang="ts">
-	import type { AlertHeadingLevel } from "./index.js";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { WithElementRef } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		children,
 		level = 5,
+		children,
 		...restProps
-	}: PrimitiveDivAttributes & {
-		level?: AlertHeadingLevel;
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		level?: 1 | 2 | 3 | 4 | 5 | 6;
 	} = $props();
 </script>
 

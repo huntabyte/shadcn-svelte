@@ -1,13 +1,15 @@
 <script lang="ts">
+	import type { WithElementRef } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
 	import { getEmblaContext } from "./context.js";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveDivAttributes = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 
 	const emblaCtx = getEmblaContext("<Carousel.Item/>");
 </script>

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { type PrimitiveOlAttributes, cn } from "$lib/utils.js";
+	import type { WithElementRef } from "bits-ui";
+	import type { HTMLOlAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveOlAttributes = $props();
+	}: WithElementRef<HTMLOlAttributes> = $props();
 </script>
 
 <ol

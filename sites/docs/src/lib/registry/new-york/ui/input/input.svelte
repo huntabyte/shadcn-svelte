@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { type PrimitiveInputAttributes, cn } from "$lib/utils.js";
+	import type { HTMLInputAttributes } from "svelte/elements";
+	import type { WithElementRef } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
 	let {
-		value = $bindable(),
 		ref = $bindable(null),
+		value = $bindable(),
 		class: className,
 		...restProps
-	}: PrimitiveInputAttributes = $props();
+	}: WithElementRef<HTMLInputAttributes> = $props();
 </script>
 
 <input

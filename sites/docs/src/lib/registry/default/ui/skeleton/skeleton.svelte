@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { WithoutChildren } from "bits-ui";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		...restProps
-	}: WithoutChildren<PrimitiveDivAttributes> = $props();
+	}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();
 </script>
 
 <div

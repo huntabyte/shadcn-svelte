@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { CardHeadingLevel } from "./index.js";
-	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
+	import type { WithElementRef } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -8,8 +9,8 @@
 		level = 3,
 		children,
 		...restProps
-	}: PrimitiveElementAttributes & {
-		level?: CardHeadingLevel;
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		level?: 1 | 2 | 3 | 4 | 5 | 6;
 	} = $props();
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AlertDialog as AlertDialogPrimitive, type WithoutChild } from "bits-ui";
-	import * as AlertDialog from "./index.js";
+	import AlertDialogOverlay from "./alert-dialog-overlay.svelte";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -10,8 +10,8 @@
 	}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();
 </script>
 
-<AlertDialog.Portal>
-	<AlertDialog.Overlay />
+<AlertDialogPrimitive.Portal>
+	<AlertDialogOverlay />
 	<AlertDialogPrimitive.Content
 		bind:ref
 		class={cn(
@@ -20,4 +20,4 @@
 		)}
 		{...restProps}
 	/>
-</AlertDialog.Portal>
+</AlertDialogPrimitive.Portal>

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { type PrimitiveThAttributes, cn } from "$lib/utils.js";
+	import type { HTMLThAttributes } from "svelte/elements";
+	import type { WithElementRef } from "bits-ui";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: PrimitiveThAttributes = $props();
+	}: WithElementRef<HTMLThAttributes> = $props();
 </script>
 
 <th
