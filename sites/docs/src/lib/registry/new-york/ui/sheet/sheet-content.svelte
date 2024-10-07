@@ -26,7 +26,7 @@
 	delete $$restProps.inTransitionConfig;
 	export let outTransition: $$Props["outTransition"] = fly;
 	let outTransitionConfig: $$Props["outTransitionConfig"] = {
-		...sheetTransitions[side ? side : "right"].out,
+		...sheetTransitions[side || "right"].out,
 		...$$props.outTransitionConfig,
 	};
 	delete $$restProps.outTransitionConfig;
