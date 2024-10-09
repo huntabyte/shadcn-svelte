@@ -7,6 +7,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		children,
 		...restProps
 	}: CalendarPrimitive.PrevButtonProps = $props();
 </script>
