@@ -7,8 +7,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		child: childProp,
-		children: childrenProp,
+		children,
 		...restProps
 	}: CalendarPrimitive.PrevButtonProps = $props();
 </script>
@@ -17,26 +16,13 @@
 	<ChevronLeft class="size-4" />
 {/snippet}
 
-{#if childProp}
-	<CalendarPrimitive.NextButton
-		bind:ref
-		class={cn(
-			buttonVariants({ variant: "outline" }),
-			"size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-			className
-		)}
-		{...restProps}
-		child={childProp}
-	/>
-{:else}
-	<CalendarPrimitive.NextButton
-		bind:ref
-		class={cn(
-			buttonVariants({ variant: "outline" }),
-			"size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-			className
-		)}
-		{...restProps}
-		children={childrenProp || Fallback}
-	/>
-{/if}
+<CalendarPrimitive.PrevButton
+	bind:ref
+	class={cn(
+		buttonVariants({ variant: "outline" }),
+		"size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+		className
+	)}
+	{...restProps}
+	children={children || Fallback}
+/>
