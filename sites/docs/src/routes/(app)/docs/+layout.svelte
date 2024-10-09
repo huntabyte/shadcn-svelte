@@ -2,6 +2,8 @@
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { DocsSidebarNav } from "$lib/components/docs/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
+
+	let { children } = $props();
 </script>
 
 <div class="border-b">
@@ -15,6 +17,6 @@
 				<DocsSidebarNav items={docsConfig.sidebarNav} />
 			</ScrollArea>
 		</aside>
-		<slot />
+		{@render children?.()}
 	</div>
 </div>

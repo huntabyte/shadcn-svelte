@@ -20,12 +20,13 @@
 						<Select.Value placeholder="Select category" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="clothing" label="Clothing">Clothing</Select.Item
+						<Select.Item value="clothing" textValue="Clothing"
+							>Clothing</Select.Item
 						>
-						<Select.Item value="electronics" label="Electronics">
+						<Select.Item value="electronics" textValue="Electronics">
 							Electronics
 						</Select.Item>
-						<Select.Item value="accessories" label="Accessories">
+						<Select.Item value="accessories" textValue="Accessories">
 							Accessories
 						</Select.Item>
 					</Select.Content>
@@ -38,10 +39,13 @@
 						<Select.Value placeholder="Select subcategory" />
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="t-shirts" label="T-Shirts">T-Shirts</Select.Item
+						<Select.Item value="t-shirts" textValue="T-Shirts"
+							>T-Shirts</Select.Item
 						>
-						<Select.Item value="hoodies" label="Hoodies">Hoodies</Select.Item>
-						<Select.Item value="sweatshirts" label="Sweatshirts">
+						<Select.Item value="hoodies" textValue="Hoodies"
+							>Hoodies</Select.Item
+						>
+						<Select.Item value="sweatshirts" textValue="Sweatshirts">
 							Sweatshirts
 						</Select.Item>
 					</Select.Content>

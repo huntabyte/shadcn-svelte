@@ -8,8 +8,7 @@
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
-	export let tableModel: TableViewModel<Task>;
-	export let data: Task[];
+	let { tableModel, data }: { tableModel: TableViewModel<Task>; data: Task[] } = $props();
 
 	const counts = data.reduce<{
 		status: { [index: string]: number };
@@ -42,7 +41,16 @@
 		}>;
 	} = pluginStates.colFilter;
 
-	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
+	const showReset = $derived(
+		Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0)
+	);
+
+	if ($filterValues.status === undefined) {
+		$filterValues.status = [];
+	}
+	if ($filterValues.priority === undefined) {
+		$filterValues.priority = [];
+	}
 </script>
 
 <div class="flex items-center justify-between">
@@ -68,7 +76,7 @@
 		/>
 		{#if showReset}
 			<Button
-				on:click={() => {
+				onclick={() => {
 					$filterValue = "";
 					$filterValues.status = [];
 					$filterValues.priority = [];
@@ -77,7 +85,7 @@
 				class="h-8 px-2 lg:px-3"
 			>
 				Reset
-				<Cross2 class="ml-2 h-4 w-4" />
+				<Cross2 class="ml-2 size-4" />
 			</Button>
 		{/if}
 	</div>

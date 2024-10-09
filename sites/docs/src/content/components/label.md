@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/label
 
 <ComponentPreview name="label-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

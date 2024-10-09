@@ -1,14 +1,19 @@
 <script lang="ts">
 	import { tick } from "svelte";
 	import { CopyButton } from "$lib/components/docs/index.js";
-	import { cn, createCopyCodeButton } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn, createCopyCodeButton } from "$lib/utils.js";
 	import { getPackageManager } from "$lib/stores/package-manager.js";
 
 	const selectedPackageManager = getPackageManager();
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let isPackageManagerBlock = false;
+	let {
+		class: className,
+		isPackageManagerBlock = false,
+		children,
+		...restProps
+	}: PrimitiveElementAttributes & {
+		isPackageManagerBlock?: boolean;
+	} = $props();
 
 	const { copied, copyCode, codeString, setCodeString } = createCopyCodeButton();
 
@@ -31,8 +36,8 @@
 		"mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
 		className
 	)}
-	{...$$restProps}>
-	<slot />
+	{...restProps}>
+	{@render children?.()}
 </pre>
 <CopyButton
 	{isPackageManagerBlock}

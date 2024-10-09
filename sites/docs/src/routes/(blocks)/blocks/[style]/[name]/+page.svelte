@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { ComponentType } from "svelte";
+	import type { Component } from "svelte";
 	import type { PageData } from "./$types.js";
 	import { Blocks } from "$lib/../__registry__/blocks.js";
 	import { cn } from "$lib/utils.js";
 	import BlockWrapper from "$lib/components/docs/block-wrapper.svelte";
 	import BlockChunk from "$lib/components/docs/block-chunk.svelte";
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
-	$: block = Blocks[data.block.style][data.block.name];
-	$: chunks = block.chunks;
+	const block = $derived(Blocks[data.block.style][data.block.name]);
+	const chunks = $derived(block.chunks);
 
 	async function getComponents() {
-		const components: Promise<ComponentType>[] = chunks.map((chunk) => chunk.component());
+		const components: Promise<Component>[] = chunks.map((chunk) => chunk.component());
 		const chunkComponents = await Promise.all(components);
 		const BlockComponent = await block.component();
 

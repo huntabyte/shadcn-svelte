@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/switch
 
 <ComponentPreview name="switch-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -46,6 +46,6 @@ bits: https://www.bits-ui.com/docs/components/switch
 
 <ComponentPreview name="switch-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

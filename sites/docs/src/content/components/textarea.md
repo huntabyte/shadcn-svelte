@@ -11,7 +11,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -43,7 +43,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -51,7 +51,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -59,7 +59,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-label">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -67,7 +67,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -75,7 +75,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-button">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,6 +83,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

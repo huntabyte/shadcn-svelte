@@ -5,8 +5,6 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
-	let pager: ReturnType<typeof getPagerForDoc>;
-
 	function getPagerForDoc(slug: string) {
 		const flattenedLinks = [null, ...flatten(docsConfig.sidebarNav), null];
 		let activeIndex: number;
@@ -33,20 +31,20 @@
 			.filter((link) => !link?.disabled);
 	}
 
-	$: pager = getPagerForDoc($page.params.slug);
+	const pager = $derived(getPagerForDoc($page.params.slug));
 </script>
 
 <div class="flex flex-row items-center justify-between">
 	{#if pager?.prev?.href}
 		<Button href={pager.prev.href} variant="outline">
-			<Icons.chevronLeft class="mr-2 h-4 w-4" />
+			<Icons.chevronLeft class="mr-2 size-4" />
 			{pager.prev.title}
 		</Button>
 	{/if}
 	{#if pager?.next?.href}
 		<Button href={pager.next.href} variant="outline" class="ml-auto">
 			{pager.next.title}
-			<Icons.chevronRight class="ml-2 h-4 w-4" />
+			<Icons.chevronRight class="ml-2 size-4" />
 		</Button>
 	{/if}
 </div>

@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -46,7 +46,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -54,7 +54,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -62,7 +62,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -70,7 +70,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-sm">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -78,7 +78,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-lg">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -86,6 +86,6 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>

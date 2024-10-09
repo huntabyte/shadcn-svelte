@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -41,7 +41,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.Label>My Account</DropdownMenu.Label>
+      <DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
       <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>
@@ -58,7 +58,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-checkboxes">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,6 +66,6 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-radio-group">
 
-<div />
+<div></div>
 
 </ComponentPreview>

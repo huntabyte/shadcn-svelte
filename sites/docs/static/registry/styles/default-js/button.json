@@ -1,17 +1,15 @@
 {
 	"name": "button",
-	"dependencies": [
-		"bits-ui"
-	],
+	"dependencies": [],
 	"registryDependencies": [],
 	"files": [
 		{
 			"name": "button.svelte",
-			"content": "<script>\n\timport { Button as ButtonPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let variant = \"default\";\n\texport let size = \"default\";\n\texport let builders = [];\n\texport { className as class };\n</script>\n\n<ButtonPrimitive.Root\n\t{builders}\n\tclass={cn(buttonVariants({ variant, size, className }))}\n\ttype=\"button\"\n\t{...$$restProps}\n\ton:click\n\ton:keydown\n>\n\t<slot />\n</ButtonPrimitive.Root>\n"
+			"content": "<script>\n\timport { type Props, buttonVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tsize = \"default\",\n\t\tref = $bindable(null),\n\t\thref = undefined,\n\t\ttype = \"button\",\n\t\tchildren,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if href}\n\t<a\n\t\tbind:this={ref}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\t{href}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</a>\n{:else}\n\t<button\n\t\tbind:this={ref}\n\t\tclass={cn(buttonVariants({ variant, size, className }))}\n\t\t{type}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n"
 		},
 		{
 			"name": "index.js",
-			"content": "import { tv } from \"tailwind-variants\";\nimport Root from \"./button.svelte\";\nconst buttonVariants = tv({\n\tbase: \"ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n\tvariants: {\n\t\tvariant: {\n\t\t\tdefault: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n\t\t\tdestructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n\t\t\toutline:\n\t\t\t\t\"border-input bg-background hover:bg-accent hover:text-accent-foreground border\",\n\t\t\tsecondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n\t\t\tghost: \"hover:bg-accent hover:text-accent-foreground\",\n\t\t\tlink: \"text-primary underline-offset-4 hover:underline\",\n\t\t},\n\t\tsize: {\n\t\t\tdefault: \"h-10 px-4 py-2\",\n\t\t\tsm: \"h-9 rounded-md px-3\",\n\t\t\tlg: \"h-11 rounded-md px-8\",\n\t\t\ticon: \"h-10 w-10\",\n\t\t},\n\t},\n\tdefaultVariants: {\n\t\tvariant: \"default\",\n\t\tsize: \"default\",\n\t},\n});\nexport {\n\tRoot,\n\t//\n\tRoot as Button,\n\tbuttonVariants,\n};\n"
+			"content": "import { tv } from \"tailwind-variants\";\nimport Root from \"./button.svelte\";\nconst buttonVariants = tv({\n    base: \"ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n    variants: {\n        variant: {\n            default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n            destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n            outline: \"border-input bg-background hover:bg-accent hover:text-accent-foreground border\",\n            secondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n            ghost: \"hover:bg-accent hover:text-accent-foreground\",\n            link: \"text-primary underline-offset-4 hover:underline\",\n        },\n        size: {\n            default: \"h-10 px-4 py-2\",\n            sm: \"h-9 rounded-md px-3\",\n            lg: \"h-11 rounded-md px-8\",\n            icon: \"size-10\",\n        },\n    },\n    defaultVariants: {\n        variant: \"default\",\n        size: \"default\",\n    },\n});\nexport { Root, \n//\nRoot as Button, buttonVariants, };\n"
 		}
 	],
 	"type": "components:ui"

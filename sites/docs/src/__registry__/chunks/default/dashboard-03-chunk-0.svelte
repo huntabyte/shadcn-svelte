@@ -90,7 +90,7 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 			<div class="grid gap-3">
 				<Label for="role">Role</Label>
-				<Select.Root selected={{ value: "system", label: "system" }}>
+				<Select.Root value="system">
 					<Select.Trigger>
 						<Select.Value placeholder="Select a role" />
 					</Select.Trigger>

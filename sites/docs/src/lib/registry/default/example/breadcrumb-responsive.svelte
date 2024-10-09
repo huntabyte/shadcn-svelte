@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { mediaQuery } from "svelte-legos";
+	import { MediaQuery } from "runed";
 	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	const items = [
 		{ href: "#", label: "Home" },
@@ -15,9 +15,9 @@
 
 	const ITEMS_TO_DISPLAY = 3;
 
-	let open = false;
+	let open = $state(false);
 
-	const isDesktop = mediaQuery("(min-width: 768px)");
+	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 
 <Breadcrumb.Root>
@@ -30,18 +30,20 @@
 		<Breadcrumb.Separator />
 		{#if items.length > ITEMS_TO_DISPLAY}
 			<Breadcrumb.Item>
-				{#if $isDesktop}
+				{#if isDesktop.matches}
 					<DropdownMenu.Root bind:open>
 						<DropdownMenu.Trigger
 							class="flex items-center gap-1"
 							aria-label="Toggle menu"
 						>
-							<Breadcrumb.Ellipsis class="h-4 w-4" />
+							<Breadcrumb.Ellipsis class="size-4" />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
 							{#each items.slice(1, -2) as item}
-								<DropdownMenu.Item href={item.href ? item.href : "#"}>
-									{item.label}
+								<DropdownMenu.Item>
+									<a href={item.href ? item.href : "#"}>
+										{item.label}
+									</a>
 								</DropdownMenu.Item>
 							{/each}
 						</DropdownMenu.Content>
@@ -49,7 +51,7 @@
 				{:else}
 					<Drawer.Root bind:open>
 						<Drawer.Trigger aria-label="Toggle Menu">
-							<Breadcrumb.Ellipsis class="h-4 w-4" />
+							<Breadcrumb.Ellipsis class="size-4" />
 						</Drawer.Trigger>
 						<Drawer.Content>
 							<Drawer.Header class="text-left">
@@ -66,8 +68,8 @@
 								{/each}
 							</div>
 							<Drawer.Footer class="pt-4">
-								<Drawer.Close asChild let:builder>
-									<Button variant="outline" builders={[builder]}>Close</Button>
+								<Drawer.Close class={buttonVariants({ variant: "outline" })}>
+									Close
 								</Drawer.Close>
 							</Drawer.Footer>
 						</Drawer.Content>

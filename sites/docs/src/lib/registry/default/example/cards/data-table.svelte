@@ -13,7 +13,7 @@
 	import Actions from "../data-table/data-table-actions.svelte";
 	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
 	import * as Table from "$lib/registry/default/ui/table/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -73,6 +73,7 @@
 		table.column({
 			header: (_, { pluginStates }) => {
 				const { allPageRowsSelected } = pluginStates.select;
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: allPageRowsSelected,
 				});
@@ -81,7 +82,7 @@
 			cell: ({ row }, { pluginStates }) => {
 				const { getRowState } = pluginStates.select;
 				const { isSelected } = getRowState(row);
-
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(DataTableCheckbox, {
 					checked: isSelected,
 				});
@@ -128,6 +129,7 @@
 			header: "",
 			accessor: ({ id }) => id,
 			cell: (item) => {
+				// @ts-expect-error - tanstack table coming soon
 				return createRender(Actions, { id: item.value });
 			},
 			plugins: {
@@ -145,11 +147,13 @@
 
 	const { hiddenColumnIds } = pluginStates.hide;
 	const ids = flatColumns.map((c) => c.id);
-	let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
+	let hideForId = $state(Object.fromEntries(ids.map((id) => [id, true])));
 
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => !hide)
-		.map(([id]) => id);
+	$effect(() => {
+		$hiddenColumnIds = Object.entries(hideForId)
+			.filter(([, hide]) => !hide)
+			.map(([id]) => id);
+	});
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
@@ -173,10 +177,10 @@
 				bind:value={$filterValue}
 			/>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button variant="outline" class="ml-auto" builders={[builder]}>
-						Columns <ChevronDown class="ml-2 h-4 w-4" />
-					</Button>
+				<DropdownMenu.Trigger
+					class={buttonVariants({ variant: "outline", class: "ml-auto" })}
+				>
+					Columns <ChevronDown class="ml-2 size-4" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content>
 					{#each flatColumns as col}
@@ -211,16 +215,13 @@
 													<Render of={cell.render()} />
 												</div>
 											{:else if cell.id === "email"}
-												<Button
-													variant="ghost"
-													on:click={props.sort.toggle}
-												>
+												<Button variant="ghost" onclick={props.sort.toggle}>
 													<Render of={cell.render()} />
 													<ArrowUpDown
 														class={cn(
 															$sortKeys[0]?.id === cell.id &&
 																"text-foreground",
-															"ml-2 h-4 w-4"
+															"ml-2 size-4"
 														)}
 													/>
 												</Button>
@@ -274,14 +275,14 @@
 			<Button
 				variant="outline"
 				size="sm"
-				on:click={() => ($pageIndex = $pageIndex - 1)}
+				onclick={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}>Previous</Button
 			>
 			<Button
 				variant="outline"
 				size="sm"
 				disabled={!$hasNextPage}
-				on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+				onclick={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 			>
 		</div>
 	</Card.Content>

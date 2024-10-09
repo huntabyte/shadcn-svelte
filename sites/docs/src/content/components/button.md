@@ -13,7 +13,7 @@ bits: https://www.bits-ui.com/docs/components/button
 
 <ComponentPreview name="button-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -73,7 +73,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,7 +83,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-secondary">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,7 +93,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -103,7 +103,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -113,7 +113,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-ghost">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -123,7 +123,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-link">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -133,7 +133,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-with-icon">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -143,7 +143,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-icon">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -153,6 +153,6 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-loading">
 
-<div />
+<div></div>
 
 </ComponentPreview>

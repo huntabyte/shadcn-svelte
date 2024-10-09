@@ -13,7 +13,7 @@
 		"build:registry": "pnpm -F docs build:registry",
 		"build:site": "pnpm -F docs build",
 		"dev": "pnpm build:registry && pnpm -F docs dev",
-		"dev:cli": "pnpm -F shadcn-svelte dev",
+		"dev:cli": "pnpm -F shadcn-svelte start:dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F docs test",
 		"check": "pnpm -F docs check",
@@ -42,16 +42,15 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
 		"@huntabyte/eslint-config": "^0.3.2",
-		"@huntabyte/eslint-plugin": "^0.1.0",
 		"eslint": "^9.0.0",
-		"eslint-plugin-svelte": "^2.37.0",
+		"eslint-plugin-svelte": "^2.44.1",
 		"prettier": "^3.2.5",
-		"prettier-plugin-svelte": "^3.2.2",
-		"prettier-plugin-tailwindcss": "0.5.13",
+		"prettier-plugin-svelte": "^3.2.7",
+		"prettier-plugin-tailwindcss": "^0.5.12",
 		"pretty-quick": "^4.0.0",
 		"simple-git-hooks": "^2.10.0",
-		"svelte": "^4.2.12",
-		"svelte-eslint-parser": "^0.41.0"
+		"svelte": "5.0.0-next.262",
+		"svelte-eslint-parser": "^0.41.1"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"

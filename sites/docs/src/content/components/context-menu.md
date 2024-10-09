@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/context-menu
 
 <ComponentPreview name="context-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

@@ -12,7 +12,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="badge-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -56,7 +56,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 <ComponentPreview name="badge-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,7 +66,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 <ComponentPreview name="badge-secondary">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -76,7 +76,7 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 <ComponentPreview name="badge-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -86,6 +86,6 @@ You can use the `badgeVariants` helper to create a link that looks like a badge.
 
 <ComponentPreview name="badge-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>

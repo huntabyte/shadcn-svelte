@@ -32,7 +32,7 @@
 							"h-8 w-8 px-0"
 						)}
 					>
-						<Icons.gitHub class="h-4 w-4" />
+						<Icons.gitHub class="size-4" />
 						<span class="sr-only">GitHub</span>
 					</div>
 				</a>
@@ -46,7 +46,7 @@
 							"h-8 w-8 px-0"
 						)}
 					>
-						<Icons.twitter class="h-3 w-3 fill-current" />
+						<Icons.twitter class="size-3 fill-current" />
 						<span class="sr-only">X (formerly known as Twitter)</span>
 					</div>
 				</a>

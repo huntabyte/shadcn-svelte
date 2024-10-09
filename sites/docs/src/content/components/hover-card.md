@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/link-preview
 
 <ComponentPreview name="hover-card-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

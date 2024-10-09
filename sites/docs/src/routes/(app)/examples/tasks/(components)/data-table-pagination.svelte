@@ -8,7 +8,7 @@
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
-	export let tableModel: TableViewModel<Task>;
+	let { tableModel }: { tableModel: TableViewModel<Task> } = $props();
 
 	const { pageRows, pluginStates, rows } = tableModel;
 
@@ -24,10 +24,7 @@
 	<div class="flex items-center space-x-6 lg:space-x-8">
 		<div class="flex items-center space-x-2">
 			<p class="text-sm font-medium">Rows per page</p>
-			<Select.Root
-				onSelectedChange={(selected) => pageSize.set(Number(selected?.value))}
-				selected={{ value: 10, label: "10" }}
-			>
+			<Select.Root value="10" onValueChange={(v) => pageSize.set(Number.parseInt(v))}>
 				<Select.Trigger class="h-8 w-[70px]">
 					<Select.Value placeholder="Select page size" />
 				</Select.Trigger>
@@ -46,8 +43,8 @@
 		<div class="flex items-center space-x-2">
 			<Button
 				variant="outline"
-				class="hidden h-8 w-8 p-0 lg:flex"
-				on:click={() => ($pageIndex = 0)}
+				class="hidden size-8 p-0 lg:flex"
+				onclick={() => ($pageIndex = 0)}
 				disabled={!$hasPreviousPage}
 			>
 				<span class="sr-only">Go to first page</span>
@@ -55,8 +52,8 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="h-8 w-8 p-0"
-				on:click={() => ($pageIndex = $pageIndex - 1)}
+				class="size-8 p-0"
+				onclick={() => ($pageIndex = $pageIndex - 1)}
 				disabled={!$hasPreviousPage}
 			>
 				<span class="sr-only">Go to previous page</span>
@@ -64,18 +61,18 @@
 			</Button>
 			<Button
 				variant="outline"
-				class="h-8 w-8 p-0"
+				class="size-8 p-0"
 				disabled={!$hasNextPage}
-				on:click={() => ($pageIndex = $pageIndex + 1)}
+				onclick={() => ($pageIndex = $pageIndex + 1)}
 			>
 				<span class="sr-only">Go to next page</span>
 				<ChevronRight size={15} />
 			</Button>
 			<Button
 				variant="outline"
-				class="hidden h-8 w-8 p-0 lg:flex"
+				class="hidden size-8 p-0 lg:flex"
 				disabled={!$hasNextPage}
-				on:click={() => ($pageIndex = Math.ceil($rows.length / $pageRows.length) - 1)}
+				onclick={() => ($pageIndex = Math.ceil($rows.length / $pageRows.length) - 1)}
 			>
 				<span class="sr-only">Go to last page</span>
 				<DoubleArrowRight size={15} />

@@ -278,8 +278,7 @@ export const Index = {
 			base.cssVars[mode] = {};
 			for (const [key, value] of Object.entries(values)) {
 				if (typeof value === "string") {
-					// eslint-disable-next-line regexp/strict
-					const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
+					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
 					base.inlineColors[mode][key] = resolvedColor;
 
 					const [resolvedBase, scale] = resolvedColor.split("-");

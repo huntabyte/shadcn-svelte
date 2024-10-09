@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -50,7 +50,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -58,7 +58,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,7 +66,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-single">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -74,7 +74,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-sm">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -82,7 +82,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-lg">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -90,6 +90,6 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>

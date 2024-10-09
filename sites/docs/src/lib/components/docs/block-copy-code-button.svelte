@@ -1,17 +1,29 @@
 <script lang="ts">
 	import Check from "svelte-radix/Check.svelte";
 	import Clipboard from "svelte-radix/Clipboard.svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import type { TooltipTriggerProps } from "bits-ui";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { cn } from "$lib/utils.js";
 
-	let hasCopied = false;
-	export let code: string;
+	let {
+		code,
+		disabled = false,
+		...restProps
+	}: TooltipTriggerProps & {
+		code: string;
+		disabled?: boolean;
+	} = $props();
 
-	$: if (hasCopied) {
-		setTimeout(() => {
-			hasCopied = false;
-		}, 2000);
-	}
+	let hasCopied = $state(false);
+
+	$effect(() => {
+		if (hasCopied) {
+			setTimeout(() => {
+				hasCopied = false;
+			}, 2000);
+		}
+	});
 
 	function copyToClipboard() {
 		// Remove data-x-chunk-name and data-x-chunk-description attributes from the code
@@ -30,18 +42,22 @@
 	}
 </script>
 
-<Tooltip.Root>
-	<Tooltip.Trigger asChild let:builder>
-		<Button
-			size="icon"
-			variant="outline"
-			class="h-7 w-7 rounded-[6px] [&_svg]:size-3.5"
-			builders={[builder]}
-			on:click={() => {
+<Tooltip.Provider>
+	<Tooltip.Root>
+		<Tooltip.Trigger
+			class={cn(
+				buttonVariants({
+					variant: "outline",
+					size: "icon",
+					class: "size-7 rounded-[6px] [&_svg]:size-3.5",
+				})
+			)}
+			onclick={() => {
 				copyToClipboard();
 				hasCopied = true;
 			}}
-			{...$$restProps}
+			{disabled}
+			{...restProps}
 		>
 			<span class="sr-only">Copy</span>
 			{#if hasCopied}
@@ -49,7 +65,7 @@
 			{:else}
 				<Clipboard />
 			{/if}
-		</Button>
-	</Tooltip.Trigger>
-	<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
-</Tooltip.Root>
+		</Tooltip.Trigger>
+		<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>
+	</Tooltip.Root>
+</Tooltip.Provider>

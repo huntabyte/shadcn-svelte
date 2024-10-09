@@ -11,7 +11,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="data-table-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -451,15 +451,15 @@ We'll start by creating a new component called `data-table-actions.svelte` which
       variant="ghost"
       builders={[builder]}
       size="icon"
-      class="relative h-8 w-8 p-0"
+      class="relative size-8 p-0"
     >
       <span class="sr-only">Open menu</span>
-      <Ellipsis class="h-4 w-4" />
+      <Ellipsis class="size-4" />
     </Button>
   </DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.Label>Actions</DropdownMenu.Label>
+      <DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
       <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
         Copy payment ID
       </DropdownMenu.Item>
@@ -795,7 +795,7 @@ We can now update the `email` header cell to add sorting controls.
                 {:else if cell.id === "email"}
                   <Button variant="ghost" on:click={props.sort.toggle}>
                     <Render of={cell.render()} />
-                    <ArrowUpDown class={"ml-2 h-4 w-4"} />
+                    <ArrowUpDown class={"ml-2 size-4"} />
                   </Button>
                 {:else}
                   <Render of={cell.render()} />
@@ -1144,7 +1144,7 @@ Now we'll use the icon and `<DropdownMenu />` we imported in the previous step t
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild let:builder>
         <Button variant="outline" class="ml-auto" builders={[builder]}>
-          Columns <ChevronDown class="ml-2 h-4 w-4" />
+          Columns <ChevronDown class="ml-2 size-4" />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
@@ -1371,7 +1371,7 @@ To accommodate the checkbox, we'll need to update our table styles. We'll also a
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild let:builder>
         <Button variant="outline" class="ml-auto" builders={[builder]}>
-          Columns <ChevronDown class="ml-2 h-4 w-4" />
+          Columns <ChevronDown class="ml-2 size-4" />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
@@ -1406,7 +1406,7 @@ To accommodate the checkbox, we'll need to update our table styles. We'll also a
                     {:else if cell.id === "email"}
                       <Button variant="ghost" on:click={props.sort.toggle}>
                         <Render of={cell.render()} />
-                        <ArrowUpDown class={"ml-2 h-4 w-4"} />
+                        <ArrowUpDown class={"ml-2 size-4"} />
                       </Button>
                     {:else}
                       <Render of={cell.render()} />

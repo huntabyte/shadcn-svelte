@@ -12,7 +12,7 @@ bits: https://www.bits-ui.com/docs/components/radio-group
 
 <ComponentPreview name="radio-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -56,6 +56,6 @@ bits: https://www.bits-ui.com/docs/components/radio-group
 
 <ComponentPreview name="radio-group-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

@@ -4,16 +4,19 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { hexToHsl, hexToRgb } from "$lib/utils.js";
 
-	let hex = "#030711";
-	let hsl: [number, number, number] = [0, 0, 0];
-	let rgb: [number, number, number] = [0, 0, 0];
-	$: if (hex && ((hex.length === 6 && hex[0] !== "#") || (hex.length === 7 && hex[0] === "#"))) {
-		hsl = hexToHsl(hex);
-		rgb = hexToRgb(hex);
-	}
+	let hex = $state("#030711");
+	let hsl: [number, number, number] = $state([0, 0, 0]);
+	let rgb: [number, number, number] = $state([0, 0, 0]);
 
-	$: hslString = `${hsl[0]} ${hsl[1]}% ${hsl[2]}%`;
-	$: rgbString = `${rgb[0]} ${rgb[1]} ${rgb[2]}`;
+	$effect(() => {
+		if (hex && ((hex.length === 6 && hex[0] !== "#") || (hex.length === 7 && hex[0] === "#"))) {
+			hsl = hexToHsl(hex);
+			rgb = hexToRgb(hex);
+		}
+	});
+
+	const hslString = $derived(`${hsl[0]} ${hsl[1]}% ${hsl[2]}%`);
+	const rgbString = $derived(`${rgb[0]} ${rgb[1]} ${rgb[2]}`);
 </script>
 
 <div

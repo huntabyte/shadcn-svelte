@@ -12,7 +12,7 @@ bits: https://github.com/huntabyte/cmdk-sv
 
 <ComponentPreview name="command-demo" align="start" >
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -72,7 +72,7 @@ The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to
 
 <ComponentPreview name="command-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger asChild let:builder>
-		<Button variant="secondary" builders={[builder]}>Save</Button>
-	</Dialog.Trigger>
+	<Dialog.Trigger class={buttonVariants({ variant: "secondary" })}>Save</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-[475px]">
 		<Dialog.Header>
 			<Dialog.Title>Save preset</Dialog.Title>

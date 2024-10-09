@@ -10,7 +10,7 @@ component: true
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,7 +83,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
       class="w-[200px] justify-between"
     >
       {selectedValue}
-      <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+      <ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
     </Button>
   </Popover.Trigger>
   <Popover.Content class="w-[200px] p-0">
@@ -101,7 +101,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
           >
             <Check
               class={cn(
-                "mr-2 h-4 w-4",
+                "mr-2 size-4",
                 value !== framework.value && "text-transparent"
               )}
             />
@@ -120,7 +120,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -128,7 +128,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-popover">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -136,7 +136,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 <ComponentPreview name="combobox-dropdown-menu">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -148,6 +148,6 @@ Note: You must be on version `0.5.0` or higher of `formsnap` for this to work co
 
 <ComponentPreview name="combobox-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

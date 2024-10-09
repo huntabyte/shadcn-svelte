@@ -56,21 +56,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-									builders={[builder]}
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -96,21 +100,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -136,21 +144,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -176,21 +188,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -216,21 +232,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
@@ -256,21 +276,25 @@
 					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									aria-haspopup="true"
-									size="icon"
-									variant="ghost"
-								>
-									<Ellipsis class="h-4 w-4" />
-									<span class="sr-only">Toggle menu</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button
+										{...props}
+										aria-haspopup="true"
+										size="icon"
+										variant="ghost"
+									>
+										<Ellipsis class="size-4" />
+										<span class="sr-only">Toggle menu</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Actions</DropdownMenu.Label>
-								<DropdownMenu.Item>Edit</DropdownMenu.Item>
-								<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Item>Edit</DropdownMenu.Item>
+									<DropdownMenu.Item>Delete</DropdownMenu.Item>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>

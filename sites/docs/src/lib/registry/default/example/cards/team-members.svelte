@@ -4,7 +4,7 @@
 	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -15,7 +15,7 @@
 	<Card.Content class="grid gap-6">
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
-				<Avatar.Root class="h-8 w-8">
+				<Avatar.Root class="size-8">
 					<Avatar.Image src="/avatars/01.png" alt="Image" />
 					<Avatar.Fallback>OM</Avatar.Fallback>
 				</Avatar.Root>
@@ -25,11 +25,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Owner
-						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Owner
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -77,7 +77,7 @@
 		</div>
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
-				<Avatar.Root class="h-8 w-8">
+				<Avatar.Root class="size-8">
 					<Avatar.Image src="/avatars/02.png" alt="Image" />
 					<Avatar.Fallback>JL</Avatar.Fallback>
 				</Avatar.Root>
@@ -87,11 +87,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member
-						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Member
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -139,7 +139,8 @@
 		</div>
 		<div class="flex items-center justify-between space-x-4">
 			<div class="flex items-center space-x-4">
-				<Avatar.Root class="h-8 w-8">
+				<img src="avatars/03.png" alt="Avatar" class="h-8 w-8 rounded-full" />
+				<Avatar.Root class="size-8">
 					<Avatar.Image src="/avatars/03.png" alt="Image" />
 					<Avatar.Fallback>IN</Avatar.Fallback>
 				</Avatar.Root>
@@ -149,11 +150,11 @@
 				</div>
 			</div>
 			<Popover.Root>
-				<Popover.Trigger asChild let:builder>
-					<Button builders={[builder]} variant="outline" size="sm" class="ml-auto">
-						Member
-						<ChevronDownIcon class="text-muted-foreground ml-2 h-4 w-4" />
-					</Button>
+				<Popover.Trigger
+					class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+				>
+					Member
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>

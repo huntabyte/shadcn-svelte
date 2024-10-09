@@ -11,7 +11,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -46,7 +46,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -54,6 +54,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>

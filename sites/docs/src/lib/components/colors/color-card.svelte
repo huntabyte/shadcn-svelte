@@ -37,7 +37,6 @@
 			<RadioGroup.Item value="className" id="class-name-option" />
 			<Label for="class-name-option">Class Name</Label>
 		</div>
-		<RadioGroup.Input name="color-format" />
 	</RadioGroup.Root>
 </div>
 
