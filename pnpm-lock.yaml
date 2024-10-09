@@ -273,8 +273,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.4)
       vaul-svelte:
-        specifier: https://pkg.pr.new/vaul-svelte@ed3195e
-        version: https://pkg.pr.new/vaul-svelte@ed3195e(svelte@5.0.0-next.262)
+        specifier: 1.0.0-next.0
+        version: 1.0.0-next.0(svelte@5.0.0-next.262)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2361,9 +2361,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0-next.1
 
-  bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7:
-    resolution: {tarball: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7}
-    version: 0.21.15
+  bits-ui@1.0.0-next.15:
+    resolution: {integrity: sha512-RjjNO00BFsqWfFQmjGGYSBXD2LoDFZrjWcswS/QqaSIzf0MDoNl7pTRLu9+2nh1BrSIQQgNG3LJjwSjRa21Msg==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.1
@@ -4967,9 +4966,6 @@ packages:
     resolution: {integrity: sha512-3A6sD0WYP7+QrjbfNA2FN3FsOaGGFoekCVgTyypy53gPxhbkCIjtO6YWgdrfM+n/8sI8JeXZOIxsHjMTNxQ4nQ==}
     engines: {node: ^14.0.0 || >=16.0.0}
 
-  scule@1.3.0:
-    resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
-
   selfsigned@2.4.1:
     resolution: {integrity: sha512-th5B4L2U+eGLq1TVh7zNRGBapioSORUeymIydxgFpwww9d2qyKvtuPU2jJuHvYAwwqi2Y596QBL3eEqcPEYL8Q==}
     engines: {node: '>=10'}
@@ -5205,9 +5201,6 @@ packages:
   striptags@3.2.0:
     resolution: {integrity: sha512-g45ZOGzHDMe2bdYMdIvdAfCQkCTDMGBazSw1ypMowwGIee7ZQ5dU0rBJ8Jqgl+jAKIv4dbeE1jscZq9wid1Tkw==}
 
-  style-object-to-css-string@1.1.3:
-    resolution: {integrity: sha512-bISQoUsir/qGfo7vY8rw00ia9nnyE1jvYt3zZ2jhdkcXZ6dAEi74inMzQ6On57vFI+I4Fck6wOv5UI9BEwJDgw==}
-
   style-to-object@1.0.6:
     resolution: {integrity: sha512-khxq+Qm3xEyZfKd/y9L3oIWQimxuc4STrQKtQn8aSDRHb8mFgpukgX1hdzfrMEW6JCjyJ8p89x+IUMVnCBI1PA==}
 
@@ -5351,14 +5344,14 @@ packages:
     peerDependencies:
       svelte: ^4.0.0
 
-  svelte-toolbelt@0.3.1:
-    resolution: {integrity: sha512-RL7/iOpvZQF499fjl+P76LkZUgekK6joXfbZwc3sQzFIMhl1wgBCVL3lfsYOfEF4u9SfeD8BNFlgs1pfJh09kw==}
+  svelte-toolbelt@0.4.1:
+    resolution: {integrity: sha512-wRFa4YeimMpq7EptvtgX8d0IuBxqVRF7wymVWz92hs2VmQ33CGa40NvfIdK0Xm4ONRadU7FdpH6Gn2tUmEYEAg==}
     engines: {node: '>=20', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.126
 
-  svelte-toolbelt@0.4.1:
-    resolution: {integrity: sha512-wRFa4YeimMpq7EptvtgX8d0IuBxqVRF7wymVWz92hs2VmQ33CGa40NvfIdK0Xm4ONRadU7FdpH6Gn2tUmEYEAg==}
+  svelte-toolbelt@0.4.2:
+    resolution: {integrity: sha512-gepP5X070uw/lcAIhlp4Dw+LUQ8hyVa90DL7OqA8B622KkWOxVVIZvUOJSIsy27Ik68ITF9un+9NcLDuh82jbQ==}
     engines: {node: '>=20', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.126
@@ -5736,9 +5729,8 @@ packages:
     resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
     engines: {node: '>= 0.10'}
 
-  vaul-svelte@https://pkg.pr.new/vaul-svelte@ed3195e:
-    resolution: {tarball: https://pkg.pr.new/vaul-svelte@ed3195e}
-    version: 0.3.2
+  vaul-svelte@1.0.0-next.0:
+    resolution: {integrity: sha512-SG4auOEwrEgmqTBsGEWdIL4ZioXVGSiIja0YKWB/dRzIrVBNMbiJ6p4YlhDzU9o5ggs45HtX9ifXql5xZX5FYQ==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: 5.0.0-next.1
@@ -8151,20 +8143,15 @@ snapshots:
       svelte: 5.0.0-next.262
       svelte-toolbelt: 0.4.1(svelte@5.0.0-next.262)
 
-  bits-ui@https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7(svelte@5.0.0-next.262):
+  bits-ui@1.0.0-next.15(svelte@5.0.0-next.262):
     dependencies:
       '@floating-ui/core': 1.6.4
       '@floating-ui/dom': 1.6.7
       '@internationalized/date': 3.5.6
-      clsx: 2.1.1
       esm-env: 1.0.0
-      nanoid: 5.0.7
       runed: 0.15.2(svelte@5.0.0-next.262)
-      scule: 1.3.0
-      style-object-to-css-string: 1.1.3
-      style-to-object: 1.0.6
       svelte: 5.0.0-next.262
-      svelte-toolbelt: 0.3.1(svelte@5.0.0-next.262)
+      svelte-toolbelt: 0.4.2(svelte@5.0.0-next.262)
 
   blake3-wasm@2.1.5: {}
 
@@ -11177,8 +11164,6 @@ snapshots:
       refa: 0.12.1
       regexp-ast-analysis: 0.7.1
 
-  scule@1.3.0: {}
-
   selfsigned@2.4.1:
     dependencies:
       '@types/node-forge': 1.3.11
@@ -11437,8 +11422,6 @@ snapshots:
 
   striptags@3.2.0: {}
 
-  style-object-to-css-string@1.1.3: {}
-
   style-to-object@1.0.6:
     dependencies:
       inline-style-parser: 0.2.3
@@ -11575,15 +11558,13 @@ snapshots:
     dependencies:
       svelte: 5.0.0-next.262
 
-  svelte-toolbelt@0.3.1(svelte@5.0.0-next.262):
+  svelte-toolbelt@0.4.1(svelte@5.0.0-next.262):
     dependencies:
       clsx: 2.1.1
-      scule: 1.3.0
-      style-object-to-css-string: 1.1.3
       style-to-object: 1.0.6
       svelte: 5.0.0-next.262
 
-  svelte-toolbelt@0.4.1(svelte@5.0.0-next.262):
+  svelte-toolbelt@0.4.2(svelte@5.0.0-next.262):
     dependencies:
       clsx: 2.1.1
       style-to-object: 1.0.6
@@ -12022,11 +12003,11 @@ snapshots:
   validator@13.11.0:
     optional: true
 
-  vaul-svelte@https://pkg.pr.new/vaul-svelte@ed3195e(svelte@5.0.0-next.262):
+  vaul-svelte@1.0.0-next.0(svelte@5.0.0-next.262):
     dependencies:
-      bits-ui: https://pkg.pr.new/huntabyte/bits-ui/bits-ui@9cc6eb7(svelte@5.0.0-next.262)
+      bits-ui: 1.0.0-next.15(svelte@5.0.0-next.262)
       svelte: 5.0.0-next.262
-      svelte-toolbelt: 0.3.1(svelte@5.0.0-next.262)
+      svelte-toolbelt: 0.4.2(svelte@5.0.0-next.262)
 
   vfile-location@5.0.2:
     dependencies:
