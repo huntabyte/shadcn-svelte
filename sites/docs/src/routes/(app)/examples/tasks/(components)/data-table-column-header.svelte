@@ -3,65 +3,26 @@
 	import ArrowDown from "svelte-radix/ArrowDown.svelte";
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
 	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import type { TableViewModel } from "svelte-headless-table";
-	import type { Task } from "../(data)/schemas.js";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Column } from "@tanstack/table-core";
+	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	let {
-		tableModel,
-		cellId,
-		class: className,
-		props: propsObj,
-		children,
-	}: PrimitiveDivAttributes & {
-		props: {
-			select: never;
-			sort: {
-				order: "desc" | "asc" | undefined;
-				toggle: (_: Event) => void;
-				clear: () => void;
-				disabled: boolean;
-			};
-			filter: never;
-		};
-		tableModel: TableViewModel<Task>;
-		cellId: string;
-	} = $props();
+	type Props = HTMLAttributes<HTMLDivElement> & {
+		column: Column<any, any>;
+		title: string;
+	};
 
-	const { hiddenColumnIds } = tableModel.pluginStates.hide;
-
-	function handleAscSort(e: Event) {
-		if (propsObj.sort.order === "asc") {
-			return;
-		}
-		propsObj.sort.toggle(e);
-	}
-
-	function handleDescSort(e: Event) {
-		if (propsObj.sort.order === "desc") {
-			return;
-		}
-		if (propsObj.sort.order === undefined) {
-			// We can only toggle, so we toggle from undefined to 'asc' first
-			propsObj.sort.toggle(e);
-		}
-		propsObj.sort.toggle(e); // Then we toggle from 'asc' to 'desc'
-	}
-
-	function handleHide() {
-		hiddenColumnIds.update((ids: string[]) => {
-			if (ids.includes(cellId)) {
-				return ids;
-			}
-			return [...ids, cellId];
-		});
-	}
+	let { column, class: className, title, ...restProps }: Props = $props();
 </script>
 
-{#if !propsObj.sort.disabled}
-	<div class={cn("flex items-center", className)}>
+{#if !column.getCanSort()}
+	<div class={className} {...restProps}>
+		{title}
+	</div>
+{:else}
+	<div class={cn("flex items-center", className)} {...restProps}>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger
 				class={buttonVariants({
@@ -70,32 +31,30 @@
 					class: "data-[state=open]:bg-accent -ml-3 h-8",
 				})}
 			>
-				{@render children?.()}
-				{#if propsObj.sort.order === "desc"}
+				{title}
+				{#if column.getIsSorted() === "desc"}
 					<ArrowDown class="ml-2 size-4" />
-				{:else if propsObj.sort.order === "asc"}
+				{:else if column.getIsSorted() === "asc"}
 					<ArrowUp class="ml-2 size-4" />
 				{:else}
 					<CaretSort class="ml-2 size-4" />
 				{/if}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
-				<DropdownMenu.Item onclick={handleAscSort}>
+				<DropdownMenu.Item onclick={() => column.toggleSorting(false)}>
 					<ArrowUp class="text-muted-foreground/70 mr-2 size-3.5" />
 					Asc
 				</DropdownMenu.Item>
-				<DropdownMenu.Item onclick={handleDescSort}>
+				<DropdownMenu.Item onclick={() => column.toggleSorting(true)}>
 					<ArrowDown class="text-muted-foreground/70 mr-2 size-3.5" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item onclick={handleHide}>
+				<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
 					<EyeNone class="text-muted-foreground/70 mr-2 size-3.5" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
-{:else}
-	{@render children?.()}
 {/if}

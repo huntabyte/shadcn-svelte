@@ -1,15 +1,8 @@
 <script lang="ts">
-	import type { Writable } from "svelte/store";
-	import type { HTMLButtonAttributes } from "svelte/elements";
-	import type { WithoutChildren } from "bits-ui";
+	import type { Checkbox as CheckboxPrimitive, WithoutChildrenOrChild } from "bits-ui";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 
-	let {
-		checked,
-		...restProps
-	}: {
-		checked: Writable<boolean>;
-	} & WithoutChildren<HTMLButtonAttributes & { checked: Writable<boolean> }> = $props();
+	let { checked, ...restProps }: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();
 </script>
 
-<Checkbox bind:checked={$checked} {...restProps as any} />
+<Checkbox {checked} controlledChecked {...restProps as any} />

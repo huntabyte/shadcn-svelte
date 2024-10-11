@@ -23,8 +23,7 @@
 			"ui/alert/alert-description.svelte",
 			"ui/alert/alert-title.svelte",
 			"ui/alert/alert.svelte",
-			"ui/alert/index.ts",
-			"ui/alert/variants.ts"
+			"ui/alert/index.ts"
 		],
 		"type": "components:ui"
 	},
@@ -74,7 +73,9 @@
 	},
 	{
 		"name": "badge",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/badge/badge.svelte",
@@ -139,7 +140,9 @@
 	},
 	{
 		"name": "card",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/card/card-content.svelte",
@@ -237,6 +240,17 @@
 		"type": "components:ui"
 	},
 	{
+		"name": "data-table",
+		"dependencies": [],
+		"registryDependencies": [],
+		"files": [
+			"ui/data-table/data-table.svelte.ts",
+			"ui/data-table/flex-render.svelte",
+			"ui/data-table/render-component.ts"
+		],
+		"type": "components:ui"
+	},
+	{
 		"name": "dialog",
 		"dependencies": [
 			"bits-ui"
@@ -256,7 +270,8 @@
 	{
 		"name": "drawer",
 		"dependencies": [
-			"vaul-svelte"
+			"vaul-svelte",
+			"bits-ui"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -582,7 +597,9 @@
 	},
 	{
 		"name": "table",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/table/index.ts",
@@ -641,6 +658,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
+			"toggle-group",
 			"toggle"
 		],
 		"files": [

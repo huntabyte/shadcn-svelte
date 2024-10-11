@@ -47,11 +47,11 @@
 		},
 		{
 			"name": "calendar-months.svelte",
-			"content": "<script>\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "calendar-next-button.svelte",
-			"content": "<script>\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"lucide-svelte/icons/chevron-right\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: CalendarPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronRight class=\"size-4\" />\n{/snippet}\n\n<CalendarPrimitive.PrevButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"lucide-svelte/icons/chevron-right\";\n\timport { buttonVariants } from \"$lib/registry/default/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: CalendarPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronRight class=\"size-4\" />\n{/snippet}\n\n<CalendarPrimitive.NextButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "calendar-prev-button.svelte",

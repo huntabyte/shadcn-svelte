@@ -32,7 +32,7 @@
 		},
 		{
 			"name": "dropdown-menu-shortcut.svelte",
-			"content": "<script>\n\timport { type PrimitiveSpanAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveSpanAttributes = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn(\"ml-auto text-xs tracking-widest opacity-60\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
+			"content": "<script>\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { type WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn(\"ml-auto text-xs tracking-widest opacity-60\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n"
 		},
 		{
 			"name": "dropdown-menu-sub-content.svelte",
