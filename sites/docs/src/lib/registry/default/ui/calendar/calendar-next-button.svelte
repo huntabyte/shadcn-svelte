@@ -16,7 +16,7 @@
 	<ChevronRight class="size-4" />
 {/snippet}
 
-<CalendarPrimitive.PrevButton
+<CalendarPrimitive.NextButton
 	bind:ref
 	class={cn(
 		buttonVariants({ variant: "outline" }),
