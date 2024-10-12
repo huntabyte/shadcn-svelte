@@ -232,7 +232,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, ...dependencies], {
+				await execa(pm, [add, "-D", ...dependencies], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
