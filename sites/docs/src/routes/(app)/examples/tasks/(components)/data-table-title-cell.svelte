@@ -2,7 +2,7 @@
 	import { labels } from "../(data)/data.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 
-	let { value, labelValue }: { value: string; labelValue: string } = $props();
+	let { value, labelValue }: { value?: string; labelValue?: string } = $props();
 
 	const label = labels.find((label) => label.value === labelValue);
 </script>

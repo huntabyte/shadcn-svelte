@@ -11,8 +11,8 @@
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
-		column?: Column<any, any>;
-		title?: string;
+		column: Column<any, any>;
+		title: string;
 	};
 
 	let { column, class: className, title, ...restProps }: WithoutChildren<Props> = $props();

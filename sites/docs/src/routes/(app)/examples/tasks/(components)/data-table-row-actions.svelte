@@ -1,11 +1,12 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import type { Row } from "@tanstack/table-core";
 	import { labels } from "../(data)/data.js";
 	import { type Task, taskSchema } from "../(data)/schemas.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	let { row }: { row: Task } = $props();
+	let { row }: { row?: Row<Task> } = $props();
 
 	const task = taskSchema.parse(row);
 </script>

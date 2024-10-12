@@ -2,13 +2,14 @@
 	import type { TableViewModel } from "svelte-headless-table";
 	import Cross2 from "svelte-radix/Cross2.svelte";
 	import type { Writable } from "svelte/store";
+	import type { Table } from "@tanstack/table-core";
 	import { priorities, statuses } from "../(data)/data.js";
 	import type { Task } from "../(data)/schemas.js";
 	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 
-	let { tableModel, data }: { tableModel: TableViewModel<Task>; data: Task[] } = $props();
+	let { table, data }: { table: Table<Task>; data: Task[] } = $props();
 
 	const counts = data.reduce<{
 		status: { [index: string]: number };
@@ -57,38 +58,36 @@
 	<div class="flex flex-1 items-center space-x-2">
 		<Input
 			placeholder="Filter tasks..."
+			value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+			onchange={(e) => {
+				table.getColumn("title")?.setFilterValue(e.currentTarget.value);
+			}}
 			class="h-8 w-[150px] lg:w-[250px]"
-			type="search"
-			bind:value={$filterValue}
 		/>
-
-		<DataTableFacetedFilter
-			bind:filterValues={$filterValues.status}
-			title="Status"
-			options={statuses}
-			counts={counts.status}
-		/>
-		<DataTableFacetedFilter
-			bind:filterValues={$filterValues.priority}
-			title="Priority"
-			options={priorities}
-			counts={counts.priority}
-		/>
-		{#if showReset}
+		{#if table.getColumn("status")}
+			<DataTableFacetedFilter
+				column={table.getColumn("status")}
+				title="Status"
+				options={statuses}
+			/>
+		{/if}
+		{#if table.getColumn("priority")}
+			<DataTableFacetedFilter
+				column={table.getColumn("priority")}
+				title="Priority"
+				options={priorities}
+			/>
+		{/if}
+		{#if isFiltered}
 			<Button
-				onclick={() => {
-					$filterValue = "";
-					$filterValues.status = [];
-					$filterValues.priority = [];
-				}}
 				variant="ghost"
+				onclick={() => table.resetColumnFilters()}
 				class="h-8 px-2 lg:px-3"
 			>
 				Reset
-				<Cross2 class="ml-2 size-4" />
+				<Cross2Icon class="ml-2 h-4 w-4" />
 			</Button>
 		{/if}
 	</div>
-
-	<DataTableViewOptions {tableModel} />
+	<DataTableViewOptions {table} />
 </div>
