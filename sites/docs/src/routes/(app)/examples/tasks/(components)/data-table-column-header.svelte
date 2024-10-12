@@ -5,19 +5,20 @@
 	import CaretSort from "svelte-radix/CaretSort.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Column } from "@tanstack/table-core";
+	import type { WithoutChildren } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
-		column: Column<any, any>;
-		title: string;
+		column?: Column<any, any>;
+		title?: string;
 	};
 
-	let { column, class: className, title, ...restProps }: Props = $props();
+	let { column, class: className, title, ...restProps }: WithoutChildren<Props> = $props();
 </script>
 
-{#if !column.getCanSort()}
+{#if !column?.getCanSort()}
 	<div class={className} {...restProps}>
 		{title}
 	</div>
