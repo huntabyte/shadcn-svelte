@@ -103,7 +103,8 @@ export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | un
 	let agent: Agent | undefined;
 	if (detectResult != null) {
 		agent = detectResult.agent;
-	} else if (detectResult == null && prompt) { // prompt for package manager
+	} else if (detectResult == null && prompt) {
+		// prompt for package manager
 		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
 			value: pm,
 			label: pm,
