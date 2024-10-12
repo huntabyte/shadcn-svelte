@@ -13,7 +13,7 @@ importers:
         version: 2.27.1
       '@huntabyte/eslint-config':
         specifier: ^0.3.2
-        version: 0.3.2(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2)
+        version: 0.3.2(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10))
       eslint:
         specifier: ^9.0.0
         version: 9.7.0
@@ -76,8 +76,8 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1
       package-manager-detector:
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.2.2
+        version: 0.2.2
       sisteransi:
         specifier: ^1.0.5
         version: 1.0.5
@@ -4411,8 +4411,8 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
 
-  package-manager-detector@0.1.2:
-    resolution: {integrity: sha512-iePyefLTOm2gEzbaZKSW+eBMjg+UYsQvUKxmvGXAQ987K16efBg10MxIjZs08iyX+DY2/owKY9DIdu193kX33w==}
+  package-manager-detector@0.2.2:
+    resolution: {integrity: sha512-VgXbyrSNsml4eHWIvxxG/nTL4wgybMTXCV2Un/+yEc3aDKKU6nQBZjbeP3Pl3qm9Qg92X/1ng4ffvCeD/zwHgg==}
 
   paneforge@1.0.0-next.0:
     resolution: {integrity: sha512-ipkuT9ELDkDs7KUoN/KnKLh2aIUgDufy5HLxw/rvnWQtE0Q51Sgbi0ylFeUlpnyB9izSBm90NGlU0ElA6wc+/g==}
@@ -6113,7 +6113,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@antfu/eslint-config@2.22.0(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2)':
+  '@antfu/eslint-config@2.22.0(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10))':
     dependencies:
       '@antfu/install-pkg': 0.3.3
       '@clack/prompts': 0.7.0
@@ -6138,7 +6138,7 @@ snapshots:
       eslint-plugin-toml: 0.11.1(eslint@9.7.0)
       eslint-plugin-unicorn: 54.0.0(eslint@9.7.0)
       eslint-plugin-unused-imports: 4.0.0(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)
-      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)(vitest@2.1.2)
+      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10))
       eslint-plugin-vue: 9.27.0(eslint@9.7.0)
       eslint-plugin-yml: 1.14.0(eslint@9.7.0)
       eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.23)(eslint@9.7.0)
@@ -6754,9 +6754,9 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.0': {}
 
-  '@huntabyte/eslint-config@0.3.2(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2)':
+  '@huntabyte/eslint-config@0.3.2(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10))':
     dependencies:
-      '@antfu/eslint-config': 2.22.0(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2)
+      '@antfu/eslint-config': 2.22.0(@vue/compiler-sfc@3.4.23)(eslint-plugin-svelte@2.44.1(eslint@9.7.0)(svelte@5.0.0-next.262))(eslint@9.7.0)(svelte-eslint-parser@0.41.1(svelte@5.0.0-next.262))(svelte@5.0.0-next.262)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10))
       '@antfu/install-pkg': 0.3.2
       '@clack/prompts': 0.7.0
       '@huntabyte/eslint-plugin': 0.1.0(eslint@9.7.0)
@@ -7884,7 +7884,7 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.4.7)':
+  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.4.7(@types/node@20.14.10))':
     dependencies:
       '@vitest/spy': 2.1.2
       estree-walker: 3.0.3
@@ -9113,7 +9113,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.0.0-alpha.40(@typescript-eslint/parser@7.16.0(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)
 
-  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)(vitest@2.1.2):
+  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3))(eslint@9.7.0)(typescript@5.5.3)(vitest@2.1.2(@types/node@20.14.10)):
     dependencies:
       '@typescript-eslint/utils': 7.16.0(eslint@9.7.0)(typescript@5.5.3)
       eslint: 9.7.0
@@ -10612,7 +10612,7 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  package-manager-detector@0.1.2: {}
+  package-manager-detector@0.2.2: {}
 
   paneforge@1.0.0-next.0(svelte@5.0.0-next.262):
     dependencies:
@@ -12206,7 +12206,7 @@ snapshots:
   vitest@2.1.2(@types/node@20.14.10):
     dependencies:
       '@vitest/expect': 2.1.2
-      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.4.7)
+      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.4.7(@types/node@20.14.10))
       '@vitest/pretty-format': 2.1.2
       '@vitest/runner': 2.1.2
       '@vitest/snapshot': 2.1.2

@@ -5,6 +5,7 @@ import color from "chalk";
 import * as v from "valibot";
 import { Command, Option } from "commander";
 import { execa } from "execa";
+import { resolveCommand } from "package-manager-detector/commands";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
@@ -363,19 +364,21 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
-		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: options.deps,
-			async task() {
-				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
-					cwd,
-				});
-				return `Dependencies installed with ${highlight(pm)}`;
-			},
-		});
+	const pm = await detectPM(cwd, options.deps);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
+		if (add) {
+			tasks.push({
+				title: `${highlight(pm)}: Installing dependencies`,
+				enabled: options.deps,
+				async task() {
+					await execa(pm, [add.command, ...add.args], {
+						cwd,
+					});
+					return `Dependencies installed with ${highlight(pm)}`;
+				},
+			});
+		}
 	}
 
 	await p.tasks(tasks);
