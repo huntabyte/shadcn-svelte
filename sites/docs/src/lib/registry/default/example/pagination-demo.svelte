@@ -12,7 +12,7 @@
 	const siblingCount = $derived(isDesktop.matches ? 1 : 0);
 </script>
 
-<Pagination.Root {count} {perPage} {siblingCount} >
+<Pagination.Root {count} {perPage} {siblingCount}>
 	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
