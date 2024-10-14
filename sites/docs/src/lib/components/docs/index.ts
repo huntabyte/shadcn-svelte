@@ -9,6 +9,5 @@ export { default as PMAddComp } from "./pm-add-comp.svelte";
 export { default as PMCreate } from "./pm-create.svelte";
 export { default as PMInstall } from "./pm-install.svelte";
 
-export * from "./icons/index.js";
 export * from "./page-header/index.js";
 export * from "./forms/index.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Icon from "$lib/components/docs/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import ModeToggle from "$lib/components/docs/mode-toggle.svelte";
 	import CommandMenu from "$lib/components/docs/command-menu.svelte";
 	import MainNav from "$lib/components/docs/nav/main-nav.svelte";

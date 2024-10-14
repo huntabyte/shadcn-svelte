@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Icon from "$lib/components/docs/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
