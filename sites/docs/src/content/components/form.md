@@ -55,9 +55,11 @@ If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](
 ```svelte
 <form method="POST" use:enhance>
   <Form.Field {form} name="email">
-    <Form.Control let:attrs>
-      <Form.Label>Email</Form.Label>
-      <Input {...attrs} bind:value={$formData.email} />
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Email</Form.Label>
+        <Input {...props} bind:value={$formData.email} />
+      {/snippet}
     </Form.Control>
     <Form.Description />
     <Form.FieldErrors />
@@ -129,9 +131,11 @@ For this example, we'll be passing the `form` returned from the load function as
 
 <form method="POST" use:enhance>
   <Form.Field {form} name="username">
-    <Form.Control let:attrs>
-      <Form.Label>Username</Form.Label>
-      <Input {...attrs} bind:value={$formData.username} />
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Username</Form.Label>
+        <Input {...props} bind:value={$formData.username} />
+      {/snippet}
     </Form.Control>
     <Form.Description>This is your public display name.</Form.Description>
     <Form.FieldErrors />

@@ -26,7 +26,7 @@ links:
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -75,23 +75,17 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
   import * as Command from "$lib/components/ui/command";
   import { onMount } from "svelte";
 
-  let open = false;
+  let open = $state(false);
 
-  onMount(() => {
-    function handleKeydown(e: KeyboardEvent) {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        open = !open;
-      }
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      open = !open;
     }
-
-    document.addEventListener("keydown", handleKeydown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  });
+  }
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <Command.Dialog bind:open>
   <Command.Input placeholder="Type a command or search..." />

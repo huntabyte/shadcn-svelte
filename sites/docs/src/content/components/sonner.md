@@ -51,11 +51,12 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 ```svelte title="+layout.svelte" {2,5}
 <script lang="ts">
   import { Toaster } from "$lib/components/ui/sonner";
+  let { children } = $props();
 </script>
 
 <Toaster />
 
-<slot />
+{@render children?.()}
 ```
 
 </Steps>
@@ -64,7 +65,7 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 
 1. Install `svelte-sonner`:
 
-<PMInstall command="svelte-sonner" />
+<PMInstall command="svelte-sonner -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -78,5 +79,5 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
   import { Button } from "$lib/components/ui/button";
 </script>
 
-<Button on:click={() => toast("Hello world")}>Show toast</Button>
+<Button onclick={() => toast("Hello world")}>Show toast</Button>
 ```

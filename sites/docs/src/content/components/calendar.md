@@ -32,7 +32,7 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 1. Install `bits-ui` and `@internationalized/date`:
 
-<PMInstall command="bits-ui @internationalized/date" />
+<PMInstall command="bits-ui @internationalized/date -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

@@ -110,3 +110,5 @@ generated-assets
 
 # JetBrains IDEs
 .idea/
+
+.velite

@@ -26,7 +26,7 @@ links:
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -39,10 +39,12 @@ links:
   import * as Tooltip from "$lib/components/ui/tooltip";
 </script>
 
-<Tooltip.Root>
-  <Tooltip.Trigger>Hover</Tooltip.Trigger>
-  <Tooltip.Content>
-    <p>Add to library</p>
-  </Tooltip.Content>
-</Tooltip.Root>
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger>Hover</Tooltip.Trigger>
+    <Tooltip.Content>
+      <p>Add to library</p>
+    </Tooltip.Content>
+  </Tooltip.Root>
+</Tooltip.Provider>
 ```

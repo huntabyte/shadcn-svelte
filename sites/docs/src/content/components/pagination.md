@@ -26,7 +26,7 @@ links:
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -39,27 +39,29 @@ links:
   import * as Pagination from "$lib/components/ui/pagination";
 </script>
 
-<Pagination.Root count={100} perPage={10} let:pages let:currentPage>
-  <Pagination.Content>
-    <Pagination.Item>
-      <Pagination.PrevButton />
-    </Pagination.Item>
-    {#each pages as page (page.key)}
-      {#if page.type === "ellipsis"}
-        <Pagination.Item>
-          <Pagination.Ellipsis />
-        </Pagination.Item>
-      {:else}
-        <Pagination.Item isVisible={currentPage == page.value}>
-          <Pagination.Link {page} isActive={currentPage == page.value}>
-            {page.value}
-          </Pagination.Link>
-        </Pagination.Item>
-      {/if}
-    {/each}
-    <Pagination.Item>
-      <Pagination.NextButton />
-    </Pagination.Item>
-  </Pagination.Content>
+<Pagination.Root count={100} perPage={10}>
+  {#snippet children({ pages, currentPage })}
+    <Pagination.Content>
+      <Pagination.Item>
+        <Pagination.PrevButton />
+      </Pagination.Item>
+      {#each pages as page (page.key)}
+        {#if page.type === "ellipsis"}
+          <Pagination.Item>
+            <Pagination.Ellipsis />
+          </Pagination.Item>
+        {:else}
+          <Pagination.Item isVisible={currentPage === page.value}>
+            <Pagination.Link {page} isActive={currentPage === page.value}>
+              {page.value}
+            </Pagination.Link>
+          </Pagination.Item>
+        {/if}
+      {/each}
+      <Pagination.Item>
+        <Pagination.NextButton />
+      </Pagination.Item>
+    </Pagination.Content>
+  {/snippet}
 </Pagination.Root>
 ```
