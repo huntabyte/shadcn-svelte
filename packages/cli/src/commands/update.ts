@@ -234,7 +234,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 				title: `${highlight(pm)}: Installing dependencies`,
 				enabled: dependencies.size > 0,
 				async task() {
-					await execa(pm, [add.command, ...add.args], {
+					await execa(add.command, [...add.args], {
 						cwd,
 					});
 					return `Dependencies installed with ${highlight(pm)}`;

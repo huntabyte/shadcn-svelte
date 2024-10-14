@@ -372,7 +372,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 				title: `${highlight(pm)}: Installing dependencies`,
 				enabled: options.deps,
 				async task() {
-					await execa(pm, [add.command, ...add.args], {
+					await execa(add.command, [...add.args], {
 						cwd,
 					});
 					return `Dependencies installed with ${highlight(pm)}`;
