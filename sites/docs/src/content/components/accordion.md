@@ -39,7 +39,7 @@ links:
   import * as Accordion from "$lib/components/ui/accordion";
 </script>
 
-<Accordion.Root>
+<Accordion.Root type="single">
   <Accordion.Item value="item-1">
     <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
     <Accordion.Content>

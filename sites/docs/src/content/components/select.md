@@ -26,7 +26,7 @@ links:
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -54,8 +54,6 @@ links:
 ## Examples
 
 ### Form
-
-For more advanced usage and to learn how to implement `multiple` Select components in a form, check out the [Bits UI Select Recipe](https://formsnap.dev/docs/recipes/bits-ui-select) on Formsnap.
 
 <ComponentPreview name="select-form">
 

@@ -29,7 +29,7 @@ Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Sve
 
 1. Install `vaul-svelte`:
 
-<PMInstall command="vaul-svelte" />
+<PMInstall command="vaul-svelte -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
