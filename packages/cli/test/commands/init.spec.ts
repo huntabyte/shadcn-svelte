@@ -41,7 +41,7 @@ it("init (config-full)", async () => {
 	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
 	expect(mockMkdir).toHaveBeenNthCalledWith(
 		2,
-		expect.stringContaining("src\\lib\\components"),
+		expect.stringContaining("src/lib/components"),
 		expect.anything()
 	);
 
