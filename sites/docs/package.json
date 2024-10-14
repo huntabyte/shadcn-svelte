@@ -22,7 +22,7 @@
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"preview": "vite preview",
 		"sync": "svelte-kit sync",
-		"check": "pnpm sync && svelte-check --tsconfig ./tsconfig.json"
+		"check": "pnpm build:content && pnpm sync && svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
 		"@internationalized/date": "^3.5.6",
