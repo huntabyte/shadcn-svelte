@@ -151,7 +151,9 @@ describe("getConfig", () => {
 	});
 
 	it("handles cases where the project uses jsconfig.json", async () => {
-		expect(await getConf("config-jsconfig")).toEqual({
+		const config = await getConf("config-jsconfig");
+
+		expect(config).toEqual({
 			style: "new-york",
 			tailwind: {
 				config: "tailwind.config.js",

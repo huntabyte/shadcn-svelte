@@ -52,7 +52,7 @@
 		"cross-env": "^7.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
-		"package-manager-detector": "^0.1.2",
+		"package-manager-detector": "^0.2.2",
 		"sisteransi": "^1.0.5",
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",

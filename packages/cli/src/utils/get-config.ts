@@ -78,8 +78,8 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
-	const componentsPath = resolveImport(config.aliases.components, pathAliases);
+	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
+	let componentsPath = resolveImport(config.aliases.components, pathAliases);
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
@@ -89,6 +89,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
 	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
+
+	utilsPath = path.normalize(utilsPath);
+	componentsPath = path.normalize(componentsPath);
 
 	return v.parse(configSchema, {
 		...config,
