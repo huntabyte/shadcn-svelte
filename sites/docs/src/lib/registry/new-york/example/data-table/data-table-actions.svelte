@@ -1,17 +1,19 @@
 <script lang="ts">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
-	export let id: string;
+	let { id }: { id: string } = $props();
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger
-		class={buttonVariants({ variant: "ghost", class: "relative size-8 p-0" })}
-	>
-		<span class="sr-only">Open menu</span>
-		<DotsHorizontal class="size-4" />
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="ghost" size="icon" class="relative size-8 p-0">
+				<span class="sr-only">Open menu</span>
+				<DotsHorizontal class="size-4" />
+			</Button>
+		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>

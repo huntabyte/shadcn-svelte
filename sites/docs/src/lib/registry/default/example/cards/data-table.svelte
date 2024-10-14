@@ -1,23 +1,31 @@
 <script lang="ts">
-	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
-	import {
-		addHiddenColumns,
-		addPagination,
-		addSelectedRows,
-		addSortBy,
-		addTableFilter,
-	} from "svelte-headless-table/plugins";
-	import { readable } from "svelte/store";
-	import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
 	import ChevronDown from "lucide-svelte/icons/chevron-down";
-	import Actions from "../data-table/data-table-actions.svelte";
+	import {
+		type ColumnDef,
+		type ColumnFiltersState,
+		type RowSelectionState,
+		type SortingState,
+		type VisibilityState,
+		getCoreRowModel,
+		getFilteredRowModel,
+		getPaginationRowModel,
+		getSortedRowModel,
+	} from "@tanstack/table-core";
+	import { createRawSnippet } from "svelte";
 	import DataTableCheckbox from "../data-table/data-table-checkbox.svelte";
+	import DataTableEmailButton from "../data-table/data-table-email-button.svelte";
+	import DataTableActions from "../data-table/data-table-actions.svelte";
 	import * as Table from "$lib/registry/default/ui/table/index.js";
-	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
-	import { cn } from "$lib/utils.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
+	import {
+		FlexRender,
+		createSvelteTable,
+		renderComponent,
+		renderSnippet,
+	} from "$lib/registry/default/ui/data-table/index.js";
 
 	type Payment = {
 		id: string;
@@ -59,108 +67,148 @@
 		},
 	];
 
-	const table = createTable(readable(data), {
-		sort: addSortBy({ disableMultiSort: true }),
-		page: addPagination(),
-		filter: addTableFilter({
-			fn: ({ filterValue, value }) => value.includes(filterValue),
-		}),
-		select: addSelectedRows(),
-		hide: addHiddenColumns(),
-	});
-
-	const columns = table.createColumns([
-		table.column({
-			header: (_, { pluginStates }) => {
-				const { allPageRowsSelected } = pluginStates.select;
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTableCheckbox, {
-					checked: allPageRowsSelected,
-				});
-			},
-			accessor: "id",
-			cell: ({ row }, { pluginStates }) => {
-				const { getRowState } = pluginStates.select;
-				const { isSelected } = getRowState(row);
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTableCheckbox, {
-					checked: isSelected,
-				});
-			},
-			plugins: {
-				sort: {
-					disable: true,
-				},
-				filter: {
-					exclude: true,
-				},
-			},
-		}),
-		table.column({
+	const columns: ColumnDef<Payment>[] = [
+		{
+			id: "select",
+			header: ({ table }) =>
+				renderComponent(DataTableCheckbox, {
+					checked:
+						table.getIsAllPageRowsSelected() ||
+						(table.getIsSomePageRowsSelected() && "indeterminate"),
+					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+					"aria-label": "Select all",
+				}),
+			cell: ({ row }) =>
+				renderComponent(DataTableCheckbox, {
+					checked: row.getIsSelected(),
+					onCheckedChange: (value) => row.toggleSelected(!!value),
+					"aria-label": "Select row",
+				}),
+			enableSorting: false,
+			enableHiding: false,
+		},
+		{
+			accessorKey: "status",
 			header: "Status",
-			accessor: "status",
-			plugins: { sort: { disable: true }, filter: { exclude: true } },
-		}),
-		table.column({
-			header: "Email",
-			accessor: "email",
-			cell: ({ value }) => value.toLowerCase(),
-		}),
-		table.column({
-			header: "Amount",
-			accessor: "amount",
-			cell: ({ value }) => {
-				const formatted = new Intl.NumberFormat("en-US", {
+			cell: ({ row }) => {
+				const statusSnippet = createRawSnippet<[string]>((getStatus) => {
+					const status = getStatus();
+					return {
+						render: () => `<div class="capitalize">${status}</div>`,
+					};
+				});
+				return renderSnippet(statusSnippet, row.getValue("status"));
+			},
+		},
+		{
+			accessorKey: "email",
+			header: ({ column }) =>
+				renderComponent(DataTableEmailButton, {
+					onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+				}),
+			cell: ({ row }) => {
+				const emailSnippet = createRawSnippet<[string]>((getEmail) => {
+					const email = getEmail();
+					return {
+						render: () => `<div class="lowercase">${email}</div>`,
+					};
+				});
+
+				return renderSnippet(emailSnippet, row.getValue("email"));
+			},
+		},
+		{
+			accessorKey: "amount",
+			header: () => {
+				const amountHeaderSnippet = createRawSnippet(() => {
+					return {
+						render: () => `<div class="text-right">Amount</div>`,
+					};
+				});
+				return renderSnippet(amountHeaderSnippet, "");
+			},
+			cell: ({ row }) => {
+				const amountCellSnippet = createRawSnippet<[string]>((getAmount) => {
+					const amount = getAmount();
+					return {
+						render: () => `<div class="text-right font-medium">${amount}</div>`,
+					};
+				});
+				const formatter = new Intl.NumberFormat("en-US", {
 					style: "currency",
 					currency: "USD",
-				}).format(value);
-				return formatted;
-			},
-			plugins: {
-				sort: {
-					disable: true,
-				},
-				filter: {
-					exclude: true,
-				},
-			},
-		}),
-		table.column({
-			header: "",
-			accessor: ({ id }) => id,
-			cell: (item) => {
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(Actions, { id: item.value });
-			},
-			plugins: {
-				sort: {
-					disable: true,
-				},
-			},
-		}),
-	]);
+				});
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, flatColumns, pluginStates, rows } =
-		table.createViewModel(columns);
+				return renderSnippet(
+					amountCellSnippet,
+					formatter.format(Number.parseFloat(row.getValue("amount")))
+				);
+			},
+		},
+		{
+			id: "actions",
+			enableHiding: false,
+			cell: ({ row }) => renderComponent(DataTableActions, { id: row.original.id }),
+		},
+	];
 
-	const { sortKeys } = pluginStates.sort;
+	let sorting = $state<SortingState>([]);
+	let columnFilters = $state<ColumnFiltersState>([]);
+	let rowSelection = $state<RowSelectionState>({});
+	let columnVisibility = $state<VisibilityState>({});
 
-	const { hiddenColumnIds } = pluginStates.hide;
-	const ids = flatColumns.map((c) => c.id);
-	let hideForId = $state(Object.fromEntries(ids.map((id) => [id, true])));
-
-	$effect(() => {
-		$hiddenColumnIds = Object.entries(hideForId)
-			.filter(([, hide]) => !hide)
-			.map(([id]) => id);
+	const table = createSvelteTable({
+		get data() {
+			return data;
+		},
+		columns,
+		state: {
+			get sorting() {
+				return sorting;
+			},
+			get columnVisibility() {
+				return columnVisibility;
+			},
+			get rowSelection() {
+				return rowSelection;
+			},
+			get columnFilters() {
+				return columnFilters;
+			},
+		},
+		getCoreRowModel: getCoreRowModel(),
+		getPaginationRowModel: getPaginationRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		onSortingChange: (updater) => {
+			if (typeof updater === "function") {
+				sorting = updater(sorting);
+			} else {
+				sorting = updater;
+			}
+		},
+		onColumnFiltersChange: (updater) => {
+			if (typeof updater === "function") {
+				columnFilters = updater(columnFilters);
+			} else {
+				columnFilters = updater;
+			}
+		},
+		onColumnVisibilityChange: (updater) => {
+			if (typeof updater === "function") {
+				columnVisibility = updater(columnVisibility);
+			} else {
+				columnVisibility = updater;
+			}
+		},
+		onRowSelectionChange: (updater) => {
+			if (typeof updater === "function") {
+				rowSelection = updater(rowSelection);
+			} else {
+				rowSelection = updater;
+			}
+		},
 	});
-
-	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
-	const { filterValue } = pluginStates.filter;
-
-	const { selectedDataIds } = pluginStates.select;
-
-	const hideableCols = ["status", "email", "amount"];
 </script>
 
 <Card.Root>
@@ -171,119 +219,99 @@
 	<Card.Content>
 		<div class="mb-4 flex items-center gap-4">
 			<Input
-				class="max-w-sm"
 				placeholder="Filter emails..."
-				type="text"
-				bind:value={$filterValue}
+				value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+				oninput={(e) => table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+				onchange={(e) => {
+					table.getColumn("email")?.setFilterValue(e.currentTarget.value);
+				}}
+				class="max-w-sm"
 			/>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					class={buttonVariants({ variant: "outline", class: "ml-auto" })}
-				>
-					Columns <ChevronDown class="ml-2 size-4" />
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="outline" class="ml-auto">
+							Columns <ChevronDown class="ml-2 size-4" />
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
-				<DropdownMenu.Content>
-					{#each flatColumns as col}
-						{#if hideableCols.includes(col.id)}
-							<DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
-								{col.header}
-							</DropdownMenu.CheckboxItem>
-						{/if}
+				<DropdownMenu.Content align="end">
+					{#each table.getAllColumns().filter((col) => col.getCanHide()) as column}
+						<DropdownMenu.CheckboxItem
+							class="capitalize"
+							controlledChecked
+							checked={column.getIsVisible()}
+							onCheckedChange={(value) => column.toggleVisibility(!!value)}
+						>
+							{column.id}
+						</DropdownMenu.CheckboxItem>
 					{/each}
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</div>
 		<div class="rounded-md border">
-			<Table.Root {...$tableAttrs}>
+			<Table.Root>
 				<Table.Header>
-					{#each $headerRows as headerRow}
-						<Subscribe rowAttrs={headerRow.attrs()}>
-							<Table.Row>
-								{#each headerRow.cells as cell (cell.id)}
-									<Subscribe
-										attrs={cell.attrs()}
-										let:attrs
-										props={cell.props()}
-										let:props
-									>
-										<Table.Head
-											{...attrs}
-											class={cn("[&:has([role=checkbox])]:pl-3")}
-										>
-											{#if cell.id === "amount"}
-												<div class="text-right font-medium">
-													<Render of={cell.render()} />
-												</div>
-											{:else if cell.id === "email"}
-												<Button variant="ghost" onclick={props.sort.toggle}>
-													<Render of={cell.render()} />
-													<ArrowUpDown
-														class={cn(
-															$sortKeys[0]?.id === cell.id &&
-																"text-foreground",
-															"ml-2 size-4"
-														)}
-													/>
-												</Button>
-											{:else}
-												<Render of={cell.render()} />
-											{/if}
-										</Table.Head>
-									</Subscribe>
-								{/each}
-							</Table.Row>
-						</Subscribe>
+					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+						<Table.Row>
+							{#each headerGroup.headers as header (header.id)}
+								<Table.Head class="[&:has([role=checkbox])]:pl-3">
+									{#if !header.isPlaceholder}
+										<FlexRender
+											content={header.column.columnDef.header}
+											context={header.getContext()}
+										/>
+									{/if}
+								</Table.Head>
+							{/each}
+						</Table.Row>
 					{/each}
 				</Table.Header>
-				<Table.Body {...$tableBodyAttrs}>
-					{#each $pageRows as row (row.id)}
-						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-							<Table.Row
-								{...rowAttrs}
-								data-state={$selectedDataIds[row.id] && "selected"}
-							>
-								{#each row.cells as cell (cell.id)}
-									<Subscribe attrs={cell.attrs()} let:attrs>
-										<Table.Cell
-											class="[&:has([role=checkbox])]:pl-3"
-											{...attrs}
-										>
-											{#if cell.id === "amount"}
-												<div class="text-right font-medium">
-													<Render of={cell.render()} />
-												</div>
-											{:else if cell.id === "status"}
-												<div class="capitalize">
-													<Render of={cell.render()} />
-												</div>
-											{:else}
-												<Render of={cell.render()} />
-											{/if}
-										</Table.Cell>
-									</Subscribe>
-								{/each}
-							</Table.Row>
-						</Subscribe>
+				<Table.Body>
+					{#each table.getRowModel().rows as row (row.id)}
+						<Table.Row data-state={row.getIsSelected() && "selected"}>
+							{#each row.getVisibleCells() as cell (cell.id)}
+								<Table.Cell class="[&:has([role=checkbox])]:pl-3">
+									<FlexRender
+										content={cell.column.columnDef.cell}
+										context={cell.getContext()}
+									/>
+								</Table.Cell>
+							{/each}
+						</Table.Row>
+					{:else}
+						<Table.Row>
+							<Table.Cell colspan={columns.length} class="h-24 text-center">
+								No results.
+							</Table.Cell>
+						</Table.Row>
 					{/each}
 				</Table.Body>
 			</Table.Root>
 		</div>
-		<div class="flex items-center justify-end space-x-2 py-4">
+		<div class="flex items-center justify-end space-x-2 pt-4">
 			<div class="text-muted-foreground flex-1 text-sm">
-				{Object.keys($selectedDataIds).length} of {$rows.length} row(s) selected.
+				{table.getFilteredSelectedRowModel().rows.length} of
+				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>
-			<Button
-				variant="outline"
-				size="sm"
-				onclick={() => ($pageIndex = $pageIndex - 1)}
-				disabled={!$hasPreviousPage}>Previous</Button
-			>
-			<Button
-				variant="outline"
-				size="sm"
-				disabled={!$hasNextPage}
-				onclick={() => ($pageIndex = $pageIndex + 1)}>Next</Button
-			>
+			<div class="space-x-2">
+				<Button
+					variant="outline"
+					size="sm"
+					onclick={() => table.previousPage()}
+					disabled={!table.getCanPreviousPage()}
+				>
+					Previous
+				</Button>
+				<Button
+					variant="outline"
+					size="sm"
+					onclick={() => table.nextPage()}
+					disabled={!table.getCanNextPage()}
+				>
+					Next
+				</Button>
+			</div>
 		</div>
 	</Card.Content>
 </Card.Root>
