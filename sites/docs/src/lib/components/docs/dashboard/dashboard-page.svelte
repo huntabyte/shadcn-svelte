@@ -4,12 +4,12 @@
 	import DollarSign from "lucide-svelte/icons/dollar-sign";
 	import Download from "lucide-svelte/icons/download";
 	import Users from "lucide-svelte/icons/users";
-	import DashboardMainNav from './main-nav.svelte'
-	import Overview from './overview.svelte'
-	import RecentSales from './recent-sales.svelte'
-	import Search from './search.svelte'
-	import TeamSwitcher from './team-switcher.svelte'
-	import UserNav from './user-nav.svelte'
+	import DashboardMainNav from "./main-nav.svelte";
+	import Overview from "./overview.svelte";
+	import RecentSales from "./recent-sales.svelte";
+	import Search from "./search.svelte";
+	import TeamSwitcher from "./team-switcher.svelte";
+	import UserNav from "./user-nav.svelte";
 
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
