@@ -1,20 +1,11 @@
 <script lang="ts">
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	let {
-		class: className,
-		children,
-		balanced = true,
-		...restProps
-	}: PrimitiveElementAttributes & { balanced?: boolean } = $props();
+	let { class: className, children, ...restProps }: PrimitiveElementAttributes = $props();
 </script>
 
 <p
-	class={cn(
-		"text-muted-foreground max-w-[750px] text-center text-lg sm:text-xl",
-		balanced && "text-balance",
-		className
-	)}
+	class={cn("text-foreground max-w-2xl text-balance text-lg font-light", className)}
 	{...restProps}
 >
 	{@render children?.()}
