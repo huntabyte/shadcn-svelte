@@ -34,7 +34,6 @@
 		{@const { snippet, params } = result}
 		{@render snippet(params)}
 	{:else}
-		here
 		{result}
 	{/if}
 {/if}

@@ -1,7 +1,6 @@
 import type { ColumnDef } from "@tanstack/table-core";
 import { createRawSnippet } from "svelte";
 import type { Task } from "../(data)/schemas.js";
-import DataTableCell from "./data-table-cell.svelte";
 import {
 	DataTableCheckbox,
 	DataTableColumnHeader,
@@ -10,8 +9,7 @@ import {
 	DataTableStatusCell,
 	DataTableTitleCell,
 } from "./index.js";
-import { renderComponent } from "$lib/registry/new-york/ui/data-table/index.js";
-import { renderSnippet } from "$lib/registry/default/ui/data-table/render-component.js";
+import { renderComponent, renderSnippet } from "$lib/registry/new-york/ui/data-table/index.js";
 
 export const columns: ColumnDef<Task>[] = [
 	{
@@ -48,6 +46,7 @@ export const columns: ColumnDef<Task>[] = [
 					render: () => `<div class="w-[80px]">${id}</div>`,
 				};
 			});
+
 			return renderSnippet(idSnippet, row.getValue("id"));
 		},
 		enableSorting: false,
