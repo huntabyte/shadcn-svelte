@@ -1,6 +1,9 @@
 <script lang="ts" module>
 	import type { CellContext, ColumnDefTemplate, HeaderContext } from "@tanstack/table-core";
-	import { RenderComponentConfig, RenderSnippetConfig } from "./render-component.js";
+	import {
+		RenderComponentConfig,
+		RenderSnippetConfig,
+	} from "$lib/registry/new-york/ui/data-table/render-component.js";
 </script>
 
 <script
