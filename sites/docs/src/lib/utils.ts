@@ -5,8 +5,24 @@ import { derived, get, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
-import { persisted } from "svelte-persisted-store";
+import { persisted } from "svelte-local-storage-store";
+import type { WithElementRef } from "bits-ui";
+import type {
+	HTMLAnchorAttributes,
+	HTMLAttributes,
+	HTMLButtonAttributes,
+	HTMLImgAttributes,
+	HTMLInputAttributes,
+	HTMLLabelAttributes,
+	HTMLLiAttributes,
+	HTMLOlAttributes,
+	HTMLTableAttributes,
+	HTMLTdAttributes,
+	HTMLTextareaAttributes,
+	HTMLThAttributes,
+} from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
+import { docs } from "$content/index.js";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -211,14 +227,15 @@ export async function getDoc(slug: string) {
 	const match = findMatch(slug, modules);
 	const doc = await match?.resolver?.();
 
-	if (!doc || !doc.metadata) {
+	const metadata = docs.find((doc) => doc.path === slug);
+	if (!doc || !metadata) {
 		error(404);
 	}
 
 	return {
 		component: doc.default,
-		metadata: doc.metadata,
-		title: doc.metadata.title,
+		metadata,
+		title: metadata.title,
 	};
 }
 
@@ -274,3 +291,26 @@ export function getPackageManagerInstallCmd(pm: PackageManager): string {
 export function isPackageManager(value: any): value is PackageManager {
 	return packageManagers.includes(value);
 }
+
+// Wrappers around svelte's `HTMLAttributes` types to add a `ref` prop can be bound to
+// to get a reference to the underlying DOM element the component is rendering.
+export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;
+export type PrimitiveElementAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
+export type PrimitiveAnchorAttributes = WithElementRef<HTMLAnchorAttributes>;
+export type PrimitiveButtonAttributes = WithElementRef<HTMLButtonAttributes>;
+export type PrimitiveInputAttributes = WithElementRef<HTMLInputAttributes>;
+export type PrimitiveSpanAttributes = WithElementRef<HTMLAttributes<HTMLSpanElement>>;
+export type PrimitiveTextareaAttributes = WithElementRef<HTMLTextareaAttributes>;
+export type PrimitiveHeadingAttributes = WithElementRef<HTMLAttributes<HTMLHeadingElement>>;
+export type PrimitiveLiAttributes = WithElementRef<HTMLLiAttributes>;
+export type PrimitiveOlAttributes = WithElementRef<HTMLOlAttributes>;
+export type PrimitiveLabelAttributes = WithElementRef<HTMLLabelAttributes>;
+export type PrimitiveUlAttributes = WithElementRef<HTMLAttributes<HTMLUListElement>>;
+export type PrimitiveTableAttributes = WithElementRef<HTMLTableAttributes>;
+export type PrimitiveTdAttributes = WithElementRef<HTMLTdAttributes>;
+export type PrimitiveTrAttributes = WithElementRef<HTMLAttributes<HTMLTableRowElement>>;
+export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
+export type PrimitiveTableSectionAttributes = WithElementRef<
+	HTMLAttributes<HTMLTableSectionElement>
+>;
+export type PrimitiveImgAttributes = WithElementRef<HTMLImgAttributes>;

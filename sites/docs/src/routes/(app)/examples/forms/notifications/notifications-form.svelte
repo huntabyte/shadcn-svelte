@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const notificationsFormSchema = z.object({
 		type: z.enum(["all", "mentions", "none"], {
@@ -22,7 +22,7 @@
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 	import { browser } from "$app/environment";
 
-	export let data: SuperValidated<Infer<NotificationFormSchema>>;
+	let { data }: { data: SuperValidated<Infer<NotificationFormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(notificationsFormSchema),
@@ -35,26 +35,31 @@
 	<Form.Fieldset {form} name="type">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<Form.Control>
-			<RadioGroup.Root bind:value={$formData.type}>
+			<RadioGroup.Root bind:value={$formData.type} name="type">
 				<div class="flex items-center space-x-3">
-					<Form.Control let:attrs>
-						<RadioGroup.Item value="all" {...attrs} />
-						<Form.Label>All new messages</Form.Label>
+					<Form.Control>
+						{#snippet children({ props })}
+							<RadioGroup.Item value="all" {...props} />
+							<Form.Label>All new messages</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
 				<div class="flex items-center space-x-3">
-					<Form.Control let:attrs>
-						<RadioGroup.Item value="mentions" {...attrs} />
-						<Form.Label>Direct messages and mentions</Form.Label>
+					<Form.Control>
+						{#snippet children({ props })}
+							<RadioGroup.Item value="mentions" {...props} />
+							<Form.Label>Direct messages and mentions</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
 				<div class="flex items-center space-x-3">
-					<Form.Control let:attrs>
-						<RadioGroup.Item value="none" {...attrs} />
-						<Form.Label>Nothing</Form.Label>
+					<Form.Control>
+						{#snippet children({ props })}
+							<RadioGroup.Item value="none" {...props} />
+							<Form.Label>Nothing</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
-				<RadioGroup.Input name="type" />
 			</RadioGroup.Root>
 		</Form.Control>
 	</Form.Fieldset>
@@ -66,14 +71,16 @@
 				name="communication_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label class="text-base">Communication emails</Form.Label>
-						<Form.Description>
-							Receive emails about your account activity.
-						</Form.Description>
-					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.communication_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label class="text-base">Communication emails</Form.Label>
+							<Form.Description>
+								Receive emails about your account activity.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.communication_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -81,14 +88,16 @@
 				name="marketing_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label class="text-base">Marketing emails</Form.Label>
-						<Form.Description>
-							Receive emails about new products, features, and more.
-						</Form.Description>
-					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label class="text-base">Marketing emails</Form.Label>
+							<Form.Description>
+								Receive emails about new products, features, and more.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.marketing_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -96,14 +105,16 @@
 				name="social_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label class="text-base">Social emails</Form.Label>
-						<Form.Description>
-							Receive emails for friend requests, follows, and more.
-						</Form.Description>
-					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.social_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label class="text-base">Social emails</Form.Label>
+							<Form.Description>
+								Receive emails for friend requests, follows, and more.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.social_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -111,30 +122,34 @@
 				name="security_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label class="text-base">Security emails</Form.Label>
-						<Form.Description>
-							Receive emails about your account activity and security.
-						</Form.Description>
-					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.security_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label class="text-base">Security emails</Form.Label>
+							<Form.Description>
+								Receive emails about your account activity and security.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.security_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 		</div>
 	</div>
 	<Form.Field {form} name="mobile" class="flex flex-row items-start space-x-3 space-y-0">
-		<Form.Control let:attrs>
-			<Checkbox {...attrs} bind:checked={$formData.mobile} />
-			<div class="space-y-1 leading-none">
-				<Form.Label>Use different settings for my mobile devices</Form.Label>
-				<Form.Description>
-					You can manage your mobile notifications in the <a href="/examples/forms"
-						>mobile settings</a
-					> page.
-				</Form.Description>
-			</div>
-			<input name={attrs.name} value={$formData.mobile} hidden />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Checkbox {...props} bind:checked={$formData.mobile} />
+				<div class="space-y-1 leading-none">
+					<Form.Label>Use different settings for my mobile devices</Form.Label>
+					<Form.Description>
+						You can manage your mobile notifications in the <a href="/examples/forms"
+							>mobile settings</a
+						> page.
+					</Form.Description>
+				</div>
+				<input name={props.name} value={$formData.mobile} hidden />
+			{/snippet}
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Update notifications</Form.Button>

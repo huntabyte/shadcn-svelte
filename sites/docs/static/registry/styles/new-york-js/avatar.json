@@ -7,19 +7,19 @@
 	"files": [
 		{
 			"name": "avatar-fallback.svelte",
-			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Fallback\n\tclass={cn(\"bg-muted flex h-full w-full items-center justify-center rounded-full\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Fallback>\n"
+			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tclass={cn(\"bg-muted flex h-full w-full items-center justify-center rounded-full\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "avatar-image.svelte",
-			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let src = undefined;\n\texport let alt = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Image\n\t{src}\n\t{alt}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...$$restProps}\n/>\n"
+			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tsrc,\n\t\talt,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tbind:ref\n\t{src}\n\t{alt}\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "avatar.svelte",
-			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport let delayMs = undefined;\n\texport { className as class };\n</script>\n\n<AvatarPrimitive.Root\n\t{delayMs}\n\tclass={cn(\"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...$$restProps}\n>\n\t<slot />\n</AvatarPrimitive.Root>\n"
+			"content": "<script>\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tloadingStatus = $bindable(\"loading\"),\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:loadingStatus\n\tbind:ref\n\tclass={cn(\"relative flex size-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "index.js",
-			"content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback,\n};\n"
+			"content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\nexport { Root, Image, Fallback, \n//\nRoot as Avatar, Image as AvatarImage, Fallback as AvatarFallback, };\n"
 		}
 	],
 	"type": "components:ui"

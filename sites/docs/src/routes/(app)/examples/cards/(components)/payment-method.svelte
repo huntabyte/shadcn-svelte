@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
@@ -43,7 +43,7 @@
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="2"
-					class="mb-3 h-6 w-6"
+					class="mb-3 size-6"
 				>
 					<rect width="20" height="14" x="2" y="5" rx="2" />
 					<path d="M2 10h20" />
@@ -55,7 +55,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
-				<Icons.paypal class="mb-3 h-6 w-6" />
+				<Icon.PayPal class="mb-3 size-6" />
 				Paypal
 			</Label>
 			<Label
@@ -63,7 +63,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
-				<Icons.apple class="mb-3 h-6 w-6" />
+				<Icon.Apple class="mb-3 size-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>
@@ -84,7 +84,7 @@
 					</Select.Trigger>
 					<Select.Content>
 						{#each months as month, i}
-							<Select.Item value={i + 1} label={month}>{month}</Select.Item>
+							<Select.Item value={`${i + 1}`} textValue={month}>{month}</Select.Item>
 						{/each}
 					</Select.Content>
 				</Select.Root>
@@ -99,7 +99,7 @@
 						{#each { length: 10 } as _, i}
 							<Select.Item
 								value={`${new Date().getFullYear() + i}`}
-								label={`${new Date().getFullYear() + i}`}
+								textValue={`${new Date().getFullYear() + i}`}
 							>
 								{new Date().getFullYear() + i}
 							</Select.Item>

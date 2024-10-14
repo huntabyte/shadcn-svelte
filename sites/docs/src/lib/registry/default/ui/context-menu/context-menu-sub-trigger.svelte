@@ -1,32 +1,28 @@
 <script lang="ts">
-	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
+	import { ContextMenu as ContextMenuPrimitive, type WithoutChild } from "bits-ui";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = ContextMenuPrimitive.SubTriggerProps & {
+	let {
+		ref = $bindable(null),
+		class: className,
+		inset,
+		children,
+		...restProps
+	}: WithoutChild<ContextMenuPrimitive.SubTriggerProps> & {
 		inset?: boolean;
-	};
-	type $$Events = ContextMenuPrimitive.SubTriggerEvents;
-
-	let className: $$Props["class"] = undefined;
-	export let inset: $$Props["inset"] = undefined;
-	export { className as class };
+	} = $props();
 </script>
 
 <ContextMenuPrimitive.SubTrigger
+	bind:ref
 	class={cn(
 		"data-[highlighted]:bg-accent data-[state=open]:bg-accent data-[highlighted]:text-accent-foreground data-[state=open]:text-accent-foreground flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
 		inset && "pl-8",
 		className
 	)}
-	{...$$restProps}
-	on:click
-	on:keydown
-	on:focusin
-	on:focusout
-	on:pointerleave
-	on:pointermove
+	{...restProps}
 >
-	<slot />
-	<ChevronRight class="ml-auto h-4 w-4" />
+	{@render children?.()}
+	<ChevronRight class="ml-auto size-4" />
 </ContextMenuPrimitive.SubTrigger>

@@ -2,8 +2,10 @@
 title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
-bits: https://www.embla-carousel.com/get-started/svelte/
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
+  doc: https://www.embla-carousel.com/get-started/svelte
+  api: https://www.embla-carousel.com/api
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.embla-carousel.com/get-started/svelte/
 
 <ComponentPreview name="carousel-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -60,7 +62,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 <ComponentPreview name="carousel-size">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -92,7 +94,7 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 
 <ComponentPreview name="carousel-spacing">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -122,7 +124,7 @@ Use the `orientation` prop to set the orientation of the carousel.
 
 <ComponentPreview name="carousel-orientation">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -157,33 +159,34 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 ## API
 
-Use reactive state and the `bind:api` directive to get an instance of the carousel API.
+Use reactive state and the `setApi` callback to get an instance of the carousel API.
 
 <ComponentPreview name="carousel-api">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
-```svelte showLineNumbers {2,5,18}
+```svelte showLineNumbers {2,5,19}
 <script lang="ts">
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 
-  let api: CarouselAPI;
-  let count = 0;
-  let current = 0;
+  let api = $state<CarouselAPI>();
+  let current = $state(0);
+  const count = $derived(api ? api.scrollSnapList().length : 0);
 
-  $: if (api) {
-    count = api.scrollSnapList().length;
-    current = api.selectedScrollSnap() + 1;
-    api.on("select", () => {
+  $effect(() => {
+    if (api) {
       current = api.selectedScrollSnap() + 1;
-    });
-  }
+      api.on("select", () => {
+        current = api!.selectedScrollSnap() + 1;
+      });
+    }
+  });
 </script>
 
-<Carousel.Root bind:api>
+<Carousel.Root setApi={(emblaApi) => (api = emblaApi)}>
   <Carousel.Content>
     <Carousel.Item>...</Carousel.Item>
     <Carousel.Item>...</Carousel.Item>
@@ -196,21 +199,23 @@ Use reactive state and the `bind:api` directive to get an instance of the carous
 
 You can listen to events using the api instance from `bind:api`.
 
-```svelte showLineNumbers {2,5,7-11,14}
+```svelte showLineNumbers {2,5,7-13,16}
 <script lang="ts">
   import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
   import * as Carousel from "$lib/components/ui/carousel/index.js";
 
-  let api: CarouselAPI;
+  let api = $state<CarouselAPI>();
 
-  $: if (api) {
-    api.on("select", () => {
-      // do something on select
-    });
-  }
+  $effect(() => {
+    if (api) {
+      api.on("select", () => {
+        // do something
+      });
+    }
+  });
 </script>
 
-<Carousel.Root bind:api>
+<Carousel.Root setApi={(emblaApi) => (api = emblaApi)}>
   <Carousel.Content>
     <Carousel.Item>...</Carousel.Item>
     <Carousel.Item>...</Carousel.Item>
@@ -242,7 +247,7 @@ You can use the `plugins` prop to add plugins to the carousel.
 
 <ComponentPreview name="carousel-plugin">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

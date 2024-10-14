@@ -11,7 +11,7 @@
 		class="flex flex-row items-center justify-between space-y-0 pb-2"
 	>
 		<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-		<DollarSign class="text-muted-foreground h-4 w-4" />
+		<DollarSign class="text-muted-foreground size-4" />
 	</Card.Header>
 	<Card.Content>
 		<div class="text-2xl font-bold">$45,231.89</div>

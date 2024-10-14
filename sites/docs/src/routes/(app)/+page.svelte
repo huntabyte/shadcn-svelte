@@ -1,16 +1,15 @@
 <script lang="ts">
 	import Mail from "./examples/mail/(components)/mail.svelte";
 	import { accounts, mails } from "./examples/mail/data.js";
-	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
+	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
+	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
-	import MailLight from "$lib/img/examples/mail-light.png?enhanced";
-	import MailDark from "$lib/img/examples/mail-dark.png?enhanced";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="container relative">
@@ -44,7 +43,7 @@
 				href={siteConfig.links.github}
 				class={cn(buttonVariants({ variant: "outline" }))}
 			>
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<Icon.GitHub class="mr-2 size-4" />
 				GitHub
 			</a>
 		</div>
@@ -54,8 +53,13 @@
 		class="bg-background overflow-hidden rounded-lg border shadow-md md:hidden md:shadow-xl"
 	>
 		<div class="md:hidden">
-			<enhanced:img src={MailLight} alt="Mail" class="block dark:hidden" />
-			<enhanced:img src={MailDark} alt="Mail" class="hidden dark:block" />
+			<enhanced:img
+				src="$lib/img/examples/mail-light.png"
+				alt="Mail"
+				class="block dark:hidden"
+			></enhanced:img>
+			<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
+			></enhanced:img>
 		</div>
 	</section>
 	<section class="hidden md:block">

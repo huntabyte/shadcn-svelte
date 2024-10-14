@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Announcement, ThemeWrapper } from "$lib/components/docs/index.js";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
+	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import ColorCard from "$lib/components/colors/color-card.svelte";
 </script>

@@ -19,13 +19,19 @@
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
-	import PlaygroundLight from "$lib/img/examples/playground-light.png?enhanced";
-	import PlaygroundDark from "$lib/img/examples/playground-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={PlaygroundLight} alt="Playground" class="block dark:hidden" />
-	<enhanced:img src={PlaygroundDark} alt="Playground" class="hidden dark:block" />
+	<enhanced:img
+		src="$lib/img/examples/playground-light.png"
+		alt="Playground"
+		class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img
+		src="$lib/img/examples/playground-dark.png"
+		alt="Playground"
+		class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div
@@ -49,14 +55,15 @@
 				<div class="hidden flex-col space-y-4 sm:flex md:order-2">
 					<div class="grid gap-2">
 						<HoverCard.Root openDelay={200}>
-							<HoverCard.Trigger asChild let:builder>
-								<span
-									class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-									use:builder.action
-									{...builder}
-								>
-									Mode
-								</span>
+							<HoverCard.Trigger>
+								{#snippet child({ props })}
+									<span
+										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+										{...props}
+									>
+										Mode
+									</span>
+								{/snippet}
 							</HoverCard.Trigger>
 							<HoverCard.Content class="w-[320px] text-sm" side="left">
 								Choose the interface that best suits your task. You can provide: a
@@ -71,7 +78,7 @@
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
 									fill="none"
-									class="h-5 w-5"
+									class="size-5"
 								>
 									<rect
 										x="4"
@@ -137,7 +144,7 @@
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
 									fill="none"
-									class="h-5 w-5"
+									class="size-5"
 								>
 									<path
 										fill-rule="evenodd"
@@ -177,7 +184,7 @@
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
 									fill="none"
-									class="h-5 w-5"
+									class="size-5"
 								>
 									<rect
 										x="4"
@@ -243,7 +250,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -257,13 +264,13 @@
 									placeholder="We're writing to [inset]. Congrats from OpenAI!"
 									class="h-full min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]"
 								/>
-								<div class="bg-muted rounded-md border" />
+								<div class="bg-muted rounded-md border"></div>
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -290,13 +297,13 @@
 								</div>
 								<div
 									class="bg-muted mt-[21px] min-h-[400px] rounded-md border lg:min-h-[700px]"
-								/>
+								></div>
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="h-4 w-4" />
+									<CounterClockwiseClock class="size-4" />
 								</Button>
 							</div>
 						</div>

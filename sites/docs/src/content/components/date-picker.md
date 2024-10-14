@@ -2,7 +2,8 @@
 title: Date Picker
 description: A date picker component with range and presets.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/registry/default/example/date-picker-demo.svelte
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/registry/default/example/date-picker-demo.svelte
 ---
 
 <script>
@@ -11,7 +12,7 @@ source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -40,22 +41,24 @@ See installations instructions for the [Popover](/docs/components/popover#instal
     dateStyle: "long",
   });
 
-  let value: DateValue | undefined = undefined;
+  let value = $state<DateValue>();
 </script>
 
 <Popover.Root openFocus>
-  <Popover.Trigger asChild let:builder>
-    <Button
-      variant="outline"
-      class={cn(
-        "w-[280px] justify-start text-left font-normal",
-        !value && "text-muted-foreground"
-      )}
-      builders={[builder]}
-    >
-      <CalendarIcon class="mr-2 h-4 w-4" />
-      {value ? df.format(value.toDate(getLocalTimeZone())) : "Select a date"}
-    </Button>
+  <Popover.Trigger>
+    {#snippet child({ props })}
+      <Button
+        variant="outline"
+        class={cn(
+          "w-[280px] justify-start text-left font-normal",
+          !value && "text-muted-foreground"
+        )}
+        {...props}
+      >
+        <CalendarIcon class="mr-2 size-4" />
+        {value ? df.format(value.toDate(getLocalTimeZone())) : "Select a date"}
+      </Button>
+    {/snippet}
   </Popover.Trigger>
   <Popover.Content class="w-auto p-0">
     <Calendar bind:value initialFocus />
@@ -69,7 +72,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -77,7 +80,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-with-range">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -85,7 +88,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-with-presets">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,6 +96,6 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 <ComponentPreview name="date-picker-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

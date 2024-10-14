@@ -15,7 +15,9 @@
 	},
 	{
 		"name": "alert",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/alert/alert-description.svelte",
@@ -41,7 +43,6 @@
 			"ui/alert-dialog/alert-dialog-footer.svelte",
 			"ui/alert-dialog/alert-dialog-header.svelte",
 			"ui/alert-dialog/alert-dialog-overlay.svelte",
-			"ui/alert-dialog/alert-dialog-portal.svelte",
 			"ui/alert-dialog/alert-dialog-title.svelte",
 			"ui/alert-dialog/index.ts"
 		],
@@ -49,12 +50,9 @@
 	},
 	{
 		"name": "aspect-ratio",
-		"dependencies": [
-			"bits-ui"
-		],
+		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
-			"ui/aspect-ratio/aspect-ratio.svelte",
 			"ui/aspect-ratio/index.ts"
 		],
 		"type": "components:ui"
@@ -75,7 +73,9 @@
 	},
 	{
 		"name": "badge",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/badge/badge.svelte",
@@ -85,7 +85,9 @@
 	},
 	{
 		"name": "breadcrumb",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/breadcrumb/breadcrumb-ellipsis.svelte",
@@ -101,9 +103,7 @@
 	},
 	{
 		"name": "button",
-		"dependencies": [
-			"bits-ui"
-		],
+		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
 			"ui/button/button.svelte",
@@ -140,7 +140,9 @@
 	},
 	{
 		"name": "card",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/card/card-content.svelte",
@@ -156,7 +158,8 @@
 	{
 		"name": "carousel",
 		"dependencies": [
-			"embla-carousel-svelte"
+			"embla-carousel-svelte",
+			"bits-ui"
 		],
 		"registryDependencies": [
 			"button"
@@ -186,12 +189,9 @@
 	},
 	{
 		"name": "collapsible",
-		"dependencies": [
-			"bits-ui"
-		],
+		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
-			"ui/collapsible/collapsible-content.svelte",
 			"ui/collapsible/index.ts"
 		],
 		"type": "components:ui"
@@ -199,7 +199,6 @@
 	{
 		"name": "command",
 		"dependencies": [
-			"cmdk-sv",
 			"bits-ui"
 		],
 		"registryDependencies": [
@@ -211,6 +210,7 @@
 			"ui/command/command-group.svelte",
 			"ui/command/command-input.svelte",
 			"ui/command/command-item.svelte",
+			"ui/command/command-link-item.svelte",
 			"ui/command/command-list.svelte",
 			"ui/command/command-separator.svelte",
 			"ui/command/command-shortcut.svelte",
@@ -228,15 +228,26 @@
 		"files": [
 			"ui/context-menu/context-menu-checkbox-item.svelte",
 			"ui/context-menu/context-menu-content.svelte",
+			"ui/context-menu/context-menu-group-heading.svelte",
 			"ui/context-menu/context-menu-item.svelte",
-			"ui/context-menu/context-menu-label.svelte",
-			"ui/context-menu/context-menu-radio-group.svelte",
 			"ui/context-menu/context-menu-radio-item.svelte",
 			"ui/context-menu/context-menu-separator.svelte",
 			"ui/context-menu/context-menu-shortcut.svelte",
 			"ui/context-menu/context-menu-sub-content.svelte",
 			"ui/context-menu/context-menu-sub-trigger.svelte",
 			"ui/context-menu/index.ts"
+		],
+		"type": "components:ui"
+	},
+	{
+		"name": "data-table",
+		"dependencies": [],
+		"registryDependencies": [],
+		"files": [
+			"ui/data-table/data-table.svelte.ts",
+			"ui/data-table/flex-render.svelte",
+			"ui/data-table/index.ts",
+			"ui/data-table/render-helpers.ts"
 		],
 		"type": "components:ui"
 	},
@@ -252,7 +263,6 @@
 			"ui/dialog/dialog-footer.svelte",
 			"ui/dialog/dialog-header.svelte",
 			"ui/dialog/dialog-overlay.svelte",
-			"ui/dialog/dialog-portal.svelte",
 			"ui/dialog/dialog-title.svelte",
 			"ui/dialog/index.ts"
 		],
@@ -261,7 +271,8 @@
 	{
 		"name": "drawer",
 		"dependencies": [
-			"vaul-svelte"
+			"vaul-svelte",
+			"bits-ui"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -286,9 +297,8 @@
 		"files": [
 			"ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-content.svelte",
+			"ui/dropdown-menu/dropdown-menu-group-heading.svelte",
 			"ui/dropdown-menu/dropdown-menu-item.svelte",
-			"ui/dropdown-menu/dropdown-menu-label.svelte",
-			"ui/dropdown-menu/dropdown-menu-radio-group.svelte",
 			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-separator.svelte",
 			"ui/dropdown-menu/dropdown-menu-shortcut.svelte",
@@ -303,7 +313,8 @@
 		"dependencies": [
 			"formsnap",
 			"zod",
-			"sveltekit-superforms"
+			"sveltekit-superforms",
+			"bits-ui"
 		],
 		"registryDependencies": [
 			"button",
@@ -336,7 +347,9 @@
 	},
 	{
 		"name": "input",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/input/index.ts",
@@ -366,8 +379,8 @@
 			"ui/menubar/index.ts",
 			"ui/menubar/menubar-checkbox-item.svelte",
 			"ui/menubar/menubar-content.svelte",
+			"ui/menubar/menubar-group-heading.svelte",
 			"ui/menubar/menubar-item.svelte",
-			"ui/menubar/menubar-label.svelte",
 			"ui/menubar/menubar-radio-item.svelte",
 			"ui/menubar/menubar-separator.svelte",
 			"ui/menubar/menubar-shortcut.svelte",
@@ -448,8 +461,6 @@
 			"ui/range-calendar/index.ts",
 			"ui/range-calendar/range-calendar-cell.svelte",
 			"ui/range-calendar/range-calendar-day.svelte",
-			"ui/range-calendar/range-calendar-grid-body.svelte",
-			"ui/range-calendar/range-calendar-grid-head.svelte",
 			"ui/range-calendar/range-calendar-grid-row.svelte",
 			"ui/range-calendar/range-calendar-grid.svelte",
 			"ui/range-calendar/range-calendar-head-cell.svelte",
@@ -465,7 +476,8 @@
 	{
 		"name": "resizable",
 		"dependencies": [
-			"paneforge"
+			"paneforge",
+			"bits-ui"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -497,8 +509,10 @@
 		"files": [
 			"ui/select/index.ts",
 			"ui/select/select-content.svelte",
+			"ui/select/select-group-heading.svelte",
 			"ui/select/select-item.svelte",
-			"ui/select/select-label.svelte",
+			"ui/select/select-scroll-down-button.svelte",
+			"ui/select/select-scroll-up-button.svelte",
 			"ui/select/select-separator.svelte",
 			"ui/select/select-trigger.svelte"
 		],
@@ -529,14 +543,15 @@
 			"ui/sheet/sheet-footer.svelte",
 			"ui/sheet/sheet-header.svelte",
 			"ui/sheet/sheet-overlay.svelte",
-			"ui/sheet/sheet-portal.svelte",
 			"ui/sheet/sheet-title.svelte"
 		],
 		"type": "components:ui"
 	},
 	{
 		"name": "skeleton",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/skeleton/index.ts",
@@ -583,7 +598,9 @@
 	},
 	{
 		"name": "table",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/table/index.ts",
@@ -614,7 +631,9 @@
 	},
 	{
 		"name": "textarea",
-		"dependencies": [],
+		"dependencies": [
+			"bits-ui"
+		],
 		"registryDependencies": [],
 		"files": [
 			"ui/textarea/index.ts",
@@ -640,6 +659,7 @@
 			"bits-ui"
 		],
 		"registryDependencies": [
+			"toggle-group",
 			"toggle"
 		],
 		"files": [

@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import { readFileSync } from "node:fs";
 import process from "node:process";
 import { join, resolve } from "node:path";
@@ -157,15 +157,11 @@ export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			// @ts-expect-error - this is fine
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
-				// @ts-expect-error - this is fine
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
-				if (!name) {
-					return null;
-				}
+				if (!name) return null;
 
 				try {
 					for (const style of styles) {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { nanoid } from "nanoid";
+	import { useId } from "bits-ui";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
@@ -49,7 +49,7 @@
 		},
 	];
 
-	const id = nanoid(5);
+	const id = useId("report-issue");
 </script>
 
 <Card.Root>
@@ -61,13 +61,13 @@
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="grid gap-2">
 				<Label for="aria-{id}">Area</Label>
-				<Select.Root selected={areas[1]}>
+				<Select.Root value={areas[1].value}>
 					<Select.Trigger id="aria-{id}">
 						<Select.Value placeholder="Select" />
 					</Select.Trigger>
 					<Select.Content>
 						{#each areas as area}
-							<Select.Item value={area.value} label={area.label}
+							<Select.Item value={area.value} textValue={area.label}
 								>{area.label}</Select.Item
 							>
 						{/each}
@@ -76,13 +76,13 @@
 			</div>
 			<div class="grid gap-2">
 				<Label for="security-level-{id}">Security Level</Label>
-				<Select.Root selected={securityLevels[1]}>
+				<Select.Root value={securityLevels[1].value}>
 					<Select.Trigger id="security-level-{id}" class="w-full truncate">
 						<Select.Value placeholder="Select level" />
 					</Select.Trigger>
 					<Select.Content>
 						{#each securityLevels as level}
-							<Select.Item value={level.value} label={level.label}
+							<Select.Item value={level.value} textValue={level.label}
 								>{level.label}</Select.Item
 							>
 						{/each}

@@ -406,7 +406,7 @@ export const Index = {
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
-			registryDependencies: ["table","button","dropdown-menu","input"],
+			registryDependencies: ["table","button","dropdown-menu","input","data-table"],
 			component: () => import("../lib/registry/default/example/data-table-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/data-table-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/data-table-demo.svelte?raw").then((m) => m.default),
@@ -478,7 +478,7 @@ export const Index = {
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/default/example/dropdown-menu-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/dropdown-menu-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/dropdown-menu-demo.svelte?raw").then((m) => m.default),
@@ -670,7 +670,7 @@ export const Index = {
 		"select-demo": {
 			name: "select-demo",
 			type: "components:example",
-			registryDependencies: ["select"],
+			registryDependencies: ["select","label"],
 			component: () => import("../lib/registry/default/example/select-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/select-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/select-demo.svelte?raw").then((m) => m.default),
@@ -910,7 +910,7 @@ export const Index = {
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
-			registryDependencies: ["button","tooltip"],
+			registryDependencies: ["tooltip"],
 			component: () => import("../lib/registry/default/example/tooltip-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/tooltip-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/tooltip-demo.svelte?raw").then((m) => m.default),
@@ -1431,7 +1431,7 @@ export const Index = {
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
-			registryDependencies: ["table","button","dropdown-menu","input"],
+			registryDependencies: ["table","button","dropdown-menu","input","data-table"],
 			component: () => import("../lib/registry/new-york/example/data-table-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/data-table-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/data-table-demo.svelte?raw").then((m) => m.default),
@@ -1503,7 +1503,7 @@ export const Index = {
 		"dropdown-menu-demo": {
 			name: "dropdown-menu-demo",
 			type: "components:example",
-			registryDependencies: ["button","dropdown-menu"],
+			registryDependencies: ["dropdown-menu","button"],
 			component: () => import("../lib/registry/new-york/example/dropdown-menu-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/dropdown-menu-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/dropdown-menu-demo.svelte?raw").then((m) => m.default),
@@ -1695,7 +1695,7 @@ export const Index = {
 		"select-demo": {
 			name: "select-demo",
 			type: "components:example",
-			registryDependencies: ["select"],
+			registryDependencies: ["select","label"],
 			component: () => import("../lib/registry/new-york/example/select-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/select-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/select-demo.svelte?raw").then((m) => m.default),
@@ -1935,7 +1935,7 @@ export const Index = {
 		"tooltip-demo": {
 			name: "tooltip-demo",
 			type: "components:example",
-			registryDependencies: ["button","tooltip"],
+			registryDependencies: ["tooltip"],
 			component: () => import("../lib/registry/new-york/example/tooltip-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/tooltip-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/tooltip-demo.svelte?raw").then((m) => m.default),

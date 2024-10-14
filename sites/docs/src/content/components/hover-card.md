@@ -2,8 +2,10 @@
 title: Hover Card
 description: For sighted users to preview content available behind a link.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/hover-card
-bits: https://www.bits-ui.com/docs/components/link-preview
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/link-preview
+  doc: https://next.bits-ui.com/docs/components/link-preview
+  api: https://next.bits-ui.com/docs/components/link-preview#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/link-preview
 
 <ComponentPreview name="hover-card-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/link-preview
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

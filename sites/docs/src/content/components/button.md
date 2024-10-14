@@ -1,10 +1,11 @@
 ---
 title: Button
 description: Displays a button or a component that looks like a button.
-featured: true
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
-bits: https://www.bits-ui.com/docs/components/button
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
+  doc: https://next.bits-ui.com/docs/components/button
+  api: https://next.bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>
@@ -13,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/button
 
 <ComponentPreview name="button-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -25,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/button
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -73,7 +74,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,7 +84,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-secondary">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,7 +94,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -103,7 +104,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -113,7 +114,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-ghost">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -123,7 +124,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-link">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -133,7 +134,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-with-icon">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -143,7 +144,7 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-icon">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -153,6 +154,6 @@ Alternatively, you can use the `buttonVariants` helper to create a link that loo
 
 <ComponentPreview name="button-loading">
 
-<div />
+<div></div>
 
 </ComponentPreview>

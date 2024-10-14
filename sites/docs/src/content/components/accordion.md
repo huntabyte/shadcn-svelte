@@ -2,8 +2,10 @@
 title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/accordion
-bits: https://www.bits-ui.com/docs/components/accordion
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/accordion
+  doc: https://next.bits-ui.com/docs/components/accordion
+  api: https://next.bits-ui.com/docs/components/accordion#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/accordion
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -37,7 +39,7 @@ bits: https://www.bits-ui.com/docs/components/accordion
   import * as Accordion from "$lib/components/ui/accordion";
 </script>
 
-<Accordion.Root>
+<Accordion.Root type="single">
   <Accordion.Item value="item-1">
     <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
     <Accordion.Content>

@@ -2,8 +2,10 @@
 title: Context Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/context-menu
-bits: https://www.bits-ui.com/docs/components/context-menu
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/context-menu
+  doc: https://next.bits-ui.com/docs/components/context-menu
+  api: https://next.bits-ui.com/docs/components/context-menu#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/context-menu
 
 <ComponentPreview name="context-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/context-menu
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

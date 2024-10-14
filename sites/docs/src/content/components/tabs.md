@@ -2,8 +2,10 @@
 title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/tabs
-bits: https://www.bits-ui.com/docs/components/tabs
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/tabs
+  doc: https://next.bits-ui.com/docs/components/tabs
+  api: https://next.bits-ui.com/docs/components/tabs#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/tabs
 
 <ComponentPreview name="tabs-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/tabs
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

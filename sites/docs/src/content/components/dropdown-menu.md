@@ -2,8 +2,10 @@
 title: Dropdown Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
-bits: https://www.bits-ui.com/docs/components/dropdown-menu
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
+  doc: https://next.bits-ui.com/docs/components/dropdown-menu
+  api: https://next.bits-ui.com/docs/components/dropdown-menu#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -41,7 +43,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.Label>My Account</DropdownMenu.Label>
+      <DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
       <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>
@@ -58,7 +60,7 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-checkboxes">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,6 +68,6 @@ bits: https://www.bits-ui.com/docs/components/dropdown-menu
 
 <ComponentPreview name="dropdown-menu-radio-group">
 
-<div />
+<div></div>
 
 </ComponentPreview>

@@ -18,7 +18,7 @@
 		</div>
 		<Button href="##" size="sm" class="ml-auto gap-1">
 			View All
-			<ArrowUpRight class="h-4 w-4" />
+			<ArrowUpRight class="size-4" />
 		</Button>
 	</Card.Header>
 	<Card.Content>

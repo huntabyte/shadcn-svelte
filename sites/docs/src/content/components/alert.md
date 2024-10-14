@@ -2,7 +2,8 @@
 title: Alert
 description: Displays a callout for user attention.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert
 ---
 
 <script>
@@ -11,7 +12,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -46,7 +47,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -54,6 +55,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>

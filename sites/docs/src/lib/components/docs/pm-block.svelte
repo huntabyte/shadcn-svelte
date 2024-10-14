@@ -32,7 +32,7 @@
 <figure data-rehype-pretty-code-figure>
 	<Pre
 		isPackageManagerBlock={true}
-		tabindex="0"
+		tabindex={0}
 		data-language="bash"
 		data-theme="Lambda Studio - Blackout"
 	>
