@@ -1,7 +1,3 @@
-/**
- * Credit to https://github.com/walker-tx/svelte5-tanstack-table-examples
- * for creating this solution to use TanStack Table v8 with Svelte 5.
- */
 import {
 	type RowData,
 	type TableOptions,

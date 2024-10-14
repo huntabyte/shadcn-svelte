@@ -2,8 +2,10 @@
 title: Dropdown Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
-bits: https://www.bits-ui.com/docs/components/dropdown-menu
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
+  doc: https://next.bits-ui.com/docs/components/dropdown-menu
+  api: https://next.bits-ui.com/docs/components/dropdown-menu#api-reference
 ---
 
 <script>

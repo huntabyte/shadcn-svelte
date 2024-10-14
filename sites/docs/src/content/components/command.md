@@ -2,8 +2,10 @@
 title: Command
 description: Fast, composable, unstyled command menu for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
-bits: https://github.com/huntabyte/cmdk-sv
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
+  doc: https://next.bits-ui.com/docs/components/command
+  api: https://next.bits-ui.com/docs/components/command#api-reference
 ---
 
 <script>
@@ -16,25 +18,15 @@ bits: https://github.com/huntabyte/cmdk-sv
 
 </ComponentPreview>
 
-## About
-
-The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to provide a fast, composable, unstyled command menu for Svelte.
-
-<Callout>
-
-**Note:** `cmdk-sv` is a new library and is still in alpha. While I don't anticipate a ton of breaking changes, as the API aligns with the original, I want to bring this to your awareness. If you find any bugs, please [open an issue](https://github.com/huntabyte/cmdk-sv) with the library, rather than this project.
-
-</Callout>
-
 ## Installation
 
 <PMAddComp name="command" />
 
 <ManualInstall>
 
-1. Install `cmdk-sv` and `bits-ui`:
+1. Install `bits-ui`:
 
-<PMInstall command="cmdk-sv bits-ui" />
+<PMInstall command="bits-ui" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

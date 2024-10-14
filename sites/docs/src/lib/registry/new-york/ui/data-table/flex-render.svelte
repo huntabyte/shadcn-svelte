@@ -3,7 +3,7 @@
 	import {
 		RenderComponentConfig,
 		RenderSnippetConfig,
-	} from "$lib/registry/new-york/ui/data-table/render-component.js";
+	} from "$lib/registry/new-york/ui/data-table/render-helpers.js";
 </script>
 
 <script

@@ -2,8 +2,10 @@
 title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
-bits: https://www.embla-carousel.com/get-started/svelte/
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
+  doc: https://www.embla-carousel.com/get-started/svelte
+  api: https://www.embla-carousel.com/api
 ---
 
 <script>

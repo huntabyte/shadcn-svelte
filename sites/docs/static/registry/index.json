@@ -247,7 +247,7 @@
 			"ui/data-table/data-table.svelte.ts",
 			"ui/data-table/flex-render.svelte",
 			"ui/data-table/index.ts",
-			"ui/data-table/render-component.ts"
+			"ui/data-table/render-helpers.ts"
 		],
 		"type": "components:ui"
 	},

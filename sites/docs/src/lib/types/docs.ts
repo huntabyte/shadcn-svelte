@@ -1,3 +1,6 @@
+import type { Component } from "svelte";
+import type { Doc } from "$content/index.js";
+
 export type Metadata = {
 	title: string;
 	description: string;
@@ -37,8 +40,8 @@ export type FrontMatter = {
 };
 
 export type DocFile = {
-	default: import("svelte").ComponentType;
-	metadata: FrontMatter;
+	default: Component;
+	metadata: Doc;
 };
 
 export type DocResolver = () => Promise<DocFile>;

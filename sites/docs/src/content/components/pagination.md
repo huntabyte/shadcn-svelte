@@ -2,8 +2,10 @@
 title: Pagination
 description: Pagination with page navigation, next and previous links.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/pagination
-bits: https://www.bits-ui.com/docs/components/pagination
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/pagination
+  doc: https://next.bits-ui.com/docs/components/pagination
+  api: https://next.bits-ui.com/docs/components/pagination#api-reference
 ---
 
 <script>

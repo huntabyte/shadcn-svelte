@@ -3,7 +3,7 @@
 	import {
 		RenderComponentConfig,
 		RenderSnippetConfig,
-	} from "$lib/registry/default/ui/data-table/render-component.js";
+	} from "$lib/registry/default/ui/data-table/render-helpers.js";
 </script>
 
 <script

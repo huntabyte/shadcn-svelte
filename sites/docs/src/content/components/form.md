@@ -1,6 +1,8 @@
 ---
 title: Formsnap & Superforms
 description: Building forms with Formsnap, Superforms, & Zod.
+links:
+  doc: https://formsnap.dev
 ---
 
 <script>

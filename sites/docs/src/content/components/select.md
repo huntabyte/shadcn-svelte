@@ -2,8 +2,10 @@
 title: Select
 description: Displays a list of options for the user to pick from—triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/select
-bits: https://www.bits-ui.com/docs/components/select
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/select
+  doc: https://next.bits-ui.com/docs/components/select
+  api: https://next.bits-ui.com/docs/components/select#api-reference
 ---
 
 <script>
