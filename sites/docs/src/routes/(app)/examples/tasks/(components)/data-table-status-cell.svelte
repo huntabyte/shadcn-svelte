@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { statuses } from "../(data)/data.js";
 
-	let { value }: { value: string } = $props();
+	let { value }: { value?: string } = $props();
 
-	const status = statuses.find((status) => status.value === value);
-	const Icon = status?.icon;
+	const status = $derived(statuses.find((status) => status.value === value));
+	const Icon = $derived(status?.icon);
 </script>
 
 {#if status}

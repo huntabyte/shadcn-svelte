@@ -1,10 +1,11 @@
 ---
 title: Button
 description: Displays a button or a component that looks like a button.
-featured: true
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
-bits: https://www.bits-ui.com/docs/components/button
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
+  doc: https://next.bits-ui.com/docs/components/button
+  api: https://next.bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>

@@ -5,7 +5,8 @@
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
-	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
+	import DocsPager from "$lib/components/docs/docs-pager.svelte";
+	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
@@ -16,8 +17,10 @@
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
 	const componentSource = $derived(
-		data.metadata.source?.replace("default", $config.style ?? "default")
+		data.metadata.links?.source?.replace("default", $config.style ?? "default")
 	);
+	const apiLink = $derived(doc.links?.api);
+	const docLink = $derived(doc.links?.doc);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
@@ -37,8 +40,30 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.source || doc.bits}
+		{#if apiLink || componentSource || docLink}
 			<div class="flex items-center space-x-2 pt-4">
+				{#if docLink}
+					<a
+						href={docLink}
+						target="_blank"
+						rel="noreferrer"
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
+					>
+						Docs
+						<ExternalLink class="size-3" />
+					</a>
+				{/if}
+				{#if apiLink}
+					<a
+						href={apiLink}
+						target="_blank"
+						rel="noreferrer"
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
+					>
+						API Reference
+						<ExternalLink class="size-3" />
+					</a>
+				{/if}
 				{#if componentSource}
 					<a
 						href={componentSource}
@@ -48,17 +73,6 @@
 					>
 						Component Source
 						<Code class="size-3.5" />
-					</a>
-				{/if}
-				{#if doc.bits}
-					<a
-						href={doc.bits}
-						target="_blank"
-						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
-					>
-						Primitive API Reference
-						<ExternalLink class="size-3" />
 					</a>
 				{/if}
 			</div>

@@ -2,7 +2,7 @@
 	import { useId } from "bits-ui";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
@@ -63,7 +63,7 @@
 					class="sr-only"
 					aria-label="Paypal"
 				/>
-				<Icons.paypal class="mb-3 size-6" />
+				<Icon.PayPal class="mb-3 size-6" />
 				Paypal
 			</Label>
 			<Label
@@ -71,7 +71,7 @@
 				class="border-muted hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple-{id}" class="sr-only" aria-label="Apple" />
-				<Icons.apple class="mb-3 size-6" />
+				<Icon.Apple class="mb-3 size-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>

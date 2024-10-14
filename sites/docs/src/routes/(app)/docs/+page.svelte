@@ -3,7 +3,8 @@
 	import type { PageData } from "./$types.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/stores";
-	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
+	import DocsPager from "$lib/components/docs/docs-pager.svelte";
+	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
 	import { cn } from "$lib/utils.js";
 
 	let { data }: { data: PageData } = $props();

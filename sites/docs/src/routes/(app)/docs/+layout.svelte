@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import { DocsSidebarNav } from "$lib/components/docs/index.js";
+	import DocsSidebarNav from "$lib/components/docs/nav/docs-sidebar-nav.svelte";
 	import { docsConfig } from "$lib/config/docs.js";
 
 	let { children } = $props();

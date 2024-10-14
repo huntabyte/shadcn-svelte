@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
+	import Announcement from "$lib/components/docs/announcement.svelte";
+	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 

@@ -11,13 +11,15 @@
 	}: PopoverPrimitive.ContentProps = $props();
 </script>
 
-<PopoverPrimitive.Content
-	bind:ref
-	{align}
-	{sideOffset}
-	class={cn(
-		"bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-none",
-		className
-	)}
-	{...restProps}
-/>
+<PopoverPrimitive.Portal>
+	<PopoverPrimitive.Content
+		bind:ref
+		{align}
+		{sideOffset}
+		class={cn(
+			"bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-none",
+			className
+		)}
+		{...restProps}
+	/>
+</PopoverPrimitive.Portal>

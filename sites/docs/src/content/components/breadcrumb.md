@@ -2,7 +2,8 @@
 title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
 ---
 
 <script>

@@ -5,7 +5,8 @@
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { CustomizerCode, ThemeWrapper } from "$lib/components/docs/index.js";
+	import CustomizerCode from "$lib/components/docs/theme-customizer/customizer-code.svelte";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { cn, createCopyCodeButton } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 

@@ -8,19 +8,15 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "pnpm build:registry && pnpm build:site",
+		"build": "pnpm build:docs",
 		"build:cli": "pnpm -F shadcn-svelte build",
-		"build:registry": "pnpm -F docs build:registry",
-		"build:site": "pnpm -F docs build",
-		"dev": "pnpm build:registry && pnpm -F docs dev",
+		"build:docs": "pnpm -F docs build",
+		"dev": "pnpm -F docs dev",
 		"dev:cli": "pnpm -F shadcn-svelte start:dev",
 		"preview": "pnpm -F docs preview",
-		"test": "pnpm -F docs test",
+		"test": "pnpm -F shadcn-svelte test",
 		"check": "pnpm -F docs check",
-		"check:watch": "pnpm -F docs check:watch",
-		"test:unit": "pnpm -F docs test:unit",
 		"lint": "prettier --check . && eslint .",
-		"lint:fix": "eslint --fix .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "pnpm -r sync",
@@ -48,11 +44,7 @@
 		"prettier-plugin-svelte": "^3.2.7",
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"pretty-quick": "^4.0.0",
-		"simple-git-hooks": "^2.10.0",
-		"svelte": "5.0.0-next.262",
+		"svelte": "^5.0.0-next.264",
 		"svelte-eslint-parser": "^0.41.1"
-	},
-	"simple-git-hooks": {
-		"pre-commit": "pnpm -r format:staged --staged"
 	}
 }

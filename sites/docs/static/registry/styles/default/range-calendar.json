@@ -43,7 +43,7 @@
 		},
 		{
 			"name": "range-calendar-months.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "range-calendar-next-button.svelte",

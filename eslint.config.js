@@ -1,6 +1,6 @@
 import config, { DEFAULT_IGNORES } from "@huntabyte/eslint-config";
 
-const ignores = ["**/extended-types"];
+const ignores = ["**/extended-types", "**/.velite"];
 
 export default config({ svelte: true, ignores: [...DEFAULT_IGNORES, ...ignores] })
 	.override("antfu/typescript/rules", {

@@ -2,7 +2,8 @@
 title: Skeleton
 description: Use to show a placeholder while content is loading.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/skeleton
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/skeleton
 ---
 
 <script>

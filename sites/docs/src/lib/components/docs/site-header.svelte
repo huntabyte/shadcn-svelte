@@ -1,11 +1,9 @@
 <script lang="ts">
-	import {
-		CommandMenu,
-		Icons,
-		MainNav,
-		MobileNav,
-		ModeToggle,
-	} from "$lib/components/docs/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
+	import ModeToggle from "$lib/components/docs/mode-toggle.svelte";
+	import CommandMenu from "$lib/components/docs/command-menu.svelte";
+	import MainNav from "$lib/components/docs/nav/main-nav.svelte";
+	import MobileNav from "$lib/components/docs/nav/mobile-nav.svelte";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
@@ -32,7 +30,7 @@
 							"h-8 w-8 px-0"
 						)}
 					>
-						<Icons.gitHub class="size-4" />
+						<Icon.GitHub class="size-4" />
 						<span class="sr-only">GitHub</span>
 					</div>
 				</a>
@@ -46,7 +44,7 @@
 							"h-8 w-8 px-0"
 						)}
 					>
-						<Icons.twitter class="size-3 fill-current" />
+						<Icon.Twitter class="size-3 fill-current" />
 						<span class="sr-only">X (formerly known as Twitter)</span>
 					</div>
 				</a>

@@ -1,7 +1,8 @@
 {
 	"name": "drawer",
 	"dependencies": [
-		"vaul-svelte"
+		"vaul-svelte",
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [
@@ -19,7 +20,7 @@
 		},
 		{
 			"name": "drawer-header.svelte",
-			"content": "<script>\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
 		},
 		{
 			"name": "drawer-nested.svelte",

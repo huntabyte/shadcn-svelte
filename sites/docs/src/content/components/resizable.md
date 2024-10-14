@@ -2,8 +2,9 @@
 title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
-bits: https://paneforge.com
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
+  doc: https://www.paneforge.com
 ---
 
 <script>

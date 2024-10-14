@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "popover-content.svelte",
-			"content": "<script>\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"center\",\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: PopoverPrimitive.ContentProps = $props();\n</script>\n\n<PopoverPrimitive.Content\n\tbind:ref\n\t{align}\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"center\",\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: PopoverPrimitive.ContentProps = $props();\n</script>\n\n<PopoverPrimitive.Portal>\n\t<PopoverPrimitive.Content\n\t\tbind:ref\n\t\t{align}\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-none\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</PopoverPrimitive.Portal>\n"
 		}
 	],
 	"type": "components:ui"

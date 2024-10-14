@@ -1,8 +1,8 @@
 ---
 title: Badge
 description: Displays a badge or a component that looks like a badge.
-component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/badge
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/badge
 ---
 
 <script>

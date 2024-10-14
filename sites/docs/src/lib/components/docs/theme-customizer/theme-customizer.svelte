@@ -2,7 +2,8 @@
 	import Check from "svelte-radix/Check.svelte";
 	import { mode } from "mode-watcher";
 	import Paintbrush from "lucide-svelte/icons/paintbrush";
-	import { Customizer, ThemeCopyCodeButton } from "./index.js";
+	import Customizer from "./customizer.svelte";
+	import ThemeCopyCodeButton from "./copy-code-button.svelte";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { nanoid } from "nanoid";
+	import { useId } from "bits-ui";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
@@ -49,7 +49,7 @@
 		},
 	];
 
-	const id = nanoid(5);
+	const id = useId("report-issue");
 </script>
 
 <Card.Root>

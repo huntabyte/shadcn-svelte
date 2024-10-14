@@ -1,5 +1,4 @@
 <script lang="ts">
-	// eslint-disable-next-line import/no-self-import
 	import Tree from "./tree.svelte";
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { cn } from "$lib/utils.js";

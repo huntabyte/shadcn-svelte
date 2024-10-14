@@ -2,8 +2,10 @@
 title: Calendar
 description: A calendar component that allows users to select dates.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
-bits: https://www.bits-ui.com/docs/components/calendar
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
+  doc: https://next.bits-ui.com/docs/components/calendar
+  api: https://next.bits-ui.com/docs/components/calendar#api-reference
 ---
 
 <script>

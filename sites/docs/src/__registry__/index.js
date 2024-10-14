@@ -406,7 +406,7 @@ export const Index = {
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
-			registryDependencies: ["table","button","dropdown-menu","input"],
+			registryDependencies: ["table","button","dropdown-menu","input","data-table"],
 			component: () => import("../lib/registry/default/example/data-table-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/data-table-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/data-table-demo.svelte?raw").then((m) => m.default),
@@ -1431,7 +1431,7 @@ export const Index = {
 		"data-table-demo": {
 			name: "data-table-demo",
 			type: "components:example",
-			registryDependencies: ["table","button","dropdown-menu","input"],
+			registryDependencies: ["table","button","dropdown-menu","input","data-table"],
 			component: () => import("../lib/registry/new-york/example/data-table-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/data-table-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/data-table-demo.svelte?raw").then((m) => m.default),

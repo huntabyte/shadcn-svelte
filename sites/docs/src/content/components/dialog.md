@@ -2,9 +2,10 @@
 title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 component: true
-featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dialog
-bits: https://www.bits-ui.com/docs/components/dialog
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dialog
+  doc: https://next.bits-ui.com/docs/components/dialog
+  api: https://next.bits-ui.com/docs/components/dialog#api-reference
 ---
 
 <script>

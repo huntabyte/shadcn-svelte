@@ -2,7 +2,8 @@
 title: Date Picker
 description: A date picker component with range and presets.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/registry/default/example/date-picker-demo.svelte
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/blob/main/sites/docs/src/lib/registry/default/example/date-picker-demo.svelte
 ---
 
 <script>

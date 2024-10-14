@@ -1,238 +1,128 @@
-<script lang="ts">
-	import { get, readable } from "svelte/store";
-	import { Render, Subscribe, createRender, createTable } from "svelte-headless-table";
+<script lang="ts" generics="TData, TValue">
 	import {
-		addColumnFilters,
-		addHiddenColumns,
-		addPagination,
-		addSelectedRows,
-		addSortBy,
-		addTableFilter,
-	} from "svelte-headless-table/plugins";
-	import type { Task } from "../(data)/schemas.js";
-	import {
-		DataTableCheckbox,
-		DataTableColumnHeader,
-		DataTablePagination,
-		DataTablePriorityCell,
-		DataTableRowActions,
-		DataTableStatusCell,
-		DataTableTitleCell,
-		DataTableToolbar,
-	} from "./index.js";
-
+		type ColumnDef,
+		type ColumnFiltersState,
+		type RowSelectionState,
+		type SortingState,
+		type VisibilityState,
+		getCoreRowModel,
+		getFacetedRowModel,
+		getFacetedUniqueValues,
+		getFilteredRowModel,
+		getPaginationRowModel,
+		getSortedRowModel,
+	} from "@tanstack/table-core";
+	import DataTableToolbar from "./data-table-toolbar.svelte";
+	import DataTablePagination from "./data-table-pagination.svelte";
+	import { createSvelteTable } from "$lib/registry/new-york/ui/data-table/data-table.svelte.js";
+	import FlexRender from "$lib/registry/new-york/ui/data-table/flex-render.svelte";
 	import * as Table from "$lib/registry/new-york/ui/table/index.js";
 
-	let { data }: { data: Task[] } = $props();
+	let { columns, data }: { columns: ColumnDef<TData, TValue>[]; data: TData[] } = $props();
 
-	const table = createTable(readable($state.snapshot(data)), {
-		select: addSelectedRows(),
-		sort: addSortBy({
-			toggleOrder: ["asc", "desc"],
-		}),
-		page: addPagination(),
-		filter: addTableFilter({
-			fn: ({ filterValue, value }) => {
-				return value.toLowerCase().includes(filterValue.toLowerCase());
+	let rowSelection = $state<RowSelectionState>({});
+	let columnVisibility = $state<VisibilityState>({});
+	let columnFilters = $state<ColumnFiltersState>([]);
+	let sorting = $state<SortingState>([]);
+
+	const table = createSvelteTable({
+		get data() {
+			return data;
+		},
+		state: {
+			get sorting() {
+				return sorting;
 			},
-		}),
-		colFilter: addColumnFilters(),
-		hide: addHiddenColumns(),
+			get columnVisibility() {
+				return columnVisibility;
+			},
+			get rowSelection() {
+				return rowSelection;
+			},
+			get columnFilters() {
+				return columnFilters;
+			},
+		},
+		columns,
+		enableRowSelection: true,
+		onRowSelectionChange: (updater) => {
+			if (typeof updater === "function") {
+				rowSelection = updater(rowSelection);
+			} else {
+				rowSelection = updater;
+			}
+		},
+		onSortingChange: (updater) => {
+			if (typeof updater === "function") {
+				sorting = updater(sorting);
+			} else {
+				sorting = updater;
+			}
+		},
+		onColumnFiltersChange: (updater) => {
+			if (typeof updater === "function") {
+				columnFilters = updater(columnFilters);
+			} else {
+				columnFilters = updater;
+			}
+		},
+		onColumnVisibilityChange: (updater) => {
+			if (typeof updater === "function") {
+				columnVisibility = updater(columnVisibility);
+			} else {
+				columnVisibility = updater;
+			}
+		},
+		getCoreRowModel: getCoreRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		getPaginationRowModel: getPaginationRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		getFacetedRowModel: getFacetedRowModel(),
+		getFacetedUniqueValues: getFacetedUniqueValues(),
 	});
-
-	const columns = table.createColumns([
-		table.display({
-			id: "select",
-			header: (_, { pluginStates }) => {
-				const { allPageRowsSelected } = pluginStates.select;
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTableCheckbox, {
-					checked: allPageRowsSelected,
-					"aria-label": "Select all",
-				});
-			},
-			cell: ({ row }, { pluginStates }) => {
-				const { getRowState } = pluginStates.select;
-				const { isSelected } = getRowState(row);
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTableCheckbox, {
-					checked: isSelected,
-					"aria-label": "Select row",
-					class: "translate-y-[2px]",
-				});
-			},
-			plugins: {
-				sort: {
-					disable: true,
-				},
-			},
-		}),
-		table.column({
-			accessor: "id",
-			header: () => {
-				return "Task";
-			},
-			id: "task",
-			plugins: {
-				sort: {
-					disable: true,
-				},
-			},
-		}),
-		table.column({
-			accessor: "title",
-			header: "Title",
-			id: "title",
-			cell: ({ value, row }) => {
-				if (row.isData()) {
-					// @ts-expect-error - tanstack table coming soon
-					return createRender(DataTableTitleCell, {
-						value,
-						labelValue: row.original.label,
-					});
-				}
-				return value;
-			},
-		}),
-		table.column({
-			accessor: "status",
-			header: "Status",
-			id: "status",
-			cell: ({ value }) => {
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTableStatusCell, {
-					value,
-				});
-			},
-			plugins: {
-				colFilter: {
-					fn: ({ filterValue, value }) => {
-						if (filterValue.length === 0) return true;
-						if (!Array.isArray(filterValue) || typeof value !== "string") return true;
-						return filterValue.some((filter) => {
-							return value.includes(filter);
-						});
-					},
-					initialFilterValue: [],
-					render: ({ filterValue }) => {
-						return get(filterValue);
-					},
-				},
-			},
-		}),
-		table.column({
-			accessor: "priority",
-			id: "priority",
-			header: "Priority",
-			cell: ({ value }) => {
-				// @ts-expect-error - tanstack table coming soon
-				return createRender(DataTablePriorityCell, {
-					value,
-				});
-			},
-			plugins: {
-				colFilter: {
-					fn: ({ filterValue, value }) => {
-						if (filterValue.length === 0) return true;
-						if (!Array.isArray(filterValue) || typeof value !== "string") return true;
-
-						return filterValue.some((filter) => {
-							return value.includes(filter);
-						});
-					},
-					initialFilterValue: [],
-					render: ({ filterValue }) => {
-						return get(filterValue);
-					},
-				},
-			},
-		}),
-		table.display({
-			id: "actions",
-			header: () => {
-				return "";
-			},
-			cell: ({ row }) => {
-				if (row.isData() && row.original) {
-					// @ts-expect-error - tanstack table coming soon
-					return createRender(DataTableRowActions, {
-						row: row.original,
-					});
-				}
-				return "";
-			},
-		}),
-	]);
-
-	const tableModel = table.createViewModel(columns);
-
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = tableModel;
 </script>
 
 <div class="space-y-4">
-	<DataTableToolbar {tableModel} {data} />
+	<DataTableToolbar {table} />
 	<div class="rounded-md border">
-		<Table.Root {...$tableAttrs}>
+		<Table.Root>
 			<Table.Header>
-				{#each $headerRows as headerRow}
-					<Subscribe rowAttrs={headerRow.attrs()}>
-						<Table.Row>
-							{#each headerRow.cells as cell (cell.id)}
-								<Subscribe
-									attrs={cell.attrs()}
-									let:attrs
-									props={cell.props()}
-									let:props
-								>
-									<Table.Head {...attrs}>
-										{#if cell.id !== "select" && cell.id !== "actions"}
-											<DataTableColumnHeader
-												{props}
-												{tableModel}
-												cellId={cell.id}
-											>
-												<Render of={cell.render()} /></DataTableColumnHeader
-											>
-										{:else}
-											<Render of={cell.render()} />
-										{/if}
-									</Table.Head>
-								</Subscribe>
-							{/each}
-						</Table.Row>
-					</Subscribe>
+				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+					<Table.Row>
+						{#each headerGroup.headers as header (header.id)}
+							<Table.Head colspan={header.colSpan}>
+								{#if !header.isPlaceholder}
+									<FlexRender
+										content={header.column.columnDef.header}
+										context={header.getContext()}
+									/>
+								{/if}
+							</Table.Head>
+						{/each}
+					</Table.Row>
 				{/each}
 			</Table.Header>
-			<Table.Body {...$tableBodyAttrs}>
-				{#if $pageRows.length}
-					{#each $pageRows as row (row.id)}
-						<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-							<Table.Row {...rowAttrs}>
-								{#each row.cells as cell (cell.id)}
-									<Subscribe attrs={cell.attrs()} let:attrs>
-										<Table.Cell {...attrs}>
-											{#if cell.id === "task"}
-												<div class="w-[80px]">
-													<Render of={cell.render()} />
-												</div>
-											{:else}
-												<Render of={cell.render()} />
-											{/if}
-										</Table.Cell>
-									</Subscribe>
-								{/each}
-							</Table.Row>
-						</Subscribe>
-					{/each}
+			<Table.Body>
+				{#each table.getRowModel().rows as row (row.id)}
+					<Table.Row data-state={row.getIsSelected() && "selected"}>
+						{#each row.getVisibleCells() as cell (cell.id)}
+							<Table.Cell>
+								<FlexRender
+									content={cell.column.columnDef.cell}
+									context={cell.getContext()}
+								/>
+							</Table.Cell>
+						{/each}
+					</Table.Row>
 				{:else}
 					<Table.Row>
 						<Table.Cell colspan={columns.length} class="h-24 text-center">
 							No results.
 						</Table.Cell>
 					</Table.Row>
-				{/if}
+				{/each}
 			</Table.Body>
 		</Table.Root>
 	</div>
-	<DataTablePagination {tableModel} />
+	<DataTablePagination {table} />
 </div>
