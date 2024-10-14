@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "command.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tvalue = $bindable(),\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.RootProps = $props();\n</script>\n\n<CommandPrimitive.Root\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md\",\n\t\tclassName\n\t)}\n\tbind:ref\n\tbind:value\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tvalue = $bindable(\"\"),\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.RootProps = $props();\n</script>\n\n<CommandPrimitive.Root\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md\",\n\t\tclassName\n\t)}\n\tbind:ref\n\tbind:value\n\t{...restProps}\n/>\n"
 		},
 		{
 			"name": "index.ts",

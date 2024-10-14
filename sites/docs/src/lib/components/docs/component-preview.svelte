@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { Component, Snippet } from "svelte";
-	import { Icons } from "./icons/index.js";
+	import * as Icon from "./icons/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { Index } from "$lib/../__registry__/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
-	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
+	import StyleSwitcher from "$lib/components/docs/style-switcher.svelte";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 
 	let {
 		name,
@@ -35,7 +36,7 @@
 	{#if component}
 		{#await component}
 			<div class="text-muted-foreground flex items-center text-sm">
-				<Icons.spinner class="mr-2 size-4 animate-spin" />
+				<Icon.Spinner class="mr-2 size-4 animate-spin" />
 				Loading...
 			</div>
 		{:then Component}

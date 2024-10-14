@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Icons } from "../icons/index.js";
+	import * as Icon from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
 	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
@@ -20,12 +20,40 @@
 			})
 		)}
 	>
-		<Icons.Hamburger class="size-5" />
+		<svg
+			stroke-width="1.5"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			class="size-5"
+		>
+			<path
+				d="M3 5H11"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			></path>
+			<path
+				d="M3 12H16"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			></path>
+			<path
+				d="M3 19H21"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			></path>
+		</svg>
 		<span class="sr-only">Toggle Menu</span>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center" bind:open>
-			<Icons.logo class="mr-2 size-4" />
+			<Icon.Logo class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
 		<ScrollArea orientation="both" class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">

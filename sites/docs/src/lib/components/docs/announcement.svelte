@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Blocks from "lucide-svelte/icons/blocks";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import { Icons } from "./icons/index.js";
+	import ArrowRight from "svelte-radix/ArrowRight.svelte";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
@@ -19,5 +19,5 @@
 	<Blocks class="size-4" />
 	<Separator class="mx-2 h-4" orientation="vertical" />
 	<span>Introducing Lift Mode</span>
-	<Icons.arrowRight class="ml-1 size-4" />
+	<ArrowRight class="ml-1 size-4" />
 </a>

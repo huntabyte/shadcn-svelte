@@ -1,25 +1,10 @@
-<script lang="ts">
+<script lang="ts" generics="TData">
 	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
-	import type { TableViewModel } from "svelte-headless-table";
-	import type { Task } from "../(data)/schemas.js";
+	import type { Table } from "@tanstack/table-core";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	let { tableModel }: { tableModel: TableViewModel<Task> } = $props();
-
-	const { pluginStates, flatColumns } = tableModel;
-	const { hiddenColumnIds } = pluginStates.hide;
-
-	function handleHide(id: string) {
-		hiddenColumnIds.update((ids: string[]) => {
-			if (ids.includes(id)) {
-				return ids.filter((i) => i !== id);
-			}
-			return [...ids, id];
-		});
-	}
-
-	const hidableCols = ["title", "status", "priority"];
+	let { table }: { table: Table<TData> } = $props();
 </script>
 
 <DropdownMenu.Root>
@@ -37,15 +22,17 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.GroupHeading>Toggle columns</DropdownMenu.GroupHeading>
 			<DropdownMenu.Separator />
-			{#each flatColumns as col}
-				{#if hidableCols.includes(col.id)}
-					<DropdownMenu.CheckboxItem
-						checked={!$hiddenColumnIds.includes(col.id)}
-						onclick={() => handleHide(col.id)}
-					>
-						{col.header}
-					</DropdownMenu.CheckboxItem>
-				{/if}
+			{#each table
+				.getAllColumns()
+				.filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide()) as column}
+				<DropdownMenu.CheckboxItem
+					controlledChecked
+					checked={column.getIsVisible()}
+					onCheckedChange={(v) => column.toggleVisibility(!!v)}
+					class="capitalize"
+				>
+					{column.id}
+				</DropdownMenu.CheckboxItem>
 			{/each}
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>

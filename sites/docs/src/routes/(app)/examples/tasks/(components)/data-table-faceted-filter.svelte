@@ -3,6 +3,7 @@
 	import Check from "svelte-radix/Check.svelte";
 	import type { Column } from "@tanstack/table-core";
 	import type { Component } from "svelte";
+	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -22,8 +23,8 @@
 
 	let { column, title, options }: Props<TData, TValue> = $props();
 
-	const facets = column?.getFacetedUniqueValues();
-	const selectedValues = new Set(column?.getFilterValue() as string[]);
+	const facets = $derived(column?.getFacetedUniqueValues());
+	const selectedValues = $derived(new SvelteSet(column?.getFilterValue() as string[]));
 </script>
 
 <Popover.Root>

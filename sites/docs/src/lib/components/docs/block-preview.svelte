@@ -4,7 +4,7 @@
 
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import type { Block } from "$lib/registry/schema.js";
 	import { cn, getLiftMode } from "$lib/utils.js";
 
@@ -44,7 +44,7 @@
 						<div
 							class="text-muted-foreground absolute inset-0 z-10 flex h-[--container-height] w-full items-center justify-center gap-2 text-sm"
 						>
-							<Icons.spinner class="size-4 animate-spin" />
+							<Icon.Spinner class="size-4 animate-spin" />
 							Loading...
 						</div>
 					{/if}

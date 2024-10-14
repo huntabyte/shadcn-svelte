@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Icons } from "$lib/components/docs/index.js";
+	import * as Icon from "$lib/components/docs/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
@@ -35,7 +35,7 @@
 			</div>
 			<Button type="submit" disabled={isLoading}>
 				{#if isLoading}
-					<Icons.spinner class="mr-2 size-4 animate-spin" />
+					<Icon.Spinner class="mr-2 size-4 animate-spin" />
 				{/if}
 				Sign In with Email
 			</Button>
@@ -51,9 +51,9 @@
 	</div>
 	<Button variant="outline" type="button" disabled={isLoading}>
 		{#if isLoading}
-			<Icons.spinner class="mr-2 size-4 animate-spin" />
+			<Icon.Spinner class="mr-2 size-4 animate-spin" />
 		{:else}
-			<Icons.gitHub class="mr-2 size-4" />
+			<Icon.GitHub class="mr-2 size-4" />
 		{/if}
 		GitHub
 	</Button>

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Mail from "./examples/mail/(components)/mail.svelte";
 	import { accounts, mails } from "./examples/mail/data.js";
-	import { Announcement, ExamplesNav } from "$lib/components/docs/index.js";
+	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
+	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
@@ -42,7 +43,7 @@
 				href={siteConfig.links.github}
 				class={cn(buttonVariants({ variant: "outline" }))}
 			>
-				<Icons.gitHub class="mr-2 size-4" />
+				<Icon.GitHub class="mr-2 size-4" />
 				GitHub
 			</a>
 		</div>

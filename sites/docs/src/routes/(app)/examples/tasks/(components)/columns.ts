@@ -1,4 +1,5 @@
-import { createColumnHelper } from "@tanstack/table-core";
+import type { ColumnDef } from "@tanstack/table-core";
+import { createRawSnippet } from "svelte";
 import type { Task } from "../(data)/schemas.js";
 import DataTableCell from "./data-table-cell.svelte";
 import {
@@ -10,11 +11,10 @@ import {
 	DataTableTitleCell,
 } from "./index.js";
 import { renderComponent } from "$lib/registry/new-york/ui/data-table/index.js";
+import { renderSnippet } from "$lib/registry/default/ui/data-table/render-component.js";
 
-const col = createColumnHelper<Task>();
-
-export const columns = [
-	col.display({
+export const columns: ColumnDef<Task>[] = [
+	{
 		id: "select",
 		header: ({ table }) =>
 			renderComponent(DataTableCheckbox, {
@@ -32,22 +32,29 @@ export const columns = [
 			}),
 		enableSorting: false,
 		enableHiding: false,
-	}),
-	col.accessor("id", {
+	},
+	{
+		accessorKey: "id",
 		header: ({ column }) => {
 			return renderComponent(DataTableColumnHeader, {
 				column,
 				title: "Task",
 			});
 		},
-		cell: () =>
-			renderComponent(DataTableCell, {
-				class: "w-[80px]",
-			}),
+		cell: ({ row }) => {
+			const idSnippet = createRawSnippet<[string]>((getId) => {
+				const id = getId();
+				return {
+					render: () => `<div class="w-[80px]">${id}</div>`,
+				};
+			});
+			return renderSnippet(idSnippet, row.getValue("id"));
+		},
 		enableSorting: false,
 		enableHiding: false,
-	}),
-	col.accessor("title", {
+	},
+	{
+		accessorKey: "title",
 		header: ({ column }) => renderComponent(DataTableColumnHeader, { column, title: "Title" }),
 		cell: ({ row }) => {
 			return renderComponent(DataTableTitleCell, {
@@ -55,8 +62,9 @@ export const columns = [
 				value: row.original.title,
 			});
 		},
-	}),
-	col.accessor("status", {
+	},
+	{
+		accessorKey: "status",
 		header: ({ column }) =>
 			renderComponent(DataTableColumnHeader, {
 				column,
@@ -70,8 +78,9 @@ export const columns = [
 		filterFn: (row, id, value) => {
 			return value.includes(row.getValue(id));
 		},
-	}),
-	col.accessor("priority", {
+	},
+	{
+		accessorKey: "priority",
 		header: ({ column }) => {
 			return renderComponent(DataTableColumnHeader, {
 				title: "Priority",
@@ -86,9 +95,9 @@ export const columns = [
 		filterFn: (row, id, value) => {
 			return value.includes(row.getValue(id));
 		},
-	}),
-	col.display({
+	},
+	{
 		id: "actions",
 		cell: ({ row }) => renderComponent(DataTableRowActions, { row }),
-	}),
+	},
 ];

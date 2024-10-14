@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Icons } from "./icons/index.js";
+	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
+	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
 	import { page } from "$app/stores";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -37,14 +38,14 @@
 <div class="flex flex-row items-center justify-between">
 	{#if pager?.prev?.href}
 		<Button href={pager.prev.href} variant="outline">
-			<Icons.chevronLeft class="mr-2 size-4" />
+			<ChevronLeft class="mr-2 size-4" />
 			{pager.prev.title}
 		</Button>
 	{/if}
 	{#if pager?.next?.href}
 		<Button href={pager.next.href} variant="outline" class="ml-auto">
 			{pager.next.title}
-			<Icons.chevronRight class="ml-2 size-4" />
+			<ChevronRight class="ml-2 size-4" />
 		</Button>
 	{/if}
 </div>

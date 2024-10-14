@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
-	import { StyleSwitcher, ThemeWrapper } from "$lib/components/docs/index.js";
+	import StyleSwitcher from "$lib/components/docs/style-switcher.svelte";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 
 	let {
 		class: className,

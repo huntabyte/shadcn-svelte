@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Announcement } from "$lib/components/docs/index.js";
+	import Announcement from "$lib/components/docs/announcement.svelte";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 

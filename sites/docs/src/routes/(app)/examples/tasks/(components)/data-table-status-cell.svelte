@@ -3,8 +3,8 @@
 
 	let { value }: { value?: string } = $props();
 
-	const status = statuses.find((status) => status.value === value);
-	const Icon = status?.icon;
+	const status = $derived(statuses.find((status) => status.value === value));
+	const Icon = $derived(status?.icon);
 </script>
 
 {#if status}

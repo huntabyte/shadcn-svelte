@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ModeWatcher } from "mode-watcher";
 	import { page } from "$app/stores";
-	import { Metadata } from "$lib/components/docs/index.js";
+	import Metadata from "$lib/components/docs/metadata.svelte";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
 	import "../styles/carbon.pcss";
