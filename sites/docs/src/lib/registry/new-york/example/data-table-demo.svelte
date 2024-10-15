@@ -3,6 +3,7 @@
 	import {
 		type ColumnDef,
 		type ColumnFiltersState,
+		type PaginationState,
 		type RowSelectionState,
 		type SortingState,
 		type VisibilityState,
@@ -151,6 +152,7 @@
 		},
 	];
 
+	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 	let sorting = $state<SortingState>([]);
 	let columnFilters = $state<ColumnFiltersState>([]);
 	let rowSelection = $state<RowSelectionState>({});
@@ -162,6 +164,9 @@
 		},
 		columns,
 		state: {
+			get pagination() {
+				return pagination;
+			},
 			get sorting() {
 				return sorting;
 			},
@@ -179,6 +184,13 @@
 		getPaginationRowModel: getPaginationRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
+		onPaginationChange: (updater) => {
+			if (typeof updater === "function") {
+				pagination = updater(pagination);
+			} else {
+				pagination = updater;
+			}
+		},
 		onSortingChange: (updater) => {
 			if (typeof updater === "function") {
 				sorting = updater(sorting);

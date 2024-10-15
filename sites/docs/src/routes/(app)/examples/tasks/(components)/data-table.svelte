@@ -2,6 +2,7 @@
 	import {
 		type ColumnDef,
 		type ColumnFiltersState,
+		type PaginationState,
 		type RowSelectionState,
 		type SortingState,
 		type VisibilityState,
@@ -24,6 +25,7 @@
 	let columnVisibility = $state<VisibilityState>({});
 	let columnFilters = $state<ColumnFiltersState>([]);
 	let sorting = $state<SortingState>([]);
+	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
 	const table = createSvelteTable({
 		get data() {
@@ -41,6 +43,9 @@
 			},
 			get columnFilters() {
 				return columnFilters;
+			},
+			get pagination() {
+				return pagination;
 			},
 		},
 		columns,
@@ -71,6 +76,13 @@
 				columnVisibility = updater(columnVisibility);
 			} else {
 				columnVisibility = updater;
+			}
+		},
+		onPaginationChange: (updater) => {
+			if (typeof updater === "function") {
+				pagination = updater(pagination);
+			} else {
+				pagination = updater;
 			}
 		},
 		getCoreRowModel: getCoreRowModel(),
