@@ -106,7 +106,7 @@
 					type="single"
 					value="100"
 					onValueChange={(value) => {
-						if (resizablePaneRef && value !== undefined) {
+						if (resizablePaneRef) {
 							resizablePaneRef.resize(Number.parseInt(value));
 						}
 					}}

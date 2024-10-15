@@ -63,7 +63,6 @@
 			Examples
 		</a>
 
-
 		<a
 			href="/colors"
 			class={cn(

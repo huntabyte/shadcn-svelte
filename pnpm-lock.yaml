@@ -291,8 +291,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1(svelte@5.0.0-next.264)
       paneforge:
-        specifier: 1.0.0-next.0
-        version: 1.0.0-next.0(svelte@5.0.0-next.264)
+        specifier: 1.0.0-next.1
+        version: 1.0.0-next.1(svelte@5.0.0-next.264)
       postcss:
         specifier: ^8.4.39
         version: 8.4.39
@@ -4794,8 +4794,8 @@ packages:
   package-manager-detector@0.1.2:
     resolution: {integrity: sha512-iePyefLTOm2gEzbaZKSW+eBMjg+UYsQvUKxmvGXAQ987K16efBg10MxIjZs08iyX+DY2/owKY9DIdu193kX33w==}
 
-  paneforge@1.0.0-next.0:
-    resolution: {integrity: sha512-ipkuT9ELDkDs7KUoN/KnKLh2aIUgDufy5HLxw/rvnWQtE0Q51Sgbi0ylFeUlpnyB9izSBm90NGlU0ElA6wc+/g==}
+  paneforge@1.0.0-next.1:
+    resolution: {integrity: sha512-K28RZ/KLqnZJeuZ7TZNv5C51NrQ3UPggf2sIhIXjTd4brpRZpmCA9C2SL2o4CC0U2Ox75KxUFwEXq2A/iDBuZg==}
     peerDependencies:
       svelte: ^5.0.0-next.1
 
@@ -11480,10 +11480,10 @@ snapshots:
 
   package-manager-detector@0.1.2: {}
 
-  paneforge@1.0.0-next.0(svelte@5.0.0-next.264):
+  paneforge@1.0.0-next.1(svelte@5.0.0-next.264):
     dependencies:
       svelte: 5.0.0-next.264
-      svelte-toolbelt: 0.4.1(svelte@5.0.0-next.264)
+      svelte-toolbelt: 0.4.2(svelte@5.0.0-next.264)
 
   parent-module@1.0.1:
     dependencies:
