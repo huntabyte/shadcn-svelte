@@ -4,6 +4,9 @@
 		RenderComponentConfig,
 		RenderSnippetConfig,
 	} from "$lib/registry/default/ui/data-table/render-helpers.js";
+	type TData = unknown;
+	type TValue = unknown;
+	type TContext = unknown;
 </script>
 
 <script
