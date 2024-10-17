@@ -35,7 +35,7 @@ export async function buildRegistry() {
 	for (const { name: style } of styles) {
 		const uiPath = path.resolve(registryRootPath, style, "ui");
 		const examplePath = path.resolve(registryRootPath, style, "example");
-		const blockPath = path.resolve(registryRootPath, style, "block");
+		const blockPath = path.resolve(registryRootPath, style, "block/tmp");
 
 		const [ui, example, block] = await Promise.all([
 			crawlUI(uiPath, style),

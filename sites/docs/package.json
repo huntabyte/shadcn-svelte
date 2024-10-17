@@ -37,6 +37,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^20.14.10",
+		"@typescript-eslint/typescript-estree": "^8.10.0",
 		"@unovis/svelte": "1.4.3",
 		"@unovis/ts": "1.4.3",
 		"autoprefixer": "^10.4.19",

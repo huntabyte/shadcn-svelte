@@ -1,11 +1,17 @@
 import { parse } from "svelte/compiler";
 import { walk } from "estree-walker";
 import prettier from "@prettier/sync";
+import { parse as parseTs } from "@typescript-eslint/typescript-estree";
 import { codeBlockPrettierConfig } from "../other/code-block-prettier.js";
 
 type Chunk = {
 	name: string;
 	dependencies: string[];
+	snippets: {
+		start: number;
+		end: number;
+		deps: string[];
+	}[];
 	start: number;
 	end: number;
 	content: string;
@@ -14,16 +20,25 @@ type Chunk = {
 };
 export function getChunks(source: string, filename: string) {
 	type TemplateNode =
-		(typeof ast)["fragment"]["nodes"] extends Array<infer T>
+		(typeof svelteAst)["fragment"]["nodes"] extends Array<infer T>
 			? T
-			: (typeof ast)["fragment"]["nodes"];
-	const ast = parse(source, { filename, modern: true });
+			: (typeof svelteAst)["fragment"]["nodes"];
+
+	const tsAst = extractScriptContentAst(source);
+	const svelteAst = parse(source, { filename, modern: true });
 	const chunks: Chunk[] = [];
+	const nameToSnippetNode = new Map<string, TemplateNode>();
+	const snippets: { start: number; end: number }[] = [];
 
 	// @ts-expect-error yea, stfu
-	walk(ast, {
+	walk(svelteAst, {
 		enter(n: TemplateNode) {
 			const chunkNode = n as TemplateNode;
+			// get snippets from the template
+			if (chunkNode.type === "SnippetBlock" && chunkNode.expression.name !== "child") {
+				// nameToSnippetNode.set(chunkNode.expression.name, chunkNode);
+			}
+
 			if (chunkNode.type !== "RegularElement" && chunkNode.type !== "Component") return;
 
 			const attrs = chunkNode.attributes.filter((a) => a.type === "Attribute");
@@ -101,4 +116,11 @@ export function transformChunk(source: string, chunk: Chunk): string {
 		useTabs: true,
 		tabWidth: undefined,
 	});
+}
+
+function extractScriptContentAst(input: string): ReturnType<typeof parseTs> {
+	const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/;
+	const match = input.match(scriptRegex);
+	const result = match ? match[1].trim() : "";
+	return parseTs(result);
 }
