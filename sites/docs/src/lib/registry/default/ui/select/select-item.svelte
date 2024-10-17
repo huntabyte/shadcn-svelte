@@ -7,7 +7,7 @@
 		ref = $bindable(null),
 		class: className,
 		value,
-		textValue,
+		label,
 		children: childrenProp,
 		...restProps
 	}: WithoutChild<SelectPrimitive.ItemProps> = $props();
@@ -22,18 +22,16 @@
 	)}
 	{...restProps}
 >
-	{#snippet children({ selected })}
+	{#snippet children({ selected, highlighted })}
 		<span class="absolute left-2 flex size-3.5 items-center justify-center">
 			{#if selected}
 				<Check class="size-4" />
 			{/if}
 		</span>
-		<SelectPrimitive.ItemText>
-			{#if childrenProp}
-				{@render childrenProp({ selected })}
-			{:else}
-				{textValue || value}
-			{/if}
-		</SelectPrimitive.ItemText>
+		{#if childrenProp}
+			{@render childrenProp({ selected, highlighted })}
+		{:else}
+			{label || value}
+		{/if}
 	{/snippet}
 </SelectPrimitive.Item>

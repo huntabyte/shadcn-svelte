@@ -16,7 +16,8 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined = undefined;
+	let value: DateValue | undefined = $state();
+	const valueString = $derived(value ? df.format(value.toDate(getLocalTimeZone())) : "");
 
 	const items = [
 		{ value: 0, label: "Today" },
@@ -41,13 +42,16 @@
 	</Popover.Trigger>
 	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">
 		<Select.Root
+			type="single"
+			value={valueString}
+			controlledValue
 			onValueChange={(v) => {
 				if (!v) return;
 				value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
 			}}
 		>
 			<Select.Trigger>
-				<Select.Value placeholder="Select" />
+				{valueString}
 			</Select.Trigger>
 			<Select.Content>
 				{#each items as item}

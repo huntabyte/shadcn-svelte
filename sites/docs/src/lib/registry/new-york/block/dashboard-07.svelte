@@ -25,6 +25,10 @@
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+
+	let category = $state("");
+	let subCategory = $state("");
+	let status = $state("");
 </script>
 
 <div class="bg-muted/40 flex min-h-screen w-full flex-col">
@@ -406,54 +410,43 @@
 								<div class="grid gap-6 sm:grid-cols-3">
 									<div class="grid gap-3">
 										<Label for="category">Category</Label>
-										<Select.Root>
+										<Select.Root type="single" bind:value={category}>
 											<Select.Trigger
 												id="category"
 												aria-label="Select category"
+												class="capitalize"
 											>
-												<Select.Value placeholder="Select category" />
+												{category ?? "Select category"}
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="clothing" textValue="Clothing"
-													>Clothing</Select.Item
-												>
+												<Select.Item value="clothing" label="Clothing" />
 												<Select.Item
 													value="electronics"
-													textValue="Electronics"
-												>
-													Electronics
-												</Select.Item>
+													label="Electronics"
+												/>
 												<Select.Item
 													value="accessories"
-													textValue="Accessories"
-												>
-													Accessories
-												</Select.Item>
+													label="Accessories"
+												/>
 											</Select.Content>
 										</Select.Root>
 									</div>
 									<div class="grid gap-3">
 										<Label for="subcategory">Subcategory (optional)</Label>
-										<Select.Root>
+										<Select.Root type="single" bind:value={subCategory}>
 											<Select.Trigger
 												id="subcategory"
 												aria-label="Select subcategory"
 											>
-												<Select.Value placeholder="Select subcategory" />
+												{subCategory ?? "Select subcategory"}
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="t-shirts" textValue="T-Shirts"
-													>T-Shirts</Select.Item
-												>
-												<Select.Item value="hoodies" textValue="Hoodies"
-													>Hoodies</Select.Item
-												>
+												<Select.Item value="t-shirts" label="T-Shirts" />
+												<Select.Item value="hoodies" label="Hoodies" />
 												<Select.Item
 													value="sweatshirts"
-													textValue="Sweatshirts"
-												>
-													Sweatshirts
-												</Select.Item>
+													label="Sweatshirts"
+												/>
 											</Select.Content>
 										</Select.Root>
 									</div>
@@ -473,20 +466,18 @@
 								<div class="grid gap-6">
 									<div class="grid gap-3">
 										<Label for="status">Status</Label>
-										<Select.Root>
-											<Select.Trigger id="status" aria-label="Select status">
-												<Select.Value placeholder="Select status" />
+										<Select.Root type="single" bind:value={status}>
+											<Select.Trigger
+												id="status"
+												aria-label="Select status"
+												class="capitalize"
+											>
+												{status ?? "Select status"}
 											</Select.Trigger>
 											<Select.Content>
-												<Select.Item value="draft" textValue="Draft"
-													>Draft</Select.Item
-												>
-												<Select.Item value="published" textValue="Active"
-													>Active</Select.Item
-												>
-												<Select.Item value="archived" textValue="Archived"
-													>Archived</Select.Item
-												>
+												<Select.Item value="draft" label="Draft" />
+												<Select.Item value="published" label="Active" />
+												<Select.Item value="archived" label="Archived" />
 											</Select.Content>
 										</Select.Root>
 									</div>

@@ -15,7 +15,7 @@
 	const SelectedIcon = $derived(selectedAccount.icon);
 </script>
 
-<Select.Root value={accounts[0].email}>
+<Select.Root type="single" value={accounts[0].email}>
 	<Select.Trigger
 		class={cn(
 			"flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
@@ -35,7 +35,7 @@
 		<Select.Group>
 			{#each accounts as account}
 				{@const Icon = account.icon}
-				<Select.Item value={account.email} textValue={account.label}>
+				<Select.Item value={account.email} label={account.label}>
 					<div
 						class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
 					>

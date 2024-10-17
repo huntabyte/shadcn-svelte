@@ -5,9 +5,8 @@
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import * as Icon from "$lib/components/docs/icons/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
-	import { cn } from "$lib/utils.js";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 
 	let { data } = $props();
 </script>
@@ -16,9 +15,8 @@
 	<PageHeader.Root class="pb-8">
 		<Announcement />
 		<PageHeader.Heading>Build your component library</PageHeader.Heading>
-		<PageHeader.Description class="text-muted-foreground">
-			Beautifully designed components that you can copy and paste into your apps. Accessible.
-			Customizable. Open Source.
+		<PageHeader.Description>
+			Beautifully designed components that you can copy and paste into your apps.
 		</PageHeader.Description>
 		<p class="text-center text-sm text-orange-700 dark:text-orange-400">
 			This is an unofficial port of <a
@@ -35,18 +33,19 @@
 				class="font-medium underline underline-offset-4">@shadcn</a
 			>.
 		</p>
-		<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
-			<a href="/docs" class={cn(buttonVariants())}> Get Started </a>
-			<a
+		<PageHeader.Actions>
+			<Button href="/docs" size="sm">Get Started</Button>
+			<Button
 				target="_blank"
 				rel="noreferrer"
 				href={siteConfig.links.github}
-				class={cn(buttonVariants({ variant: "outline" }))}
+				variant="ghost"
+				size="sm"
 			>
 				<Icon.GitHub class="mr-2 size-4" />
 				GitHub
-			</a>
-		</div>
+			</Button>
+		</PageHeader.Actions>
 	</PageHeader.Root>
 	<ExamplesNav class="[&>a:first-child]:text-primary" />
 	<section

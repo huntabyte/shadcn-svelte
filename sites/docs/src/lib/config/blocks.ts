@@ -126,7 +126,7 @@ export const blockMeta: Record<Style["name"], Record<BlockName, BlockConfig>> = 
 				"A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.",
 		},
 		"dashboard-05": {
-			iframeHeight: "956px",
+			iframeHeight: "906px",
 			className: "w-full h-full",
 			description:
 				"An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of recent orders with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information.",
