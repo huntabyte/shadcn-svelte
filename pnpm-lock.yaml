@@ -252,8 +252,8 @@ importers:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
       bits-ui:
-        specifier: 1.0.0-next.17
-        version: 1.0.0-next.17(svelte@5.0.0-next.264)
+        specifier: 1.0.0-next.20
+        version: 1.0.0-next.20(svelte@5.0.0-next.264)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2648,8 +2648,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0-next.1
 
-  bits-ui@1.0.0-next.17:
-    resolution: {integrity: sha512-/y5OAtO3urzenXjhgE02JZcTvl8h+mnAN3xX5xo2v2ttfO9TKuAmSxMolrFr5+jqml2CgnFXd7f9oojcVvq9Zg==}
+  bits-ui@1.0.0-next.20:
+    resolution: {integrity: sha512-yDphS/tjSOkTZX67+RjF+fQqXOISxFO81hRnQuJjApuLz5/nOpMzljpudFW40cY8DEdK3FB6nDNUicV3wLLDjg==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.1
@@ -3989,6 +3989,9 @@ packages:
 
   inline-style-parser@0.2.3:
     resolution: {integrity: sha512-qlD8YNDqyTKTyuITrDOffsl6Tdhv+UC4hcdAVuQsK4IMQ99nSgd1MIA/Q+jQYoh9r3hVUXhYh7urSRmXPkW04g==}
+
+  inline-style-parser@0.2.4:
+    resolution: {integrity: sha512-0aO8FkhNZlj/ZIbNi7Lxxr12obT7cL1moPfE4tg1LkX7LlLfC6DeX4l2ZEud1ukP9jNQyNnfzQVqwbwmAATY4Q==}
 
   internal-slot@1.0.7:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
@@ -5608,6 +5611,9 @@ packages:
   style-to-object@1.0.6:
     resolution: {integrity: sha512-khxq+Qm3xEyZfKd/y9L3oIWQimxuc4STrQKtQn8aSDRHb8mFgpukgX1hdzfrMEW6JCjyJ8p89x+IUMVnCBI1PA==}
 
+  style-to-object@1.0.8:
+    resolution: {integrity: sha512-xT47I/Eo0rwJmaXC4oilDGDWLohVhR6o/xAQcPQN8q6QBuZVL8qMYL85kLmST5cPjAorwvqIA4qXTRQoYHaL6g==}
+
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
@@ -5742,6 +5748,12 @@ packages:
   svelte-toolbelt@0.4.2:
     resolution: {integrity: sha512-gepP5X070uw/lcAIhlp4Dw+LUQ8hyVa90DL7OqA8B622KkWOxVVIZvUOJSIsy27Ik68ITF9un+9NcLDuh82jbQ==}
     engines: {node: '>=20', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.0.0-next.126
+
+  svelte-toolbelt@0.4.4:
+    resolution: {integrity: sha512-sNSJ4zUUVpou/p7O2IagMGfSPKHwqsOCYvDceFEMoPmkRXlNDvRethDDAzYM8hO3ayYpdEAPG4H8wsD385hspw==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.126
 
@@ -8755,7 +8767,7 @@ snapshots:
       svelte: 5.0.0-next.264
       svelte-toolbelt: 0.4.2(svelte@5.0.0-next.264)
 
-  bits-ui@1.0.0-next.17(svelte@5.0.0-next.264):
+  bits-ui@1.0.0-next.20(svelte@5.0.0-next.264):
     dependencies:
       '@floating-ui/core': 1.6.4
       '@floating-ui/dom': 1.6.7
@@ -8763,7 +8775,7 @@ snapshots:
       esm-env: 1.0.0
       runed: 0.15.2(svelte@5.0.0-next.264)
       svelte: 5.0.0-next.264
-      svelte-toolbelt: 0.4.2(svelte@5.0.0-next.264)
+      svelte-toolbelt: 0.4.4(svelte@5.0.0-next.264)
 
   blake3-wasm@2.1.5: {}
 
@@ -10414,6 +10426,8 @@ snapshots:
   inline-style-parser@0.1.1: {}
 
   inline-style-parser@0.2.3: {}
+
+  inline-style-parser@0.2.4: {}
 
   internal-slot@1.0.7:
     dependencies:
@@ -12347,6 +12361,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.3
 
+  style-to-object@1.0.8:
+    dependencies:
+      inline-style-parser: 0.2.4
+
   stylis@4.2.0: {}
 
   sucrase@3.35.0:
@@ -12473,6 +12491,12 @@ snapshots:
     dependencies:
       clsx: 2.1.1
       style-to-object: 1.0.6
+      svelte: 5.0.0-next.264
+
+  svelte-toolbelt@0.4.4(svelte@5.0.0-next.264):
+    dependencies:
+      clsx: 2.1.1
+      style-to-object: 1.0.8
       svelte: 5.0.0-next.264
 
   svelte@4.2.12:

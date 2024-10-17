@@ -82,7 +82,7 @@
 		<div class="grid grid-cols-3 gap-4">
 			<div class="grid gap-2">
 				<Label for="month">Expires</Label>
-				<Select.Root>
+				<Select.Root type="single">
 					<Select.Trigger id="month" aria-label="Month">
 						<Select.Value placeholder="Month" />
 					</Select.Trigger>

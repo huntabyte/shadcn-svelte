@@ -6,7 +6,11 @@
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
+
+
 </script>
+
+
 
 <div
 	class="relative hidden flex-col items-start gap-8 md:flex"
@@ -18,56 +22,23 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Settings </legend>
 			<div class="grid gap-3">
 				<Label for="model">Model</Label>
-				<Select.Root>
+				<Select.Root type="single" items={models} bind:value={model}>
 					<Select.Trigger
 						id="model"
 						class="items-start [&_[data-description]]:hidden"
 					>
-						<Select.Value placeholder="Select a model" />
+					{#if selectedModel}
+						{@render ModelItemContent(selectedModel)}
+					{:else}
+						Select a model
+					{/if}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="genesis">
-							<div class="text-muted-foreground flex items-start gap-3">
-								<Rabbit class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="text-foreground font-medium"> Genesis </span>
-									</p>
-									<p class="text-xs" data-description>
-										Our fastest model for general use cases.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
-						<Select.Item value="explorer">
-							<div class="text-muted-foreground flex items-start gap-3">
-								<Bird class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="text-foreground font-medium"> Explorer </span>
-									</p>
-									<p class="text-xs" data-description>
-										Performance and speed for efficiency.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
-						<Select.Item value="quantum">
-							<div class="text-muted-foreground flex items-start gap-3">
-								<Turtle class="size-5" />
-								<div class="grid gap-0.5">
-									<p>
-										Neural
-										<span class="text-foreground font-medium"> Quantum </span>
-									</p>
-									<p class="text-xs" data-description>
-										The most powerful model for complex computations.
-									</p>
-								</div>
-							</div>
-						</Select.Item>
+						{#each models as model}
+							<Select.Item value={model.value} label={model.label}>
+								{@render ModelItemContent(model)}
+							</Select.Item>
+						{/each}
 					</Select.Content>
 				</Select.Root>
 			</div>
@@ -90,14 +61,14 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 			<div class="grid gap-3">
 				<Label for="role">Role</Label>
-				<Select.Root value="system">
-					<Select.Trigger>
-						<Select.Value placeholder="Select a role" />
+				<Select.Root type="single" >
+					<Select.Trigger class="capitalize">
+						{role ?? "Select a role"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="system">System</Select.Item>
-						<Select.Item value="user">User</Select.Item>
-						<Select.Item value="assistant">Assistant</Select.Item>
+						<Select.Item value="system" label="System" />
+						<Select.Item value="user" label="User"/>
+						<Select.Item value="assistant" label="Assistant"/>
 					</Select.Content>
 				</Select.Root>
 			</div>
