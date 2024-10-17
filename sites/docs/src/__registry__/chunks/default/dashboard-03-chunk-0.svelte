@@ -1,16 +1,9 @@
 <script lang="ts">
-	import Rabbit from "lucide-svelte/icons/rabbit";
-	import Bird from "lucide-svelte/icons/bird";
-	import Turtle from "lucide-svelte/icons/turtle";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
-
-
 </script>
-
-
 
 <div
 	class="relative hidden flex-col items-start gap-8 md:flex"
@@ -27,11 +20,11 @@
 						id="model"
 						class="items-start [&_[data-description]]:hidden"
 					>
-					{#if selectedModel}
-						{@render ModelItemContent(selectedModel)}
-					{:else}
-						Select a model
-					{/if}
+						{#if selectedModel}
+							{@render ModelItemContent(selectedModel)}
+						{:else}
+							Select a model
+						{/if}
 					</Select.Trigger>
 					<Select.Content>
 						{#each models as model}
@@ -61,14 +54,14 @@
 			<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 			<div class="grid gap-3">
 				<Label for="role">Role</Label>
-				<Select.Root type="single" >
+				<Select.Root type="single" bind:value={role}>
 					<Select.Trigger class="capitalize">
 						{role ?? "Select a role"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="system" label="System" />
-						<Select.Item value="user" label="User"/>
-						<Select.Item value="assistant" label="Assistant"/>
+						<Select.Item value="system">System</Select.Item>
+						<Select.Item value="user">User</Select.Item>
+						<Select.Item value="assistant">Assistant</Select.Item>
 					</Select.Content>
 				</Select.Root>
 			</div>

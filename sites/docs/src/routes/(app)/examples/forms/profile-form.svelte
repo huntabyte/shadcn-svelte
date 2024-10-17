@@ -67,14 +67,14 @@
 		<Form.Control>
 			{#snippet children({ props })}
 				<Form.Label>Email</Form.Label>
-				<Select.Root bind:value={$formData.email}>
+				<Select.Root type="single" bind:value={$formData.email} name={props.name}>
 					<Select.Trigger {...props}>
-						<Select.Value placeholder="Select a verified email to display" />
+						{$formData.email ?? "Select a verified email to display"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="m@example.com" textValue="m@example.com" />
-						<Select.Item value="m@google.com" textValue="m@google.com" />
-						<Select.Item value="m@support.com" textValue="m@supporte.com" />
+						<Select.Item value="m@example.com" label="m@example.com" />
+						<Select.Item value="m@google.com" label="m@google.com" />
+						<Select.Item value="m@support.com" label="m@support.com" />
 					</Select.Content>
 				</Select.Root>
 				<input hidden name={props.name} bind:value={$formData.email} />
