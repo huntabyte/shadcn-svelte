@@ -7,8 +7,7 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import CustomizerCode from "$lib/components/docs/theme-customizer/customizer-code.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
-	import { cn, createCopyCodeButton } from "$lib/utils.js";
-	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { createCopyCodeButton } from "$lib/utils.js";
 
 	const activeTheme = $derived(themes.find((theme) => theme.name === $config.theme));
 
@@ -17,7 +16,11 @@
 
 {#if activeTheme}
 	<Dialog.Root>
-		<Dialog.Trigger class={cn(buttonVariants({ class: "flex" }))}>Copy Code</Dialog.Trigger>
+		<Dialog.Trigger>
+			{#snippet child({ props })}
+				<Button {...props} class="flex" size="sm" variant="ghost">Copy Code</Button>
+			{/snippet}
+		</Dialog.Trigger>
 		<Dialog.Content class="max-w-2xl outline-none">
 			<Dialog.Header>
 				<Dialog.Title>Theme</Dialog.Title>

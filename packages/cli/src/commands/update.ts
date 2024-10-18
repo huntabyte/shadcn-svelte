@@ -7,7 +7,12 @@ import { execa } from "execa";
 import * as v from "valibot";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
-import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
+import {
+	fetchTree,
+	getItemTargetPath,
+	getRegistryIndex,
+	resolveTree,
+} from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";

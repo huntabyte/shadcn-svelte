@@ -1,7 +1,11 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/default/ui/card/index.js";
+
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
+
+	let category = $state("");
+	let subCategory = $state("");
 </script>
 
 <Card.Root
@@ -15,39 +19,31 @@
 		<div class="grid gap-6 sm:grid-cols-3">
 			<div class="grid gap-3">
 				<Label for="category">Category</Label>
-				<Select.Root>
-					<Select.Trigger id="category" aria-label="Select category">
-						<Select.Value placeholder="Select category" />
+				<Select.Root type="single" bind:value={category}>
+					<Select.Trigger id="category" aria-label="Select category" class="capitalize">
+						{category ?? "Select category"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="clothing" textValue="Clothing"
-							>Clothing</Select.Item
-						>
-						<Select.Item value="electronics" textValue="Electronics">
-							Electronics
-						</Select.Item>
-						<Select.Item value="accessories" textValue="Accessories">
-							Accessories
-						</Select.Item>
+						<Select.Item value="clothing" label="Clothing" />
+						<Select.Item value="electronics" label="Electronics" />
+						<Select.Item value="accessories" label="Accessories" />
 					</Select.Content>
 				</Select.Root>
 			</div>
 			<div class="grid gap-3">
 				<Label for="subcategory">Subcategory (optional)</Label>
-				<Select.Root>
-					<Select.Trigger id="subcategory" aria-label="Select subcategory">
-						<Select.Value placeholder="Select subcategory" />
+				<Select.Root type="single" bind:value={subCategory}>
+					<Select.Trigger
+						id="subcategory"
+						aria-label="Select subcategory"
+						class="capitalize"
+					>
+						{subCategory ?? "Select subcategory"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="t-shirts" textValue="T-Shirts"
-							>T-Shirts</Select.Item
-						>
-						<Select.Item value="hoodies" textValue="Hoodies"
-							>Hoodies</Select.Item
-						>
-						<Select.Item value="sweatshirts" textValue="Sweatshirts">
-							Sweatshirts
-						</Select.Item>
+						<Select.Item value="t-shirts" label="T-Shirts" />
+						<Select.Item value="hoodies" label="Hoodies" />
+						<Select.Item value="sweatshirts" label="Sweatshirts" />
 					</Select.Content>
 				</Select.Root>
 			</div>

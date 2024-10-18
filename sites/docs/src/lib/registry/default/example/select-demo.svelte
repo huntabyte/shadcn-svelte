@@ -9,17 +9,23 @@
 		{ value: "grapes", label: "Grapes" },
 		{ value: "pineapple", label: "Pineapple" },
 	];
+
+	let value = $state("");
+
+	const triggerContent = $derived(
+		fruits.find((f) => f.value === value)?.label ?? "Select a fruit"
+	);
 </script>
 
-<Select.Root name="favoriteFruit">
+<Select.Root type="single" name="favoriteFruit" bind:value>
 	<Select.Trigger class="w-[180px]">
-		<Select.Value placeholder="Select a fruit" />
+		{triggerContent}
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
 			<Label>Fruits</Label>
 			{#each fruits as fruit}
-				<Select.Item value={fruit.value} textValue={fruit.label}>{fruit.label}</Select.Item>
+				<Select.Item value={fruit.value} label={fruit.label}>{fruit.label}</Select.Item>
 			{/each}
 		</Select.Group>
 	</Select.Content>

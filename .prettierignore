@@ -18,7 +18,6 @@ CHANGELOG.md
 
 
 # docs site specific
-sites/docs/src/__registry__/*
 sites/docs/other/themes/dark.json
 sites/docs/other/themes/light.json
 sites/docs/static

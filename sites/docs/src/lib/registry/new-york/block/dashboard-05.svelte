@@ -34,7 +34,7 @@
 
 <div class="bg-muted/40 flex min-h-screen w-full flex-col">
 	<aside class="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
-		<nav class="flex flex-col items-center gap-4 px-2 py-4">
+		<nav class="flex flex-col items-center gap-4 px-2 sm:py-4">
 			<a
 				href="##"
 				class="bg-primary text-primary-foreground group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
@@ -48,7 +48,7 @@
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<House class="size-5" />
@@ -63,7 +63,7 @@
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="bg-accent text-accent-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="bg-accent text-accent-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<ShoppingCart class="size-5" />
@@ -78,7 +78,7 @@
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<Package class="size-5" />
@@ -93,7 +93,7 @@
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<UsersRound class="size-5" />
@@ -108,7 +108,7 @@
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<ChartLine class="size-5" />
@@ -120,14 +120,14 @@
 				</Tooltip.Root>
 			</Tooltip.Provider>
 		</nav>
-		<nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
+		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
 			<Tooltip.Provider>
 				<Tooltip.Root>
 					<Tooltip.Trigger>
 						{#snippet child({ props })}
 							<a
 								href="##"
-								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:size-8"
 								{...props}
 							>
 								<Settings class="size-5" />
@@ -157,7 +157,7 @@
 					<nav class="grid gap-6 text-lg font-medium">
 						<a
 							href="##"
-							class="bg-primary text-primary-foreground group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
+							class="bg-primary text-primary-foreground group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
 						>
 							<Package2 class="size-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>
@@ -234,7 +234,7 @@
 								width={36}
 								height={36}
 								alt="Avatar"
-								class="overflow-hidden rounded-full"
+								class="size-9 overflow-hidden rounded-full"
 							/>
 						</Button>
 					{/snippet}

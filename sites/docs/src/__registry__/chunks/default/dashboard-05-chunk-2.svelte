@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/default/ui/card/index.js";
+
 	import { Progress } from "$lib/registry/default/ui/progress/index.js";
 </script>
 

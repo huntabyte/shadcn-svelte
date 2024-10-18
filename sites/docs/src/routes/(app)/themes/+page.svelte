@@ -26,18 +26,18 @@
 		defaultTheme="zinc"
 		class="relative flex flex-col items-start md:flex-row md:items-center"
 	>
-		<PageHeader.Root>
+		<PageHeader.Root class="w-full">
 			<Announcement />
 			<PageHeader.Heading class="hidden md:block">
 				Add colors. Make it yours.
 			</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
-			<PageHeader.Description balanced={false}>
+			<PageHeader.Description>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
-			<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
+			<PageHeader.Actions>
 				<ThemeCustomizer />
-			</div>
+			</PageHeader.Actions>
 		</PageHeader.Root>
 	</ThemeWrapper>
 	<ThemeWrapper>

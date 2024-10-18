@@ -10,14 +10,11 @@
 
 <a
 	href="/docs/changelog"
-	class={cn(
-		"bg-muted inline-flex items-center rounded-lg px-3 py-1 text-sm font-medium",
-		className
-	)}
+	class={cn("group inline-flex items-center px-0.5 text-sm font-medium", className)}
 	{...restProps}
 >
 	<Blocks class="size-4" />
 	<Separator class="mx-2 h-4" orientation="vertical" />
-	<span>Introducing Lift Mode</span>
+	<span class="underline-offset-4 group-hover:underline"> npx shadcn-svelte init </span>
 	<ArrowRight class="ml-1 size-4" />
 </a>

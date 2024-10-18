@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Users from "lucide-svelte/icons/users";
+
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>
 
@@ -7,9 +8,7 @@
 	data-x-chunk-name="dashboard-01-chunk-1"
 	data-x-chunk-description="A card showing the total subscriptions and the percentage difference from last month."
 >
-	<Card.Header
-		class="flex flex-row items-center justify-between space-y-0 pb-2"
-	>
+	<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 		<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
 		<Users class="text-muted-foreground size-4" />
 	</Card.Header>

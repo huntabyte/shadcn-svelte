@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
+
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>
 

@@ -3,12 +3,17 @@
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import Copy from "lucide-svelte/icons/copy";
 	import CreditCard from "lucide-svelte/icons/credit-card";
+
 	import EllipsisVertical from "lucide-svelte/icons/ellipsis-vertical";
+
 	import Truck from "lucide-svelte/icons/truck";
+
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+
 	import * as Pagination from "$lib/registry/new-york/ui/pagination/index.js";
+
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 </script>
 
@@ -35,9 +40,7 @@
 		<div class="ml-auto flex items-center gap-1">
 			<Button size="sm" variant="outline" class="h-8 gap-1">
 				<Truck class="size-3.5" />
-				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-					Track Order
-				</span>
+				<span class="lg:sr-only xl:not-sr-only xl:whitespace-nowrap"> Track Order </span>
 			</Button>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
@@ -145,9 +148,7 @@
 			</dl>
 		</div>
 	</Card.Content>
-	<Card.Footer
-		class="bg-muted/50 flex flex-row items-center border-t px-6 py-3"
-	>
+	<Card.Footer class="bg-muted/50 flex flex-row items-center border-t px-6 py-3">
 		<div class="text-muted-foreground text-xs">
 			Updated <time dateTime="2023-11-23">November 23, 2023</time>
 		</div>

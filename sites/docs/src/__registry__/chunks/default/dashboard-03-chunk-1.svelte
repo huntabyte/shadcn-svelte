@@ -2,8 +2,10 @@
 	import Paperclip from "lucide-svelte/icons/paperclip";
 	import Mic from "lucide-svelte/icons/mic";
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
+
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
+
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 </script>

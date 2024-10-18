@@ -2,8 +2,10 @@
 	import Paperclip from "lucide-svelte/icons/paperclip";
 	import Mic from "lucide-svelte/icons/mic";
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
+
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 </script>

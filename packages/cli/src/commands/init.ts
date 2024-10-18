@@ -8,7 +8,7 @@ import { execa } from "execa";
 import * as cliConfig from "../utils/get-config.js";
 import type { Config } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
+import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry/index.js";
 import * as templates from "../utils/templates.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";

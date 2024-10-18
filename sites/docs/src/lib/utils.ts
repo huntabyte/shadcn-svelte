@@ -287,7 +287,7 @@ export function getPackageManagerInstallCmd(pm: PackageManager): string {
 	return packageManagerToInstallCmd[pm];
 }
 
-// eslint-disable-next-line ts/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPackageManager(value: any): value is PackageManager {
 	return packageManagers.includes(value);
 }

@@ -34,6 +34,15 @@
 			Components
 		</a>
 		<a
+			href="/blocks"
+			class={cn(
+				"hover:text-foreground/80 transition-colors",
+				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
+			)}
+		>
+			Blocks
+		</a>
+		<a
 			href="/themes"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
@@ -54,15 +63,6 @@
 			Examples
 		</a>
 
-		<a
-			href="/blocks"
-			class={cn(
-				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
-			)}
-		>
-			Blocks
-		</a>
 		<a
 			href="/colors"
 			class={cn(

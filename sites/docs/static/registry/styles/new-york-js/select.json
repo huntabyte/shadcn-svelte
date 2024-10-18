@@ -5,12 +5,13 @@
 		"svelte-radix"
 	],
 	"registryDependencies": [
-		"select"
+		"select",
+		"separator"
 	],
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import { Select as SelectPrimitive } from \"bits-ui\";\nimport GroupHeading from \"./select-group-heading.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\nimport ScrollDownButton from \"./select-scroll-down-button.svelte\";\nimport ScrollUpButton from \"./select-scroll-up-button.svelte\";\nconst Root = SelectPrimitive.Root;\nconst Group = SelectPrimitive.Group;\nconst Value = SelectPrimitive.Value;\nexport { Root, Item, Group, GroupHeading, Value, Content, Trigger, Separator, ScrollDownButton, ScrollUpButton, \n//\nRoot as Select, Item as SelectItem, Group as SelectGroup, GroupHeading as SelectGroupHeading, Value as SelectValue, Content as SelectContent, Trigger as SelectTrigger, Separator as SelectSeparator, ScrollDownButton as SelectScrollDownButton, ScrollUpButton as SelectScrollUpButton, };\n"
+			"content": "import { Select as SelectPrimitive } from \"bits-ui\";\nimport GroupHeading from \"./select-group-heading.svelte\";\nimport Item from \"./select-item.svelte\";\nimport Content from \"./select-content.svelte\";\nimport Trigger from \"./select-trigger.svelte\";\nimport Separator from \"./select-separator.svelte\";\nimport ScrollDownButton from \"./select-scroll-down-button.svelte\";\nimport ScrollUpButton from \"./select-scroll-up-button.svelte\";\nconst Root = SelectPrimitive.Root;\nconst Group = SelectPrimitive.Group;\nexport { Root, Item, Group, GroupHeading, Content, Trigger, Separator, ScrollDownButton, ScrollUpButton, \n//\nRoot as Select, Item as SelectItem, Group as SelectGroup, GroupHeading as SelectGroupHeading, Content as SelectContent, Trigger as SelectTrigger, Separator as SelectSeparator, ScrollDownButton as SelectScrollDownButton, ScrollUpButton as SelectScrollUpButton, };\n"
 		},
 		{
 			"name": "select-content.svelte",
@@ -34,7 +35,7 @@
 		},
 		{
 			"name": "select-separator.svelte",
-			"content": "<script>\n\timport { Select as SelectPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SelectPrimitive.SeparatorProps = $props();\n</script>\n\n<SelectPrimitive.Separator\n\tbind:ref\n\tclass={cn(\"bg-muted -mx-1 my-1 h-px\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport type { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { Separator } from \"$lib/registry/new-york/ui/separator/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<Separator bind:ref class={cn(\"bg-muted -mx-1 my-1 h-px\", className)} {...restProps} />\n"
 		},
 		{
 			"name": "select-trigger.svelte",
