@@ -32,7 +32,8 @@ export function getChunks(source: string, filename: string) {
 			: (typeof svelteAst)["fragment"]["nodes"];
 
 	const scriptContent = extractScriptContent(source);
-	// @ts-expect-error yea, stfu
+
+	// @ts-expect-error doesn't like the ts plugin
 	const scriptAst = acorn.Parser.extend(tsPlugin()).parse(scriptContent, {
 		ecmaVersion: "latest",
 		sourceType: "module",
@@ -41,6 +42,7 @@ export function getChunks(source: string, filename: string) {
 	const svelteAst = parse(source, { filename, modern: true });
 	const chunks: Chunk[] = [];
 	const nameToSnippetNode = new Map<string, TemplateNode>();
+	// any references inside of snippets
 	const snippetReferences = new Set<string>();
 
 	// `child` / `children` come from the components so no need to look for them
@@ -58,31 +60,34 @@ export function getChunks(source: string, filename: string) {
 				// @ts-expect-error yea, stfu
 				walk(chunkNode, {
 					enter(n) {
+						// if its a type reference (like snippet prop type) add it to the references
 						// @ts-expect-error yea, stfu
 						if (n.type === "TSTypeReference") {
 							// @ts-expect-error yea, stfu
 							snippetReferences.add(n.typeName.name);
 						}
+
+						// if its an identifier that is a reference (like a variable, function, etc) add it to the references
 						if (n.type === "Identifier") {
-							// @ts-expect-error yea, stfu
+							// @ts-expect-error doesn't like the scriptAst
 							if (isReference(n, scriptAst)) {
 								snippetReferences.add(n.name);
 							}
 						}
 					},
 				});
-				// @ts-expect-error yea, stfu
+				// @ts-expect-error lies
 				walk(chunkNode.body, {
 					enter(n) {
-						// @ts-expect-error yea, stfu
+						// @ts-expect-error lies
 						if (n.type === "Component") {
-							// @ts-expect-error yea, stfu
+							// @ts-expect-error lies
 							const [componentName] = n.name.split(".");
 							snippetReferences.add(componentName);
 						}
 
 						if (n.type === "Identifier") {
-							// @ts-expect-error yea, stfu
+							// @ts-expect-error lies
 							if (isReference(n, scriptAst)) {
 								snippetReferences.add(n.name);
 							}
@@ -223,16 +228,16 @@ export function transformChunk(source: string, chunk: Chunk): string {
 					}
 				}
 			}
-			// @ts-expect-error yea, stfu
+			// @ts-expect-error lies
 			if (node.type === "TSTypeAliasDeclaration") {
-				// @ts-expect-error yea, stfu
+				// @ts-expect-error lies
 				const name = node.id.name as string;
 				if (!isValidReference(name)) {
 					if ("start" in node && "end" in node) {
 						rangesToRemove.push({
-							// @ts-expect-error yea, stfu
-							start: node.start as number,
-							// @ts-expect-error yea, stfu
+							// @ts-expect-error lies
+							start: node.start,
+							// @ts-expect-error lies
 							end: node.end as number,
 						});
 						this.skip();
