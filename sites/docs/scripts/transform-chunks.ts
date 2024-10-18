@@ -55,13 +55,41 @@ export function getChunks(source: string, filename: string) {
 				chunkNode.type === "SnippetBlock" &&
 				!snippetNamesToIgnore.includes(chunkNode.expression.name)
 			) {
-				nameToSnippetNode.set(chunkNode.expression.name, chunkNode);
-			}
-
-			// @ts-expect-error yea, stfu
-			if (chunkNode.type === "TSTypeReference") {
 				// @ts-expect-error yea, stfu
-				snippetReferences.add(chunkNode.typeName.name);
+				walk(chunkNode, {
+					enter(n) {
+						// @ts-expect-error yea, stfu
+						if (n.type === "TSTypeReference") {
+							// @ts-expect-error yea, stfu
+							snippetReferences.add(n.typeName.name);
+						}
+						if (n.type === "Identifier") {
+							// @ts-expect-error yea, stfu
+							if (isReference(n, scriptAst)) {
+								snippetReferences.add(n.name);
+							}
+						}
+					},
+				});
+				// @ts-expect-error yea, stfu
+				walk(chunkNode.body, {
+					enter(n) {
+						// @ts-expect-error yea, stfu
+						if (n.type === "Component") {
+							// @ts-expect-error yea, stfu
+							const [componentName] = n.name.split(".");
+							snippetReferences.add(componentName);
+						}
+
+						if (n.type === "Identifier") {
+							// @ts-expect-error yea, stfu
+							if (isReference(n, scriptAst)) {
+								snippetReferences.add(n.name);
+							}
+						}
+					},
+				});
+				nameToSnippetNode.set(chunkNode.expression.name, chunkNode);
 			}
 
 			if (chunkNode.type !== "RegularElement" && chunkNode.type !== "Component") return;
