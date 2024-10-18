@@ -9,7 +9,6 @@ import config from "../svelte.config.js";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
-	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
 	["embla-carousel-svelte", []],
@@ -35,7 +34,7 @@ export async function buildRegistry() {
 	for (const { name: style } of styles) {
 		const uiPath = path.resolve(registryRootPath, style, "ui");
 		const examplePath = path.resolve(registryRootPath, style, "example");
-		const blockPath = path.resolve(registryRootPath, style, "block/tmp");
+		const blockPath = path.resolve(registryRootPath, style, "block");
 
 		const [ui, example, block] = await Promise.all([
 			crawlUI(uiPath, style),
@@ -148,6 +147,7 @@ async function getDependencies(filename: string, source: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
+	// @ts-expect-error yea, stfu
 	walk(ast.instance, {
 		enter(node) {
 			if (node.type === "ImportDeclaration") {

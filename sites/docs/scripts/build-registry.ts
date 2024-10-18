@@ -3,7 +3,6 @@ import path from "node:path";
 import process from "node:process";
 import template from "lodash.template";
 import { rimraf } from "rimraf";
-
 import { colorMapping, colors } from "../src/lib/registry/colors";
 import { registrySchema } from "../src/lib/registry/schema";
 import { styles } from "../src/lib/registry/styles";
@@ -230,7 +229,7 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	// eslint-disable-next-line ts/no-explicit-any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const colorsData: Record<string, any> = {};
 	for (const [color, value] of Object.entries(colors)) {
 		if (typeof value === "string") {
@@ -268,7 +267,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 
 	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
-		// eslint-disable-next-line ts/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const base: Record<string, any> = {
 			inlineColors: {},
 			cssVars: {},
@@ -284,7 +283,7 @@ export const Index = {
 					const [resolvedBase, scale] = resolvedColor.split("-");
 					const color = scale
 						? colorsData[resolvedBase].find(
-								// eslint-disable-next-line ts/no-explicit-any
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
 								(item: any) => item.scale === Number.parseInt(scale)
 							)
 						: colorsData[resolvedBase];

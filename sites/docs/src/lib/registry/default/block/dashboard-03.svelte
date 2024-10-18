@@ -30,6 +30,7 @@
 		label: string;
 		description: string;
 		// this should be `Component` but lucide needs to update types
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		Icon: any;
 	};
 

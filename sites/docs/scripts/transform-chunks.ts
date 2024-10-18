@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse } from "svelte/compiler";
 import { walk } from "estree-walker";
 import prettier from "@prettier/sync";
-import { parse as parseTs } from "@typescript-eslint/typescript-estree";
 import { codeBlockPrettierConfig } from "../other/code-block-prettier.js";
+import * as acorn from "acorn";
+import tsPlugin from "acorn-typescript";
+import isReference from "is-reference";
+import MagicString from "magic-string";
 
 type Chunk = {
 	name: string;
@@ -10,33 +14,54 @@ type Chunk = {
 	snippets: {
 		start: number;
 		end: number;
-		deps: string[];
 	}[];
+	snippetReferences: string[];
 	start: number;
 	end: number;
 	content: string;
+	scriptContent: string;
+	references: string[];
 	description: string;
 	container: { className: string };
 };
+
 export function getChunks(source: string, filename: string) {
 	type TemplateNode =
 		(typeof svelteAst)["fragment"]["nodes"] extends Array<infer T>
 			? T
 			: (typeof svelteAst)["fragment"]["nodes"];
 
-	const tsAst = extractScriptContentAst(source);
+	const scriptContent = extractScriptContent(source);
+	// @ts-expect-error yea, stfu
+	const scriptAst = acorn.Parser.extend(tsPlugin()).parse(scriptContent, {
+		ecmaVersion: "latest",
+		sourceType: "module",
+	});
+
 	const svelteAst = parse(source, { filename, modern: true });
 	const chunks: Chunk[] = [];
 	const nameToSnippetNode = new Map<string, TemplateNode>();
-	const snippets: { start: number; end: number }[] = [];
+	const snippetReferences = new Set<string>();
+
+	// `child` / `children` come from the components so no need to look for them
+	const snippetNamesToIgnore = ["child", "children"];
 
 	// @ts-expect-error yea, stfu
 	walk(svelteAst, {
 		enter(n: TemplateNode) {
-			const chunkNode = n as TemplateNode;
+			const chunkNode = n as TemplateNode | acorn.AnyNode;
 			// get snippets from the template
-			if (chunkNode.type === "SnippetBlock" && chunkNode.expression.name !== "child") {
-				// nameToSnippetNode.set(chunkNode.expression.name, chunkNode);
+			if (
+				chunkNode.type === "SnippetBlock" &&
+				!snippetNamesToIgnore.includes(chunkNode.expression.name)
+			) {
+				nameToSnippetNode.set(chunkNode.expression.name, chunkNode);
+			}
+
+			// @ts-expect-error yea, stfu
+			if (chunkNode.type === "TSTypeReference") {
+				// @ts-expect-error yea, stfu
+				snippetReferences.add(chunkNode.typeName.name);
 			}
 
 			if (chunkNode.type !== "RegularElement" && chunkNode.type !== "Component") return;
@@ -52,6 +77,8 @@ export function getChunks(source: string, filename: string) {
 			const description = extractAttributeValue(descriptionNode)!;
 			const containerClassName = containerNode ? extractAttributeValue(containerNode)! : "";
 			const dependencies = new Set<string>();
+			const references = new Set<string>();
+			const snippets = new Map<string, { start: number; end: number }>();
 
 			// discard any prop members
 			const [componentName] = chunkNode.name.split(".");
@@ -60,10 +87,29 @@ export function getChunks(source: string, filename: string) {
 			// walk the chunk to acquire all component dependencies
 			// @ts-expect-error stfu
 			walk(chunkNode.fragment, {
-				enter(node: TemplateNode) {
+				enter(node: TemplateNode | acorn.AnyNode) {
+					if (node.type === "Identifier") {
+						// @ts-expect-error yea, stfu
+						if (isReference(node, scriptAst)) {
+							references.add(node.name);
+						}
+					}
+
 					if (node.type === "Component") {
 						const [componentName] = node.name.split(".");
 						dependencies.add(componentName);
+						references.add(componentName);
+					}
+					if (
+						node.type === "RenderTag" &&
+						node.expression.type === "CallExpression" &&
+						node.expression.callee.type === "Identifier"
+					) {
+						const snippetName = node.expression.callee.name;
+						const snippetNode = nameToSnippetNode.get(snippetName);
+						if (snippetNode) {
+							snippets.set(snippetName, snippetNode);
+						}
 					}
 				},
 			});
@@ -72,12 +118,16 @@ export function getChunks(source: string, filename: string) {
 				name,
 				description,
 				dependencies: [...dependencies],
+				snippets: Array.from(snippets.values()),
 				start: chunkNode.start,
 				end: chunkNode.end,
+				scriptContent,
 				content: "",
 				container: {
 					className: containerClassName,
 				},
+				references: [...references],
+				snippetReferences: [...snippetReferences],
 			};
 			chunks.push({ ...chunk, content: transformChunk(source, chunk) });
 			// don't traverse the rest of this node
@@ -88,7 +138,6 @@ export function getChunks(source: string, filename: string) {
 	return chunks;
 }
 
-// eslint-disable-next-line ts/no-explicit-any
 function extractAttributeValue(attribute: any): string | undefined {
 	if (Array.isArray(attribute.value) && attribute.value[0].type === "Text") {
 		return attribute.value[0].data;
@@ -96,20 +145,123 @@ function extractAttributeValue(attribute: any): string | undefined {
 }
 
 export function transformChunk(source: string, chunk: Chunk): string {
-	const html = source.substring(chunk.start, chunk.end);
-	const lines = source.split("\n");
-	const scriptEndIdx = lines.indexOf("</script>");
-	const imports = lines
-		// we only want to look at the script tag...
-		.slice(0, scriptEndIdx)
-		// spaced on the edges to prevent false positives (e.g. `CreditCard` could be falsely triggered by `Card`)
-		.filter((line) =>
-			chunk.dependencies.some((dep) => line.includes(` ${dep} `) || line.includes(` ${dep},`))
-		);
+	const scriptReferences = new Set<string>();
+	// @ts-expect-error yea, stfu
+	const parser = acorn.Parser.extend(tsPlugin());
+	const hasSnippets = chunk.snippets.length > 0;
 
-	let template = `<script lang="ts">\n`;
-	template += imports.join("\n");
-	template += `\n</script>\n\n${html}`;
+	const scriptAst = parser.parse(chunk.scriptContent, {
+		ecmaVersion: "latest",
+		sourceType: "module",
+	});
+	const ms = new MagicString(chunk.scriptContent);
+
+	const rangesToRemove: { start: number; end: number }[] = [];
+
+	function isValidReference(str: string) {
+		if (hasSnippets) {
+			const refs = [...chunk.references, ...scriptReferences, ...chunk.snippetReferences];
+			return refs.includes(str);
+		} else {
+			return [...chunk.references, ...scriptReferences].includes(str);
+		}
+	}
+
+	// @ts-expect-error yea, stfu
+	walk(scriptAst, {
+		enter(node: acorn.AnyNode, parent) {
+			if (node.type === "VariableDeclaration") {
+				for (const declarator of node.declarations) {
+					if (declarator.id.type === "Identifier") {
+						const name = declarator.id.name;
+						if (!isValidReference(name)) {
+							rangesToRemove.push({
+								start: node.start as number,
+								end: node.end as number,
+							});
+							this.skip();
+						} else {
+							// @ts-expect-error -shh
+							walk(node, {
+								enter(n) {
+									if (n.type === "Identifier") {
+										if (parent && isReference(n, parent)) {
+											scriptReferences.add(n.name);
+										}
+									}
+								},
+							});
+						}
+					}
+				}
+			}
+			// @ts-expect-error yea, stfu
+			if (node.type === "TSTypeAliasDeclaration") {
+				// @ts-expect-error yea, stfu
+				const name = node.id.name as string;
+				if (!isValidReference(name)) {
+					if ("start" in node && "end" in node) {
+						rangesToRemove.push({
+							// @ts-expect-error yea, stfu
+							start: node.start as number,
+							// @ts-expect-error yea, stfu
+							end: node.end as number,
+						});
+						this.skip();
+					}
+				}
+			}
+		},
+	});
+
+	// @ts-expect-error yea, stfu
+	walk(scriptAst, {
+		enter(node: acorn.AnyNode) {
+			if (node.type === "ImportDeclaration") {
+				let numToKeep = 0;
+				const localRangesToRemove: { start: number; end: number }[] = [];
+				for (const specifier of node.specifiers) {
+					if (
+						specifier.type === "ImportSpecifier" ||
+						specifier.type === "ImportNamespaceSpecifier" ||
+						specifier.type === "ImportDefaultSpecifier"
+					) {
+						if (!isValidReference(specifier.local.name)) {
+							localRangesToRemove.push({
+								start: specifier.start,
+								end: specifier.end,
+							});
+						} else {
+							numToKeep++;
+						}
+					}
+				}
+				if (numToKeep === 0) {
+					rangesToRemove.push({
+						start: node.start,
+						end: node.end,
+					});
+				} else {
+					rangesToRemove.push(...localRangesToRemove);
+				}
+				this.skip();
+			}
+		},
+	});
+
+	for (const range of rangesToRemove) {
+		ms.remove(range.start, range.end);
+	}
+
+	let hoistedSnippets: string = "";
+
+	for (const snippet of chunk.snippets) {
+		hoistedSnippets += `\n${source.substring(snippet.start, snippet.end)}\n`;
+	}
+
+	const html = `${hoistedSnippets}\n${source.substring(chunk.start, chunk.end)}`;
+
+	const template = `<script lang="ts">\n${ms.toString()}\n</script>\n\n${html}`;
 
 	return prettier.format(template, {
 		...codeBlockPrettierConfig,
@@ -118,9 +270,8 @@ export function transformChunk(source: string, chunk: Chunk): string {
 	});
 }
 
-function extractScriptContentAst(input: string): ReturnType<typeof parseTs> {
+function extractScriptContent(input: string): string {
 	const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/;
 	const match = input.match(scriptRegex);
-	const result = match ? match[1].trim() : "";
-	return parseTs(result);
+	return match ? match[1].trim() : "";
 }
