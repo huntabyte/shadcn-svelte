@@ -56,11 +56,11 @@
 </script>
 
 <CalendarPrimitive.Root
-	bind:value
+	bind:value={value as never}
 	bind:placeholder
 	{weekdayFormat}
 	class={cn("rounded-md border p-3", className)}
-	{...restProps as any}
+	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>

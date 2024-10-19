@@ -7,6 +7,7 @@
 
 	let selectedFormat = "hsl"; // Default color format
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	function handleColorClick(colorName: string, shade: string, colorEntry: any) {
 		const colorValue = colorEntry[selectedFormat];
 		toast.success(`Copied "${colorValue}" to clipboard`);

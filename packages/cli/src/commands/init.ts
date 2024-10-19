@@ -247,6 +247,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
 			initialValue:
+				// eslint-disable-next-line no-constant-binary-expression
 				defaultConfig?.aliases.utils ??
 				// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
 				`${componentAlias?.split("/").slice(0, -1).join("/")}/utils` ??

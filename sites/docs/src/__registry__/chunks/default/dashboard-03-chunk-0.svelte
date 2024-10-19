@@ -3,8 +3,6 @@
 	import Bird from "lucide-svelte/icons/bird";
 	import Turtle from "lucide-svelte/icons/turtle";
 
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
-
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Textarea } from "$lib/registry/default/ui/textarea/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
@@ -44,13 +42,10 @@
 	const selectedModel = $derived(models.find((m) => m.value === model));
 
 	let role = $state("system");
-	let hello = $state("world");
 </script>
 
 {#snippet ModelItemContent({ label, Icon, description }: Model)}
 	<div class="text-muted-foreground flex items-start gap-3">
-		<CirclePlus class="size-5" />
-		{hello}
 		<Icon class="size-5" />
 		<div class="grid gap-0.5">
 			<p>

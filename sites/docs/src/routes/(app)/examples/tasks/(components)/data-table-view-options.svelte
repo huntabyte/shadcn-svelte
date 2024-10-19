@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	type TData = unknown;
+</script>
+
 <script lang="ts" generics="TData">
 	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
 	import type { Table } from "@tanstack/table-core";

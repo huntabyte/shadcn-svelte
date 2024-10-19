@@ -30,8 +30,8 @@
 </script>
 
 <ToggleGroupPrimitive.Root
+	bind:value={value as never}
 	bind:ref
 	class={cn("flex items-center justify-center gap-1", className)}
-	bind:value={value as any}
 	{...restProps}
 />

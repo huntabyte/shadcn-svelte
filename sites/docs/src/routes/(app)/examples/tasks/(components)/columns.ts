@@ -34,7 +34,7 @@ export const columns: ColumnDef<Task>[] = [
 	{
 		accessorKey: "id",
 		header: ({ column }) => {
-			return renderComponent(DataTableColumnHeader, {
+			return renderComponent(DataTableColumnHeader<Task, unknown>, {
 				column,
 				title: "Task",
 			});
@@ -54,7 +54,8 @@ export const columns: ColumnDef<Task>[] = [
 	},
 	{
 		accessorKey: "title",
-		header: ({ column }) => renderComponent(DataTableColumnHeader, { column, title: "Title" }),
+		header: ({ column }) =>
+			renderComponent(DataTableColumnHeader<Task, unknown>, { column, title: "Title" }),
 		cell: ({ row }) => {
 			return renderComponent(DataTableTitleCell, {
 				labelValue: row.original.label,
@@ -65,7 +66,7 @@ export const columns: ColumnDef<Task>[] = [
 	{
 		accessorKey: "status",
 		header: ({ column }) =>
-			renderComponent(DataTableColumnHeader, {
+			renderComponent(DataTableColumnHeader<Task, unknown>, {
 				column,
 				title: "Status",
 			}),
@@ -81,7 +82,7 @@ export const columns: ColumnDef<Task>[] = [
 	{
 		accessorKey: "priority",
 		header: ({ column }) => {
-			return renderComponent(DataTableColumnHeader, {
+			return renderComponent(DataTableColumnHeader<Task, unknown>, {
 				title: "Priority",
 				column,
 			});
@@ -97,6 +98,6 @@ export const columns: ColumnDef<Task>[] = [
 	},
 	{
 		id: "actions",
-		cell: ({ row }) => renderComponent(DataTableRowActions, { row }),
+		cell: ({ row }) => renderComponent(DataTableRowActions<Task>, { row }),
 	},
 ];

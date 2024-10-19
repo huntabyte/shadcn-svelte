@@ -1,3 +1,8 @@
+<script lang="ts" module>
+	type TData = unknown;
+	type TValue = unknown;
+</script>
+
 <script lang="ts" generics="TData, TValue">
 	import {
 		type ColumnDef,

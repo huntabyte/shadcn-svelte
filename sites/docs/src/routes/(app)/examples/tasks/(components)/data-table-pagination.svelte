@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	type TData = unknown;
+</script>
+
 <script lang="ts" generics="TData">
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";

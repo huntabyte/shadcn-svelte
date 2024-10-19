@@ -15,11 +15,11 @@
 
 <CalendarPrimitive.Root
 	bind:ref
-	bind:value
+	bind:value={value as never}
 	bind:placeholder
 	{weekdayFormat}
 	class={cn("p-3", className)}
-	{...restProps as any}
+	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
