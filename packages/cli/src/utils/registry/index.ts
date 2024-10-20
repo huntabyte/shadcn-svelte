@@ -7,8 +7,9 @@ import { error } from "../errors.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import type { Config } from "../get-config.js";
 import * as schemas from "./schema.js";
+import { SITE_BASE_URL } from "../../constants.js";
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? SITE_BASE_URL;
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 

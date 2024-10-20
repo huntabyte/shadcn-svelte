@@ -1,7 +1,7 @@
 {
 	"name": "skeleton",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

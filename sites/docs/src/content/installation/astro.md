@@ -16,7 +16,7 @@ description: How to setup shadcn-svelte in an Astro project.
 
 Start by creating a new Astro project:
 
-<PMCreate command="astro@latest" />
+<PMCreate command="astro@next" />
 
 ### Configure your Astro project
 
@@ -108,7 +108,7 @@ import "$lib/styles/app.css";
 
 Run the `shadcn-svelte` init command to setup your project:
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
@@ -141,7 +141,7 @@ export default defineConfig({
 
 ### Update tailwind.config.mjs
 
-When running `shadcn-svelte@latest init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
+When running `shadcn-svelte@next init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
 
 ```js title="tailwind.config.mjs" {1-4} showLineNumbers
 const config = {

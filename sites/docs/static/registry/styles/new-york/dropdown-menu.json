@@ -1,7 +1,7 @@
 {
 	"name": "dropdown-menu",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"svelte-radix"
 	],
 	"registryDependencies": [],

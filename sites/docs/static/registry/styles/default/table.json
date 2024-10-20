@@ -1,7 +1,7 @@
 {
 	"name": "table",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

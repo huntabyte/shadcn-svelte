@@ -1,7 +1,7 @@
 {
 	"name": "menubar",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [],

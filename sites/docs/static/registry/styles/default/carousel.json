@@ -2,7 +2,7 @@
 	"name": "carousel",
 	"dependencies": [
 		"embla-carousel-svelte",
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [

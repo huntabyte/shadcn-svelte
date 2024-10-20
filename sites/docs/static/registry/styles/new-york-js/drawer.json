@@ -1,8 +1,8 @@
 {
 	"name": "drawer",
 	"dependencies": [
-		"vaul-svelte",
-		"bits-ui"
+		"vaul-svelte@next",
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

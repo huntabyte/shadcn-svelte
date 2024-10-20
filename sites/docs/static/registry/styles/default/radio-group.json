@@ -1,7 +1,7 @@
 {
 	"name": "radio-group",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [],

@@ -1,7 +1,7 @@
 {
 	"name": "toggle-group",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [
 		"toggle-group",
@@ -18,7 +18,7 @@
 		},
 		{
 			"name": "toggle-group.svelte",
-			"content": "<script lang=\"ts\" module>\n\timport { getContext, setContext } from \"svelte\";\n\timport type { ToggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\n\texport function setToggleGroupCtx(props: ToggleVariants) {\n\t\tsetContext(\"toggleGroup\", props);\n\t}\n\n\texport function getToggleGroupCtx() {\n\t\treturn getContext<ToggleVariants>(\"toggleGroup\");\n\t}\n</script>\n\n<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: ToggleGroupPrimitive.RootProps & ToggleVariants = $props();\n\n\tsetToggleGroupCtx({\n\t\tvariant,\n\t\tsize,\n\t});\n</script>\n\n<ToggleGroupPrimitive.Root\n\tbind:ref\n\tclass={cn(\"flex items-center justify-center gap-1\", className)}\n\tbind:value={value as any}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\" module>\n\timport { getContext, setContext } from \"svelte\";\n\timport type { ToggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\n\texport function setToggleGroupCtx(props: ToggleVariants) {\n\t\tsetContext(\"toggleGroup\", props);\n\t}\n\n\texport function getToggleGroupCtx() {\n\t\treturn getContext<ToggleVariants>(\"toggleGroup\");\n\t}\n</script>\n\n<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: ToggleGroupPrimitive.RootProps & ToggleVariants = $props();\n\n\tsetToggleGroupCtx({\n\t\tvariant,\n\t\tsize,\n\t});\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<ToggleGroupPrimitive.Root\n\tbind:value={value as never}\n\tbind:ref\n\tclass={cn(\"flex items-center justify-center gap-1\", className)}\n\t{...restProps}\n/>\n"
 		}
 	],
 	"type": "components:ui"

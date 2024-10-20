@@ -1,7 +1,7 @@
 {
 	"name": "dialog",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"svelte-radix"
 	],
 	"registryDependencies": [],

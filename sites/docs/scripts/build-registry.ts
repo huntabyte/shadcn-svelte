@@ -11,6 +11,7 @@ import { buildRegistry } from "./registry";
 import { transformContent } from "./transformers";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
 import { getChunks } from "./transform-chunks.js";
+import { TMP_NEXT_DEPS } from "./tmp";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
@@ -212,7 +213,9 @@ export const Index = {
 			...item,
 			style: undefined, // discard `style`
 			// The `default` style uses `lucide-svelte`, so we'll discard it for the purposes of the index
-			dependencies: item.dependencies.filter((dep) => dep !== "lucide-svelte"),
+			dependencies: item.dependencies
+				.filter((dep) => dep !== "lucide-svelte")
+				.map((dep) => (TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep)),
 			// We only want the relative file paths
 			files: item.files.map((file) => file.path),
 		}));

@@ -5,7 +5,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 <script>
   import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
-  import { Steps, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
+  import { Steps, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
 ## Setup your project
@@ -14,15 +14,15 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 ### Create project
 
-Use the SvelteKit CLI to create a new project.
+Use the `sv` CLI to create a new project.
 
-<PMCreate command="svelte@latest my-app" />
+<PMExecute command="sv create" />
 
 ### Add TailwindCSS
 
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
+Use the `sv` CLI to add Tailwind CSS to your project.
 
-<PMExecute command="svelte-add@latest tailwindcss" />
+<PMExecute command="sv add tailwindcss" />
 
 ### Install dependencies
 
@@ -46,7 +46,7 @@ const config = {
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
