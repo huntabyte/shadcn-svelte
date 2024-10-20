@@ -20,6 +20,7 @@ import {
 	detectLanguage,
 	detectPM,
 } from "../utils/auto-detect.js";
+import { SITE_BASE_URL } from "../constants.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -129,7 +130,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const langConfig = detectLanguage(cwd);
 	if (langConfig === undefined) {
 		throw error(
-			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
 		);
 	}
 
@@ -271,7 +272,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	}
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
-		$schema: "https://shadcn-svelte.com/schema.json",
+		$schema: `${SITE_BASE_URL}/schema.json`,
 		style,
 		typescript: langConfig.type === "tsconfig.json",
 		tailwind: {
@@ -302,7 +303,7 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	if (resolvedPath !== undefined) {
 		return;
 	}
-	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 export async function runInit(cwd: string, config: Config, options: InitOptions) {

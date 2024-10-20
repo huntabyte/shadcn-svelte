@@ -1,7 +1,7 @@
 export const siteConfig = {
 	name: "shadcn-svelte",
-	url: "https://shadcn-svelte.com",
-	ogImage: "https://shadcn-svelte.com/og.png",
+	url: "https://next.shadcn-svelte.com",
+	ogImage: "https://next.shadcn-svelte.com/og.png",
 	description: "Beautifully designed components built with Melt UI and Tailwind CSS.",
 	links: {
 		twitter: "https://twitter.com/huntabyte",
