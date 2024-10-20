@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "shadcn-svelte": "0.13.0",
+    "playground-js": "0.0.2",
+    "playground-ts": "0.0.1",
+    "docs": "0.1.0"
+  },
+  "changesets": []
+}
