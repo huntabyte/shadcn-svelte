@@ -28,7 +28,7 @@
 </script>
 
 <script lang="ts">
-	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 	import { cn } from "$lib/utils.js";
 	import { mergeProps, type WithElementRef } from "bits-ui";
 	import type { ComponentProps, Snippet } from "svelte";

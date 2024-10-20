@@ -557,6 +557,7 @@
 		"registryDependencies": [
 			"input",
 			"tooltip",
+			"skeleton",
 			"separator",
 			"button",
 			"sheet"
@@ -574,8 +575,14 @@
 			"ui/sidebar/sidebar-header.svelte",
 			"ui/sidebar/sidebar-input.svelte",
 			"ui/sidebar/sidebar-inset.svelte",
+			"ui/sidebar/sidebar-menu-action.svelte",
+			"ui/sidebar/sidebar-menu-badge.svelte",
 			"ui/sidebar/sidebar-menu-button.svelte",
 			"ui/sidebar/sidebar-menu-item.svelte",
+			"ui/sidebar/sidebar-menu-skeleton.svelte",
+			"ui/sidebar/sidebar-menu-sub-button.svelte",
+			"ui/sidebar/sidebar-menu-sub-item.svelte",
+			"ui/sidebar/sidebar-menu-sub.svelte",
 			"ui/sidebar/sidebar-menu.svelte",
 			"ui/sidebar/sidebar-provider.svelte",
 			"ui/sidebar/sidebar-rail.svelte",

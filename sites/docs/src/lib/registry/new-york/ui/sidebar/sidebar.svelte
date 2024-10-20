@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Sheet from "$lib/registry/default/ui/sheet/index.js";
+	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
 	import { cn } from "$lib/utils.js";
 	import type { WithElementRef } from "bits-ui";
 	import type { HTMLAttributes } from "svelte/elements";
