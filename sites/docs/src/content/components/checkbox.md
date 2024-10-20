@@ -62,6 +62,8 @@ bits: https://www.bits-ui.com/docs/components/checkbox
 
 ### Form
 
+**Note:** Checkbox needs an `input:hidden` with needed attributes as shown in examples below.
+
 <ComponentPreview name="checkbox-form-single">
 
 <div />
