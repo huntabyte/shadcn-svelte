@@ -56,7 +56,7 @@ export function createSvelteTable<TData extends RowData>(options: TableOptions<T
 			return mergeObjects(prev, options, {
 				state: mergeObjects(state, options.state || {}),
 
-				// eslint-disable-next-line ts/no-explicit-any
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				onStateChange: (updater: any) => {
 					if (updater instanceof Function) state = updater(state);
 					else state = mergeObjects(state, updater);
@@ -89,7 +89,7 @@ export function mergeObjects<T, U, V, W>(
 	source2: V,
 	source3: W
 ): T & U & V & W;
-// eslint-disable-next-line ts/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mergeObjects(...sources: any): any {
 	const target = {};
 	for (let i = 0; i < sources.length; i++) {

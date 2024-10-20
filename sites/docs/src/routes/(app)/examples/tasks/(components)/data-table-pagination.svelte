@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	type TData = unknown;
+</script>
+
 <script lang="ts" generics="TData">
 	import ChevronRight from "svelte-radix/ChevronRight.svelte";
 	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
@@ -19,13 +23,14 @@
 		<div class="flex items-center space-x-2">
 			<p class="text-sm font-medium">Rows per page</p>
 			<Select.Root
+				type="single"
 				value={`${table.getState().pagination.pageSize}`}
 				onValueChange={(value) => {
 					table.setPageSize(Number(value));
 				}}
 			>
 				<Select.Trigger class="h-8 w-[70px]">
-					<Select.Value placeholder={String(table.getState().pagination.pageSize)} />
+					{String(table.getState().pagination.pageSize)}
 				</Select.Trigger>
 				<Select.Content side="top">
 					{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}

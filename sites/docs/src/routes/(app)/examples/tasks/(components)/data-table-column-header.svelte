@@ -1,4 +1,9 @@
-<script lang="ts">
+<script lang="ts" module>
+	type TData = unknown;
+	type TValue = unknown;
+</script>
+
+<script lang="ts" generics="TData, TValue">
 	import EyeNone from "svelte-radix/EyeNone.svelte";
 	import ArrowDown from "svelte-radix/ArrowDown.svelte";
 	import ArrowUp from "svelte-radix/ArrowUp.svelte";
@@ -11,7 +16,7 @@
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
-		column: Column<any, any>;
+		column: Column<TData, TValue>;
 		title: string;
 	};
 

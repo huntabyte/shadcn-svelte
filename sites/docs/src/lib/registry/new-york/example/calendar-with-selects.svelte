@@ -49,19 +49,24 @@
 				}
 			: undefined
 	);
+
+	const monthLabel = $derived(
+		monthOptions.find((m) => m.value === defaultMonth?.value) ?? "Select a month"
+	);
 </script>
 
 <CalendarPrimitive.Root
-	bind:value
+	bind:value={value as never}
 	bind:placeholder
 	{weekdayFormat}
 	class={cn("rounded-md border p-3", className)}
-	{...restProps as any}
+	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
 			<Calendar.Heading class="flex w-full items-center justify-between gap-2">
 				<Select.Root
+					type="single"
 					value={`${defaultMonth?.value}`}
 					onValueChange={(v) => {
 						if (!v || !placeholder) return;
@@ -70,17 +75,16 @@
 					}}
 				>
 					<Select.Trigger aria-label="Select month" class="w-[60%]">
-						<Select.Value placeholder="Select month" />
+						{monthLabel}
 					</Select.Trigger>
 					<Select.Content class="max-h-[200px] overflow-y-auto">
 						{#each monthOptions as { value, label }}
-							<Select.Item value={`${value}`} textValue={label}>
-								{label}
-							</Select.Item>
+							<Select.Item value={`${value}`} {label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
 				<Select.Root
+					type="single"
 					value={`${defaultYear?.value}`}
 					onValueChange={(v) => {
 						if (!v || !placeholder) return;
@@ -89,13 +93,11 @@
 					}}
 				>
 					<Select.Trigger aria-label="Select year" class="w-[40%]">
-						<Select.Value placeholder="Select year" />
+						{defaultYear?.label ?? "Select year"}
 					</Select.Trigger>
 					<Select.Content class="max-h-[200px] overflow-y-auto">
 						{#each yearOptions as { value, label }}
-							<Select.Item value={`${value}`} textValue={label}>
-								{label}
-							</Select.Item>
+							<Select.Item value={`${value}`} {label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>

@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	type TData = unknown;
+</script>
+
 <script lang="ts" generics="TData">
 	import Cross2 from "svelte-radix/Cross2.svelte";
 	import type { Table } from "@tanstack/table-core";

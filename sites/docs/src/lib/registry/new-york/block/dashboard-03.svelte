@@ -15,7 +15,6 @@
 	import Paperclip from "lucide-svelte/icons/paperclip";
 	import Mic from "lucide-svelte/icons/mic";
 	import CornerDownLeft from "lucide-svelte/icons/corner-down-left";
-
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
@@ -24,7 +23,57 @@
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+
+	type Model = {
+		value: string;
+		label: string;
+		description: string;
+		// this should be `Component` but lucide needs to update types
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		Icon: any;
+	};
+
+	const models = [
+		{
+			value: "genesis",
+			label: "Neural Genesis",
+			description: "Our fastest model for general use cases.",
+			Icon: Rabbit,
+		},
+		{
+			value: "explorer",
+			label: "Neural Explorer",
+			description: "Performance and speed for efficiency.",
+			Icon: Bird,
+		},
+		{
+			value: "quantum",
+			label: "Neural Quantum",
+			description: "The most powerful model for complex computations.",
+			Icon: Turtle,
+		},
+	];
+
+	let model = $state("");
+	const selectedModel = $derived(models.find((m) => m.value === model));
+
+	let role = $state("system");
 </script>
+
+{#snippet ModelItemContent({ label, Icon, description }: Model)}
+	<div class="text-muted-foreground flex items-start gap-3">
+		<Icon class="size-5" />
+		<div class="grid gap-0.5">
+			<p>
+				Neural
+				<span class="text-foreground font-medium"> {label} </span>
+			</p>
+			<p class="text-xs" data-description>
+				{description}
+			</p>
+		</div>
+	</div>
+{/snippet}
 
 <div class="grid h-screen w-full pl-[53px]">
 	<aside class="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
@@ -180,69 +229,23 @@
 							<legend class="-ml-1 px-1 text-sm font-medium"> Settings </legend>
 							<div class="grid gap-3">
 								<Label for="model">Model</Label>
-								<Select.Root>
+								<Select.Root type="single" bind:value={model}>
 									<Select.Trigger
 										id="model"
 										class="items-start [&_[data-description]]:hidden"
 									>
-										<Select.Value placeholder="Select a model" />
+										{#if selectedModel}
+											{@render ModelItemContent(selectedModel)}
+										{:else}
+											Select a model
+										{/if}
 									</Select.Trigger>
 									<Select.Content>
-										<Select.Item value="genesis" textValue="Neural Genesis">
-											<div
-												class="text-muted-foreground flex items-start gap-3"
-											>
-												<Rabbit class="size-5" />
-												<div class="grid gap-0.5">
-													<p>
-														Neural
-														<span class="text-foreground font-medium">
-															Genesis
-														</span>
-													</p>
-													<p class="text-xs" data-description>
-														Our fastest model for general use cases.
-													</p>
-												</div>
-											</div>
-										</Select.Item>
-										<Select.Item value="explorer" textValue="Neural Explorer">
-											<div
-												class="text-muted-foreground flex items-start gap-3"
-											>
-												<Bird class="size-5" />
-												<div class="grid gap-0.5">
-													<p>
-														Neural
-														<span class="text-foreground font-medium">
-															Explorer
-														</span>
-													</p>
-													<p class="text-xs" data-description>
-														Performance and speed for efficiency.
-													</p>
-												</div>
-											</div>
-										</Select.Item>
-										<Select.Item value="quantum" textValue="Neural Quantum">
-											<div
-												class="text-muted-foreground flex items-start gap-3"
-											>
-												<Turtle class="size-5" />
-												<div class="grid gap-0.5">
-													<p>
-														Neural
-														<span class="text-foreground font-medium">
-															Quantum
-														</span>
-													</p>
-													<p class="text-xs" data-description>
-														The most powerful model for complex
-														computations.
-													</p>
-												</div>
-											</div>
-										</Select.Item>
+										{#each models as model}
+											<Select.Item value={model.value} label={model.label}>
+												{@render ModelItemContent(model)}
+											</Select.Item>
+										{/each}
 									</Select.Content>
 								</Select.Root>
 							</div>
@@ -263,14 +266,14 @@
 							<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 							<div class="grid gap-3">
 								<Label for="role">Role</Label>
-								<Select.Root value="system">
-									<Select.Trigger>
-										<Select.Value placeholder="Select a role" />
+								<Select.Root type="single" bind:value={role}>
+									<Select.Trigger class="capitalize">
+										{role ?? "Select a role"}
 									</Select.Trigger>
 									<Select.Content>
-										<Select.Item value="system">System</Select.Item>
-										<Select.Item value="user">User</Select.Item>
-										<Select.Item value="assistant">Assistant</Select.Item>
+										<Select.Item value="system" label="System" />
+										<Select.Item value="user" label="User" />
+										<Select.Item value="assistant" label="Assistant" />
 									</Select.Content>
 								</Select.Root>
 							</div>
@@ -298,63 +301,23 @@
 						<legend class="-ml-1 px-1 text-sm font-medium"> Settings </legend>
 						<div class="grid gap-3">
 							<Label for="model">Model</Label>
-							<Select.Root>
+							<Select.Root type="single" bind:value={model}>
 								<Select.Trigger
 									id="model"
 									class="items-start [&_[data-description]]:hidden"
 								>
-									<Select.Value placeholder="Select a model" />
+									{#if selectedModel}
+										{@render ModelItemContent(selectedModel)}
+									{:else}
+										Select a model
+									{/if}
 								</Select.Trigger>
 								<Select.Content>
-									<Select.Item value="genesis" textValue="Neural Genesis">
-										<div class="text-muted-foreground flex items-start gap-3">
-											<Rabbit class="size-5" />
-											<div class="grid gap-0.5">
-												<p>
-													Neural
-													<span class="text-foreground font-medium">
-														Genesis
-													</span>
-												</p>
-												<p class="text-xs" data-description>
-													Our fastest model for general use cases.
-												</p>
-											</div>
-										</div>
-									</Select.Item>
-									<Select.Item value="explorer" textValue="Neural Explorer">
-										<div class="text-muted-foreground flex items-start gap-3">
-											<Bird class="size-5" />
-											<div class="grid gap-0.5">
-												<p>
-													Neural
-													<span class="text-foreground font-medium">
-														Explorer
-													</span>
-												</p>
-												<p class="text-xs" data-description>
-													Performance and speed for efficiency.
-												</p>
-											</div>
-										</div>
-									</Select.Item>
-									<Select.Item value="quantum">
-										<div class="text-muted-foreground flex items-start gap-3">
-											<Turtle class="size-5" />
-											<div class="grid gap-0.5">
-												<p>
-													Neural
-													<span class="text-foreground font-medium">
-														Quantum
-													</span>
-												</p>
-												<p class="text-xs" data-description>
-													The most powerful model for complex
-													computations.
-												</p>
-											</div>
-										</div>
-									</Select.Item>
+									{#each models as model}
+										<Select.Item value={model.value} label={model.label}>
+											{@render ModelItemContent(model)}
+										</Select.Item>
+									{/each}
 								</Select.Content>
 							</Select.Root>
 						</div>
@@ -377,14 +340,14 @@
 						<legend class="-ml-1 px-1 text-sm font-medium"> Messages </legend>
 						<div class="grid gap-3">
 							<Label for="role">Role</Label>
-							<Select.Root value="system">
-								<Select.Trigger>
-									<Select.Value placeholder="Select a role" />
+							<Select.Root bind:value={role} type="single">
+								<Select.Trigger class="capitalize">
+									{role ?? "Select a role"}
 								</Select.Trigger>
 								<Select.Content>
-									<Select.Item value="system">System</Select.Item>
-									<Select.Item value="user">User</Select.Item>
-									<Select.Item value="assistant">Assistant</Select.Item>
+									<Select.Item value="system" label="System" />
+									<Select.Item value="user" label="User" />
+									<Select.Item value="assistant" label="Assistant" />
 								</Select.Content>
 							</Select.Root>
 						</div>

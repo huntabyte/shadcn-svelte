@@ -1,3 +1,8 @@
+<script lang="ts" module>
+	type TData = unknown;
+	type TValue = unknown;
+</script>
+
 <script lang="ts" generics="TData, TValue">
 	import PlusCircled from "svelte-radix/PlusCircled.svelte";
 	import Check from "svelte-radix/Check.svelte";

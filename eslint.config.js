@@ -1,29 +1,50 @@
-import config, { DEFAULT_IGNORES } from "@huntabyte/eslint-config";
+import eslint from "@eslint/js";
+import prettier from "eslint-config-prettier";
+import svelte from "eslint-plugin-svelte";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-const ignores = ["**/extended-types", "**/.velite"];
-
-export default config({ svelte: true, ignores: [...DEFAULT_IGNORES, ...ignores] })
-	.override("antfu/typescript/rules", {
-		rules: {
-			"ts/consistent-type-definitions": "off",
-			"unused-imports/no-unused-imports": "off",
-			"unused-imports/no-unused-vars": "off",
-			"ts/no-unused-expressions": "off",
-			"no-unused-expressions": "off",
-			"ts/no-empty-object-type": "off",
+export default tseslint.config(
+	eslint.configs.recommended,
+	...tseslint.configs.recommended,
+	...svelte.configs["flat/recommended"],
+	prettier,
+	...svelte.configs["flat/prettier"],
+	{
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				...globals.node,
+			},
 		},
-	})
-	.override("antfu/javascript/rules", {
-		rules: {
-			"no-unused-expressions": "off",
-			"unused-imports/no-unused-imports": "off",
+	},
+	{
+		files: ["**/*.svelte"],
+		languageOptions: {
+			parserOptions: {
+				parser: tseslint.parser,
+			},
 		},
-	})
-	.override("huntabyte/svelte/rules", {
+	},
+	{
 		rules: {
-			"svelte/no-at-html-tags": "off",
-			"unused-imports/no-unused-imports": "off",
-			"unused-imports/no-unused-vars": "off",
-			"import/no-self-import": "off",
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					argsIgnorePattern: "^_",
+					varsIgnorePattern: "^_",
+				},
+			],
+			"@typescript-eslint/no-unused-expressions": "off",
 		},
-	});
+	},
+	{
+		ignores: [
+			"build/",
+			".svelte-kit/",
+			"dist/",
+			".svelte-kit/**/*",
+			"sites/docs/.svelte-kit/**/*",
+		],
+	}
+);

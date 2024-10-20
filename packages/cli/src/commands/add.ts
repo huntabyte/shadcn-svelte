@@ -14,7 +14,7 @@ import {
 	// getRegistryBaseColor,
 	getRegistryIndex,
 	resolveTree,
-} from "../utils/registry";
+} from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
 import * as p from "../utils/prompts.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";

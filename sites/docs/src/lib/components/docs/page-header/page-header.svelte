@@ -6,7 +6,7 @@
 
 <section
 	class={cn(
-		"mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20",
+		"mx-auto flex flex-col items-start gap-2 px-4 py-8 md:py-12 md:pb-8 lg:py-12 lg:pb-10",
 		className
 	)}
 	{...restProps}

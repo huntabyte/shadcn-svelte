@@ -1,4 +1,3 @@
-import type { Component } from "svelte";
 import ArrowDown from "svelte-radix/ArrowDown.svelte";
 import ArrowRight from "svelte-radix/ArrowRight.svelte";
 import ArrowUp from "svelte-radix/ArrowUp.svelte";

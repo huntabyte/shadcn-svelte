@@ -40,6 +40,25 @@
 		},
 	];
 
+	type Plan = {
+		value: string;
+		label: string;
+		pricing: string;
+	};
+
+	const plans: Plan[] = [
+		{
+			value: "free",
+			label: "Free",
+			pricing: "Trial for two weeks",
+		},
+		{
+			value: "pro",
+			label: "Pro",
+			pricing: "$9/month per user",
+		},
+	];
+
 	type Team = (typeof groups)[number]["teams"][number];
 
 	let open = $state(false);
@@ -47,11 +66,21 @@
 	let selectedTeam: Team = $state(groups[0].teams[0]);
 	let triggerId = "team-switcher-trigger";
 
+	let plan = $state("");
+
+	const selectedPlan = $derived(plans.find((p) => p.value === plan));
+
 	function closeAndRefocusTrigger(triggerId: string) {
 		open = false;
 		tick().then(() => document.getElementById(triggerId)?.focus());
 	}
 </script>
+
+{#snippet PlanItemContent({ label, pricing }: Plan)}
+	<span class="font-medium">{label} </span>-<span class="text-muted-foreground">
+		{pricing}
+	</span>
+{/snippet}
 
 <Dialog.Root bind:open={showTeamDialog}>
 	<Popover.Root bind:open>
@@ -144,22 +173,20 @@
 				</div>
 				<div class="space-y-2">
 					<Label for="plan">Subscription plan</Label>
-					<Select.Root>
+					<Select.Root type="single">
 						<Select.Trigger>
-							<Select.Value placeholder="Select a plan" />
+							{#if selectedPlan}
+								{@render PlanItemContent(selectedPlan)}
+							{:else}
+								Select a plan
+							{/if}
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Item value="free">
-								<span class="font-medium">Free </span>-<span
-									class="text-muted-foreground"
-								>
-									Trial for two weeks
-								</span>
-							</Select.Item>
-							<Select.Item value="pro">
-								<span class="font-medium">Pro</span> -
-								<span class="text-muted-foreground"> $9/month per user </span>
-							</Select.Item>
+							{#each plans as plan}
+								<Select.Item value={plan.value} label={plan.label}>
+									{@render PlanItemContent(plan)}
+								</Select.Item>
+							{/each}
 						</Select.Content>
 					</Select.Root>
 				</div>

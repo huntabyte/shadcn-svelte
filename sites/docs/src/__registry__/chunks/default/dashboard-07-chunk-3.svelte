@@ -1,7 +1,10 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/default/ui/card/index.js";
+
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
+
+	let status = $state("");
 </script>
 
 <Card.Root
@@ -15,18 +18,14 @@
 		<div class="grid gap-6">
 			<div class="grid gap-3">
 				<Label for="status">Status</Label>
-				<Select.Root>
-					<Select.Trigger id="status" aria-label="Select status">
-						<Select.Value placeholder="Select status" />
+				<Select.Root type="single" bind:value={status}>
+					<Select.Trigger id="status" aria-label="Select status" class="capitalize">
+						{status ?? "Select status"}
 					</Select.Trigger>
 					<Select.Content>
-						<Select.Item value="draft" textValue="Draft">Draft</Select.Item>
-						<Select.Item value="published" textValue="Active"
-							>Active</Select.Item
-						>
-						<Select.Item value="archived" textValue="Archived"
-							>Archived</Select.Item
-						>
+						<Select.Item value="draft" label="Draft" />
+						<Select.Item value="published" label="Active" />
+						<Select.Item value="archived" label="Archived" />
 					</Select.Content>
 				</Select.Root>
 			</div>

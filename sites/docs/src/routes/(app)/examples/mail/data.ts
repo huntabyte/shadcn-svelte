@@ -1,7 +1,7 @@
-import type { Component } from "svelte";
 import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
+import type { Component } from "svelte";
 
 export const mails = [
 	{

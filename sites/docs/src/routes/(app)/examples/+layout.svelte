@@ -16,10 +16,10 @@
 			Dashboard, cards, authentication. Some examples built using the components. Use this as
 			a guide to build your own.
 		</PageHeader.Description>
-		<section class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
+		<PageHeader.Actions>
 			<Button href="/docs" class="rounded-[6px]">Get Started</Button>
 			<Button href="/components" variant="outline" class="rounded-[6px]">Components</Button>
-		</section>
+		</PageHeader.Actions>
 	</PageHeader.Root>
 	<section>
 		<ExamplesNav />

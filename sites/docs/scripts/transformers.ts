@@ -1,7 +1,6 @@
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { preprocess } from "svelte/compiler";
 import ts from "typescript";
-import prettier from "prettier";
 
 export type TransformOpts = {
 	filename: string;
@@ -9,39 +8,34 @@ export type TransformOpts = {
 	// baseColor?: z.infer<typeof registryBaseColorSchema>; - will use later
 };
 
-const sharedPrettierConfig = {
-	useTabs: true,
-	tabWidth: 4,
-	singleQuote: false,
-	trailingComma: "es5" as const,
-	printWidth: 100,
-	endOfLine: "lf" as const,
-	bracketSameLine: false,
-};
+// const sharedPrettierConfig = {
+// 	useTabs: true,
+// 	tabWidth: 4,
+// 	singleQuote: false,
+// 	trailingComma: "es5" as const,
+// 	printWidth: 100,
+// 	endOfLine: "lf" as const,
+// 	bracketSameLine: false,
+// };
 
-const registrySveltePrettierConfig = {
-	...sharedPrettierConfig,
-	pluginSearchDirs: ["./node_modules/prettier-plugin-svelte"],
-	parser: "svelte",
-	svelteStrictMode: false,
-	plugins: ["prettier-plugin-svelte"],
-};
+// const registrySveltePrettierConfig = {
+// 	...sharedPrettierConfig,
+// 	pluginSearchDirs: ["./node_modules/prettier-plugin-svelte"],
+// 	parser: "svelte",
+// 	svelteStrictMode: false,
+// 	plugins: ["prettier-plugin-svelte"],
+// };
 
-const registryJSPrettierConfig = {
-	...sharedPrettierConfig,
-	parser: "babel",
-};
+// const registryJSPrettierConfig = {
+// 	...sharedPrettierConfig,
+// 	parser: "babel",
+// };
 
 export async function transformContent(content: string, filename: string) {
 	if (filename.endsWith(".svelte")) {
 		return transformSvelteTStoJS(content, filename);
-		return prettier.format(
-			await transformSvelteTStoJS(content, filename),
-			registrySveltePrettierConfig
-		);
 	} else {
 		return transformTStoJS(content, filename);
-		return prettier.format(transformTStoJS(content, filename), registryJSPrettierConfig);
 	}
 }
 

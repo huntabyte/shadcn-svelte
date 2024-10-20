@@ -1,3 +1,7 @@
+<script lang="ts" module>
+	type TData = unknown;
+</script>
+
 <script lang="ts" generics="TData">
 	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
 	import type { Row } from "@tanstack/table-core";
