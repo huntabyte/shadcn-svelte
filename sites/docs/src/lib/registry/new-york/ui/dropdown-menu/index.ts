@@ -1,13 +1,14 @@
-import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-import Item from "./dropdown-menu-item.svelte";
-import GroupHeading from "./dropdown-menu-group-heading.svelte";
-import Content from "./dropdown-menu-content.svelte";
-import Shortcut from "./dropdown-menu-shortcut.svelte";
-import RadioItem from "./dropdown-menu-radio-item.svelte";
-import Separator from "./dropdown-menu-separator.svelte";
-import SubContent from "./dropdown-menu-sub-content.svelte";
-import SubTrigger from "./dropdown-menu-sub-trigger.svelte";
-import CheckboxItem from "./dropdown-menu-checkbox-item.svelte";
+import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui"
+import CheckboxItem from "./dropdown-menu-checkbox-item.svelte"
+import Content from "./dropdown-menu-content.svelte"
+import GroupHeading from "./dropdown-menu-group-heading.svelte"
+import Item from "./dropdown-menu-item.svelte"
+import Label from "./dropdown-menu-label.svelte"
+import RadioItem from "./dropdown-menu-radio-item.svelte"
+import Separator from "./dropdown-menu-separator.svelte"
+import Shortcut from "./dropdown-menu-shortcut.svelte"
+import SubContent from "./dropdown-menu-sub-content.svelte"
+import SubTrigger from "./dropdown-menu-sub-trigger.svelte"
 
 const Sub = DropdownMenuPrimitive.Sub;
 const Root = DropdownMenuPrimitive.Root;
@@ -16,33 +17,35 @@ const Group = DropdownMenuPrimitive.Group;
 const RadioGroup = DropdownMenuPrimitive.RadioGroup;
 
 export {
-	Sub,
-	Root,
-	Item,
-	GroupHeading,
-	Group,
-	Trigger,
-	Content,
-	Shortcut,
-	Separator,
-	RadioItem,
-	SubContent,
-	SubTrigger,
-	RadioGroup,
 	CheckboxItem,
-	//
+	Content,
 	Root as DropdownMenu,
-	Sub as DropdownMenuSub,
-	Item as DropdownMenuItem,
-	GroupHeading as DropdownMenuGroupHeading,
-	Group as DropdownMenuGroup,
+	CheckboxItem as DropdownMenuCheckboxItem,
 	Content as DropdownMenuContent,
-	Trigger as DropdownMenuTrigger,
-	Shortcut as DropdownMenuShortcut,
+	Group as DropdownMenuGroup,
+	GroupHeading as DropdownMenuGroupHeading,
+	Item as DropdownMenuItem,
+	Label as DropdownMenuLabel,
+	RadioGroup as DropdownMenuRadioGroup,
 	RadioItem as DropdownMenuRadioItem,
 	Separator as DropdownMenuSeparator,
-	RadioGroup as DropdownMenuRadioGroup,
+	Shortcut as DropdownMenuShortcut,
+	Sub as DropdownMenuSub,
 	SubContent as DropdownMenuSubContent,
 	SubTrigger as DropdownMenuSubTrigger,
-	CheckboxItem as DropdownMenuCheckboxItem,
-};
+	Trigger as DropdownMenuTrigger,
+	Group,
+	GroupHeading,
+	Item,
+	Label,
+	RadioGroup,
+	RadioItem,
+	Root,
+	Separator,
+	Shortcut,
+	Sub,
+	SubContent,
+	SubTrigger,
+	Trigger
+}
+

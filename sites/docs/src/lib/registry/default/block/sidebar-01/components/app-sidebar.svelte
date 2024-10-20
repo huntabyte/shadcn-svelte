@@ -133,14 +133,10 @@
 </script>
 
 <script lang="ts">
-	// import Check from 'lucide-svelte/icons/check';
-	// import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
-	// import GalleryVerticalEnd from 'lucide-svelte/icons/gallery-vertical-end';
-	// import * as DropdownMenu from '$lib/registry/default/ui/dropdown-menu/index.js';
+	import SearchForm from "$lib/registry/default/block/sidebar-01/components/search-form.svelte";
+	import VersionSwitcher from "$lib/registry/default/block/sidebar-01/components/version-switcher.svelte";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
-	import SearchForm from "./search-form.svelte";
-	import VersionSwitcher from "./version-switcher.svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>

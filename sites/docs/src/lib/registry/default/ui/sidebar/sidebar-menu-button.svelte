@@ -30,7 +30,7 @@
 <script lang="ts">
 	import * as Tooltip from "$lib/registry/default/ui/tooltip/index.js";
 	import { cn } from "$lib/utils.js";
-	import { mergeProps, type WithElementRef } from "bits-ui";
+	import { mergeProps, type WithElementRef, type WithoutChildrenOrChild } from "bits-ui";
 	import type { ComponentProps, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { useSidebar } from "./context.svelte.js";
@@ -43,13 +43,15 @@
 		variant = "default",
 		size = "default",
 		isActive = false,
-		tooltip,
+		tooltipContent,
+		tooltipContentProps,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
 		isActive?: boolean;
 		variant?: SidebarMenuButtonVariant;
 		size?: SidebarMenuButtonSize;
-		tooltip?: ComponentProps<typeof Tooltip.Content>;
+		tooltipContent?: Snippet;
+		tooltipContentProps?: WithoutChildrenOrChild<ComponentProps<typeof Tooltip.Content>>;
 		child?: Snippet<[{ props: Record<string, unknown> }]>;
 	} = $props();
 
@@ -75,7 +77,7 @@
 	{/if}
 {/snippet}
 
-{#if !tooltip}
+{#if !tooltipContent}
 	{@render Button({})}
 {:else}
 	<Tooltip.Root>
@@ -88,7 +90,8 @@
 			side="right"
 			align="center"
 			hidden={sidebar.stateAttr !== "collapsed" || sidebar.isMobile}
-			{...tooltip}
+			children={tooltipContent}
+			{...tooltipContentProps}
 		/>
 	</Tooltip.Root>
 {/if}
