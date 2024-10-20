@@ -106,7 +106,7 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	const parsedConfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigName);
 	if (parsedConfig === null) {
 		throw error(
-			`Failed to find ${highlight(tsconfigName)}. See: ${color.underline(`${SITE_BASE_URL}docs/installation#opt-out-of-typescript`)}`
+			`Failed to find ${highlight(tsconfigName)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
 		);
 	}
 
