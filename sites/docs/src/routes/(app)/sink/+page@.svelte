@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Sidebar from "$lib/registry/new-york/block/sidebar-10/page.svelte";
+	import Sidebar from "$lib/registry/new-york/block/sidebar-11/page.svelte";
 </script>
 
 <div>
