@@ -32,7 +32,7 @@
 		bind:this={ref}
 		{...restProps}
 	>
-		{children}
+		{@render children?.()}
 	</div>
 {:else if sidebar.isMobile}
 	<Sheet.Root

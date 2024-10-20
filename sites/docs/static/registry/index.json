@@ -299,6 +299,7 @@
 			"ui/dropdown-menu/dropdown-menu-content.svelte",
 			"ui/dropdown-menu/dropdown-menu-group-heading.svelte",
 			"ui/dropdown-menu/dropdown-menu-item.svelte",
+			"ui/dropdown-menu/dropdown-menu-label.svelte",
 			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
 			"ui/dropdown-menu/dropdown-menu-separator.svelte",
 			"ui/dropdown-menu/dropdown-menu-shortcut.svelte",
