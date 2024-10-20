@@ -21,7 +21,13 @@ import {
 	detectPM,
 } from "../utils/auto-detect.js";
 
-const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
+const PROJECT_DEPENDENCIES = [
+	"tailwind-variants",
+	"clsx",
+	"tailwind-merge",
+	"tailwindcss-animate",
+] as const;
+
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const baseColors = getBaseColors();
@@ -371,7 +377,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
+				await execa(pm, [add, "-D", ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

@@ -4,6 +4,7 @@ import { parse, preprocess } from "svelte/compiler";
 import { walk } from "estree-walker";
 import { type Registry, styles } from "../src/lib/registry";
 import config from "../svelte.config.js";
+import { TMP_NEXT_DEPS } from "./tmp";
 
 // [Dependency, [...PeerDependencies]]
 const DEPENDENCIES = new Map<string, string[]>([
@@ -102,7 +103,9 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: Array.from(dependencies),
+		dependencies: Array.from(dependencies).map((dep) =>
+			TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep
+		),
 	} satisfies RegistryItem;
 }
 

@@ -1,7 +1,7 @@
 {
 	"name": "range-calendar",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"@internationalized/date",
 		"svelte-radix"
 	],

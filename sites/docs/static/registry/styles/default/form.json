@@ -1,10 +1,10 @@
 {
 	"name": "form",
 	"dependencies": [
-		"formsnap",
+		"formsnap@next",
 		"zod",
 		"sveltekit-superforms",
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [
 		"button",
