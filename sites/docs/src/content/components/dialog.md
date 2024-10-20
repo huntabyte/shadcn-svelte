@@ -2,9 +2,10 @@
 title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 component: true
-featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dialog
-bits: https://www.bits-ui.com/docs/components/dialog
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dialog
+  doc: https://next.bits-ui.com/docs/components/dialog
+  api: https://next.bits-ui.com/docs/components/dialog#api-reference
 ---
 
 <script>
@@ -13,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 <ComponentPreview name="dialog-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -25,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

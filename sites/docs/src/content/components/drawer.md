@@ -2,8 +2,9 @@
 title: Drawer
 description: A drawer component for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/drawer
-bits: https://www.vaul-svelte.com
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/drawer
+  doc: https://github.com/huntabyte/vaul-svelte
 ---
 
 <script>
@@ -12,7 +13,7 @@ bits: https://www.vaul-svelte.com
 
 <ComponentPreview name="drawer-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -28,7 +29,7 @@ Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Sve
 
 1. Install `vaul-svelte`:
 
-<PMInstall command="vaul-svelte" />
+<PMInstall command="vaul-svelte -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -64,6 +65,6 @@ You can combine the `Dialog` and `Drawer` components to create a responsive dial
 
 <ComponentPreview name="drawer-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>

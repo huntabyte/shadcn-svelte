@@ -2,8 +2,10 @@
 title: Separator
 description: Visually or semantically separates content.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/separator
-bits: https://www.bits-ui.com/docs/components/separator
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/separator
+  doc: https://next.bits-ui.com/docs/components/separator
+  api: https://next.bits-ui.com/docs/components/separator#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/separator
 
 <ComponentPreview name="separator-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/separator
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

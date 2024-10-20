@@ -4,7 +4,6 @@
 	import Smartphone from "lucide-svelte/icons/smartphone";
 	import Tablet from "lucide-svelte/icons/tablet";
 
-	import type { PaneAPI } from "paneforge";
 	import BlockCopyCodeButton from "./block-copy-code-button.svelte";
 	import StyleSwitcher from "./style-switcher.svelte";
 	import { cn, getLiftMode } from "$lib/utils.js";
@@ -16,9 +15,9 @@
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import type { Block } from "$lib/registry/schema.js";
+	import type { ResizablePane } from "$lib/registry/new-york/ui/resizable/index.js";
 
-	export let block: Block;
-	export let resizablePaneRef: PaneAPI;
+	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: ResizablePane } = $props();
 
 	const { isLiftMode, toggleLiftMode } = getLiftMode(block.name);
 </script>
@@ -50,7 +49,7 @@
 				disabled={$isLiftMode}
 				class="text-muted-foreground hover:text-foreground hidden disabled:opacity-50 sm:flex"
 			>
-				<CircleHelp class="h-3.5 w-3.5" />
+				<CircleHelp class="size-3.5" />
 				<span class="sr-only">Block description</span>
 			</Popover.Trigger>
 			<Popover.Content side="top" sideOffset={20} class="space-y-3 rounded-[0.5rem] text-sm">
@@ -107,19 +106,19 @@
 					type="single"
 					value="100"
 					onValueChange={(value) => {
-						if (resizablePaneRef && value !== undefined) {
+						if (resizablePaneRef) {
 							resizablePaneRef.resize(Number.parseInt(value));
 						}
 					}}
 				>
 					<ToggleGroup.Item value="100" class="h-[22px] w-[22px] rounded-sm p-0">
-						<Monitor class="h-3.5 w-3.5" />
+						<Monitor class="size-3.5" />
 					</ToggleGroup.Item>
 					<ToggleGroup.Item value="60" class="h-[22px] w-[22px] rounded-sm p-0">
-						<Tablet class="h-3.5 w-3.5" />
+						<Tablet class="size-3.5" />
 					</ToggleGroup.Item>
 					<ToggleGroup.Item value="30" class="h-[22px] w-[22px] rounded-sm p-0">
-						<Smartphone class="h-3.5 w-3.5" />
+						<Smartphone class="size-3.5" />
 					</ToggleGroup.Item>
 				</ToggleGroup.Root>
 			</div>

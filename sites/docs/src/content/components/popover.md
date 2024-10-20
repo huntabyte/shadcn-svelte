@@ -2,8 +2,10 @@
 title: Popover
 description: Displays rich content in a portal, triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/popover
-bits: https://www.bits-ui.com/docs/components/popover
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/popover
+  doc: https://next.bits-ui.com/docs/components/popover
+  api: https://next.bits-ui.com/docs/components/popover#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/popover
 
 <ComponentPreview name="popover-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/popover
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

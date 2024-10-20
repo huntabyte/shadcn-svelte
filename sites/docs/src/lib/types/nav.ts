@@ -1,11 +1,11 @@
-import type { Icons } from "$lib/components/docs/icons/index.js";
+import type { Component } from "svelte";
 
 export type NavItem = {
 	title: string;
 	href?: string;
 	disabled?: boolean;
 	external?: boolean;
-	icon?: keyof typeof Icons;
+	icon?: Component;
 	label?: string;
 };
 

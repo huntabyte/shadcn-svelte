@@ -2,8 +2,10 @@
 title: Range Calendar
 description: A calendar component that allows users to select a range of dates.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/range-calendar
-bits: https://www.bits-ui.com/docs/components/range-calendar
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/range-calendar
+  doc: https://next.bits-ui.com/docs/components/range-calendar
+  api: https://next.bits-ui.com/docs/components/range-calendar#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/range-calendar
 
 <ComponentPreview name="range-calendar-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -28,7 +30,7 @@ The `<RangeCalendar />` component is built on top of the [Bits Range Calendar](h
 
 1. Install `bits-ui` and `@internationalized/date`:
 
-<PMInstall command="bits-ui @internationalized/date" />
+<PMInstall command="bits-ui @internationalized/date -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

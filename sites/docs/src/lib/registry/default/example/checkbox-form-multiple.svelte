@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	const items = [
@@ -45,8 +45,8 @@
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
 
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.checkboxMultiple;
-	export { data as form };
+	let { form: data = $page.data.checkboxMultiple }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -82,22 +82,23 @@
 			{#each items as item}
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-start space-x-3">
-					<Form.Control let:attrs>
-						<Checkbox
-							{...attrs}
-							{checked}
-							onCheckedChange={(v) => {
-								if (v) {
-									addItem(item.id);
-								} else {
-									removeItem(item.id);
-								}
-							}}
-						/>
-						<Form.Label class="font-normal">
-							{item.label}
-						</Form.Label>
-						<input hidden type="checkbox" name={attrs.name} value={item.id} {checked} />
+					<Form.Control>
+						{#snippet children({ props })}
+							<Checkbox
+								{...props}
+								{checked}
+								onCheckedChange={(v) => {
+									if (v) {
+										addItem(item.id);
+									} else {
+										removeItem(item.id);
+									}
+								}}
+							/>
+							<Form.Label class="font-normal">
+								{item.label}
+							</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
 			{/each}

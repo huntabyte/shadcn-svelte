@@ -2,8 +2,10 @@
 title: Slider
 description: An input where the user selects a value from within a given range.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/slider
-bits: https://www.bits-ui.com/docs/components/slider
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/slider
+  doc: https://next.bits-ui.com/docs/components/slider
+  api: https://next.bits-ui.com/docs/components/slider#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/slider
 
 <ComponentPreview name="slider-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/slider
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

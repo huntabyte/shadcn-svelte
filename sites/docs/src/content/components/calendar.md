@@ -2,8 +2,10 @@
 title: Calendar
 description: A calendar component that allows users to select dates.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
-bits: https://www.bits-ui.com/docs/components/calendar
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
+  doc: https://next.bits-ui.com/docs/components/calendar
+  api: https://next.bits-ui.com/docs/components/calendar#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/calendar
 
 <ComponentPreview name="calendar-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -30,7 +32,7 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 1. Install `bits-ui` and `@internationalized/date`:
 
-<PMInstall command="bits-ui @internationalized/date" />
+<PMInstall command="bits-ui @internationalized/date -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -46,7 +48,7 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 <ComponentPreview name="date-picker-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -64,6 +66,6 @@ Here's an example of how you could create a calendar with month and year select 
 
 <ComponentPreview name="calendar-with-selects">
 
-<div />
+<div></div>
 
 </ComponentPreview>

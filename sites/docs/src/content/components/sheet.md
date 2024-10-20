@@ -2,8 +2,10 @@
 title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/sheet
-bits: https://www.bits-ui.com/docs/components/dialog
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/sheet
+  doc: https://next.bits-ui.com/docs/components/dialog
+  api: https://next.bits-ui.com/docs/components/dialog#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 <ComponentPreview name="sheet-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/dialog
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -59,6 +61,6 @@ Pass the `side` property to `<SheetContent />` to indicate the edge of the scree
 
 <ComponentPreview name="sheet-side">
 
-<div />
+<div></div>
 
 </ComponentPreview>

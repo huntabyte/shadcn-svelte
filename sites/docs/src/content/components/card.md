@@ -1,8 +1,9 @@
 ---
 title: Card
 description: Displays a card with header, content, and footer.
-featured: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/card
+component: true
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/card
 ---
 
 <script>
@@ -11,7 +12,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="card-with-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,6 +67,6 @@ For example:
 
 <ComponentPreview name="card-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>

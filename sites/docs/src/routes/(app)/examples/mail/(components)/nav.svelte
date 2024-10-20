@@ -3,6 +3,7 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 
 	export let isCollapsed: boolean;
 	export let routes: Route[];
@@ -14,32 +15,32 @@
 	>
 		{#each routes as route}
 			{#if isCollapsed}
-				<Tooltip.Root openDelay={0}>
-					<Tooltip.Trigger asChild let:builder>
-						<Button
-							href="#"
-							builders={[builder]}
-							variant={route.variant}
-							size="icon"
+				<Tooltip.Provider delayDuration={0}>
+					<Tooltip.Root>
+						<Tooltip.Trigger
 							class={cn(
-								"size-9",
+								buttonVariants({
+									variant: route.variant,
+									size: "icon",
+									class: "size-9",
+								}),
 								route.variant === "default" &&
 									"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
 							)}
 						>
 							<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
 							<span class="sr-only">{route.title}</span>
-						</Button>
-					</Tooltip.Trigger>
-					<Tooltip.Content side="right" class="flex items-center gap-4">
-						{route.title}
-						{#if route.label}
-							<span class="text-muted-foreground ml-auto">
-								{route.label}
-							</span>
-						{/if}
-					</Tooltip.Content>
-				</Tooltip.Root>
+						</Tooltip.Trigger>
+						<Tooltip.Content side="right" class="flex items-center gap-4">
+							{route.title}
+							{#if route.label}
+								<span class="text-muted-foreground ml-auto">
+									{route.label}
+								</span>
+							{/if}
+						</Tooltip.Content>
+					</Tooltip.Root>
+				</Tooltip.Provider>
 			{:else}
 				<Button
 					href="#"

@@ -2,7 +2,8 @@
 title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
 ---
 
 <script>
@@ -11,7 +12,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="breadcrumb-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -57,7 +58,7 @@ Use a custom component in the `<slot>` of `<Breadcrumb.Separator />` to create a
 
 <ComponentPreview name="breadcrumb-separator">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -69,7 +70,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 <ComponentPreview name="breadcrumb-dropdown">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -81,7 +82,7 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 <ComponentPreview name="breadcrumb-ellipsis">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,7 +94,7 @@ To use a custom link component from your routing library, you can use the `asChi
 
 <ComponentPreview name="breadcrumb-link">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -107,6 +108,6 @@ It displays a dropdown on desktop and a drawer on mobile.
 
 <ComponentPreview name="breadcrumb-responsive">
 
-<div />
+<div></div>
 
 </ComponentPreview>

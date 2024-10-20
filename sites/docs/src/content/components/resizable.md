@@ -2,8 +2,9 @@
 title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
-bits: https://paneforge.com
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
+  doc: https://www.paneforge.com
 ---
 
 <script>
@@ -12,7 +13,7 @@ bits: https://paneforge.com
 
 <ComponentPreview name="resizable-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -28,7 +29,7 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 
 1. Install `paneforge`:
 
-<PMInstall command="paneforge" />
+<PMInstall command="paneforge -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -56,7 +57,7 @@ Use the `direction` prop to set the direction of the resizable panels.
 
 <ComponentPreview name="resizable-vertical">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -78,7 +79,7 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 <ComponentPreview name="resizable-handle">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

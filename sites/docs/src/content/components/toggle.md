@@ -2,8 +2,10 @@
 title: Toggle
 description: A two-state button that can be either on or off.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle
-bits: https://www.bits-ui.com/docs/components/toggle
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle
+  doc: https://next.bits-ui.com/docs/components/toggle
+  api: https://next.bits-ui.com/docs/components/toggle#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -46,7 +48,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -54,7 +56,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -62,7 +64,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -70,7 +72,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-sm">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -78,7 +80,7 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-lg">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -86,6 +88,6 @@ bits: https://www.bits-ui.com/docs/components/toggle
 
 <ComponentPreview name="toggle-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>

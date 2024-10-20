@@ -2,8 +2,10 @@
 title: Aspect Ratio
 description: Displays content within a desired ratio.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/aspect-ratio
-bits: https://www.bits-ui.com/docs/components/aspect-ratio
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/aspect-ratio
+  doc: https://next.bits-ui.com/docs/components/aspect-ratio
+  api: https://next.bits-ui.com/docs/components/aspect-ratio#api-reference
 ---
 
 <script>
@@ -12,7 +14,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 
 <ComponentPreview name="aspect-ratio-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -24,7 +26,7 @@ bits: https://www.bits-ui.com/docs/components/aspect-ratio
 
 1. Install `bits-ui`:
 
-<PMInstall command="bits-ui" />
+<PMInstall command="bits-ui -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

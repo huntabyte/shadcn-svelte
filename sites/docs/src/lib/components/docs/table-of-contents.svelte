@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { writable } from "svelte/store";
+	import Tree from "./tree.svelte";
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
-	import { Tree } from "$lib/components/docs/index.js";
 
-	let filteredHeadingsList: TableOfContents;
+	let filteredHeadingsList = $state<TableOfContents>();
 
 	function getHeadingsWithHierarchy(divId: string) {
 		const div = document.getElementById(divId);
@@ -90,7 +90,7 @@
 	onMount(() => {
 		getHeadingsWithHierarchy("markdown");
 		const allItemIds: string[] = [];
-		filteredHeadingsList.items.forEach((item) => {
+		filteredHeadingsList?.items.forEach((item) => {
 			allItemIds.push(item.url.replace("#", ""));
 			if (!item.items) return;
 			item.items.forEach((subItem) => {
