@@ -16,7 +16,7 @@ description: How to setup shadcn-svelte in a Vite project.
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
-<PMExecute command="svelte-add@latest tailwindcss" />
+<PMExecute command="svelte-add@next tailwindcss" />
 
 ### Install dependencies
 
@@ -53,7 +53,7 @@ export default defineConfig({
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 

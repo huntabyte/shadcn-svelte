@@ -15,7 +15,7 @@ description: How to setup shadcn-svelte manually.
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
-<PMExecute command="svelte-add@latest tailwindcss" />
+<PMExecute command="svelte-add@next tailwindcss" />
 
 ### Add dependencies
 
