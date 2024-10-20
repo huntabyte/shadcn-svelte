@@ -550,6 +550,42 @@
 		"type": "components:ui"
 	},
 	{
+		"name": "sidebar",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"input",
+			"tooltip",
+			"separator",
+			"button",
+			"sheet"
+		],
+		"files": [
+			"ui/sidebar/constants.ts",
+			"ui/sidebar/context.svelte.ts",
+			"ui/sidebar/index.ts",
+			"ui/sidebar/sidebar-content.svelte",
+			"ui/sidebar/sidebar-footer.svelte",
+			"ui/sidebar/sidebar-group-action.svelte",
+			"ui/sidebar/sidebar-group-content.svelte",
+			"ui/sidebar/sidebar-group-label.svelte",
+			"ui/sidebar/sidebar-group.svelte",
+			"ui/sidebar/sidebar-header.svelte",
+			"ui/sidebar/sidebar-input.svelte",
+			"ui/sidebar/sidebar-inset.svelte",
+			"ui/sidebar/sidebar-menu-button.svelte",
+			"ui/sidebar/sidebar-menu-item.svelte",
+			"ui/sidebar/sidebar-menu.svelte",
+			"ui/sidebar/sidebar-provider.svelte",
+			"ui/sidebar/sidebar-rail.svelte",
+			"ui/sidebar/sidebar-separator.svelte",
+			"ui/sidebar/sidebar-trigger.svelte",
+			"ui/sidebar/sidebar.svelte"
+		],
+		"type": "components:ui"
+	},
+	{
 		"name": "skeleton",
 		"dependencies": [
 			"bits-ui"
