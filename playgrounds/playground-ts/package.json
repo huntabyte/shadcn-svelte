@@ -9,7 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"reset": "node ./reset.js",
-		"scn": "pnpm shadcn-svelte"
+		"scn": "export COMPONENTS_REGISTRY_URL=http://localhost:5173 && pnpm shadcn-svelte"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
