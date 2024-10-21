@@ -1,8 +1,8 @@
+import color from "chalk";
+import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
-import color from "chalk";
 import * as v from "valibot";
-import { getTsconfig } from "get-tsconfig";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
@@ -17,6 +17,11 @@ export const DEFAULT_TYPESCRIPT = true;
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
+const aliasSchema = v.pipe(
+	v.string(),
+	v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+);
+
 export const rawConfigSchema = v.object({
 	$schema: v.optional(v.string()),
 	style: v.string(),
@@ -27,14 +32,11 @@ export const rawConfigSchema = v.object({
 		// cssVariables: v.boolean().default(true)
 	}),
 	aliases: v.object({
-		components: v.pipe(
-			v.string(),
-			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		),
-		utils: v.pipe(
-			v.string(),
-			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		),
+		components: aliasSchema,
+		utils: aliasSchema,
+		ui: aliasSchema,
+		lib: aliasSchema,
+		hooks: aliasSchema,
 	}),
 	typescript: v.optional(v.boolean(), true),
 });
@@ -49,6 +51,9 @@ export const configSchema = v.object({
 			tailwindCss: v.string(),
 			utils: v.string(),
 			components: v.string(),
+			lib: v.string(),
+			hooks: v.string(),
+			ui: v.string(),
 		}),
 	}).entries,
 });
@@ -80,6 +85,10 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
 	const componentsPath = resolveImport(config.aliases.components, pathAliases);
+	const hooksPath = resolveImport(config.aliases.hooks, pathAliases);
+	const uiPath = resolveImport(config.aliases.ui, pathAliases);
+	const libPath = resolveImport(config.aliases.lib, pathAliases);
+
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
@@ -97,6 +106,9 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 			tailwindCss: path.resolve(cwd, config.tailwind.css),
 			utils: utilsPath,
 			components: componentsPath,
+			hooks: hooksPath,
+			ui: uiPath,
+			lib: libPath,
 		},
 	});
 }
