@@ -6,8 +6,8 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",
 		"source.organizeImports": "explicit",
-		"source.removeUnusedImports": "explicit",
-		"source.removeUnused.ts": "explicit"
+		"source.removeUnusedImports": "never",
+		"source.removeUnused.ts": "never"
 	},
 
 	// Enable eslint for all supported languages
