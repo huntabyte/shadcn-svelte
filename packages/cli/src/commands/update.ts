@@ -1,12 +1,16 @@
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
+import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
+import { type Config, getConfig } from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -15,10 +19,6 @@ import {
 } from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -105,7 +105,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
-		type: "components:ui",
+		type: "registry:ui",
 		files: [],
 		dependencies: [],
 		registryDependencies: [],
