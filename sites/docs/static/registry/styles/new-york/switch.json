@@ -1,5 +1,6 @@
 {
 	"name": "switch",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./switch.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Switch,\n};\n"
+			"content": "import Root from \"./switch.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Switch,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/switch/index.ts"
 		},
 		{
 			"name": "switch.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Switch as SwitchPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SwitchPrimitive.RootProps> = $props();\n</script>\n\n<SwitchPrimitive.Root\n\tbind:ref\n\tbind:checked\n\tclass={cn(\n\t\t\"focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-[20px] w-[36px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<SwitchPrimitive.Thumb\n\t\tclass={cn(\n\t\t\t\"bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0\"\n\t\t)}\n\t/>\n</SwitchPrimitive.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport { Switch as SwitchPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SwitchPrimitive.RootProps> = $props();\n</script>\n\n<SwitchPrimitive.Root\n\tbind:ref\n\tbind:checked\n\tclass={cn(\n\t\t\"focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input peer inline-flex h-[20px] w-[36px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<SwitchPrimitive.Thumb\n\t\tclass={cn(\n\t\t\t\"bg-background pointer-events-none block size-4 rounded-full shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0\"\n\t\t)}\n\t/>\n</SwitchPrimitive.Root>\n",
+			"type": "registry:ui",
+			"target": "components/ui/switch/switch.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }

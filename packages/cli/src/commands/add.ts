@@ -1,13 +1,16 @@
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
+import { detectPM } from "../utils/auto-detect.js";
+import { ConfigError, error, handleError } from "../utils/errors.js";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { ConfigError, error, handleError } from "../utils/errors.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
 import {
 	fetchTree,
 	getItemTargetPath,
@@ -16,9 +19,6 @@ import {
 	resolveTree,
 } from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 

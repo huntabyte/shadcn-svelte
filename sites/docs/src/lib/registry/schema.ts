@@ -1,78 +1,90 @@
 import * as z from "zod";
 
-export const registrySchema = z.array(
-	z.object({
-		name: z.string(),
-		style: z.string(),
-		dependencies: z.array(z.string()),
-		registryDependencies: z.array(z.string()),
-		files: z.array(z.object({ name: z.string(), content: z.string(), path: z.string() })),
-		type: z.enum([
-			"components:ui",
-			"components:component",
-			"components:example",
-			"components:block",
-		]),
-	})
-);
-
-export type Registry = z.infer<typeof registrySchema>;
-
-export const registryEntrySchema = z.object({
-	name: z.string(),
-	description: z.string().optional(),
-	dependencies: z.array(z.string()).optional(),
-	registryDependencies: z.array(z.string()).optional(),
-	files: z.array(z.string()),
-	type: z.enum([
-		"components:ui",
-		"components:component",
-		"components:example",
-		"components:block",
-	]),
-	category: z.string().optional(),
-	subcategory: z.string().optional(),
-});
-
-export type RegistryEntry = z.infer<typeof registryEntrySchema>;
-
-export const registryIndexSchema = z.array(registryEntrySchema);
-
-export type RegistryIndex = z.infer<typeof registryIndexSchema>;
+export const registryStyleSchema = z.enum(["default", "new-york"]);
 
 // This also defines the order they appear on the blocks page.
 export const blockNames = [
-	"dashboard-05",
-	"dashboard-06",
-	"dashboard-07",
-	"dashboard-01",
-	"dashboard-02",
-	"dashboard-03",
-	"dashboard-04",
-	"authentication-01",
-	"authentication-02",
-	"authentication-03",
-	"authentication-04",
+	"sidebar-01",
+	"sidebar-02",
+	"sidebar-03",
+	"sidebar-04",
+	"sidebar-05",
+	"sidebar-06",
+	"sidebar-07",
+	"sidebar-08",
+	"sidebar-09",
+	"sidebar-10",
+	"sidebar-11",
+	"sidebar-12",
+	"sidebar-13",
+	"sidebar-14",
+	"sidebar-15",
+	"login-01",
 ] as const;
 
-export type BlockName = (typeof blockNames)[number];
+export const registryItemTypeSchema = z.enum([
+	"registry:style",
+	"registry:lib",
+	"registry:example",
+	"registry:block",
+	"registry:component",
+	"registry:ui",
+	"registry:hook",
+	"registry:theme",
+	"registry:page",
+]);
 
-export const blockChunkSchema = z.object({
+export const registryItemFileSchema = z.object({
 	name: z.string(),
-	description: z.string(),
-	code: z.string(),
-	container: z
-		.object({
-			className: z.string().nullish(),
-		})
-		.optional(),
+	path: z.string(),
+	content: z.string().default(""),
+	type: registryItemTypeSchema,
+	target: z.string().default(""),
 });
+
+export const registryItemTailwindSchema = z.object({
+	config: z.object({
+		content: z.array(z.string()).optional(),
+		theme: z.record(z.string(), z.any()).optional(),
+		plugins: z.array(z.string()).optional(),
+	}),
+});
+
+export const registryItemCssVarsSchema = z.object({
+	light: z.record(z.string(), z.string()).optional(),
+	dark: z.record(z.string(), z.string()).optional(),
+});
+
+export const registryEntrySchema = z.object({
+	name: z.string(),
+	type: registryItemTypeSchema,
+	style: registryStyleSchema,
+	description: z.string().optional(),
+	dependencies: z.array(z.string()).default([]),
+	registryDependencies: z.array(z.string()).default([]),
+	files: z.array(registryItemFileSchema).default([]),
+	tailwind: registryItemTailwindSchema.optional(),
+	cssVars: registryItemCssVarsSchema.optional(),
+	source: z.string().optional(),
+	category: z.string().optional(),
+	subcategory: z.string().optional(),
+	docs: z.string().optional(),
+});
+
+export const registrySchema = z.array(registryEntrySchema);
+
+export type RegistryEntry = z.output<typeof registryEntrySchema>;
+export type RegistryItemFile = z.output<typeof registryItemFileSchema>;
+export type RegistryStyle = z.output<typeof registryStyleSchema>;
+export type Registry = z.output<typeof registrySchema>;
+
+export type BlockName = (typeof blockNames)[number];
 
 export const blockSchema = z.object({
 	name: z.enum(blockNames),
 	type: z.literal("components:block"),
 	description: z.string(),
-	style: z.enum(["default", "new-york"]),
+	style: registryStyleSchema,
 	container: z
 		.object({
 			height: z.string().optional(),
@@ -80,9 +92,12 @@ export const blockSchema = z.object({
 		})
 		.optional(),
 	code: z.string(),
-	highlightedCode: z.string(),
-	chunks: z.array(z.string()),
+	highlightedCode: z.string().default(""),
+	chunks: z.array(z.string()).default([]),
 });
 
 export type Block = z.infer<typeof blockSchema>;
-export type BlockChunk = z.infer<typeof blockChunkSchema>;
+
+export function isBlockName(str: string): str is BlockName {
+	return blockNames.includes(str as never);
+}

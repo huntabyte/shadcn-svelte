@@ -1,5 +1,6 @@
 {
 	"name": "avatar",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,20 +8,27 @@
 	"files": [
 		{
 			"name": "avatar-fallback.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tclass={cn(\"bg-muted flex h-full w-full items-center justify-center rounded-full\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tclass={cn(\"bg-muted flex h-full w-full items-center justify-center rounded-full\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/avatar/avatar-fallback.svelte"
 		},
 		{
 			"name": "avatar-image.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tbind:ref\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tbind:ref\n\tclass={cn(\"aspect-square h-full w-full\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/avatar/avatar-image.svelte"
 		},
 		{
 			"name": "avatar.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tclass={cn(\"relative flex size-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tclass={cn(\"relative flex size-10 shrink-0 overflow-hidden rounded-full\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/avatar/avatar.svelte"
 		},
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback,\n};\n"
+			"content": "import Root from \"./avatar.svelte\";\nimport Image from \"./avatar-image.svelte\";\nimport Fallback from \"./avatar-fallback.svelte\";\n\nexport {\n\tRoot,\n\tImage,\n\tFallback,\n\t//\n\tRoot as Avatar,\n\tImage as AvatarImage,\n\tFallback as AvatarFallback,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/avatar/index.ts"
 		}
-	],
-	"type": "components:ui"
+	]
 }

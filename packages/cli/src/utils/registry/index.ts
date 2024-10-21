@@ -1,16 +1,24 @@
+import { fetch } from "node-fetch-native";
+import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
 import process from "node:process";
 import * as v from "valibot";
-import { fetch } from "node-fetch-native";
-import { createProxy } from "node-fetch-native/proxy";
 import { error } from "../errors.js";
-import { getEnvProxy } from "../get-env-proxy.js";
 import type { Config } from "../get-config.js";
+import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
 const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
+
+function getRegistryUrl(path: string) {
+	if (isUrl(path)) {
+		const url = new URL(path);
+		return url.toString();
+	}
+	return `${baseUrl}/${path}`;
+}
 
 export async function getRegistryIndex() {
 	try {
@@ -71,6 +79,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 }
 
 type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
+
 export async function resolveTree(index: RegistryIndex, names: string[], includeRegDeps = true) {
 	const tree: RegistryIndex = [];
 
@@ -112,7 +121,7 @@ export function getItemTargetPath(
 	override?: string
 ) {
 	// Allow overrides for all items but ui.
-	if (override && item.type !== "components:ui") {
+	if (override && item.type !== "registry:ui") {
 		return override;
 	}
 
@@ -142,5 +151,79 @@ async function fetchRegistry(paths: string[]) {
 		return results;
 	} catch {
 		throw error(`Failed to fetch registry from ${baseUrl}.`);
+	}
+}
+
+export async function registryResolveItemsTree(names: string[], config: Config) {
+	try {
+		const index = await getRegistryIndex();
+		if (!index) return null;
+
+		// if we're resolving the index, we want it to go first.
+		if (names.includes("index")) {
+			names.unshift("index");
+		}
+
+		const registryDependencies: string[] = [];
+
+		for (const name of names) {
+			const itemRegistryDependencies = await resolveRegistryDependencies(name, config);
+			registryDependencies.push(...itemRegistryDependencies);
+		}
+
+		const uniqueRegistryDeps = Array.from(new Set(registryDependencies));
+		const result = await fetchRegistry(uniqueRegistryDeps);
+		const payload = v.parse(v.array(schemas.registryItemSchema), result);
+
+		if (!payload) return null;
+
+		return v.parse(schemas.registryResolvedItemsTreeSchema, {
+			dependencies: payload.map((item) => item.dependencies ?? []),
+			files: payload.map((item) => item.files ?? []),
+		});
+	} catch (err) {
+		console.error(err);
+		throw error("Failed to resolve registry items tree.");
+	}
+}
+
+async function resolveRegistryDependencies(url: string, config: Config): Promise<string[]> {
+	const visited = new Set<string>();
+	const payload = new Set<string>();
+
+	async function resolveDependencies(itemUrl: string) {
+		const url = getRegistryUrl(
+			isUrl(itemUrl) ? itemUrl : `styles/${config.style}/${itemUrl}.json`
+		);
+
+		if (visited.has(url)) return;
+
+		visited.add(url);
+
+		try {
+			const [result] = await fetchRegistry([url]);
+			const item = v.parse(schemas.registryItemSchema, result);
+			payload.add(url);
+
+			if (item.registryDependencies) {
+				for (const dep of item.registryDependencies) {
+					await resolveDependencies(dep);
+				}
+			}
+		} catch {
+			throw error(`Failed to resolve dependencies for ${itemUrl}`);
+		}
+	}
+
+	await resolveDependencies(url);
+	return Array.from(payload);
+}
+
+function isUrl(path: string) {
+	try {
+		new URL(path);
+		return true;
+	} catch {
+		return false;
 	}
 }

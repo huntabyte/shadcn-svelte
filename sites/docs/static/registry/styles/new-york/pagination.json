@@ -1,5 +1,6 @@
 {
 	"name": "pagination",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui",
 		"svelte-radix"
@@ -10,36 +11,51 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nimport Item from \"./pagination-item.svelte\";\nimport Link from \"./pagination-link.svelte\";\nimport PrevButton from \"./pagination-prev-button.svelte\";\nimport NextButton from \"./pagination-next-button.svelte\";\nimport Ellipsis from \"./pagination-ellipsis.svelte\";\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tLink,\n\tPrevButton,\n\tNextButton,\n\tEllipsis,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tLink as PaginationLink,\n\tPrevButton as PaginationPrevButton,\n\tNextButton as PaginationNextButton,\n\tEllipsis as PaginationEllipsis,\n};\n"
+			"content": "import Root from \"./pagination.svelte\";\nimport Content from \"./pagination-content.svelte\";\nimport Item from \"./pagination-item.svelte\";\nimport Link from \"./pagination-link.svelte\";\nimport PrevButton from \"./pagination-prev-button.svelte\";\nimport NextButton from \"./pagination-next-button.svelte\";\nimport Ellipsis from \"./pagination-ellipsis.svelte\";\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tLink,\n\tPrevButton,\n\tNextButton,\n\tEllipsis,\n\t//\n\tRoot as Pagination,\n\tContent as PaginationContent,\n\tItem as PaginationItem,\n\tLink as PaginationLink,\n\tPrevButton as PaginationPrevButton,\n\tNextButton as PaginationNextButton,\n\tEllipsis as PaginationEllipsis,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/index.ts"
 		},
 		{
 			"name": "pagination-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();\n</script>\n\n<ul bind:this={ref} class={cn(\"flex flex-row items-center gap-1\", className)} {...restProps}>\n\t{@render children?.()}\n</ul>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLUListElement>> = $props();\n</script>\n\n<ul bind:this={ref} class={cn(\"flex flex-row items-center gap-1\", className)} {...restProps}>\n\t{@render children?.()}\n</ul>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-content.svelte"
 		},
 		{
 			"name": "pagination-ellipsis.svelte",
-			"content": "<script lang=\"ts\">\n\timport DotsHorizontal from \"svelte-radix/DotsHorizontal.svelte\";\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLSpanElement>>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<DotsHorizontal class=\"size-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n"
+			"content": "<script lang=\"ts\">\n\timport DotsHorizontal from \"svelte-radix/DotsHorizontal.svelte\";\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLSpanElement>>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<DotsHorizontal class=\"size-4\" />\n\t<span class=\"sr-only\">More pages</span>\n</span>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-ellipsis.svelte"
 		},
 		{
 			"name": "pagination-item.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLLiAttributes> = $props();\n</script>\n\n<li bind:this={ref} {...restProps}>\n\t{@render children?.()}\n</li>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLLiAttributes> = $props();\n</script>\n\n<li bind:this={ref} {...restProps}>\n\t{@render children?.()}\n</li>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-item.svelte"
 		},
 		{
 			"name": "pagination-link.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive, type WithoutChild } from \"bits-ui\";\n\timport {\n\t\ttype Props as ButtonProps,\n\t\tbuttonVariants,\n\t} from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype Props = WithoutChild<PaginationPrimitive.PageProps> &\n\t\tButtonProps & {\n\t\t\tisActive?: boolean;\n\t\t};\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsize = \"icon\",\n\t\tisActive = false,\n\t\tpage,\n\t\tchildren,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#snippet Fallback()}\n\t{page.value}\n{/snippet}\n\n<PaginationPrimitive.Page\n\t{page}\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({\n\t\t\tvariant: isActive ? \"outline\" : \"ghost\",\n\t\t\tsize,\n\t\t}),\n\t\tclassName\n\t)}\n\t{...restProps}\n\tchildren={children || Fallback}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive, type WithoutChild } from \"bits-ui\";\n\timport {\n\t\ttype Props as ButtonProps,\n\t\tbuttonVariants,\n\t} from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype Props = WithoutChild<PaginationPrimitive.PageProps> &\n\t\tButtonProps & {\n\t\t\tisActive?: boolean;\n\t\t};\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsize = \"icon\",\n\t\tisActive = false,\n\t\tpage,\n\t\tchildren,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#snippet Fallback()}\n\t{page.value}\n{/snippet}\n\n<PaginationPrimitive.Page\n\t{page}\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({\n\t\t\tvariant: isActive ? \"outline\" : \"ghost\",\n\t\t\tsize,\n\t\t}),\n\t\tclassName\n\t)}\n\t{...restProps}\n\tchildren={children || Fallback}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-link.svelte"
 		},
 		{
 			"name": "pagination-next-button.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Next</span>\n\t<ChevronRight class=\"size-4\" />\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\t{...restProps}\n\tclass={cn(buttonVariants({ variant: \"ghost\", className: \"gap-1 pr-2.5\" }), className)}\n\tchildren={children || Fallback}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Next</span>\n\t<ChevronRight class=\"size-4\" />\n{/snippet}\n\n<PaginationPrimitive.NextButton\n\tbind:ref\n\t{...restProps}\n\tclass={cn(buttonVariants({ variant: \"ghost\", className: \"gap-1 pr-2.5\" }), className)}\n\tchildren={children || Fallback}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-next-button.svelte"
 		},
 		{
 			"name": "pagination-prev-button.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronLeft from \"svelte-radix/ChevronLeft.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Previous</span>\n\t<ChevronLeft class=\"size-4\" />\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\t{...restProps}\n\tclass={cn(buttonVariants({ variant: \"ghost\", className: \"gap-1 pl-2.5\" }), className)}\n\tchildren={children || Fallback}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport ChevronLeft from \"svelte-radix/ChevronLeft.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PaginationPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<span>Previous</span>\n\t<ChevronLeft class=\"size-4\" />\n{/snippet}\n\n<PaginationPrimitive.PrevButton\n\tbind:ref\n\t{...restProps}\n\tclass={cn(buttonVariants({ variant: \"ghost\", className: \"gap-1 pl-2.5\" }), className)}\n\tchildren={children || Fallback}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination-prev-button.svelte"
 		},
 		{
 			"name": "pagination.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tcount = 0,\n\t\tperPage = 10,\n\t\tpage = $bindable(1),\n\t\tsiblingCount = 1,\n\t\t...restProps\n\t}: PaginationPrimitive.RootProps = $props();\n</script>\n\n<PaginationPrimitive.Root\n\tbind:ref\n\tclass={cn(\"mx-auto flex w-full flex-col items-center\", className)}\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tbind:page\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Pagination as PaginationPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tcount = 0,\n\t\tperPage = 10,\n\t\tpage = $bindable(1),\n\t\tsiblingCount = 1,\n\t\t...restProps\n\t}: PaginationPrimitive.RootProps = $props();\n</script>\n\n<PaginationPrimitive.Root\n\tbind:ref\n\tclass={cn(\"mx-auto flex w-full flex-col items-center\", className)}\n\t{count}\n\t{perPage}\n\t{siblingCount}\n\tbind:page\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/pagination/pagination.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }
