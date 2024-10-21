@@ -1,5 +1,6 @@
 {
 	"name": "skeleton",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import Root from \"./skeleton.svelte\";\nexport { Root, \n//\nRoot as Skeleton, };\n"
+			"content": "import Root from \"./skeleton.svelte\";\nexport { Root, \n//\nRoot as Skeleton, };\n",
+			"target": "components/ui/skeleton/index.js",
+			"type": "registry:ui"
 		},
 		{
 			"name": "skeleton.svelte",
-			"content": "<script>\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-primary/10 animate-pulse rounded-md\", className)}\n\t{...restProps}\n></div>\n"
+			"content": "<script>\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-primary/10 animate-pulse rounded-md\", className)}\n\t{...restProps}\n></div>\n",
+			"target": "components/ui/skeleton/skeleton.svelte",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

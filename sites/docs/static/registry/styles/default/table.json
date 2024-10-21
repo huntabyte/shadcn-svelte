@@ -1,5 +1,6 @@
 {
 	"name": "table",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,40 +8,57 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow,\n};\n"
+			"content": "import Root from \"./table.svelte\";\nimport Body from \"./table-body.svelte\";\nimport Caption from \"./table-caption.svelte\";\nimport Cell from \"./table-cell.svelte\";\nimport Footer from \"./table-footer.svelte\";\nimport Head from \"./table-head.svelte\";\nimport Header from \"./table-header.svelte\";\nimport Row from \"./table-row.svelte\";\n\nexport {\n\tRoot,\n\tBody,\n\tCaption,\n\tCell,\n\tFooter,\n\tHead,\n\tHeader,\n\tRow,\n\t//\n\tRoot as Table,\n\tBody as TableBody,\n\tCaption as TableCaption,\n\tCell as TableCell,\n\tFooter as TableFooter,\n\tHead as TableHead,\n\tHeader as TableHeader,\n\tRow as TableRow,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/index.ts"
 		},
 		{
 			"name": "table-body.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tbody bind:this={ref} class={cn(\"[&_tr:last-child]:border-0\", className)} {...restProps}>\n\t{@render children?.()}\n</tbody>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tbody bind:this={ref} class={cn(\"[&_tr:last-child]:border-0\", className)} {...restProps}>\n\t{@render children?.()}\n</tbody>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-body.svelte"
 		},
 		{
 			"name": "table-caption.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"text-muted-foreground mt-4 text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<caption bind:this={ref} class={cn(\"text-muted-foreground mt-4 text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</caption>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-caption.svelte"
 		},
 		{
 			"name": "table-cell.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLTdAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTdAttributes> = $props();\n</script>\n\n<td\n\tbind:this={ref}\n\tclass={cn(\"p-4 align-middle [&:has([role=checkbox])]:pr-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</td>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLTdAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTdAttributes> = $props();\n</script>\n\n<td\n\tbind:this={ref}\n\tclass={cn(\"p-4 align-middle [&:has([role=checkbox])]:pr-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</td>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-cell.svelte"
 		},
 		{
 			"name": "table-footer.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary text-primary-foreground font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tclass={cn(\"bg-primary text-primary-foreground font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-footer.svelte"
 		},
 		{
 			"name": "table-head.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLThAttributes> = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLThAttributes> = $props();\n</script>\n\n<th\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</th>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-head.svelte"
 		},
 		{
 			"name": "table-header.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<thead bind:this={ref} class={cn(\"[&_tr]:border-b\", className)} {...restProps}>\n\t{@render children?.()}\n</thead>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<thead bind:this={ref} class={cn(\"[&_tr]:border-b\", className)} {...restProps}>\n\t{@render children?.()}\n</thead>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-header.svelte"
 		},
 		{
 			"name": "table-row.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();\n</script>\n\n<tr\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tr>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table-row.svelte"
 		},
 		{
 			"name": "table.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTableAttributes> = $props();\n</script>\n\n<div class=\"relative w-full overflow-auto\">\n\t<table bind:this={ref} class={cn(\"w-full caption-bottom text-sm\", className)} {...restProps}>\n\t\t{@render children?.()}\n\t</table>\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTableAttributes> = $props();\n</script>\n\n<div class=\"relative w-full overflow-auto\">\n\t<table bind:this={ref} class={cn(\"w-full caption-bottom text-sm\", className)} {...restProps}>\n\t\t{@render children?.()}\n\t</table>\n</div>\n",
+			"type": "registry:ui",
+			"target": "components/ui/table/table.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }

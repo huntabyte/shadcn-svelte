@@ -1,0 +1,27 @@
+{
+	"name": "sidebar-13",
+	"type": "registry:block",
+	"dependencies": [
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"breadcrumb",
+		"button",
+		"dialog",
+		"sidebar"
+	],
+	"files": [
+		{
+			"name": "page.svelte",
+			"content": "<script>\n\timport SettingsDialog from \"$lib/registry/new-york/block/sidebar-13/components/settings-dialog.svelte\";\n</script>\n\n<div class=\"flex h-svh items-center justify-center\">\n\t<SettingsDialog />\n</div>\n",
+			"target": "src/routes/dashboard/+page.svelte",
+			"type": "registry:page"
+		},
+		{
+			"name": "settings-dialog.svelte",
+			"content": "<script>\n\timport * as Breadcrumb from \"$lib/registry/new-york/ui/breadcrumb/index.js\";\n\timport { Button } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport * as Dialog from \"$lib/registry/new-york/ui/dialog/index.js\";\n\timport * as Sidebar from \"$lib/registry/new-york/ui/sidebar/index.js\";\n\timport Bell from \"lucide-svelte/icons/bell\";\n\timport Check from \"lucide-svelte/icons/check\";\n\timport Globe from \"lucide-svelte/icons/globe\";\n\timport House from \"lucide-svelte/icons/house\";\n\timport Keyboard from \"lucide-svelte/icons/keyboard\";\n\timport Link from \"lucide-svelte/icons/link\";\n\timport Lock from \"lucide-svelte/icons/lock\";\n\timport Menu from \"lucide-svelte/icons/menu\";\n\timport MessageCircle from \"lucide-svelte/icons/message-circle\";\n\timport Paintbrush from \"lucide-svelte/icons/paintbrush\";\n\timport Settings from \"lucide-svelte/icons/settings\";\n\timport Video from \"lucide-svelte/icons/video\";\n\n\tconst data = {\n\t\tnav: [\n\t\t\t{ name: \"Notifications\", icon: Bell },\n\t\t\t{ name: \"Navigation\", icon: Menu },\n\t\t\t{ name: \"Home\", icon: House },\n\t\t\t{ name: \"Appearance\", icon: Paintbrush },\n\t\t\t{ name: \"Messages & media\", icon: MessageCircle },\n\t\t\t{ name: \"Language & region\", icon: Globe },\n\t\t\t{ name: \"Accessibility\", icon: Keyboard },\n\t\t\t{ name: \"Mark as read\", icon: Check },\n\t\t\t{ name: \"Audio & video\", icon: Video },\n\t\t\t{ name: \"Connected accounts\", icon: Link },\n\t\t\t{ name: \"Privacy & visibility\", icon: Lock },\n\t\t\t{ name: \"Advanced\", icon: Settings },\n\t\t],\n\t};\n\n\tlet open = $state(false);\n</script>\n\n<Dialog.Root bind:open>\n\t<Dialog.Trigger>\n\t\t{#snippet child({ props })}\n\t\t\t<Button size=\"sm\" {...props}>Open Dialog</Button>\n\t\t{/snippet}\n\t</Dialog.Trigger>\n\t<Dialog.Content class=\"overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]\">\n\t\t<Dialog.Title class=\"sr-only\">Settings</Dialog.Title>\n\t\t<Dialog.Description class=\"sr-only\">Customize your settings here.</Dialog.Description>\n\t\t<Sidebar.Provider class=\"items-start\">\n\t\t\t<Sidebar.Root collapsible=\"none\" class=\"hidden md:flex\">\n\t\t\t\t<Sidebar.Content>\n\t\t\t\t\t<Sidebar.Group>\n\t\t\t\t\t\t<Sidebar.GroupContent>\n\t\t\t\t\t\t\t<Sidebar.Menu>\n\t\t\t\t\t\t\t\t{#each data.nav as item (item.name)}\n\t\t\t\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t\t\t\t<Sidebar.MenuButton\n\t\t\t\t\t\t\t\t\t\t\tisActive={item.name === \"Messages & media\"}\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"##\" {...props}>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<item.icon />\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span>{item.name}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t</Sidebar.Menu>\n\t\t\t\t\t\t</Sidebar.GroupContent>\n\t\t\t\t\t</Sidebar.Group>\n\t\t\t\t</Sidebar.Content>\n\t\t\t</Sidebar.Root>\n\t\t\t<main class=\"flex h-[480px] flex-1 flex-col overflow-hidden\">\n\t\t\t\t<header\n\t\t\t\t\tclass=\"flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12\"\n\t\t\t\t>\n\t\t\t\t\t<div class=\"flex items-center gap-2 px-4\">\n\t\t\t\t\t\t<Breadcrumb.Root>\n\t\t\t\t\t\t\t<Breadcrumb.List>\n\t\t\t\t\t\t\t\t<Breadcrumb.Item class=\"hidden md:block\">\n\t\t\t\t\t\t\t\t\t<Breadcrumb.Link href=\"#\">Settings</Breadcrumb.Link>\n\t\t\t\t\t\t\t\t</Breadcrumb.Item>\n\t\t\t\t\t\t\t\t<Breadcrumb.Separator class=\"hidden md:block\" />\n\t\t\t\t\t\t\t\t<Breadcrumb.Item>\n\t\t\t\t\t\t\t\t\t<Breadcrumb.Page>Messages & media</Breadcrumb.Page>\n\t\t\t\t\t\t\t\t</Breadcrumb.Item>\n\t\t\t\t\t\t\t</Breadcrumb.List>\n\t\t\t\t\t\t</Breadcrumb.Root>\n\t\t\t\t\t</div>\n\t\t\t\t</header>\n\t\t\t\t<div class=\"flex flex-1 flex-col gap-4 overflow-y-auto p-4 pt-0\">\n\t\t\t\t\t{#each Array.from({ length: 10 }) as _, i (i)}\n\t\t\t\t\t\t<div class=\"bg-muted/50 aspect-video max-w-3xl rounded-xl\"></div>\n\t\t\t\t\t{/each}\n\t\t\t\t</div>\n\t\t\t</main>\n\t\t</Sidebar.Provider>\n\t</Dialog.Content>\n</Dialog.Root>\n",
+			"target": "components/settings-dialog.svelte",
+			"type": "registry:component"
+		}
+	]
+}

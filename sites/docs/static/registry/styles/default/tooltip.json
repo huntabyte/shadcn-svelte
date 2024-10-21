@@ -1,5 +1,6 @@
 {
 	"name": "tooltip",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport Content from \"./tooltip-content.svelte\";\n\nconst Root = TooltipPrimitive.Root;\nconst Trigger = TooltipPrimitive.Trigger;\nconst Provider = TooltipPrimitive.Provider;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\tProvider,\n\t//\n\tRoot as Tooltip,\n\tContent as TooltipContent,\n\tTrigger as TooltipTrigger,\n\tProvider as TooltipProvider,\n};\n"
+			"content": "import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport Content from \"./tooltip-content.svelte\";\n\nconst Root = TooltipPrimitive.Root;\nconst Trigger = TooltipPrimitive.Trigger;\nconst Provider = TooltipPrimitive.Provider;\n\nexport {\n\tRoot,\n\tTrigger,\n\tContent,\n\tProvider,\n\t//\n\tRoot as Tooltip,\n\tContent as TooltipContent,\n\tTrigger as TooltipTrigger,\n\tProvider as TooltipProvider,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/tooltip/index.ts"
 		},
 		{
 			"name": "tooltip-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 overflow-hidden rounded-md border px-3 py-1.5 text-sm shadow-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/tooltip/tooltip-content.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }

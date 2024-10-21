@@ -1,5 +1,6 @@
 {
 	"name": "sheet",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui",
 		"lucide-svelte"
@@ -8,32 +9,45 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport { tv } from \"tailwind-variants\";\nimport Overlay from \"./sheet-overlay.svelte\";\nimport Content from \"./sheet-content.svelte\";\nimport Header from \"./sheet-header.svelte\";\nimport Footer from \"./sheet-footer.svelte\";\nimport Title from \"./sheet-title.svelte\";\nimport Description from \"./sheet-description.svelte\";\nconst Root = SheetPrimitive.Root;\nconst Close = SheetPrimitive.Close;\nconst Trigger = SheetPrimitive.Trigger;\nconst Portal = SheetPrimitive.Portal;\nexport { Root, Close, Trigger, Portal, Overlay, Content, Header, Footer, Title, Description, \n//\nRoot as Sheet, Close as SheetClose, Trigger as SheetTrigger, Portal as SheetPortal, Overlay as SheetOverlay, Content as SheetContent, Header as SheetHeader, Footer as SheetFooter, Title as SheetTitle, Description as SheetDescription, };\nexport const sheetVariants = tv({\n    base: \"bg-background fixed z-50 gap-4 p-6 shadow-lg\",\n    variants: {\n        side: {\n            top: \"inset-x-0 top-0 border-b\",\n            bottom: \"inset-x-0 bottom-0 border-t\",\n            left: \"inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm\",\n            right: \"inset-y-0 right-0 h-full w-3/4  border-l sm:max-w-sm\",\n        },\n    },\n    defaultVariants: {\n        side: \"right\",\n    },\n});\nexport const sheetTransitions = {\n    top: {\n        in: {\n            y: \"-100%\",\n            duration: 500,\n            opacity: 1,\n        },\n        out: {\n            y: \"-100%\",\n            duration: 300,\n            opacity: 1,\n        },\n    },\n    bottom: {\n        in: {\n            y: \"100%\",\n            duration: 500,\n            opacity: 1,\n        },\n        out: {\n            y: \"100%\",\n            duration: 300,\n            opacity: 1,\n        },\n    },\n    left: {\n        in: {\n            x: \"-100%\",\n            duration: 500,\n            opacity: 1,\n        },\n        out: {\n            x: \"-100%\",\n            duration: 300,\n            opacity: 1,\n        },\n    },\n    right: {\n        in: {\n            x: \"100%\",\n            duration: 500,\n            opacity: 1,\n        },\n        out: {\n            x: \"100%\",\n            duration: 300,\n            opacity: 1,\n        },\n    },\n};\n"
+			"content": "import { Dialog as SheetPrimitive } from \"bits-ui\";\nimport { tv } from \"tailwind-variants\";\nimport Overlay from \"./sheet-overlay.svelte\";\nimport Content from \"./sheet-content.svelte\";\nimport Header from \"./sheet-header.svelte\";\nimport Footer from \"./sheet-footer.svelte\";\nimport Title from \"./sheet-title.svelte\";\nimport Description from \"./sheet-description.svelte\";\nconst Root = SheetPrimitive.Root;\nconst Close = SheetPrimitive.Close;\nconst Trigger = SheetPrimitive.Trigger;\nconst Portal = SheetPrimitive.Portal;\nexport { Root, Close, Trigger, Portal, Overlay, Content, Header, Footer, Title, Description, \n//\nRoot as Sheet, Close as SheetClose, Trigger as SheetTrigger, Portal as SheetPortal, Overlay as SheetOverlay, Content as SheetContent, Header as SheetHeader, Footer as SheetFooter, Title as SheetTitle, Description as SheetDescription, };\nexport const sheetVariants = tv({\n\tbase: \"bg-background fixed z-50 gap-4 p-6 shadow-lg\",\n\tvariants: {\n\t\tside: {\n\t\t\ttop: \"inset-x-0 top-0 border-b\",\n\t\t\tbottom: \"inset-x-0 bottom-0 border-t\",\n\t\t\tleft: \"inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm\",\n\t\t\tright: \"inset-y-0 right-0 h-full w-3/4  border-l sm:max-w-sm\",\n\t\t},\n\t},\n\tdefaultVariants: {\n\t\tside: \"right\",\n\t},\n});\nexport const sheetTransitions = {\n\ttop: {\n\t\tin: {\n\t\t\ty: \"-100%\",\n\t\t\tduration: 500,\n\t\t\topacity: 1,\n\t\t},\n\t\tout: {\n\t\t\ty: \"-100%\",\n\t\t\tduration: 300,\n\t\t\topacity: 1,\n\t\t},\n\t},\n\tbottom: {\n\t\tin: {\n\t\t\ty: \"100%\",\n\t\t\tduration: 500,\n\t\t\topacity: 1,\n\t\t},\n\t\tout: {\n\t\t\ty: \"100%\",\n\t\t\tduration: 300,\n\t\t\topacity: 1,\n\t\t},\n\t},\n\tleft: {\n\t\tin: {\n\t\t\tx: \"-100%\",\n\t\t\tduration: 500,\n\t\t\topacity: 1,\n\t\t},\n\t\tout: {\n\t\t\tx: \"-100%\",\n\t\t\tduration: 300,\n\t\t\topacity: 1,\n\t\t},\n\t},\n\tright: {\n\t\tin: {\n\t\t\tx: \"100%\",\n\t\t\tduration: 500,\n\t\t\topacity: 1,\n\t\t},\n\t\tout: {\n\t\t\tx: \"100%\",\n\t\t\tduration: 300,\n\t\t\topacity: 1,\n\t\t},\n\t},\n};\n",
+			"target": "components/ui/sheet/index.js",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-content.svelte",
-			"content": "<script>\n\timport { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport X from \"lucide-svelte/icons/x\";\n\timport type { Snippet } from \"svelte\";\n\timport { SheetOverlay, SheetPortal, type Side, sheetVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tside = \"right\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {\n\t\tside?: Side;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SheetPortal>\n\t<SheetOverlay />\n\t<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>\n\t\t{@render children?.()}\n\t\t<SheetPrimitive.Close\n\t\t\tclass=\"ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none\"\n\t\t>\n\t\t\t<X class=\"size-4\" />\n\t\t\t<span class=\"sr-only\">Close</span>\n\t\t</SheetPrimitive.Close>\n\t</SheetPrimitive.Content>\n</SheetPortal>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport X from \"lucide-svelte/icons/x\";\n\timport type { Snippet } from \"svelte\";\n\timport { SheetOverlay, SheetPortal, type Side, sheetVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tside = \"right\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {\n\t\tside?: Side;\n\t\tchildren: Snippet;\n\t} = $props();\n</script>\n\n<SheetPortal>\n\t<SheetOverlay />\n\t<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>\n\t\t{@render children?.()}\n\t\t<SheetPrimitive.Close\n\t\t\tclass=\"ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none\"\n\t\t>\n\t\t\t<X class=\"size-4\" />\n\t\t\t<span class=\"sr-only\">Close</span>\n\t\t</SheetPrimitive.Close>\n\t</SheetPrimitive.Content>\n</SheetPortal>\n",
+			"target": "components/ui/sheet/sheet-content.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-description.svelte",
-			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.DescriptionProps = $props();\n</script>\n\n<SheetPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.DescriptionProps = $props();\n</script>\n\n<SheetPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/sheet/sheet-description.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-footer.svelte",
-			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"target": "components/ui/sheet/sheet-footer.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-header.svelte",
-			"content": "<script>\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"target": "components/ui/sheet/sheet-header.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-overlay.svelte",
-			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.OverlayProps = $props();\n\n\texport { className as class };\n</script>\n\n<SheetPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\"bg-background/80 fixed inset-0 z-50 backdrop-blur-sm \", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.OverlayProps = $props();\n\n\texport { className as class };\n</script>\n\n<SheetPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\"bg-background/80 fixed inset-0 z-50 backdrop-blur-sm \", className)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/sheet/sheet-overlay.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "sheet-title.svelte",
-			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-foreground text-lg font-semibold\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { Dialog as SheetPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SheetPrimitive.TitleProps = $props();\n</script>\n\n<SheetPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-foreground text-lg font-semibold\", className)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/sheet/sheet-title.svelte",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

@@ -1,5 +1,6 @@
 {
 	"name": "alert-dialog",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -9,40 +10,57 @@
 	"files": [
 		{
 			"name": "alert-dialog-action.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.ActionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Action bind:ref class={cn(buttonVariants(), className)} {...restProps} />\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.ActionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Action bind:ref class={cn(buttonVariants(), className)} {...restProps} />\n",
+			"target": "components/ui/alert-dialog/alert-dialog-action.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-cancel.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.CancelProps = $props();\n</script>\n\n<AlertDialogPrimitive.Cancel\n\tbind:ref\n\tclass={cn(buttonVariants({ variant: \"outline\" }), \"mt-2 sm:mt-0\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.CancelProps = $props();\n</script>\n\n<AlertDialogPrimitive.Cancel\n\tbind:ref\n\tclass={cn(buttonVariants({ variant: \"outline\" }), \"mt-2 sm:mt-0\", className)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-cancel.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-content.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChild } from \"bits-ui\";\n\timport AlertDialogOverlay from \"./alert-dialog-overlay.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();\n</script>\n\n<AlertDialogPrimitive.Portal>\n\t<AlertDialogOverlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</AlertDialogPrimitive.Portal>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive, type WithoutChild } from \"bits-ui\";\n\timport AlertDialogOverlay from \"./alert-dialog-overlay.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();\n</script>\n\n<AlertDialogPrimitive.Portal>\n\t<AlertDialogOverlay />\n\t<AlertDialogPrimitive.Content\n\t\tbind:ref\n\t\tclass={cn(\n\t\t\t\"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</AlertDialogPrimitive.Portal>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-content.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-description.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.DescriptionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.DescriptionProps = $props();\n</script>\n\n<AlertDialogPrimitive.Description\n\tbind:ref\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-description.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-footer.svelte",
-			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-footer.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-header.svelte",
-			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"flex flex-col space-y-2 text-center sm:text-left\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-header.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-overlay.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.OverlayProps = $props();\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.OverlayProps = $props();\n</script>\n\n<AlertDialogPrimitive.Overlay\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-overlay.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "alert-dialog-title.svelte",
-			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tlevel = 3,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.TitleProps = $props();\n</script>\n\n<AlertDialogPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-lg font-semibold\", className)}\n\t{level}\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tclass: className,\n\t\tlevel = 3,\n\t\tref = $bindable(null),\n\t\t...restProps\n\t}: AlertDialogPrimitive.TitleProps = $props();\n</script>\n\n<AlertDialogPrimitive.Title\n\tbind:ref\n\tclass={cn(\"text-lg font-semibold\", className)}\n\t{level}\n\t{...restProps}\n/>\n",
+			"target": "components/ui/alert-dialog/alert-dialog-title.svelte",
+			"type": "registry:ui"
 		},
 		{
 			"name": "index.js",
-			"content": "import { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\nimport Title from \"./alert-dialog-title.svelte\";\nimport Action from \"./alert-dialog-action.svelte\";\nimport Cancel from \"./alert-dialog-cancel.svelte\";\nimport Footer from \"./alert-dialog-footer.svelte\";\nimport Header from \"./alert-dialog-header.svelte\";\nimport Overlay from \"./alert-dialog-overlay.svelte\";\nimport Content from \"./alert-dialog-content.svelte\";\nimport Description from \"./alert-dialog-description.svelte\";\nconst Root = AlertDialogPrimitive.Root;\nconst Trigger = AlertDialogPrimitive.Trigger;\nconst Portal = AlertDialogPrimitive.Portal;\nexport { Root, Title, Action, Cancel, Portal, Footer, Header, Trigger, Overlay, Content, Description, \n//\nRoot as AlertDialog, Title as AlertDialogTitle, Action as AlertDialogAction, Cancel as AlertDialogCancel, Portal as AlertDialogPortal, Footer as AlertDialogFooter, Header as AlertDialogHeader, Trigger as AlertDialogTrigger, Overlay as AlertDialogOverlay, Content as AlertDialogContent, Description as AlertDialogDescription, };\n"
+			"content": "import { AlertDialog as AlertDialogPrimitive } from \"bits-ui\";\nimport Title from \"./alert-dialog-title.svelte\";\nimport Action from \"./alert-dialog-action.svelte\";\nimport Cancel from \"./alert-dialog-cancel.svelte\";\nimport Footer from \"./alert-dialog-footer.svelte\";\nimport Header from \"./alert-dialog-header.svelte\";\nimport Overlay from \"./alert-dialog-overlay.svelte\";\nimport Content from \"./alert-dialog-content.svelte\";\nimport Description from \"./alert-dialog-description.svelte\";\nconst Root = AlertDialogPrimitive.Root;\nconst Trigger = AlertDialogPrimitive.Trigger;\nconst Portal = AlertDialogPrimitive.Portal;\nexport { Root, Title, Action, Cancel, Portal, Footer, Header, Trigger, Overlay, Content, Description, \n//\nRoot as AlertDialog, Title as AlertDialogTitle, Action as AlertDialogAction, Cancel as AlertDialogCancel, Portal as AlertDialogPortal, Footer as AlertDialogFooter, Header as AlertDialogHeader, Trigger as AlertDialogTrigger, Overlay as AlertDialogOverlay, Content as AlertDialogContent, Description as AlertDialogDescription, };\n",
+			"target": "components/ui/alert-dialog/index.js",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

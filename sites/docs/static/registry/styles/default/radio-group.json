@@ -1,5 +1,6 @@
 {
 	"name": "radio-group",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui",
 		"lucide-svelte"
@@ -8,16 +9,21 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./radio-group.svelte\";\nimport Item from \"./radio-group-item.svelte\";\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as RadioGroup,\n\tItem as RadioGroupItem,\n};\n"
+			"content": "import Root from \"./radio-group.svelte\";\nimport Item from \"./radio-group-item.svelte\";\n\nexport {\n\tRoot,\n\tItem,\n\t//\n\tRoot as RadioGroup,\n\tItem as RadioGroupItem,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/radio-group/index.ts"
 		},
 		{
 			"name": "radio-group-item.svelte",
-			"content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport Circle from \"lucide-svelte/icons/circle\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RadioGroupPrimitive.ItemProps> = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Circle class=\"size-2.5 fill-current text-current\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n"
+			"content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport Circle from \"lucide-svelte/icons/circle\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RadioGroupPrimitive.ItemProps> = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"border-primary text-primary ring-offset-background focus-visible:ring-ring aspect-square size-4 rounded-full border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div class=\"flex items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<Circle class=\"size-2.5 fill-current text-current\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n",
+			"type": "registry:ui",
+			"target": "components/ui/radio-group/radio-group-item.svelte"
 		},
 		{
 			"name": "radio-group.svelte",
-			"content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn(\"grid gap-2\", className)} {...restProps} />\n"
+			"content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps = $props();\n</script>\n\n<RadioGroupPrimitive.Root bind:ref bind:value class={cn(\"grid gap-2\", className)} {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "components/ui/radio-group/radio-group.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }
