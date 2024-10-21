@@ -3,12 +3,12 @@ import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
 import process from "node:process";
 import * as v from "valibot";
-import { error } from "../errors.js";
+import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com";
+const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com/registry";
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
@@ -141,7 +141,8 @@ async function fetchRegistry(paths: string[]) {
 	try {
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const response = await fetch(`${baseUrl}/registry/${path}`, {
+				const url = getRegistryUrl(path);
+				const response = await fetch(url, {
 					...proxy,
 				});
 				return await response.json();
@@ -149,7 +150,8 @@ async function fetchRegistry(paths: string[]) {
 		);
 
 		return results;
-	} catch {
+	} catch (e) {
+		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch registry from ${baseUrl}.`);
 	}
 }
@@ -181,8 +183,8 @@ export async function registryResolveItemsTree(names: string[], config: Config) 
 			dependencies: payload.map((item) => item.dependencies ?? []),
 			files: payload.map((item) => item.files ?? []),
 		});
-	} catch (err) {
-		console.error(err);
+	} catch (e) {
+		if (e instanceof CLIError) throw e;
 		throw error("Failed to resolve registry items tree.");
 	}
 }
@@ -210,7 +212,8 @@ async function resolveRegistryDependencies(url: string, config: Config): Promise
 					await resolveDependencies(dep);
 				}
 			}
-		} catch {
+		} catch (e) {
+			if (e instanceof CLIError) throw e;
 			throw error(`Failed to resolve dependencies for ${itemUrl}`);
 		}
 	}

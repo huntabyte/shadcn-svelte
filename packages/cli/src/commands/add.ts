@@ -16,6 +16,7 @@ import {
 	getItemTargetPath,
 	// getRegistryBaseColor,
 	getRegistryIndex,
+	registryResolveItemsTree,
 	resolveTree,
 } from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
@@ -121,6 +122,8 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 		const regDeps = registryDepMap.get(name);
 		regDeps?.forEach((dep) => selectedComponents.add(dep));
 	}
+
+	const res = await registryResolveItemsTree(Array.from(selectedComponents), config);
 
 	const tree = await resolveTree(registryIndex, Array.from(selectedComponents), false);
 	const payload = await fetchTree(config, tree);

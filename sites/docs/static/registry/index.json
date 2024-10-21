@@ -7,10 +7,22 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/accordion/accordion-content.svelte",
-			"ui/accordion/accordion-item.svelte",
-			"ui/accordion/accordion-trigger.svelte",
-			"ui/accordion/index.ts"
+			{
+				"path": "ui/accordion/accordion-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/accordion/accordion-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/accordion/accordion-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/accordion/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -21,10 +33,22 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/alert/alert-description.svelte",
-			"ui/alert/alert-title.svelte",
-			"ui/alert/alert.svelte",
-			"ui/alert/index.ts"
+			{
+				"path": "ui/alert/alert-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert/alert-title.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert/alert.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -37,15 +61,42 @@
 			"button"
 		],
 		"files": [
-			"ui/alert-dialog/alert-dialog-action.svelte",
-			"ui/alert-dialog/alert-dialog-cancel.svelte",
-			"ui/alert-dialog/alert-dialog-content.svelte",
-			"ui/alert-dialog/alert-dialog-description.svelte",
-			"ui/alert-dialog/alert-dialog-footer.svelte",
-			"ui/alert-dialog/alert-dialog-header.svelte",
-			"ui/alert-dialog/alert-dialog-overlay.svelte",
-			"ui/alert-dialog/alert-dialog-title.svelte",
-			"ui/alert-dialog/index.ts"
+			{
+				"path": "ui/alert-dialog/alert-dialog-action.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-cancel.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-overlay.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/alert-dialog-title.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/alert-dialog/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -56,7 +107,10 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/aspect-ratio/index.ts"
+			{
+				"path": "ui/aspect-ratio/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -67,10 +121,22 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/avatar/avatar-fallback.svelte",
-			"ui/avatar/avatar-image.svelte",
-			"ui/avatar/avatar.svelte",
-			"ui/avatar/index.ts"
+			{
+				"path": "ui/avatar/avatar-fallback.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/avatar/avatar-image.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/avatar/avatar.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/avatar/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -81,8 +147,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/badge/badge.svelte",
-			"ui/badge/index.ts"
+			{
+				"path": "ui/badge/badge.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/badge/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -93,14 +165,38 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/breadcrumb/breadcrumb-ellipsis.svelte",
-			"ui/breadcrumb/breadcrumb-item.svelte",
-			"ui/breadcrumb/breadcrumb-link.svelte",
-			"ui/breadcrumb/breadcrumb-list.svelte",
-			"ui/breadcrumb/breadcrumb-page.svelte",
-			"ui/breadcrumb/breadcrumb-separator.svelte",
-			"ui/breadcrumb/breadcrumb.svelte",
-			"ui/breadcrumb/index.ts"
+			{
+				"path": "ui/breadcrumb/breadcrumb-ellipsis.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb-link.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb-list.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb-page.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/breadcrumb.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/breadcrumb/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -109,8 +205,14 @@
 		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
-			"ui/button/button.svelte",
-			"ui/button/index.ts"
+			{
+				"path": "ui/button/button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/button/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -124,20 +226,62 @@
 			"button"
 		],
 		"files": [
-			"ui/calendar/calendar-cell.svelte",
-			"ui/calendar/calendar-day.svelte",
-			"ui/calendar/calendar-grid-body.svelte",
-			"ui/calendar/calendar-grid-head.svelte",
-			"ui/calendar/calendar-grid-row.svelte",
-			"ui/calendar/calendar-grid.svelte",
-			"ui/calendar/calendar-head-cell.svelte",
-			"ui/calendar/calendar-header.svelte",
-			"ui/calendar/calendar-heading.svelte",
-			"ui/calendar/calendar-months.svelte",
-			"ui/calendar/calendar-next-button.svelte",
-			"ui/calendar/calendar-prev-button.svelte",
-			"ui/calendar/calendar.svelte",
-			"ui/calendar/index.ts"
+			{
+				"path": "ui/calendar/calendar-cell.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-day.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-grid-body.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-grid-head.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-grid-row.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-grid.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-head-cell.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-months.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-next-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar-prev-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/calendar.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/calendar/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -148,13 +292,34 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/card/card-content.svelte",
-			"ui/card/card-description.svelte",
-			"ui/card/card-footer.svelte",
-			"ui/card/card-header.svelte",
-			"ui/card/card-title.svelte",
-			"ui/card/card.svelte",
-			"ui/card/index.ts"
+			{
+				"path": "ui/card/card-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/card-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/card-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/card-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/card-title.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/card.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/card/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -168,13 +333,34 @@
 			"button"
 		],
 		"files": [
-			"ui/carousel/carousel-content.svelte",
-			"ui/carousel/carousel-item.svelte",
-			"ui/carousel/carousel-next.svelte",
-			"ui/carousel/carousel-previous.svelte",
-			"ui/carousel/carousel.svelte",
-			"ui/carousel/context.ts",
-			"ui/carousel/index.ts"
+			{
+				"path": "ui/carousel/carousel-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/carousel-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/carousel-next.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/carousel-previous.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/carousel.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/context.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/carousel/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -185,8 +371,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/checkbox/checkbox.svelte",
-			"ui/checkbox/index.ts"
+			{
+				"path": "ui/checkbox/checkbox.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/checkbox/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -197,7 +389,10 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/collapsible/index.ts"
+			{
+				"path": "ui/collapsible/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -210,17 +405,50 @@
 			"dialog"
 		],
 		"files": [
-			"ui/command/command-dialog.svelte",
-			"ui/command/command-empty.svelte",
-			"ui/command/command-group.svelte",
-			"ui/command/command-input.svelte",
-			"ui/command/command-item.svelte",
-			"ui/command/command-link-item.svelte",
-			"ui/command/command-list.svelte",
-			"ui/command/command-separator.svelte",
-			"ui/command/command-shortcut.svelte",
-			"ui/command/command.svelte",
-			"ui/command/index.ts"
+			{
+				"path": "ui/command/command-dialog.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-empty.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-group.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-input.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-link-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-list.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command-shortcut.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/command.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/command/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -231,16 +459,46 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/context-menu/context-menu-checkbox-item.svelte",
-			"ui/context-menu/context-menu-content.svelte",
-			"ui/context-menu/context-menu-group-heading.svelte",
-			"ui/context-menu/context-menu-item.svelte",
-			"ui/context-menu/context-menu-radio-item.svelte",
-			"ui/context-menu/context-menu-separator.svelte",
-			"ui/context-menu/context-menu-shortcut.svelte",
-			"ui/context-menu/context-menu-sub-content.svelte",
-			"ui/context-menu/context-menu-sub-trigger.svelte",
-			"ui/context-menu/index.ts"
+			{
+				"path": "ui/context-menu/context-menu-checkbox-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-group-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-radio-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-shortcut.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-sub-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/context-menu-sub-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/context-menu/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -249,10 +507,22 @@
 		"dependencies": [],
 		"registryDependencies": [],
 		"files": [
-			"ui/data-table/data-table.svelte.ts",
-			"ui/data-table/flex-render.svelte",
-			"ui/data-table/index.ts",
-			"ui/data-table/render-helpers.ts"
+			{
+				"path": "ui/data-table/data-table.svelte.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/data-table/flex-render.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/data-table/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/data-table/render-helpers.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -263,13 +533,34 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/dialog/dialog-content.svelte",
-			"ui/dialog/dialog-description.svelte",
-			"ui/dialog/dialog-footer.svelte",
-			"ui/dialog/dialog-header.svelte",
-			"ui/dialog/dialog-overlay.svelte",
-			"ui/dialog/dialog-title.svelte",
-			"ui/dialog/index.ts"
+			{
+				"path": "ui/dialog/dialog-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/dialog-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/dialog-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/dialog-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/dialog-overlay.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/dialog-title.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dialog/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -281,15 +572,42 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/drawer/drawer-content.svelte",
-			"ui/drawer/drawer-description.svelte",
-			"ui/drawer/drawer-footer.svelte",
-			"ui/drawer/drawer-header.svelte",
-			"ui/drawer/drawer-nested.svelte",
-			"ui/drawer/drawer-overlay.svelte",
-			"ui/drawer/drawer-title.svelte",
-			"ui/drawer/drawer.svelte",
-			"ui/drawer/index.ts"
+			{
+				"path": "ui/drawer/drawer-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-nested.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-overlay.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer-title.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/drawer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/drawer/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -300,17 +618,50 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
-			"ui/dropdown-menu/dropdown-menu-content.svelte",
-			"ui/dropdown-menu/dropdown-menu-group-heading.svelte",
-			"ui/dropdown-menu/dropdown-menu-item.svelte",
-			"ui/dropdown-menu/dropdown-menu-label.svelte",
-			"ui/dropdown-menu/dropdown-menu-radio-item.svelte",
-			"ui/dropdown-menu/dropdown-menu-separator.svelte",
-			"ui/dropdown-menu/dropdown-menu-shortcut.svelte",
-			"ui/dropdown-menu/dropdown-menu-sub-content.svelte",
-			"ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
-			"ui/dropdown-menu/index.ts"
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-group-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-label.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-radio-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-shortcut.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-sub-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/dropdown-menu/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -327,15 +678,42 @@
 			"label"
 		],
 		"files": [
-			"ui/form/form-button.svelte",
-			"ui/form/form-description.svelte",
-			"ui/form/form-element-field.svelte",
-			"ui/form/form-field-errors.svelte",
-			"ui/form/form-field.svelte",
-			"ui/form/form-fieldset.svelte",
-			"ui/form/form-label.svelte",
-			"ui/form/form-legend.svelte",
-			"ui/form/index.ts"
+			{
+				"path": "ui/form/form-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-element-field.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-field-errors.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-field.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-fieldset.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-label.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/form-legend.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/form/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -346,8 +724,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/hover-card/hover-card-content.svelte",
-			"ui/hover-card/index.ts"
+			{
+				"path": "ui/hover-card/hover-card-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/hover-card/index.ts",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -358,8 +742,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/input/index.ts",
-			"ui/input/input.svelte"
+			{
+				"path": "ui/input/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/input/input.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -370,8 +760,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/label/index.ts",
-			"ui/label/label.svelte"
+			{
+				"path": "ui/label/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/label/label.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -382,18 +778,54 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/menubar/index.ts",
-			"ui/menubar/menubar-checkbox-item.svelte",
-			"ui/menubar/menubar-content.svelte",
-			"ui/menubar/menubar-group-heading.svelte",
-			"ui/menubar/menubar-item.svelte",
-			"ui/menubar/menubar-radio-item.svelte",
-			"ui/menubar/menubar-separator.svelte",
-			"ui/menubar/menubar-shortcut.svelte",
-			"ui/menubar/menubar-sub-content.svelte",
-			"ui/menubar/menubar-sub-trigger.svelte",
-			"ui/menubar/menubar-trigger.svelte",
-			"ui/menubar/menubar.svelte"
+			{
+				"path": "ui/menubar/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-checkbox-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-group-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-radio-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-shortcut.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-sub-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-sub-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/menubar/menubar.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -406,14 +838,38 @@
 			"button"
 		],
 		"files": [
-			"ui/pagination/index.ts",
-			"ui/pagination/pagination-content.svelte",
-			"ui/pagination/pagination-ellipsis.svelte",
-			"ui/pagination/pagination-item.svelte",
-			"ui/pagination/pagination-link.svelte",
-			"ui/pagination/pagination-next-button.svelte",
-			"ui/pagination/pagination-prev-button.svelte",
-			"ui/pagination/pagination.svelte"
+			{
+				"path": "ui/pagination/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-ellipsis.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-link.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-next-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination-prev-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/pagination/pagination.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -424,8 +880,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/popover/index.ts",
-			"ui/popover/popover-content.svelte"
+			{
+				"path": "ui/popover/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/popover/popover-content.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -436,8 +898,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/progress/index.ts",
-			"ui/progress/progress.svelte"
+			{
+				"path": "ui/progress/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/progress/progress.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -448,9 +916,18 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/radio-group/index.ts",
-			"ui/radio-group/radio-group-item.svelte",
-			"ui/radio-group/radio-group.svelte"
+			{
+				"path": "ui/radio-group/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/radio-group/radio-group-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/radio-group/radio-group.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -464,18 +941,54 @@
 			"button"
 		],
 		"files": [
-			"ui/range-calendar/index.ts",
-			"ui/range-calendar/range-calendar-cell.svelte",
-			"ui/range-calendar/range-calendar-day.svelte",
-			"ui/range-calendar/range-calendar-grid-row.svelte",
-			"ui/range-calendar/range-calendar-grid.svelte",
-			"ui/range-calendar/range-calendar-head-cell.svelte",
-			"ui/range-calendar/range-calendar-header.svelte",
-			"ui/range-calendar/range-calendar-heading.svelte",
-			"ui/range-calendar/range-calendar-months.svelte",
-			"ui/range-calendar/range-calendar-next-button.svelte",
-			"ui/range-calendar/range-calendar-prev-button.svelte",
-			"ui/range-calendar/range-calendar.svelte"
+			{
+				"path": "ui/range-calendar/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-cell.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-day.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-grid-row.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-grid.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-head-cell.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-months.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-next-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar-prev-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/range-calendar/range-calendar.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -487,9 +1000,18 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/resizable/index.ts",
-			"ui/resizable/resizable-handle.svelte",
-			"ui/resizable/resizable-pane-group.svelte"
+			{
+				"path": "ui/resizable/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/resizable/resizable-handle.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/resizable/resizable-pane-group.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -500,9 +1022,18 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/scroll-area/index.ts",
-			"ui/scroll-area/scroll-area-scrollbar.svelte",
-			"ui/scroll-area/scroll-area.svelte"
+			{
+				"path": "ui/scroll-area/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/scroll-area/scroll-area-scrollbar.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/scroll-area/scroll-area.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -515,14 +1046,38 @@
 			"separator"
 		],
 		"files": [
-			"ui/select/index.ts",
-			"ui/select/select-content.svelte",
-			"ui/select/select-group-heading.svelte",
-			"ui/select/select-item.svelte",
-			"ui/select/select-scroll-down-button.svelte",
-			"ui/select/select-scroll-up-button.svelte",
-			"ui/select/select-separator.svelte",
-			"ui/select/select-trigger.svelte"
+			{
+				"path": "ui/select/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-group-heading.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-scroll-down-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-scroll-up-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/select/select-trigger.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -533,8 +1088,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/separator/index.ts",
-			"ui/separator/separator.svelte"
+			{
+				"path": "ui/separator/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/separator/separator.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -545,13 +1106,34 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/sheet/index.ts",
-			"ui/sheet/sheet-content.svelte",
-			"ui/sheet/sheet-description.svelte",
-			"ui/sheet/sheet-footer.svelte",
-			"ui/sheet/sheet-header.svelte",
-			"ui/sheet/sheet-overlay.svelte",
-			"ui/sheet/sheet-title.svelte"
+			{
+				"path": "ui/sheet/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-description.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-overlay.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sheet/sheet-title.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -570,32 +1152,110 @@
 			"sheet"
 		],
 		"files": [
-			"ui/sidebar/constants.ts",
-			"ui/sidebar/context.svelte.ts",
-			"ui/sidebar/index.ts",
-			"ui/sidebar/sidebar-content.svelte",
-			"ui/sidebar/sidebar-footer.svelte",
-			"ui/sidebar/sidebar-group-action.svelte",
-			"ui/sidebar/sidebar-group-content.svelte",
-			"ui/sidebar/sidebar-group-label.svelte",
-			"ui/sidebar/sidebar-group.svelte",
-			"ui/sidebar/sidebar-header.svelte",
-			"ui/sidebar/sidebar-input.svelte",
-			"ui/sidebar/sidebar-inset.svelte",
-			"ui/sidebar/sidebar-menu-action.svelte",
-			"ui/sidebar/sidebar-menu-badge.svelte",
-			"ui/sidebar/sidebar-menu-button.svelte",
-			"ui/sidebar/sidebar-menu-item.svelte",
-			"ui/sidebar/sidebar-menu-skeleton.svelte",
-			"ui/sidebar/sidebar-menu-sub-button.svelte",
-			"ui/sidebar/sidebar-menu-sub-item.svelte",
-			"ui/sidebar/sidebar-menu-sub.svelte",
-			"ui/sidebar/sidebar-menu.svelte",
-			"ui/sidebar/sidebar-provider.svelte",
-			"ui/sidebar/sidebar-rail.svelte",
-			"ui/sidebar/sidebar-separator.svelte",
-			"ui/sidebar/sidebar-trigger.svelte",
-			"ui/sidebar/sidebar.svelte"
+			{
+				"path": "ui/sidebar/constants.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/context.svelte.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-group-action.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-group-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-group-label.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-group.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-input.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-inset.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-action.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-badge.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-skeleton.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-sub-button.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-sub-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu-sub.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-menu.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-provider.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-rail.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-separator.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar-trigger.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sidebar/sidebar.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -606,8 +1266,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/skeleton/index.ts",
-			"ui/skeleton/skeleton.svelte"
+			{
+				"path": "ui/skeleton/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/skeleton/skeleton.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -618,8 +1284,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/slider/index.ts",
-			"ui/slider/slider.svelte"
+			{
+				"path": "ui/slider/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/slider/slider.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -631,8 +1303,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/sonner/index.ts",
-			"ui/sonner/sonner.svelte"
+			{
+				"path": "ui/sonner/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/sonner/sonner.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -643,8 +1321,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/switch/index.ts",
-			"ui/switch/switch.svelte"
+			{
+				"path": "ui/switch/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/switch/switch.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -655,15 +1339,42 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/table/index.ts",
-			"ui/table/table-body.svelte",
-			"ui/table/table-caption.svelte",
-			"ui/table/table-cell.svelte",
-			"ui/table/table-footer.svelte",
-			"ui/table/table-head.svelte",
-			"ui/table/table-header.svelte",
-			"ui/table/table-row.svelte",
-			"ui/table/table.svelte"
+			{
+				"path": "ui/table/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-body.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-caption.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-cell.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-footer.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-head.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-header.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table-row.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/table/table.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -674,10 +1385,22 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/tabs/index.ts",
-			"ui/tabs/tabs-content.svelte",
-			"ui/tabs/tabs-list.svelte",
-			"ui/tabs/tabs-trigger.svelte"
+			{
+				"path": "ui/tabs/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/tabs/tabs-content.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/tabs/tabs-list.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/tabs/tabs-trigger.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -688,8 +1411,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/textarea/index.ts",
-			"ui/textarea/textarea.svelte"
+			{
+				"path": "ui/textarea/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/textarea/textarea.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -700,8 +1429,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/toggle/index.ts",
-			"ui/toggle/toggle.svelte"
+			{
+				"path": "ui/toggle/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/toggle/toggle.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -715,9 +1450,18 @@
 			"toggle"
 		],
 		"files": [
-			"ui/toggle-group/index.ts",
-			"ui/toggle-group/toggle-group-item.svelte",
-			"ui/toggle-group/toggle-group.svelte"
+			{
+				"path": "ui/toggle-group/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/toggle-group/toggle-group-item.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/toggle-group/toggle-group.svelte",
+				"type": "registry:ui"
+			}
 		]
 	},
 	{
@@ -728,8 +1472,14 @@
 		],
 		"registryDependencies": [],
 		"files": [
-			"ui/tooltip/index.ts",
-			"ui/tooltip/tooltip-content.svelte"
+			{
+				"path": "ui/tooltip/index.ts",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/tooltip/tooltip-content.svelte",
+				"type": "registry:ui"
+			}
 		]
 	}
 ]

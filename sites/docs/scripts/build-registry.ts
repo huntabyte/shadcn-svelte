@@ -220,7 +220,7 @@ export const Index = {
 			// The `default` style uses `lucide-svelte`, so we'll discard it for the purposes of the index
 			dependencies: item.dependencies.filter((dep) => dep !== "lucide-svelte"),
 			// We only want the relative file paths
-			files: item.files.map((file) => file.path),
+			files: item.files.map((file) => ({ path: file.path, type: "registry:ui" })),
 		}));
 	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
