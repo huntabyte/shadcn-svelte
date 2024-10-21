@@ -1,25 +1,25 @@
+import color from "chalk";
+import { Command, Option } from "commander";
+import { execa } from "execa";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import color from "chalk";
 import * as v from "valibot";
-import { Command, Option } from "commander";
-import { execa } from "execa";
-import * as cliConfig from "../utils/get-config.js";
-import type { Config } from "../utils/get-config.js";
-import { error, handleError } from "../utils/errors.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry/index.js";
-import * as templates from "../utils/templates.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sveltekit.js";
 import {
 	type DetectLanguageResult,
 	detectConfigs,
 	detectLanguage,
 	detectPM,
 } from "../utils/auto-detect.js";
+import { error, handleError } from "../utils/errors.js";
+import type { Config } from "../utils/get-config.js";
+import * as cliConfig from "../utils/get-config.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry/index.js";
+import { resolveImport } from "../utils/resolve-imports.js";
+import { syncSvelteKit } from "../utils/sveltekit.js";
+import * as templates from "../utils/templates.js";
 
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -35,6 +35,9 @@ const initOptionsSchema = v.object({
 	tailwindConfig: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
+	hooksAlias: v.optional(v.string()),
+	uiAlias: v.optional(v.string()),
+	libAlias: v.optional(v.string()),
 	deps: v.boolean(),
 });
 
@@ -264,6 +267,75 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		utilsAlias = input;
 	}
 
+	// Hooks Alias
+	let hooksAlias = options.hooksAlias;
+	if (hooksAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("hooks")}:`,
+			initialValue:
+				// eslint-disable-next-line no-constant-binary-expression
+				defaultConfig?.aliases.hooks ??
+				// infers the alias from `components`. if `components = @/comps` then suggest `hooks = @/hooks`
+				`${componentAlias?.split("/").slice(0, -1).join("/")}/hooks` ??
+				cliConfig.DEFAULT_HOOKS,
+			placeholder: cliConfig.DEFAULT_HOOKS,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		hooksAlias = input;
+	}
+
+	// Lib Alias
+	let libAlias = options.libAlias;
+	if (libAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("lib")}:`,
+			initialValue:
+				// eslint-disable-next-line no-constant-binary-expression
+				defaultConfig?.aliases.hooks ??
+				// infers the alias from `components`. if `components = @/comps` then suggest `lib = @/lib`
+				`${componentAlias?.split("/").slice(0, -1).join("/")}/` ??
+				cliConfig.DEFAULT_LIB,
+			placeholder: cliConfig.DEFAULT_LIB,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		libAlias = input;
+	}
+
+	// UI Alias
+	let uiAlias = options.uiAlias;
+	if (uiAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("ui")}:`,
+			initialValue:
+				// eslint-disable-next-line no-constant-binary-expression
+				defaultConfig?.aliases.ui ??
+				// infers the alias from `components`. if `components = @/comps` then suggest `lib = @/lib`
+				`${componentAlias?.split("/").slice(0, -1).join("/")}/ui` ??
+				cliConfig.DEFAULT_UI,
+			placeholder: cliConfig.DEFAULT_UI,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) {
+			p.cancel("Operation cancelled.");
+			process.exit(0);
+		}
+
+		uiAlias = input;
+	}
+
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style,
@@ -276,6 +348,9 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		aliases: {
 			utils: utilsAlias,
 			components: componentAlias,
+			hooks: hooksAlias,
+			ui: uiAlias,
+			lib: libAlias,
 		},
 	});
 
