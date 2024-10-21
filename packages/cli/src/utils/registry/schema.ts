@@ -1,12 +1,25 @@
 import * as v from "valibot";
 
+const registryItemTypeSchema = v.picklist([
+	"registry:ui",
+	"registry:component",
+	"registry:example",
+	"registry:block",
+	"registry:hook",
+]);
+
 export const registryItemSchema = v.object({
 	name: v.string(),
 	dependencies: v.array(v.string()),
 	registryDependencies: v.array(v.string()),
 	files: v.array(v.string()),
-	type: v.picklist(["components:ui", "components:component", "components:example"]),
+	type: registryItemTypeSchema,
 });
+
+export const registryResolvedItemsTreeSchema = v.pick(registryItemSchema, [
+	"dependencies",
+	"files",
+]);
 
 export const registryIndexSchema = v.array(registryItemSchema);
 
@@ -17,6 +30,8 @@ export const registryItemWithContentSchema = v.object({
 			v.object({
 				name: v.string(),
 				content: v.string(),
+				type: registryItemTypeSchema,
+				target: v.string(),
 			})
 		),
 	}).entries,

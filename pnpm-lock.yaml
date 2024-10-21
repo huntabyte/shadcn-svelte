@@ -181,9 +181,21 @@ importers:
 
   playgrounds/playground-ts:
     dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-svelte:
+        specifier: ^0.453.0
+        version: 0.453.0(svelte@5.0.4)
       shadcn-svelte:
         specifier: workspace:*
         version: link:../../packages/cli
+      tailwind-merge:
+        specifier: ^2.5.4
+        version: 2.5.4
+      tailwind-variants:
+        specifier: ^0.2.1
+        version: 0.2.1(tailwindcss@3.4.14)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -4407,6 +4419,11 @@ packages:
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
+  lucide-svelte@0.453.0:
+    resolution: {integrity: sha512-K+eE2ZeE00ThIEbAmZB3Hq0sVS+1ZLj+7nqtJvN0Xrh/KZnfnEChG+do80sctqXQEE+iG1dA2T+5fVcJS1awfA==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
@@ -5787,6 +5804,9 @@ packages:
 
   tailwind-merge@2.4.0:
     resolution: {integrity: sha512-49AwoOQNKdqKPd9CViyH5wJoSKsCDjUlzL8DxuGp3P1FsGY36NJDAa18jLZcaHAUUuTj+JB8IAo8zWgBNvBF7A==}
+
+  tailwind-merge@2.5.4:
+    resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
 
   tailwind-variants@0.1.20:
     resolution: {integrity: sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==}
@@ -10862,6 +10882,10 @@ snapshots:
     dependencies:
       svelte: 5.0.3
 
+  lucide-svelte@0.453.0(svelte@5.0.4):
+    dependencies:
+      svelte: 5.0.4
+
   magic-string@0.25.9:
     dependencies:
       sourcemap-codec: 1.4.8
@@ -12694,10 +12718,17 @@ snapshots:
 
   tailwind-merge@2.4.0: {}
 
+  tailwind-merge@2.5.4: {}
+
   tailwind-variants@0.1.20(tailwindcss@3.4.4):
     dependencies:
       tailwind-merge: 1.14.0
       tailwindcss: 3.4.4
+
+  tailwind-variants@0.2.1(tailwindcss@3.4.14):
+    dependencies:
+      tailwind-merge: 2.4.0
+      tailwindcss: 3.4.14
 
   tailwind-variants@0.2.1(tailwindcss@3.4.4):
     dependencies:
