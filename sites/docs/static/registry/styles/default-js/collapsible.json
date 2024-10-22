@@ -9,7 +9,7 @@
 		{
 			"name": "index.js",
 			"content": "import { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\nconst Root = CollapsiblePrimitive.Root;\nconst Trigger = CollapsiblePrimitive.Trigger;\nconst Content = CollapsiblePrimitive.Content;\nexport { Root, Content, Trigger, \n//\nRoot as Collapsible, Content as CollapsibleContent, Trigger as CollapsibleTrigger, };\n",
-			"target": "components/ui/collapsible/index.js",
+			"target": "collapsible/index.js",
 			"type": "registry:ui"
 		}
 	]

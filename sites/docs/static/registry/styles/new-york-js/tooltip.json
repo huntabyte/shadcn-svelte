@@ -9,13 +9,13 @@
 		{
 			"name": "index.js",
 			"content": "import { Tooltip as TooltipPrimitive } from \"bits-ui\";\nimport Content from \"./tooltip-content.svelte\";\nconst Root = TooltipPrimitive.Root;\nconst Trigger = TooltipPrimitive.Trigger;\nconst Provider = TooltipPrimitive.Provider;\nexport { Root, Trigger, Content, Provider, \n//\nRoot as Tooltip, Content as TooltipContent, Trigger as TooltipTrigger, Provider as TooltipProvider, };\n",
-			"target": "components/ui/tooltip/index.js",
+			"target": "tooltip/index.js",
 			"type": "registry:ui"
 		},
 		{
 			"name": "tooltip-content.svelte",
 			"content": "<script>\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: TooltipPrimitive.ContentProps = $props();\n</script>\n\n<TooltipPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\tclass={cn(\n\t\t\"bg-primary text-primary-foreground z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
-			"target": "components/ui/tooltip/tooltip-content.svelte",
+			"target": "tooltip/tooltip-content.svelte",
 			"type": "registry:ui"
 		}
 	]

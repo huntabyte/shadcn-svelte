@@ -10,49 +10,49 @@
 		{
 			"name": "breadcrumb-ellipsis.svelte",
 			"content": "<script>\n\timport DotsHorizontal from \"svelte-radix/DotsHorizontal.svelte\";\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLSpanElement>>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"flex size-9 items-center justify-center\", className)}\n\t{...restProps}\n>\n\t<DotsHorizontal class=\"size-4 outline-none\" tabindex=\"-1\" />\n\t<span class=\"sr-only\">More</span>\n</span>\n",
-			"target": "components/ui/breadcrumb/breadcrumb-ellipsis.svelte",
+			"target": "breadcrumb/breadcrumb-ellipsis.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb-item.svelte",
 			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLLiAttributes> = $props();\n</script>\n\n<li bind:this={ref} class={cn(\"inline-flex items-center gap-1.5\", className)} {...restProps}>\n\t{@render children?.()}\n</li>\n",
-			"target": "components/ui/breadcrumb/breadcrumb-item.svelte",
+			"target": "breadcrumb/breadcrumb-item.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb-link.svelte",
 			"content": "<script>\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport type { Snippet } from \"svelte\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\thref = undefined,\n\t\tchild,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAnchorAttributes> & {\n\t\tchild?: Snippet<[{ props: HTMLAnchorAttributes }]>;\n\t} = $props();\n\n\tconst attrs = $derived({\n\t\tclass: cn(\"hover:text-foreground transition-colors\", className),\n\t\thref,\n\t\t...restProps,\n\t});\n</script>\n\n{#if child}\n\t{@render child({ props: attrs })}\n{:else}\n\t<a bind:this={ref} {...attrs}>\n\t\t{@render children?.()}\n\t</a>\n{/if}\n",
-			"target": "components/ui/breadcrumb/breadcrumb-link.svelte",
+			"target": "breadcrumb/breadcrumb-link.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb-list.svelte",
 			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLOlAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLOlAttributes> = $props();\n</script>\n\n<ol\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"text-muted-foreground flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>\n",
-			"target": "components/ui/breadcrumb/breadcrumb-list.svelte",
+			"target": "breadcrumb/breadcrumb-list.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb-page.svelte",
 			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"text-foreground font-normal\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
-			"target": "components/ui/breadcrumb/breadcrumb-page.svelte",
+			"target": "breadcrumb/breadcrumb-page.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb-separator.svelte",
 			"content": "<script>\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLLiAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLLiAttributes> = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\tbind:this={ref}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<ChevronRight />\n\t{/if}\n</li>\n",
-			"target": "components/ui/breadcrumb/breadcrumb-separator.svelte",
+			"target": "breadcrumb/breadcrumb-separator.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "breadcrumb.svelte",
 			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<nav class={className} bind:this={ref} aria-label=\"breadcrumb\" {...restProps}>\n\t{@render children?.()}\n</nav>\n",
-			"target": "components/ui/breadcrumb/breadcrumb.svelte",
+			"target": "breadcrumb/breadcrumb.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "index.js",
 			"content": "import Root from \"./breadcrumb.svelte\";\nimport Ellipsis from \"./breadcrumb-ellipsis.svelte\";\nimport Item from \"./breadcrumb-item.svelte\";\nimport Separator from \"./breadcrumb-separator.svelte\";\nimport Link from \"./breadcrumb-link.svelte\";\nimport List from \"./breadcrumb-list.svelte\";\nimport Page from \"./breadcrumb-page.svelte\";\nexport { Root, Ellipsis, Item, Separator, Link, List, Page, \n//\nRoot as Breadcrumb, Ellipsis as BreadcrumbEllipsis, Item as BreadcrumbItem, Separator as BreadcrumbSeparator, Link as BreadcrumbLink, List as BreadcrumbList, Page as BreadcrumbPage, };\n",
-			"target": "components/ui/breadcrumb/index.js",
+			"target": "breadcrumb/index.js",
 			"type": "registry:ui"
 		}
 	]

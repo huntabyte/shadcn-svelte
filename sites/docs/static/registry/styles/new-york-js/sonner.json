@@ -10,13 +10,13 @@
 		{
 			"name": "index.js",
 			"content": "export { default as Toaster } from \"./sonner.svelte\";\n",
-			"target": "components/ui/sonner/index.js",
+			"target": "sonner/index.js",
 			"type": "registry:ui"
 		},
 		{
 			"name": "sonner.svelte",
 			"content": "<script>\n\timport { Toaster as Sonner, type ToasterProps as SonnerProps } from \"svelte-sonner\";\n\timport { mode } from \"mode-watcher\";\n\n\tlet restProps: SonnerProps = $props();\n</script>\n\n<Sonner\n\ttheme={$mode}\n\tclass=\"toaster group\"\n\ttoastOptions={{\n\t\tclasses: {\n\t\t\ttoast: \"group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg\",\n\t\t\tdescription: \"group-[.toast]:text-muted-foreground\",\n\t\t\tactionButton: \"group-[.toast]:bg-primary group-[.toast]:text-primary-foreground\",\n\t\t\tcancelButton: \"group-[.toast]:bg-muted group-[.toast]:text-muted-foreground\",\n\t\t},\n\t}}\n\t{...restProps}\n/>\n",
-			"target": "components/ui/sonner/sonner.svelte",
+			"target": "sonner/sonner.svelte",
 			"type": "registry:ui"
 		}
 	]

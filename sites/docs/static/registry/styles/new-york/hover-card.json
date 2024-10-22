@@ -10,13 +10,13 @@
 			"name": "hover-card-content.svelte",
 			"content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"center\",\n\t\tsideOffset = 4,\n\t\t...restProps\n\t}: HoverCardPrimitive.ContentProps = $props();\n</script>\n\n<HoverCardPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\t{align}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 w-64 rounded-md border p-4 shadow-md outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/hover-card/hover-card-content.svelte"
+			"target": "hover-card/hover-card-content.svelte"
 		},
 		{
 			"name": "index.ts",
 			"content": "import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\nimport Content from \"./hover-card-content.svelte\";\nconst Root = HoverCardPrimitive.Root;\nconst Trigger = HoverCardPrimitive.Trigger;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\tRoot as HoverCard,\n\tContent as HoverCardContent,\n\tTrigger as HoverCardTrigger,\n};\n",
 			"type": "registry:ui",
-			"target": "components/ui/hover-card/index.ts"
+			"target": "hover-card/index.ts"
 		}
 	]
 }

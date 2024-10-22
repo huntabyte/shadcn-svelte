@@ -12,19 +12,19 @@
 		{
 			"name": "index.js",
 			"content": "import Root from \"./toggle-group.svelte\";\nimport Item from \"./toggle-group-item.svelte\";\nexport { Root, Item, \n//\nRoot as ToggleGroup, Item as ToggleGroupItem, };\n",
-			"target": "components/ui/toggle-group/index.js",
+			"target": "toggle-group/index.js",
 			"type": "registry:ui"
 		},
 		{
 			"name": "toggle-group-item.svelte",
 			"content": "<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { getToggleGroupCtx } from \"$lib/registry/default/ui/toggle-group/toggle-group.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { type ToggleVariants, toggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize,\n\t\tvariant,\n\t\t...restProps\n\t}: ToggleGroupPrimitive.ItemProps & ToggleVariants = $props();\n\n\tconst ctx = getToggleGroupCtx();\n</script>\n\n<ToggleGroupPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\ttoggleVariants({\n\t\t\tvariant: ctx.variant || variant,\n\t\t\tsize: ctx.size || size,\n\t\t}),\n\t\tclassName\n\t)}\n\t{value}\n\t{...restProps}\n/>\n",
-			"target": "components/ui/toggle-group/toggle-group-item.svelte",
+			"target": "toggle-group/toggle-group-item.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "toggle-group.svelte",
 			"content": "<script lang=\"ts\" module>\n\timport { getContext, setContext } from \"svelte\";\n\timport type { ToggleVariants } from \"$lib/registry/default/ui/toggle/index.js\";\n\texport function setToggleGroupCtx(props: ToggleVariants) {\n\t\tsetContext(\"toggleGroup\", props);\n\t}\n\n\texport function getToggleGroupCtx() {\n\t\treturn getContext<ToggleVariants>(\"toggleGroup\");\n\t}\n</script>\n\n<script>\n\timport { ToggleGroup as ToggleGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: ToggleGroupPrimitive.RootProps & ToggleVariants = $props();\n\n\tsetToggleGroupCtx({\n\t\tvariant,\n\t\tsize,\n\t});\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<ToggleGroupPrimitive.Root\n\tbind:value={value as never}\n\tbind:ref\n\tclass={cn(\"flex items-center justify-center gap-1\", className)}\n\t{...restProps}\n/>\n",
-			"target": "components/ui/toggle-group/toggle-group.svelte",
+			"target": "toggle-group/toggle-group.svelte",
 			"type": "registry:ui"
 		}
 	]

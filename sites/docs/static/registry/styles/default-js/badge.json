@@ -9,13 +9,13 @@
 		{
 			"name": "badge.svelte",
 			"content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const badgeVariants = tv({\n\t\tbase: \"focus:ring-ring inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault:\n\t\t\t\t\t\"bg-primary text-primary-foreground hover:bg-primary/80 border-transparent\",\n\t\t\t\tsecondary:\n\t\t\t\t\t\"bg-secondary text-secondary-foreground hover:bg-secondary/80 border-transparent\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent\",\n\t\t\t\toutline: \"text-foreground\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type BadgeVariant = VariantProps<typeof badgeVariants>[\"variant\"];\n</script>\n\n<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAnchorAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\thref,\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAnchorAttributes> & {\n\t\tvariant?: BadgeVariant;\n\t} = $props();\n</script>\n\n<svelte:element\n\tthis={href ? \"a\" : \"span\"}\n\tbind:this={ref}\n\t{href}\n\tclass={cn(badgeVariants({ variant, className }))}\n\t{...restProps}\n>\n\t{@render children?.()}\n</svelte:element>\n",
-			"target": "components/ui/badge/badge.svelte",
+			"target": "badge/badge.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "index.js",
 			"content": "export { default as Badge } from \"./badge.svelte\";\nexport { badgeVariants } from \"./badge.svelte\";\n",
-			"target": "components/ui/badge/index.js",
+			"target": "badge/index.js",
 			"type": "registry:ui"
 		}
 	]

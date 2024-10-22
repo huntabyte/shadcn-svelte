@@ -11,73 +11,73 @@
 			"name": "index.ts",
 			"content": "import { Menubar as MenubarPrimitive } from \"bits-ui\";\nimport Root from \"./menubar.svelte\";\nimport CheckboxItem from \"./menubar-checkbox-item.svelte\";\nimport Content from \"./menubar-content.svelte\";\nimport Item from \"./menubar-item.svelte\";\nimport GroupHeading from \"./menubar-group-heading.svelte\";\nimport RadioItem from \"./menubar-radio-item.svelte\";\nimport Separator from \"./menubar-separator.svelte\";\nimport Shortcut from \"./menubar-shortcut.svelte\";\nimport SubContent from \"./menubar-sub-content.svelte\";\nimport SubTrigger from \"./menubar-sub-trigger.svelte\";\nimport Trigger from \"./menubar-trigger.svelte\";\n\nconst Menu = MenubarPrimitive.Menu;\nconst Group = MenubarPrimitive.Group;\nconst Sub = MenubarPrimitive.Sub;\nconst RadioGroup = MenubarPrimitive.RadioGroup;\n\nexport {\n\tRoot,\n\tCheckboxItem,\n\tContent,\n\tItem,\n\tGroupHeading,\n\tRadioItem,\n\tSeparator,\n\tShortcut,\n\tSubContent,\n\tSubTrigger,\n\tTrigger,\n\tMenu,\n\tGroup,\n\tSub,\n\tRadioGroup,\n\t//\n\tRoot as Menubar,\n\tCheckboxItem as MenubarCheckboxItem,\n\tContent as MenubarContent,\n\tItem as MenubarItem,\n\tGroupHeading as MenubarGroupHeading,\n\tRadioItem as MenubarRadioItem,\n\tSeparator as MenubarSeparator,\n\tShortcut as MenubarShortcut,\n\tSubContent as MenubarSubContent,\n\tSubTrigger as MenubarSubTrigger,\n\tTrigger as MenubarTrigger,\n\tMenu as MenubarMenu,\n\tGroup as MenubarGroup,\n\tSub as MenubarSub,\n\tRadioGroup as MenubarRadioGroup,\n};\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/index.ts"
+			"target": "menubar/index.ts"
 		},
 		{
 			"name": "menubar-checkbox-item.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive, type WithoutChild } from \"bits-ui\";\n\timport Check from \"svelte-radix/Check.svelte\";\n\timport Minus from \"svelte-radix/Minus.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tclass: className,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChild<MenubarPrimitive.CheckboxItemProps> = $props();\n</script>\n\n<MenubarPrimitive.CheckboxItem\n\tbind:ref\n\tbind:checked\n\tclass={cn(\n\t\t\"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"absolute left-2 flex size-3.5 items-center justify-center\">\n\t\t\t{#if checked === \"indeterminate\"}\n\t\t\t\t<Minus class=\"size-4\" />\n\t\t\t{:else}\n\t\t\t\t<Check class={cn(\"size-4\", !checked && \"text-transparent\")} />\n\t\t\t{/if}\n\t\t</span>\n\t\t{@render childrenProp?.({ checked })}\n\t{/snippet}\n</MenubarPrimitive.CheckboxItem>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-checkbox-item.svelte"
+			"target": "menubar/menubar-checkbox-item.svelte"
 		},
 		{
 			"name": "menubar-content.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 8,\n\t\talignOffset = -4,\n\t\talign = \"start\",\n\t\t...restProps\n\t}: MenubarPrimitive.ContentProps = $props();\n</script>\n\n<MenubarPrimitive.Content\n\tbind:ref\n\t{sideOffset}\n\t{align}\n\t{alignOffset}\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 min-w-[12rem] rounded-md border p-1 shadow-md focus:outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-content.svelte"
+			"target": "menubar/menubar-content.svelte"
 		},
 		{
 			"name": "menubar-group-heading.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: MenubarPrimitive.GroupHeadingProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.GroupHeading\n\tbind:ref\n\tclass={cn(\"px-2 py-1.5 text-sm font-semibold\", inset && \"pl-8\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-group-heading.svelte"
+			"target": "menubar/menubar-group-heading.svelte"
 		},
 		{
 			"name": "menubar-item.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\t...restProps\n\t}: MenubarPrimitive.ItemProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.Item\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-item.svelte"
+			"target": "menubar/menubar-item.svelte"
 		},
 		{
 			"name": "menubar-radio-item.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive, type WithoutChild } from \"bits-ui\";\n\timport DotFilled from \"svelte-radix/DotFilled.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren: childrenProp,\n\t\t...restProps\n\t}: WithoutChild<MenubarPrimitive.RadioItemProps> = $props();\n</script>\n\n<MenubarPrimitive.RadioItem\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"absolute left-2 flex size-3.5 items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<DotFilled class=\"size-4 fill-current\" />\n\t\t\t{/if}\n\t\t</span>\n\t\t{@render childrenProp?.({ checked })}\n\t{/snippet}\n</MenubarPrimitive.RadioItem>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-radio-item.svelte"
+			"target": "menubar/menubar-radio-item.svelte"
 		},
 		{
 			"name": "menubar-separator.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.SeparatorProps = $props();\n</script>\n\n<MenubarPrimitive.Separator\n\tbind:ref\n\tclass={cn(\"bg-muted -mx-1 my-1 h-px\", className)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-separator.svelte"
+			"target": "menubar/menubar-separator.svelte"
 		},
 		{
 			"name": "menubar-shortcut.svelte",
 			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tclass={cn(\"text-muted-foreground ml-auto text-xs tracking-widest\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-shortcut.svelte"
+			"target": "menubar/menubar-shortcut.svelte"
 		},
 		{
 			"name": "menubar-sub-content.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.SubContentProps = $props();\n</script>\n\n<MenubarPrimitive.SubContent\n\tbind:ref\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground z-50 min-w-max rounded-md border p-1 shadow-lg focus:outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-sub-content.svelte"
+			"target": "menubar/menubar-sub-content.svelte"
 		},
 		{
 			"name": "menubar-sub-trigger.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport ChevronRight from \"svelte-radix/ChevronRight.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinset,\n\t\tchildren,\n\t\t...restProps\n\t}: MenubarPrimitive.SubTriggerProps & {\n\t\tinset?: boolean;\n\t} = $props();\n</script>\n\n<MenubarPrimitive.SubTrigger\n\tbind:ref\n\tclass={cn(\n\t\t\"data-[highlighted]:bg-accent data-[state=open]:bg-accent data-[highlighted]:text-accent-foreground data-[state=open]:text-accent-foreground flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n\t\tinset && \"pl-8\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ChevronRight class=\"ml-auto size-4\" />\n</MenubarPrimitive.SubTrigger>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-sub-trigger.svelte"
+			"target": "menubar/menubar-sub-trigger.svelte"
 		},
 		{
 			"name": "menubar-trigger.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.TriggerProps = $props();\n</script>\n\n<MenubarPrimitive.Trigger\n\tbind:ref\n\tclass={cn(\n\t\t\"focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar-trigger.svelte"
+			"target": "menubar/menubar-trigger.svelte"
 		},
 		{
 			"name": "menubar.svelte",
 			"content": "<script lang=\"ts\">\n\timport { Menubar as MenubarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: MenubarPrimitive.RootProps = $props();\n</script>\n\n<MenubarPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"bg-background flex h-9 items-center space-x-1 rounded-md border p-1 shadow-sm\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
 			"type": "registry:ui",
-			"target": "components/ui/menubar/menubar.svelte"
+			"target": "menubar/menubar.svelte"
 		}
 	]
 }

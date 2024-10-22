@@ -9,7 +9,7 @@
 		{
 			"name": "index.js",
 			"content": "import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\nconst Root = AspectRatioPrimitive.Root;\nexport { Root, Root as AspectRatio };\n",
-			"target": "components/ui/aspect-ratio/index.js",
+			"target": "aspect-ratio/index.js",
 			"type": "registry:ui"
 		}
 	]

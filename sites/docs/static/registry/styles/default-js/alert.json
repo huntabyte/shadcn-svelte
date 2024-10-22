@@ -9,25 +9,25 @@
 		{
 			"name": "alert-description.svelte",
 			"content": "<script>\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"text-sm [&_p]:leading-relaxed\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
-			"target": "components/ui/alert/alert-description.svelte",
+			"target": "alert/alert-description.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "alert-title.svelte",
 			"content": "<script>\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tlevel = 5,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tlevel?: 1 | 2 | 3 | 4 | 5 | 6;\n\t} = $props();\n</script>\n\n<div\n\trole=\"heading\"\n\taria-level={level}\n\tbind:this={ref}\n\tclass={cn(\"mb-1 font-medium leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
-			"target": "components/ui/alert/alert-title.svelte",
+			"target": "alert/alert-title.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "alert.svelte",
 			"content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const alertVariants = tv({\n\t\tbase: \"[&>svg]:text-foreground relative w-full rounded-lg border p-4 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-background text-foreground\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type AlertVariant = VariantProps<typeof alertVariants>[\"variant\"];\n</script>\n\n<script>\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tvariant?: AlertVariant;\n\t} = $props();\n</script>\n\n<div bind:this={ref} class={cn(alertVariants({ variant }), className)} {...restProps} role=\"alert\">\n\t{@render children?.()}\n</div>\n",
-			"target": "components/ui/alert/alert.svelte",
+			"target": "alert/alert.svelte",
 			"type": "registry:ui"
 		},
 		{
 			"name": "index.js",
 			"content": "import Root from \"./alert.svelte\";\nimport Description from \"./alert-description.svelte\";\nimport Title from \"./alert-title.svelte\";\nexport { alertVariants } from \"./alert.svelte\";\nexport { Root, Description, Title, \n//\nRoot as Alert, Description as AlertDescription, Title as AlertTitle, };\n",
-			"target": "components/ui/alert/index.js",
+			"target": "alert/index.js",
 			"type": "registry:ui"
 		}
 	]
