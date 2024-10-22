@@ -16,12 +16,7 @@ import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
-import {
-	getBaseColors,
-	getRegistryBaseColor,
-	getStyles,
-	setRegistry,
-} from "../utils/registry/index.js";
+import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
@@ -29,8 +24,8 @@ import * as templates from "../utils/templates.js";
 const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
-const baseColors = getBaseColors();
-const styles = getStyles();
+const baseColors = registry.getBaseColors();
+const styles = registry.getStyles();
 
 const initOptionsSchema = v.object({
 	cwd: v.string(),
@@ -82,7 +77,7 @@ export const init = new Command()
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
-			setRegistry(config.registry);
+			registry.setRegistry(config.registry);
 
 			await runInit(cwd, config, options);
 
@@ -390,7 +385,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
-			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
+			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor);
 			if (baseColor) {
 				await fs.writeFile(
 					config.resolvedPaths.tailwindCss,

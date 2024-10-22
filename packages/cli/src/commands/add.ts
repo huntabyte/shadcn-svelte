@@ -11,14 +11,7 @@ import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
-import {
-	fetchTree,
-	// getRegistryBaseColor,
-	getRegistryIndex,
-	getRegistryItemFileTargetPath,
-	resolveTree,
-	setRegistry,
-} from "../utils/registry/index.js";
+import * as registry from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
@@ -68,7 +61,7 @@ export const add = new Command()
 				);
 			}
 
-			setRegistry(config.registry);
+			registry.setRegistry(config.registry);
 
 			await runAdd(cwd, config, options);
 
@@ -84,7 +77,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryIndex = await getRegistryIndex();
+	const registryIndex = await registry.getRegistryIndex();
 
 	let selectedComponents = new Set(
 		options.all ? registryIndex.map(({ name }) => name) : options.components
@@ -125,7 +118,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			const regDeps = registryDepMap.get(name);
 			regDeps?.forEach((dep) => selectedComponents.add(dep));
 		} else {
-			const tree = await resolveTree({
+			const tree = await registry.resolveTree({
 				index: registryIndex,
 				names: [name],
 				includeRegDeps: true,
@@ -147,14 +140,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		}
 	}
 
-	const tree = await resolveTree({
+	const tree = await registry.resolveTree({
 		index: registryIndex,
 		names: Array.from(selectedComponents),
 		includeRegDeps: false,
 		config,
 	});
 
-	const payload = await fetchTree(config, tree);
+	const payload = await registry.fetchTree(config, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 	if (payload.length === 0) {
@@ -171,7 +164,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			selectedComponents.add(regDep);
 		}
 
-		const targetDir = getRegistryItemFileTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemFileTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
 
 		const componentExists = item.files.some((file) => {
@@ -221,7 +214,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getRegistryItemFileTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemFileTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
 
 		if (!existsSync(targetDir)) {

@@ -11,13 +11,7 @@ import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
-import {
-	fetchTree,
-	getItemTargetPath,
-	getRegistryIndex,
-	resolveTree,
-	setRegistry,
-} from "../utils/registry/index.js";
+import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
 
@@ -63,7 +57,7 @@ export const update = new Command()
 				);
 			}
 
-			setRegistry(config.registry);
+			registry.setRegistry(config.registry);
 
 			await runUpdate(cwd, config, options);
 
@@ -84,7 +78,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	const components = options.components;
-	const registryIndex = await getRegistryIndex();
+	const registryIndex = await registry.getRegistryIndex();
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -173,18 +167,20 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
 	}
 
-	const tree = await resolveTree({
+	const tree = await registry.resolveTree({
 		index: registryIndex,
 		names: selectedComponents.map((com) => com.name),
 		config,
 	});
-	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
+	const payload = (await registry.fetchTree(config, tree)).sort((a, b) =>
+		a.name.localeCompare(b.name)
+	);
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getItemTargetPath(config, item);
+		const targetDir = registry.getItemTargetPath(config, item);
 		if (!targetDir) {
 			continue;
 		}
