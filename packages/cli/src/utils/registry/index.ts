@@ -241,20 +241,20 @@ function isUrl(path: string) {
 	}
 }
 
-export function getRegistryItemFileTargetPath(
+export function getRegistryItemTargetPath(
 	config: Config,
-	file: schemas.RegistryItem,
+	type: schemas.RegistryItemType,
 	override?: string
 ) {
 	if (override) return override;
 
-	if (file.type === "registry:ui") return config.resolvedPaths.ui;
-	if (file.type === "registry:block" || file.type === "registry:component") {
+	if (type === "registry:ui") return config.resolvedPaths.ui;
+	if (type === "registry:block" || type === "registry:component") {
 		return config.resolvedPaths.components;
 	}
-	if (file.type === "registry:hook") return config.resolvedPaths.hooks;
+	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	// TODO - we put this in components for now but will move to the appropriate route location
 	// depending on if using SvelteKit or whatever
-	if (file.type === "registry:page") return config.resolvedPaths.components;
+	if (type === "registry:page") return config.resolvedPaths.cwd;
 	return config.resolvedPaths.components;
 }

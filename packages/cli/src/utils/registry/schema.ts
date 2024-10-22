@@ -9,6 +9,8 @@ const registryItemTypeSchema = v.picklist([
 	"registry:page",
 ]);
 
+export type RegistryItemType = v.InferOutput<typeof registryItemTypeSchema>;
+
 export const registryItemTailwindSchema = v.object({
 	config: v.optional(
 		v.object({

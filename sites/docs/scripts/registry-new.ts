@@ -93,7 +93,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		const filepath = path.join(componentPath, dirent.name);
 		const relativePath = path.join("ui", componentName, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const target = `components/ui/${componentName}/${dirent.name}`;
+		const target = `${componentName}/${dirent.name}`;
 
 		files.push({ name: dirent.name, content: source, path: relativePath, type, target });
 
@@ -137,7 +137,7 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 			content: source,
 			path: relativePath,
 			style,
-			target: `components/${dirent.name}`,
+			target: dirent.name,
 			type,
 		};
 		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
@@ -167,11 +167,12 @@ async function buildBlockRegistry(blockPath: string, blockName: string, style: R
 		const isPage = dirent.name === "page.svelte";
 		const type = isPage ? "registry:page" : "registry:component";
 
+		// TODO: fix
 		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
 		const filepath = path.join(blockPath, compPath);
 		const relativePath = path.join("block", blockName, compPath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const target = isPage ? getPageBlockTarget(blockName) : `components/${dirent.name}`;
+		const target = isPage ? getPageBlockTarget(blockName) : dirent.name;
 
 		files.push({ name: dirent.name, content: source, path: relativePath, type, target });
 
@@ -224,7 +225,7 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 			content: source,
 			path: relativePath,
 			style,
-			target: `components/${dirent.name}`,
+			target: dirent.name,
 			type,
 		};
 		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
@@ -263,7 +264,7 @@ async function crawlHook(rootPath: string, style: RegistryStyle) {
 			content: source,
 			path: relativePath,
 			style,
-			target: `hook/${dirent.name}`,
+			target: dirent.name,
 			type,
 		};
 		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);

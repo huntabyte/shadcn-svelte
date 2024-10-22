@@ -164,7 +164,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			selectedComponents.add(regDep);
 		}
 
-		const targetDir = registry.getRegistryItemFileTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
 		const componentExists = item.files.some((file) => {
@@ -214,7 +214,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = registry.getRegistryItemFileTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
 		if (!existsSync(targetDir)) {
@@ -252,14 +252,15 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
 				for (const file of item.files) {
-					const componentDir = path.resolve(targetDir, item.name);
-					const filePath = path.resolve(targetDir, item.name, file.name);
+					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+					const filePath = path.resolve(targetDir, file.target);
 
 					// Run transformers.
 					const content = transformImports(file.content, config);
 
-					if (!existsSync(componentDir)) {
-						await fs.mkdir(componentDir, { recursive: true });
+					const dir = path.parse(filePath).dir;
+					if (!existsSync(dir)) {
+						await fs.mkdir(dir, { recursive: true });
 					}
 
 					await fs.writeFile(filePath, content);
