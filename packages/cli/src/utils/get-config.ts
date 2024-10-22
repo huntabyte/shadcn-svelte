@@ -47,12 +47,16 @@ const originalConfigSchema = v.object({
 });
 
 // fields that were added after the fact so they must be optional so we can gracefully migrate
+// TODO: ideally, prompts would be triggered if these fields are not populated
 const newConfigFields = v.object({
 	aliases: v.object({
 		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
 		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
 	}),
 	typescript: v.optional(v.boolean(), true),
+	// TODO: if they're missing this field then they're likely using svelte 4
+	// and we should prompt them to see if they'd like to use the new registry
+	registry: v.optional(v.string(), "https://shadcn-svelte.com/registry"),
 });
 
 // combines the old with the new

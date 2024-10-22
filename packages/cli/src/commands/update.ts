@@ -16,6 +16,7 @@ import {
 	getItemTargetPath,
 	getRegistryIndex,
 	resolveTree,
+	setRegistry,
 } from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
@@ -61,6 +62,8 @@ export const update = new Command()
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
+
+			setRegistry(config.registry);
 
 			await runUpdate(cwd, config, options);
 

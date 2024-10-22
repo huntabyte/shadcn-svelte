@@ -16,7 +16,12 @@ import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry/index.js";
+import {
+	getBaseColors,
+	getRegistryBaseColor,
+	getStyles,
+	setRegistry,
+} from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
@@ -76,6 +81,8 @@ export const init = new Command()
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
+
+			setRegistry(config.registry);
 
 			await runInit(cwd, config, options);
 

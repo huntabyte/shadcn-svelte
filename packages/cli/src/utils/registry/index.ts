@@ -2,18 +2,23 @@ import deepmerge from "deepmerge";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
-import process from "node:process";
 import * as v from "valibot";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
-const baseUrl = process.env.COMPONENTS_REGISTRY_URL ?? "https://shadcn-svelte.com/registry";
+let baseUrl: string | undefined;
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
+export function setRegistry(url: string) {
+	baseUrl = url;
+}
+
 function getRegistryUrl(path: string) {
+	if (!baseUrl) throw new Error("Registry URL not set");
+
 	if (isUrl(path)) {
 		const url = new URL(path);
 		return url.toString();
@@ -157,6 +162,8 @@ export function getItemTargetPath(
 }
 
 async function fetchRegistry(paths: string[]) {
+	if (!baseUrl) throw new Error("Registry URL not set");
+
 	const proxyUrl = getEnvProxy();
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
 	try {

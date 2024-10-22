@@ -17,6 +17,7 @@ import {
 	getRegistryIndex,
 	getRegistryItemFileTargetPath,
 	resolveTree,
+	setRegistry,
 } from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
 
@@ -66,6 +67,8 @@ export const add = new Command()
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
+
+			setRegistry(config.registry);
 
 			await runAdd(cwd, config, options);
 
