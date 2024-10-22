@@ -125,12 +125,6 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				config,
 			});
 			for (const item of tree) {
-				console.log(
-					"item name:",
-					item.name,
-					"registryDependencies:",
-					item.registryDependencies
-				);
 				registryDepMap.set(item.name, item.registryDependencies);
 				for (const regDep of item.registryDependencies) {
 					const regDeps = registryDepMap.get(regDep);
