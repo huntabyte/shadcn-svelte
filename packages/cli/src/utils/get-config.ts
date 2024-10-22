@@ -163,3 +163,9 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 		);
 	}
 }
+
+export function writeConfig(cwd: string, config: any): void {
+	const targetPath = path.resolve(cwd, "components.json");
+	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do
+	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t"), "utf8");
+}

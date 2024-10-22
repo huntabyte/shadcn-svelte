@@ -7,7 +7,7 @@ import process from "node:process";
 import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
-import { type Config, getConfig } from "../utils/get-config.js";
+import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
@@ -55,7 +55,7 @@ export const update = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			const config = await getConfig(cwd);
+			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
@@ -74,7 +74,7 @@ export const update = new Command()
 		}
 	});
 
-async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
+async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
@@ -245,6 +245,15 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			},
 		});
 	}
+
+	// Update the config
+	tasks.push({
+		title: "Updating config file",
+		async task() {
+			cliConfig.writeConfig(cwd, config);
+			return `Config file ${highlight("components.json")} updated`;
+		},
+	});
 
 	await p.tasks(tasks);
 
