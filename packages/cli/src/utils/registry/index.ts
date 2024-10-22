@@ -38,39 +38,18 @@ export async function getRegistryIndex() {
 
 export function getBaseColors() {
 	return [
-		{
-			name: "slate",
-			label: "Slate",
-		},
-		{
-			name: "gray",
-			label: "Gray",
-		},
-		{
-			name: "zinc",
-			label: "Zinc",
-		},
-		{
-			name: "neutral",
-			label: "Neutral",
-		},
-		{
-			name: "stone",
-			label: "Stone",
-		},
+		{ name: "slate", label: "Slate" },
+		{ name: "gray", label: "Gray" },
+		{ name: "zinc", label: "Zinc" },
+		{ name: "neutral", label: "Neutral" },
+		{ name: "stone", label: "Stone" },
 	];
 }
 
 export function getStyles() {
 	return [
-		{
-			name: "default",
-			label: "Default",
-		},
-		{
-			name: "new-york",
-			label: "New York",
-		},
+		{ name: "default", label: "Default" },
+		{ name: "new-york", label: "New York" },
 	];
 }
 
