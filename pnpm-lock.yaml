@@ -74,9 +74,6 @@ importers:
       commander:
         specifier: ^10.0.1
         version: 10.0.1
-      deepmerge:
-        specifier: ^4.3.1
-        version: 4.3.1
       execa:
         specifier: ^7.2.0
         version: 7.2.0
@@ -93,6 +90,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
       get-tsconfig:
         specifier: ^4.7.3
         version: 4.7.5
