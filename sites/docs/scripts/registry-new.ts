@@ -46,7 +46,7 @@ export async function buildRegistry() {
 		const uiPath = path.resolve(registryRootPath, style, "ui");
 		const examplePath = path.resolve(registryRootPath, style, "example");
 		const blockPath = path.resolve(registryRootPath, style, "block");
-		const hookPath = path.resolve(registryRootPath, style, "hooks");
+		const hookPath = path.resolve(registryRootPath, style, "hook");
 
 		const [ui, example, block, hook] = await Promise.all([
 			crawlUI(uiPath, style),
@@ -268,14 +268,14 @@ async function crawlHook(rootPath: string, style: RegistryStyle) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("hooks", dirent.name);
+		const relativePath = path.join("hook", dirent.name);
 
 		const file = {
 			name: dirent.name,
 			content: source,
 			path: relativePath,
 			style,
-			target: `hooks/${dirent.name}`,
+			target: `hook/${dirent.name}`,
 			type,
 		};
 		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
@@ -326,7 +326,7 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 					if (source.includes("ui")) {
 						const component = source.split("/").at(-2)!;
 						registryDependencies.add(component);
-					} else if (source.includes("hooks")) {
+					} else if (source.includes("hook")) {
 						const hook = source.split("/").at(-1)!.split(".")[0];
 						registryDependencies.add(hook);
 					}

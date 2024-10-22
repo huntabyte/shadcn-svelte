@@ -1032,7 +1032,7 @@ export const Index = {
 			type: "registry:hook",
 			registryDependencies: [],
 			component: () => import("../lib/registry/default/hook/is-mobile.svelte").then((m) => m.default),
-			files: ["../lib/registry/default/hooks/is-mobile.svelte.ts"],
+			files: ["../lib/registry/default/hook/is-mobile.svelte.ts"],
 			raw: () => import("../lib/registry/default/hook/is-mobile.svelte?raw").then((m) => m.default),
 		},
 	},	"new-york": {
@@ -2065,7 +2065,7 @@ export const Index = {
 			type: "registry:hook",
 			registryDependencies: [],
 			component: () => import("../lib/registry/new-york/hook/is-mobile.svelte").then((m) => m.default),
-			files: ["../lib/registry/new-york/hooks/is-mobile.svelte.ts"],
+			files: ["../lib/registry/new-york/hook/is-mobile.svelte.ts"],
 			raw: () => import("../lib/registry/new-york/hook/is-mobile.svelte?raw").then((m) => m.default),
 		},
 	},
