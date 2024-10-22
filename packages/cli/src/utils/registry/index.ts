@@ -1,3 +1,4 @@
+import deepmerge from "deepmerge";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
@@ -80,20 +81,40 @@ export async function getRegistryBaseColor(baseColor: string) {
 
 type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
 
-export async function resolveTree(index: RegistryIndex, names: string[], includeRegDeps = true) {
+type ResolveTreeProps = {
+	index: RegistryIndex;
+	names: string[];
+	includeRegDeps?: boolean;
+	config: Config;
+};
+
+export async function resolveTree({
+	index,
+	names,
+	includeRegDeps = true,
+	config,
+}: ResolveTreeProps) {
 	const tree: RegistryIndex = [];
 
 	for (const name of names) {
-		const entry = index.find((entry) => entry.name === name);
+		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			continue;
+			// attempt to find entry elsewhere in the registry
+			const trueStyle = config.typescript ? config.style : `${config.style}-js`;
+			const [item] = await fetchRegistry([`styles/${trueStyle}/${name}.json`]);
+			if (item) entry = item;
+			if (!entry) continue;
 		}
 
 		tree.push(entry);
 
 		if (includeRegDeps && entry.registryDependencies) {
-			const dependencies = await resolveTree(index, entry.registryDependencies);
+			const dependencies = await resolveTree({
+				index,
+				names: entry.registryDependencies,
+				config,
+			});
 			tree.push(...dependencies);
 		}
 	}
@@ -145,7 +166,9 @@ async function fetchRegistry(paths: string[]) {
 				const response = await fetch(url, {
 					...proxy,
 				});
-				return await response.json();
+
+				const json = await response.json();
+				return json;
 			})
 		);
 
@@ -172,6 +195,7 @@ export async function registryResolveItemsTree(names: string[], config: Config) 
 			const itemRegistryDependencies = await resolveRegistryDependencies(name, config);
 			registryDependencies.push(...itemRegistryDependencies);
 		}
+		console.log("REGISTRY DEPENDENCIES", registryDependencies);
 
 		const uniqueRegistryDeps = Array.from(new Set(registryDependencies));
 		const result = await fetchRegistry(uniqueRegistryDeps);
@@ -180,8 +204,8 @@ export async function registryResolveItemsTree(names: string[], config: Config) 
 		if (!payload) return null;
 
 		return v.parse(schemas.registryResolvedItemsTreeSchema, {
-			dependencies: payload.map((item) => item.dependencies ?? []),
-			files: payload.map((item) => item.files ?? []),
+			dependencies: deepmerge.all(payload.map((item) => item.dependencies ?? [])),
+			files: deepmerge.all(payload.map((item) => item.files ?? [])),
 		});
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
@@ -229,4 +253,23 @@ function isUrl(path: string) {
 	} catch {
 		return false;
 	}
+}
+
+export function getRegistryItemFileTargetPath(
+	config: Config,
+	file: schemas.RegistryItem,
+	override?: string
+) {
+	if (override) return override;
+
+	if (file.type === "registry:ui") return config.resolvedPaths.ui;
+	if (file.type === "registry:lib") return config.resolvedPaths.lib;
+	if (file.type === "registry:block" || file.type === "registry:component") {
+		return config.resolvedPaths.components;
+	}
+	if (file.type === "registry:hook") return config.resolvedPaths.hooks;
+	// TODO - we put this in components for now but will move to the appropriate route location
+	// depending on if using SvelteKit or whatever
+	if (file.type === "registry:page") return config.resolvedPaths.components;
+	return config.resolvedPaths.components;
 }

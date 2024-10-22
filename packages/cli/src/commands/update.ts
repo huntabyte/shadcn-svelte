@@ -170,10 +170,11 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
 	}
 
-	const tree = await resolveTree(
-		registryIndex,
-		selectedComponents.map((com) => com.name)
-	);
+	const tree = await resolveTree({
+		index: registryIndex,
+		names: selectedComponents.map((com) => com.name),
+		config,
+	});
 	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};

@@ -6,6 +6,8 @@ const registryItemTypeSchema = v.picklist([
 	"registry:example",
 	"registry:block",
 	"registry:hook",
+	"registry:page",
+	"registry:lib",
 ]);
 
 export const registryItemTailwindSchema = v.object({
@@ -21,8 +23,9 @@ export const registryItemTailwindSchema = v.object({
 export const registryItemFileSchema = v.object({
 	content: v.fallback(v.string(), ""),
 	type: registryItemTypeSchema,
-	target: v.fallback(v.string(), ""),
 });
+
+export type RegistryItemFile = v.InferOutput<typeof registryItemFileSchema>;
 
 export type RegistryItemTailwind = v.InferOutput<typeof registryItemTailwindSchema>;
 
@@ -33,13 +36,15 @@ export const registryItemCssVarsSchema = v.object({
 
 export const registryItemSchema = v.object({
 	name: v.string(),
-	dependencies: v.array(v.string()),
-	registryDependencies: v.array(v.string()),
+	dependencies: v.fallback(v.array(v.string()), []),
+	registryDependencies: v.fallback(v.array(v.string()), []),
 	files: v.array(registryItemFileSchema),
 	type: registryItemTypeSchema,
 	tailwind: v.optional(registryItemTailwindSchema),
 	cssVars: v.optional(registryItemCssVarsSchema),
 });
+
+export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
 
 export const registryResolvedItemsTreeSchema = v.pick(registryItemSchema, [
 	"dependencies",

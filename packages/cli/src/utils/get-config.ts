@@ -50,6 +50,7 @@ export const configSchema = v.object({
 	...rawConfigSchema.entries,
 	...v.object({
 		resolvedPaths: v.object({
+			cwd: v.string(),
 			tailwindConfig: v.string(),
 			tailwindCss: v.string(),
 			utils: v.string(),
@@ -105,6 +106,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	return v.parse(configSchema, {
 		...config,
 		resolvedPaths: {
+			cwd,
 			tailwindConfig: path.resolve(cwd, config.tailwind.config),
 			tailwindCss: path.resolve(cwd, config.tailwind.css),
 			utils: utilsPath,

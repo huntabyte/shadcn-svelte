@@ -13,10 +13,9 @@ import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import {
 	fetchTree,
-	getItemTargetPath,
 	// getRegistryBaseColor,
 	getRegistryIndex,
-	registryResolveItemsTree,
+	getRegistryItemFileTargetPath,
 	resolveTree,
 } from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
@@ -119,13 +118,39 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	// adds `registryDependency` to `selectedComponents` so that they can be individually overwritten
 	for (const name of selectedComponents) {
-		const regDeps = registryDepMap.get(name);
-		regDeps?.forEach((dep) => selectedComponents.add(dep));
+		if (registryDepMap.has(name)) {
+			const regDeps = registryDepMap.get(name);
+			regDeps?.forEach((dep) => selectedComponents.add(dep));
+		} else {
+			const tree = await resolveTree({
+				index: registryIndex,
+				names: [name],
+				includeRegDeps: true,
+				config,
+			});
+			for (const item of tree) {
+				console.log(
+					"item name:",
+					item.name,
+					"registryDependencies:",
+					item.registryDependencies
+				);
+				registryDepMap.set(item.name, item.registryDependencies);
+				for (const regDep of item.registryDependencies) {
+					const regDeps = registryDepMap.get(regDep);
+					regDeps?.forEach((dep) => selectedComponents.add(dep));
+				}
+			}
+		}
 	}
 
-	const res = await registryResolveItemsTree(Array.from(selectedComponents), config);
+	const tree = await resolveTree({
+		index: registryIndex,
+		names: Array.from(selectedComponents),
+		includeRegDeps: false,
+		config,
+	});
 
-	const tree = await resolveTree(registryIndex, Array.from(selectedComponents), false);
 	const payload = await fetchTree(config, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
@@ -139,8 +164,11 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of payload) {
 		if (selectedComponents.has(item.name) === false) continue;
+		for (const regDep of item.registryDependencies) {
+			selectedComponents.add(regDep);
+		}
 
-		const targetDir = getItemTargetPath(config, item, targetPath);
+		const targetDir = getRegistryItemFileTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
 
 		const componentExists = item.files.some((file) => {
@@ -190,7 +218,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getItemTargetPath(config, item, targetPath);
+		const targetDir = getRegistryItemFileTargetPath(config, item, targetPath);
 		if (targetDir === null) continue;
 
 		if (!existsSync(targetDir)) {
