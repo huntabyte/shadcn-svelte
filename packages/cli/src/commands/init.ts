@@ -244,17 +244,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		componentAlias = promptResult;
 	}
 
+	// infers the alias from `components`. if `components = $lib/components` then suggest `alias = $lib/alias`
+	const inferAlias = (alias: string) =>
+		`${componentAlias.split("/").slice(0, -1).join("/")}/${alias}`;
+
 	// Utils Alias
 	let utilsAlias = options.utilsAlias;
 	if (utilsAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
-			initialValue:
-				// eslint-disable-next-line no-constant-binary-expression
-				defaultConfig?.aliases.utils ??
-				// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
-				`${componentAlias?.split("/").slice(0, -1).join("/")}/utils` ??
-				cliConfig.DEFAULT_UTILS,
+			initialValue: defaultConfig?.aliases.utils ?? inferAlias("utils"),
 			placeholder: cliConfig.DEFAULT_UTILS,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
@@ -272,12 +271,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	if (hooksAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("hooks")}:`,
-			initialValue:
-				// eslint-disable-next-line no-constant-binary-expression
-				defaultConfig?.aliases.hooks ??
-				// infers the alias from `components`. if `components = @/comps` then suggest `hooks = @/hooks`
-				`${componentAlias?.split("/").slice(0, -1).join("/")}/hooks` ??
-				cliConfig.DEFAULT_HOOKS,
+			initialValue: defaultConfig?.aliases.hooks ?? inferAlias("hooks"),
 			placeholder: cliConfig.DEFAULT_HOOKS,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
@@ -295,12 +289,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	if (uiAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("ui")}:`,
-			initialValue:
-				// eslint-disable-next-line no-constant-binary-expression
-				defaultConfig?.aliases.ui ??
-				// infers the alias from `components`. if `components = @/comps` then suggest `lib = @/lib`
-				`${componentAlias?.split("/").slice(0, -1).join("/")}/ui` ??
-				cliConfig.DEFAULT_UI,
+			initialValue: defaultConfig?.aliases.ui ?? `${componentAlias}/ui`,
 			placeholder: cliConfig.DEFAULT_UI,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
