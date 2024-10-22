@@ -7,7 +7,6 @@ const registryItemTypeSchema = v.picklist([
 	"registry:block",
 	"registry:hook",
 	"registry:page",
-	"registry:lib",
 ]);
 
 export const registryItemTailwindSchema = v.object({

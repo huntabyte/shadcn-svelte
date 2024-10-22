@@ -263,7 +263,6 @@ export function getRegistryItemFileTargetPath(
 	if (override) return override;
 
 	if (file.type === "registry:ui") return config.resolvedPaths.ui;
-	if (file.type === "registry:lib") return config.resolvedPaths.lib;
 	if (file.type === "registry:block" || file.type === "registry:component") {
 		return config.resolvedPaths.components;
 	}

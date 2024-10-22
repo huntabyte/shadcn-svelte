@@ -12,7 +12,6 @@ export const DEFAULT_COMPONENTS = "$lib/components";
 export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_HOOKS = "$lib/hooks";
 export const DEFAULT_UI = "$lib/components/ui";
-export const DEFAULT_LIB = "$lib";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.ts";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
@@ -38,7 +37,6 @@ export const rawConfigSchema = v.object({
 		components: aliasSchema,
 		utils: aliasSchema,
 		ui: aliasSchema,
-		lib: aliasSchema,
 		hooks: aliasSchema,
 	}),
 	typescript: v.optional(v.boolean(), true),
@@ -55,7 +53,6 @@ export const configSchema = v.object({
 			tailwindCss: v.string(),
 			utils: v.string(),
 			components: v.string(),
-			lib: v.string(),
 			hooks: v.string(),
 			ui: v.string(),
 		}),
@@ -91,7 +88,6 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	const componentsPath = resolveImport(config.aliases.components, pathAliases);
 	const hooksPath = resolveImport(config.aliases.hooks, pathAliases);
 	const uiPath = resolveImport(config.aliases.ui, pathAliases);
-	const libPath = resolveImport(config.aliases.lib, pathAliases);
 
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
@@ -113,7 +109,6 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 			components: componentsPath,
 			hooks: hooksPath,
 			ui: uiPath,
-			lib: libPath,
 		},
 	});
 }

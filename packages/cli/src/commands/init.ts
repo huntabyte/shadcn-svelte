@@ -37,7 +37,6 @@ const initOptionsSchema = v.object({
 	utilsAlias: v.optional(v.string()),
 	hooksAlias: v.optional(v.string()),
 	uiAlias: v.optional(v.string()),
-	libAlias: v.optional(v.string()),
 	deps: v.boolean(),
 });
 
@@ -62,6 +61,7 @@ export const init = new Command()
 	.option("--tailwind-config <path>", "path to the tailwind config file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--utils-alias <path>", "import alias for utils")
+	.option("--hooks-alias <path>", "import alias for hooks")
 	.action(async (opts) => {
 		intro();
 		const options = v.parse(initOptionsSchema, opts);
@@ -290,29 +290,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		hooksAlias = input;
 	}
 
-	// Lib Alias
-	let libAlias = options.libAlias;
-	if (libAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("lib")}:`,
-			initialValue:
-				// eslint-disable-next-line no-constant-binary-expression
-				defaultConfig?.aliases.hooks ??
-				// infers the alias from `components`. if `components = @/comps` then suggest `lib = @/lib`
-				`${componentAlias?.split("/").slice(0, -1).join("/")}/` ??
-				cliConfig.DEFAULT_LIB,
-			placeholder: cliConfig.DEFAULT_LIB,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
-
-		libAlias = input;
-	}
-
 	// UI Alias
 	let uiAlias = options.uiAlias;
 	if (uiAlias === undefined) {
@@ -350,7 +327,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			components: componentAlias,
 			hooks: hooksAlias,
 			ui: uiAlias,
-			lib: libAlias,
 		},
 	});
 
