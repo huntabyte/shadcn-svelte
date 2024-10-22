@@ -211,6 +211,9 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 			registry.push(result);
 			continue;
 		}
+		// TODO: FIX/REMOVE ME LATER - putting a console.log to fail lint :)
+		console.log(dirent.name);
+		if (dirent.name.includes("chart")) continue;
 		if (!dirent.name.endsWith(".svelte") || !dirent.isFile()) continue;
 
 		const [name] = dirent.name.split(".svelte");

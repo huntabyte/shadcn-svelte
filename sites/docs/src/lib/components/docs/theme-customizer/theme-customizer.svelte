@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Customizer from "./customizer.svelte";
-	import ThemeCopyCodeButton from "./copy-code-button.svelte";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
+	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import ThemeCopyCodeButton from "./copy-code-button.svelte";
+	import Customizer from "./customizer.svelte";
 </script>
 
 <div class="flex items-center gap-2">

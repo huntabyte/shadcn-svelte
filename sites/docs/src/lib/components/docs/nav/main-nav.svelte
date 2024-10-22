@@ -12,6 +12,7 @@
 			{siteConfig.name}
 		</span>
 	</a>
+
 	<nav class="flex items-center gap-6 text-sm">
 		<a
 			href="/docs"
@@ -22,6 +23,7 @@
 		>
 			Docs
 		</a>
+
 		<a
 			href="/docs/components"
 			class={cn(
@@ -33,6 +35,27 @@
 		>
 			Components
 		</a>
+
+		<a
+			href="/blocks"
+			class={cn(
+				"hover:text-foreground/80 transition-colors",
+				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
+			)}
+		>
+			Blocks
+		</a>
+
+		<a
+			href="/charts"
+			class={cn(
+				"hover:text-foreground/80 transition-colors",
+				$page.url.pathname.startsWith("/charts") ? "text-foreground" : "text-foreground/60"
+			)}
+		>
+			Charts
+		</a>
+
 		<a
 			href="/blocks"
 			class={cn(
@@ -51,6 +74,7 @@
 		>
 			Themes
 		</a>
+
 		<a
 			href="/examples"
 			class={cn(

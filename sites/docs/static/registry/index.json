@@ -364,6 +364,32 @@
 		]
 	},
 	{
+		"name": "chart",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"files": [
+			{
+				"path": "ui/chart/chart-container.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/chart/chart-legend.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/chart/chart-tooltip.svelte",
+				"type": "registry:ui"
+			},
+			{
+				"path": "ui/chart/index.ts",
+				"type": "registry:ui"
+			}
+		]
+	},
+	{
 		"name": "checkbox",
 		"type": "registry:ui",
 		"dependencies": [

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import Copy from "svelte-radix/Copy.svelte";
-	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import { config } from "$lib/stores/index.js";
-	import { themes } from "$lib/registry/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import CustomizerCode from "$lib/components/docs/theme-customizer/customizer-code.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
+	import { themes } from "$lib/registry/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
+	import { config } from "$lib/stores/index.js";
 	import { createCopyCodeButton } from "$lib/utils.js";
+	import Check from "svelte-radix/Check.svelte";
+	import Copy from "svelte-radix/Copy.svelte";
 
 	const activeTheme = $derived(themes.find((theme) => theme.name === $config.theme));
 

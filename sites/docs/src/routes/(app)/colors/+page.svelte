@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
+	import ColorCard from "$lib/components/colors/color-card.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import ColorCard from "$lib/components/colors/color-card.svelte";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 </script>
 
 <svelte:head>

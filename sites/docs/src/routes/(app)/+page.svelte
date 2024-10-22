@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Mail from "./examples/mail/(components)/mail.svelte";
-	import { accounts, mails } from "./examples/mail/data.js";
-	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
-	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import * as Icon from "$lib/components/docs/icons/index.js";
+	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/new-york/ui/button/button.svelte";
+	import Mail from "./examples/mail/(components)/mail.svelte";
+	import { accounts, mails } from "./examples/mail/data.js";
 
 	let { data } = $props();
 </script>
