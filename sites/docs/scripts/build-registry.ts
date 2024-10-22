@@ -56,13 +56,18 @@ export const Blocks = {
 				fs.writeFileSync(chunkPath, chunk.content, { encoding: "utf8" });
 			}
 
+			const isDir = !fs.existsSync(
+				path.resolve("src", "lib", "registry", style.name, "block", `${block.name}.svelte`)
+			);
+			const blockFile = isDir ? `${block.name}/page.svelte` : `${block.name}.svelte`;
+
 			blocksIndex += `
 		"${block.name}": {
 			name: "${block.name}",
 			type: "${block.type}",
 			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", container: { className: "${chunk.container.className}" }, raw: () => import("./chunks/${style.name}/${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${chunk.name}.svelte").then((m) => m.default) }`)}],
-			component: () => import("../lib/registry/${style.name}/block/${block.name}.svelte").then((m) => m.default),
-			raw: () => import("../lib/registry/${style.name}/block/${block.name}.svelte?raw").then((m) => m.default),
+			component: () => import("../lib/registry/${style.name}/block/${blockFile}").then((m) => m.default),
+			raw: () => import("../lib/registry/${style.name}/block/${blockFile}?raw").then((m) => m.default),
 		},`;
 		}
 		// end of style

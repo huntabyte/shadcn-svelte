@@ -62,10 +62,7 @@ export async function buildRegistry() {
 }
 
 async function crawlUI(rootPath: string, style: RegistryStyle) {
-	const dir = fs.readdirSync(rootPath, {
-		recursive: true,
-		withFileTypes: true,
-	});
+	const dir = fs.readdirSync(rootPath, { recursive: true, withFileTypes: true });
 
 	const uiRegistry: Registry = [];
 
@@ -122,9 +119,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 async function crawlExample(rootPath: string, style: RegistryStyle) {
 	const type = `registry:example` as const;
 
-	const dir = fs.readdirSync(rootPath, {
-		withFileTypes: true,
-	});
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 
 	const registry: Registry = [];
 
@@ -161,10 +156,7 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 }
 
 async function buildBlockRegistry(blockPath: string, blockName: string, style: RegistryStyle) {
-	const dir = fs.readdirSync(blockPath, {
-		withFileTypes: true,
-		recursive: true,
-	});
+	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
 
 	const files: RegistryItemFile[] = [];
 	const dependencies = new Set<string>();
@@ -205,9 +197,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string, style: R
 async function crawlBlock(rootPath: string, style: RegistryStyle) {
 	const type = `registry:block` as const;
 
-	const dir = fs.readdirSync(rootPath, {
-		withFileTypes: true,
-	});
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 
 	const registry: Registry = [];
 
@@ -255,9 +245,7 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 async function crawlHook(rootPath: string, style: RegistryStyle) {
 	const type = `registry:hook` as const;
 
-	const dir = fs.readdirSync(rootPath, {
-		withFileTypes: true,
-	});
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 
 	const registry: Registry = [];
 
