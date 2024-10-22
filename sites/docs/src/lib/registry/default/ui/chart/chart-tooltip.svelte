@@ -1,9 +1,21 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
+	import type { WithElementRef, WithoutChildren } from "bits-ui";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { type ChartConfig, getPayloadConfigFromPayload } from "./index.js";
+	import { type ChartConfig, getPayloadConfigFromPayload } from "./chart-utils.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
+	let {
+		ref = $bindable(null),
+		class: className,
+		payload,
+		config,
+		tooltipLabel,
+		hideLabel = false,
+		indicator = "dot",
+		hideIndicator = false,
+		nestLabel = false,
+		...restProps
+	}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> & {
 		payload: unknown;
 		config: ChartConfig;
 		tooltipLabel?: string;
@@ -11,19 +23,9 @@
 		indicator?: "line" | "dot" | "dashed";
 		hideIndicator?: boolean;
 		nestLabel?: boolean;
-	};
+	} = $props();
 
-	export let payload: $$Props["payload"];
-	export let config: $$Props["config"];
-	export let tooltipLabel: $$Props["tooltipLabel"] = undefined;
-	export let hideLabel: $$Props["hideLabel"] = false;
-	export let indicator: $$Props["indicator"] = "dot";
-	export let hideIndicator: $$Props["hideIndicator"] = false;
-	export let nestLabel: $$Props["nestLabel"] = false;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
-
-	$: itemConfig = getPayloadConfigFromPayload(config, payload);
+	const itemConfig = $derived(getPayloadConfigFromPayload(config, payload));
 </script>
 
 {#if itemConfig}
@@ -32,6 +34,7 @@
 			"border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
 			className
 		)}
+		{...restProps}
 	>
 		{#if !hideLabel}
 			{tooltipLabel}

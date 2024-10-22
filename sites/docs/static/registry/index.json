@@ -384,6 +384,10 @@
 				"type": "registry:ui"
 			},
 			{
+				"path": "ui/chart/chart-utils.ts",
+				"type": "registry:ui"
+			},
+			{
 				"path": "ui/chart/index.ts",
 				"type": "registry:ui"
 			}

@@ -1,23 +1,25 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
+	import type { WithElementRef } from "bits-ui";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { type ChartConfig, getPayloadConfigFromPayload } from "./index.js";
+	import { type ChartConfig, getPayloadConfigFromPayload } from "./chart-utils.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & {
+	let {
+		ref = $bindable(null),
+		class: className,
+		payload,
+		config,
+		hideIcon = false,
+		verticalAlign = "bottom",
+		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		payload: unknown;
 		config: ChartConfig;
 		hideIcon?: boolean;
 		verticalAlign?: "top" | "bottom";
-	};
+	} = $props();
 
-	export let payload: $$Props["payload"];
-	export let config: $$Props["config"];
-	export let hideIcon: $$Props["hideIcon"] = false;
-	export let verticalAlign: $$Props["verticalAlign"] = "bottom";
-	let className: $$Props["class"] = undefined;
-	export { className as class };
-
-	$: itemConfig = getPayloadConfigFromPayload(config, payload);
+	const itemConfig = $derived(getPayloadConfigFromPayload(config, payload));
 </script>
 
 {#if itemConfig}
@@ -27,6 +29,8 @@
 			verticalAlign === "top" ? "pb-3" : "pt-3",
 			className
 		)}
+		bind:this={ref}
+		{...restProps}
 	>
 		{#each itemConfig as item}
 			<div
