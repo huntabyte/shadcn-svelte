@@ -19,27 +19,50 @@ export const DEFAULT_TYPESCRIPT = true;
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
-const aliasSchema = v.pipe(
-	v.string(),
-	v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-);
+const aliasSchema = (alias: string) =>
+	v.pipe(
+		v.string(`Missing aliases.${color.bold(`${alias}`)} alias`),
+		v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+	);
 
-export const rawConfigSchema = v.object({
+const originalConfigSchema = v.object({
 	$schema: v.optional(v.string()),
-	style: v.string(),
-	tailwind: v.object({
-		config: v.string(),
-		css: v.string(),
-		baseColor: v.string(),
-		// cssVariables: v.boolean().default(true)
-	}),
+	style: v.string(`Missing ${color.bold("style")} field`),
+	tailwind: v.object(
+		{
+			config: v.string(`Missing tailwind.${color.bold("config")} path`),
+			css: v.string(`Missing tailwind.${color.bold("css")} path`),
+			baseColor: v.string(`Missing tailwind.${color.bold("baseColor")} field`),
+			// cssVariables: v.boolean().default(true)
+		},
+		`Missing ${color.bold("tailwind")} object`
+	),
+	aliases: v.object(
+		{
+			components: aliasSchema("components"),
+			utils: aliasSchema("utils"),
+		},
+		`Missing ${color.bold("aliases")} object`
+	),
+});
+
+// fields that were added after the fact so they must be optional so we can gracefully migrate
+const newConfigFields = v.object({
 	aliases: v.object({
-		components: aliasSchema,
-		utils: aliasSchema,
-		ui: aliasSchema,
-		hooks: aliasSchema,
+		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
+		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
 	}),
 	typescript: v.optional(v.boolean(), true),
+});
+
+// combines the old with the new
+export const rawConfigSchema = v.object({
+	...originalConfigSchema.entries,
+	...newConfigFields.entries,
+	aliases: v.object({
+		...originalConfigSchema.entries.aliases.entries,
+		...newConfigFields.entries.aliases.entries,
+	}),
 });
 
 export type RawConfig = v.InferOutput<typeof rawConfigSchema>;
@@ -132,7 +155,11 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
 		return v.parse(rawConfigSchema, config);
-	} catch {
-		throw new ConfigError(`Invalid configuration found in ${highlight(configPath)}.`);
+	} catch (e) {
+		if (!(e instanceof v.ValiError)) throw e;
+		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
 	}
 }
