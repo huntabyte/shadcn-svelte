@@ -6,11 +6,11 @@
 	import TrendingUp from "lucide-svelte/icons/trending-up";
 
 	const chartData = [
-		{ browser: "chrome", visitors: 187 },
-		{ browser: "safari", visitors: 200 },
-		{ browser: "firefox", visitors: 275 },
-		{ browser: "edge", visitors: 173 },
-		{ browser: "other", visitors: 90 },
+		{ browser: "chrome", visitors: 187, color: "hsl(var(--chart-1))" },
+		{ browser: "safari", visitors: 200, color: "hsl(var(--chart-2))" },
+		{ browser: "firefox", visitors: 275, color: "hsl(var(--chart-3))" },
+		{ browser: "edge", visitors: 173, color: "hsl(var(--chart-4))" },
+		{ browser: "other", visitors: 90, color: "hsl(var(--chart-5))" },
 	];
 
 	const chartConfig = {
