@@ -10,8 +10,8 @@
 		"components": "$lib/components",
 		"utils": "$lib/utils",
 		"ui": "$lib/components/ui",
-		"lib": "$lib/",
 		"hooks": "$lib/hooks"
 	},
-	"typescript": true
+	"typescript": true,
+	"registry": "http://localhost:5173/registry"
 }

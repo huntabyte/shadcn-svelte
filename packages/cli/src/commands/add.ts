@@ -125,8 +125,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				config,
 			});
 			for (const item of tree) {
-				registryDepMap.set(item.name, item.registryDependencies);
+				console.log(
+					"item name:",
+					item.name,
+					"registryDependencies:",
+					item.registryDependencies
+				);
 				for (const regDep of item.registryDependencies) {
+					selectedComponents.add(regDep);
 					const regDeps = registryDepMap.get(regDep);
 					regDeps?.forEach((dep) => selectedComponents.add(dep));
 				}
@@ -153,6 +159,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const existingComponents: string[] = [];
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of payload) {
+		console.log("item name", item.name);
 		if (selectedComponents.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies) {
 			selectedComponents.add(regDep);

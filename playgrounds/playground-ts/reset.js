@@ -17,6 +17,8 @@ function deleteSCNArtifacts() {
 
 	// delete './src/lib/utils.ts' file
 	fs.unlinkSync("./src/lib/utils.ts");
+
+	fs.rmSync("./src/lib/hooks", { recursive: true });
 }
 
 function uninstallDeps() {
