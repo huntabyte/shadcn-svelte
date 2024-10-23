@@ -1,0 +1,19 @@
+{
+	"name": "authentication-01",
+	"type": "registry:block",
+	"dependencies": [],
+	"registryDependencies": [
+		"button",
+		"card",
+		"input",
+		"label"
+	],
+	"files": [
+		{
+			"name": "authentication-01.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport * as Card from \"$lib/registry/new-york/ui/card/index.js\";\n\timport { Input } from \"$lib/registry/new-york/ui/input/index.js\";\n\timport { Label } from \"$lib/registry/new-york/ui/label/index.js\";\n</script>\n\n<Card.Root class=\"w-full max-w-sm\">\n\t<Card.Header>\n\t\t<Card.Title class=\"text-2xl\">Login</Card.Title>\n\t\t<Card.Description>Enter your email below to login to your account.</Card.Description>\n\t</Card.Header>\n\t<Card.Content class=\"grid gap-4\">\n\t\t<div class=\"grid gap-2\">\n\t\t\t<Label for=\"email\">Email</Label>\n\t\t\t<Input id=\"email\" type=\"email\" placeholder=\"m@example.com\" required />\n\t\t</div>\n\t\t<div class=\"grid gap-2\">\n\t\t\t<Label for=\"password\">Password</Label>\n\t\t\t<Input id=\"password\" type=\"password\" required />\n\t\t</div>\n\t</Card.Content>\n\t<Card.Footer>\n\t\t<Button class=\"w-full\">Sign in</Button>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:block",
+			"target": "authentication-01.svelte"
+		}
+	]
+}
