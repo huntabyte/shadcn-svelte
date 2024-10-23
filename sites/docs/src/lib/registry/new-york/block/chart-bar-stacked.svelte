@@ -55,7 +55,6 @@
 				props={{
 					bars: { stroke: "none", inset: 5 },
 					// TODO: How to take this fill to the behind the actual bars?
-
 					highlight: { area: { class: "fill-muted/25 z-0" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },
