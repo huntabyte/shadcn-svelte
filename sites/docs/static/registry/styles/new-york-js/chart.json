@@ -26,13 +26,13 @@
 		},
 		{
 			"name": "chart-utils.js",
-			"content": "export const THEMES = { light: \"\", dark: \".dark\" };\n// Helper to extract item config from a payload.\nexport function getPayloadConfigFromPayload(config, payload) {\n\t// Ensure the payload is an object\n\tif (typeof payload === \"object\" && payload !== null) {\n\t\t// Get all the keys in the payload dynamically\n\t\tconst payloadKeys = Object.keys(payload);\n\t\t// Loop over the keys from the payload\n\t\treturn payloadKeys\n\t\t\t.map((key) => {\n\t\t\tconst itemValue = payload[key];\n\t\t\tconst itemConfig = config[key];\n\t\t\t// Return the config merged with the value if the config exists for this key\n\t\t\tif (itemConfig) {\n\t\t\t\treturn {\n\t\t\t\t\t...itemConfig, // chartConfig properties (label, color, etc.)\n\t\t\t\t\tvalue: itemValue, // payload value\n\t\t\t\t};\n\t\t\t}\n\t\t\t// If there's no config for the key, return undefined or skip it\n\t\t\treturn undefined;\n\t\t})\n\t\t\t.filter(Boolean); // Filter out undefined values\n\t}\n\t// Return undefined if the payload is invalid\n\treturn undefined;\n}\n",
+			"content": "export const THEMES = { light: \"\", dark: \".dark\" };\n// Helper to extract item config from a payload.\nexport function getPayloadConfigFromPayload(config, payload) {\n\tif (typeof payload !== \"object\" || payload === null)\n\t\treturn;\n\t// Ensure the payload is an object\n\t// Get all the keys in the payload dynamically\n\tconst payloadKeys = Object.keys(payload);\n\t// Loop over the keys from the payload\n\treturn payloadKeys\n\t\t.map((key) => {\n\t\tconst itemValue = payload[key];\n\t\tconst itemConfig = config[key];\n\t\t// Return the config merged with the value if the config exists for this key\n\t\tif (itemConfig) {\n\t\t\treturn {\n\t\t\t\t...itemConfig, // chartConfig properties (label, color, etc.)\n\t\t\t\tvalue: itemValue, // payload value\n\t\t\t};\n\t\t}\n\t\t// If there's no config for the key, return undefined or skip it\n\t\treturn undefined;\n\t})\n\t\t.filter(Boolean); // Filter out undefined values\n}\n",
 			"target": "components/ui/chart/chart-utils.js",
 			"type": "registry:ui"
 		},
 		{
 			"name": "index.js",
-			"content": "import ChartContainer from \"./chart-container.svelte\";\nimport ChartLegend from \"./chart-legend.svelte\";\nimport ChartTooltip from \"./chart-tooltip.svelte\";\nexport { ChartContainer, ChartLegend, ChartTooltip, ChartContainer as Container, ChartLegend as Legend, ChartTooltip as Tooltip, };\n",
+			"content": "import ChartContainer from \"./chart-container.svelte\";\nimport ChartLegend from \"./chart-legend.svelte\";\nimport ChartTooltip from \"./chart-tooltip.svelte\";\nexport { getPayloadConfigFromPayload } from \"./chart-utils.js\";\nexport { ChartContainer, ChartLegend, ChartTooltip, ChartContainer as Container, ChartLegend as Legend, ChartTooltip as Tooltip, };\n",
 			"target": "components/ui/chart/index.js",
 			"type": "registry:ui"
 		}

@@ -39,28 +39,14 @@
 		},
 	} satisfies Chart.ChartConfig;
 
-	type Series = NonNullable<(typeof BarChart)["prototype"]["$$prop_def"]["series"]>;
-
-	function chartConfigToSeries(config: Chart.ChartConfig): Series {
-		const res = Object.keys(config).map((key) => {
-			const itemConfig = config[key];
-			const result: Series[number] = {
-				key: "visitors",
-				label: itemConfig.label,
-				color: itemConfig.color,
-			};
-			if (key === "visitors") {
-				result.props = {
-					strokeWidth: 2,
-					radius: 8,
-					stroke: "full",
-				};
-			}
-			return result;
-		});
-		console.log(res);
-		return res;
-	}
+	const cDomain = Object.keys(chartConfig);
+	const cRange = cDomain
+		.map((key) => {
+			const item = chartConfig[key as keyof typeof chartConfig];
+			if ("color" in item) return item.color;
+			return " ";
+		})
+		.filter((v): v is string => Boolean(v));
 </script>
 
 <Card.Root>
@@ -73,7 +59,10 @@
 			<BarChart
 				data={chartData}
 				x="browser"
-				series={chartConfigToSeries(chartConfig)}
+				c="browser"
+				y="visitors"
+				{cDomain}
+				{cRange}
 				xScale={scaleBand().padding(0.2)}
 				props={{
 					bars: { stroke: "none", radius: 8 },
