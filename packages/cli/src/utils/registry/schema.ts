@@ -26,10 +26,6 @@ export const registryItemFileSchema = v.object({
 	type: registryItemTypeSchema,
 });
 
-export type RegistryItemFile = v.InferOutput<typeof registryItemFileSchema>;
-
-export type RegistryItemTailwind = v.InferOutput<typeof registryItemTailwindSchema>;
-
 export const registryItemCssVarsSchema = v.object({
 	light: v.optional(v.record(v.string(), v.string())),
 	dark: v.optional(v.record(v.string(), v.string())),
@@ -44,13 +40,6 @@ export const registryItemSchema = v.object({
 	tailwind: v.optional(registryItemTailwindSchema),
 	cssVars: v.optional(registryItemCssVarsSchema),
 });
-
-export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
-
-export const registryResolvedItemsTreeSchema = v.pick(registryItemSchema, [
-	"dependencies",
-	"files",
-]);
 
 export const registryIndexSchema = v.array(registryItemSchema);
 
@@ -69,13 +58,6 @@ export const registryItemWithContentSchema = v.object({
 });
 
 export const registryWithContentSchema = v.array(registryItemWithContentSchema);
-
-export const stylesSchema = v.array(
-	v.object({
-		name: v.string(),
-		label: v.string(),
-	})
-);
 
 export const registryBaseColorSchema = v.object({
 	inlineColors: v.object({
