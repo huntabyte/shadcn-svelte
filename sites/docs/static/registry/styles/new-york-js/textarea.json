@@ -1,5 +1,6 @@
 {
 	"name": "textarea",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import Root from \"./textarea.svelte\";\nexport { Root, \n//\nRoot as Textarea, };\n"
+			"content": "import Root from \"./textarea.svelte\";\nexport { Root, \n//\nRoot as Textarea, };\n",
+			"target": "components/ui/textarea/index.js",
+			"type": "registry:ui"
 		},
 		{
 			"name": "textarea.svelte",
-			"content": "<script>\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t\"border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n></textarea>\n"
+			"content": "<script>\n\timport type { WithElementRef, WithoutChildren } from \"bits-ui\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tbind:value\n\tclass={cn(\n\t\t\"border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n></textarea>\n",
+			"target": "components/ui/textarea/textarea.svelte",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

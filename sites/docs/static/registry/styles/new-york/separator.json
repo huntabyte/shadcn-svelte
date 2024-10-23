@@ -1,5 +1,6 @@
 {
 	"name": "separator",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator,\n};\n"
+			"content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/separator/index.ts"
 		},
 		{
 			"name": "separator.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"horizontal\",\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"bg-border shrink-0\",\n\t\torientation === \"horizontal\" ? \"h-[1px] w-full\" : \"min-h-full w-[1px]\",\n\t\tclassName\n\t)}\n\t{orientation}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"horizontal\",\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"bg-border shrink-0\",\n\t\torientation === \"horizontal\" ? \"h-[1px] w-full\" : \"min-h-full w-[1px]\",\n\t\tclassName\n\t)}\n\t{orientation}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/separator/separator.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }

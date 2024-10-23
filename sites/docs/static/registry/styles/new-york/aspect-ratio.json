@@ -1,12 +1,16 @@
 {
 	"name": "aspect-ratio",
-	"dependencies": [],
+	"type": "registry:ui",
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\nconst Root = AspectRatioPrimitive.Root;\n\nexport { Root, Root as AspectRatio };\n"
+			"content": "import { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\nconst Root = AspectRatioPrimitive.Root;\n\nexport { Root, Root as AspectRatio };\n",
+			"type": "registry:ui",
+			"target": "components/ui/aspect-ratio/index.ts"
 		}
-	],
-	"type": "components:ui"
+	]
 }

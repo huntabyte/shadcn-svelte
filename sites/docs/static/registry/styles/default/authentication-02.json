@@ -1,0 +1,19 @@
+{
+	"name": "authentication-02",
+	"type": "registry:block",
+	"dependencies": [],
+	"registryDependencies": [
+		"button",
+		"card",
+		"input",
+		"label"
+	],
+	"files": [
+		{
+			"name": "authentication-02.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Button } from \"$lib/registry/default/ui/button/index.js\";\n\timport * as Card from \"$lib/registry/default/ui/card/index.js\";\n\timport { Input } from \"$lib/registry/default/ui/input/index.js\";\n\timport { Label } from \"$lib/registry/default/ui/label/index.js\";\n</script>\n\n<Card.Root class=\"mx-auto max-w-sm\">\n\t<Card.Header>\n\t\t<Card.Title class=\"text-2xl\">Login</Card.Title>\n\t\t<Card.Description>Enter your email below to login to your account</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<div class=\"grid gap-4\">\n\t\t\t<div class=\"grid gap-2\">\n\t\t\t\t<Label for=\"email\">Email</Label>\n\t\t\t\t<Input id=\"email\" type=\"email\" placeholder=\"m@example.com\" required />\n\t\t\t</div>\n\t\t\t<div class=\"grid gap-2\">\n\t\t\t\t<div class=\"flex items-center\">\n\t\t\t\t\t<Label for=\"password\">Password</Label>\n\t\t\t\t\t<a href=\"##\" class=\"ml-auto inline-block text-sm underline\">\n\t\t\t\t\t\tForgot your password?\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\t\t<Input id=\"password\" type=\"password\" required />\n\t\t\t</div>\n\t\t\t<Button type=\"submit\" class=\"w-full\">Login</Button>\n\t\t\t<Button variant=\"outline\" class=\"w-full\">Login with Google</Button>\n\t\t</div>\n\t\t<div class=\"mt-4 text-center text-sm\">\n\t\t\tDon&apos;t have an account?\n\t\t\t<a href=\"##\" class=\"underline\">Sign up</a>\n\t\t</div>\n\t</Card.Content>\n</Card.Root>\n",
+			"type": "registry:block",
+			"target": "components/authentication-02.svelte"
+		}
+	]
+}

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { WithoutChildren } from "bits-ui";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { config } from "$lib/stores/index.js";
 	import { styles } from "$lib/registry/styles.js";
+	import { config } from "$lib/stores/index.js";
 	import { type PrimitiveButtonAttributes, cn } from "$lib/utils.js";
+	import type { WithoutChildren } from "bits-ui";
 
 	let {
 		class: className,

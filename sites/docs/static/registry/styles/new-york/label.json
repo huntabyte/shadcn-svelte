@@ -1,5 +1,6 @@
 {
 	"name": "label",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label,\n};\n"
+			"content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label,\n};\n",
+			"type": "registry:ui",
+			"target": "components/ui/label/index.ts"
 		},
 		{
 			"name": "label.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: LabelPrimitive.RootProps = $props();\n</script>\n\n<LabelPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: LabelPrimitive.RootProps = $props();\n</script>\n\n<LabelPrimitive.Root\n\tbind:ref\n\tclass={cn(\n\t\t\"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "components/ui/label/label.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }
