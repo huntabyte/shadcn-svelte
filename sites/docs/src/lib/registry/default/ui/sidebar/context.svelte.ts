@@ -25,7 +25,7 @@ class SidebarState {
 	openMobile = $state(false);
 	setOpen: SidebarStateProps["setOpen"];
 	#isMobile: IsMobile;
-	stateAttr = $derived.by(() => (this.open ? "expanded" : "collapsed"));
+	state = $derived.by(() => (this.open ? "expanded" : "collapsed"));
 
 	constructor(readonly props: SidebarStateProps) {
 		this.setOpen = props.setOpen;

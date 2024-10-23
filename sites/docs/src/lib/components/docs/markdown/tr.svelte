@@ -4,6 +4,6 @@
 	let { class: className, children, ...restProps }: PrimitiveElementAttributes = $props();
 </script>
 
-<tr class={cn("even:bg-muted m-0 border-t p-0", className)} {...restProps}>
+<tr class={cn("m-0 border-t", className)} {...restProps}>
 	{@render children?.()}
 </tr>

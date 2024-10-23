@@ -56,9 +56,9 @@
 {:else}
 	<div
 		bind:this={ref}
-		class="group peer hidden md:block"
-		data-state={sidebar.stateAttr}
-		data-collapsible={sidebar.stateAttr === "collapsed" ? collapsible : ""}
+		class="text-sidebar-foreground group peer hidden md:block"
+		data-state={sidebar.state}
+		data-collapsible={sidebar.state === "collapsed" ? collapsible : ""}
 		data-variant={variant}
 		data-side={side}
 	>

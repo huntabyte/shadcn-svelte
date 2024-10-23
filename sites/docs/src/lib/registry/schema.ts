@@ -20,6 +20,18 @@ export const blockNames = [
 	"sidebar-14",
 	"sidebar-15",
 	"login-01",
+	"demo-sidebar",
+	"demo-sidebar-header",
+	"demo-sidebar-footer",
+	"demo-sidebar-group",
+	"demo-sidebar-group-collapsible",
+	"demo-sidebar-group-action",
+	"demo-sidebar-menu",
+	"demo-sidebar-menu-action",
+	"demo-sidebar-menu-sub",
+	"demo-sidebar-menu-collapsible",
+	"demo-sidebar-menu-badge",
+	"demo-sidebar-controlled",
 ] as const;
 
 export const registryItemTypeSchema = z.enum([

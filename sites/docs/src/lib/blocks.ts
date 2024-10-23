@@ -2,7 +2,7 @@ import { type Highlighter, getHighlighter } from "shiki";
 import type { Component } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
-import { blockMeta } from "./config/blocks.js";
+import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { type BlockName, type Style, blockSchema } from "$lib/registry/index.js";
 
 const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
@@ -33,7 +33,7 @@ export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const block = Blocks[style][name];
 	const content = await getBlockContent(name, style);
-	const chunks = block.chunks.map((chunk) => chunk.name);
+	const chunks = (block.chunks as Array<RawBlockChunk>).map((chunk) => chunk.name);
 
 	return blockSchema.parse({
 		...block,
