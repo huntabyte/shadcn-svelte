@@ -7,7 +7,7 @@ links:
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$lib/components/docs';
+    import { ComponentPreview } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="date-picker-demo">

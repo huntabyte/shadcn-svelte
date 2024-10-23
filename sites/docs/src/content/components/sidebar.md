@@ -7,7 +7,8 @@ component: true
 <script>
 	import ComponentPreviewManual from '$lib/components/docs/component-preview-manual.svelte';
 	import DocsFigure from '$lib/components/docs/docs-figure.svelte';
-	import { PMAddComp, PMInstall, ManualInstall, Steps, Step, Callout } from '$lib/components/docs';
+	import { PMAddComp, PMInstall, ManualInstall, Steps, Step, Callout, InstallTabs } from '$lib/components/docs';
+	import * as Tabs from '$lib/components/docs/tabs';
 </script>
 
 <DocsFigure caption="A sidebar that collapses to icons.">
@@ -23,6 +24,9 @@ We now have a solid foundation to build on top of. Composable. Themeable. Custom
 [Browse the Blocks Library](/blocks).
 
 ## Installation
+
+<InstallTabs>
+{#snippet cli()}
 
 <Steps>
 
@@ -61,12 +65,17 @@ We'll go over the colors later in the [theming section](/docs/components/sidebar
 ```
 
 </Steps>
+{/snippet}
 
-<ManualInstall>
+{#snippet manual()}
 
 <Steps>
 
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 <Step>Add the following colors to your CSS file</Step>
 
@@ -99,8 +108,9 @@ We'll go over the colors later in the [theming section](/docs/components/sidebar
 ```
 
 </Steps>
+{/snippet}
 
-</ManualInstall>
+</InstallTabs>
 
 ## Structure
 
