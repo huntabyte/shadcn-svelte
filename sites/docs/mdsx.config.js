@@ -28,7 +28,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
  * @type {import('rehype-pretty-code').Options}
  */
 const prettyCodeOptions = {
-	theme: JSON.parse(String(readFileSync(resolve(__dirname, "./other/themes/dark.json")))),
+	theme: "github-dark",
 	getHighlighter: (options) =>
 		getHighlighter({
 			...options,
@@ -45,8 +45,7 @@ const prettyCodeOptions = {
 	keepBackground: false,
 	onVisitLine(node) {
 		if (node.children.length === 0) {
-			// @ts-expect-error - we're changing the node type
-			node.children = { type: "text", value: " " };
+			console.log(JSON.stringify(node));
 		}
 	},
 	onVisitHighlightedLine(node) {
