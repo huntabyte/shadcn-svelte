@@ -308,6 +308,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		$schema: "https://shadcn-svelte.com/schema.json",
 		style,
 		typescript: langConfig.type === "tsconfig.json",
+		registry: defaultConfig?.registry,
 		tailwind: {
 			config: tailwindConfig,
 			css: globalCss,
