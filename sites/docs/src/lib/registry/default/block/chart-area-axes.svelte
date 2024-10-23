@@ -65,16 +65,14 @@
 					yAxis: { ticks: 3 },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="dot"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				<Tooltip.Root let:data variant="none" slot="tooltip">
+					<Chart.Tooltip
+						tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
+						config={chartConfig}
+						payload={data}
+						indicator="dot"
+					/>
+				</Tooltip.Root>
 			</AreaChart>
 		</Chart.Container>
 	</Card.Content>

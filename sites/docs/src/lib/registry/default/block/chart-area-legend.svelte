@@ -66,16 +66,14 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="line"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				<Tooltip.Root let:data variant="none" slot="tooltip">
+					<Chart.Tooltip
+						tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
+						config={chartConfig}
+						payload={data}
+						indicator="line"
+					/>
+				</Tooltip.Root>
 
 				<!-- TODO: Add custom legends -->
 				<!-- <svelte:fragment slot="legend">where is that data 🤔?</svelte:fragment> -->

@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
+	import { PeriodType, format } from "@layerstack/utils";
+	import { scaleUtc } from "d3-scale";
+	import { curveNatural } from "d3-shape";
 	import { AreaChart, Tooltip } from "layerchart";
 	import TrendingUp from "lucide-svelte/icons/trending-up";
-	import { PeriodType, format } from "@layerstack/utils";
-	import { curveNatural } from "d3-shape";
-	import { scaleUtc } from "d3-scale";
-	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },

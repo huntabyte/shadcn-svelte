@@ -44,11 +44,9 @@
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				<Tooltip.Root let:data variant="none" slot="tooltip">
+					<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
+				</Tooltip.Root>
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

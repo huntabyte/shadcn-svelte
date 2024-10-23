@@ -1,9 +1,9 @@
 <script lang="ts">
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
 	import { BarChart, Tooltip } from "layerchart";
 	import TrendingUp from "lucide-svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/new-york/ui/chart/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -48,14 +48,15 @@
 						label: "Mobile",
 						color: chartConfig.mobile.color,
 						// TODO: How to specify radii for different corners. e.g radius: [4, 4, 0, 0], or better yet, class: "rounded-t-none"
-						props: { class: "rounded-b-none" },
+						props: { class: "rounded-b-none z-20" },
 					},
 				]}
 				seriesLayout="stack"
 				props={{
 					bars: { stroke: "none", inset: 5 },
 					// TODO: How to take this fill to the behind the actual bars?
-					highlight: { area: { class: "fill-muted/25" } },
+
+					highlight: { area: { class: "fill-muted/25 z-0" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },
 				}}

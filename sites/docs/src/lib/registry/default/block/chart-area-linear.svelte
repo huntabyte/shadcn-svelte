@@ -56,11 +56,9 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip config={chartConfig} payload={data} hideLabel />
-					</Tooltip.Root>
-				</svelte:fragment>
+				<Tooltip.Root let:data variant="none" slot="tooltip">
+					<Chart.Tooltip config={chartConfig} payload={data} hideLabel />
+				</Tooltip.Root>
 			</AreaChart>
 		</Chart.Container>
 	</Card.Content>
