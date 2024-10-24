@@ -168,6 +168,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function writeConfig(cwd: string, config: any): void {
 	const targetPath = path.resolve(cwd, "components.json");
 	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do

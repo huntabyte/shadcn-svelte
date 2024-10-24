@@ -34,8 +34,11 @@ describe("getRawConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			typescript: true,
+			registry: "https://shadcn-svelte.com/registry",
 		});
 	});
 
@@ -67,6 +70,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -85,8 +90,16 @@ describe("getConfig", () => {
 					"./src/app.pcss"
 				),
 				utils: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/utils"),
+				cwd: path.resolve(__dirname, "../fixtures/config-partial"),
+				hooks: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/hooks"),
+				ui: path.resolve(
+					__dirname,
+					"../fixtures/config-partial",
+					"./src/lib/components/ui"
+				),
 			},
 			typescript: true,
+			registry: "https://shadcn-svelte.com/registry",
 		});
 	});
 
@@ -101,6 +114,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -115,8 +130,12 @@ describe("getConfig", () => {
 				),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-full", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/utils"),
+				cwd: path.resolve(__dirname, "../fixtures/config-full"),
+				hooks: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/hooks"),
+				ui: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/components/ui"),
 			},
 			typescript: true,
+			registry: "https://shadcn-svelte.com/registry",
 		});
 	});
 
@@ -131,6 +150,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -145,8 +166,12 @@ describe("getConfig", () => {
 				),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-vite", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/utils"),
+				hooks: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/hooks"),
+				ui: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/components/ui"),
+				cwd: path.resolve(__dirname, "../fixtures/config-vite"),
 			},
 			typescript: true,
+			registry: "https://shadcn-svelte.com/registry",
 		});
 	});
 
@@ -159,8 +184,10 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
 				components: "$lib/components",
+				utils: "$lib/utils",
+				ui: "$lib/components/ui",
+				hooks: "$lib/hooks",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -179,8 +206,16 @@ describe("getConfig", () => {
 					"./src/app.pcss"
 				),
 				utils: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/utils"),
+				hooks: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/hooks"),
+				ui: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./src/lib/components/ui"
+				),
+				cwd: path.resolve(__dirname, "../fixtures/config-jsconfig"),
 			},
 			typescript: false,
+			registry: "https://shadcn-svelte.com/registry",
 		});
 	});
 });
