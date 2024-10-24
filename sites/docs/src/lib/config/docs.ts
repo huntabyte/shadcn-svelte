@@ -97,6 +97,12 @@ export const docsConfig: DocsConfig = {
 			title: "Components",
 			items: [
 				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+					label: "New",
+				},
+				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
 					items: [],

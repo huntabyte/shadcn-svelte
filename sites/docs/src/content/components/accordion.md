@@ -9,7 +9,7 @@ links:
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+    import { ComponentPreview, PMAddComp, PMInstall, InstallTabs, Steps, Step } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
@@ -20,17 +20,33 @@ links:
 
 ## Installation
 
+<InstallTabs>
+
+{#snippet cli()}
+
 <PMAddComp name="accordion" />
 
-<ManualInstall>
+{/snippet}
 
-1. Install `bits-ui`:
+{#snippet manual()}
+
+<Steps>
+
+<Step>
+
+Install `bits-ui`
+
+</Step>
 
 <PMInstall command="bits-ui" />
 
-2. Copy and paste the component source files linked at the top of this page into your project.
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
 
-</ManualInstall>
+</Steps>
+
+{/snippet}
+
+</InstallTabs>
 
 ## Usage
 

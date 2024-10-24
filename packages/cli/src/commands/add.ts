@@ -1,24 +1,18 @@
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { ConfigError, error, handleError } from "../utils/errors.js";
-import {
-	fetchTree,
-	getItemTargetPath,
-	// getRegistryBaseColor,
-	getRegistryIndex,
-	resolveTree,
-} from "../utils/registry/index.js";
-import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
 import { detectPM } from "../utils/auto-detect.js";
+import { ConfigError, error, handleError } from "../utils/errors.js";
+import * as cliConfig from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import * as registry from "../utils/registry/index.js";
+import { transformImports } from "../utils/transformers.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -60,12 +54,14 @@ export const add = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			const config = await getConfig(cwd);
+			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw new ConfigError(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
+
+			registry.setRegistry(config.registry);
 
 			await runAdd(cwd, config, options);
 
@@ -75,13 +71,13 @@ export const add = new Command()
 		}
 	});
 
-async function runAdd(cwd: string, config: Config, options: AddOptions) {
+async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryIndex = await getRegistryIndex();
+	const registryIndex = await registry.getRegistryIndex();
 
 	let selectedComponents = new Set(
 		options.all ? registryIndex.map(({ name }) => name) : options.components
@@ -118,12 +114,34 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 
 	// adds `registryDependency` to `selectedComponents` so that they can be individually overwritten
 	for (const name of selectedComponents) {
-		const regDeps = registryDepMap.get(name);
-		regDeps?.forEach((dep) => selectedComponents.add(dep));
+		if (registryDepMap.has(name)) {
+			const regDeps = registryDepMap.get(name);
+			regDeps?.forEach((dep) => selectedComponents.add(dep));
+		} else {
+			const tree = await registry.resolveTree({
+				index: registryIndex,
+				names: [name],
+				includeRegDeps: true,
+				config,
+			});
+			for (const item of tree) {
+				for (const regDep of item.registryDependencies) {
+					selectedComponents.add(regDep);
+					const regDeps = registryDepMap.get(regDep);
+					regDeps?.forEach((dep) => selectedComponents.add(dep));
+				}
+			}
+		}
 	}
 
-	const tree = await resolveTree(registryIndex, Array.from(selectedComponents), false);
-	const payload = await fetchTree(config, tree);
+	const tree = await registry.resolveTree({
+		index: registryIndex,
+		names: Array.from(selectedComponents),
+		includeRegDeps: false,
+		config,
+	});
+
+	const payload = await registry.fetchTree(config, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 	if (payload.length === 0) {
@@ -136,8 +154,11 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of payload) {
 		if (selectedComponents.has(item.name) === false) continue;
+		for (const regDep of item.registryDependencies) {
+			selectedComponents.add(regDep);
+		}
 
-		const targetDir = getItemTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
 		const componentExists = item.files.some((file) => {
@@ -187,7 +208,7 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getItemTargetPath(config, item, targetPath);
+		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
 		if (!existsSync(targetDir)) {
@@ -225,14 +246,15 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
 				for (const file of item.files) {
-					const componentDir = path.resolve(targetDir, item.name);
-					const filePath = path.resolve(targetDir, item.name, file.name);
+					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+					const filePath = path.resolve(targetDir, file.target);
 
 					// Run transformers.
 					const content = transformImports(file.content, config);
 
-					if (!existsSync(componentDir)) {
-						await fs.mkdir(componentDir, { recursive: true });
+					const dir = path.parse(filePath).dir;
+					if (!existsSync(dir)) {
+						await fs.mkdir(dir, { recursive: true });
 					}
 
 					await fs.writeFile(filePath, content);
@@ -251,13 +273,22 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, ...dependencies], {
+				await execa(pm, [add, "-D", ...dependencies], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
 	}
+
+	// Update the config
+	tasks.push({
+		title: "Updating config file",
+		async task() {
+			cliConfig.writeConfig(cwd, config);
+			return `Config file ${highlight("components.json")} updated`;
+		},
+	});
 
 	await p.tasks(tasks);
 

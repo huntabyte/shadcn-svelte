@@ -1,0 +1,19 @@
+{
+	"name": "demo-sidebar-controlled",
+	"type": "registry:block",
+	"dependencies": [
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"sidebar",
+		"button"
+	],
+	"files": [
+		{
+			"name": "demo-sidebar-controlled.svelte",
+			"content": "<script>\n\timport * as Sidebar from \"$lib/registry/new-york/ui/sidebar/index.js\";\n\timport { Button } from \"$lib/registry/new-york/ui/button/index.js\";\n\timport PanelLeftOpen from \"lucide-svelte/icons/panel-left-open\";\n\timport PanelLeftClose from \"lucide-svelte/icons/panel-left-close\";\n\timport LifeBuoy from \"lucide-svelte/icons/life-buoy\";\n\timport Send from \"lucide-svelte/icons/send\";\n\timport Frame from \"lucide-svelte/icons/frame\";\n\timport ChartPie from \"lucide-svelte/icons/chart-pie\";\n\timport Map from \"lucide-svelte/icons/map\";\n\n\tconst projects = [\n\t\t{\n\t\t\tname: \"Design Engineering\",\n\t\t\turl: \"#\",\n\t\t\ticon: Frame,\n\t\t},\n\t\t{\n\t\t\tname: \"Sales & Marketing\",\n\t\t\turl: \"#\",\n\t\t\ticon: ChartPie,\n\t\t},\n\t\t{\n\t\t\tname: \"Travel\",\n\t\t\turl: \"#\",\n\t\t\ticon: Map,\n\t\t},\n\t\t{\n\t\t\tname: \"Support\",\n\t\t\turl: \"#\",\n\t\t\ticon: LifeBuoy,\n\t\t},\n\t\t{\n\t\t\tname: \"Feedback\",\n\t\t\turl: \"#\",\n\t\t\ticon: Send,\n\t\t},\n\t];\n\n\tlet open = $state(true);\n</script>\n\n<Sidebar.Provider {open} controlledOpen onOpenChange={(value) => (open = value)}>\n\t<Sidebar.Root>\n\t\t<Sidebar.Content>\n\t\t\t<Sidebar.Group>\n\t\t\t\t<Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>\n\t\t\t\t<Sidebar.GroupContent>\n\t\t\t\t\t<Sidebar.Menu>\n\t\t\t\t\t\t{#each projects as project (project.name)}\n\t\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t\t<a href={project.url} {...props}>\n\t\t\t\t\t\t\t\t\t\t\t<project.icon />\n\t\t\t\t\t\t\t\t\t\t\t<span>{project.name}</span>\n\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Sidebar.Menu>\n\t\t\t\t</Sidebar.GroupContent>\n\t\t\t</Sidebar.Group>\n\t\t</Sidebar.Content>\n\t</Sidebar.Root>\n\t<Sidebar.Inset>\n\t\t<header class=\"flex h-12 items-center justify-between px-4\">\n\t\t\t<Button onclick={() => (open = !open)} size=\"sm\" variant=\"ghost\">\n\t\t\t\t{#if open}\n\t\t\t\t\t<PanelLeftClose />\n\t\t\t\t{:else}\n\t\t\t\t\t<PanelLeftOpen />\n\t\t\t\t{/if}\n\t\t\t\t<span>{open ? \"Close\" : \"Open\"} Sidebar</span>\n\t\t\t</Button>\n\t\t</header>\n\t</Sidebar.Inset>\n</Sidebar.Provider>\n",
+			"target": "demo-sidebar-controlled.svelte",
+			"type": "registry:block"
+		}
+	]
+}

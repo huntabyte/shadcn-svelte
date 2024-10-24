@@ -17,6 +17,8 @@ function deleteSCNArtifacts() {
 
 	// delete './src/lib/utils.ts' file
 	fs.unlinkSync("./src/lib/utils.ts");
+
+	fs.rmSync("./src/lib/hooks", { recursive: true });
 }
 
 function uninstallDeps() {
@@ -40,9 +42,7 @@ const config = {
 module.exports = config;
 `;
 
-	fs.renameSync("./tailwind.config.js", "./tailwind.config.cjs");
-
-	fs.writeFileSync("./tailwind.config.cjs", startingConfig, "utf-8");
+	fs.writeFileSync("./tailwind.config.ts", startingConfig, "utf-8");
 }
 
 function resetPcssStyles() {
@@ -51,7 +51,7 @@ function resetPcssStyles() {
 @tailwind components;
 @tailwind utilities`;
 
-	fs.writeFileSync("./src/app.pcss", startingStyles, "utf-8");
+	fs.writeFileSync("./src/app.css", startingStyles, "utf-8");
 }
 
 function safe(fn) {

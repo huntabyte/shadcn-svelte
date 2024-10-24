@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { WithoutChildren } from "bits-ui";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { config } from "$lib/stores/index.js";
 	import { styles } from "$lib/registry/styles.js";
+	import { config } from "$lib/stores/index.js";
 	import { type PrimitiveButtonAttributes, cn } from "$lib/utils.js";
+	import type { WithoutChildren } from "bits-ui";
 
 	let {
 		class: className,
 		...restProps
 	}: WithoutChildren<Omit<PrimitiveButtonAttributes, "style" | "id">> = $props();
 
-	const styleLabel = $derived(styles.filter((s) => s.name === $config.style)[0].label);
+	const styleLabel = $derived(styles.filter((s) => s.name === $config.style)[0]?.label);
 
 	let value = $state($config.style);
 

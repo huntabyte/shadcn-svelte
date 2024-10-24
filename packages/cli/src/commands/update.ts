@@ -1,24 +1,19 @@
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
+import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
-import {
-	fetchTree,
-	getItemTargetPath,
-	getRegistryIndex,
-	resolveTree,
-} from "../utils/registry/index.js";
+import * as cliConfig from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { detectPM } from "../utils/auto-detect.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -55,12 +50,14 @@ export const update = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			const config = await getConfig(cwd);
+			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
+
+			registry.setRegistry(config.registry);
 
 			await runUpdate(cwd, config, options);
 
@@ -74,14 +71,14 @@ export const update = new Command()
 		}
 	});
 
-async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
+async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
 	const components = options.components;
-	const registryIndex = await getRegistryIndex();
+	const registryIndex = await registry.getRegistryIndex();
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -105,7 +102,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
-		type: "components:ui",
+		type: "registry:ui",
 		files: [],
 		dependencies: [],
 		registryDependencies: [],
@@ -170,17 +167,20 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
 	}
 
-	const tree = await resolveTree(
-		registryIndex,
-		selectedComponents.map((com) => com.name)
+	const tree = await registry.resolveTree({
+		index: registryIndex,
+		names: selectedComponents.map((com) => com.name),
+		config,
+	});
+	const payload = (await registry.fetchTree(config, tree)).sort((a, b) =>
+		a.name.localeCompare(b.name)
 	);
-	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getItemTargetPath(config, item);
+		const targetDir = registry.getItemTargetPath(config, item);
 		if (!targetDir) {
 			continue;
 		}
@@ -237,13 +237,22 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, ...dependencies], {
+				await execa(pm, [add, "-D", ...dependencies], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
 	}
+
+	// Update the config
+	tasks.push({
+		title: "Updating config file",
+		async task() {
+			cliConfig.writeConfig(cwd, config);
+			return `Config file ${highlight("components.json")} updated`;
+		},
+	});
 
 	await p.tasks(tasks);
 

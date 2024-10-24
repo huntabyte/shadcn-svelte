@@ -5,11 +5,12 @@
 	import { cn } from "$lib/utils.js";
 	import BlockWrapper from "$lib/components/docs/block-wrapper.svelte";
 	import BlockChunk from "$lib/components/docs/block-chunk.svelte";
+	import type { RawBlockChunk } from "$lib/blocks.js";
 
 	let { data }: { data: PageData } = $props();
 
 	const block = $derived(Blocks[data.block.style][data.block.name]);
-	const chunks = $derived(block.chunks);
+	const chunks = $derived(block.chunks) as Array<RawBlockChunk>;
 
 	async function getComponents() {
 		const components: Promise<Component>[] = chunks.map((chunk) => chunk.component());

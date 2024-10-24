@@ -5,7 +5,7 @@ component: true
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, Callout } from '$lib/components/docs';
+  import { ComponentPreview, Callout } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="combobox-demo">

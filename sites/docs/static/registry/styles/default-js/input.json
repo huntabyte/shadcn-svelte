@@ -1,5 +1,6 @@
 {
 	"name": "input",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import Root from \"./input.svelte\";\nexport { Root, \n//\nRoot as Input, };\n"
+			"content": "import Root from \"./input.svelte\";\nexport { Root, \n//\nRoot as Input, };\n",
+			"target": "input/index.js",
+			"type": "registry:ui"
 		},
 		{
 			"name": "input.svelte",
-			"content": "<script>\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithElementRef<HTMLInputAttributes> = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}\n/>\n"
+			"content": "<script>\n\timport type { HTMLInputAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithElementRef<HTMLInputAttributes> = $props();\n</script>\n\n<input\n\tbind:this={ref}\n\tclass={cn(\n\t\t\"border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}\n/>\n",
+			"target": "input/input.svelte",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

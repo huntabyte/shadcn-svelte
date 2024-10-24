@@ -7,7 +7,7 @@ links:
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Steps, Step, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="breadcrumb-demo">
@@ -18,13 +18,16 @@ links:
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="breadcrumb" />
-
-<ManualInstall>
-
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

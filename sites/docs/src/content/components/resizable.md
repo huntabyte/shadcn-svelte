@@ -8,7 +8,7 @@ links:
 ---
 
 <script>
-	import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+	import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="resizable-demo">
@@ -23,17 +23,22 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="resizable" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `paneforge`:
 
-1. Install `paneforge`:
-
+</Step>
 <PMInstall command="paneforge -D" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

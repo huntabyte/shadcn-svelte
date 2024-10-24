@@ -1,5 +1,6 @@
 {
 	"name": "checkbox",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui",
 		"svelte-radix"
@@ -8,12 +9,15 @@
 	"files": [
 		{
 			"name": "checkbox.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Checkbox as CheckboxPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport Check from \"svelte-radix/Check.svelte\";\n\timport Minus from \"svelte-radix/Minus.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchecked = $bindable(false),\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();\n</script>\n\n<CheckboxPrimitive.Root\n\tclass={cn(\n\t\t\"border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:checked\n\tbind:ref\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"flex size-4 items-center justify-center text-current\">\n\t\t\t{#if checked === \"indeterminate\"}\n\t\t\t\t<Minus class=\"size-3.5\" />\n\t\t\t{:else}\n\t\t\t\t<Check class={cn(\"size-3.5\", !checked && \"text-transparent\")} />\n\t\t\t{/if}\n\t\t</span>\n\t{/snippet}\n</CheckboxPrimitive.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport { Checkbox as CheckboxPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport Check from \"svelte-radix/Check.svelte\";\n\timport Minus from \"svelte-radix/Minus.svelte\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchecked = $bindable(false),\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();\n</script>\n\n<CheckboxPrimitive.Root\n\tclass={cn(\n\t\t\"border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer box-content size-4 shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:checked\n\tbind:ref\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<span class=\"flex size-4 items-center justify-center text-current\">\n\t\t\t{#if checked === \"indeterminate\"}\n\t\t\t\t<Minus class=\"size-3.5\" />\n\t\t\t{:else}\n\t\t\t\t<Check class={cn(\"size-3.5\", !checked && \"text-transparent\")} />\n\t\t\t{/if}\n\t\t</span>\n\t{/snippet}\n</CheckboxPrimitive.Root>\n",
+			"type": "registry:ui",
+			"target": "checkbox/checkbox.svelte"
 		},
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./checkbox.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Checkbox,\n};\n"
+			"content": "import Root from \"./checkbox.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Checkbox,\n};\n",
+			"type": "registry:ui",
+			"target": "checkbox/index.ts"
 		}
-	],
-	"type": "components:ui"
+	]
 }
