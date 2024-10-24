@@ -66,7 +66,7 @@ it("init (config-full)", async () => {
 
 	expect(execa).toHaveBeenCalledWith(
 		"pnpm",
-		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge"],
+		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tailwindcss-animate"],
 		{ cwd: targetDir }
 	);
 
