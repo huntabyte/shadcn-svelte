@@ -34,7 +34,7 @@
 		},
 		{
 			"name": "date-picker.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Calendar } from \"$lib/registry/default/ui/calendar/index.js\";\n\timport * as Sidebar from \"$lib/registry/default/ui/sidebar/index.js\";\n</script>\n\n<Sidebar.Group class=\"px-0\">\n\t<Sidebar.GroupContent>\n\t\t<Calendar\n\t\t\treadonly\n\t\t\ttype=\"single\"\n\t\t\tclass=\"[&_[role=gridcell]_[role=button][data-today]]:bg-sidebar-primary [&_[role=gridcell]_[role=button][data-today]]:text-sidebar-primary-foreground select-none [&_[role=gridcell]]:w-[33px]\"\n\t\t/>\n\t</Sidebar.GroupContent>\n</Sidebar.Group>\n",
+			"content": "<script lang=\"ts\">\n\timport { Calendar } from \"$lib/registry/default/ui/calendar/index.js\";\n\timport * as Sidebar from \"$lib/registry/default/ui/sidebar/index.js\";\n</script>\n\n<Sidebar.Group class=\"px-0\">\n\t<Sidebar.GroupContent>\n\t\t<Calendar\n\t\t\treadonly\n\t\t\ttype=\"single\"\n\t\t\tclass=\"[&_[role=gridcell]_[role=button][data-today]]:bg-sidebar-primary [&_[role=gridcell]_[role=button][data-today]]:text-sidebar-primary-foreground select-none [&_[data-bits-calendar-head-cell]]:w-[33px] [&_[role=gridcell]]:w-[33px]\"\n\t\t/>\n\t</Sidebar.GroupContent>\n</Sidebar.Group>\n",
 			"type": "registry:component",
 			"target": "date-picker.svelte"
 		},
