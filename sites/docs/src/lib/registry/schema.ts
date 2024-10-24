@@ -94,7 +94,7 @@ export type BlockName = (typeof blockNames)[number];
 
 export const blockSchema = z.object({
 	name: z.enum(blockNames),
-	type: z.literal("components:block"),
+	type: z.literal("registry:block"),
 	description: z.string(),
 	style: registryStyleSchema,
 	container: z

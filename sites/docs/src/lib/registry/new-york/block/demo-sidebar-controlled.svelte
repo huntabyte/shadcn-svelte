@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import PanelLeftOpen from "lucide-svelte/icons/panel-left-open";
 	import PanelLeftClose from "lucide-svelte/icons/panel-left-close";
 	import LifeBuoy from "lucide-svelte/icons/life-buoy";

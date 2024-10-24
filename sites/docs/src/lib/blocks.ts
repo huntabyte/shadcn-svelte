@@ -25,9 +25,35 @@ export type RawBlock = {
 	component: () => Promise<Component>;
 };
 
+export const BLOCK_WHITELIST: BlockName[] = [
+	"sidebar-01",
+	"sidebar-02",
+	"sidebar-03",
+	"sidebar-04",
+	"sidebar-05",
+	"sidebar-06",
+	"sidebar-07",
+	"sidebar-08",
+	"sidebar-09",
+	"sidebar-10",
+	"sidebar-11",
+	"sidebar-12",
+	"sidebar-13",
+	"sidebar-14",
+	"sidebar-15",
+	"login-01",
+];
+
+export function isAllowedBlock(name: string): name is BlockName {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	return BLOCK_WHITELIST.includes(name as any);
+}
+
 export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
 	const blocks = Object.values(Blocks[style]);
-	return blocks.map((block) => block.name as BlockName);
+	return blocks
+		.map((block) => block.name as BlockName)
+		.filter((b) => BLOCK_WHITELIST.includes(b));
 }
 
 export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
@@ -39,7 +65,6 @@ export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_B
 		...block,
 		...content,
 		style,
-		highlightedCode: await highlightCode(content.code),
 		chunks,
 	});
 }
@@ -54,6 +79,7 @@ async function getBlockCode(name: BlockName, style: Style["name"]) {
 
 async function getBlockContent(name: BlockName, style: Style["name"]) {
 	const raw = await getBlockCode(name, style);
+	console.log("name", name, "style", style);
 	const { description, iframeHeight, className } = blockMeta[style][name];
 
 	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");

@@ -7,7 +7,7 @@
 
 <Tabs.Trigger
 	{...restProps}
-	class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
+	class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none focus:ring-transparent focus:ring-offset-transparent data-[state=active]:shadow-none"
 >
 	{@render children?.()}
 </Tabs.Trigger>
