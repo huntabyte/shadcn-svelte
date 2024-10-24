@@ -8,6 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const UTILS_JS = `import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export function cn(...inputs) {
 	return twMerge(clsx(inputs));
@@ -21,6 +22,7 @@ const config = {`;
 
 const TAILWIND_TS = `import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {`;
 
@@ -70,18 +72,49 @@ const TAILWIND_WITH_VARIABLES = `
 				card: {
 					DEFAULT: "hsl(var(--card) / <alpha-value>)",
 					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
-				}
+				},
+				sidebar: {
+					DEFAULT: "hsl(var(--sidebar-background))",
+					foreground: "hsl(var(--sidebar-foreground))",
+					primary: "hsl(var(--sidebar-primary))",
+					"primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+					accent: "hsl(var(--sidebar-accent))",
+					"accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+					border: "hsl(var(--sidebar-border))",
+					ring: "hsl(var(--sidebar-ring))",
+        		},
 			},
 			borderRadius: {
+				xl: "calc(var(--radius) + 4px)",
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
-			}
-		}
+			},
+			keyframes: {
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+				"caret-blink": {
+					"0%,70%,100%": { opacity: "1" },
+					"20%,50%": { opacity: "0" },
+				},
+			},
+			animation: {
+        		"accordion-down": "accordion-down 0.2s ease-out",
+        		"accordion-up": "accordion-up 0.2s ease-out",
+       			"caret-blink": "caret-blink 1.25s ease-out infinite",
+      		},
+		},
 	},
+	plugins: [tailwindcssAnimate],
 };
 
 export default config;
@@ -91,34 +124,3 @@ export const TAILWIND_CONFIG_WITH_VARIABLES = {
 	TS: TAILWIND_TS + TAILWIND_WITH_VARIABLES,
 	JS: TAILWIND_JS + TAILWIND_WITH_VARIABLES,
 };
-
-export const TAILWIND_CONFIG = `import { fontFamily } from "tailwindcss/defaultTheme";
-
-/** @type {import('tailwindcss').Config} */
-const config = {
-	darkMode: ["class"],
-	content: ["./src/**/*.{html,js,svelte,ts}"],
-	safelist: ["dark"],
-	theme: {
-		container: {
-			center: true,
-			padding: "2rem",
-			screens: {
-				"2xl": "1400px"
-			}
-		},
-		extend: {
-			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)"
-			},
-			fontFamily: {
-				sans: [...fontFamily.sans]
-			}
-		}
-	},
-};
-
-export default config;
-`;
