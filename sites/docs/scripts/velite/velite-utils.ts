@@ -13,6 +13,7 @@ export async function updateJsonImport(onUpdatingChange?: (isUpdating: boolean) 
 		onUpdatingChange?.(false);
 	});
 	if (!data) return;
+	if (data.includes("with { type: 'json' }")) return;
 
 	const updatedContent = data.replaceAll(".json'", ".json' with { type: 'json' }");
 	if (updatedContent === data) {

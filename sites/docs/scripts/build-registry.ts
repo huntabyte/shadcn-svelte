@@ -103,15 +103,17 @@ export const Index = {
 			const resolveFiles = item.files.map(
 				(file) => `../lib/registry/${style.name}/${file.path}`
 			);
+			const componentLine =
+				item.type === "registry:hook"
+					? "component: () => {}"
+					: `component: () => import("../lib/registry/${style.name}/${type}/${item.name}.svelte").then((m) => m.default)`;
 
 			index += `
 		"${item.name}": {
 			name: "${item.name}",
 			type: "${item.type}",
 			registryDependencies: ${JSON.stringify(item.registryDependencies)},
-			component: () => import("../lib/registry/${style.name}/${type}/${
-				item.name
-			}.svelte").then((m) => m.default),
+			${componentLine},
 			files: [${resolveFiles.map((file) => `"${file}"`)}],
 			raw: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
