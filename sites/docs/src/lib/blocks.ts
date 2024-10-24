@@ -79,7 +79,6 @@ async function getBlockCode(name: BlockName, style: Style["name"]) {
 
 async function getBlockContent(name: BlockName, style: Style["name"]) {
 	const raw = await getBlockCode(name, style);
-	console.log("name", name, "style", style);
 	const { description, iframeHeight, className } = blockMeta[style][name];
 
 	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");

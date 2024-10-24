@@ -44,8 +44,10 @@ const prettyCodeOptions = {
 		}),
 	keepBackground: false,
 	onVisitLine(node) {
+		// Prevent lines from collapsing in `display: grid` mode, and allow empty
+		// lines to be copy/pasted
 		if (node.children.length === 0) {
-			console.log(JSON.stringify(node));
+			node.children = [{ type: "text", value: " " }];
 		}
 	},
 	onVisitHighlightedLine(node) {
