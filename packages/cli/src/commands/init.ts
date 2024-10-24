@@ -21,7 +21,12 @@ import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
 
-const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge", "tailwindcss-animate"] as const;
+const PROJECT_DEPENDENCIES = [
+	"tailwind-variants",
+	"clsx",
+	"tailwind-merge",
+	"tailwindcss-animate",
+] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const baseColors = registry.getBaseColors();
@@ -412,7 +417,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
+				await execa(pm, [add, "-D", ...PROJECT_DEPENDENCIES], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

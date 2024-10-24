@@ -237,7 +237,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, ...dependencies], {
+				await execa(pm, [add, "-D", ...dependencies], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

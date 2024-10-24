@@ -181,28 +181,13 @@ importers:
 
   playgrounds/playground-ts:
     dependencies:
-      '@internationalized/date':
-        specifier: ^3.5.6
-        version: 3.5.6
-      bits-ui:
-        specifier: 1.0.0-next.21
-        version: 1.0.0-next.21(svelte@5.0.4)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      lucide-svelte:
-        specifier: ^0.453.0
-        version: 0.453.0(svelte@5.0.4)
       shadcn-svelte:
         specifier: workspace:*
         version: link:../../packages/cli
-      tailwind-merge:
-        specifier: ^2.5.4
-        version: 2.5.4
-      tailwind-variants:
-        specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@3.4.14)
     devDependencies:
+      '@internationalized/date':
+        specifier: ^3.5.6
+        version: 3.5.6
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
         version: 3.1.1(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.4)(vite@5.4.9(@types/node@22.7.8)(terser@5.36.0)))(svelte@5.0.4)(vite@5.4.9(@types/node@22.7.8)(terser@5.36.0)))
@@ -215,15 +200,33 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
+      bits-ui:
+        specifier: 1.0.0-next.21
+        version: 1.0.0-next.21(svelte@5.0.4)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-svelte:
+        specifier: ^0.453.0
+        version: 0.453.0(svelte@5.0.4)
       svelte:
         specifier: ^5.0.0
         version: 5.0.4
       svelte-check:
         specifier: ^4.0.0
         version: 4.0.5(picomatch@4.0.2)(svelte@5.0.4)(typescript@5.6.3)
+      tailwind-merge:
+        specifier: ^2.5.4
+        version: 2.5.4
+      tailwind-variants:
+        specifier: ^0.2.1
+        version: 0.2.1(tailwindcss@3.4.14)
       tailwindcss:
         specifier: ^3.4.9
         version: 3.4.14
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.14)
       typescript:
         specifier: ^5.0.0
         version: 5.6.3
