@@ -22,3 +22,6 @@ sites/docs/other/themes/dark.json
 sites/docs/other/themes/light.json
 sites/docs/static
 sites/docs/.velite
+sites/docs/src/__registry__
+packages/cli/test/fixtures
+.svelte-kit
