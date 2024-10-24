@@ -35,7 +35,7 @@
 					</div>
 				{/if}
 				<img
-					src="/images/blocks/${block.name}.png"
+					src="/images/blocks/{block.name}.png"
 					alt={block.name}
 					data-block={block.name}
 					width={1440}
@@ -43,7 +43,7 @@
 					class="bg-background absolute left-0 top-0 z-20 w-[970px] max-w-none data-[block=sidebar-10]:left-auto data-[block=sidebar-10]:right-0 data-[block=sidebar-11]:-top-1/3 data-[block=sidebar-14]:left-auto data-[block=sidebar-14]:right-0 data-[block=login-01]:max-w-full data-[block=sidebar-13]:max-w-full data-[block=sidebar-15]:max-w-full sm:w-[1280px] md:hidden dark:hidden md:dark:hidden"
 				/>
 				<img
-					src="/images/blocks/${block.name}-dark.png"
+					src="/images/blocks/{block.name}-dark.png"
 					alt={block.name}
 					data-block={block.name}
 					width={1440}
