@@ -2,7 +2,7 @@
 	"name": "hover-card",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

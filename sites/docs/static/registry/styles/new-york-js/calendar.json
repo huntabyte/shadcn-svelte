@@ -2,7 +2,7 @@
 	"name": "calendar",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"@internationalized/date",
 		"svelte-radix"
 	],

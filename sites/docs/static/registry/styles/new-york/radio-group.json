@@ -2,7 +2,7 @@
 	"name": "radio-group",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"svelte-radix"
 	],
 	"registryDependencies": [],

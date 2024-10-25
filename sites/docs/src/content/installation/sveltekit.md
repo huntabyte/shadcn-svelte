@@ -16,13 +16,13 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 Use the SvelteKit CLI to create a new project.
 
-<PMCreate command="svelte@latest my-app" />
+<PMExecute command="sv create my-app" />
 
 ### Add TailwindCSS
 
 Use the `svelte-add` CLI to add Tailwind CSS to your project.
 
-<PMExecute command="svelte-add@latest tailwindcss" />
+<PMExecute command="sv add tailwindcss" />
 
 ### Install dependencies
 
@@ -46,7 +46,7 @@ const config = {
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
@@ -60,6 +60,8 @@ Where is your global CSS file? › src/app.css
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
+Configure the import alias for hooks: › $lib/hooks
+Configure the import alias for ui: › $lib/components/ui
 ```
 
 ### That's it

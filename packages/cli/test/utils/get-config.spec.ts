@@ -1,6 +1,7 @@
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
+import { SITE_BASE_URL } from "../../src/constants";
 
 vi.mock("execa");
 
@@ -38,7 +39,7 @@ describe("getRawConfig", () => {
 				ui: "$lib/components/ui",
 			},
 			typescript: true,
-			registry: "https://shadcn-svelte.com/registry",
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -99,7 +100,7 @@ describe("getConfig", () => {
 				),
 			},
 			typescript: true,
-			registry: "https://shadcn-svelte.com/registry",
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -135,7 +136,7 @@ describe("getConfig", () => {
 				ui: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/components/ui"),
 			},
 			typescript: true,
-			registry: "https://shadcn-svelte.com/registry",
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -171,7 +172,7 @@ describe("getConfig", () => {
 				cwd: path.resolve(__dirname, "../fixtures/config-vite"),
 			},
 			typescript: true,
-			registry: "https://shadcn-svelte.com/registry",
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -217,7 +218,7 @@ describe("getConfig", () => {
 				cwd: path.resolve(__dirname, "../fixtures/config-jsconfig"),
 			},
 			typescript: false,
-			registry: "https://shadcn-svelte.com/registry",
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 });

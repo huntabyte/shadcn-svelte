@@ -13,15 +13,15 @@ description: How to setup shadcn-svelte manually.
 
 ### Add Tailwind
 
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
+Use the `sv` CLI to add Tailwind CSS to your project.
 
-<PMExecute command="svelte-add@latest tailwindcss" />
+<PMExecute command="sv add tailwindcss" />
 
 ### Add dependencies
 
 Add the following dependencies to your project:
 
-<PMInstall command="tailwind-variants clsx tailwind-merge" />
+<PMInstall command="tailwind-variants clsx tailwind-merge tailwindcss-animate" />
 
 ### Add icon library
 
@@ -82,6 +82,7 @@ This is what this project's `tailwind.config.js` file looks like:
 
 ```javascript title="tailwind.config.js"
 import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -131,17 +132,48 @@ const config = {
           DEFAULT: "hsl(var(--card) / <alpha-value>)",
           foreground: "hsl(var(--card-foreground) / <alpha-value>)",
         },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
       },
       borderRadius: {
+        xl: "calc(var(--radius) + 4px)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
+        sans: ["geist-sans", ...fontFamily.sans],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--bits-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--bits-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
     },
   },
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;
@@ -157,72 +189,68 @@ Add the following to your `src/app.pcss` file. You can learn more about using CS
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
+    --foreground: 240 10% 3.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
+    --popover-foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 92% 38%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 215 20.2% 65.1%;
-
+    --card-foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72.22% 50.59%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 240 5% 64.9%;
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 240 5% 64.9%;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --ring: 240 3.7% 48%;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
-
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
-
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
-
-    --destructive: 359 51% 48%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 216 34% 17%;
-
-    --radius: 0.5rem;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
   }
 }
 
@@ -241,7 +269,7 @@ Add the following to your `src/app.pcss` file. You can learn more about using CS
 
 ### Configure utils
 
-You'll want to create a `cn` helper to make it easier to conditionally add Tailwind CSS classes. Additionally, you'll want to add the custom transition that is used by various components.
+You'll want to create a `cn` helper to make it easier to conditionally add and merge Tailwind CSS classes.
 
 ```ts title="src/lib/utils.ts"
 import { type ClassValue, clsx } from "clsx";
@@ -252,68 +280,6 @@ import type { TransitionConfig } from "svelte/transition";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-type FlyAndScaleParams = {
-  y?: number;
-  x?: number;
-  start?: number;
-  duration?: number;
-};
-
-export const flyAndScale = (
-  node: Element,
-  params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
-): TransitionConfig => {
-  const style = getComputedStyle(node);
-  const transform = style.transform === "none" ? "" : style.transform;
-
-  const scaleConversion = (
-    valueA: number,
-    scaleA: [number, number],
-    scaleB: [number, number]
-  ) => {
-    const [minA, maxA] = scaleA;
-    const [minB, maxB] = scaleB;
-
-    const percentage = (valueA - minA) / (maxA - minA);
-    const valueB = percentage * (maxB - minB) + minB;
-
-    return valueB;
-  };
-
-  const styleToString = (
-    style: Record<string, number | string | undefined>
-  ): string => {
-    return Object.keys(style).reduce((str, key) => {
-      if (style[key] === undefined) return str;
-      return str + key + ":" + style[key] + ";";
-    }, "");
-  };
-
-  return {
-    duration: params.duration ?? 200,
-    delay: 0,
-    css: (t) => {
-      const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0]);
-      const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0]);
-      const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1]);
-
-      return styleToString({
-        transform:
-          transform +
-          "translate3d(" +
-          x +
-          "px, " +
-          y +
-          "px, 0) scale(" +
-          scale +
-          ")",
-        opacity: t,
-      });
-    },
-    easing: cubicOut,
-  };
-};
 ```
 
 ### Import styles to your app
@@ -323,9 +289,10 @@ Create `src/routes/+layout.svelte` and import the styles:
 ```svelte title="src/routes/+layout.svelte"
 <script lang="ts">
   import "../app.pcss";
+  let { children } = $props();
 </script>
 
-<slot />
+{@render children?.()}
 ```
 
 ### That's it

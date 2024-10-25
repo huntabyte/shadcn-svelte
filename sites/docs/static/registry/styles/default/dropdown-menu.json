@@ -2,7 +2,7 @@
 	"name": "dropdown-menu",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [],

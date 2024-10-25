@@ -3,7 +3,7 @@
 		"name": "accordion",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -29,7 +29,7 @@
 		"name": "alert",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -55,7 +55,7 @@
 		"name": "alert-dialog",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"button"
@@ -103,7 +103,7 @@
 		"name": "aspect-ratio",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -117,7 +117,7 @@
 		"name": "avatar",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -143,7 +143,7 @@
 		"name": "badge",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -161,7 +161,7 @@
 		"name": "breadcrumb",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -219,7 +219,7 @@
 		"name": "calendar",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui",
+			"bits-ui@next",
 			"@internationalized/date"
 		],
 		"registryDependencies": [
@@ -288,7 +288,7 @@
 		"name": "card",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -327,7 +327,7 @@
 		"type": "registry:ui",
 		"dependencies": [
 			"embla-carousel-svelte",
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"button"
@@ -367,7 +367,7 @@
 		"name": "checkbox",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -385,7 +385,7 @@
 		"name": "collapsible",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -399,7 +399,7 @@
 		"name": "command",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"dialog"
@@ -455,7 +455,7 @@
 		"name": "context-menu",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -529,7 +529,7 @@
 		"name": "dialog",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -567,8 +567,8 @@
 		"name": "drawer",
 		"type": "registry:ui",
 		"dependencies": [
-			"vaul-svelte",
-			"bits-ui"
+			"vaul-svelte@next",
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -614,7 +614,7 @@
 		"name": "dropdown-menu",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -668,10 +668,10 @@
 		"name": "form",
 		"type": "registry:ui",
 		"dependencies": [
-			"formsnap",
+			"formsnap@next",
 			"zod",
 			"sveltekit-superforms",
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"button",
@@ -720,7 +720,7 @@
 		"name": "hover-card",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -738,7 +738,7 @@
 		"name": "input",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -756,7 +756,7 @@
 		"name": "label",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -774,7 +774,7 @@
 		"name": "menubar",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -832,7 +832,7 @@
 		"name": "pagination",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"button"
@@ -876,7 +876,7 @@
 		"name": "popover",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -894,7 +894,7 @@
 		"name": "progress",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -912,7 +912,7 @@
 		"name": "radio-group",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -934,7 +934,7 @@
 		"name": "range-calendar",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui",
+			"bits-ui@next",
 			"@internationalized/date"
 		],
 		"registryDependencies": [
@@ -995,8 +995,8 @@
 		"name": "resizable",
 		"type": "registry:ui",
 		"dependencies": [
-			"paneforge",
-			"bits-ui"
+			"paneforge@next",
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1018,7 +1018,7 @@
 		"name": "scroll-area",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1040,7 +1040,7 @@
 		"name": "select",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"separator"
@@ -1084,7 +1084,7 @@
 		"name": "separator",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1102,7 +1102,7 @@
 		"name": "sheet",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1140,7 +1140,7 @@
 		"name": "sidebar",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"is-mobile",
@@ -1262,7 +1262,7 @@
 		"name": "skeleton",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1280,7 +1280,7 @@
 		"name": "slider",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1317,7 +1317,7 @@
 		"name": "switch",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1335,7 +1335,7 @@
 		"name": "table",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1381,7 +1381,7 @@
 		"name": "tabs",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1407,7 +1407,7 @@
 		"name": "textarea",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1425,7 +1425,7 @@
 		"name": "toggle",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [
@@ -1443,7 +1443,7 @@
 		"name": "toggle-group",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [
 			"toggle-group",
@@ -1468,7 +1468,7 @@
 		"name": "tooltip",
 		"type": "registry:ui",
 		"dependencies": [
-			"bits-ui"
+			"bits-ui@next"
 		],
 		"registryDependencies": [],
 		"files": [

@@ -19,17 +19,17 @@ We use it to understand how your project is set up and how to generate component
 
 You can create a `components.json` file in your project by running the following command:
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 See the [CLI section](/docs/cli) for more information.
 
 ## $schema
 
-You can see the JSON Schema for `components.json` [here](https://shadcn-svelte.com/schema.json).
+You can see the JSON Schema for `components.json` [here](https://next.shadcn-svelte.com/schema.json).
 
 ```json title="components.json"
 {
-  "$schema": "https://shadcn-svelte.com/schema.json"
+  "$schema": "https://next.shadcn-svelte.com/schema.json"
 }
 ```
 

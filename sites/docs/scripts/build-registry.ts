@@ -7,9 +7,9 @@ import { colorMapping, colors } from "../src/lib/registry/colors";
 import { registrySchema } from "../src/lib/registry/schema";
 import { styles } from "../src/lib/registry/styles";
 import { themes } from "../src/lib/registry/themes";
-import { buildRegistry } from "./registry-new";
+import { buildRegistry } from "./registry";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
-import { getChunks } from "./transform-chunks.js";
+import { getChunks } from "./transform-chunks";
 import { transformContent } from "./transformers";
 
 const REGISTRY_PATH = path.resolve("static", "registry");

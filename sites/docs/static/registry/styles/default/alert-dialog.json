@@ -2,7 +2,7 @@
 	"name": "alert-dialog",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [
 		"button"

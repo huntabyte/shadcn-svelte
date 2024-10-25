@@ -2,7 +2,7 @@
 	"name": "range-calendar",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"@internationalized/date",
 		"lucide-svelte"
 	],

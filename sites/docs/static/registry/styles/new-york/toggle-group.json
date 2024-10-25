@@ -2,7 +2,7 @@
 	"name": "toggle-group",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [
 		"toggle-group",

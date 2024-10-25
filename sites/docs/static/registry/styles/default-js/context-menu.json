@@ -2,7 +2,7 @@
 	"name": "context-menu",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [],

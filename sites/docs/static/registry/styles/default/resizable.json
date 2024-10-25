@@ -2,9 +2,9 @@
 	"name": "resizable",
 	"type": "registry:ui",
 	"dependencies": [
-		"paneforge",
+		"paneforge@next",
 		"lucide-svelte",
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [
