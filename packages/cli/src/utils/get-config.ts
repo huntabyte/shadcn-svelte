@@ -111,8 +111,8 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
-	const componentsPath = resolveImport(config.aliases.components, pathAliases);
+	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
+	let componentsPath = resolveImport(config.aliases.components, pathAliases);
 	const hooksPath = resolveImport(config.aliases.hooks, pathAliases);
 	const uiPath = resolveImport(config.aliases.ui, pathAliases);
 
