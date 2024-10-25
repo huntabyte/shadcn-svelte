@@ -3,7 +3,7 @@
 	"type": "registry:ui",
 	"dependencies": [
 		"svelte-radix",
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

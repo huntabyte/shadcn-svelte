@@ -17,13 +17,13 @@
 	<meta name="twitter:site" content={siteConfig.url} />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={siteConfig.description} />
-	<meta name="twitter:image" content="https://shadcn-svelte.com/og.png" />
+	<meta name="twitter:image" content={siteConfig.ogImage} />
 	<meta name="twitter:image:alt" content={siteConfig.name} />
 	<meta name="twitter:creator" content="huntabyte" />
 	<meta property="og:title" content={title} />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content={siteConfig.url + $page.url.pathname} />
-	<meta property="og:image" content="https://shadcn-svelte.com/og.png" />
+	<meta property="og:image" content={siteConfig.ogImage} />
 	<meta property="og:image:alt" content={siteConfig.name} />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
@@ -35,7 +35,7 @@
 	{#if !dev}
 		<script
 			defer
-			data-domain="shadcn-svelte.com"
+			data-domain="next.shadcn-svelte.com"
 			src="https://server.hj.run/js/script.js"
 		></script>
 	{/if}

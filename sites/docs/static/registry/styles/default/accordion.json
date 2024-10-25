@@ -2,7 +2,7 @@
 	"name": "accordion",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui",
+		"bits-ui@next",
 		"lucide-svelte"
 	],
 	"registryDependencies": [],

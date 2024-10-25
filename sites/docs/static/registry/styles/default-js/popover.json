@@ -2,7 +2,7 @@
 	"name": "popover",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [

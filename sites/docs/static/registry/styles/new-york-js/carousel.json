@@ -3,7 +3,7 @@
 	"type": "registry:ui",
 	"dependencies": [
 		"embla-carousel-svelte",
-		"bits-ui",
+		"bits-ui@next",
 		"svelte-radix"
 	],
 	"registryDependencies": [

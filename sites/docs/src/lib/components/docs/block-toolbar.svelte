@@ -21,7 +21,7 @@
 
 	const addCommand = $derived.by(() => {
 		const start = getPackageManagerScriptCmd($selectedPackageManager);
-		const end = `shadcn-svelte@latest add ${block.name}`;
+		const end = `shadcn-svelte@next add ${block.name}`;
 		return start + " " + end;
 	});
 </script>

@@ -2,7 +2,7 @@
 	"name": "badge",
 	"type": "registry:ui",
 	"dependencies": [
-		"bits-ui"
+		"bits-ui@next"
 	],
 	"registryDependencies": [],
 	"files": [
