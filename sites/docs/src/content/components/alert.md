@@ -2,11 +2,12 @@
 title: Alert
 description: Displays a callout for user attention.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="alert-demo">
@@ -17,13 +18,16 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="alert" />
-
-<ManualInstall>
-
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step> Copy and paste the component source files linked at the top of this page into your project. </Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

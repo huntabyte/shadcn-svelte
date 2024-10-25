@@ -1,5 +1,6 @@
 {
 	"name": "toggle",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.js",
-			"content": "import { tv } from \"tailwind-variants\";\nimport Root from \"./toggle.svelte\";\nexport const toggleVariants = tv({\n    base: \"ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n    variants: {\n        variant: {\n            default: \"bg-transparent\",\n            outline: \"border-input hover:bg-accent hover:text-accent-foreground border bg-transparent\",\n        },\n        size: {\n            default: \"h-10 px-3\",\n            sm: \"h-9 px-2.5\",\n            lg: \"h-11 px-5\",\n        },\n    },\n    defaultVariants: {\n        variant: \"default\",\n        size: \"default\",\n    },\n});\nexport { Root, \n//\nRoot as Toggle, };\n"
+			"content": "import Root from \"./toggle.svelte\";\nexport { toggleVariants, } from \"./toggle.svelte\";\nexport { Root, \n//\nRoot as Toggle, };\n",
+			"target": "toggle/index.js",
+			"type": "registry:ui"
 		},
 		{
 			"name": "toggle.svelte",
-			"content": "<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { type ToggleSize, type ToggleVariant, toggleVariants } from \"./index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpressed = $bindable(false),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: TogglePrimitive.RootProps & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t} = $props();\n</script>\n\n<TogglePrimitive.Root\n\tbind:ref\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...restProps}\n/>\n"
+			"content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const toggleVariants = tv({\n\t\tbase: \"ring-offset-background hover:bg-muted hover:text-muted-foreground focus-visible:ring-ring data-[state=on]:bg-accent data-[state=on]:text-accent-foreground inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-transparent\",\n\t\t\t\toutline:\n\t\t\t\t\t\"border-input hover:bg-accent hover:text-accent-foreground border bg-transparent\",\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tdefault: \"h-10 px-3\",\n\t\t\t\tsm: \"h-9 px-2.5\",\n\t\t\t\tlg: \"h-11 px-5\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t\tsize: \"default\",\n\t\t},\n\t});\n\n\texport type ToggleVariant = VariantProps<typeof toggleVariants>[\"variant\"];\n\texport type ToggleSize = VariantProps<typeof toggleVariants>[\"size\"];\n\texport type ToggleVariants = VariantProps<typeof toggleVariants>;\n</script>\n\n<script>\n\timport { Toggle as TogglePrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tpressed = $bindable(false),\n\t\tclass: className,\n\t\tsize = \"default\",\n\t\tvariant = \"default\",\n\t\t...restProps\n\t}: TogglePrimitive.RootProps & {\n\t\tvariant?: ToggleVariant;\n\t\tsize?: ToggleSize;\n\t} = $props();\n</script>\n\n<TogglePrimitive.Root\n\tbind:ref\n\tbind:pressed\n\tclass={cn(toggleVariants({ variant, size, className }))}\n\t{...restProps}\n/>\n",
+			"target": "toggle/toggle.svelte",
+			"type": "registry:ui"
 		}
-	],
-	"type": "components:ui"
+	]
 }

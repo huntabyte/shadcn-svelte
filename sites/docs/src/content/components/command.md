@@ -2,12 +2,14 @@
 title: Command
 description: Fast, composable, unstyled command menu for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
-bits: https://github.com/huntabyte/cmdk-sv
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
+  doc: https://next.bits-ui.com/docs/components/command
+  api: https://next.bits-ui.com/docs/components/command#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, Callout, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, Callout, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="command-demo" align="start" >
@@ -16,29 +18,24 @@ bits: https://github.com/huntabyte/cmdk-sv
 
 </ComponentPreview>
 
-## About
-
-The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to provide a fast, composable, unstyled command menu for Svelte.
-
-<Callout>
-
-**Note:** `cmdk-sv` is a new library and is still in alpha. While I don't anticipate a ton of breaking changes, as the API aligns with the original, I want to bring this to your awareness. If you find any bugs, please [open an issue](https://github.com/huntabyte/cmdk-sv) with the library, rather than this project.
-
-</Callout>
-
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="command" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `cmdk-sv` and `bits-ui`:
-
-<PMInstall command="cmdk-sv bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
@@ -83,23 +80,17 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
   import * as Command from "$lib/components/ui/command";
   import { onMount } from "svelte";
 
-  let open = false;
+  let open = $state(false);
 
-  onMount(() => {
-    function handleKeydown(e: KeyboardEvent) {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        open = !open;
-      }
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      open = !open;
     }
-
-    document.addEventListener("keydown", handleKeydown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  });
+  }
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <Command.Dialog bind:open>
   <Command.Input placeholder="Type a command or search..." />

@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.14.0
+
+### Minor Changes
+
+- bc787f3: Install all dependencies as dev dependencies
+
 ## 0.13.0
 
 ### Minor Changes

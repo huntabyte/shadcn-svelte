@@ -5,10 +5,9 @@
 	import Trash from "lucide-svelte/icons/trash";
 	import User from "lucide-svelte/icons/user";
 	import { tick } from "svelte";
-	import { useId } from "bits-ui";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
-	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import { Button } from "$lib/registry/default/ui/button/index.js";
 
 	const labels = [
 		"feature",
@@ -22,18 +21,17 @@
 
 	let open = $state(false);
 	let selectedLabel = $state("feature");
+	let triggerRef = $state<HTMLButtonElement>(null!);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
 	// rest of the form with the keyboard.
-	function closeAndFocusTrigger(triggerId: string) {
+	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
-			document.getElementById(triggerId)?.focus();
+			triggerRef.focus();
 		});
 	}
-
-	let triggerId = useId();
 </script>
 
 <div
@@ -46,12 +44,12 @@
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
 	<DropdownMenu.Root bind:open>
-		<DropdownMenu.Trigger
-			id={triggerId}
-			class={buttonVariants({ variant: "ghost", size: "sm" })}
-			aria-label="Open menu"
-		>
-			<Ellipsis />
+		<DropdownMenu.Trigger bind:ref={triggerRef}>
+			{#snippet child({ props })}
+				<Button variant="ghost" size="sm" {...props} aria-label="Open menu">
+					<Ellipsis />
+				</Button>
+			{/snippet}
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
@@ -81,7 +79,7 @@
 											value={label}
 											onSelect={() => {
 												selectedLabel = label;
-												closeAndFocusTrigger(triggerId);
+												closeAndFocusTrigger();
 											}}
 										>
 											{label}

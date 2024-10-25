@@ -23,6 +23,12 @@
 			label: "Nuxt.js",
 		},
 	];
+
+	let framework = $state("");
+
+	const selectedFramework = $derived(
+		frameworks.find((f) => f.value === framework) ?? "Select a framework"
+	);
 </script>
 
 <Card.Root class="w-[350px]">
@@ -39,15 +45,13 @@
 				</div>
 				<div class="flex flex-col space-y-1.5">
 					<Label for="framework">Framework</Label>
-					<Select.Root>
+					<Select.Root type="single" bind:value={framework}>
 						<Select.Trigger id="framework">
-							<Select.Value placeholder="Select" />
+							{selectedFramework}
 						</Select.Trigger>
 						<Select.Content>
-							{#each frameworks as framework}
-								<Select.Item value={framework.value} textValue={framework.label}
-									>{framework.label}</Select.Item
-								>
+							{#each frameworks as { value, label }}
+								<Select.Item {value} {label} />
 							{/each}
 						</Select.Content>
 					</Select.Root>

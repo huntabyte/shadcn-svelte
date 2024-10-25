@@ -1,14 +1,15 @@
 ---
 title: Button
 description: Displays a button or a component that looks like a button.
-featured: true
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
-bits: https://www.bits-ui.com/docs/components/button
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
+  doc: https://next.bits-ui.com/docs/components/button
+  api: https://next.bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Steps, Step, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="button-demo">
@@ -19,17 +20,22 @@ bits: https://www.bits-ui.com/docs/components/button
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="button" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `bits-ui`:
-
-<PMInstall command="bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

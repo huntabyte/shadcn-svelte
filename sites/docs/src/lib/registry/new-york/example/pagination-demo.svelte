@@ -9,11 +9,10 @@
 	const count = 20;
 	const perPage = $derived(isDesktop.matches ? 3 : 8);
 	const siblingCount = $derived(isDesktop.matches ? 1 : 0);
-	let currentPage = $state(1);
 </script>
 
-<Pagination.Root {count} {perPage} {siblingCount} bind:page={currentPage}>
-	{#snippet children({ pages })}
+<Pagination.Root {count} {perPage} {siblingCount}>
+	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.PrevButton>

@@ -2,12 +2,14 @@
 title: Carousel
 description: A carousel with motion and swipe built using Embla.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
-bits: https://www.embla-carousel.com/get-started/svelte/
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/carousel
+  doc: https://www.embla-carousel.com/get-started/svelte
+  api: https://www.embla-carousel.com/api
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Steps, Step, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="carousel-demo">
@@ -22,17 +24,22 @@ The carousel component is built using the [Embla Carousel](https://www.embla-car
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="carousel" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `embla-carousel-svelte`:
 
-1. Install `embla-carousel-svelte`:
-
+</Step>
 <PMInstall command="embla-carousel-svelte -D" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

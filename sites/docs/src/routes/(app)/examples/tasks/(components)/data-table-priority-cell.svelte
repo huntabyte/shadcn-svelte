@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { priorities } from "../(data)/data.js";
 
-	let { value }: { value: string } = $props();
+	let { value }: { value?: string } = $props();
 
-	const priority = priorities.find((priority) => priority.value === value);
-	const Icon = priority?.icon;
+	const priority = $derived(priorities.find((priority) => priority.value === value));
+	const Icon = $derived(priority?.icon);
 </script>
 
 {#if priority}

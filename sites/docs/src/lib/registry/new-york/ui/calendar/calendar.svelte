@@ -13,13 +13,17 @@
 	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> = $props();
 </script>
 
+<!--
+Discriminated Unions + Destructing (required for bindable) do not
+get along, so we shut typescript up by casting `value` to `never`.
+-->
 <CalendarPrimitive.Root
+	bind:value={value as never}
 	bind:ref
-	bind:value={value as any}
-	bind:placeholder={placeholder as any}
+	bind:placeholder
 	{weekdayFormat}
 	class={cn("p-3", className)}
-	{...restProps as any}
+	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>

@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Announcement, ThemeCustomizer, ThemeWrapper } from "$lib/components/docs/index.js";
+	import ThemeCustomizer from "$lib/components/docs/theme-customizer/theme-customizer.svelte";
+	import Announcement from "$lib/components/docs/announcement.svelte";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { CardsDefault } from "$lib/registry/default/example/cards/index.js";
 	import { CardsNewYork } from "$lib/registry/new-york/example/cards/index.js";
@@ -24,18 +26,18 @@
 		defaultTheme="zinc"
 		class="relative flex flex-col items-start md:flex-row md:items-center"
 	>
-		<PageHeader.Root>
+		<PageHeader.Root class="w-full">
 			<Announcement />
 			<PageHeader.Heading class="hidden md:block">
 				Add colors. Make it yours.
 			</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
-			<PageHeader.Description balanced={false}>
+			<PageHeader.Description>
 				Hand-picked themes that you can copy and paste into your apps.
 			</PageHeader.Description>
-			<div class="flex w-full items-center justify-center space-x-4 py-4 md:pb-10">
+			<PageHeader.Actions>
 				<ThemeCustomizer />
-			</div>
+			</PageHeader.Actions>
 		</PageHeader.Root>
 	</ThemeWrapper>
 	<ThemeWrapper>

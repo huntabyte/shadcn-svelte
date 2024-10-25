@@ -39,37 +39,34 @@ it("init (config-full)", async () => {
 
 	// mkDir mocks
 	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		2,
-		expect.stringContaining("src/lib/components"),
-		expect.anything()
-	);
-
 	// writeFile mocks
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		2,
+		1,
 		expect.stringContaining("tailwind.config"),
 		expect.stringContaining(`import { fontFamily } from "tailwindcss/defaultTheme"`),
 		"utf8"
 	);
-
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		3,
+		2,
 		expect.stringContaining("app.pcss"),
 		expect.stringContaining(`@tailwind base`),
 		"utf8"
 	);
-
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		4,
+		3,
 		expect.stringContaining("utils.ts"),
 		expect.stringContaining('import { type ClassValue, clsx } from "clsx"'),
 		"utf8"
 	);
+	expect(mockMkdir).toHaveBeenNthCalledWith(
+		4,
+		expect.stringContaining("src/lib/components"),
+		expect.anything()
+	);
 
 	expect(execa).toHaveBeenCalledWith(
 		"pnpm",
-		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge"],
+		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tailwindcss-animate"],
 		{ cwd: targetDir }
 	);
 

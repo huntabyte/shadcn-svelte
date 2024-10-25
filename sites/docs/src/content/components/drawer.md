@@ -2,12 +2,13 @@
 title: Drawer
 description: A drawer component for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/drawer
-bits: https://www.vaul-svelte.com
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/drawer
+  doc: https://github.com/huntabyte/vaul-svelte
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="drawer-demo">
@@ -22,17 +23,22 @@ Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Sve
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="drawer" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `vaul-svelte`:
 
-1. Install `vaul-svelte`:
-
-<PMInstall command="vaul-svelte" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="vaul-svelte -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

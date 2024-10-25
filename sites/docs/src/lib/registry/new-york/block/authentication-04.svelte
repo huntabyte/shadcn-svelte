@@ -40,8 +40,8 @@
 		<img
 			src="/images/placeholder.svg"
 			alt="placeholder"
-			width="1920"
-			height="1080"
+			width={1920}
+			height={1080}
 			class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
 		/>
 	</div>

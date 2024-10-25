@@ -1,26 +1,66 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Icons } from "$lib/components/docs/icons/index.js";
+	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 
 	const months = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
+		{
+			label: "January",
+			value: "1",
+		},
+		{
+			label: "February",
+			value: "2",
+		},
+		{
+			label: "March",
+			value: "3",
+		},
+		{
+			label: "April",
+			value: "4",
+		},
+		{
+			label: "May",
+			value: "5",
+		},
+		{
+			label: "June",
+			value: "6",
+		},
+		{
+			label: "July",
+			value: "7",
+		},
+		{
+			label: "August",
+			value: "8",
+		},
+		{
+			label: "September",
+			value: "9",
+		},
+		{
+			label: "October",
+			value: "10",
+		},
+		{
+			label: "November",
+			value: "11",
+		},
+		{
+			label: "December",
+			value: "12",
+		},
 	];
+
+	let month = $state("");
+	let monthLabel = $derived(months.find((m) => m.value === month) ?? "Month");
+	let year = $state("");
 </script>
 
 <Card.Root>
@@ -55,7 +95,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
-				<Icons.paypal class="mb-3 size-6" />
+				<Icon.PayPal class="mb-3 size-6" />
 				Paypal
 			</Label>
 			<Label
@@ -63,7 +103,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
-				<Icons.apple class="mb-3 size-6" />
+				<Icon.Apple class="mb-3 size-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>
@@ -78,31 +118,29 @@
 		<div class="grid grid-cols-3 gap-4">
 			<div class="grid gap-2">
 				<Label for="month">Expires</Label>
-				<Select.Root>
+				<Select.Root bind:value={month} type="single">
 					<Select.Trigger id="month" aria-label="Month">
-						<Select.Value placeholder="Month" />
+						{monthLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each months as month, i}
-							<Select.Item value={`${i + 1}`} textValue={month}>{month}</Select.Item>
+						{#each months as { value, label }}
+							<Select.Item {value} {label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
 				<Label for="year">Year</Label>
-				<Select.Root>
+				<Select.Root type="single" bind:value={year}>
 					<Select.Trigger id="year" aria-label="Year">
-						<Select.Value placeholder="Year" />
+						{year ?? "Year"}
 					</Select.Trigger>
 					<Select.Content>
 						{#each { length: 10 } as _, i}
 							<Select.Item
 								value={`${new Date().getFullYear() + i}`}
-								textValue={`${new Date().getFullYear() + i}`}
-							>
-								{new Date().getFullYear() + i}
-							</Select.Item>
+								label={`${new Date().getFullYear() + i}`}
+							/>
 						{/each}
 					</Select.Content>
 				</Select.Root>

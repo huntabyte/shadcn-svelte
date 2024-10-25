@@ -4,12 +4,11 @@
 	import Moon from "svelte-radix/Moon.svelte";
 	import Reset from "svelte-radix/Reset.svelte";
 	import Sun from "svelte-radix/Sun.svelte";
-
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { ThemeWrapper } from "$lib/components/docs/index.js";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";

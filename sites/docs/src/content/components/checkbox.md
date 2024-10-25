@@ -2,12 +2,14 @@
 title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/checkbox
-bits: https://www.bits-ui.com/docs/components/checkbox
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/checkbox
+  doc: https://next.bits-ui.com/docs/components/checkbox
+  api: https://next.bits-ui.com/docs/components/checkbox#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Steps, Step, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="checkbox-demo">
@@ -18,17 +20,22 @@ bits: https://www.bits-ui.com/docs/components/checkbox
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="checkbox" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `bits-ui`:
-
-<PMInstall command="bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

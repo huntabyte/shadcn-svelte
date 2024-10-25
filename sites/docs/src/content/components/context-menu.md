@@ -2,12 +2,14 @@
 title: Context Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/context-menu
-bits: https://www.bits-ui.com/docs/components/context-menu
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/context-menu
+  doc: https://next.bits-ui.com/docs/components/context-menu
+  api: https://next.bits-ui.com/docs/components/context-menu#api-reference
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="context-menu-demo">
@@ -18,17 +20,22 @@ bits: https://www.bits-ui.com/docs/components/context-menu
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="context-menu" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `bits-ui`:
-
-<PMInstall command="bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

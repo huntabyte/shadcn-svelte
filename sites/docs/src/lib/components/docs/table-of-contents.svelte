@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { writable } from "svelte/store";
+	import Tree from "./tree.svelte";
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
-	import { Tree } from "$lib/components/docs/index.js";
 
 	let filteredHeadingsList = $state<TableOfContents>();
 
@@ -19,7 +19,7 @@
 
 		const newIdSet: Set<string> = new Set();
 		let count = 1;
-		headings.forEach((heading: HTMLHeadingElement) => {
+		for (const heading of headings) {
 			const level = Number.parseInt(heading.tagName.charAt(1));
 			if (!heading.id) {
 				let newId = heading.innerText
@@ -43,10 +43,14 @@
 			if (level === 2) {
 				hierarchy.items.push(item);
 				currentLevel = item;
-			} else if (level === 3 && currentLevel?.items) {
+			} else if (
+				level === 3 &&
+				currentLevel?.items &&
+				!heading.hasAttribute("data-toc-ignore")
+			) {
 				currentLevel.items.push(item);
 			}
-		});
+		}
 
 		filteredHeadingsList = hierarchy;
 	}

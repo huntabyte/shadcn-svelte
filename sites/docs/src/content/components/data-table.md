@@ -1,8 +1,10 @@
 ---
 title: Data Table
-description: Powerful table and datagrids built using Svelte Headless Table.
+description: Powerful table and datagrids built using TanStack Table.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/example/data-table-demo.svelte
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/data-table
+  doc: https://tanstack.com/table/v8/docs/introduction
 ---
 
 <script>
@@ -31,26 +33,26 @@ We'll start with the basic `<Table />` component, and work our way up to a fully
 
 ## Table of Contents
 
-This guide will show you how to use [Svelte Headless Table](https://svelte-headless-table.bryanmylee.com/) and the `<Table />` component to build your own custom data table. We'll cover the following topics:
+This guide will show you how to use [TanStack Table](https://tanstack.com/table) and the `<Table />` component to build your own custom data table. We'll cover the following topics:
 
-- Basic Table
-- Row Actions
-- Pagination
-- Sorting
-- Filtering
-- Visibility
-- Row Selection
-- Reusable Components
+- [Basic Table](#basic-table)
+- [Row Actions](#row-actions)
+- [Pagination](#pagination)
+- [Sorting](#sorting)
+- [Filtering](#filtering)
+- [Visibility](#visibility)
+- [Row Selection](#row-selection)
+- [Reusable Components](#reusable-components)
 
 ## Installation
 
-1. Add the `<Table />` component to your project:
+1. Add the `<Table />` component to your project along with the `data-table` helpers. These helpers enable TanStack Table v8 to work with Svelte 5 Snippets, Components, etc.
 
-<PMAddComp name="table" />
+<PMAddComp name="table data-table" />
 
-2. Add `svelte-headless-table` as a dependency:
+2. Add `@tanstack/table-core` as a dependency:
 
-<PMInstall command="svelte-headless-table" />
+<PMInstall command="@tanstack/table-core" />
 
 ## Prerequisites
 
@@ -88,15 +90,19 @@ Start by creating a route where your data table will live (we'll call ours payme
 ```txt
 routes
 └── payments
+	├── columns.ts
     ├── data-table.svelte
     ├── data-table-actions.svelte
     ├── data-table-checkbox.svelte
+	├── data-table-email-button.svelte
     └── +page.svelte
 ```
 
-- `data-table.svelte` will contain the `<Table />` component all of our data table logic.
+- `columns.ts` will contain our column definitions.
+- `data-table.svelte` will contain the `<Table />` component and the complete `<DataTable />` component.
 - `data-table-actions.svelte` will contain the actions menu for each row.
 - `data-table-checkbox.svelte` will contain the checkbox for each row.
+- `data-table-email-button.svelte` will contain the sortable email header button.
 - `+page.svelte` is where we'll render and access `<DataTable />` component.
 
 ## Basic Table
@@ -105,362 +111,239 @@ Let's start by building a basic table.
 
 <Steps>
 
-### Get/Add Data
+### Column Definitions
 
-Before we can initialize a table, we need to get our data. You can retrieve your data from anywhere, but for this example we'll use a `payments` array.
+First, we'll define our columns.
+
+```ts showLineNumbers title="routes/payments/columns.ts"
+import type { ColumnDef } from "@tanstack/table-core";
+
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
+export type Payment = {
+  id: string;
+  amount: number;
+  status: "pending" | "processing" | "success" | "failed";
+  email: string;
+};
+
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "status",
+    header: "Status",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "amount",
+    header: "Amount",
+  },
+];
+```
+
+<Callout class="mt-4">
+
+**Note:** Columns are where you define the core of what your table will look like. They define the data that will be displayed, how it will be formatted, sorted and filtered.
+
+</Callout>
+
+### `<DataTable />` Component
+
+Next, we'll create a `<DataTable />` component to render our table.
 
 ```svelte showLineNumbers title="routes/payments/data-table.svelte"
-<script lang="ts">
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
+<script lang="ts" generics="TData, TValue">
+  import { type ColumnDef, getCoreRowModel } from "@tanstack/table-core";
+  import {
+    createSvelteTable,
+    FlexRender,
+  } from "$lib/components/ui/data-table/index.js";
+  import * as Table from "$lib/components/ui/table/index.js";
+
+  type DateTableProps<TData, TValue> = {
+    columns: ColumnDef<TData, TValue>[];
+    data: TData[];
   };
 
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+  let { data, columns }: DateTableProps<TData, TValue> = $props();
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    // ...
-  ];
-</script>
-```
-
-### Initialize Table
-
-Next, we'll initialize a new table using `svelte-headless-table`.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-3,22}
-<script lang="ts">
-  import { createTable } from "svelte-headless-table";
-  import { readable } from "svelte/store";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
-
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
-    },
-    // ...
-  ];
-
-  const table = createTable(readable(data));
-</script>
-```
-
-### Create Columns
-
-Now that we have a table, we can define our columns.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {24-45}
-<script lang="ts">
-  import { createTable } from "svelte-headless-table";
-  import { readable } from "svelte/store";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
-
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
-    },
-    // ...
-  ];
-
-  const table = createTable(readable(data));
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-    }),
-  ]);
-</script>
-```
-
-The last column is where we'll render a menu of actions for each row.
-
-### Create View Model & Render Table
-
-Finally, we'll create a view model which we'll use to build our table.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2,4,48-49,52-90}
-<script lang="ts">
-  import { createTable, Render, Subscribe } from "svelte-headless-table";
-  import { readable } from "svelte/store";
-  import * as Table from "$lib/components/ui/table";
-
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
-
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
-    },
-    // ...
-  ];
-
-  const table = createTable(readable(data));
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-    }),
-  ]);
-
-  const { headerRows, pageRows, tableAttrs, tableBodyAttrs } =
-    table.createViewModel(columns);
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
 </script>
 
 <div class="rounded-md border">
-  <Table.Root {...$tableAttrs}>
+  <Table.Root>
     <Table.Header>
-      {#each $headerRows as headerRow}
-        <Subscribe rowAttrs={headerRow.attrs()}>
-          <Table.Row>
-            {#each headerRow.cells as cell (cell.id)}
-              <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
-                <Table.Head {...attrs}>
-                  <Render of={cell.render()} />
-                </Table.Head>
-              </Subscribe>
-            {/each}
-          </Table.Row>
-        </Subscribe>
+      {#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+        <Table.Row>
+          {#each headerGroup.headers as header (header.id)}
+            <Table.Head>
+              {#if !header.isPlaceholder}
+                <FlexRender
+                  content={header.column.columnDef.header}
+                  context={header.getContext()}
+                />
+              {/if}
+            </Table.Head>
+          {/each}
+        </Table.Row>
       {/each}
     </Table.Header>
-    <Table.Body {...$tableBodyAttrs}>
-      {#each $pageRows as row (row.id)}
-        <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-          <Table.Row {...rowAttrs}>
-            {#each row.cells as cell (cell.id)}
-              <Subscribe attrs={cell.attrs()} let:attrs>
-                <Table.Cell {...attrs}>
-                  <Render of={cell.render()} />
-                </Table.Cell>
-              </Subscribe>
-            {/each}
-          </Table.Row>
-        </Subscribe>
+    <Table.Body>
+      {#each table.getRowModel().rows as row (row.id)}
+        <Table.Row data-state={row.getIsSelected() && "selected"}>
+          {#each row.getVisibleCells() as cell (cell.id)}
+            <Table.Cell>
+              <FlexRender
+                content={cell.column.columnDef.cell}
+                context={cell.getContext()}
+              />
+            </Table.Cell>
+          {/each}
+        </Table.Row>
+      {:else}
+        <Table.Row>
+          <Table.Cell colSpan={columns.length} class="h-24 text-center">
+            No results.
+          </Table.Cell>
+        </Table.Row>
       {/each}
     </Table.Body>
   </Table.Root>
 </div>
 ```
 
+<Callout>
+
+**Tip**: If you find yourself using `<DataTable />` in multiple places, this is the component you could make reusable by extracting it to `components/ui/data-table.svelte`.
+
+`<DataTable columns={columns} data={data} />`
+
+</Callout>
+
 ### Render the table
 
-Finally, we'll render our table in our `+page.svelte` file.
+Finally, we'll render our table in our page component.
+
+```ts showLineNumbers title="routes/payments/+page.server.ts"
+export async function load() {
+  // logic to fetch payments data here
+  const payments = await getPayments();
+  return {
+    payments,
+  };
+}
+```
 
 ```svelte showLineNumbers title="routes/payments/+page.svelte"
 <script lang="ts">
   import DataTable from "./data-table.svelte";
+  import { columns } from "./columns.js";
+
+  let { data } = $props();
 </script>
 
-<div class="container mx-auto py-10">
-  <DataTable />
-</div>
+<DataTable {data} {columns} />
 ```
 
 </Steps>
 
 ## Cell Formatting
 
-Now that we have a basic table, let's format the `amount` cell to display the dollar amount. We'll also align the cell to the right.
+Let's format the amount cell to display the dollar amount. We'll also align the cell to the right.
 
 <Steps>
 
 ### Update columns definition
 
-First, we'll update our columns definition for the `amount` column to return a formatted string.
+Update the `header` and `cell` definitions for amount as follows:
 
-```ts showLineNumbers title="routes/payments/data-table.svelte" {17-23}
-const columns = table.createColumns([
-  table.column({
-    accessor: "id",
-    header: "ID",
-  }),
-  table.column({
-    accessor: "status",
-    header: "Status",
-  }),
-  table.column({
-    accessor: "email",
-    header: "Email",
-  }),
-  table.column({
-    accessor: "amount",
-    header: "Amount",
-    cell: ({ value }) => {
-      const formatted = new Intl.NumberFormat("en-US", {
+```ts showLineNumbers title="routes/payments/columns.ts"
+import type { ColumnDef } from "@tanstack/table-core";
+import { createRawSnippet } from "svelte";
+import { renderSnippet } from "$lib/components/ui/data-table/index.js";
+
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "amount",
+    header: () => {
+      const amountHeaderSnippet = createRawSnippet(() => ({
+        render: () => `<div class="text-right">Amount</div>`,
+      }));
+      return renderSnippet(amountHeaderSnippet, "");
+    },
+    cell: ({ row }) => {
+      const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-      }).format(value);
-      return formatted;
+      });
+
+      const amountCellSnippet = createRawSnippet<[string]>((getAmount) => {
+        const amount = getAmount();
+        return {
+          render: () => `<div class="text-right font-medium">${amount}</div>`,
+        };
+      });
+
+      return renderSnippet(
+        amountCellSnippet,
+        formatter.format(parseFloat(row.getValue("amount")))
+      );
     },
-  }),
-  table.column({
-    accessor: ({ id }) => id,
-    header: "",
-  }),
-]);
+  },
+];
 ```
 
-### Update styles
+We're using the `createRawSnippet` function to create a Svelte Snippet for rendering simple HTML elements that don't require full lifecycle and state capabilities like a component. We then use the `renderSnippet` helper function to render the snippet.
 
-Now that we're returning a formatted string, let's now align the `amount` header and cell to the right. We'll also capitalize our `status` cell values.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {10-16,31-41}
-<div class="rounded-md border">
-  <Table.Root {...$tableAttrs}>
-    <Table.Header>
-      {#each $headerRows as headerRow}
-        <Subscribe rowAttrs={headerRow.attrs()}>
-          <Table.Row>
-            {#each headerRow.cells as cell (cell.id)}
-              <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
-                <Table.Head {...attrs}>
-                  {#if cell.id === "amount"}
-                    <div class="text-right">
-                      <Render of={cell.render()} />
-                    </div>
-                  {:else}
-                    <Render of={cell.render()} />
-                  {/if}
-                </Table.Head>
-              </Subscribe>
-            {/each}
-          </Table.Row>
-        </Subscribe>
-      {/each}
-    </Table.Header>
-    <Table.Body {...$tableBodyAttrs}>
-      {#each $pageRows as row (row.id)}
-        <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-          <Table.Row {...rowAttrs}>
-            {#each row.cells as cell (cell.id)}
-              <Subscribe attrs={cell.attrs()} let:attrs>
-                <Table.Cell {...attrs}>
-                  {#if cell.id === "amount"}
-                    <div class="text-right font-medium">
-                      <Render of={cell.render()} />
-                    </div>
-                  {:else if cell.id === "status"}
-                    <div class="capitalize">
-                      <Render of={cell.render()} />
-                    </div>
-                  {:else}
-                    <Render of={cell.render()} />
-                  {/if}
-                </Table.Cell>
-              </Subscribe>
-            {/each}
-          </Table.Row>
-        </Subscribe>
-      {/each}
-    </Table.Body>
-  </Table.Root>
-</div>
-```
-
-You can use this approach to customize the styles of any cell in your table. In the following sections, we'll demonstrate how you can use a component to render a cell as well.
+You can use the same approach to format other cells and headers.
 
 </Steps>
 
 ## Row Actions
 
-Let's now add row actions to our table. We'll use a `<DropdownMenu />` and `<Button />` component for this.
+Let's add row actions to our table. We'll use the `<DropdownMenu />` component for this.
 
 <Steps>
 
 ### Create actions component
 
-We'll start by creating a new component called `data-table-actions.svelte` which will contain our actions menu. It's going to receive an `id` prop, which we'll use to identify and perform specific actions on the row.
+We'll start by defining the actions menu in our `data-table-actions.svelte` component.
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
   import Ellipsis from "lucide-svelte/icons/ellipsis";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
-  export let id: string;
+  let { id }: { id: string } = $props();
 </script>
 
 <DropdownMenu.Root>
-  <DropdownMenu.Trigger asChild let:builder>
-    <Button
-      variant="ghost"
-      builders={[builder]}
-      size="icon"
-      class="relative size-8 p-0"
-    >
-      <span class="sr-only">Open menu</span>
-      <Ellipsis class="size-4" />
-    </Button>
+  <DropdownMenu.Trigger>
+    {#snippet child({ props })}
+      <Button
+        {...props}
+        variant="ghost"
+        size="icon"
+        class="relative size-8 p-0"
+      >
+        <span class="sr-only">Open menu</span>
+        <Ellipsis class="size-4" />
+      </Button>
+    {/snippet}
   </DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
-      <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
+      <DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
         Copy payment ID
       </DropdownMenu.Item>
     </DropdownMenu.Group>
@@ -473,193 +356,131 @@ We'll start by creating a new component called `data-table-actions.svelte` which
 
 ### Update columns definition
 
-Now that we've defined our actions component, let's update our `actions` column definition to use it.
+Now that we've defined the `<DataTableActions />` component, let's update our `actions` column definition to use it.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {6,10,58-60}
-<script lang="ts">
-  import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import { readable } from "svelte/store";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
+```ts showLineNumbers title="routes/payments/columns.ts"
+import type { ColumnDef } from "@tanstack/table-core";
+import { createRawSnippet } from "svelte";
+import { renderSnippet } from "$lib/components/ui/data-table/index.js";
+import DataTableActions from "./data-table-actions.svelte";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
-
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+export const columns: ColumnDef<Payment>[] = [
+  // ...
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      // You can pass whatever you need from `row.original` to the component
+      return renderComponent(DataTableActions, { id: row.original.id });
     },
-    //...
-  ];
-
-  const table = createTable(readable(data));
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-    }),
-  ]);
-
-  const { headerRows, pageRows, tableAttrs, tableBodyAttrs } =
-    table.createViewModel(columns);
-</script>
+  },
+];
 ```
 
-We're just passing the `id` to our actions component, but you could pass whatever information you need to perform actions on the row. In this example, we could use the `id` to make a DELETE request to our API to delete the payment.
+You can access the row data using `row.original` in the `cell` function. Use this to handle actions for your row eg. use the `id` to make a DELETE call to your API.
 
 </Steps>
 
 ## Pagination
 
-Next, we'll add pagination to our table
+Next, we'll add pagination to our table.
 
 <Steps>
 
-### Enable the `addPagination` plugin
+### Update `<DataTable />`
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,31-33,12,68,71}
-<script lang="ts">
+```svelte showLineNumbers
+<script lang="ts" generics="TData, TValue">
   import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import { addPagination } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/components/ui/button";
+    type ColumnDef,
+    type PaginationState,
+    getCoreRowModel,
+    getPaginationRowModel,
+  } from "@tanstack/table-core";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
+  type DataTableProps<TData, TValue> = {
+    data: TData[];
+    columns: ColumnDef<TData, TValue>[];
   };
 
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+  let { data, columns }: DateTableProps<TData, TValue> = $props();
+
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    //...
-  ];
-
-  const table = createTable(readable(data), {
-    page: addPagination(),
+    columns,
+    state: {
+      get pagination() {
+        return pagination;
+      },
+    },
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-    }),
-  ]);
-
-  const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-    table.createViewModel(columns);
-
-  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
-### Add pagination controls
+This will automatically paginate your rows into pages of 10. See the [pagination docs](https://tanstack.com/table/v8/docs/api/features/pagination) for more information on customizing page size and implementing manual pagination.
 
-We can add pagination controls to our table using the `<Button />` component and the `hasNextPage`, `hasPreviousPage`, and `pageIndex` variables.
+### Adding pagination controls
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {1,7-20,21}
+We can add pagination controls to our table using the `<Button />` component and the `table.previousPage()`, `table.nextPage()` API methods.
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts" generics="TData, TValue">
+  import { Button } from "$lib/components/ui/button/index.js";
+
+  let { columns, data }: DateTableProps<TData, TValue> = $props();
+
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
+    },
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+</script>
+
 <div>
   <div class="rounded-md border">
-    <Table.Root {...$tableAttrs}>
-      <!-- .... -->
+    <Table.Root>
+      <!--- ... table implementation -->
     </Table.Root>
   </div>
-  <div class="flex items-center justify-end space-x-4 py-4">
+  <div class="flex items-center justify-end space-x-2 py-4">
     <Button
       variant="outline"
       size="sm"
-      on:click={() => ($pageIndex = $pageIndex - 1)}
-      disabled={!$hasPreviousPage}>Previous</Button
+      onclick={() => table.previousPage()}
+      disabled={!table.getCanPreviousPage()}
     >
+      Previous
+    </Button>
     <Button
       variant="outline"
       size="sm"
-      disabled={!$hasNextPage}
-      on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+      onclick={() => table.nextPage()}
+      disabled={!table.getCanNextPage()}
     >
+      Next
+    </Button>
   </div>
 </div>
 ```
 
-See the [pagination docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-pagination) for more information on how to customize the pagination behavior.
+See [Reusable Components](#reusable-components) section for a more advanced pagination component.
 
 </Steps>
 
@@ -669,104 +490,75 @@ Let's make the email column sortable.
 
 <Steps>
 
-### Enable the `addSortBy` plugin
+### Define `<DataTableEmailButton />` component
 
-Let's enable the `addSortBy` plugin and import the `<ArrowUpDown />` icon which we'll use to indicate the sort option for the column.
+We'll start by creating a component to render a sortable email header button.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {8,10,34,41-45,50-54,70-74,82-86}
+```svelte showLineNumbers title="routes/payments/data-table-email-button.svelte"
 <script lang="ts">
-  import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import { addPagination, addSortBy } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
+  import type { ComponentProps } from "svelte";
   import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
+  let { variant = "ghost", ...restProps }: ComponentProps<typeof Button> =
+    $props();
+</script>
 
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+<Button {variant} {...restProps}>
+  Email
+  <ArrowUpDown class="ml-2 size-4" />
+</Button>
+```
+
+### Update `<DataTable />`
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts" generics="TData, TValue">
+  import {
+    type ColumnDef,
+    type PaginationState,
+    type SortingState,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+  } from "@tanstack/table-core";
+
+  let { columns, data }: DateTableProps<TData, TValue> = $props();
+
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  let sorting = $state<SortingState>([]);
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    //...
-  ];
-
-  const table = createTable(readable(data), {
-    page: addPagination(),
-    sort: addSortBy(),
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: (updater) => {
+      if (typeof updater === "function") {
+        sorting = updater(sorting);
+      } else {
+        sorting = updater;
+      }
+    },
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
+    state: {
+      get pagination() {
+        return pagination;
+      },
+      get sorting() {
+        return sorting;
+      },
+    },
   });
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-      },
-    }),
-  ]);
-
-  const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-    table.createViewModel(columns);
-
-  const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 </script>
 ```
 
@@ -774,46 +566,27 @@ Let's enable the `addSortBy` plugin and import the `<ArrowUpDown />` icon which 
 
 We can now update the `email` header cell to add sorting controls.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18-22}
-<Table.Root {...$tableAttrs}>
-  <Table.Header>
-    {#each $headerRows as headerRow}
-      <Subscribe rowAttrs={headerRow.attrs()}>
-        <Table.Row>
-          {#each headerRow.cells as cell (cell.id)}
-            <Subscribe
-              attrs={cell.attrs()}
-              let:attrs
-              props={cell.props()}
-              let:props
-            >
-              <Table.Head {...attrs}>
-                {#if cell.id === "amount"}
-                  <div class="text-right">
-                    <Render of={cell.render()} />
-                  </div>
-                {:else if cell.id === "email"}
-                  <Button variant="ghost" on:click={props.sort.toggle}>
-                    <Render of={cell.render()} />
-                    <ArrowUpDown class={"ml-2 size-4"} />
-                  </Button>
-                {:else}
-                  <Render of={cell.render()} />
-                {/if}
-              </Table.Head>
-            </Subscribe>
-          {/each}
-        </Table.Row>
-      </Subscribe>
-    {/each}
-  </Table.Header>
-  <Table.Body {...$tableBodyAttrs}>
-    <!-- ... -->
-  </Table.Body>
-</Table.Root>
+```ts showLineNumbers title="src/routes/payments/columns.ts"
+import type { ColumnDef } from "@tanstack/table-core";
+import {
+  renderComponent,
+  renderSnippet,
+} from "$lib/components/ui/data-table/index.js";
+import DataTableEmailButton from "./data-table-email-button.svelte";
+
+export const columns: ColumnDef<Payment>[] = [
+  // ...
+  {
+    accessorKey: "email",
+    header: ({ column }) =>
+      renderComponent(DataTableEmailButton, {
+        onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+      }),
+  },
+];
 ```
 
-See the [sort docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-sort-by) for more information on how to customize the sort behavior.
+This will automatically sort the table (asc and desc) when the user toggles on the header cell.
 
 </Steps>
 
@@ -823,353 +596,220 @@ Let's add a search input to filter emails in our table.
 
 <Steps>
 
-### Enable the `addTableFilter` plugin
+### Update `<DataTable />`
 
-We'll start by enabling the `addTableFilter` plugin and importing the `<Input />` component we'll use for the search input.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {11,18,40-43,54-56,66-68,89-91,104-106,115}
-<script lang="ts">
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts" generics="TData, TValue">
   import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import {
-    addPagination,
-    addSortBy,
-    addTableFilter,
-  } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
-  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/components/ui/button";
-  import { Input } from "$lib/components/ui/input";
+    type ColumnDef,
+    type PaginationState,
+    type SortingState,
+    type ColumnFiltersState,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    getFilteredRowModel,
+  } from "@tanstack/table-core";
+  import { Input } from "$lib/components/ui/input/index.js";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
+  let { columns, data }: DateTableProps<TData, TValue> = $props();
 
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  let sorting = $state<SortingState>([]);
+  let columnFilters = $state<ColumnFiltersState>([]);
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    // ...
-  ];
-
-  const table = createTable(readable(data), {
-    page: addPagination(),
-    sort: addSortBy(),
-    filter: addTableFilter({
-      fn: ({ filterValue, value }) =>
-        value.toLowerCase().includes(filterValue.toLowerCase()),
-    }),
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
+    onSortingChange: (updater) => {
+      if (typeof updater === "function") {
+        sorting = updater(sorting);
+      } else {
+        sorting = updater;
+      }
+    },
+    onColumnFiltersChange: (updater) => {
+      if (typeof updater === "function") {
+        columnFilters = updater(columnFilters);
+      } else {
+        columnFilters = updater;
+      }
+    },
+    state: {
+      get pagination() {
+        return pagination;
+      },
+      get sorting() {
+        return sorting;
+      },
+      get columnFilters() {
+        return columnFilters;
+      },
+    },
   });
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-  ]);
-
-  const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-    table.createViewModel(columns);
-
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
-  const { filterValue } = pluginStates.filter;
 </script>
-```
 
-We're excluding all columns except for `email` from the filter plugin, and we're using a case-insensitive filter function to match the email value.
-
-### Add search input
-
-Now that our table is configured to filter by email, let's add a search input on top of our table.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {2-9}
 <div>
   <div class="flex items-center py-4">
     <Input
-      class="max-w-sm"
       placeholder="Filter emails..."
-      type="text"
-      bind:value={$filterValue}
+      value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+      onchange={(e) => {
+        table.getColumn("email")?.setFilterValue(e.currentTarget.value);
+      }}
+      oninput={(e) => {
+        table.getColumn("email")?.setFilterValue(e.currentTarget.value);
+      }}
+      class="max-w-sm"
     />
   </div>
   <div class="rounded-md border">
-    <Table.Root>
-      <!-- ... -->
-    </Table.Root>
-  </div>
-  <div class="flex items-center justify-end space-x-4 py-4">
-    <!-- ... -->
+    <Table.Root><!-- ... --></Table.Root>
   </div>
 </div>
 ```
 
-Since `filterValue` is a store, we can bind it to the input value and it will automatically update as the user types.
-
-See the [filter docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-table-filter) for more information on how to customize the filtering behavior.
+Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/v8/docs/guide/filters) for more information on customizing filters.
 
 </Steps>
 
 ## Visibility
 
-Let's add the ability to control which columns are visible in our table.
+Adding column visibility is fairly simple using `@tanstack/table-core` visibility API.
 
 <Steps>
 
-### Enable `addHiddenColumns` plugin
+### Update `<DataTable />`
 
-We'll start by enabling the `addHiddenColumns` plugin. We'll also need a `<ChevronDown />` icon and the `<DropdownMenu />` component in the next step.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {12,16,21,45,119,124,126-127,129-131,133}
-<script lang="ts">
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts" generics="TData, TValue">
   import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import {
-    addPagination,
-    addSortBy,
-    addTableFilter,
-    addHiddenColumns,
-  } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
-  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
-  import ChevronDown from "lucide-svelte/icons/chevron-down";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/components/ui/button";
-  import { Input } from "$lib/components/ui/input";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+    type ColumnDef,
+    type PaginationState,
+    type SortingState,
+    type ColumnFiltersState,
+    type VisibilityState,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    getFilteredRowModel,
+  } from "@tanstack/table-core";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+  let { columns, data }: DateTableProps<TData, TValue> = $props();
+
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  let sorting = $state<SortingState>([]);
+  let columnFilters = $state<ColumnFiltersState>([]);
+  let columnVisibility = $state<VisibilityState>({});
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    // ...
-  ];
-
-  const table = createTable(readable(data), {
-    page: addPagination(),
-    sort: addSortBy({ disableMultiSort: true }),
-    filter: addTableFilter({
-      fn: ({ filterValue, value }) => value.includes(filterValue),
-    }),
-    hide: addHiddenColumns(),
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
+    onSortingChange: (updater) => {
+      if (typeof updater === "function") {
+        sorting = updater(sorting);
+      } else {
+        sorting = updater;
+      }
+    },
+    onColumnFiltersChange: (updater) => {
+      if (typeof updater === "function") {
+        columnFilters = updater(columnFilters);
+      } else {
+        columnFilters = updater;
+      }
+    },
+    onColumnVisibilityChange: (updater) => {
+      if (typeof updater === "function") {
+        columnVisibility = updater(columnVisibility);
+      } else {
+        columnVisibility = updater;
+      }
+    },
+    state: {
+      get pagination() {
+        return pagination;
+      },
+      get sorting() {
+        return sorting;
+      },
+      get columnFilters() {
+        return columnFilters;
+      },
+      get columnVisibility() {
+        return columnVisibility;
+      },
+    },
   });
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: "ID",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-  ]);
-
-  const {
-    headerRows,
-    pageRows,
-    tableAttrs,
-    tableBodyAttrs,
-    pluginStates,
-    flatColumns,
-  } = table.createViewModel(columns);
-
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
-  const { filterValue } = pluginStates.filter;
-  const { hiddenColumnIds } = pluginStates.hide;
-
-  const ids = flatColumns.map((col) => col.id);
-  let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
-
-  $: $hiddenColumnIds = Object.entries(hideForId)
-    .filter(([, hide]) => !hide)
-    .map(([id]) => id);
-
-  const hidableCols = ["status", "email", "amount"];
 </script>
-```
 
-We're setting the `hiddenColumnIds` store from the plugin whenever `hideForId` changes to reflect our newly chosen hidden/shown columns.
-
-### Add column visibility controls
-
-Now we'll use the icon and `<DropdownMenu />` we imported in the previous step to render a menu of columns that can be hidden.
-
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {9-24}
 <div>
   <div class="flex items-center py-4">
     <Input
-      class="max-w-sm"
       placeholder="Filter emails..."
-      type="text"
-      bind:value={$filterValue}
+      value={table.getColumn("email")?.getFilterValue() as string}
+      onchange={(e) =>
+        table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+      oninput={(e) =>
+        table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+      class="max-w-sm"
     />
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild let:builder>
-        <Button variant="outline" class="ml-auto" builders={[builder]}>
-          Columns <ChevronDown class="ml-2 size-4" />
-        </Button>
+      <DropdownMenu.Trigger>
+        {#snippet child({ props })}
+          <Button {...props} variant="outline" class="ml-auto">Columns</Button>
+        {/snippet}
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content>
-        {#each flatColumns as col}
-          {#if hidableCols.includes(col.id)}
-            <DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
-              {col.header}
-            </DropdownMenu.CheckboxItem>
-          {/if}
+      <DropdownMenu.Content align="end">
+        {#each table
+          .getAllColumns()
+          .filter((col) => col.getCanHide()) as column (column.id)}
+          <DropdownMenu.CheckboxItem
+            class="capitalize"
+            controlledChecked
+            checked={column.getIsVisible()}
+            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+          >
+            {column.id}
+          </DropdownMenu.CheckboxItem>
         {/each}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   </div>
   <div class="rounded-md border">
-    <Table.Root>
-      <!-- ... -->
-    </Table.Root>
-  </div>
-  <div class="flex items-center justify-end space-x-4 py-4">
-    <!-- .... -->
+    <Table.Root><!--...--></Table.Root>
   </div>
 </div>
 ```
 
-See the [hidden columns docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-hidden-columns) for more information.
+This adds a dropdown menu that you can use to toggle column visibility.
 
 </Steps>
 
@@ -1179,296 +819,169 @@ Next, we're going to add row selection to our table.
 
 <Steps>
 
-### Create checkbox component
+### Define `<DataTableCheckbox />` component
 
-We'll start by creating a new component called `data-table-checkbox.svelte` which will be used to render a checkbox for each row.
+We'll start by defining the checkbox component in our `data-table-checkbox.svelte` component.
 
 ```svelte showLineNumbers title="routes/payments/data-table-checkbox.svelte"
 <script lang="ts">
-  import { Checkbox } from "$lib/components/ui/checkbox";
-  import type { Writable } from "svelte/store";
+  import type { ComponentProps } from "svelte";
+  import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
 
-  export let checked: Writable<boolean>;
+  let {
+    checked = false,
+    controlledChecked = true,
+    ...restProps
+  }: ComponentProps<typeof Checkbox> = $props();
 </script>
 
-<Checkbox bind:checked={$checked} />
+<Checkbox {checked} {controlledChecked} {...restProps} />
 ```
 
-### Enable `addSelectedRows` plugin
+### Update columns definition
 
-Next, we'll enable the `addSelectedRows` plugin and import the `<Checkbox />` component we just created.
+Now that we have a new component, we can add a `select` column definition to render a checkbox.
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {13,23,49,55-68,137,143}
-<script lang="ts">
+```ts showLineNumbers title="routes/payments/columns.ts"
+import type { ColumnDef } from "@tanstack/table-core";
+import {
+  renderSnippet,
+  renderComponent,
+} from "$lib/components/ui/data-table/index.js";
+import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+
+export const columns: ColumnDef<Payment>[] = [
+  // ...
+  {
+    id: "select",
+    header: ({ table }) =>
+      renderComponent(Checkbox, {
+        checked:
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate"),
+        onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+        controlledChecked: true,
+        "aria-label": "Select all",
+      }),
+    cell: ({ row }) =>
+      renderComponent(Checkbox, {
+        checked: row.getIsSelected(),
+        onCheckedChange: (value) => row.toggleSelected(!!value),
+        controlledChecked: true,
+        "aria-label": "Select row",
+      }),
+    enableSorting: false,
+    enableHiding: false,
+  },
+];
+```
+
+### Update `<DataTable />`
+
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
+<script lang="ts" generics="TData, TValue">
   import {
-    createTable,
-    Render,
-    Subscribe,
-    createRender,
-  } from "svelte-headless-table";
-  import {
-    addPagination,
-    addSortBy,
-    addTableFilter,
-    addHiddenColumns,
-    addSelectedRows,
-  } from "svelte-headless-table/plugins";
-  import { readable } from "svelte/store";
-  import ArrowUpDown from "lucide-svelte/icons/arrow-up-down";
-  import ChevronDown from "lucide-svelte/icons/chevron-down";
-  import * as Table from "$lib/components/ui/table";
-  import DataTableActions from "./data-table-actions.svelte";
-  import { Button } from "$lib/components/ui/button";
-  import { Input } from "$lib/components/ui/input";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-  import DataTableCheckbox from "./data-table-checkbox.svelte";
+    type ColumnDef,
+    type PaginationState,
+    type SortingState,
+    type ColumnFiltersState,
+    type VisibilityState,
+    type RowSelectionState,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    getFilteredRowModel,
+  } from "@tanstack/table-core";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
-  type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
-  };
+  let { columns, data }: DateTableProps<TData, TValue> = $props();
 
-  const data: Payment[] = [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+  let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  let sorting = $state<SortingState>([]);
+  let columnFilters = $state<ColumnFiltersState>([]);
+  let columnVisibility = $state<VisibilityState>({});
+  let rowSelection = $state<RowSelectionState>({});
+
+  const table = createSvelteTable({
+    get data() {
+      return data;
     },
-    // ...
-  ];
-
-  const table = createTable(readable(data), {
-    page: addPagination(),
-    sort: addSortBy({ disableMultiSort: true }),
-    filter: addTableFilter({
-      includeHiddenColumns: true,
-      fn: ({ filterValue, value }) => value.includes(filterValue),
-    }),
-    hide: addHiddenColumns(),
-    select: addSelectedRows(),
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
+    onSortingChange: (updater) => {
+      if (typeof updater === "function") {
+        sorting = updater(sorting);
+      } else {
+        sorting = updater;
+      }
+    },
+    onColumnFiltersChange: (updater) => {
+      if (typeof updater === "function") {
+        columnFilters = updater(columnFilters);
+      } else {
+        columnFilters = updater;
+      }
+    },
+    onColumnVisibilityChange: (updater) => {
+      if (typeof updater === "function") {
+        columnVisibility = updater(columnVisibility);
+      } else {
+        columnVisibility = updater;
+      }
+    },
+    onRowSelectionChange: (updater) => {
+      if (typeof updater === "function") {
+        rowSelection = updater(rowSelection);
+      } else {
+        rowSelection = updater;
+      }
+    },
+    state: {
+      get pagination() {
+        return pagination;
+      },
+      get sorting() {
+        return sorting;
+      },
+      get columnFilters() {
+        return columnFilters;
+      },
+      get columnVisibility() {
+        return columnVisibility;
+      },
+      get rowSelection() {
+        return rowSelection;
+      },
+    },
   });
-
-  const columns = table.createColumns([
-    table.column({
-      accessor: "id",
-      header: (_, { pluginStates }) => {
-        const { allPageRowsSelected } = pluginStates.select;
-        return createRender(DataTableCheckbox, {
-          checked: allPageRowsSelected,
-        });
-      },
-      cell: ({ row }, { pluginStates }) => {
-        const { getRowState } = pluginStates.select;
-        const { isSelected } = getRowState(row);
-
-        return createRender(DataTableCheckbox, {
-          checked: isSelected,
-        });
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "status",
-      header: "Status",
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: "email",
-      header: "Email",
-    }),
-    table.column({
-      accessor: "amount",
-      header: "Amount",
-      cell: ({ value }) => {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(value);
-        return formatted;
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-    table.column({
-      accessor: ({ id }) => id,
-      header: "",
-      cell: ({ value }) => {
-        return createRender(DataTableActions, { id: value });
-      },
-      plugins: {
-        sort: {
-          disable: true,
-        },
-        filter: {
-          exclude: true,
-        },
-      },
-    }),
-  ]);
-
-  const {
-    headerRows,
-    pageRows,
-    tableAttrs,
-    tableBodyAttrs,
-    pluginStates,
-    flatColumns,
-    rows,
-  } = table.createViewModel(columns);
-
-  const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
-  const { filterValue } = pluginStates.filter;
-  const { hiddenColumnIds } = pluginStates.hide;
-  const { selectedDataIds } = pluginStates.select;
-
-  const ids = flatColumns.map((col) => col.id);
-  let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
-
-  $: $hiddenColumnIds = Object.entries(hideForId)
-    .filter(([, hide]) => !hide)
-    .map(([id]) => id);
-
-  const hidableCols = ["status", "email", "amount"];
 </script>
 ```
 
-### Update styles & show selected rows
+This adds a checkbox to each row and a checkbox in the header to select all rows.
 
-To accommodate the checkbox, we'll need to update our table styles. We'll also add a message to show how many rows are selected.
+### Show selected rows
 
-```svelte showLineNumbers title="routes/payments/data-table.svelte" {39,62-65,90-93}
-<div>
-  <div class="flex items-center py-4">
-    <Input
-      class="max-w-sm"
-      placeholder="Filter emails..."
-      type="text"
-      bind:value={$filterValue}
-    />
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild let:builder>
-        <Button variant="outline" class="ml-auto" builders={[builder]}>
-          Columns <ChevronDown class="ml-2 size-4" />
-        </Button>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content>
-        {#each flatColumns as col}
-          {#if hidableCols.includes(col.id)}
-            <DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
-              {col.header}
-            </DropdownMenu.CheckboxItem>
-          {/if}
-        {/each}
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  </div>
-  <div class="rounded-md border">
-    <Table.Root {...$tableAttrs}>
-      <Table.Header>
-        {#each $headerRows as headerRow}
-          <Subscribe rowAttrs={headerRow.attrs()}>
-            <Table.Row>
-              {#each headerRow.cells as cell (cell.id)}
-                <Subscribe
-                  attrs={cell.attrs()}
-                  let:attrs
-                  props={cell.props()}
-                  let:props
-                >
-                  <Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
-                    {#if cell.id === "amount"}
-                      <div class="text-right">
-                        <Render of={cell.render()} />
-                      </div>
-                    {:else if cell.id === "email"}
-                      <Button variant="ghost" on:click={props.sort.toggle}>
-                        <Render of={cell.render()} />
-                        <ArrowUpDown class={"ml-2 size-4"} />
-                      </Button>
-                    {:else}
-                      <Render of={cell.render()} />
-                    {/if}
-                  </Table.Head>
-                </Subscribe>
-              {/each}
-            </Table.Row>
-          </Subscribe>
-        {/each}
-      </Table.Header>
-      <Table.Body {...$tableBodyAttrs}>
-        {#each $pageRows as row (row.id)}
-          <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-            <Table.Row
-              {...rowAttrs}
-              data-state={$selectedDataIds[row.id] && "selected"}
-            >
-              {#each row.cells as cell (cell.id)}
-                <Subscribe attrs={cell.attrs()} let:attrs>
-                  <Table.Cell {...attrs} class="[&:has([role=checkbox])]:pl-3">
-                    {#if cell.id === "amount"}
-                      <div class="text-right font-medium">
-                        <Render of={cell.render()} />
-                      </div>
-                    {:else if cell.id === "status"}
-                      <div class="capitalize">
-                        <Render of={cell.render()} />
-                      </div>
-                    {:else}
-                      <Render of={cell.render()} />
-                    {/if}
-                  </Table.Cell>
-                </Subscribe>
-              {/each}
-            </Table.Row>
-          </Subscribe>
-        {/each}
-      </Table.Body>
-    </Table.Root>
-  </div>
-  <div class="flex items-center justify-end space-x-4 py-4">
-    <div class="text-muted-foreground flex-1 text-sm">
-      {Object.keys($selectedDataIds).length} of{" "}
-      {$rows.length} row(s) selected.
-    </div>
-    <Button
-      variant="outline"
-      size="sm"
-      on:click={() => ($pageIndex = $pageIndex - 1)}
-      disabled={!$hasPreviousPage}>Previous</Button
-    >
-    <Button
-      variant="outline"
-      size="sm"
-      disabled={!$hasNextPage}
-      on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
-    >
-  </div>
+You can show the number of selected rows using the `table.getFilteredSelectedRowModel()` API.
+
+```svelte
+<div class="text-muted-foreground flex-1 text-sm">
+  {table.getFilteredSelectedRowModel().rows.length} of{" "}
+  {table.getFilteredRowModel().rows.length} row(s) selected.
 </div>
 ```
 
-See the [selected row docs](https://svelte-headless-table.bryanmylee.com/docs/plugins/add-selected-rows) for more information on how to customize the selection behavior.
-
 </Steps>
+
+## Reusable Components
+
+Check out the [Tasks](/examples/tasks) example to learn about creating reusable components for your data tables.

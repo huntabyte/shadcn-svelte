@@ -114,7 +114,7 @@
 							}}
 							onValueChange={(value) => {
 								if (value === undefined) {
-									$formData.dob = undefined as any;
+									$formData.dob = undefined;
 									validate("dob");
 									return;
 								}

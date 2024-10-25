@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { useId } from "bits-ui";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -47,6 +48,14 @@
 			label: "Severity 4 (Lowest)",
 		},
 	];
+
+	const id = useId("report-issue");
+	let securityLevel = $state(securityLevels[1].value);
+	const securityLevelLabel = $derived(
+		securityLevels.find((l) => l.value === securityLevel) ?? "Select level"
+	);
+	let area = $state(areas[1].value);
+	const areaLabel = $derived(areas.find((a) => a.value === area) ?? "Select");
 </script>
 
 <Card.Root>
@@ -57,34 +66,27 @@
 	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-2">
-				<Label for="area">Area</Label>
-				<Select.Root value={areas[1].value}>
-					<Select.Trigger id="area">
-						<Select.Value placeholder="Select" />
+				<Label for="aria-{id}">Area</Label>
+				<Select.Root type="single" bind:value={area}>
+					<Select.Trigger id="aria-{id}">
+						{areaLabel}
 					</Select.Trigger>
 					<Select.Content>
 						{#each areas as area}
-							<Select.Item value={area.value} textValue={area.label}
-								>{area.label}</Select.Item
-							>
+							<Select.Item value={area.value} label={area.label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="security-level">Security Level</Label>
-				<Select.Root value={securityLevels[1].value}>
-					<Select.Trigger
-						id="security-level"
-						class="line-clamp-1 flex w-[160px] truncate"
-					>
-						<Select.Value placeholder="Select level" />
+				<Label for="security-level-{id}">Security Level</Label>
+				<Select.Root type="single" bind:value={securityLevel}>
+					<Select.Trigger id="security-level-{id}" class="w-full truncate">
+						{securityLevelLabel}
 					</Select.Trigger>
 					<Select.Content>
 						{#each securityLevels as level}
-							<Select.Item value={level.value} textValue={level.label}>
-								{level.label}
-							</Select.Item>
+							<Select.Item value={level.value} label={level.label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>

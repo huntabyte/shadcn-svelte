@@ -1,36 +1,52 @@
 {
 	"name": "card",
-	"dependencies": [],
+	"type": "registry:ui",
+	"dependencies": [
+		"bits-ui"
+	],
 	"registryDependencies": [],
 	"files": [
 		{
 			"name": "card-content.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"p-6\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"p-6\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "card/card-content.svelte"
 		},
 		{
 			"name": "card-description.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveElementAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveElementAttributes = $props();\n</script>\n\n<p bind:this={ref} class={cn(\"text-muted-foreground text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</p>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p bind:this={ref} class={cn(\"text-muted-foreground text-sm\", className)} {...restProps}>\n\t{@render children?.()}\n</p>\n",
+			"type": "registry:ui",
+			"target": "card/card-description.svelte"
 		},
 		{
 			"name": "card-footer.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex items-center p-6 pt-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex items-center p-6 pt-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "card/card-footer.svelte"
 		},
 		{
 			"name": "card-header.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex flex-col space-y-1.5 p-6 pb-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} class={cn(\"flex flex-col space-y-1.5 p-6 pb-0\", className)} {...restProps}>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "card/card-header.svelte"
 		},
 		{
 			"name": "card-title.svelte",
-			"content": "<script lang=\"ts\">\n\timport type { CardHeadingLevel } from \"./index.js\";\n\timport { type PrimitiveElementAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tlevel = 3,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveElementAttributes & {\n\t\tlevel?: CardHeadingLevel;\n\t} = $props();\n</script>\n\n<div\n\trole=\"heading\"\n\taria-level={level}\n\tbind:this={ref}\n\tclass={cn(\"font-semibold leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tlevel = 3,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tlevel?: 1 | 2 | 3 | 4 | 5 | 6;\n\t} = $props();\n</script>\n\n<div\n\trole=\"heading\"\n\taria-level={level}\n\tbind:this={ref}\n\tclass={cn(\"font-semibold leading-none tracking-tight\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "card/card-title.svelte"
 		},
 		{
 			"name": "card.svelte",
-			"content": "<script lang=\"ts\">\n\timport { type PrimitiveDivAttributes, cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: PrimitiveDivAttributes = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-card text-card-foreground rounded-xl border shadow\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n"
+			"content": "<script lang=\"ts\">\n\timport type { WithElementRef } from \"bits-ui\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"bg-card text-card-foreground rounded-xl border shadow\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "card/card.svelte"
 		},
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./card.svelte\";\nimport Content from \"./card-content.svelte\";\nimport Description from \"./card-description.svelte\";\nimport Footer from \"./card-footer.svelte\";\nimport Header from \"./card-header.svelte\";\nimport Title from \"./card-title.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle,\n};\n\nexport type CardHeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;\n"
+			"content": "import Root from \"./card.svelte\";\nimport Content from \"./card-content.svelte\";\nimport Description from \"./card-description.svelte\";\nimport Footer from \"./card-footer.svelte\";\nimport Header from \"./card-header.svelte\";\nimport Title from \"./card-title.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tDescription,\n\tFooter,\n\tHeader,\n\tTitle,\n\t//\n\tRoot as Card,\n\tContent as CardContent,\n\tDescription as CardDescription,\n\tFooter as CardFooter,\n\tHeader as CardHeader,\n\tTitle as CardTitle,\n};\n",
+			"type": "registry:ui",
+			"target": "card/index.ts"
 		}
-	],
-	"type": "components:ui"
+	]
 }

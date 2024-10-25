@@ -22,6 +22,7 @@ import type {
 	HTMLThAttributes,
 } from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
+import { docs } from "$content/index.js";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -226,14 +227,15 @@ export async function getDoc(slug: string) {
 	const match = findMatch(slug, modules);
 	const doc = await match?.resolver?.();
 
-	if (!doc || !doc.metadata) {
+	const metadata = docs.find((doc) => doc.path === slug);
+	if (!doc || !metadata) {
 		error(404);
 	}
 
 	return {
 		component: doc.default,
-		metadata: doc.metadata,
-		title: doc.metadata.title,
+		metadata,
+		title: metadata.title,
 	};
 }
 
@@ -285,7 +287,7 @@ export function getPackageManagerInstallCmd(pm: PackageManager): string {
 	return packageManagerToInstallCmd[pm];
 }
 
-// eslint-disable-next-line ts/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPackageManager(value: any): value is PackageManager {
 	return packageManagers.includes(value);
 }

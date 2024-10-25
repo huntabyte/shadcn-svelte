@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Upload from "lucide-svelte/icons/upload";
+
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 </script>
 
@@ -10,9 +11,7 @@
 >
 	<Card.Header>
 		<Card.Title>Product Images</Card.Title>
-		<Card.Description>
-			Lipsum dolor sit amet, consectetur adipiscing elit
-		</Card.Description>
+		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="grid gap-2">

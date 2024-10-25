@@ -1,5 +1,6 @@
 {
 	"name": "slider",
+	"type": "registry:ui",
 	"dependencies": [
 		"bits-ui"
 	],
@@ -7,12 +8,15 @@
 	"files": [
 		{
 			"name": "index.ts",
-			"content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider,\n};\n"
+			"content": "import Root from \"./slider.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Slider,\n};\n",
+			"type": "registry:ui",
+			"target": "slider/index.ts"
 		},
 		{
 			"name": "slider.svelte",
-			"content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable([0]),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();\n</script>\n\n<SliderPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\"relative flex w-full touch-none select-none items-center\", className)}\n\t{...restProps}\n>\n\t{#snippet children({ thumbs })}\n\t\t<span class=\"bg-secondary relative h-2 w-full grow overflow-hidden rounded-full\">\n\t\t\t<SliderPrimitive.Range class=\"bg-primary absolute h-full\" />\n\t\t</span>\n\t\t{#each thumbs as thumb}\n\t\t\t<SliderPrimitive.Thumb\n\t\t\t\tindex={thumb}\n\t\t\t\tclass=\"border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\"\n\t\t\t/>\n\t\t{/each}\n\t{/snippet}\n</SliderPrimitive.Root>\n"
+			"content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable([0]),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();\n</script>\n\n<SliderPrimitive.Root\n\tbind:ref\n\tbind:value\n\tclass={cn(\"relative flex w-full touch-none select-none items-center\", className)}\n\t{...restProps}\n>\n\t{#snippet children({ thumbs })}\n\t\t<span class=\"bg-secondary relative h-2 w-full grow overflow-hidden rounded-full\">\n\t\t\t<SliderPrimitive.Range class=\"bg-primary absolute h-full\" />\n\t\t</span>\n\t\t{#each thumbs as thumb}\n\t\t\t<SliderPrimitive.Thumb\n\t\t\t\tindex={thumb}\n\t\t\t\tclass=\"border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50\"\n\t\t\t/>\n\t\t{/each}\n\t{/snippet}\n</SliderPrimitive.Root>\n",
+			"type": "registry:ui",
+			"target": "slider/slider.svelte"
 		}
-	],
-	"type": "components:ui"
+	]
 }

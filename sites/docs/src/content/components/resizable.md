@@ -2,12 +2,13 @@
 title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
-bits: https://paneforge.com
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
+  doc: https://www.paneforge.com
 ---
 
 <script>
-	import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+	import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="resizable-demo">
@@ -22,17 +23,22 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="resizable" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `paneforge`:
 
-1. Install `paneforge`:
-
-<PMInstall command="paneforge" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="paneforge -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import { readFileSync } from "node:fs";
 import process from "node:process";
 import { join, resolve } from "node:path";
@@ -28,7 +28,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
  * @type {import('rehype-pretty-code').Options}
  */
 const prettyCodeOptions = {
-	theme: JSON.parse(String(readFileSync(resolve(__dirname, "./other/themes/dark.json")))),
+	theme: "github-dark",
 	getHighlighter: (options) =>
 		getHighlighter({
 			...options,
@@ -44,9 +44,10 @@ const prettyCodeOptions = {
 		}),
 	keepBackground: false,
 	onVisitLine(node) {
+		// Prevent lines from collapsing in `display: grid` mode, and allow empty
+		// lines to be copy/pasted
 		if (node.children.length === 0) {
-			// @ts-expect-error - we're changing the node type
-			node.children = { type: "text", value: " " };
+			node.children = [{ type: "text", value: " " }];
 		}
 	},
 	onVisitHighlightedLine(node) {
@@ -157,15 +158,11 @@ export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			// @ts-expect-error - this is fine
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
-				// @ts-expect-error - this is fine
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
-				if (!name) {
-					return null;
-				}
+				if (!name) return null;
 
 				try {
 					for (const style of styles) {

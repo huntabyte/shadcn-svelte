@@ -9,7 +9,6 @@ import config from "../svelte.config.js";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
-	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
 	["embla-carousel-svelte", []],
@@ -148,6 +147,7 @@ async function getDependencies(filename: string, source: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
+	// @ts-expect-error yea, stfu
 	walk(ast.instance, {
 		enter(node) {
 			if (node.type === "ImportDeclaration") {
