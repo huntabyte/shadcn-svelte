@@ -5,25 +5,19 @@
 	import Settings from "lucide-svelte/icons/settings";
 	import Smile from "lucide-svelte/icons/smile";
 	import User from "lucide-svelte/icons/user";
-	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 
-	let open = false;
+	let open = $state(false);
 
-	onMount(() => {
-		function handleKeydown(e: KeyboardEvent) {
-			if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
-				e.preventDefault();
-				open = !open;
-			}
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault();
+			open = !open;
 		}
-
-		document.addEventListener("keydown", handleKeydown);
-		return () => {
-			document.removeEventListener("keydown", handleKeydown);
-		};
-	});
+	}
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <p class="text-muted-foreground text-sm">
 	Press
@@ -39,32 +33,32 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Suggestions">
 			<Command.Item>
-				<Calendar class="mr-2 h-4 w-4" />
+				<Calendar class="mr-2 size-4" />
 				<span>Calendar</span>
 			</Command.Item>
 			<Command.Item>
-				<Smile class="mr-2 h-4 w-4" />
+				<Smile class="mr-2 size-4" />
 				<span>Search Emoji</span>
 			</Command.Item>
 			<Command.Item>
-				<Calculator class="mr-2 h-4 w-4" />
+				<Calculator class="mr-2 size-4" />
 				<span>Calculator</span>
 			</Command.Item>
 		</Command.Group>
 		<Command.Separator />
 		<Command.Group heading="Settings">
 			<Command.Item>
-				<User class="mr-2 h-4 w-4" />
+				<User class="mr-2 size-4" />
 				<span>Profile</span>
 				<Command.Shortcut>⌘P</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<CreditCard class="mr-2 h-4 w-4" />
+				<CreditCard class="mr-2 size-4" />
 				<span>Billing</span>
 				<Command.Shortcut>⌘B</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<Settings class="mr-2 h-4 w-4" />
+				<Settings class="mr-2 size-4" />
 				<span>Settings</span>
 				<Command.Shortcut>⌘S</Command.Shortcut>
 			</Command.Item>

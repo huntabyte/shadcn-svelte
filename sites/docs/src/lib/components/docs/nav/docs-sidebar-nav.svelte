@@ -3,7 +3,7 @@
 	import type { SidebarNavItem } from "$lib/types/nav.js";
 	import { cn } from "$lib/utils.js";
 
-	export let items: SidebarNavItem[] = [];
+	let { items }: { items: SidebarNavItem[] } = $props();
 </script>
 
 {#if items.length}

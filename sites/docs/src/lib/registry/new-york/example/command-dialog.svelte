@@ -5,10 +5,10 @@
 	import Gear from "svelte-radix/Gear.svelte";
 	import Person from "svelte-radix/Person.svelte";
 	import Rocket from "svelte-radix/Rocket.svelte";
-
 	import { onMount } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	let open = false;
+
+	let open = $state(false);
 
 	onMount(() => {
 		function handleKeydown(e: KeyboardEvent) {
@@ -39,32 +39,32 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Suggestions">
 			<Command.Item>
-				<Calendar class="mr-2 h-4 w-4" />
+				<Calendar class="mr-2 size-4" />
 				<span>Calendar</span>
 			</Command.Item>
 			<Command.Item>
-				<Face class="mr-2 h-4 w-4" />
+				<Face class="mr-2 size-4" />
 				<span>Search Emoji</span>
 			</Command.Item>
 			<Command.Item>
-				<Rocket class="mr-2 h-4 w-4" />
+				<Rocket class="mr-2 size-4" />
 				<span>Launch</span>
 			</Command.Item>
 		</Command.Group>
 		<Command.Separator />
 		<Command.Group heading="Settings">
 			<Command.Item>
-				<Person class="mr-2 h-4 w-4" />
+				<Person class="mr-2 size-4" />
 				<span>Profile</span>
 				<Command.Shortcut>⌘P</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<EnvelopeClosed class="mr-2 h-4 w-4" />
+				<EnvelopeClosed class="mr-2 size-4" />
 				<span>Mail</span>
 				<Command.Shortcut>⌘B</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<Gear class="mr-2 h-4 w-4" />
+				<Gear class="mr-2 size-4" />
 				<span>Settings</span>
 				<Command.Shortcut>⌘S</Command.Shortcut>
 			</Command.Item>

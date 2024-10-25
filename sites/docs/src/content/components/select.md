@@ -2,33 +2,40 @@
 title: Select
 description: Displays a list of options for the user to pick from—triggered by a button.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/select
-bits: https://www.bits-ui.com/docs/components/select
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/select
+  doc: https://next.bits-ui.com/docs/components/select
+  api: https://next.bits-ui.com/docs/components/select#api-reference
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="select-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="select" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `bits-ui`:
-
-<PMInstall command="bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
@@ -53,10 +60,8 @@ bits: https://www.bits-ui.com/docs/components/select
 
 ### Form
 
-For more advanced usage and to learn how to implement `multiple` Select components in a form, check out the [Bits UI Select Recipe](https://formsnap.dev/docs/recipes/bits-ui-select) on Formsnap.
-
 <ComponentPreview name="select-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

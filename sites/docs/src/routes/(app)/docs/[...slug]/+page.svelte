@@ -5,23 +5,29 @@
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
-	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
+	import DocsPager from "$lib/components/docs/docs-pager.svelte";
+	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/stores";
 
-	export let data: PageData;
-	$: markdown = data.component;
-	$: doc = data.metadata;
-	$: componentSource = data.metadata.source?.replace("default", $config.style ?? "default");
+	let { data }: { data: PageData } = $props();
+
+	const Markdown = $derived(data.component);
+	const doc = $derived(data.metadata);
+	const componentSource = $derived(
+		data.metadata.links?.source?.replace("default", $config.style ?? "default")
+	);
+	const apiLink = $derived(doc.links?.api);
+	const docLink = $derived(doc.links?.doc);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 	<div class="mx-auto w-full min-w-0">
 		<div class="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
 			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
-			<ChevronRight class="h-4 w-4" />
+			<ChevronRight class="size-4" />
 			<div class="text-foreground font-medium">{doc.title}</div>
 		</div>
 		<div class="space-y-2">
@@ -34,8 +40,30 @@
 				</p>
 			{/if}
 		</div>
-		{#if doc.source || doc.bits}
+		{#if apiLink || componentSource || docLink}
 			<div class="flex items-center space-x-2 pt-4">
+				{#if docLink}
+					<a
+						href={docLink}
+						target="_blank"
+						rel="noreferrer"
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
+					>
+						Docs
+						<ExternalLink class="size-3" />
+					</a>
+				{/if}
+				{#if apiLink}
+					<a
+						href={apiLink}
+						target="_blank"
+						rel="noreferrer"
+						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
+					>
+						API Reference
+						<ExternalLink class="size-3" />
+					</a>
+				{/if}
 				{#if componentSource}
 					<a
 						href={componentSource}
@@ -44,24 +72,13 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Component Source
-						<Code class="h-3.5 w-3.5" />
-					</a>
-				{/if}
-				{#if doc.bits}
-					<a
-						href={doc.bits}
-						target="_blank"
-						rel="noreferrer"
-						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
-					>
-						Primitive API Reference
-						<ExternalLink class="h-3 w-3" />
+						<Code class="size-3.5" />
 					</a>
 				{/if}
 			</div>
 		{/if}
 		<div class="markdown pb-12 pt-8" id="markdown">
-			<svelte:component this={markdown} form={data.form} />
+			<Markdown form={data.form} />
 		</div>
 		<DocsPager />
 	</div>

@@ -1,0 +1,21 @@
+{
+	"name": "demo-sidebar-group-action",
+	"type": "registry:block",
+	"dependencies": [
+		"lucide-svelte",
+		"svelte-sonner",
+		"mode-watcher"
+	],
+	"registryDependencies": [
+		"sidebar",
+		"sonner"
+	],
+	"files": [
+		{
+			"name": "demo-sidebar-group-action.svelte",
+			"content": "<script>\n\timport * as Sidebar from \"$lib/registry/new-york/ui/sidebar/index.js\";\n\timport { Toaster } from \"$lib/registry/new-york/ui/sonner/index.js\";\n\timport Plus from \"lucide-svelte/icons/plus\";\n\timport Frame from \"lucide-svelte/icons/frame\";\n\timport ChartPie from \"lucide-svelte/icons/chart-pie\";\n\timport Map from \"lucide-svelte/icons/map\";\n\timport { toast } from \"svelte-sonner\";\n</script>\n\n<Sidebar.Provider>\n\t<Toaster\n\t\tposition=\"bottom-left\"\n\t\ttoastOptions={{\n\t\t\tclass: \"ml-[160px]\",\n\t\t}}\n\t/>\n\t<Sidebar.Root>\n\t\t<Sidebar.Content>\n\t\t\t<Sidebar.Group>\n\t\t\t\t<Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>\n\t\t\t\t<Sidebar.GroupAction\n\t\t\t\t\ttitle=\"Add Project\"\n\t\t\t\t\tonclick={() => toast(\"You clicked the group action!\")}\n\t\t\t\t>\n\t\t\t\t\t<Plus /> <span class=\"sr-only\">Add Project</span>\n\t\t\t\t</Sidebar.GroupAction>\n\t\t\t\t<Sidebar.GroupContent>\n\t\t\t\t\t<Sidebar.Menu>\n\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t<a href=\"##\" {...props}>\n\t\t\t\t\t\t\t\t\t\t<Frame />\n\t\t\t\t\t\t\t\t\t\t<span>Design Engineering</span>\n\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t<a href=\"##\" {...props}>\n\t\t\t\t\t\t\t\t\t\t<ChartPie />\n\t\t\t\t\t\t\t\t\t\t<span>Sales & Marketing</span>\n\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t<a href=\"##\" {...props}>\n\t\t\t\t\t\t\t\t\t\t<Map />\n\t\t\t\t\t\t\t\t\t\t<span>Travel</span>\n\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t</Sidebar.Menu>\n\t\t\t\t</Sidebar.GroupContent>\n\t\t\t</Sidebar.Group>\n\t\t</Sidebar.Content>\n\t</Sidebar.Root>\n</Sidebar.Provider>\n",
+			"target": "demo-sidebar-group-action.svelte",
+			"type": "registry:block"
+		}
+	]
+}

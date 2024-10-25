@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parse, preprocess, walk } from "svelte/compiler";
+import { parse, preprocess } from "svelte/compiler";
+import { walk } from "estree-walker";
 import { type Registry, styles } from "../src/lib/registry";
 import config from "../svelte.config.js";
 
@@ -8,7 +9,6 @@ import config from "../svelte.config.js";
 const DEPENDENCIES = new Map<string, string[]>([
 	["bits-ui", []],
 	["formsnap", ["zod", "sveltekit-superforms"]],
-	["cmdk-sv", ["bits-ui"]],
 	["svelte-sonner", ["mode-watcher"]],
 	["vaul-svelte", []],
 	["embla-carousel-svelte", []],
@@ -147,7 +147,7 @@ async function getDependencies(filename: string, source: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
-	// @ts-expect-error annoying
+	// @ts-expect-error yea, stfu
 	walk(ast.instance, {
 		enter(node) {
 			if (node.type === "ImportDeclaration") {

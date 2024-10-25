@@ -1,0 +1,19 @@
+{
+	"name": "demo-sidebar-footer",
+	"type": "registry:block",
+	"dependencies": [
+		"lucide-svelte"
+	],
+	"registryDependencies": [
+		"sidebar",
+		"dropdown-menu"
+	],
+	"files": [
+		{
+			"name": "demo-sidebar-footer.svelte",
+			"content": "<script>\n\timport * as Sidebar from \"$lib/registry/default/ui/sidebar/index.js\";\n\timport * as DropdownMenu from \"$lib/registry/default/ui/dropdown-menu/index.js\";\n\timport ChevronUp from \"lucide-svelte/icons/chevron-up\";\n</script>\n\n<Sidebar.Provider>\n\t<Sidebar.Root>\n\t\t<Sidebar.Header />\n\t\t<Sidebar.Content />\n\t\t<Sidebar.Footer>\n\t\t\t<Sidebar.Menu>\n\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t<DropdownMenu.Root>\n\t\t\t\t\t\t<DropdownMenu.Trigger>\n\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t<Sidebar.MenuButton\n\t\t\t\t\t\t\t\t\t{...props}\n\t\t\t\t\t\t\t\t\tclass=\"data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground\"\n\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\tUsername\n\t\t\t\t\t\t\t\t\t<ChevronUp class=\"ml-auto\" />\n\t\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t</DropdownMenu.Trigger>\n\t\t\t\t\t\t<DropdownMenu.Content\n\t\t\t\t\t\t\tside=\"top\"\n\t\t\t\t\t\t\tclass=\"w-[--bits-dropdown-menu-anchor-width]\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<DropdownMenu.Item>\n\t\t\t\t\t\t\t\t<span>Account</span>\n\t\t\t\t\t\t\t</DropdownMenu.Item>\n\t\t\t\t\t\t\t<DropdownMenu.Item>\n\t\t\t\t\t\t\t\t<span>Billing</span>\n\t\t\t\t\t\t\t</DropdownMenu.Item>\n\t\t\t\t\t\t\t<DropdownMenu.Item>\n\t\t\t\t\t\t\t\t<span>Sign out</span>\n\t\t\t\t\t\t\t</DropdownMenu.Item>\n\t\t\t\t\t\t</DropdownMenu.Content>\n\t\t\t\t\t</DropdownMenu.Root>\n\t\t\t\t</Sidebar.MenuItem>\n\t\t\t</Sidebar.Menu>\n\t\t</Sidebar.Footer>\n\t</Sidebar.Root>\n\t<Sidebar.Inset>\n\t\t<header class=\"flex h-12 items-center justify-between px-4\">\n\t\t\t<Sidebar.Trigger />\n\t\t</header>\n\t</Sidebar.Inset>\n</Sidebar.Provider>\n",
+			"target": "demo-sidebar-footer.svelte",
+			"type": "registry:block"
+		}
+	]
+}

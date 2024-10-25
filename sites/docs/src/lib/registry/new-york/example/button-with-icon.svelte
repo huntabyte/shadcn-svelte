@@ -4,6 +4,6 @@
 </script>
 
 <Button>
-	<EnvelopeOpen class="mr-2 h-4 w-4" />
+	<EnvelopeOpen class="mr-2 size-4" />
 	Login with Email
 </Button>

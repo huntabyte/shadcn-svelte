@@ -12,7 +12,7 @@
 		<Breadcrumb.Item>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger class="flex items-center gap-1">
-					<Breadcrumb.Ellipsis class="h-4 w-4" />
+					<Breadcrumb.Ellipsis class="size-4" />
 					<span class="sr-only">Toggle menu</span>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">

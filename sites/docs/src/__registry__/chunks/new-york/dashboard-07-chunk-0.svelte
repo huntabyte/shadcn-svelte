@@ -1,7 +1,9 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 </script>
 
@@ -11,20 +13,13 @@
 >
 	<Card.Header>
 		<Card.Title>Product Details</Card.Title>
-		<Card.Description>
-			Lipsum dolor sit amet, consectetur adipiscing elit
-		</Card.Description>
+		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="grid gap-6">
 			<div class="grid gap-3">
 				<Label for="name">Name</Label>
-				<Input
-					id="name"
-					type="text"
-					class="w-full"
-					value="Gamer Gear Pro Controller"
-				/>
+				<Input id="name" type="text" class="w-full" value="Gamer Gear Pro Controller" />
 			</div>
 			<div class="grid gap-3">
 				<Label for="description">Description</Label>

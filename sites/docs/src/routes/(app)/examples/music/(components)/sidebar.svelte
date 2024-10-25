@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { Playlist } from "../(data)/playlists.js";
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
-	let className: string | null | undefined = undefined;
-	export let playlists: Playlist[];
-	export { className as class };
+	let { playlists, class: className }: { playlists: Playlist[] } & PrimitiveDivAttributes =
+		$props();
 </script>
 
 <div class={cn("pb-12", className)}>
@@ -23,7 +22,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<circle cx="12" cy="12" r="10" />
 						<polygon points="10 8 16 12 10 16 10 8" />
@@ -39,7 +38,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<rect width="7" height="7" x="3" y="3" rx="1" />
 						<rect width="7" height="7" x="14" y="3" rx="1" />
@@ -57,7 +56,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
 						<path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
@@ -81,7 +80,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<path d="M21 15V6" />
 						<path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
@@ -100,7 +99,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<circle cx="8" cy="18" r="4" />
 						<path d="M12 18V2l7 4" />
@@ -116,7 +115,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
 						<circle cx="12" cy="7" r="4" />
@@ -132,7 +131,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12" />
 						<circle cx="17" cy="7" r="5" />
@@ -148,7 +147,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="mr-2 h-4 w-4"
+						class="mr-2 size-4"
 					>
 						<path d="m16 6 4 14" />
 						<path d="M12 6v14" />
@@ -173,7 +172,7 @@
 								stroke-width="2"
 								stroke-linecap="round"
 								stroke-linejoin="round"
-								class="mr-2 h-4 w-4"
+								class="mr-2 size-4"
 							>
 								<path d="M21 15V6" />
 								<path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />

@@ -71,15 +71,16 @@
 								</p>
 							</div>
 						</div>
-						<Select.Root selected={person.permission}>
+						<Select.Root type="single" value={person.permission.value}>
 							<Select.Trigger class="ml-auto w-[110px]">
-								<Select.Value placeholder="Select" />
+								{person.permission.label}
 							</Select.Trigger>
 							<Select.Content>
 								{#each permissions as permission}
-									<Select.Item value={permission.value} label={permission.label}
-										>{permission.label}</Select.Item
-									>
+									<Select.Item
+										value={permission.value}
+										label={permission.label}
+									/>
 								{/each}
 							</Select.Content>
 						</Select.Root>
