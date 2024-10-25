@@ -11,8 +11,11 @@
 		accounts: Account[];
 	} = $props();
 
-	let selectedAccount = $state(accounts[0]);
-	const SelectedIcon = $derived(selectedAccount.icon);
+	let selectedAccountEmail = $state(accounts[0].email);
+	const selectedAccount = $derived(
+		accounts.find((account) => account.email === selectedAccountEmail)
+	);
+	const SelectedIcon = $derived(selectedAccount?.icon);
 </script>
 
 <Select.Root type="single" value={accounts[0].email}>
@@ -20,30 +23,27 @@
 		class={cn(
 			"flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
 			isCollapsed &&
-				"flex size-9 shrink-0 items-center justify-center p-0 [&>div>svg]:hidden [&>span]:w-auto"
+				"flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden"
 		)}
 		aria-label="Select account"
 	>
 		<span class="pointer-events-none">
-			<SelectedIcon class={cn(isCollapsed ? "ml-2" : "")} />
-			<span class={cn(isCollapsed ? "!ml-0 !hidden" : "ml-2")}>
-				{selectedAccount.label}
+			<SelectedIcon class={cn(isCollapsed ? "" : "")} />
+			<span class={cn("ml-2", isCollapsed && "hidden")}>
+				{selectedAccount?.label}
 			</span>
 		</span>
 	</Select.Trigger>
-	<Select.Content align={isCollapsed ? "start" : undefined} class="w-fit">
-		<Select.Group>
-			{#each accounts as account}
-				{@const Icon = account.icon}
-				<Select.Item value={account.email} label={account.label}>
-					<div
-						class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
-					>
-						<Icon aria-hidden="true" class="text-foreground size-4 shrink-0" />
-						{account.email}
-					</div>
-				</Select.Item>
-			{/each}
-		</Select.Group>
+	<Select.Content>
+		{#each accounts as account}
+			<Select.Item value={account.email} label={account.label}>
+				<div
+					class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
+				>
+					<account.icon aria-hidden="true" class="text-foreground size-4 shrink-0" />
+					{account.email}
+				</div>
+			</Select.Item>
+		{/each}
 	</Select.Content>
 </Select.Root>
