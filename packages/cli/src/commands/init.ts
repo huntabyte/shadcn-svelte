@@ -20,6 +20,7 @@ import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
+import { resolveCommand } from "package-manager-detector/commands";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -410,14 +411,15 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, options.deps);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(pm, [add, "-D", ...PROJECT_DEPENDENCIES], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

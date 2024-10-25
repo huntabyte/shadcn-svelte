@@ -14,6 +14,7 @@ import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
+import { resolveCommand } from "package-manager-detector/commands";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -230,14 +231,15 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, true);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, true);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, "-D", ...dependencies], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
