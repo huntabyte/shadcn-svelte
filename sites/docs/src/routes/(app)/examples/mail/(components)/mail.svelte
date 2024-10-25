@@ -12,6 +12,7 @@
 	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/select/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 
 	let {
 		accounts,
@@ -50,72 +51,75 @@
 	<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
 	></enhanced:img>
 </div>
-<div class="hidden md:block">
-	<Resizable.PaneGroup
-		direction="horizontal"
-		{onLayoutChange}
-		class="h-full max-h-[800px] items-stretch"
-	>
-		<Resizable.Pane
-			defaultSize={defaultLayout[0]}
-			collapsedSize={navCollapsedSize}
-			collapsible
-			minSize={15}
-			maxSize={20}
-			{onCollapse}
-			{onExpand}
+<Tooltip.Provider delayDuration={0}>
+	<div class="hidden flex-col md:flex">
+		<Resizable.PaneGroup
+			direction="horizontal"
+			{onLayoutChange}
+			class="h-full max-h-[800px] items-stretch"
 		>
-			<div
-				class={cn(
-					"flex h-[52px] items-center justify-center",
-					isCollapsed ? "h-[52px]" : "px-2"
-				)}
+			<Resizable.Pane
+				defaultSize={defaultLayout[0]}
+				collapsedSize={navCollapsedSize}
+				collapsible
+				minSize={15}
+				maxSize={20}
+				{onCollapse}
+				{onExpand}
+				class="min-w-[50px] transition-all duration-300 ease-in-out"
 			>
-				<AccountSwitcher {isCollapsed} {accounts} />
-			</div>
-			<Separator />
-			<Nav {isCollapsed} routes={primaryRoutes} />
-			<Separator />
-			<Nav {isCollapsed} routes={secondaryRoutes} />
-		</Resizable.Pane>
-		<Resizable.Handle withHandle />
-		<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
-			<Tabs.Root value="all">
-				<div class="flex items-center px-4 py-2">
-					<h1 class="text-xl font-bold">Inbox</h1>
-					<Tabs.List class="ml-auto">
-						<Tabs.Trigger value="all" class="text-zinc-600 dark:text-zinc-200">
-							All mail
-						</Tabs.Trigger>
-						<Tabs.Trigger value="unread" class="text-zinc-600 dark:text-zinc-200">
-							Unread
-						</Tabs.Trigger>
-					</Tabs.List>
+				<div
+					class={cn(
+						"flex h-[52px] items-center justify-center",
+						isCollapsed ? "h-[52px]" : "px-2"
+					)}
+				>
+					<AccountSwitcher {isCollapsed} {accounts} />
 				</div>
 				<Separator />
-				<div
-					class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
-				>
-					<form>
-						<div class="relative">
-							<Search
-								class="text-muted-foreground absolute left-2 top-[50%] size-4 translate-y-[-50%]"
-							/>
-							<Input placeholder="Search" class="pl-8" />
-						</div>
-					</form>
-				</div>
-				<Tabs.Content value="all" class="m-0">
-					<MailList items={mails} />
-				</Tabs.Content>
-				<Tabs.Content value="unread" class="m-0">
-					<MailList items={mails.filter((item) => !item.read)} />
-				</Tabs.Content>
-			</Tabs.Root>
-		</Resizable.Pane>
-		<Resizable.Handle withHandle />
-		<Resizable.Pane defaultSize={defaultLayout[2]}>
-			<MailDisplay mail={mails.find((item) => item.id === $mailStore.selected) || null} />
-		</Resizable.Pane>
-	</Resizable.PaneGroup>
-</div>
+				<Nav {isCollapsed} routes={primaryRoutes} />
+				<Separator />
+				<Nav {isCollapsed} routes={secondaryRoutes} />
+			</Resizable.Pane>
+			<Resizable.Handle withHandle />
+			<Resizable.Pane defaultSize={defaultLayout[1]} minSize={30}>
+				<Tabs.Root value="all">
+					<div class="flex items-center px-4 py-2">
+						<h1 class="text-xl font-bold">Inbox</h1>
+						<Tabs.List class="ml-auto">
+							<Tabs.Trigger value="all" class="text-zinc-600 dark:text-zinc-200">
+								All mail
+							</Tabs.Trigger>
+							<Tabs.Trigger value="unread" class="text-zinc-600 dark:text-zinc-200">
+								Unread
+							</Tabs.Trigger>
+						</Tabs.List>
+					</div>
+					<Separator />
+					<div
+						class="bg-background/95 supports-[backdrop-filter]:bg-background/60 p-4 backdrop-blur"
+					>
+						<form>
+							<div class="relative">
+								<Search
+									class="text-muted-foreground absolute left-2 top-[50%] size-4 translate-y-[-50%]"
+								/>
+								<Input placeholder="Search" class="pl-8" />
+							</div>
+						</form>
+					</div>
+					<Tabs.Content value="all" class="m-0">
+						<MailList items={mails} />
+					</Tabs.Content>
+					<Tabs.Content value="unread" class="m-0">
+						<MailList items={mails.filter((item) => !item.read)} />
+					</Tabs.Content>
+				</Tabs.Root>
+			</Resizable.Pane>
+			<Resizable.Handle withHandle />
+			<Resizable.Pane defaultSize={defaultLayout[2]}>
+				<MailDisplay mail={mails.find((item) => item.id === $mailStore.selected) || null} />
+			</Resizable.Pane>
+		</Resizable.PaneGroup>
+	</div>
+</Tooltip.Provider>
