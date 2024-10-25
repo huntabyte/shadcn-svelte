@@ -42,7 +42,7 @@
 		},
 		{
 			"name": "select-scroll-up-button.svelte",
-			"content": "<script lang=\"ts\">\n\timport ChevronUp from \"svelte-radix/ChevronUp.svelte\";\n\timport { Select as SelectPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.ScrollDownButtonProps> = $props();\n</script>\n\n<SelectPrimitive.ScrollDownButton\n\tbind:ref\n\tclass={cn(\"flex cursor-default items-center justify-center py-1\", className)}\n\t{...restProps}\n>\n\t<ChevronUp class=\"size-4\" />\n</SelectPrimitive.ScrollDownButton>\n",
+			"content": "<script lang=\"ts\">\n\timport ChevronUp from \"svelte-radix/ChevronUp.svelte\";\n\timport { Select as SelectPrimitive, type WithoutChildrenOrChild } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SelectPrimitive.ScrollDownButtonProps> = $props();\n</script>\n\n<SelectPrimitive.ScrollUpButton\n\tbind:ref\n\tclass={cn(\"flex cursor-default items-center justify-center py-1\", className)}\n\t{...restProps}\n>\n\t<ChevronUp class=\"size-4\" />\n</SelectPrimitive.ScrollUpButton>\n",
 			"type": "registry:ui",
 			"target": "select/select-scroll-up-button.svelte"
 		},

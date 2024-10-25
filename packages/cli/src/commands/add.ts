@@ -160,14 +160,35 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		}
 
 		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
+
 		if (targetDir === null) continue;
 
-		const componentExists = item.files.some((file) => {
-			return existsSync(path.resolve(targetDir, item.name, file.name));
-		});
-
-		if (componentExists) {
-			existingComponents.push(item.name);
+		if (item.type === "registry:ui" || item.type === "registry:hook") {
+			const componentExists = item.files.some((file) => {
+				if (item.type === "registry:ui") {
+					return existsSync(path.resolve(targetDir, item.name, file.name));
+				} else {
+					return existsSync(path.resolve(targetDir, file.name));
+				}
+			});
+			if (componentExists) {
+				existingComponents.push(item.name);
+			}
+		} else if (item.type === "registry:block") {
+			for (const file of item.files) {
+				if (file.type === "registry:page") {
+					const pageTarget = path.resolve(process.cwd(), file.target);
+					const pageExists = existsSync(pageTarget);
+					if (pageExists) {
+						existingComponents.push(file.name);
+					}
+				} else {
+					const componentExists = existsSync(path.resolve(targetDir, file.name));
+					if (componentExists) {
+						existingComponents.push(file.name);
+					}
+				}
+			}
 		}
 	}
 
@@ -175,7 +196,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	if (options.overwrite === false && existingComponents.length > 0) {
 		const prettyList = prettifyList(existingComponents);
 		p.log.warn(
-			`The following components ${color.bold.yellow("already exists")}:\n${color.gray(prettyList)}`
+			`The following components/hooks ${color.bold.yellow("already exist")}:\n${color.gray(prettyList)}`
 		);
 
 		const overwrite = await p.confirm({
@@ -218,20 +239,65 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
 
-		if (!options.overwrite && existingComponents.includes(item.name)) {
-			// Only confirm overwrites for selected components and not transitive dependencies
-			if (selectedComponents.has(item.name)) {
-				p.log.warn(
-					`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
+		if (item.type === "registry:block" && selectedComponents.has(item.name)) {
+			for (const file of item.files) {
+				const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
+				const componentPath = path.relative(
+					process.cwd(),
+					path.resolve(targetDir, file.name)
 				);
-				const overwrite = await p.confirm({
-					message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} component?`,
-				});
-				if (p.isCancel(overwrite)) {
-					p.cancel("Operation cancelled.");
-					process.exit(0);
+				if (file.type === "registry:page") {
+					if (!options.overwrite && existingComponents.includes(file.name)) {
+						p.log.warn(
+							`Page ${highlight(file.name)} already exists at ${color.gray(file.target)}`
+						);
+						const overwrite = await p.confirm({
+							message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.name)} page?`,
+						});
+						if (p.isCancel(overwrite)) {
+							p.cancel("Operation cancelled.");
+							process.exit(0);
+						}
+						if (overwrite === false) continue;
+					}
+				} else {
+					if (!options.overwrite && existingComponents.includes(file.name)) {
+						p.log.warn(
+							`Component ${highlight(file.name)} already exists at ${color.gray(componentPath)}`
+						);
+						const overwrite = await p.confirm({
+							message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.name)} component?`,
+						});
+						if (p.isCancel(overwrite)) {
+							p.cancel("Operation cancelled.");
+							process.exit(0);
+						}
+						if (overwrite === false) continue;
+					}
 				}
-				if (overwrite === false) continue;
+			}
+		} else {
+			if (!options.overwrite && existingComponents.includes(item.name)) {
+				// Only confirm overwrites for selected components and not transitive dependencies
+				if (selectedComponents.has(item.name)) {
+					if (item.type === "registry:hook") {
+						p.log.warn(
+							`Hook ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
+						);
+					} else {
+						p.log.warn(
+							`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
+						);
+					}
+					const overwrite = await p.confirm({
+						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${item.type === "registry:hook" ? "hook" : "component"}?`,
+					});
+					if (p.isCancel(overwrite)) {
+						p.cancel("Operation cancelled.");
+						process.exit(0);
+					}
+					if (overwrite === false) continue;
+				}
 			}
 		}
 

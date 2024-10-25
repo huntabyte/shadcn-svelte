@@ -12,7 +12,7 @@
 	],
 	"files": [
 		{
-			"name": "page.svelte",
+			"name": "+page.svelte",
 			"content": "<script lang=\"ts\">\n\timport SettingsDialog from \"$lib/registry/default/block/sidebar-13/components/settings-dialog.svelte\";\n</script>\n\n<div class=\"flex h-svh items-center justify-center\">\n\t<SettingsDialog />\n</div>\n",
 			"type": "registry:page",
 			"target": "src/routes/dashboard/+page.svelte"

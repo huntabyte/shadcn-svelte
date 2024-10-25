@@ -59,7 +59,7 @@ export const Blocks = {
 			const isDir = !fs.existsSync(
 				path.resolve("src", "lib", "registry", style.name, "block", `${block.name}.svelte`)
 			);
-			const blockFile = isDir ? `${block.name}/page.svelte` : `${block.name}.svelte`;
+			const blockFile = isDir ? `${block.name}/+page.svelte` : `${block.name}.svelte`;
 
 			blocksIndex += `
 		"${block.name}": {
