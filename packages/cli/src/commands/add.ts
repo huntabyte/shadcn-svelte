@@ -175,24 +175,11 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 		if (targetDir === null) continue;
 
-		if (item.type === "registry:ui" || item.type === "registry:hook") {
-			const componentExists = item.files.some((file) => {
-				if (item.type === "registry:ui") {
-					return existsSync(path.resolve(targetDir, item.name, file.name));
-				} else {
-					return existsSync(path.resolve(targetDir, file.name));
-				}
-			});
-			if (componentExists) {
-				existingComponents.push(item.name);
-			}
-		} else if (item.type === "registry:block") {
-			for (const file of item.files) {
-				const componentExists = existsSync(path.resolve(targetDir, file.target));
-				if (componentExists) {
-					existingComponents.push(file.target);
-				}
-			}
+		const componentExists = item.files.some((file) => {
+			return existsSync(path.resolve(targetDir, file.target));
+		});
+		if (componentExists) {
+			existingComponents.push(item.name);
 		}
 	}
 
