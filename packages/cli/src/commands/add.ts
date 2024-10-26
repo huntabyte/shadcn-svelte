@@ -210,9 +210,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			initialValue: false,
 		});
 
-		if (p.isCancel(overwrite)) {
-			cancel();
-		}
+		if (p.isCancel(overwrite)) cancel();
 
 		options.overwrite = overwrite;
 	}
