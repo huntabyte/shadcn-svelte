@@ -15,6 +15,19 @@ import { transformContent } from "./transformers";
 const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
 
+function writeFileWithDirs(
+	filePath: string,
+	data: string,
+	options: Parameters<typeof fs.writeFileSync>[2] = {}
+) {
+	// Create directory path if it doesn't exist
+	const dirname = path.dirname(filePath);
+	fs.mkdirSync(dirname, { recursive: true });
+
+	// Write the file
+	fs.writeFileSync(filePath, data, options);
+}
+
 async function main() {
 	const registry = await buildRegistry();
 	const result = registrySchema.safeParse(registry);
@@ -53,13 +66,13 @@ export const Blocks = {
 			const chunks = getChunks(file.content, blockPath);
 			for (const chunk of chunks) {
 				const chunkPath = path.resolve(chunkDir, `${chunk.name}.svelte`);
-				fs.writeFileSync(chunkPath, chunk.content, { encoding: "utf8" });
+				writeFileWithDirs(chunkPath, chunk.content, { encoding: "utf8" });
 			}
 
 			const isDir = !fs.existsSync(
 				path.resolve("src", "lib", "registry", style.name, "block", `${block.name}.svelte`)
 			);
-			const blockFile = isDir ? `${block.name}/page.svelte` : `${block.name}.svelte`;
+			const blockFile = isDir ? `${block.name}/+page.svelte` : `${block.name}.svelte`;
 
 			blocksIndex += `
 		"${block.name}": {
@@ -75,7 +88,7 @@ export const Blocks = {
 	}
 	blocksIndex += "\n};\n";
 	const blocksPath = path.resolve("src", "__registry__", "blocks.js");
-	fs.writeFileSync(blocksPath, blocksIndex);
+	writeFileWithDirs(blocksPath, blocksIndex);
 
 	// ----------------------------------------------------------------------------
 	// Build __registry__/index.js.
@@ -132,7 +145,7 @@ export const Index = {
 	// Write style index.
 	const registryPath = path.resolve("src", "__registry__", "index.js");
 	rimraf.sync(registryPath);
-	fs.writeFileSync(registryPath, index);
+	writeFileWithDirs(registryPath, index);
 
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/[style]/[name].json.
@@ -191,16 +204,16 @@ export const Index = {
 			style: undefined, // discard `style` prop
 		};
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(targetPath, `${item.name}.json`),
 			JSON.stringify(payload, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(targetJsPath, `${item.name}.json`),
 			JSON.stringify(jsPayload, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 	}
 
@@ -208,7 +221,7 @@ export const Index = {
 	// Build registry/styles/index.json.
 	// ----------------------------------------------------------------------------
 	const stylesJson = JSON.stringify(styles, null, "\t");
-	fs.writeFileSync(path.join(REGISTRY_PATH, "styles", "index.json"), stylesJson, "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, "styles", "index.json"), stylesJson, "utf8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/index.json.
@@ -231,7 +244,7 @@ export const Index = {
 		}));
 	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
-	fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf-8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/index.json.
@@ -269,10 +282,10 @@ export const Index = {
 		}
 	}
 
-	fs.writeFileSync(
+	writeFileWithDirs(
 		path.join(colorsTargetPath, "index.json"),
 		JSON.stringify(colorsData, null, "\t"),
-		"utf8"
+		"utf-8"
 	);
 
 	// ----------------------------------------------------------------------------
@@ -313,10 +326,10 @@ export const Index = {
 			colors: base.cssVars,
 		});
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
 			JSON.stringify(base, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 	}
 
@@ -334,7 +347,7 @@ export const Index = {
 		);
 	}
 
-	fs.writeFileSync(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
 
 	console.info("✅ Done!");
 }

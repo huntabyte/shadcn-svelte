@@ -24,6 +24,10 @@
 		const end = `shadcn-svelte@next add ${block.name}`;
 		return start + " " + end;
 	});
+
+	const blockSource = $derived(
+		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/new-york/block/${block.name}`
+	);
 </script>
 
 <div class="flex items-center gap-2 md:gap-4">
@@ -92,5 +96,15 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
+		<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
+		<Button
+			aria-label="View block source code"
+			href={blockSource}
+			target="_blank"
+			class="z-50 h-[calc(theme(spacing.7)_-_1px)] gap-1 rounded-[6px] px-0 text-xs"
+			variant="link"
+		>
+			View source
+		</Button>
 	</div>
 </div>

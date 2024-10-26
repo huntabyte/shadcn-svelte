@@ -181,12 +181,11 @@ export function getRegistryItemTargetPath(
 	if (override) return override;
 
 	if (type === "registry:ui") return config.resolvedPaths.ui;
-	if (type === "registry:block" || type === "registry:component") {
+	if (type === "registry:block" || type === "registry:component" || type === "registry:page") {
 		return config.resolvedPaths.components;
 	}
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	// TODO - we put this in components for now but will move to the appropriate route location
 	// depending on if using SvelteKit or whatever
-	if (type === "registry:page") return config.resolvedPaths.cwd;
 	return config.resolvedPaths.components;
 }

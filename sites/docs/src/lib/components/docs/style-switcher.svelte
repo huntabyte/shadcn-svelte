@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { styles } from "$lib/registry/styles.js";
+	import { isStyle, styles } from "$lib/registry/styles.js";
 	import { config } from "$lib/stores/index.js";
 	import { type PrimitiveButtonAttributes, cn } from "$lib/utils.js";
 	import type { WithoutChildren } from "bits-ui";
@@ -19,7 +19,15 @@
 	});
 </script>
 
-<Select.Root type="single" bind:value>
+<Select.Root
+	type="single"
+	controlledValue
+	{value}
+	onValueChange={(v) => {
+		if (!isStyle(v)) return;
+		value = v;
+	}}
+>
 	<Select.Trigger class={cn("h-7 w-[145px] text-xs [&_svg]:size-4", className)} {...restProps}>
 		<span class="text-muted-foreground">Style: </span>
 		{styleLabel}

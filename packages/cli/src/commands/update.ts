@@ -9,7 +9,7 @@ import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
@@ -132,10 +132,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			})),
 		});
 
-		if (p.isCancel(selected)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(selected)) cancel();
 
 		selectedComponents = selected;
 	} else {
@@ -149,10 +146,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			initialValue: true,
 		});
 
-		if (p.isCancel(proceed) || proceed === false) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
 	// `update utils` - update the utils.(ts|js) file

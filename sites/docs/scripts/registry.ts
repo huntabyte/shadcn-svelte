@@ -167,7 +167,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string, style: R
 
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-		const isPage = dirent.name === "page.svelte";
+		const isPage = dirent.name === "+page.svelte";
 		const type = isPage ? "registry:page" : "registry:component";
 
 		// TODO: fix
