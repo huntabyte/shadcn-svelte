@@ -223,46 +223,26 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			await fs.mkdir(targetDir, { recursive: true });
 		}
 
-		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+		const componentPath = path.relative(cwd, path.resolve(targetDir, item.name));
 
-		if (item.type === "registry:block" && selectedComponents.has(item.name)) {
-			for (const file of item.files) {
-				const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
-				const componentPath = path.relative(
-					process.cwd(),
-					path.resolve(targetDir, file.target)
-				);
-
-				if (!options.overwrite && existingComponents.includes(file.target)) {
+		if (!options.overwrite && existingComponents.includes(item.name)) {
+			// Only confirm overwrites for selected components and not transitive dependencies
+			if (selectedComponents.has(item.name)) {
+				if (item.type === "registry:hook") {
 					p.log.warn(
-						`Component ${highlight(file.target)} already exists at ${color.gray(componentPath)}`
+						`Hook ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
 					);
-					const overwrite = await p.confirm({
-						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.target)} component?`,
-					});
-					if (p.isCancel(overwrite)) cancel();
-					if (overwrite === false) continue;
+				} else {
+					p.log.warn(
+						`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
+					);
 				}
-			}
-		} else {
-			if (!options.overwrite && existingComponents.includes(item.name)) {
-				// Only confirm overwrites for selected components and not transitive dependencies
-				if (selectedComponents.has(item.name)) {
-					if (item.type === "registry:hook") {
-						p.log.warn(
-							`Hook ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
-						);
-					} else {
-						p.log.warn(
-							`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
-						);
-					}
-					const overwrite = await p.confirm({
-						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${item.type === "registry:hook" ? "hook" : "component"}?`,
-					});
-					if (p.isCancel(overwrite)) cancel();
-					if (overwrite === false) continue;
-				}
+				const type = item.type === "registry:hook" ? "hook" : "component";
+				const overwrite = await p.confirm({
+					message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${type}?`,
+				});
+				if (p.isCancel(overwrite)) cancel();
+				if (overwrite === false) continue;
 			}
 		}
 
@@ -296,7 +276,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 					}
 				}
 				if (item.type === "registry:block") {
-					const blockPath = path.relative(process.cwd(), targetDir);
+					const blockPath = path.relative(cwd, targetDir);
 					if (pageName) {
 						return `${highlight(item.name)} page installed at ${color.gray(`${blockPath}/${pageName}`)}`;
 					}
