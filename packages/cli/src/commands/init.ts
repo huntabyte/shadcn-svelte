@@ -14,7 +14,7 @@ import {
 import { error, handleError } from "../utils/errors.js";
 import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
@@ -154,10 +154,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		style = input;
 	}
@@ -175,10 +172,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindBaseColor = input;
 	}
@@ -201,10 +195,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		globalCss = input;
 	}
@@ -227,10 +218,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindConfig = input;
 	}
@@ -245,10 +233,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(promptResult)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(promptResult)) cancel();
 
 		componentAlias = promptResult;
 	}
@@ -267,10 +252,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		utilsAlias = input;
 	}
@@ -285,10 +267,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		hooksAlias = input;
 	}
@@ -303,10 +282,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		uiAlias = input;
 	}

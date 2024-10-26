@@ -115,9 +115,7 @@ export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | un
 			message: "Which package manager do you want to use?",
 			options,
 		});
-		if (p.isCancel(res)) {
-			cancel();
-		}
+		if (p.isCancel(res)) cancel();
 
 		agent = res;
 	}
