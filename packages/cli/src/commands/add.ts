@@ -258,7 +258,6 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				}
 			}
 		} else {
-			console.log("made it here with component:", item.name);
 			if (!options.overwrite && existingComponents.includes(item.name)) {
 				// Only confirm overwrites for selected components and not transitive dependencies
 				if (selectedComponents.has(item.name)) {
@@ -291,50 +290,33 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		tasks.push({
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
-				if (item.type === "registry:block") {
-					let pageName: string | undefined;
-					for (const file of item.files) {
-						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-						const filePath = path.resolve(targetDir, file.target);
+				let pageName: string | undefined;
+				for (const file of item.files) {
+					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+					const filePath = path.resolve(targetDir, file.target);
 
-						// Run transformers.
-						const content = transformImports(file.content, config);
+					// Run transformers.
+					const content = transformImports(file.content, config);
 
-						const dir = path.parse(filePath).dir;
-						if (!existsSync(dir)) {
-							await fs.mkdir(dir, { recursive: true });
-						}
-
-						await fs.writeFile(filePath, content);
-						if (file.type === "registry:page") {
-							pageName = file.target;
-						}
-					}
-					const blockPath = path.relative(process.cwd(), targetDir);
-
-					if (pageName) {
-						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}. The complete block component is available at ${color.gray(`${blockPath}/${pageName}`)}.`;
-					} else {
-						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
-					}
-				} else {
-					for (const file of item.files) {
-						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-						const filePath = path.resolve(targetDir, file.target);
-
-						// Run transformers.
-						const content = transformImports(file.content, config);
-
-						const dir = path.parse(filePath).dir;
-						if (!existsSync(dir)) {
-							await fs.mkdir(dir, { recursive: true });
-						}
-
-						await fs.writeFile(filePath, content);
+					const dir = path.parse(filePath).dir;
+					if (!existsSync(dir)) {
+						await fs.mkdir(dir, { recursive: true });
 					}
 
-					return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
+					await fs.writeFile(filePath, content);
+					if (file.type === "registry:page") {
+						pageName = file.target;
+					}
 				}
+				if (item.type === "registry:block") {
+					const blockPath = path.relative(process.cwd(), targetDir);
+					if (pageName) {
+						return `${highlight(item.name)} page installed at ${color.gray(`${blockPath}/${pageName}`)}`;
+					}
+					return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
+				}
+
+				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
 			},
 		});
 	}
