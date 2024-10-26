@@ -112,3 +112,5 @@ generated-assets
 .idea/
 
 .velite
+sites/docs/static/registry/**/*
+sites/docs/static/registry
