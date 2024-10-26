@@ -175,24 +175,11 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 		if (targetDir === null) continue;
 
-		if (item.type === "registry:ui" || item.type === "registry:hook") {
-			const componentExists = item.files.some((file) => {
-				if (item.type === "registry:ui") {
-					return existsSync(path.resolve(targetDir, item.name, file.name));
-				} else {
-					return existsSync(path.resolve(targetDir, file.name));
-				}
-			});
-			if (componentExists) {
-				existingComponents.push(item.name);
-			}
-		} else if (item.type === "registry:block") {
-			for (const file of item.files) {
-				const componentExists = existsSync(path.resolve(targetDir, file.target));
-				if (componentExists) {
-					existingComponents.push(file.target);
-				}
-			}
+		const componentExists = item.files.some((file) => {
+			return existsSync(path.resolve(targetDir, file.target));
+		});
+		if (componentExists) {
+			existingComponents.push(item.name);
 		}
 	}
 
@@ -236,47 +223,26 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			await fs.mkdir(targetDir, { recursive: true });
 		}
 
-		const componentPath = path.relative(process.cwd(), path.resolve(targetDir, item.name));
+		const componentPath = path.relative(cwd, path.resolve(targetDir, item.name));
 
-		if (item.type === "registry:block" && selectedComponents.has(item.name)) {
-			for (const file of item.files) {
-				const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
-				const componentPath = path.relative(
-					process.cwd(),
-					path.resolve(targetDir, file.target)
-				);
-
-				if (!options.overwrite && existingComponents.includes(file.target)) {
+		if (!options.overwrite && existingComponents.includes(item.name)) {
+			// Only confirm overwrites for selected components and not transitive dependencies
+			if (selectedComponents.has(item.name)) {
+				if (item.type === "registry:hook") {
 					p.log.warn(
-						`Component ${highlight(file.target)} already exists at ${color.gray(componentPath)}`
+						`Hook ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
 					);
-					const overwrite = await p.confirm({
-						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.target)} component?`,
-					});
-					if (p.isCancel(overwrite)) cancel();
-					if (overwrite === false) continue;
+				} else {
+					p.log.warn(
+						`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
+					);
 				}
-			}
-		} else {
-			console.log("made it here with component:", item.name);
-			if (!options.overwrite && existingComponents.includes(item.name)) {
-				// Only confirm overwrites for selected components and not transitive dependencies
-				if (selectedComponents.has(item.name)) {
-					if (item.type === "registry:hook") {
-						p.log.warn(
-							`Hook ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
-						);
-					} else {
-						p.log.warn(
-							`Component ${highlight(item.name)} already exists at ${color.gray(componentPath)}`
-						);
-					}
-					const overwrite = await p.confirm({
-						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${item.type === "registry:hook" ? "hook" : "component"}?`,
-					});
-					if (p.isCancel(overwrite)) cancel();
-					if (overwrite === false) continue;
-				}
+				const type = item.type === "registry:hook" ? "hook" : "component";
+				const overwrite = await p.confirm({
+					message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${type}?`,
+				});
+				if (p.isCancel(overwrite)) cancel();
+				if (overwrite === false) continue;
 			}
 		}
 
@@ -291,50 +257,33 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		tasks.push({
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
-				if (item.type === "registry:block") {
-					let pageName: string | undefined;
-					for (const file of item.files) {
-						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-						const filePath = path.resolve(targetDir, file.target);
+				let pageName: string | undefined;
+				for (const file of item.files) {
+					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+					const filePath = path.resolve(targetDir, file.target);
 
-						// Run transformers.
-						const content = transformImports(file.content, config);
+					// Run transformers.
+					const content = transformImports(file.content, config);
 
-						const dir = path.parse(filePath).dir;
-						if (!existsSync(dir)) {
-							await fs.mkdir(dir, { recursive: true });
-						}
-
-						await fs.writeFile(filePath, content);
-						if (file.type === "registry:page") {
-							pageName = file.target;
-						}
-					}
-					const blockPath = path.relative(process.cwd(), targetDir);
-
-					if (pageName) {
-						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}. The complete block component is available at ${color.gray(`${blockPath}/${pageName}`)}.`;
-					} else {
-						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
-					}
-				} else {
-					for (const file of item.files) {
-						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-						const filePath = path.resolve(targetDir, file.target);
-
-						// Run transformers.
-						const content = transformImports(file.content, config);
-
-						const dir = path.parse(filePath).dir;
-						if (!existsSync(dir)) {
-							await fs.mkdir(dir, { recursive: true });
-						}
-
-						await fs.writeFile(filePath, content);
+					const dir = path.parse(filePath).dir;
+					if (!existsSync(dir)) {
+						await fs.mkdir(dir, { recursive: true });
 					}
 
-					return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
+					await fs.writeFile(filePath, content);
+					if (file.type === "registry:page") {
+						pageName = file.target;
+					}
 				}
+				if (item.type === "registry:block") {
+					const blockPath = path.relative(cwd, targetDir);
+					if (pageName) {
+						return `${highlight(item.name)} page installed at ${color.gray(`${blockPath}/${pageName}`)}`;
+					}
+					return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
+				}
+
+				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
 			},
 		});
 	}
