@@ -18,7 +18,7 @@
 			"name": "+page.svelte",
 			"content": "<script lang=\"ts\">\n\timport AppSidebar from \"$lib/registry/default/block/sidebar-02/components/app-sidebar.svelte\";\n\timport * as Breadcrumb from \"$lib/registry/default/ui/breadcrumb/index.js\";\n\timport { Separator } from \"$lib/registry/default/ui/separator/index.js\";\n\timport * as Sidebar from \"$lib/registry/default/ui/sidebar/index.js\";\n</script>\n\n<Sidebar.Provider>\n\t<AppSidebar />\n\t<Sidebar.Inset>\n\t\t<header\n\t\t\tclass=\"bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4\"\n\t\t>\n\t\t\t<Sidebar.Trigger class=\"-ml-1\" />\n\t\t\t<Separator orientation=\"vertical\" class=\"mr-2 h-4\" />\n\t\t\t<Breadcrumb.Root>\n\t\t\t\t<Breadcrumb.List>\n\t\t\t\t\t<Breadcrumb.Item class=\"hidden md:block\">\n\t\t\t\t\t\t<Breadcrumb.Link href=\"#\">Building Your Application</Breadcrumb.Link>\n\t\t\t\t\t</Breadcrumb.Item>\n\t\t\t\t\t<Breadcrumb.Separator class=\"hidden md:block\" />\n\t\t\t\t\t<Breadcrumb.Item>\n\t\t\t\t\t\t<Breadcrumb.Page>Data Fetching</Breadcrumb.Page>\n\t\t\t\t\t</Breadcrumb.Item>\n\t\t\t\t</Breadcrumb.List>\n\t\t\t</Breadcrumb.Root>\n\t\t</header>\n\t\t<div class=\"flex flex-1 flex-col gap-4 p-4\">\n\t\t\t{#each Array.from({ length: 24 }) as _, index (index)}\n\t\t\t\t<div class=\"bg-muted/50 aspect-video h-12 w-full rounded-lg\"></div>\n\t\t\t{/each}\n\t\t</div>\n\t</Sidebar.Inset>\n</Sidebar.Provider>\n",
 			"type": "registry:page",
-			"target": "src/routes/dashboard/+page.svelte"
+			"target": "sidebar-page.svelte"
 		},
 		{
 			"name": "app-sidebar.svelte",

@@ -9,7 +9,7 @@ import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
@@ -78,14 +78,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryIndex = await registry.getRegistryIndex();
+	const uiRegistryIndex = await registry.getRegistryIndex();
 
 	let selectedComponents = new Set(
-		options.all ? registryIndex.map(({ name }) => name) : options.components
+		options.all ? uiRegistryIndex.map(({ name }) => name) : options.components
 	);
 
 	const registryDepMap = new Map<string, string[]>();
-	for (const item of registryIndex) {
+	for (const item of uiRegistryIndex) {
 		registryDepMap.set(item.name, item.registryDependencies);
 	}
 
@@ -93,7 +93,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: registryIndex.map(({ name, dependencies, registryDependencies }) => {
+			options: uiRegistryIndex.map(({ name, dependencies, registryDependencies }) => {
 				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
 				return {
 					label: name,
@@ -103,40 +103,55 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			}),
 		});
 
-		if (p.isCancel(components)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(components)) cancel();
 		selectedComponents = new Set(components);
 	} else {
 		const prettyList = prettifyList(Array.from(selectedComponents));
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
-	// adds `registryDependency` to `selectedComponents` so that they can be individually overwritten
+	/**
+	 * Adds all the selected items and their registry dependencies to the `selectedComponents`
+	 * set so that they can be individually overwritten.
+	 */
 	for (const name of selectedComponents) {
 		if (registryDepMap.has(name)) {
-			const regDeps = registryDepMap.get(name);
-			regDeps?.forEach((dep) => selectedComponents.add(dep));
+			/**
+			 * We will have all the `ui` registry dependencies in the `registryDepMap`,
+			 * so if the `name` is a `ui` component, we go ahead and add its dependencies
+			 * to the `selectedComponents` set.
+			 */
+			const regDeps: string[] = registryDepMap.get(name) ?? [];
+			for (const dep of regDeps) {
+				selectedComponents.add(dep);
+			}
 		} else {
+			/**
+			 * For blocks, hooks, etc. we need to resolve the tree to get their dependencies
+			 * and add them to the `selectedComponents` set.
+			 */
 			const tree = await registry.resolveTree({
-				index: registryIndex,
+				index: uiRegistryIndex,
 				names: [name],
 				includeRegDeps: true,
 				config,
 			});
 			for (const item of tree) {
-				for (const regDep of item.registryDependencies) {
-					selectedComponents.add(regDep);
-					const regDeps = registryDepMap.get(regDep);
-					regDeps?.forEach((dep) => selectedComponents.add(dep));
+				for (const dep of item.registryDependencies) {
+					// we first add the reg dep to the selected components
+					selectedComponents.add(dep);
+					const depRegDeps: string[] = registryDepMap.get(dep) ?? [];
+					// we then add each of that dep's deps to the `selectedComponents` set
+					for (const depRegDep of depRegDeps) {
+						selectedComponents.add(depRegDep);
+					}
 				}
 			}
 		}
 	}
 
 	const tree = await registry.resolveTree({
-		index: registryIndex,
+		index: uiRegistryIndex,
 		names: Array.from(selectedComponents),
 		includeRegDeps: false,
 		config,
@@ -145,10 +160,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const payload = await registry.fetchTree(config, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
-	if (payload.length === 0) {
-		p.cancel("Selected components not found.");
-		process.exit(0);
-	}
+	if (payload.length === 0) cancel("Selected components not found.");
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
@@ -176,17 +188,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			}
 		} else if (item.type === "registry:block") {
 			for (const file of item.files) {
-				if (file.type === "registry:page") {
-					const pageTarget = path.resolve(process.cwd(), file.target);
-					const pageExists = existsSync(pageTarget);
-					if (pageExists) {
-						existingComponents.push(file.name);
-					}
-				} else {
-					const componentExists = existsSync(path.resolve(targetDir, file.name));
-					if (componentExists) {
-						existingComponents.push(file.name);
-					}
+				const componentExists = existsSync(path.resolve(targetDir, file.target));
+				if (componentExists) {
+					existingComponents.push(file.target);
 				}
 			}
 		}
@@ -207,8 +211,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		});
 
 		if (p.isCancel(overwrite)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
+			cancel();
 		}
 
 		options.overwrite = overwrite;
@@ -220,15 +223,13 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			initialValue: true,
 		});
 
-		if (p.isCancel(proceed) || proceed === false) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
+
 	for (const item of payload) {
 		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
@@ -244,39 +245,22 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
 				const componentPath = path.relative(
 					process.cwd(),
-					path.resolve(targetDir, file.name)
+					path.resolve(targetDir, file.target)
 				);
-				if (file.type === "registry:page") {
-					if (!options.overwrite && existingComponents.includes(file.name)) {
-						p.log.warn(
-							`Page ${highlight(file.name)} already exists at ${color.gray(file.target)}`
-						);
-						const overwrite = await p.confirm({
-							message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.name)} page?`,
-						});
-						if (p.isCancel(overwrite)) {
-							p.cancel("Operation cancelled.");
-							process.exit(0);
-						}
-						if (overwrite === false) continue;
-					}
-				} else {
-					if (!options.overwrite && existingComponents.includes(file.name)) {
-						p.log.warn(
-							`Component ${highlight(file.name)} already exists at ${color.gray(componentPath)}`
-						);
-						const overwrite = await p.confirm({
-							message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.name)} component?`,
-						});
-						if (p.isCancel(overwrite)) {
-							p.cancel("Operation cancelled.");
-							process.exit(0);
-						}
-						if (overwrite === false) continue;
-					}
+
+				if (!options.overwrite && existingComponents.includes(file.target)) {
+					p.log.warn(
+						`Component ${highlight(file.target)} already exists at ${color.gray(componentPath)}`
+					);
+					const overwrite = await p.confirm({
+						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(file.target)} component?`,
+					});
+					if (p.isCancel(overwrite)) cancel();
+					if (overwrite === false) continue;
 				}
 			}
 		} else {
+			console.log("made it here with component:", item.name);
 			if (!options.overwrite && existingComponents.includes(item.name)) {
 				// Only confirm overwrites for selected components and not transitive dependencies
 				if (selectedComponents.has(item.name)) {
@@ -292,10 +276,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 					const overwrite = await p.confirm({
 						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${item.type === "registry:hook" ? "hook" : "component"}?`,
 					});
-					if (p.isCancel(overwrite)) {
-						p.cancel("Operation cancelled.");
-						process.exit(0);
-					}
+					if (p.isCancel(overwrite)) cancel();
 					if (overwrite === false) continue;
 				}
 			}
@@ -312,22 +293,50 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		tasks.push({
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
-				for (const file of item.files) {
-					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					const filePath = path.resolve(targetDir, file.target);
+				if (item.type === "registry:block") {
+					let pageName: string | undefined;
+					for (const file of item.files) {
+						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+						const filePath = path.resolve(targetDir, file.target);
 
-					// Run transformers.
-					const content = transformImports(file.content, config);
+						// Run transformers.
+						const content = transformImports(file.content, config);
 
-					const dir = path.parse(filePath).dir;
-					if (!existsSync(dir)) {
-						await fs.mkdir(dir, { recursive: true });
+						const dir = path.parse(filePath).dir;
+						if (!existsSync(dir)) {
+							await fs.mkdir(dir, { recursive: true });
+						}
+
+						await fs.writeFile(filePath, content);
+						if (file.type === "registry:page") {
+							pageName = file.target;
+						}
+					}
+					const blockPath = path.relative(process.cwd(), targetDir);
+
+					if (pageName) {
+						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}. The complete block component is available at ${color.gray(`${blockPath}/${pageName}`)}.`;
+					} else {
+						return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
+					}
+				} else {
+					for (const file of item.files) {
+						const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+						const filePath = path.resolve(targetDir, file.target);
+
+						// Run transformers.
+						const content = transformImports(file.content, config);
+
+						const dir = path.parse(filePath).dir;
+						if (!existsSync(dir)) {
+							await fs.mkdir(dir, { recursive: true });
+						}
+
+						await fs.writeFile(filePath, content);
 					}
 
-					await fs.writeFile(filePath, content);
+					return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
 				}
-
-				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
 			},
 		});
 	}

@@ -12,7 +12,7 @@
 		{
 			"name": "+page.svelte",
 			"content": "<script>\n\timport LoginForm from \"$lib/registry/default/block/login-01/components/login-form.svelte\";\n</script>\n\n<div class=\"flex h-screen w-full items-center justify-center px-4\">\n\t<LoginForm />\n</div>\n",
-			"target": "src/routes/login/+page.svelte",
+			"target": "login-page.svelte",
 			"type": "registry:page"
 		},
 		{
