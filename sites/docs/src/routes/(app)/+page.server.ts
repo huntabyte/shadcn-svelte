@@ -13,6 +13,7 @@ import { formSchema as textareaSchema } from "$lib/registry/default/example/text
 import { formSchema as comboboxFormSchema } from "$lib/registry/default/example/combobox-form.svelte";
 import { formSchema as datePickerFormSchema } from "$lib/registry/default/example/date-picker-form.svelte";
 import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/example/checkbox-form-multiple.svelte";
+import { formSchema as inputOtpSchema } from "$lib/registry/default/example/input-otp-form.svelte";
 
 export const actions: Actions = {
 	username: async (e) => handleForm(e, formSchema),
@@ -24,6 +25,7 @@ export const actions: Actions = {
 	textarea: async (e) => handleForm(e, textareaSchema),
 	combobox: async (e) => handleForm(e, comboboxFormSchema),
 	datePicker: async (e) => handleForm(e, datePickerFormSchema),
+	inputOtp: async (e) => handleForm(e, inputOtpSchema),
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {
