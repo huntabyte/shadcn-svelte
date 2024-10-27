@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.0
+
+### Major Changes
+
+- b479077: Svelte 5
+
 ## 0.14.0
 
 ### Minor Changes
