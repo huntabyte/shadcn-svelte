@@ -301,8 +301,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       vaul-svelte:
-        specifier: 1.0.0-next.0
-        version: 1.0.0-next.0(svelte@5.0.4)
+        specifier: 1.0.0-next.1
+        version: 1.0.0-next.1(svelte@5.0.4)
       velite:
         specifier: ^0.2.0
         version: 0.2.0
@@ -2289,12 +2289,6 @@ packages:
   binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-
-  bits-ui@1.0.0-next.15:
-    resolution: {integrity: sha512-RjjNO00BFsqWfFQmjGGYSBXD2LoDFZrjWcswS/QqaSIzf0MDoNl7pTRLu9+2nh1BrSIQQgNG3LJjwSjRa21Msg==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.0.0-next.1
 
   bits-ui@1.0.0-next.28:
     resolution: {integrity: sha512-mA2gf79xVLmq2mY0tAzC6ZBB8hUJunxb20/04kOVIN1UL+d75BvA3hdSdEgSj0TrEWU1GmlJr1HWKW4+Q1JIhA==}
@@ -5707,11 +5701,11 @@ packages:
     resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
     engines: {node: '>= 0.10'}
 
-  vaul-svelte@1.0.0-next.0:
-    resolution: {integrity: sha512-SG4auOEwrEgmqTBsGEWdIL4ZioXVGSiIja0YKWB/dRzIrVBNMbiJ6p4YlhDzU9o5ggs45HtX9ifXql5xZX5FYQ==}
+  vaul-svelte@1.0.0-next.1:
+    resolution: {integrity: sha512-HdKT5ha0FG1ZpJTtl9LjkwHhhdDlgoAr86lPQbiS1PfrjmrXwWG/hXXk/RMJWDJfAcy1lI9wdo+jt2l6hJ6asA==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
-      svelte: 5.0.0-next.1
+      svelte: ^5.0.0
 
   velite@0.2.0:
     resolution: {integrity: sha512-j0K66PoG2KrJmRQ+6jNaJYipBVAlJ4LNvaiL7+m2uz4fHhIe09/Rt7DR83XnbUPlvtDH/3+7k6e3/possQEr8A==}
@@ -8055,16 +8049,6 @@ snapshots:
       is-windows: 1.0.2
 
   binary-extensions@2.2.0: {}
-
-  bits-ui@1.0.0-next.15(svelte@5.0.4):
-    dependencies:
-      '@floating-ui/core': 1.6.4
-      '@floating-ui/dom': 1.6.7
-      '@internationalized/date': 3.5.6
-      esm-env: 1.0.0
-      runed: 0.15.2(svelte@5.0.4)
-      svelte: 5.0.4
-      svelte-toolbelt: 0.4.4(svelte@5.0.4)
 
   bits-ui@1.0.0-next.28(svelte@5.0.4):
     dependencies:
@@ -12175,9 +12159,9 @@ snapshots:
   validator@13.11.0:
     optional: true
 
-  vaul-svelte@1.0.0-next.0(svelte@5.0.4):
+  vaul-svelte@1.0.0-next.1(svelte@5.0.4):
     dependencies:
-      bits-ui: 1.0.0-next.15(svelte@5.0.4)
+      bits-ui: 1.0.0-next.28(svelte@5.0.4)
       svelte: 5.0.4
       svelte-toolbelt: 0.4.4(svelte@5.0.4)
 
