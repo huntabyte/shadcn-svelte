@@ -426,7 +426,7 @@ The `useSidebar` function is used to hook into the sidebar context. It returns a
 
   sidebar.state;
   sidebar.isMobile;
-  sidebar.toggleSidebar();
+  sidebar.toggle();
 </script>
 ```
 
@@ -438,7 +438,7 @@ The `useSidebar` function is used to hook into the sidebar context. It returns a
 | `openMobile`    | `boolean`                 | Whether the sidebar is open on mobile.        |
 | `setOpenMobile` | `(open: boolean) => void` | Sets the open state of the sidebar on mobile. |
 | `isMobile`      | `boolean`                 | Whether the sidebar is on mobile.             |
-| `toggleSidebar` | `() => void`              | Toggles the sidebar. Desktop and mobile.      |
+| `toggle`        | `() => void`              | Toggles the sidebar. Desktop and mobile.      |
 
 ## Sidebar.Header
 
@@ -895,7 +895,7 @@ To create a custom trigger, you can use the `useSidebar` hook.
   const sidebar = useSidebar();
 </script>
 
-<button onclick={() => sidebar.toggleSidebar()}>Toggle Sidebar</button>
+<button onclick={() => sidebar.toggle()}>Toggle Sidebar</button>
 ```
 
 ## Sidebar.Rail

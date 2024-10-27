@@ -128,3 +128,13 @@ Import alias for your components.
   "typescript": true | false
 }
 ```
+
+## Registry
+
+The registry URL tells the CLI where to fetch the components/registry from. You can pin this to a specific preview release or your own fork.
+
+```json title="components.json"
+{
+  "registry": "https://next.shadcn-svelte.com/registry"
+}
+```
