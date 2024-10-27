@@ -43,6 +43,7 @@ function stripScriptTypes(): PreprocessorGroup {
 		script: ({ content, attributes, filename }) => {
 			if (attributes["lang"] !== "ts") return;
 			delete attributes["lang"];
+			delete attributes["generics"];
 			return { code: transformTStoJS(content, filename!), attributes };
 		},
 	};
