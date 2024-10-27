@@ -1,35 +1,13 @@
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-import { preprocess } from "svelte/compiler";
-import ts from "typescript";
+import { walk } from "estree-walker";
+import { preprocess, parse, type PreprocessorGroup } from "svelte/compiler";
+import tsBlankSpace from "ts-blank-space";
+import MagicString from "magic-string";
 
 export type TransformOpts = {
 	filename: string;
 	content: string;
 	// baseColor?: z.infer<typeof registryBaseColorSchema>; - will use later
 };
-
-// const sharedPrettierConfig = {
-// 	useTabs: true,
-// 	tabWidth: 4,
-// 	singleQuote: false,
-// 	trailingComma: "es5" as const,
-// 	printWidth: 100,
-// 	endOfLine: "lf" as const,
-// 	bracketSameLine: false,
-// };
-
-// const registrySveltePrettierConfig = {
-// 	...sharedPrettierConfig,
-// 	pluginSearchDirs: ["./node_modules/prettier-plugin-svelte"],
-// 	parser: "svelte",
-// 	svelteStrictMode: false,
-// 	plugins: ["prettier-plugin-svelte"],
-// };
-
-// const registryJSPrettierConfig = {
-// 	...sharedPrettierConfig,
-// 	parser: "babel",
-// };
 
 export async function transformContent(content: string, filename: string) {
 	if (filename.endsWith(".svelte")) {
@@ -38,42 +16,102 @@ export async function transformContent(content: string, filename: string) {
 		return transformTStoJS(content, filename);
 	}
 }
-
 async function transformSvelteTStoJS(content: string, filename: string) {
 	try {
-		const { code } = await preprocess(content, [vitePreprocess()]);
-		let s = code.replaceAll(/<script lang=['"]ts['"]>/g, "<script>");
-		s = s.replaceAll(/void 0/g, "undefined");
-		return s;
+		const { code } = await preprocess(content, [stripMarkupTypes(), stripScriptTypes()], {
+			filename,
+		});
+		return code;
 	} catch (e) {
 		throw new Error(`Error preprocessing Svelte file: ${filename} \n ${e}`);
 	}
 }
 
-const compilerOptions: ts.CompilerOptions = {
-	target: ts.ScriptTarget.ESNext,
-	module: ts.ModuleKind.ESNext,
-	isolatedModules: true,
-	preserveValueImports: true,
-	lib: ["esnext", "DOM", "DOM.Iterable"],
-	moduleResolution: ts.ModuleResolutionKind.Bundler,
-	esModuleInterop: true,
-	ignoreDeprecations: "5.0",
-};
-
 function transformTStoJS(content: string, filename: string) {
-	const { outputText, diagnostics } = ts.transpileModule(content, {
-		compilerOptions,
-		reportDiagnostics: true,
+	const output = tsBlankSpace(content, (node) => {
+		throw new Error(
+			`Error compiling TypeScript to JavaScript for file: ${filename} \n ${node.pos}`
+		);
 	});
 
-	// Check for compilation errors
-	if (diagnostics && diagnostics.length > 0) {
-		// Throw the errors so the user can see them/create an issue about them.
-		throw new Error(
-			`Error compiling TypeScript to JavaScript for file: ${filename} \n ${diagnostics}`
-		);
-	} else {
-		return outputText;
-	}
+	return output;
+}
+
+function stripScriptTypes(): PreprocessorGroup {
+	return {
+		// strip the `lang="ts"` attribute
+		script: ({ content, attributes, filename }) => {
+			if (attributes["lang"] !== "ts") return;
+			delete attributes["lang"];
+			return { code: transformTStoJS(content, filename!), attributes };
+		},
+	};
+}
+
+function stripMarkupTypes(): PreprocessorGroup {
+	return {
+		markup: ({ content, filename }) => {
+			const ms = new MagicString(content);
+			const ast = parse(content, { filename, modern: true });
+
+			// @ts-expect-error simmer down
+			walk(ast.fragment, {
+				enter(node: (typeof ast)["fragment"]["nodes"][number]) {
+					// ignore typescript specific nodes
+					if (node.type.startsWith("TS")) return;
+
+					if (node.type === "SnippetBlock") {
+						if (node.parameters.length === 0) return;
+						// @ts-expect-error relax buddy
+						const start = node.parameters.at(0)!.start;
+						const end =
+							// @ts-expect-error you too
+							node.parameters.at(-1)!.typeAnnotation?.end ??
+							// @ts-expect-error and you
+							node.parameters.at(-1)!.end;
+
+						const params = content.substring(start, end);
+						// temporarily wraps the params in an arrow function so that it's parsable
+						const arrow = " => {}";
+						const wrapped = `(${params})${arrow}`;
+						const stripped = transformTStoJS(wrapped, filename!)
+							.replace(arrow, "")
+							.slice(1, -1);
+						ms.update(start, end, stripped);
+					} else if (node.type === "ConstTag") {
+						// @ts-expect-error hush
+						const { start, end } = node.declaration;
+						const expression = content.substring(start, end);
+						const wrapped = `(${expression})`;
+						const stripped = transformTStoJS(wrapped, filename!).slice(1, -1);
+						ms.update(start, end, stripped);
+
+						this.skip();
+					} else if (node.type === "RenderTag" || node.type === "ExpressionTag") {
+						// @ts-expect-error take a breather
+						const { start, end } = node.expression;
+						const expression = content.substring(start, end);
+						const wrapped = `(${expression})`;
+						const stripped = transformTStoJS(wrapped, filename!).slice(1, -1);
+						ms.update(start, end, stripped);
+
+						this.skip();
+					} else if ("expression" in node) {
+						// @ts-expect-error trust me
+						const { start, end } = node.expression;
+
+						const expression = content.substring(start, end);
+						const wrapped = `(${expression})`;
+
+						// removes the `()`
+						const stripped = transformTStoJS(wrapped, filename!).slice(1, -1);
+
+						ms.update(start, end, stripped);
+					}
+				},
+			});
+
+			return { code: ms.toString() };
+		},
+	};
 }

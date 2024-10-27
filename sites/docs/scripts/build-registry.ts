@@ -11,9 +11,18 @@ import { buildRegistry } from "./registry";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
 import { getChunks } from "./transform-chunks";
 import { transformContent } from "./transformers";
+import prettier from "prettier";
+import prettierPluginSvelte from "prettier-plugin-svelte";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
+
+const prettierConfig: prettier.Config = {
+	useTabs: true,
+	singleQuote: false,
+	trailingComma: "es5",
+	printWidth: 100,
+};
 
 function writeFileWithDirs(
 	filePath: string,
@@ -178,11 +187,15 @@ export const Index = {
 
 		const jsFiles = await Promise.all(
 			files.map(async (file) => {
-				const content = (await transformContent(file.content, file.name)).replaceAll(
-					"    ",
-					"\t"
-				);
+				let content = await transformContent(file.content, file.name);
 				const fileName = file.name.replace(".ts", ".js");
+				// format
+				content = await prettier.format(content, {
+					...prettierConfig,
+					filepath: fileName,
+					plugins: [prettierPluginSvelte],
+					overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
+				});
 				return {
 					name: fileName,
 					content,

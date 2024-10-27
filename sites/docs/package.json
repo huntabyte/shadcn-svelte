@@ -80,6 +80,7 @@
 		"tailwind-variants": "^0.2.1",
 		"tailwindcss": "^3.4.4",
 		"tailwindcss-animate": "^1.0.7",
+		"ts-blank-space": "^0.4.1",
 		"tslib": "^2.6.3",
 		"tsx": "^4.16.2",
 		"typescript": "~5.5.3",
