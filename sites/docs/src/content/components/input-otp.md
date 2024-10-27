@@ -119,3 +119,11 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
   {/snippet}
 </InputOTP.Root>
 ```
+
+### Form
+
+<ComponentPreview name="input-otp-form">
+
+<div></div>
+
+</ComponentPreview>

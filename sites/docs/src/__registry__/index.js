@@ -539,6 +539,14 @@ export const Index = {
 			files: ["../lib/registry/default/example/input-otp-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/input-otp-demo.svelte?raw").then((m) => m.default),
 		},
+		"input-otp-form": {
+			name: "input-otp-form",
+			type: "registry:example",
+			registryDependencies: ["input-otp","form"],
+			component: () => import("../lib/registry/default/example/input-otp-form.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/input-otp-form.svelte"],
+			raw: () => import("../lib/registry/default/example/input-otp-form.svelte?raw").then((m) => m.default),
+		},
 		"input-otp-pattern": {
 			name: "input-otp-pattern",
 			type: "registry:example",
@@ -1595,6 +1603,14 @@ export const Index = {
 			component: () => import("../lib/registry/new-york/example/input-otp-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/input-otp-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/input-otp-demo.svelte?raw").then((m) => m.default),
+		},
+		"input-otp-form": {
+			name: "input-otp-form",
+			type: "registry:example",
+			registryDependencies: ["input-otp","form"],
+			component: () => import("../lib/registry/new-york/example/input-otp-form.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/input-otp-form.svelte"],
+			raw: () => import("../lib/registry/new-york/example/input-otp-form.svelte?raw").then((m) => m.default),
 		},
 		"input-otp-pattern": {
 			name: "input-otp-pattern",

@@ -11,6 +11,7 @@ import { formSchema as textareaSchema } from "$lib/registry/default/example/text
 import { formSchema as comboboxFormSchema } from "$lib/registry/default/example/combobox-form.svelte";
 import { formSchema as datePickerFormSchema } from "$lib/registry/default/example/date-picker-form.svelte";
 import { formSchema as checkboxMultipleSchema } from "$lib/registry/default/example/checkbox-form-multiple.svelte";
+import { formSchema as inputOtpSchema } from "$lib/registry/default/example/input-otp-form.svelte";
 
 export const load: LayoutServerLoad = async () => {
 	return {
@@ -23,6 +24,7 @@ export const load: LayoutServerLoad = async () => {
 		textarea: await superValidate(zod(textareaSchema)),
 		combobox: await superValidate(zod(comboboxFormSchema)),
 		datePicker: await superValidate(zod(datePickerFormSchema)),
+		inputOtp: await superValidate(zod(inputOtpSchema)),
 	};
 };
 
