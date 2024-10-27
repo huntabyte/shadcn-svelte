@@ -6,7 +6,9 @@
 
 <script lang="ts" generics="T extends Record<string, unknown>, U extends _FormPath<T>">
 	import * as FormPrimitive from "formsnap";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import { cn } from "$lib/utils.js";
+	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		ref = $bindable(null),
@@ -15,7 +17,8 @@
 		name,
 		children: childrenProp,
 		...restProps
-	}: FormPrimitive.FieldProps<T, U> & PrimitiveDivAttributes = $props();
+	}: FormPrimitive.FieldProps<T, U> &
+		WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();
 </script>
 
 <FormPrimitive.Field {form} {name}>
