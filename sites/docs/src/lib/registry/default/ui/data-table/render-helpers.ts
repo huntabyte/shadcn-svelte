@@ -17,10 +17,15 @@ import type { Component, ComponentProps, Snippet } from "svelte";
  * ```
  */
 export class RenderComponentConfig<TComponent extends Component> {
+	component: TComponent;
+	props: ComponentProps<TComponent> | Record<string, never>;
 	constructor(
-		public component: TComponent,
-		public props: ComponentProps<TComponent> | Record<string, never> = {}
-	) {}
+		component: TComponent,
+		props: ComponentProps<TComponent> | Record<string, never> = {}
+	) {
+		this.component = component;
+		this.props = props;
+	}
 }
 
 /**
@@ -39,10 +44,12 @@ export class RenderComponentConfig<TComponent extends Component> {
  * ```
  */
 export class RenderSnippetConfig<TProps> {
-	constructor(
-		public snippet: Snippet<[TProps]>,
-		public params: TProps
-	) {}
+	snippet: Snippet<[TProps]>;
+	params: TProps;
+	constructor(snippet: Snippet<[TProps]>, params: TProps) {
+		this.snippet = snippet;
+		this.params = params;
+	}
 }
 
 /**

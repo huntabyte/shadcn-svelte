@@ -670,7 +670,7 @@ export const Index = {
 		"select-demo": {
 			name: "select-demo",
 			type: "registry:example",
-			registryDependencies: ["select","label"],
+			registryDependencies: ["select"],
 			component: () => import("../lib/registry/default/example/select-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/default/example/select-demo.svelte"],
 			raw: () => import("../lib/registry/default/example/select-demo.svelte?raw").then((m) => m.default),
@@ -1703,7 +1703,7 @@ export const Index = {
 		"select-demo": {
 			name: "select-demo",
 			type: "registry:example",
-			registryDependencies: ["select","label"],
+			registryDependencies: ["select"],
 			component: () => import("../lib/registry/new-york/example/select-demo.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/select-demo.svelte"],
 			raw: () => import("../lib/registry/new-york/example/select-demo.svelte?raw").then((m) => m.default),
