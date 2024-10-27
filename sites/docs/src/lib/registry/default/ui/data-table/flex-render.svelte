@@ -1,9 +1,6 @@
 <script lang="ts" module>
 	import type { CellContext, ColumnDefTemplate, HeaderContext } from "@tanstack/table-core";
-	import {
-		RenderComponentConfig,
-		RenderSnippetConfig,
-	} from "$lib/registry/default/ui/data-table/render-helpers.js";
+
 	type TData = unknown;
 	type TValue = unknown;
 	type TContext = unknown;
@@ -13,6 +10,10 @@
 	lang="ts"
 	generics="TData, TValue, TContext extends HeaderContext<TData, TValue> | CellContext<TData, TValue>"
 >
+	import {
+		RenderComponentConfig,
+		RenderSnippetConfig,
+	} from "$lib/registry/default/ui/data-table/render-helpers.js";
 	type Props = {
 		/** The cell or header field of the current cell's column definition. */
 		content?: TContext extends HeaderContext<TData, TValue>
