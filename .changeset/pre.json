@@ -5,5 +5,7 @@
     "shadcn-svelte": "0.14.0",
     "docs": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "new-turkeys-breathe"
+  ]
 }
