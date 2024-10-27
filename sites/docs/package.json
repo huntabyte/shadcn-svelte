@@ -86,7 +86,7 @@
 		"unified": "^11.0.5",
 		"unist-builder": "^3.0.1",
 		"unist-util-visit": "^5.0.0",
-		"vaul-svelte": "1.0.0-next.0",
+		"vaul-svelte": "1.0.0-next.1",
 		"velite": "^0.2.0",
 		"vite": "^5.4.7",
 		"vitest": "^2.1.2",
