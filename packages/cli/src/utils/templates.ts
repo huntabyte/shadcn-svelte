@@ -8,7 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export const UTILS_JS = `import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 export function cn(...inputs) {
 	return twMerge(clsx(inputs));
@@ -16,6 +15,7 @@ export function cn(...inputs) {
 `;
 
 const TAILWIND_JS = `import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {`;
