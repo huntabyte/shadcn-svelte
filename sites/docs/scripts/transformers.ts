@@ -21,7 +21,8 @@ async function transformSvelteTStoJS(content: string, filename: string) {
 		const { code } = await preprocess(content, [stripMarkupTypes(), stripScriptTypes()], {
 			filename,
 		});
-		return code;
+		// strip out empty module blocks
+		return code.replace("<script module></script>", "").trimStart();
 	} catch (e) {
 		throw new Error(`Error preprocessing Svelte file: ${filename} \n ${e}`);
 	}
@@ -44,7 +45,7 @@ function stripScriptTypes(): PreprocessorGroup {
 			if (attributes["lang"] !== "ts") return;
 			delete attributes["lang"];
 			delete attributes["generics"];
-			return { code: transformTStoJS(content, filename!), attributes };
+			return { code: transformTStoJS(content, filename!).trim(), attributes };
 		},
 	};
 }
