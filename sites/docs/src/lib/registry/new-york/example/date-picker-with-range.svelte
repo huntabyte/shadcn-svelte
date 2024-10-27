@@ -56,7 +56,6 @@
 				onStartValueChange={(v) => {
 					startValue = v;
 				}}
-				placeholder={value?.start}
 				numberOfMonths={2}
 			/>
 		</Popover.Content>

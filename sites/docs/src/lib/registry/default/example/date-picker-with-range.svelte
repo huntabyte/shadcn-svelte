@@ -51,7 +51,6 @@
 					startValue = v;
 				}}
 				numberOfMonths={2}
-				placeholder={value?.start}
 			/>
 		</Popover.Content>
 	</Popover.Root>
