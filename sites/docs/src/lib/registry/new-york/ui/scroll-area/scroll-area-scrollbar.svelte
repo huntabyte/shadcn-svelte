@@ -12,6 +12,7 @@
 </script>
 
 <ScrollAreaPrimitive.Scrollbar
+	bind:ref
 	{orientation}
 	class={cn(
 		"flex touch-none select-none transition-colors",
