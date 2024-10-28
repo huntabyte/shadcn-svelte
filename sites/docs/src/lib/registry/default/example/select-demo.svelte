@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/default/ui/select/index.js";
-	import { Label } from "$lib/registry/default/ui/label/index.js";
 
 	const fruits = [
 		{ value: "apple", label: "Apple" },
@@ -23,7 +22,7 @@
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
-			<Label>Fruits</Label>
+			<Select.GroupHeading>Fruits</Select.GroupHeading>
 			{#each fruits as fruit}
 				<Select.Item value={fruit.value} label={fruit.label}>{fruit.label}</Select.Item>
 			{/each}

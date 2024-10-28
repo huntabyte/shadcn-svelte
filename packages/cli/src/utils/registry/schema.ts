@@ -9,6 +9,8 @@ const registryItemTypeSchema = v.picklist([
 	"registry:page",
 ]);
 
+export type RegistryItemType = v.InferOutput<typeof registryItemTypeSchema>;
+
 export const registryItemTailwindSchema = v.object({
 	config: v.optional(
 		v.object({
@@ -23,10 +25,6 @@ export const registryItemFileSchema = v.object({
 	content: v.fallback(v.string(), ""),
 	type: registryItemTypeSchema,
 });
-
-export type RegistryItemFile = v.InferOutput<typeof registryItemFileSchema>;
-
-export type RegistryItemTailwind = v.InferOutput<typeof registryItemTailwindSchema>;
 
 export const registryItemCssVarsSchema = v.object({
 	light: v.optional(v.record(v.string(), v.string())),
@@ -67,13 +65,6 @@ export const registryItemWithContentSchema = v.object({
 });
 
 export const registryWithContentSchema = v.array(registryItemWithContentSchema);
-
-export const stylesSchema = v.array(
-	v.object({
-		name: v.string(),
-		label: v.string(),
-	})
-);
 
 export const registryBaseColorSchema = v.object({
 	inlineColors: v.object({

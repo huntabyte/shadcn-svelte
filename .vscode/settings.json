@@ -5,7 +5,7 @@
 	// Auto fix
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",
-		"source.organizeImports": "explicit",
+		"source.organizeImports": "never",
 		"source.removeUnusedImports": "never",
 		"source.removeUnused.ts": "never"
 	},

@@ -17,8 +17,8 @@ export function intro() {
 	}
 }
 
-export function cancel(): never {
-	p.cancel("Operation cancelled.");
+export function cancel(msg = "Operation cancelled."): never {
+	p.cancel(msg);
 	process.exit(0);
 }
 

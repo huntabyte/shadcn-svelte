@@ -101,6 +101,12 @@ export const docsConfig: DocsConfig = {
 			title: "Components",
 			items: [
 				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+					label: "New",
+				},
+				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
 					items: [],
@@ -219,6 +225,12 @@ export const docsConfig: DocsConfig = {
 					title: "Input",
 					href: "/docs/components/input",
 					items: [],
+				},
+				{
+					title: "Input OTP",
+					href: "/docs/components/input-otp",
+					items: [],
+					label: "New",
 				},
 				{
 					title: "Label",

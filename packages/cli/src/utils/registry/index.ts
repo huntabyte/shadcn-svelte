@@ -1,4 +1,3 @@
-import deepmerge from "deepmerge";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
@@ -38,39 +37,18 @@ export async function getRegistryIndex() {
 
 export function getBaseColors() {
 	return [
-		{
-			name: "slate",
-			label: "Slate",
-		},
-		{
-			name: "gray",
-			label: "Gray",
-		},
-		{
-			name: "zinc",
-			label: "Zinc",
-		},
-		{
-			name: "neutral",
-			label: "Neutral",
-		},
-		{
-			name: "stone",
-			label: "Stone",
-		},
+		{ name: "slate", label: "Slate" },
+		{ name: "gray", label: "Gray" },
+		{ name: "zinc", label: "Zinc" },
+		{ name: "neutral", label: "Neutral" },
+		{ name: "stone", label: "Stone" },
 	];
 }
 
 export function getStyles() {
 	return [
-		{
-			name: "default",
-			label: "Default",
-		},
-		{
-			name: "new-york",
-			label: "New York",
-		},
+		{ name: "default", label: "Default" },
+		{ name: "new-york", label: "New York" },
 	];
 }
 
@@ -186,73 +164,6 @@ async function fetchRegistry(paths: string[]) {
 	}
 }
 
-export async function registryResolveItemsTree(names: string[], config: Config) {
-	try {
-		const index = await getRegistryIndex();
-		if (!index) return null;
-
-		// if we're resolving the index, we want it to go first.
-		if (names.includes("index")) {
-			names.unshift("index");
-		}
-
-		const registryDependencies: string[] = [];
-
-		for (const name of names) {
-			const itemRegistryDependencies = await resolveRegistryDependencies(name, config);
-			registryDependencies.push(...itemRegistryDependencies);
-		}
-		console.log("REGISTRY DEPENDENCIES", registryDependencies);
-
-		const uniqueRegistryDeps = Array.from(new Set(registryDependencies));
-		const result = await fetchRegistry(uniqueRegistryDeps);
-		const payload = v.parse(v.array(schemas.registryItemSchema), result);
-
-		if (!payload) return null;
-
-		return v.parse(schemas.registryResolvedItemsTreeSchema, {
-			dependencies: deepmerge.all(payload.map((item) => item.dependencies ?? [])),
-			files: deepmerge.all(payload.map((item) => item.files ?? [])),
-		});
-	} catch (e) {
-		if (e instanceof CLIError) throw e;
-		throw error("Failed to resolve registry items tree.");
-	}
-}
-
-async function resolveRegistryDependencies(url: string, config: Config): Promise<string[]> {
-	const visited = new Set<string>();
-	const payload = new Set<string>();
-
-	async function resolveDependencies(itemUrl: string) {
-		const url = getRegistryUrl(
-			isUrl(itemUrl) ? itemUrl : `styles/${config.style}/${itemUrl}.json`
-		);
-
-		if (visited.has(url)) return;
-
-		visited.add(url);
-
-		try {
-			const [result] = await fetchRegistry([url]);
-			const item = v.parse(schemas.registryItemSchema, result);
-			payload.add(url);
-
-			if (item.registryDependencies) {
-				for (const dep of item.registryDependencies) {
-					await resolveDependencies(dep);
-				}
-			}
-		} catch (e) {
-			if (e instanceof CLIError) throw e;
-			throw error(`Failed to resolve dependencies for ${itemUrl}`);
-		}
-	}
-
-	await resolveDependencies(url);
-	return Array.from(payload);
-}
-
 function isUrl(path: string) {
 	try {
 		new URL(path);
@@ -262,20 +173,19 @@ function isUrl(path: string) {
 	}
 }
 
-export function getRegistryItemFileTargetPath(
+export function getRegistryItemTargetPath(
 	config: Config,
-	file: schemas.RegistryItem,
+	type: schemas.RegistryItemType,
 	override?: string
 ) {
 	if (override) return override;
 
-	if (file.type === "registry:ui") return config.resolvedPaths.ui;
-	if (file.type === "registry:block" || file.type === "registry:component") {
+	if (type === "registry:ui") return config.resolvedPaths.ui;
+	if (type === "registry:block" || type === "registry:component" || type === "registry:page") {
 		return config.resolvedPaths.components;
 	}
-	if (file.type === "registry:hook") return config.resolvedPaths.hooks;
+	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	// TODO - we put this in components for now but will move to the appropriate route location
 	// depending on if using SvelteKit or whatever
-	if (file.type === "registry:page") return config.resolvedPaths.components;
 	return config.resolvedPaths.components;
 }

@@ -8,7 +8,7 @@
 			"name": "is-mobile.svelte.ts",
 			"content": "import { untrack } from \"svelte\";\n\nconst MOBILE_BREAKPOINT = 768;\n\nexport class IsMobile {\n\t#current = $state<boolean>(false);\n\n\tconstructor() {\n\t\t$effect(() => {\n\t\t\treturn untrack(() => {\n\t\t\t\tconst mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);\n\t\t\t\tconst onChange = () => {\n\t\t\t\t\tthis.#current = window.innerWidth < MOBILE_BREAKPOINT;\n\t\t\t\t};\n\t\t\t\tmql.addEventListener(\"change\", onChange);\n\t\t\t\tonChange();\n\t\t\t\treturn () => {\n\t\t\t\t\tmql.removeEventListener(\"change\", onChange);\n\t\t\t\t};\n\t\t\t});\n\t\t});\n\t}\n\n\tget current() {\n\t\treturn this.#current;\n\t}\n}\n",
 			"type": "registry:hook",
-			"target": "hook/is-mobile.svelte.ts"
+			"target": "is-mobile.svelte.ts"
 		}
 	]
 }

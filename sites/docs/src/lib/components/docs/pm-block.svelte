@@ -30,26 +30,21 @@
 </script>
 
 <figure data-rehype-pretty-code-figure>
-	<Pre
-		isPackageManagerBlock={true}
-		tabindex={0}
-		data-language="bash"
-		data-theme="Lambda Studio - Blackout"
-	>
-		<code data-language="bash" data-theme="Lambda Studio — Blackout" style="display: grid;">
+	<Pre isPackageManagerBlock={true} tabindex={0} data-language="bash" data-theme="github-dark">
+		<code data-language="bash" data-theme="github-dark" style="display: grid;">
 			<span data-line>
-				<span style="color:#FFF;font-weight:bold">{`${cmdStart}`}</span>
+				<span style="color:#B392F0;font-weight:bold">{`${cmdStart}`}</span>
 				{#if type === "install" || type === "create"}
-					<span style="color:#FFF8">
+					<span style="color:#9ECBFF">
 						{`${type === "install" ? getInstallCommand() : "create"}${command === "" ? "" : ` `}`}
 					</span>
 				{/if}
 				{#if command !== ""}
 					{#each command.split(" ") as word, i}
 						{#if i === 0}
-							<span style="color:#FFF8; margin-left:-8px">{`${word}`}</span>
+							<span style="color:#9ECBFF; margin-left:-8px">{`${word}`}</span>
 						{:else}
-							<span style="color:#FFF8">{` ${word}`}</span>
+							<span style="color:#9ECBFF">{` ${word}`}</span>
 						{/if}
 					{/each}
 				{/if}

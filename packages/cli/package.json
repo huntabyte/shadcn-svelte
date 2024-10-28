@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "0.13.0",
+	"version": "1.0.0-next.0",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -53,7 +53,7 @@
 		"deepmerge": "^4.3.1",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
-		"package-manager-detector": "^0.1.2",
+		"package-manager-detector": "^0.2.2",
 		"sisteransi": "^1.0.5",
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",

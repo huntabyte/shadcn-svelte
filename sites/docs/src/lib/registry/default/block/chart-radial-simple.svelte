@@ -36,12 +36,11 @@
 			label: "Other",
 			color: "hsl(var(--chart-5))",
 		},
-	} satisfies Chart.ChartConfig;
+	} as Chart.ChartConfig;
 
 	let tweened = true;
 
 	function getColorFromConfig(v: string) {
-		// @ts-expect-error - still blocked by my poor implementation of getPayloadConfigFromPayload
 		return chartConfig[v as keyof typeof chartConfig].color;
 	}
 </script>

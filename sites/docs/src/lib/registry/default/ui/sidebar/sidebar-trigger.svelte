@@ -21,7 +21,7 @@
 	type="button"
 	onclick={(e) => {
 		onclick?.(e);
-		sidebar.toggleSidebar();
+		sidebar.toggle();
 	}}
 	data-sidebar="trigger"
 	variant="ghost"

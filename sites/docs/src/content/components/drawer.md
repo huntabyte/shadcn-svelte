@@ -8,7 +8,7 @@ links:
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="drawer-demo">
@@ -23,17 +23,22 @@ Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Sve
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="drawer" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `vaul-svelte`:
 
-1. Install `vaul-svelte`:
-
+</Step>
 <PMInstall command="vaul-svelte -D" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 

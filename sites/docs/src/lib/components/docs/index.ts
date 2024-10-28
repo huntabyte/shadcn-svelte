@@ -8,6 +8,7 @@ export { default as PMExecute } from "./pm-execute.svelte";
 export { default as PMAddComp } from "./pm-add-comp.svelte";
 export { default as PMCreate } from "./pm-create.svelte";
 export { default as PMInstall } from "./pm-install.svelte";
+export { default as InstallTabs } from "./install-tabs.svelte";
 export { default as ChartsNav } from "./charts-nav.svelte";
 export { default as ChartDisplay } from "./chart-display.svelte";
 

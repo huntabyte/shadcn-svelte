@@ -9,11 +9,12 @@ import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
+import { resolveCommand } from "package-manager-detector/commands";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -131,10 +132,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			})),
 		});
 
-		if (p.isCancel(selected)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(selected)) cancel();
 
 		selectedComponents = selected;
 	} else {
@@ -148,10 +146,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			initialValue: true,
 		});
 
-		if (p.isCancel(proceed) || proceed === false) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
 	// `update utils` - update the utils.(ts|js) file
@@ -230,14 +225,15 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, true);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, true);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, ...dependencies], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

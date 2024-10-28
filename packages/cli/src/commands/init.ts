@@ -14,14 +14,21 @@ import {
 import { error, handleError } from "../utils/errors.js";
 import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
+import { resolveCommand } from "package-manager-detector/commands";
+import { SITE_BASE_URL } from "../constants.js";
 
-const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
+const PROJECT_DEPENDENCIES = [
+	"tailwind-variants",
+	"clsx",
+	"tailwind-merge",
+	"tailwindcss-animate",
+] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const baseColors = registry.getBaseColors();
@@ -128,7 +135,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const langConfig = detectLanguage(cwd);
 	if (langConfig === undefined) {
 		throw error(
-			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
 		);
 	}
 
@@ -147,10 +154,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		style = input;
 	}
@@ -168,10 +172,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindBaseColor = input;
 	}
@@ -194,10 +195,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		globalCss = input;
 	}
@@ -220,10 +218,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindConfig = input;
 	}
@@ -238,10 +233,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(promptResult)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(promptResult)) cancel();
 
 		componentAlias = promptResult;
 	}
@@ -260,10 +252,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		utilsAlias = input;
 	}
@@ -278,10 +267,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		hooksAlias = input;
 	}
@@ -296,18 +282,16 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		uiAlias = input;
 	}
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
-		$schema: "https://shadcn-svelte.com/schema.json",
+		$schema: `${SITE_BASE_URL}/schema.json`,
 		style,
 		typescript: langConfig.type === "tsconfig.json",
+		registry: defaultConfig?.registry,
 		tailwind: {
 			config: tailwindConfig,
 			css: globalCss,
@@ -338,7 +322,7 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	if (resolvedPath !== undefined) {
 		return;
 	}
-	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 export async function runInit(cwd: string, config: Config, options: InitOptions) {
@@ -404,14 +388,15 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, options.deps);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(pm, [add, ...PROJECT_DEPENDENCIES], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

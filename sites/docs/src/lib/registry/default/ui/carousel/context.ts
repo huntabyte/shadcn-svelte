@@ -1,7 +1,8 @@
+import type { WithElementRef } from "bits-ui";
 import type { EmblaCarouselSvelteType } from "embla-carousel-svelte";
 import type emblaCarouselSvelte from "embla-carousel-svelte";
 import { getContext, hasContext, setContext } from "svelte";
-import type { PrimitiveDivAttributes } from "$lib/utils.js";
+import type { HTMLAttributes } from "svelte/elements";
 
 export type CarouselAPI =
 	NonNullable<NonNullable<EmblaCarouselSvelteType["$$_attributes"]>["on:emblaInit"]> extends (
@@ -22,7 +23,7 @@ export type CarouselProps = {
 	plugins?: CarouselPlugins;
 	setApi?: (api: CarouselAPI | undefined) => void;
 	orientation?: "horizontal" | "vertical";
-} & PrimitiveDivAttributes;
+} & WithElementRef<HTMLAttributes<HTMLDivElement>>;
 
 const EMBLA_CAROUSEL_CONTEXT = Symbol("EMBLA_CAROUSEL_CONTEXT");
 

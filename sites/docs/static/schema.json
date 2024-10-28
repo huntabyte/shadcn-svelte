@@ -29,9 +29,21 @@
 				},
 				"components": {
 					"type": "string"
+				},
+				"ui": {
+					"type": "string"
+				},
+				"hooks": {
+					"type": "string"
 				}
 			},
 			"required": ["utils", "components"]
+		},
+		"typescript": {
+			"type": "boolean"
+		},
+		"registry": {
+			"type": "string"
 		}
 	},
 	"required": ["style", "tailwind", "aliases"]

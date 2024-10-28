@@ -6,6 +6,7 @@ import * as v from "valibot";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
+import { SITE_BASE_URL } from "../constants.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
@@ -56,7 +57,7 @@ const newConfigFields = v.object({
 	typescript: v.optional(v.boolean(), true),
 	// TODO: if they're missing this field then they're likely using svelte 4
 	// and we should prompt them to see if they'd like to use the new registry
-	registry: v.optional(v.string(), "https://shadcn-svelte.com/registry"),
+	registry: v.optional(v.string(), `${SITE_BASE_URL}/registry`),
 });
 
 // combines the old with the new
@@ -107,12 +108,12 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (pathAliases === null) {
 		throw error(
-			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`
+			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 		);
 	}
 
-	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
-	const componentsPath = resolveImport(config.aliases.components, pathAliases);
+	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
+	let componentsPath = resolveImport(config.aliases.components, pathAliases);
 	const hooksPath = resolveImport(config.aliases.hooks, pathAliases);
 	const uiPath = resolveImport(config.aliases.ui, pathAliases);
 
@@ -120,11 +121,14 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
    - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigType)} (e.g. "${type}": "$lib/${type}").
-   - See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
+   - See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}.`
 		);
 
 	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
 	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
+
+	utilsPath = path.normalize(utilsPath);
+	componentsPath = path.normalize(componentsPath);
 
 	return v.parse(configSchema, {
 		...config,
@@ -144,7 +148,7 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	const parsedConfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigName);
 	if (parsedConfig === null) {
 		throw error(
-			`Failed to find ${highlight(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+			`Failed to find ${highlight(tsconfigName)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
 		);
 	}
 
@@ -168,6 +172,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function writeConfig(cwd: string, config: any): void {
 	const targetPath = path.resolve(cwd, "components.json");
 	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do

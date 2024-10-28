@@ -4,7 +4,7 @@ description: Use CSS Variables to customize the look and feel of your applicatio
 ---
 
 <script>
-  import { Callout } from '$lib/components/docs';
+  import { Callout, Steps } from '$lib/components/docs';
   import HexToChannels from "$lib/components/docs/hex-to-channels.svelte";
 </script>
 
@@ -41,9 +41,17 @@ The `background` color of the following component will be `hsl(var(--primary) / 
 <div class="bg-primary text-primary-foreground">Hello</div>
 ```
 
-## CSS Variables
+<Callout>
+
+**CSS variables must be defined without color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
+
+</Callout>
+
+## List of variables
 
 Here's the list of variables available for customization:
+
+<Steps>
 
 ```css title="Default background color of <body />...etc"
 --background: 0 0% 100%;
@@ -101,90 +109,45 @@ Here's the list of variables available for customization:
 --radius: 0.5rem;
 ```
 
-## Default
+</Steps>
 
-The following is the default color palette used by the components.
+### Adding new colors
 
-```css title="src/app.pcss"
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+To add new colors, you need to add them to your CSS file and to your `tailwind.config.js` file.
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --ring: 240 5% 64.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-
-    --ring: 240 3.7% 15.9%;
-  }
+```css title="src/app.css"
+:root {
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 89%;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
-  }
+.dark {
+  --warning: 48 96% 89%;
+  --warning-foreground: 38 92% 50%;
 }
 ```
+
+```js {5-6} title="tailwind.config.js"
+export default {
+  theme: {
+    extend: {
+      colors: {
+        warning: "hsl(var(--warning))",
+        "warning-foreground": "hsl(var(--warning-foreground))",
+      },
+    },
+  },
+};
+```
+
+You can now use the `warning` utility class in your components.
+
+```svelte /bg-warning/ /text-warning-foreground/
+<div class="bg-warning text-warning-foreground"></div>
+```
+
+### Other color formats
+
+It's recommended to use [HSL colors](https://www.smashingmagazine.com/2021/07/hsl-colors-css/) for theming but you can also use other color formats if you prefer.
+
+See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information on using `rgb`, `rgba` or `hsl` colors.

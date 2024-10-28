@@ -21,15 +21,17 @@ export type SidebarStateProps = {
 };
 
 class SidebarState {
+	readonly props: SidebarStateProps;
 	open = $derived.by(() => this.props.open());
 	openMobile = $state(false);
 	setOpen: SidebarStateProps["setOpen"];
 	#isMobile: IsMobile;
-	stateAttr = $derived.by(() => (this.open ? "expanded" : "collapsed"));
+	state = $derived.by(() => (this.open ? "expanded" : "collapsed"));
 
-	constructor(readonly props: SidebarStateProps) {
+	constructor(props: SidebarStateProps) {
 		this.setOpen = props.setOpen;
 		this.#isMobile = new IsMobile();
+		this.props = props;
 	}
 
 	// Convenience getter for checking if the sidebar is mobile
@@ -42,7 +44,7 @@ class SidebarState {
 	handleShortcutKeydown = (e: KeyboardEvent) => {
 		if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault();
-			this.toggleSidebar();
+			this.toggle();
 		}
 	};
 
@@ -50,11 +52,11 @@ class SidebarState {
 		this.openMobile = value;
 	};
 
-	toggleSidebar() {
+	toggle = () => {
 		return this.#isMobile.current
 			? (this.openMobile = !this.openMobile)
 			: this.setOpen(!this.open);
-	}
+	};
 }
 
 const SYMBOL_KEY = "scn-sidebar";

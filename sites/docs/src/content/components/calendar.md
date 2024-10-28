@@ -9,7 +9,7 @@ links:
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout, PMAddComp, PMInstall } from '$lib/components/docs';
+    import { ComponentPreview, Callout, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="calendar-demo">
@@ -26,17 +26,22 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="calendar" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui` and `@internationalized/date`:
 
-1. Install `bits-ui` and `@internationalized/date`:
-
+</Step>
 <PMInstall command="bits-ui @internationalized/date -D" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+<Step> Copy and paste the component source files linked at the top of this page into your project. </Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Date Picker
 
