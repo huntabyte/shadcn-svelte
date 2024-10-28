@@ -54,7 +54,7 @@
 		securityLevels.find((l) => l.value === securityLevel) ?? "Select level"
 	);
 	let area = $state(areas[1].value);
-	const areaLabel = $derived(areas.find((a) => a.value === area) ?? "Select");
+	const areaLabel = $derived(areas.find((a) => a.value === area)?.label ?? "Select");
 </script>
 
 <Card.Root>
