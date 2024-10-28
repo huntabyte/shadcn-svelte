@@ -51,7 +51,7 @@
 	);
 
 	const monthLabel = $derived(
-		monthOptions.find((m) => m.value === defaultMonth?.value) ?? "Select a month"
+		monthOptions.find((m) => m.value === defaultMonth?.value)?.label ?? "Select a month"
 	);
 </script>
 
