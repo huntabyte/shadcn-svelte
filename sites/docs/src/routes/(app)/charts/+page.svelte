@@ -154,7 +154,7 @@
 				<ChartDisplay status="Blocked (External)" name="chart-bar-stacked">
 					<ChartBarStacked />
 				</ChartDisplay>
-				<ChartDisplay name="chart-bar-active">
+				<ChartDisplay name="chart-bar-active" status="Done">
 					<ChartBarActive />
 				</ChartDisplay>
 				<ChartDisplay status="Blocked (External)" name="chart-bar-negative">
