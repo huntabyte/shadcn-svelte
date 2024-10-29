@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 ```
 
@@ -55,7 +55,7 @@ You can convert the `<button>` into an `<a>` element by simply passing an `href`
 
 ```svelte
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <Button href="/dashboard">Dashboard</Button>

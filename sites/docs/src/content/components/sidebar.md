@@ -148,7 +148,7 @@ A `Sidebar` component is composed of the following parts:
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
 <script lang="ts">
-  import * as Sidebar from "$lib/components/ui/sidebar";
+  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 </script>
 
 <Sidebar.Root>

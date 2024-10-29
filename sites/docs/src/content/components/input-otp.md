@@ -45,7 +45,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp";
+  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
 </script>
 
 <InputOTP.Root maxlength={6}>
@@ -79,7 +79,7 @@ Use the `pattern` prop to define a custom pattern for the OTP input.
 
 ```svelte showLineNumbers {3,6}
 <script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp";
+  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
   import { REGEXP_ONLY_DIGITS_AND_CHARS } from "bits-ui";
 </script>
 
@@ -100,7 +100,7 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 
 ```svelte showLineNumbers
 <script lang="ts">
-  import * as InputOTP from "$lib/components/ui/input-otp";
+  import * as InputOTP from "$lib/components/ui/input-otp/index.js";
 </script>
 
 <InputOTP.Root maxlength={4}>

@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Sheet from "$lib/components/ui/sheet";
+  import * as Sheet from "$lib/components/ui/sheet/index.js";
 </script>
 
 <Sheet.Root>

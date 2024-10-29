@@ -40,7 +40,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>

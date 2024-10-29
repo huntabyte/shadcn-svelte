@@ -33,9 +33,9 @@ See installations instructions for the [Popover](/docs/components/popover#instal
     getLocalTimeZone,
   } from "@internationalized/date";
   import { cn } from "$lib/utils.js";
-  import { Button } from "$lib/components/ui/button";
-  import { Calendar } from "$lib/components/ui/calendar";
-  import * as Popover from "$lib/components/ui/popover";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import { Calendar } from "$lib/components/ui/calendar/index.js";
+  import * as Popover from "$lib/components/ui/popover/index.js";
 
   const df = new DateFormatter("en-US", {
     dateStyle: "long",
