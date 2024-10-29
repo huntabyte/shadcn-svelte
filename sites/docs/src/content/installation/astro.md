@@ -27,12 +27,12 @@ You will be asked a few questions to configure your project:
 ./your-app-name
 - How would you like to start your new project?
 Choose a starter template (or Empty)
-- Install dependencies?
-Yes
 - Do you plan to write TypeScript?
 Yes
 - How strict should TypeScript be?
 Strict
+- Install dependencies?
+Yes
 - Initialize a new git repository? (optional)
 Yes/No
 ```
