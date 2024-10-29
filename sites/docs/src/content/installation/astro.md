@@ -57,7 +57,7 @@ Add Tailwind CSS using the Astro CLI:
 
 <Callout className="mt-4">
 
-Answer `Yes` to all the question prompted by the CLI when installing Svelte.
+Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS.
 
 </Callout>
 
