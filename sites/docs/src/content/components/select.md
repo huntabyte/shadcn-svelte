@@ -45,9 +45,7 @@ Install `bits-ui`:
 </script>
 
 <Select.Root>
-  <Select.Trigger class="w-[180px]">
-    <Select.Value placeholder="Theme" />
-  </Select.Trigger>
+  <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
     <Select.Item value="light">Light</Select.Item>
     <Select.Item value="dark">Dark</Select.Item>
