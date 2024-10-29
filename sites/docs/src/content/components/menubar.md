@@ -39,7 +39,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Menubar from "$lib/components/ui/menubar";
+  import * as Menubar from "$lib/components/ui/menubar/index.js";
 </script>
 
 <Menubar.Root>

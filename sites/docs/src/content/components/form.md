@@ -110,8 +110,8 @@ For this example, we'll be passing the `form` returned from the load function as
 
 ```svelte title="src/routes/settings/settings-form.svelte" showLineNumbers
 <script lang="ts">
-  import * as Form from "$lib/components/ui/form";
-  import { Input } from "$lib/components/ui/input";
+  import * as Form from "$lib/components/ui/form/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
   import { formSchema, type FormSchema } from "./schema";
   import {
     type SuperValidated,

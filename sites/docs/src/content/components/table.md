@@ -33,7 +33,7 @@ links:
 
 ```svelte
 <script lang="ts">
-  import * as Table from "$lib/components/ui/table";
+  import * as Table from "$lib/components/ui/table/index.js";
 </script>
 ```
 

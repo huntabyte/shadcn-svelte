@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import { Separator } from "$lib/components/ui/separator";
+  import { Separator } from "$lib/components/ui/separator/index.js";
 </script>
 
 <Separator />

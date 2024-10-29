@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as ContextMenu from "$lib/components/ui/context-menu";
+  import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
 </script>
 
 <ContextMenu.Root>

@@ -33,7 +33,7 @@ links:
 
 ```svelte
 <script lang="ts">
-  import { Skeleton } from "$lib/components/ui/skeleton";
+  import { Skeleton } from "$lib/components/ui/skeleton/index.js";
 </script>
 ```
 

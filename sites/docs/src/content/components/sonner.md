@@ -50,7 +50,7 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 
 ```svelte title="+layout.svelte" {2,5}
 <script lang="ts">
-  import { Toaster } from "$lib/components/ui/sonner";
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
   let { children } = $props();
 </script>
 
@@ -76,7 +76,7 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 ```svelte
 <script lang="ts">
   import { toast } from "svelte-sonner";
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <Button onclick={() => toast("Hello world")}>Show toast</Button>

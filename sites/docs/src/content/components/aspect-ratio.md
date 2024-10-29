@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import { AspectRatio } from "$lib/components/ui/aspect-ratio";
+  import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 </script>
 
 <div class="w-[450px]">
