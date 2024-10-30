@@ -61,7 +61,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
     {/snippet}
   </Popover.Trigger>
   <Popover.Content class="w-auto p-0">
-    <Calendar bind:value type="single" />
+    <Calendar bind:value type="single" initialFocus />
   </Popover.Content>
 </Popover.Root>
 ```
