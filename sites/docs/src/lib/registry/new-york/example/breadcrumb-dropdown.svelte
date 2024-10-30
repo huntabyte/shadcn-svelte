@@ -17,7 +17,7 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger class="flex items-center gap-1">
 					Components
-					<ChevronDown tabindex="-1" />
+					<ChevronDown tabindex={-1} />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">
 					<DropdownMenu.Item>Documentation</DropdownMenu.Item>
@@ -27,7 +27,7 @@
 			</DropdownMenu.Root>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<Slash tabindex="-1" />
+			<Slash tabindex={-1} />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<Breadcrumb.Page>Breadcrumb</Breadcrumb.Page>
