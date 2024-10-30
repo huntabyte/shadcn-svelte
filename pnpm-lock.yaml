@@ -193,8 +193,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       formsnap:
-        specifier: 2.0.0-next.0
-        version: 2.0.0-next.0(svelte@5.0.4)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(@types/json-schema@7.0.15)(svelte@5.0.4))
+        specifier: 2.0.0-next.1
+        version: 2.0.0-next.1(svelte@5.0.4)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(@types/json-schema@7.0.15)(svelte@5.0.4))
       hast-util-to-html:
         specifier: ^9.0.1
         version: 9.0.1
@@ -3346,11 +3346,11 @@ packages:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
     engines: {node: '>=14'}
 
-  formsnap@2.0.0-next.0:
-    resolution: {integrity: sha512-cxZNwFeHv6wguYH1BbaX0hPpl7xBDVqk0JEEtUTukBdlXK7DMrSLdBMUnruKGtChcDcjGZKQrMxxCq9Xw3PpjQ==}
+  formsnap@2.0.0-next.1:
+    resolution: {integrity: sha512-ha8r9eMmsGEGMY+ljV3FEyTtB72E7dt95y9HHUbCcaDnjbz3Q6n00BHLz7dfBZ9rqyaMeIO200EmP1IcYMExeg==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0-next.1
+      svelte: ^5.0.0
       sveltekit-superforms: ^2.19.0
 
   fraction.js@4.3.7:
@@ -9382,7 +9382,7 @@ snapshots:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
 
-  formsnap@2.0.0-next.0(svelte@5.0.4)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(@types/json-schema@7.0.15)(svelte@5.0.4)):
+  formsnap@2.0.0-next.1(svelte@5.0.4)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.7.2(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.0.4)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(@types/json-schema@7.0.15)(svelte@5.0.4)):
     dependencies:
       svelte: 5.0.4
       svelte-toolbelt: 0.4.4(svelte@5.0.4)
