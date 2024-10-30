@@ -20,7 +20,7 @@ Use the SvelteKit CLI to create a new project.
 
 ### Add TailwindCSS
 
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
+Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv add tailwindcss" />
 
