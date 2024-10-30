@@ -48,7 +48,7 @@ If you wish to opt out of Dark Mode support, you can uninstall `mode-watcher` an
 
 Note: Make sure you are adding the import from the path `"$lib/components/ui/sonner"` not `"svelte-sonner"`.
 
-```svelte title="+layout.svelte" {2,5}
+```svelte title="+layout.svelte" {2,6}
 <script lang="ts">
   import { Toaster } from "$lib/components/ui/sonner/index.js";
   let { children } = $props();
