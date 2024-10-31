@@ -210,7 +210,7 @@ Next, we'll create a `<DataTable />` component to render our table.
         </Table.Row>
       {:else}
         <Table.Row>
-          <Table.Cell colSpan={columns.length} class="h-24 text-center">
+          <Table.Cell colspan={columns.length} class="h-24 text-center">
             No results.
           </Table.Cell>
         </Table.Row>
