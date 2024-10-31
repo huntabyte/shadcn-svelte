@@ -836,7 +836,7 @@ The `Sidebar.MenuBadge` component is used to render a badge within a `Sidebar.Me
 ```svelte showLineNumbers
 <Sidebar.MenuItem>
   <Sidebar.MenuButton />
-  <Sidebar.MenuBadge>24</SidebarMenuBadge>
+  <Sidebar.MenuBadge>24</Sidebar.MenuBadge>
 </Sidebar.MenuItem>
 ```
 
