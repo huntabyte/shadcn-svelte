@@ -149,8 +149,10 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
+	const utilsIndex = selectedComponents.findIndex((item) => item.name === "utils");
+
 	// `update utils` - update the utils.(ts|js) file
-	if (selectedComponents.find((item) => item.name === "utils")) {
+	if (utilsIndex !== -1) {
 		const extension = config.typescript ? ".ts" : ".js";
 		const utilsPath = config.resolvedPaths.utils + extension;
 
@@ -160,6 +162,12 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
 		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
+
+		// remove utils so that it isn't fetched from the registry
+		selectedComponents = [
+			...selectedComponents.slice(0, utilsIndex),
+			...selectedComponents.slice(utilsIndex + 1),
+		];
 	}
 
 	const tree = await registry.resolveTree({
