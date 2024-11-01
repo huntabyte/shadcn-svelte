@@ -15,7 +15,7 @@
 	<ChevronLeft class="size-4" />
 {/snippet}
 
-<RangeCalendarPrimitive.NextButton
+<RangeCalendarPrimitive.PrevButton
 	bind:ref
 	class={cn(
 		buttonVariants({ variant: "outline" }),
