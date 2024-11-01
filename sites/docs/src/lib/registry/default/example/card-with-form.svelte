@@ -27,7 +27,7 @@
 	let framework = $state("");
 
 	const selectedFramework = $derived(
-		frameworks.find((f) => f.value === framework) ?? "Select a framework"
+		frameworks.find((f) => f.value === framework)?.label ?? "Select a framework"
 	);
 </script>
 
