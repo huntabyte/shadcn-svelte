@@ -60,7 +60,7 @@ describe("getItemTargetPath", () => {
 		).toEqual(null);
 	});
 
-	it("disallow overrides for `registry:ui`", async () => {
+	it("disallows overrides for `registry:ui`", async () => {
 		expect(
 			getItemTargetPath(
 				config,
@@ -78,7 +78,7 @@ describe("getItemTargetPath", () => {
 		).toEqual("src\\lib\\components\\ui\\label");
 	});
 
-	it("resolves itemTargetPath", async () => {
+	it("resolves item target path", async () => {
 		expect(
 			getItemTargetPath(config, {
 				name: "label",
