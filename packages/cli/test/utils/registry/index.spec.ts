@@ -32,37 +32,31 @@ const config = {
 describe("getItemTargetPath", () => {
 	it("returns null if invalid type missing `:`", async () => {
 		expect(
-			getItemTargetPath(
-				config,
-				{
-					name: "label",
-					dependencies: ["bits-ui@next"],
-					registryDependencies: [],
-					files: [
-						//... snip this since it doesn't matter
-					],
-					// @ts-expect-error Comes from over the wire in prod
-					type: "registry",
-				}
-			)
+			getItemTargetPath(config, {
+				name: "label",
+				dependencies: ["bits-ui@next"],
+				registryDependencies: [],
+				files: [
+					//... snip this since it doesn't matter
+				],
+				// @ts-expect-error Comes from over the wire in prod
+				type: "registry",
+			})
 		).toEqual(null);
 	});
 
 	it("returns null if `item.type` has invalid `:<type>`", async () => {
 		expect(
-			getItemTargetPath(
-				config,
-				{
-					name: "label",
-					dependencies: ["bits-ui@next"],
-					registryDependencies: [],
-					files: [
-						//... snip this since it doesn't matter
-					],
-					// @ts-expect-error Comes from over the wire in prod
-					type: "registry:foo",
-				}
-			)
+			getItemTargetPath(config, {
+				name: "label",
+				dependencies: ["bits-ui@next"],
+				registryDependencies: [],
+				files: [
+					//... snip this since it doesn't matter
+				],
+				// @ts-expect-error Comes from over the wire in prod
+				type: "registry:foo",
+			})
 		).toEqual(null);
 	});
 
