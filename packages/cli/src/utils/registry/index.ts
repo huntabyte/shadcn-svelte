@@ -1,5 +1,6 @@
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
+import path from "node:path";
 import * as v from "valibot";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
@@ -135,7 +136,7 @@ export function getItemTargetPath(
 		return null;
 	}
 
-	return config.resolvedPaths[type as keyof typeof config.resolvedPaths];
+	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
 async function fetchRegistry(paths: string[]) {
