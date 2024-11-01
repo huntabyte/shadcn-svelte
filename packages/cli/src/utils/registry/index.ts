@@ -121,7 +121,7 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 
 export function getItemTargetPath(
 	config: Config,
-	item: Pick<v.InferOutput<typeof schemas.registryItemWithContentSchema>, "type">,
+	item: v.InferOutput<typeof schemas.registryItemWithContentSchema>,
 	override?: string
 ) {
 	// Allow overrides for all items but ui.
@@ -132,11 +132,11 @@ export function getItemTargetPath(
 	const [parent, type] = item.type.split(":");
 	if (!parent || !type) return null;
 
-	if (!(parent in config.resolvedPaths)) {
+	if (!(type in config.resolvedPaths)) {
 		return null;
 	}
 
-	return path.join(config.resolvedPaths[parent as keyof typeof config.resolvedPaths], type);
+	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths], item.name);
 }
 
 async function fetchRegistry(paths: string[]) {
