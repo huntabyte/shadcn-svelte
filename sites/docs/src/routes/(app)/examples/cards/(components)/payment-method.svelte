@@ -59,7 +59,7 @@
 	];
 
 	let month = $state("");
-	let monthLabel = $derived(months.find((m) => m.value === month) ?? "Month");
+	let monthLabel = $derived(months.find((m) => m.value === month)?.label ?? "Month");
 	let year = $state("");
 </script>
 
@@ -133,7 +133,7 @@
 				<Label for="year">Year</Label>
 				<Select.Root type="single" bind:value={year}>
 					<Select.Trigger id="year" aria-label="Year">
-						{year ?? "Year"}
+						{year ? year : "Year"}
 					</Select.Trigger>
 					<Select.Content>
 						{#each { length: 10 } as _, i}
