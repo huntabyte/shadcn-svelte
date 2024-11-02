@@ -44,7 +44,7 @@ Install `bits-ui`:
   import * as Select from "$lib/components/ui/select/index.js";
 </script>
 
-<Select.Root>
+<Select.Root type="single">
   <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
     <Select.Item value="light">Light</Select.Item>
