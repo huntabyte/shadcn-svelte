@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import { Progress } from "$lib/components/ui/progress";
+  import { Progress } from "$lib/components/ui/progress/index.js";
 </script>
 
 <Progress value={33} />

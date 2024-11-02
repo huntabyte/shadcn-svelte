@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Tabs from "$lib/components/ui/tabs";
+  import * as Tabs from "$lib/components/ui/tabs/index.js";
 </script>
 
 <Tabs.Root value="account" class="w-[400px]">

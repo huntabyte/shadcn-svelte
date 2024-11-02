@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Pagination from "$lib/components/ui/pagination";
+  import * as Pagination from "$lib/components/ui/pagination/index.js";
 </script>
 
 <Pagination.Root count={100} perPage={10}>

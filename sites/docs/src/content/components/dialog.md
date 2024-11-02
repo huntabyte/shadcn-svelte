@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Dialog from "$lib/components/ui/dialog";
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
 </script>
 
 <Dialog.Root>

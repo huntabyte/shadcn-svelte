@@ -87,6 +87,7 @@
 							<Checkbox
 								{...props}
 								{checked}
+								value={item.id}
 								onCheckedChange={(v) => {
 									if (v) {
 										addItem(item.id);
@@ -98,13 +99,6 @@
 							<Form.Label class="text-sm font-normal">
 								{item.label}
 							</Form.Label>
-							<input
-								hidden
-								type="checkbox"
-								name={props.name}
-								value={item.id}
-								{checked}
-							/>
 						{/snippet}
 					</Form.Control>
 				</div>

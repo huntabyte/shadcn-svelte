@@ -40,7 +40,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>
@@ -75,3 +75,10 @@ Install `bits-ui`:
 <div></div>
 
 </ComponentPreview>
+
+## Changelog
+
+### 2024-10-30 Classes for DropdownMenu.SubTrigger
+
+- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<DropdownMenu.SubTrigger>` to automatically style icon inside the dropdown menu sub trigger.
+- Removed `size-4` from the icon inside the `<DropdownMenu.SubTrigger>` since it is now handled by the parent `<DropdownMenu.SubTrigger>`.

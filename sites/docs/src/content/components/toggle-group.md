@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as ToggleGroup from "$lib/components/ui/toggle-group";
+  import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root type="single">

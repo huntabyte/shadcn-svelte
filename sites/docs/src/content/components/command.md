@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Command from "$lib/components/ui/command";
+  import * as Command from "$lib/components/ui/command/index.js";
 </script>
 
 <Command.Root>
@@ -77,7 +77,7 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
 
 ```svelte
 <script lang="ts">
-  import * as Command from "$lib/components/ui/command";
+  import * as Command from "$lib/components/ui/command/index.js";
   import { onMount } from "svelte";
 
   let open = $state(false);
@@ -104,3 +104,9 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
   </Command.List>
 </Command.Dialog>
 ```
+
+## Changelog
+
+### 2024-10-30 Classes for icons
+
+- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.

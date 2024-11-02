@@ -274,8 +274,6 @@ You'll want to create a `cn` helper to make it easier to conditionally add and m
 ```ts title="src/lib/utils.ts"
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { cubicOut } from "svelte/easing";
-import type { TransitionConfig } from "svelte/transition";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -14,7 +14,7 @@ description: How to setup shadcn-svelte in a Vite project.
 
 ### Add TailwindCSS
 
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
+Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv add tailwindcss" />
 
@@ -81,7 +81,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```svelte {2,5} showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <Button>Click me</Button>

@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Tooltip from "$lib/components/ui/tooltip";
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 </script>
 
 <Tooltip.Provider>

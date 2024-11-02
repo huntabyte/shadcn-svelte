@@ -87,6 +87,7 @@
 							<Checkbox
 								{...props}
 								{checked}
+								value={item.id}
 								onCheckedChange={(v) => {
 									if (v) {
 										addItem(item.id);

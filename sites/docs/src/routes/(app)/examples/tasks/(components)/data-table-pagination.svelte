@@ -23,6 +23,7 @@
 		<div class="flex items-center space-x-2">
 			<p class="text-sm font-medium">Rows per page</p>
 			<Select.Root
+				allowDeselect={false}
 				type="single"
 				value={`${table.getState().pagination.pageSize}`}
 				onValueChange={(value) => {

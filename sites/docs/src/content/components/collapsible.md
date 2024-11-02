@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Collapsible from "$lib/components/ui/collapsible";
+  import * as Collapsible from "$lib/components/ui/collapsible/index.js";
 </script>
 
 <Collapsible.Root>

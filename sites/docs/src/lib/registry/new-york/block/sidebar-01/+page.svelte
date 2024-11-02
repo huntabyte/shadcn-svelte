@@ -2,7 +2,7 @@
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import AppSidebar from "./components/app-sidebar.svelte";
+	import AppSidebar from "$lib/registry/new-york/block/sidebar-01/components/app-sidebar.svelte";
 </script>
 
 <Sidebar.Provider>

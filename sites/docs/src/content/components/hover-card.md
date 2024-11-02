@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as HoverCard from "$lib/components/ui/hover-card";
+  import * as HoverCard from "$lib/components/ui/hover-card/index.js";
 </script>
 
 <HoverCard.Root>

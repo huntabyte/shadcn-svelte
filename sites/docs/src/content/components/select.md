@@ -41,13 +41,11 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import * as Select from "$lib/components/ui/select";
+  import * as Select from "$lib/components/ui/select/index.js";
 </script>
 
 <Select.Root>
-  <Select.Trigger class="w-[180px]">
-    <Select.Value placeholder="Theme" />
-  </Select.Trigger>
+  <Select.Trigger class="w-[180px]"></Select.Trigger>
   <Select.Content>
     <Select.Item value="light">Light</Select.Item>
     <Select.Item value="dark">Dark</Select.Item>

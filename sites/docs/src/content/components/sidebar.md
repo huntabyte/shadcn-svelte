@@ -148,7 +148,7 @@ A `Sidebar` component is composed of the following parts:
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
 <script lang="ts">
-  import * as Sidebar from "$lib/components/ui/sidebar";
+  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 </script>
 
 <Sidebar.Root>
@@ -836,7 +836,7 @@ The `Sidebar.MenuBadge` component is used to render a badge within a `Sidebar.Me
 ```svelte showLineNumbers
 <Sidebar.MenuItem>
   <Sidebar.MenuButton />
-  <Sidebar.MenuBadge>24</SidebarMenuBadge>
+  <Sidebar.MenuBadge>24</Sidebar.MenuBadge>
 </Sidebar.MenuItem>
 ```
 

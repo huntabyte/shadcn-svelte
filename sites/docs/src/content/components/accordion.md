@@ -52,7 +52,7 @@ Install `bits-ui`
 
 ```svelte
 <script lang="ts">
-  import * as Accordion from "$lib/components/ui/accordion";
+  import * as Accordion from "$lib/components/ui/accordion/index.js";
 </script>
 
 <Accordion.Root type="single">

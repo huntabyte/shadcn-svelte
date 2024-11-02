@@ -41,7 +41,7 @@ Install `bits-ui`:
 
 ```svelte
 <script lang="ts">
-  import { Slider } from "$lib/components/ui/slider";
+  import { Slider } from "$lib/components/ui/slider/index.js";
 </script>
 
 <Slider value={[33]} max={100} step={1} />

@@ -51,10 +51,10 @@
 	const id = useId("report-issue");
 	let securityLevel = $state(securityLevels[1].value);
 	const securityLevelLabel = $derived(
-		securityLevels.find((l) => l.value === securityLevel) ?? "Select level"
+		securityLevels.find((l) => l.value === securityLevel)?.label ?? "Select level"
 	);
 	let area = $state(areas[1].value);
-	const areaLabel = $derived(areas.find((a) => a.value === area) ?? "Select");
+	const areaLabel = $derived(areas.find((a) => a.value === area)?.label ?? "Select");
 </script>
 
 <Card.Root>

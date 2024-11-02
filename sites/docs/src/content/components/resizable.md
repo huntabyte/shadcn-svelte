@@ -44,7 +44,7 @@ Install `paneforge`:
 
 ```svelte
 <script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable";
+  import * as Resizable from "$lib/components/ui/resizable/index.js";
 </script>
 
 <Resizable.PaneGroup direction="horizontal">
@@ -68,7 +68,7 @@ Use the `direction` prop to set the direction of the resizable panels.
 
 ```svelte showLineNumbers {5}
 <script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable";
+  import * as Resizable from "$lib/components/ui/resizable/index.js";
 </script>
 
 <Resizable.PaneGroup direction="vertical">
@@ -90,7 +90,7 @@ You can set or hide the handle by using the `withHandle` prop on the `ResizableH
 
 ```svelte showLineNumbers {7}
 <script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable";
+  import * as Resizable from "$lib/components/ui/resizable/index.js";
 </script>
 
 <Resizable.PaneGroup direction="vertical">
