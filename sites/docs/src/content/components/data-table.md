@@ -3,7 +3,7 @@ title: Data Table
 description: Powerful table and datagrids built using TanStack Table.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/data-table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/default/ui/data-table
   doc: https://tanstack.com/table/v8/docs/introduction
 ---
 
