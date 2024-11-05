@@ -29,7 +29,7 @@ Note: This works best for projects that have not changed the contents of `tailwi
 
 ### Update `components.json`
 
-Add the `registry` to the root object, and add `hooks` and `ui` keys  under `aliases`.
+Add the `registry` to the root object, and add `hooks` and `ui` keys under `aliases`.
 
 ```json {2} {13} {16}
 {
