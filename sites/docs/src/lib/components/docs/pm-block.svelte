@@ -5,9 +5,10 @@
 		getPackageManager,
 		getPackageManagerInstallCmd,
 		getPackageManagerScriptCmd,
+		getPackageManagerUninstallCmd,
 	} from "$lib/stores/package-manager.js";
 
-	type PMBlockType = "execute" | "create" | "install";
+	type PMBlockType = "execute" | "create" | "install" | "remove";
 
 	export let type: PMBlockType;
 	export let command: string = "";
@@ -24,6 +25,11 @@
 		return getPackageManagerInstallCmd($selectedPackageManager);
 	}
 
+	function getUninstallCommand() {
+		if (command === "") return "install";
+		return getPackageManagerUninstallCmd($selectedPackageManager);
+	}
+
 	let cmdStart = getCmd(type, $selectedPackageManager);
 
 	$: cmdStart = getCmd(type, $selectedPackageManager);
@@ -34,9 +40,15 @@
 		<code data-language="bash" data-theme="github-dark" style="display: grid;">
 			<span data-line>
 				<span style="color:#B392F0;font-weight:bold">{`${cmdStart}`}</span>
-				{#if type === "install" || type === "create"}
+				{#if type === "install" || type === "create" || type == "remove"}
 					<span style="color:#9ECBFF">
-						{`${type === "install" ? getInstallCommand() : "create"}${command === "" ? "" : ` `}`}
+						{#if type === "install"}
+							{`${getInstallCommand()} `}
+						{:else if type == "create"}
+							{"create "}
+						{:else if type == "remove"}
+							{`${getUninstallCommand()} `}
+						{/if}
 					</span>
 				{/if}
 				{#if command !== ""}

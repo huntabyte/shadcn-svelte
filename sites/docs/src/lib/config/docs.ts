@@ -87,6 +87,13 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Migration",
+					label: "v5",
+					// if there is a svelte 6 migration etc point to /docs/migration
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
+				{
 					title: "About",
 					href: "/docs/about",
 					items: [],

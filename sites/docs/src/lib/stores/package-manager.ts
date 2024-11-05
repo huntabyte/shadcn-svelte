@@ -43,6 +43,17 @@ export function getPackageManagerInstallCmd(pm: PackageManager): string {
 	return packageManagerToInstallCmd[pm];
 }
 
+const packageManagerToUninstallCmd: Record<PackageManager, string> = {
+	npm: "uninstall",
+	yarn: "remove",
+	pnpm: "remove",
+	bun: "remove",
+};
+
+export function getPackageManagerUninstallCmd(pm: PackageManager): string {
+	return packageManagerToUninstallCmd[pm];
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPackageManager(value: any): value is PackageManager {
 	return packageManagers.includes(value);
