@@ -149,6 +149,6 @@ In Svelte 5 we have changed some dependencies.
 
 ### Remove `svelte-headless-table`
 
-We got rid of `svelte-headless-table` in favor of `@tanstack/table-core`
+`svelte-headless-table` has been removed in favor of `@tanstack/table-core`.
 
 <PMRemove command="svelte-headless-table"/>
