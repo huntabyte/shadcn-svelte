@@ -31,7 +31,7 @@ Note: This works best for projects that have not changed the contents of `tailwi
 
 Add the `registry` to the root object, and add `hooks` and `ui` keys under `aliases`.
 
-```json {2} {13} {16}
+```json {2} {12-13} {16}
 {
   "$schema": "https://next.shadcn-svelte.com/schema.json",
   "style": "default",
