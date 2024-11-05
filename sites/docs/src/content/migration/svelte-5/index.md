@@ -7,7 +7,7 @@ description: How to migrate to Svelte 5 from Svelte 4.
 
 1. Ensure you have read up on the changes from Svelte 4 to Svelte 5. Svelte provides a comprehensive guide for this on their [website](https://svelte.dev/docs/svelte/v5-migration-guide).
 2. Commit any pending changes so that you don't lose any code.
-3. Understand which of your components have custom behavior/styles so that you can reimplement that yourself.
+3. Determine which of your components have custom behavior/styles so you can reimplement those after updating.
 
 <script>
     import { Steps, PMExecute, PMInstall, PMRemove } from "$lib/components/docs";
