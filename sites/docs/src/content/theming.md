@@ -152,24 +152,24 @@ It's recommended to use [HSL colors](https://www.smashingmagazine.com/2021/07/hs
 
 See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information on using `rgb`, `rgba` or `hsl` colors.
 
-
-
 ## Integrating with other theming libraries
 
 ### Daisy UI
 
-To use Shadcn components with daisy ui you just need to change the variables in the tailwind config to match daisyui ones, note that daisy ui uses *oklch*
+To use Shadcn components with daisy ui you just need to change the variables in the tailwind config to match daisyui ones, note that daisy ui uses _oklch_
 
 You should be able to delete the entire postcss file and just change the variables in your tailwind config
 
 #### Usefull Links
- - [Theme Default Variables](https://github.com/saadeghi/daisyui/blob/master/src/theming/themeDefaults.js)
- - [Color Variables](https://github.com/saadeghi/daisyui/blob/master/src/theming/colorNames.js)
- - [Official Docs](https://daisyui.com/)
 
- - [Check the Demo](https://shad-daisy.vercel.app/)
+- [Theme Default Variables](https://github.com/saadeghi/daisyui/blob/master/src/theming/themeDefaults.js)
+- [Color Variables](https://github.com/saadeghi/daisyui/blob/master/src/theming/colorNames.js)
+- [Official Docs](https://daisyui.com/)
+
+- [Check the Demo](https://shad-daisy.vercel.app/)
 
 Example
+
 ```js title="tailwind.config.js"
 import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
