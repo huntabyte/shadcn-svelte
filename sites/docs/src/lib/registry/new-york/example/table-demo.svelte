@@ -67,4 +67,10 @@
 			</Table.Row>
 		{/each}
 	</Table.Body>
+	<Table.Footer>
+		<Table.Row>
+			<Table.Cell colspan={3}>Total</Table.Cell>
+			<Table.Cell class="text-right">$2,500.00</Table.Cell>
+		</Table.Row>
+	</Table.Footer>
 </Table.Root>
