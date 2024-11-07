@@ -1,5 +1,5 @@
 ---
-"shadcn-svelte": minor
+"shadcn-svelte": patch
 ---
 
-fix: Update command now updates component code.
+fix: `update` command now properly updates components

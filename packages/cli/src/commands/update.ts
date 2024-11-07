@@ -151,15 +151,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 	const tasks: p.Task[] = [];
 
-	const utilsIndex = selectedComponents.findIndex((item) => item.name === "utils");
-
+	const utils = selectedComponents.find((item) => item.name === "utils");
 	// `update utils` - update the utils.(ts|js) file
-	if (utilsIndex !== -1) {
+	if (utils) {
 		// remove utils so that it isn't fetched from the registry
-		selectedComponents = [
-			...selectedComponents.slice(0, utilsIndex),
-			...selectedComponents.slice(utilsIndex + 1),
-		];
+		selectedComponents = selectedComponents.filter((item) => item !== utils);
 
 		const extension = config.typescript ? ".ts" : ".js";
 		const utilsPath = config.resolvedPaths.utils + extension;
