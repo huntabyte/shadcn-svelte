@@ -129,12 +129,8 @@ export function getItemTargetPath(
 		return override;
 	}
 
-	const [parent, type] = item.type.split(":");
-	if (!parent || !type) return null;
-
-	if (!(type in config.resolvedPaths)) {
-		return null;
-	}
+	const [, type] = item.type.split(":");
+	if (!type || !(type in config.resolvedPaths)) return null;
 
 	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
