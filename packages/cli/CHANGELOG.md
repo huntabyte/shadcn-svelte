@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 1.0.0-next.1
+
+### Patch Changes
+
+- e29f8f5: fix: Ensure `utils.(js|ts)` is not fetched from the registry on `update` command
+- e29f8f5: fix: `update` command now properly updates components
+
 ## 1.0.0-next.0
 
 ### Major Changes
