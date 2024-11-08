@@ -10,6 +10,7 @@
 
 	type Props = Omit<ButtonProps, "children"> & {
 		isPackageManagerBlock?: boolean;
+		value?: string;
 		copied?: boolean;
 		copyCode?: () => void;
 	};
@@ -17,12 +18,25 @@
 	let {
 		class: className,
 		isPackageManagerBlock = false,
+		value = "",
 		copied = $bindable(false),
 		copyCode = () => {},
 		...restProps
 	}: Props = $props();
 
 	const selectedPackageManager = getPackageManager();
+
+	async function handleCopy() {
+		if (value) {
+			await navigator.clipboard.writeText(value);
+			copied = true;
+			setTimeout(() => {
+				copied = false;
+			}, 2000);
+		} else {
+			copyCode();
+		}
+	}
 </script>
 
 {#if isPackageManagerBlock}
@@ -56,7 +70,7 @@
 					onclick={() => {
 						selectedPackageManager.set(pm);
 						tick().then(() => {
-							copyCode();
+							handleCopy();
 						});
 					}}
 				>
@@ -71,7 +85,7 @@
 		"focus-visible:ring-ring absolute right-4 top-4 z-10 inline-flex h-6 w-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
 		className
 	)}
-	onclick={copyCode}
+	onclick={handleCopy}
 	{...restProps}
 >
 	<span class="sr-only">Copy</span>
