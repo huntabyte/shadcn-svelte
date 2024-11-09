@@ -1,6 +1,4 @@
 <script lang="ts">
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { MediaQuery } from "runed";
 	import * as Pagination from "$lib/registry/new-york/ui/pagination/index.js";
 
