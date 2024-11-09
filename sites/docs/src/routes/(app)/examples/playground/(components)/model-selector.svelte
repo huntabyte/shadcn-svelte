@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Model, ModelType } from "../(data)/models.js";
@@ -78,7 +78,7 @@
 			id={triggerId}
 		>
 			{selectedValue}
-			<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+			<ChevronsUpDown class="opacity-50" />
 		</Popover.Trigger>
 		<Popover.Content class="w-[250px] p-0" onInteractOutside={onPopoverOutsideClick}>
 			<HoverCard.Root open={hoverCardIsOpen} openDelay={0}>

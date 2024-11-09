@@ -24,7 +24,7 @@
 			!value && "text-muted-foreground"
 		)}
 	>
-		<CalendarIcon class="mr-2 size-4" />
+		<CalendarIcon />
 		{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 	</Popover.Trigger>
 	<Popover.Content bind:ref={contentRef} class="w-auto p-0">

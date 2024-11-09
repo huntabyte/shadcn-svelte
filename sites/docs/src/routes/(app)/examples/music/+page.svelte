@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
 	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
@@ -34,7 +34,7 @@
 								</Tabs.List>
 								<div class="ml-auto mr-4">
 									<Button>
-										<PlusCircled class="mr-2 size-4" />
+										<CirclePlus />
 										Add music
 									</Button>
 								</div>

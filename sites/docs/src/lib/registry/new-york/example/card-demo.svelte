@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Bell from "svelte-radix/Bell.svelte";
-	import Check from "svelte-radix/Check.svelte";
+	import BellRing from "lucide-svelte/icons/bell-ring";
+	import Check from "lucide-svelte/icons/check";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
@@ -28,7 +28,7 @@
 	</Card.Header>
 	<Card.Content class="grid gap-4">
 		<div class="flex items-center space-x-4 rounded-md border p-4">
-			<Bell />
+			<BellRing />
 			<div class="flex-1 space-y-1">
 				<p class="text-sm font-medium leading-none">Push Notifications</p>
 				<p class="text-muted-foreground text-sm">Send notifications to device.</p>
@@ -38,7 +38,7 @@
 		<div>
 			{#each notifications as notification, idx (idx)}
 				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-					<span class="flex size-4 translate-y-1 rounded-full bg-sky-500"></span>
+					<span class="flex size-2 translate-y-1 rounded-full bg-sky-500"></span>
 					<div class="space-y-1">
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
@@ -53,7 +53,7 @@
 	</Card.Content>
 	<Card.Footer>
 		<Button class="w-full">
-			<Check class="mr-2 size-4" /> Mark all as read
+			<Check /> Mark all as read
 		</Button>
 	</Card.Footer>
 </Card.Root>

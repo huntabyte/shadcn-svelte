@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import Check from "svelte-radix/Check.svelte";
-	import Minus from "svelte-radix/Minus.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import Minus from "lucide-svelte/icons/minus";
 	import { cn } from "$lib/utils.js";
 	import type { Snippet } from "svelte";
 

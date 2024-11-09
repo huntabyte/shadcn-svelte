@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Reload from "svelte-radix/Reload.svelte";
+	import LoaderCircle from "lucide-svelte/icons/loader-circle";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 
 <Button disabled>
-	<Reload class="mr-2 size-4 animate-spin" />
+	<LoaderCircle class="animate-spin" />
 	Please wait
 </Button>

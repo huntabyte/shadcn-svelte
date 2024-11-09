@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Preset } from "../(data)/presets.js";
@@ -43,7 +43,7 @@
 		id={triggerId}
 	>
 		{selectedValue}
-		<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+		<ChevronsUpDown class="opacity-50" />
 	</Popover.Trigger>
 	<Popover.Content class="w-full p-0 md:w-[200px] lg:w-[300px]">
 		<Command.Root>
@@ -62,10 +62,7 @@
 						>
 							{preset.name}
 							<Check
-								class={cn(
-									"ml-auto size-4",
-									value === preset.name ? "opacity-100" : "opacity-0"
-								)}
+								class={cn(value === preset.name ? "opacity-100" : "opacity-0")}
 							/>
 						</Command.Item>
 					{/each}

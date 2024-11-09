@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Underline from "svelte-radix/Underline.svelte";
+	import Underline from "lucide-svelte/icons/underline";
 	import { Toggle } from "$lib/registry/new-york/ui/toggle/index.js";
 </script>
 
 <Toggle aria-label="Toggle underline" disabled>
-	<Underline class="size-4" />
+	<Underline />
 </Toggle>

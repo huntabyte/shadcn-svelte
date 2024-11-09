@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import InfoCircled from "svelte-radix/InfoCircled.svelte";
-	import Moon from "svelte-radix/Moon.svelte";
-	import Reset from "svelte-radix/Reset.svelte";
-	import Sun from "svelte-radix/Sun.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import CircleHelp from "lucide-svelte/icons/circle-help";
+	import Moon from "lucide-svelte/icons/moon";
+	import Repeat from "lucide-svelte/icons/repeat";
+	import Sun from "lucide-svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -31,7 +31,7 @@
 				$config.theme = "zinc";
 			}}
 		>
-			<Reset />
+			<Repeat />
 			<span class="sr-only"> Reset </span>
 		</Button>
 	</div>
@@ -41,7 +41,7 @@
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
 					<Popover.Trigger>
-						<InfoCircled class="ml-1 size-3" />
+						<CircleHelp class="ml-1 size-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content

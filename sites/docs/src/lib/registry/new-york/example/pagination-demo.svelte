@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
-	import ChevronRight from "svelte-radix/ChevronRight.svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import { MediaQuery } from "runed";
 	import * as Pagination from "$lib/registry/new-york/ui/pagination/index.js";
 
@@ -15,10 +15,7 @@
 	{#snippet children({ pages, currentPage })}
 		<Pagination.Content>
 			<Pagination.Item>
-				<Pagination.PrevButton>
-					<ChevronLeft class="size-4" />
-					<span class="hidden sm:block">Previous</span>
-				</Pagination.PrevButton>
+				<Pagination.PrevButton />
 			</Pagination.Item>
 			{#each pages as page (page.key)}
 				{#if page.type === "ellipsis"}
@@ -34,10 +31,7 @@
 				{/if}
 			{/each}
 			<Pagination.Item>
-				<Pagination.NextButton>
-					<span class="hidden sm:block">Next</span>
-					<ChevronRight class="size-4" />
-				</Pagination.NextButton>
+				<Pagination.NextButton />
 			</Pagination.Item>
 		</Pagination.Content>
 	{/snippet}
