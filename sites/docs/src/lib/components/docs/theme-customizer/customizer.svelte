@@ -58,12 +58,11 @@
 							more.
 						</p>
 						<p>
-							The <span class="font-medium">Default</span> style has larger inputs, uses
-							lucide-svelte for icons.
+							The <span class="font-medium">Default</span> style has larger inputs.
 						</p>
 						<p>
 							The <span class="font-medium">New York</span> style ships with smaller buttons
-							and cards with shadows. It uses icons from Radix Icons.
+							and cards with shadows.
 						</p>
 					</Popover.Content>
 				</Popover.Root>
