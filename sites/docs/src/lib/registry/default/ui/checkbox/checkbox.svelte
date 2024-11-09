@@ -7,6 +7,7 @@
 	let {
 		ref = $bindable(null),
 		checked = $bindable(false),
+		indeterminate = $bindable(false),
 		class: className,
 		...restProps
 	}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();
@@ -19,11 +20,12 @@
 		className
 	)}
 	bind:checked
+	bind:indeterminate
 	{...restProps}
 >
-	{#snippet children({ checked })}
+	{#snippet children({ checked, indeterminate })}
 		<div class="flex size-4 items-center justify-center text-current">
-			{#if checked === "indeterminate"}
+			{#if indeterminate}
 				<Minus class="size-3.5" />
 			{:else}
 				<Check class={cn("size-3.5", !checked && "text-transparent")} />

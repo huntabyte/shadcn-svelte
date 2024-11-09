@@ -856,9 +856,10 @@ export const columns: ColumnDef<Payment>[] = [
     id: "select",
     header: ({ table }) =>
       renderComponent(Checkbox, {
-        checked:
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate"),
+        checked: table.getIsAllPageRowsSelected(),
+        indeterminate:
+          table.getIsSomePageRowsSelected() &&
+          !table.getIsAllPageRowsSelected(),
         onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
         controlledChecked: true,
         "aria-label": "Select all",
