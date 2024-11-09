@@ -7,7 +7,6 @@
 	import CirclePlus from "lucide-svelte/icons/circle-plus";
 	import Check from "lucide-svelte/icons/check";
 	import type { Column } from "@tanstack/table-core";
-	import type { Component } from "svelte";
 	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -22,7 +21,9 @@
 		options: {
 			label: string;
 			value: string;
-			icon?: Component;
+			// This should be `Component` after lucide-svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			icon?: any;
 		}[];
 	};
 
