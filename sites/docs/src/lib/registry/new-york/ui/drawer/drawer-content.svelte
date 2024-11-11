@@ -8,7 +8,7 @@
 		class: className,
 		children,
 		...restProps
-	}: DrawerPrimitive.ContentProps = $props();
+	}: WithElementRef<DrawerPrimitive.ContentProps> = $props();
 </script>
 
 <DrawerPrimitive.Portal>
