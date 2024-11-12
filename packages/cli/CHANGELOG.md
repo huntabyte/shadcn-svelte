@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.2
+
+### Patch Changes
+
+- fb7c683: fix(next): add newline to end of `components.json`
+
 ## 1.0.0-next.1
 
 ### Patch Changes
