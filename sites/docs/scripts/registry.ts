@@ -14,7 +14,7 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["embla-carousel-svelte", []],
 	["paneforge", []],
 ]);
-const ICON_DEPENDENCIES = ["lucide-svelte", "svelte-radix"];
+const ICON_DEPENDENCIES = ["lucide-svelte", "svelte-radix@1.1.1"];
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
