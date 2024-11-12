@@ -34,7 +34,7 @@ const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
 
 // @ts-expect-error - shh
-const tsParser = acorn.Parser.extend(tsPlugin());
+const tsParser = acorn.Parser.extend(tsPlugin({ allowSatisfies: true }));
 
 type ArrayItem<T> = T extends Array<infer X> ? X : never;
 type RegistryItem = ArrayItem<Registry>;
@@ -296,6 +296,7 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 		ast = tsParser.parse(sourceCode, {
 			ecmaVersion: "latest",
 			sourceType: "module",
+			locations: true,
 		});
 	}
 

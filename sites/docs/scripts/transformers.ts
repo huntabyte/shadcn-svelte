@@ -99,7 +99,8 @@ function stripMarkupTypes(): PreprocessorGroup {
 
 						this.skip();
 					} else if ("expression" in node) {
-						// @ts-expect-error trust me
+						if (!node.expression) return;
+						// @ts-expect-error trust me, bro
 						const { start, end } = node.expression;
 
 						const expression = content.substring(start, end);
