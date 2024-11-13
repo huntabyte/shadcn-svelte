@@ -8,14 +8,16 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		portal,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {
+		portal?: boolean;
 		children: Snippet;
 	} = $props();
 </script>
 
-<Dialog.Portal>
+<Dialog.Portal disabled={!portal}>
 	<Dialog.Overlay />
 	<DialogPrimitive.Content
 		bind:ref

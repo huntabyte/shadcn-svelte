@@ -6,11 +6,14 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		portal,
 		...restProps
-	}: WithoutChild<AlertDialogPrimitive.ContentProps> = $props();
+	}: WithoutChild<AlertDialogPrimitive.ContentProps> & {
+		portal?: boolean;
+	} = $props();
 </script>
 
-<AlertDialogPrimitive.Portal>
+<AlertDialogPrimitive.Portal disabled={!portal}>
 	<AlertDialogOverlay />
 	<AlertDialogPrimitive.Content
 		bind:ref
