@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Copy from "svelte-radix/Copy.svelte";
+	import Copy from "lucide-svelte/icons/copy";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
@@ -27,7 +27,7 @@
 			</div>
 			<Button type="submit" size="sm" class="px-3">
 				<span class="sr-only"> Copy </span>
-				<Copy class="size-4" />
+				<Copy />
 			</Button>
 		</div>
 	</Popover.Content>

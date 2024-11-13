@@ -37,9 +37,9 @@
 </script>
 
 <script lang="ts">
-	import CalendarIcon from "svelte-radix/Calendar.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import Check from "svelte-radix/Check.svelte";
+	import CalendarIcon from "lucide-svelte/icons/calendar";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "lucide-svelte/icons/check";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import {
@@ -96,7 +96,7 @@
 						)}
 						{...props}
 					>
-						<CalendarIcon class="mr-2 size-4" />
+						<CalendarIcon />
 						{dobValue ? df.format(dobValue.toDate(getLocalTimeZone())) : "Pick a date"}
 					</Popover.Trigger>
 					<Popover.Content class="w-auto p-0" align="start">
@@ -146,7 +146,7 @@
 					>
 						{languages.find((lang) => lang.value === $formData.language)?.label ||
 							"Select a language"}
-						<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+						<ChevronsUpDown class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -167,7 +167,6 @@
 							>
 								<Check
 									class={cn(
-										"mr-2 size-4",
 										language.value === $formData.language
 											? "opacity-100"
 											: "opacity-0"

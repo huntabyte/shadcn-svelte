@@ -1,7 +1,7 @@
 <script lang="ts">
-	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import Check from "svelte-radix/Check.svelte";
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "lucide-svelte/icons/check";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
 	import { tick } from "svelte";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
@@ -103,7 +103,7 @@
 				<Avatar.Fallback>SC</Avatar.Fallback>
 			</Avatar.Root>
 			{selectedTeam.label}
-			<CaretSort class="ml-auto size-4 shrink-0 opacity-50" />
+			<ChevronsUpDown class="ml-auto size-4 shrink-0 opacity-50" />
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
 			<Command.Root>
@@ -150,7 +150,7 @@
 								showTeamDialog = true;
 							}}
 						>
-							<PlusCircled class="mr-2 size-5" />
+							<CirclePlus class="mr-2 size-5" />
 							Create Team
 						</Command.Item>
 					</Command.Group>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select as SelectPrimitive, type WithoutChild } from "bits-ui";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -20,5 +20,5 @@
 	{...restProps}
 >
 	{@render children?.()}
-	<CaretSort class="size-4 opacity-50" />
+	<ChevronDown class="size-4 opacity-50" />
 </SelectPrimitive.Trigger>

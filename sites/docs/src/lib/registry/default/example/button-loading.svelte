@@ -4,6 +4,6 @@
 </script>
 
 <Button disabled>
-	<LoaderCircle class="mr-2 size-4 animate-spin" />
+	<LoaderCircle class="animate-spin" />
 	Please wait
 </Button>

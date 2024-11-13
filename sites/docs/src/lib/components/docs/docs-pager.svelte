@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
-	import ChevronRight from "svelte-radix/ChevronRight.svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
 	import { page } from "$app/stores";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";

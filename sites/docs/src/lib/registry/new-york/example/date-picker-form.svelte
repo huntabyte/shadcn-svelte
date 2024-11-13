@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import CalendarIcon from "svelte-radix/Calendar.svelte";
+	import CalendarIcon from "lucide-svelte/icons/calendar";
 	import {
 		CalendarDate,
 		DateFormatter,
@@ -25,7 +25,7 @@
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils.js";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
@@ -66,16 +66,22 @@
 			{#snippet children({ props })}
 				<Form.Label>Date of birth</Form.Label>
 				<Popover.Root>
-					<Popover.Trigger
-						{...props}
-						class={cn(
-							buttonVariants({ variant: "outline" }),
-							"w-[280px] justify-start pl-4 text-left font-normal",
-							!value && "text-muted-foreground"
-						)}
-					>
-						{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-						<CalendarIcon class="ml-auto size-4 opacity-50" />
+					<Popover.Trigger {...props}>
+						{#snippet child({ props })}
+							<Button
+								variant="outline"
+								class={cn(
+									"w-[280px] justify-start pl-4 text-left font-normal",
+									!value && "text-muted-foreground"
+								)}
+								{...props}
+							>
+								{value
+									? df.format(value.toDate(getLocalTimeZone()))
+									: "Pick a date"}
+								<CalendarIcon class="ml-auto size-4 opacity-50" />
+							</Button>
+						{/snippet}
 					</Popover.Trigger>
 					<Popover.Content class="w-auto p-0" side="top">
 						<Calendar

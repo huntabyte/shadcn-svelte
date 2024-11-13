@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import Copy from "svelte-radix/Copy.svelte";
-	import { CaretSort } from "svelte-radix";
+	import Check from "lucide-svelte/icons/check";
+	import Copy from "lucide-svelte/icons/copy";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import { getPackageManager, packageManagers } from "$lib/stores/package-manager.js";
@@ -44,7 +44,7 @@
 
 					<span class="flex items-center pl-1">
 						{$selectedPackageManager}
-						<CaretSort size="20" />
+						<ChevronsUpDown class="size-5" />
 					</span>
 				</Button>
 			{/snippet}

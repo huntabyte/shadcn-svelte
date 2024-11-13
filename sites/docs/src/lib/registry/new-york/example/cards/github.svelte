@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ChevronDown from "svelte-radix/ChevronDown.svelte";
-	import Circle from "svelte-radix/Circle.svelte";
-	import Plus from "svelte-radix/Plus.svelte";
-	import Star from "svelte-radix/Star.svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
+	import Circle from "lucide-svelte/icons/circle";
+	import Plus from "lucide-svelte/icons/plus";
+	import Star from "lucide-svelte/icons/star";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
@@ -23,7 +23,7 @@
 		</div>
 		<div class="bg-secondary text-secondary-foreground flex items-center space-x-1 rounded-md">
 			<Button variant="secondary" class="px-3 shadow-none">
-				<Star class="mr-2 size-4" />
+				<Star />
 				Star
 			</Button>
 			<Separator orientation="vertical" class="h-[20px]" />
@@ -31,7 +31,7 @@
 				<DropdownMenu.Trigger
 					class={buttonVariants({ variant: "secondary", class: "px-2 shadow-none" })}
 				>
-					<ChevronDown class="text-secondary-foreground size-4" />
+					<ChevronDown class="text-secondary-foreground" />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Group>
@@ -48,7 +48,7 @@
 						</DropdownMenu.CheckboxItem>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<Plus class="mr-2 size-4" /> Create List
+							<Plus /> Create List
 						</DropdownMenu.Item>
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>

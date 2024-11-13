@@ -10,7 +10,7 @@
 		<Collapsible.Trigger
 			class={buttonVariants({ variant: "ghost", size: "sm", class: "w-9 p-0" })}
 		>
-			<ChevronsUpDown class="size-4" />
+			<ChevronsUpDown />
 			<span class="sr-only">Toggle</span>
 		</Collapsible.Trigger>
 	</div>

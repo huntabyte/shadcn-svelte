@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
@@ -11,7 +11,7 @@
 		{#snippet child({ props })}
 			<Button {...props} variant="ghost" size="icon" class="relative size-8 p-0">
 				<span class="sr-only">Open menu</span>
-				<DotsHorizontal class="size-4" />
+				<Ellipsis />
 			</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>

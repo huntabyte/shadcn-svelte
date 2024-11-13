@@ -3,10 +3,10 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import ChevronRight from "svelte-radix/ChevronRight.svelte";
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
-	import DoubleArrowRight from "svelte-radix/DoubleArrowRight.svelte";
-	import DoubleArrowLeft from "svelte-radix/DoubleArrowLeft.svelte";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	import ChevronsRight from "lucide-svelte/icons/chevrons-right";
+	import ChevronsLeft from "lucide-svelte/icons/chevrons-left";
 	import type { Table } from "@tanstack/table-core";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -54,7 +54,7 @@
 				disabled={!table.getCanPreviousPage()}
 			>
 				<span class="sr-only">Go to first page</span>
-				<DoubleArrowLeft class="size-4" />
+				<ChevronsLeft />
 			</Button>
 			<Button
 				variant="outline"
@@ -63,7 +63,7 @@
 				disabled={!table.getCanPreviousPage()}
 			>
 				<span class="sr-only">Go to previous page</span>
-				<ChevronLeft class="size-4" />
+				<ChevronLeft />
 			</Button>
 			<Button
 				variant="outline"
@@ -72,7 +72,7 @@
 				disabled={!table.getCanNextPage()}
 			>
 				<span class="sr-only">Go to next page</span>
-				<ChevronRight class="size-4" />
+				<ChevronRight />
 			</Button>
 			<Button
 				variant="outline"
@@ -81,7 +81,7 @@
 				disabled={!table.getCanNextPage()}
 			>
 				<span class="sr-only">Go to last page</span>
-				<DoubleArrowRight class="size-4" />
+				<ChevronsRight />
 			</Button>
 		</div>
 	</div>

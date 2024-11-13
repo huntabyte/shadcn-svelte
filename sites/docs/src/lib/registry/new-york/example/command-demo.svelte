@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Calendar from "svelte-radix/Calendar.svelte";
-	import EnvelopeClosed from "svelte-radix/EnvelopeClosed.svelte";
-	import Face from "svelte-radix/Face.svelte";
-	import Gear from "svelte-radix/Gear.svelte";
-	import Person from "svelte-radix/Person.svelte";
-	import Rocket from "svelte-radix/Rocket.svelte";
+	import Calculator from "lucide-svelte/icons/calculator";
+	import Calendar from "lucide-svelte/icons/calendar";
+	import CreditCard from "lucide-svelte/icons/credit-card";
+	import Settings from "lucide-svelte/icons/settings";
+	import Smile from "lucide-svelte/icons/smile";
+	import User from "lucide-svelte/icons/user";
 
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 </script>
@@ -15,32 +15,32 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Suggestions">
 			<Command.Item>
-				<Calendar class="mr-2 size-4" />
+				<Calendar />
 				<span>Calendar</span>
 			</Command.Item>
 			<Command.Item>
-				<Face class="mr-2 size-4" />
+				<Smile />
 				<span>Search Emoji</span>
 			</Command.Item>
-			<Command.Item>
-				<Rocket class="mr-2 size-4" />
-				<span>Launch</span>
+			<Command.Item disabled>
+				<Calculator />
+				<span>Calculator</span>
 			</Command.Item>
 		</Command.Group>
 		<Command.Separator />
 		<Command.Group heading="Settings">
 			<Command.Item>
-				<Person class="mr-2 size-4" />
+				<User />
 				<span>Profile</span>
 				<Command.Shortcut>⌘P</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<EnvelopeClosed class="mr-2 size-4" />
-				<span>Mail</span>
+				<CreditCard />
+				<span>Billing</span>
 				<Command.Shortcut>⌘B</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<Gear class="mr-2 size-4" />
+				<Settings />
 				<span>Settings</span>
 				<Command.Shortcut>⌘S</Command.Shortcut>
 			</Command.Item>

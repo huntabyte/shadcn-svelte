@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Minus from "svelte-radix/Minus.svelte";
-	import Plus from "svelte-radix/Plus.svelte";
+	import Minus from "lucide-svelte/icons/minus";
+	import Plus from "lucide-svelte/icons/plus";
 	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
@@ -86,7 +86,7 @@
 						onclick={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
-						<Minus class="size-4" />
+						<Minus />
 						<span class="sr-only">Decrease</span>
 					</Button>
 					<div class="flex-1 text-center">
@@ -103,7 +103,7 @@
 						class="size-8 shrink-0 rounded-full"
 						onclick={() => handleClick(10)}
 					>
-						<Plus class="size-4" />
+						<Plus />
 						<span class="sr-only">Increase</span>
 					</Button>
 				</div>

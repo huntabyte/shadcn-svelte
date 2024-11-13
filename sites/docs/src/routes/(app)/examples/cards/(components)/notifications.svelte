@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Bell from "svelte-radix/Bell.svelte";
-	import EyeNone from "svelte-radix/EyeNone.svelte";
-	import Person from "svelte-radix/Person.svelte";
+	import Bell from "lucide-svelte/icons/bell";
+	import EyeOff from "lucide-svelte/icons/eye-off";
+	import User from "lucide-svelte/icons/user";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 </script>
 
@@ -23,7 +23,7 @@
 		<div
 			class="bg-accent text-accent-foreground -mx-2 flex items-start space-x-4 rounded-md p-2 transition-all"
 		>
-			<Person class="mt-px size-5" />
+			<User class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
 				<p class="text-muted-foreground text-sm">Only mentions and comments.</p>
@@ -32,7 +32,7 @@
 		<div
 			class="hover:bg-accent hover:text-accent-foreground -mx-2 flex items-start space-x-4 rounded-md p-2 transition-all"
 		>
-			<EyeNone class="mt-px size-5" />
+			<EyeOff class="mt-px size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
 				<p class="text-muted-foreground text-sm">Turn off all notifications.</p>

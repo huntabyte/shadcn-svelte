@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -60,7 +60,7 @@
 				aria-expanded={open}
 			>
 				{selectedValue || "Select a framework..."}
-				<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+				<ChevronsUpDown class="opacity-50" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -78,12 +78,7 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<Check
-								class={cn(
-									"mr-2 size-4",
-									value !== framework.value && "text-transparent"
-								)}
-							/>
+							<Check class={cn(value !== framework.value && "text-transparent")} />
 							{framework.label}
 						</Command.Item>
 					{/each}
