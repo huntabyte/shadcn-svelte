@@ -7,11 +7,14 @@
 		class: className,
 		sideOffset = 4,
 		align = "center",
+		portal,
 		...restProps
-	}: PopoverPrimitive.ContentProps = $props();
+	}: PopoverPrimitive.ContentProps & {
+		portal?: boolean;
+	} = $props();
 </script>
 
-<PopoverPrimitive.Portal>
+<PopoverPrimitive.Portal disabled={!portal}>
 	<PopoverPrimitive.Content
 		bind:ref
 		{sideOffset}
