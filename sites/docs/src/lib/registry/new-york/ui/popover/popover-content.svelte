@@ -10,11 +10,11 @@
 		portal,
 		...restProps
 	}: PopoverPrimitive.ContentProps & {
-		portal?: boolean;
+		portal?: PopoverPrimitive.PortalProps;
 	} = $props();
 </script>
 
-<PopoverPrimitive.Portal disabled={!portal}>
+<PopoverPrimitive.Portal {...portal}>
 	<PopoverPrimitive.Content
 		bind:ref
 		{align}

@@ -9,11 +9,11 @@
 		portal,
 		...restProps
 	}: WithoutChild<AlertDialogPrimitive.ContentProps> & {
-		portal?: boolean;
+		portal?: AlertDialogPrimitive.PortalProps;
 	} = $props();
 </script>
 
-<AlertDialogPrimitive.Portal disabled={!portal}>
+<AlertDialogPrimitive.Portal {...portal}>
 	<AlertDialogOverlay />
 	<AlertDialogPrimitive.Content
 		bind:ref

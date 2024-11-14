@@ -12,12 +12,12 @@
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {
-		portal?: boolean;
+		portal?: DialogPrimitive.PortalProps;
 		children: Snippet;
 	} = $props();
 </script>
 
-<Dialog.Portal disabled={!portal}>
+<Dialog.Portal {...portal}>
 	<Dialog.Overlay />
 	<DialogPrimitive.Content
 		bind:ref

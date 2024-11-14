@@ -29,16 +29,18 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		portal,
 		side = "right",
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {
+		portal?: SheetPrimitive.PortalProps;
 		side?: Side;
 		children: Snippet;
 	} = $props();
 </script>
 
-<SheetPrimitive.Portal>
+<SheetPrimitive.Portal {...portal}>
 	<SheetOverlay />
 	<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>
 		{@render children?.()}

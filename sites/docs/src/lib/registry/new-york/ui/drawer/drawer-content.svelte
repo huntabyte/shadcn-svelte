@@ -6,12 +6,15 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		portal,
 		children,
 		...restProps
-	}: DrawerPrimitive.ContentProps = $props();
+	}: DrawerPrimitive.ContentProps & {
+		portal?: DrawerPrimitive.PortalProps;
+	} = $props();
 </script>
 
-<DrawerPrimitive.Portal>
+<DrawerPrimitive.Portal {...portal}>
 	<DrawerOverlay />
 	<DrawerPrimitive.Content
 		bind:ref
