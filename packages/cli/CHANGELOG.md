@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- 11d0ff3: fix: Ensure `svelte-kit sync` executes locally
+
 ## 1.0.0-next.2
 
 ### Patch Changes
