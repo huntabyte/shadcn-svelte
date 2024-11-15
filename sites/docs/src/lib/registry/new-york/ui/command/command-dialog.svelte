@@ -12,12 +12,12 @@
 		open = $bindable(false),
 		ref = $bindable(null),
 		value = $bindable(""),
-		portal,
+		portalProps,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<DialogPrimitive.RootProps> &
 		WithoutChildrenOrChild<CommandPrimitive.RootProps> & {
-			portal?: DialogPrimitive.PortalProps;
+			portalProps?: DialogPrimitive.PortalProps;
 			children: Snippet;
 		} = $props();
 </script>

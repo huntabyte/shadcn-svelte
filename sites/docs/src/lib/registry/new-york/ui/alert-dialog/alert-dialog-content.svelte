@@ -6,14 +6,14 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		portal,
+		portalProps,
 		...restProps
 	}: WithoutChild<AlertDialogPrimitive.ContentProps> & {
-		portal?: AlertDialogPrimitive.PortalProps;
+		portalProps?: AlertDialogPrimitive.PortalProps;
 	} = $props();
 </script>
 
-<AlertDialogPrimitive.Portal {...portal}>
+<AlertDialogPrimitive.Portal {...portalProps}>
 	<AlertDialogOverlay />
 	<AlertDialogPrimitive.Content
 		bind:ref

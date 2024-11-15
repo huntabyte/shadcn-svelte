@@ -7,15 +7,15 @@
 		ref = $bindable(null),
 		class: className,
 		sideOffset = 4,
-		portal,
+		portalProps,
 		children,
 		...restProps
 	}: WithoutChild<SelectPrimitive.ContentProps> & {
-		portal?: SelectPrimitive.PortalProps;
+		portalProps?: SelectPrimitive.PortalProps;
 	} = $props();
 </script>
 
-<SelectPrimitive.Portal {...portal}>
+<SelectPrimitive.Portal {...portalProps}>
 	<SelectPrimitive.Content
 		bind:ref
 		{sideOffset}
