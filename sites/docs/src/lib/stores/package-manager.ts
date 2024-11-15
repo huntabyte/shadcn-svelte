@@ -1,9 +1,10 @@
 import { getContext, setContext } from "svelte";
 import { persisted } from "svelte-persisted-store";
+import type { Agent } from "package-manager-detector";
 
 const PACKAGE_MANAGER = Symbol("packageManager");
 
-export function setPackageManager(initialValue: PackageManager = "npm") {
+export function setPackageManager(initialValue: Agent) {
 	const packageManager = createPackageManagerStore("packageManager", initialValue);
 	setContext(PACKAGE_MANAGER, packageManager);
 	return packageManager;
@@ -13,48 +14,7 @@ export function getPackageManager(): ReturnType<typeof setPackageManager> {
 	return getContext(PACKAGE_MANAGER);
 }
 
-function createPackageManagerStore(key: string, initialValue: PackageManager) {
+function createPackageManagerStore(key: string, initialValue: Agent) {
 	const store = persisted(key, initialValue);
 	return store;
-}
-
-export const packageManagers = ["pnpm", "bun", "yarn", "npm"] as const;
-export type PackageManager = (typeof packageManagers)[number];
-
-const packageManagerToScriptCmd: Record<PackageManager, string> = {
-	npm: "npx",
-	yarn: "yarn dlx",
-	pnpm: "pnpm dlx",
-	bun: "bunx",
-};
-
-export function getPackageManagerScriptCmd(pm: PackageManager): string {
-	return packageManagerToScriptCmd[pm];
-}
-
-const packageManagerToInstallCmd: Record<PackageManager, string> = {
-	npm: "install",
-	yarn: "add",
-	pnpm: "add",
-	bun: "add",
-};
-
-export function getPackageManagerInstallCmd(pm: PackageManager): string {
-	return packageManagerToInstallCmd[pm];
-}
-
-const packageManagerToUninstallCmd: Record<PackageManager, string> = {
-	npm: "uninstall",
-	yarn: "remove",
-	pnpm: "remove",
-	bun: "remove",
-};
-
-export function getPackageManagerUninstallCmd(pm: PackageManager): string {
-	return packageManagerToUninstallCmd[pm];
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isPackageManager(value: any): value is PackageManager {
-	return packageManagers.includes(value);
 }

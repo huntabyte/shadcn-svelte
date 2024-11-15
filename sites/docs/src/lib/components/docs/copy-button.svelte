@@ -4,7 +4,8 @@
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import { getPackageManager, packageManagers } from "$lib/stores/package-manager.js";
+	import { getPackageManager } from "$lib/stores/package-manager.js";
+	import { AGENTS } from "package-manager-detector";
 	import { Button, type ButtonProps } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
@@ -51,7 +52,7 @@
 		</DropdownMenu.Trigger>
 
 		<DropdownMenu.Content align="end" preventScroll={false}>
-			{#each packageManagers as pm (pm)}
+			{#each AGENTS.filter((agent) => agent !== "pnpm@6" && agent !== "yarn@berry") as pm (pm)}
 				<DropdownMenu.Item
 					onclick={() => {
 						selectedPackageManager.set(pm);

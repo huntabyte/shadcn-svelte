@@ -1,62 +1,53 @@
 <script lang="ts">
 	import Pre from "./markdown/pre.svelte";
+	import { getPackageManager } from "$lib/stores/package-manager.js";
 	import {
-		type PackageManager,
-		getPackageManager,
-	} from "$lib/stores/package-manager.js";
+		resolveCommand,
+		type Agent,
+		type Command,
+		type ResolvedCommand,
+	} from "package-manager-detector";
 
-	type PMBlockType = "execute" | "create" | "install" | "remove";
+	type Props = {
+		type: Command | "create";
+		command: string | string[];
+	};
 
-	export let type: PMBlockType;
-	export let command: string = "";
+	const { type, command }: Props = $props();
 
 	const selectedPackageManager = getPackageManager();
 
-	function getCmd(type: PMBlockType, pm: PackageManager) {
-		if (type === "execute") return getPackageManagerScriptCmd(pm);
-		return pm;
+	function getCmd(pm: Agent, type: Props["type"]): ResolvedCommand {
+		// ssr
+		if (pm === undefined) pm = "npm";
+
+		let args = [];
+		if (typeof command === "string") {
+			args = command.split(" ");
+		} else {
+			args = command;
+		}
+
+		// special handling for create
+		if (type === "create") return { command: pm, args: ["create", ...args] };
+
+		const cmd = resolveCommand(pm, type, args);
+
+		// since docs are static any unresolved command is a code error
+		if (cmd === null) throw new Error("Could not resolve command!");
+
+		return cmd;
 	}
 
-	function getInstallCommand() {
-		if (command === "") return "install";
-		return getPackageManagerInstallCmd($selectedPackageManager);
-	}
-
-	function getUninstallCommand() {
-		if (command === "") return "uninstall";
-		return getPackageManagerUninstallCmd($selectedPackageManager);
-	}
-
-	let cmdStart = getCmd(type, $selectedPackageManager);
-
-	$: cmdStart = getCmd(type, $selectedPackageManager);
+	let resolvedCommand = $derived(getCmd($selectedPackageManager, type));
 </script>
 
 <figure data-rehype-pretty-code-figure>
 	<Pre isPackageManagerBlock={true} tabindex={0} data-language="bash" data-theme="github-dark">
 		<code data-language="bash" data-theme="github-dark" style="display: grid;">
 			<span data-line>
-				<span style="color:#B392F0;font-weight:bold">{`${cmdStart}`}</span>
-				{#if type === "install" || type === "create" || type == "remove"}
-					<span style="color:#9ECBFF">
-						{#if type === "install"}
-							{`${getInstallCommand()} `}
-						{:else if type == "create"}
-							{"create "}
-						{:else if type == "remove"}
-							{`${getUninstallCommand()} `}
-						{/if}
-					</span>
-				{/if}
-				{#if command !== ""}
-					{#each command.split(" ") as word, i}
-						{#if i === 0}
-							<span style="color:#9ECBFF; margin-left:-8px">{`${word}`}</span>
-						{:else}
-							<span style="color:#9ECBFF">{` ${word}`}</span>
-						{/if}
-					{/each}
-				{/if}
+				<span style="color:#B392F0;font-weight:bold">{resolvedCommand.command}</span>
+				<span style="color:#9ECBFF">{resolvedCommand.args.join(" ")}</span>
 			</span>
 		</code>
 	</Pre>

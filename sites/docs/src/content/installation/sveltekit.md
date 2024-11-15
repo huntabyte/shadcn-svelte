@@ -5,7 +5,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 <script>
   import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
-  import { Steps, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
+  import { Steps, PMCreate, PMExecute, PMInstall, PMAddComp, PMRun } from "$lib/components/docs";
 </script>
 
 ## Setup your project
@@ -46,9 +46,7 @@ const config = {
 
 If you setup a custom path alias you will need to run the dev server at least once to fix your `tsconfig.json` / `jsconfig.json`.
 
-```bash
-npx
-```
+<PMRun command="dev"/>
 
 ### Run the CLI
 
