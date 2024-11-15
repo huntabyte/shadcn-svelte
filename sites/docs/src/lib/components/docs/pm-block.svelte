@@ -18,9 +18,6 @@
 	const selectedPackageManager = getPackageManager();
 
 	function getCmd(pm: Agent, type: Props["type"]): ResolvedCommand {
-		// ssr
-		if (pm === undefined) pm = "npm";
-
 		let args = [];
 		if (typeof command === "string") {
 			args = command.split(" ");

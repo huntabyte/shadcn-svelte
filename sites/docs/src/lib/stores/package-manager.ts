@@ -4,7 +4,7 @@ import type { Agent } from "package-manager-detector";
 
 const PACKAGE_MANAGER = Symbol("packageManager");
 
-export function setPackageManager(initialValue: Agent) {
+export function setPackageManager(initialValue: Agent = "npm") {
 	const packageManager = createPackageManagerStore("packageManager", initialValue);
 	setContext(PACKAGE_MANAGER, packageManager);
 	return packageManager;
