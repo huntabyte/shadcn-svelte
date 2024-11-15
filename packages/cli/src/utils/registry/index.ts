@@ -93,9 +93,13 @@ export async function resolveTree({
 		tree.push(entry);
 
 		if (includeRegDeps && entry.registryDependencies) {
+			// prevent circular dependencies resulting in stack overflows
+			const deps = new Set(entry.registryDependencies);
+			if (deps.has(name)) deps.delete(name);
+
 			const dependencies = await resolveTree({
 				index,
-				names: entry.registryDependencies,
+				names: Array.from(deps),
 				config,
 			});
 			tree.push(...dependencies);

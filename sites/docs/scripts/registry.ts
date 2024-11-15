@@ -107,6 +107,9 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
+	// cannot depend on itself
+	if (registryDependencies.has(componentName)) registryDependencies.delete(componentName);
+
 	return {
 		style,
 		type,
