@@ -39,6 +39,12 @@ function writeFileWithDirs(
 
 async function main() {
 	const registry = await buildRegistry();
+
+	const selfReferenced = registry.filter((item) => item.registryDependencies.includes(item.name));
+	for (const item of selfReferenced) {
+		throw new Error(`Registry item '${item.name}' depends on itself`);
+	}
+
 	const result = registrySchema.safeParse(registry);
 
 	if (!result.success) {
