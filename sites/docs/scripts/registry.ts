@@ -105,6 +105,8 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		REQUIRED_COMPONENT_DEPS.get(componentName)?.forEach((dep) => dependencies.add(dep));
 
 		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
+		if (registryDependencies.has(componentName))
+			throw new Error(`Component '${componentName}' contains a self-reference`);
 	}
 
 	return {
