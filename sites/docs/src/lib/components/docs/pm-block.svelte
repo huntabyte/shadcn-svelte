@@ -3,9 +3,6 @@
 	import {
 		type PackageManager,
 		getPackageManager,
-		getPackageManagerInstallCmd,
-		getPackageManagerScriptCmd,
-		getPackageManagerUninstallCmd,
 	} from "$lib/stores/package-manager.js";
 
 	type PMBlockType = "execute" | "create" | "install" | "remove";
@@ -26,7 +23,7 @@
 	}
 
 	function getUninstallCommand() {
-		if (command === "") return "install";
+		if (command === "") return "uninstall";
 		return getPackageManagerUninstallCmd($selectedPackageManager);
 	}
 

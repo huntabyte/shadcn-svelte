@@ -44,6 +44,12 @@ const config = {
 };
 ```
 
+If you setup a custom path alias you will need to run the dev server at least once to fix your `tsconfig.json` / `jsconfig.json`.
+
+```bash
+npx
+```
+
 ### Run the CLI
 
 <PMExecute command="shadcn-svelte@next init" />
