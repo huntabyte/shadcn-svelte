@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-ensure sync executes local binary
+fix: Ensure `svelte-kit sync` executes locally
