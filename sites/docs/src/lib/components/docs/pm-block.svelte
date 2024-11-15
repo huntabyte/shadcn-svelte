@@ -1,12 +1,7 @@
 <script lang="ts">
 	import Pre from "./markdown/pre.svelte";
-	import { getPackageManager } from "$lib/stores/package-manager.js";
-	import {
-		resolveCommand,
-		type Agent,
-		type Command,
-		type ResolvedCommand,
-	} from "package-manager-detector";
+	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
+	import { type Command } from "package-manager-detector";
 
 	type Props = {
 		type: Command | "create";
@@ -17,26 +12,7 @@
 
 	const selectedPackageManager = getPackageManager();
 
-	function getCmd(pm: Agent, type: Props["type"]): ResolvedCommand {
-		let args = [];
-		if (typeof command === "string") {
-			args = command.split(" ");
-		} else {
-			args = command;
-		}
-
-		// special handling for create
-		if (type === "create") return { command: pm, args: ["create", ...args] };
-
-		const cmd = resolveCommand(pm, type, args);
-
-		// since docs are static any unresolved command is a code error
-		if (cmd === null) throw new Error("Could not resolve command!");
-
-		return cmd;
-	}
-
-	let resolvedCommand = $derived(getCmd($selectedPackageManager, type));
+	let resolvedCommand = $derived(getCommand($selectedPackageManager, type, command));
 </script>
 
 <figure data-rehype-pretty-code-figure>
