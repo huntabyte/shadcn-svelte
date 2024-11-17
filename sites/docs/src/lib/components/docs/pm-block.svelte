@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Pre from "./markdown/pre.svelte";
 	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
-	import { type Command } from "package-manager-detector";
+	import type { Command } from "package-manager-detector";
 
 	type Props = {
 		type: Command | "create";

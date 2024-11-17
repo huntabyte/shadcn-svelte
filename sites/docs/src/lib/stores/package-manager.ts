@@ -1,11 +1,7 @@
 import { getContext, setContext } from "svelte";
 import { persisted } from "svelte-persisted-store";
-import {
-	resolveCommand,
-	type Agent,
-	type Command,
-	type ResolvedCommand,
-} from "package-manager-detector";
+import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
+import { resolveCommand } from "package-manager-detector/commands";
 
 const PACKAGE_MANAGER = Symbol("packageManager");
 

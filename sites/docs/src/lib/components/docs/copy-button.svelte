@@ -5,9 +5,9 @@
 	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import { getPackageManager } from "$lib/stores/package-manager.js";
-	import { AGENTS } from "package-manager-detector";
 	import { Button, type ButtonProps } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import type { Agent } from "package-manager-detector";
 
 	type Props = Omit<ButtonProps, "children"> & {
 		isPackageManagerBlock?: boolean;
@@ -52,7 +52,7 @@
 		</DropdownMenu.Trigger>
 
 		<DropdownMenu.Content align="end" preventScroll={false}>
-			{#each AGENTS.filter((agent) => agent !== "pnpm@6" && agent !== "yarn@berry") as pm (pm)}
+			{#each ["pnpm", "bun", "yarn", "npm"] satisfies Agent[] as pm (pm)}
 				<DropdownMenu.Item
 					onclick={() => {
 						selectedPackageManager.set(pm);
