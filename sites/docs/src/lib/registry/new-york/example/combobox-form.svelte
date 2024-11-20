@@ -25,8 +25,8 @@
 </script>
 
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
@@ -88,7 +88,7 @@
 					>
 						{languages.find((f) => f.value === $formData.language)?.label ??
 							"Select language"}
-						<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+						<ChevronsUpDown class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -109,7 +109,6 @@
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto size-4",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

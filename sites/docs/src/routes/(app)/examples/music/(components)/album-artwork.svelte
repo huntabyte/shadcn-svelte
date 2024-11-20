@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
@@ -44,7 +44,7 @@
 				<ContextMenu.SubTrigger>Add to Playlist</ContextMenu.SubTrigger>
 				<ContextMenu.SubContent class="w-48">
 					<ContextMenu.Item>
-						<PlusCircled class="mr-2 size-4" /> New Playlist
+						<CirclePlus class="mr-2 size-4" /> New Playlist
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					{#each playlists as playlist}

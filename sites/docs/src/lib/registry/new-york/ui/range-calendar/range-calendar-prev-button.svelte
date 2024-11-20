@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	let {
@@ -12,7 +12,7 @@
 </script>
 
 {#snippet Fallback()}
-	<ChevronLeft class="size-4" />
+	<ChevronLeft />
 {/snippet}
 
 <RangeCalendarPrimitive.PrevButton

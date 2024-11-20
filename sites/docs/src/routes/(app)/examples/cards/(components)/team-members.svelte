@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
@@ -32,7 +32,7 @@
 					})}
 				>
 					Owner
-					<ChevronDown class="text-muted-foreground ml-2 size-4" />
+					<ChevronDown class="text-muted-foreground" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>

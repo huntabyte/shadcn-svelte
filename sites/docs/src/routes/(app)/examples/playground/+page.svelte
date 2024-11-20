@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CounterClockwiseClock from "svelte-radix/CounterClockwiseClock.svelte";
+	import RotateCCW from "lucide-svelte/icons/rotate-ccw";
 	import {
 		CodeViewer,
 		MaxLengthSelector,
@@ -250,7 +250,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="size-4" />
+									<RotateCCW />
 								</Button>
 							</div>
 						</div>
@@ -270,7 +270,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="size-4" />
+									<RotateCCW class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -303,7 +303,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<CounterClockwiseClock class="size-4" />
+									<RotateCCW class="size-4" />
 								</Button>
 							</div>
 						</div>

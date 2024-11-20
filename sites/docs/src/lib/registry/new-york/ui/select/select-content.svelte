@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select as SelectPrimitive, type WithoutChild } from "bits-ui";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import * as Select from "./index.js";
 	import { cn } from "$lib/utils.js";
 
 	let {

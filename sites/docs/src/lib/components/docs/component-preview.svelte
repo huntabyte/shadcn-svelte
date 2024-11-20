@@ -28,7 +28,6 @@
 	let component: Promise<Component> = $state() as Promise<Component>;
 
 	$effect(() => {
-		console.log(Index[$config.style][name]);
 		component = Index[$config.style][name]?.component() as Promise<Component>;
 	});
 </script>

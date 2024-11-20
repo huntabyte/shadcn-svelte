@@ -3,4 +3,4 @@
 	export let command: string;
 </script>
 
-<PMBlock type="uninstall" {command} />
+<PMBlock type="run" {command} />
