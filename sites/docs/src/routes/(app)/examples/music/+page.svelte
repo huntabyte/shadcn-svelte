@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
 	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
@@ -7,13 +7,13 @@
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import MusicLight from "$lib/img/examples/music-light.png?enhanced";
-	import MusicDark from "$lib/img/examples/music-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MusicLight} alt="Music" class="block dark:hidden" />
-	<enhanced:img src={MusicDark} alt="Music" class="hidden dark:block" />
+	<enhanced:img src="$lib/img/examples/music-light.png" alt="Music" class="block dark:hidden"
+	></enhanced:img>
+	<enhanced:img src="$lib/img/examples/music-dark.png" alt="Music" class="hidden dark:block"
+	></enhanced:img>
 </div>
 <div class="hidden md:block">
 	<Menu />
@@ -34,7 +34,7 @@
 								</Tabs.List>
 								<div class="ml-auto mr-4">
 									<Button>
-										<PlusCircled class="mr-2 h-4 w-4" />
+										<CirclePlus />
 										Add music
 									</Button>
 								</div>

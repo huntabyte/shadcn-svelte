@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
@@ -15,16 +15,17 @@
 		"maintenance",
 	];
 
-	let open = false;
-	let selectedLabel = "feature";
+	let open = $state(false);
+	let selectedLabel = $state("feature");
+	let triggerRef = $state<HTMLButtonElement>(null!);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
 	// rest of the form with the keyboard.
-	function closeAndFocusTrigger(triggerId: string) {
+	function closeAndFocusTrigger() {
 		open = false;
 		tick().then(() => {
-			document.getElementById(triggerId)?.focus();
+			triggerRef.focus();
 		});
 	}
 </script>
@@ -38,15 +39,17 @@
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
 	</p>
-	<DropdownMenu.Root bind:open let:ids>
-		<DropdownMenu.Trigger asChild let:builder>
-			<Button builders={[builder]} variant="ghost" size="sm" aria-label="Open menu">
-				<DotsHorizontal />
-			</Button>
+	<DropdownMenu.Root bind:open>
+		<DropdownMenu.Trigger bind:ref={triggerRef}>
+			{#snippet child({ props })}
+				<Button variant="ghost" size="sm" {...props} aria-label="Open menu">
+					<Ellipsis />
+				</Button>
+			{/snippet}
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
-				<DropdownMenu.Label>Actions</DropdownMenu.Label>
+				<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
 				<DropdownMenu.Item>Assign to...</DropdownMenu.Item>
 				<DropdownMenu.Item>Set due date...</DropdownMenu.Item>
 				<DropdownMenu.Separator />
@@ -61,9 +64,9 @@
 									{#each labels as label}
 										<Command.Item
 											value={label}
-											onSelect={(value) => {
-												selectedLabel = value;
-												closeAndFocusTrigger(ids.trigger);
+											onSelect={() => {
+												selectedLabel = label;
+												closeAndFocusTrigger();
 											}}
 										>
 											{label}

@@ -2,6 +2,7 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
+
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 </script>
 

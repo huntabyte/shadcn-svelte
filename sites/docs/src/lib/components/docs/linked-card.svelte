@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	export let href: string;
+	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, href, children }: PrimitiveAnchorAttributes = $props();
 </script>
 
 <a
@@ -13,5 +11,5 @@
 		className
 	)}
 >
-	<slot />
+	{@render children?.()}
 </a>

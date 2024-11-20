@@ -19,17 +19,17 @@ We use it to understand how your project is set up and how to generate component
 
 You can create a `components.json` file in your project by running the following command:
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 See the [CLI section](/docs/cli) for more information.
 
 ## $schema
 
-You can see the JSON Schema for `components.json` [here](https://shadcn-svelte.com/schema.json).
+You can see the JSON Schema for `components.json` [here](https://next.shadcn-svelte.com/schema.json).
 
 ```json title="components.json"
 {
-  "$schema": "https://shadcn-svelte.com/schema.json"
+  "$schema": "https://next.shadcn-svelte.com/schema.json"
 }
 ```
 
@@ -45,7 +45,7 @@ The style for your components. **This cannot be changed after initialization.**
 
 <ComponentPreview name="card-with-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -126,5 +126,15 @@ Import alias for your components.
 ```json title="components.json"
 {
   "typescript": true | false
+}
+```
+
+## Registry
+
+The registry URL tells the CLI where to fetch the components/registry from. You can pin this to a specific preview release or your own fork.
+
+```json title="components.json"
+{
+  "registry": "https://next.shadcn-svelte.com/registry"
 }
 ```

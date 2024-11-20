@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import type { EntryGenerator, PageServerLoad } from "./$types.js";
 import { getAllBlockIds, isBlock } from "$lib/blocks.js";
-import { blockMeta } from "$lib/config/blocks.js";
+import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { isStyle, styles } from "$lib/registry/styles.js";
 
 export const prerender = true;

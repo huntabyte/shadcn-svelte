@@ -1,5 +1,30 @@
 # shadcn-svelte
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- 11d0ff3: fix: Ensure `svelte-kit sync` executes locally
+
+## 1.0.0-next.2
+
+### Patch Changes
+
+- fb7c683: fix(next): add newline to end of `components.json`
+
+## 1.0.0-next.1
+
+### Patch Changes
+
+- e29f8f5: fix: Ensure `utils.(js|ts)` is not fetched from the registry on `update` command
+- e29f8f5: fix: `update` command now properly updates components
+
+## 1.0.0-next.0
+
+### Major Changes
+
+- b479077: Svelte 5
+
 ## 0.14.0
 
 ### Minor Changes

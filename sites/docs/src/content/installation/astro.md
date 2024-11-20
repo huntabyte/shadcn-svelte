@@ -27,12 +27,12 @@ You will be asked a few questions to configure your project:
 ./your-app-name
 - How would you like to start your new project?
 Choose a starter template (or Empty)
-- Install dependencies?
-Yes
 - Do you plan to write TypeScript?
 Yes
 - How strict should TypeScript be?
 Strict
+- Install dependencies?
+Yes
 - Initialize a new git repository? (optional)
 Yes/No
 ```
@@ -57,7 +57,7 @@ Add Tailwind CSS using the Astro CLI:
 
 <Callout className="mt-4">
 
-Answer `Yes` to all the question prompted by the CLI when installing Svelte.
+Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS.
 
 </Callout>
 
@@ -108,7 +108,7 @@ import "$lib/styles/app.css";
 
 Run the `shadcn-svelte` init command to setup your project:
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
@@ -122,6 +122,8 @@ Where is your global CSS file? › src/styles/app.css
 Where is your tailwind.config.[cjs|mjs|js|ts] located? › tailwind.config.mjs
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
+Configure the import alias for hooks: › $lib/hooks
+Configure the import alias for ui: › $lib/components/ui
 ```
 
 ### Update Astro's Tailwind config
@@ -141,7 +143,7 @@ export default defineConfig({
 
 ### Update tailwind.config.mjs
 
-When running `shadcn-svelte@latest init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
+When running `shadcn-svelte@next init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
 
 ```js title="tailwind.config.mjs" {1-4} showLineNumbers
 const config = {
@@ -162,7 +164,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```astro title="index.astro" {2,10} showLineNumbers
 ---
-import { Button } from "$lib/components/ui/button";
+import { Button } from "$lib/components/ui/button/index.js";
 ---
 
 <html lang="en">

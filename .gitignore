@@ -110,3 +110,6 @@ generated-assets
 
 # JetBrains IDEs
 .idea/
+
+.velite
+sites/docs/static/registry

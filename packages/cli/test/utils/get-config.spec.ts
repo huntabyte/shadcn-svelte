@@ -1,6 +1,7 @@
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
+import { SITE_BASE_URL } from "../../src/constants";
 
 vi.mock("execa");
 
@@ -34,8 +35,11 @@ describe("getRawConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -67,6 +71,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -85,8 +91,16 @@ describe("getConfig", () => {
 					"./src/app.pcss"
 				),
 				utils: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/utils"),
+				cwd: path.resolve(__dirname, "../fixtures/config-partial"),
+				hooks: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/hooks"),
+				ui: path.resolve(
+					__dirname,
+					"../fixtures/config-partial",
+					"./src/lib/components/ui"
+				),
 			},
 			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -101,6 +115,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -115,8 +131,12 @@ describe("getConfig", () => {
 				),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-full", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/utils"),
+				cwd: path.resolve(__dirname, "../fixtures/config-full"),
+				hooks: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/hooks"),
+				ui: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/components/ui"),
 			},
 			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
@@ -131,6 +151,8 @@ describe("getConfig", () => {
 			aliases: {
 				utils: "$lib/utils",
 				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -145,13 +167,19 @@ describe("getConfig", () => {
 				),
 				tailwindCss: path.resolve(__dirname, "../fixtures/config-vite", "./src/app.pcss"),
 				utils: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/utils"),
+				hooks: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/hooks"),
+				ui: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/components/ui"),
+				cwd: path.resolve(__dirname, "../fixtures/config-vite"),
 			},
 			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 
 	it("handles cases where the project uses jsconfig.json", async () => {
-		expect(await getConf("config-jsconfig")).toEqual({
+		const config = await getConf("config-jsconfig");
+
+		expect(config).toEqual({
 			style: "new-york",
 			tailwind: {
 				config: "tailwind.config.js",
@@ -159,8 +187,10 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils",
 				components: "$lib/components",
+				utils: "$lib/utils",
+				ui: "$lib/components/ui",
+				hooks: "$lib/hooks",
 			},
 			resolvedPaths: {
 				components: path.resolve(
@@ -179,8 +209,16 @@ describe("getConfig", () => {
 					"./src/app.pcss"
 				),
 				utils: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/utils"),
+				hooks: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/hooks"),
+				ui: path.resolve(
+					__dirname,
+					"../fixtures/config-jsconfig",
+					"./src/lib/components/ui"
+				),
+				cwd: path.resolve(__dirname, "../fixtures/config-jsconfig"),
 			},
 			typescript: false,
+			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
 });

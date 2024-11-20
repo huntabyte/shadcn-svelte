@@ -1,24 +1,28 @@
-<script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import { labels } from "../(data)/data.js";
-	import { type Task, taskSchema } from "../(data)/schemas.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+<script lang="ts" module>
+	type TData = unknown;
+</script>
 
-	export let row: Task;
-	const task = taskSchema.parse(row);
+<script lang="ts" generics="TData">
+	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import type { Row } from "@tanstack/table-core";
+	import { labels } from "../(data)/data.js";
+	import { taskSchema } from "../(data)/schemas.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
+
+	let { row }: { row: Row<TData> } = $props();
+
+	const task = taskSchema.parse(row.original);
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button
-			variant="ghost"
-			builders={[builder]}
-			class="data-[state=open]:bg-muted flex h-8 w-8 p-0"
-		>
-			<DotsHorizontal class="h-4 w-4" />
-			<span class="sr-only">Open Menu</span>
-		</Button>
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="ghost" class="data-[state=open]:bg-muted flex h-8 w-8 p-0">
+				<Ellipsis />
+				<span class="sr-only">Open Menu</span>
+			</Button>
+		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-[160px]" align="end">
 		<DropdownMenu.Item>Edit</DropdownMenu.Item>
@@ -29,7 +33,7 @@
 			<DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
 			<DropdownMenu.SubContent>
 				<DropdownMenu.RadioGroup value={task.label}>
-					{#each labels as label}
+					{#each labels as label (label.value)}
 						<DropdownMenu.RadioItem value={label.value}>
 							{label.label}
 						</DropdownMenu.RadioItem>

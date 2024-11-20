@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const formSchema = z.object({
 		mobile: z.boolean().default(false),
@@ -14,8 +14,9 @@
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.checkboxSingle;
-	export { data as form };
+
+	let { form: data = $page.data.checkboxSingle }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -37,17 +38,19 @@
 		name="mobile"
 		class="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
 	>
-		<Form.Control let:attrs>
-			<Checkbox {...attrs} bind:checked={$formData.mobile} />
-			<div class="space-y-1 leading-none">
-				<Form.Label>Use different settings for my mobile devices</Form.Label>
-				<Form.Description>
-					You can manage your mobile notifications in the <a href="/examples/forms"
-						>mobile settings</a
-					> page.
-				</Form.Description>
-			</div>
-			<input name={attrs.name} value={$formData.mobile} hidden />
+		<Form.Control>
+			{#snippet children({ props })}
+				<Checkbox {...props} bind:checked={$formData.mobile} />
+				<div class="space-y-1 leading-none">
+					<Form.Label>Use different settings for my mobile devices</Form.Label>
+					<Form.Description>
+						You can manage your mobile notifications in the <a href="/examples/forms"
+							>mobile settings</a
+						> page.
+					</Form.Description>
+				</div>
+				<input name={props.name} value={$formData.mobile} hidden />
+			{/snippet}
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
