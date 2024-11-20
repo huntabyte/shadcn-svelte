@@ -22,6 +22,8 @@
 		getCommand($selectedPackageManager, "execute", `shadcn-svelte@next add ${block.name}`)
 	);
 
+	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
+
 	const blockSource = $derived(
 		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/new-york/block/${block.name}`
 	);
@@ -37,7 +39,7 @@
 			class="bg-muted h-7 rounded-md border shadow-none"
 			size="sm"
 			onclick={() => {
-				copier.copyToClipboard(addCommand.command + " " + addCommand.args.join(" "));
+				copier.copyToClipboard(command);
 			}}
 		>
 			{#if copier.isCopied}
@@ -45,7 +47,7 @@
 			{:else}
 				<Terminal />
 			{/if}
-			{addCommand}
+			{command}
 		</Button>
 		<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
 		<div class="hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none md:flex">
