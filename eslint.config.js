@@ -47,6 +47,7 @@ export default tseslint.config(
 			"sites/docs/.svelte-kit/**/*",
 			".svelte-kit",
 			"playgrounds/**/*",
+			"packages/cli/dist/**/*",
 		],
 	}
 );
