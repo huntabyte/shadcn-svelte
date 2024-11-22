@@ -76,7 +76,7 @@ describe("getItemTargetPath", () => {
 				},
 				"./override-path"
 			)
-		).toEqual(path.join("src/lib/components/ui"));
+		).toEqual(path.join("src", "lib", "components", "ui"));
 	});
 
 	it("resolves item target path", async () => {
@@ -90,6 +90,6 @@ describe("getItemTargetPath", () => {
 				],
 				type: "registry:ui",
 			})
-		).toEqual(path.join("src/lib/components/ui"));
+		).toEqual(path.join("src", "lib", "components", "ui"));
 	});
 });
