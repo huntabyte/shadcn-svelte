@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.4
+
+### Patch Changes
+
+- f932494: fix: ensure `ui` and `hooks` paths are normalized
+
 ## 1.0.0-next.3
 
 ### Patch Changes
