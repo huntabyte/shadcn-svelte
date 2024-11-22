@@ -1,3 +1,4 @@
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { getItemTargetPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
@@ -75,7 +76,7 @@ describe("getItemTargetPath", () => {
 				},
 				"./override-path"
 			)
-		).toEqual("src/lib/components/ui");
+		).toEqual(path.join("src", "lib", "components", "ui"));
 	});
 
 	it("resolves item target path", async () => {
@@ -89,6 +90,6 @@ describe("getItemTargetPath", () => {
 				],
 				type: "registry:ui",
 			})
-		).toEqual("src/lib/components/ui");
+		).toEqual(path.join("src", "lib", "components", "ui"));
 	});
 });

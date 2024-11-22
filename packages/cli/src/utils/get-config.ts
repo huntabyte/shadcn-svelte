@@ -114,8 +114,8 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
 	let componentsPath = resolveImport(config.aliases.components, pathAliases);
-	const hooksPath = resolveImport(config.aliases.hooks, pathAliases);
-	const uiPath = resolveImport(config.aliases.ui, pathAliases);
+	let hooksPath = resolveImport(config.aliases.hooks, pathAliases);
+	let uiPath = resolveImport(config.aliases.ui, pathAliases);
 
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
@@ -126,9 +126,13 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
 	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
+	if (hooksPath === undefined) throw aliasError("hooks", config.aliases.hooks);
+	if (uiPath === undefined) throw aliasError("ui", config.aliases.ui);
 
 	utilsPath = path.normalize(utilsPath);
 	componentsPath = path.normalize(componentsPath);
+	hooksPath = path.normalize(hooksPath);
+	uiPath = path.normalize(uiPath);
 
 	return v.parse(configSchema, {
 		...config,
