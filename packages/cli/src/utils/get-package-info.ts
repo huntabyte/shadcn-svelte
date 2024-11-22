@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from "pathe";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { PackageJson } from "type-fest";

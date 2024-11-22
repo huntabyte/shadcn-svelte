@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import path from "node:path";
+import path from "pathe";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
 import { detect } from "package-manager-detector";

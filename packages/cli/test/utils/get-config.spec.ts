@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from "pathe";
 import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
 import { SITE_BASE_URL } from "../../src/constants";

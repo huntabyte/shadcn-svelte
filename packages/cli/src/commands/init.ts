@@ -2,7 +2,7 @@ import color from "chalk";
 import { Command, Option } from "commander";
 import { execa } from "execa";
 import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
+import path from "pathe";
 import process from "node:process";
 import * as v from "valibot";
 import {

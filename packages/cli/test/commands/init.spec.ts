@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import path from "node:path";
+import path from "pathe";
 import { execa } from "execa";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";

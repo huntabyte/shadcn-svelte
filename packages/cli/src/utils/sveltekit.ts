@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import path from "node:path";
+import path from "pathe";
 import { execa } from "execa";
 import { detect, resolveCommand } from "package-manager-detector";
 import { loadProjectPackageInfo } from "./get-package-info.js";

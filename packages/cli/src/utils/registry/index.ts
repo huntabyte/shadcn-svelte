@@ -1,6 +1,6 @@
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
-import path from "node:path";
+import path from "pathe";
 import * as v from "valibot";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";

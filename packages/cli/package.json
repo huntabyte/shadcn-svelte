@@ -45,7 +45,8 @@
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
 		"is-unicode-supported": "^2.0.0",
-		"node-fetch-native": "^1.6.4"
+		"node-fetch-native": "^1.6.4",
+		"pathe": "^1.1.2"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",

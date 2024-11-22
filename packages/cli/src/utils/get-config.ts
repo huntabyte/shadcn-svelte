@@ -1,7 +1,7 @@
 import color from "chalk";
 import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
-import path from "node:path";
+import path from "pathe";
 import * as v from "valibot";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
