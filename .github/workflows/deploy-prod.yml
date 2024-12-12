@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy-production:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     permissions:
       contents: read
       deployments: write
