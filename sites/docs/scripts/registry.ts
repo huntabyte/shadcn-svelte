@@ -3,6 +3,7 @@ import path from "node:path";
 import { parse, preprocess, walk } from "svelte/compiler";
 import { type Registry, styles } from "../src/lib/registry";
 import config from "../svelte.config.js";
+import { TMP_PINNED_DEPS } from "./tmp";
 
 // [Dependency, [...PeerDependencies]]
 const DEPENDENCIES = new Map<string, string[]>([
@@ -102,7 +103,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: Array.from(dependencies),
+		dependencies: Array.from(dependencies).map((dep) => TMP_PINNED_DEPS.get(dep) ?? dep),
 	} satisfies RegistryItem;
 }
 
@@ -133,7 +134,7 @@ async function crawlDemo(rootPath: string, style: string, demoType: "example" | 
 			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: Array.from(dependencies),
+			dependencies: Array.from(dependencies).map((dep) => TMP_PINNED_DEPS.get(dep) ?? dep),
 		});
 	}
 
