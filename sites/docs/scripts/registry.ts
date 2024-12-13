@@ -156,8 +156,8 @@ async function getDependencies(filename: string, source: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
+	// @ts-expect-error annoying
 	walk(ast.instance, {
-		// @ts-expect-error annoying
 		enter(node) {
 			if (node.type === "ImportDeclaration") {
 				const source = node.source.value as string;
