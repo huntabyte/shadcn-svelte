@@ -151,7 +151,9 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: Array.from(dependencies),
+			dependencies: Array.from(dependencies).map((dep) =>
+				TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep
+			),
 		});
 	}
 
