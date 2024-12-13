@@ -51,10 +51,10 @@ export async function buildRegistry() {
 
 function getDepsWithPinned(deps: Set<string>) {
 	return Array.from(deps).map((dep) => {
-		const pinnedDep = TMP_PINNED_DEPS.get(dep)
-		if (pinnedDep) return pinnedDep
-		return dep
-	})
+		const pinnedDep = TMP_PINNED_DEPS.get(dep);
+		if (pinnedDep) return pinnedDep;
+		return dep;
+	});
 }
 
 async function crawlUI(rootPath: string, style: string) {
