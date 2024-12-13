@@ -49,10 +49,6 @@ export async function buildRegistry() {
 	return registry;
 }
 
-function getDepsWithPinned(deps: Set<string>) {
-	return Array.from(deps).map((dep) => TMP_PINNED_DEPS.get(dep) ?? dep);
-}
-
 async function crawlUI(rootPath: string, style: string) {
 	const dir = fs.readdirSync(rootPath, {
 		recursive: true,
@@ -107,7 +103,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: getDepsWithPinned(dependencies),
+		dependencies: Array.from(dependencies).map((dep) => TMP_PINNED_DEPS.get(dep) ?? dep),
 	} satisfies RegistryItem;
 }
 
@@ -138,7 +134,7 @@ async function crawlDemo(rootPath: string, style: string, demoType: "example" | 
 			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: getDepsWithPinned(dependencies),
+			dependencies: Array.from(dependencies).map((dep) => TMP_PINNED_DEPS.get(dep) ?? dep),
 		});
 	}
 
