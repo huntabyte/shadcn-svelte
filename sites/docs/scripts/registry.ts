@@ -3,6 +3,7 @@ import path from "node:path";
 import { parse, preprocess, walk } from "svelte/compiler";
 import { type Registry, styles } from "../src/lib/registry";
 import config from "../svelte.config.js";
+import { TMP_PINNED_DEPS } from "./tmp";
 
 // [Dependency, [...PeerDependencies]]
 const DEPENDENCIES = new Map<string, string[]>([
@@ -46,6 +47,14 @@ export async function buildRegistry() {
 	}
 
 	return registry;
+}
+
+function getDepsWithPinned(deps: Set<string>) {
+	return Array.from(deps).map((dep) => {
+		const pinnedDep = TMP_PINNED_DEPS.get(dep)
+		if (pinnedDep) return pinnedDep
+		return dep
+	})
 }
 
 async function crawlUI(rootPath: string, style: string) {
@@ -102,7 +111,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: Array.from(dependencies),
+		dependencies: getDepsWithPinned(dependencies),
 	} satisfies RegistryItem;
 }
 
@@ -133,7 +142,7 @@ async function crawlDemo(rootPath: string, style: string, demoType: "example" | 
 			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: Array.from(dependencies),
+			dependencies: getDepsWithPinned(dependencies),
 		});
 	}
 
@@ -147,8 +156,8 @@ async function getDependencies(filename: string, source: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
-	// @ts-expect-error annoying
 	walk(ast.instance, {
+		// @ts-expect-error annoying
 		enter(node) {
 			if (node.type === "ImportDeclaration") {
 				const source = node.source.value as string;
