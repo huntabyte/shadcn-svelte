@@ -75,7 +75,7 @@
 		"formsnap": "^1.0.1",
 		"lucide-svelte": "^0.447.0",
 		"mode-watcher": "^0.2.2",
-		"nanoid": "^5.0.6",
+		"nanoid": "^5.0.9",
 		"paneforge": "^0.0.2",
 		"svelte-headless-table": "^0.18.2",
 		"svelte-legos": "^0.2.2",
