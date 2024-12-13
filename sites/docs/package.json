@@ -28,7 +28,7 @@
 		"@prettier/sync": "0.3.0",
 		"@sveltejs/adapter-cloudflare": "4.8.0",
 		"@sveltejs/enhanced-img": "^0.3.10",
-		"@sveltejs/kit": "^2.11.1",
+		"@sveltejs/kit": "^2.8.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@types/d3-scale": "^4.0.8",
 		"@types/hast": "^3.0.4",
