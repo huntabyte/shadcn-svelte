@@ -301,7 +301,7 @@
 	{
 		"name": "form",
 		"dependencies": [
-			"formsnap",
+			"formsnap@1.0.1",
 			"zod",
 			"sveltekit-superforms"
 		],

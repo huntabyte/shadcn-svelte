@@ -1,7 +1,6 @@
 {
 	"name": "resizable",
 	"dependencies": [
-		"svelte-radix",
 		"paneforge"
 	],
 	"registryDependencies": [],
