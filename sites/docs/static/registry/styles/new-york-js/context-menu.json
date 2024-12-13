@@ -1,8 +1,7 @@
 {
 	"name": "context-menu",
 	"dependencies": [
-		"bits-ui",
-		"svelte-radix"
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [

@@ -1,3 +1,3 @@
-import config from "@huntabyte/eslint-config";
+import config, { DEFAULT_IGNORES } from "@huntabyte/eslint-config";
 
-export default config({ svelte: true });
+export default config({ svelte: true, ignorePatterns: [...DEFAULT_IGNORES, ".github/**/*"] });

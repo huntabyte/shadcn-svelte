@@ -1,8 +1,7 @@
 {
 	"name": "carousel",
 	"dependencies": [
-		"embla-carousel-svelte",
-		"svelte-radix"
+		"embla-carousel-svelte"
 	],
 	"registryDependencies": [
 		"button"

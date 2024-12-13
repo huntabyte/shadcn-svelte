@@ -1,8 +1,7 @@
 {
 	"name": "radio-group",
 	"dependencies": [
-		"bits-ui",
-		"svelte-radix"
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [
