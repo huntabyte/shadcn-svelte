@@ -2,39 +2,46 @@
 title: Toggle Group
 description: A set of two-state buttons that can be toggled on or off.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle-group
-bits: https://www.bits-ui.com/docs/components/toggle-group
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle-group
+  doc: https://next.bits-ui.com/docs/components/toggle-group
+  api: https://next.bits-ui.com/docs/components/toggle-group#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="toggle-group" />
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>
 
-<ManualInstall>
+Install `bits-ui`:
 
-1. Install `bits-ui`:
-
-<PMInstall command="bits-ui" />
-
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Step>
+<PMInstall command="bits-ui -D" />
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as ToggleGroup from "$lib/components/ui/toggle-group";
+  import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root type="single">
@@ -50,7 +57,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -58,7 +65,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-outline">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -66,7 +73,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-single">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -74,7 +81,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-sm">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -82,7 +89,7 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-lg">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -90,6 +97,6 @@ bits: https://www.bits-ui.com/docs/components/toggle-group
 
 <ComponentPreview name="toggle-group-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>

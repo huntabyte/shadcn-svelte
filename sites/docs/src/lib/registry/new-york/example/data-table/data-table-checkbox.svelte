@@ -1,8 +1,12 @@
 <script lang="ts">
-	import type { Writable } from "svelte/store";
+	import type { ComponentProps } from "svelte";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 
-	export let checked: Writable<boolean>;
+	let {
+		checked = false,
+		controlledChecked = true,
+		...restProps
+	}: ComponentProps<typeof Checkbox> = $props();
 </script>
 
-<Checkbox bind:checked={$checked} />
+<Checkbox {checked} {controlledChecked} {...restProps} />

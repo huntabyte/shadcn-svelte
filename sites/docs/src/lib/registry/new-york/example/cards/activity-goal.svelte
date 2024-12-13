@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Minus from "svelte-radix/Minus.svelte";
-	import Plus from "svelte-radix/Plus.svelte";
+	import Minus from "lucide-svelte/icons/minus";
+	import Plus from "lucide-svelte/icons/plus";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";
 
-	let goal = 350;
+	let goal = $state(350);
 	function updateGoal(adjustment: number) {
 		goal = Math.max(200, Math.min(400, goal + adjustment));
 	}
@@ -21,11 +21,11 @@
 			<Button
 				variant="outline"
 				size="icon"
-				class="h-8 w-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(-10)}
+				class="size-8 shrink-0 rounded-full"
+				onclick={() => updateGoal(-10)}
 				disabled={goal <= 200}
 			>
-				<Minus class="h-4 w-4" />
+				<Minus />
 				<span class="sr-only">Decrease</span>
 			</Button>
 			<div class="flex-1 text-center">
@@ -36,11 +36,11 @@
 			<Button
 				variant="outline"
 				size="icon"
-				class="h-8 w-8 shrink-0 rounded-full"
-				on:click={() => updateGoal(10)}
+				class="size-8 shrink-0 rounded-full"
+				onclick={() => updateGoal(10)}
 				disabled={goal >= 400}
 			>
-				<Plus class="h-4 w-4" />
+				<Plus />
 				<span class="sr-only">Increase</span>
 			</Button>
 		</div>

@@ -2,7 +2,7 @@
 	import { accounts, mails } from "./data.js";
 	import Mail from "./(components)/mail.svelte";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <Mail

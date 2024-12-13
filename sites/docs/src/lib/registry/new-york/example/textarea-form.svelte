@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const formSchema = z.object({
 		bio: z
@@ -18,8 +18,8 @@
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.textarea;
-	export { data as form };
+	let { form: data = $page.data.textarea }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -37,17 +37,19 @@
 
 <form method="POST" action="/?/textarea" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="bio">
-		<Form.Control let:attrs>
-			<Form.Label>Bio</Form.Label>
-			<Textarea
-				{...attrs}
-				placeholder="Tell us a little bit about yourself"
-				class="resize-none"
-				bind:value={$formData.bio}
-			/>
-			<Form.Description>
-				You can <span>@mention</span> other users and organizations.
-			</Form.Description>
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Bio</Form.Label>
+				<Textarea
+					{...props}
+					placeholder="Tell us a little bit about yourself"
+					class="resize-none"
+					bind:value={$formData.bio}
+				/>
+				<Form.Description>
+					You can <span>@mention</span> other users and organizations.
+				</Form.Description>
+			{/snippet}
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>

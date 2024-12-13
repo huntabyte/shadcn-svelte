@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { SiteFooter, SiteHeader, TailwindIndicator } from "$lib/components/docs/index.js";
+	import SiteFooter from "$lib/components/docs/site-footer.svelte";
+	import SiteHeader from "$lib/components/docs/site-header.svelte";
+	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
 	import { dev } from "$app/environment";
 </script>
 

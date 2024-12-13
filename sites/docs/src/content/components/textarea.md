@@ -2,34 +2,38 @@
 title: Textarea
 description: Displays a form textarea or a component that looks like a textarea.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/textarea
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/textarea
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="textarea-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="textarea" />
-
-<ManualInstall>
-
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Textarea } from "$lib/components/ui/textarea";
+  import { Textarea } from "$lib/components/ui/textarea/index.js";
 </script>
 ```
 
@@ -43,7 +47,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -51,7 +55,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -59,7 +63,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-label">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -67,7 +71,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -75,7 +79,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-with-button">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,6 +87,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="textarea-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

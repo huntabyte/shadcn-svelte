@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	const languages = [
@@ -25,12 +25,13 @@
 </script>
 
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
+	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
@@ -38,8 +39,9 @@
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
-	export { data as form };
+
+	let { form: data = $page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -54,7 +56,7 @@
 
 	const { form: formData, enhance } = form;
 
-	let open = false;
+	let open = $state(false);
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -65,27 +67,31 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+
+	const triggerId = useId();
 </script>
 
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
-		<Popover.Root bind:open let:ids>
-			<Form.Control let:attrs>
-				<Form.Label>Language</Form.Label>
-				<Popover.Trigger
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[200px] justify-between",
-						!$formData.language && "text-muted-foreground"
-					)}
-					role="combobox"
-					{...attrs}
-				>
-					{languages.find((f) => f.value === $formData.language)?.label ??
-						"Select language"}
-					<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-				</Popover.Trigger>
-				<input hidden value={$formData.language} name={attrs.name} />
+		<Popover.Root bind:open>
+			<Form.Control id={triggerId}>
+				{#snippet children({ props })}
+					<Form.Label>Language</Form.Label>
+					<Popover.Trigger
+						class={cn(
+							buttonVariants({ variant: "outline" }),
+							"w-[200px] justify-between",
+							!$formData.language && "text-muted-foreground"
+						)}
+						role="combobox"
+						{...props}
+					>
+						{languages.find((f) => f.value === $formData.language)?.label ??
+							"Select language"}
+						<ChevronsUpDown class="opacity-50" />
+					</Popover.Trigger>
+					<input hidden value={$formData.language} name={props.name} />
+				{/snippet}
 			</Form.Control>
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>
@@ -97,13 +103,12 @@
 								value={language.value}
 								onSelect={() => {
 									$formData.language = language.value;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto h-4 w-4",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

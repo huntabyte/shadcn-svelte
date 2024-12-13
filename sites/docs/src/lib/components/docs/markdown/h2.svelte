@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, children, ...restProps }: PrimitiveElementAttributes = $props();
 </script>
 
 <h2
 	class={cn(
-		"mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+		"font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </h2>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
+
 	import * as Card from "$lib/registry/default/ui/card/index.js";
+
 	import * as Table from "$lib/registry/default/ui/table/index.js";
 </script>
 

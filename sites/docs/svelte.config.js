@@ -29,7 +29,7 @@ const config = {
 				// the globs for them to save our 100 include/exclude limit
 				exclude: [
 					"<build>",
-					// prerendered content
+					// pre-rendered content
 					"/docs/*",
 					"/blocks/*",
 					"/blocks.html",
@@ -56,6 +56,9 @@ const config = {
 				if (details.id === "#") return;
 				console.warn(details.message);
 			},
+		},
+		alias: {
+			"$content/*": ".velite/*",
 		},
 	},
 };
