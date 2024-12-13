@@ -44,6 +44,9 @@ importers:
       svelte-eslint-parser:
         specifier: ^0.41.0
         version: 0.41.0(svelte@4.2.18)
+      wrangler:
+        specifier: ^3.95.0
+        version: 3.95.0
 
   packages/cli:
     dependencies:
