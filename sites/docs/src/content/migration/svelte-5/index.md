@@ -37,7 +37,7 @@ Add the `registry` to the root object, and add `hooks` and `ui` keys under `alia
   "style": "default",
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "src\\app.pcss",
+    "css": "src/app.pcss",
     "baseColor": "zinc"
   },
   "aliases": {
