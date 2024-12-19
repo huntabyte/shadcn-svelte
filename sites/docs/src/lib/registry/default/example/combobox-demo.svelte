@@ -76,12 +76,7 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<Check
-								class={cn(
-									"ml-auto",
-									value !== framework.value && "text-transparent"
-								)}
-							/>
+							<Check class={cn(value !== framework.value && "text-transparent")} />
 							{framework.label}
 						</Command.Item>
 					{/each}
