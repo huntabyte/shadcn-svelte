@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MediaQuery } from "runed";
+	import { MediaQuery } from "svelte/reactivity";
 	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
@@ -30,7 +30,7 @@
 		<Breadcrumb.Separator />
 		{#if items.length > ITEMS_TO_DISPLAY}
 			<Breadcrumb.Item>
-				{#if isDesktop.matches}
+				{#if isDesktop.current}
 					<DropdownMenu.Root bind:open>
 						<DropdownMenu.Trigger
 							class="flex items-center gap-1"

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MediaQuery } from "runed";
+	import { MediaQuery } from "svelte/reactivity";
 	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
@@ -10,7 +10,7 @@
 	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 
-{#if isDesktop.matches}
+{#if isDesktop.current}
 	<Dialog.Root bind:open>
 		<Dialog.Trigger class={buttonVariants({ variant: "outline" })}>Edit Profile</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
