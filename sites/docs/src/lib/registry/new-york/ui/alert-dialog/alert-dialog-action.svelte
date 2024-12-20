@@ -3,19 +3,11 @@
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = AlertDialogPrimitive.ActionProps;
-	type $$Events = AlertDialogPrimitive.ActionEvents;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		class: className,
+		ref = $bindable(null),
+		...restProps
+	}: AlertDialogPrimitive.ActionProps = $props();
 </script>
 
-<AlertDialogPrimitive.Action
-	class={cn(buttonVariants(), className)}
-	{...$$restProps}
-	on:click
-	on:keydown
-	let:builder
->
-	<slot {builder} />
-</AlertDialogPrimitive.Action>
+<AlertDialogPrimitive.Action bind:ref class={cn(buttonVariants(), className)} {...restProps} />

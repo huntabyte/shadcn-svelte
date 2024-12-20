@@ -4,24 +4,25 @@
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = RangeCalendarPrimitive.NextButtonProps;
-	type $$Events = RangeCalendarPrimitive.NextButtonEvents;
-
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: RangeCalendarPrimitive.NextButtonProps = $props();
 </script>
 
+{#snippet Fallback()}
+	<ChevronRight class="size-4" />
+{/snippet}
+
 <RangeCalendarPrimitive.NextButton
-	on:click
+	bind:ref
 	class={cn(
 		buttonVariants({ variant: "outline" }),
-		"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+		"size-7 bg-transparent p-0 opacity-50 hover:opacity-100",
 		className
 	)}
-	{...$$restProps}
-	let:builder
->
-	<slot {builder}>
-		<ChevronRight class="h-4 w-4" />
-	</slot>
-</RangeCalendarPrimitive.NextButton>
+	children={children || Fallback}
+	{...restProps}
+/>

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	export const formSchema = z.object({
@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import CalendarIcon from "svelte-radix/Calendar.svelte";
+	import CalendarIcon from "lucide-svelte/icons/calendar";
 	import {
 		CalendarDate,
 		DateFormatter,
@@ -25,12 +25,13 @@
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils.js";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
-	export { data as form };
+
+	let { form: data = $page.data.datePicker }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -50,50 +51,62 @@
 		dateStyle: "long",
 	});
 
-	let value: DateValue | undefined;
+	let value = $state<DateValue | undefined>();
 
-	$: value = $formData.dob ? parseDate($formData.dob) : undefined;
+	$effect(() => {
+		value = $formData.dob ? parseDate($formData.dob) : undefined;
+	});
 
-	let placeholder: DateValue = today(getLocalTimeZone());
+	let placeholder = $state(today(getLocalTimeZone()));
 </script>
 
 <form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
 	<Form.Field {form} name="dob" class="flex flex-col">
-		<Form.Control let:attrs>
-			<Form.Label>Date of birth</Form.Label>
-			<Popover.Root>
-				<Popover.Trigger
-					{...attrs}
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[280px] justify-start pl-4 text-left font-normal",
-						!value && "text-muted-foreground"
-					)}
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label>Date of birth</Form.Label>
+				<Popover.Root>
+					<Popover.Trigger {...props}>
+						{#snippet child({ props })}
+							<Button
+								variant="outline"
+								class={cn(
+									"w-[280px] justify-start pl-4 text-left font-normal",
+									!value && "text-muted-foreground"
+								)}
+								{...props}
+							>
+								{value
+									? df.format(value.toDate(getLocalTimeZone()))
+									: "Pick a date"}
+								<CalendarIcon class="ml-auto size-4 opacity-50" />
+							</Button>
+						{/snippet}
+					</Popover.Trigger>
+					<Popover.Content class="w-auto p-0" side="top">
+						<Calendar
+							type="single"
+							{value}
+							bind:placeholder
+							minValue={new CalendarDate(1900, 1, 1)}
+							maxValue={today(getLocalTimeZone())}
+							calendarLabel="Date of birth"
+							onValueChange={(v) => {
+								if (v) {
+									$formData.dob = v.toString();
+								} else {
+									$formData.dob = "";
+								}
+							}}
+						/>
+					</Popover.Content>
+				</Popover.Root>
+				<Form.Description
+					>Your date of birth is used to calculator your age</Form.Description
 				>
-					{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-					<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-				</Popover.Trigger>
-				<Popover.Content class="w-auto p-0" side="top">
-					<Calendar
-						{value}
-						bind:placeholder
-						minValue={new CalendarDate(1900, 1, 1)}
-						maxValue={today(getLocalTimeZone())}
-						calendarLabel="Date of birth"
-						initialFocus
-						onValueChange={(v) => {
-							if (v) {
-								$formData.dob = v.toString();
-							} else {
-								$formData.dob = "";
-							}
-						}}
-					/>
-				</Popover.Content>
-			</Popover.Root>
-			<Form.Description>Your date of birth is used to calculator your age</Form.Description>
-			<Form.FieldErrors />
-			<input hidden value={$formData.dob} name={attrs.name} />
+				<Form.FieldErrors />
+				<input hidden value={$formData.dob} name={props.name} />
+			{/snippet}
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>

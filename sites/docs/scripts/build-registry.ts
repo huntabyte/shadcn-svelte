@@ -1,23 +1,53 @@
+import template from "lodash.template";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import template from "lodash.template";
 import { rimraf } from "rimraf";
-
 import { colorMapping, colors } from "../src/lib/registry/colors";
 import { registrySchema } from "../src/lib/registry/schema";
 import { styles } from "../src/lib/registry/styles";
 import { themes } from "../src/lib/registry/themes";
 import { buildRegistry } from "./registry";
-import { transformContent } from "./transformers";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
-import { getChunks } from "./transform-chunks.js";
+import { getChunks } from "./transform-chunks";
+import { transformContent } from "./transformers";
+import prettier from "prettier";
+import prettierPluginSvelte from "prettier-plugin-svelte";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const REGISTRY_IGNORE = ["super-form"];
 
+const prettierConfig: prettier.Config = {
+	useTabs: true,
+	singleQuote: false,
+	trailingComma: "es5",
+	printWidth: 100,
+};
+
+function writeFileWithDirs(
+	filePath: string,
+	data: string,
+	options: Parameters<typeof fs.writeFileSync>[2] = {}
+) {
+	// Create directory path if it doesn't exist
+	const dirname = path.dirname(filePath);
+	fs.mkdirSync(dirname, { recursive: true });
+
+	// Write the file
+	fs.writeFileSync(filePath, data, options);
+}
+
 async function main() {
 	const registry = await buildRegistry();
+
+	const selfReferenced = registry.filter((item) => item.registryDependencies.includes(item.name));
+	const selfReferenceError = selfReferenced
+		.map((item) => `Registry item '${item.name}' depends on itself`)
+		.join("\n");
+	if (selfReferenceError) {
+		throw new Error(selfReferenceError);
+	}
+
 	const result = registrySchema.safeParse(registry);
 
 	if (!result.success) {
@@ -46,7 +76,7 @@ export const Blocks = {
 		}
 		// Creates chunk files
 		for (const block of result.data) {
-			if (block.type !== "components:block" || block.style !== style.name) continue;
+			if (block.type !== "registry:block" || block.style !== style.name) continue;
 			const file = block.files[0];
 			const blockPath = path.resolve(libPath, block.style, "block", file.name);
 			const chunkDir = path.resolve(registryChunksDirPath, block.style);
@@ -54,16 +84,21 @@ export const Blocks = {
 			const chunks = getChunks(file.content, blockPath);
 			for (const chunk of chunks) {
 				const chunkPath = path.resolve(chunkDir, `${chunk.name}.svelte`);
-				fs.writeFileSync(chunkPath, chunk.content, { encoding: "utf8" });
+				writeFileWithDirs(chunkPath, chunk.content, { encoding: "utf8" });
 			}
+
+			const isDir = !fs.existsSync(
+				path.resolve("src", "lib", "registry", style.name, "block", `${block.name}.svelte`)
+			);
+			const blockFile = isDir ? `${block.name}/+page.svelte` : `${block.name}.svelte`;
 
 			blocksIndex += `
 		"${block.name}": {
 			name: "${block.name}",
 			type: "${block.type}",
 			chunks: [${chunks.map((chunk) => ` { name: "${chunk.name}", description: "${chunk.description}", container: { className: "${chunk.container.className}" }, raw: () => import("./chunks/${style.name}/${chunk.name}.svelte?raw").then((m) => m.default), component: () => import("./chunks/${style.name}/${chunk.name}.svelte").then((m) => m.default) }`)}],
-			component: () => import("../lib/registry/${style.name}/block/${block.name}.svelte").then((m) => m.default),
-			raw: () => import("../lib/registry/${style.name}/block/${block.name}.svelte?raw").then((m) => m.default),
+			component: () => import("../lib/registry/${style.name}/block/${blockFile}").then((m) => m.default),
+			raw: () => import("../lib/registry/${style.name}/block/${blockFile}?raw").then((m) => m.default),
 		},`;
 		}
 		// end of style
@@ -71,7 +106,7 @@ export const Blocks = {
 	}
 	blocksIndex += "\n};\n";
 	const blocksPath = path.resolve("src", "__registry__", "blocks.js");
-	fs.writeFileSync(blocksPath, blocksIndex);
+	writeFileWithDirs(blocksPath, blocksIndex);
 
 	// ----------------------------------------------------------------------------
 	// Build __registry__/index.js.
@@ -88,8 +123,8 @@ export const Index = {
 		// Build style index.
 		for (const item of result.data) {
 			if (
-				item.type === "components:ui" ||
-				item.type === "components:block" ||
+				item.type === "registry:ui" ||
+				item.type === "registry:block" ||
 				item.style !== "default"
 			) {
 				continue;
@@ -99,15 +134,17 @@ export const Index = {
 			const resolveFiles = item.files.map(
 				(file) => `../lib/registry/${style.name}/${file.path}`
 			);
+			const componentLine =
+				item.type === "registry:hook"
+					? "component: () => {}"
+					: `component: () => import("../lib/registry/${style.name}/${type}/${item.name}.svelte").then((m) => m.default)`;
 
 			index += `
 		"${item.name}": {
 			name: "${item.name}",
 			type: "${item.type}",
 			registryDependencies: ${JSON.stringify(item.registryDependencies)},
-			component: () => import("../lib/registry/${style.name}/${type}/${
-				item.name
-			}.svelte").then((m) => m.default),
+			${componentLine},
 			files: [${resolveFiles.map((file) => `"${file}"`)}],
 			raw: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
@@ -126,7 +163,7 @@ export const Index = {
 	// Write style index.
 	const registryPath = path.resolve("src", "__registry__", "index.js");
 	rimraf.sync(registryPath);
-	fs.writeFileSync(registryPath, index);
+	writeFileWithDirs(registryPath, index);
 
 	// ----------------------------------------------------------------------------
 	// Build registry/styles/[style]/[name].json.
@@ -148,7 +185,8 @@ export const Index = {
 	}
 
 	for (const item of result.data) {
-		if (item.type !== "components:ui") continue;
+		const allowedTypes = ["registry:ui", "registry:hook", "registry:block"];
+		if (!allowedTypes.includes(item.type)) continue;
 
 		const targetPath = path.join(REGISTRY_PATH, "styles", item.style);
 		const targetJsPath = `${targetPath}-js`;
@@ -158,11 +196,20 @@ export const Index = {
 
 		const jsFiles = await Promise.all(
 			files.map(async (file) => {
-				const content = await transformContent(file.content, file.name);
+				let content = await transformContent(file.content, file.name);
 				const fileName = file.name.replace(".ts", ".js");
+				// format
+				content = await prettier.format(content, {
+					...prettierConfig,
+					filepath: fileName,
+					plugins: [prettierPluginSvelte],
+					overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
+				});
 				return {
 					name: fileName,
 					content,
+					target: file.target.replace(".ts", ".js"),
+					type: file.type,
 				};
 			})
 		);
@@ -179,16 +226,16 @@ export const Index = {
 			style: undefined, // discard `style` prop
 		};
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(targetPath, `${item.name}.json`),
 			JSON.stringify(payload, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(targetJsPath, `${item.name}.json`),
 			JSON.stringify(jsPayload, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 	}
 
@@ -196,7 +243,7 @@ export const Index = {
 	// Build registry/styles/index.json.
 	// ----------------------------------------------------------------------------
 	const stylesJson = JSON.stringify(styles, null, "\t");
-	fs.writeFileSync(path.join(REGISTRY_PATH, "styles", "index.json"), stylesJson, "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, "styles", "index.json"), stylesJson, "utf8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/index.json.
@@ -204,7 +251,7 @@ export const Index = {
 	const names = result.data
 		.filter(
 			(item) =>
-				item.type === "components:ui" &&
+				item.type === "registry:ui" &&
 				!REGISTRY_IGNORE.includes(item.name) &&
 				// We'll use the `default` style as the reference for the index
 				item.style === "default"
@@ -215,11 +262,11 @@ export const Index = {
 			// The `default` style uses `lucide-svelte`, so we'll discard it for the purposes of the index
 			dependencies: item.dependencies.filter((dep) => dep !== "lucide-svelte"),
 			// We only want the relative file paths
-			files: item.files.map((file) => file.path),
+			files: item.files.map((file) => ({ path: file.path, type: "registry:ui" })),
 		}));
 	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
-	fs.writeFileSync(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf-8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/index.json.
@@ -230,7 +277,7 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	// eslint-disable-next-line ts/no-explicit-any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const colorsData: Record<string, any> = {};
 	for (const [color, value] of Object.entries(colors)) {
 		if (typeof value === "string") {
@@ -257,10 +304,10 @@ export const Index = {
 		}
 	}
 
-	fs.writeFileSync(
+	writeFileWithDirs(
 		path.join(colorsTargetPath, "index.json"),
 		JSON.stringify(colorsData, null, "\t"),
-		"utf8"
+		"utf-8"
 	);
 
 	// ----------------------------------------------------------------------------
@@ -268,7 +315,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 
 	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
-		// eslint-disable-next-line ts/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const base: Record<string, any> = {
 			inlineColors: {},
 			cssVars: {},
@@ -278,14 +325,13 @@ export const Index = {
 			base.cssVars[mode] = {};
 			for (const [key, value] of Object.entries(values)) {
 				if (typeof value === "string") {
-					// eslint-disable-next-line regexp/strict
-					const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
+					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
 					base.inlineColors[mode][key] = resolvedColor;
 
 					const [resolvedBase, scale] = resolvedColor.split("-");
 					const color = scale
 						? colorsData[resolvedBase].find(
-								// eslint-disable-next-line ts/no-explicit-any
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
 								(item: any) => item.scale === Number.parseInt(scale)
 							)
 						: colorsData[resolvedBase];
@@ -302,10 +348,10 @@ export const Index = {
 			colors: base.cssVars,
 		});
 
-		fs.writeFileSync(
+		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
 			JSON.stringify(base, null, "\t"),
-			"utf8"
+			"utf-8"
 		);
 	}
 
@@ -323,7 +369,7 @@ export const Index = {
 		);
 	}
 
-	fs.writeFileSync(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf8");
+	writeFileWithDirs(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
 
 	console.info("✅ Done!");
 }

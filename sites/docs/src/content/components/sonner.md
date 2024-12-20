@@ -2,7 +2,10 @@
 title: Sonner
 description: An opinionated toast component for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/sonner
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/sonner
+  doc: https://svelte-sonner.vercel.app/
+  api: https://github.com/wobsoriano/svelte-sonner
 ---
 
 <script>
@@ -11,7 +14,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="sonner-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -45,14 +48,15 @@ If you wish to opt out of Dark Mode support, you can uninstall `mode-watcher` an
 
 Note: Make sure you are adding the import from the path `"$lib/components/ui/sonner"` not `"svelte-sonner"`.
 
-```svelte title="+layout.svelte" {2,5}
+```svelte title="+layout.svelte" {2,6}
 <script lang="ts">
-  import { Toaster } from "$lib/components/ui/sonner";
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
+  let { children } = $props();
 </script>
 
 <Toaster />
 
-<slot />
+{@render children?.()}
 ```
 
 </Steps>
@@ -61,7 +65,7 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 
 1. Install `svelte-sonner`:
 
-<PMInstall command="svelte-sonner" />
+<PMInstall command="svelte-sonner -D" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 
@@ -72,8 +76,8 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 ```svelte
 <script lang="ts">
   import { toast } from "svelte-sonner";
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
-<Button on:click={() => toast("Hello world")}>Show toast</Button>
+<Button onclick={() => toast("Hello world")}>Show toast</Button>
 ```

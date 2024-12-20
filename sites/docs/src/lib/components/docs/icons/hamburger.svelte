@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SVGAttributes } from "svelte/elements";
 
-	type $$Props = SVGAttributes<SVGElement>;
+	let restProps: SVGAttributes<SVGElement> = $props();
 </script>
 
 <svg
@@ -9,8 +9,8 @@
 	viewBox="0 0 24 24"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
-	class="h-5 w-5"
-	{...$$restProps}
+	class="size-5"
+	{...restProps}
 >
 	<path
 		d="M3 5H11"

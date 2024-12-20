@@ -2,28 +2,32 @@
 title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Steps, Step, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="breadcrumb-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="breadcrumb" />
-
-<ManualInstall>
-
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
@@ -57,7 +61,7 @@ Use a custom component in the `<slot>` of `<Breadcrumb.Separator />` to create a
 
 <ComponentPreview name="breadcrumb-separator">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -69,7 +73,7 @@ You can compose `<Breadcrumb.Item />` with a `<DropdownMenu />` to create a drop
 
 <ComponentPreview name="breadcrumb-dropdown">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -81,7 +85,7 @@ We provide a `<Breadcrumb.Ellipsis />` component to show a collapsed state when 
 
 <ComponentPreview name="breadcrumb-ellipsis">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -93,7 +97,7 @@ To use a custom link component from your routing library, you can use the `asChi
 
 <ComponentPreview name="breadcrumb-link">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -107,6 +111,6 @@ It displays a dropdown on desktop and a drawer on mobile.
 
 <ComponentPreview name="breadcrumb-responsive">
 
-<div />
+<div></div>
 
 </ComponentPreview>
