@@ -5,6 +5,8 @@ on:
       - main
     paths:
       - sites/docs/**
+  workflow_dispatch:
+
 
 jobs:
   deploy-production:
@@ -32,6 +34,8 @@ jobs:
         run: pnpm install
 
       - name: Build site
+        env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
         run: pnpm build
 
       - name: Deploy to Cloudflare Pages
