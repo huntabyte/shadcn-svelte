@@ -40,8 +40,7 @@
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
-	let { form: data = page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
+	let { form: data = page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

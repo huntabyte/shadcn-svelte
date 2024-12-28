@@ -18,8 +18,7 @@
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
 
-	let { form: data = page.data.textarea }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
+	let { form: data = page.data.textarea }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
