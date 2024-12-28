@@ -46,6 +46,6 @@
 <TogglePrimitive.Root
 	bind:ref
 	bind:pressed
-	class={cn(toggleVariants({ variant, size, className }))}
+	class={cn(toggleVariants({ variant, size }), className)}
 	{...restProps}
 />

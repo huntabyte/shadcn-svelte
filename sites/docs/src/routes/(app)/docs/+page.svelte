@@ -2,7 +2,7 @@
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { PageData } from "./$types.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import DocsPager from "$lib/components/docs/docs-pager.svelte";
 	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
 	import { cn } from "$lib/utils.js";
@@ -39,7 +39,7 @@
 	</div>
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] overflow-hidden pt-6">
-			{#key $page.url.pathname}
+			{#key page.url.pathname}
 				<TableOfContents />
 			{/key}
 			<div class="z-10 pt-4">

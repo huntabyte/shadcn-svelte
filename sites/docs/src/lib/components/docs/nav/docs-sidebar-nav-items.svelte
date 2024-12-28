@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SidebarNavItem } from "$lib/types/nav.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { cn } from "$lib/utils.js";
 
 	let { items }: { items: SidebarNavItem[] } = $props();
@@ -15,7 +15,7 @@
 					class={cn(
 						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
 						item.disabled && "cursor-not-allowed opacity-60",
-						$page.url.pathname === item.href
+						page.url.pathname === item.href
 							? "text-foreground font-medium"
 							: "text-muted-foreground"
 					)}

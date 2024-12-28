@@ -23,13 +23,13 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { cn } from "$lib/utils.js";
 	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { Calendar } from "$lib/registry/default/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.datePicker;
+	let data: SuperValidated<Infer<FormSchema>> = page.data.datePicker;
 	export { data as form };
 
 	const form = superForm(data, {

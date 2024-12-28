@@ -10,7 +10,7 @@
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
 	let { data }: { data: PageData } = $props();
 
@@ -85,7 +85,7 @@
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
 			<ScrollArea class="h-full">
-				{#key $page.url.pathname}
+				{#key page.url.pathname}
 					<TableOfContents />
 				{/key}
 				<Carbon />

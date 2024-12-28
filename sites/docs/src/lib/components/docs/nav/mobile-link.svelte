@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
 	let {
@@ -17,7 +17,7 @@
 
 <a
 	{href}
-	class={cn($page.url.pathname === href ? "text-foreground" : "text-foreground/60", className)}
+	class={cn(page.url.pathname === href ? "text-foreground" : "text-foreground/60", className)}
 	onclick={handleClick}
 	{...restProps}
 >
