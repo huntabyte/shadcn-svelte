@@ -15,9 +15,9 @@
 	import { browser } from "$app/environment";
 	import * as InputOTP from "$lib/registry/new-york/ui/input-otp/index.js";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
-	let { form: data = $page.data.inputOtp }: { form: SuperValidated<Infer<FormSchema>> } =
+	let { form: data = page.data.inputOtp }: { form: SuperValidated<Infer<FormSchema>> } =
 		$props();
 
 	const form = superForm(data, {

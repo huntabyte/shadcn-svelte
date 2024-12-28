@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ArrowRight from "lucide-svelte/icons/arrow-right";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { examples } from "$lib/config/docs.js";
 
 	const example = $derived(
-		examples.find((example) => $page.url.pathname.startsWith(example.href))
+		examples.find((example) => page.url.pathname.startsWith(example.href))
 	);
 </script>
 

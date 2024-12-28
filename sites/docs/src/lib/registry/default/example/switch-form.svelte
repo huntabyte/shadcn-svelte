@@ -12,11 +12,11 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Switch } from "$lib/registry/default/ui/switch/index.js";
 
-	let { form: data = $page.data.switch }: { form: SuperValidated<Infer<FormSchema>> } = $props();
+	let { form: data = page.data.switch }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

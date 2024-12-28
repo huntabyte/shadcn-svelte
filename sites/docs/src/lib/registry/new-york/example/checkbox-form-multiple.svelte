@@ -41,11 +41,11 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 
-	let { form: data = $page.data.checkboxMultiple }: { form: SuperValidated<Infer<FormSchema>> } =
+	let { form: data = page.data.checkboxMultiple }: { form: SuperValidated<Infer<FormSchema>> } =
 		$props();
 
 	const form = superForm(data, {

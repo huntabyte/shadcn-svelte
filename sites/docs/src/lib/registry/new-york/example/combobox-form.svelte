@@ -33,14 +33,14 @@
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
-	let { form: data = $page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
+	let { form: data = page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
 		$props();
 
 	const form = superForm(data, {
