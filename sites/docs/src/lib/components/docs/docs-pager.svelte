@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ChevronLeft from "svelte-radix/ChevronLeft.svelte";
-	import ChevronRight from "svelte-radix/ChevronRight.svelte";
+	import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
@@ -32,7 +32,7 @@
 			.filter((link) => !link?.disabled);
 	}
 
-	const pager = $derived(getPagerForDoc($page.params.slug));
+	const pager = $derived(getPagerForDoc(page.params.slug));
 </script>
 
 <div class="flex flex-row items-center justify-between">

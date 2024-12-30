@@ -1,18 +1,21 @@
 <script lang="ts">
 	import { Select as SelectPrimitive, type WithoutChild } from "bits-ui";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import * as Select from "./index.js";
 	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		sideOffset = 4,
+		portalProps,
 		children,
 		...restProps
-	}: WithoutChild<SelectPrimitive.ContentProps> = $props();
+	}: WithoutChild<SelectPrimitive.ContentProps> & {
+		portalProps?: SelectPrimitive.PortalProps;
+	} = $props();
 </script>
 
-<SelectPrimitive.Portal>
+<SelectPrimitive.Portal {...portalProps}>
 	<SelectPrimitive.Content
 		bind:ref
 		{sideOffset}

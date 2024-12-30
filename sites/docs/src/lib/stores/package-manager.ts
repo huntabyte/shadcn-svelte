@@ -1,9 +1,11 @@
 import { getContext, setContext } from "svelte";
 import { persisted } from "svelte-persisted-store";
+import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
+import { resolveCommand } from "package-manager-detector/commands";
 
 const PACKAGE_MANAGER = Symbol("packageManager");
 
-export function setPackageManager(initialValue: PackageManager = "npm") {
+export function setPackageManager(initialValue: Agent = "npm") {
 	const packageManager = createPackageManagerStore("packageManager", initialValue);
 	setContext(PACKAGE_MANAGER, packageManager);
 	return packageManager;
@@ -13,37 +15,32 @@ export function getPackageManager(): ReturnType<typeof setPackageManager> {
 	return getContext(PACKAGE_MANAGER);
 }
 
-function createPackageManagerStore(key: string, initialValue: PackageManager) {
+function createPackageManagerStore(key: string, initialValue: Agent) {
 	const store = persisted(key, initialValue);
 	return store;
 }
 
-export const packageManagers = ["pnpm", "bun", "yarn", "npm"] as const;
-export type PackageManager = (typeof packageManagers)[number];
+export type PackageManagerCommand = Command | "create";
 
-const packageManagerToScriptCmd: Record<PackageManager, string> = {
-	npm: "npx",
-	yarn: "yarn dlx",
-	pnpm: "pnpm dlx",
-	bun: "bunx",
-};
+export function getCommand(
+	pm: Agent,
+	type: PackageManagerCommand,
+	command: string | string[]
+): ResolvedCommand {
+	let args = [];
+	if (typeof command === "string") {
+		args = command.split(" ");
+	} else {
+		args = command;
+	}
 
-export function getPackageManagerScriptCmd(pm: PackageManager): string {
-	return packageManagerToScriptCmd[pm];
-}
+	// special handling for create
+	if (type === "create") return { command: pm, args: ["create", ...args] };
 
-const packageManagerToInstallCmd: Record<PackageManager, string> = {
-	npm: "install",
-	yarn: "add",
-	pnpm: "add",
-	bun: "add",
-};
+	const cmd = resolveCommand(pm, type, args);
 
-export function getPackageManagerInstallCmd(pm: PackageManager): string {
-	return packageManagerToInstallCmd[pm];
-}
+	// since docs are static any unresolved command is a code error
+	if (cmd === null) throw new Error("Could not resolve command!");
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isPackageManager(value: any): value is PackageManager {
-	return packageManagers.includes(value);
+	return cmd;
 }

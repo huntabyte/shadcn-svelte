@@ -5,25 +5,24 @@
 	import Smartphone from "lucide-svelte/icons/smartphone";
 	import Tablet from "lucide-svelte/icons/tablet";
 	import Terminal from "lucide-svelte/icons/terminal";
-	import { getPackageManagerScriptCmd } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
 	import type { Block } from "$lib/registry/schema.js";
 	import type { ResizablePane } from "$lib/registry/new-york/ui/resizable/index.js";
 	import { CopyToClipboard } from "$lib/utils/copy-to-clipboard.svelte.js";
-	import { getPackageManager } from "$lib/stores/package-manager.js";
+	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
 
 	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: ResizablePane } = $props();
 
 	const copier = new CopyToClipboard();
 	const selectedPackageManager = getPackageManager();
 
-	const addCommand = $derived.by(() => {
-		const start = getPackageManagerScriptCmd($selectedPackageManager);
-		const end = `shadcn-svelte@next add ${block.name}`;
-		return start + " " + end;
-	});
+	const addCommand = $derived(
+		getCommand($selectedPackageManager, "execute", `shadcn-svelte@next add ${block.name}`)
+	);
+
+	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 
 	const blockSource = $derived(
 		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/new-york/block/${block.name}`
@@ -40,7 +39,7 @@
 			class="bg-muted h-7 rounded-md border shadow-none"
 			size="sm"
 			onclick={() => {
-				copier.copyToClipboard(addCommand);
+				copier.copyToClipboard(command);
 			}}
 		>
 			{#if copier.isCopied}
@@ -48,7 +47,7 @@
 			{:else}
 				<Terminal />
 			{/if}
-			{addCommand}
+			{command}
 		</Button>
 		<Separator orientation="vertical" class="mx-2 hidden h-4 md:flex" />
 		<div class="hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none md:flex">

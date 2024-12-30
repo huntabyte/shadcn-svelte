@@ -1,12 +1,13 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import Copy from "svelte-radix/Copy.svelte";
-	import { CaretSort } from "svelte-radix";
+	import Check from "lucide-svelte/icons/check";
+	import Copy from "lucide-svelte/icons/copy";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import { getPackageManager, packageManagers } from "$lib/stores/package-manager.js";
+	import { getPackageManager } from "$lib/stores/package-manager.js";
 	import { Button, type ButtonProps } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import type { Agent } from "package-manager-detector";
 
 	type Props = Omit<ButtonProps, "children"> & {
 		isPackageManagerBlock?: boolean;
@@ -44,14 +45,14 @@
 
 					<span class="flex items-center pl-1">
 						{$selectedPackageManager}
-						<CaretSort size="20" />
+						<ChevronsUpDown class="size-5" />
 					</span>
 				</Button>
 			{/snippet}
 		</DropdownMenu.Trigger>
 
 		<DropdownMenu.Content align="end" preventScroll={false}>
-			{#each packageManagers as pm (pm)}
+			{#each ["pnpm", "bun", "yarn", "npm"] satisfies Agent[] as pm (pm)}
 				<DropdownMenu.Item
 					onclick={() => {
 						selectedPackageManager.set(pm);

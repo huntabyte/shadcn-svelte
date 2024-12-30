@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronRight from "svelte-radix/ChevronRight.svelte";
-	import Code from "svelte-radix/Code.svelte";
-	import ExternalLink from "svelte-radix/ExternalLink.svelte";
+	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import Code from "lucide-svelte/icons/code";
+	import ExternalLink from "lucide-svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
@@ -10,7 +10,7 @@
 	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
 	let { data }: { data: PageData } = $props();
 
@@ -85,7 +85,7 @@
 	<div class="hidden text-sm xl:block">
 		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
 			<ScrollArea class="h-full">
-				{#key $page.url.pathname}
+				{#key page.url.pathname}
 					<TableOfContents />
 				{/key}
 				<Carbon />

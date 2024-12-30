@@ -33,13 +33,13 @@
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
+	let data: SuperValidated<Infer<FormSchema>> = page.data.combobox;
 	export { data as form };
 
 	const form = superForm(data, {
@@ -86,7 +86,7 @@
 					>
 						{languages.find((f) => f.value === $formData.language)?.label ??
 							"Select language"}
-						<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
+						<ChevronsUpDown class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -107,7 +107,7 @@
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto size-4",
+										"ml-auto",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

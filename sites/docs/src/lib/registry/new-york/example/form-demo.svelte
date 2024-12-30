@@ -14,9 +14,9 @@
 	import { browser } from "$app/environment";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
-	let { form: data = $page.data.form }: { form: SuperValidated<Infer<FormSchema>> } = $props();
+	let { form: data = page.data.form }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

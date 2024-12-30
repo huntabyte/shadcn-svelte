@@ -25,23 +25,22 @@
 </script>
 
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
-	let { form: data = $page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
+	let { form: data = page.data.combobox }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -88,7 +87,7 @@
 					>
 						{languages.find((f) => f.value === $formData.language)?.label ??
 							"Select language"}
-						<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
+						<ChevronsUpDown class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -109,7 +108,6 @@
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto size-4",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

@@ -87,7 +87,7 @@
 						onclick={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
-						<Minus class="size-4" />
+						<Minus />
 						<span class="sr-only">Decrease</span>
 					</Button>
 					<div class="flex-1 text-center">
@@ -105,7 +105,7 @@
 						onclick={() => handleClick(10)}
 						disabled={goal >= 400}
 					>
-						<Plus class="size-4" />
+						<Plus />
 						<span class="sr-only">Increase</span>
 					</Button>
 				</div>

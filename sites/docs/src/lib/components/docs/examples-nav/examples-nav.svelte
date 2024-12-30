@@ -2,7 +2,7 @@
 	import { cubicInOut } from "svelte/easing";
 	import { crossfade } from "svelte/transition";
 	import ExampleCodeLink from "./example-code-link.svelte";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { examples } from "$lib/config/docs.js";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
@@ -24,8 +24,8 @@
 			>
 				{#each examples as example, index (index)}
 					{@const isActive =
-						$page.url.pathname.startsWith(example.href) ||
-						($page.url.pathname === "/" && index === 0)}
+						page.url.pathname.startsWith(example.href) ||
+						(page.url.pathname === "/" && index === 0)}
 
 					<a
 						href={example.href}

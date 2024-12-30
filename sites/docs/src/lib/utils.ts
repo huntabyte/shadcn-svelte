@@ -260,38 +260,6 @@ export function getLiftMode(name: string) {
 	};
 }
 
-export const packageManagers = ["pnpm", "bun", "yarn", "npm"] as const;
-export type PackageManager = (typeof packageManagers)[number];
-
-export const selectedPackageManager = persisted<PackageManager>("package-manager", "npm");
-
-const packageManagerToScriptCmd: Record<PackageManager, string> = {
-	npm: "npx",
-	yarn: "yarn dlx",
-	pnpm: "pnpm dlx",
-	bun: "bunx",
-};
-
-export function getPackageManagerScriptCmd(pm: PackageManager): string {
-	return packageManagerToScriptCmd[pm];
-}
-
-const packageManagerToInstallCmd: Record<PackageManager, string> = {
-	npm: "install",
-	yarn: "add",
-	pnpm: "add",
-	bun: "add",
-};
-
-export function getPackageManagerInstallCmd(pm: PackageManager): string {
-	return packageManagerToInstallCmd[pm];
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isPackageManager(value: any): value is PackageManager {
-	return packageManagers.includes(value);
-}
-
 // Wrappers around svelte's `HTMLAttributes` types to add a `ref` prop can be bound to
 // to get a reference to the underlying DOM element the component is rendering.
 export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;

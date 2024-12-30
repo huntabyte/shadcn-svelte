@@ -1,9 +1,11 @@
-import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
 import { SITE_BASE_URL } from "../../src/constants";
 
 vi.mock("execa");
+
+const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 vi.mock("node:fs", async () => {
 	return {
@@ -14,7 +16,7 @@ vi.mock("node:fs", async () => {
 
 // gets the raw config from a fixture directory
 async function getRaw(fixtureDir: string) {
-	return await getRawConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
+	return await getRawConfig(resolvePath(`../fixtures/${fixtureDir}`));
 }
 
 describe("getRawConfig", () => {
@@ -50,7 +52,7 @@ describe("getRawConfig", () => {
 
 // gets the config from a fixture directory
 async function getConf(fixtureDir: string) {
-	return await getConfig(path.resolve(__dirname, `../fixtures/${fixtureDir}`));
+	return await getConfig(resolvePath(`../fixtures/${fixtureDir}`));
 }
 
 describe("getConfig", () => {
@@ -75,29 +77,13 @@ describe("getConfig", () => {
 				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./tailwind.config.js"
-				),
-				tailwindCss: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./src/app.pcss"
-				),
-				utils: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/utils"),
-				cwd: path.resolve(__dirname, "../fixtures/config-partial"),
-				hooks: path.resolve(__dirname, "../fixtures/config-partial", "./src/lib/hooks"),
-				ui: path.resolve(
-					__dirname,
-					"../fixtures/config-partial",
-					"./src/lib/components/ui"
-				),
+				components: resolvePath("../fixtures/config-partial/src/lib/components"),
+				tailwindConfig: resolvePath("../fixtures/config-partial/tailwind.config.js"),
+				tailwindCss: resolvePath("../fixtures/config-partial/src/app.pcss"),
+				utils: resolvePath("../fixtures/config-partial/src/lib/utils"),
+				cwd: resolvePath("../fixtures/config-partial"),
+				hooks: resolvePath("../fixtures/config-partial/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-partial/src/lib/components/ui"),
 			},
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
@@ -119,21 +105,13 @@ describe("getConfig", () => {
 				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-full",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-full",
-					"./tailwind.config.js"
-				),
-				tailwindCss: path.resolve(__dirname, "../fixtures/config-full", "./src/app.pcss"),
-				utils: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/utils"),
-				cwd: path.resolve(__dirname, "../fixtures/config-full"),
-				hooks: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/hooks"),
-				ui: path.resolve(__dirname, "../fixtures/config-full", "./src/lib/components/ui"),
+				components: resolvePath("../fixtures/config-full/src/lib/components"),
+				tailwindConfig: resolvePath("../fixtures/config-full/tailwind.config.js"),
+				tailwindCss: resolvePath("../fixtures/config-full/src/app.pcss"),
+				utils: resolvePath("../fixtures/config-full/src/lib/utils"),
+				cwd: resolvePath("../fixtures/config-full"),
+				hooks: resolvePath("../fixtures/config-full/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-full/src/lib/components/ui"),
 			},
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
@@ -155,21 +133,13 @@ describe("getConfig", () => {
 				ui: "$lib/components/ui",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-vite",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-vite",
-					"./tailwind.config.js"
-				),
-				tailwindCss: path.resolve(__dirname, "../fixtures/config-vite", "./src/app.pcss"),
-				utils: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/utils"),
-				hooks: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/hooks"),
-				ui: path.resolve(__dirname, "../fixtures/config-vite", "./src/lib/components/ui"),
-				cwd: path.resolve(__dirname, "../fixtures/config-vite"),
+				components: resolvePath("../fixtures/config-vite/src/lib/components"),
+				tailwindConfig: resolvePath("../fixtures/config-vite/tailwind.config.js"),
+				tailwindCss: resolvePath("../fixtures/config-vite/src/app.pcss"),
+				utils: resolvePath("../fixtures/config-vite/src/lib/utils"),
+				hooks: resolvePath("../fixtures/config-vite/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-vite/src/lib/components/ui"),
+				cwd: resolvePath("../fixtures/config-vite"),
 			},
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
@@ -193,29 +163,13 @@ describe("getConfig", () => {
 				hooks: "$lib/hooks",
 			},
 			resolvedPaths: {
-				components: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./src/lib/components"
-				),
-				tailwindConfig: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./tailwind.config.js"
-				),
-				tailwindCss: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./src/app.pcss"
-				),
-				utils: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/utils"),
-				hooks: path.resolve(__dirname, "../fixtures/config-jsconfig", "./src/lib/hooks"),
-				ui: path.resolve(
-					__dirname,
-					"../fixtures/config-jsconfig",
-					"./src/lib/components/ui"
-				),
-				cwd: path.resolve(__dirname, "../fixtures/config-jsconfig"),
+				components: resolvePath("../fixtures/config-jsconfig/src/lib/components"),
+				tailwindConfig: resolvePath("../fixtures/config-jsconfig/tailwind.config.js"),
+				tailwindCss: resolvePath("../fixtures/config-jsconfig/src/app.pcss"),
+				utils: resolvePath("../fixtures/config-jsconfig/src/lib/utils"),
+				hooks: resolvePath("../fixtures/config-jsconfig/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-jsconfig/src/lib/components/ui"),
+				cwd: resolvePath("../fixtures/config-jsconfig"),
 			},
 			typescript: false,
 			registry: `${SITE_BASE_URL}/registry`,

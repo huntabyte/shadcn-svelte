@@ -15,10 +15,9 @@
 	import { browser } from "$app/environment";
 	import * as InputOTP from "$lib/registry/default/ui/input-otp/index.js";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
-	let { form: data = $page.data.inputOtp }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
+	let { form: data = page.data.inputOtp }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

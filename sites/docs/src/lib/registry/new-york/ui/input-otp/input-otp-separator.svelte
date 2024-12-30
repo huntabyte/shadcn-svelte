@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { WithElementRef } from "bits-ui";
-	import Dash from "svelte-radix/Dash.svelte";
+	import Minus from "lucide-svelte/icons/minus";
 
 	let {
 		ref = $bindable(null),
@@ -14,6 +14,6 @@
 	{#if children}
 		{@render children?.()}
 	{:else}
-		<Dash />
+		<Minus />
 	{/if}
 </div>

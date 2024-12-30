@@ -58,7 +58,7 @@
 				aria-expanded={open}
 			>
 				{selectedValue || "Select a framework..."}
-				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
+				<ChevronsUpDown class="opacity-50" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -76,12 +76,7 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<Check
-								class={cn(
-									"mr-2 size-4",
-									value !== framework.value && "text-transparent"
-								)}
-							/>
+							<Check class={cn(value !== framework.value && "text-transparent")} />
 							{framework.label}
 						</Command.Item>
 					{/each}

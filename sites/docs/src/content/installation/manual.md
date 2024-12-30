@@ -25,13 +25,9 @@ Add the following dependencies to your project:
 
 ### Add icon library
 
-If you're using the `default` style, install `lucide-svelte`:
+Install `lucide-svelte`:
 
 <PMInstall command="lucide-svelte" />
-
-If you're using the `new-york` style, install `svelte-radix`:
-
-<PMInstall command="svelte-radix" />
 
 ### Configure path aliases
 

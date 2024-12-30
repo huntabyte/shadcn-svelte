@@ -4,10 +4,9 @@
 </script>
 
 <script lang="ts" generics="TData, TValue">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
-	import Check from "svelte-radix/Check.svelte";
+	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import Check from "lucide-svelte/icons/check";
 	import type { Column } from "@tanstack/table-core";
-	import type { Component } from "svelte";
 	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
@@ -22,7 +21,9 @@
 		options: {
 			label: string;
 			value: string;
-			icon?: Component;
+			// This should be `Component` after lucide-svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			icon?: any;
 		}[];
 	};
 
@@ -36,7 +37,7 @@
 	<Popover.Trigger>
 		{#snippet child({ props })}
 			<Button {...props} variant="outline" size="sm" class="h-8 border-dashed">
-				<PlusCircled class="mr-2 h-4 w-4" />
+				<CirclePlus />
 				{title}
 				{#if selectedValues.size > 0}
 					<Separator orientation="vertical" class="mx-2 h-4" />
@@ -83,23 +84,23 @@
 						>
 							<div
 								class={cn(
-									"border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
+									"border-primary mr-2 flex size-4 items-center justify-center rounded-sm border",
 									isSelected
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
 								)}
 							>
-								<Check class={cn("h-4 w-4")} />
+								<Check class="size-4" />
 							</div>
 							{#if option.icon}
 								{@const Icon = option.icon}
-								<Icon class="text-muted-foreground mr-2 h-4 w-4" />
+								<Icon class="text-muted-foreground" />
 							{/if}
 
 							<span>{option.label}</span>
 							{#if facets?.get(option.value)}
 								<span
-									class="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs"
+									class="ml-auto flex size-4 items-center justify-center font-mono text-xs"
 								>
 									{facets.get(option.value)}
 								</span>

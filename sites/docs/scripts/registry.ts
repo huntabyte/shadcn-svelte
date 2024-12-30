@@ -1,6 +1,6 @@
 import * as acorn from "acorn";
 import tsPlugin from "acorn-typescript";
-import { walk } from "estree-walker";
+import { walk, type Node } from "estree-walker";
 import fs from "node:fs";
 import path from "node:path";
 import { parse, preprocess } from "svelte/compiler";
@@ -23,7 +23,7 @@ const DEPENDENCIES = new Map<string, string[]>([
 	["embla-carousel-svelte", []],
 	["paneforge", []],
 ]);
-const ICON_DEPENDENCIES = ["lucide-svelte", "svelte-radix"];
+const ICON_DEPENDENCIES = ["lucide-svelte"];
 // these are required dependencies for particular components
 // where the dependencies are not specified in the import declarations of the component file
 const REQUIRED_COMPONENT_DEPS = new Map<string, string[]>([
@@ -151,7 +151,9 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: Array.from(dependencies),
+			dependencies: Array.from(dependencies).map((dep) =>
+				TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep
+			),
 		});
 	}
 
@@ -287,11 +289,15 @@ async function crawlHook(rootPath: string, style: RegistryStyle) {
 
 async function getFileDependencies(filename: string, sourceCode: string) {
 	let ast: unknown;
+	let moduleAst: unknown;
 
 	if (filename.endsWith(".svelte")) {
 		const { code } = await preprocess(sourceCode, config.preprocess, { filename });
 		const result = parse(code, { filename });
 		ast = result.instance;
+		if (result.module) {
+			moduleAst = result.module;
+		}
 	} else {
 		ast = tsParser.parse(sourceCode, {
 			ecmaVersion: "latest",
@@ -303,35 +309,40 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 
-	// @ts-expect-error yea, stfu
-	walk(ast, {
-		enter(node) {
-			if (node.type === "ImportDeclaration") {
-				const source = node.source.value as string;
+	const enter = (node: Node) => {
+		if (node.type === "ImportDeclaration") {
+			const source = node.source.value as string;
 
-				const peerDeps = DEPENDENCIES.get(source);
-				if (peerDeps !== undefined) {
-					dependencies.add(source);
-					peerDeps.forEach((dep) => dependencies.add(dep));
-				}
+			const peerDeps = DEPENDENCIES.get(source);
+			if (peerDeps !== undefined) {
+				dependencies.add(source);
+				peerDeps.forEach((dep) => dependencies.add(dep));
+			}
 
-				if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
-					if (source.includes("ui")) {
-						const component = source.split("/").at(-2)!;
-						registryDependencies.add(component);
-					} else if (source.includes("hook")) {
-						const hook = source.split("/").at(-1)!.split(".")[0];
-						registryDependencies.add(hook);
-					}
-				}
-
-				const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
-				if (iconDep !== undefined) {
-					dependencies.add(iconDep);
+			if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
+				if (source.includes("ui")) {
+					const component = source.split("/").at(-2)!;
+					registryDependencies.add(component);
+				} else if (source.includes("hook")) {
+					const hook = source.split("/").at(-1)!.split(".")[0];
+					registryDependencies.add(hook);
 				}
 			}
-		},
-	});
+
+			const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
+			if (iconDep !== undefined) {
+				dependencies.add(iconDep);
+			}
+		}
+	};
+
+	// @ts-expect-error yea, stfu
+	walk(ast, { enter });
+
+	if (moduleAst) {
+		// @ts-expect-error yea, stfu x2
+		walk(moduleAst, { enter });
+	}
 
 	return { registryDependencies, dependencies };
 }

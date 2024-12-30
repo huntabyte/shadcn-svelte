@@ -8,14 +8,16 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		portalProps,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<DialogPrimitive.ContentProps> & {
+		portalProps?: DialogPrimitive.PortalProps;
 		children: Snippet;
 	} = $props();
 </script>
 
-<Dialog.Portal>
+<Dialog.Portal {...portalProps}>
 	<Dialog.Overlay />
 	<DialogPrimitive.Content
 		bind:ref

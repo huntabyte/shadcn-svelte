@@ -15,7 +15,7 @@
 </script>
 
 <script lang="ts">
-	import ChevronDown from "svelte-radix/ChevronDown.svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { browser } from "$app/environment";

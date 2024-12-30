@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import Ellipsis from "lucide-svelte/icons/ellipsis";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
@@ -14,14 +14,14 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "secondary" })}>
 		<span class="sr-only">Actions</span>
-		<DotsHorizontal class="size-4" />
+		<Ellipsis />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
-		<DropdownMenu.Item onclick={() => (open = true)}>
+		<DropdownMenu.Item onSelect={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item onclick={() => (showDeleteDialog = true)} class="text-red-600">
+		<DropdownMenu.Item onSelect={() => (showDeleteDialog = true)} class="text-red-600">
 			Delete preset
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>

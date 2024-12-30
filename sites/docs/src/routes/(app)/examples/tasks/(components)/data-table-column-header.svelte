@@ -4,10 +4,10 @@
 </script>
 
 <script lang="ts" generics="TData, TValue">
-	import EyeNone from "svelte-radix/EyeNone.svelte";
-	import ArrowDown from "svelte-radix/ArrowDown.svelte";
-	import ArrowUp from "svelte-radix/ArrowUp.svelte";
-	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import EyeOff from "lucide-svelte/icons/eye-off";
+	import ArrowDown from "lucide-svelte/icons/arrow-down";
+	import ArrowUp from "lucide-svelte/icons/arrow-up";
+	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Column } from "@tanstack/table-core";
 	import type { WithoutChildren } from "bits-ui";
@@ -42,11 +42,11 @@
 							{title}
 						</span>
 						{#if column.getIsSorted() === "desc"}
-							<ArrowDown class="ml-2 size-4" />
+							<ArrowDown />
 						{:else if column.getIsSorted() === "asc"}
-							<ArrowUp class="ml-2 size-4" />
+							<ArrowUp />
 						{:else}
-							<CaretSort class="ml-2 size-4" />
+							<ChevronsUpDown />
 						{/if}
 					</Button>
 				{/snippet}
@@ -62,7 +62,7 @@
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
-					<EyeNone class="text-muted-foreground/70 mr-2 size-3.5" />
+					<EyeOff class="text-muted-foreground/70 mr-2 size-3.5" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

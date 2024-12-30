@@ -59,7 +59,7 @@
 	];
 
 	let month = $state("");
-	let monthLabel = $derived(months.find((m) => m.value === month) ?? "Month");
+	let monthLabel = $derived(months.find((m) => m.value === month)?.label ?? "Month");
 	let year = $state("");
 </script>
 

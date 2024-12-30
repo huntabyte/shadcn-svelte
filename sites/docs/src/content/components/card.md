@@ -50,22 +50,6 @@ links:
 </Card.Root>
 ```
 
-### Modify the heading level
-
-By default, the `<Card.Title>` component renders an `<h3>` element. You can change this by passing a `tag` prop to the component.
-
-For example:
-
-```svelte
-<Card.Title tag="h1">This will render an H1</Card.Title>
-```
-
-...
-
-```svelte
-<Card.Title tag="h6">This will render an H6</Card.Title>
-```
-
 ## Examples
 
 <ComponentPreview name="card-demo">

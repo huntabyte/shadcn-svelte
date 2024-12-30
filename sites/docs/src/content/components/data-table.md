@@ -3,7 +3,7 @@ title: Data Table
 description: Powerful table and datagrids built using TanStack Table.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/data-table
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/default/ui/data-table
   doc: https://tanstack.com/table/v8/docs/introduction
 ---
 
@@ -162,12 +162,12 @@ Next, we'll create a `<DataTable />` component to render our table.
   } from "$lib/components/ui/data-table/index.js";
   import * as Table from "$lib/components/ui/table/index.js";
 
-  type DateTableProps<TData, TValue> = {
+  type DataTableProps<TData, TValue> = {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
   };
 
-  let { data, columns }: DateTableProps<TData, TValue> = $props();
+  let { data, columns }: DataTableProps<TData, TValue> = $props();
 
   const table = createSvelteTable({
     get data() {
@@ -402,7 +402,7 @@ Next, we'll add pagination to our table.
     columns: ColumnDef<TData, TValue>[];
   };
 
-  let { data, columns }: DateTableProps<TData, TValue> = $props();
+  let { data, columns }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
@@ -439,7 +439,7 @@ We can add pagination controls to our table using the `<Button />` component and
 <script lang="ts" generics="TData, TValue">
   import { Button } from "$lib/components/ui/button/index.js";
 
-  let { columns, data }: DateTableProps<TData, TValue> = $props();
+  let { columns, data }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
@@ -523,7 +523,7 @@ We'll start by creating a component to render a sortable email header button.
     getSortedRowModel,
   } from "@tanstack/table-core";
 
-  let { columns, data }: DateTableProps<TData, TValue> = $props();
+  let { columns, data }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
   let sorting = $state<SortingState>([]);
@@ -612,7 +612,7 @@ Let's add a search input to filter emails in our table.
   } from "@tanstack/table-core";
   import { Input } from "$lib/components/ui/input/index.js";
 
-  let { columns, data }: DateTableProps<TData, TValue> = $props();
+  let { columns, data }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
   let sorting = $state<SortingState>([]);
@@ -709,7 +709,7 @@ Adding column visibility is fairly simple using `@tanstack/table-core` visibilit
   } from "@tanstack/table-core";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
-  let { columns, data }: DateTableProps<TData, TValue> = $props();
+  let { columns, data }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
   let sorting = $state<SortingState>([]);
@@ -856,9 +856,10 @@ export const columns: ColumnDef<Payment>[] = [
     id: "select",
     header: ({ table }) =>
       renderComponent(Checkbox, {
-        checked:
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate"),
+        checked: table.getIsAllPageRowsSelected(),
+        indeterminate:
+          table.getIsSomePageRowsSelected() &&
+          !table.getIsAllPageRowsSelected(),
         onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
         controlledChecked: true,
         "aria-label": "Select all",
@@ -894,7 +895,7 @@ export const columns: ColumnDef<Payment>[] = [
   } from "@tanstack/table-core";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
-  let { columns, data }: DateTableProps<TData, TValue> = $props();
+  let { columns, data }: DataTableProps<TData, TValue> = $props();
 
   let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
   let sorting = $state<SortingState>([]);

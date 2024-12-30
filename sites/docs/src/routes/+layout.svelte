@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ModeWatcher } from "mode-watcher";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import Metadata from "$lib/components/docs/metadata.svelte";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
@@ -16,7 +16,7 @@
 	setPackageManager();
 
 	$effect(() => {
-		updateTheme($config.theme, $page.url.pathname);
+		updateTheme($config.theme, page.url.pathname);
 	});
 </script>
 

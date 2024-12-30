@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
+	import Settings2 from "lucide-svelte/icons/settings-2";
 	import type { Table } from "@tanstack/table-core";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
@@ -19,7 +19,7 @@
 			class: "ml-auto hidden h-8 lg:flex",
 		})}
 	>
-		<MixerHorizontal class="mr-2 size-4" />
+		<Settings2 />
 		View
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>

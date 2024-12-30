@@ -4,5 +4,5 @@
 </script>
 
 <Button variant="outline" size="icon">
-	<ChevronRight class="size-4" />
+	<ChevronRight />
 </Button>

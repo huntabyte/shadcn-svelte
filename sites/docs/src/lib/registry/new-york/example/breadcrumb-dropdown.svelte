@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChevronDown from "svelte-radix/ChevronDown.svelte";
-	import Slash from "svelte-radix/Slash.svelte";
+	import ChevronDown from "lucide-svelte/icons/chevron-down";
+	import Slash from "lucide-svelte/icons/slash";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 </script>
@@ -17,7 +17,7 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger class="flex items-center gap-1">
 					Components
-					<ChevronDown tabindex={-1} />
+					<ChevronDown />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">
 					<DropdownMenu.Item>Documentation</DropdownMenu.Item>
@@ -27,7 +27,7 @@
 			</DropdownMenu.Root>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<Slash tabindex={-1} />
+			<Slash />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<Breadcrumb.Page>Breadcrumb</Breadcrumb.Page>

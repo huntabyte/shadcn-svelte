@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import PaperPlane from "svelte-radix/PaperPlane.svelte";
-	import Plus from "svelte-radix/Plus.svelte";
+	import Check from "lucide-svelte/icons/check";
+	import Send from "lucide-svelte/icons/send";
+	import Plus from "lucide-svelte/icons/plus";
 	import { cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
@@ -89,7 +89,7 @@
 					})}
 					onclick={() => (open = true)}
 				>
-					<Plus class="size-4" />
+					<Plus />
 					<span class="sr-only">New message</span>
 				</Tooltip.Trigger>
 				<Tooltip.Content sideOffset={10}>New message</Tooltip.Content>
@@ -133,7 +133,7 @@
 				bind:value={input}
 			/>
 			<Button type="submit" size="icon" disabled={inputLength === 0}>
-				<PaperPlane class="size-4" />
+				<Send />
 				<span class="sr-only">Send</span>
 			</Button>
 		</form>

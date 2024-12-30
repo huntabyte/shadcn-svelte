@@ -15,7 +15,7 @@ export async function syncSvelteKit(cwd: string) {
 
 		agent ??= { agent: "npm", name: "npm" };
 
-		const cmd = resolveCommand(agent.agent, "execute", ["svelte-kit", "sync"]);
+		const cmd = resolveCommand(agent.agent, "execute-local", ["svelte-kit", "sync"]);
 		if (cmd) {
 			await execa(cmd.command, cmd.args, {
 				cwd,

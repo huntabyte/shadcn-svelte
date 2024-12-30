@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Icon from "../icons/index.js";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
 </script>
@@ -18,7 +18,7 @@
 			href="/docs"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+				page.url.pathname === "/docs" ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Docs
@@ -28,7 +28,7 @@
 			href="/docs/components"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/docs/components")
+				page.url.pathname.startsWith("/docs/components")
 					? "text-foreground"
 					: "text-foreground/60"
 			)}
@@ -60,7 +60,7 @@
 			href="/blocks"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Blocks
@@ -69,7 +69,7 @@
 			href="/themes"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/themes") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname.startsWith("/themes") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Themes
@@ -79,9 +79,7 @@
 			href="/examples"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/examples")
-					? "text-foreground"
-					: "text-foreground/60"
+				page.url.pathname.startsWith("/examples") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Examples
@@ -91,7 +89,7 @@
 			href="/colors"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				$page.url.pathname.startsWith("/colors") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname.startsWith("/colors") ? "text-foreground" : "text-foreground/60"
 			)}
 		>
 			Colors
