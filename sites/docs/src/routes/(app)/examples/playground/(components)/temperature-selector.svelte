@@ -4,7 +4,7 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Slider } from "$lib/registry/new-york/ui/slider/index.js";
 
-	let { value = $bindable() }: SliderPrimitive.RootProps = $props();
+	let { value = $bindable(), ...restProps }: SliderPrimitive.RootProps = $props();
 </script>
 
 <div class="grid gap-2 pt-2">
@@ -23,10 +23,11 @@
 					<Slider
 						id="temperature"
 						max={1}
-						bind:value
+						bind:value={value as never}
 						step={0.1}
 						class="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
 						aria-label="Temperature"
+						{...restProps}
 					/>
 				</div>
 			{/snippet}
