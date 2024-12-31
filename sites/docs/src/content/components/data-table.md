@@ -826,7 +826,7 @@ We'll start by defining the checkbox component in our `data-table-checkbox.svelt
 ```svelte showLineNumbers title="routes/payments/data-table-checkbox.svelte"
 <script lang="ts">
   import type { ComponentProps } from "svelte";
-  import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
   let {
     checked = false,
