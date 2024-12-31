@@ -47,6 +47,7 @@ export { default as SheetDemo } from "./sheet-demo.svelte";
 export { default as SheetSide } from "./sheet-side.svelte";
 export { default as SkeletonDemo } from "./skeleton-demo.svelte";
 export { default as SliderDemo } from "./slider-demo.svelte";
+export { default as SliderMultiple } from "./slider-multiple.svelte";
 export { default as SwitchDemo } from "./switch-demo.svelte";
 export { default as TableDemo } from "./table-demo.svelte";
 export { default as TabsDemo } from "./tabs-demo.svelte";

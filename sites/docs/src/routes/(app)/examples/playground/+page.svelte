@@ -235,9 +235,9 @@
 						</Tabs.List>
 					</div>
 					<ModelSelector {types} {models} />
-					<TemperatureSelector value={[0.56]} />
-					<MaxLengthSelector value={[256]} />
-					<TopPSelector value={[0.9]} />
+					<TemperatureSelector type="single" value={0.56} />
+					<MaxLengthSelector type="single" value={256} />
+					<TopPSelector type="single" value={0.9} />
 				</div>
 				<div class="md:order-1">
 					<Tabs.Content value="complete" class="mt-0 border-0 p-0">
