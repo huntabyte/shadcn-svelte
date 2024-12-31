@@ -4,15 +4,19 @@
 
 	let {
 		ref = $bindable(null),
-		value = $bindable([0]),
+		value = $bindable(),
 		class: className,
 		...restProps
 	}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();
 </script>
 
+<!--
+Discriminated Unions + Destructing (required for bindable) do not
+get along, so we shut typescript up by casting `value` to `never`.
+-->
 <SliderPrimitive.Root
+	bind:value={value as never}
 	bind:ref
-	bind:value
 	class={cn("relative flex w-full touch-none select-none items-center", className)}
 	{...restProps}
 >
