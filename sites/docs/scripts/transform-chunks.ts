@@ -34,9 +34,10 @@ export function getChunks(source: string, filename: string) {
 	const scriptContent = extractScriptContent(source);
 
 	// @ts-expect-error doesn't like the ts plugin
-	const scriptAst = acorn.Parser.extend(tsPlugin()).parse(scriptContent, {
+	const scriptAst = acorn.Parser.extend(tsPlugin({ allowSatisfies: true })).parse(scriptContent, {
 		ecmaVersion: "latest",
 		sourceType: "module",
+		locations: true,
 	});
 
 	const svelteAst = parse(source, { filename, modern: true });
@@ -180,12 +181,13 @@ function extractAttributeValue(attribute: any): string | undefined {
 export function transformChunk(source: string, chunk: Chunk): string {
 	const scriptReferences = new Set<string>();
 	// @ts-expect-error yea, stfu
-	const parser = acorn.Parser.extend(tsPlugin());
+	const parser = acorn.Parser.extend(tsPlugin({ allowSatisfies: true }));
 	const hasSnippets = chunk.snippets.length > 0;
 
 	const scriptAst = parser.parse(chunk.scriptContent, {
 		ecmaVersion: "latest",
 		sourceType: "module",
+		locations: true,
 	});
 	const ms = new MagicString(chunk.scriptContent);
 

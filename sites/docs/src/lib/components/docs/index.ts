@@ -11,6 +11,8 @@ export { default as PMInstall } from "./pm-install.svelte";
 export { default as PMRemove } from "./pm-remove.svelte";
 export { default as PMRun } from "./pm-run.svelte";
 export { default as InstallTabs } from "./install-tabs.svelte";
+export { default as ChartsNav } from "./charts-nav.svelte";
+export { default as ChartDisplay } from "./chart-display.svelte";
 
 export * from "./page-header/index.js";
 export * from "./forms/index.js";

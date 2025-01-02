@@ -41,6 +41,13 @@ export const registryItemSchema = v.object({
 	cssVars: v.optional(registryItemCssVarsSchema),
 });
 
+export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
+
+export const registryResolvedItemsTreeSchema = v.pick(registryItemSchema, [
+	"dependencies",
+	"files",
+]);
+
 export const registryIndexSchema = v.array(registryItemSchema);
 
 export const registryItemWithContentSchema = v.object({
