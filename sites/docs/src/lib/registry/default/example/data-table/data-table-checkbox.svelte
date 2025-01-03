@@ -4,9 +4,9 @@
 
 	let {
 		checked = false,
-		controlledChecked = true,
+		onCheckedChange = (v) => (checked = v),
 		...restProps
 	}: ComponentProps<typeof Checkbox> = $props();
 </script>
 
-<Checkbox {checked} {controlledChecked} {...restProps} />
+<Checkbox bind:checked={() => checked, onCheckedChange} {...restProps} />

@@ -40,7 +40,7 @@
 	let open = $state(true);
 </script>
 
-<Sidebar.Provider {open} controlledOpen onOpenChange={(value) => (open = value)}>
+<Sidebar.Provider bind:open={() => open, (v) => (open = v)}>
 	<Sidebar.Root>
 		<Sidebar.Content>
 			<Sidebar.Group>
