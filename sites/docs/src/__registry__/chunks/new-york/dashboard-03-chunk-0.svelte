@@ -22,20 +22,20 @@
 			value: "genesis",
 			label: "Neural Genesis",
 			description: "Our fastest model for general use cases.",
-			Icon: Rabbit
+			Icon: Rabbit,
 		},
 		{
 			value: "explorer",
 			label: "Neural Explorer",
 			description: "Performance and speed for efficiency.",
-			Icon: Bird
+			Icon: Bird,
 		},
 		{
 			value: "quantum",
 			label: "Neural Quantum",
 			description: "The most powerful model for complex computations.",
-			Icon: Turtle
-		}
+			Icon: Turtle,
+		},
 	];
 
 	let model = $state("");
@@ -70,10 +70,7 @@
 			<div class="grid gap-3">
 				<Label for="model">Model</Label>
 				<Select.Root type="single" bind:value={model}>
-					<Select.Trigger
-						id="model"
-						class="items-start [&_[data-description]]:hidden"
-					>
+					<Select.Trigger id="model" class="items-start [&_[data-description]]:hidden">
 						{#if selectedModel}
 							{@render ModelItemContent(selectedModel)}
 						{:else}
@@ -121,11 +118,7 @@
 			</div>
 			<div class="grid gap-3">
 				<Label for="content">Content</Label>
-				<Textarea
-					id="content"
-					placeholder="You are a..."
-					class="min-h-[9.5rem]"
-				/>
+				<Textarea id="content" placeholder="You are a..." class="min-h-[9.5rem]" />
 			</div>
 		</fieldset>
 	</form>

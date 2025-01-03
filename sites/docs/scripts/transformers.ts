@@ -24,7 +24,6 @@ async function transformSvelteTStoJS(content: string, filename: string) {
 		// strip out empty module blocks
 		return code.replace("<script module></script>", "").trimStart();
 	} catch (e) {
-		console.log(e);
 		throw new Error(`Error preprocessing Svelte file: ${filename} \n ${e}`);
 	}
 }
@@ -99,7 +98,7 @@ function stripMarkupTypes(): PreprocessorGroup {
 						ms.update(start, end, stripped);
 
 						this.skip();
-					} else if ("expression" in node) {
+					} else if ("expression" in node && typeof node.expression === "object") {
 						// @ts-expect-error trust me
 						const { start, end } = node.expression;
 
