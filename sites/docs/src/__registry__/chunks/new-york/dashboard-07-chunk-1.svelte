@@ -18,7 +18,9 @@
 >
 	<Card.Header>
 		<Card.Title>Stock</Card.Title>
-		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
+		<Card.Description>
+			Lipsum dolor sit amet, consectetur adipiscing elit
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Table.Root>

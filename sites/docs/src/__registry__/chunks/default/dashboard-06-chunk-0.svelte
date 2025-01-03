@@ -16,7 +16,9 @@
 >
 	<Card.Header>
 		<Card.Title>Products</Card.Title>
-		<Card.Description>Manage your products and view their sales performance.</Card.Description>
+		<Card.Description>
+			Manage your products and view their sales performance.
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Table.Root>
@@ -52,7 +54,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$499.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">25</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-07-12 10:42 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-07-12 10:42 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>
@@ -89,7 +93,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$129.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">100</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-10-18 03:21 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-10-18 03:21 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>
@@ -131,7 +137,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$39.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">50</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-11-29 08:15 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-11-29 08:15 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>
@@ -173,7 +181,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$2.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">0</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2023-12-25 11:59 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2023-12-25 11:59 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>
@@ -215,7 +225,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$59.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">75</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2024-01-01 12:00 AM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2024-01-01 12:00 AM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>
@@ -257,7 +269,9 @@
 					</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">$199.99</Table.Cell>
 					<Table.Cell class="hidden md:table-cell">30</Table.Cell>
-					<Table.Cell class="hidden md:table-cell">2024-02-14 02:14 PM</Table.Cell>
+					<Table.Cell class="hidden md:table-cell">
+						2024-02-14 02:14 PM
+					</Table.Cell>
 					<Table.Cell>
 						<DropdownMenu.Root>
 							<DropdownMenu.Trigger>

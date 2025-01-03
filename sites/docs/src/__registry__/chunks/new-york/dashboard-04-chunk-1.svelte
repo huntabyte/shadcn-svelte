@@ -11,7 +11,9 @@
 >
 	<Card.Header>
 		<Card.Title>Store Name</Card.Title>
-		<Card.Description>Used to identify your store in the marketplace.</Card.Description>
+		<Card.Description>
+			Used to identify your store in the marketplace.
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<form>

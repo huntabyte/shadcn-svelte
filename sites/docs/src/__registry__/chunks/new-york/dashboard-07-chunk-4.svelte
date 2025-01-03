@@ -11,7 +11,9 @@
 >
 	<Card.Header>
 		<Card.Title>Product Images</Card.Title>
-		<Card.Description>Lipsum dolor sit amet, consectetur adipiscing elit</Card.Description>
+		<Card.Description>
+			Lipsum dolor sit amet, consectetur adipiscing elit
+		</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<div class="grid gap-2">

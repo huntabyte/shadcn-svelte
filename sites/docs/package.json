@@ -70,7 +70,7 @@
 		"rimraf": "^4.4.1",
 		"shiki": "^1.2.1",
 		"svelte": "^5.16.1",
-		"svelte-check": "^4.0.5",
+		"svelte-check": "^4.1.1",
 		"svelte-local-storage-store": "^0.6.4",
 		"svelte-persisted-store": "^0.11.0",
 		"svelte-sonner": "^0.3.25",

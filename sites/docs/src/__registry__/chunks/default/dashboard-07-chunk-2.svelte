@@ -20,7 +20,11 @@
 			<div class="grid gap-3">
 				<Label for="category">Category</Label>
 				<Select.Root type="single" bind:value={category}>
-					<Select.Trigger id="category" aria-label="Select category" class="capitalize">
+					<Select.Trigger
+						id="category"
+						aria-label="Select category"
+						class="capitalize"
+					>
 						{category ?? "Select category"}
 					</Select.Trigger>
 					<Select.Content>
