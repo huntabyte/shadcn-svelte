@@ -793,9 +793,8 @@ Adding column visibility is fairly simple using `@tanstack/table-core` visibilit
           .filter((col) => col.getCanHide()) as column (column.id)}
           <DropdownMenu.CheckboxItem
             class="capitalize"
-            controlledChecked
-            checked={column.getIsVisible()}
-            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+            bind:checked={() => column.getIsVisible(),
+            (v) => column.toggleVisibility(!!v)}
           >
             {column.id}
           </DropdownMenu.CheckboxItem>
@@ -830,12 +829,12 @@ We'll start by defining the checkbox component in our `data-table-checkbox.svelt
 
   let {
     checked = false,
-    controlledChecked = true,
+    onCheckedChange = (v) => (checked = v),
     ...restProps
   }: ComponentProps<typeof Checkbox> = $props();
 </script>
 
-<Checkbox {checked} {controlledChecked} {...restProps} />
+<Checkbox bind:checked={() => checked, onCheckedChange} {...restProps} />
 ```
 
 ### Update columns definition
@@ -861,14 +860,12 @@ export const columns: ColumnDef<Payment>[] = [
           table.getIsSomePageRowsSelected() &&
           !table.getIsAllPageRowsSelected(),
         onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
-        controlledChecked: true,
         "aria-label": "Select all",
       }),
     cell: ({ row }) =>
       renderComponent(Checkbox, {
         checked: row.getIsSelected(),
         onCheckedChange: (value) => row.toggleSelected(!!value),
-        controlledChecked: true,
         "aria-label": "Select row",
       }),
     enableSorting: false,

@@ -5,4 +5,4 @@
 	let { checked, ...restProps }: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();
 </script>
 
-<Checkbox {checked} controlledChecked {...restProps} />
+<Checkbox {checked} {...restProps} />

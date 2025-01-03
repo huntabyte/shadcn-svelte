@@ -300,11 +300,10 @@ The `Sidebar.Provider` component is used to provide the sidebar context to the `
 
 ### Props
 
-| Name             | Type                      | Description                                                                                                                             |
-| ---------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `open`           | `boolean`                 | Open state of the sidebar (bindable).                                                                                                   |
-| `controlledOpen` | `boolean`                 | Whether the sidebar state will be controlled by you.                                                                                    |
-| `onOpenChange`   | `(open: boolean) => void` | A callback fired _after_ the open state of the sidebar changes if uncontrolled, and _before_ the sidebar opens or closes if controlled. |
+| Name           | Type                      | Description                                                                                                                             |
+| -------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`         | `boolean`                 | Open state of the sidebar (bindable).                                                                                                   |
+| `onOpenChange` | `(open: boolean) => void` | A callback fired _after_ the open state of the sidebar changes if uncontrolled, and _before_ the sidebar opens or closes if controlled. |
 
 ### Width
 
@@ -915,7 +914,7 @@ The `Sidebar.Rail` component is used to render a rail within a `Sidebar.Root`. T
 
 ## Controlled Sidebar
 
-Use the `open`, `onOpenChange` and `controlledOpen` props or `bind:open` to control the sidebar state.
+Use Svelte's [Function Binding](https://svelte.dev/docs/svelte/bind#Function-bindings) to control the sidebar state.
 
 <DocsFigure caption="A controlled sidebar.">
 	<ComponentPreviewManual name="demo-sidebar-controlled" title="Sidebar" type="block" class="w-full" />
@@ -925,14 +924,10 @@ Use the `open`, `onOpenChange` and `controlledOpen` props or `bind:open` to cont
 <script lang="ts">
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
-  let open = $state(true);
+  let myOpen = $state(true);
 </script>
 
-<Sidebar.Provider
-  {open}
-  controlledOpen
-  onOpenChange={(value) => (open = value)}
->
+<Sidebar.Provider bind:open={() => myOpen, (newOpen) => (myOpen = newOpen)}>
   <Sidebar.Root />
 </Sidebar.Provider>
 
