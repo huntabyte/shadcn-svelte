@@ -120,9 +120,9 @@ For this example, we'll be passing the `form` returned from the load function as
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
 
-  export let data: SuperValidated<Infer<FormSchema>>;
+  let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } = $props();
 
-  const form = superForm(data, {
+  const form = superForm(data.form, {
     validators: zodClient(formSchema),
   });
 
@@ -143,7 +143,6 @@ For this example, we'll be passing the `form` returned from the load function as
   <Form.Button>Submit</Form.Button>
 </form>
 ```
-
 The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `attrs` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
 
 ### Create a page component that uses the form
@@ -154,7 +153,7 @@ We'll pass the `form` from the data returned from the load function to the form 
 <script lang="ts">
   import type { PageData } from "./$types.js";
   import SettingsForm from "./settings-form.svelte";
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 </script>
 
 <SettingsForm data={data.form} />
@@ -213,3 +212,4 @@ See the following links for more examples on how to use the other `Form` compone
 - [Select](/docs/components/select#form)
 - [Switch](/docs/components/switch#form)
 - [Textarea](/docs/components/textarea#form)
+
