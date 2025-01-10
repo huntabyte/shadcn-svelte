@@ -59,7 +59,7 @@ Add `tailwindcss-animate`.
 
 Add `tailwindcss-animate` plugin, sidebar colors, and animations config.
 
-```json {2} {22-43}
+```json {2} {15-24} {32-50} {53}
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
 
