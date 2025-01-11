@@ -81,7 +81,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	const components = options.components;
 	const registryIndex = await registry.getRegistryIndex();
 
-	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
+	const componentDir = path.resolve(config.resolvedPaths.ui);
 	if (!existsSync(componentDir)) {
 		throw error(`Component directory ${color.cyan(componentDir)} does not exist.`);
 	}

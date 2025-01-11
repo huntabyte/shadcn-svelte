@@ -1,0 +1,16 @@
+{
+	"style": "new-york",
+	"tailwind": {
+		"config": "custom-tailwind.config.js",
+		"css": "src/custom-app.pcss",
+		"baseColor": "zinc"
+	},
+	"aliases": {
+		"components": "$lib/custom-components",
+		"utils": "$lib/custom-utils",
+		"ui": "$lib/components/custom-ui",
+		"hooks": "$lib/custom-hooks"
+	},
+	"typescript": true,
+	"registry": "https://next.shadcn-svelte.com/registry"
+}

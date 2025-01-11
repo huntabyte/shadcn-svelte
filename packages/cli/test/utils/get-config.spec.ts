@@ -175,4 +175,32 @@ describe("getConfig", () => {
 			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
+
+	it("handles cases where a full custom config is present", async () => {
+		expect(await getConf("config-custom")).toEqual({
+			style: "new-york",
+			tailwind: {
+				config: "custom-tailwind.config.js",
+				css: "src/custom-app.pcss",
+				baseColor: "zinc",
+			},
+			aliases: {
+				components: "$lib/custom-components",
+				utils: "$lib/custom-utils",
+				ui: "$lib/components/custom-ui",
+				hooks: "$lib/custom-hooks",
+			},
+			resolvedPaths: {
+				tailwindConfig: resolvePath("../fixtures/config-custom/custom-tailwind.config.js"),
+				tailwindCss: resolvePath("../fixtures/config-custom/src/custom-app.pcss"),
+				cwd: resolvePath("../fixtures/config-custom"),
+				components: resolvePath("../fixtures/config-custom/src/lib/custom-components"),
+				utils: resolvePath("../fixtures/config-custom/src/lib/custom-utils"),
+				ui: resolvePath("../fixtures/config-custom/src/lib/components/custom-ui"),
+				hooks: resolvePath("../fixtures/config-custom/src/lib/custom-hooks"),
+			},
+			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
 });
