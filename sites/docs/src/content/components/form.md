@@ -158,7 +158,7 @@ We'll pass the `form` from the data returned from the load function to the form 
   let { data }: { data: PageData } = $props();
 </script>
 
-<SettingsForm data={data.form} />
+<SettingsForm {data} />
 ```
 
 ### Create an Action that handles the form submission
