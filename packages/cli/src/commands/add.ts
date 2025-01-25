@@ -5,6 +5,7 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
+import { resolveCommand } from "package-manager-detector";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
@@ -244,19 +245,25 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
-		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0,
-			async task() {
-				await execa(pm, [add, "-D", ...dependencies], {
-					cwd,
-				});
-				return `Dependencies installed with ${highlight(pm)}`;
-			},
-		});
+	const pm = await detectPM(cwd, options.deps);
+	if (pm) {
+    const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
+    if(add) {
+      tasks.push({
+        title: `${highlight(pm)}: Installing dependencies`,
+        enabled: dependencies.size > 0,
+        async task() {
+          await execa(add.command, add.args, {
+            cwd,
+          });
+          return `Dependencies installed with ${highlight(pm)}`;
+        },
+      });
+    } else {
+      p.log.warn(
+        `Could not detect a package manager in ${cwd}.`
+      );  
+    }
 	}
 
 	await p.tasks(tasks);

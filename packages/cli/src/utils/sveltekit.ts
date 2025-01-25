@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execa } from "execa";
-import { detect } from "package-manager-detector";
-import { COMMANDS } from "package-manager-detector/agents";
+import { detect, resolveCommand } from "package-manager-detector";
 import { loadProjectPackageInfo } from "./get-package-info.js";
+import { log } from "./prompts.js";
 
 // if it's a SvelteKit project, run `svelte-kit sync` if the `.svelte-kit` dir is missing
 export async function syncSvelteKit(cwd: string) {
@@ -11,13 +11,18 @@ export async function syncSvelteKit(cwd: string) {
 	if (isSvelteKit) {
 		// we'll exit early since syncing is rather slow
 		if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
-
-		const { agent } = await detect({ cwd });
-		const [pm] = COMMANDS[agent ?? "npm"].agent.split(" ") as [string];
-		await execa(pm === "npm" ? "npx" : pm, ["svelte-kit", "sync"], {
-			cwd,
-		});
-	}
+		const detectResult = await detect({ cwd });
+		const cmd = resolveCommand(detectResult?.agent ?? "npm", "execute", ["svelte-kit", "sync"]);
+    if(!cmd) {
+      log.warn(
+        `Could not detect a package manager in ${cwd} to sync svelte-kit.`
+      );
+      return 
+    }
+    await execa(cmd.command, cmd.args, {
+      cwd,
+    });
+  }
 }
 
 /**

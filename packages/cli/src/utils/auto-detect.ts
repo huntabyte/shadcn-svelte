@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
-import { detect } from "package-manager-detector";
-import { AGENTS, type Agent, COMMANDS } from "package-manager-detector/agents";
+import { AGENTS,type Agent, COMMANDS, detect } from "package-manager-detector";
+// import { AGENTS, type Agent, COMMANDS } from "package-manager-detector/agents";
 import * as p from "./prompts.js";
 import { cancel } from "./prompt-helpers.js";
 
@@ -98,9 +98,11 @@ export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
 
 type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 export async function detectPM(cwd: string, prompt: boolean) {
-	let { agent } = await detect({ cwd });
-
-	if (agent === undefined && prompt) {
+	let agent: Agent | undefined;
+  const detectResult = await detect({ cwd });
+  if (detectResult != null) {
+		agent = detectResult.agent;
+	} if (detectResult === null && prompt) {
 		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
 			value: pm,
 			label: pm,
@@ -118,5 +120,5 @@ export async function detectPM(cwd: string, prompt: boolean) {
 		agent = res;
 	}
 
-	return agent ? COMMANDS[agent] : undefined;
+	return agent;
 }
