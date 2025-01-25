@@ -13,16 +13,14 @@ export async function syncSvelteKit(cwd: string) {
 		if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
 		const detectResult = await detect({ cwd });
 		const cmd = resolveCommand(detectResult?.agent ?? "npm", "execute", ["svelte-kit", "sync"]);
-    if(!cmd) {
-      log.warn(
-        `Could not detect a package manager in ${cwd} to sync svelte-kit.`
-      );
-      return 
-    }
-    await execa(cmd.command, cmd.args, {
-      cwd,
-    });
-  }
+		if (!cmd) {
+			log.warn(`Could not detect a package manager in ${cwd} to sync svelte-kit.`);
+			return;
+		}
+		await execa(cmd.command, cmd.args, {
+			cwd,
+		});
+	}
 }
 
 /**

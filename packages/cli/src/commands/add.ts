@@ -247,23 +247,21 @@ async function runAdd(cwd: string, config: Config, options: AddOptions) {
 	// Install dependencies.
 	const pm = await detectPM(cwd, options.deps);
 	if (pm) {
-    const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-    if(add) {
-      tasks.push({
-        title: `${highlight(pm)}: Installing dependencies`,
-        enabled: dependencies.size > 0,
-        async task() {
-          await execa(add.command, add.args, {
-            cwd,
-          });
-          return `Dependencies installed with ${highlight(pm)}`;
-        },
-      });
-    } else {
-      p.log.warn(
-        `Could not detect a package manager in ${cwd}.`
-      );  
-    }
+		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
+		if (add) {
+			tasks.push({
+				title: `${highlight(pm)}: Installing dependencies`,
+				enabled: dependencies.size > 0,
+				async task() {
+					await execa(add.command, add.args, {
+						cwd,
+					});
+					return `Dependencies installed with ${highlight(pm)}`;
+				},
+			});
+		} else {
+			p.log.warn(`Could not detect a package manager in ${cwd}.`);
+		}
 	}
 
 	await p.tasks(tasks);
