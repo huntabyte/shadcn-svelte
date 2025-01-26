@@ -367,20 +367,20 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	const pm = await detectPM(cwd, options.deps);
 	if (pm) {
 		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
-    if(!add) {
-      throw error(`Could not detect a package manager in ${cwd}.`)
-    }
-    tasks.push({
-      title: `${highlight(pm)}: Installing dependencies`,
-      enabled: options.deps,
-      async task() {
-        await execa(add.command, add.args, {
-          cwd,
-        });
-        return `Dependencies installed with ${highlight(pm)}`;
-      },
-    });
-  }
+		if (!add) {
+			throw error(`Could not detect a package manager in ${cwd}.`);
+		}
+		tasks.push({
+			title: `${highlight(pm)}: Installing dependencies`,
+			enabled: options.deps,
+			async task() {
+				await execa(add.command, add.args, {
+					cwd,
+				});
+				return `Dependencies installed with ${highlight(pm)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 
