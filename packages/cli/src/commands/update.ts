@@ -229,20 +229,19 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	const pm = await detectPM(cwd, true);
 	if (pm) {
 		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-		if (add) {
-			tasks.push({
-				title: `${highlight(pm)}: Installing dependencies`,
-				enabled: dependencies.size > 0,
-				async task() {
-					await execa(add.command, add.args, {
-						cwd,
-					});
-					return `Dependencies installed with ${highlight(pm)}`;
-				},
-			});
-		} else {
-			p.log.warn(`Could not detect a package manager in ${cwd}.`);
-		}
+    if(!add) {
+      throw error(`Could not detect a package manager in ${cwd}.`)
+    }
+    tasks.push({
+      title: `${highlight(pm)}: Installing dependencies`,
+      enabled: dependencies.size > 0,
+      async task() {
+        await execa(add.command, add.args, {
+          cwd,
+        });
+        return `Dependencies installed with ${highlight(pm)}`;
+      },
+    });
 	}
 
 	await p.tasks(tasks);

@@ -2,8 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
-import { AGENTS, type Agent, COMMANDS, detect } from "package-manager-detector";
-// import { AGENTS, type Agent, COMMANDS } from "package-manager-detector/agents";
+import { AGENTS, type Agent, detect } from "package-manager-detector";
 import * as p from "./prompts.js";
 import { cancel } from "./prompt-helpers.js";
 
