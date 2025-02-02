@@ -14,7 +14,7 @@
 	"scripts": {
 		"dev": "concurrently \"pnpm:dev:content\" \"pnpm:dev:svelte\" \"pnpm:replace:velite\"",
 		"dev:content": "velite dev --watch",
-		"dev:svelte": "pnpm build:registry && vite dev --host",
+		"dev:svelte": "pnpm build:registry && vite dev",
 		"build": "pnpm build:registry && pnpm build:content && pnpm build:svelte",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
@@ -29,7 +29,6 @@
 		"@internationalized/date": "^3.5.6",
 		"@prettier/sync": "0.3.0",
 		"@sveltejs/adapter-cloudflare": "4.6.1",
-		"@sveltejs/enhanced-img": "^0.3.9",
 		"@sveltejs/kit": "^2.16.1",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tanstack/table-core": "^8.20.5",

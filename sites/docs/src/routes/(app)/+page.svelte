@@ -52,13 +52,8 @@
 		class="bg-background overflow-hidden rounded-lg border shadow-md md:hidden md:shadow-xl"
 	>
 		<div class="md:hidden">
-			<enhanced:img
-				src="$lib/img/examples/mail-light.png"
-				alt="Mail"
-				class="block dark:hidden"
-			></enhanced:img>
-			<enhanced:img src="$lib/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block"
-			></enhanced:img>
+			<img src="/img/examples/mail-light.png" alt="Mail" class="block dark:hidden" />
+			<img src="/img/examples/mail-dark.png" alt="Mail" class="hidden dark:block" />
 		</div>
 	</section>
 	<section class="hidden md:block">
