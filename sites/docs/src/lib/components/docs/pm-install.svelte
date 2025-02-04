@@ -3,4 +3,4 @@
 	export let command: string = "";
 </script>
 
-<PMBlock type="add" {command} />
+<PMBlock type="install" {command} />
