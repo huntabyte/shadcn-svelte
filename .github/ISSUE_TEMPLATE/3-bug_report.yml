@@ -1,6 +1,6 @@
 name: Bug report
 description: Report an issue with shadcn-svelte
-labels: ["triage"]
+labels: [triage]
 body:
   - type: markdown
     attributes:
