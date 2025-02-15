@@ -298,8 +298,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       vaul-svelte:
-        specifier: ^1.0.0-next.2
-        version: 1.0.0-next.2(svelte@5.16.1)
+        specifier: 1.0.0-next.6
+        version: 1.0.0-next.6(svelte@5.16.1)
       velite:
         specifier: ^0.2.0
         version: 0.2.0
@@ -5103,8 +5103,8 @@ packages:
     resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
     engines: {node: '>= 0.10'}
 
-  vaul-svelte@1.0.0-next.2:
-    resolution: {integrity: sha512-/SjvMvStOMwTnGsQAn+yP0bbQUufb3ZXu8MdnLeQCB33wCZ1ilCPa92DHx1EDhIlVTbiOitwhWp/zaHw/U3OqA==}
+  vaul-svelte@1.0.0-next.6:
+    resolution: {integrity: sha512-leEKb9Qoj7JOrC0wLnqoczLhHZcwo7UHKBJ7SWBRhdFn0o+x9W1XioUK2OeiZHb5Bp7LyYKtUUjVWO3uJULUCw==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0
@@ -10802,11 +10802,11 @@ snapshots:
   validator@13.11.0:
     optional: true
 
-  vaul-svelte@1.0.0-next.2(svelte@5.16.1):
+  vaul-svelte@1.0.0-next.6(svelte@5.16.1):
     dependencies:
-      bits-ui: 1.1.0(svelte@5.16.1)
+      runed: 0.23.3(svelte@5.16.1)
       svelte: 5.16.1
-      svelte-toolbelt: 0.4.4(svelte@5.16.1)
+      svelte-toolbelt: 0.7.1(svelte@5.16.1)
 
   velite@0.2.0:
     dependencies:
