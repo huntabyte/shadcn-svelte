@@ -4,16 +4,16 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img
-		src="$lib/img/examples/authentication-light.png"
+	<img
+		src="/img/examples/authentication-light.png"
 		alt="Authentication"
 		class="block dark:hidden"
-	></enhanced:img>
-	<enhanced:img
-		src="$lib/img/examples/authentication-dark.png"
+	/>
+	<img
+		src="/img/examples/authentication-dark.png"
 		alt="Authentication"
 		class="hidden dark:block"
-	></enhanced:img>
+	/>
 </div>
 <div
 	class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"

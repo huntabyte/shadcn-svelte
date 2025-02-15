@@ -30,10 +30,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src="$lib/img/examples/forms-light.png" alt="Forms" class="block dark:hidden"
-	></enhanced:img>
-	<enhanced:img src="$lib/img/examples/forms-dark.png" alt="Forms" class="hidden dark:block"
-	></enhanced:img>
+	<img src="/img/examples/forms-light.png" alt="Forms" class="block dark:hidden" />
+	<img src="/img/examples/forms-dark.png" alt="Forms" class="hidden dark:block" />
 </div>
 <div class="hidden space-y-6 p-10 pb-16 md:block">
 	<div class="space-y-0.5">
