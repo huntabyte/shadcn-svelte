@@ -22,16 +22,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img
-		src="$lib/img/examples/playground-light.png"
-		alt="Playground"
-		class="block dark:hidden"
-	></enhanced:img>
-	<enhanced:img
-		src="$lib/img/examples/playground-dark.png"
-		alt="Playground"
-		class="hidden dark:block"
-	></enhanced:img>
+	<img src="/img/examples/playground-light.png" alt="Playground" class="block dark:hidden" />
+	<img src="/img/examples/playground-dark.png" alt="Playground" class="hidden dark:block" />
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div

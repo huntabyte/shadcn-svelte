@@ -18,16 +18,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img
-		src="$lib/img/examples/dashboard-light.png"
-		alt="Dashboard"
-		class="block dark:hidden"
-	></enhanced:img>
-	<enhanced:img
-		src="$lib/img/examples/dashboard-dark.png"
-		alt="Dashboard"
-		class="hidden dark:block"
-	></enhanced:img>
+	<img src="/img/examples/dashboard-light.png" alt="Dashboard" class="block dark:hidden" />
+	<img src="/img/examples/dashboard-dark.png" alt="Dashboard" class="hidden dark:block" />
 </div>
 <div class="hidden flex-col md:flex">
 	<div class="border-b">
