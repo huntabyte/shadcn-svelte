@@ -48,7 +48,7 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(prettier@3.5.1)
       svelte:
-        specifier: ^5.16.0
+        specifier: ^5.20.1
         version: 5.20.1
       svelte-eslint-parser:
         specifier: ^0.42.0
