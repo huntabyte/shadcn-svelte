@@ -32,7 +32,7 @@ jobs:
 
       - name: Build site
         env:
-          NODE_OPTIONS: "--max-old-space-size=8192"
+          NODE_OPTIONS: --max-old-space-size=8192
         run: pnpm build
 
       - name: Upload build artifact
