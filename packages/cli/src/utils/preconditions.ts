@@ -11,8 +11,17 @@ const peerDependencies: Record<string, string> = {
 export const checkPreconditions = (cwd: string) => {
 	const pkg = loadProjectPackageInfo(cwd);
 
-	if (pkg.dependencies) {
-		for (const [name, version] of Object.entries(pkg.dependencies)) {
+	checkDependencies(pkg.dependencies);
+	checkDependencies(pkg.devDependencies);
+};
+
+/** Checks that all dependencies meet peer dependency requirements and logs a warning if they don't.
+ *
+ * @param dependencies
+ */
+const checkDependencies = (dependencies: Partial<Record<string, string>> | undefined) => {
+	if (dependencies) {
+		for (const [name, version] of Object.entries(dependencies)) {
 			const peerDepVersion = peerDependencies[name];
 
 			if (!peerDepVersion || !version) continue;
@@ -20,20 +29,6 @@ export const checkPreconditions = (cwd: string) => {
 			if (!semver.satisfies(version, peerDepVersion)) {
 				log.warn(
 					`This version of ${color.bold("shadcn-svelte")} is intended for use with ${name}@${peerDepVersion}. Use at your own risk.`
-				);
-			}
-		}
-	}
-
-	if (pkg.devDependencies) {
-		for (const [name, version] of Object.entries(pkg.devDependencies)) {
-			const peerDepVersion = peerDependencies[name];
-
-			if (!peerDepVersion || !version) continue;
-
-			if (!semver.satisfies(version, peerDepVersion)) {
-				log.warn(
-					`${color.bold("shadcn-svelte")} is intended for use with ${name}@${peerDepVersion}. Use at your own risk.`
 				);
 			}
 		}
