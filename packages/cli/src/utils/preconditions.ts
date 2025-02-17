@@ -28,7 +28,7 @@ const checkDependencies = (dependencies: Partial<Record<string, string>> | undef
 
 			if (!semver.satisfies(version, peerDepVersion)) {
 				log.warn(
-					`This version of ${color.bold("shadcn-svelte")} is intended for use with ${name}@${peerDepVersion}. Use at your own risk.`
+					`This version of ${color.bold("shadcn-svelte")} is intended for use with ${color.bold(`${name}@${peerDepVersion}`)}. Use at your own risk!`
 				);
 			}
 		}
