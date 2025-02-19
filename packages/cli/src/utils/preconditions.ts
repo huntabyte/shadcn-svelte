@@ -30,7 +30,7 @@ function checkDependencies(dependencies: Partial<Record<string, string>>) {
 
 		if (!semver.satisfies(currentVersion, targetVersion)) {
 			incompatible.push([
-				`${color.bold(name)}@${color.greenBright.bold(targetVersion)}`,
+				`${color.bold(`${name}@`)}${color.greenBright.bold(targetVersion)}`,
 				color.yellowBright.bold(currentVersion),
 			]);
 		}
