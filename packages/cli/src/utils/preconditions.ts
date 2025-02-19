@@ -1,12 +1,12 @@
 import color from "chalk";
 import semver from "semver";
-import { loadProjectPackageInfo } from "./get-package-info";
-import { log } from "./prompts";
+import { loadProjectPackageInfo } from "./get-package-info.js";
+import { log } from "./prompts.js";
 import { getPadding } from "./prompt-helpers.js";
 
 const peerDependencies: Record<string, string> = {
-	svelte: "^5.0.0",
-	tailwindcss: "^3.0.0",
+	svelte: "5.x.x",
+	tailwindcss: "3.x.x",
 };
 
 export function checkPreconditions(cwd: string) {
