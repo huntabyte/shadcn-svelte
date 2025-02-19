@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as ContextMenu from "$lib/registry/default/ui/context-menu/index.js";
 
-	let showBookmarks = false;
-	let showFullURLs = true;
+	let showBookmarks = $state(false);
+	let showFullURLs = $state(true);
 
-	let value = "pedro";
+	let value = $state("pedro");
 </script>
 
 <ContextMenu.Root>
@@ -49,10 +49,12 @@
 		</ContextMenu.CheckboxItem>
 		<ContextMenu.Separator />
 		<ContextMenu.RadioGroup bind:value>
-			<ContextMenu.Label inset>People</ContextMenu.Label>
-			<ContextMenu.Separator />
-			<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
-			<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
+			<ContextMenu.Group>
+				<ContextMenu.GroupHeading inset>People</ContextMenu.GroupHeading>
+				<ContextMenu.Separator />
+				<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
+				<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
+			</ContextMenu.Group>
 		</ContextMenu.RadioGroup>
 	</ContextMenu.Content>
 </ContextMenu.Root>

@@ -1,19 +1,21 @@
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
 import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
+import { existsSync, promises as fs } from "node:fs";
+import path from "node:path";
+import process from "node:process";
 import * as v from "valibot";
-import { type Config, getConfig } from "../utils/get-config.js";
+import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
-import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
+import * as cliConfig from "../utils/get-config.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { detectPM } from "../utils/auto-detect.js";
+import { resolveCommand } from "package-manager-detector/commands";
+import { checkPreconditions } from "../utils/preconditions.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -50,12 +52,16 @@ export const update = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			const config = await getConfig(cwd);
+			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw error(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
+
+			registry.setRegistry(config.registry);
+
+			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
 
@@ -69,14 +75,14 @@ export const update = new Command()
 		}
 	});
 
-async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
+async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
 	const components = options.components;
-	const registryIndex = await getRegistryIndex();
+	const registryIndex = await registry.getRegistryIndex();
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -100,7 +106,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
-		type: "components:ui",
+		type: "registry:ui",
 		files: [],
 		dependencies: [],
 		registryDependencies: [],
@@ -129,10 +135,7 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			})),
 		});
 
-		if (p.isCancel(selected)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(selected)) cancel();
 
 		selectedComponents = selected;
 	} else {
@@ -146,14 +149,17 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			initialValue: true,
 		});
 
-		if (p.isCancel(proceed) || proceed === false) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
+	const tasks: p.Task[] = [];
+
+	const utils = selectedComponents.find((item) => item.name === "utils");
 	// `update utils` - update the utils.(ts|js) file
-	if (selectedComponents.find((item) => item.name === "utils")) {
+	if (utils) {
+		// remove utils so that it isn't fetched from the registry
+		selectedComponents = selectedComponents.filter((item) => item !== utils);
+
 		const extension = config.typescript ? ".ts" : ".js";
 		const utilsPath = config.resolvedPaths.utils + extension;
 
@@ -161,21 +167,28 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 			throw error(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
 		}
 
-		// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
-		await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
+		tasks.push({
+			title: `Updating ${highlight(utilsPath)}`,
+			async task() {
+				// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
+				await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
+			},
+		});
 	}
 
-	const tree = await resolveTree(
-		registryIndex,
-		selectedComponents.map((com) => com.name)
+	const tree = await registry.resolveTree({
+		index: registryIndex,
+		names: selectedComponents.map((com) => com.name),
+		config,
+	});
+	const payload = (await registry.fetchTree(config, tree)).sort((a, b) =>
+		a.name.localeCompare(b.name)
 	);
-	const payload = (await fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
-	const tasks: p.Task[] = [];
 	for (const item of payload) {
-		const targetDir = getItemTargetPath(config, item);
+		const targetDir = registry.getItemTargetPath(config, item);
 		if (!targetDir) {
 			continue;
 		}
@@ -225,20 +238,30 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, true);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, true);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, "-D", ...dependencies], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
 	}
+
+	// Update the config
+	tasks.push({
+		title: "Updating config file",
+		async task() {
+			cliConfig.writeConfig(cwd, config);
+			return `Config file ${highlight("components.json")} updated`;
+		},
+	});
 
 	await p.tasks(tasks);
 

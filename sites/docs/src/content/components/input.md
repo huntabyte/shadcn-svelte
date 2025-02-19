@@ -2,36 +2,40 @@
 title: Input
 description: Displays a form input field or a component that looks like an input field.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/input
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/input
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp} from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
 
   export let form;
 </script>
 
 <ComponentPreview name="input-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="input" />
-
-<ManualInstall>
-
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+{/snippet}
+{#snippet manual()}
+<Steps>
+<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Input } from "$lib/components/ui/input";
+  import { Input } from "$lib/components/ui/input/index.js";
 </script>
 
 <Input />
@@ -43,7 +47,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -51,7 +55,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-disabled">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -59,7 +63,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-with-label">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -67,7 +71,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-with-text">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -75,7 +79,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-with-button">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -83,7 +87,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="input-file">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -91,6 +95,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="form-demo" {form}>
 
-<div />
+<div></div>
 
 </ComponentPreview>

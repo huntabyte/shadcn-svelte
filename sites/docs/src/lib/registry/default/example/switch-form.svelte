@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 	export const formSchema = z.object({
 		marketing_emails: z.boolean().default(false).optional(),
@@ -12,11 +12,11 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import { Switch } from "$lib/registry/default/ui/switch/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.switch;
-	export { data as form };
+
+	let { form: data = page.data.switch }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -41,14 +41,16 @@
 				name="marketing_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label>Marketing emails</Form.Label>
-						<Form.Description>
-							Receive emails about new products, features, and more.
-						</Form.Description>
-					</div>
-					<Switch includeInput {...attrs} bind:checked={$formData.marketing_emails} />
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label>Marketing emails</Form.Label>
+							<Form.Description>
+								Receive emails about new products, features, and more.
+							</Form.Description>
+						</div>
+						<Switch {...props} bind:checked={$formData.marketing_emails} />
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 			<Form.Field
@@ -56,20 +58,21 @@
 				name="security_emails"
 				class="flex flex-row items-center justify-between rounded-lg border p-4"
 			>
-				<Form.Control let:attrs>
-					<div class="space-y-0.5">
-						<Form.Label>Security emails</Form.Label>
-						<Form.Description>
-							Receive emails about your account security.
-						</Form.Description>
-					</div>
-					<Switch
-						{...attrs}
-						aria-readonly
-						disabled
-						includeInput
-						bind:checked={$formData.security_emails}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<div class="space-y-0.5">
+							<Form.Label>Security emails</Form.Label>
+							<Form.Description>
+								Receive emails about your account security.
+							</Form.Description>
+						</div>
+						<Switch
+							{...props}
+							aria-readonly
+							disabled
+							bind:checked={$formData.security_emails}
+						/>
+					{/snippet}
 				</Form.Control>
 			</Form.Field>
 		</div>

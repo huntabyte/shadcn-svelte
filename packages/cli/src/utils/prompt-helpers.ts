@@ -17,8 +17,8 @@ export function intro() {
 	}
 }
 
-export function cancel(): never {
-	p.cancel("Operation cancelled.");
+export function cancel(msg = "Operation cancelled."): never {
+	p.cancel(msg);
 	process.exit(0);
 }
 
@@ -31,4 +31,9 @@ export function prettifyList(arr: string[], max: number = 9): string {
 		if (i % max === 0) return `${pre},\n${curr}`;
 		return `${pre}, ${curr}`;
 	});
+}
+
+export function getPadding(lines: string[]) {
+	const lengths = lines.map((s) => s.length);
+	return Math.max(...lengths);
 }

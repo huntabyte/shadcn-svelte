@@ -1,15 +1,15 @@
 <script lang="ts">
+	import type { WithElementRef } from "bits-ui";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	type $$Props = HTMLAttributes<HTMLElement> & {
-		el?: HTMLElement;
-	};
-
-	export let el: $$Props["el"] = undefined;
-	let className: $$Props["class"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(),
+		class: className,
+		children,
+		...restProps
+	}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();
 </script>
 
-<nav class={className} bind:this={el} aria-label="breadcrumb" {...$$restProps}>
-	<slot />
+<nav bind:this={ref} class={className} aria-label="breadcrumb" {...restProps}>
+	{@render children?.()}
 </nav>

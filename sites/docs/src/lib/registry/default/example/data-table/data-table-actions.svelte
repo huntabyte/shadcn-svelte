@@ -3,20 +3,22 @@
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 
-	export let id: string;
+	let { id }: { id: string } = $props();
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} size="icon" class="relative h-8 w-8 p-0">
-			<span class="sr-only">Open menu</span>
-			<Ellipsis class="h-4 w-4" />
-		</Button>
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="ghost" size="icon" class="relative size-8 p-0">
+				<span class="sr-only">Open menu</span>
+				<Ellipsis />
+			</Button>
+		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.Label>Actions</DropdownMenu.Label>
-			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
+			<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+			<DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
 				Copy payment ID
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
