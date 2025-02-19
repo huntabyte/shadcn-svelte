@@ -39,7 +39,7 @@ function checkDependencies(dependencies: Partial<Record<string, string>>) {
 
 	if (incompatible.length > 0) {
 		const padding = getPadding(incompatible.map(([target]) => target!));
-		
+
 		const lines = incompatible
 			.map(([target, current]) => `  need ${target?.padEnd(padding)}   >>   found ${current}`)
 			.join("\n");
