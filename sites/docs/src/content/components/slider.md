@@ -66,3 +66,9 @@ Install `bits-ui`:
 <div></div>
 
 </ComponentPreview>
+
+<ComponentPreview name="slider-vertical">
+
+<div></div>
+
+</ComponentPreview>
