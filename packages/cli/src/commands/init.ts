@@ -81,7 +81,7 @@ export const init = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			await checkPreconditions(cwd);
+			checkPreconditions(cwd);
 
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);

@@ -61,7 +61,7 @@ export const update = new Command()
 
 			registry.setRegistry(config.registry);
 
-			await checkPreconditions(cwd);
+			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
 
