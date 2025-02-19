@@ -24,10 +24,6 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv@0.6.18 add tailwindcss" />
 
-### Install dependencies
-
-<PMInstall />
-
 ### Setup path aliases
 
 If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.

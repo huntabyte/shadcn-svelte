@@ -18,10 +18,6 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv@0.6.18 add tailwindcss" />
 
-### Install dependencies
-
-<PMInstall />
-
 ### Edit tsconfig.json file
 
 The current version of Vite splits TypeScript configuration into three files, two of which need to be edited.
