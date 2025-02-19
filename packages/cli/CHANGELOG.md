@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.5
+
+### Patch Changes
+
+- 61d98fd: chore: Add warning for incompatible dependency
+
 ## 1.0.0-next.4
 
 ### Patch Changes
