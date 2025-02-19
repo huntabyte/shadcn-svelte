@@ -5,6 +5,7 @@
 	let {
 		ref = $bindable(null),
 		value = $bindable(),
+		orientation = "horizontal",
 		class: className,
 		...restProps
 	}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();
@@ -15,14 +16,23 @@ Discriminated Unions + Destructing (required for bindable) do not
 get along, so we shut typescript up by casting `value` to `never`.
 -->
 <SliderPrimitive.Root
-	bind:value={value as never}
 	bind:ref
-	class={cn("relative flex w-full touch-none select-none items-center", className)}
+	bind:value={value as never}
+	{orientation}
+	class={cn(
+		"relative flex touch-none select-none items-center data-[orientation='vertical']:h-full data-[orientation='vertical']:min-h-44 data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-auto data-[orientation='vertical']:flex-col",
+		className
+	)}
 	{...restProps}
 >
 	{#snippet children({ thumbs })}
-		<span class="bg-secondary relative h-2 w-full grow overflow-hidden rounded-full">
-			<SliderPrimitive.Range class="bg-primary absolute h-full" />
+		<span
+			data-orientation={orientation}
+			class="bg-secondary relative grow overflow-hidden rounded-full data-[orientation='horizontal']:h-2 data-[orientation='vertical']:h-full data-[orientation='horizontal']:w-full data-[orientation='vertical']:w-2"
+		>
+			<SliderPrimitive.Range
+				class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
+			/>
 		</span>
 		{#each thumbs as thumb}
 			<SliderPrimitive.Thumb
