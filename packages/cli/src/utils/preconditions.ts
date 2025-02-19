@@ -21,7 +21,7 @@ export function checkPreconditions(cwd: string) {
  * Checks that all dependencies meet peer dependency requirements and logs a warning if they don't.
  */
 function checkDependencies(dependencies: Partial<Record<string, string>>) {
-	const incompatible = [];
+	const incompatible: [string, string][] = [];
 
 	for (const [name, version] of Object.entries(dependencies)) {
 		const targetVersion = peerDependencies[name];
@@ -38,14 +38,14 @@ function checkDependencies(dependencies: Partial<Record<string, string>>) {
 	}
 
 	if (incompatible.length > 0) {
-		const padding = getPadding(incompatible.map(([target]) => target!));
+		const padding = getPadding(incompatible.map(([target]) => target));
 
 		const lines = incompatible
-			.map(([target, current]) => `  need ${target?.padEnd(padding)}   >>   found ${current}`)
+			.map(([target, current]) => `  need ${target.padEnd(padding)}  >>  found ${current}`)
 			.join("\n");
 
 		log.warn(
-			`Incompatible dependency versions found:\n${lines}\n\n${color.white.bold("Use at your own risk!")}`
+			`Incompatible dependency versions detected:\n\n${lines}\n\n${color.white.bold("Use at your own risk!")}`
 		);
 	}
 }
