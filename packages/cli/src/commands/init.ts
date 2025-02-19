@@ -22,6 +22,7 @@ import { syncSvelteKit } from "../utils/sveltekit.js";
 import * as templates from "../utils/templates.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
+import { checkPreconditions } from "../utils/preconditions.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -79,6 +80,8 @@ export const init = new Command()
 			if (!existsSync(cwd)) {
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
+
+			checkPreconditions(cwd);
 
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);

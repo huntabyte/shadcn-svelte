@@ -15,6 +15,7 @@ import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformImports } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
+import { checkPreconditions } from "../utils/preconditions.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -59,6 +60,8 @@ export const update = new Command()
 			}
 
 			registry.setRegistry(config.registry);
+
+			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
 
