@@ -25,7 +25,7 @@
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content
 							side="top"
-							class="w-[--bits-dropdown-menu-anchor-width]"
+							class="w-[var(--bits-dropdown-menu-anchor-width)]"
 						>
 							<DropdownMenu.Item>
 								<span>Account</span>
