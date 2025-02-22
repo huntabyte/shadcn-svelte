@@ -21,9 +21,8 @@
 
 <Select.Root
 	type="single"
-	controlledValue
-	{value}
-	onValueChange={(v) => {
+	bind:value={() => value,
+	(v) => {
 		if (!isStyle(v)) return;
 		value = v;
 	}}

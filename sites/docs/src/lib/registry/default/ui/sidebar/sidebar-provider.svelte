@@ -15,7 +15,6 @@
 		ref = $bindable(null),
 		open = $bindable(true),
 		onOpenChange = () => {},
-		controlledOpen = false,
 		class: className,
 		style,
 		children,
@@ -23,18 +22,13 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		open?: boolean;
 		onOpenChange?: (open: boolean) => void;
-		controlledOpen?: boolean;
 	} = $props();
 
 	const sidebar = setSidebar({
 		open: () => open,
 		setOpen: (value: boolean) => {
-			if (controlledOpen) {
-				onOpenChange(value);
-			} else {
-				open = value;
-				onOpenChange(value);
-			}
+			open = value;
+			onOpenChange(value);
 
 			// This sets the cookie to keep the sidebar state.
 			document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;

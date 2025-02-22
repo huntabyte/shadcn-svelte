@@ -32,3 +32,8 @@ export function prettifyList(arr: string[], max: number = 9): string {
 		return `${pre}, ${curr}`;
 	});
 }
+
+export function getPadding(lines: string[]) {
+	const lengths = lines.map((s) => s.length);
+	return Math.max(...lengths);
+}

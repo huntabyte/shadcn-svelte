@@ -22,16 +22,8 @@
 </script>
 
 <div class="md:hidden">
-	<enhanced:img
-		src="$lib/img/examples/playground-light.png"
-		alt="Playground"
-		class="block dark:hidden"
-	></enhanced:img>
-	<enhanced:img
-		src="$lib/img/examples/playground-dark.png"
-		alt="Playground"
-		class="hidden dark:block"
-	></enhanced:img>
+	<img src="/img/examples/playground-light.png" alt="Playground" class="block dark:hidden" />
+	<img src="/img/examples/playground-dark.png" alt="Playground" class="hidden dark:block" />
 </div>
 <div class="hidden h-full flex-col md:flex">
 	<div
@@ -235,9 +227,9 @@
 						</Tabs.List>
 					</div>
 					<ModelSelector {types} {models} />
-					<TemperatureSelector value={[0.56]} />
-					<MaxLengthSelector value={[256]} />
-					<TopPSelector value={[0.9]} />
+					<TemperatureSelector type="single" value={0.56} />
+					<MaxLengthSelector type="single" value={256} />
+					<TopPSelector type="single" value={0.9} />
 				</div>
 				<div class="md:order-1">
 					<Tabs.Content value="complete" class="mt-0 border-0 p-0">

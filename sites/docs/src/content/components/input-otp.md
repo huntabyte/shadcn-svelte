@@ -57,7 +57,7 @@ Install `bits-ui`:
     </InputOTP.Group>
     <InputOTP.Separator />
     <InputOTP.Group>
-      {#each cells.slice(0, 3) as cell}
+      {#each cells.slice(3, 6) as cell}
         <InputOTP.Slot {cell} />
       {/each}
     </InputOTP.Group>

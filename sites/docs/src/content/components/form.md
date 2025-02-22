@@ -120,9 +120,10 @@ For this example, we'll be passing the `form` returned from the load function as
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
 
-  export let data: SuperValidated<Infer<FormSchema>>;
+  let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } =
+    $props();
 
-  const form = superForm(data, {
+  const form = superForm(data.form, {
     validators: zodClient(formSchema),
   });
 
@@ -154,10 +155,10 @@ We'll pass the `form` from the data returned from the load function to the form 
 <script lang="ts">
   import type { PageData } from "./$types.js";
   import SettingsForm from "./settings-form.svelte";
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 </script>
 
-<SettingsForm data={data.form} />
+<SettingsForm {data} />
 ```
 
 ### Create an Action that handles the form submission

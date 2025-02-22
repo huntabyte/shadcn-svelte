@@ -57,9 +57,9 @@ Add `tailwindcss-animate`.
 
 <PMInstall command="tailwindcss-animate"/>
 
-Add `tailwindcss-animate` plugin and animations config.
+Add `tailwindcss-animate` plugin, sidebar colors, and animations config.
 
-```json {2} {22-43}
+```json {2} {15-24} {32-50} {53}
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
 
@@ -74,6 +74,16 @@ const config: Config = {
 		extend: {
 			colors: {
 				// unchanged ...
+				sidebar: {
+					DEFAULT: "hsl(var(--sidebar-background))",
+					foreground: "hsl(var(--sidebar-foreground))",
+					primary: "hsl(var(--sidebar-primary))",
+					"primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+					accent: "hsl(var(--sidebar-accent))",
+					"accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+					border: "hsl(var(--sidebar-border))",
+					ring: "hsl(var(--sidebar-ring))",
+        		},
 			},
 			borderRadius: {
 				// unchanged ...

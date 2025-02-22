@@ -14,6 +14,7 @@ import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { transformImports } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
+import { checkPreconditions } from "../utils/preconditions.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -63,6 +64,8 @@ export const add = new Command()
 			}
 
 			registry.setRegistry(config.registry);
+
+			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
 

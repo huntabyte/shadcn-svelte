@@ -336,7 +336,7 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
         class="relative size-8 p-0"
       >
         <span class="sr-only">Open menu</span>
-        <Ellipsis class="size-4" />
+        <Ellipsis />
       </Button>
     {/snippet}
   </DropdownMenu.Trigger>
@@ -360,8 +360,7 @@ Now that we've defined the `<DataTableActions />` component, let's update our `a
 
 ```ts showLineNumbers title="routes/payments/columns.ts"
 import type { ColumnDef } from "@tanstack/table-core";
-import { createRawSnippet } from "svelte";
-import { renderSnippet } from "$lib/components/ui/data-table/index.js";
+import { renderComponent } from "$lib/components/ui/data-table/index.js";
 import DataTableActions from "./data-table-actions.svelte";
 
 export const columns: ColumnDef<Payment>[] = [
@@ -506,7 +505,7 @@ We'll start by creating a component to render a sortable email header button.
 
 <Button {variant} {...restProps}>
   Email
-  <ArrowUpDown class="ml-2 size-4" />
+  <ArrowUpDown class="ml-2" />
 </Button>
 ```
 
@@ -568,10 +567,7 @@ We can now update the `email` header cell to add sorting controls.
 
 ```ts showLineNumbers title="src/routes/payments/columns.ts"
 import type { ColumnDef } from "@tanstack/table-core";
-import {
-  renderComponent,
-  renderSnippet,
-} from "$lib/components/ui/data-table/index.js";
+import { renderComponent } from "$lib/components/ui/data-table/index.js";
 import DataTableEmailButton from "./data-table-email-button.svelte";
 
 export const columns: ColumnDef<Payment>[] = [
@@ -793,9 +789,8 @@ Adding column visibility is fairly simple using `@tanstack/table-core` visibilit
           .filter((col) => col.getCanHide()) as column (column.id)}
           <DropdownMenu.CheckboxItem
             class="capitalize"
-            controlledChecked
-            checked={column.getIsVisible()}
-            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+            bind:checked={() => column.getIsVisible(),
+            (v) => column.toggleVisibility(!!v)}
           >
             {column.id}
           </DropdownMenu.CheckboxItem>
@@ -826,16 +821,16 @@ We'll start by defining the checkbox component in our `data-table-checkbox.svelt
 ```svelte showLineNumbers title="routes/payments/data-table-checkbox.svelte"
 <script lang="ts">
   import type { ComponentProps } from "svelte";
-  import { Checkbox } from "$lib/registry/default/ui/checkbox/index.js";
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
   let {
     checked = false,
-    controlledChecked = true,
+    onCheckedChange = (v) => (checked = v),
     ...restProps
   }: ComponentProps<typeof Checkbox> = $props();
 </script>
 
-<Checkbox {checked} {controlledChecked} {...restProps} />
+<Checkbox bind:checked={() => checked, onCheckedChange} {...restProps} />
 ```
 
 ### Update columns definition
@@ -844,10 +839,7 @@ Now that we have a new component, we can add a `select` column definition to ren
 
 ```ts showLineNumbers title="routes/payments/columns.ts"
 import type { ColumnDef } from "@tanstack/table-core";
-import {
-  renderSnippet,
-  renderComponent,
-} from "$lib/components/ui/data-table/index.js";
+import { renderComponent } from "$lib/components/ui/data-table/index.js";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 
 export const columns: ColumnDef<Payment>[] = [
@@ -861,14 +853,12 @@ export const columns: ColumnDef<Payment>[] = [
           table.getIsSomePageRowsSelected() &&
           !table.getIsAllPageRowsSelected(),
         onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
-        controlledChecked: true,
         "aria-label": "Select all",
       }),
     cell: ({ row }) =>
       renderComponent(Checkbox, {
         checked: row.getIsSelected(),
         onCheckedChange: (value) => row.toggleSelected(!!value),
-        controlledChecked: true,
         "aria-label": "Select row",
       }),
     enableSorting: false,

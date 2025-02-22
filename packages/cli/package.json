@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "1.0.0-next.4",
+	"version": "1.0.0-next.5",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -45,10 +45,12 @@
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
 		"is-unicode-supported": "^2.0.0",
-		"node-fetch-native": "^1.6.4"
+		"node-fetch-native": "^1.6.4",
+		"semver": "^7.7.1"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
+		"@types/semver": "^7.5.8",
 		"cross-env": "^7.0.3",
 		"deepmerge": "^4.3.1",
 		"get-tsconfig": "^4.7.3",
