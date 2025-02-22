@@ -215,7 +215,7 @@ importers:
         version: 3.0.2
       layerchart:
         specifier: ^0.54.1
-        version: 0.54.1(svelte@5.0.4)(typescript@5.5.3)
+        version: 0.54.1(svelte@5.16.1)(typescript@5.5.3)
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2267,15 +2267,9 @@ packages:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
-<<<<<<< HEAD
-  core-js-compat@3.37.1:
-    resolution: {integrity: sha512-9TNiImhKvQqSUkOvk/mMRZzOANTiEVC7WaBNhHcKM7x+/5E1l5NvsysR19zuDQScE8k+kfQXWRN3AtS/eOSHpg==}
-
   core-js@3.38.1:
     resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
 
-=======
->>>>>>> next
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
@@ -3189,16 +3183,9 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
-<<<<<<< HEAD
-  imagetools-core@7.0.0:
-    resolution: {integrity: sha512-6fYbD7u4VIOt6fqKrOlbF77JXgUVyUmEJIPlfYVTuR/S2Ig9cX3gukGiLEU0aSetcfE7CYnhLTPtTEu4mLwhCw==}
-    engines: {node: '>=18.0.0'}
-
   immer@10.1.1:
     resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
 
-=======
->>>>>>> next
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4585,15 +4572,9 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
-<<<<<<< HEAD
-  slashes@3.0.12:
-    resolution: {integrity: sha512-Q9VME8WyGkc7pJf6QEkj3wE+2CnvZMI+XJhwdTPR8Z/kWQRXi7boAWLDibRPyHRTUTPx5FaU7MsyrjI3yLB4HA==}
-
   slice-source@0.4.1:
     resolution: {integrity: sha512-YiuPbxpCj4hD9Qs06hGAz/OZhQ0eDuALN0lRWJez0eD/RevzKqGdUx1IOMUnXgpr+sXZLq3g8ERwbAH0bCb8vg==}
 
-=======
->>>>>>> next
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
@@ -6305,7 +6286,7 @@ snapshots:
       d3-array: 3.2.4
       date-fns: 4.1.0
       lodash-es: 4.17.21
-      tailwind-merge: 2.5.4
+      tailwind-merge: 2.6.0
       tailwindcss: 3.4.14
     transitivePeerDependencies:
       - ts-node
@@ -7434,15 +7415,8 @@ snapshots:
 
   cookie@0.7.2: {}
 
-<<<<<<< HEAD
-  core-js-compat@3.37.1:
-    dependencies:
-      browserslist: 4.24.0
-
   core-js@3.38.1: {}
 
-=======
->>>>>>> next
   cosmiconfig@7.1.0:
     dependencies:
       '@types/parse-json': 4.0.2
@@ -8635,15 +8609,8 @@ snapshots:
 
   ignore@5.3.1: {}
 
-<<<<<<< HEAD
-  imagetools-core@7.0.0:
-    dependencies:
-      sharp: 0.33.5
-
   immer@10.1.1: {}
 
-=======
->>>>>>> next
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -8867,16 +8834,16 @@ snapshots:
 
   known-css-properties@0.34.0: {}
 
-  layercake@8.4.0(svelte@5.0.4)(typescript@5.5.3):
+  layercake@8.4.0(svelte@5.16.1)(typescript@5.5.3):
     dependencies:
       d3-array: 3.2.4
       d3-color: 3.1.0
       d3-scale: 4.0.2
       d3-shape: 3.2.0
-      svelte: 5.0.4
+      svelte: 5.16.1
       typescript: 5.5.3
 
-  layerchart@0.54.1(svelte@5.0.4)(typescript@5.5.3):
+  layerchart@0.54.1(svelte@5.16.1)(typescript@5.5.3):
     dependencies:
       '@layerstack/svelte-actions': 0.0.7
       '@layerstack/svelte-stores': 0.0.6
@@ -8902,11 +8869,11 @@ snapshots:
       d3-tile: 1.0.0
       d3-time: 3.1.0
       date-fns: 3.6.0
-      layercake: 8.4.0(svelte@5.0.4)(typescript@5.5.3)
+      layercake: 8.4.0(svelte@5.16.1)(typescript@5.5.3)
       lodash-es: 4.17.21
       posthog-js: 1.174.3
       shapefile: 0.6.6
-      svelte: 5.0.4
+      svelte: 5.16.1
       topojson-client: 3.1.0
     transitivePeerDependencies:
       - ts-node
@@ -10342,13 +10309,8 @@ snapshots:
 
   slash@3.0.0: {}
 
-<<<<<<< HEAD
-  slashes@3.0.12: {}
-
   slice-source@0.4.1: {}
 
-=======
->>>>>>> next
   smart-buffer@4.2.0: {}
 
   smartwrap@2.0.2:
