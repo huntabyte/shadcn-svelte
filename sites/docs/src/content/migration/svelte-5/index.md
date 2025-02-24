@@ -145,7 +145,7 @@ Pick and choose which components to upgrade with the `update` command.
 
 The `update` command doesn't upgrade `bits-ui` so you will need to do that yourself.
 
-<PMInstall command="bits-ui@next"/>
+<PMInstall command="bits-ui"/>
 
 ## Remove unused dependencies
 
