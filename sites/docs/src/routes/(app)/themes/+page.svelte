@@ -10,7 +10,7 @@
 
 <svelte:head>
 	<style>
-		@import "/registry/themes.css";
+		@import "/themes.css";
 		:root {
 			--vis-color0: var(--primary);
 			--vis-color1: #ffffff;
