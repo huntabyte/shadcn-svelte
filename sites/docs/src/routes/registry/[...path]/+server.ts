@@ -5,17 +5,14 @@ export async function GET({ params }) {
 
 	try {
 		const jsonFiles = import.meta.glob("../../../lib/registry-json/**/*.json", { as: "raw" });
-		const cssFiles = import.meta.glob("../../../lib/registry-css/**/*.css", { as: "raw" });
 
-		const modules = { ...jsonFiles, ...cssFiles };
-
-		const modulePath = Object.keys(modules).find((m) => m.endsWith(`/${path}`));
+		const modulePath = Object.keys(jsonFiles).find((m) => m.endsWith(`/${path}`));
 
 		if (!modulePath) {
 			throw new Error(`File not found: ${path}`);
 		}
 
-		const rawContent = await modules[modulePath]();
+		const rawContent = await jsonFiles[modulePath]();
 
 		return new Response(rawContent, {
 			headers: {
