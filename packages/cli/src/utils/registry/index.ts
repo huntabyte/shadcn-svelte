@@ -12,7 +12,13 @@ let baseUrl: string | undefined;
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
 export function setRegistry(url: string) {
-	baseUrl = url;
+	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
+	// this will be removed once we have a proper solution and or we merge with main
+	if (url === "https://next.shadcn-svelte.com/registry") {
+		baseUrl = "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
+	} else {
+		baseUrl = url;
+	}
 }
 
 function getRegistryUrl(path: string) {
