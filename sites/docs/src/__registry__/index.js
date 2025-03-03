@@ -763,6 +763,14 @@ export const Index = {
 			files: ["../lib/registry/default/example/slider-multiple.svelte"],
 			raw: () => import("../lib/registry/default/example/slider-multiple.svelte?raw").then((m) => m.default),
 		},
+		"slider-vertical": {
+			name: "slider-vertical",
+			type: "registry:example",
+			registryDependencies: ["slider"],
+			component: () => import("../lib/registry/default/example/slider-vertical.svelte").then((m) => m.default),
+			files: ["../lib/registry/default/example/slider-vertical.svelte"],
+			raw: () => import("../lib/registry/default/example/slider-vertical.svelte?raw").then((m) => m.default),
+		},
 		"sonner-demo": {
 			name: "sonner-demo",
 			type: "registry:example",
@@ -1835,6 +1843,14 @@ export const Index = {
 			component: () => import("../lib/registry/new-york/example/slider-multiple.svelte").then((m) => m.default),
 			files: ["../lib/registry/new-york/example/slider-multiple.svelte"],
 			raw: () => import("../lib/registry/new-york/example/slider-multiple.svelte?raw").then((m) => m.default),
+		},
+		"slider-vertical": {
+			name: "slider-vertical",
+			type: "registry:example",
+			registryDependencies: ["slider"],
+			component: () => import("../lib/registry/new-york/example/slider-vertical.svelte").then((m) => m.default),
+			files: ["../lib/registry/new-york/example/slider-vertical.svelte"],
+			raw: () => import("../lib/registry/new-york/example/slider-vertical.svelte?raw").then((m) => m.default),
 		},
 		"sonner-demo": {
 			name: "sonner-demo",

@@ -14,7 +14,8 @@ import { transformContent } from "./transformers";
 import prettier from "prettier";
 import prettierPluginSvelte from "prettier-plugin-svelte";
 
-const REGISTRY_PATH = path.resolve("static", "registry");
+const REGISTRY_PATH = path.resolve("src", "lib", "registry-json");
+const THEMES_CSS_PATH = path.resolve("static");
 const REGISTRY_IGNORE = ["super-form"];
 
 const prettierConfig: prettier.Config = {
@@ -369,7 +370,7 @@ export const Index = {
 		);
 	}
 
-	writeFileWithDirs(path.join(REGISTRY_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
+	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
 
 	console.info("✅ Done!");
 }

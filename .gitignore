@@ -113,3 +113,6 @@ generated-assets
 
 .velite
 sites/docs/static/registry
+sites/docs/src/lib/registry-json/**/*.json
+sites/docs/src/lib/registry-json/**/*.css
+sites/docs/static/themes.css
