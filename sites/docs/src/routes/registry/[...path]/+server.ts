@@ -7,7 +7,6 @@ export async function GET({ params }) {
 		const jsonFiles = import.meta.glob("../../../lib/registry-json/**/*.json", { as: "raw" });
 		const cssFiles = import.meta.glob("../../../lib/registry-css/**/*.css", { as: "raw" });
 
-		// Merge all modules
 		const modules = { ...jsonFiles, ...cssFiles };
 
 		const modulePath = Object.keys(modules).find((m) => m.endsWith(`/${path}`));
@@ -16,10 +15,8 @@ export async function GET({ params }) {
 			throw new Error(`File not found: ${path}`);
 		}
 
-		// Import the matched module
 		const rawContent = await modules[modulePath]();
 
-		// Return raw JSON response
 		return new Response(rawContent, {
 			headers: {
 				"Content-Type": "application/json",
