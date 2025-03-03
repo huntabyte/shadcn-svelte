@@ -14,7 +14,7 @@ import { transformContent } from "./transformers";
 import prettier from "prettier";
 import prettierPluginSvelte from "prettier-plugin-svelte";
 
-const REGISTRY_PATH = path.resolve("src", "lib", "registry-json");
+const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
 const REGISTRY_IGNORE = ["super-form"];
 
