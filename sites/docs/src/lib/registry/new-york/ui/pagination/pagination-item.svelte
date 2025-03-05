@@ -8,6 +8,6 @@
 	export { className as class };
 </script>
 
-<li class={cn("", className)} {...$$restProps}>
+<li class={cn("", className)} {...$$restProps} hidden={hidden}>
 	<slot />
 </li>

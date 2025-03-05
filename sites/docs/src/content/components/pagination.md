@@ -48,7 +48,7 @@ bits: https://www.bits-ui.com/docs/components/pagination
           <Pagination.Ellipsis />
         </Pagination.Item>
       {:else}
-        <Pagination.Item isVisible={currentPage == page.value}>
+        <Pagination.Item hidden={currentPage != page.value}>
           <Pagination.Link {page} isActive={currentPage == page.value}>
             {page.value}
           </Pagination.Link>
