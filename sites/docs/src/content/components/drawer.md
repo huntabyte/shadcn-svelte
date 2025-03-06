@@ -19,6 +19,7 @@ bits: https://www.vaul-svelte.com
 ## About
 
 Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Svelte port of [Vaul](https://vaul.emilkowal.ski) by [Emil Kowalski](https://twitter.com/emilkowalski_).
+This component can be used as a Dialog replacement on mobile and tablet devices.
 
 ## Installation
 
