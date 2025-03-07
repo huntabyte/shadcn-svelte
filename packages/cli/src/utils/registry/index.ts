@@ -163,11 +163,10 @@ async function fetchRegistry(paths: string[]) {
 					);
 				}
 
-				
 				try {
 					return await response.json();
 				} catch (e) {
-					throw error(`Error parsing json response from ${url}: Error ${e}`)
+					throw error(`Error parsing json response from ${url}: Error ${e}`);
 				}
 			})
 		);
