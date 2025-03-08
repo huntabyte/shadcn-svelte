@@ -36,7 +36,8 @@ export async function getRegistryIndex() {
 		const [result] = await fetchRegistry(["index.json"]);
 
 		return v.parse(schemas.registryIndexSchema, result);
-	} catch {
+	} catch (e) {
+		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch components from registry.`);
 	}
 }
@@ -120,7 +121,8 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
-	} catch {
+	} catch (e) {
+		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
 }
@@ -150,19 +152,29 @@ async function fetchRegistry(paths: string[]) {
 		const results = await Promise.all(
 			paths.map(async (path) => {
 				const url = getRegistryUrl(path);
+
 				const response = await fetch(url, {
 					...proxy,
 				});
 
-				const json = await response.json();
-				return json;
+				if (!response.ok) {
+					throw error(
+						`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
+					);
+				}
+
+				try {
+					return await response.json();
+				} catch (e) {
+					throw error(`Error parsing json response from ${url}: Error ${e}`);
+				}
 			})
 		);
 
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry from ${baseUrl}.`);
+		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
 	}
 }
 
