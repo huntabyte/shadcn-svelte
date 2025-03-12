@@ -4,7 +4,7 @@
 	import CircleCheck from "@lucide/svelte/icons/circle-check";
 	import CircleHelp from "@lucide/svelte/icons/circle-help";
 	import CircleX from "@lucide/svelte/icons/circle-x";
-	import { type ComponentType, tick } from "svelte";
+	import { type Component, tick } from "svelte";
 	import { useId } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
@@ -14,7 +14,7 @@
 	type Status = {
 		value: string;
 		label: string;
-		icon: ComponentType;
+		icon: Component;
 	};
 
 	const statuses: Status[] = [
