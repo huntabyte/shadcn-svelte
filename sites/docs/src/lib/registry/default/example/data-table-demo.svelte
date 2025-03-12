@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDown from "lucide-svelte/icons/chevron-down";
+	import ChevronDown from "@lucide/svelte/icons/chevron-down";
 	import {
 		type ColumnDef,
 		type ColumnFiltersState,

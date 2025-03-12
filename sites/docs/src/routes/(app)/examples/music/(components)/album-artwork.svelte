@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Sun from "lucide-svelte/icons/sun";
-	import Moon from "lucide-svelte/icons/moon";
+	import Sun from "@lucide/svelte/icons/sun";
+	import Moon from "@lucide/svelte/icons/moon";
 
 	import { resetMode, setMode } from "mode-watcher";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";

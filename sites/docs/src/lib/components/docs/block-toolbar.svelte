@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import Fullscreen from "lucide-svelte/icons/fullscreen";
-	import Monitor from "lucide-svelte/icons/monitor";
-	import Smartphone from "lucide-svelte/icons/smartphone";
-	import Tablet from "lucide-svelte/icons/tablet";
-	import Terminal from "lucide-svelte/icons/terminal";
+	import Check from "@lucide/svelte/icons/check";
+	import Fullscreen from "@lucide/svelte/icons/fullscreen";
+	import Monitor from "@lucide/svelte/icons/monitor";
+	import Smartphone from "@lucide/svelte/icons/smartphone";
+	import Tablet from "@lucide/svelte/icons/tablet";
+	import Terminal from "@lucide/svelte/icons/terminal";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";

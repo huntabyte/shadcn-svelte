@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { Toaster } from "$lib/registry/new-york/ui/sonner/index.js";
-	import Plus from "lucide-svelte/icons/plus";
-	import Frame from "lucide-svelte/icons/frame";
-	import ChartPie from "lucide-svelte/icons/chart-pie";
-	import Map from "lucide-svelte/icons/map";
+	import Plus from "@lucide/svelte/icons/plus";
+	import Frame from "@lucide/svelte/icons/frame";
+	import ChartPie from "@lucide/svelte/icons/chart-pie";
+	import Map from "@lucide/svelte/icons/map";
 	import { toast } from "svelte-sonner";
 </script>
 

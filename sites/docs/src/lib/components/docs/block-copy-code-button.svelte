@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import Clipboard from "lucide-svelte/icons/clipboard";
+	import Check from "@lucide/svelte/icons/check";
+	import Clipboard from "@lucide/svelte/icons/clipboard";
 	import type { TooltipTriggerProps } from "bits-ui";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";

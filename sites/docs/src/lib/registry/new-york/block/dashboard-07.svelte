@@ -1,16 +1,16 @@
 <script lang="ts">
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import House from "lucide-svelte/icons/house";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import Package from "lucide-svelte/icons/package";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import PanelLeft from "lucide-svelte/icons/panel-left";
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
-	import Search from "lucide-svelte/icons/search";
-	import Settings from "lucide-svelte/icons/settings";
-	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
-	import Upload from "lucide-svelte/icons/upload";
-	import UsersRound from "lucide-svelte/icons/users-round";
+	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+	import House from "@lucide/svelte/icons/house";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import Package from "@lucide/svelte/icons/package";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import PanelLeft from "@lucide/svelte/icons/panel-left";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import Search from "@lucide/svelte/icons/search";
+	import Settings from "@lucide/svelte/icons/settings";
+	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
+	import Upload from "@lucide/svelte/icons/upload";
+	import UsersRound from "@lucide/svelte/icons/users-round";
 
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";

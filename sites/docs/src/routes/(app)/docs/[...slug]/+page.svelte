@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import Code from "lucide-svelte/icons/code";
-	import ExternalLink from "lucide-svelte/icons/external-link";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import Code from "@lucide/svelte/icons/code";
+	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";

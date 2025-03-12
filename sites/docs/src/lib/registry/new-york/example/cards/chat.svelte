@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import Send from "lucide-svelte/icons/send";
-	import Plus from "lucide-svelte/icons/plus";
+	import Check from "@lucide/svelte/icons/check";
+	import Send from "@lucide/svelte/icons/send";
+	import Plus from "@lucide/svelte/icons/plus";
 	import { cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";

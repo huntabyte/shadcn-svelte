@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Model, ModelType } from "../(data)/models.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 

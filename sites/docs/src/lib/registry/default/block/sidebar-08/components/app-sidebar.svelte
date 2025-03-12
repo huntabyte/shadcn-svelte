@@ -1,13 +1,13 @@
 <script lang="ts" module>
-	import BookOpen from "lucide-svelte/icons/book-open";
-	import Bot from "lucide-svelte/icons/bot";
-	import ChartPie from "lucide-svelte/icons/chart-pie";
-	import Frame from "lucide-svelte/icons/frame";
-	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-	import Map from "lucide-svelte/icons/map";
-	import Send from "lucide-svelte/icons/send";
-	import Settings2 from "lucide-svelte/icons/settings-2";
-	import SquareTerminal from "lucide-svelte/icons/square-terminal";
+	import BookOpen from "@lucide/svelte/icons/book-open";
+	import Bot from "@lucide/svelte/icons/bot";
+	import ChartPie from "@lucide/svelte/icons/chart-pie";
+	import Frame from "@lucide/svelte/icons/frame";
+	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
+	import Map from "@lucide/svelte/icons/map";
+	import Send from "@lucide/svelte/icons/send";
+	import Settings2 from "@lucide/svelte/icons/settings-2";
+	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
 
 	const data = {
 		user: {
@@ -140,7 +140,7 @@
 	import NavSecondary from "$lib/registry/default/block/sidebar-08/components/nav-secondary.svelte";
 	import NavUser from "$lib/registry/default/block/sidebar-08/components/nav-user.svelte";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import Command from "lucide-svelte/icons/command";
+	import Command from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

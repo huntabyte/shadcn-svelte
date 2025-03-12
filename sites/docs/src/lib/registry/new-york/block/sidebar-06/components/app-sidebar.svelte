@@ -136,7 +136,7 @@
 	import NavMain from "$lib/registry/new-york/block/sidebar-06/components/nav-main.svelte";
 	import SidebarOptInForm from "$lib/registry/new-york/block/sidebar-06/components/sidebar-opt-in-form.svelte";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import GalleryVerticalEnd from "lucide-svelte/icons/gallery-vertical-end";
+	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

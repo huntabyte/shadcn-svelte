@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-	import Send from "lucide-svelte/icons/send";
+	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
+	import Send from "@lucide/svelte/icons/send";
 </script>
 
 <Sidebar.Provider>

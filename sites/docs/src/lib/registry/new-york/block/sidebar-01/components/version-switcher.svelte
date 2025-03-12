@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import Check from "lucide-svelte/icons/check";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import GalleryVerticalEnd from "lucide-svelte/icons/gallery-vertical-end";
+	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
 
 	let { versions, defaultVersion }: { versions: string[]; defaultVersion: string } = $props();
 

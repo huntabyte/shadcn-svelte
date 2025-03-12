@@ -1,17 +1,17 @@
 <script lang="ts">
-	import File from "lucide-svelte/icons/file";
-	import House from "lucide-svelte/icons/house";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import ListFilter from "lucide-svelte/icons/list-filter";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Package from "lucide-svelte/icons/package";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import PanelLeft from "lucide-svelte/icons/panel-left";
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
-	import Search from "lucide-svelte/icons/search";
-	import Settings from "lucide-svelte/icons/settings";
-	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
-	import UsersRound from "lucide-svelte/icons/users-round";
+	import File from "@lucide/svelte/icons/file";
+	import House from "@lucide/svelte/icons/house";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import ListFilter from "@lucide/svelte/icons/list-filter";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Package from "@lucide/svelte/icons/package";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import PanelLeft from "@lucide/svelte/icons/panel-left";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import Search from "@lucide/svelte/icons/search";
+	import Settings from "@lucide/svelte/icons/settings";
+	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
+	import UsersRound from "@lucide/svelte/icons/users-round";
 
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";

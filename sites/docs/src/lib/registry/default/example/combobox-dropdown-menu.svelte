@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Calendar from "lucide-svelte/icons/calendar";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Tags from "lucide-svelte/icons/tags";
-	import Trash from "lucide-svelte/icons/trash";
-	import User from "lucide-svelte/icons/user";
+	import Calendar from "@lucide/svelte/icons/calendar";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Tags from "@lucide/svelte/icons/tags";
+	import Trash from "@lucide/svelte/icons/trash";
+	import User from "@lucide/svelte/icons/user";
 	import { tick } from "svelte";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Rabbit from "lucide-svelte/icons/rabbit";
-	import Bird from "lucide-svelte/icons/bird";
-	import Turtle from "lucide-svelte/icons/turtle";
+	import Rabbit from "@lucide/svelte/icons/rabbit";
+	import Bird from "@lucide/svelte/icons/bird";
+	import Turtle from "@lucide/svelte/icons/turtle";
 
 	import { Input } from "$lib/registry/new-york/ui/input/index.js";
 	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";

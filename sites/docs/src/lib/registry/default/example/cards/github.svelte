@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ChevronDown from "lucide-svelte/icons/chevron-down";
-	import Circle from "lucide-svelte/icons/circle";
-	import Plus from "lucide-svelte/icons/plus";
-	import Star from "lucide-svelte/icons/star";
+	import ChevronDown from "@lucide/svelte/icons/chevron-down";
+	import Circle from "@lucide/svelte/icons/circle";
+	import Plus from "@lucide/svelte/icons/plus";
+	import Star from "@lucide/svelte/icons/star";
 	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";

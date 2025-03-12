@@ -6,7 +6,7 @@ description: Re-usable components built with Bits UI, Melt UI, and Tailwind CSS.
 <script>
   import * as Accordion from '$lib/registry/new-york/ui/accordion';
   import { Callout } from '$lib/components/docs';
-  import CircleAlert from "lucide-svelte/icons/circle-alert";
+  import CircleAlert from "@lucide/svelte/icons/circle-alert";
 </script>
 
 An unofficial, community-led [Svelte](https://svelte.dev) port of [shadcn/ui](https://ui.shadcn.com). We are not affiliated with [shadcn](https://twitter.com/shadcn), but we did get his blessing before creating a Svelte version of his work. This project was born out of the need for a similar project for the Svelte ecosystem.

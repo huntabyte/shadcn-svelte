@@ -2,10 +2,10 @@
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/new-york/ui/sidebar/index.js";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import Plus from "lucide-svelte/icons/plus";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import Plus from "@lucide/svelte/icons/plus";
 
-	// This should be `Component` after lucide-svelte updates types
+	// This should be `Component` after @lucide/svelte updates types
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let { teams }: { teams: { name: string; logo: any; plan: string }[] } = $props();
 	const sidebar = useSidebar();

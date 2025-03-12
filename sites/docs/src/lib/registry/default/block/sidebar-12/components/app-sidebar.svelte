@@ -28,7 +28,7 @@
 	import DatePicker from "$lib/registry/default/block/sidebar-12/components/date-picker.svelte";
 	import NavUser from "$lib/registry/default/block/sidebar-12/components/nav-user.svelte";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import Plus from "lucide-svelte/icons/plus";
+	import Plus from "@lucide/svelte/icons/plus";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

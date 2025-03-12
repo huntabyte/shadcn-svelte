@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CreditCard from "lucide-svelte/icons/credit-card";
+	import CreditCard from "@lucide/svelte/icons/credit-card";
 
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>

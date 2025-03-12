@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import AudioWaveform from "lucide-svelte/icons/audio-waveform";
-	import Blocks from "lucide-svelte/icons/blocks";
-	import Calendar from "lucide-svelte/icons/calendar";
-	import Command from "lucide-svelte/icons/command";
-	import House from "lucide-svelte/icons/house";
-	import Inbox from "lucide-svelte/icons/inbox";
-	import MessageCircleQuestion from "lucide-svelte/icons/message-circle-question";
-	import Search from "lucide-svelte/icons/search";
-	import Settings2 from "lucide-svelte/icons/settings-2";
-	import Sparkles from "lucide-svelte/icons/sparkles";
-	import Trash2 from "lucide-svelte/icons/trash-2";
+	import AudioWaveform from "@lucide/svelte/icons/audio-waveform";
+	import Blocks from "@lucide/svelte/icons/blocks";
+	import Calendar from "@lucide/svelte/icons/calendar";
+	import Command from "@lucide/svelte/icons/command";
+	import House from "@lucide/svelte/icons/house";
+	import Inbox from "@lucide/svelte/icons/inbox";
+	import MessageCircleQuestion from "@lucide/svelte/icons/message-circle-question";
+	import Search from "@lucide/svelte/icons/search";
+	import Settings2 from "@lucide/svelte/icons/settings-2";
+	import Sparkles from "@lucide/svelte/icons/sparkles";
+	import Trash2 from "@lucide/svelte/icons/trash-2";
 
 	import NavFavorites from "$lib/registry/default/block/sidebar-15/components/nav-favorites.svelte";
 	import NavMain from "$lib/registry/default/block/sidebar-15/components/nav-main.svelte";

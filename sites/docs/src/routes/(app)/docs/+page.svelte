@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
 	import type { PageData } from "./$types.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/state";

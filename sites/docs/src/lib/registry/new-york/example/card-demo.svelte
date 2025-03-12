@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BellRing from "lucide-svelte/icons/bell-ring";
-	import Check from "lucide-svelte/icons/check";
+	import BellRing from "@lucide/svelte/icons/bell-ring";
+	import Check from "@lucide/svelte/icons/check";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Plus from "lucide-svelte/icons/plus";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Plus from "@lucide/svelte/icons/plus";
 
 	import * as Collapsible from "$lib/registry/default/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";

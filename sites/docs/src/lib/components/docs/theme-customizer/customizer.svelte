@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import CircleHelp from "lucide-svelte/icons/circle-help";
-	import Moon from "lucide-svelte/icons/moon";
-	import Repeat from "lucide-svelte/icons/repeat";
-	import Sun from "lucide-svelte/icons/sun";
+	import Check from "@lucide/svelte/icons/check";
+	import CircleHelp from "@lucide/svelte/icons/circle-help";
+	import Moon from "@lucide/svelte/icons/moon";
+	import Repeat from "@lucide/svelte/icons/repeat";
+	import Sun from "@lucide/svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";

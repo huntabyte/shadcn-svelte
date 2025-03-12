@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Italic from "lucide-svelte/icons/italic";
+	import Italic from "@lucide/svelte/icons/italic";
 	import { Toggle } from "$lib/registry/default/ui/toggle/index.js";
 </script>
 

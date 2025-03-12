@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import * as Collapsible from "$lib/registry/new-york/ui/collapsible/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>

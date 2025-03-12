@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DollarSign from "lucide-svelte/icons/dollar-sign";
+	import DollarSign from "@lucide/svelte/icons/dollar-sign";
 
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 </script>

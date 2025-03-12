@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
 	import * as Collapsible from "$lib/registry/default/ui/collapsible/index.js";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
 
 	const items = [
 		{

@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import X from "lucide-svelte/icons/x";
+	import X from "@lucide/svelte/icons/x";
 	import type { Table } from "@tanstack/table-core";
 	import { priorities, statuses } from "../(data)/data.js";
 	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";

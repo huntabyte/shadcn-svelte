@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import Settings2 from "lucide-svelte/icons/settings-2";
+	import Settings2 from "@lucide/svelte/icons/settings-2";
 	import type { Table } from "@tanstack/table-core";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";

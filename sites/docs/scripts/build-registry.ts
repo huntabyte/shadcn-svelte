@@ -260,8 +260,8 @@ export const Index = {
 		.map((item) => ({
 			...item,
 			style: undefined, // discard `style`
-			// The `default` style uses `lucide-svelte`, so we'll discard it for the purposes of the index
-			dependencies: item.dependencies.filter((dep) => dep !== "lucide-svelte"),
+			// The `default` style uses `@lucide/svelte`, so we'll discard it for the purposes of the index
+			dependencies: item.dependencies.filter((dep) => dep !== "@lucide/svelte"),
 			// We only want the relative file paths
 			files: item.files.map((file) => ({ path: file.path, type: "registry:ui" })),
 		}));

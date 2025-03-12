@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Icon } from "lucide-svelte";
+	import type { Icon } from "@lucide/svelte";
 
 	let restProps: Icon["$$prop_def"] = $props();
 </script>

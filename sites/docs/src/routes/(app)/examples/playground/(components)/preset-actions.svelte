@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
 	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";

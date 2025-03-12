@@ -1,8 +1,8 @@
 <script lang="ts">
-	import CircleUser from "lucide-svelte/icons/circle-user";
-	import Menu from "lucide-svelte/icons/menu";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import Search from "lucide-svelte/icons/search";
+	import CircleUser from "@lucide/svelte/icons/circle-user";
+	import Menu from "@lucide/svelte/icons/menu";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import Search from "@lucide/svelte/icons/search";
 
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";

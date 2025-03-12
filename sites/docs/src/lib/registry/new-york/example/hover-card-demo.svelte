@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Calendar from "lucide-svelte/icons/calendar";
+	import Calendar from "@lucide/svelte/icons/calendar";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 </script>

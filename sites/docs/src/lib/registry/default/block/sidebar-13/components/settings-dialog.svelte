@@ -3,18 +3,18 @@
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Dialog from "$lib/registry/default/ui/dialog/index.js";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import Bell from "lucide-svelte/icons/bell";
-	import Check from "lucide-svelte/icons/check";
-	import Globe from "lucide-svelte/icons/globe";
-	import House from "lucide-svelte/icons/house";
-	import Keyboard from "lucide-svelte/icons/keyboard";
-	import Link from "lucide-svelte/icons/link";
-	import Lock from "lucide-svelte/icons/lock";
-	import Menu from "lucide-svelte/icons/menu";
-	import MessageCircle from "lucide-svelte/icons/message-circle";
-	import Paintbrush from "lucide-svelte/icons/paintbrush";
-	import Settings from "lucide-svelte/icons/settings";
-	import Video from "lucide-svelte/icons/video";
+	import Bell from "@lucide/svelte/icons/bell";
+	import Check from "@lucide/svelte/icons/check";
+	import Globe from "@lucide/svelte/icons/globe";
+	import House from "@lucide/svelte/icons/house";
+	import Keyboard from "@lucide/svelte/icons/keyboard";
+	import Link from "@lucide/svelte/icons/link";
+	import Lock from "@lucide/svelte/icons/lock";
+	import Menu from "@lucide/svelte/icons/menu";
+	import MessageCircle from "@lucide/svelte/icons/message-circle";
+	import Paintbrush from "@lucide/svelte/icons/paintbrush";
+	import Settings from "@lucide/svelte/icons/settings";
+	import Video from "@lucide/svelte/icons/video";
 
 	const data = {
 		nav: [

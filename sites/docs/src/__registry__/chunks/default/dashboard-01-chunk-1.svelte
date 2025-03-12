@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Users from "lucide-svelte/icons/users";
+	import Users from "@lucide/svelte/icons/users";
 
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>

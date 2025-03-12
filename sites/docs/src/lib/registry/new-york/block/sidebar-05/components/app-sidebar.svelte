@@ -136,9 +136,9 @@
 	import SearchForm from "$lib/registry/new-york/block/sidebar-05/components/search-form.svelte";
 	import * as Collapsible from "$lib/registry/new-york/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import GalleryVerticalEnd from "lucide-svelte/icons/gallery-vertical-end";
-	import Minus from "lucide-svelte/icons/minus";
-	import Plus from "lucide-svelte/icons/plus";
+	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
+	import Minus from "@lucide/svelte/icons/minus";
+	import Plus from "@lucide/svelte/icons/plus";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

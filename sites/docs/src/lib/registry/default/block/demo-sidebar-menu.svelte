@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-	import Send from "lucide-svelte/icons/send";
-	import Frame from "lucide-svelte/icons/frame";
-	import ChartPie from "lucide-svelte/icons/chart-pie";
-	import Map from "lucide-svelte/icons/map";
+	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
+	import Send from "@lucide/svelte/icons/send";
+	import Frame from "@lucide/svelte/icons/frame";
+	import ChartPie from "@lucide/svelte/icons/chart-pie";
+	import Map from "@lucide/svelte/icons/map";
 	const projects = [
 		{
 			name: "Design Engineering",

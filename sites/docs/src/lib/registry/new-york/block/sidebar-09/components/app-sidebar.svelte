@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import ArchiveX from "lucide-svelte/icons/archive-x";
-	import File from "lucide-svelte/icons/file";
-	import Inbox from "lucide-svelte/icons/inbox";
-	import Send from "lucide-svelte/icons/send";
-	import Trash2 from "lucide-svelte/icons/trash-2";
+	import ArchiveX from "@lucide/svelte/icons/archive-x";
+	import File from "@lucide/svelte/icons/file";
+	import Inbox from "@lucide/svelte/icons/inbox";
+	import Send from "@lucide/svelte/icons/send";
+	import Trash2 from "@lucide/svelte/icons/trash-2";
 
 	// This is sample data
 	const data = {
@@ -125,7 +125,7 @@
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
-	import Command from "lucide-svelte/icons/command";
+	import Command from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

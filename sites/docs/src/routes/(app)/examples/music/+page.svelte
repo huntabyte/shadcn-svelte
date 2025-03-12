@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
 	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";

@@ -8,7 +8,7 @@
 		...restProps
 	}: ComponentProps<
 		typeof Sidebar.Group
-		// The `any` should be `Component` after lucide-svelte updates types
+		// The `any` should be `Component` after @lucide/svelte updates types
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	> & { items: { title: string; url: string; icon: any; badge?: string }[] } = $props();
 </script>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Circle from "lucide-svelte/icons/circle";
-	import File from "lucide-svelte/icons/file";
-	import Laptop from "lucide-svelte/icons/laptop";
-	import Moon from "lucide-svelte/icons/moon";
-	import Sun from "lucide-svelte/icons/sun";
+	import Circle from "@lucide/svelte/icons/circle";
+	import File from "@lucide/svelte/icons/file";
+	import Laptop from "@lucide/svelte/icons/laptop";
+	import Moon from "@lucide/svelte/icons/moon";
+	import Sun from "@lucide/svelte/icons/sun";
 	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
 	import * as Command from "$lib/registry/new-york/ui/command/index.js";

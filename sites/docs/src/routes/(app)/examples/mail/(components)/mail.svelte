@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Search from "lucide-svelte/icons/search";
+	import Search from "@lucide/svelte/icons/search";
 	import { primaryRoutes, secondaryRoutes } from "../config.js";
 	import { mailStore } from "../store.js";
 	import type { Account, Mail } from "../data.js";

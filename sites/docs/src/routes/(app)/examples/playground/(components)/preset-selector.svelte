@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Preset } from "../(data)/presets.js";

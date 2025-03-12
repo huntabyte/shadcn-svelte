@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Upload from "lucide-svelte/icons/upload";
+	import Upload from "@lucide/svelte/icons/upload";
 
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 </script>
