@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Announcement from "$lib/components/docs/announcement.svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
 	let { children } = $props();
 </script>
@@ -11,7 +11,7 @@
 		<Announcement />
 		<PageHeader.Heading>Building Blocks for the Web</PageHeader.Heading>
 		<PageHeader.Description>
-			Beautifully designed. Copy and paste into your apps. Open source.
+			Beautifully designed. Copy and paste into your apps. Open Source.
 		</PageHeader.Description>
 		<PageHeader.Actions>
 			<Button href="#blocks" size="sm">Browse</Button>
