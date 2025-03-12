@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Activity from "lucide-svelte/icons/activity";
+	import Activity from "@lucide/svelte/icons/activity";
 
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 </script>

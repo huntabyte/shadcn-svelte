@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
 
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";

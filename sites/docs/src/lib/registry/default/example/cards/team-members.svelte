@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDownIcon from "lucide-svelte/icons/chevron-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import * as Avatar from "$lib/registry/default/ui/avatar/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";

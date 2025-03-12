@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { WithElementRef } from "bits-ui";
-	import Dot from "lucide-svelte/icons/dot";
+	import Dot from "@lucide/svelte/icons/dot";
 
 	let {
 		ref = $bindable(null),

@@ -37,9 +37,9 @@
 </script>
 
 <script lang="ts">
-	import CalendarIcon from "lucide-svelte/icons/calendar";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import Check from "lucide-svelte/icons/check";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import Check from "@lucide/svelte/icons/check";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import {

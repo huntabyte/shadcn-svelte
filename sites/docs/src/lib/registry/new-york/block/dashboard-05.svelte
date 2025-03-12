@@ -1,21 +1,21 @@
 <script lang="ts">
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import Copy from "lucide-svelte/icons/copy";
-	import CreditCard from "lucide-svelte/icons/credit-card";
-	import File from "lucide-svelte/icons/file";
-	import House from "lucide-svelte/icons/house";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import ListFilter from "lucide-svelte/icons/list-filter";
-	import EllipsisVertical from "lucide-svelte/icons/ellipsis-vertical";
-	import Package from "lucide-svelte/icons/package";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import PanelLeft from "lucide-svelte/icons/panel-left";
-	import Search from "lucide-svelte/icons/search";
-	import Settings from "lucide-svelte/icons/settings";
-	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
-	import Truck from "lucide-svelte/icons/truck";
-	import UsersRound from "lucide-svelte/icons/users-round";
+	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import Copy from "@lucide/svelte/icons/copy";
+	import CreditCard from "@lucide/svelte/icons/credit-card";
+	import File from "@lucide/svelte/icons/file";
+	import House from "@lucide/svelte/icons/house";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import ListFilter from "@lucide/svelte/icons/list-filter";
+	import EllipsisVertical from "@lucide/svelte/icons/ellipsis-vertical";
+	import Package from "@lucide/svelte/icons/package";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import PanelLeft from "@lucide/svelte/icons/panel-left";
+	import Search from "@lucide/svelte/icons/search";
+	import Settings from "@lucide/svelte/icons/settings";
+	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
+	import Truck from "@lucide/svelte/icons/truck";
+	import UsersRound from "@lucide/svelte/icons/users-round";
 
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/new-york/ui/breadcrumb/index.js";

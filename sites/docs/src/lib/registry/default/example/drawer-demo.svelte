@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Minus from "lucide-svelte/icons/minus";
-	import Plus from "lucide-svelte/icons/plus";
+	import Minus from "@lucide/svelte/icons/minus";
+	import Plus from "@lucide/svelte/icons/plus";
 	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
 	import * as Drawer from "$lib/registry/default/ui/drawer/index.js";
 	import { Button, buttonVariants } from "$lib/registry/default/ui/button/index.js";

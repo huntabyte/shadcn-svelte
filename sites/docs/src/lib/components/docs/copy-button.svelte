@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import Copy from "lucide-svelte/icons/copy";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "@lucide/svelte/icons/check";
+	import Copy from "@lucide/svelte/icons/copy";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { cn } from "$lib/utils.js";
 	import { getPackageManager } from "$lib/stores/package-manager.js";

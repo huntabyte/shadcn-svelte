@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "lucide-svelte/icons/check";
-	import Copy from "lucide-svelte/icons/copy";
+	import Check from "@lucide/svelte/icons/check";
+	import Copy from "@lucide/svelte/icons/copy";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";

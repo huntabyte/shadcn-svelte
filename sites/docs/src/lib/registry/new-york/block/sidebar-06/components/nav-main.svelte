@@ -2,7 +2,7 @@
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/new-york/ui/sidebar/index.js";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 
 	let {
 		items,

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import Copy from "lucide-svelte/icons/copy";
-	import CreditCard from "lucide-svelte/icons/credit-card";
+	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import Copy from "@lucide/svelte/icons/copy";
+	import CreditCard from "@lucide/svelte/icons/credit-card";
 
-	import EllipsisVertical from "lucide-svelte/icons/ellipsis-vertical";
+	import EllipsisVertical from "@lucide/svelte/icons/ellipsis-vertical";
 
-	import Truck from "lucide-svelte/icons/truck";
+	import Truck from "@lucide/svelte/icons/truck";
 
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";

@@ -1,14 +1,14 @@
 <script lang="ts">
-	import CircleUser from "lucide-svelte/icons/circle-user";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import Package from "lucide-svelte/icons/package";
-	import House from "lucide-svelte/icons/house";
-	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
-	import Bell from "lucide-svelte/icons/bell";
-	import Menu from "lucide-svelte/icons/menu";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import Search from "lucide-svelte/icons/search";
-	import Users from "lucide-svelte/icons/users";
+	import CircleUser from "@lucide/svelte/icons/circle-user";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import Package from "@lucide/svelte/icons/package";
+	import House from "@lucide/svelte/icons/house";
+	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
+	import Bell from "@lucide/svelte/icons/bell";
+	import Menu from "@lucide/svelte/icons/menu";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import Search from "@lucide/svelte/icons/search";
+	import Users from "@lucide/svelte/icons/users";
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
 	import { Button } from "$lib/registry/default/ui/button/index.js";

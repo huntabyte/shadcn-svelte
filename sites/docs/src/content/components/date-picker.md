@@ -26,7 +26,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ```svelte
 <script lang="ts">
-  import CalendarIcon from "lucide-svelte/icons/calendar";
+  import CalendarIcon from "@lucide/svelte/icons/calendar";
   import {
     type DateValue,
     DateFormatter,

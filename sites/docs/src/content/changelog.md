@@ -64,7 +64,7 @@ After some feedback about dev server performance, we've updated the way we impor
 Instead of importing icons like so:
 
 ```ts
-import { Check } from "lucide-svelte";
+import { Check } from "@lucide/svelte";
 // or
 import { Check } from "radix-icons-svelte";
 ```
@@ -72,7 +72,7 @@ import { Check } from "radix-icons-svelte";
 We now import them directly:
 
 ```ts
-import Check from "lucide-svelte/icons/check";
+import Check from "@lucide/svelte/icons/check";
 // or
 import Check from "svelte-radix/Check.svelte";
 ```

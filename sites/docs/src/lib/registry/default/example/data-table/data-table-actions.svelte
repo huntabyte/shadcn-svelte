@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 

@@ -3,10 +3,10 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import ChevronsRight from "lucide-svelte/icons/chevrons-right";
-	import ChevronsLeft from "lucide-svelte/icons/chevrons-left";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+	import ChevronsRight from "@lucide/svelte/icons/chevrons-right";
+	import ChevronsLeft from "@lucide/svelte/icons/chevrons-left";
 	import type { Table } from "@tanstack/table-core";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";

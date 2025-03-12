@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
-	import ChevronUp from "lucide-svelte/icons/chevron-up";
+	import ChevronUp from "@lucide/svelte/icons/chevron-up";
 </script>
 
 <Sidebar.Provider>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CircleAlert from "lucide-svelte/icons/circle-alert";
+	import CircleAlert from "@lucide/svelte/icons/circle-alert";
 	import * as Alert from "$lib/registry/new-york/ui/alert/index.js";
 </script>
 

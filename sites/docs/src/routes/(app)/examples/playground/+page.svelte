@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RotateCCW from "lucide-svelte/icons/rotate-ccw";
+	import RotateCCW from "@lucide/svelte/icons/rotate-ccw";
 	import {
 		CodeViewer,
 		MaxLengthSelector,

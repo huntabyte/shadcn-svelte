@@ -2,7 +2,7 @@
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/default/ui/sidebar/index.js";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 
 	let {
 		items,

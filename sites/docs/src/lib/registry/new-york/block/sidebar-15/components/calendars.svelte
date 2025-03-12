@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/new-york/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import Check from "lucide-svelte/icons/check";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import Check from "@lucide/svelte/icons/check";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
 
 	let { calendars }: { calendars: { name: string; items: string[] }[] } = $props();
 </script>

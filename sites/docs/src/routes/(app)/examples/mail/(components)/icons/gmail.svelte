@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Icon } from "lucide-svelte";
+	import type { Icon } from "@lucide/svelte";
 
-	let restProps: Icon["$$prop_def"] = $props();
+	let restProps: Icon = $props();
 </script>
 
 <svg role="img" viewBox="0 0 24 24" {...restProps} xmlns="http://www.w3.org/2000/svg">

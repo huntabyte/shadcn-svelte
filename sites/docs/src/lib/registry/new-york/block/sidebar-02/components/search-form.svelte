@@ -2,7 +2,7 @@
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import type { WithElementRef } from "bits-ui";
-	import Search from "lucide-svelte/icons/search";
+	import Search from "@lucide/svelte/icons/search";
 	import type { HTMLFormAttributes } from "svelte/elements";
 
 	let { ref = $bindable(null), ...restProps }: WithElementRef<HTMLFormAttributes> = $props();

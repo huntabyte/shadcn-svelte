@@ -1,15 +1,15 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import ChevronDown from "lucide-svelte/icons/chevron-down";
-	import Plus from "lucide-svelte/icons/plus";
+	import ChevronDown from "@lucide/svelte/icons/chevron-down";
+	import Plus from "@lucide/svelte/icons/plus";
 
 	let {
 		teams,
 	}: {
 		teams: {
 			name: string;
-			// The `any` should be `Component` after lucide-svelte updates types
+			// The `any` should be `Component` after @lucide/svelte updates types
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			logo: any;
 			plan: string;

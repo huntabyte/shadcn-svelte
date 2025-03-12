@@ -27,8 +27,8 @@
 <script lang="ts">
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
-	import Check from "lucide-svelte/icons/check";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";

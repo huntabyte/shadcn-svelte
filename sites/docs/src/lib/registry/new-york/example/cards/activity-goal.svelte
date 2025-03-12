@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Minus from "lucide-svelte/icons/minus";
-	import Plus from "lucide-svelte/icons/plus";
+	import Minus from "@lucide/svelte/icons/minus";
+	import Plus from "@lucide/svelte/icons/plus";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";

@@ -126,6 +126,9 @@ importers:
       '@internationalized/date':
         specifier: ^3.5.6
         version: 3.5.6
+      '@lucide/svelte':
+        specifier: ^0.479.0
+        version: 0.479.0(svelte@5.16.1)
       '@prettier/sync':
         specifier: 0.3.0
         version: 0.3.0(prettier@3.3.3)
@@ -204,9 +207,6 @@ importers:
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
-      lucide-svelte:
-        specifier: ^0.447.0
-        version: 0.447.0(svelte@5.16.1)
       magic-string:
         specifier: ^0.30.12
         version: 0.30.12
@@ -1265,6 +1265,11 @@ packages:
 
   '@juggle/resize-observer@3.4.0':
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+
+  '@lucide/svelte@0.479.0':
+    resolution: {integrity: sha512-k/JaO8FHvmK7GLCy9vibA7O1a9nCtlfIs0tU/yYlmkqykVEvz9NRFkpR8g2kbsc79uFVz0Q2tjnRC09vd9AxmA==}
+    peerDependencies:
+      svelte: ^5
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -3453,11 +3458,6 @@ packages:
   lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
-
-  lucide-svelte@0.447.0:
-    resolution: {integrity: sha512-DDCVy79q9H1IAGmrbGDG4GZmCZK+5elK3Fxzu0RzbHKr2Khg7EMc8S6C12bzWcnfW263raqo3grthEjB5gxAjw==}
-    peerDependencies:
-      svelte: ^3 || ^4 || ^5.0.0-next.42
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -6139,6 +6139,10 @@ snapshots:
 
   '@juggle/resize-observer@3.4.0': {}
 
+  '@lucide/svelte@0.479.0(svelte@5.16.1)':
+    dependencies:
+      svelte: 5.16.1
+
   '@manypkg/find-root@1.1.0':
     dependencies:
       '@babel/runtime': 7.24.0
@@ -8709,10 +8713,6 @@ snapshots:
       yallist: 2.1.2
 
   lru-cache@7.18.3: {}
-
-  lucide-svelte@0.447.0(svelte@5.16.1):
-    dependencies:
-      svelte: 5.16.1
 
   magic-string@0.25.9:
     dependencies:

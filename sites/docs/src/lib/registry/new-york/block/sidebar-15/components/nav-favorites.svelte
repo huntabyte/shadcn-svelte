@@ -2,11 +2,11 @@
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/new-york/ui/sidebar/index.js";
-	import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Link from "lucide-svelte/icons/link";
-	import StarOff from "lucide-svelte/icons/star-off";
-	import Trash2 from "lucide-svelte/icons/trash-2";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Link from "@lucide/svelte/icons/link";
+	import StarOff from "@lucide/svelte/icons/star-off";
+	import Trash2 from "@lucide/svelte/icons/trash-2";
 
 	let { favorites }: { favorites: { name: string; url: string; emoji: string }[] } = $props();
 

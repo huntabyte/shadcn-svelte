@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Blocks from "lucide-svelte/icons/blocks";
+	import Blocks from "@lucide/svelte/icons/blocks";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import ArrowRight from "lucide-svelte/icons/arrow-right";
+	import ArrowRight from "@lucide/svelte/icons/arrow-right";
 	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 

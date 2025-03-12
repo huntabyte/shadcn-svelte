@@ -1,17 +1,17 @@
 <script lang="ts" module>
-	import ArrowDown from "lucide-svelte/icons/arrow-down";
-	import ArrowUp from "lucide-svelte/icons/arrow-up";
-	import Bell from "lucide-svelte/icons/bell";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import Copy from "lucide-svelte/icons/copy";
-	import CornerUpLeft from "lucide-svelte/icons/corner-up-left";
-	import CornerUpRight from "lucide-svelte/icons/corner-up-right";
-	import FileText from "lucide-svelte/icons/file-text";
-	import GalleryVerticalEnd from "lucide-svelte/icons/gallery-vertical-end";
-	import Link from "lucide-svelte/icons/link";
-	import Settings2 from "lucide-svelte/icons/settings-2";
-	import Trash from "lucide-svelte/icons/trash";
-	import Trash2 from "lucide-svelte/icons/trash-2";
+	import ArrowDown from "@lucide/svelte/icons/arrow-down";
+	import ArrowUp from "@lucide/svelte/icons/arrow-up";
+	import Bell from "@lucide/svelte/icons/bell";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import Copy from "@lucide/svelte/icons/copy";
+	import CornerUpLeft from "@lucide/svelte/icons/corner-up-left";
+	import CornerUpRight from "@lucide/svelte/icons/corner-up-right";
+	import FileText from "@lucide/svelte/icons/file-text";
+	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
+	import Link from "@lucide/svelte/icons/link";
+	import Settings2 from "@lucide/svelte/icons/settings-2";
+	import Trash from "@lucide/svelte/icons/trash";
+	import Trash2 from "@lucide/svelte/icons/trash-2";
 
 	const data = [
 		[
@@ -81,8 +81,8 @@
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Sidebar from "$lib/registry/new-york/ui/sidebar/index.js";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Star from "lucide-svelte/icons/star";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Star from "@lucide/svelte/icons/star";
 	import { untrack } from "svelte";
 
 	let open = $state(false);

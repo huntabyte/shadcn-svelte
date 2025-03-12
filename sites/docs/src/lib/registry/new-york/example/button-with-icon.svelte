@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MailOpen from "lucide-svelte/icons/mail-open";
+	import MailOpen from "@lucide/svelte/icons/mail-open";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 </script>
 

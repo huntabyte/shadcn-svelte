@@ -1,12 +1,12 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/default/ui/dropdown-menu/index.js";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-	import Send from "lucide-svelte/icons/send";
-	import Frame from "lucide-svelte/icons/frame";
-	import ChartPie from "lucide-svelte/icons/chart-pie";
-	import Map from "lucide-svelte/icons/map";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
+	import Send from "@lucide/svelte/icons/send";
+	import Frame from "@lucide/svelte/icons/frame";
+	import ChartPie from "@lucide/svelte/icons/chart-pie";
+	import Map from "@lucide/svelte/icons/map";
 
 	const projects = [
 		{

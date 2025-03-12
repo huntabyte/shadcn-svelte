@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Activity from "lucide-svelte/icons/activity";
-	import CreditCard from "lucide-svelte/icons/credit-card";
-	import DollarSign from "lucide-svelte/icons/dollar-sign";
-	import Download from "lucide-svelte/icons/download";
-	import Users from "lucide-svelte/icons/users";
+	import Activity from "@lucide/svelte/icons/activity";
+	import CreditCard from "@lucide/svelte/icons/credit-card";
+	import DollarSign from "@lucide/svelte/icons/dollar-sign";
+	import Download from "@lucide/svelte/icons/download";
+	import Users from "@lucide/svelte/icons/users";
 	import DashboardMainNav from "./main-nav.svelte";
 	import Overview from "./overview.svelte";
 	import RecentSales from "./recent-sales.svelte";

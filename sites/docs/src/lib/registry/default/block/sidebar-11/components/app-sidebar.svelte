@@ -38,9 +38,9 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/default/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/default/ui/sidebar/index.js";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import File from "lucide-svelte/icons/file";
-	import Folder from "lucide-svelte/icons/folder";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import File from "@lucide/svelte/icons/file";
+	import Folder from "@lucide/svelte/icons/folder";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
