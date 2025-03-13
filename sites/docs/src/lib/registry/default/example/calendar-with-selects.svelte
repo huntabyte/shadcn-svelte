@@ -1,56 +1,45 @@
 <script lang="ts">
+	import { Calendar as CalendarPrimitive } from "bits-ui";
 	import {
-		Calendar as CalendarPrimitive,
-		type CalendarRootProps,
-		type WithoutChildrenOrChild,
-	} from "bits-ui";
-	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
+		DateFormatter,
+		getLocalTimeZone,
+		today,
+		type DateValue,
+	} from "@internationalized/date";
 	import * as Calendar from "$lib/registry/default/ui/calendar/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 
-	let {
-		value = $bindable(),
-		placeholder = $bindable(),
-		weekdayFormat,
-		class: className,
-		...restProps
-	}: WithoutChildrenOrChild<CalendarRootProps> = $props();
+	let value = $state<DateValue>();
+	let placeholder = $state<DateValue>();
 
-	const monthOptions = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	].map((month, i) => ({ value: String(i + 1), label: month }));
+	const currentDate = today(getLocalTimeZone());
 
 	const monthFmt = new DateFormatter("en-US", {
 		month: "long",
 	});
 
+	const monthOptions = Array.from({ length: 12 }, (_, i) => {
+		const month = currentDate.set({ month: i + 1 });
+		return {
+			value: month.month,
+			label: monthFmt.format(month.toDate(getLocalTimeZone())),
+		};
+	});
+
 	const yearOptions = Array.from({ length: 100 }, (_, i) => ({
 		label: String(new Date().getFullYear() - i),
-		value: String(new Date().getFullYear() - i),
+		value: new Date().getFullYear() - i,
 	}));
 
 	const defaultYear = $derived(
-		placeholder
-			? { value: String(placeholder.year), label: String(placeholder.year) }
-			: undefined
+		placeholder ? { value: placeholder.year, label: String(placeholder.year) } : undefined
 	);
 
 	const defaultMonth = $derived(
 		placeholder
 			? {
-					value: String(placeholder.month),
+					value: placeholder.month,
 					label: monthFmt.format(placeholder.toDate(getLocalTimeZone())),
 				}
 			: undefined
@@ -62,52 +51,50 @@
 </script>
 
 <CalendarPrimitive.Root
-	{weekdayFormat}
-	class={cn("rounded-md border p-3", className)}
-	bind:value={value as never}
+	type="single"
+	weekdayFormat="short"
+	class={cn("rounded-md border p-3")}
+	bind:value
 	bind:placeholder
-	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
-		<Calendar.Header>
-			<Calendar.Heading class="flex w-full items-center justify-between gap-2">
-				<Select.Root
-					type="single"
-					value={defaultMonth?.value}
-					onValueChange={(v) => {
-						if (!placeholder) return;
-						if (v === `${placeholder.month}`) return;
-						placeholder = placeholder.set({ month: Number.parseInt(v) });
-					}}
-				>
-					<Select.Trigger aria-label="Select month" class="w-[60%]">
-						{monthLabel}
-					</Select.Trigger>
-					<Select.Content class="max-h-[200px] overflow-y-auto">
-						{#each monthOptions as { value, label }}
-							<Select.Item {value} {label} />
-						{/each}
-					</Select.Content>
-				</Select.Root>
-				<Select.Root
-					type="single"
-					value={defaultYear?.value}
-					onValueChange={(v) => {
-						if (!v || !placeholder) return;
-						if (v === `${placeholder?.year}`) return;
-						placeholder = placeholder.set({ year: Number.parseInt(v) });
-					}}
-				>
-					<Select.Trigger aria-label="Select year" class="w-[40%]">
-						{defaultYear?.label ?? "Select year"}
-					</Select.Trigger>
-					<Select.Content class="max-h-[200px] overflow-y-auto">
-						{#each yearOptions as { value, label }}
-							<Select.Item {value} {label} />
-						{/each}
-					</Select.Content>
-				</Select.Root>
-			</Calendar.Heading>
+		<Calendar.Header class="flex w-full items-center justify-between gap-2">
+			<Select.Root
+				type="single"
+				value={`${defaultMonth?.value}`}
+				onValueChange={(v) => {
+					if (!placeholder) return;
+					if (v === `${placeholder.month}`) return;
+					placeholder = placeholder.set({ month: Number.parseInt(v) });
+				}}
+			>
+				<Select.Trigger aria-label="Select month" class="w-[60%]">
+					{monthLabel}
+				</Select.Trigger>
+				<Select.Content class="max-h-[200px] overflow-y-auto">
+					{#each monthOptions as { value, label }}
+						<Select.Item value={`${value}`} {label} />
+					{/each}
+				</Select.Content>
+			</Select.Root>
+			<Select.Root
+				type="single"
+				value={`${defaultYear?.value}`}
+				onValueChange={(v) => {
+					if (!v || !placeholder) return;
+					if (v === `${placeholder?.year}`) return;
+					placeholder = placeholder.set({ year: Number.parseInt(v) });
+				}}
+			>
+				<Select.Trigger aria-label="Select year" class="w-[40%]">
+					{defaultYear?.label ?? "Select year"}
+				</Select.Trigger>
+				<Select.Content class="max-h-[200px] overflow-y-auto">
+					{#each yearOptions as { value, label }}
+						<Select.Item value={`${value}`} {label} />
+					{/each}
+				</Select.Content>
+			</Select.Root>
 		</Calendar.Header>
 		<Calendar.Months>
 			{#each months as month}
@@ -125,7 +112,7 @@
 						{#each month.weeks as weekDates}
 							<Calendar.GridRow class="mt-2 w-full">
 								{#each weekDates as date}
-									<Calendar.Cell {date} month={month.value}>
+									<Calendar.Cell class="select-none" {date} month={month.value}>
 										<Calendar.Day />
 									</Calendar.Cell>
 								{/each}
