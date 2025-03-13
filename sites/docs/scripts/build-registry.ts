@@ -146,7 +146,7 @@ export const Index = {
 			type: "${item.type}",
 			registryDependencies: ${JSON.stringify(item.registryDependencies)},
 			${componentLine},
-			files: [${resolveFiles.map((file) => `"${file}"`)}],
+			files: [${resolveFiles.map((file) => `"${file.replaceAll("\\", "/")}"`)}],
 			raw: () => import("../lib/registry/${style.name}/${type}/${
 				item.name
 			}.svelte?raw").then((m) => m.default),
