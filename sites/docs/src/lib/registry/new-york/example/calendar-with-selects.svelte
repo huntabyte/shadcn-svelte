@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Calendar as CalendarPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Calendar from "$lib/registry/new-york/ui/calendar/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 
 	let {
-		value = $bindable(),
+		value = $bindable(today(getLocalTimeZone())),
 		placeholder = $bindable(),
 		weekdayFormat = "short",
 		class: className,

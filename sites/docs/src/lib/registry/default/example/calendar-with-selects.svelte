@@ -4,13 +4,13 @@
 		type CalendarRootProps,
 		type WithoutChildrenOrChild,
 	} from "bits-ui";
-	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
 	import * as Calendar from "$lib/registry/default/ui/calendar/index.js";
 	import * as Select from "$lib/registry/default/ui/select/index.js";
 	import { cn } from "$lib/utils.js";
 
 	let {
-		value = $bindable(),
+		value = $bindable(today(getLocalTimeZone())),
 		placeholder = $bindable(),
 		weekdayFormat,
 		class: className,
@@ -126,7 +126,7 @@
 							<Calendar.GridRow class="mt-2 w-full">
 								{#each weekDates as date}
 									<Calendar.Cell {date} month={month.value}>
-										<Calendar.Day />
+										<Calendar.Day/>
 									</Calendar.Cell>
 								{/each}
 							</Calendar.GridRow>
