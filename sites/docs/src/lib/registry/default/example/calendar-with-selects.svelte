@@ -58,45 +58,43 @@
 	bind:placeholder
 >
 	{#snippet children({ months, weekdays })}
-		<Calendar.Header>
-			<Calendar.Heading class="flex w-full items-center justify-between gap-2">
-				<Select.Root
-					type="single"
-					value={`${defaultMonth?.value}`}
-					onValueChange={(v) => {
-						if (!placeholder) return;
-						if (v === `${placeholder.month}`) return;
-						placeholder = placeholder.set({ month: Number.parseInt(v) });
-					}}
-				>
-					<Select.Trigger aria-label="Select month" class="w-[60%]">
-						{monthLabel}
-					</Select.Trigger>
-					<Select.Content class="max-h-[200px] overflow-y-auto">
-						{#each monthOptions as { value, label }}
-							<Select.Item value={`${value}`} {label} />
-						{/each}
-					</Select.Content>
-				</Select.Root>
-				<Select.Root
-					type="single"
-					value={`${defaultYear?.value}`}
-					onValueChange={(v) => {
-						if (!v || !placeholder) return;
-						if (v === `${placeholder?.year}`) return;
-						placeholder = placeholder.set({ year: Number.parseInt(v) });
-					}}
-				>
-					<Select.Trigger aria-label="Select year" class="w-[40%]">
-						{defaultYear?.label ?? "Select year"}
-					</Select.Trigger>
-					<Select.Content class="max-h-[200px] overflow-y-auto">
-						{#each yearOptions as { value, label }}
-							<Select.Item value={`${value}`} {label} />
-						{/each}
-					</Select.Content>
-				</Select.Root>
-			</Calendar.Heading>
+		<Calendar.Header class="flex w-full items-center justify-between gap-2">
+			<Select.Root
+				type="single"
+				value={`${defaultMonth?.value}`}
+				onValueChange={(v) => {
+					if (!placeholder) return;
+					if (v === `${placeholder.month}`) return;
+					placeholder = placeholder.set({ month: Number.parseInt(v) });
+				}}
+			>
+				<Select.Trigger aria-label="Select month" class="w-[60%]">
+					{monthLabel}
+				</Select.Trigger>
+				<Select.Content class="max-h-[200px] overflow-y-auto">
+					{#each monthOptions as { value, label }}
+						<Select.Item value={`${value}`} {label} />
+					{/each}
+				</Select.Content>
+			</Select.Root>
+			<Select.Root
+				type="single"
+				value={`${defaultYear?.value}`}
+				onValueChange={(v) => {
+					if (!v || !placeholder) return;
+					if (v === `${placeholder?.year}`) return;
+					placeholder = placeholder.set({ year: Number.parseInt(v) });
+				}}
+			>
+				<Select.Trigger aria-label="Select year" class="w-[40%]">
+					{defaultYear?.label ?? "Select year"}
+				</Select.Trigger>
+				<Select.Content class="max-h-[200px] overflow-y-auto">
+					{#each yearOptions as { value, label }}
+						<Select.Item value={`${value}`} {label} />
+					{/each}
+				</Select.Content>
+			</Select.Root>
 		</Calendar.Header>
 		<Calendar.Months>
 			{#each months as month}
