@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.8
+
+### Patch Changes
+
+- d764bdf: fix(cli)(next): Add missing ui alias option
+
 ## 1.0.0-next.7
 
 ### Patch Changes
