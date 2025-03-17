@@ -43,17 +43,19 @@
 	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">
 		<Select.Root
 			type="single"
-			bind:value={() => valueString,
-			(v) => {
-				if (!v) return;
-				value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
-			}}
+			bind:value={
+				() => valueString,
+				(v) => {
+					if (!v) return;
+					value = today(getLocalTimeZone()).add({ days: Number.parseInt(v) });
+				}
+			}
 		>
 			<Select.Trigger>
 				{valueString}
 			</Select.Trigger>
 			<Select.Content>
-				{#each items as item}
+				{#each items as item (item.value)}
 					<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
 				{/each}
 			</Select.Content>

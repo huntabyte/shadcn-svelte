@@ -97,7 +97,7 @@
 	</Card.Header>
 	<Card.Content>
 		<div class="space-y-4">
-			{#each messages as message}
+			{#each messages as message (message)}
 				<div
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
@@ -151,7 +151,7 @@
 			<Command.List>
 				<Command.Empty>No users found.</Command.Empty>
 				<Command.Group class="p-2">
-					{#each users as user}
+					{#each users as user (user.email)}
 						<Command.Item
 							class="flex items-center px-2"
 							onSelect={() => {
@@ -189,7 +189,7 @@
 		<Dialog.Footer class="flex items-center border-t p-4 sm:justify-between">
 			{#if selectedUsers.length}
 				<div class="flex -space-x-2 overflow-hidden">
-					{#each selectedUsers as user}
+					{#each selectedUsers as user (user.email)}
 						<Avatar.Root class="border-background inline-block border-2">
 							<Avatar.Image src={user.avatar} />
 							<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>

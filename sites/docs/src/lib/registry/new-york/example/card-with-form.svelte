@@ -49,8 +49,8 @@
 							{frameworkLabel}
 						</Select.Trigger>
 						<Select.Content>
-							{#each frameworks as framework}
-								<Select.Item value={framework.value} label={framework.label} />
+							{#each frameworks as { value, label } (value)}
+								<Select.Item {value} {label} />
 							{/each}
 						</Select.Content>
 					</Select.Root>

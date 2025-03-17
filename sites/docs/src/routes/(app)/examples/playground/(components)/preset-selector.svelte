@@ -51,7 +51,7 @@
 			<Command.List>
 				<Command.Empty>No presets found.</Command.Empty>
 				<Command.Group heading="Examples">
-					{#each presets as preset}
+					{#each presets as preset (preset)}
 						<Command.Item
 							value={preset.name}
 							class="aria-selected:bg-primary aria-selected:text-primary-foreground"

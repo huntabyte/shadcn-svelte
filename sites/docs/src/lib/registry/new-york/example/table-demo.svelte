@@ -58,7 +58,7 @@
 		</Table.Row>
 	</Table.Header>
 	<Table.Body>
-		{#each invoices as invoice, i (i)}
+		{#each invoices as invoice (invoice)}
 			<Table.Row>
 				<Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
 				<Table.Cell>{invoice.paymentStatus}</Table.Cell>

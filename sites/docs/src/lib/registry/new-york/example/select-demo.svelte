@@ -23,7 +23,7 @@
 	<Select.Content>
 		<Select.Group>
 			<Select.GroupHeading>Fruits</Select.GroupHeading>
-			{#each fruits as fruit}
+			{#each fruits as fruit (fruit.value)}
 				<Select.Item value={fruit.value} label={fruit.label} />
 			{/each}
 		</Select.Group>
