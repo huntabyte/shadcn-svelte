@@ -259,7 +259,6 @@ function getComponentSourceFileContent(src = "") {
 
 	const formattedSource = prettier.format(
 		readFileSync(filePath, "utf-8"),
-		// @ts-expect-error - this is fine
 		codeBlockPrettierConfig
 	);
 
