@@ -21,7 +21,6 @@
 		icon,
 		animationDuration = 500,
 		variant = "ghost",
-		size = "icon",
 		onCopy,
 		class: className,
 		...restProps
@@ -33,11 +32,9 @@
 <Button
 	{...restProps}
 	{variant}
-	{size}
+	size="icon"
 	class={cn(className)}
 	type="button"
-	name="copy"
-	tabindex={-1}
 	onclick={async () => {
 		const status = await clipboard.copy(text);
 
@@ -46,12 +43,12 @@
 >
 	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<Check />
+			<Check tabindex={-1}/>
 			<span class="sr-only">Copied</span>
 		</div>
 	{:else if clipboard.status === "failure"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<X />
+			<X tabindex={-1}/>
 			<span class="sr-only">Failed to copy</span>
 		</div>
 	{:else}
@@ -59,7 +56,7 @@
 			{#if icon}
 				{@render icon()}
 			{:else}
-				<Copy />
+				<Copy tabindex={-1}/>
 			{/if}
 			<span class="sr-only">Copy</span>
 		</div>
