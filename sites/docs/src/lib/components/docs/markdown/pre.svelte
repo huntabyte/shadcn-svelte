@@ -6,13 +6,13 @@
 	let { class: className, children, ...restProps }: PrimitiveElementAttributes = $props();
 
 	let preNode = $state<HTMLPreElement>();
-	let code = $state('');
+	let code = $state("");
 
 	onMount(() => {
 		if (preNode) {
-			code = preNode.innerText.trim().replaceAll("  ", " ")
+			code = preNode.innerText.trim().replaceAll("  ", " ");
 		}
-	})
+	});
 </script>
 
 <pre
@@ -24,7 +24,4 @@
 	{...restProps}>
 	{@render children?.()}
 </pre>
-<CopyButton
-	text={code}
-	class={cn("pre-copy-btn absolute right-2 top-2")}
-/>
+<CopyButton text={code} class={cn("pre-copy-btn absolute right-2 top-2")} />

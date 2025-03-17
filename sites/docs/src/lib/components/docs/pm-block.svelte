@@ -5,7 +5,7 @@
 		PACKAGE_MANAGERS,
 	} from "$lib/stores/package-manager.js";
 	import type { Command } from "package-manager-detector";
-	import { Clipboard } from "@lucide/svelte";
+	import Clipboard from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
 
 	type Props = {
@@ -23,7 +23,7 @@
 </script>
 
 <figure data-rehype-pretty-code-figure>
-	<div class="bg-accent/50 border-accent/50 w-full rounded-lg border mt-6">
+	<div class="bg-accent/50 border-accent/50 mt-6 w-full rounded-lg border">
 		<div class="border-border flex place-items-end justify-between border-b p-2 pb-0">
 			<div class="flex place-items-center gap-1">
 				{#each PACKAGE_MANAGERS as pm (pm)}

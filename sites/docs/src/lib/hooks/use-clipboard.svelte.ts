@@ -26,7 +26,7 @@ type Options = {
  *
  */
 export class UseClipboard {
-	#copiedStatus = $state<'success' | 'failure'>();
+	#copiedStatus = $state<"success" | "failure">();
 	private delay: number;
 	private timeout: ReturnType<typeof setTimeout> | undefined = undefined;
 
@@ -53,14 +53,14 @@ export class UseClipboard {
 		try {
 			await navigator.clipboard.writeText(text);
 
-			this.#copiedStatus = 'success';
+			this.#copiedStatus = "success";
 
 			this.timeout = setTimeout(() => {
 				this.#copiedStatus = undefined;
 			}, this.delay);
 		} catch {
 			// an error can occur when not in the browser or if the user hasn't given clipboard access
-			this.#copiedStatus = 'failure';
+			this.#copiedStatus = "failure";
 
 			this.timeout = setTimeout(() => {
 				this.#copiedStatus = undefined;
@@ -72,7 +72,7 @@ export class UseClipboard {
 
 	/** True when the user has just copied to the clipboard. */
 	get copied() {
-		return this.#copiedStatus === 'success';
+		return this.#copiedStatus === "success";
 	}
 
 	/**	Indicates whether a copy has occurred

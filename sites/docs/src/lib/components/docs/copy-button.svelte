@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { Button, type ButtonProps } from '$lib/registry/default/ui/button/index.js';
-	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte.js';
-	import { cn } from '$lib/utils.js';
-	import { Check, Copy, X } from '@lucide/svelte';
-	import type { Snippet } from 'svelte';
-	import { scale } from 'svelte/transition';
+	import { Button, type ButtonProps } from "$lib/registry/default/ui/button/index.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import { cn } from "$lib/utils.js";
+	import Copy from "@lucide/svelte/icons/copy";
+	import Check from "@lucide/svelte/icons/check";
+	import X from "@lucide/svelte/icons/x";
+	import type { Snippet } from "svelte";
+	import { scale } from "svelte/transition";
 
 	// omit href so you can't create a link
-	interface Props extends Omit<ButtonProps, 'href'> {
+	interface Props extends Omit<ButtonProps, "href"> {
 		text: string;
 		icon?: Snippet<[]>;
 		animationDuration?: number;
-		onCopy?: (status: UseClipboard['status']) => void;
+		onCopy?: (status: UseClipboard["status"]) => void;
 	}
 
 	let {
 		text,
 		icon,
 		animationDuration = 500,
-		variant = 'ghost',
-		size = 'icon',
+		variant = "ghost",
+		size = "icon",
 		onCopy,
 		class: className,
 		...restProps
@@ -42,12 +44,12 @@
 		onCopy?.(status);
 	}}
 >
-	{#if clipboard.status === 'success'}
+	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
 			<Check />
 			<span class="sr-only">Copied</span>
 		</div>
-	{:else if clipboard.status === 'failure'}
+	{:else if clipboard.status === "failure"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
 			<X />
 			<span class="sr-only">Failed to copy</span>
