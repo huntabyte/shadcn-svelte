@@ -113,7 +113,7 @@
 						<Command.Empty>No models found.</Command.Empty>
 						{#each types as type (type)}
 							<Command.Group heading={type}>
-								{#each models.filter((model) => model.type === type) as model (type)}
+								{#each models.filter((model) => model.type === type) as model (model.id)}
 									<HoverCard.Trigger>
 										{#snippet child({ props })}
 											<div {...props} role="button" tabindex={0}>
