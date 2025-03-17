@@ -1,84 +1,65 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import Copy from "@lucide/svelte/icons/copy";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import { tick } from "svelte";
-	import { cn } from "$lib/utils.js";
-	import { getPackageManager } from "$lib/stores/package-manager.js";
-	import { Button, type ButtonProps } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import type { Agent } from "package-manager-detector";
+	import { Button, type ButtonProps } from '$lib/registry/default/ui/button/index.js';
+	import { UseClipboard } from '$lib/hooks/use-clipboard.svelte.js';
+	import { cn } from '$lib/utils.js';
+	import { Check, Copy, X } from '@lucide/svelte';
+	import type { Snippet } from 'svelte';
+	import { scale } from 'svelte/transition';
 
-	type Props = Omit<ButtonProps, "children"> & {
-		isPackageManagerBlock?: boolean;
-		copied?: boolean;
-		copyCode?: () => void;
-	};
+	// omit href so you can't create a link
+	interface Props extends Omit<ButtonProps, 'href'> {
+		text: string;
+		icon?: Snippet<[]>;
+		animationDuration?: number;
+		onCopy?: (status: UseClipboard['status']) => void;
+	}
 
 	let {
+		text,
+		icon,
+		animationDuration = 500,
+		variant = 'ghost',
+		size = 'icon',
+		onCopy,
 		class: className,
-		isPackageManagerBlock = false,
-		copied = $bindable(false),
-		copyCode = () => {},
 		...restProps
 	}: Props = $props();
 
-	const selectedPackageManager = getPackageManager();
+	const clipboard = new UseClipboard();
 </script>
 
-{#if isPackageManagerBlock}
-	<DropdownMenu.Root>
-		<DropdownMenu.Trigger>
-			{#snippet child({ props })}
-				<Button
-					{...props}
-					size="icon"
-					variant="ghost"
-					class={cn(
-						"bg-background/10 text-background/70 hover:bg-background/20 hover:text-background/80 dark:bg-foreground/5 dark:text-foreground/70 dark:hover:bg-foreground/10 dark:hover:text-foreground/80 relative !right-12 h-6 w-fit items-center justify-center rounded-md p-1",
-						"hidden sm:inline-flex",
-						className
-					)}
-					{...restProps}
-				>
-					<span class="sr-only">select package manager</span>
-
-					<span class="flex items-center pl-1">
-						{$selectedPackageManager}
-						<ChevronsUpDown class="size-5" />
-					</span>
-				</Button>
-			{/snippet}
-		</DropdownMenu.Trigger>
-
-		<DropdownMenu.Content align="end" preventScroll={false}>
-			{#each ["pnpm", "bun", "yarn", "npm"] satisfies Agent[] as pm (pm)}
-				<DropdownMenu.Item
-					onclick={() => {
-						selectedPackageManager.set(pm);
-						tick().then(() => {
-							copyCode();
-						});
-					}}
-				>
-					{pm}
-				</DropdownMenu.Item>
-			{/each}
-		</DropdownMenu.Content>
-	</DropdownMenu.Root>
-{/if}
-<button
-	class={cn(
-		"focus-visible:ring-ring absolute right-4 top-4 z-10 inline-flex h-6 w-6 items-center justify-center rounded-md text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 hover:text-zinc-50 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
-		className
-	)}
-	onclick={copyCode}
+<Button
 	{...restProps}
+	{variant}
+	{size}
+	class={cn(className)}
+	type="button"
+	name="copy"
+	tabindex={-1}
+	onclick={async () => {
+		const status = await clipboard.copy(text);
+
+		onCopy?.(status);
+	}}
 >
-	<span class="sr-only">Copy</span>
-	{#if copied}
-		<Check class="h-3 w-3" tabindex={-1} />
+	{#if clipboard.status === 'success'}
+		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
+			<Check />
+			<span class="sr-only">Copied</span>
+		</div>
+	{:else if clipboard.status === 'failure'}
+		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
+			<X />
+			<span class="sr-only">Failed to copy</span>
+		</div>
 	{:else}
-		<Copy class="h-3 w-3" tabindex={-1} />
+		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
+			{#if icon}
+				{@render icon()}
+			{:else}
+				<Copy />
+			{/if}
+			<span class="sr-only">Copy</span>
+		</div>
 	{/if}
-</button>
+</Button>
