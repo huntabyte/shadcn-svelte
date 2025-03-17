@@ -127,8 +127,8 @@ importers:
         specifier: ^3.5.6
         version: 3.5.6
       '@lucide/svelte':
-        specifier: ^0.479.0
-        version: 0.479.0(svelte@5.16.1)
+        specifier: ^0.482.0
+        version: 0.482.0(svelte@5.16.1)
       '@prettier/sync':
         specifier: 0.3.0
         version: 0.3.0(prettier@3.3.3)
@@ -1266,8 +1266,8 @@ packages:
   '@juggle/resize-observer@3.4.0':
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
 
-  '@lucide/svelte@0.479.0':
-    resolution: {integrity: sha512-k/JaO8FHvmK7GLCy9vibA7O1a9nCtlfIs0tU/yYlmkqykVEvz9NRFkpR8g2kbsc79uFVz0Q2tjnRC09vd9AxmA==}
+  '@lucide/svelte@0.482.0':
+    resolution: {integrity: sha512-n2ycHU9cNcleRDwwpEHBJ6pYzVhHIaL3a+9dQa8kns9hB2g05bY+v2p2KP8v0pZwtNhYTHk/F2o2uZ1bVtQGhw==}
     peerDependencies:
       svelte: ^5
 
@@ -6139,7 +6139,7 @@ snapshots:
 
   '@juggle/resize-observer@3.4.0': {}
 
-  '@lucide/svelte@0.479.0(svelte@5.16.1)':
+  '@lucide/svelte@0.482.0(svelte@5.16.1)':
     dependencies:
       svelte: 5.16.1
 

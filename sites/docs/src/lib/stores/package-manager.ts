@@ -3,6 +3,8 @@ import { persisted } from "svelte-persisted-store";
 import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
 import { resolveCommand } from "package-manager-detector/commands";
 
+export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
+
 const PACKAGE_MANAGER = Symbol("packageManager");
 
 export function setPackageManager(initialValue: Agent = "npm") {
