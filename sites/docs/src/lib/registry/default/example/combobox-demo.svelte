@@ -68,7 +68,7 @@
 			<Command.List>
 				<Command.Empty>No framework found.</Command.Empty>
 				<Command.Group>
-					{#each frameworks as framework}
+					{#each frameworks as framework, i (i)}
 						<Command.Item
 							value={framework.value}
 							onSelect={() => {

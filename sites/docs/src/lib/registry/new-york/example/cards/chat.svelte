@@ -98,7 +98,7 @@
 	</Card.Header>
 	<Card.Content>
 		<div class="space-y-4">
-			{#each messages as message}
+			{#each messages as message, i (i)}
 				<div
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
@@ -152,7 +152,7 @@
 			<Command.List>
 				<Command.Empty>No users found.</Command.Empty>
 				<Command.Group class="p-2">
-					{#each users as user}
+					{#each users as user, i (i)}
 						<Command.Item
 							class="flex items-center px-2"
 							onSelect={() => {

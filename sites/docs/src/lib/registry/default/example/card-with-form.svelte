@@ -50,7 +50,7 @@
 							{selectedFramework}
 						</Select.Trigger>
 						<Select.Content>
-							{#each frameworks as { value, label }}
+							{#each frameworks as { value, label }, i (i)}
 								<Select.Item {value} {label} />
 							{/each}
 						</Select.Content>

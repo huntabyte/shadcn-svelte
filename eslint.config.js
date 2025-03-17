@@ -28,6 +28,9 @@ export default ts.config(
 				parser: ts.parser,
 			},
 		},
+		rules: {
+			"svelte/no-useless-mustaches": "warn",
+		},
 	},
 	{
 		rules: {

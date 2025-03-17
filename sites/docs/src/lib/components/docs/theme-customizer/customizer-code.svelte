@@ -32,7 +32,7 @@
             <span class="line text-white">    --foreground: {activeTheme?.cssVars.light
 						.foreground};</span
 				>
-            {#each prefixes as prefix}
+            {#each prefixes as prefix, i (i)}
 					<span class="line text-white">    --{prefix}: {activeTheme?.cssVars.light[
 							prefix
 						]};</span
@@ -60,7 +60,7 @@
                   <span class="line text-white">    --foreground: {activeTheme?.cssVars.dark
 						.foreground};</span
 				>
-                  {#each prefixes as prefix}
+                  {#each prefixes as prefix, i (i)}
 					<span class="line text-white">    --{prefix}: {activeTheme?.cssVars.dark[
 							prefix
 						]};</span

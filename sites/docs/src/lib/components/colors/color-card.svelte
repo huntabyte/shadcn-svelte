@@ -43,12 +43,12 @@
 
 <Card.Root>
 	<div class="flex flex-col px-2 pt-5 md:px-5">
-		{#each Object.entries(colorData) as [colorName, shades]}
+		{#each Object.entries(colorData) as [colorName, shades], i (i)}
 			<div class="">
 				<h2 class="my-2 capitalize md:text-xl">{colorName}</h2>
 
 				<div class="overflox-x-auto mb-5 flex gap-1 md:gap-2">
-					{#each Object.entries(shades) as [shade, colorEntry]}
+					{#each Object.entries(shades) as [shade, colorEntry], i (i)}
 						<button
 							on:click={() => handleColorClick(colorName, shade, colorEntry)}
 							class="group h-12 w-12 rounded-lg border transition-transform duration-200 sm:h-14 sm:w-14 md:h-20 md:w-20 md:hover:scale-[1.02] lg:h-32 lg:w-32"

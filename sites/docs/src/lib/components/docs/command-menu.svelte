@@ -54,7 +54,7 @@
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Links">
-			{#each mainNav as navItem}
+			{#each mainNav as navItem, i (i)}
 				<Command.LinkItem
 					value={navItem.title}
 					href={navItem.href}
@@ -65,9 +65,9 @@
 				</Command.LinkItem>
 			{/each}
 		</Command.Group>
-		{#each sidebarNav as group}
+		{#each sidebarNav as group, i (i)}
 			<Command.Group heading={group.title}>
-				{#each group.items as navItem}
+				{#each group.items as navItem, i (i)}
 					<Command.LinkItem
 						value={navItem.title}
 						href={navItem.href}

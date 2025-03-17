@@ -41,7 +41,7 @@
 				<Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					<Sidebar.Menu>
-						{#each projects as project}
+						{#each projects as project, i (i)}
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton>
 									{#snippet child({ props })}

@@ -74,7 +74,7 @@
 							<Command.List>
 								<Command.Empty>No label found.</Command.Empty>
 								<Command.Group>
-									{#each labels as label}
+									{#each labels as label, i (i)}
 										<Command.Item
 											value={label}
 											onSelect={() => {

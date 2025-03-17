@@ -8,7 +8,7 @@
 <ScrollArea class="h-72 w-48 rounded-md border">
 	<div class="p-4">
 		<h4 class="mb-4 text-sm font-medium leading-none">Tags</h4>
-		{#each tags as tag}
+		{#each tags as tag, i (i)}
 			<div class="text-sm">
 				{tag}
 			</div>

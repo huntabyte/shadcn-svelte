@@ -79,7 +79,7 @@
 			</Form.Description>
 		</div>
 		<div class="space-y-2">
-			{#each items as item}
+			{#each items as item, i (i)}
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-start space-x-3">
 					<Form.Control>

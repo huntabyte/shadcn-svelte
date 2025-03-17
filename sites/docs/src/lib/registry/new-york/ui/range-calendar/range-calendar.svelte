@@ -28,11 +28,11 @@
 			<RangeCalendar.NextButton />
 		</RangeCalendar.Header>
 		<RangeCalendar.Months>
-			{#each months as month}
+			{#each months as month, i (i)}
 				<RangeCalendar.Grid>
 					<RangeCalendar.GridHead>
 						<RangeCalendar.GridRow class="flex">
-							{#each weekdays as weekday}
+							{#each weekdays as weekday, i (i)}
 								<RangeCalendar.HeadCell>
 									{weekday.slice(0, 2)}
 								</RangeCalendar.HeadCell>
