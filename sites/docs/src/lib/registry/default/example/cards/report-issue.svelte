@@ -72,8 +72,8 @@
 						{areaLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each areas as area, i (i)}
-							<Select.Item value={area.value} label={area.label} />
+						{#each areas as { value, label } (value)}
+							<Select.Item {value} {label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
@@ -85,8 +85,8 @@
 						{securityLevelLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each securityLevels as level, i (i)}
-							<Select.Item value={level.value} label={level.label} />
+						{#each securityLevels as { value, label } (value)}
+							<Select.Item {value} {label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>

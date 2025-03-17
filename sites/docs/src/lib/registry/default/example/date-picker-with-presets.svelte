@@ -55,8 +55,8 @@
 				{valueString}
 			</Select.Trigger>
 			<Select.Content>
-				{#each items as item, i (i)}
-					<Select.Item value={`${item.value}`}>{item.label}</Select.Item>
+				{#each items as item (item.value)}
+					<Select.Item value={item.value}>{item.label}</Select.Item>
 				{/each}
 			</Select.Content>
 		</Select.Root>

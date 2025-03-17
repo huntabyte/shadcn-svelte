@@ -53,7 +53,7 @@
 		<div class="space-y-4">
 			<h4 class="text-sm font-medium">People with access</h4>
 			<div class="grid gap-6">
-				{#each people as person, i (i)}
+				{#each people as person (person.email)}
 					{@const name = person.name.split(" ")}
 					<div class="flex items-center justify-between space-x-4">
 						<div class="flex items-center space-x-4">
@@ -75,11 +75,8 @@
 								{person.permission.label}
 							</Select.Trigger>
 							<Select.Content>
-								{#each permissions as permission, i (i)}
-									<Select.Item
-										value={permission.value}
-										label={permission.label}
-									/>
+								{#each permissions as { value, label } (value)}
+									<Select.Item {value} {label} />
 								{/each}
 							</Select.Content>
 						</Select.Root>

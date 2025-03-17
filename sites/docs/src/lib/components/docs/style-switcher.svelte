@@ -34,7 +34,7 @@
 		{styleLabel}
 	</Select.Trigger>
 	<Select.Content>
-		{#each styles as style, i (i)}
+		{#each styles as style (style.name)}
 			<Select.Item value={style.name} label={style.label} class="text-xs" />
 		{/each}
 	</Select.Content>

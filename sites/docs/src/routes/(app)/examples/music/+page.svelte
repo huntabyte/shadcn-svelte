@@ -52,7 +52,7 @@
 								<div class="relative">
 									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
-											{#each listenNowAlbums as album, i (i)}
+											{#each listenNowAlbums as album (album)}
 												<AlbumArtwork
 													{album}
 													class="w-[250px]"
@@ -76,7 +76,7 @@
 								<div class="relative">
 									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
-											{#each madeForYouAlbums as album, i (i)}
+											{#each madeForYouAlbums as album (album)}
 												<AlbumArtwork
 													{album}
 													class="w-[150px]"

@@ -79,7 +79,7 @@
 			<Breadcrumb.Separator />
 		{/if}
 
-		{#each items.slice(-ITEMS_TO_DISPLAY + 1) as item, i (i)}
+		{#each items.slice(-ITEMS_TO_DISPLAY + 1) as item (item.label)}
 			<Breadcrumb.Item>
 				{#if item.href}
 					<Breadcrumb.Link href={item.href} class="max-w-20 truncate md:max-w-none">

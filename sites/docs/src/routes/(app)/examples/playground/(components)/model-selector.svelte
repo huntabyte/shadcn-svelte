@@ -111,9 +111,9 @@
 					<Command.Input placeholder="Search Models...." />
 					<Command.List class="h-[var(--cmdk-list-height)] max-h-[400px]">
 						<Command.Empty>No models found.</Command.Empty>
-						{#each types as type, i (i)}
+						{#each types as type (type)}
 							<Command.Group heading={type}>
-								{#each models.filter((model) => model.type === type) as model, i (i)}
+								{#each models.filter((model) => model.type === type) as model (type)}
 									<HoverCard.Trigger>
 										{#snippet child({ props })}
 											<div {...props} role="button" tabindex={0}>

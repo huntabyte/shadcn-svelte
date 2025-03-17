@@ -35,7 +35,7 @@
 		</span>
 	</Select.Trigger>
 	<Select.Content>
-		{#each accounts as account, i (i)}
+		{#each accounts as account (account)}
 			<Select.Item value={account.email} label={account.label}>
 				<div
 					class="[&_svg]:text-foreground flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"

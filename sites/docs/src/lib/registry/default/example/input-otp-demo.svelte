@@ -5,13 +5,13 @@
 <InputOTP.Root maxlength={6}>
 	{#snippet children({ cells })}
 		<InputOTP.Group>
-			{#each cells.slice(0, 3) as cell, i (i)}
+			{#each cells.slice(0, 3) as cell (cell)}
 				<InputOTP.Slot {cell} />
 			{/each}
 		</InputOTP.Group>
 		<InputOTP.Separator />
 		<InputOTP.Group>
-			{#each cells.slice(3, 6) as cell, i (i)}
+			{#each cells.slice(3, 6) as cell (cell)}
 				<InputOTP.Slot {cell} />
 			{/each}
 		</InputOTP.Group>

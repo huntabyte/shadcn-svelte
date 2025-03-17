@@ -242,7 +242,7 @@
 				{/snippet}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end">
-				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column, i (i)}
+				{#each table.getAllColumns().filter((col) => col.getCanHide()) as column (column)}
 					<DropdownMenu.CheckboxItem
 						class="capitalize"
 						bind:checked={

@@ -72,8 +72,8 @@
 					{monthLabel}
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
-					{#each monthOptions as { value, label }, i (i)}
-						<Select.Item value={`${value}`} {label} />
+					{#each monthOptions as { value, label } (value)}
+						<Select.Item {value} {label} />
 					{/each}
 				</Select.Content>
 			</Select.Root>
@@ -90,18 +90,18 @@
 					{defaultYear?.label ?? "Select year"}
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
-					{#each yearOptions as { value, label }, i (i)}
-						<Select.Item value={`${value}`} {label} />
+					{#each yearOptions as { value, label } (value)}
+						<Select.Item {value} {label} />
 					{/each}
 				</Select.Content>
 			</Select.Root>
 		</Calendar.Header>
 		<Calendar.Months>
-			{#each months as month, i (i)}
+			{#each months as month (month)}
 				<Calendar.Grid>
 					<Calendar.GridHead>
 						<Calendar.GridRow class="flex">
-							{#each weekdays as weekday, i (i)}
+							{#each weekdays as weekday (weekday)}
 								<Calendar.HeadCell>
 									{weekday.slice(0, 2)}
 								</Calendar.HeadCell>
@@ -109,9 +109,9 @@
 						</Calendar.GridRow>
 					</Calendar.GridHead>
 					<Calendar.GridBody>
-						{#each month.weeks as weekDates, i (i)}
+						{#each month.weeks as weekDates (weekDates)}
 							<Calendar.GridRow class="mt-2 w-full">
-								{#each weekDates as date, i (i)}
+								{#each weekDates as date (date)}
 									<Calendar.Cell class="select-none" {date} month={month.value}>
 										<Calendar.Day />
 									</Calendar.Cell>

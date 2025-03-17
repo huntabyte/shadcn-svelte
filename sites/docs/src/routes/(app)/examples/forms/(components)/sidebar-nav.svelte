@@ -15,7 +15,7 @@
 </script>
 
 <nav class={cn("flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1", className)}>
-	{#each items as item, i (i)}
+	{#each items as item (item)}
 		{@const isActive = page.url.pathname === item.href}
 		<Button
 			href={item.href}

@@ -28,7 +28,7 @@
 	{#await getComponents() then { chunkComponents, BlockComponent }}
 		<BlockWrapper {block}>
 			<BlockComponent />
-			{#each chunks as chunk, i (i)}
+			{#each chunks as chunk (chunk)}
 				{@const ChunkComponent = chunkComponents[i]}
 				<BlockChunk block={data.block} {chunk}>
 					<ChunkComponent />

@@ -70,7 +70,7 @@
 			<Command.List>
 				<Command.Empty>No framework found.</Command.Empty>
 				<Command.Group>
-					{#each frameworks as framework, i (i)}
+					{#each frameworks as framework (framework.value)}
 						<Command.Item
 							value={framework.value}
 							onSelect={() => {

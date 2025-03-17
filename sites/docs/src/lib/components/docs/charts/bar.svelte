@@ -84,7 +84,7 @@
 	<svg>
 		<!-- y axis -->
 		<g class="axis y-axis">
-			{#each yTicks as tick, i (i)}
+			{#each yTicks as tick (tick)}
 				<g class="text-xs" transform="translate(0, {yScale(tick)})">
 					<text
 						stroke="none"
@@ -103,7 +103,7 @@
 
 		<!-- x axis -->
 		<g class="axis x-axis">
-			{#each data as point, i (i)}
+			{#each data as point, i (point)}
 				<g class="text-xs" transform="translate({xScale(i)},{height})">
 					<text
 						stroke="none"
@@ -124,7 +124,7 @@
 		</g>
 
 		<g>
-			{#each data as point, i (i)}
+			{#each data as point, i (point)}
 				<rect
 					class="bg-primary-foreground"
 					x={xScale(i) + 2}

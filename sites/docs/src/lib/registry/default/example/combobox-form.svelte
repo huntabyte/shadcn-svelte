@@ -96,7 +96,7 @@
 					<Command.Input autofocus placeholder="Search language..." class="h-9" />
 					<Command.Empty>No language found.</Command.Empty>
 					<Command.Group>
-						{#each languages as language, i (i)}
+						{#each languages as language (language.value)}
 							<Command.Item
 								value={language.label}
 								onSelect={() => {

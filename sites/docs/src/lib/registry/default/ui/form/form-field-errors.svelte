@@ -23,7 +23,7 @@
 		{#if childrenProp}
 			{@render childrenProp({ errors, errorProps })}
 		{:else}
-			{#each errors as error, i (i)}
+			{#each errors as error (error)}
 				<div {...errorProps} class={cn(errorClasses)}>{error}</div>
 			{/each}
 		{/if}

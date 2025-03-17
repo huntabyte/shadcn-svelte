@@ -110,9 +110,9 @@
 				<Command.Input placeholder="Search team..." />
 				<Command.List>
 					<Command.Empty>No team found.</Command.Empty>
-					{#each groups as group, i (i)}
+					{#each groups as group (group.label)}
 						<Command.Group heading={group.label}>
-							{#each group.teams as team, i (i)}
+							{#each group.teams as team (team.label)}
 								<Command.Item
 									onSelect={() => {
 										selectedTeam = team;
@@ -182,7 +182,7 @@
 							{/if}
 						</Select.Trigger>
 						<Select.Content>
-							{#each plans as plan, i (i)}
+							{#each plans as plan (plan.value)}
 								<Select.Item value={plan.value} label={plan.label}>
 									{@render PlanItemContent(plan)}
 								</Select.Item>

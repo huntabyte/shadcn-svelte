@@ -165,7 +165,7 @@
 			<h2 class="relative px-7 text-lg font-semibold tracking-tight">Playlists</h2>
 			<ScrollArea class="h-[300px] px-1">
 				<div class="space-y-1 p-2">
-					{#each playlists as playlist, i (i)}
+					{#each playlists as playlist (playlist)}
 						<Button variant="ghost" class="w-full justify-start font-normal">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
