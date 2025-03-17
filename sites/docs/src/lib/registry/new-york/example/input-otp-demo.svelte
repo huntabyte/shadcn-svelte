@@ -11,7 +11,7 @@
 		</InputOTP.Group>
 		<InputOTP.Separator />
 		<InputOTP.Group>
-			{#each cells.slice(3, 6) as cell}
+			{#each cells.slice(3, 6) as cell, i (i)}
 				<InputOTP.Slot {cell} />
 			{/each}
 		</InputOTP.Group>

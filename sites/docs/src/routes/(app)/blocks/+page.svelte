@@ -5,6 +5,6 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-{#each data.blocks as block}
+{#each data.blocks as block, i (i)}
 	<BlockPreview {block} />
 {/each}

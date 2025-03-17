@@ -236,11 +236,12 @@
 					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
-					{#each table.getAllColumns().filter((col) => col.getCanHide()) as column}
+					{#each table.getAllColumns().filter((col) => col.getCanHide()) as column, i (i)}
 						<DropdownMenu.CheckboxItem
 							class="capitalize"
-							bind:checked={() => column.getIsVisible(),
-							(v) => column.toggleVisibility(!!v)}
+							bind:checked={
+								() => column.getIsVisible(), (v) => column.toggleVisibility(!!v)
+							}
 						>
 							{column.id}
 						</DropdownMenu.CheckboxItem>

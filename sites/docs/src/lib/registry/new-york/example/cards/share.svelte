@@ -76,7 +76,7 @@
 								{person.permission.label}
 							</Select.Trigger>
 							<Select.Content>
-								{#each permissions as permission}
+								{#each permissions as permission, i (i)}
 									<Select.Item
 										value={permission.value}
 										label={permission.label}

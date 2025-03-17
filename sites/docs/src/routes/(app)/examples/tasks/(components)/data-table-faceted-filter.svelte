@@ -50,7 +50,7 @@
 								{selectedValues.size} selected
 							</Badge>
 						{:else}
-							{#each options.filter((opt) => selectedValues.has(opt.value)) as option}
+							{#each options.filter( (opt) => selectedValues.has(opt.value) ) as option, i (i)}
 								<Badge variant="secondary" class="rounded-sm px-1 font-normal">
 									{option.label}
 								</Badge>
@@ -67,7 +67,7 @@
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
 				<Command.Group>
-					{#each options as option}
+					{#each options as option, i (i)}
 						{@const isSelected = selectedValues.has(option.value)}
 						<Command.Item
 							onSelect={() => {

@@ -6,7 +6,7 @@
 <InputOTP.Root maxlength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
 	{#snippet children({ cells })}
 		<InputOTP.Group>
-			{#each cells as cell}
+			{#each cells as cell, i (i)}
 				<InputOTP.Slot {cell} />
 			{/each}
 		</InputOTP.Group>

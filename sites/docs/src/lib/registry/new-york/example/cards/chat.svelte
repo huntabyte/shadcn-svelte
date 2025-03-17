@@ -190,7 +190,7 @@
 		<Dialog.Footer class="flex items-center border-t p-4 sm:justify-between">
 			{#if selectedUsers.length}
 				<div class="flex -space-x-2 overflow-hidden">
-					{#each selectedUsers as user}
+					{#each selectedUsers as user, i (i)}
 						<Avatar.Root class="border-background inline-block border-2">
 							<Avatar.Image src={user.avatar} />
 							<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
