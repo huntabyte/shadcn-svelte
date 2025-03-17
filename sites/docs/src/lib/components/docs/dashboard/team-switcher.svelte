@@ -13,7 +13,7 @@
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 
-	let { class: className }: PrimitiveElementAttributes = $props();
+	let { class: className, ..._restProps }: PrimitiveElementAttributes = $props();
 
 	const groups = [
 		{

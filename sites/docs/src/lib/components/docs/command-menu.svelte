@@ -11,7 +11,7 @@
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
-	let restProps: ComponentProps<typeof Button> = $props();
+	let { ...restProps }: ComponentProps<typeof Button> = $props();
 
 	let open = $state(false);
 

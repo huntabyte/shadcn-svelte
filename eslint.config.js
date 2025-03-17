@@ -23,7 +23,7 @@ export default ts.config(
 		languageOptions: {
 			parserOptions: {
 				// Only uncomment this if you want it to take 3 minutes https://github.com/sveltejs/eslint-plugin-svelte/issues/1084
-				// projectService: true,
+				projectService: true,
 				extraFileExtensions: [".svelte"],
 				parser: ts.parser,
 			},
