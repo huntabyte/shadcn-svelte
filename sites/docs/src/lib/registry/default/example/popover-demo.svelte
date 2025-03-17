@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { Button } from "$lib/registry/default/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { Input } from "$lib/registry/default/ui/input/index.js";
 	import { Label } from "$lib/registry/default/ui/label/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 </script>
 
-<Popover.Root portal={null}>
-	<Popover.Trigger asChild let:builder>
-		<Button builders={[builder]} variant="outline">Open</Button>
-	</Popover.Trigger>
+<Popover.Root>
+	<Popover.Trigger class={buttonVariants({ variant: "outline" })}>Open</Popover.Trigger>
 	<Popover.Content class="w-80">
 		<div class="grid gap-4">
 			<div class="space-y-2">

@@ -1,17 +1,20 @@
 <script lang="ts">
-	import type { TableOfContents } from "$lib/types/docs.js";
+	import Tree from "./tree.svelte";
+	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 	import { cn } from "$lib/utils.js";
 
-	export let tree: TableOfContents = {
-		items: [],
+	type Props = {
+		tree?: TableOfContents | TableOfContentsItem;
+		activeItem: string | undefined;
+		level?: number;
 	};
-	export let activeItem: string | undefined;
-	export let level = 1;
+
+	let { tree = { items: [] }, activeItem, level = 1 }: Props = $props();
 </script>
 
 <ul class={cn("m-0 list-none", { "pl-4": level !== 1 })}>
 	{#if tree.items && tree.items.length}
-		{#each tree.items as item, i (i)}
+		{#each tree.items as item (item)}
 			<li class={cn("mt-0 pt-2")}>
 				<a
 					href={item.url}
@@ -26,7 +29,7 @@
 					{item.title}
 				</a>
 				{#if item.items && item.items.length}
-					<svelte:self tree={item} level={level + 1} {activeItem} />
+					<Tree tree={item} level={level + 1} {activeItem} />
 				{/if}
 			</li>
 		{/each}

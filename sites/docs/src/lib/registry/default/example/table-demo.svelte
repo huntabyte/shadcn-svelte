@@ -58,7 +58,7 @@
 		</Table.Row>
 	</Table.Header>
 	<Table.Body>
-		{#each invoices as invoice, i (i)}
+		{#each invoices as invoice (invoice)}
 			<Table.Row>
 				<Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
 				<Table.Cell>{invoice.paymentStatus}</Table.Cell>
@@ -67,4 +67,10 @@
 			</Table.Row>
 		{/each}
 	</Table.Body>
+	<Table.Footer>
+		<Table.Row>
+			<Table.Cell colspan={3}>Total</Table.Cell>
+			<Table.Cell class="text-right">$2,500.00</Table.Cell>
+		</Table.Row>
+	</Table.Footer>
 </Table.Root>

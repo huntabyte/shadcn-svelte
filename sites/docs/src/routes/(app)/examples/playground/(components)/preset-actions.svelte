@@ -1,29 +1,27 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
 
-	let open = false;
-	let showDeleteDialog = false;
+	let open = $state(false);
+	let showDeleteDialog = $state(false);
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="secondary" builders={[builder]}>
-			<span class="sr-only">Actions</span>
-			<DotsHorizontal class="h-4 w-4" />
-		</Button>
+	<DropdownMenu.Trigger class={buttonVariants({ variant: "secondary" })}>
+		<span class="sr-only">Actions</span>
+		<Ellipsis />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
-		<DropdownMenu.Item on:click={() => (open = true)}>
+		<DropdownMenu.Item onSelect={() => (open = true)}>
 			Content filter preferences
 		</DropdownMenu.Item>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item on:click={() => (showDeleteDialog = true)} class="text-red-600">
+		<DropdownMenu.Item onSelect={() => (showDeleteDialog = true)} class="text-red-600">
 			Delete preset
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
@@ -52,7 +50,7 @@
 			</div>
 		</div>
 		<Dialog.Footer>
-			<Button variant="secondary" on:click={() => (open = false)}>Close</Button>
+			<Button variant="secondary" onclick={() => (open = false)}>Close</Button>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
@@ -69,7 +67,7 @@
 			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
 			<Button
 				variant="destructive"
-				on:click={() => {
+				onclick={() => {
 					showDeleteDialog = false;
 				}}
 			>

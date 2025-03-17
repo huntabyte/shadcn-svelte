@@ -56,30 +56,35 @@
 	const yTicks = [0, 1500, 3000, 4500, 6000];
 	const padding = { top: 20, right: 15, bottom: 20, left: 45 };
 
-	let width = 500;
-	let height = 200;
+	let width = $state(500);
+	let height = $state(200);
 
 	function formatMobile(tick: number | string) {
 		return `'${tick.toString().slice(-2)}`;
 	}
 
-	$: xScale = scaleLinear()
-		.domain([0, xTicks.length])
-		.range([padding.left, width - padding.right]);
+	const xScale = $derived(
+		scaleLinear()
+			.domain([0, xTicks.length])
+			.range([padding.left, width - padding.right])
+	);
 
-	$: yScale = scaleLinear()
-		.domain([0, Math.max.apply(null, yTicks)])
-		.range([height - padding.bottom, padding.top]);
+	const yScale = $derived(
+		scaleLinear()
+			.domain([0, Math.max.apply(null, yTicks)])
+			.range([height - padding.bottom, padding.top])
+	);
 
-	$: innerWidth = width - (padding.left + padding.right);
-	$: barWidth = innerWidth / xTicks.length;
+	const innerWidth = $derived(width - (padding.left + padding.right));
+
+	const barWidth = $derived(innerWidth / xTicks.length);
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
 	<svg>
 		<!-- y axis -->
 		<g class="axis y-axis">
-			{#each yTicks as tick}
+			{#each yTicks as tick (tick)}
 				<g class="text-xs" transform="translate(0, {yScale(tick)})">
 					<text
 						stroke="none"
@@ -98,7 +103,7 @@
 
 		<!-- x axis -->
 		<g class="axis x-axis">
-			{#each data as point, i}
+			{#each data as point, i (point)}
 				<g class="text-xs" transform="translate({xScale(i)},{height})">
 					<text
 						stroke="none"
@@ -119,7 +124,7 @@
 		</g>
 
 		<g>
-			{#each data as point, i}
+			{#each data as point, i (point)}
 				<rect
 					class="bg-primary-foreground"
 					x={xScale(i) + 2}

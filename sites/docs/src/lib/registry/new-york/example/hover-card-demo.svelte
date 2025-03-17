@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Calendar from "svelte-radix/Calendar.svelte";
+	import Calendar from "@lucide/svelte/icons/calendar";
 	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
 	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
 </script>
@@ -23,7 +23,7 @@
 				<h4 class="text-sm font-semibold">@sveltejs</h4>
 				<p class="text-sm">Cybernetically enhanced web apps.</p>
 				<div class="flex items-center pt-2">
-					<Calendar class="mr-2 h-4 w-4 opacity-70" />
+					<Calendar class="mr-2 size-4 opacity-70" />
 					<span class="text-muted-foreground text-xs"> Joined September 2022 </span>
 				</div>
 			</div>

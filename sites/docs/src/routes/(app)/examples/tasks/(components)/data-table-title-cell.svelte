@@ -2,9 +2,9 @@
 	import { labels } from "../(data)/data.js";
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 
-	export let value: string;
-	export let labelValue: string;
-	const label = labels.find((label) => label.value === labelValue);
+	let { value, labelValue }: { value?: string; labelValue?: string } = $props();
+
+	const label = $derived(labels.find((label) => label.value === labelValue));
 </script>
 
 <div class="flex space-x-2">

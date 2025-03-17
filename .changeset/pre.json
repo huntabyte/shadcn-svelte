@@ -1,0 +1,20 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "shadcn-svelte": "0.14.0",
+    "docs": "0.1.0"
+  },
+  "changesets": [
+    "blue-drinks-rush",
+    "fair-beans-collect",
+    "flat-sloths-learn",
+    "loud-flies-smoke",
+    "new-turkeys-breathe",
+    "sweet-steaks-teach",
+    "swift-tips-share",
+    "ten-spiders-do",
+    "tricky-trains-suffer",
+    "young-wombats-prove"
+  ]
+}

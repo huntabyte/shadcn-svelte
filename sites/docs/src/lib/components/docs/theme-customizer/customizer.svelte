@@ -1,15 +1,14 @@
 <script lang="ts">
-	import Check from "svelte-radix/Check.svelte";
-	import InfoCircled from "svelte-radix/InfoCircled.svelte";
-	import Moon from "svelte-radix/Moon.svelte";
-	import Reset from "svelte-radix/Reset.svelte";
-	import Sun from "svelte-radix/Sun.svelte";
-
+	import Check from "@lucide/svelte/icons/check";
+	import CircleHelp from "@lucide/svelte/icons/circle-help";
+	import Moon from "@lucide/svelte/icons/moon";
+	import Repeat from "@lucide/svelte/icons/repeat";
+	import Sun from "@lucide/svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { ThemeWrapper } from "$lib/components/docs/index.js";
+	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";
@@ -27,22 +26,22 @@
 			variant="ghost"
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
-			on:click={() => {
+			onclick={() => {
 				$config.radius = 0.5;
 				$config.theme = "zinc";
 			}}
 		>
-			<Reset />
+			<Repeat />
 			<span class="sr-only"> Reset </span>
 		</Button>
 	</div>
 	<div class="flex flex-1 flex-col space-y-4 md:space-y-6">
-		<div class="5 space-y-1">
+		<div class="space-y-1">
 			<div class="flex w-full items-center">
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
 					<Popover.Trigger>
-						<InfoCircled class="ml-1 h-3 w-3" />
+						<CircleHelp class="ml-1 size-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content
@@ -59,12 +58,11 @@
 							more.
 						</p>
 						<p>
-							The <span class="font-medium">Default</span> style has larger inputs, uses
-							lucide-svelte for icons.
+							The <span class="font-medium">Default</span> style has larger inputs.
 						</p>
 						<p>
 							The <span class="font-medium">New York</span> style ships with smaller buttons
-							and cards with shadows. It uses icons from Radix Icons.
+							and cards with shadows.
 						</p>
 					</Popover.Content>
 				</Popover.Root>
@@ -73,7 +71,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "default")}
+					onclick={() => ($config.style = "default")}
 					class={cn($config.style === "default" && "border-primary border-2")}
 				>
 					Default
@@ -81,7 +79,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => ($config.style = "new-york")}
+					onclick={() => ($config.style = "new-york")}
 					class={cn($config.style === "new-york" && "border-primary border-2")}
 				>
 					New York
@@ -96,17 +94,17 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-primary border-2")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
 					>
 						<span
-							class="mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+							class="mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
 						>
 							{#if isActive}
-								<Check class="h-4 w-4 text-white" />
+								<Check class="size-4 text-white" />
 							{/if}
 						</span>
 						{theme.label}
@@ -122,7 +120,7 @@
 					<Button
 						variant="outline"
 						size="sm"
-						on:click={() => {
+						onclick={() => {
 							$config.radius = valueFloat;
 						}}
 						class={cn($config.radius === valueFloat && "border-primary border-2")}
@@ -138,7 +136,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("light")}
+					onclick={() => setMode("light")}
 					class={cn($mode === "light" && "border-primary border-2")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
@@ -147,7 +145,7 @@
 				<Button
 					variant="outline"
 					size="sm"
-					on:click={() => setMode("dark")}
+					onclick={() => setMode("dark")}
 					class={cn($mode === "dark" && "border-primary border-2")}
 				>
 					<Moon class="mr-1 -translate-x-1" />

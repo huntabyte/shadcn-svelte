@@ -1,31 +1,39 @@
+import color from "chalk";
+import { Command, Option } from "commander";
+import { execa } from "execa";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import color from "chalk";
 import * as v from "valibot";
-import { Command, Option } from "commander";
-import { execa } from "execa";
-import * as cliConfig from "../utils/get-config.js";
-import type { Config } from "../utils/get-config.js";
-import { error, handleError } from "../utils/errors.js";
-import { getBaseColors, getRegistryBaseColor, getStyles } from "../utils/registry";
-import * as templates from "../utils/templates.js";
-import * as p from "../utils/prompts.js";
-import { intro, prettifyList } from "../utils/prompt-helpers.js";
-import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sveltekit.js";
 import {
 	type DetectLanguageResult,
 	detectConfigs,
 	detectLanguage,
 	detectPM,
 } from "../utils/auto-detect.js";
+import { error, handleError } from "../utils/errors.js";
+import type { Config } from "../utils/get-config.js";
+import * as cliConfig from "../utils/get-config.js";
+import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
+import * as p from "../utils/prompts.js";
+import * as registry from "../utils/registry/index.js";
+import { resolveImport } from "../utils/resolve-imports.js";
+import { syncSvelteKit } from "../utils/sveltekit.js";
+import * as templates from "../utils/templates.js";
+import { resolveCommand } from "package-manager-detector/commands";
+import { SITE_BASE_URL } from "../constants.js";
+import { checkPreconditions } from "../utils/preconditions.js";
 
-const PROJECT_DEPENDENCIES = ["tailwind-variants", "clsx", "tailwind-merge"] as const;
+const PROJECT_DEPENDENCIES = [
+	"tailwind-variants",
+	"clsx",
+	"tailwind-merge",
+	"tailwindcss-animate",
+] as const;
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
-const baseColors = getBaseColors();
-const styles = getStyles();
+const baseColors = registry.getBaseColors();
+const styles = registry.getStyles();
 
 const initOptionsSchema = v.object({
 	cwd: v.string(),
@@ -35,6 +43,8 @@ const initOptionsSchema = v.object({
 	tailwindConfig: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
+	hooksAlias: v.optional(v.string()),
+	uiAlias: v.optional(v.string()),
 	deps: v.boolean(),
 });
 
@@ -59,6 +69,8 @@ export const init = new Command()
 	.option("--tailwind-config <path>", "path to the tailwind config file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--utils-alias <path>", "import alias for utils")
+	.option("--hooks-alias <path>", "import alias for hooks")
+	.option("--ui-alias <path>", "import alias for ui")
 	.action(async (opts) => {
 		intro();
 		const options = v.parse(initOptionsSchema, opts);
@@ -70,9 +82,13 @@ export const init = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
+			checkPreconditions(cwd);
+
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
+
+			registry.setRegistry(config.registry);
 
 			await runInit(cwd, config, options);
 
@@ -123,7 +139,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	const langConfig = detectLanguage(cwd);
 	if (langConfig === undefined) {
 		throw error(
-			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
+			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
 		);
 	}
 
@@ -142,10 +158,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		style = input;
 	}
@@ -163,10 +176,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			})),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindBaseColor = input;
 	}
@@ -189,10 +199,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		globalCss = input;
 	}
@@ -215,10 +222,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			},
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		tailwindConfig = input;
 	}
@@ -233,40 +237,65 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(promptResult)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(promptResult)) cancel();
 
 		componentAlias = promptResult;
 	}
+
+	// infers the alias from `components`. if `components = $lib/components` then suggest `alias = $lib/alias`
+	const inferAlias = (alias: string) =>
+		`${componentAlias.split("/").slice(0, -1).join("/")}/${alias}`;
 
 	// Utils Alias
 	let utilsAlias = options.utilsAlias;
 	if (utilsAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("utils")}:`,
-			initialValue:
-				defaultConfig?.aliases.utils ??
-				// infers the alias from `components`. if `components = @/comps` then suggest `utils = @/utils`
-				`${componentAlias?.split("/").slice(0, -1).join("/")}/utils` ??
-				cliConfig.DEFAULT_UTILS,
+			initialValue: defaultConfig?.aliases.utils ?? inferAlias("utils"),
 			placeholder: cliConfig.DEFAULT_UTILS,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
 
-		if (p.isCancel(input)) {
-			p.cancel("Operation cancelled.");
-			process.exit(0);
-		}
+		if (p.isCancel(input)) cancel();
 
 		utilsAlias = input;
 	}
 
+	// Hooks Alias
+	let hooksAlias = options.hooksAlias;
+	if (hooksAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("hooks")}:`,
+			initialValue: defaultConfig?.aliases.hooks ?? inferAlias("hooks"),
+			placeholder: cliConfig.DEFAULT_HOOKS,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		hooksAlias = input;
+	}
+
+	// UI Alias
+	let uiAlias = options.uiAlias;
+	if (uiAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("ui")}:`,
+			initialValue: defaultConfig?.aliases.ui ?? `${componentAlias}/ui`,
+			placeholder: cliConfig.DEFAULT_UI,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		uiAlias = input;
+	}
+
 	const config = v.parse(cliConfig.rawConfigSchema, {
-		$schema: "https://shadcn-svelte.com/schema.json",
+		$schema: `${SITE_BASE_URL}/schema.json`,
 		style,
 		typescript: langConfig.type === "tsconfig.json",
+		registry: defaultConfig?.registry,
 		tailwind: {
 			config: tailwindConfig,
 			css: globalCss,
@@ -275,6 +304,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		aliases: {
 			utils: utilsAlias,
 			components: componentAlias,
+			hooks: hooksAlias,
+			ui: uiAlias,
 		},
 	});
 
@@ -295,7 +326,7 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	if (resolvedPath !== undefined) {
 		return;
 	}
-	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`;
+	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 export async function runInit(cwd: string, config: Config, options: InitOptions) {
@@ -305,9 +336,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	tasks.push({
 		title: "Creating config file",
 		async task() {
-			const targetPath = path.resolve(cwd, "components.json");
-			const conf = v.parse(cliConfig.rawConfigSchema, config); // inefficient, but it'll do
-			await fs.writeFile(targetPath, JSON.stringify(conf, null, "\t"), "utf8");
+			cliConfig.writeConfig(cwd, config);
 			return `Config file ${highlight("components.json")} created`;
 		},
 	});
@@ -344,7 +373,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
-			const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
+			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor);
 			if (baseColor) {
 				await fs.writeFile(
 					config.resolvedPaths.tailwindCss,
@@ -363,14 +392,15 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, options.deps);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, options.deps);
+	if (pm) {
+		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
+		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(pm, [add, "-D", ...PROJECT_DEPENDENCIES], {
+				await execa(add.command, [...add.args], {
 					cwd,
 				});
 				return `Dependencies installed with ${highlight(pm)}`;

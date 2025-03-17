@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BellRing from "lucide-svelte/icons/bell-ring";
-	import Check from "lucide-svelte/icons/check";
+	import BellRing from "@lucide/svelte/icons/bell-ring";
+	import Check from "@lucide/svelte/icons/check";
 	import { Button } from "$lib/registry/default/ui/button/index.js";
 	import * as Card from "$lib/registry/default/ui/card/index.js";
 	import { Switch } from "$lib/registry/default/ui/switch/index.js";
@@ -38,7 +38,7 @@
 		<div>
 			{#each notifications as notification, idx (idx)}
 				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-					<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+					<span class="flex size-2 translate-y-1 rounded-full bg-sky-500"></span>
 					<div class="space-y-1">
 						<p class="text-sm font-medium leading-none">
 							{notification.title}
@@ -53,7 +53,7 @@
 	</Card.Content>
 	<Card.Footer>
 		<Button class="w-full">
-			<Check class="mr-2 h-4 w-4" /> Mark all as read
+			<Check class="mr-2 size-4" /> Mark all as read
 		</Button>
 	</Card.Footer>
 </Card.Root>
