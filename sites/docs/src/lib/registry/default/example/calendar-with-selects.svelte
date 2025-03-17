@@ -73,7 +73,7 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					{#each monthOptions as { value, label } (value)}
-						<Select.Item {value} {label} />
+						<Select.Item value={`${value}`} {label} />
 					{/each}
 				</Select.Content>
 			</Select.Root>
@@ -91,7 +91,7 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					{#each yearOptions as { value, label } (value)}
-						<Select.Item {value} {label} />
+						<Select.Item value={`${value}`} {label} />
 					{/each}
 				</Select.Content>
 			</Select.Root>
