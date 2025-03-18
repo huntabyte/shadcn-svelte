@@ -9,9 +9,6 @@
 		"tailwind": {
 			"type": "object",
 			"properties": {
-				"config": {
-					"type": "string"
-				},
 				"css": {
 					"type": "string"
 				},
@@ -19,7 +16,7 @@
 					"type": "string"
 				}
 			},
-			"required": ["config", "css", "baseColor"]
+			"required": ["css", "baseColor"]
 		},
 		"aliases": {
 			"type": "object",
