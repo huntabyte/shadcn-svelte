@@ -8,7 +8,7 @@ import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
+import { getEnvProxy, getEnvRegistry } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
@@ -63,7 +63,9 @@ export const add = new Command()
 				);
 			}
 
-			registry.setRegistry(config.registry);
+			const registryEnv = getEnvRegistry();
+
+			registry.setRegistry(registryEnv ? registryEnv : config.registry);
 
 			checkPreconditions(cwd);
 

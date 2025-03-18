@@ -4,7 +4,7 @@ import path from "node:path";
 import * as v from "valibot";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
-import { getEnvProxy } from "../get-env-proxy.js";
+import { getEnvProxy, getEnvRegistry } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
 let baseUrl: string | undefined;
@@ -61,11 +61,11 @@ export function getStyles() {
 
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
+		const [result] = await fetchRegistry([`registry/colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
-	} catch {
-		throw error(`Failed to fetch base color from registry.`);
+	} catch (err) {
+		throw error(`Failed to fetch base color from registry. Error: ${err}`);
 	}
 }
 

@@ -132,6 +132,9 @@ importers:
       '@prettier/sync':
         specifier: 0.3.0
         version: 0.3.0(prettier@3.3.3)
+      '@sveltejs/adapter-auto':
+        specifier: ^4.0.0
+        version: 4.0.0(@sveltejs/kit@2.15.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))
       '@sveltejs/adapter-cloudflare':
         specifier: 4.6.1
         version: 4.6.1(@sveltejs/kit@2.15.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(wrangler@3.81.0)
@@ -1437,6 +1440,11 @@ packages:
 
   '@sinclair/typebox@0.32.35':
     resolution: {integrity: sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==}
+
+  '@sveltejs/adapter-auto@4.0.0':
+    resolution: {integrity: sha512-kmuYSQdD2AwThymQF0haQhM8rE5rhutQXG4LNbnbShwhMO4qQGnKaaTy+88DuNSuoQDi58+thpq8XpHc1+oEKQ==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.0.0
 
   '@sveltejs/adapter-cloudflare@4.6.1':
     resolution: {integrity: sha512-wENN4un6VC7kWLXyIcPX1VPpjyTxGEenEcaLsLCci0fuLZRT0Gsx+g0eV1k1IA+NznKkxd06XxfcqY2xhYDu/A==}
@@ -6310,6 +6318,11 @@ snapshots:
 
   '@sinclair/typebox@0.32.35':
     optional: true
+
+  '@sveltejs/adapter-auto@4.0.0(@sveltejs/kit@2.15.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))':
+    dependencies:
+      '@sveltejs/kit': 2.15.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0))
+      import-meta-resolve: 4.1.0
 
   '@sveltejs/adapter-cloudflare@4.6.1(@sveltejs/kit@2.15.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(svelte@5.16.1)(vite@5.4.9(@types/node@20.16.14)(terser@5.36.0)))(wrangler@3.81.0)':
     dependencies:

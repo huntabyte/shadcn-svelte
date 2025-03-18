@@ -289,8 +289,7 @@ export const Index = {
 		if (Array.isArray(value)) {
 			colorsData[color] = value.map((item) => ({
 				...item,
-				rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-				hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+				oklch: item.oklch,
 			}));
 			continue;
 		}
@@ -298,8 +297,7 @@ export const Index = {
 		if (typeof value === "object") {
 			colorsData[color] = {
 				...value,
-				rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-				hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+				oklch: value.oklch,
 			};
 			continue;
 		}
@@ -337,7 +335,7 @@ export const Index = {
 							)
 						: colorsData[resolvedBase];
 					if (color) {
-						base.cssVars[mode][key] = color.hslChannel;
+						base.cssVars[mode][key] = color.oklch;
 					}
 				}
 			}

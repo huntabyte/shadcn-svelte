@@ -23,6 +23,7 @@ import * as templates from "../utils/templates.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { getEnvRegistry } from "../utils/get-env-proxy.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -86,7 +87,9 @@ export const init = new Command()
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
-			registry.setRegistry(config.registry);
+			const registryEnv = getEnvRegistry();
+
+			registry.setRegistry(registryEnv ? registryEnv : config.registry);
 
 			await runInit(cwd, config, options);
 
