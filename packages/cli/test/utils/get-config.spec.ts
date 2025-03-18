@@ -30,8 +30,7 @@ describe("getRawConfig", () => {
 		expect(await getRaw("config-partial")).toEqual({
 			style: "new-york",
 			tailwind: {
-				config: "tailwind.config.js",
-				css: "src/app.pcss",
+				css: "src/app.css",
 				baseColor: "zinc",
 			},
 			aliases: {
@@ -66,8 +65,7 @@ describe("getConfig", () => {
 		expect(await getConf("config-partial")).toEqual({
 			style: "new-york",
 			tailwind: {
-				config: "tailwind.config.js",
-				css: "src/app.pcss",
+				css: "src/app.css",
 				baseColor: "zinc",
 			},
 			aliases: {
@@ -78,8 +76,7 @@ describe("getConfig", () => {
 			},
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-partial/src/lib/components"),
-				tailwindConfig: resolvePath("../fixtures/config-partial/tailwind.config.js"),
-				tailwindCss: resolvePath("../fixtures/config-partial/src/app.pcss"),
+				tailwindCss: resolvePath("../fixtures/config-partial/src/app.css"),
 				utils: resolvePath("../fixtures/config-partial/src/lib/utils"),
 				cwd: resolvePath("../fixtures/config-partial"),
 				hooks: resolvePath("../fixtures/config-partial/src/lib/hooks"),
@@ -94,8 +91,7 @@ describe("getConfig", () => {
 		expect(await getConf("config-full")).toEqual({
 			style: "new-york",
 			tailwind: {
-				config: "tailwind.config.js",
-				css: "src/app.pcss",
+				css: "src/app.css",
 				baseColor: "zinc",
 			},
 			aliases: {
@@ -106,8 +102,7 @@ describe("getConfig", () => {
 			},
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-full/src/lib/components"),
-				tailwindConfig: resolvePath("../fixtures/config-full/tailwind.config.js"),
-				tailwindCss: resolvePath("../fixtures/config-full/src/app.pcss"),
+				tailwindCss: resolvePath("../fixtures/config-full/src/app.css"),
 				utils: resolvePath("../fixtures/config-full/src/lib/utils"),
 				cwd: resolvePath("../fixtures/config-full"),
 				hooks: resolvePath("../fixtures/config-full/src/lib/hooks"),
@@ -122,8 +117,7 @@ describe("getConfig", () => {
 		expect(await getConf("config-vite")).toEqual({
 			style: "new-york",
 			tailwind: {
-				config: "tailwind.config.js",
-				css: "src/app.pcss",
+				css: "src/app.css",
 				baseColor: "zinc",
 			},
 			aliases: {
@@ -134,8 +128,7 @@ describe("getConfig", () => {
 			},
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-vite/src/lib/components"),
-				tailwindConfig: resolvePath("../fixtures/config-vite/tailwind.config.js"),
-				tailwindCss: resolvePath("../fixtures/config-vite/src/app.pcss"),
+				tailwindCss: resolvePath("../fixtures/config-vite/src/app.css"),
 				utils: resolvePath("../fixtures/config-vite/src/lib/utils"),
 				hooks: resolvePath("../fixtures/config-vite/src/lib/hooks"),
 				ui: resolvePath("../fixtures/config-vite/src/lib/components/ui"),
@@ -152,8 +145,7 @@ describe("getConfig", () => {
 		expect(config).toEqual({
 			style: "new-york",
 			tailwind: {
-				config: "tailwind.config.js",
-				css: "src/app.pcss",
+				css: "src/app.css",
 				baseColor: "zinc",
 			},
 			aliases: {
@@ -164,8 +156,7 @@ describe("getConfig", () => {
 			},
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-jsconfig/src/lib/components"),
-				tailwindConfig: resolvePath("../fixtures/config-jsconfig/tailwind.config.js"),
-				tailwindCss: resolvePath("../fixtures/config-jsconfig/src/app.pcss"),
+				tailwindCss: resolvePath("../fixtures/config-jsconfig/src/app.css"),
 				utils: resolvePath("../fixtures/config-jsconfig/src/lib/utils"),
 				hooks: resolvePath("../fixtures/config-jsconfig/src/lib/hooks"),
 				ui: resolvePath("../fixtures/config-jsconfig/src/lib/components/ui"),

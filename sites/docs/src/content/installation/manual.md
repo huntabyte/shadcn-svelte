@@ -179,9 +179,9 @@ Feel free to add or modify as needed to suit your project.
 
 ### Configure styles
 
-Add the following to your `src/app.pcss` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
+Add the following to your `src/app.css` file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
 
-```css title="src/app.pcss"
+```css title="src/app.css"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -282,7 +282,7 @@ Create `src/routes/+layout.svelte` and import the styles:
 
 ```svelte title="src/routes/+layout.svelte"
 <script lang="ts">
-  import "../app.pcss";
+  import "../app.css";
   let { children } = $props();
 </script>
 

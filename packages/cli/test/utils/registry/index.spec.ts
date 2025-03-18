@@ -7,7 +7,7 @@ const config = {
 	style: "new-york",
 	tailwind: {
 		config: "tailwind.config.js",
-		css: "src/app.pcss",
+		css: "src/app.css",
 		baseColor: "zinc",
 	},
 	aliases: {
@@ -20,7 +20,7 @@ const config = {
 	resolvedPaths: {
 		components: "./src/lib/components",
 		tailwindConfig: "./tailwind.config.js",
-		tailwindCss: "./src/app.pcss",
+		tailwindCss: "./src/app.css",
 		utils: "./src/lib/utils",
 		cwd: "./",
 		hooks: "./src/lib/hooks",
