@@ -170,19 +170,17 @@ export const Index = {
 	// Build registry/styles/[style]/[name].json.
 	// ----------------------------------------------------------------------------
 	// Create the style directories.
-	for (const style of styles) {
-		const targetPath = path.join(REGISTRY_PATH, "styles", style.name);
-		const targetJsPath = `${targetPath}-js`;
+	const targetPath = path.join(REGISTRY_PATH);
+	const targetJsPath = `${targetPath}-js`;
 
-		// Create directory if it doesn't exist.
-		if (!fs.existsSync(targetPath)) {
-			fs.mkdirSync(targetPath, { recursive: true });
-		}
+	// Create directory if it doesn't exist.
+	if (!fs.existsSync(targetPath)) {
+		fs.mkdirSync(targetPath, { recursive: true });
+	}
 
-		// Create JS directory if it doesn't exist.
-		if (!fs.existsSync(targetJsPath)) {
-			fs.mkdirSync(targetJsPath, { recursive: true });
-		}
+	// Create JS directory if it doesn't exist.
+	if (!fs.existsSync(targetJsPath)) {
+		fs.mkdirSync(targetJsPath, { recursive: true });
 	}
 
 	for (const item of result.data) {

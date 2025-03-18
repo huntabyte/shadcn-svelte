@@ -28,7 +28,6 @@ describe("getRawConfig", () => {
 	// partial configs via tw prefixes, tw vars, etc.
 	it("handles cases where a partial config is present", async () => {
 		expect(await getRaw("config-partial")).toEqual({
-			style: "new-york",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",
@@ -63,7 +62,6 @@ describe("getConfig", () => {
 	// partial configs via tw prefixes, tw vars, etc.
 	it("handles cases where a partial config is present", async () => {
 		expect(await getConf("config-partial")).toEqual({
-			style: "new-york",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",
@@ -89,7 +87,6 @@ describe("getConfig", () => {
 
 	it("handles cases where a full config is present", async () => {
 		expect(await getConf("config-full")).toEqual({
-			style: "new-york",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",
@@ -115,7 +112,6 @@ describe("getConfig", () => {
 
 	it("handles cases where the project is not svelte-kit", async () => {
 		expect(await getConf("config-vite")).toEqual({
-			style: "new-york",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",
@@ -143,7 +139,6 @@ describe("getConfig", () => {
 		const config = await getConf("config-jsconfig");
 
 		expect(config).toEqual({
-			style: "new-york",
 			tailwind: {
 				css: "src/app.css",
 				baseColor: "zinc",

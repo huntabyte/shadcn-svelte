@@ -1,5 +1,4 @@
 {
-	"style": "new-york",
 	"tailwind": {
 		"css": "src/app.css",
 		"baseColor": "zinc"

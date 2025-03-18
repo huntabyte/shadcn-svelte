@@ -4,7 +4,6 @@ import { getItemTargetPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
 const config = {
-	style: "new-york",
 	tailwind: {
 		config: "tailwind.config.js",
 		css: "src/app.css",
