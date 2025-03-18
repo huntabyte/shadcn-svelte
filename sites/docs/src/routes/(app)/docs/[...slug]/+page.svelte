@@ -4,7 +4,6 @@
 	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
-	import { config } from "$lib/stores/index.js";
 	import DocsPager from "$lib/components/docs/docs-pager.svelte";
 	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
 	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
@@ -16,9 +15,7 @@
 
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
-	const componentSource = $derived(
-		data.metadata.links?.source?.replace("default", $config.style ?? "default")
-	);
+	const componentSource = $derived(data.metadata.links?.source);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
 </script>

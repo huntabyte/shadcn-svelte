@@ -87,7 +87,7 @@
 					variant="ghost"
 					class="h-[22px] w-[22px] rounded-sm p-0"
 					title="Open in New Tab"
-					href={`/blocks/${block.style}/${block.name}`}
+					href={`/blocks/${block.name}`}
 					target="_blank"
 				>
 					<span class="sr-only">Open in New Tab</span>
