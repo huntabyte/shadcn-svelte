@@ -1,13 +1,12 @@
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { getItemTargetPath } from "../../../src/utils/registry/index";
+import { getItemTargetPath, getRegistryItemPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
 const config = {
-	style: "new-york",
 	tailwind: {
 		config: "tailwind.config.js",
-		css: "src/app.pcss",
+		css: "src/app.css",
 		baseColor: "zinc",
 	},
 	aliases: {
@@ -20,7 +19,7 @@ const config = {
 	resolvedPaths: {
 		components: "./src/lib/components",
 		tailwindConfig: "./tailwind.config.js",
-		tailwindCss: "./src/app.pcss",
+		tailwindCss: "./src/app.css",
 		utils: "./src/lib/utils",
 		cwd: "./",
 		hooks: "./src/lib/hooks",
@@ -91,5 +90,17 @@ describe("getItemTargetPath", () => {
 				type: "registry:ui",
 			})
 		).toEqual(path.join("src", "lib", "components", "ui"));
+	});
+});
+
+describe("getRegistryItemPath", () => {
+	it("Resolves path to ts when typescript", async () => {
+		expect(getRegistryItemPath("alert", config)).toBe("ts/alert.json");
+	});
+
+	it("Resolves path to js when javascript", () => {
+		expect(getRegistryItemPath("alert", { ...config, typescript: false })).toBe(
+			"js/alert.json"
+		);
 	});
 });

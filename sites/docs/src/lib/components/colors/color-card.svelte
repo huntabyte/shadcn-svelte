@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 	import { colorData } from "$lib/components/colors/color-data.js";
-	import * as RadioGroup from "$lib/registry/new-york/ui/radio-group/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 
 	let selectedFormat = "hsl"; // Default color format
 

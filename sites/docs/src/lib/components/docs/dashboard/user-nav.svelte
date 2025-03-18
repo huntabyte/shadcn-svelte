@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 </script>
 

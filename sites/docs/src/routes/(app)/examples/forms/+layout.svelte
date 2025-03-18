@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import SidebarNav from "./(components)/sidebar-nav.svelte";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 
 	let { children }: { children?: Snippet } = $props();
 

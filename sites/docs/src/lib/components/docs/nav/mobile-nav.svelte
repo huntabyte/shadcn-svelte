@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Icon from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
-	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import * as Sheet from "$lib/registry/ui/sheet/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";

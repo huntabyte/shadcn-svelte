@@ -4,7 +4,7 @@
 	import CommandMenu from "$lib/components/docs/command-menu.svelte";
 	import MainNav from "$lib/components/docs/nav/main-nav.svelte";
 	import MobileNav from "$lib/components/docs/nav/mobile-nav.svelte";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
 </script>

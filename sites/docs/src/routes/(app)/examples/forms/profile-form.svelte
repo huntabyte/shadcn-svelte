@@ -19,11 +19,11 @@
 	import SuperDebug from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { tick } from "svelte";
-	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 

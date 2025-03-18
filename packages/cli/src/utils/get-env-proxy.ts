@@ -11,3 +11,9 @@ export function getEnvProxy(): string | undefined {
 		env.npm_config_https_proxy
 	);
 }
+
+export function getEnvRegistry(): string | undefined {
+	const { env } = process;
+
+	return env.COMPONENTS_REGISTRY_URL;
+}

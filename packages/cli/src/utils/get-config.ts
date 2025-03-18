@@ -14,7 +14,6 @@ export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_HOOKS = "$lib/hooks";
 export const DEFAULT_UI = "$lib/components/ui";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
-export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.ts";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
 
@@ -28,10 +27,8 @@ const aliasSchema = (alias: string) =>
 
 const originalConfigSchema = v.object({
 	$schema: v.optional(v.string()),
-	style: v.string(`Missing ${color.bold("style")} field`),
 	tailwind: v.object(
 		{
-			config: v.string(`Missing tailwind.${color.bold("config")} path`),
 			css: v.string(`Missing tailwind.${color.bold("css")} path`),
 			baseColor: v.string(`Missing tailwind.${color.bold("baseColor")} field`),
 			// cssVariables: v.boolean().default(true)
@@ -77,7 +74,6 @@ export const configSchema = v.object({
 	...v.object({
 		resolvedPaths: v.object({
 			cwd: v.string(),
-			tailwindConfig: v.string(),
 			tailwindCss: v.string(),
 			utils: v.string(),
 			components: v.string(),
@@ -138,7 +134,6 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		...config,
 		resolvedPaths: {
 			cwd,
-			tailwindConfig: path.resolve(cwd, config.tailwind.config),
 			tailwindCss: path.resolve(cwd, config.tailwind.css),
 			utils: utilsPath,
 			components: componentsPath,

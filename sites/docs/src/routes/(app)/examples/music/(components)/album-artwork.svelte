@@ -3,7 +3,7 @@
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
-	import * as ContextMenu from "$lib/registry/new-york/ui/context-menu/index.js";
+	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 
 	type Props = {
 		album: Album;

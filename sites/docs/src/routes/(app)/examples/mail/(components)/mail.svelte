@@ -8,11 +8,11 @@
 	import MailList from "./mail-list.svelte";
 	import Nav from "./nav.svelte";
 	import { cn } from "$lib/utils.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/select/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as Resizable from "$lib/registry/ui/resizable/index.js";
+	import { Separator } from "$lib/registry/ui/select/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let {
 		accounts,

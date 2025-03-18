@@ -21,7 +21,7 @@ export function setRegistry(url: string) {
 	}
 }
 
-function getRegistryUrl(path: string) {
+export function getRegistryUrl(path: string) {
 	if (!baseUrl) throw new Error("Registry URL not set");
 
 	if (isUrl(path)) {
@@ -52,20 +52,13 @@ export function getBaseColors() {
 	];
 }
 
-export function getStyles() {
-	return [
-		{ name: "default", label: "Default" },
-		{ name: "new-york", label: "New York" },
-	];
-}
-
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
-	} catch {
-		throw error(`Failed to fetch base color from registry.`);
+	} catch (err) {
+		throw error(`Failed to fetch base color from registry. Error: ${err}`);
 	}
 }
 
@@ -90,9 +83,8 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			// attempt to find entry elsewhere in the registry
-			const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-			const [item] = await fetchRegistry([`styles/${trueStyle}/${name}.json`]);
+			const itemPath = getRegistryItemPath(name, config);
+			const [item] = await fetchRegistry([itemPath]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -116,8 +108,7 @@ export async function resolveTree({
 
 export async function fetchTree(config: Config, tree: RegistryIndex) {
 	try {
-		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
+		const paths = tree.map((item) => getRegistryItemPath(item.name, config));
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
@@ -125,6 +116,12 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
+}
+
+export function getRegistryItemPath(name: string, config: Config) {
+	const lang = config.typescript ? "ts" : "js";
+
+	return `${lang}/${name}.json`;
 }
 
 export function getItemTargetPath(

@@ -6,7 +6,7 @@ import { getPadding } from "./prompt-helpers.js";
 
 const peerDependencies: Record<string, string> = {
 	svelte: "5.x.x",
-	tailwindcss: "3.x.x",
+	tailwindcss: "4.x.x",
 };
 
 export function checkPreconditions(cwd: string) {

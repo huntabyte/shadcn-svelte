@@ -23,24 +23,23 @@ import * as templates from "../utils/templates.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { getEnvRegistry } from "../utils/get-env-proxy.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
 	"clsx",
 	"tailwind-merge",
-	"tailwindcss-animate",
+	"tw-animate-css",
 ] as const;
+
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const baseColors = registry.getBaseColors();
-const styles = registry.getStyles();
 
 const initOptionsSchema = v.object({
 	cwd: v.string(),
-	style: v.optional(v.string()),
 	baseColor: v.optional(v.string()),
 	css: v.optional(v.string()),
-	tailwindConfig: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
 	hooksAlias: v.optional(v.string()),
@@ -56,17 +55,11 @@ export const init = new Command()
 	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
 	.option("--no-deps", "disable adding & installing dependencies")
 	.addOption(
-		new Option("--style <name>", "the style for the components").choices(
-			styles.map((style) => style.name)
-		)
-	)
-	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
 		)
 	)
 	.option("--css <path>", "path to the global CSS file")
-	.option("--tailwind-config <path>", "path to the tailwind config file")
 	.option("--components-alias <path>", "import alias for components")
 	.option("--utils-alias <path>", "import alias for utils")
 	.option("--hooks-alias <path>", "import alias for hooks")
@@ -88,7 +81,9 @@ export const init = new Command()
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
-			registry.setRegistry(config.registry);
+			const registryEnv = getEnvRegistry();
+
+			registry.setRegistry(registryEnv ? registryEnv : config.registry);
 
 			await runInit(cwd, config, options);
 
@@ -103,14 +98,6 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
 				`The provided global CSS file path ${color.cyan(options.css)} does not exist. Please enter a valid path.`
-			);
-		}
-	}
-
-	if (options.tailwindConfig) {
-		if (!existsSync(path.resolve(cwd, options.tailwindConfig))) {
-			throw error(
-				`The provided tailwind config file path ${color.cyan(options.tailwindConfig)} does not exist. Please enter a valid path.`
 			);
 		}
 	}
@@ -145,23 +132,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// Validation for any paths provided by flags
 	validateOptions(cwd, options, langConfig);
-
-	// Styles
-	let style = styles.find((style) => style.name === options.style)?.name;
-	if (style === undefined) {
-		const input = await p.select({
-			message: `Which ${highlight("style")} would you like to use?`,
-			initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
-			options: styles.map((style) => ({
-				label: style.label,
-				value: style.name,
-			})),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		style = input;
-	}
 
 	// Base Color
 	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
@@ -202,29 +172,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		if (p.isCancel(input)) cancel();
 
 		globalCss = input;
-	}
-
-	// Tailwind Config
-	let tailwindConfig = options.tailwindConfig;
-	if (tailwindConfig === undefined) {
-		const input = await p.text({
-			message: `Where is your ${highlight("Tailwind config")} located? ${color.gray("(this file will be overwritten)")}`,
-			initialValue:
-				defaultConfig?.tailwind.config ??
-				detectedConfigs.tailwindPath ??
-				cliConfig.DEFAULT_TAILWIND_CONFIG,
-			placeholder: detectedConfigs.tailwindPath ?? cliConfig.DEFAULT_TAILWIND_CONFIG,
-			validate: (value) => {
-				if (value && existsSync(path.resolve(cwd, value))) {
-					return;
-				}
-				return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
-			},
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		tailwindConfig = input;
 	}
 
 	// Components Alias
@@ -293,11 +240,9 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: `${SITE_BASE_URL}/schema.json`,
-		style,
 		typescript: langConfig.type === "tsconfig.json",
 		registry: defaultConfig?.registry,
 		tailwind: {
-			config: tailwindConfig,
 			css: globalCss,
 			baseColor: tailwindBaseColor,
 		},
@@ -308,14 +253,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 			ui: uiAlias,
 		},
 	});
-
-	// Delete `tailwind.config.cjs` and rename to `.js`
-	if (config.tailwind.config.endsWith(".cjs")) {
-		p.log.info(`Your tailwind config has been renamed to ${highlight("tailwind.config.js")}.`);
-		await fs.unlink(config.tailwind.config).catch(() => null);
-		const renamedTailwindConfigPath = config.tailwind.config.replace(".cjs", ".js");
-		config.tailwind.config = renamedTailwindConfigPath;
-	}
 
 	const configPaths = await cliConfig.resolveConfigPaths(cwd, config);
 	return configPaths;
@@ -364,13 +301,6 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 					await fs.mkdir(dirname, { recursive: true });
 				}
 			}
-
-			// Write tailwind config.
-			const { TS, JS } = templates.TAILWIND_CONFIG_WITH_VARIABLES;
-			const tailwindConfigContent = config.resolvedPaths.tailwindConfig.endsWith(".ts")
-				? TS
-				: JS;
-			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
 			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor);

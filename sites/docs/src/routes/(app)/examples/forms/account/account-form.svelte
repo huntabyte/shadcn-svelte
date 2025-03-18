@@ -48,12 +48,12 @@
 		getLocalTimeZone,
 		parseDate,
 	} from "@internationalized/date";
-	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 
