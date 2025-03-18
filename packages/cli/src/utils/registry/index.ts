@@ -4,7 +4,7 @@ import path from "node:path";
 import * as v from "valibot";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
-import { getEnvProxy, getEnvRegistry } from "../get-env-proxy.js";
+import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
 let baseUrl: string | undefined;
