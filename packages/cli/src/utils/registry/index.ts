@@ -61,7 +61,7 @@ export function getStyles() {
 
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`/colors/${baseColor}.json`]);
+		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
