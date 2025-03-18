@@ -64,8 +64,8 @@ export async function getRegistryBaseColor(baseColor: string) {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
-	} catch {
-		throw error(`Failed to fetch base color from registry.`);
+	} catch (err) {
+		throw error(`Failed to fetch base color from registry. Error: ${err}`);
 	}
 }
 
