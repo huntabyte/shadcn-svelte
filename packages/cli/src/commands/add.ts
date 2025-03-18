@@ -162,7 +162,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		config,
 	});
 
-	const payload = await registry.fetchTree(config, tree);
+	const payload = await registry.fetchTree(tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 	if (payload.length === 0) cancel("Selected components not found.");

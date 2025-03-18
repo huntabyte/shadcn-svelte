@@ -35,11 +35,9 @@ const PROJECT_DEPENDENCIES = [
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const baseColors = registry.getBaseColors();
-const styles = registry.getStyles();
 
 const initOptionsSchema = v.object({
 	cwd: v.string(),
-	style: v.optional(v.string()),
 	baseColor: v.optional(v.string()),
 	css: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
@@ -56,11 +54,6 @@ export const init = new Command()
 	.description("initialize your project and install dependencies")
 	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
 	.option("--no-deps", "disable adding & installing dependencies")
-	.addOption(
-		new Option("--style <name>", "the style for the components").choices(
-			styles.map((style) => style.name)
-		)
-	)
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
 			baseColors.map((color) => color.name)
@@ -139,23 +132,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	// Validation for any paths provided by flags
 	validateOptions(cwd, options, langConfig);
-
-	// Styles
-	let style = styles.find((style) => style.name === options.style)?.name;
-	if (style === undefined) {
-		const input = await p.select({
-			message: `Which ${highlight("style")} would you like to use?`,
-			initialValue: defaultConfig?.style ?? cliConfig.DEFAULT_STYLE,
-			options: styles.map((style) => ({
-				label: style.label,
-				value: style.name,
-			})),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		style = input;
-	}
 
 	// Base Color
 	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
@@ -264,7 +240,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 	const config = v.parse(cliConfig.rawConfigSchema, {
 		$schema: `${SITE_BASE_URL}/schema.json`,
-		style,
 		typescript: langConfig.type === "tsconfig.json",
 		registry: defaultConfig?.registry,
 		tailwind: {

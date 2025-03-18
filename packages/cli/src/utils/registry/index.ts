@@ -52,13 +52,6 @@ export function getBaseColors() {
 	];
 }
 
-export function getStyles() {
-	return [
-		{ name: "default", label: "Default" },
-		{ name: "new-york", label: "New York" },
-	];
-}
-
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
 		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
@@ -90,9 +83,7 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			// attempt to find entry elsewhere in the registry
-			const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-			const [item] = await fetchRegistry([`styles/${trueStyle}/${name}.json`]);
+			const [item] = await fetchRegistry([`${name}.json`]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -114,10 +105,9 @@ export async function resolveTree({
 	);
 }
 
-export async function fetchTree(config: Config, tree: RegistryIndex) {
+export async function fetchTree(tree: RegistryIndex) {
 	try {
-		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
+		const paths = tree.map((item) => `${item.name}.json`);
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
