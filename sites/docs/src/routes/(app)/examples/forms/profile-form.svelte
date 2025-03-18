@@ -104,7 +104,7 @@
 	<div>
 		<Form.Fieldset {form} name="urls">
 			<Form.Legend>URLs</Form.Legend>
-			{#each $formData.urls as _, i}
+			{#each $formData.urls as _, i (i)}
 				<Form.ElementField {form} name="urls[{i}]">
 					<Form.Description class={cn(i !== 0 && "sr-only")}>
 						Add links to your website, blog, or social media profiles.

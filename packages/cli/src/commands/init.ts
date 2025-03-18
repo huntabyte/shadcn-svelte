@@ -70,6 +70,7 @@ export const init = new Command()
 	.option("--components-alias <path>", "import alias for components")
 	.option("--utils-alias <path>", "import alias for utils")
 	.option("--hooks-alias <path>", "import alias for hooks")
+	.option("--ui-alias <path>", "import alias for ui")
 	.action(async (opts) => {
 		intro();
 		const options = v.parse(initOptionsSchema, opts);

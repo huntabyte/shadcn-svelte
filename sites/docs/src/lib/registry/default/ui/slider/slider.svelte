@@ -34,7 +34,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 				class="bg-primary absolute data-[orientation='horizontal']:h-full data-[orientation='vertical']:w-full"
 			/>
 		</span>
-		{#each thumbs as thumb}
+		{#each thumbs as thumb (thumb)}
 			<SliderPrimitive.Thumb
 				index={thumb}
 				class="border-primary bg-background ring-offset-background focus-visible:ring-ring block size-5 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
