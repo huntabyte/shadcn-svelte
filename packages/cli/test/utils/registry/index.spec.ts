@@ -1,9 +1,6 @@
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import {
-	getItemTargetPath,
-	getRegistryItemPath,
-} from "../../../src/utils/registry/index";
+import { getItemTargetPath, getRegistryItemPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
 const config = {
