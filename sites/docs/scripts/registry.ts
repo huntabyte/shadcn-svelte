@@ -7,8 +7,6 @@ import { parse, preprocess } from "svelte/compiler";
 import {
 	type Registry,
 	type RegistryItemFile,
-	type RegistryStyle,
-	styles,
 } from "../src/lib/registry";
 import { getPageBlockTarget } from "../src/lib/registry/registry-block-meta.js";
 import config from "../svelte.config.js";
@@ -43,26 +41,24 @@ export async function buildRegistry() {
 	const registryRootPath = path.resolve("src", "lib", "registry");
 	const registry: Registry = [];
 
-	for (const { name: style } of styles) {
-		const uiPath = path.resolve(registryRootPath, style, "ui");
-		const examplePath = path.resolve(registryRootPath, style, "example");
-		const blockPath = path.resolve(registryRootPath, style, "block");
-		const hookPath = path.resolve(registryRootPath, style, "hook");
+	const uiPath = path.resolve(registryRootPath, "ui");
+	const examplePath = path.resolve(registryRootPath, "example");
+	const blockPath = path.resolve(registryRootPath, "block");
+	const hookPath = path.resolve(registryRootPath, "hook");
 
-		const [ui, example, block, hook] = await Promise.all([
-			crawlUI(uiPath, style),
-			crawlExample(examplePath, style),
-			crawlBlock(blockPath, style),
-			crawlHook(hookPath, style),
-		]);
+	const [ui, example, block, hook] = await Promise.all([
+		crawlUI(uiPath),
+		crawlExample(examplePath),
+		crawlBlock(blockPath),
+		crawlHook(hookPath),
+	]);
 
-		registry.push(...ui, ...example, ...block, ...hook);
-	}
+	registry.push(...ui, ...example, ...block, ...hook);
 
 	return registry;
 }
 
-async function crawlUI(rootPath: string, style: RegistryStyle) {
+async function crawlUI(rootPath: string) {
 	const dir = fs.readdirSync(rootPath, { recursive: true, withFileTypes: true });
 
 	const uiRegistry: Registry = [];
@@ -71,14 +67,14 @@ async function crawlUI(rootPath: string, style: RegistryStyle) {
 		if (!dirent.isDirectory()) continue;
 
 		const componentPath = path.resolve(rootPath, dirent.name);
-		const ui = await buildUIRegistry(componentPath, dirent.name, style);
+		const ui = await buildUIRegistry(componentPath, dirent.name);
 		uiRegistry.push(ui);
 	}
 
 	return uiRegistry;
 }
 
-async function buildUIRegistry(componentPath: string, componentName: string, style: RegistryStyle) {
+async function buildUIRegistry(componentPath: string, componentName: string) {
 	const dir = fs.readdirSync(componentPath, {
 		withFileTypes: true,
 	});
@@ -108,7 +104,6 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 	}
 
 	return {
-		style,
 		type,
 		files,
 		name: componentName,
@@ -119,7 +114,7 @@ async function buildUIRegistry(componentPath: string, componentName: string, sty
 	} satisfies RegistryItem;
 }
 
-async function crawlExample(rootPath: string, style: RegistryStyle) {
+async function crawlExample(rootPath: string) {
 	const type = `registry:example` as const;
 
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
@@ -139,7 +134,6 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 			name: dirent.name,
 			content: source,
 			path: relativePath,
-			style,
 			target: dirent.name,
 			type,
 		};
@@ -148,7 +142,6 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 		registry.push({
 			name,
 			type,
-			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
 			dependencies: Array.from(dependencies).map((dep) =>
@@ -160,7 +153,7 @@ async function crawlExample(rootPath: string, style: RegistryStyle) {
 	return registry;
 }
 
-async function buildBlockRegistry(blockPath: string, blockName: string, style: RegistryStyle) {
+async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
 
 	const files: RegistryItemFile[] = [];
@@ -191,7 +184,6 @@ async function buildBlockRegistry(blockPath: string, blockName: string, style: R
 	}
 
 	return {
-		style,
 		type: "registry:block",
 		files,
 		name: blockName,
@@ -200,7 +192,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string, style: R
 	} satisfies RegistryItem;
 }
 
-async function crawlBlock(rootPath: string, style: RegistryStyle) {
+async function crawlBlock(rootPath: string) {
 	const type = `registry:block` as const;
 
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
@@ -212,7 +204,6 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 			const result = await buildBlockRegistry(
 				`${rootPath}/${dirent.name}`,
 				dirent.name,
-				style
 			);
 			registry.push(result);
 			continue;
@@ -229,7 +220,6 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 			name: dirent.name,
 			content: source,
 			path: relativePath,
-			style,
 			target: dirent.name,
 			type,
 		};
@@ -238,7 +228,6 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 		registry.push({
 			name,
 			type,
-			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
 			dependencies: Array.from(dependencies),
@@ -248,7 +237,7 @@ async function crawlBlock(rootPath: string, style: RegistryStyle) {
 	return registry;
 }
 
-async function crawlHook(rootPath: string, style: RegistryStyle) {
+async function crawlHook(rootPath: string) {
 	const type = `registry:hook` as const;
 
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
@@ -268,7 +257,6 @@ async function crawlHook(rootPath: string, style: RegistryStyle) {
 			name: dirent.name,
 			content: source,
 			path: relativePath,
-			style,
 			target: dirent.name,
 			type,
 		};
@@ -277,7 +265,6 @@ async function crawlHook(rootPath: string, style: RegistryStyle) {
 		registry.push({
 			name,
 			type,
-			style,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
 			dependencies: Array.from(dependencies),

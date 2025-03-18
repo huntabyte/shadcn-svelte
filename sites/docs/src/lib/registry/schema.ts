@@ -1,7 +1,5 @@
 import * as z from "zod";
 
-export const registryStyleSchema = z.enum(["default", "new-york"]);
-
 // This also defines the order they appear on the blocks page.
 export const blockNames = [
 	"sidebar-01",
@@ -70,7 +68,6 @@ export const registryItemCssVarsSchema = z.object({
 export const registryEntrySchema = z.object({
 	name: z.string(),
 	type: registryItemTypeSchema,
-	style: registryStyleSchema,
 	description: z.string().optional(),
 	dependencies: z.array(z.string()).default([]),
 	registryDependencies: z.array(z.string()).default([]),
@@ -87,7 +84,6 @@ export const registrySchema = z.array(registryEntrySchema);
 
 export type RegistryEntry = z.output<typeof registryEntrySchema>;
 export type RegistryItemFile = z.output<typeof registryItemFileSchema>;
-export type RegistryStyle = z.output<typeof registryStyleSchema>;
 export type Registry = z.output<typeof registrySchema>;
 
 export type BlockName = (typeof blockNames)[number];
@@ -96,7 +92,6 @@ export const blockSchema = z.object({
 	name: z.enum(blockNames),
 	type: z.literal("registry:block"),
 	description: z.string(),
-	style: registryStyleSchema,
 	container: z
 		.object({
 			height: z.string().optional(),
