@@ -21,7 +21,7 @@ export function setRegistry(url: string) {
 	}
 }
 
-function getRegistryUrl(path: string) {
+export function getRegistryUrl(path: string) {
 	if (!baseUrl) throw new Error("Registry URL not set");
 
 	if (isUrl(path)) {
@@ -83,8 +83,8 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			const lang = config.typescript ? "ts" : "js";
-			const [item] = await fetchRegistry([`${lang}/${name}.json`]);
+			const itemPath = getRegistryItemPath(name, config);
+			const [item] = await fetchRegistry([itemPath]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -108,8 +108,7 @@ export async function resolveTree({
 
 export async function fetchTree(config: Config, tree: RegistryIndex) {
 	try {
-		const lang = config.typescript ? "ts" : "js";
-		const paths = tree.map((item) => `${lang}/${item.name}.json`);
+		const paths = tree.map((item) => getRegistryItemPath(item.name, config));
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
@@ -117,6 +116,12 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
+}
+
+export function getRegistryItemPath(name: string, config: Config) {
+	const lang = config.typescript ? "ts" : "js";
+
+	return `${lang}/${name}.json`;
 }
 
 export function getItemTargetPath(
