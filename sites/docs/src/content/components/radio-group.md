@@ -3,7 +3,7 @@ title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/radio-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/radio-group
   doc: https://next.bits-ui.com/docs/components/radio-group
   api: https://next.bits-ui.com/docs/components/radio-group#api-reference
 ---

@@ -3,11 +3,11 @@
 	import Code from "@lucide/svelte/icons/code";
 	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
-	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { config } from "$lib/stores/index.js";
 	import DocsPager from "$lib/components/docs/docs-pager.svelte";
 	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
-	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
+	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/state";

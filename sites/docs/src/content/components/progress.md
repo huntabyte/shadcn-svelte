@@ -3,7 +3,7 @@ title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/progress
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/progress
   doc: https://next.bits-ui.com/docs/components/progress
   api: https://next.bits-ui.com/docs/components/progress#api-reference
 ---

@@ -6,8 +6,8 @@
 	import Sun from "@lucide/svelte/icons/sun";
 	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
 

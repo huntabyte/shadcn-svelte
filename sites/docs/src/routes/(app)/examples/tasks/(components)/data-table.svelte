@@ -20,9 +20,9 @@
 	} from "@tanstack/table-core";
 	import DataTableToolbar from "./data-table-toolbar.svelte";
 	import DataTablePagination from "./data-table-pagination.svelte";
-	import { createSvelteTable } from "$lib/registry/new-york/ui/data-table/data-table.svelte.js";
-	import FlexRender from "$lib/registry/new-york/ui/data-table/flex-render.svelte";
-	import * as Table from "$lib/registry/new-york/ui/table/index.js";
+	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
+	import FlexRender from "$lib/registry/ui/data-table/flex-render.svelte";
+	import * as Table from "$lib/registry/ui/table/index.js";
 
 	let { columns, data }: { columns: ColumnDef<TData, TValue>[]; data: TData[] } = $props();
 

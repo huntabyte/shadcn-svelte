@@ -1,11 +1,9 @@
 <script lang="ts">
 	import type { Component, Snippet } from "svelte";
 	import * as Icon from "./icons/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Index } from "$lib/../__registry__/index.js";
-	import { config } from "$lib/stores/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
-	import StyleSwitcher from "$lib/components/docs/style-switcher.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 
 	let {
@@ -18,7 +16,7 @@
 		style,
 		...restProps
 	}: Omit<PrimitiveDivAttributes, "style" | "form"> & {
-		name: keyof (typeof Index)["default"];
+		name: keyof (typeof Index);
 		align?: "center" | "start" | "end";
 		style?: string;
 		form?: unknown;
@@ -28,7 +26,7 @@
 	let component: Promise<Component> = $state() as Promise<Component>;
 
 	$effect(() => {
-		component = Index[$config.style][name]?.component() as Promise<Component>;
+		component = Index[name]?.component() as Promise<Component>;
 	});
 </script>
 
@@ -72,9 +70,6 @@
 			</Tabs.List>
 		</div>
 		<Tabs.Content value="preview" class="relative rounded-md border">
-			<div class="flex items-center justify-between p-4">
-				<StyleSwitcher />
-			</div>
 			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn(

@@ -8,7 +8,6 @@
 		chunk: RawBlockChunk;
 		block: {
 			name: string;
-			style: string;
 			container: {
 				height: string;
 				className: string;

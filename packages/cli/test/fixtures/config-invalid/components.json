@@ -1,6 +1,5 @@
 {
-	"style": "new-york",
-	"tailwiknd": {
+	"tailwind": {
 		"config": "tailwind.config.js",
 		"css": "src/app.css",
 		"baseColor": "zinc"

@@ -1,8 +1,7 @@
 <script lang="ts">
 	import BlockToolbar from "./block-toolbar.svelte";
-	import { config } from "$lib/stores/config.js";
 
-	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
+	import * as Resizable from "$lib/registry/ui/resizable/index.js";
 	import * as Icon from "$lib/components/docs/icons/index.js";
 	import type { Block } from "$lib/registry/schema.js";
 
@@ -12,8 +11,7 @@
 	let { block }: { block: Block } = $props();
 </script>
 
-{#if $config.style === block.style}
-	<div
+<div
 		id={block.name}
 		class="relative grid w-full scroll-m-20 gap-4"
 		style="--container-height: {block.container?.height ?? ''};"
@@ -51,7 +49,7 @@
 					class="bg-background absolute left-0 top-0 z-20 hidden w-[970px] max-w-none data-[block=sidebar-10]:left-auto data-[block=sidebar-10]:right-0 data-[block=sidebar-11]:-top-1/3 data-[block=sidebar-14]:left-auto data-[block=sidebar-14]:right-0 data-[block=login-01]:max-w-full data-[block=sidebar-13]:max-w-full data-[block=sidebar-15]:max-w-full sm:w-[1280px] md:hidden dark:block md:dark:hidden"
 				/>
 				<iframe
-					src={`/blocks/${block.style}/${block.name}`}
+					src={`/blocks/${block.name}`}
 					height={block.container?.height}
 					class="chunk-mode bg-background relative z-20 hidden w-full md:block"
 					onload={() => {
@@ -66,4 +64,3 @@
 			<Resizable.Pane defaultSize={0} minSize={0} />
 		</Resizable.PaneGroup>
 	</div>
-{/if}

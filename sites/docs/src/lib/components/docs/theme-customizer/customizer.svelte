@@ -6,10 +6,10 @@
 	import Sun from "@lucide/svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";
 </script>
@@ -66,24 +66,6 @@
 						</p>
 					</Popover.Content>
 				</Popover.Root>
-			</div>
-			<div class="grid grid-cols-3 gap-2">
-				<Button
-					variant="outline"
-					size="sm"
-					onclick={() => ($config.style = "default")}
-					class={cn($config.style === "default" && "border-primary border-2")}
-				>
-					Default
-				</Button>
-				<Button
-					variant="outline"
-					size="sm"
-					onclick={() => ($config.style = "new-york")}
-					class={cn($config.style === "new-york" && "border-primary border-2")}
-				>
-					New York
-				</Button>
 			</div>
 		</div>
 		<div class="5 space-y-1">

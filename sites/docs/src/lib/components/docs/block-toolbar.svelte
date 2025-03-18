@@ -5,11 +5,11 @@
 	import Smartphone from "@lucide/svelte/icons/smartphone";
 	import Tablet from "@lucide/svelte/icons/tablet";
 	import Terminal from "@lucide/svelte/icons/terminal";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	import * as ToggleGroup from "$lib/registry/new-york/ui/toggle-group/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import type { Block } from "$lib/registry/schema.js";
-	import type { ResizablePane } from "$lib/registry/new-york/ui/resizable/index.js";
+	import type { ResizablePane } from "$lib/registry/ui/resizable/index.js";
 	import { CopyToClipboard } from "$lib/utils/copy-to-clipboard.svelte.js";
 	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
 
@@ -25,7 +25,7 @@
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 
 	const blockSource = $derived(
-		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/new-york/block/${block.name}`
+		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/block/${block.name}`
 	);
 </script>
 

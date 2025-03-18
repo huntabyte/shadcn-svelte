@@ -3,7 +3,7 @@ title: Tooltip
 description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/tooltip
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/tooltip
   doc: https://next.bits-ui.com/docs/components/tooltip
   api: https://next.bits-ui.com/docs/components/tooltip#api-reference
 ---
