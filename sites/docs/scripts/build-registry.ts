@@ -151,7 +151,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 	// Create the registry directory
 	const targetPath = path.join(REGISTRY_PATH);
-	const targetTsPath = `${targetPath}/ts`
+	const targetTsPath = `${targetPath}/ts`;
 	const targetJsPath = `${targetPath}/js`;
 
 	// Create directory if it doesn't exist.

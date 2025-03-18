@@ -37,6 +37,7 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
+		"@eslint/compat": "^1.2.7",
 		"@eslint/js": "^9.22.0",
 		"@typescript-eslint/eslint-plugin": "^8.26.1",
 		"@typescript-eslint/scope-manager": "^8.26.1",

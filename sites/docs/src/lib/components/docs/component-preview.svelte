@@ -16,7 +16,7 @@
 		style,
 		...restProps
 	}: Omit<PrimitiveDivAttributes, "style" | "form"> & {
-		name: keyof (typeof Index);
+		name: keyof typeof Index;
 		align?: "center" | "start" | "end";
 		style?: string;
 		form?: unknown;

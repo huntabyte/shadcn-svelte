@@ -4,10 +4,7 @@ import { walk, type Node } from "estree-walker";
 import fs from "node:fs";
 import path from "node:path";
 import { parse, preprocess } from "svelte/compiler";
-import {
-	type Registry,
-	type RegistryItemFile,
-} from "../src/lib/registry";
+import { type Registry, type RegistryItemFile } from "../src/lib/registry";
 import { getPageBlockTarget } from "../src/lib/registry/registry-block-meta.js";
 import config from "../svelte.config.js";
 import { TMP_NEXT_DEPS } from "./tmp";
@@ -201,10 +198,7 @@ async function crawlBlock(rootPath: string) {
 
 	for (const dirent of dir) {
 		if (!dirent.isFile()) {
-			const result = await buildBlockRegistry(
-				`${rootPath}/${dirent.name}`,
-				dirent.name,
-			);
+			const result = await buildBlockRegistry(`${rootPath}/${dirent.name}`, dirent.name);
 			registry.push(result);
 			continue;
 		}
