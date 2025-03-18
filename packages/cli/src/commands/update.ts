@@ -183,7 +183,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		names: selectedComponents.map((com) => com.name),
 		config,
 	});
-	const payload = (await registry.fetchTree(tree)).sort((a, b) => a.name.localeCompare(b.name));
+	const payload = (await registry.fetchTree(config, tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
