@@ -29,7 +29,7 @@ const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
 	"clsx",
 	"tailwind-merge",
-	"tailwindcss-animate",
+	"tw-animate-css",
 ] as const;
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
