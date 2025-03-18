@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.9
+
+### Patch Changes
+
+- 962d8be: fix: Improve error message when failing to fetch base colors.
+
 ## 1.0.0-next.8
 
 ### Patch Changes
