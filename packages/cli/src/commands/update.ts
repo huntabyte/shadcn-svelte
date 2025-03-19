@@ -213,7 +213,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 					let filePath = path.resolve(targetDir, item.name, file.name);
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replaceAll(".ts", ".js");
+						filePath = filePath.replace(".ts", ".js");
 					}
 
 					// Run transformers.
@@ -223,7 +223,13 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				const installedFiles = await fs.readdir(componentDir);
-				const remoteFiles = item.files.map((file) => file.name);
+				const remoteFiles = item.files.map((file) => {
+					if (!config.typescript && file.name.endsWith(".ts")) {
+						return file.name.replace(".ts", ".js");
+					}
+
+					return file.name;
+				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))
 					.map((file) => path.resolve(targetDir, item.name, file));
