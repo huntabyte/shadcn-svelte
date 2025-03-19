@@ -151,17 +151,10 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 	// Create the registry directory
 	const targetPath = path.join(REGISTRY_PATH);
-	const targetTsPath = `${targetPath}/ts`;
-	const targetJsPath = `${targetPath}/js`;
 
 	// Create directory if it doesn't exist.
-	if (!fs.existsSync(targetTsPath)) {
-		fs.mkdirSync(targetTsPath, { recursive: true });
-	}
-
-	// Create JS directory if it doesn't exist.
-	if (!fs.existsSync(targetJsPath)) {
-		fs.mkdirSync(targetJsPath, { recursive: true });
+	if (!fs.existsSync(targetPath)) {
+		fs.mkdirSync(targetPath, { recursive: true });
 	}
 
 	for (const item of result.data) {
@@ -196,20 +189,9 @@ export const Index = {
 			files,
 		};
 
-		const jsPayload = {
-			...item,
-			files: jsFiles,
-		};
-
 		writeFileWithDirs(
-			path.join(targetTsPath, `${item.name}.json`),
+			path.join(targetPath, `${item.name}.json`),
 			JSON.stringify(payload, null, "\t"),
-			"utf-8"
-		);
-
-		writeFileWithDirs(
-			path.join(targetJsPath, `${item.name}.json`),
-			JSON.stringify(jsPayload, null, "\t"),
 			"utf-8"
 		);
 	}

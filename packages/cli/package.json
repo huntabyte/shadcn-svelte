@@ -46,7 +46,8 @@
 		"execa": "^7.2.0",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4",
-		"semver": "^7.7.1"
+		"semver": "^7.7.1",
+		"sv-strip": "^0.0.7"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
