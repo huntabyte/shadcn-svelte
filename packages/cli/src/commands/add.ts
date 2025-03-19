@@ -275,9 +275,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 						await fs.mkdir(dir, { recursive: true });
 					}
 
-					if (!config.typescript && filePath.endsWith('.ts')) {
-						filePath = filePath.replaceAll('.ts', '.js');
-						file.target = file.target.replaceAll('.ts', '.js');
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replaceAll(".ts", ".js");
+						file.target = file.target.replaceAll(".ts", ".js");
 					}
 
 					await fs.writeFile(filePath, content);

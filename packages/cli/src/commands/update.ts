@@ -13,7 +13,7 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
-import { transformImports } from "../utils/transformers.js";
+import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -183,9 +183,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		names: selectedComponents.map((com) => com.name),
 		config,
 	});
-	const payload = (await registry.fetchTree(tree)).sort((a, b) =>
-		a.name.localeCompare(b.name)
-	);
+	const payload = (await registry.fetchTree(tree)).sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
@@ -212,10 +210,14 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					const filePath = path.resolve(targetDir, item.name, file.name);
+					let filePath = path.resolve(targetDir, item.name, file.name);
+
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replaceAll(".ts", ".js");
+					}
 
 					// Run transformers.
-					const content = transformImports(file.content, config);
+					const content = await transformContent(file.content, filePath, config);
 
 					await fs.writeFile(filePath, content);
 				}
