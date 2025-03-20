@@ -89,7 +89,8 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			// gets the baseUrl for the registry
 			.map((c) => urlSplitLastPathSegment(new URL(c))[0]) ?? [];
 
-	const onlyRemoteComponents = options.components?.length && remoteRegistries.length === options.components.length;
+	const onlyRemoteComponents =
+		options.components?.length && remoteRegistries.length === options.components.length;
 
 	// if the components aren't just remote components or we want to include all components
 	// then we add then shadcn-svelte registry
@@ -132,7 +133,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const registryDepMap = new Map<string, Map<string, string[]>>();
 	for (const [url, index] of registryIndexes) {
 		const registryDeps = new Map<string, string[]>();
-		
+
 		for (const item of index) {
 			registryDeps.set(item.name, item.registryDependencies);
 		}
@@ -154,7 +155,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			let [baseUrl, item] = urlSplitLastPathSegment(new URL(name));
 
 			componentRegistry = baseUrl;
-			componentName = item.replace('.json', '');
+			componentName = item.replace(".json", "");
 		}
 
 		// we already defined this so we know it exists
@@ -198,11 +199,13 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			includeRegDeps: false,
 			config,
 		});
-	
-		return await registry.fetchTree(url, tree);
-	}
 
-	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flatMap(p => p);
+		return await registry.fetchTree(url, tree);
+	};
+
+	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flatMap(
+		(p) => p
+	);
 
 	if (payload.length === 0) cancel("Selected components not found.");
 

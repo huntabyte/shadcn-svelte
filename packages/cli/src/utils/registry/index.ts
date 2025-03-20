@@ -27,13 +27,13 @@ export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
 /** Concurrently loads all of the registry indexes */
 export async function getRegistryIndexes(registryUrls: string[]) {
-	const result = new Map<string, RegistryIndex>()
+	const result = new Map<string, RegistryIndex>();
 
 	const loadRegistry = async (registryUrl: string) => {
 		const index = await getRegistryIndex(registryUrl);
 
 		result.set(registryUrl, index);
-	}
+	};
 
 	await Promise.all(registryUrls.map((url) => loadRegistry(url)));
 

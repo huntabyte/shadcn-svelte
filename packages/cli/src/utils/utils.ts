@@ -9,7 +9,7 @@ export function isUrl(path: string) {
 
 /** Returns the base url and the last segment of the pathname of the given url. Expects a valid URL. */
 export function urlSplitLastPathSegment(url: URL): [string, string] {
-	const lastIndex = url.toString().lastIndexOf('/');
+	const lastIndex = url.toString().lastIndexOf("/");
 
 	const urlString = url.toString();
 
