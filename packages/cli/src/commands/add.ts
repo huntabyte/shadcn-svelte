@@ -34,7 +34,7 @@ type AddOptions = v.InferOutput<typeof addOptionsSchema>;
 export const add = new Command()
 	.command("add")
 	.description("add components to your project")
-	.argument("[components...]", "name of components")
+	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "install all components to your project", false)
@@ -63,10 +63,6 @@ export const add = new Command()
 				);
 			}
 
-			const registryEnv = getEnvRegistry();
-
-			registry.setRegistry(registryEnv ? registryEnv : config.registry);
-
 			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
@@ -83,7 +79,11 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const uiRegistryIndex = await registry.getRegistryIndex();
+	const registryEnv = getEnvRegistry();
+
+	const registryUrl = registryEnv ? registryEnv : config.registry;
+
+	const uiRegistryIndex = await registry.getRegistryIndex(registryUrl);
 
 	let selectedComponents = new Set(
 		options.all ? uiRegistryIndex.map(({ name }) => name) : options.components
@@ -136,6 +136,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			 * and add them to the `selectedComponents` set.
 			 */
 			const tree = await registry.resolveTree({
+				baseUrl: registryUrl,
 				index: uiRegistryIndex,
 				names: [name],
 				includeRegDeps: true,
@@ -156,13 +157,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	}
 
 	const tree = await registry.resolveTree({
+		baseUrl: registryUrl,
 		index: uiRegistryIndex,
 		names: Array.from(selectedComponents),
 		includeRegDeps: false,
 		config,
 	});
 
-	const payload = await registry.fetchTree(tree);
+	const payload = await registry.fetchTree(registryUrl, tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 	if (payload.length === 0) cancel("Selected components not found.");

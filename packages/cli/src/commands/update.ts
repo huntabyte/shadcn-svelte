@@ -59,10 +59,6 @@ export const update = new Command()
 				);
 			}
 
-			const registryEnv = getEnvRegistry();
-
-			registry.setRegistry(registryEnv ? registryEnv : config.registry);
-
 			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
@@ -83,8 +79,13 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
+	const registryEnv = getEnvRegistry();
+
+	const registryUrl = registryEnv ? registryEnv : config.registry;
+
 	const components = options.components;
-	const registryIndex = await registry.getRegistryIndex();
+
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -179,11 +180,14 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	const tree = await registry.resolveTree({
+		baseUrl: registryUrl,
 		index: registryIndex,
 		names: selectedComponents.map((com) => com.name),
 		config,
 	});
-	const payload = (await registry.fetchTree(tree)).sort((a, b) => a.name.localeCompare(b.name));
+	const payload = (await registry.fetchTree(registryUrl, tree)).sort((a, b) =>
+		a.name.localeCompare(b.name)
+	);
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
