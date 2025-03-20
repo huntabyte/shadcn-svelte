@@ -1,15 +1,8 @@
 import type { Config } from "./get-config.js";
-import * as prettier from "prettier";
-import tsBlankSpace from "ts-blank-space";
-import prettierPluginSvelte from "prettier-plugin-svelte";
+import sucrase from 'sucrase';
 import { strip } from "sv-strip";
 
-const prettierConfig: prettier.Config = {
-	useTabs: true,
-	singleQuote: false,
-	trailingComma: "es5",
-	printWidth: 100,
-};
+const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/(?:[ \t]*\r?\n){3,}/g);
 
 export async function transformContent(content: string, filename: string, config: Config) {
 	content = transformImports(content, config);
@@ -33,13 +26,9 @@ export async function stripTypes(content: string, filename: string) {
 	if (filename.endsWith(".svelte")) {
 		content = strip(content, { filename });
 	} else {
-		content = tsBlankSpace(content);
+		content = sucrase.transform(content, { transforms: ['typescript'] }).code;
 	}
 
-	return await prettier.format(content, {
-		...prettierConfig,
-		filepath: filename,
-		plugins: [prettierPluginSvelte],
-		overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
-	});
+	// cursed formatting
+	return content.replaceAll(CONSECUTIVE_NEWLINE_REGEX, "\n");
 }

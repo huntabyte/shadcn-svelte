@@ -80,21 +80,15 @@ importers:
       node-fetch-native:
         specifier: ^1.6.4
         version: 1.6.4
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
-      prettier-plugin-svelte:
-        specifier: ^3.3.3
-        version: 3.3.3(prettier@3.5.3)(svelte@5.23.2)
       semver:
         specifier: ^7.7.1
         version: 7.7.1
+      sucrase:
+        specifier: ^3.35.0
+        version: 3.35.0
       sv-strip:
         specifier: ^0.0.7
         version: 0.0.7
-      ts-blank-space:
-        specifier: ^0.6.1
-        version: 0.6.1
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -4649,10 +4643,6 @@ packages:
     resolution: {integrity: sha512-G6GkD6oEJ7j5gG2e5qAizfE4Ap7JXMpnN0CEp9FEt4LExdaqsdwB90aQsaAwcKhiSxVk5KoqFW9xfxTQ4lBUnQ==}
     engines: {node: '>=18.0.0'}
 
-  ts-blank-space@0.6.1:
-    resolution: {integrity: sha512-LcM3W5HEyzTaXUeQITV8ploUOGe+zuuoFYsCfPscFLhx3bZn2sSfHMKxsULVG/zA7an9UhReiHv4Kk/6QzlpXQ==}
-    engines: {node: '>=18.0.0'}
-
   ts-deepmerge@7.0.1:
     resolution: {integrity: sha512-JBFCmNenZdUCc+TRNCtXVM6N8y/nDQHAcpj5BlwXG/gnogjam1NunulB9ia68mnqYI446giMfpqeBFFkOleh+g==}
     engines: {node: '>=14.13.1'}
@@ -9074,11 +9064,6 @@ snapshots:
       prettier: 3.5.3
       svelte: 5.23.1
 
-  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.23.2):
-    dependencies:
-      prettier: 3.5.3
-      svelte: 5.23.2
-
   prettier-plugin-tailwindcss@0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.23.1))(prettier@3.5.3):
     dependencies:
       prettier: 3.5.3
@@ -9861,10 +9846,6 @@ snapshots:
   ts-blank-space@0.4.4:
     dependencies:
       typescript: 5.6.3
-
-  ts-blank-space@0.6.1:
-    dependencies:
-      typescript: 5.8.2
 
   ts-deepmerge@7.0.1: {}
 
