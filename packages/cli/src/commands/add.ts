@@ -83,10 +83,10 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	const registryUrl = registry.getRegistryUrl(config);
 
+	// get the base urls for any of the remote registries
 	const remoteRegistries =
 		options.components
 			?.filter((c) => isUrl(c))
-			// gets the baseUrl for the registry
 			.map((c) => urlSplitLastPathSegment(new URL(c))[0]) ?? [];
 
 	const onlyRemoteComponents =
@@ -108,6 +108,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		options.all ? ogIndex?.map(({ name }) => name) : options.components
 	);
 
+	// if the user hasn't passed any components prompt them to select components
 	if (ogIndex && selectedComponents.size === 0) {
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
@@ -144,6 +145,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const registryComponents = new Map<string, Set<string>>();
 
 	// theoretically this should all run without fetch calls if the index includes all the files
+	// in other words no need to parallelize
 	for (const name of selectedComponents) {
 		let componentName = name;
 		let componentRegistry = registryUrl;
@@ -169,23 +171,24 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			includeRegDeps: true,
 		});
 
-		const selectedComponents = registryComponents.get(componentRegistry) ?? new Set();
+		const installedComponents = registryComponents.get(componentRegistry) ?? new Set();
 
-		selectedComponents.add(componentName);
+		// add the current component
+		installedComponents.add(componentName);
 
 		for (const item of tree) {
 			for (const dep of item.registryDependencies) {
 				// we first add the reg dep to the selected components
-				selectedComponents.add(dep);
+				installedComponents.add(dep);
 				const depRegDeps: string[] = registryDepMap.get(componentRegistry)!.get(dep) ?? [];
 				// we then add each of that dep's deps to the `selectedComponents` set
 				for (const depRegDep of depRegDeps) {
-					selectedComponents.add(depRegDep);
+					installedComponents.add(depRegDep);
 				}
 			}
 		}
 
-		registryComponents.set(componentRegistry, selectedComponents);
+		registryComponents.set(componentRegistry, installedComponents);
 	}
 
 	const fetchContent = async (url: string): Promise<RegistryWithContent> => {
