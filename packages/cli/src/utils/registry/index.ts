@@ -83,8 +83,7 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			const itemPath = getRegistryItemPath(name, config);
-			const [item] = await fetchRegistry([itemPath]);
+			const [item] = await fetchRegistry([`${name}.json`]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -106,9 +105,9 @@ export async function resolveTree({
 	);
 }
 
-export async function fetchTree(config: Config, tree: RegistryIndex) {
+export async function fetchTree(tree: RegistryIndex) {
 	try {
-		const paths = tree.map((item) => getRegistryItemPath(item.name, config));
+		const paths = tree.map((item) => `${item.name}.json`);
 		const result = await fetchRegistry(paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
@@ -116,12 +115,6 @@ export async function fetchTree(config: Config, tree: RegistryIndex) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
-}
-
-export function getRegistryItemPath(name: string, config: Config) {
-	const lang = config.typescript ? "ts" : "js";
-
-	return `${lang}/${name}.json`;
 }
 
 export function getItemTargetPath(

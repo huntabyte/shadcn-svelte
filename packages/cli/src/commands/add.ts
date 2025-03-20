@@ -12,7 +12,7 @@ import { getEnvProxy, getEnvRegistry } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
-import { transformImports } from "../utils/transformers.js";
+import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -162,7 +162,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		config,
 	});
 
-	const payload = await registry.fetchTree(config, tree);
+	const payload = await registry.fetchTree(tree);
 	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
 
 	if (payload.length === 0) cancel("Selected components not found.");
@@ -265,14 +265,19 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				let pageName: string | undefined;
 				for (const file of item.files) {
 					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					const filePath = path.resolve(targetDir, file.target);
+					let filePath = path.resolve(targetDir, file.target);
 
 					// Run transformers.
-					const content = transformImports(file.content, config);
+					const content = await transformContent(file.content, filePath, config);
 
 					const dir = path.parse(filePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
+					}
+
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replace(".ts", ".js");
+						file.target = file.target.replace(".ts", ".js");
 					}
 
 					await fs.writeFile(filePath, content);
