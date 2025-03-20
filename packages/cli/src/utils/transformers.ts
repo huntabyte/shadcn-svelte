@@ -2,7 +2,7 @@ import type { Config } from "./get-config.js";
 import sucrase from 'sucrase';
 import { strip } from "sv-strip";
 
-const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/(?:[ \t]*\r?\n){3,}/g);
+const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
 export async function transformContent(content: string, filename: string, config: Config) {
 	content = transformImports(content, config);
