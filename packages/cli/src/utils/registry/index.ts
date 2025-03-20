@@ -7,15 +7,37 @@ import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
-export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
+export function getRegistryUrl(config: Config) {
+	let url = process.env.COMPONENTS_REGISTRY_URL;
 
-export function getRegistryUrl(baseUrl: string, path: string) {
-	if (isUrl(path)) {
-		const url = new URL(path);
-		return url.toString();
+	if (url) return url;
+
+	url = config.registry;
+
+	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
+	// this will be removed once we have a proper solution and or we merge with main
+	if (url === "https://next.shadcn-svelte.com/registry") {
+		return "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
 	}
 
-	return `${baseUrl}/${path}`;
+	return url;
+}
+
+export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
+
+/** Concurrently loads all of the registry indexes */
+export async function getRegistryIndexes(registryUrls: string[]) {
+	const result = new Map<string, RegistryIndex>()
+
+	const loadRegistry = async (registryUrl: string) => {
+		const index = await getRegistryIndex(registryUrl);
+
+		result.set(registryUrl, index);
+	}
+
+	await Promise.all(registryUrls.map((url) => loadRegistry(url)));
+
+	return result;
 }
 
 export async function getRegistryIndex(baseUrl: string) {
@@ -129,7 +151,7 @@ async function fetchRegistry(baseUrl: string, paths: string[]) {
 	try {
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const url = getRegistryUrl(baseUrl, path);
+				const url = `${baseUrl}/${path}`;
 
 				const response = await fetch(url, {
 					...proxy,
@@ -153,15 +175,6 @@ async function fetchRegistry(baseUrl: string, paths: string[]) {
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
-	}
-}
-
-function isUrl(path: string) {
-	try {
-		new URL(path);
-		return true;
-	} catch {
-		return false;
 	}
 }
 

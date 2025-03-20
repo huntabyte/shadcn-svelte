@@ -8,7 +8,7 @@ import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
-import { getEnvProxy, getEnvRegistry } from "../utils/get-env-proxy.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
@@ -79,9 +79,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryEnv = getEnvRegistry();
-
-	const registryUrl = registryEnv ? registryEnv : config.registry;
+	const registryUrl = registry.getRegistryUrl(config);
 
 	const components = options.components;
 

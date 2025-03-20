@@ -57,6 +57,8 @@ export const registryItemWithContentSchema = v.object({
 	}).entries,
 });
 
+export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
+
 export const registryWithContentSchema = v.array(registryItemWithContentSchema);
 
 export const registryBaseColorSchema = v.object({
@@ -71,3 +73,5 @@ export const registryBaseColorSchema = v.object({
 	inlineColorsTemplate: v.string(),
 	cssVarsTemplate: v.string(),
 });
+
+export type RegistryWithContent = v.InferOutput<typeof registryWithContentSchema>;

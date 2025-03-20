@@ -23,7 +23,6 @@ import * as templates from "../utils/templates.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
 import { checkPreconditions } from "../utils/preconditions.js";
-import { getEnvRegistry } from "../utils/get-env-proxy.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -80,10 +79,6 @@ export const init = new Command()
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
-
-			const registryEnv = getEnvRegistry();
-
-			registry.setRegistry(registryEnv ? registryEnv : config.registry);
 
 			await runInit(cwd, config, options);
 
@@ -267,6 +262,8 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 }
 
 export async function runInit(cwd: string, config: Config, options: InitOptions) {
+	const registryUrl = registry.getRegistryUrl(config);
+
 	const tasks: p.Task[] = [];
 
 	// Write to file.
@@ -303,7 +300,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			}
 
 			// Write css file.
-			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor);
+			const baseColor = await registry.getRegistryBaseColor(registryUrl, config.tailwind.baseColor);
 			if (baseColor) {
 				await fs.writeFile(
 					config.resolvedPaths.tailwindCss,
