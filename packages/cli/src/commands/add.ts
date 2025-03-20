@@ -101,7 +101,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	// maps the registry baseUrl to the index of the registry
 	const registryIndexes = await registry.getRegistryIndexes(remoteRegistries);
 
-	/** The index of the shadcn-svelte registry */
+	// The index of the shadcn-svelte registry
 	const ogIndex = registryIndexes.get(registryUrl);
 
 	let selectedComponents = new Set(
