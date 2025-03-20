@@ -48,7 +48,7 @@
 		"node-fetch-native": "^1.6.4",
 		"semver": "^7.7.1",
 		"sucrase": "^3.35.0",
-		"sv-strip": "^0.0.7"
+		"sv-strip": "^0.1.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",

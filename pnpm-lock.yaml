@@ -87,8 +87,8 @@ importers:
         specifier: ^3.35.0
         version: 3.35.0
       sv-strip:
-        specifier: ^0.0.7
-        version: 0.0.7
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -4423,8 +4423,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv-strip@0.0.7:
-    resolution: {integrity: sha512-qlTabVoPAOeigzBwGrsgblBNS3fSxHi4lO/EIHBNmSFUkoTwXw2yv/Pb0NROWlX4uoUHb24Awd86V6usQi7wMg==}
+  sv-strip@0.1.0:
+    resolution: {integrity: sha512-kvrVgZAH6HBM6NfLfmgdDfgQRbooPzUn1kotRSZU2TBiCdG9MUUiMnsp+s4t7NyrTytZmV4c1P8nxtzo/8hWqw==}
 
   svelte-check@4.1.1:
     resolution: {integrity: sha512-NfaX+6Qtc8W/CyVGS/F7/XdiSSyXz+WGYA9ZWV3z8tso14V2vzjfXviKaTFEzB7g8TqfgO2FOzP6XT4ApSTUTw==}
@@ -9557,7 +9557,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv-strip@0.0.7:
+  sv-strip@0.1.0:
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.17
