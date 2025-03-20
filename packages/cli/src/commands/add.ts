@@ -150,6 +150,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		let componentName = name;
 		let componentRegistry = registryUrl;
 
+		// handle remote components
 		if (isUrl(name)) {
 			// name should come in like `https://example.com/r/avatar.json`
 			// we split it to get the base url and avatar.json
