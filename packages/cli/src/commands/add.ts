@@ -89,7 +89,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			// gets the baseUrl for the registry
 			.map((c) => urlSplitLastPathSegment(new URL(c))[0]) ?? [];
 
-	const onlyRemoteComponents = remoteRegistries.length === (options.components?.length ?? 0);
+	const onlyRemoteComponents = options.components?.length && remoteRegistries.length === options.components.length;
 
 	// if the components aren't just remote components or we want to include all components
 	// then we add then shadcn-svelte registry
