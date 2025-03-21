@@ -6,8 +6,10 @@
 		setEmblaContext,
 	} from "./context.js";
 	import { cn } from "$lib/utils.js";
+	import type { WithElementRef } from "bits-ui";
 
 	let {
+		ref = $bindable(null),
 		opts = {},
 		plugins = [],
 		setApi = () => {},
@@ -15,7 +17,7 @@
 		class: className,
 		children,
 		...restProps
-	}: CarouselProps = $props();
+	}: WithElementRef<CarouselProps> = $props();
 
 	let carouselState = $state<EmblaContext>({
 		api: undefined,
@@ -87,6 +89,13 @@
 	});
 </script>
 
-<div class={cn("relative", className)} role="region" aria-roledescription="carousel" {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="carousel"
+	class={cn("relative", className)}
+	role="region"
+	aria-roledescription="carousel"
+	{...restProps}
+>
 	{@render children?.()}
 </div>

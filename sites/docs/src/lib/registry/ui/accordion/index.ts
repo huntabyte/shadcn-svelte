@@ -1,8 +1,7 @@
-import { Accordion as AccordionPrimitive } from "bits-ui";
+import Root from "./accordion-root.svelte";
 import Content from "./accordion-content.svelte";
 import Item from "./accordion-item.svelte";
 import Trigger from "./accordion-trigger.svelte";
-const Root = AccordionPrimitive.Root;
 
 export {
 	Root,

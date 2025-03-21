@@ -5,14 +5,13 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		level = 3,
 		...restProps
 	}: AlertDialogPrimitive.TitleProps = $props();
 </script>
 
 <AlertDialogPrimitive.Title
 	bind:ref
+	data-slot="alert-dialog-title"
 	class={cn("text-lg font-semibold", className)}
-	{level}
 	{...restProps}
 />

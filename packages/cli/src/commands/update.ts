@@ -8,7 +8,7 @@ import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
-import { getEnvProxy, getEnvRegistry } from "../utils/get-env-proxy.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
@@ -59,10 +59,6 @@ export const update = new Command()
 				);
 			}
 
-			const registryEnv = getEnvRegistry();
-
-			registry.setRegistry(registryEnv ? registryEnv : config.registry);
-
 			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
@@ -83,8 +79,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
+	const registryUrl = registry.getRegistryUrl(config);
+
 	const components = options.components;
-	const registryIndex = await registry.getRegistryIndex();
+
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -179,11 +178,14 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	const tree = await registry.resolveTree({
+		baseUrl: registryUrl,
 		index: registryIndex,
 		names: selectedComponents.map((com) => com.name),
 		config,
 	});
-	const payload = (await registry.fetchTree(tree)).sort((a, b) => a.name.localeCompare(b.name));
+	const payload = (await registry.fetchTree(registryUrl, tree)).sort((a, b) =>
+		a.name.localeCompare(b.name)
+	);
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
