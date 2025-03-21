@@ -7,33 +7,42 @@ import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
 
-let baseUrl: string | undefined;
+export function getRegistryUrl(config: Config) {
+	let url = process.env.COMPONENTS_REGISTRY_URL;
 
-export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
+	if (url) return url;
 
-export function setRegistry(url: string) {
+	url = config.registry;
+
 	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
 	// this will be removed once we have a proper solution and or we merge with main
 	if (url === "https://next.shadcn-svelte.com/registry") {
-		baseUrl = "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
-	} else {
-		baseUrl = url;
+		return "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
 	}
+
+	return url;
 }
 
-export function getRegistryUrl(path: string) {
-	if (!baseUrl) throw new Error("Registry URL not set");
+export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
-	if (isUrl(path)) {
-		const url = new URL(path);
-		return url.toString();
-	}
-	return `${baseUrl}/${path}`;
+/** Concurrently loads all of the registry indexes */
+export async function getRegistryIndexes(registryUrls: string[]) {
+	const result = new Map<string, RegistryIndex>();
+
+	const loadRegistry = async (registryUrl: string) => {
+		const index = await getRegistryIndex(registryUrl);
+
+		result.set(registryUrl, index);
+	};
+
+	await Promise.all(registryUrls.map((url) => loadRegistry(url)));
+
+	return result;
 }
 
-export async function getRegistryIndex() {
+export async function getRegistryIndex(baseUrl: string) {
 	try {
-		const [result] = await fetchRegistry(["index.json"]);
+		const [result] = await fetchRegistry(baseUrl, ["index.json"]);
 
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {
@@ -52,9 +61,9 @@ export function getBaseColors() {
 	];
 }
 
-export async function getRegistryBaseColor(baseColor: string) {
+export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
+		const [result] = await fetchRegistry(baseUrl, [`colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
@@ -65,6 +74,7 @@ export async function getRegistryBaseColor(baseColor: string) {
 type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
 
 type ResolveTreeProps = {
+	baseUrl: string;
 	index: RegistryIndex;
 	names: string[];
 	includeRegDeps?: boolean;
@@ -73,6 +83,7 @@ type ResolveTreeProps = {
 
 export async function resolveTree({
 	index,
+	baseUrl,
 	names,
 	includeRegDeps = true,
 	config,
@@ -83,7 +94,7 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			const [item] = await fetchRegistry([`${name}.json`]);
+			const [item] = await fetchRegistry(baseUrl, [`${name}.json`]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -92,6 +103,7 @@ export async function resolveTree({
 
 		if (includeRegDeps && entry.registryDependencies) {
 			const dependencies = await resolveTree({
+				baseUrl,
 				index,
 				names: entry.registryDependencies,
 				config,
@@ -105,10 +117,10 @@ export async function resolveTree({
 	);
 }
 
-export async function fetchTree(tree: RegistryIndex) {
+export async function fetchTree(baseUrl: string, tree: RegistryIndex) {
 	try {
 		const paths = tree.map((item) => `${item.name}.json`);
-		const result = await fetchRegistry(paths);
+		const result = await fetchRegistry(baseUrl, paths);
 
 		return v.parse(schemas.registryWithContentSchema, result);
 	} catch (e) {
@@ -133,15 +145,13 @@ export function getItemTargetPath(
 	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
-async function fetchRegistry(paths: string[]) {
-	if (!baseUrl) throw new Error("Registry URL not set");
-
+async function fetchRegistry(baseUrl: string, paths: string[]) {
 	const proxyUrl = getEnvProxy();
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
 	try {
 		const results = await Promise.all(
 			paths.map(async (path) => {
-				const url = getRegistryUrl(path);
+				const url = `${baseUrl}/${path}`;
 
 				const response = await fetch(url, {
 					...proxy,
@@ -165,15 +175,6 @@ async function fetchRegistry(paths: string[]) {
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
-	}
-}
-
-function isUrl(path: string) {
-	try {
-		new URL(path);
-		return true;
-	} catch {
-		return false;
 	}
 }
 

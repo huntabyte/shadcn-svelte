@@ -8,13 +8,15 @@ import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
-import { getEnvProxy, getEnvRegistry } from "../utils/get-env-proxy.js";
+import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { isUrl, urlSplitLastPathSegment } from "../utils/utils.js";
+import { RegistryWithContent } from "../utils/registry/schema.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -34,7 +36,7 @@ type AddOptions = v.InferOutput<typeof addOptionsSchema>;
 export const add = new Command()
 	.command("add")
 	.description("add components to your project")
-	.argument("[components...]", "name of components")
+	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "install all components to your project", false)
@@ -63,10 +65,6 @@ export const add = new Command()
 				);
 			}
 
-			const registryEnv = getEnvRegistry();
-
-			registry.setRegistry(registryEnv ? registryEnv : config.registry);
-
 			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
@@ -83,22 +81,39 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const uiRegistryIndex = await registry.getRegistryIndex();
+	const registryUrl = registry.getRegistryUrl(config);
 
-	let selectedComponents = new Set(
-		options.all ? uiRegistryIndex.map(({ name }) => name) : options.components
-	);
+	// get the base urls for any of the remote registries
+	const remoteRegistries =
+		options.components
+			?.filter((c) => isUrl(c))
+			.map((c) => urlSplitLastPathSegment(new URL(c))[0]) ?? [];
 
-	const registryDepMap = new Map<string, string[]>();
-	for (const item of uiRegistryIndex) {
-		registryDepMap.set(item.name, item.registryDependencies);
+	const onlyRemoteComponents =
+		options.components?.length && remoteRegistries.length === options.components.length;
+
+	// if the components aren't just remote components or we want to include all components
+	// then we add then shadcn-svelte registry
+	if (!onlyRemoteComponents || options.all) {
+		remoteRegistries.push(registryUrl);
 	}
 
-	if (selectedComponents === undefined || selectedComponents.size === 0) {
+	// maps the registry baseUrl to the index of the registry
+	const registryIndexes = await registry.getRegistryIndexes(remoteRegistries);
+
+	// The index of the shadcn-svelte registry
+	const ogIndex = registryIndexes.get(registryUrl);
+
+	let selectedComponents = new Set(
+		options.all ? ogIndex?.map(({ name }) => name) : options.components
+	);
+
+	// if the user hasn't passed any components prompt them to select components
+	if (ogIndex && selectedComponents.size === 0) {
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: uiRegistryIndex.map(({ name, dependencies, registryDependencies }) => {
+			options: ogIndex.map(({ name, dependencies, registryDependencies }) => {
 				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
 				return {
 					label: name,
@@ -115,55 +130,86 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
-	/**
-	 * Adds all the selected items and their registry dependencies to the `selectedComponents`
-	 * set so that they can be individually overwritten.
-	 */
+	// load registry dependencies
+	const registryDepMap = new Map<string, Map<string, string[]>>();
+	for (const [url, index] of registryIndexes) {
+		const registryDeps = new Map<string, string[]>();
+
+		for (const item of index) {
+			registryDeps.set(item.name, item.registryDependencies);
+		}
+
+		registryDepMap.set(url, registryDeps);
+	}
+
+	const registryComponents = new Map<string, Set<string>>();
+
+	// theoretically this should all run without fetch calls if the index includes all the files
+	// in other words no need to parallelize
 	for (const name of selectedComponents) {
-		if (registryDepMap.has(name)) {
-			/**
-			 * We will have all the `ui` registry dependencies in the `registryDepMap`,
-			 * so if the `name` is a `ui` component, we go ahead and add its dependencies
-			 * to the `selectedComponents` set.
-			 */
-			const regDeps: string[] = registryDepMap.get(name) ?? [];
-			for (const dep of regDeps) {
-				selectedComponents.add(dep);
-			}
-		} else {
-			/**
-			 * For blocks, hooks, etc. we need to resolve the tree to get their dependencies
-			 * and add them to the `selectedComponents` set.
-			 */
-			const tree = await registry.resolveTree({
-				index: uiRegistryIndex,
-				names: [name],
-				includeRegDeps: true,
-				config,
-			});
-			for (const item of tree) {
-				for (const dep of item.registryDependencies) {
-					// we first add the reg dep to the selected components
-					selectedComponents.add(dep);
-					const depRegDeps: string[] = registryDepMap.get(dep) ?? [];
-					// we then add each of that dep's deps to the `selectedComponents` set
-					for (const depRegDep of depRegDeps) {
-						selectedComponents.add(depRegDep);
-					}
+		let componentName = name;
+		let componentRegistry = registryUrl;
+
+		// handle remote components
+		if (isUrl(name)) {
+			// name should come in like `https://example.com/r/avatar.json`
+			// we split it to get the base url and avatar.json
+			// eslint-disable-next-line prefer-const -- wrong
+			let [baseUrl, item] = urlSplitLastPathSegment(new URL(name));
+
+			componentRegistry = baseUrl;
+			componentName = item.replace(".json", "");
+		}
+
+		// we already defined this so we know it exists
+		const index = registryIndexes.get(componentRegistry)!;
+
+		const tree = await registry.resolveTree({
+			baseUrl: componentRegistry,
+			names: [componentName],
+			config,
+			index,
+			includeRegDeps: true,
+		});
+
+		const installedComponents = registryComponents.get(componentRegistry) ?? new Set();
+
+		// add the current component
+		installedComponents.add(componentName);
+
+		for (const item of tree) {
+			for (const dep of item.registryDependencies) {
+				// we first add the reg dep to the selected components
+				installedComponents.add(dep);
+				const depRegDeps: string[] = registryDepMap.get(componentRegistry)!.get(dep) ?? [];
+				// we then add each of that dep's deps to the `selectedComponents` set
+				for (const depRegDep of depRegDeps) {
+					installedComponents.add(depRegDep);
 				}
 			}
 		}
+
+		registryComponents.set(componentRegistry, installedComponents);
 	}
 
-	const tree = await registry.resolveTree({
-		index: uiRegistryIndex,
-		names: Array.from(selectedComponents),
-		includeRegDeps: false,
-		config,
-	});
+	const fetchContent = async (url: string): Promise<RegistryWithContent> => {
+		const index = registryIndexes.get(url)!;
+		const components = registryComponents.get(url)!;
 
-	const payload = await registry.fetchTree(tree);
-	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
+		const tree = await registry.resolveTree({
+			baseUrl: url,
+			index: index,
+			names: Array.from(components),
+			includeRegDeps: false,
+			config,
+		});
+
+		return await registry.fetchTree(url, tree);
+	};
+
+	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flatMap(
+		(p) => p
+	);
 
 	if (payload.length === 0) cancel("Selected components not found.");
 
