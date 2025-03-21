@@ -14,8 +14,9 @@
 </script>
 
 <CommandPrimitive.Group
-	class={cn("text-foreground overflow-hidden p-1", className)}
 	bind:ref
+	data-slot="command-group"
+	class={cn("text-foreground overflow-hidden p-1", className)}
 	{...restProps}
 >
 	{#if heading}

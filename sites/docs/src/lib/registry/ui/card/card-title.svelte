@@ -6,19 +6,15 @@
 	let {
 		ref = $bindable(null),
 		class: className,
-		level = 3,
 		children,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-		level?: 1 | 2 | 3 | 4 | 5 | 6;
-	} = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
 <div
-	role="heading"
-	aria-level={level}
 	bind:this={ref}
-	class={cn("text-2xl font-semibold leading-none tracking-tight", className)}
+	data-slot="card-title"
+	class={cn("font-semibold leading-none", className)}
 	{...restProps}
 >
 	{@render children?.()}
