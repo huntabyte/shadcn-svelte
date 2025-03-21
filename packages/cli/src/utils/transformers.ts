@@ -26,7 +26,7 @@ export async function stripTypes(content: string, filename: string) {
 	if (filename.endsWith(".svelte")) {
 		content = strip(content, { filename });
 	} else {
-		content = sucrase.transform(content, { transforms: ["typescript"] }).code;
+		content = sucrase.transform(content, { transforms: ["typescript"] }).code.trim();
 	}
 
 	// cursed formatting
