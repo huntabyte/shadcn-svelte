@@ -12,8 +12,9 @@
 
 <AccordionPrimitive.Content
 	bind:ref
+	data-slot="accordion-content"
 	class={cn(
-		"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm transition-all",
+		"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm",
 		className
 	)}
 	{...restProps}

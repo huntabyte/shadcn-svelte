@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 	import Check from "@lucide/svelte/icons/check";
-	import Minus from "@lucide/svelte/icons/minus";
 	import { cn } from "$lib/utils.js";
 	import type { Snippet } from "svelte";
 
@@ -21,18 +20,17 @@
 	bind:ref
 	bind:checked
 	bind:indeterminate
+	data-slot="context-menu-checkbox-item"
 	class={cn(
-		"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		"data-highlighted:bg-accent data-highlighted:text-accent-foreground outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pl-8 pr-2 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		className
 	)}
 	{...restProps}
 >
-	{#snippet children({ checked, indeterminate })}
-		<span class="absolute left-2 flex size-3.5 items-center justify-center">
-			{#if indeterminate}
-				<Minus class="size-3.5" />
-			{:else}
-				<Check class={cn("size-3.5", !checked && "text-transparent")} />
+	{#snippet children({ checked })}
+		<span class="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
+			{#if checked}
+				<Check class="size-4" />
 			{/if}
 		</span>
 		{@render childrenProp?.()}
