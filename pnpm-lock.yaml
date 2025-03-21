@@ -80,21 +80,15 @@ importers:
       node-fetch-native:
         specifier: ^1.6.4
         version: 1.6.4
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
-      prettier-plugin-svelte:
-        specifier: ^3.3.3
-        version: 3.3.3(prettier@3.5.3)(svelte@5.23.2)
       semver:
         specifier: ^7.7.1
         version: 7.7.1
+      sucrase:
+        specifier: ^3.35.0
+        version: 3.35.0
       sv-strip:
-        specifier: ^0.0.7
-        version: 0.0.7
-      ts-blank-space:
-        specifier: ^0.6.1
-        version: 0.6.1
+        specifier: ^0.2.1
+        version: 0.2.1
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -4429,8 +4423,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv-strip@0.0.7:
-    resolution: {integrity: sha512-qlTabVoPAOeigzBwGrsgblBNS3fSxHi4lO/EIHBNmSFUkoTwXw2yv/Pb0NROWlX4uoUHb24Awd86V6usQi7wMg==}
+  sv-strip@0.2.1:
+    resolution: {integrity: sha512-Ezr744vD4I9Sg/ksmv9ap3cho0V2w1poSH2BihMXesIMQKmPYlKPyXEwYV22F2mdFP5vNGR0BRq3QJ9ZssuduA==}
 
   svelte-check@4.1.1:
     resolution: {integrity: sha512-NfaX+6Qtc8W/CyVGS/F7/XdiSSyXz+WGYA9ZWV3z8tso14V2vzjfXviKaTFEzB7g8TqfgO2FOzP6XT4ApSTUTw==}
@@ -4647,10 +4641,6 @@ packages:
 
   ts-blank-space@0.4.4:
     resolution: {integrity: sha512-G6GkD6oEJ7j5gG2e5qAizfE4Ap7JXMpnN0CEp9FEt4LExdaqsdwB90aQsaAwcKhiSxVk5KoqFW9xfxTQ4lBUnQ==}
-    engines: {node: '>=18.0.0'}
-
-  ts-blank-space@0.6.1:
-    resolution: {integrity: sha512-LcM3W5HEyzTaXUeQITV8ploUOGe+zuuoFYsCfPscFLhx3bZn2sSfHMKxsULVG/zA7an9UhReiHv4Kk/6QzlpXQ==}
     engines: {node: '>=18.0.0'}
 
   ts-deepmerge@7.0.1:
@@ -9074,11 +9064,6 @@ snapshots:
       prettier: 3.5.3
       svelte: 5.23.1
 
-  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.23.2):
-    dependencies:
-      prettier: 3.5.3
-      svelte: 5.23.2
-
   prettier-plugin-tailwindcss@0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.23.1))(prettier@3.5.3):
     dependencies:
       prettier: 3.5.3
@@ -9572,7 +9557,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv-strip@0.0.7:
+  sv-strip@0.2.1:
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.17
@@ -9861,10 +9846,6 @@ snapshots:
   ts-blank-space@0.4.4:
     dependencies:
       typescript: 5.6.3
-
-  ts-blank-space@0.6.1:
-    dependencies:
-      typescript: 5.8.2
 
   ts-deepmerge@7.0.1: {}
 

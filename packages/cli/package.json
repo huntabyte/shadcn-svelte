@@ -46,11 +46,9 @@
 		"execa": "^7.2.0",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4",
-		"prettier": "^3.5.3",
-		"prettier-plugin-svelte": "^3.3.3",
 		"semver": "^7.7.1",
-		"sv-strip": "^0.0.7",
-		"ts-blank-space": "^0.6.1"
+		"sucrase": "^3.35.0",
+		"sv-strip": "^0.2.1"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
