@@ -69,6 +69,9 @@
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
+					line: {
+						class: "!opacity-100",
+					},
 				}}
 			>
 				{#snippet tooltip()}

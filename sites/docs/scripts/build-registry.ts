@@ -66,6 +66,7 @@ export const Blocks = {
 	for (const block of result.data) {
 		if (block.type !== "registry:block") continue;
 		const file = block.files[0];
+		if (file.name.includes("chart")) continue;
 		const blockPath = path.resolve(libPath, "block", file.name);
 		const chunkDir = path.resolve(registryChunksDirPath);
 
