@@ -36,6 +36,8 @@ export function getPayloadConfigFromPayload(
 
 	if (payload.key === key) {
 		configLabelKey = payload.key;
+	} else if (payload.name === key) {
+		configLabelKey = payload.name;
 	} else if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
 		configLabelKey = payload[key as keyof typeof payload] as string;
 	} else if (

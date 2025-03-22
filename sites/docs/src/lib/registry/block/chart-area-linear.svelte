@@ -56,8 +56,8 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip config={chartConfig} payload={tooltipContext.data} hideLabel />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</AreaChart>
 		</Chart.Container>

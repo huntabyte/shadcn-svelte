@@ -105,13 +105,13 @@
 				<ChartDisplay status="Done" name="chart-area-default">
 					<ChartAreaDefault />
 				</ChartDisplay>
-				<!--
 				<ChartDisplay status="Done" name="chart-area-linear">
 					<ChartAreaLinear />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-area-step">
 					<ChartAreaStep />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay status="Done" name="chart-area-stacked">
 					<ChartAreaStacked />
 				</ChartDisplay>
