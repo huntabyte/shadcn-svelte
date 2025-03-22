@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -68,20 +68,26 @@
 					area: {
 						curve: curveNatural,
 						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
+						line: { class: "stroke-1 opacity-100" },
 						tweened,
+						class: "opacity-100",
+					},
+					highlight: {
+						points: {
+							class: "opacity-100",
+						},
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
+				{#snippet tooltip()}
 					<Chart.Tooltip
-						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
-							variant: "long",
-						})}
-						config={chartConfig}
-						payload={tooltipContext.data}
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
 						indicator="line"
 					/>
 				{/snippet}

@@ -15,6 +15,7 @@
 			| "Not Started"
 			| "In Progress"
 			| "Needs Parity"
+			| "Close Enough"
 			| "Blocked (External)"
 			| "Blocked (Internal)"
 			| "Done";

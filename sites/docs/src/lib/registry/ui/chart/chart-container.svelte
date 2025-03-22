@@ -42,6 +42,8 @@
 		"[&_.stroke-white]:stroke-transparent",
 		"[&_[data-lc-line]]:stroke-border/50",
 		"[&_[data-lc-highlight-line]]:stroke-0",
+		"[&_[data-lc-legend-swatch-button]]:items-center [&_[data-lc-legend-swatch-button]]:gap-1.5",
+		"[&_[data-lc-legend-swatch-group]]:items-center",
 		// Tick labels on th x/y axes
 		"[&_[data-lc-axis-tick-label]]:fill-muted-foreground",
 		// Labels

@@ -14,6 +14,7 @@
 		status:
 			| "Not Started"
 			| "In Progress"
+			| "Close Enough"
 			| "Needs Parity"
 			| "Blocked (External)"
 			| "Blocked (Internal)"
@@ -57,7 +58,7 @@
 								"border-pink-400 bg-pink-400/20 text-pink-700 hover:bg-pink-400/30 dark:bg-pink-400/10 dark:text-pink-300 dark:hover:bg-pink-400/15":
 									status === "Blocked (Internal)",
 								"border-lime-400 bg-lime-400/20 text-lime-700 hover:bg-lime-400/30 dark:bg-lime-400/10 dark:text-lime-300 dark:hover:bg-lime-400/15":
-									status === "Done",
+									status === "Done" || status === "Close Enough",
 							})}
 						>
 							{status}

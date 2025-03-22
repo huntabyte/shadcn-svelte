@@ -111,16 +111,20 @@
 				<ChartDisplay status="Done" name="chart-area-step">
 					<ChartAreaStep />
 				</ChartDisplay>
-				<!--
 				<ChartDisplay status="Done" name="chart-area-stacked">
 					<ChartAreaStacked />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-area-stacked-expand">
 					<ChartAreaStackedExpand />
 				</ChartDisplay>
-				<ChartDisplay status="Blocked (External)" name="chart-area-legend">
+				<ChartDisplay
+					status="Close Enough"
+					name="chart-area-legend"
+					description="Lacking the support for custom icons because we'd need to have some sort of legend payload we can pass to a custom legend component. I think LayerChart's legend is more than fine for now."
+				>
 					<ChartAreaLegend />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay status="Needs Parity" name="chart-area-icons">
 					<ChartAreaIcons />
 				</ChartDisplay>
