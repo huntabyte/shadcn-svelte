@@ -56,13 +56,10 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
+				{#snippet tooltip()}
 					<Chart.Tooltip
-						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
-							variant: "long",
-						})}
-						config={chartConfig}
-						payload={tooltipContext.data}
+						labelFormatter={(v: Date) =>
+							v.toLocaleDateString("en-US", { month: "long" })}
 						indicator="line"
 					/>
 				{/snippet}

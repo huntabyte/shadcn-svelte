@@ -102,9 +102,10 @@
 				id="area-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<!-- <ChartDisplay status="Done" name="chart-area-default">
+				<ChartDisplay status="Done" name="chart-area-default">
 					<ChartAreaDefault />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay status="Done" name="chart-area-linear">
 					<ChartAreaLinear />
 				</ChartDisplay>

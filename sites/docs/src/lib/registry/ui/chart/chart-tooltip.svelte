@@ -66,7 +66,7 @@
 		return labelFormatter(value, tooltipCtx.payload);
 	});
 
-	const nestLabel = $derived(tooltipCtx.payload.length === 1 && indicator === "dot");
+	const nestLabel = $derived(tooltipCtx.payload.length === 1 && indicator !== "dot");
 </script>
 
 {#snippet TooltipLabel()}
@@ -126,7 +126,7 @@
 									"shrink-0 rounded-[2px] border-[var(--color-border)] bg-[var(--color-bg)]",
 									{
 										"h-2.5 w-2.5": indicator === "dot",
-										"w-1": indicator === "line",
+										"h-full w-1": indicator === "line",
 										"w-0 border-[1.5px] border-dashed bg-transparent":
 											indicator === "dashed",
 										"my-0.5": nestLabel && indicator === "dashed",
