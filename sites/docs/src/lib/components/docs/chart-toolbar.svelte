@@ -38,9 +38,9 @@
         /> -->
 		<Separator orientation="vertical" class="mx-0 hidden h-4 md:flex" />
 		<!-- <ChartCodeViewer chart={chart}>{children}</ChartCodeViewer> -->
-		<Tooltip.Provider>
+		<Tooltip.Provider delayDuration={0}>
 			<Tooltip.Root>
-				<Tooltip.Trigger>
+				<Tooltip.Trigger disabled={!description}>
 					{#snippet child({ props })}
 						<Badge
 							{...props}

@@ -40,6 +40,7 @@
 		// Stroke around dots/marks when hovering
 		"[&_.stroke-white]:stroke-transparent",
 		"[&_[data-lc-line]]:stroke-border/50",
+		"[&_[data-lc-highlight-line]]:stroke-0",
 		// Tick labels on th x/y axes
 		"[&_[data-lc-axis-tick-label]]:fill-muted-foreground",
 		// Labels
