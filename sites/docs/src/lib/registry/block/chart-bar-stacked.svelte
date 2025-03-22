@@ -32,7 +32,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<BarChart
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
@@ -61,16 +61,16 @@
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
+				{#snippet tooltip({ tooltipContext })}
+					<Tooltip.Root variant="none">
 						<Chart.Tooltip
-							tooltipLabel={data.month}
+							tooltipLabel={tooltipContext.data.month}
 							config={chartConfig}
-							payload={data}
+							payload={tooltipContext.data}
 							indicator="dashed"
 						/>
 					</Tooltip.Root>
-				</svelte:fragment>
+				{/snippet}
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

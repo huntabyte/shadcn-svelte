@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LineChart, Tooltip } from "layerchart";
+	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { PeriodType } from "@layerstack/utils";
@@ -36,7 +36,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<LineChart
 				data={chartData}
 				x="date"
@@ -59,11 +59,9 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{/snippet}
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>

@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -55,7 +55,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<BarChart
 				data={chartData}
 				x="browser"
@@ -70,11 +70,9 @@
 					highlight: { area: { fill: "none" } },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{/snippet}
 			</BarChart>
 			<!-- todo -->
 		</Chart.Container>

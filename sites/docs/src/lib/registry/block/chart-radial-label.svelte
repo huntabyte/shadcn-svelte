@@ -10,7 +10,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container class="mx-auto aspect-square max-h-[250px]"></Chart.Container>
+		<!-- <Chart.Container class="mx-auto aspect-square max-h-[250px]"></Chart.Container> -->
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 font-medium leading-none">

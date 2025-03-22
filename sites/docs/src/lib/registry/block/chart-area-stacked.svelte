@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { AreaChart, Tooltip } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -36,7 +36,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<AreaChart
 				data={chartData}
 				x="date"
@@ -45,12 +45,12 @@
 					{
 						key: "mobile",
 						label: "Mobile",
-						color: chartConfig.mobile.color,
+						color: "var(--color-mobile)",
 					},
 					{
 						key: "desktop",
 						label: "Desktop",
-						color: chartConfig.desktop.color,
+						color: "var(--color-desktop)",
 					},
 				]}
 				seriesLayout="stack"
@@ -60,21 +60,27 @@
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
 						tweened,
+						class: "opacity-100",
+					},
+					highlight: {
+						points: {
+							class: "opacity-100",
+						},
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="dot"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip()}
+					<Chart.Tooltip
+						indicator="dot"
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
+					/>
+				{/snippet}
 			</AreaChart>
 		</Chart.Container>
 	</Card.Content>

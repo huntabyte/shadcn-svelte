@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { PieChart, Tooltip } from "layerchart";
+	import { PieChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -52,7 +52,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				label="browser"
 				value="visitors"
@@ -67,11 +67,9 @@
 					arc: { track: { fill: "hsl(var(--muted))" }, tweened },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{/snippet}
 			</PieChart>
 		</Chart.Container>
 	</Card.Content>

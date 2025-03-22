@@ -1,19 +1,30 @@
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import type { WithElementRef } from "bits-ui";
-	import { useId } from "bits-ui";
 	import type { HTMLAttributes } from "svelte/elements";
+	import ChartStyle from "./chart-style.svelte";
+	import { setChartContext, type ChartConfig } from "./chart-utils.js";
+
+	const uid = $props.id();
 
 	let {
 		ref = $bindable(null),
-		id = useId(),
+		id = uid,
 		class: className,
 		children,
+		config,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();
+	}: WithElementRef<HTMLAttributes<HTMLElement>> & {
+		config: ChartConfig;
+	} = $props();
 
-	const uniqueId = useId();
-	const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
+	const chartId = `chart-${id || uid.replace(/:/g, "")}`;
+
+	setChartContext({
+		get config() {
+			return config;
+		},
+	});
 </script>
 
 <div
@@ -28,6 +39,7 @@
 		//
 		// Stroke around dots/marks when hovering
 		"data-lc-grid:stroke-border/50 [&_.stroke-white]:stroke-transparent",
+		"data-lc-line:stroke-border/50",
 		// Tick labels on th x/y axes
 		"data-lc-tick-label:fill-muted-foreground",
 		// Labels
@@ -36,5 +48,6 @@
 	)}
 	{...restProps}
 >
+	<ChartStyle id={chartId} {config} />
 	{@render children?.()}
 </div>

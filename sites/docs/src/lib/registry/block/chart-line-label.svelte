@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LineChart, Tooltip } from "layerchart";
+	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { PeriodType, format } from "@layerstack/utils";
@@ -32,7 +32,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<LineChart
 				points
 				labels={{ offset: 12 }}
@@ -53,16 +53,16 @@
 				}}
 			>
 				<!-- TODO: How to style active do, say, add a wider radius? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="line"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip
+						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
+							variant: "long",
+						})}
+						config={chartConfig}
+						payload={tooltipContext.data}
+						indicator="line"
+					/>
+				{/snippet}
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>

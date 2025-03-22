@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LineChart, Tooltip } from "layerchart";
+	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { curveLinearClosed } from "d3-shape";
 	import { scaleBand } from "d3-scale";
@@ -31,13 +31,12 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
 				radial
 				data={chartData}
 				x="month"
 				xScale={scaleBand()}
-				tooltip={{ mode: "voronoi" }}
 				series={[
 					{
 						key: "desktop",
@@ -53,17 +52,20 @@
 					// TODO: How to draw hexagons instead of circles?
 					spline: { curve: curveLinearClosed, tweened },
 					yAxis: { format: () => "" },
+					tooltip: {
+						context: {
+							mode: "voronoi",
+						},
+					},
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={data.month}
-							config={chartConfig}
-							payload={data}
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip
+						tooltipLabel={tooltipContext.data.month}
+						config={chartConfig}
+						payload={tooltipContext.data}
+					/>
+				{/snippet}
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -32,7 +32,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<BarChart
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
@@ -41,25 +41,20 @@
 					{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color },
 					{ key: "mobile", label: "Mobile", color: chartConfig.mobile.color },
 				]}
+				x1Scale={scaleBand().paddingInner(0.15)}
 				seriesLayout="group"
 				props={{
-					bars: { stroke: "none", inset: 5 },
+					bars: { stroke: "none", strokeWidth: 0, rounded: "all" },
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },
 				}}
+				padding={{ left: 16 }}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={data.month}
-							config={chartConfig}
-							payload={data}
-							indicator="dashed"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip()}
+					<Chart.Tooltip indicator="dashed" />
+				{/snippet}
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

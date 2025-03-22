@@ -10,7 +10,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container></Chart.Container>
+		<!-- <Chart.Container></Chart.Container> -->
 	</Card.Content>
 	<Card.Footer>
 		<div class="flex w-full items-start gap-2 text-sm">

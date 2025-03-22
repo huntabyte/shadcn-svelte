@@ -87,16 +87,17 @@
 				<ChartDisplay status="Done" name="chart-bar-multiple">
 					<ChartBarMultiple />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay name="chart-pie-donut-text" class="[&_[data-chart]]:xl:max-h-[243px]">
 					<ChartPieDonutText />
-				</ChartDisplay>
+				</ChartDisplay> -->
 			</div>
 			<Separator />
 			<div
 				id="area-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="Done" name="chart-area-default">
+				<!-- <ChartDisplay status="Done" name="chart-area-default">
 					<ChartAreaDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-area-linear">
@@ -127,14 +128,14 @@
 					<ChartDisplay name="chart-area-interactive">
 						<ChartAreaInteractive />
 					</ChartDisplay>
-				</div>
+				</div> -->
 			</div>
 			<Separator />
 			<div
 				id="bar-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="Done" name="chart-bar-default">
+				<!-- <ChartDisplay status="Done" name="chart-bar-default">
 					<ChartBarDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-bar-horizontal">
@@ -165,14 +166,14 @@
 					<ChartDisplay name="chart-bar-interactive">
 						<ChartBarInteractive />
 					</ChartDisplay>
-				</div>
+				</div> -->
 			</div>
 			<Separator />
 			<div
 				id="line-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="Done" name="chart-line-default">
+				<!-- <ChartDisplay status="Done" name="chart-line-default">
 					<ChartLineDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-line-linear">
@@ -203,14 +204,14 @@
 					<ChartDisplay name="chart-line-interactive">
 						<ChartLineInteractive />
 					</ChartDisplay>
-				</div>
+				</div> -->
 			</div>
 			<Separator />
 			<div
 				id="pie-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="In Progress" name="chart-pie-simple">
+				<!-- <ChartDisplay status="In Progress" name="chart-pie-simple">
 					<ChartPieSimple />
 				</ChartDisplay>
 				<ChartDisplay name="chart-pie-separator-none">
@@ -242,14 +243,14 @@
 				</ChartDisplay>
 				<ChartDisplay name="chart-pie-interactive">
 					<ChartPieInteractive />
-				</ChartDisplay>
+				</ChartDisplay> -->
 			</div>
 			<Separator />
 			<div
 				id="radar-chart"
 				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="Needs Parity" name="chart-radar-default">
+				<!-- <ChartDisplay status="Needs Parity" name="chart-radar-default">
 					<ChartRadarDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Needs Parity" name="chart-radar-dots">
@@ -290,14 +291,14 @@
 				</ChartDisplay>
 				<ChartDisplay name="chart-radar-icons">
 					<ChartRadarIcons />
-				</ChartDisplay>
+				</ChartDisplay> -->
 			</div>
 			<Separator />
 			<div
 				id="radial-chart"
 				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="In Progress" name="chart-radial-simple">
+				<!-- <ChartDisplay status="In Progress" name="chart-radial-simple">
 					<ChartRadialSimple />
 				</ChartDisplay>
 				<ChartDisplay name="chart-radial-label">
@@ -314,7 +315,7 @@
 				</ChartDisplay>
 				<ChartDisplay name="chart-radial-stacked">
 					<ChartRadialStacked />
-				</ChartDisplay>
+				</ChartDisplay> -->
 			</div>
 			<Separator />
 		</div>

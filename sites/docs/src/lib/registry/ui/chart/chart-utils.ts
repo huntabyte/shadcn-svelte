@@ -1,10 +1,11 @@
-import type { Component, Snippet } from "svelte";
+import type { Tooltip } from "layerchart";
+import { getContext, setContext, type Component, type ComponentProps, type Snippet } from "svelte";
 
 export const THEMES = { light: "", dark: ".dark" } as const;
 
 export type ChartConfig = {
 	[k in string]: {
-		label?: string | Snippet;
+		label?: string;
 		icon?: Component;
 	} & (
 		| { color?: string; theme?: never }
@@ -12,57 +13,52 @@ export type ChartConfig = {
 	);
 };
 
+type ExtractSnippetParams<T> = T extends Snippet<[infer P]> ? P : never;
+
+export type TooltipPayload = ExtractSnippetParams<
+	ComponentProps<typeof Tooltip.Root>["children"]
+>["payload"][number];
+
 // Helper to extract item config from a payload.
-export function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown) {
-	// Ensure the payload is an object
-	if (typeof payload !== "object" || payload === null) return;
+export function getPayloadConfigFromPayload(
+	config: ChartConfig,
+	payload: TooltipPayload,
+	key: string
+) {
+	if (typeof payload !== "object" || payload === null) return undefined;
 
-	// Determine if this is a cDomain/cRange chart based on the config -> payload mapping
-	// so we need to determine if our payload has the value or the key
-	const payloadKeys = Object.keys(payload);
-	const configKeys = Object.keys(config);
+	const payloadPayload =
+		"payload" in payload && typeof payload.payload === "object" && payload.payload !== null
+			? payload.payload
+			: undefined;
 
-	// check if every config key is in the payload keys
-	// if so, we can map the payload to the config
-	// if not, we're in a cDomain/cRange chart and need to handle color mapping differently
-	if (configKeys.every((key) => payloadKeys.includes(key))) {
-		return payloadKeys
-			.map((key) => {
-				const itemValue = (payload as Record<string, unknown>)[key];
-				const itemConfig = config[key];
+	let configLabelKey: string = key;
 
-				// Return the config merged with the value if the config exists for this key
-				if (itemConfig) {
-					return {
-						...itemConfig, // chartConfig properties (label, color, etc.)
-						value: itemValue, // payload value
-					};
-				}
-			})
-			.filter(Boolean); // Filter out undefined values
-	} else {
-		return payloadKeys
-			.map((key) => {
-				const itemValue = (payload as Record<string, unknown>)[key];
-				const itemConfig = config[key];
-
-				// Return the config merged with the value if the config exists for this key
-				if (itemConfig) {
-					// try to get color from the config using the value
-					let payloadColor = itemConfig?.color;
-					if (!payloadColor && "color" in payload) {
-						const color = payload.color;
-						if (typeof color === "string") {
-							payloadColor = color;
-						}
-					}
-					return {
-						...itemConfig, // chartConfig properties (label, color, etc.)
-						color: payloadColor, // color from payload vs from config since we're in a cDomain/cRange chart
-						value: itemValue, // payload value
-					};
-				}
-			})
-			.filter(Boolean);
+	if (payload.key === key) {
+		configLabelKey = payload.key;
+	} else if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
+		configLabelKey = payload[key as keyof typeof payload] as string;
+	} else if (
+		payloadPayload &&
+		key in payloadPayload &&
+		typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
+	) {
+		configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
 	}
+
+	return configLabelKey in config ? config[configLabelKey] : config[key as keyof typeof config];
+}
+
+type ChartContextValue = {
+	config: ChartConfig;
+};
+
+const chartContextKey = Symbol("chart-context");
+
+export function setChartContext(value: ChartContextValue) {
+	return setContext(chartContextKey, value);
+}
+
+export function useChart() {
+	return getContext<ChartContextValue>(chartContextKey);
 }

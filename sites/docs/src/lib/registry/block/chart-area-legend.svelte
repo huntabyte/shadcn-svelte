@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AreaChart, Tooltip } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { PeriodType, format } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
@@ -36,7 +36,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<AreaChart
 				legend
 				data={chartData}
@@ -66,16 +66,16 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="line"
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip
+						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
+							variant: "long",
+						})}
+						config={chartConfig}
+						payload={tooltipContext.data}
+						indicator="line"
+					/>
+				{/snippet}
 
 				<!-- TODO: Add custom legends -->
 				<!-- <svelte:fragment slot="legend">where is that data 🤔?</svelte:fragment> -->

@@ -20,37 +20,37 @@
 		{ month: "may", mobile: 130, fill: "var(--color-may)" },
 	];
 
-	// const chartConfig = {
-	// 	visitors: {
-	// 		label: "Visitors",
-	// 	},
-	// 	desktop: {
-	// 		label: "Desktop",
-	// 	},
-	// 	mobile: {
-	// 		label: "Mobile",
-	// 	},
-	// 	january: {
-	// 		label: "January",
-	// 		color: "hsl(var(--chart-1))",
-	// 	},
-	// 	february: {
-	// 		label: "February",
-	// 		color: "hsl(var(--chart-2))",
-	// 	},
-	// 	march: {
-	// 		label: "March",
-	// 		color: "hsl(var(--chart-3))",
-	// 	},
-	// 	april: {
-	// 		label: "April",
-	// 		color: "hsl(var(--chart-4))",
-	// 	},
-	// 	may: {
-	// 		label: "May",
-	// 		color: "hsl(var(--chart-5))",
-	// 	},
-	// } satisfies Chart.ChartConfig;
+	const chartConfig = {
+		visitors: {
+			label: "Visitors",
+		},
+		desktop: {
+			label: "Desktop",
+		},
+		mobile: {
+			label: "Mobile",
+		},
+		january: {
+			label: "January",
+			color: "hsl(var(--chart-1))",
+		},
+		february: {
+			label: "February",
+			color: "hsl(var(--chart-2))",
+		},
+		march: {
+			label: "March",
+			color: "hsl(var(--chart-3))",
+		},
+		april: {
+			label: "April",
+			color: "hsl(var(--chart-4))",
+		},
+		may: {
+			label: "May",
+			color: "hsl(var(--chart-5))",
+		},
+	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root class="flex flex-col">
@@ -59,7 +59,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				label="month"
 				series={[

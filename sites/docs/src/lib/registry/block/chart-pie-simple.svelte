@@ -28,7 +28,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container class="mx-auto aspect-square max-h-[250px]">
+		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				data={chartData}
 				label="browser"

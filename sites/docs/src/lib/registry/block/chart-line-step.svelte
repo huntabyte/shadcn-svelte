@@ -32,7 +32,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<LineChart
 				data={chartData}
 				x="date"
@@ -50,11 +50,15 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
+				{#snippet tooltip({ tooltipContext })}
+					<Tooltip.Root variant="none">
+						<Chart.Tooltip
+							hideLabel
+							config={chartConfig}
+							payload={tooltipContext.data}
+						/>
 					</Tooltip.Root>
-				</svelte:fragment>
+				{/snippet}
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>

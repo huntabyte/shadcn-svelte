@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AreaChart, Tooltip } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { PeriodType } from "@layerstack/utils";
 	import { curveStep } from "d3-shape";
@@ -34,7 +34,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<AreaChart
 				data={chartData}
 				x="date"
@@ -58,12 +58,8 @@
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip()}
-					<Tooltip.Root variant="none">
-						{#snippet children({ data })}
-							<Chart.Tooltip config={chartConfig} payload={data} hideLabel />
-						{/snippet}
-					</Tooltip.Root>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip config={chartConfig} payload={tooltipContext.data} hideLabel />
 				{/snippet}
 			</AreaChart>
 		</Chart.Container>

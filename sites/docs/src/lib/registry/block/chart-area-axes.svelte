@@ -4,7 +4,7 @@
 	import { PeriodType, format } from "@layerstack/utils";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
-	import { AreaChart, Tooltip } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -36,7 +36,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<AreaChart
 				data={chartData}
 				x="date"
@@ -65,16 +65,16 @@
 					yAxis: { ticks: 3 },
 				}}
 			>
-					{#snippet tooltip()}
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							tooltipLabel={format(data.date, PeriodType.Month, { variant: "long" })}
-							config={chartConfig}
-							payload={data}
-							indicator="dot"
-						/>
-					</Tooltip.Root>
-					{/snippet}
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip
+						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
+							variant: "long",
+						})}
+						config={chartConfig}
+						payload={tooltipContext.data}
+						indicator="dot"
+					/>
+				{/snippet}
 			</AreaChart>
 		</Chart.Container>
 	</Card.Content>

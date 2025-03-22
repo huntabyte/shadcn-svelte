@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { scaleBand } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -59,7 +59,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container class="[&_.tickLabel]:ml-4">
+		<Chart.Container config={chartConfig} class="data-lc-tick-label:ml-4">
 			<BarChart
 				data={chartData}
 				orientation="horizontal"
@@ -78,11 +78,9 @@
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{/snippet}
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

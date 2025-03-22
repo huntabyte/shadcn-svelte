@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -27,7 +27,7 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<!-- TODO: How to add `month` labels to bars and give them a custom color? -->
 			<BarChart
 				data={chartData}
@@ -49,16 +49,14 @@
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip
-							config={chartConfig}
-							payload={data}
-							hideLabel
-							hideIndicator
-						/>
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip
+						config={chartConfig}
+						payload={tooltipContext.data}
+						hideLabel
+						hideIndicator
+					/>
+				{/snippet}
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

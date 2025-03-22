@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -28,25 +28,23 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container>
+		<Chart.Container config={chartConfig}>
 			<BarChart
 				data={chartData}
 				xScale={scaleBand().padding(0.2)}
 				x="month"
 				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
 				props={{
-					bars: { stroke: "none", radius: 8 },
+					bars: { stroke: "none", radius: 8, fill: "var(--color-desktop)" },
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				<svelte:fragment slot="tooltip">
-					<Tooltip.Root let:data variant="none">
-						<Chart.Tooltip hideLabel config={chartConfig} payload={data} />
-					</Tooltip.Root>
-				</svelte:fragment>
+				{#snippet tooltip({ tooltipContext })}
+					<Chart.Tooltip hideLabel payload={tooltipContext.data} />
+				{/snippet}
 			</BarChart>
 		</Chart.Container>
 	</Card.Content>

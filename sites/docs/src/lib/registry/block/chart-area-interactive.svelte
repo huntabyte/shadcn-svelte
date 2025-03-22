@@ -10,7 +10,7 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container></Chart.Container>
+		<!-- <Chart.Container></Chart.Container> -->
 	</Card.Content>
 	<Card.Footer>
 		<div class="flex w-full items-start gap-2 text-sm">
