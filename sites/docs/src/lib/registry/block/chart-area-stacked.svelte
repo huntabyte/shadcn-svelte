@@ -58,7 +58,7 @@
 					area: {
 						curve: curveNatural,
 						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
+						line: { class: "stroke-1 opacity-100" },
 						tweened,
 						class: "opacity-100",
 					},
@@ -67,11 +67,8 @@
 							class: "opacity-100",
 						},
 					},
-					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
-					line: {
-						class: "!opacity-100",
-					},
+					xAxis: { format: PeriodType.Month, tickMarks: false },
+					yAxis: { format: () => "", tickMarks: false },
 				}}
 			>
 				{#snippet tooltip()}

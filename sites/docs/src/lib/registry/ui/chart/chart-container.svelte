@@ -38,10 +38,10 @@
 		// TODO: Ask for default/unique classnames to target when trying to override LayerChart styles
 		//
 		// Stroke around dots/marks when hovering
-		"data-lc-grid:stroke-border/50 [&_.stroke-white]:stroke-transparent",
-		"data-lc-line:stroke-border/50",
+		"[&_.stroke-white]:stroke-transparent",
+		"[&_[data-lc-line]]:stroke-border/50",
 		// Tick labels on th x/y axes
-		"data-lc-tick-label:fill-muted-foreground",
+		"[&_[data-lc-axis-tick-label]]:fill-muted-foreground",
 		// Labels
 		"[&_text]:fill-foreground [&_text]:stroke-transparent",
 		className

@@ -87,10 +87,15 @@
 				<ChartDisplay status="Done" name="chart-bar-multiple">
 					<ChartBarMultiple />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay name="chart-pie-donut-text" class="[&_[data-chart]]:xl:max-h-[243px]">
+
+				<ChartDisplay
+					status="Needs Parity"
+					name="chart-pie-donut-text"
+					class="[&_[data-chart]]:xl:max-h-[243px]"
+					description="Need more flexible text primitive. Notice how it is weird to try to center it in the middle of the pie with multiple lines."
+				>
 					<ChartPieDonutText />
-				</ChartDisplay> -->
+				</ChartDisplay>
 			</div>
 			<Separator />
 			<div

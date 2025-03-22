@@ -63,7 +63,7 @@
 
 		if (!value) return null;
 		if (!labelFormatter) return value;
-		return labelFormatter(value, tooltipCtx.payload as TooltipPayload[]);
+		return labelFormatter(value, tooltipCtx.payload);
 	});
 
 	const nestLabel = $derived(tooltipCtx.payload.length === 1 && indicator === "dot");
@@ -94,7 +94,7 @@
 		{/if}
 		<div class="grid gap-1.5">
 			{#each tooltipCtx.payload as item, i (item.key + i)}
-				{@const key = `${nameKey || item.name || item.dataKey || "value"}`}
+				{@const key = `${nameKey || item.name || item.key || "value"}`}
 				{@const itemConfig = getPayloadConfigFromPayload(chart.config, item, key)}
 				{@const indicatorColor = color || item.payload?.color || item.color}
 				<div

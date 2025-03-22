@@ -72,8 +72,8 @@
 						dy={26}
 					/>
 				{/snippet}
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>

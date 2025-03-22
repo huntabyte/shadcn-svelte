@@ -56,7 +56,7 @@
 		"formsnap": "2.0.0-next.1",
 		"hast-util-to-html": "^9.0.1",
 		"is-reference": "^3.0.2",
-		"layerchart": "https://pkg.pr.new/techniq/layerchart/layerchart@3ec04b65ec8027850246c4b3b696b1903555d0a0",
+		"layerchart": "https://pkg.pr.new/techniq/layerchart/layerchart@44357537e8b775f35c853dced8f751f5081beab4",
 		"lodash.template": "^4.5.0",
 		"magic-string": "^0.30.12",
 		"mdsx": "^0.0.6",
