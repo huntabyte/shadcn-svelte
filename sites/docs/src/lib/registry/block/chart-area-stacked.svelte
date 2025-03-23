@@ -40,6 +40,7 @@
 				x="date"
 				xScale={scaleUtc()}
 				yPadding={[0, 25]}
+				axis="x"
 				series={[
 					{
 						key: "mobile",
@@ -60,8 +61,7 @@
 						line: { class: "stroke-1" },
 						tweened: true,
 					},
-					xAxis: { format: PeriodType.Month, tickMarks: false },
-					yAxis: { format: () => "", tickMarks: false },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}

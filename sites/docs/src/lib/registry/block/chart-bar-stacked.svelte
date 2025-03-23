@@ -37,11 +37,14 @@
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
+				axis="x"
+				rule={false}
 				series={[
 					{
 						key: "desktop",
 						label: "Desktop",
 						color: chartConfig.desktop.color,
+						props: { rounded: "bottom" },
 					},
 					{
 						key: "mobile",
@@ -51,10 +54,9 @@
 				]}
 				seriesLayout="stack"
 				props={{
-					bars: { stroke: "none", inset: 5 },
+					bars: { stroke: "none" },
 					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },
-					yAxis: { format: () => "" },
 				}}
 				legend
 			>

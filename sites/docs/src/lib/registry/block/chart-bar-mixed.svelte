@@ -59,6 +59,7 @@
 				padding={{ left: 40 }}
 				grid={false}
 				rule={false}
+				axis="y"
 				props={{
 					bars: {
 						stroke: "none",
@@ -72,7 +73,6 @@
 						},
 					},
 					highlight: { area: { fill: "none" } },
-					xAxis: { format: () => "", ticks: 0 },
 					yAxis: {
 						format: (d) => chartConfig[d as keyof typeof chartConfig].label,
 					},

@@ -61,15 +61,15 @@
 						value={String(totalVisitors)}
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-foreground text-3xl font-bold"
-						dy={4}
+						class="fill-foreground !text-3xl font-bold"
+						dy={3}
 					/>
 					<Text
 						value="Visitors"
 						textAnchor="middle"
 						verticalAnchor="middle"
 						class="!fill-muted-foreground text-muted-foreground"
-						dy={26}
+						dy={22}
 					/>
 				{/snippet}
 				{#snippet tooltip()}

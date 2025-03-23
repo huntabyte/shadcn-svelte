@@ -43,6 +43,7 @@
 					},
 				]}
 				seriesLayout="stack"
+				axis="x"
 				props={{
 					area: {
 						curve: curveNatural,
@@ -51,7 +52,6 @@
 						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}

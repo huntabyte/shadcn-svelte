@@ -41,12 +41,14 @@
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
+				axis="x"
 				series={[
 					{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color },
 					{ key: "mobile", label: "Mobile", color: chartConfig.mobile.color },
 				]}
 				x1Scale={scaleBand().paddingInner(0.2)}
 				seriesLayout="group"
+				rule={false}
 				props={{
 					bars: {
 						stroke: "none",
@@ -62,9 +64,7 @@
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
-					yAxis: { format: () => "" },
 				}}
-				padding={{ left: 16 }}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
 				{#snippet tooltip()}

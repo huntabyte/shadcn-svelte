@@ -43,6 +43,8 @@
 				orientation="horizontal"
 				yScale={scaleBand().padding(0.25)}
 				y="month"
+				axis="y"
+				rule={false}
 				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
 				padding={{ right: 16 }}
 				props={{
@@ -66,7 +68,6 @@
 						},
 						tickLength: 0,
 					},
-					xAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}

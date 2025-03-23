@@ -92,7 +92,6 @@
 					status="Needs Parity"
 					name="chart-pie-donut-text"
 					class="[&_[data-chart]]:xl:max-h-[243px]"
-					description="Need more flexible text primitive. Notice how it is weird to try to center it in the middle of the pie with multiple lines."
 				>
 					<ChartPieDonutText />
 				</ChartDisplay>
@@ -171,13 +170,13 @@
 				<ChartDisplay status="Done" name="chart-bar-mixed">
 					<ChartBarMixed />
 				</ChartDisplay>
-				<ChartDisplay status="In Progress" name="chart-bar-stacked">
+				<ChartDisplay status="Done" name="chart-bar-stacked">
 					<ChartBarStacked />
 				</ChartDisplay>
-				<!--
 				<ChartDisplay name="chart-bar-active" status="Done">
 					<ChartBarActive />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay status="Blocked (External)" name="chart-bar-negative">
 					<ChartBarNegative />
 				</ChartDisplay>

@@ -60,8 +60,8 @@
 						line: { class: "stroke-1" },
 						tweened: true,
 					},
-					xAxis: { format: PeriodType.Month, tickMarks: false },
-					yAxis: { format: () => "", tickMarks: false },
+					xAxis: { format: PeriodType.Month },
+					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}

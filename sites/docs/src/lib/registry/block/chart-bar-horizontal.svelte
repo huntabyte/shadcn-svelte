@@ -39,6 +39,7 @@
 				padding={{ left: 20 }}
 				grid={false}
 				rule={false}
+				axis="y"
 				props={{
 					bars: {
 						stroke: "none",
@@ -55,7 +56,6 @@
 						},
 					},
 					highlight: { area: { fill: "none" } },
-					xAxis: { format: () => "", ticks: 0 },
 					yAxis: { format: (d) => d.slice(0, 3) },
 				}}
 			>

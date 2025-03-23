@@ -44,6 +44,7 @@
 				x="date"
 				xScale={scaleUtc()}
 				seriesLayout="stackExpand"
+				axis="x"
 				series={[
 					{
 						key: "other",
@@ -70,7 +71,6 @@
 						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}
