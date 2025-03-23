@@ -4,6 +4,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { BarChart } from "layerchart";
 	import { scaleBand } from "d3-scale";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -37,14 +38,39 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
+				labels={{ offset: 12 }}
 				data={chartData}
 				orientation="horizontal"
-				yScale={scaleBand().padding(0.2)}
+				yScale={scaleBand().padding(0.25)}
 				y="month"
 				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
+				padding={{ right: 16 }}
+				props={{
+					bars: {
+						stroke: "none",
+						radius: 5,
+						rounded: "all",
+						initialWidth: 0,
+						initialX: 0,
+						tweened: {
+							x: { duration: 500, easing: cubicInOut },
+							width: { duration: 500, easing: cubicInOut },
+						},
+					},
+					highlight: { area: { fill: "none" } },
+					yAxis: {
+						tickLabelProps: {
+							textAnchor: "start",
+							dx: 6,
+							class: "stroke-none !fill-background ",
+						},
+						tickLength: 0,
+					},
+					xAxis: { format: () => "" },
+				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

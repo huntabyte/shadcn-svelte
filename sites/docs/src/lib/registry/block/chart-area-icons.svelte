@@ -2,7 +2,7 @@
 	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import TrendingDown from "@lucide/svelte/icons/trending-down";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -29,8 +29,6 @@
 			icon: TrendingUp,
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = $state(true);
 </script>
 
 <Card.Root>
@@ -41,6 +39,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<AreaChart
+				legend
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
@@ -62,19 +61,19 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened,
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
+				{#snippet tooltip()}
 					<Chart.Tooltip
-						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
-							variant: "long",
-						})}
-						config={chartConfig}
-						payload={tooltipContext.data}
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
 					/>
 				{/snippet}
 			</AreaChart>

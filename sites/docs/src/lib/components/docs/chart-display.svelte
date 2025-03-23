@@ -28,7 +28,7 @@
 
 <div
 	class={cn(
-		"themes-wrapper group relative flex flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30",
+		"themes-wrapper group relative flex w-auto flex-col overflow-hidden rounded-xl border shadow transition-all duration-200 ease-in-out hover:z-30",
 		className
 	)}
 >
@@ -39,7 +39,7 @@
 		{description}
 		class="bg-card text-card-foreground relative z-20 flex justify-end border-b px-3 py-2.5"
 	/>
-	<div class="relative z-10 [&>div]:rounded-none [&>div]:border-none [&>div]:shadow-none">
+	<div class="relative z-10 w-auto [&>div]:rounded-none [&>div]:border-none [&>div]:shadow-none">
 		{@render children?.()}
 	</div>
 </div>

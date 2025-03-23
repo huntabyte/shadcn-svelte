@@ -21,8 +21,6 @@
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -50,7 +48,7 @@
 				]}
 				props={{
 					// TODO: How to draw hexagons instead of circles?
-					spline: { curve: curveLinearClosed, tweened },
+					spline: { curve: curveLinearClosed, tweened: true },
 					yAxis: { format: () => "" },
 					tooltip: {
 						context: {
@@ -59,12 +57,8 @@
 					},
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip
-						tooltipLabel={tooltipContext.data.month}
-						config={chartConfig}
-						payload={tooltipContext.data}
-					/>
+				{#snippet tooltip()}
+					<Chart.Tooltip />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

@@ -40,12 +40,22 @@
 		//
 		// Stroke around dots/marks when hovering
 		"[&_.stroke-white]:stroke-transparent",
-		"[&_[data-lc-line]]:stroke-border/50",
-		"[&_[data-lc-highlight-line]]:stroke-0",
-		"[&_[data-lc-legend-swatch-button]]:items-center [&_[data-lc-legend-swatch-button]]:gap-1.5",
-		"[&_[data-lc-legend-swatch-group]]:items-center",
+		// override the default stroke color of lines
+		"[&_.lc-line]:stroke-border/50",
+
+		// by default, layerchart shows a line intersecting the point when hovering, this hides that
+		"[&_.lc-highlight-line]:stroke-0",
+
+		// by default, when you hover a point on a stacked series chart, it will drop the opacity
+		// of the other series, this overrides that
+		"[&_.lc-area-path]:opacity-100 [&_.lc-highlight-line]:opacity-100 [&_.lc-highlight-point]:opacity-100 [&_.lc-spline-path]:opacity-100 [&_.lc-text]:text-xs",
+
+		// Legend adjustments
+		"[&_.lc-legend-swatch-button]:items-center [&_.lc-legend-swatch-button]:gap-1.5",
+		"[&_.lc-legend-swatch-group]:items-center",
+		"[&_.lc-legend-swatch]:size-2.5 [&_.lc-legend-swatch]:rounded-[2px]",
 		// Tick labels on th x/y axes
-		"[&_[data-lc-axis-tick-label]]:fill-muted-foreground",
+		"[&_.lc-axis-tick-label]:fill-muted-foreground [&_.lc-axis-tick-label]:font-normal",
 		// Labels
 		"[&_text]:fill-foreground [&_text]:stroke-transparent",
 		className

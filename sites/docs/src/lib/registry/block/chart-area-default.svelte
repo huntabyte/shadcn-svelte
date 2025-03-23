@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AreaChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -22,8 +22,6 @@
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -50,7 +48,7 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened,
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },

@@ -4,13 +4,14 @@
 	import { scaleBand } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
-		{ browser: "chrome", visitors: 275, color: "hsl(var(--chart-1))" },
-		{ browser: "safari", visitors: 200, color: "hsl(var(--chart-2))" },
-		{ browser: "firefox", visitors: 187, color: "hsl(var(--chart-3))" },
-		{ browser: "edge", visitors: 173, color: "hsl(var(--chart-4))" },
-		{ browser: "other", visitors: 90, color: "hsl(var(--chart-5))" },
+		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
+		{ browser: "safari", visitors: 200, color: "var(--color-safari)" },
+		{ browser: "firefox", visitors: 187, color: "var(--color-firefox)" },
+		{ browser: "edge", visitors: 173, color: "var(--color-edge)" },
+		{ browser: "other", visitors: 90, color: "var(--color-other)" },
 	];
 
 	const chartConfig = {
@@ -38,19 +39,6 @@
 			color: "hsl(var(--chart-5))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	function getAxisTickLabel(d: string) {
-		return chartConfig[d as keyof typeof chartConfig]?.label;
-	}
-
-	const cDomain = Object.keys(chartConfig);
-	const cRange = cDomain
-		.map((key) => {
-			const item = chartConfig[key as keyof typeof chartConfig];
-			if ("color" in item) return item.color;
-			return " ";
-		})
-		.filter((v): v is string => Boolean(v));
 </script>
 
 <Card.Root>
@@ -59,27 +47,39 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container config={chartConfig} class="data-lc-tick-label:ml-4">
+		<Chart.Container config={chartConfig}>
 			<BarChart
 				data={chartData}
 				orientation="horizontal"
-				yScale={scaleBand().padding(0.2)}
+				yScale={scaleBand().padding(0.25)}
 				y="browser"
-				c="browser"
 				x="visitors"
-				{cDomain}
-				{cRange}
-				padding={{ left: 20 }}
+				cRange={chartData.map((c) => c.color)}
+				c="color"
+				padding={{ left: 40 }}
+				grid={false}
+				rule={false}
 				props={{
-					bars: { stroke: "none", radius: 5 },
+					bars: {
+						stroke: "none",
+						radius: 5,
+						rounded: "all",
+						initialWidth: 0,
+						initialX: 0,
+						tweened: {
+							x: { duration: 500, easing: cubicInOut },
+							width: { duration: 500, easing: cubicInOut },
+						},
+					},
 					highlight: { area: { fill: "none" } },
-					xAxis: { format: () => "", grid: false },
-					yAxis: { format: (d) => getAxisTickLabel(d), classes: { label: "pl-4" } },
+					xAxis: { format: () => "", ticks: 0 },
+					yAxis: {
+						format: (d) => chartConfig[d as keyof typeof chartConfig].label,
+					},
 				}}
 			>
-				<!-- TODO: How to add `tweened` to bars? -->
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel nameKey="visitors" />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

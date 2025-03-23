@@ -38,8 +38,6 @@
 		},
 	} satisfies Chart.ChartConfig;
 
-	let tweened = true;
-
 	function getColorFromConfig(v: string) {
 		// @ts-expect-error - still blocked by my poor implementation of getPayloadConfigFromPayload
 		return chartConfig[v as keyof typeof chartConfig].color;
@@ -64,11 +62,11 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "hsl(var(--muted))" }, tweened },
+					arc: { track: { fill: "hsl(var(--muted))" }, tweened: true },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>

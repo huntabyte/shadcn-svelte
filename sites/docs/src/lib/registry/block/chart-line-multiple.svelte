@@ -26,8 +26,6 @@
 			color: "hsl(var(--chart-2))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -54,13 +52,13 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened },
+					spline: { curve: curveNatural, tweened: true },
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

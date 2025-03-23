@@ -63,7 +63,7 @@
 				y="visitors"
 				{cDomain}
 				{cRange}
-				xScale={scaleBand().padding(0.2)}
+				xScale={scaleBand().padding(0.25)}
 				props={{
 					bars: { stroke: "none", radius: 8 },
 					xAxis: { format: (d) => chartConfig[d as keyof typeof chartConfig].label },

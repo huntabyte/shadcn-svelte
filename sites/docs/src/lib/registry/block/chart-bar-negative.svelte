@@ -31,7 +31,7 @@
 			<!-- TODO: How to add `month` labels to bars and give them a custom color? -->
 			<BarChart
 				data={chartData}
-				xScale={scaleBand().padding(0.2)}
+				xScale={scaleBand().padding(0.25)}
 				x="month"
 				series={[
 					{

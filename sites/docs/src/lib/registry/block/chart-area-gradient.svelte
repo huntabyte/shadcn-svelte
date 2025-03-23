@@ -1,7 +1,31 @@
 <script lang="ts">
-	import TrendingUp from "@lucide/svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { PeriodType } from "@layerstack/utils";
+	import { scaleUtc } from "d3-scale";
+	import { curveNatural } from "d3-shape";
+	import { Area, AreaChart, LinearGradient } from "layerchart";
+	import TrendingUp from "@lucide/svelte/icons/trending-up";
+
+	const chartData = [
+		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
+		{ date: new Date("2024-02-01"), desktop: 305, mobile: 200 },
+		{ date: new Date("2024-03-01"), desktop: 237, mobile: 120 },
+		{ date: new Date("2024-04-01"), desktop: 73, mobile: 190 },
+		{ date: new Date("2024-05-01"), desktop: 209, mobile: 130 },
+		{ date: new Date("2024-06-01"), desktop: 214, mobile: 140 },
+	];
+
+	const chartConfig = {
+		desktop: {
+			label: "Desktop",
+			color: "hsl(var(--chart-1))",
+		},
+		mobile: {
+			label: "Mobile",
+			color: "hsl(var(--chart-2))",
+		},
+	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
@@ -10,7 +34,63 @@
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<!-- <Chart.Container></Chart.Container> -->
+		<Chart.Container config={chartConfig}>
+			<AreaChart
+				data={chartData}
+				x="date"
+				xScale={scaleUtc()}
+				yPadding={[0, 25]}
+				series={[
+					{
+						key: "mobile",
+						label: "Mobile",
+						color: "var(--color-mobile)",
+					},
+					{
+						key: "desktop",
+						label: "Desktop",
+						color: "var(--color-desktop)",
+					},
+				]}
+				seriesLayout="stack"
+				props={{
+					area: {
+						curve: curveNatural,
+						"fill-opacity": 0.4,
+						line: { class: "stroke-1" },
+						tweened: true,
+					},
+					xAxis: { format: PeriodType.Month, tickMarks: false },
+					yAxis: { format: () => "", tickMarks: false },
+				}}
+			>
+				{#snippet tooltip()}
+					<Chart.Tooltip
+						indicator="dot"
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
+					/>
+				{/snippet}
+				{#snippet marks({ series, getAreaProps })}
+					{#each series as s, i (s.key)}
+						<LinearGradient
+							stops={[
+								s.color ?? "",
+								"color-mix(in lch, " + s.color + " 10%, transparent)",
+							]}
+							vertical
+						>
+							{#snippet children({ gradient })}
+								<Area {...getAreaProps(s, i)} fill={gradient} />
+							{/snippet}
+						</LinearGradient>
+					{/each}
+				{/snippet}
+			</AreaChart>
+		</Chart.Container>
 	</Card.Content>
 	<Card.Footer>
 		<div class="flex w-full items-start gap-2 text-sm">

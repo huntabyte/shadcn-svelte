@@ -117,35 +117,35 @@
 				<ChartDisplay status="Done" name="chart-area-stacked-expand">
 					<ChartAreaStackedExpand />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Close Enough"
-					name="chart-area-legend"
-					description="Lacking the support for custom icons because we'd need to have some sort of legend payload we can pass to a custom legend component. I think LayerChart's legend is more than fine for now."
-				>
+				<ChartDisplay status="Done" name="chart-area-legend">
 					<ChartAreaLegend />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay status="Needs Parity" name="chart-area-icons">
+				<ChartDisplay
+					status="Close Enough"
+					description="Lacking the support for custom icons because we'd need to have some sort of legend payload we can pass to a custom legend component. I think LayerChart's legend is more than fine for now, especially because those custom icons indicate nothing about the data or how to locate it in the chart."
+					name="chart-area-icons"
+				>
 					<ChartAreaIcons />
 				</ChartDisplay>
-				<ChartDisplay name="chart-area-gradient">
+				<ChartDisplay status="Done" name="chart-area-gradient">
 					<ChartAreaGradient />
 				</ChartDisplay>
-				<ChartDisplay status="Needs Parity" name="chart-area-axes">
+				<ChartDisplay status="Done" name="chart-area-axes">
 					<ChartAreaAxes />
 				</ChartDisplay>
+
 				<div class="md:col-span-2 lg:col-span-3">
-					<ChartDisplay name="chart-area-interactive">
+					<ChartDisplay status="Done" name="chart-area-interactive">
 						<ChartAreaInteractive />
 					</ChartDisplay>
-				</div> -->
+				</div>
 			</div>
 			<Separator />
 			<div
 				id="bar-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<!-- <ChartDisplay status="Done" name="chart-bar-default">
+				<ChartDisplay status="Done" name="chart-bar-default">
 					<ChartBarDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-bar-horizontal">
@@ -154,15 +154,24 @@
 				<ChartDisplay status="Done" name="chart-bar-multiple">
 					<ChartBarMultiple />
 				</ChartDisplay>
-				<ChartDisplay status="Done" name="chart-bar-label">
+				<ChartDisplay
+					status="Needs Parity"
+					description="The labels should animate in as well but I'm unsure of how to accomplish that right now."
+					name="chart-bar-label"
+				>
 					<ChartBarLabel />
 				</ChartDisplay>
-				<ChartDisplay name="chart-bar-label-custom">
+				<ChartDisplay
+					status="Done"
+					description="Animation of the labels could be improved."
+					name="chart-bar-label-custom"
+				>
 					<ChartBarLabelCustom />
 				</ChartDisplay>
-				<ChartDisplay status="Blocked (Internal)" name="chart-bar-mixed">
+				<ChartDisplay status="Done" name="chart-bar-mixed">
 					<ChartBarMixed />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay status="Blocked (External)" name="chart-bar-stacked">
 					<ChartBarStacked />
 				</ChartDisplay>

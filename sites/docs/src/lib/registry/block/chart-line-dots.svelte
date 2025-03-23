@@ -22,8 +22,6 @@
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -46,14 +44,14 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened },
+					spline: { curve: curveNatural, tweened: true },
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },
 				}}
 			>
 				<!-- TODO: How to style active do, say, add a wider radius? -->
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip hideLabel config={chartConfig} payload={tooltipContext.data} />
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

@@ -24,8 +24,6 @@
 			icon: Activity,
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -52,7 +50,7 @@
 						curve: curveStep,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened,
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },

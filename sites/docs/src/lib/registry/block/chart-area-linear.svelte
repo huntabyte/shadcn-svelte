@@ -22,8 +22,6 @@
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -50,7 +48,7 @@
 						curve: curveLinear,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened,
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
 					yAxis: { format: () => "" },

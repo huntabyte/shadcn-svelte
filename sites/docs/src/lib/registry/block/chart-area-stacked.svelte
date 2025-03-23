@@ -26,8 +26,6 @@
 			color: "hsl(var(--chart-2))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = true;
 </script>
 
 <Card.Root>
@@ -41,6 +39,7 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				yPadding={[0, 25]}
 				series={[
 					{
 						key: "mobile",
@@ -58,14 +57,8 @@
 					area: {
 						curve: curveNatural,
 						"fill-opacity": 0.4,
-						line: { class: "stroke-1 opacity-100" },
-						tweened,
-						class: "opacity-100",
-					},
-					highlight: {
-						points: {
-							class: "opacity-100",
-						},
+						line: { class: "stroke-1" },
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month, tickMarks: false },
 					yAxis: { format: () => "", tickMarks: false },

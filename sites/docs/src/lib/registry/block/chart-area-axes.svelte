@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
@@ -26,8 +26,6 @@
 			color: "hsl(var(--chart-2))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	let tweened = $state(true);
 </script>
 
 <Card.Root>
@@ -41,6 +39,7 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				yDomain={[0, 600]}
 				series={[
 					{
 						key: "mobile",
@@ -59,19 +58,19 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened,
+						tweened: true,
 					},
 					xAxis: { format: PeriodType.Month },
-					yAxis: { ticks: 3 },
+					yAxis: { ticks: [0, 300, 600] },
 				}}
 			>
-				{#snippet tooltip({ tooltipContext })}
+				{#snippet tooltip()}
 					<Chart.Tooltip
-						tooltipLabel={format(tooltipContext.data.date, PeriodType.Month, {
-							variant: "long",
-						})}
-						config={chartConfig}
-						payload={tooltipContext.data}
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
 						indicator="dot"
 					/>
 				{/snippet}

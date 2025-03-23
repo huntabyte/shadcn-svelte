@@ -3,8 +3,6 @@
 
 	let { id, config }: { id: string; config: ChartConfig } = $props();
 
-	console.log("id", id);
-
 	const colorConfig = $derived(
 		config ? Object.entries(config).filter(([, config]) => config.theme || config.color) : null
 	);
