@@ -2,7 +2,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Tooltip } from "layerchart";
+	import { BarChart, Highlight } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -47,29 +47,24 @@
 						key: "mobile",
 						label: "Mobile",
 						color: chartConfig.mobile.color,
-						// TODO: How to specify radii for different corners. e.g radius: [4, 4, 0, 0], or better yet, class: "rounded-t-none"
-						props: { class: "rounded-b-none z-20" },
 					},
 				]}
 				seriesLayout="stack"
 				props={{
 					bars: { stroke: "none", inset: 5 },
-					// TODO: How to take this fill to the behind the actual bars?
-					highlight: { area: { class: "fill-muted/25 z-0" } },
+					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },
 					yAxis: { format: () => "" },
 				}}
+				legend
 			>
+				{#snippet belowMarks()}
+					<Highlight area={{ class: "fill-muted" }} />
+				{/snippet}
+
 				<!-- TODO: How to add `tweened` to bars? -->
-				{#snippet tooltip({ tooltipContext })}
-					<Tooltip.Root variant="none">
-						<Chart.Tooltip
-							tooltipLabel={tooltipContext.data.month}
-							config={chartConfig}
-							payload={tooltipContext.data}
-							indicator="dashed"
-						/>
-					</Tooltip.Root>
+				{#snippet tooltip()}
+					<Chart.Tooltip />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

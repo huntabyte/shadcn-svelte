@@ -171,10 +171,10 @@
 				<ChartDisplay status="Done" name="chart-bar-mixed">
 					<ChartBarMixed />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay status="Blocked (External)" name="chart-bar-stacked">
+				<ChartDisplay status="In Progress" name="chart-bar-stacked">
 					<ChartBarStacked />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay name="chart-bar-active" status="Done">
 					<ChartBarActive />
 				</ChartDisplay>
