@@ -167,7 +167,7 @@
 				>
 					<ChartBarLabelCustom />
 				</ChartDisplay>
-				<ChartDisplay status="Done" name="chart-bar-mixed">
+				<ChartDisplay status="Needs Parity" name="chart-bar-mixed">
 					<ChartBarMixed />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-bar-stacked">
@@ -176,15 +176,14 @@
 				<ChartDisplay name="chart-bar-active" status="Done">
 					<ChartBarActive />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay status="Blocked (External)" name="chart-bar-negative">
+				<ChartDisplay status="Done" name="chart-bar-negative">
 					<ChartBarNegative />
 				</ChartDisplay>
 				<div class="md:col-span-2 lg:col-span-3">
-					<ChartDisplay name="chart-bar-interactive">
+					<ChartDisplay status="In Progress" name="chart-bar-interactive">
 						<ChartBarInteractive />
 					</ChartDisplay>
-				</div> -->
+				</div>
 			</div>
 			<Separator />
 			<div

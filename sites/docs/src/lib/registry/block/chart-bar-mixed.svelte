@@ -56,7 +56,7 @@
 				x="visitors"
 				cRange={chartData.map((c) => c.color)}
 				c="color"
-				padding={{ left: 40 }}
+				padding={{ left: 48 }}
 				grid={false}
 				rule={false}
 				axis="y"
@@ -75,6 +75,11 @@
 					highlight: { area: { fill: "none" } },
 					yAxis: {
 						format: (d) => chartConfig[d as keyof typeof chartConfig].label,
+						tickLabelProps: {
+							svgProps: {
+								x: -16,
+							},
+						},
 					},
 				}}
 			>

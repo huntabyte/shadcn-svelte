@@ -64,10 +64,10 @@
 		"[&_.lc-legend-swatch-button]:items-center [&_.lc-legend-swatch-button]:gap-1.5",
 		"[&_.lc-legend-swatch-group]:items-center",
 		"[&_.lc-legend-swatch]:size-2.5 [&_.lc-legend-swatch]:rounded-[2px]",
+		// Labels
+		"[&_.lc-labels-text:not([fill])]:fill-foreground [&_text]:stroke-transparent",
 		// Tick labels on th x/y axes
 		"[&_.lc-axis-tick-label]:fill-muted-foreground [&_.lc-axis-tick-label]:font-normal",
-		// Labels
-		"[&_text]:fill-foreground [&_text]:stroke-transparent",
 		className
 	)}
 	{...restProps}

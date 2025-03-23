@@ -30,32 +30,35 @@
 		<Chart.Container config={chartConfig}>
 			<!-- TODO: How to add `month` labels to bars and give them a custom color? -->
 			<BarChart
+				labels={{
+					offset: 5,
+					value: (d) => d.month,
+					fill: (d) => {
+						if (d.visitors > 0) {
+							return "hsl(var(--chart-1))";
+						} else if (d.visitors < 0) {
+							return "hsl(var(--chart-2))";
+						}
+					},
+				}}
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
-				series={[
-					{
-						key: "visitors",
-						label: "month",
-						// TODO: How to apply a color based on a condition? e.g. if visitors > 0, color: "hsl(var(--chart-1))", else color: "hsl(var(--chart-2))"
-						color: "hsl(var(--chart-1))",
-					},
-				]}
+				y="visitors"
+				yNice={4}
+				yBaseline={0}
+				cRange={["hsl(var(--chart-1))", "hsl(var(--chart-2))"]}
+				c={(d) => (d.visitors > 0 ? "hsl(var(--chart-1))" : "hsl(var(--chart-2))")}
+				axis={false}
 				props={{
-					bars: { stroke: "none", inset: 5, radius: 0 },
+					bars: { stroke: "none", radius: 0 },
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
-					yAxis: { format: () => "" },
 				}}
 			>
 				<!-- TODO: How to add `tweened` to bars? -->
-				{#snippet tooltip({ tooltipContext })}
-					<Chart.Tooltip
-						config={chartConfig}
-						payload={tooltipContext.data}
-						hideLabel
-						hideIndicator
-					/>
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel hideIndicator nameKey="visitors" />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

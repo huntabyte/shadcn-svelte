@@ -42,7 +42,6 @@
 						color: chartConfig.desktop.color,
 					},
 				]}
-				seriesLayout="stack"
 				axis="x"
 				props={{
 					area: {

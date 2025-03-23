@@ -44,7 +44,6 @@
 						stroke: "none",
 						rounded: "all",
 						radius: 8,
-						fill: "var(--color-desktop)",
 						// use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,

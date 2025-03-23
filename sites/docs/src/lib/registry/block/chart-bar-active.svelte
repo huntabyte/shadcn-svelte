@@ -2,8 +2,9 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { Bar, BarChart } from "layerchart";
+	import { Bar, BarChart, type ChartContextValue } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 187, color: "var(--color-chrome)" },
@@ -38,6 +39,8 @@
 			color: "hsl(var(--chart-5))",
 		},
 	} satisfies Chart.ChartConfig;
+
+	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root>
@@ -48,6 +51,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
+				bind:context
 				data={chartData}
 				x="browser"
 				c="color"
@@ -57,7 +61,17 @@
 				axis="x"
 				rule={false}
 				props={{
-					bars: { stroke: "none", radius: 8, rounded: "all" },
+					bars: {
+						stroke: "none",
+						radius: 8,
+						rounded: "all", // use the height of the chart to animate the bars
+						initialY: context?.height,
+						initialHeight: 0,
+						tweened: {
+							y: { duration: 500, easing: cubicInOut },
+							height: { duration: 500, easing: cubicInOut },
+						},
+					},
 					xAxis: {
 						format: (d) => chartConfig[d as keyof typeof chartConfig].label,
 					},
@@ -74,6 +88,7 @@
 							<!-- The "active" bar -->
 							<Bar
 								{...baseBarProps}
+								tweened={true}
 								fill={d.color}
 								bar={d}
 								fillOpacity={0.8}
@@ -83,7 +98,7 @@
 								stroke-dashoffset={4}
 							/>
 						{:else}
-							<Bar {...baseBarProps} fill={d.color} bar={d} />
+							<Bar {...baseBarProps} fill={d.color} bar={d} tweened={true} />
 						{/if}
 					{/each}
 				{/snippet}

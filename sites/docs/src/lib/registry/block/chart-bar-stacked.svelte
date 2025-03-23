@@ -2,8 +2,9 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { scaleBand } from "d3-scale";
-	import { BarChart, Highlight } from "layerchart";
+	import { BarChart, Highlight, type ChartContextValue } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ month: "January", desktop: 186, mobile: 80 },
@@ -24,6 +25,8 @@
 			color: "hsl(var(--chart-2))",
 		},
 	} satisfies Chart.ChartConfig;
+
+	let context = $state<ChartContextValue>();
 </script>
 
 <Card.Root>
@@ -34,6 +37,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
+				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
@@ -54,7 +58,15 @@
 				]}
 				seriesLayout="stack"
 				props={{
-					bars: { stroke: "none" },
+					bars: {
+						stroke: "none",
+						initialY: context?.height,
+						initialHeight: 0,
+						tweened: {
+							y: { duration: 500, easing: cubicInOut },
+							height: { duration: 500, easing: cubicInOut },
+						},
+					},
 					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },
 				}}
