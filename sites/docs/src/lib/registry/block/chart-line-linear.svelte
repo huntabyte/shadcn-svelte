@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LineChart, Tooltip } from "layerchart";
+	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
 	import { PeriodType } from "@layerstack/utils";
@@ -35,6 +35,7 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				axis="x"
 				series={[
 					{
 						key: "desktop",
@@ -43,15 +44,12 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveLinear, tweened: true },
+					spline: { curve: curveLinear, tweened: true, strokeWidth: 2 },
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}
-					<Tooltip.Root variant="none">
-						<Chart.Tooltip hideLabel />
-					</Tooltip.Root>
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

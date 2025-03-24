@@ -39,6 +39,7 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				axis="x"
 				series={[
 					{
 						key: "desktop",
@@ -52,9 +53,8 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened: true },
+					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}

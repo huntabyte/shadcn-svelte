@@ -2,7 +2,7 @@
 	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
-	import { PeriodType, format } from "@layerstack/utils";
+	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -36,6 +36,7 @@
 				labels={{ offset: 12 }}
 				data={chartData}
 				x="date"
+				axis="x"
 				xScale={scaleUtc()}
 				series={[
 					{
@@ -46,11 +47,16 @@
 				]}
 				props={{
 					spline: { curve: curveNatural, tweened: true },
+					highlight: {
+						points: {
+							tweened: false,
+							spring: false,
+							r: 7.5,
+						},
+					},
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
-				<!-- TODO: How to style active do, say, add a wider radius? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {

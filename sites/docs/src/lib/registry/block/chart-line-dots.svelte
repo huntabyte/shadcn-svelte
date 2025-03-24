@@ -36,6 +36,7 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				axis="x"
 				series={[
 					{
 						key: "desktop",
@@ -44,9 +45,15 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened: true },
+					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
+					highlight: {
+						points: {
+							tweened: false,
+							spring: false,
+							r: 7.5,
+						},
+					},
 					xAxis: { format: PeriodType.Month },
-					yAxis: { format: () => "" },
 				}}
 			>
 				<!-- TODO: How to style active do, say, add a wider radius? -->

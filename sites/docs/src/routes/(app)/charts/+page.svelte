@@ -190,7 +190,7 @@
 				id="line-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<!-- <ChartDisplay status="Done" name="chart-line-default">
+				<ChartDisplay status="Done" name="chart-line-default">
 					<ChartLineDefault />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-line-linear">
@@ -202,21 +202,38 @@
 				<ChartDisplay status="Done" name="chart-line-multiple">
 					<ChartLineMultiple />
 				</ChartDisplay>
-				<ChartDisplay status="Done" name="chart-line-dots">
+				<ChartDisplay
+					status="Needs Parity"
+					description="Need to find out if it is possible to adjust a point's size when hovering over it."
+					name="chart-line-dots"
+				>
 					<ChartLineDots />
 				</ChartDisplay>
-				<ChartDisplay name="chart-line-dots-custom">
+				<ChartDisplay
+					status="Needs Parity"
+					description="This may be possible by overriding the points but need to confirm."
+					name="chart-line-dots-custom"
+				>
 					<ChartLineDotsCustom />
 				</ChartDisplay>
-				<ChartDisplay name="chart-line-dots-colors">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="I need Sean's assistance in figuring out how this will even work."
+					name="chart-line-dots-colors"
+				>
 					<ChartLineDotsColors />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-line-label">
 					<ChartLineLabel />
 				</ChartDisplay>
-				<ChartDisplay name="chart-line-label-custom">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="I need Sean's assistance in figuring out how this will even work."
+					name="chart-line-label-custom"
+				>
 					<ChartLineLabelCustom />
 				</ChartDisplay>
+				<!--
 				<div class="md:col-span-2 lg:col-span-3">
 					<ChartDisplay name="chart-line-interactive">
 						<ChartLineInteractive />
