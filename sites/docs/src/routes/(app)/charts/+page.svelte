@@ -202,11 +202,7 @@
 				<ChartDisplay status="Done" name="chart-line-multiple">
 					<ChartLineMultiple />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Needs Parity"
-					description="Need to find out if it is possible to adjust a point's size when hovering over it."
-					name="chart-line-dots"
-				>
+				<ChartDisplay status="Done" name="chart-line-dots">
 					<ChartLineDots />
 				</ChartDisplay>
 				<ChartDisplay

@@ -1,71 +1,92 @@
+<svelte:options runes />
+
 <script lang="ts">
-	import { LineChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
-	import { scaleUtc } from "d3-scale";
-	import { PeriodType } from "@layerstack/utils";
-	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import { LineChart, Points } from "layerchart";
+	import { curveNatural } from "d3-shape";
+	import { scaleBand } from "d3-scale";
+	import type { ExtractSnippetParams } from "../ui/chart/chart-utils.js";
+	import type { ComponentProps } from "svelte";
 
 	const chartData = [
-		{ date: new Date("2024-01-01"), desktop: 186 },
-		{ date: new Date("2024-02-01"), desktop: 305 },
-		{ date: new Date("2024-03-01"), desktop: 237 },
-		{ date: new Date("2024-04-01"), desktop: 73 },
-		{ date: new Date("2024-05-01"), desktop: 209 },
-		{ date: new Date("2024-06-01"), desktop: 214 },
+		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
+		{ browser: "safari", visitors: 200, color: "var(--color-safari)" },
+		{ browser: "firefox", visitors: 187, color: "var(--color-firefox)" },
+		{ browser: "edge", visitors: 173, color: "var(--color-edge)" },
+		{ browser: "other", visitors: 90, color: "var(--color-other)" },
 	];
 
 	const chartConfig = {
-		desktop: {
-			label: "Desktop",
+		visitors: {
+			label: "Visitors",
+			color: "hsl(var(--chart-2))",
+		},
+		chrome: {
+			label: "Chrome",
 			color: "hsl(var(--chart-1))",
 		},
+		safari: {
+			label: "Safari",
+			color: "hsl(var(--chart-2))",
+		},
+		firefox: {
+			label: "Firefox",
+			color: "hsl(var(--chart-3))",
+		},
+		edge: {
+			label: "Edge",
+			color: "hsl(var(--chart-4))",
+		},
+		other: {
+			label: "Other",
+			color: "hsl(var(--chart-5))",
+		},
 	} satisfies Chart.ChartConfig;
+
+	type PointsSnippetProps = ExtractSnippetParams<
+		ComponentProps<typeof LineChart<(typeof chartData)[number]>>["points"]
+	>;
 </script>
+
+{#snippet CustomPoints(p: PointsSnippetProps)}
+	{#each visibleSeries as s, i (i)}
+		<Points {...getPointsProps(s, i)}>
+			{#snippet children({ points })}
+				{#each points as p, i (i)}
+					<a href=""></a>
+				{/each}
+			{/snippet}
+		</Points>
+	{/each}
+{/snippet}
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Line Chart - Label Custom</Card.Title>
+		<Card.Title>Line Chart - Custom Label</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points
-				labels={{ offset: 12 }}
 				data={chartData}
-				x="date"
-				axis="x"
-				xScale={scaleUtc()}
-				series={[
-					{
-						key: "desktop",
-						label: "Desktop",
-						color: chartConfig.desktop.color,
-					},
-				]}
+				y="visitors"
+				yPadding={[0, 25]}
+				x="browser"
+				xScale={scaleBand()}
 				props={{
-					spline: { curve: curveNatural, tweened: true },
-					highlight: {
-						points: {
-							tweened: false,
-							spring: false,
-							r: 7.5,
-						},
+					spline: {
+						curve: curveNatural,
+						tweened: true,
+						strokeWidth: 2,
+						stroke: "var(--color-visitors)",
 					},
-					xAxis: { format: PeriodType.Month },
 				}}
+				points={CustomPoints}
 			>
 				{#snippet tooltip()}
-					<Chart.Tooltip
-						labelFormatter={(v: Date) => {
-							return v.toLocaleDateString("en-US", {
-								month: "long",
-							});
-						}}
-						indicator="line"
-					/>
+					<Chart.Tooltip hideLabel />
 				{/snippet}
 			</LineChart>
 		</Chart.Container>
