@@ -4,4 +4,4 @@
 	let restProps: DropdownMenuPrimitive.GroupProps = $props();
 </script>
 
-<DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...restProps}/>
+<DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...restProps} />

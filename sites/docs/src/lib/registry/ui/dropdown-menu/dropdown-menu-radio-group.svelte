@@ -4,4 +4,4 @@
 	let restProps: DropdownMenuPrimitive.RadioGroupProps = $props();
 </script>
 
-<DropdownMenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...restProps}/>
+<DropdownMenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...restProps} />

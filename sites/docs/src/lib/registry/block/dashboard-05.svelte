@@ -322,9 +322,7 @@
 								</DropdownMenu.Trigger>
 								<DropdownMenu.Content align="end">
 									<DropdownMenu.Group>
-										<DropdownMenu.Label
-											>Filter by</DropdownMenu.Label
-										>
+										<DropdownMenu.Label>Filter by</DropdownMenu.Label>
 										<DropdownMenu.Separator />
 										<DropdownMenu.CheckboxItem checked>
 											Fulfilled
