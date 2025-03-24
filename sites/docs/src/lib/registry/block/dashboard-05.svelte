@@ -241,7 +241,7 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
+						<DropdownMenu.Label>My Account</DropdownMenu.Label>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>Settings</DropdownMenu.Item>
 						<DropdownMenu.Item>Support</DropdownMenu.Item>
@@ -322,8 +322,8 @@
 								</DropdownMenu.Trigger>
 								<DropdownMenu.Content align="end">
 									<DropdownMenu.Group>
-										<DropdownMenu.GroupHeading
-											>Filter by</DropdownMenu.GroupHeading
+										<DropdownMenu.Label
+											>Filter by</DropdownMenu.Label
 										>
 										<DropdownMenu.Separator />
 										<DropdownMenu.CheckboxItem checked>

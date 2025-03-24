@@ -31,7 +31,7 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.GroupHeading>Suggested Lists</DropdownMenu.GroupHeading>
+						<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
 						<DropdownMenu.Separator />
 						<DropdownMenu.CheckboxItem checked>Future Ideas</DropdownMenu.CheckboxItem>
 						<DropdownMenu.CheckboxItem>My Stack</DropdownMenu.CheckboxItem>
