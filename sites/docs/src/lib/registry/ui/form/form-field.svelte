@@ -23,7 +23,7 @@
 
 <FormPrimitive.Field {form} {name}>
 	{#snippet children({ constraints, errors, tainted, value })}
-		<div bind:this={ref} class={cn("space-y-2", className)} {...restProps}>
+		<div bind:this={ref} data-slot="form-item" class={cn("space-y-2", className)} {...restProps}>
 			{@render childrenProp?.({ constraints, errors, tainted, value: value as T[U] })}
 		</div>
 	{/snippet}
