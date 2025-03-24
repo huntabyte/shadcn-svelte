@@ -229,12 +229,11 @@
 				>
 					<ChartLineLabelCustom />
 				</ChartDisplay>
-				<!--
 				<div class="md:col-span-2 lg:col-span-3">
-					<ChartDisplay name="chart-line-interactive">
+					<ChartDisplay status="In Progress" name="chart-line-interactive">
 						<ChartLineInteractive />
 					</ChartDisplay>
-				</div> -->
+				</div>
 			</div>
 			<Separator />
 			<div

@@ -54,6 +54,7 @@
 				y="visitors"
 				yPadding={[0, 25]}
 				x="browser"
+				axis={false}
 				xScale={scaleBand()}
 				props={{
 					spline: {

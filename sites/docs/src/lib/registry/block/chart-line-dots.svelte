@@ -32,7 +32,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points
+				points={{ r: 4 }}
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
@@ -50,7 +50,7 @@
 						points: {
 							tweened: false,
 							spring: false,
-							r: 7.5,
+							r: 6,
 						},
 					},
 					xAxis: { format: PeriodType.Month },

@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
+	import { LineChart, Points } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
+	import GitCommitVertical from "@lucide/svelte/icons/git-commit-vertical";
 	import { scaleUtc } from "d3-scale";
 	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
@@ -32,7 +33,6 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
@@ -50,15 +50,33 @@
 						points: {
 							tweened: false,
 							spring: false,
-							r: 7.5,
+							r: 3,
 						},
 					},
 					xAxis: { format: PeriodType.Month },
 				}}
 			>
-				<!-- TODO: How to style active do, say, add a wider radius? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
+				{/snippet}
+				{#snippet points({ visibleSeries, getPointsProps })}
+					{#each visibleSeries as s, i (i)}
+						<Points {...getPointsProps(s, i)}>
+							{#snippet children({ points })}
+								{#each points as p, i (i)}
+									{@const r = 24}
+									<GitCommitVertical
+										x={p.x - r / 2}
+										y={p.y - r / 2}
+										width={r}
+										height={r}
+										fill="hsl(var(--background))"
+										color="var(--color-desktop)"
+									/>
+								{/each}
+							{/snippet}
+						</Points>
+					{/each}
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

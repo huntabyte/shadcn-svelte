@@ -4,11 +4,9 @@
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { LineChart, Points } from "layerchart";
+	import { LineChart } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import { scaleBand } from "d3-scale";
-	import type { ExtractSnippetParams } from "../ui/chart/chart-utils.js";
-	import type { ComponentProps } from "svelte";
 
 	const chartData = [
 		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
@@ -44,23 +42,7 @@
 			color: "hsl(var(--chart-5))",
 		},
 	} satisfies Chart.ChartConfig;
-
-	type PointsSnippetProps = ExtractSnippetParams<
-		ComponentProps<typeof LineChart<(typeof chartData)[number]>>["points"]
-	>;
 </script>
-
-{#snippet CustomPoints(p: PointsSnippetProps)}
-	{#each visibleSeries as s, i (i)}
-		<Points {...getPointsProps(s, i)}>
-			{#snippet children({ points })}
-				{#each points as p, i (i)}
-					<a href=""></a>
-				{/each}
-			{/snippet}
-		</Points>
-	{/each}
-{/snippet}
 
 <Card.Root>
 	<Card.Header>
@@ -74,6 +56,7 @@
 				y="visitors"
 				yPadding={[0, 25]}
 				x="browser"
+				axis={false}
 				xScale={scaleBand()}
 				props={{
 					spline: {
@@ -83,7 +66,6 @@
 						stroke: "var(--color-visitors)",
 					},
 				}}
-				points={CustomPoints}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />

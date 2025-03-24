@@ -32,7 +32,7 @@
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<LineChart
-				points
+				points={{ r: 4 }}
 				labels={{ offset: 12 }}
 				data={chartData}
 				x="date"
@@ -46,12 +46,12 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened: true },
+					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
 					highlight: {
 						points: {
 							tweened: false,
 							spring: false,
-							r: 7.5,
+							r: 6,
 						},
 					},
 					xAxis: { format: PeriodType.Month },

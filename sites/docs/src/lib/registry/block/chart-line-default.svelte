@@ -46,6 +46,7 @@
 				props={{
 					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
 					xAxis: { format: PeriodType.Month },
+					highlight: { points: { r: 4 } },
 				}}
 			>
 				{#snippet tooltip()}
