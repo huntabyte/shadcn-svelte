@@ -531,6 +531,14 @@ export const Index = {
 	files: ["../lib/registry/example/input-file.svelte"],
 	raw: () => import("../lib/registry/example/input-file.svelte?raw").then((m) => m.default),
 },
+"input-invalid": {
+	name: "input-invalid",
+	type: "registry:example",
+	registryDependencies: ["input"],
+	component: () => import("../lib/registry/example/input-invalid.svelte").then((m) => m.default),
+	files: ["../lib/registry/example/input-invalid.svelte"],
+	raw: () => import("../lib/registry/example/input-invalid.svelte?raw").then((m) => m.default),
+},
 "input-otp-demo": {
 	name: "input-otp-demo",
 	type: "registry:example",
