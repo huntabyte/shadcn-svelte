@@ -41,14 +41,14 @@
 	},
 	"dependencies": {
 		"@clack/core": "^0.3.4",
+		"@svecosystem/strip-types": "^0.0.1",
 		"chalk": "5.2.0",
 		"commander": "^10.0.1",
 		"execa": "^7.2.0",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4",
 		"semver": "^7.7.1",
-		"sucrase": "^3.35.0",
-		"sv-strip": "^0.2.1"
+		"sucrase": "^3.35.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
