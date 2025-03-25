@@ -66,8 +66,8 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       '@svecosystem/strip-types':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.2
+        version: 0.0.2
       chalk:
         specifier: 5.2.0
         version: 5.2.0
@@ -1475,8 +1475,8 @@ packages:
   '@sinclair/typebox@0.32.35':
     resolution: {integrity: sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==}
 
-  '@svecosystem/strip-types@0.0.1':
-    resolution: {integrity: sha512-HMuANHJYSHksKsJiRrhvp6fp40gAcIg2MV9A5r2lnyMx4756VYD/2IKAVnZm0fkuW56cmNGF6O2/gbmlANwD6Q==}
+  '@svecosystem/strip-types@0.0.2':
+    resolution: {integrity: sha512-KlxmAT3mZSUAyiM6ek6i0UmEUAHJJAYXb4udT0VUrcb354/bcZyt9GTX6448TUhjl1XG5Y50TMuaENx0iU4zQA==}
 
   '@sveltejs/acorn-typescript@1.0.5':
     resolution: {integrity: sha512-IwQk4yfwLdibDlrXVE04jTZYlLnwsTT2PIOQQGNLWfjavGifnk1JD1LcZjZaBTRcxZu2FfPfNLOE04DSu9lqtQ==}
@@ -6063,7 +6063,7 @@ snapshots:
   '@sinclair/typebox@0.32.35':
     optional: true
 
-  '@svecosystem/strip-types@0.0.1':
+  '@svecosystem/strip-types@0.0.2':
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.17
