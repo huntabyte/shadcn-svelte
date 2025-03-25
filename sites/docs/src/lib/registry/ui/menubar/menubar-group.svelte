@@ -3,8 +3,6 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
-		inset = undefined,
 		...restProps
 	}: MenubarPrimitive.GroupProps & {
 		inset?: boolean;
