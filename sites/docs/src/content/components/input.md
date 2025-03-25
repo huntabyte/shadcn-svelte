@@ -83,6 +83,14 @@ links:
 
 </ComponentPreview>
 
+### Invalid
+
+<ComponentPreview name="input-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
 ### File
 
 <ComponentPreview name="input-file">

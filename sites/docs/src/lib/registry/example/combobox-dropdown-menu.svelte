@@ -53,7 +53,7 @@
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content class="w-[200px]" align="end">
 			<DropdownMenu.Group>
-				<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+				<DropdownMenu.Label>Actions</DropdownMenu.Label>
 				<DropdownMenu.Item>
 					<User class="mr-2 size-4" />
 					Assign to...
