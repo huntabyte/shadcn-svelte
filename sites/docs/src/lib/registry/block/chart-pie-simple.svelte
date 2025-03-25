@@ -5,11 +5,11 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const chartData = [
-		{ browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-		{ browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-		{ browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-		{ browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-		{ browser: "other", visitors: 190, fill: "var(--color-other)" },
+		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
+		{ browser: "safari", visitors: 200, color: "var(--color-safari)" },
+		{ browser: "firefox", visitors: 187, color: "var(--color-firefox)" },
+		{ browser: "edge", visitors: 173, color: "var(--color-edge)" },
+		{ browser: "other", visitors: 90, color: "var(--color-other)" },
 	];
 
 	const chartConfig = {
@@ -31,37 +31,19 @@
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				data={chartData}
-				label="browser"
+				key="browser"
 				value="visitors"
-				series={[
-					{
-						key: "chrome",
-						label: chartConfig.chrome.label,
-						color: chartConfig.chrome.color,
+				cRange={chartData.map((d) => d.color)}
+				c="color"
+				props={{
+					pie: {
+						tweened: true,
 					},
-					{
-						key: "safari",
-						label: chartConfig.safari.label,
-						color: chartConfig.safari.color,
-					},
-					{
-						key: "firefox",
-						label: chartConfig.firefox.label,
-						color: chartConfig.firefox.color,
-					},
-					{
-						key: "edge",
-						label: chartConfig.edge.label,
-						color: chartConfig.edge.color,
-					},
-					{
-						key: "other",
-						label: chartConfig.other.label,
-						color: chartConfig.other.color,
-					},
-				]}
+				}}
 			>
-				<!-- TODO: Figure out a way to apply a custom tooltip that readily parses this chart data. Blocked my poor implementation of `getPayloadConfigFromPayload` -->
+				{#snippet tooltip()}
+					<Chart.Tooltip hideLabel />
+				{/snippet}
 			</PieChart>
 		</Chart.Container>
 	</Card.Content>

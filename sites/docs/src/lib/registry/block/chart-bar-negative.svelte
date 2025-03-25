@@ -15,9 +15,7 @@
 	];
 
 	const chartConfig = {
-		visitors: {
-			label: "Visitors",
-		},
+		visitors: { label: "Visitors" },
 	} satisfies Chart.ChartConfig;
 </script>
 

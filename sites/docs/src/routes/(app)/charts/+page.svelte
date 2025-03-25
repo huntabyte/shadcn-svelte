@@ -89,7 +89,7 @@
 				</ChartDisplay>
 
 				<ChartDisplay
-					status="Needs Parity"
+					status="Done"
 					name="chart-pie-donut-text"
 					class="[&_[data-chart]]:xl:max-h-[243px]"
 				>
@@ -205,11 +205,7 @@
 				<ChartDisplay status="Done" name="chart-line-dots">
 					<ChartLineDots />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Needs Parity"
-					description="This may be possible by overriding the points but need to confirm."
-					name="chart-line-dots-custom"
-				>
+				<ChartDisplay status="Done" name="chart-line-dots-custom">
 					<ChartLineDotsCustom />
 				</ChartDisplay>
 				<ChartDisplay
@@ -230,7 +226,7 @@
 					<ChartLineLabelCustom />
 				</ChartDisplay>
 				<div class="md:col-span-2 lg:col-span-3">
-					<ChartDisplay status="In Progress" name="chart-line-interactive">
+					<ChartDisplay status="Done" name="chart-line-interactive">
 						<ChartLineInteractive />
 					</ChartDisplay>
 				</div>
@@ -240,15 +236,16 @@
 				id="pie-chart"
 				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
 			>
-				<!-- <ChartDisplay status="In Progress" name="chart-pie-simple">
+				<ChartDisplay status="Done" name="chart-pie-simple">
 					<ChartPieSimple />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-separator-none">
-					<ChartPieSeparatorNone />
+				<ChartDisplay status="Done" name="chart-pie-separator-none">
+					<ChartPieSimple />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-label">
+				<ChartDisplay status="In Progress" name="chart-pie-label">
 					<ChartPieLabel />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay name="chart-pie-label-custom">
 					<ChartPieLabelCustom />
 				</ChartDisplay>

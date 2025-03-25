@@ -101,18 +101,9 @@
 	];
 
 	const chartConfig = {
-		views: {
-			label: "Page Views",
-			color: "",
-		},
-		desktop: {
-			label: "Desktop",
-			color: "hsl(var(--chart-1))",
-		},
-		mobile: {
-			label: "Mobile",
-			color: "hsl(var(--chart-2))",
-		},
+		views: { label: "Page Views", color: "" },
+		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
 	} satisfies Chart.ChartConfig;
 
 	let activeChart = $state<keyof typeof chartConfig>("desktop");

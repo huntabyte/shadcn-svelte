@@ -17,10 +17,7 @@
 	];
 
 	const chartConfig = {
-		desktop: {
-			label: "Desktop",
-			color: "hsl(var(--chart-1))",
-		},
+		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
 	} satisfies Chart.ChartConfig;
 </script>
 
