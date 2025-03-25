@@ -19,10 +19,12 @@
 
 <PaginationPrimitive.PrevButton
 	bind:ref
+	aria-label="Go to previous page"
 	class={cn(
 		buttonVariants({
+			size: "default",
 			variant: "ghost",
-			class: "gap-1 pl-2.5",
+			class: "gap-1 px-2.5 sm:pl-2.5",
 		}),
 		className
 	)}
