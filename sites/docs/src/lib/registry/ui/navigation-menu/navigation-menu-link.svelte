@@ -5,6 +5,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		children,
 		...restProps
 	}: NavigationMenuPrimitive.LinkProps = $props();
 </script>
@@ -17,4 +18,6 @@
 		className
 	)}
 	{...restProps}
-/>
+>
+	{@render children?.()}
+</NavigationMenuPrimitive.Link>

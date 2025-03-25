@@ -5,6 +5,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		children,
 		...restProps
 	}: NavigationMenuPrimitive.ListProps = $props();
 </script>
@@ -14,4 +15,6 @@
 	data-slot="navigation-menu-list"
 	class={cn("group flex flex-1 list-none items-center justify-center gap-1", className)}
 	{...restProps}
-/>
+>
+	{@render children?.()}
+</NavigationMenuPrimitive.List>

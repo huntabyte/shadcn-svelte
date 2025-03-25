@@ -19,4 +19,6 @@
 		className
 	)}
 	{...restProps}
-/>
+>
+	{@render children?.()}
+</NavigationMenuPrimitive.Content>

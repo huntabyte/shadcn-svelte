@@ -5,6 +5,7 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		children,
 		...restProps
 	}: NavigationMenuPrimitive.ItemProps = $props();
 </script>
@@ -14,4 +15,6 @@
 	data-slot="navigation-menu-item"
 	class={cn("relative", className)}
 	{...restProps}
-/>
+>
+	{@render children?.()}
+</NavigationMenuPrimitive.Item>
