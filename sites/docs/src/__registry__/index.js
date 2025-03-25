@@ -603,6 +603,14 @@ export const Index = {
 	files: ["../lib/registry/example/menubar-demo.svelte"],
 	raw: () => import("../lib/registry/example/menubar-demo.svelte?raw").then((m) => m.default),
 },
+"navigation-menu-demo": {
+	name: "navigation-menu-demo",
+	type: "registry:example",
+	registryDependencies: ["navigation-menu"],
+	component: () => import("../lib/registry/example/navigation-menu-demo.svelte").then((m) => m.default),
+	files: ["../lib/registry/example/navigation-menu-demo.svelte"],
+	raw: () => import("../lib/registry/example/navigation-menu-demo.svelte?raw").then((m) => m.default),
+},
 "pagination-demo": {
 	name: "pagination-demo",
 	type: "registry:example",
