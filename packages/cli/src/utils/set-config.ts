@@ -249,3 +249,41 @@ function createAliasProperties(): Property[] {
 		}
 	];
 }
+
+function createAliasProperties2(): Property[] {
+	return [
+		{
+			type: "Property",
+			method: false,
+			shorthand: false,
+			computed: false,
+			key: {
+				type: "Identifier",
+				name: "$components"
+			},
+			value: {
+				type: "Literal",
+				value: "src/lib/components",
+				raw: '"src/lib/components"'
+			},
+			kind: "init"
+		},
+		{
+			type: "Property",
+			method: false,
+			shorthand: false,
+			computed: false,
+			key: {
+				type: "Literal",
+				value: "$components/*",
+				raw: '"$components/*"'
+			},
+			value: {
+				type: "Literal",
+				value: "src/lib/components/*",
+				raw: '"src/lib/components/*"'
+			},
+			kind: "init"
+		}
+	];
+}
