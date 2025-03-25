@@ -9,7 +9,7 @@
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupHeading>Panel Position</DropdownMenu.GroupHeading>
+			<DropdownMenu.Label>Panel Position</DropdownMenu.Label>
 			<DropdownMenu.Separator />
 			<DropdownMenu.RadioGroup bind:value={position}>
 				<DropdownMenu.RadioItem value="top">Top</DropdownMenu.RadioItem>

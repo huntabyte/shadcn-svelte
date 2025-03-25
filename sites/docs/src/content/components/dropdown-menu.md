@@ -48,7 +48,7 @@ Install `bits-ui`:
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
+      <DropdownMenu.Label>My Account</DropdownMenu.Label>
       <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>

@@ -342,7 +342,7 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
   </DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+      <DropdownMenu.Label>Actions</DropdownMenu.Label>
       <DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
         Copy payment ID
       </DropdownMenu.Item>
