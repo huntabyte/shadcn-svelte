@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as ResizablePrimitive from "paneforge";
+	import * as ResizablePanePrimitive from "paneforge";
 
-	let { ...restProps }: ResizablePrimitive.PaneProps = $props();
+	let { ref = $bindable(null), ...restProps }: ResizablePanePrimitive.PaneProps = $props();
 </script>
 
-<ResizablePrimitive.Pane data-slot="resizable-pane" {...restProps} />
+<ResizablePanePrimitive.Pane bind:ref data-slot="resizable-pane" {...restProps} />

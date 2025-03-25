@@ -1,4 +1,5 @@
-import Pane from "./resizable-pane.svelte";
+import { Pane } from "paneforge";
+// import Pane from "./resizable-pane.svelte";
 import Handle from "./resizable-handle.svelte";
 import PaneGroup from "./resizable-pane-group.svelte";
 
