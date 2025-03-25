@@ -555,6 +555,14 @@ export const Index = {
 	files: ["../lib/registry/example/input-otp-form.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-form.svelte?raw").then((m) => m.default),
 },
+"input-otp-invalid": {
+	name: "input-otp-invalid",
+	type: "registry:example",
+	registryDependencies: ["input-otp"],
+	component: () => import("../lib/registry/example/input-otp-invalid.svelte").then((m) => m.default),
+	files: ["../lib/registry/example/input-otp-invalid.svelte"],
+	raw: () => import("../lib/registry/example/input-otp-invalid.svelte?raw").then((m) => m.default),
+},
 "input-otp-pattern": {
 	name: "input-otp-pattern",
 	type: "registry:example",
