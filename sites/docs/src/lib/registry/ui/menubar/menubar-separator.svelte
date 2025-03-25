@@ -11,6 +11,7 @@
 
 <MenubarPrimitive.Separator
 	bind:ref
-	class={cn("bg-muted -mx-1 my-1 h-px", className)}
+	data-slot="menubar-separator"
+	class={cn("bg-border -mx-1 my-1 h-px", className)}
 	{...restProps}
 />
