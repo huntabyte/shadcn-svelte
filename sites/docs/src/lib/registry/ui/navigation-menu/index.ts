@@ -5,7 +5,6 @@ import Trigger from "./navigation-menu-trigger.svelte";
 import Indicator from "./navigation-menu-indicator.svelte";
 import Link from "./navigation-menu-link.svelte";
 import List from "./navigation-menu-list.svelte";
-import Viewport from "./navigation-menu-viewport.svelte";
 
 export {
 	Root,
@@ -15,7 +14,6 @@ export {
 	Indicator,
 	Link,
 	List,
-	Viewport,
 	//
 	Root as NavigationMenu,
 	Content as NavigationMenuContent,
@@ -24,5 +22,4 @@ export {
 	Indicator as NavigationMenuIndicator,
 	Link as NavigationMenuLink,
 	List as NavigationMenuList,
-	Viewport as NavigationMenuViewport,
 };
