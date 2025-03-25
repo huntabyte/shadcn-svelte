@@ -65,6 +65,9 @@ importers:
       '@clack/core':
         specifier: ^0.3.4
         version: 0.3.4
+      '@svecosystem/strip-types':
+        specifier: ^0.0.2
+        version: 0.0.2
       chalk:
         specifier: 5.2.0
         version: 5.2.0
@@ -86,9 +89,6 @@ importers:
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0
-      sv-strip:
-        specifier: ^0.2.1
-        version: 0.2.1
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -310,8 +310,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       vaul-svelte:
-        specifier: ^1.0.0-next.2
-        version: 1.0.0-next.2(svelte@5.16.1)
+        specifier: 1.0.0-next.7
+        version: 1.0.0-next.7(svelte@5.16.1)
       velite:
         specifier: ^0.2.0
         version: 0.2.0
@@ -1474,6 +1474,9 @@ packages:
 
   '@sinclair/typebox@0.32.35':
     resolution: {integrity: sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==}
+
+  '@svecosystem/strip-types@0.0.2':
+    resolution: {integrity: sha512-KlxmAT3mZSUAyiM6ek6i0UmEUAHJJAYXb4udT0VUrcb354/bcZyt9GTX6448TUhjl1XG5Y50TMuaENx0iU4zQA==}
 
   '@sveltejs/acorn-typescript@1.0.5':
     resolution: {integrity: sha512-IwQk4yfwLdibDlrXVE04jTZYlLnwsTT2PIOQQGNLWfjavGifnk1JD1LcZjZaBTRcxZu2FfPfNLOE04DSu9lqtQ==}
@@ -4457,9 +4460,6 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sv-strip@0.2.1:
-    resolution: {integrity: sha512-Ezr744vD4I9Sg/ksmv9ap3cho0V2w1poSH2BihMXesIMQKmPYlKPyXEwYV22F2mdFP5vNGR0BRq3QJ9ZssuduA==}
-
   svelte-check@4.1.1:
     resolution: {integrity: sha512-NfaX+6Qtc8W/CyVGS/F7/XdiSSyXz+WGYA9ZWV3z8tso14V2vzjfXviKaTFEzB7g8TqfgO2FOzP6XT4ApSTUTw==}
     engines: {node: '>= 18.0.0'}
@@ -4520,8 +4520,8 @@ packages:
     resolution: {integrity: sha512-DUu3e5tQDO+PtKffjqJ548YfeKtw2Rqc9/+nlP26DZ0AopWTJNylkNnTOP/wcgIt1JSnovyISxEZ/lDR1OhbOw==}
     engines: {node: '>=18'}
 
-  svelte@5.23.2:
-    resolution: {integrity: sha512-PHP1o0aYJNMatiZ+0nq1W/Z1W1/l5Z94B9nhMIo7gsuTBbxC454g4O5SQMjQpZBUZi5ANYUrXJOE4gPzcN/VQw==}
+  svelte@5.25.3:
+    resolution: {integrity: sha512-J9rcZ/xVJonAoESqVGHHZhrNdVbrCfkdB41BP6eiwHMoFShD9it3yZXApVYMHdGfCshBsZCKsajwJeBbS/M1zg==}
     engines: {node: '>=18'}
 
   sveltekit-superforms@2.19.1:
@@ -4858,8 +4858,8 @@ packages:
     resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
     engines: {node: '>= 0.10'}
 
-  vaul-svelte@1.0.0-next.2:
-    resolution: {integrity: sha512-/SjvMvStOMwTnGsQAn+yP0bbQUufb3ZXu8MdnLeQCB33wCZ1ilCPa92DHx1EDhIlVTbiOitwhWp/zaHw/U3OqA==}
+  vaul-svelte@1.0.0-next.7:
+    resolution: {integrity: sha512-7zN7Bi3dFQixvvbUJY9uGDe7Ws/dGZeBQR2pXdXmzQiakjrxBvWo0QrmsX3HK+VH+SZOltz378cmgmCS9f9rSg==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0
@@ -6062,6 +6062,13 @@ snapshots:
 
   '@sinclair/typebox@0.32.35':
     optional: true
+
+  '@svecosystem/strip-types@0.0.2':
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+      pathe: 2.0.3
+      svelte: 5.25.3
 
   '@sveltejs/acorn-typescript@1.0.5(acorn@8.14.1)':
     dependencies:
@@ -9618,13 +9625,6 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  sv-strip@0.2.1:
-    dependencies:
-      estree-walker: 3.0.3
-      magic-string: 0.30.17
-      pathe: 2.0.3
-      svelte: 5.23.2
-
   svelte-check@4.1.1(picomatch@4.0.2)(svelte@5.16.1)(typescript@5.5.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -9713,7 +9713,7 @@ snapshots:
       magic-string: 0.30.12
       zimmerframe: 1.1.2
 
-  svelte@5.23.2:
+  svelte@5.25.3:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -10072,11 +10072,11 @@ snapshots:
   validator@13.11.0:
     optional: true
 
-  vaul-svelte@1.0.0-next.2(svelte@5.16.1):
+  vaul-svelte@1.0.0-next.7(svelte@5.16.1):
     dependencies:
-      bits-ui: 1.3.13(svelte@5.16.1)
+      runed: 0.23.3(svelte@5.16.1)
       svelte: 5.16.1
-      svelte-toolbelt: 0.4.4(svelte@5.16.1)
+      svelte-toolbelt: 0.7.1(svelte@5.16.1)
 
   velite@0.2.0:
     dependencies:

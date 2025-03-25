@@ -65,7 +65,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -107,7 +107,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -149,7 +149,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -191,7 +191,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -233,7 +233,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -275,7 +275,7 @@
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
 								<DropdownMenu.Group>
-									<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Item>Edit</DropdownMenu.Item>
 									<DropdownMenu.Item>Delete</DropdownMenu.Item>
 								</DropdownMenu.Group>

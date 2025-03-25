@@ -1,6 +1,6 @@
 import type { Config } from "./get-config.js";
 import sucrase from "sucrase";
-import { strip } from "sv-strip";
+import { strip } from "@svecosystem/strip-types";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
