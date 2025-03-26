@@ -30,7 +30,7 @@
 			</Popover.Trigger>
 			<Popover.Content
 				class="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
-				align="end"
+				align="start"
 			>
 				<Customizer />
 			</Popover.Content>
