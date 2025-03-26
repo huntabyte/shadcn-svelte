@@ -125,12 +125,11 @@
 	}
 }
 
-/*
-@media (max-width: 640px) {
+@layer utilities {
 	.container {
-		padding: 0 var(--spacing);
+		@apply px-8 pb-8 2xl:border-x border-dashed mx-auto max-w-screen-2xl;
 	}
-} */
+}
 
 .markdown code {
 	background-color: var(--muted);
