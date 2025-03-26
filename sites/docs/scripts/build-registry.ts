@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { rimraf } from "rimraf";
-import { generateBaseColorTemplate, getColorsData } from '../src/lib/components/colors/colors.js';
+import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { registrySchema } from "../src/lib/registry/schema";
 import { themes } from "../src/lib/registry/themes";
 import { buildRegistry } from "./registry";
@@ -204,7 +204,7 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 
 	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"] as const) {
-		const base = generateBaseColorTemplate(baseColor)
+		const base = generateBaseColorTemplate(baseColor);
 
 		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),

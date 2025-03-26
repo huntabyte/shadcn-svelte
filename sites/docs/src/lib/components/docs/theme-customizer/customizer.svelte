@@ -83,7 +83,7 @@
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
 					>
 						<span
-							class="mr-1 flex size-4 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-(--theme-primary)"
+							class="bg-(--theme-primary) mr-1 flex size-4 shrink-0 -translate-x-1 items-center justify-center rounded-full"
 						>
 						</span>
 						{theme.label}
