@@ -255,6 +255,9 @@ importers:
       rimraf:
         specifier: ^4.4.1
         version: 4.4.1
+      runed:
+        specifier: ^0.25.0
+        version: 0.25.0(svelte@5.16.1)
       shiki:
         specifier: ^1.2.1
         version: 1.2.1
@@ -4241,6 +4244,11 @@ packages:
 
   runed@0.23.3:
     resolution: {integrity: sha512-qmL6JOvI9fg2XrSI9eP8bVIaAyk1ztVZsoj37hTs4BSuOOyeLkrIPI16mwarXFYbxSfyJGCwAWgfpSq+ehQmgg==}
+    peerDependencies:
+      svelte: ^5.7.0
+
+  runed@0.25.0:
+    resolution: {integrity: sha512-7+ma4AG9FT2sWQEA0Egf6mb7PBT2vHyuHail1ie8ropfSjvZGtEAx8YTmUjv/APCsdRRxEVvArNjALk9zFSOrg==}
     peerDependencies:
       svelte: ^5.7.0
 
@@ -9394,6 +9402,11 @@ snapshots:
       queue-microtask: 1.2.3
 
   runed@0.23.3(svelte@5.16.1):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.16.1
+
+  runed@0.25.0(svelte@5.16.1):
     dependencies:
       esm-env: 1.2.2
       svelte: 5.16.1
