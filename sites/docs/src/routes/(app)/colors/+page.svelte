@@ -3,6 +3,7 @@
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import ColorCard from "$lib/components/colors/color-card.svelte";
+	import '../../../styles/themes.css'
 </script>
 
 <svelte:head>

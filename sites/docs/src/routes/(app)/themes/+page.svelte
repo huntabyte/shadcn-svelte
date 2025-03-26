@@ -4,6 +4,7 @@
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import { CardsDefault } from "$lib/registry/example/cards/index.js";
+	import '../../../styles/themes.css';
 </script>
 
 <svelte:head>
