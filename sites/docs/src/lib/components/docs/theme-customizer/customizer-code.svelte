@@ -11,7 +11,10 @@
 <ThemeWrapper defaultTheme="zinc" class="relative space-y-4">
 	<div data-rehype-pretty-code-fragment="">
 		<pre
-			class="max-h-[450px] p-4 overflow-x-auto rounded-lg border bg-zinc-950 dark:bg-zinc-900"
-			use:setCodeString>{base.cssVarsTemplate}</pre>
+			class="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 p-4 dark:bg-zinc-900"
+			use:setCodeString><code
+				class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm"
+				>{base.cssVarsTemplate}</code
+			></pre>
 	</div>
 </ThemeWrapper>
