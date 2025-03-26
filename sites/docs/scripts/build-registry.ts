@@ -5,7 +5,7 @@ import process from "node:process";
 import { rimraf } from "rimraf";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { registrySchema } from "../src/lib/registry/schema";
-import { themes } from "../src/lib/registry/themes";
+import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates";
 import { getChunks } from "./transform-chunks";
@@ -203,8 +203,16 @@ export const Index = {
 	// Build registry/colors/[base].json.
 	// ----------------------------------------------------------------------------
 
-	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"] as const) {
+	const themeCSS = [];
+	for (const baseColor of baseColors) {
 		const base = generateBaseColorTemplate(baseColor);
+
+		themeCSS.push(
+			template(THEME_STYLES_WITH_VARIABLES)({
+				colors: base.cssVars,
+				theme: baseColor,
+			})
+		);
 
 		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
@@ -217,17 +225,7 @@ export const Index = {
 	// Build registry/themes.css
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const theme of themes) {
-		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: theme.cssVars,
-				theme: theme.name,
-			})
-		);
-	}
-
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
+	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 
 	console.info("✅ Done!");
 }

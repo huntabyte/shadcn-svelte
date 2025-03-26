@@ -43,29 +43,32 @@ export type Colors = {
 	rose: ColorScale[];
 };
 
-export type BaseColor =
-	| "slate"
-	| "gray"
-	| "zinc"
-	| "neutral"
-	| "stone"
-	| "red"
-	| "orange"
-	| "amber"
-	| "yellow"
-	| "lime"
-	| "green"
-	| "emerald"
-	| "teal"
-	| "cyan"
-	| "sky"
-	| "blue"
-	| "indigo"
-	| "violet"
-	| "purple"
-	| "fuchsia"
-	| "pink"
-	| "rose";
+export const baseColors = [
+	"slate",
+	"gray",
+	"zinc",
+	"neutral",
+	"stone",
+	"red",
+	"orange",
+	"amber",
+	"yellow",
+	"lime",
+	"green",
+	"emerald",
+	"teal",
+	"cyan",
+	"sky",
+	"blue",
+	"indigo",
+	"violet",
+	"purple",
+	"fuchsia",
+	"pink",
+	"rose",
+] as const;
+
+export type BaseColor = (typeof baseColors)[number];
 
 export const colors: Colors = {
 	inherit: "inherit",

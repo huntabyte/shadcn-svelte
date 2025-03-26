@@ -117,8 +117,7 @@ export const BASE_STYLES_WITH_VARIABLES = `@import "tailwindcss";
   }
 }`;
 
-export const THEME_STYLES_WITH_VARIABLES = `
-.theme-<%- theme %> {
+export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
   --background: <%- colors.light["background"] %>;
   --foreground: <%- colors.light["foreground"] %>;
   --muted: <%- colors.light["muted"] %>;
