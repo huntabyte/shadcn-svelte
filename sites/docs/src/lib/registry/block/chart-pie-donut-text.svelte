@@ -54,7 +54,7 @@
 				value="visitors"
 				c="color"
 				innerRadius={60}
-				padding={{ top: 29, left: 29, right: 29, bottom: 29 }}
+				padding={29}
 			>
 				{#snippet aboveMarks()}
 					<Text

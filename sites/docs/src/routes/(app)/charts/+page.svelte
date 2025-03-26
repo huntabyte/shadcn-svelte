@@ -242,34 +242,53 @@
 				<ChartDisplay status="Done" name="chart-pie-separator-none">
 					<ChartPieSimple />
 				</ChartDisplay>
-				<ChartDisplay status="In Progress" name="chart-pie-label">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Need the ability to add labels outside of the pie point to the slice."
+					name="chart-pie-label"
+				>
 					<ChartPieLabel />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay name="chart-pie-label-custom">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Pending the labels prop being exposed on the chart"
+					name="chart-pie-label-custom"
+				>
 					<ChartPieLabelCustom />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-label-list">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Pending the labels prop being exposed on the chart"
+					name="chart-pie-label-list"
+				>
 					<ChartPieLabelList />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-legend">
+				<ChartDisplay status="In Progress" name="chart-pie-legend">
 					<ChartPieLegend />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-donut">
+				<ChartDisplay status="Done" name="chart-pie-donut">
 					<ChartPieDonut />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-donut-active">
+				<ChartDisplay status="Done" name="chart-pie-donut-active">
 					<ChartPieDonutActive />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-donut-text">
+				<ChartDisplay status="Done" name="chart-pie-donut-text">
 					<ChartPieDonutText />
 				</ChartDisplay>
-				<ChartDisplay status="Blocked (Internal)" name="chart-pie-stacked">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="It's pretty hacky at the moment, we should handle things differently inside of PieChart"
+					name="chart-pie-stacked"
+				>
 					<ChartPieStacked />
 				</ChartDisplay>
-				<ChartDisplay name="chart-pie-interactive">
+				<ChartDisplay
+					description="It feels like I am doing something totally wrong in there with the massive amounts of inner and outer radius"
+					status="Needs Sean Review"
+					name="chart-pie-interactive"
+				>
 					<ChartPieInteractive />
-				</ChartDisplay> -->
+				</ChartDisplay>
 			</div>
 			<Separator />
 			<div

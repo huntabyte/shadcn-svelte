@@ -11,11 +11,12 @@
 		children,
 	}: {
 		name: string;
-		status:
+		status?:
 			| "Not Started"
 			| "In Progress"
 			| "Needs Parity"
 			| "Close Enough"
+			| "Needs Sean Review"
 			| "Blocked (External)"
 			| "Blocked (Internal)"
 			| "Done";

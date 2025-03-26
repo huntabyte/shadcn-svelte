@@ -1,29 +1,26 @@
 <script lang="ts">
-	import { PieChart } from "layerchart";
+	import { Arc, PieChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const desktopData = [
-		{ month: "january", desktop: 186, fill: "var(--color-january)" },
-		{ month: "february", desktop: 305, fill: "var(--color-february)" },
-		{ month: "march", desktop: 237, fill: "var(--color-march)" },
-		{ month: "april", desktop: 173, fill: "var(--color-april)" },
-		{ month: "may", desktop: 209, fill: "var(--color-may)" },
+		{ month: "january", desktop: 186, color: "var(--color-january)" },
+		{ month: "february", desktop: 305, color: "var(--color-february)" },
+		{ month: "march", desktop: 237, color: "var(--color-march)" },
+		{ month: "april", desktop: 173, color: "var(--color-april)" },
+		{ month: "may", desktop: 209, color: "var(--color-may)" },
 	];
 
 	const mobileData = [
-		{ month: "january", mobile: 80, fill: "var(--color-january)" },
-		{ month: "february", mobile: 200, fill: "var(--color-february)" },
-		{ month: "march", mobile: 120, fill: "var(--color-march)" },
-		{ month: "april", mobile: 190, fill: "var(--color-april)" },
-		{ month: "may", mobile: 130, fill: "var(--color-may)" },
+		{ month: "january", mobile: 80, color: "var(--color-january)" },
+		{ month: "february", mobile: 200, color: "var(--color-february)" },
+		{ month: "march", mobile: 120, color: "var(--color-march)" },
+		{ month: "april", mobile: 190, color: "var(--color-april)" },
+		{ month: "may", mobile: 130, color: "var(--color-may)" },
 	];
 
 	const chartConfig = {
-		visitors: {
-			label: "Visitors",
-		},
 		desktop: {
 			label: "Desktop",
 		},
@@ -62,30 +59,59 @@
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<PieChart
 				label="month"
+				c={(d) => {
+					return d.color;
+				}}
+				props={{
+					pie: {
+						sort: (a, b) => {
+							const monthOrder = ["january", "february", "march", "april", "may"];
+							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
+						},
+					},
+				}}
 				series={[
 					// TODO: Ability to provide data in a more concise/compact format
 					// e.g `series: { [ { key: "desktop", data: desktopData }, { key: "mobile", data: mobileData } ] }`
 					{
 						key: "desktop",
 						value: "desktop",
-						data: desktopData.map((d) => ({ month: d.month, value: d.desktop })),
+						data: desktopData.map((d) => ({
+							month: d.month,
+							value: d.desktop,
+							color: d.color,
+							key: "desktop",
+						})),
 						props: { innerRadius: -20 },
 					},
 					{
 						key: "mobile",
 						value: "mobile",
-						data: mobileData.map((d) => ({ month: d.month, value: d.mobile })),
+						data: mobileData.map((d) => ({
+							month: d.month,
+							value: d.mobile,
+							color: d.color,
+							key: "mobile",
+						})),
 						props: { outerRadius: -30 },
 					},
 				]}
-				cRange={[
-					"hsl(var(--chart-1))",
-					"hsl(var(--chart-2))",
-					"hsl(var(--chart-3))",
-					"hsl(var(--chart-4))",
-					"hsl(var(--chart-5))",
-				]}
-			/>
+				padding={29}
+			>
+				{#snippet arc({ props })}
+					<Arc {...props} fill={props.data.color} />
+				{/snippet}
+				{#snippet tooltip()}
+					<Chart.Tooltip
+						labelKey="visitors"
+						nameKey="month"
+						indicator="line"
+						labelFormatter={(_, payload) => {
+							return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
+						}}
+					/>
+				{/snippet}
+			</PieChart>
 			<!-- TODO: How to programmatically apply a fill colour by indexing `chartConfig` -->
 			<!-- TODO: Figure out a way to apply a custom tooltip that readily parses this chart data. Blocked my poor implementation of `getPayloadConfigFromPayload` -->
 		</Chart.Container>

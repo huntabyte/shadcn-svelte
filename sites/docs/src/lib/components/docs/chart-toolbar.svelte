@@ -16,6 +16,7 @@
 			| "In Progress"
 			| "Close Enough"
 			| "Needs Parity"
+			| "Needs Sean Review"
 			| "Blocked (External)"
 			| "Blocked (Internal)"
 			| "Done";
@@ -52,7 +53,7 @@
 								"border-sky-400 bg-sky-400/20 text-sky-700 hover:bg-sky-400/30 dark:bg-sky-400/10 dark:text-sky-300 dark:hover:bg-sky-400/15":
 									status === "In Progress",
 								"border-amber-400 bg-amber-400/20 text-amber-700 hover:bg-amber-400/30 dark:bg-amber-400/10 dark:text-amber-300 dark:hover:bg-amber-400/15":
-									status === "Needs Parity",
+									status === "Needs Parity" || status === "Needs Sean Review",
 								"border-rose-400 bg-rose-400/20 text-rose-700 hover:bg-rose-400/30 dark:bg-rose-400/10 dark:text-rose-300 dark:hover:bg-rose-400/15":
 									status === "Blocked (External)",
 								"border-pink-400 bg-pink-400/20 text-pink-700 hover:bg-pink-400/30 dark:bg-pink-400/10 dark:text-pink-300 dark:hover:bg-pink-400/15":
