@@ -127,7 +127,7 @@
 
 @layer utilities {
 	.container {
-		@apply px-8 pb-8 2xl:border-x border-dashed mx-auto max-w-screen-2xl;
+		@apply mx-auto max-w-screen-2xl border-dashed px-8 pb-8 2xl:border-x;
 	}
 }
 

@@ -12,7 +12,7 @@
 <header
 	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b border-dashed backdrop-blur"
 >
-	<div class="container !pb-0 flex h-14 max-w-screen-2xl items-center">
+	<div class="container flex h-14 max-w-screen-2xl items-center !pb-0">
 		<MainNav />
 		<MobileNav />
 		<div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
