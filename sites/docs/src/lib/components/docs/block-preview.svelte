@@ -26,7 +26,7 @@
 		>
 			{#if isLoading}
 				<div
-					class="text-muted-foreground absolute inset-0 z-10 flex h-[--container-height] w-full items-center justify-center gap-2 text-sm"
+					class="text-muted-foreground absolute inset-0 z-10 flex h-(--container-height) w-full items-center justify-center gap-2 text-sm"
 				>
 					<Icon.Spinner class="size-4 animate-spin" />
 					Loading...

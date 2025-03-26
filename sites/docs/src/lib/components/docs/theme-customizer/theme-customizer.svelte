@@ -4,10 +4,13 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
+	import { IsMobile } from "$lib/registry/hook/is-mobile.svelte.js";
+
+	const isMobile = new IsMobile();
 </script>
 
 <div class="flex items-center gap-2">
-	<div class="block md:hidden">
+	{#if isMobile.current}
 		<Drawer.Root>
 			<Drawer.Trigger>
 				{#snippet child({ props })}
@@ -18,8 +21,7 @@
 				<Customizer />
 			</Drawer.Content>
 		</Drawer.Root>
-	</div>
-	<div class="hidden md:block">
+	{:else}
 		<Popover.Root>
 			<Popover.Trigger>
 				{#snippet child({ props })}
@@ -33,6 +35,6 @@
 				<Customizer />
 			</Popover.Content>
 		</Popover.Root>
-	</div>
+	{/if}
 	<ThemeCopyCodeButton />
 </div>
