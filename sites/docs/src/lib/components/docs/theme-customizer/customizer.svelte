@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
 	import CircleHelp from "@lucide/svelte/icons/circle-help";
 	import Moon from "@lucide/svelte/icons/moon";
 	import Repeat from "@lucide/svelte/icons/repeat";
