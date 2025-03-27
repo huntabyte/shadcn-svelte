@@ -5,7 +5,7 @@ export type CompleteColorFormat = {
 	oklch: string;
 };
 
-type ColorScale = {
+export type ColorScale = {
 	scale: number;
 	hex: string;
 	rgb: string;
@@ -13,7 +13,7 @@ type ColorScale = {
 	oklch: string;
 };
 
-type Colors = {
+export type Colors = {
 	inherit: string;
 	current: string;
 	transparent: string;
@@ -42,6 +42,33 @@ type Colors = {
 	pink: ColorScale[];
 	rose: ColorScale[];
 };
+
+export const baseColors = [
+	"slate",
+	"gray",
+	"zinc",
+	"neutral",
+	"stone",
+	"red",
+	"orange",
+	"amber",
+	"yellow",
+	"lime",
+	"green",
+	"emerald",
+	"teal",
+	"cyan",
+	"sky",
+	"blue",
+	"indigo",
+	"violet",
+	"purple",
+	"fuchsia",
+	"pink",
+	"rose",
+] as const;
+
+export type BaseColor = (typeof baseColors)[number];
 
 export const colors: Colors = {
 	inherit: "inherit",

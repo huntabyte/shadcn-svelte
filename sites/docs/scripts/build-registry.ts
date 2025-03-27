@@ -3,11 +3,11 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { rimraf } from "rimraf";
-import { colorMapping, colors } from "../src/lib/registry/colors";
+import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { registrySchema } from "../src/lib/registry/schema";
-import { themes } from "../src/lib/registry/themes";
+import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry";
-import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
+import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates";
 import { getChunks } from "./transform-chunks";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
@@ -191,30 +191,7 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const colorsData: Record<string, any> = {};
-	for (const [color, value] of Object.entries(colors)) {
-		if (typeof value === "string") {
-			colorsData[color] = value;
-			continue;
-		}
-
-		if (Array.isArray(value)) {
-			colorsData[color] = value.map((item) => ({
-				...item,
-				oklch: item.oklch,
-			}));
-			continue;
-		}
-
-		if (typeof value === "object") {
-			colorsData[color] = {
-				...value,
-				oklch: value.oklch,
-			};
-			continue;
-		}
-	}
+	const colorsData = getColorsData();
 
 	writeFileWithDirs(
 		path.join(colorsTargetPath, "index.json"),
@@ -226,39 +203,16 @@ export const Index = {
 	// Build registry/colors/[base].json.
 	// ----------------------------------------------------------------------------
 
-	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const base: Record<string, any> = {
-			inlineColors: {},
-			cssVars: {},
-		};
-		for (const [mode, values] of Object.entries(colorMapping)) {
-			base.inlineColors[mode] = {};
-			base.cssVars[mode] = {};
-			for (const [key, value] of Object.entries(values)) {
-				if (typeof value === "string") {
-					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
-					base.inlineColors[mode][key] = resolvedColor;
+	const themeCSS = [];
+	for (const baseColor of baseColors) {
+		const base = generateBaseColorTemplate(baseColor);
 
-					const [resolvedBase, scale] = resolvedColor.split("-");
-					const color = scale
-						? colorsData[resolvedBase].find(
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
-								(item: any) => item.scale === Number.parseInt(scale)
-							)
-						: colorsData[resolvedBase];
-					if (color) {
-						base.cssVars[mode][key] = color.oklch;
-					}
-				}
-			}
-		}
-
-		// Build css vars.
-		base.inlineColorsTemplate = template(BASE_STYLES)({});
-		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-			colors: base.cssVars,
-		});
+		themeCSS.push(
+			template(THEME_STYLES_WITH_VARIABLES)({
+				colors: base.cssVars,
+				theme: baseColor,
+			})
+		);
 
 		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
@@ -271,17 +225,7 @@ export const Index = {
 	// Build registry/themes.css
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const theme of themes) {
-		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: theme.cssVars,
-				theme: theme.name,
-			})
-		);
-	}
-
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
+	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 
 	console.info("✅ Done!");
 }
