@@ -31,25 +31,28 @@
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
-				radial
 				data={chartData}
+				radial
 				x="month"
+				y="desktop"
 				xScale={scaleBand()}
-				series={[
-					{
-						key: "desktop",
-						label: "Desktop",
-						color: chartConfig.desktop.color,
-						props: {
-							// TODO: How to dynamically set the fill color? e.g. `fill-[${chartConfig.desktop.color}]/60` or is this a tailwindcss limitation?
-							class: "fill-[hsl(var(--chart-1))]/60 stroke-0",
-						},
-					},
-				]}
 				props={{
-					// TODO: How to draw hexagons instead of circles?
-					spline: { curve: curveLinearClosed, tweened: true },
-					yAxis: { format: () => "" },
+					spline: {
+						curve: curveLinearClosed,
+						fill: "var(--color-desktop)",
+						fillOpacity: 0.6,
+					},
+					xAxis: {
+						tickLength: 10,
+					},
+					yAxis: {
+						ticks: [0, 5, 10],
+						format: () => "",
+					},
+					grid: {
+						yTicks: [0, 5, 10],
+					},
+
 					tooltip: {
 						context: {
 							mode: "voronoi",
