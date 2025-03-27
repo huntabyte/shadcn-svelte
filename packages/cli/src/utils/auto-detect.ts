@@ -3,9 +3,17 @@ import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
 import { detect } from "package-manager-detector";
-import { AGENTS, type Agent, COMMANDS } from "package-manager-detector/agents";
+import {
+	type Agent,
+	AGENTS as _AGENTS,
+	COMMANDS as _COMMANDS,
+} from "package-manager-detector/agents";
 import * as p from "./prompts.js";
 import { cancel } from "./prompt-helpers.js";
+
+export const AGENTS = _AGENTS.filter((agent) => !agent.includes("@"));
+
+export const COMMANDS = _COMMANDS;
 
 const STYLESHEETS = [
 	"app.css",
@@ -96,12 +104,12 @@ export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
 	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
 }
 
-type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 export async function detectPM(cwd: string, prompt: boolean) {
+	type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 	let { agent } = await detect({ cwd });
 
 	if (agent === undefined && prompt) {
-		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
+		const options: Options = AGENTS.map((pm) => ({
 			value: pm,
 			label: pm,
 		}));
