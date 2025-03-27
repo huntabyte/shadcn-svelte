@@ -41,6 +41,7 @@ export { default as InputOtpPattern } from "./input-otp-pattern.svelte";
 export { default as InputOtpSeparator } from "./input-otp-separator.svelte";
 export { default as LabelDemo } from "./label-demo.svelte";
 export { default as MenubarDemo } from "./menubar-demo.svelte";
+export { default as NavigationMenuDemo } from "./navigation-menu-demo.svelte";
 export { default as PopoverDemo } from "./popover-demo.svelte";
 export { default as ProgressDemo } from "./progress-demo.svelte";
 export { default as RadioGroupDemo } from "./radio-group-demo.svelte";
