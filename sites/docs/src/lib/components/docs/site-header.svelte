@@ -4,15 +4,15 @@
 	import CommandMenu from "$lib/components/docs/command-menu.svelte";
 	import MainNav from "$lib/components/docs/nav/main-nav.svelte";
 	import MobileNav from "$lib/components/docs/nav/mobile-nav.svelte";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
 </script>
 
 <header
-	class="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur"
+	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b border-dashed backdrop-blur"
 >
-	<div class="container flex h-14 max-w-screen-2xl items-center">
+	<div class="container flex h-14 max-w-screen-2xl items-center !pb-0">
 		<MainNav />
 		<MobileNav />
 		<div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">

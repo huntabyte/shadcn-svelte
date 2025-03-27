@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Icon from "$lib/components/docs/icons/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
 	let { class: className, ...restProps }: PrimitiveDivAttributes = $props();

@@ -23,14 +23,14 @@
 </script>
 
 <figure data-rehype-pretty-code-figure>
-	<div class="bg-accent/50 border-accent/50 mt-6 w-full rounded-lg border">
+	<div class="mt-6 w-full rounded-lg border bg-zinc-900">
 		<div class="border-border flex place-items-end justify-between border-b p-2 pb-0">
 			<div class="flex place-items-center gap-1">
 				{#each PACKAGE_MANAGERS as pm (pm)}
 					<button
 						type="button"
 						class={{
-							"-mb-0.5 border-b-2 border-transparent p-1 font-mono text-sm": true,
+							"-mb-0.5 cursor-pointer border-b-2 border-transparent p-1 font-mono text-sm": true,
 							"border-b-primary": $agent === pm,
 						}}
 						onclick={() => ($agent = pm)}

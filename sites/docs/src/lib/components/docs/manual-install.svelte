@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import * as Accordion from "$lib/registry/new-york/ui/accordion/index.js";
+	import * as Accordion from "$lib/registry/ui/accordion/index.js";
 	let { children }: { children?: Snippet } = $props();
 </script>
 
