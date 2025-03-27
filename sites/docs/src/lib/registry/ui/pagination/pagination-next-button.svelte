@@ -17,12 +17,15 @@
 	<ChevronRight class="size-4" />
 {/snippet}
 
+<!-- TODO: Fix this error: Expression produces a union type that is too complex to represent. Note: Removing `Fallback` in children={children || Fallback} fixes, makes you wonder how/why `Fallback` is causing this. -->
 <PaginationPrimitive.NextButton
 	bind:ref
+	aria-label="Go to next page"
 	class={cn(
 		buttonVariants({
+			size: "default",
 			variant: "ghost",
-			class: "gap-1 pr-2.5",
+			class: "gap-1 px-2.5 sm:pr-2.5",
 		}),
 		className
 	)}
