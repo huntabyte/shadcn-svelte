@@ -13,29 +13,12 @@
 	];
 
 	const chartConfig = {
-		visitors: {
-			label: "Visitors",
-		},
-		chrome: {
-			label: "Chrome",
-			color: "hsl(var(--chart-1))",
-		},
-		safari: {
-			label: "Safari",
-			color: "hsl(var(--chart-2))",
-		},
-		firefox: {
-			label: "Firefox",
-			color: "hsl(var(--chart-3))",
-		},
-		edge: {
-			label: "Edge",
-			color: "hsl(var(--chart-4))",
-		},
-		other: {
-			label: "Other",
-			color: "hsl(var(--chart-5))",
-		},
+		visitors: { label: "Visitors" },
+		chrome: { label: "Chrome", color: "var(--chart-1)" },
+		safari: { label: "Safari", color: "var(--chart-2)" },
+		firefox: { label: "Firefox", color: "var(--chart-3)" },
+		edge: { label: "Edge", color: "var(--chart-4)" },
+		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 
 	function getColorFromConfig(v: string) {
@@ -62,7 +45,7 @@
 					data: [d],
 				}))}
 				props={{
-					arc: { track: { fill: "hsl(var(--muted))" }, tweened: true },
+					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
 				}}
 			>
 				{#snippet tooltip()}

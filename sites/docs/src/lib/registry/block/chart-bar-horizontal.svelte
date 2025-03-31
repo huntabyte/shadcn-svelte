@@ -16,7 +16,7 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -42,14 +42,14 @@
 						stroke: "none",
 						radius: 5,
 						insets: {
-							left: 12,
+							left: 24,
 						},
 						rounded: "all",
 						initialWidth: 0,
 						initialX: 0,
-						tweened: {
-							x: { duration: 500, easing: cubicInOut },
-							width: { duration: 500, easing: cubicInOut },
+						motion: {
+							x: { type: "tween", duration: 500, easing: cubicInOut },
+							width: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },

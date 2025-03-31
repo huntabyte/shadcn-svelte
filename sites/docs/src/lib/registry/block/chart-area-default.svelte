@@ -17,7 +17,7 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -45,7 +45,7 @@
 						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
-						tweened: true,
+						motion: "tween",
 					},
 					xAxis: { format: PeriodType.Month },
 				}}

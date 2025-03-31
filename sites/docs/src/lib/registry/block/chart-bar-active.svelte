@@ -16,11 +16,11 @@
 
 	const chartConfig = {
 		visitors: { label: "Visitors" },
-		chrome: { label: "Chrome", color: "hsl(var(--chart-1))" },
-		safari: { label: "Safari", color: "hsl(var(--chart-2))" },
-		firefox: { label: "Firefox", color: "hsl(var(--chart-3))" },
-		edge: { label: "Edge", color: "hsl(var(--chart-4))" },
-		other: { label: "Other", color: "hsl(var(--chart-5))" },
+		chrome: { label: "Chrome", color: "var(--chart-1)" },
+		safari: { label: "Safari", color: "var(--chart-2)" },
+		firefox: { label: "Firefox", color: "var(--chart-3)" },
+		edge: { label: "Edge", color: "var(--chart-4)" },
+		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
@@ -50,9 +50,9 @@
 						rounded: "all", // use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						tweened: {
-							y: { duration: 500, easing: cubicInOut },
-							height: { duration: 500, easing: cubicInOut },
+						motion: {
+							y: { type: "tween", duration: 500, easing: cubicInOut },
+							height: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					xAxis: {
@@ -71,7 +71,7 @@
 							<!-- The "active" bar -->
 							<Bar
 								{...baseBarProps}
-								tweened={true}
+								motion="tween"
 								fill={d.color}
 								bar={d}
 								fillOpacity={0.8}
@@ -81,7 +81,7 @@
 								stroke-dashoffset={4}
 							/>
 						{:else}
-							<Bar {...baseBarProps} fill={d.color} bar={d} tweened={true} />
+							<Bar {...baseBarProps} fill={d.color} bar={d} motion="tween" />
 						{/if}
 					{/each}
 				{/snippet}

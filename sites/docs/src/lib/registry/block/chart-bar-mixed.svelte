@@ -16,11 +16,11 @@
 
 	const chartConfig = {
 		visitors: { label: "Visitors" },
-		chrome: { label: "Chrome", color: "hsl(var(--chart-1))" },
-		safari: { label: "Safari", color: "hsl(var(--chart-2))" },
-		firefox: { label: "Firefox", color: "hsl(var(--chart-3))" },
-		edge: { label: "Edge", color: "hsl(var(--chart-4))" },
-		other: { label: "Other", color: "hsl(var(--chart-5))" },
+		chrome: { label: "Chrome", color: "var(--chart-1)" },
+		safari: { label: "Safari", color: "var(--chart-2)" },
+		firefox: { label: "Firefox", color: "var(--chart-3)" },
+		edge: { label: "Edge", color: "var(--chart-4)" },
+		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -50,9 +50,9 @@
 						rounded: "all",
 						initialWidth: 0,
 						initialX: 0,
-						tweened: {
-							x: { duration: 500, easing: cubicInOut },
-							width: { duration: 500, easing: cubicInOut },
+						motion: {
+							x: { type: "tween", duration: 500, easing: cubicInOut },
+							width: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },

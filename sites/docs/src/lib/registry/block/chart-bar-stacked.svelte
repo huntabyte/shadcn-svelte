@@ -16,8 +16,8 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
-		mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
@@ -56,9 +56,9 @@
 						stroke: "none",
 						initialY: context?.height,
 						initialHeight: 0,
-						tweened: {
-							y: { duration: 500, easing: cubicInOut },
-							height: { duration: 500, easing: cubicInOut },
+						motion: {
+							y: { type: "tween", duration: 500, easing: cubicInOut },
+							height: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: false },
@@ -70,7 +70,6 @@
 					<Highlight area={{ class: "fill-muted" }} />
 				{/snippet}
 
-				<!-- TODO: How to add `tweened` to bars? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip />
 				{/snippet}

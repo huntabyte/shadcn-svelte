@@ -16,9 +16,9 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
-		mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
-		label: { color: "hsl(var(--background))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
+		label: { color: "var(--background)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -46,9 +46,9 @@
 						rounded: "all",
 						initialWidth: 0,
 						initialX: 0,
-						tweened: {
-							x: { duration: 500, easing: cubicInOut },
-							width: { duration: 500, easing: cubicInOut },
+						motion: {
+							x: { type: "tween", duration: 500, easing: cubicInOut },
+							width: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },
@@ -56,7 +56,7 @@
 						tickLabelProps: {
 							textAnchor: "start",
 							dx: 6,
-							class: "stroke-none !fill-background ",
+							class: "stroke-none fill-background!",
 						},
 						tickLength: 0,
 					},

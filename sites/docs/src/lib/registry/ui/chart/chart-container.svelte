@@ -33,7 +33,7 @@
 	data-slot="chart"
 	class={cn(
 		// "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none",
-		"flex aspect-video justify-center text-xs",
+		"flex aspect-video justify-center overflow-visible text-xs",
 		// Overrides
 		//
 		// TODO: Ask for default/unique classnames to target when trying to override LayerChart styles
@@ -59,7 +59,8 @@
 		// a grid line there and rule ends up overlapping the marks because it is rendered after
 		// the marks
 		"[&_.lc-rule-x-line:not(.lc-grid-x-rule)]:stroke-0 [&_.lc-rule-y-line:not(.lc-grid-y-rule)]:stroke-0",
-		"[&_.lc-grid-x-line]:stroke-border/50",
+		"[&_.lc-grid-x-radial-line]:stroke-border",
+		"[&_.lc-grid-y-radial-line]:stroke-border",
 
 		// Legend adjustments
 		"[&_.lc-legend-swatch-button]:items-center [&_.lc-legend-swatch-button]:gap-1.5",
@@ -69,6 +70,8 @@
 		"[&_.lc-labels-text:not([fill])]:fill-foreground [&_text]:stroke-transparent",
 		// Tick labels on th x/y axes
 		"[&_.lc-axis-tick-label]:fill-muted-foreground [&_.lc-axis-tick-label]:font-normal",
+		"[&_.lc-tooltip-rects-g]:fill-transparent",
+		"[&_.lc-layout-svg-g]:fill-transparent",
 		className
 	)}
 	{...restProps}

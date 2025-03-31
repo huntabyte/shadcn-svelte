@@ -16,10 +16,7 @@
 	];
 
 	const chartConfig = {
-		desktop: {
-			label: "Desktop",
-			color: "hsl(var(--chart-1))",
-		},
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -44,13 +41,13 @@
 						color: chartConfig.desktop.color,
 						props: {
 							// TODO: How to dynamically set the fill color? e.g. `fill-[${chartConfig.desktop.color}]/60` or is this a tailwindcss limitation?
-							class: "fill-[hsl(var(--chart-1))]/60 stroke-0",
+							class: "fill-[var(--chart-1)]/60 stroke-0",
 						},
 					},
 				]}
 				props={{
 					// TODO: How to draw hexagons instead of circles?
-					spline: { curve: curveLinearClosed, tweened: true },
+					spline: { curve: curveLinearClosed, motion: "tween" },
 					yAxis: { format: () => "" },
 					tooltip: { context: { mode: "voronoi" } },
 				}}

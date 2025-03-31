@@ -16,7 +16,7 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
@@ -44,16 +44,15 @@
 						// use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						tweened: {
-							y: { duration: 500, easing: cubicInOut },
-							height: { duration: 500, easing: cubicInOut },
+						motion: {
+							x: { type: "tween", duration: 500, easing: cubicInOut },
+							width: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },
 					xAxis: { format: (d) => d.slice(0, 3) },
 				}}
 			>
-				<!-- TODO: How to add `tweened` to bars? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}

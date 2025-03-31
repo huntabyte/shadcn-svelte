@@ -33,9 +33,9 @@
 					value: (d) => d.month,
 					fill: (d) => {
 						if (d.visitors > 0) {
-							return "hsl(var(--chart-1))";
+							return "var(--chart-1)";
 						} else if (d.visitors < 0) {
-							return "hsl(var(--chart-2))";
+							return "var(--chart-2)";
 						}
 					},
 				}}
@@ -45,8 +45,8 @@
 				y="visitors"
 				yNice={4}
 				yBaseline={0}
-				cRange={["hsl(var(--chart-1))", "hsl(var(--chart-2))"]}
-				c={(d) => (d.visitors > 0 ? "hsl(var(--chart-1))" : "hsl(var(--chart-2))")}
+				cRange={["var(--chart-1)", "var(--chart-2)"]}
+				c={(d) => (d.visitors > 0 ? "var(--chart-1)" : "var(--chart-2)")}
 				axis={false}
 				props={{
 					bars: { stroke: "none", radius: 0 },
@@ -54,7 +54,6 @@
 					xAxis: { format: (d) => d.slice(0, 3) },
 				}}
 			>
-				<!-- TODO: How to add `tweened` to bars? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel hideIndicator nameKey="visitors" />
 				{/snippet}

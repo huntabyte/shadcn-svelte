@@ -17,7 +17,7 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -41,7 +41,7 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveLinear, tweened: true, strokeWidth: 2 },
+					spline: { curve: curveLinear, motion: "tween", strokeWidth: 2 },
 					xAxis: { format: PeriodType.Month },
 					highlight: { points: { r: 4 } },
 				}}

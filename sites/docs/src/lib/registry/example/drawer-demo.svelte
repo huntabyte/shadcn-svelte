@@ -111,7 +111,7 @@
 				</div>
 				<div class="mt-3 h-[120px]">
 					<VisXYContainer {data} height={60}>
-						<VisGroupedBar {x} {y} color="hsl(var(--primary) / 0.2)" />
+						<VisGroupedBar {x} {y} color="var(--primary) / 0.2" />
 					</VisXYContainer>
 				</div>
 			</div>

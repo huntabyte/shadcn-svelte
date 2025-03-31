@@ -16,10 +16,7 @@
 	];
 
 	const chartConfig = {
-		desktop: {
-			label: "Desktop",
-			color: "hsl(var(--chart-1))",
-		},
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -32,31 +29,40 @@
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
 				data={chartData}
+				series={[
+					{
+						key: "desktop",
+						label: "Desktop",
+						color: chartConfig.desktop.color,
+					},
+				]}
 				radial
 				x="month"
-				y="desktop"
 				xScale={scaleBand()}
 				props={{
 					spline: {
 						curve: curveLinearClosed,
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
+						stroke: "0",
 					},
 					xAxis: {
-						tickLength: 10,
+						tickLength: 0,
 					},
 					yAxis: {
-						ticks: [0, 5, 10],
 						format: () => "",
 					},
 					grid: {
-						yTicks: [0, 5, 10],
+						yTicks: 1,
+						radialY: "linear",
 					},
-
 					tooltip: {
 						context: {
 							mode: "voronoi",
 						},
+					},
+					highlight: {
+						lines: false,
 					},
 				}}
 			>

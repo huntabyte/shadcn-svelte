@@ -17,8 +17,8 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
-		mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -47,7 +47,7 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
+					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
 					xAxis: { format: PeriodType.Month },
 					highlight: { points: { r: 4 } },
 				}}

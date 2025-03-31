@@ -180,7 +180,7 @@
 					<ChartBarNegative />
 				</ChartDisplay>
 				<div class="md:col-span-2 lg:col-span-3">
-					<ChartDisplay status="In Progress" name="chart-bar-interactive">
+					<ChartDisplay status="Done" name="chart-bar-interactive">
 						<ChartBarInteractive />
 					</ChartDisplay>
 				</div>

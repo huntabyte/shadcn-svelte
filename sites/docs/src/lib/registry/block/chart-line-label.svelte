@@ -17,7 +17,7 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -43,11 +43,10 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveNatural, tweened: true, strokeWidth: 2 },
+					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
 					highlight: {
 						points: {
-							tweened: false,
-							spring: false,
+							motion: "none",
 							r: 6,
 						},
 					},

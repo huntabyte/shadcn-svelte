@@ -223,8 +223,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       layerchart:
-        specifier: https://pkg.pr.new/layerchart@9e1d7e0
-        version: https://pkg.pr.new/layerchart@9e1d7e0(svelte@5.25.3)(typescript@5.5.3)
+        specifier: https://pkg.pr.new/layerchart@418f5a3
+        version: https://pkg.pr.new/layerchart@418f5a3(svelte@5.25.3)(typescript@5.5.3)
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
@@ -3351,8 +3351,8 @@ packages:
       svelte: 3 - 5 || >=5.0.0-next.120
       typescript: ^5.0.2
 
-  layerchart@https://pkg.pr.new/layerchart@9e1d7e0:
-    resolution: {tarball: https://pkg.pr.new/layerchart@9e1d7e0}
+  layerchart@https://pkg.pr.new/layerchart@418f5a3:
+    resolution: {tarball: https://pkg.pr.new/layerchart@418f5a3}
     version: 2.0.0-next.1
     peerDependencies:
       svelte: ^5.0.0
@@ -5417,7 +5417,7 @@ snapshots:
   '@cloudflare/workers-shared@0.6.0':
     dependencies:
       mime: 3.0.0
-      zod: 3.23.8
+      zod: 3.24.2
 
   '@cloudflare/workers-types@4.20240222.0': {}
 
@@ -8362,7 +8362,7 @@ snapshots:
       svelte: 5.25.3
       typescript: 5.5.3
 
-  layerchart@https://pkg.pr.new/layerchart@9e1d7e0(svelte@5.25.3)(typescript@5.5.3):
+  layerchart@https://pkg.pr.new/layerchart@418f5a3(svelte@5.25.3)(typescript@5.5.3):
     dependencies:
       '@dagrejs/dagre': 1.1.4
       '@layerstack/svelte-actions': 1.0.1-next.0
@@ -9030,7 +9030,7 @@ snapshots:
       workerd: 1.20241011.1
       ws: 8.18.0
       youch: 3.3.4
-      zod: 3.23.8
+      zod: 3.24.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color

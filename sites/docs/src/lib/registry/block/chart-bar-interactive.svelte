@@ -102,8 +102,8 @@
 
 	const chartConfig = {
 		views: { label: "Page Views", color: "" },
-		desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
-		mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 	let context = $state<ChartContextValue>();
 
@@ -162,9 +162,9 @@
 						// use the height of the chart to animate the bars
 						initialY: context?.height,
 						initialHeight: 0,
-						tweened: {
-							y: { duration: 500, easing: cubicInOut },
-							height: { duration: 500, easing: cubicInOut },
+						motion: {
+							y: { type: "tween", duration: 500, easing: cubicInOut },
+							height: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },

@@ -16,14 +16,8 @@
 	];
 
 	const chartConfig = {
-		desktop: {
-			label: "Desktop",
-			color: "hsl(var(--chart-1))",
-		},
-		mobile: {
-			label: "Mobile",
-			color: "hsl(var(--chart-2))",
-		},
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -55,7 +49,7 @@
 				]}
 				props={{
 					// TODO: How to draw hexagons instead of circles?
-					spline: { curve: curveLinearClosed, tweened: true },
+					spline: { curve: curveLinearClosed, motion: "tween" },
 					yAxis: { format: () => "" },
 					tooltip: { context: { mode: "voronoi" } },
 				}}
