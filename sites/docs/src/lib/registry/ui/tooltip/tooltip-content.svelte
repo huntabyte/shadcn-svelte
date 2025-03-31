@@ -6,7 +6,7 @@
 		ref = $bindable(null),
 		class: className,
 		sideOffset = 0,
-		side,
+		side = "top",
 		children,
 		...restProps
 	}: TooltipPrimitive.ContentProps = $props();
@@ -28,14 +28,14 @@
 		<TooltipPrimitive.Arrow>
 			{#snippet child({ props })}
 				<div
-					{...props}
 					class={cn(
-						"bg-primary top z-50 size-2.5 rotate-45 rounded-[2px]",
+						"bg-primary z-50 size-2.5 rotate-45 rounded-[2px]",
 						side === "top" && "translate-x-1/2 translate-y-[calc(-50%_+_2px)]",
 						side === "bottom" && "-translate-x-1/2 -translate-y-[calc(-50%_+_1px)]",
 						side === "right" && "translate-x-[calc(50%_+_2px)] translate-y-1/2",
 						side === "left" && "-translate-y-[calc(50%_-_3px)]"
 					)}
+					{...props}
 				></div>
 			{/snippet}
 		</TooltipPrimitive.Arrow>
