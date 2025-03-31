@@ -33,7 +33,7 @@
 	{...restProps}
 	{variant}
 	size="icon"
-	class={cn(className)}
+	class={cn("", className)}
 	type="button"
 	onclick={async () => {
 		const status = await clipboard.copy(text);

@@ -11,6 +11,11 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
-<div bind:this={ref} class={cn("flex items-center", className)} {...restProps}>
+<div
+	bind:this={ref}
+	data-slot="input-otp-group"
+	class={cn("flex items-center", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

@@ -24,7 +24,7 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupHeading>Toggle columns</DropdownMenu.GroupHeading>
+			<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>
 			<DropdownMenu.Separator />
 			{#each table
 				.getAllColumns()

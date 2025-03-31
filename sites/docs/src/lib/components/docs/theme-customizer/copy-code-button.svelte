@@ -21,7 +21,7 @@
 				<Button {...props} class="flex" size="sm" variant="ghost">Copy Code</Button>
 			{/snippet}
 		</Dialog.Trigger>
-		<Dialog.Content class="max-w-2xl outline-none">
+		<Dialog.Content class="flex max-w-2xl flex-col outline-none">
 			<Dialog.Header>
 				<Dialog.Title>Theme</Dialog.Title>
 				<Dialog.Description>

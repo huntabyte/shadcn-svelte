@@ -4,7 +4,7 @@
 	import Metadata from "$lib/components/docs/metadata.svelte";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
-	import "../styles/carbon.pcss";
+	import "../styles/carbon.css";
 	import { config } from "$lib/stores/index.js";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 	import { setPackageManager } from "$lib/stores/package-manager.js";

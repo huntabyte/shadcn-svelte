@@ -120,6 +120,14 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
 </InputOTP.Root>
 ```
 
+### Invalid
+
+<ComponentPreview name="input-otp-invalid">
+
+<div></div>
+
+</ComponentPreview>
+
 ### Form
 
 <ComponentPreview name="input-otp-form">

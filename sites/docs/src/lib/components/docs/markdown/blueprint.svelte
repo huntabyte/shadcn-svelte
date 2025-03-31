@@ -1,5 +1,5 @@
 <script module>
-	import "../../../../styles/markdown.pcss";
+	import "../../../../styles/markdown.css";
 	export {
 		a,
 		blockquote,
