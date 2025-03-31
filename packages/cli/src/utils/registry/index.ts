@@ -6,6 +6,7 @@ import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
+import { isUrl } from "../utils.js";
 
 export function getRegistryUrl(config: Config) {
 	let url = process.env.COMPONENTS_REGISTRY_URL;
@@ -42,7 +43,7 @@ export async function getRegistryIndexes(registryUrls: string[]) {
 
 export async function getRegistryIndex(baseUrl: string) {
 	try {
-		const [result] = await fetchRegistry(baseUrl, ["index.json"]);
+		const [result] = await fetchRegistry([`${baseUrl}/index.json`]);
 
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {
@@ -63,7 +64,7 @@ export function getBaseColors() {
 
 export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	try {
-		const [result] = await fetchRegistry(baseUrl, [`colors/${baseColor}.json`]);
+		const [result] = await fetchRegistry([`${baseUrl}/colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
@@ -94,7 +95,7 @@ export async function resolveTree({
 		let entry = index.find((entry) => entry.name === name);
 
 		if (!entry) {
-			const [item] = await fetchRegistry(baseUrl, [`${name}.json`]);
+			const [item] = await fetchRegistry([isUrl(name) ? name : `${baseUrl}/${name}.json`]);
 			if (item) entry = item;
 			if (!entry) continue;
 		}
@@ -119,8 +120,7 @@ export async function resolveTree({
 
 export async function fetchTree(baseUrl: string, tree: RegistryIndex) {
 	try {
-		const paths = tree.map((item) => `${item.name}.json`);
-		const result = await fetchRegistry(baseUrl, paths);
+		const result = await fetchRegistry(tree.map((item) => `${baseUrl}/${item.name}.json`));
 
 		return v.parse(schemas.registryWithContentSchema, result);
 	} catch (e) {
@@ -145,14 +145,14 @@ export function getItemTargetPath(
 	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
-async function fetchRegistry(baseUrl: string, paths: string[]) {
+async function fetchRegistry(items: string[]) {
 	const proxyUrl = getEnvProxy();
+
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
+
 	try {
 		const results = await Promise.all(
-			paths.map(async (path) => {
-				const url = `${baseUrl}/${path}`;
-
+			items.map(async (url) => {
 				const response = await fetch(url, {
 					...proxy,
 				});
@@ -174,7 +174,8 @@ async function fetchRegistry(baseUrl: string, paths: string[]) {
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
+
+		throw error(`Failed to fetch registry. Error: ${e}`);
 	}
 }
 
