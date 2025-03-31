@@ -63,7 +63,7 @@
 			<div class="flex place-items-center justify-between">
 				<h2>{`${color.name[0].toUpperCase()}${color.name.slice(1)}`}</h2>
 				<Select.Root type="single" bind:value={selectedFormat.current}>
-					<Select.Trigger class="h-7 w-fit cursor-pointer text-xs">
+					<Select.Trigger class="h-7 w-fit text-xs">
 						<span class="mr-2">
 							<span class="font-bold">Format:</span>
 							<span class="text-muted-foreground font-mono"
@@ -90,7 +90,7 @@
 					<button
 						type="button"
 						onclick={() => copy(shade)}
-						class="group w-full flex-1 shrink-0 cursor-pointer md:h-full md:w-auto"
+						class="group w-full flex-1 shrink-0 md:h-full md:w-auto"
 					>
 						<div class="relative">
 							<div class="hidden md:block">
@@ -123,12 +123,12 @@
 						</div>
 
 						<span
-							class="text-muted-foreground hidden text-nowrap py-1 font-mono text-sm xl:block"
+							class="group-hover:text-foreground text-muted-foreground hidden text-nowrap py-1 font-mono text-sm transition-colors xl:block"
 						>
 							{shade.className}
 						</span>
 						<span
-							class="text-muted-foreground block text-nowrap py-1 font-mono text-sm xl:hidden"
+							class="group-hover:text-foreground text-muted-foreground block text-nowrap py-1 font-mono text-sm transition-colors xl:hidden"
 						>
 							{shade.className.split("-")[1]}
 						</span>

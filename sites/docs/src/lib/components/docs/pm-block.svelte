@@ -30,7 +30,7 @@
 					<button
 						type="button"
 						class={{
-							"-mb-0.5 cursor-pointer border-b-2 border-transparent p-1 font-mono text-sm": true,
+							"-mb-0.5 border-b-2 border-transparent p-1 font-mono text-sm": true,
 							"border-b-primary": $agent === pm,
 						}}
 						onclick={() => ($agent = pm)}
