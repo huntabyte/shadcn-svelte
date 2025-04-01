@@ -167,7 +167,7 @@
 				>
 					<ChartBarLabelCustom />
 				</ChartDisplay>
-				<ChartDisplay status="Needs Parity" name="chart-bar-mixed">
+				<ChartDisplay status="Done" name="chart-bar-mixed">
 					<ChartBarMixed />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-bar-stacked">
