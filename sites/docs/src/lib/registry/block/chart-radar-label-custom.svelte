@@ -57,6 +57,7 @@
 					spline: {
 						curve: curveLinearClosed,
 						stroke: "0",
+						motion: "tween",
 					},
 					xAxis: {
 						tickLength: 0,

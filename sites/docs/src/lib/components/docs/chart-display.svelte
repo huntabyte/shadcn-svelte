@@ -15,7 +15,7 @@
 			| "Not Started"
 			| "In Progress"
 			| "Needs Parity"
-			| "Close Enough"
+			| "Very Close"
 			| "Needs Sean Review"
 			| "Blocked (External)"
 			| "Blocked (Internal)"

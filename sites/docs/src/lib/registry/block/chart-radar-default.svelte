@@ -46,6 +46,7 @@
 						fill: "var(--color-desktop)",
 						fillOpacity: 0.6,
 						stroke: "0",
+						motion: "tween",
 					},
 					xAxis: {
 						tickLength: 0,

@@ -120,7 +120,7 @@
 					<ChartAreaLegend />
 				</ChartDisplay>
 				<ChartDisplay
-					status="Close Enough"
+					status="Very Close"
 					description="Lacking the support for custom icons because we'd need to have some sort of legend payload we can pass to a custom legend component. I think LayerChart's legend is more than fine for now, especially because those custom icons indicate nothing about the data or how to locate it in the chart."
 					name="chart-area-icons"
 				>
@@ -296,61 +296,65 @@
 				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
 			>
 				<ChartDisplay
-					status="Close Enough"
+					status="Done"
 					description="How do we increase the tick count without breaking the positioning of this thing?"
 					name="chart-radar-default"
 				>
 					<ChartRadarDefault />
 				</ChartDisplay>
 				<ChartDisplay
-					status="Close Enough"
+					status="Done"
 					description="How do we increase the tick count without breaking the positioning of this thing?"
 					name="chart-radar-dots"
 				>
 					<ChartRadarDots />
 				</ChartDisplay>
 				<ChartDisplay
-					status="Close Enough"
+					status="Done"
 					description="How do we increase the tick count without breaking the positioning of this thing?"
 					name="chart-radar-multiple"
 				>
 					<ChartRadarMultiple />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Close Enough"
-					description="How do we increase the tick count without breaking the positioning of this thing?"
-					name="chart-radar-lines-only"
-				>
+				<ChartDisplay status="Done" name="chart-radar-lines-only">
 					<ChartRadarLinesOnly />
 				</ChartDisplay>
-				<ChartDisplay status="Close Enough" name="chart-radar-label-custom">
+				<ChartDisplay
+					status="Very Close"
+					description="More flexible text component."
+					name="chart-radar-label-custom"
+				>
 					<ChartRadarLabelCustom />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay name="chart-radar-radius">
+				<ChartDisplay
+					status="Needs Parity"
+					description="How do we rotate these tick labels?"
+					name="chart-radar-radius"
+				>
 					<ChartRadarRadius />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-grid-custom">
+				<ChartDisplay status="Done" name="chart-radar-grid-custom">
 					<ChartRadarGridCustom />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-grid-fill">
+				<ChartDisplay status="Done" name="chart-radar-grid-fill">
 					<ChartRadarGridFill />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-grid-none">
+				<ChartDisplay status="Done" name="chart-radar-grid-none">
 					<ChartRadarGridNone />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-radar-grid-circle">
 					<ChartRadarGridCircle />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-grid-circle-no-lines">
+				<ChartDisplay status="Done" name="chart-radar-grid-circle-no-lines">
 					<ChartRadarGridCircleNoLines />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-grid-circle-fill">
+				<ChartDisplay status="Done" name="chart-radar-grid-circle-fill">
 					<ChartRadarGridCircleFill />
 				</ChartDisplay>
 				<ChartDisplay name="chart-radar-legend">
 					<ChartRadarLegend />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay name="chart-radar-icons">
 					<ChartRadarIcons />
 				</ChartDisplay> -->
