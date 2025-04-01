@@ -295,22 +295,38 @@
 				id="radar-chart"
 				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
 			>
-				<ChartDisplay status="Needs Parity" name="chart-radar-default">
+				<ChartDisplay
+					status="Close Enough"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-default"
+				>
 					<ChartRadarDefault />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay status="Needs Parity" name="chart-radar-dots">
+				<ChartDisplay
+					status="Close Enough"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-dots"
+				>
 					<ChartRadarDots />
 				</ChartDisplay>
-				<ChartDisplay status="Needs Parity" name="chart-radar-multiple">
+				<ChartDisplay
+					status="Close Enough"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-multiple"
+				>
 					<ChartRadarMultiple />
 				</ChartDisplay>
-				<ChartDisplay status="Needs Parity" name="chart-radar-lines-only">
+				<ChartDisplay
+					status="Close Enough"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-lines-only"
+				>
 					<ChartRadarLinesOnly />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-label-custom">
+				<ChartDisplay status="Close Enough" name="chart-radar-label-custom">
 					<ChartRadarLabelCustom />
 				</ChartDisplay>
+				<!--
 				<ChartDisplay name="chart-radar-radius">
 					<ChartRadarRadius />
 				</ChartDisplay>

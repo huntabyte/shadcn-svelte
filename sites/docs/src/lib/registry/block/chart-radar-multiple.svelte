@@ -29,18 +29,15 @@
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
 			<LineChart
-				radial
 				data={chartData}
-				x="month"
-				xScale={scaleBand()}
 				series={[
 					{
 						key: "desktop",
 						label: "Desktop",
 						color: chartConfig.desktop.color,
 						props: {
-							// TODO: How to dynamically set the fill color? e.g. `fill-[${chartConfig.desktop.color}]/60` or is this a tailwindcss limitation?
-							class: "fill-[var(--chart-1)]/60 stroke-0",
+							fill: chartConfig.desktop.color,
+							fillOpacity: 0.6,
 						},
 					},
 					{
@@ -48,16 +45,37 @@
 						label: "Mobile",
 						color: chartConfig.mobile.color,
 						props: {
-							// TODO: How to dynamically set the fill color? e.g. `fill-[${chartConfig.desktop.color}]/60` or is this a tailwindcss limitation?
-							class: "fill-[var(--chart-2)] stroke-0",
+							fill: chartConfig.mobile.color,
 						},
 					},
 				]}
+				radial
+				x="month"
+				xScale={scaleBand()}
+				padding={12}
 				props={{
-					// TODO: How to draw hexagons instead of circles?
-					spline: { curve: curveLinearClosed, motion: "tween" },
-					yAxis: { format: () => "" },
-					tooltip: { context: { mode: "voronoi" } },
+					spline: {
+						curve: curveLinearClosed,
+						stroke: "0",
+					},
+					xAxis: {
+						tickLength: 0,
+					},
+					yAxis: {
+						format: () => "",
+					},
+					grid: {
+						radialY: "linear",
+					},
+					tooltip: {
+						context: {
+							mode: "voronoi",
+						},
+					},
+					highlight: {
+						lines: false,
+						points: { r: 4 },
+					},
 				}}
 			>
 				{#snippet tooltip()}

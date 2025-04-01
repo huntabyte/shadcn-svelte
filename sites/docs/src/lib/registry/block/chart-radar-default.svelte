@@ -39,6 +39,7 @@
 				radial
 				x="month"
 				xScale={scaleBand()}
+				padding={12}
 				props={{
 					spline: {
 						curve: curveLinearClosed,
@@ -53,7 +54,6 @@
 						format: () => "",
 					},
 					grid: {
-						yTicks: 1,
 						radialY: "linear",
 					},
 					tooltip: {
