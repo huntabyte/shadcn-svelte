@@ -38,6 +38,7 @@
 				]}
 				radial
 				x="month"
+				y="desktop"
 				xScale={scaleBand()}
 				points={{ r: 4 }}
 				padding={12}

@@ -351,37 +351,52 @@
 				<ChartDisplay status="Done" name="chart-radar-grid-circle-fill">
 					<ChartRadarGridCircleFill />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radar-legend">
+				<ChartDisplay status="Done" name="chart-radar-legend">
 					<ChartRadarLegend />
 				</ChartDisplay>
-				<!--
-				<ChartDisplay name="chart-radar-icons">
+				<ChartDisplay
+					status="Needs Parity"
+					description="Need to work on getting a legend payload similar to tooltip payload to render custom legends."
+					name="chart-radar-icons"
+				>
 					<ChartRadarIcons />
-				</ChartDisplay> -->
+				</ChartDisplay>
 			</div>
 			<Separator />
 			<div
 				id="radial-chart"
 				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
 			>
-				<!-- <ChartDisplay status="In Progress" name="chart-radial-simple">
+				<ChartDisplay status="Done" name="chart-radial-simple">
 					<ChartRadialSimple />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radial-label">
+				<ChartDisplay
+					status="Needs Parity"
+					description="Need to be able to position labels inside the radial bars"
+					name="chart-radial-label"
+				>
 					<ChartRadialLabel />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radial-grid">
+				<ChartDisplay
+					status="Needs Parity"
+					description="First class grid support in ArcChart"
+					name="chart-radial-grid"
+				>
 					<ChartRadialGrid />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radial-text">
+				<ChartDisplay status="Done" name="chart-radial-text">
 					<ChartRadialText />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radial-shape">
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Need a way to keep track arc the same while expanding a specific arc."
+					name="chart-radial-shape"
+				>
 					<ChartRadialShape />
 				</ChartDisplay>
-				<ChartDisplay name="chart-radial-stacked">
+				<ChartDisplay status="Done" name="chart-radial-stacked">
 					<ChartRadialStacked />
-				</ChartDisplay> -->
+				</ChartDisplay>
 			</div>
 			<Separator />
 		</div>

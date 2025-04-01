@@ -53,7 +53,7 @@
 				x="month"
 				xScale={scaleBand()}
 				padding={8}
-				legend={{ classes: { root: "-bottom-4" } }}
+				legend={{ classes: { root: "-bottom-5" } }}
 				props={{
 					spline: {
 						curve: curveLinearClosed,
@@ -86,7 +86,7 @@
 			</LineChart>
 		</Chart.Container>
 	</Card.Content>
-	<Card.Footer class="flex-col gap-2 text-sm">
+	<Card.Footer class="flex-col gap-2 pt-4 text-sm">
 		<div class="flex items-center gap-2 font-medium leading-none">
 			Trending up by 5.2% this month <TrendingUp class="size-4" />
 		</div>

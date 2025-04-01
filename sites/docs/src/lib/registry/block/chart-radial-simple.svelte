@@ -1,15 +1,15 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { PieChart } from "layerchart";
+	import { ArcChart } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
-		{ browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-		{ browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-		{ browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-		{ browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-		{ browser: "other", visitors: 90, fill: "var(--color-other)" },
+		{ browser: "other", visitors: 90, color: "var(--color-other)" },
+		{ browser: "edge", visitors: 173, color: "var(--color-edge)" },
+		{ browser: "firefox", visitors: 187, color: "var(--color-firefox)" },
+		{ browser: "safari", visitors: 200, color: "var(--color-safari)" },
+		{ browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
 	];
 
 	const chartConfig = {
@@ -20,11 +20,6 @@
 		edge: { label: "Edge", color: "var(--chart-4)" },
 		other: { label: "Other", color: "var(--chart-5)" },
 	} satisfies Chart.ChartConfig;
-
-	function getColorFromConfig(v: string) {
-		// @ts-expect-error - still blocked by my poor implementation of getPayloadConfigFromPayload
-		return chartConfig[v as keyof typeof chartConfig].color;
-	}
 </script>
 
 <Card.Root>
@@ -34,24 +29,28 @@
 	</Card.Header>
 	<Card.Content class="flex-1">
 		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
-			<PieChart
+			<ArcChart
 				label="browser"
 				value="visitors"
-				outerRadius={-20}
+				outerRadius={-17}
 				innerRadius={-12.5}
+				padding={20}
+				range={[90, -270]}
+				maxValue={Math.max(...chartData.map((d) => d.visitors))}
 				series={chartData.map((d) => ({
 					key: d.browser,
-					color: getColorFromConfig(d.browser),
+					color: d.color,
 					data: [d],
 				}))}
 				props={{
 					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
+					tooltip: { context: { hideDelay: 350 } },
 				}}
 			>
 				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
+					<Chart.Tooltip hideLabel nameKey="browser" />
 				{/snippet}
-			</PieChart>
+			</ArcChart>
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
