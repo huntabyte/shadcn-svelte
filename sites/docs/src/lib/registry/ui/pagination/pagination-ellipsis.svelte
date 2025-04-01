@@ -14,6 +14,7 @@
 <span
 	bind:this={ref}
 	aria-hidden="true"
+	data-slot="pagination-ellipsis"
 	class={cn("flex size-9 items-center justify-center", className)}
 	{...restProps}
 >

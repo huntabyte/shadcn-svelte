@@ -14,6 +14,7 @@
 
 <ResizablePrimitive.PaneGroup
 	bind:this={paneGroup}
+	data-slot="resizable-pane-group"
 	class={cn("flex h-full w-full data-[direction=vertical]:flex-col", className)}
 	{...restProps}
 />

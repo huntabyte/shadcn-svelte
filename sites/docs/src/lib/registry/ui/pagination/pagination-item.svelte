@@ -9,6 +9,6 @@
 	}: WithElementRef<HTMLLiAttributes> = $props();
 </script>
 
-<li bind:this={ref} {...restProps}>
+<li bind:this={ref} data-slot="pagination-item" {...restProps}>
 	{@render children?.()}
 </li>
