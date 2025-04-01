@@ -22,9 +22,15 @@
 	</Select.Trigger>
 	<Select.Content>
 		<Select.Group>
-			<Select.GroupHeading>Fruits</Select.GroupHeading>
+			<Select.Label>Fruits</Select.Label>
 			{#each fruits as fruit (fruit.value)}
-				<Select.Item value={fruit.value} label={fruit.label}>{fruit.label}</Select.Item>
+				<Select.Item
+					value={fruit.value}
+					label={fruit.label}
+					disabled={fruit.value === "grapes"}
+				>
+					{fruit.label}
+				</Select.Item>
 			{/each}
 		</Select.Group>
 	</Select.Content>
