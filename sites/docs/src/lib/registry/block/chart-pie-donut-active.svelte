@@ -53,6 +53,7 @@
 				c="color"
 				innerRadius={60}
 				props={{
+					pie: { motion: "tween" },
 					arc: {
 						strokeWidth: 5,
 					},

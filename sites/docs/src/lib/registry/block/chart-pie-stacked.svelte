@@ -49,11 +49,15 @@
 							const monthOrder = ["january", "february", "march", "april", "may"];
 							return monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month);
 						},
+						motion: "tween",
+					},
+					tooltip: {
+						context: {
+							hideDelay: 250,
+						},
 					},
 				}}
 				series={[
-					// TODO: Ability to provide data in a more concise/compact format
-					// e.g `series: { [ { key: "desktop", data: desktopData }, { key: "mobile", data: mobileData } ] }`
 					{
 						key: "desktop",
 						value: "desktop",

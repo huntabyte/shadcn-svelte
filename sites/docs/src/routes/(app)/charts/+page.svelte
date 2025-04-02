@@ -62,6 +62,15 @@
 	import ChartRadialSimple from "$lib/registry/block/chart-radial-simple.svelte";
 	import ChartRadialStacked from "$lib/registry/block/chart-radial-stacked.svelte";
 	import ChartRadialText from "$lib/registry/block/chart-radial-text.svelte";
+	import ChartTooltipAdvanced from "$lib/registry/block/chart-tooltip-advanced.svelte";
+	import ChartTooltipDefault from "$lib/registry/block/chart-tooltip-default.svelte";
+	import ChartTooltipFormatter from "$lib/registry/block/chart-tooltip-formatter.svelte";
+	import ChartTooltipIcons from "$lib/registry/block/chart-tooltip-icons.svelte";
+	import ChartTooltipIndicatorLine from "$lib/registry/block/chart-tooltip-indicator-line.svelte";
+	import ChartTooltipIndicatorNone from "$lib/registry/block/chart-tooltip-indicator-none.svelte";
+	import ChartTooltipLabelCustom from "$lib/registry/block/chart-tooltip-label-custom.svelte";
+	import ChartTooltipLabelFormatter from "$lib/registry/block/chart-tooltip-label-formatter.svelte";
+	import ChartTooltipLabelNone from "$lib/registry/block/chart-tooltip-label-none.svelte";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 </script>
 
@@ -263,7 +272,7 @@
 				>
 					<ChartPieLabelList />
 				</ChartDisplay>
-				<ChartDisplay status="In Progress" name="chart-pie-legend">
+				<ChartDisplay status="Done" name="chart-pie-legend">
 					<ChartPieLegend />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-pie-donut">
@@ -399,6 +408,38 @@
 				</ChartDisplay>
 			</div>
 			<Separator />
+			<div
+				id="tooltip"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-tooltip-default">
+					<ChartTooltipDefault />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-indicator-line">
+					<ChartTooltipIndicatorLine />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-indicator-none">
+					<ChartTooltipIndicatorNone />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-label-custom">
+					<ChartTooltipLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-label-formatter">
+					<ChartTooltipLabelFormatter />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-none">
+					<ChartTooltipLabelNone />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-formatter">
+					<ChartTooltipFormatter />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-icons">
+					<ChartTooltipIcons />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-advanced">
+					<ChartTooltipAdvanced />
+				</ChartDisplay>
+			</div>
 		</div>
 	</div>
 </div>

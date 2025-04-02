@@ -36,13 +36,17 @@
 		labelClassName?: string;
 		labelFormatter?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 		((value: any, payload: TooltipPayload[]) => string | number | Snippet) | null;
-		formatter?: (
-			value: unknown,
-			name: number | string,
-			item: TooltipPayload,
-			index: number,
-			payload: TooltipPayload[]
-		) => string | number | Snippet;
+		formatter?: Snippet<
+			[
+				{
+					value: unknown;
+					name: string;
+					item: TooltipPayload;
+					index: number;
+					payload: TooltipPayload[];
+				},
+			]
+		>;
 	} = $props();
 
 	const chart = useChart();
@@ -59,7 +63,7 @@
 		const value =
 			!labelKey && typeof label === "string"
 				? chart.config[label as keyof typeof chart.config]?.label || label
-				: (item.label ?? itemConfig?.label);
+				: (itemConfig?.label ?? item.label);
 
 		if (!value) return null;
 		if (!labelFormatter) return value;
@@ -104,18 +108,13 @@
 					)}
 				>
 					{#if formatter && item.value !== undefined && item.name}
-						{@const formatted = formatter(
-							item.value,
-							item.name,
+						{@render formatter({
+							value: item.value,
+							name: item.name,
 							item,
-							i,
-							tooltipCtx.payload
-						)}
-						{#if typeof formatted === "function"}
-							{@render formatted()}
-						{:else}
-							{formatted}
-						{/if}
+							index: i,
+							payload: tooltipCtx.payload,
+						})}
 					{:else}
 						{#if itemConfig?.icon}
 							<itemConfig.icon />
