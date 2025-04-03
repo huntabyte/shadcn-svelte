@@ -1,17 +1,26 @@
+import * as v from "valibot";
+
+const URLSchema = v.pipe(v.string(), v.url());
+
 export function isUrl(path: string) {
-	try {
-		new URL(path);
-		return true;
-	} catch {
-		return false;
-	}
+	const result = v.safeParse(URLSchema, path);
+	return result.success;
 }
 
-/** Returns the base url and the last segment of the pathname of the given url. Expects a valid URL. */
-export function urlSplitLastPathSegment(url: URL): [string, string] {
-	const lastIndex = url.toString().lastIndexOf("/");
+/** Adds a trailing slash to the end of the URL, if missing. */
+function normalizeURL(url: URL | string): URL {
+	if (!(url instanceof URL)) {
+		url = new URL(url);
+	}
 
-	const urlString = url.toString();
+	if (!url.href.endsWith("/")) {
+		url = new URL(url);
+		url.href += "/";
+	}
+	return url;
+}
 
-	return [urlString.slice(0, lastIndex), urlString.slice(lastIndex + 1)];
+export function resolveURL(base: URL | string, path: string): URL {
+	const url = normalizeURL(base);
+	return new URL(path, url);
 }

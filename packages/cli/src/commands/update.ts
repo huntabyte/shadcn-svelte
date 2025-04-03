@@ -79,10 +79,9 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryUrl = registry.getRegistryUrl(config);
-
 	const components = options.components;
 
+	const registryUrl = registry.getRegistryUrl(config);
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
@@ -111,6 +110,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		files: [],
 		dependencies: [],
 		registryDependencies: [],
+		relativeUrl: "",
 	});
 
 	// If the user specifies component args
@@ -177,15 +177,17 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		});
 	}
 
-	const tree = await registry.resolveTree({
+	const resolvedItems = await registry.resolveRegistryItems({
 		baseUrl: registryUrl,
-		index: registryIndex,
-		names: selectedComponents.map((com) => com.name),
-		config,
+		registryIndex: registryIndex,
+		items: selectedComponents.map((com) => com.name),
 	});
-	const payload = (await registry.fetchTree(registryUrl, tree)).sort((a, b) =>
-		a.name.localeCompare(b.name)
-	);
+
+	const payload = await registry.fetchRegistryItems({
+		baseUrl: registryUrl,
+		items: resolvedItems,
+	});
+	payload.sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
@@ -258,9 +260,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
-				});
+				await execa(add.command, [...add.args], { cwd });
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
