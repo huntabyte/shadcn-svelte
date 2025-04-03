@@ -85,6 +85,7 @@ export const registrySchema = z.array(registryEntrySchema);
 export type RegistryEntry = z.output<typeof registryEntrySchema>;
 export type RegistryItemFile = z.output<typeof registryItemFileSchema>;
 export type Registry = z.output<typeof registrySchema>;
+export type RegistryItemType = z.output<typeof registryItemTypeSchema>;
 
 export type BlockName = (typeof blockNames)[number];
 

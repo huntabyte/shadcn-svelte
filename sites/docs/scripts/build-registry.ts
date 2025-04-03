@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { rimraf } from "rimraf";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
-import { registrySchema } from "../src/lib/registry/schema";
+import { registrySchema, type RegistryItemType } from "../src/lib/registry/schema";
 import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates";
@@ -160,8 +160,9 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 	// Build registry/index.json.
 	// ----------------------------------------------------------------------------
+	const ITEM_TYPES: RegistryItemType[] = ["registry:ui", "registry:hook"];
 	const names = result
-		.filter((item) => item.type === "registry:ui" && !REGISTRY_IGNORE.includes(item.name))
+		.filter((item) => ITEM_TYPES.includes(item.type) && !REGISTRY_IGNORE.includes(item.name))
 		.map((item) => {
 			const filePath = path.resolve(REGISTRY_PATH, `${item.name}.json`);
 			const relativeUrlPath = path.relative(targetPath, filePath).split(path.sep).join("/");
