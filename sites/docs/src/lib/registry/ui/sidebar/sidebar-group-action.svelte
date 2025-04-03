@@ -14,23 +14,24 @@
 		child?: Snippet<[{ props: Record<string, unknown> }]>;
 	} = $props();
 
-	const propObj = $derived({
+	const mergedProps = $derived({
 		class: cn(
-			"text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+			"text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground outline-hidden absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 			// Increases the hit area of the button on mobile.
-			"after:absolute after:-inset-2 after:md:hidden",
+			"after:absolute after:-inset-2 md:after:hidden",
 			"group-data-[collapsible=icon]:hidden",
 			className
 		),
+		"data-slot": "sidebar-group-action",
 		"data-sidebar": "group-action",
 		...restProps,
 	});
 </script>
 
 {#if child}
-	{@render child({ props: propObj })}
+	{@render child({ props: mergedProps })}
 {:else}
-	<button bind:this={ref} {...propObj}>
+	<button bind:this={ref} {...mergedProps}>
 		{@render children?.()}
 	</button>
 {/if}
