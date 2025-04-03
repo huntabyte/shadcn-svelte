@@ -117,17 +117,17 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		registryIndex: shadcnIndex,
 	});
 
-	const payload = await registry.fetchRegistryItems({
+	const itemsWithContent = await registry.fetchRegistryItems({
 		baseUrl: registryUrl,
 		items: resolvedItems,
 	});
 
-	if (payload.length === 0) cancel("Selected components not found.");
+	if (itemsWithContent.length === 0) cancel("Selected components not found.");
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies) {
 			selectedComponents.add(regDep);
@@ -177,7 +177,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 

@@ -160,29 +160,26 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	const proxyUrl = getEnvProxy();
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
 
+	const loaders = urls.map(async (url) => {
+		const response = await fetch(url, { ...proxy });
+		if (!response.ok) {
+			throw error(
+				`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
+			);
+		}
+
+		try {
+			return await response.json();
+		} catch (e) {
+			throw error(`Error parsing json response from ${url}: Error ${e}`);
+		}
+	});
+
 	try {
-		const results = await Promise.all(
-			urls.map(async (url) => {
-				const response = await fetch(url, { ...proxy });
-
-				if (!response.ok) {
-					throw error(
-						`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
-					);
-				}
-
-				try {
-					return await response.json();
-				} catch (e) {
-					throw error(`Error parsing json response from ${url}: Error ${e}`);
-				}
-			})
-		);
-
+		const results = await Promise.all(loaders);
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-
 		throw error(`Failed to fetch registry. Error: ${e}`);
 	}
 }
