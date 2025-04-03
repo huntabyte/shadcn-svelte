@@ -16,7 +16,7 @@ import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 import { isUrl, urlSplitLastPathSegment } from "../utils/utils.js";
-import { RegistryWithContent } from "../utils/registry/schema.js";
+import type { RegistryItem } from "../utils/registry/schema.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -154,21 +154,19 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		if (isUrl(name)) {
 			// name should come in like `https://example.com/r/avatar.json`
 			// we split it to get the base url and avatar.json
-			// eslint-disable-next-line prefer-const -- wrong
-			let [baseUrl, item] = urlSplitLastPathSegment(new URL(name));
+			const [baseUrl, item] = urlSplitLastPathSegment(new URL(name));
 
 			componentRegistry = baseUrl;
 			componentName = item.replace(".json", "");
 		}
 
 		// we already defined this so we know it exists
-		const index = registryIndexes.get(componentRegistry)!;
+		const registryIndex = registryIndexes.get(componentRegistry)!;
 
-		const tree = await registry.resolveTree({
+		const tree = await registry.resolveRegistryItems({
 			baseUrl: componentRegistry,
-			names: [componentName],
-			config,
-			index,
+			items: [componentName],
+			registryIndex,
 			includeRegDeps: true,
 		});
 
@@ -192,24 +190,21 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		registryComponents.set(componentRegistry, installedComponents);
 	}
 
-	const fetchContent = async (url: string): Promise<RegistryWithContent> => {
-		const index = registryIndexes.get(url)!;
+	const fetchContent = async (url: string): Promise<RegistryItem[]> => {
+		const registryIndex = registryIndexes.get(url)!;
 		const components = registryComponents.get(url)!;
 
-		const tree = await registry.resolveTree({
+		const resolvedItems = await registry.resolveRegistryItems({
 			baseUrl: url,
-			index: index,
-			names: Array.from(components),
+			registryIndex,
+			items: Array.from(components),
 			includeRegDeps: false,
-			config,
 		});
 
-		return await registry.fetchTree(url, tree);
+		return await registry.fetchRegistryItems({ baseUrl: url, registryItems: resolvedItems });
 	};
 
-	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flatMap(
-		(p) => p
-	);
+	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flat();
 
 	if (payload.length === 0) cancel("Selected components not found.");
 

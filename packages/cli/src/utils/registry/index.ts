@@ -2,11 +2,12 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
 import * as v from "valibot";
+import { isUrl, normalizeURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
-import { isUrl } from "../utils.js";
+import type { RegistryIndex, RegistryItem, RegistryItemType, RegistryIndexItem } from "./schema.js";
 
 export function getRegistryUrl(config: Config) {
 	let url = process.env.COMPONENTS_REGISTRY_URL;
@@ -24,10 +25,10 @@ export function getRegistryUrl(config: Config) {
 	return url;
 }
 
-export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
-
 /** Concurrently loads all of the registry indexes */
-export async function getRegistryIndexes(registryUrls: string[]) {
+export async function getRegistryIndexes(
+	registryUrls: string[]
+): Promise<Map<string, RegistryIndex>> {
 	const result = new Map<string, RegistryIndex>();
 
 	const loadRegistry = async (registryUrl: string) => {
@@ -37,14 +38,12 @@ export async function getRegistryIndexes(registryUrls: string[]) {
 	};
 
 	await Promise.all(registryUrls.map((url) => loadRegistry(url)));
-
 	return result;
 }
 
-export async function getRegistryIndex(baseUrl: string) {
+async function getRegistryIndex(baseUrl: string) {
 	try {
 		const [result] = await fetchRegistry([`${baseUrl}/index.json`]);
-
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
@@ -72,68 +71,79 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	}
 }
 
-type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
-
-type ResolveTreeProps = {
+type ResolveRegistryItemsProps = {
 	baseUrl: string;
-	index: RegistryIndex;
-	names: string[];
+	registryIndex: RegistryIndex;
+	items: string[];
 	includeRegDeps?: boolean;
-	config: Config;
 };
 
-export async function resolveTree({
-	index,
+type ResolvedRegistryItem = RegistryItem | RegistryIndexItem;
+export async function resolveRegistryItems({
+	registryIndex,
 	baseUrl,
-	names,
+	items,
 	includeRegDeps = true,
-	config,
-}: ResolveTreeProps) {
-	const tree: RegistryIndex = [];
+}: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
+	const resolvedItems: ResolvedRegistryItem[] = [];
 
-	for (const name of names) {
-		let entry = index.find((entry) => entry.name === name);
+	for (const item of items) {
+		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
+			(entry) => entry.name === item
+		);
 
-		if (!entry) {
-			const [item] = await fetchRegistry([isUrl(name) ? name : `${baseUrl}/${name}.json`]);
-			if (item) entry = item;
-			if (!entry) continue;
+		// the `item` doesn't exist in the `index`, so it _must_ be a remote item (in other words, it's a URL)
+		if (!resolvedItem) {
+			const url = item;
+			if (!isUrl(url)) {
+				throw error(
+					`Component item '${item}' does not exist in the registry, nor is it a valid URL.`
+				);
+			}
+
+			const [result] = await fetchRegistry([url]);
+			resolvedItem = v.parse(schemas.registryItemSchema, result);
 		}
 
-		tree.push(entry);
+		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && entry.registryDependencies) {
-			const dependencies = await resolveTree({
+		if (includeRegDeps && resolvedItem.registryDependencies.length > 0) {
+			const registryDeps = await resolveRegistryItems({
 				baseUrl,
-				index,
-				names: entry.registryDependencies,
-				config,
+				registryIndex: registryIndex,
+				items: resolvedItem.registryDependencies,
 			});
-			tree.push(...dependencies);
+			resolvedItems.push(...registryDeps);
 		}
 	}
 
-	return tree.filter(
+	// dedupes tree
+	return resolvedItems.filter(
 		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
 	);
 }
 
-export async function fetchTree(baseUrl: string, tree: RegistryIndex) {
-	try {
-		const result = await fetchRegistry(tree.map((item) => `${baseUrl}/${item.name}.json`));
+type FetchTreeProps = { baseUrl: string; registryItems: ResolvedRegistryItem[] };
+export async function fetchRegistryItems({
+	baseUrl,
+	registryItems,
+}: FetchTreeProps): Promise<RegistryItem[]> {
+	const itemsWithContent = registryItems.filter((item) => !("relativeUrl" in item));
+	const itemsToFetch = registryItems.filter((item) => "relativeUrl" in item);
 
-		return v.parse(schemas.registryWithContentSchema, result);
+	try {
+		const url = normalizeURL(baseUrl);
+		const itemUrls = itemsToFetch.map((item) => new URL(item.relativeUrl, url));
+		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
+
+		return v.parse(v.array(schemas.registryItemSchema), result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
 }
 
-export function getItemTargetPath(
-	config: Config,
-	item: v.InferOutput<typeof schemas.registryItemWithContentSchema>,
-	override?: string
-) {
+export function getItemTargetPath(config: Config, item: RegistryItem, override?: string) {
 	// Allow overrides for all items but ui.
 	if (override && item.type !== "registry:ui") {
 		return override;
@@ -145,17 +155,14 @@ export function getItemTargetPath(
 	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
-async function fetchRegistry(items: string[]) {
+async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	const proxyUrl = getEnvProxy();
-
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
 
 	try {
 		const results = await Promise.all(
-			items.map(async (url) => {
-				const response = await fetch(url, {
-					...proxy,
-				});
+			urls.map(async (url) => {
+				const response = await fetch(url, { ...proxy });
 
 				if (!response.ok) {
 					throw error(
@@ -181,7 +188,7 @@ async function fetchRegistry(items: string[]) {
 
 export function getRegistryItemTargetPath(
 	config: Config,
-	type: schemas.RegistryItemType,
+	type: RegistryItemType,
 	override?: string
 ) {
 	if (override) return override;

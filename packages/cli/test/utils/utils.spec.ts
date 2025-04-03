@@ -6,5 +6,9 @@ describe("urlSplitLastPathSegment", () => {
 		expect(
 			urlSplitLastPathSegment(new URL("https://example.com/registry/index.json"))
 		).toStrictEqual(["https://example.com/registry", "index.json"]);
+
+		expect(
+			urlSplitLastPathSegment(new URL("https://example.com/registry/index.json/"))
+		).toStrictEqual(["https://example.com/registry", "index.json"]);
 	});
 });
