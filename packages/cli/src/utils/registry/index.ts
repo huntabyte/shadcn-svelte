@@ -2,7 +2,7 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
 import * as v from "valibot";
-import { isUrl, normalizeURL } from "../utils.js";
+import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
@@ -43,7 +43,8 @@ export async function getRegistryIndexes(
 
 async function getRegistryIndex(baseUrl: string) {
 	try {
-		const [result] = await fetchRegistry([`${baseUrl}/index.json`]);
+		const url = resolveURL(baseUrl, "index.json");
+		const [result] = await fetchRegistry([url]);
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
@@ -63,7 +64,8 @@ export function getBaseColors() {
 
 export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`${baseUrl}/colors/${baseColor}.json`]);
+		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const [result] = await fetchRegistry([url]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
@@ -123,17 +125,16 @@ export async function resolveRegistryItems({
 	);
 }
 
-type FetchTreeProps = { baseUrl: string; registryItems: ResolvedRegistryItem[] };
+type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
 export async function fetchRegistryItems({
 	baseUrl,
-	registryItems,
+	items,
 }: FetchTreeProps): Promise<RegistryItem[]> {
-	const itemsWithContent = registryItems.filter((item) => !("relativeUrl" in item));
-	const itemsToFetch = registryItems.filter((item) => "relativeUrl" in item);
+	const itemsWithContent = items.filter((item) => !("relativeUrl" in item));
+	const itemsToFetch = items.filter((item) => "relativeUrl" in item);
 
 	try {
-		const url = normalizeURL(baseUrl);
-		const itemUrls = itemsToFetch.map((item) => new URL(item.relativeUrl, url));
+		const itemUrls = itemsToFetch.map((item) => resolveURL(baseUrl, item.relativeUrl));
 		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
 
 		return v.parse(v.array(schemas.registryItemSchema), result);

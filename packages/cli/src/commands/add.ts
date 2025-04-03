@@ -119,7 +119,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	const payload = await registry.fetchRegistryItems({
 		baseUrl: registryUrl,
-		registryItems: resolvedItems,
+		items: resolvedItems,
 	});
 
 	if (payload.length === 0) cancel("Selected components not found.");

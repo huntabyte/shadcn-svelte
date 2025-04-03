@@ -187,7 +187,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 	const payload = await registry.fetchRegistryItems({
 		baseUrl: registryUrl,
-		registryItems: resolvedItems,
+		items: resolvedItems,
 	});
 	payload.sort((a, b) => a.name.localeCompare(b.name));
 

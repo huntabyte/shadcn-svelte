@@ -8,7 +8,7 @@ export function isUrl(path: string) {
 }
 
 /** Adds a trailing slash to the end of the URL, if missing. */
-export function normalizeURL(url: URL | string): URL {
+function normalizeURL(url: URL | string): URL {
 	if (!(url instanceof URL)) {
 		url = new URL(url);
 	}
@@ -18,4 +18,9 @@ export function normalizeURL(url: URL | string): URL {
 		url.href += "/";
 	}
 	return url;
+}
+
+export function resolveURL(base: URL | string, path: string): URL {
+	const url = normalizeURL(base);
+	return new URL(path, url);
 }
