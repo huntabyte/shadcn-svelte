@@ -41,12 +41,14 @@
 {:else}
 	<ToggleGroup.Root
 		type="single"
-		value={themesConfig.current.activeTheme.name}
-		onValueChange={(value) => {
-			const theme = themes.find((theme) => theme.name === value);
-			if (!theme) return;
-			themesConfig.current.activeTheme = theme;
-		}}
+		bind:value={
+			() => themesConfig.current.activeTheme.name,
+			(v) => {
+				const theme = themes.find((theme) => theme.name === v);
+				if (!theme) return;
+				themesConfig.current.activeTheme = theme;
+			}
+		}
 		class={cn(
 			"flex items-center justify-center gap-0.5 self-start py-4 lg:flex-col lg:justify-start lg:gap-1",
 			className

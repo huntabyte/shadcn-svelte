@@ -398,11 +398,7 @@
 				<ChartDisplay status="Done" name="chart-radial-text">
 					<ChartRadialText />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Blocked (External)"
-					description="Need a way to keep track arc the same while expanding a specific arc."
-					name="chart-radial-shape"
-				>
+				<ChartDisplay status="Done" name="chart-radial-shape">
 					<ChartRadialShape />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-radial-stacked">

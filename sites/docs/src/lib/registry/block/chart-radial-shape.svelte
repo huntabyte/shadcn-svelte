@@ -22,9 +22,9 @@
 			<ArcChart
 				label="browser"
 				value="visitors"
-				outerRadius={140}
-				innerRadius={80}
-				trackOuterRadius={80}
+				outerRadius={88}
+				innerRadius={66}
+				trackOuterRadius={83}
 				trackInnerRadius={72}
 				padding={40}
 				range={[90, -270]}
