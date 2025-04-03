@@ -142,7 +142,7 @@ export const Index = {
 	}
 
 	for (const item of result) {
-		const allowedTypes = ["registry:ui", "registry:hook", "registry:block"];
+		const allowedTypes: RegistryItemType[] = ["registry:ui", "registry:hook", "registry:block"];
 		if (!allowedTypes.includes(item.type)) continue;
 
 		// discard `path` prop
