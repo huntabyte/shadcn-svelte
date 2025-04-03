@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ChartDisplay from "$lib/components/docs/chart-display.svelte";
 	import ChartsNav from "$lib/components/docs/charts-nav.svelte";
+	import ThemesStyle from "$lib/components/docs/themes-style.svelte";
+	import ThemesSwitcher from "$lib/components/docs/themes-switcher.svelte";
 	import ChartAreaAxes from "$lib/registry/block/chart-area-axes.svelte";
 	import ChartAreaDefault from "$lib/registry/block/chart-area-default.svelte";
 	import ChartAreaGradient from "$lib/registry/block/chart-area-gradient.svelte";
@@ -39,7 +41,6 @@
 	import ChartPieLabelList from "$lib/registry/block/chart-pie-label-list.svelte";
 	import ChartPieLabel from "$lib/registry/block/chart-pie-label.svelte";
 	import ChartPieLegend from "$lib/registry/block/chart-pie-legend.svelte";
-	import ChartPieSeparatorNone from "$lib/registry/block/chart-pie-separator-none.svelte";
 	import ChartPieSimple from "$lib/registry/block/chart-pie-simple.svelte";
 	import ChartPieStacked from "$lib/registry/block/chart-pie-stacked.svelte";
 	import ChartRadarDefault from "$lib/registry/block/chart-radar-default.svelte";
@@ -72,18 +73,19 @@
 	import ChartTooltipLabelFormatter from "$lib/registry/block/chart-tooltip-label-formatter.svelte";
 	import ChartTooltipLabelNone from "$lib/registry/block/chart-tooltip-label-none.svelte";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { THEMES } from "$lib/themes.js";
 </script>
 
+<ChartsNav
+	class="[&>a:first-child]:bg-muted [&>a:first-child]:text-primary mb-4 [&>a:first-child]:font-medium"
+/>
 <div class="grid gap-4">
-	<ChartsNav
-		class="[&>a:first-child]:bg-muted [&>a:first-child]:text-primary [&>a:first-child]:font-medium"
-	/>
-	<!-- <ThemesStyle /> -->
-	<div class="gap-6 md:flex md:flex-row-reverse md:items-start">
-		<!-- <ThemesSwitcher
-          themes={THEMES}
-          class="fixed inset-x-0 bottom-0 z-40 flex bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:sticky lg:bottom-auto lg:top-20"
-        /> -->
+	<ThemesStyle />
+	<div class="gap-6 md:flex md:flex-row-reverse">
+		<ThemesSwitcher
+			themes={THEMES}
+			class="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed inset-x-0 bottom-0 z-40 flex backdrop-blur lg:sticky lg:bottom-auto lg:top-20"
+		/>
 		<div class="grid flex-1 gap-12">
 			<h2 class="sr-only">Examples</h2>
 			<div

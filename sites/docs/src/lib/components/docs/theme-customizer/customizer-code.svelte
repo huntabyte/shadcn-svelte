@@ -3,7 +3,7 @@
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { generateBaseColorTemplate } from "$lib/components/colors/colors.js";
 
-	const base = $derived(generateBaseColorTemplate($config.theme));
+	const base = $derived(generateBaseColorTemplate(config.current.theme));
 
 	let { setCodeString }: { setCodeString: (node: HTMLElement) => void } = $props();
 </script>

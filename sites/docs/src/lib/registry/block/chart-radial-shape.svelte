@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { Arc, ArcChart, Text } from "layerchart";
+	import { ArcChart, Text } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [{ browser: "safari", visitors: 1260, color: "var(--color-safari)" }];
@@ -22,8 +22,10 @@
 			<ArcChart
 				label="browser"
 				value="visitors"
-				outerRadius={-20}
-				innerRadius={-12}
+				outerRadius={140}
+				innerRadius={80}
+				trackOuterRadius={80}
+				trackInnerRadius={72}
 				padding={40}
 				range={[90, -270]}
 				maxValue={chartData[0].visitors * 4}
@@ -56,10 +58,6 @@
 						class="fill-muted-foreground!"
 						dy={22}
 					/>
-				{/snippet}
-
-				{#snippet arc({ props })}
-					<Arc {...props} track={{}} innerRadius={60} outerRadius={105} />
 				{/snippet}
 			</ArcChart>
 		</Chart.Container>

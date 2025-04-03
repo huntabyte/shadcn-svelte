@@ -9,7 +9,7 @@
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { createCopyCodeButton } from "$lib/utils.js";
 
-	const activeTheme = $derived(themes.find((theme) => theme.name === $config.theme));
+	const activeTheme = $derived(themes.find((theme) => theme.name === config.current.theme));
 
 	const { copied, copyCode, setCodeString } = createCopyCodeButton();
 </script>

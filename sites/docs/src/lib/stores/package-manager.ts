@@ -1,25 +1,17 @@
-import { getContext, setContext } from "svelte";
-import { persisted } from "svelte-persisted-store";
 import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
 import { resolveCommand } from "package-manager-detector/commands";
+import { PersistedState, Context } from "runed";
+
+const PackageManagerContext = new Context<PersistedState<Agent>>("PackageManagerContext");
 
 export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
 
-const PACKAGE_MANAGER = Symbol("packageManager");
-
 export function setPackageManager(initialValue: Agent = "npm") {
-	const packageManager = createPackageManagerStore("packageManager", initialValue);
-	setContext(PACKAGE_MANAGER, packageManager);
-	return packageManager;
+	return PackageManagerContext.set(new PersistedState<Agent>("packageManager", initialValue));
 }
 
-export function getPackageManager(): ReturnType<typeof setPackageManager> {
-	return getContext(PACKAGE_MANAGER);
-}
-
-function createPackageManagerStore(key: string, initialValue: Agent) {
-	const store = persisted(key, initialValue);
-	return store;
+export function getPackageManager() {
+	return PackageManagerContext.get();
 }
 
 export type PackageManagerCommand = Command | "create";
