@@ -25,25 +25,9 @@ export function getRegistryUrl(config: Config) {
 	return url;
 }
 
-/** Concurrently loads all of the registry indexes */
-export async function getRegistryIndexes(
-	registryUrls: string[]
-): Promise<Map<string, RegistryIndex>> {
-	const result = new Map<string, RegistryIndex>();
-
-	const loadRegistry = async (registryUrl: string) => {
-		const index = await getRegistryIndex(registryUrl);
-
-		result.set(registryUrl, index);
-	};
-
-	await Promise.all(registryUrls.map((url) => loadRegistry(url)));
-	return result;
-}
-
-async function getRegistryIndex(baseUrl: string) {
+export async function getRegistryIndex(registryUrl: string) {
 	try {
-		const url = resolveURL(baseUrl, "index.json");
+		const url = resolveURL(registryUrl, "index.json");
 		const [result] = await fetchRegistry([url]);
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {

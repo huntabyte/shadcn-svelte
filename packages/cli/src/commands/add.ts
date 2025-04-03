@@ -80,10 +80,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	}
 
 	const registryUrl = registry.getRegistryUrl(config);
-	const registryIndexes = await registry.getRegistryIndexes([registryUrl]);
-
-	// The index of the shadcn-svelte registry
-	const shadcnIndex = registryIndexes.get(registryUrl)!;
+	const shadcnIndex = await registry.getRegistryIndex(registryUrl);
 
 	let selectedComponents = new Set(
 		options.all ? shadcnIndex.map(({ name }) => name) : options.components

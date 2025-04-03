@@ -79,12 +79,10 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const registryUrl = registry.getRegistryUrl(config);
-
 	const components = options.components;
 
-	const indexes = await registry.getRegistryIndexes([registryUrl]);
-	const registryIndex = indexes.get(registryUrl)!;
+	const registryUrl = registry.getRegistryUrl(config);
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
