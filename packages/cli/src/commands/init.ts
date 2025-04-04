@@ -1,6 +1,6 @@
 import color from "chalk";
 import { Command, Option } from "commander";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -330,8 +330,9 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: options.deps,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
+				await exec(add.command, [...add.args], {
+					throwOnError: true,
+					nodeOptions: { cwd },
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
