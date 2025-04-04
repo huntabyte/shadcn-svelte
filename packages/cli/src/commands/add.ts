@@ -1,6 +1,6 @@
 import color from "chalk";
 import { Command } from "commander";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -261,9 +261,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
-				});
+				await exec(add.command, add.args, { throwOnError: true, nodeOptions: { cwd } });
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});

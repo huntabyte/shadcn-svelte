@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { getConfig, getRawConfig } from "../../src/utils/get-config";
 import { SITE_BASE_URL } from "../../src/constants";
 
-vi.mock("execa");
+vi.mock("tinyexec");
 
 const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 

@@ -42,22 +42,22 @@
 	"dependencies": {
 		"@clack/core": "^0.3.4",
 		"@svecosystem/strip-types": "^0.0.2",
-		"chalk": "5.2.0",
-		"commander": "^10.0.1",
-		"execa": "^7.2.0",
+		"commander": "^13.1.0",
 		"is-unicode-supported": "^2.0.0",
-		"node-fetch-native": "^1.6.4",
-		"semver": "^7.7.1",
-		"sucrase": "^3.35.0"
+		"node-fetch-native": "^1.6.4"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",
 		"@types/semver": "^7.5.8",
+		"chalk": "^5.4.0",
 		"cross-env": "^7.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
 		"package-manager-detector": "^0.2.2",
+		"semver": "^7.7.1",
 		"sisteransi": "^1.0.5",
+		"sucrase": "^3.35.0",
+		"tinyexec": "^1.0.1",
 		"tsup": "^8.0.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",
