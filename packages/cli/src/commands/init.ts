@@ -261,7 +261,7 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
-export async function runInit(cwd: string, config: Config, options: InitOptions) {
+async function runInit(cwd: string, config: Config, options: InitOptions) {
 	const registryUrl = registry.getRegistryUrl(config);
 
 	const tasks: p.Task[] = [];
