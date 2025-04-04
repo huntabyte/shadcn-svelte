@@ -12,7 +12,6 @@ vi.mock("fs/promises", () => ({
 	mkdir: vi.fn(),
 	readFile: vi.fn(),
 }));
-vi.mock("ora");
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
