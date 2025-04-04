@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { detect, resolveCommand } from "package-manager-detector";
 import { loadProjectPackageInfo } from "./get-package-info.js";
 
@@ -17,8 +17,9 @@ export async function syncSvelteKit(cwd: string) {
 
 		const cmd = resolveCommand(agent.agent, "execute-local", ["svelte-kit", "sync"]);
 		if (cmd) {
-			await execa(cmd.command, cmd.args, {
-				cwd,
+			await exec(cmd.command, cmd.args, {
+				throwOnError: true,
+				nodeOptions: { cwd },
 			});
 		}
 	}

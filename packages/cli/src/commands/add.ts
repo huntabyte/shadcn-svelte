@@ -1,6 +1,6 @@
 import color from "chalk";
 import { Command } from "commander";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -12,7 +12,7 @@ import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
-import { transformImports } from "../utils/transformers.js";
+import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -34,7 +34,7 @@ type AddOptions = v.InferOutput<typeof addOptionsSchema>;
 export const add = new Command()
 	.command("add")
 	.description("add components to your project")
-	.argument("[components...]", "name of components")
+	.argument("[components...]", "the components to add or a url to the component")
 	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "install all components to your project", false)
@@ -63,8 +63,6 @@ export const add = new Command()
 				);
 			}
 
-			registry.setRegistry(config.registry);
-
 			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
@@ -81,22 +79,19 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
 	}
 
-	const uiRegistryIndex = await registry.getRegistryIndex();
+	const registryUrl = registry.getRegistryUrl(config);
+	const shadcnIndex = await registry.getRegistryIndex(registryUrl);
 
 	let selectedComponents = new Set(
-		options.all ? uiRegistryIndex.map(({ name }) => name) : options.components
+		options.all ? shadcnIndex.map(({ name }) => name) : options.components
 	);
 
-	const registryDepMap = new Map<string, string[]>();
-	for (const item of uiRegistryIndex) {
-		registryDepMap.set(item.name, item.registryDependencies);
-	}
-
-	if (selectedComponents === undefined || selectedComponents.size === 0) {
+	// if the user hasn't passed any components prompt them to select components
+	if (selectedComponents.size === 0) {
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: uiRegistryIndex.map(({ name, dependencies, registryDependencies }) => {
+			options: shadcnIndex.map(({ name, dependencies, registryDependencies }) => {
 				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
 				return {
 					label: name,
@@ -113,62 +108,23 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
-	/**
-	 * Adds all the selected items and their registry dependencies to the `selectedComponents`
-	 * set so that they can be individually overwritten.
-	 */
-	for (const name of selectedComponents) {
-		if (registryDepMap.has(name)) {
-			/**
-			 * We will have all the `ui` registry dependencies in the `registryDepMap`,
-			 * so if the `name` is a `ui` component, we go ahead and add its dependencies
-			 * to the `selectedComponents` set.
-			 */
-			const regDeps: string[] = registryDepMap.get(name) ?? [];
-			for (const dep of regDeps) {
-				selectedComponents.add(dep);
-			}
-		} else {
-			/**
-			 * For blocks, hooks, etc. we need to resolve the tree to get their dependencies
-			 * and add them to the `selectedComponents` set.
-			 */
-			const tree = await registry.resolveTree({
-				index: uiRegistryIndex,
-				names: [name],
-				includeRegDeps: true,
-				config,
-			});
-			for (const item of tree) {
-				for (const dep of item.registryDependencies) {
-					// we first add the reg dep to the selected components
-					selectedComponents.add(dep);
-					const depRegDeps: string[] = registryDepMap.get(dep) ?? [];
-					// we then add each of that dep's deps to the `selectedComponents` set
-					for (const depRegDep of depRegDeps) {
-						selectedComponents.add(depRegDep);
-					}
-				}
-			}
-		}
-	}
-
-	const tree = await registry.resolveTree({
-		index: uiRegistryIndex,
-		names: Array.from(selectedComponents),
-		includeRegDeps: false,
-		config,
+	const resolvedItems = await registry.resolveRegistryItems({
+		baseUrl: registryUrl,
+		items: Array.from(selectedComponents),
+		registryIndex: shadcnIndex,
 	});
 
-	const payload = await registry.fetchTree(config, tree);
-	// const baseColor = await getRegistryBaseColor(config.tailwind.baseColor);
+	const itemsWithContent = await registry.fetchRegistryItems({
+		baseUrl: registryUrl,
+		items: resolvedItems,
+	});
 
-	if (payload.length === 0) cancel("Selected components not found.");
+	if (itemsWithContent.length === 0) cancel("Selected components not found.");
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies) {
 			selectedComponents.add(regDep);
@@ -218,7 +174,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
@@ -263,14 +219,19 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				let pageName: string | undefined;
 				for (const file of item.files) {
 					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					const filePath = path.resolve(targetDir, file.target);
+					let filePath = path.resolve(targetDir, file.target);
 
 					// Run transformers.
-					const content = transformImports(file.content, config);
+					const content = await transformContent(file.content, filePath, config);
 
 					const dir = path.parse(filePath).dir;
 					if (!existsSync(dir)) {
 						await fs.mkdir(dir, { recursive: true });
+					}
+
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replace(".ts", ".js");
+						file.target = file.target.replace(".ts", ".js");
 					}
 
 					await fs.writeFile(filePath, content);
@@ -300,9 +261,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
-				});
+				await exec(add.command, add.args, { throwOnError: true, nodeOptions: { cwd } });
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});

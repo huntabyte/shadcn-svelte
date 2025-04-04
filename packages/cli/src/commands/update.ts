@@ -1,6 +1,6 @@
 import color from "chalk";
 import { Command } from "commander";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -13,7 +13,7 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
-import { transformImports } from "../utils/transformers.js";
+import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -59,8 +59,6 @@ export const update = new Command()
 				);
 			}
 
-			registry.setRegistry(config.registry);
-
 			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
@@ -82,7 +80,9 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	const components = options.components;
-	const registryIndex = await registry.getRegistryIndex();
+
+	const registryUrl = registry.getRegistryUrl(config);
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -110,6 +110,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		files: [],
 		dependencies: [],
 		registryDependencies: [],
+		relativeUrl: "",
 	});
 
 	// If the user specifies component args
@@ -176,14 +177,17 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		});
 	}
 
-	const tree = await registry.resolveTree({
-		index: registryIndex,
-		names: selectedComponents.map((com) => com.name),
-		config,
+	const resolvedItems = await registry.resolveRegistryItems({
+		baseUrl: registryUrl,
+		registryIndex: registryIndex,
+		items: selectedComponents.map((com) => com.name),
 	});
-	const payload = (await registry.fetchTree(config, tree)).sort((a, b) =>
-		a.name.localeCompare(b.name)
-	);
+
+	const payload = await registry.fetchRegistryItems({
+		baseUrl: registryUrl,
+		items: resolvedItems,
+	});
+	payload.sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
@@ -210,16 +214,26 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					const filePath = path.resolve(targetDir, item.name, file.name);
+					let filePath = path.resolve(targetDir, item.name, file.name);
+
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replace(".ts", ".js");
+					}
 
 					// Run transformers.
-					const content = transformImports(file.content, config);
+					const content = await transformContent(file.content, filePath, config);
 
 					await fs.writeFile(filePath, content);
 				}
 
 				const installedFiles = await fs.readdir(componentDir);
-				const remoteFiles = item.files.map((file) => file.name);
+				const remoteFiles = item.files.map((file) => {
+					if (!config.typescript && file.name.endsWith(".ts")) {
+						return file.name.replace(".ts", ".js");
+					}
+
+					return file.name;
+				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))
 					.map((file) => path.resolve(targetDir, item.name, file));
@@ -246,8 +260,9 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
+				await exec(add.command, [...add.args], {
+					throwOnError: true,
+					nodeOptions: { cwd },
 				});
 				return `Dependencies installed with ${highlight(pm)}`;
 			},

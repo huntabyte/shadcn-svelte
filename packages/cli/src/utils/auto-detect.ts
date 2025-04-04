@@ -7,40 +7,21 @@ import { AGENTS, type Agent } from "package-manager-detector";
 import * as p from "./prompts.js";
 import { cancel } from "./prompt-helpers.js";
 
-const STYLESHEETS = [
-	"app.css",
-	"app.pcss",
-	"app.postcss",
-	"main.css",
-	"main.pcss",
-	"main.postcss",
-	"globals.css",
-	"globals.pcss",
-	"globals.postcss",
-];
-const TAILWIND_CONFIGS = [
-	"tailwind.config.js",
-	"tailwind.config.cjs",
-	"tailwind.config.mjs",
-	"tailwind.config.ts",
-];
+const STYLESHEETS = ["app.css", "main.css", "globals.css"];
 
 // commonly ignored
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
-	let tailwindPath, cssPath;
+	let cssPath;
 	const paths = findFiles(cwd);
 	for (const filepath of paths) {
 		const filename = path.parse(filepath).base;
 		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
 			cssPath = config?.relative ? path.relative(cwd, filepath) : filepath;
 		}
-		if (tailwindPath === undefined && TAILWIND_CONFIGS.includes(filename)) {
-			tailwindPath = config?.relative ? path.relative(cwd, filepath) : filepath;
-		}
 	}
-	return { tailwindPath, cssPath };
+	return { cssPath };
 }
 
 /**

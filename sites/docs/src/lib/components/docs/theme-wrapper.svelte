@@ -12,7 +12,7 @@
 
 <div
 	class={cn(`theme-${defaultTheme || $config.theme}`, "w-full", className)}
-	data-style={$config.style}
+	data-style="default"
 	style="--radius: {defaultTheme ? 0.5 : $config.radius}rem"
 	{...restProps}
 >

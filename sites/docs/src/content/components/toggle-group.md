@@ -3,7 +3,7 @@ title: Toggle Group
 description: A set of two-state buttons that can be toggled on or off.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/toggle-group
   doc: https://next.bits-ui.com/docs/components/toggle-group
   api: https://next.bits-ui.com/docs/components/toggle-group#api-reference
 ---

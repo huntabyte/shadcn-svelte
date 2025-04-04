@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { useId } from "bits-ui";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
 	const areas = [
 		{

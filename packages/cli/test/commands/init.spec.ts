@@ -1,18 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import { getConfig } from "../../src/utils/get-config";
 import * as registry from "../../src/utils/registry";
 
-vi.mock("execa");
+vi.mock("tinyexec");
 vi.mock("fs/promises", () => ({
 	writeFile: vi.fn(),
 	mkdir: vi.fn(),
 	readFile: vi.fn(),
 }));
-vi.mock("ora");
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
@@ -24,8 +23,8 @@ it("init (config-full)", async () => {
 			light: {},
 			dark: {},
 		},
-		inlineColorsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
-		cssVarsTemplate: "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n",
+		inlineColorsTemplate: "@import 'tailwindcss';\n",
+		cssVarsTemplate: "@import 'tailwindcss';\n",
 	});
 
 	const mockMkdir = vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);
@@ -39,24 +38,22 @@ it("init (config-full)", async () => {
 
 	// mkDir mocks
 	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
-	// writeFile mocks
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
 		1,
-		expect.stringContaining("tailwind.config"),
-		expect.stringContaining(`import { fontFamily } from "tailwindcss/defaultTheme"`),
+		expect.stringContaining("app.css"),
+		expect.stringContaining(`@import 'tailwindcss'`),
 		"utf8"
 	);
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
 		2,
-		expect.stringContaining("app.pcss"),
-		expect.stringContaining(`@tailwind base`),
-		"utf8"
-	);
-	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		3,
 		expect.stringContaining("utils.ts"),
 		expect.stringContaining('import { type ClassValue, clsx } from "clsx"'),
 		"utf8"
+	);
+	expect(mockMkdir).toHaveBeenNthCalledWith(
+		3,
+		expect.stringContaining(path.join("src", "lib", "hooks")),
+		expect.anything()
 	);
 	expect(mockMkdir).toHaveBeenNthCalledWith(
 		4,
@@ -64,10 +61,10 @@ it("init (config-full)", async () => {
 		expect.anything()
 	);
 
-	expect(execa).toHaveBeenCalledWith(
+	expect(exec).toHaveBeenCalledWith(
 		"pnpm",
-		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tailwindcss-animate"],
-		{ cwd: targetDir }
+		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tw-animate-css"],
+		{ throwOnError: true, nodeOptions: { cwd: targetDir } }
 	);
 
 	mockMkdir.mockRestore();
