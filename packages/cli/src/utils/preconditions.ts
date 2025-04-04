@@ -1,5 +1,5 @@
 import color from "chalk";
-import semver from "semver";
+import * as semver from "semver";
 import { loadProjectPackageInfo } from "./get-package-info.js";
 import { log } from "./prompts.js";
 import { getPadding } from "./prompt-helpers.js";

@@ -80,9 +80,6 @@ importers:
       node-fetch-native:
         specifier: ^1.6.4
         version: 1.6.4
-      semver:
-        specifier: ^7.7.1
-        version: 7.7.1
     devDependencies:
       '@types/node':
         specifier: ^18.19.22
@@ -102,6 +99,9 @@ importers:
       package-manager-detector:
         specifier: ^0.2.2
         version: 0.2.2
+      semver:
+        specifier: ^7.7.1
+        version: 7.7.1
       sisteransi:
         specifier: ^1.0.5
         version: 1.0.5
