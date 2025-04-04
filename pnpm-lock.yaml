@@ -68,9 +68,6 @@ importers:
       '@svecosystem/strip-types':
         specifier: ^0.0.2
         version: 0.0.2
-      chalk:
-        specifier: 5.2.0
-        version: 5.2.0
       commander:
         specifier: ^13.1.0
         version: 13.1.0
@@ -87,6 +84,9 @@ importers:
       '@types/semver':
         specifier: ^7.5.8
         version: 7.5.8
+      chalk:
+        specifier: ^5.4.0
+        version: 5.4.1
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -2183,8 +2183,8 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  chalk@5.2.0:
-    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
+  chalk@5.4.1:
+    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   character-entities-html4@2.1.0:
@@ -6805,7 +6805,7 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  chalk@5.2.0: {}
+  chalk@5.4.1: {}
 
   character-entities-html4@2.1.0: {}
 
