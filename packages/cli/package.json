@@ -43,7 +43,7 @@
 		"@clack/core": "^0.3.4",
 		"@svecosystem/strip-types": "^0.0.2",
 		"chalk": "5.2.0",
-		"commander": "^10.0.1",
+		"commander": "^13.1.0",
 		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4"
 	},
