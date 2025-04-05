@@ -97,8 +97,6 @@
 					/>
 				{/snippet}
 			</PieChart>
-			<!-- TODO: How to programmatically apply a fill colour by indexing `chartConfig` -->
-			<!-- TODO: Figure out a way to apply a custom tooltip that readily parses this chart data. Blocked my poor implementation of `getPayloadConfigFromPayload` -->
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">

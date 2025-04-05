@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { ArcChart } from "layerchart";
+	import { Arc, ArcChart, Text } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 
 	const chartData = [
@@ -35,12 +35,13 @@
 				outerRadius={-17}
 				innerRadius={-12.5}
 				padding={20}
-				range={[90, -270]}
-				maxValue={Math.max(...chartData.map((d) => d.visitors))}
+				range={[180, -180]}
+				maxValue={Math.max(...chartData.map((d) => d.visitors)) + 0}
 				series={chartData.map((d) => ({
 					key: d.browser,
 					color: d.color,
 					data: [d],
+					label: d.browser,
 				}))}
 				props={{
 					arc: { track: { fill: "var(--muted)" }, motion: "tween" },
@@ -49,6 +50,18 @@
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel nameKey="browser" />
+				{/snippet}
+				{#snippet arc({ props, seriesIndex, visibleSeries })}
+					<Arc {...props}>
+						{#snippet children({ getTrackTextProps })}
+							<Text
+								{...getTrackTextProps("middle", { startOffset: "1%" })}
+								class="pointer-events-none select-none capitalize"
+								value={visibleSeries[seriesIndex].label}
+								fill="white"
+							/>
+						{/snippet}
+					</Arc>
 				{/snippet}
 			</ArcChart>
 		</Chart.Container>

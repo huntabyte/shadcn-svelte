@@ -255,7 +255,7 @@
 				</ChartDisplay>
 				<ChartDisplay
 					status="Blocked (External)"
-					description="Need the ability to add labels outside of the pie point to the slice."
+					description="Need little annotation lines."
 					name="chart-pie-label"
 				>
 					<ChartPieLabel />
@@ -267,11 +267,7 @@
 				>
 					<ChartPieLabelCustom />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Blocked (External)"
-					description="Pending the labels prop being exposed on the chart"
-					name="chart-pie-label-list"
-				>
+				<ChartDisplay status="Done" name="chart-pie-label-list">
 					<ChartPieLabelList />
 				</ChartDisplay>
 				<ChartDisplay status="Done" name="chart-pie-legend">
@@ -286,11 +282,7 @@
 				<ChartDisplay status="Done" name="chart-pie-donut-text">
 					<ChartPieDonutText />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Blocked (External)"
-					description="It's pretty hacky at the moment, we should handle things differently inside of PieChart"
-					name="chart-pie-stacked"
-				>
+				<ChartDisplay status="Done" name="chart-pie-stacked">
 					<ChartPieStacked />
 				</ChartDisplay>
 				<ChartDisplay
@@ -381,11 +373,7 @@
 				<ChartDisplay status="Done" name="chart-radial-simple">
 					<ChartRadialSimple />
 				</ChartDisplay>
-				<ChartDisplay
-					status="Needs Parity"
-					description="Need to be able to position labels inside the radial bars"
-					name="chart-radial-label"
-				>
+				<ChartDisplay status="Done" name="chart-radial-label">
 					<ChartRadialLabel />
 				</ChartDisplay>
 				<ChartDisplay

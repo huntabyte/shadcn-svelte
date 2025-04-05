@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PieChart } from "layerchart";
+	import { Arc, PieChart, Text } from "layerchart";
 	import TrendingUp from "@lucide/svelte/icons/trending-up";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -43,6 +43,22 @@
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
+				{/snippet}
+				{#snippet arc({ props, visibleData, index })}
+					{@const browser = visibleData[index].browser}
+					<Arc {...props}>
+						{#snippet children({ centroid })}
+							<Text
+								value={browser}
+								x={centroid[0]}
+								y={centroid[1]}
+								textAnchor="middle"
+								verticalAnchor="middle"
+								font-size="12"
+								class="fill-background capitalize"
+							/>
+						{/snippet}
+					</Arc>
 				{/snippet}
 			</PieChart>
 		</Chart.Container>
