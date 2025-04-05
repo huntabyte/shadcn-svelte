@@ -1,6 +1,6 @@
 import color from "chalk";
 import { Command } from "commander";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -15,8 +15,6 @@ import * as registry from "../utils/registry/index.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
-import { isUrl, urlSplitLastPathSegment } from "../utils/utils.js";
-import { RegistryWithContent } from "../utils/registry/schema.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -82,38 +80,18 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	}
 
 	const registryUrl = registry.getRegistryUrl(config);
-
-	// get the base urls for any of the remote registries
-	const remoteRegistries =
-		options.components
-			?.filter((c) => isUrl(c))
-			.map((c) => urlSplitLastPathSegment(new URL(c))[0]) ?? [];
-
-	const onlyRemoteComponents =
-		options.components?.length && remoteRegistries.length === options.components.length;
-
-	// if the components aren't just remote components or we want to include all components
-	// then we add then shadcn-svelte registry
-	if (!onlyRemoteComponents || options.all) {
-		remoteRegistries.push(registryUrl);
-	}
-
-	// maps the registry baseUrl to the index of the registry
-	const registryIndexes = await registry.getRegistryIndexes(remoteRegistries);
-
-	// The index of the shadcn-svelte registry
-	const ogIndex = registryIndexes.get(registryUrl);
+	const shadcnIndex = await registry.getRegistryIndex(registryUrl);
 
 	let selectedComponents = new Set(
-		options.all ? ogIndex?.map(({ name }) => name) : options.components
+		options.all ? shadcnIndex.map(({ name }) => name) : options.components
 	);
 
 	// if the user hasn't passed any components prompt them to select components
-	if (ogIndex && selectedComponents.size === 0) {
+	if (selectedComponents.size === 0) {
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: ogIndex.map(({ name, dependencies, registryDependencies }) => {
+			options: shadcnIndex.map(({ name, dependencies, registryDependencies }) => {
 				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
 				return {
 					label: name,
@@ -130,93 +108,23 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		p.log.step(`Components to install:\n${color.gray(prettyList)}`);
 	}
 
-	// load registry dependencies
-	const registryDepMap = new Map<string, Map<string, string[]>>();
-	for (const [url, index] of registryIndexes) {
-		const registryDeps = new Map<string, string[]>();
+	const resolvedItems = await registry.resolveRegistryItems({
+		baseUrl: registryUrl,
+		items: Array.from(selectedComponents),
+		registryIndex: shadcnIndex,
+	});
 
-		for (const item of index) {
-			registryDeps.set(item.name, item.registryDependencies);
-		}
+	const itemsWithContent = await registry.fetchRegistryItems({
+		baseUrl: registryUrl,
+		items: resolvedItems,
+	});
 
-		registryDepMap.set(url, registryDeps);
-	}
-
-	const registryComponents = new Map<string, Set<string>>();
-
-	// theoretically this should all run without fetch calls if the index includes all the files
-	// in other words no need to parallelize
-	for (const name of selectedComponents) {
-		let componentName = name;
-		let componentRegistry = registryUrl;
-
-		// handle remote components
-		if (isUrl(name)) {
-			// name should come in like `https://example.com/r/avatar.json`
-			// we split it to get the base url and avatar.json
-			// eslint-disable-next-line prefer-const -- wrong
-			let [baseUrl, item] = urlSplitLastPathSegment(new URL(name));
-
-			componentRegistry = baseUrl;
-			componentName = item.replace(".json", "");
-		}
-
-		// we already defined this so we know it exists
-		const index = registryIndexes.get(componentRegistry)!;
-
-		const tree = await registry.resolveTree({
-			baseUrl: componentRegistry,
-			names: [componentName],
-			config,
-			index,
-			includeRegDeps: true,
-		});
-
-		const installedComponents = registryComponents.get(componentRegistry) ?? new Set();
-
-		// add the current component
-		installedComponents.add(componentName);
-
-		for (const item of tree) {
-			for (const dep of item.registryDependencies) {
-				// we first add the reg dep to the selected components
-				installedComponents.add(dep);
-				const depRegDeps: string[] = registryDepMap.get(componentRegistry)!.get(dep) ?? [];
-				// we then add each of that dep's deps to the `selectedComponents` set
-				for (const depRegDep of depRegDeps) {
-					installedComponents.add(depRegDep);
-				}
-			}
-		}
-
-		registryComponents.set(componentRegistry, installedComponents);
-	}
-
-	const fetchContent = async (url: string): Promise<RegistryWithContent> => {
-		const index = registryIndexes.get(url)!;
-		const components = registryComponents.get(url)!;
-
-		const tree = await registry.resolveTree({
-			baseUrl: url,
-			index: index,
-			names: Array.from(components),
-			includeRegDeps: false,
-			config,
-		});
-
-		return await registry.fetchTree(url, tree);
-	};
-
-	const payload = (await Promise.all(remoteRegistries.map((url) => fetchContent(url)))).flatMap(
-		(p) => p
-	);
-
-	if (payload.length === 0) cancel("Selected components not found.");
+	if (itemsWithContent.length === 0) cancel("Selected components not found.");
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies) {
 			selectedComponents.add(regDep);
@@ -266,7 +174,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 
-	for (const item of payload) {
+	for (const item of itemsWithContent) {
 		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
 		if (targetDir === null) continue;
 
@@ -353,9 +261,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
-				});
+				await exec(add.command, add.args, { throwOnError: true, nodeOptions: { cwd } });
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});

@@ -1,18 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import { getConfig } from "../../src/utils/get-config";
 import * as registry from "../../src/utils/registry";
 
-vi.mock("execa");
+vi.mock("tinyexec");
 vi.mock("fs/promises", () => ({
 	writeFile: vi.fn(),
 	mkdir: vi.fn(),
 	readFile: vi.fn(),
 }));
-vi.mock("ora");
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
@@ -62,10 +61,10 @@ it("init (config-full)", async () => {
 		expect.anything()
 	);
 
-	expect(execa).toHaveBeenCalledWith(
+	expect(exec).toHaveBeenCalledWith(
 		"pnpm",
 		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tw-animate-css"],
-		{ cwd: targetDir }
+		{ throwOnError: true, nodeOptions: { cwd: targetDir } }
 	);
 
 	mockMkdir.mockRestore();

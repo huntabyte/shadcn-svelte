@@ -1,5 +1,6 @@
 import * as v from "valibot";
 
+export type RegistryItemType = v.InferOutput<typeof registryItemTypeSchema>;
 const registryItemTypeSchema = v.picklist([
 	"registry:ui",
 	"registry:component",
@@ -9,9 +10,7 @@ const registryItemTypeSchema = v.picklist([
 	"registry:page",
 ]);
 
-export type RegistryItemType = v.InferOutput<typeof registryItemTypeSchema>;
-
-export const registryItemTailwindSchema = v.object({
+const registryItemTailwindSchema = v.object({
 	config: v.optional(
 		v.object({
 			content: v.optional(v.array(v.string())),
@@ -21,45 +20,40 @@ export const registryItemTailwindSchema = v.object({
 	),
 });
 
-export const registryItemFileSchema = v.object({
-	content: v.fallback(v.string(), ""),
-	type: registryItemTypeSchema,
-});
-
-export const registryItemCssVarsSchema = v.object({
+const registryItemCssVarsSchema = v.object({
 	light: v.optional(v.record(v.string(), v.string())),
 	dark: v.optional(v.record(v.string(), v.string())),
 });
 
-export const registryItemSchema = v.object({
+const registryItemFileSchema = v.object({ type: registryItemTypeSchema, path: v.string() });
+
+export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
+export const registryIndexItemSchema = v.object({
 	name: v.string(),
+	type: registryItemTypeSchema,
+	relativeUrl: v.string(),
 	dependencies: v.fallback(v.array(v.string()), []),
 	registryDependencies: v.fallback(v.array(v.string()), []),
-	files: v.array(registryItemFileSchema),
-	type: registryItemTypeSchema,
 	tailwind: v.optional(registryItemTailwindSchema),
 	cssVars: v.optional(registryItemCssVarsSchema),
-});
-
-export const registryIndexSchema = v.array(registryItemSchema);
-
-export const registryItemWithContentSchema = v.object({
-	...registryItemSchema.entries,
-	...v.object({
-		files: v.array(
-			v.object({
-				name: v.string(),
-				content: v.string(),
-				type: registryItemTypeSchema,
-				target: v.string(),
-			})
-		),
-	}).entries,
+	files: v.array(registryItemFileSchema),
 });
 
 export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
+export const registryIndexSchema = v.array(registryIndexItemSchema);
 
-export const registryWithContentSchema = v.array(registryItemWithContentSchema);
+export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
+export const registryItemSchema = v.object({
+	...v.omit(registryIndexItemSchema, ["relativeUrl"]).entries,
+	files: v.array(
+		v.object({
+			name: v.string(),
+			type: registryItemTypeSchema,
+			content: v.string(),
+			target: v.string(),
+		})
+	),
+});
 
 export const registryBaseColorSchema = v.object({
 	inlineColors: v.object({
@@ -73,5 +67,3 @@ export const registryBaseColorSchema = v.object({
 	inlineColorsTemplate: v.string(),
 	cssVarsTemplate: v.string(),
 });
-
-export type RegistryWithContent = v.InferOutput<typeof registryWithContentSchema>;
