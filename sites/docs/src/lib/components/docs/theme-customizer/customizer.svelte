@@ -26,8 +26,8 @@
 			size="icon"
 			class="ml-auto rounded-[0.5rem]"
 			onclick={() => {
-				$config.radius = 0.5;
-				$config.theme = "zinc";
+				config.current.radius = 0.5;
+				config.current.theme = "zinc";
 			}}
 		>
 			<Repeat />
@@ -71,12 +71,12 @@
 			<Label class="text-xs">Color</Label>
 			<div class="grid grid-cols-3 gap-2">
 				{#each themes as theme (theme.name)}
-					{@const isActive = $config.theme === theme.name}
+					{@const isActive = config.current.theme === theme.name}
 					<Button
 						variant="outline"
 						size="sm"
 						onclick={() => {
-							$config.theme = theme.name;
+							config.current.theme = theme.name;
 						}}
 						class={cn("justify-start gap-0", isActive && "border-primary border-2")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
@@ -99,9 +99,11 @@
 						variant="outline"
 						size="sm"
 						onclick={() => {
-							$config.radius = valueFloat;
+							config.current.radius = valueFloat;
 						}}
-						class={cn($config.radius === valueFloat && "border-primary border-2")}
+						class={cn(
+							config.current.radius === valueFloat && "border-primary border-2"
+						)}
 					>
 						{value}
 					</Button>

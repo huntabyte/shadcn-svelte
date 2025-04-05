@@ -8,16 +8,17 @@
 	import Clipboard from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
 
-	type Props = {
+	const {
+		type,
+		command,
+	}: {
 		type: Command | "create";
 		command: string | string[];
-	};
-
-	const { type, command }: Props = $props();
+	} = $props();
 
 	const agent = getPackageManager();
 
-	const cmd = $derived(getCommand($agent, type, command));
+	const cmd = $derived(getCommand(agent.current, type, command));
 
 	const commandText = $derived(`${cmd.command} ${cmd.args.join(" ")}`);
 </script>
@@ -31,9 +32,9 @@
 						type="button"
 						class={{
 							"-mb-0.5 border-b-2 border-transparent p-1 font-mono text-sm": true,
-							"border-b-primary": $agent === pm,
+							"border-b-primary": agent.current === pm,
 						}}
-						onclick={() => ($agent = pm)}
+						onclick={() => (agent.current = pm)}
 					>
 						{pm}
 					</button>

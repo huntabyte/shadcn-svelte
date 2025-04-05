@@ -11,9 +11,9 @@
 </script>
 
 <div
-	class={cn(`theme-${defaultTheme || $config.theme}`, "w-full", className)}
+	class={cn(`theme-${defaultTheme || config.current.theme}`, "w-full", className)}
 	data-style="default"
-	style="--radius: {defaultTheme ? 0.5 : $config.radius}rem"
+	style="--radius: {defaultTheme ? 0.5 : config.current.radius}rem"
 	{...restProps}
 >
 	{@render children?.()}
