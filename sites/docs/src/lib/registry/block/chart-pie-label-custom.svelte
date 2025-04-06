@@ -49,9 +49,8 @@
 						{#snippet children({ getArcTextProps })}
 							<Text
 								value={visibleData[index].visitors}
-								{...getArcTextProps("outer")}
+								{...getArcTextProps("outer", { startOffset: "50%" })}
 								class="fill-foreground"
-								startOffset="50%"
 							/>
 						{/snippet}
 					</Arc>
