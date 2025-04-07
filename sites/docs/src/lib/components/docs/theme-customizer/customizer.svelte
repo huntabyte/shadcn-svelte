@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
 	import CircleHelp from "@lucide/svelte/icons/circle-help";
 	import Moon from "@lucide/svelte/icons/moon";
 	import Repeat from "@lucide/svelte/icons/repeat";
@@ -79,15 +78,12 @@
 						onclick={() => {
 							$config.theme = theme.name;
 						}}
-						class={cn("justify-start", isActive && "border-primary border-2")}
+						class={cn("justify-start gap-0", isActive && "border-primary border-2")}
 						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
 					>
 						<span
-							class="mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+							class="bg-(--theme-primary) mr-1 flex size-4 shrink-0 -translate-x-1 items-center justify-center rounded-full"
 						>
-							{#if isActive}
-								<Check class="size-4 text-white" />
-							{/if}
 						</span>
 						{theme.label}
 					</Button>

@@ -1,13 +1,12 @@
 import template from "lodash.template";
 import fs from "node:fs";
 import path from "node:path";
-import process from "node:process";
 import { rimraf } from "rimraf";
-import { colorMapping, colors } from "../src/lib/registry/colors";
-import { registrySchema } from "../src/lib/registry/schema";
-import { themes } from "../src/lib/registry/themes";
+import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
+import { registrySchema, type RegistryItemType } from "../src/lib/registry/schema";
+import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry";
-import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES, THEME_STYLES_WITH_VARIABLES } from "./templates";
+import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates";
 import { getChunks } from "./transform-chunks";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
@@ -38,12 +37,7 @@ async function main() {
 		throw new Error(selfReferenceError);
 	}
 
-	const result = registrySchema.safeParse(registry);
-
-	if (!result.success) {
-		console.error(result.error);
-		process.exit(1);
-	}
+	const result = registrySchema.parse(registry);
 
 	// ----------------------------------------------------------------------------
 	// Build blocks registry (__registry__/blocks.js) and block chunks (__registry__/chunks/[style]/[block]-[chunk].svelte)
@@ -63,7 +57,7 @@ export const Blocks = {
 		fs.mkdirSync(chunkStyleDir, { recursive: true });
 	}
 	// Creates chunk files
-	for (const block of result.data) {
+	for (const block of result) {
 		if (block.type !== "registry:block") continue;
 		const file = block.files[0];
 		const blockPath = path.resolve(libPath, "block", file.name);
@@ -104,7 +98,7 @@ export const Index = {
 `;
 
 	// Build style index.
-	for (const item of result.data) {
+	for (const item of result) {
 		if (item.type === "registry:ui" || item.type === "registry:block") {
 			continue;
 		}
@@ -147,37 +141,44 @@ export const Index = {
 		fs.mkdirSync(targetPath, { recursive: true });
 	}
 
-	for (const item of result.data) {
-		const allowedTypes = ["registry:ui", "registry:hook", "registry:block"];
+	for (const item of result) {
+		const allowedTypes: RegistryItemType[] = ["registry:ui", "registry:hook", "registry:block"];
 		if (!allowedTypes.includes(item.type)) continue;
 
 		// discard `path` prop
 		const files = item.files.map((file) => ({ ...file, path: undefined }));
+		const filePath = path.resolve(targetPath, `${item.name}.json`);
 
 		const payload = {
 			...item,
 			files,
 		};
 
-		writeFileWithDirs(
-			path.join(targetPath, `${item.name}.json`),
-			JSON.stringify(payload, null, "\t"),
-			"utf-8"
-		);
+		writeFileWithDirs(filePath, JSON.stringify(payload, null, "\t"), "utf-8");
 	}
 
 	// ----------------------------------------------------------------------------
 	// Build registry/index.json.
 	// ----------------------------------------------------------------------------
-	const names = result.data
-		.filter((item) => item.type === "registry:ui" && !REGISTRY_IGNORE.includes(item.name))
-		.map((item) => ({
-			...item,
-			// The `default` style uses `@lucide/svelte`, so we'll discard it for the purposes of the index
-			dependencies: item.dependencies.filter((dep) => dep !== "@lucide/svelte"),
-			// We only want the relative file paths
-			files: item.files.map((file) => ({ path: file.path, type: "registry:ui" })),
-		}));
+	const ITEM_TYPES: RegistryItemType[] = ["registry:ui", "registry:hook"];
+	const names = result
+		.filter((item) => ITEM_TYPES.includes(item.type) && !REGISTRY_IGNORE.includes(item.name))
+		.map((item) => {
+			const filePath = path.resolve(REGISTRY_PATH, `${item.name}.json`);
+			const relativeUrlPath = path.relative(targetPath, filePath).split(path.sep).join("/");
+			return {
+				...item,
+				// The `default` style uses `@lucide/svelte`, so we'll discard it for the purposes of the index
+				dependencies: item.dependencies.filter((dep) => dep !== "@lucide/svelte"),
+				// We only want the relative file paths
+				files: item.files.map((file) => ({
+					path: file.path,
+					type: "registry:ui",
+				})),
+				// Registry item's endpoint, relative to the registry's index
+				relativeUrl: relativeUrlPath,
+			};
+		});
 	const registryJson = JSON.stringify(names, null, "\t");
 	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
 	writeFileWithDirs(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf-8");
@@ -191,30 +192,7 @@ export const Index = {
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const colorsData: Record<string, any> = {};
-	for (const [color, value] of Object.entries(colors)) {
-		if (typeof value === "string") {
-			colorsData[color] = value;
-			continue;
-		}
-
-		if (Array.isArray(value)) {
-			colorsData[color] = value.map((item) => ({
-				...item,
-				oklch: item.oklch,
-			}));
-			continue;
-		}
-
-		if (typeof value === "object") {
-			colorsData[color] = {
-				...value,
-				oklch: value.oklch,
-			};
-			continue;
-		}
-	}
+	const colorsData = getColorsData();
 
 	writeFileWithDirs(
 		path.join(colorsTargetPath, "index.json"),
@@ -226,39 +204,16 @@ export const Index = {
 	// Build registry/colors/[base].json.
 	// ----------------------------------------------------------------------------
 
-	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const base: Record<string, any> = {
-			inlineColors: {},
-			cssVars: {},
-		};
-		for (const [mode, values] of Object.entries(colorMapping)) {
-			base.inlineColors[mode] = {};
-			base.cssVars[mode] = {};
-			for (const [key, value] of Object.entries(values)) {
-				if (typeof value === "string") {
-					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
-					base.inlineColors[mode][key] = resolvedColor;
+	const themeCSS = [];
+	for (const baseColor of baseColors) {
+		const base = generateBaseColorTemplate(baseColor);
 
-					const [resolvedBase, scale] = resolvedColor.split("-");
-					const color = scale
-						? colorsData[resolvedBase].find(
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
-								(item: any) => item.scale === Number.parseInt(scale)
-							)
-						: colorsData[resolvedBase];
-					if (color) {
-						base.cssVars[mode][key] = color.oklch;
-					}
-				}
-			}
-		}
-
-		// Build css vars.
-		base.inlineColorsTemplate = template(BASE_STYLES)({});
-		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-			colors: base.cssVars,
-		});
+		themeCSS.push(
+			template(THEME_STYLES_WITH_VARIABLES)({
+				colors: base.cssVars,
+				theme: baseColor,
+			})
+		);
 
 		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
@@ -271,17 +226,7 @@ export const Index = {
 	// Build registry/themes.css
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const theme of themes) {
-		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: theme.cssVars,
-				theme: theme.name,
-			})
-		);
-	}
-
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
+	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 
 	console.info("✅ Done!");
 }

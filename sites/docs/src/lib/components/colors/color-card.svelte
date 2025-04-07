@@ -1,69 +1,140 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { colorData } from "$lib/components/colors/color-data.js";
-	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import { PersistedState } from "runed";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
+	import { getColors, type ColorPalette } from "$lib/components/colors/colors.js";
+	import Clipboard from "@lucide/svelte/icons/clipboard";
+	import Check from "@lucide/svelte/icons/check";
+	import { scale } from "svelte/transition";
 
-	let selectedFormat = "hsl"; // Default color format
+	type Format = {
+		format: string;
+		hint: string;
+	};
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	function handleColorClick(colorName: string, shade: string, colorEntry: any) {
-		const colorValue = colorEntry[selectedFormat];
-		toast.success(`Copied "${colorValue}" to clipboard`);
+	const formats: Format[] = [
+		{
+			format: "className",
+			hint: "bg-slate-100",
+		},
+		{
+			format: "hex",
+			hint: "#f8fafc",
+		},
+		{
+			format: "rgb",
+			hint: "248 250 252",
+		},
+		{
+			format: "hsl",
+			hint: "210 40% 98%",
+		},
+		{
+			format: "oklch",
+			hint: "0.98 0.00 248",
+		},
+	] as const;
 
-		navigator.clipboard.writeText(colorValue).catch((err) => {
-			toast.error(`Failed to copy ${colorName} ${shade} (${colorValue})`);
-			console.error("Error copying to clipboard:", err);
-		});
+	const selectedFormat = new PersistedState("color-format-preference", formats[0].format);
+
+	const colors = getColors();
+
+	let copied = $state<string>();
+
+	async function copy(shade: ColorPalette["colors"][number]) {
+		copied = shade.className;
+
+		const text = shade[selectedFormat.current as never] as string;
+
+		await navigator.clipboard.writeText(text);
+
+		toast.success(`Copied ${text} to clipboard!`);
+
+		setTimeout(() => {
+			copied = undefined;
+		}, 1000);
 	}
 </script>
 
-<div class="mb-5 flex flex-col gap-2">
-	<div class="font-bold">Choose color format to copy:</div>
-	<RadioGroup.Root bind:value={selectedFormat} class="flex flex-row gap-5">
-		<div class="flex cursor-pointer items-center space-x-2">
-			<RadioGroup.Item value="hsl" id="hsl-option" />
-			<Label for="hsl-option">HSL</Label>
-		</div>
-		<div class="flex cursor-pointer items-center space-x-2">
-			<RadioGroup.Item value="rgb" id="rgb-option" />
-			<Label for="rgb-option">RGB</Label>
-		</div>
-		<div class="flex cursor-pointer items-center space-x-2">
-			<RadioGroup.Item value="hex" id="hex-option" />
-			<Label for="hex-option">Hex</Label>
-		</div>
-		<div class="flex cursor-pointer items-center space-x-2">
-			<RadioGroup.Item value="className" id="class-name-option" />
-			<Label for="class-name-option">Class Name</Label>
-		</div>
-	</RadioGroup.Root>
-</div>
-
-<Card.Root>
-	<div class="flex flex-col px-2 pt-5 md:px-5">
-		{#each Object.entries(colorData) as [colorName, shades] (colorName)}
-			<div class="">
-				<h2 class="my-2 capitalize md:text-xl">{colorName}</h2>
-
-				<div class="overflox-x-auto mb-5 flex gap-1 md:gap-2">
-					{#each Object.entries(shades) as [shade, colorEntry] (shade)}
-						<button
-							on:click={() => handleColorClick(colorName, shade, colorEntry)}
-							class="group h-12 w-12 rounded-lg border transition-transform duration-200 sm:h-14 sm:w-14 md:h-20 md:w-20 md:hover:scale-[1.02] lg:h-32 lg:w-32"
-							style="background-color: {colorEntry.hex};"
-						>
-							<div class="h-full w-full" title="{colorName} {shade}"></div>
-							<div
-								class="md:group-hover:text-foreground text-foreground/[70%] text-xs sm:text-sm md:text-base"
+<div class="flex w-full flex-col gap-8">
+	{#each colors as color (color.name)}
+		<div class="flex w-full flex-col gap-2 rounded-lg border p-2">
+			<div class="flex place-items-center justify-between">
+				<h2>{`${color.name[0].toUpperCase()}${color.name.slice(1)}`}</h2>
+				<Select.Root type="single" bind:value={selectedFormat.current}>
+					<Select.Trigger class="h-7 w-fit text-xs">
+						<span class="mr-2">
+							<span class="font-bold">Format:</span>
+							<span class="text-muted-foreground font-mono"
+								>{selectedFormat.current}</span
 							>
-								{shade}
-							</div>
-						</button>
-					{/each}
-				</div>
+						</span>
+					</Select.Trigger>
+					<Select.Content align="end">
+						{#each formats as format (format.format)}
+							<Select.Item value={format.format}>
+								<span>
+									<span>{format.format}</span>
+									<span class="text-muted-foreground font-mono"
+										>{format.hint}</span
+									>
+								</span>
+							</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 			</div>
-		{/each}
-	</div>
-</Card.Root>
+			<div class="flex flex-col place-items-end md:flex-row md:gap-2">
+				{#each color.colors as shade (shade.className)}
+					<button
+						type="button"
+						onclick={() => copy(shade)}
+						class="group w-full flex-1 shrink-0 md:h-full md:w-auto"
+					>
+						<div class="relative">
+							<div class="hidden md:block">
+								<AspectRatio ratio={12 / 16}>
+									<div
+										class="size-full rounded-lg"
+										style="background-color: {shade.hex};"
+									></div>
+								</AspectRatio>
+							</div>
+							<div
+								class="block h-36 w-full rounded-lg md:hidden"
+								style="background-color: {shade.hex};"
+							></div>
+
+							<div
+								class="absolute right-2 top-2 opacity-0 transition-all group-hover:opacity-100"
+								style="color: {shade.foreground};"
+							>
+								{#if copied === shade.className}
+									<div in:scale>
+										<Check class="size-4" />
+									</div>
+								{:else}
+									<div in:scale>
+										<Clipboard class="size-4" />
+									</div>
+								{/if}
+							</div>
+						</div>
+
+						<span
+							class="group-hover:text-foreground text-muted-foreground hidden text-nowrap py-1 font-mono text-sm transition-colors xl:block"
+						>
+							{shade.className}
+						</span>
+						<span
+							class="group-hover:text-foreground text-muted-foreground block text-nowrap py-1 font-mono text-sm transition-colors xl:hidden"
+						>
+							{shade.className.split("-")[1]}
+						</span>
+					</button>
+				{/each}
+			</div>
+		</div>
+	{/each}
+</div>

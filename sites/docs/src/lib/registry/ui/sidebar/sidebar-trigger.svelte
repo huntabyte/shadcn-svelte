@@ -18,15 +18,16 @@
 </script>
 
 <Button
+	data-sidebar="trigger"
+	data-slot="sidebar-trigger"
+	variant="ghost"
+	size="icon"
+	class={cn("size-7", className)}
 	type="button"
 	onclick={(e) => {
 		onclick?.(e);
 		sidebar.toggle();
 	}}
-	data-sidebar="trigger"
-	variant="ghost"
-	size="icon"
-	class={cn("h-7 w-7", className)}
 	{...restProps}
 >
 	<PanelLeft />
