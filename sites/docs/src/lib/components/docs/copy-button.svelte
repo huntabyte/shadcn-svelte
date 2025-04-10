@@ -26,6 +26,7 @@
 				variant="ghost"
 				class={cn(
 					"bg-background/10 text-background/70 hover:bg-background/20 hover:text-background/80 dark:bg-foreground/5 dark:text-foreground/70 dark:hover:bg-foreground/10 dark:hover:text-foreground/80 relative !right-12 h-6 w-fit items-center justify-center rounded-md p-1",
+					"hidden sm:block",
 					className
 				)}
 				{...$$restProps}
