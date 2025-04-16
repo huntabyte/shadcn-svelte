@@ -58,7 +58,7 @@ import "$lib/styles/app.css";
 
 ### Install mode-watcher
 
-<PMInstall command="mode-watcher" />
+<PMInstall command="mode-watcher@0.5.1" />
 
 ### Add the ModeWatcher component
 
