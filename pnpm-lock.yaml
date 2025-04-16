@@ -13,7 +13,7 @@ importers:
         version: 2.27.7
       '@huntabyte/eslint-config':
         specifier: ^0.3.2
-        version: 0.3.2(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0)
+        version: 0.3.2(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43))
       '@huntabyte/eslint-plugin':
         specifier: ^0.1.0
         version: 0.1.0(eslint@9.8.0)
@@ -82,8 +82,8 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1
       package-manager-detector:
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^1.2.0
+        version: 1.2.0
       sisteransi:
         specifier: ^1.0.5
         version: 1.0.5
@@ -4226,8 +4226,8 @@ packages:
   package-json-from-dist@1.0.0:
     resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
 
-  package-manager-detector@0.1.2:
-    resolution: {integrity: sha512-iePyefLTOm2gEzbaZKSW+eBMjg+UYsQvUKxmvGXAQ987K16efBg10MxIjZs08iyX+DY2/owKY9DIdu193kX33w==}
+  package-manager-detector@1.2.0:
+    resolution: {integrity: sha512-PutJepsOtsqVfUsxCzgTTpyXmiAgvKptIgY4th5eq5UXXFhj5PxfQ9hnGkypMeovpAvVshFRItoFHYO18TCOqA==}
 
   paneforge@0.0.2:
     resolution: {integrity: sha512-1xNMq+uslstqum4D8CzzkPGqnTWUlevjYtMjUhuEOiuz7E0fJHFuM8ogk8+LJnVbAg3hMJJ/9Mu4A1KaxK38oQ==}
@@ -5656,7 +5656,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@antfu/eslint-config@2.24.1(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0)':
+  '@antfu/eslint-config@2.24.1(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43))':
     dependencies:
       '@antfu/install-pkg': 0.3.3
       '@clack/prompts': 0.7.0
@@ -5681,7 +5681,7 @@ snapshots:
       eslint-plugin-toml: 0.11.1(eslint@9.8.0)
       eslint-plugin-unicorn: 55.0.0(eslint@9.8.0)
       eslint-plugin-unused-imports: 4.0.1(@typescript-eslint/eslint-plugin@8.0.1(@typescript-eslint/parser@8.0.1(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)
-      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.1(@typescript-eslint/parser@8.0.1(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@1.6.0)
+      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.1(@typescript-eslint/parser@8.0.1(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43))
       eslint-plugin-vue: 9.27.0(eslint@9.8.0)
       eslint-plugin-yml: 1.14.0(eslint@9.8.0)
       eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.36)(eslint@9.8.0)
@@ -6490,9 +6490,9 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.0': {}
 
-  '@huntabyte/eslint-config@0.3.2(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0)':
+  '@huntabyte/eslint-config@0.3.2(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43))':
     dependencies:
-      '@antfu/eslint-config': 2.24.1(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0)
+      '@antfu/eslint-config': 2.24.1(@vue/compiler-sfc@3.4.36)(eslint-plugin-svelte@2.43.0(eslint@9.8.0)(svelte@4.2.18))(eslint@9.8.0)(svelte-eslint-parser@0.41.0(svelte@4.2.18))(svelte@4.2.18)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43))
       '@antfu/install-pkg': 0.3.3
       '@clack/prompts': 0.7.0
       '@huntabyte/eslint-plugin': 0.1.0(eslint@9.8.0)
@@ -8524,7 +8524,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.0.1(@typescript-eslint/parser@7.18.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)
 
-  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.1(@typescript-eslint/parser@8.0.1(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@1.6.0):
+  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.1(@typescript-eslint/parser@8.0.1(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.43)):
     dependencies:
       '@typescript-eslint/utils': 7.18.0(eslint@9.8.0)(typescript@5.5.4)
       eslint: 9.8.0
@@ -9910,7 +9910,7 @@ snapshots:
 
   package-json-from-dist@1.0.0: {}
 
-  package-manager-detector@0.1.2: {}
+  package-manager-detector@1.2.0: {}
 
   paneforge@0.0.2(svelte@4.2.18):
     dependencies:

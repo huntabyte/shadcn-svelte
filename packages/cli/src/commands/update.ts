@@ -5,6 +5,7 @@ import color from "chalk";
 import { Command } from "commander";
 import { execa } from "execa";
 import * as v from "valibot";
+import { resolveCommand } from "package-manager-detector";
 import { type Config, getConfig } from "../utils/get-config.js";
 import { error, handleError } from "../utils/errors.js";
 import { fetchTree, getItemTargetPath, getRegistryIndex, resolveTree } from "../utils/registry";
@@ -225,16 +226,14 @@ async function runUpdate(cwd: string, config: Config, options: UpdateOptions) {
 	}
 
 	// Install dependencies.
-	const commands = await detectPM(cwd, true);
-	if (commands) {
-		const [pm, add] = commands.add.split(" ") as [string, string];
+	const pm = await detectPM(cwd, true);
+	if (pm) {
+		const addCmd = resolveCommand(pm, "add", ["-D", ...dependencies])!;
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
 			enabled: dependencies.size > 0,
 			async task() {
-				await execa(pm, [add, "-D", ...dependencies], {
-					cwd,
-				});
+				await execa(addCmd.command, addCmd.args, { cwd });
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
