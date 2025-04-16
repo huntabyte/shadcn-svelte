@@ -51,7 +51,7 @@ type InitOptions = v.InferOutput<typeof initOptionsSchema>;
 export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
-	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--no-deps", "disable adding & installing dependencies")
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
