@@ -55,18 +55,6 @@ Configuration to help the CLI understand how Tailwind CSS is set up in your proj
 
 See the [installation section](/docs/installation) for how to set up Tailwind CSS.
 
-### tailwind.config
-
-Path to where your `tailwind.config.js` file is located.
-
-```json title="components.json"
-{
-  "tailwind": {
-    "config": "tailwind.config.js" | "tailwind.config.ts"
-  }
-}
-```
-
 ### tailwind.css
 
 Path to the CSS file that imports Tailwind CSS into your project.
