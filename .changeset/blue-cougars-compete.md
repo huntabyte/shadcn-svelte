@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-update `package-manager-detector` version
+chore: update `package-manager-detector`
