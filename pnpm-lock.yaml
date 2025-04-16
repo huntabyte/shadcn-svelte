@@ -82,8 +82,8 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1
       package-manager-detector:
-        specifier: ^0.2.8
-        version: 0.2.8
+        specifier: ^1.2.0
+        version: 1.2.0
       sisteransi:
         specifier: ^1.0.5
         version: 1.0.5
@@ -4226,8 +4226,8 @@ packages:
   package-json-from-dist@1.0.0:
     resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
 
-  package-manager-detector@0.2.8:
-    resolution: {integrity: sha512-ts9KSdroZisdvKMWVAVCXiKqnqNfXz4+IbrBG8/BWx/TR5le+jfenvoBuIZ6UWM9nz47W7AbD9qYfAwfWMIwzA==}
+  package-manager-detector@1.2.0:
+    resolution: {integrity: sha512-PutJepsOtsqVfUsxCzgTTpyXmiAgvKptIgY4th5eq5UXXFhj5PxfQ9hnGkypMeovpAvVshFRItoFHYO18TCOqA==}
 
   paneforge@0.0.2:
     resolution: {integrity: sha512-1xNMq+uslstqum4D8CzzkPGqnTWUlevjYtMjUhuEOiuz7E0fJHFuM8ogk8+LJnVbAg3hMJJ/9Mu4A1KaxK38oQ==}
@@ -9910,7 +9910,7 @@ snapshots:
 
   package-json-from-dist@1.0.0: {}
 
-  package-manager-detector@0.2.8: {}
+  package-manager-detector@1.2.0: {}
 
   paneforge@0.0.2(svelte@4.2.18):
     dependencies:
