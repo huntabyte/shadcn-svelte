@@ -17,13 +17,13 @@
 
 	let { chunk, block, children, ...restProps }: Props = $props();
 
-	const { isLiftMode } = getLiftMode(block.name);
+	const liftMode = getLiftMode(block.name);
 </script>
 
 <div
 	class={cn(
 		"bg-background group rounded-xl shadow-xl",
-		!$isLiftMode && "invisible",
+		!liftMode.current && "invisible",
 		chunk.container?.className
 	)}
 	data-x-chunk-container-for={chunk.name}

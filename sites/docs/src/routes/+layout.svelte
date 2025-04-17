@@ -15,7 +15,7 @@
 	setPackageManager();
 
 	$effect(() => {
-		updateTheme($config.theme, page.url.pathname);
+		updateTheme(config.current.theme, page.url.pathname);
 	});
 </script>
 
