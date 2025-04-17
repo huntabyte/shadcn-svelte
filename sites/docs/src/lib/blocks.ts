@@ -3,9 +3,7 @@ import type { Component } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
 import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
-import { type BlockName, type Style, blockSchema } from "$lib/registry/index.js";
-
-const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
+import { type BlockName, blockSchema } from "$lib/registry/index.js";
 
 export type RawBlockChunk = {
 	name: string;
@@ -49,39 +47,38 @@ export function isAllowedBlock(name: string): name is BlockName {
 	return BLOCK_WHITELIST.includes(name as any);
 }
 
-export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const blocks = Object.values(Blocks[style]);
+export function getAllBlockIds() {
+	const blocks = Object.values(Blocks);
 	return blocks
 		.map((block) => block.name as BlockName)
 		.filter((b) => BLOCK_WHITELIST.includes(b));
 }
 
-export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const block = Blocks[style][name];
-	const content = await getBlockContent(name, style);
+export async function getBlock(name: BlockName) {
+	const block = Blocks[name];
+	const content = await getBlockContent(name);
 	const chunks = (block.chunks as Array<RawBlockChunk>).map((chunk) => chunk.name);
 
 	return blockSchema.parse({
 		...block,
 		...content,
-		style,
 		chunks,
 	});
 }
 
-async function getBlockCode(name: BlockName, style: Style["name"]) {
-	const block = Blocks[style][name];
+async function getBlockCode(name: BlockName) {
+	const block = Blocks[name];
 	const code = await block.raw();
 	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
 	const detabbed = code.replaceAll("\t", "  ");
 	return detabbed;
 }
 
-async function getBlockContent(name: BlockName, style: Style["name"]) {
-	const raw = await getBlockCode(name, style);
-	const { description, iframeHeight, className } = blockMeta[style][name];
+async function getBlockContent(name: BlockName) {
+	const raw = await getBlockCode(name);
+	const { description, iframeHeight, className } = blockMeta[name];
 
-	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");
+	const code = raw.replaceAll(`$lib/registry/`, "$lib/components/");
 
 	return {
 		description,
@@ -113,6 +110,6 @@ export async function highlightCode(code: string) {
 
 export function isBlock(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
-	const block = Blocks.default[name];
+	const block = Blocks[name];
 	return block !== undefined;
 }

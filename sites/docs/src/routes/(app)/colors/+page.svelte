@@ -28,12 +28,10 @@
 			<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
 			<PageHeader.Description>
-				Tailwind CSS colors in HSL, RGB, and HEX formats.
+				Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats.
 			</PageHeader.Description>
 		</PageHeader.Root>
 	</ThemeWrapper>
 
-	<div class="flex flex-col gap-2">
-		<ColorCard />
-	</div>
+	<ColorCard />
 </div>

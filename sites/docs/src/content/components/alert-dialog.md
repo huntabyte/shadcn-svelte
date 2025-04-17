@@ -3,7 +3,7 @@ title: Alert Dialog
 description: A modal dialog that interrupts the user with important content and expects a response.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert-dialog
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/alert-dialog
   doc: https://next.bits-ui.com/docs/components/alert-dialog
   api: https://next.bits-ui.com/docs/components/alert-dialog#api-reference
 ---

@@ -1,0 +1,36 @@
+/* Carbon Ad Styles */
+
+.carbon-responsive-wrap {
+	background-color: var(--background) !important;
+}
+
+#carbon-responsive .carbon-responsive-wrap {
+	background-color: var(--background) !important;
+	display: grid !important;
+	grid-template-columns: auto 1fr !important;
+	gap: 1rem !important;
+	align-items: center !important;
+	border: 0 !important;
+	padding: 0 !important;
+}
+
+#carbon-responsive {
+	gap: 0.25rem !important;
+}
+
+#carbonads .carbon-poweredby {
+	background: var(--background) !important;
+	color: var(--muted-foreground) !important;
+	display: block !important;
+	font-size: 0.5em !important;
+	font-weight: 400 !important;
+	line-height: 1.5em !important;
+	text-decoration: none !important;
+	text-transform: uppercase !important;
+	text-align: right !important;
+}
+
+#carbonads .carbon-text {
+	color: var(--muted-foreground) !important;
+	font-size: 14px !important;
+}

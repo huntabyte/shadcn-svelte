@@ -2,7 +2,7 @@
 	import Blocks from "@lucide/svelte/icons/blocks";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
 	import ArrowRight from "@lucide/svelte/icons/arrow-right";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
 
 	let { class: className, ...restProps }: HTMLAnchorAttributes = $props();

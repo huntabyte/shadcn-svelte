@@ -2,39 +2,33 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
 import * as v from "valibot";
+import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
+import type { RegistryIndex, RegistryItem, RegistryItemType, RegistryIndexItem } from "./schema.js";
 
-let baseUrl: string | undefined;
+export function getRegistryUrl(config: Config) {
+	let url = process.env.COMPONENTS_REGISTRY_URL;
 
-export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
+	if (url) return url;
 
-export function setRegistry(url: string) {
+	url = config.registry;
+
 	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
 	// this will be removed once we have a proper solution and or we merge with main
 	if (url === "https://next.shadcn-svelte.com/registry") {
-		baseUrl = "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
-	} else {
-		baseUrl = url;
+		return "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
 	}
+
+	return url;
 }
 
-function getRegistryUrl(path: string) {
-	if (!baseUrl) throw new Error("Registry URL not set");
-
-	if (isUrl(path)) {
-		const url = new URL(path);
-		return url.toString();
-	}
-	return `${baseUrl}/${path}`;
-}
-
-export async function getRegistryIndex() {
+export async function getRegistryIndex(registryUrl: string) {
 	try {
-		const [result] = await fetchRegistry(["index.json"]);
-
+		const url = resolveURL(registryUrl, "index.json");
+		const [result] = await fetchRegistry([url]);
 		return v.parse(schemas.registryIndexSchema, result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
@@ -52,16 +46,10 @@ export function getBaseColors() {
 	];
 }
 
-export function getStyles() {
-	return [
-		{ name: "default", label: "Default" },
-		{ name: "new-york", label: "New York" },
-	];
-}
-
-export async function getRegistryBaseColor(baseColor: string) {
+export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
+		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const [result] = await fetchRegistry([url]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
@@ -69,69 +57,78 @@ export async function getRegistryBaseColor(baseColor: string) {
 	}
 }
 
-type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
-
-type ResolveTreeProps = {
-	index: RegistryIndex;
-	names: string[];
+type ResolveRegistryItemsProps = {
+	baseUrl: string;
+	registryIndex: RegistryIndex;
+	items: string[];
 	includeRegDeps?: boolean;
-	config: Config;
 };
 
-export async function resolveTree({
-	index,
-	names,
+type ResolvedRegistryItem = RegistryItem | RegistryIndexItem;
+export async function resolveRegistryItems({
+	registryIndex,
+	baseUrl,
+	items,
 	includeRegDeps = true,
-	config,
-}: ResolveTreeProps) {
-	const tree: RegistryIndex = [];
+}: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
+	const resolvedItems: ResolvedRegistryItem[] = [];
 
-	for (const name of names) {
-		let entry = index.find((entry) => entry.name === name);
+	for (const item of items) {
+		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
+			(entry) => entry.name === item
+		);
 
-		if (!entry) {
-			// attempt to find entry elsewhere in the registry
-			const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-			const [item] = await fetchRegistry([`styles/${trueStyle}/${name}.json`]);
-			if (item) entry = item;
-			if (!entry) continue;
+		// the `item` doesn't exist in the `index`, so it _must_ be a remote item (in other words, it's a URL)
+		if (!resolvedItem) {
+			const url = item;
+			if (!isUrl(url)) {
+				throw error(
+					`Component item '${item}' does not exist in the registry, nor is it a valid URL.`
+				);
+			}
+
+			const [result] = await fetchRegistry([url]);
+			resolvedItem = v.parse(schemas.registryItemSchema, result);
 		}
 
-		tree.push(entry);
+		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && entry.registryDependencies) {
-			const dependencies = await resolveTree({
-				index,
-				names: entry.registryDependencies,
-				config,
+		if (includeRegDeps && resolvedItem.registryDependencies.length > 0) {
+			const registryDeps = await resolveRegistryItems({
+				baseUrl,
+				registryIndex: registryIndex,
+				items: resolvedItem.registryDependencies,
 			});
-			tree.push(...dependencies);
+			resolvedItems.push(...registryDeps);
 		}
 	}
 
-	return tree.filter(
+	// dedupes tree
+	return resolvedItems.filter(
 		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
 	);
 }
 
-export async function fetchTree(config: Config, tree: RegistryIndex) {
-	try {
-		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
-		const result = await fetchRegistry(paths);
+type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
+export async function fetchRegistryItems({
+	baseUrl,
+	items,
+}: FetchTreeProps): Promise<RegistryItem[]> {
+	const itemsWithContent = items.filter((item) => !("relativeUrl" in item));
+	const itemsToFetch = items.filter((item) => "relativeUrl" in item);
 
-		return v.parse(schemas.registryWithContentSchema, result);
+	try {
+		const itemUrls = itemsToFetch.map((item) => resolveURL(baseUrl, item.relativeUrl));
+		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
+
+		return v.parse(v.array(schemas.registryItemSchema), result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
 }
 
-export function getItemTargetPath(
-	config: Config,
-	item: v.InferOutput<typeof schemas.registryItemWithContentSchema>,
-	override?: string
-) {
+export function getItemTargetPath(config: Config, item: RegistryItem, override?: string) {
 	// Allow overrides for all items but ui.
 	if (override && item.type !== "registry:ui") {
 		return override;
@@ -143,53 +140,37 @@ export function getItemTargetPath(
 	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
-async function fetchRegistry(paths: string[]) {
-	if (!baseUrl) throw new Error("Registry URL not set");
-
+async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	const proxyUrl = getEnvProxy();
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
+
+	const loaders = urls.map(async (url) => {
+		const response = await fetch(url, { ...proxy });
+		if (!response.ok) {
+			throw error(
+				`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
+			);
+		}
+
+		try {
+			return await response.json();
+		} catch (e) {
+			throw error(`Error parsing json response from ${url}: Error ${e}`);
+		}
+	});
+
 	try {
-		const results = await Promise.all(
-			paths.map(async (path) => {
-				const url = getRegistryUrl(path);
-
-				const response = await fetch(url, {
-					...proxy,
-				});
-
-				if (!response.ok) {
-					throw error(
-						`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
-					);
-				}
-
-				try {
-					return await response.json();
-				} catch (e) {
-					throw error(`Error parsing json response from ${url}: Error ${e}`);
-				}
-			})
-		);
-
+		const results = await Promise.all(loaders);
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
-	}
-}
-
-function isUrl(path: string) {
-	try {
-		new URL(path);
-		return true;
-	} catch {
-		return false;
+		throw error(`Failed to fetch registry. Error: ${e}`);
 	}
 }
 
 export function getRegistryItemTargetPath(
 	config: Config,
-	type: schemas.RegistryItemType,
+	type: RegistryItemType,
 	override?: string
 ) {
 	if (override) return override;

@@ -6,7 +6,7 @@
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
 	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { siteConfig } from "$lib/config/site.js";
-	import Button from "$lib/registry/new-york/ui/button/button.svelte";
+	import Button from "$lib/registry/ui/button/button.svelte";
 
 	let { data } = $props();
 </script>
