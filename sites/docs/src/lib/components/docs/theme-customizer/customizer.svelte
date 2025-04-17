@@ -98,7 +98,7 @@
 							$config.theme = theme.name;
 						}}
 						class={cn("justify-start", isActive && "border-primary border-2")}
-						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
+						style="--theme-primary: hsl({theme.activeColor[mode.current ?? 'dark']})"
 					>
 						<span
 							class="mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
@@ -137,7 +137,7 @@
 					variant="outline"
 					size="sm"
 					onclick={() => setMode("light")}
-					class={cn($mode === "light" && "border-primary border-2")}
+					class={cn(mode.current === "light" && "border-primary border-2")}
 				>
 					<Sun class="mr-1 -translate-x-1" />
 					Light
@@ -146,7 +146,7 @@
 					variant="outline"
 					size="sm"
 					onclick={() => setMode("dark")}
-					class={cn($mode === "dark" && "border-primary border-2")}
+					class={cn(mode.current === "dark" && "border-primary border-2")}
 				>
 					<Moon class="mr-1 -translate-x-1" />
 					Dark
