@@ -211,8 +211,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6(svelte@5.16.1)
       mode-watcher:
-        specifier: ^0.3.1
-        version: 0.3.1(svelte@5.16.1)
+        specifier: ^1.0.2
+        version: 1.0.2(svelte@5.16.1)
       package-manager-detector:
         specifier: ^0.2.2
         version: 0.2.2
@@ -3514,10 +3514,10 @@ packages:
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
 
-  mode-watcher@0.3.1:
-    resolution: {integrity: sha512-inghSVSXpEENV0SHM98+AvjDmTOjh9EJIrJXMScK42GNkDm5QJL7a/nZQ8M8i8RK7loFHqsQKBKdlXfw5e5C4w==}
+  mode-watcher@1.0.2:
+    resolution: {integrity: sha512-b3ghU4F4kZeRHHPlsVeCltBgYRHNr7HNyT9JTlvIIvuob7Vulu7iKCfaKNU4FGugBIFWyK5q4bDhqCeZy3Cuxw==}
     peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0-next.1
+      svelte: ^5.27.0
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -4118,6 +4118,11 @@ packages:
 
   runed@0.23.3:
     resolution: {integrity: sha512-qmL6JOvI9fg2XrSI9eP8bVIaAyk1ztVZsoj37hTs4BSuOOyeLkrIPI16mwarXFYbxSfyJGCwAWgfpSq+ehQmgg==}
+    peerDependencies:
+      svelte: ^5.7.0
+
+  runed@0.25.0:
+    resolution: {integrity: sha512-7+ma4AG9FT2sWQEA0Egf6mb7PBT2vHyuHail1ie8ropfSjvZGtEAx8YTmUjv/APCsdRRxEVvArNjALk9zFSOrg==}
     peerDependencies:
       svelte: ^5.7.0
 
@@ -8606,9 +8611,11 @@ snapshots:
       pkg-types: 1.0.3
       ufo: 1.5.4
 
-  mode-watcher@0.3.1(svelte@5.16.1):
+  mode-watcher@1.0.2(svelte@5.16.1):
     dependencies:
+      runed: 0.25.0(svelte@5.16.1)
       svelte: 5.16.1
+      svelte-toolbelt: 0.7.1(svelte@5.16.1)
 
   mri@1.2.0: {}
 
@@ -9184,6 +9191,11 @@ snapshots:
       queue-microtask: 1.2.3
 
   runed@0.23.3(svelte@5.16.1):
+    dependencies:
+      esm-env: 1.2.1
+      svelte: 5.16.1
+
+  runed@0.25.0(svelte@5.16.1):
     dependencies:
       esm-env: 1.2.1
       svelte: 5.16.1
