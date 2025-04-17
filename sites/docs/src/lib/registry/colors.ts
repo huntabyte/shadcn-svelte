@@ -19,28 +19,8 @@ export type Colors = {
 	transparent: string;
 	black: CompleteColorFormat;
 	white: CompleteColorFormat;
-	slate: ColorScale[];
-	gray: ColorScale[];
-	zinc: ColorScale[];
-	neutral: ColorScale[];
-	stone: ColorScale[];
-	red: ColorScale[];
-	orange: ColorScale[];
-	amber: ColorScale[];
-	yellow: ColorScale[];
-	lime: ColorScale[];
-	green: ColorScale[];
-	emerald: ColorScale[];
-	teal: ColorScale[];
-	cyan: ColorScale[];
-	sky: ColorScale[];
-	blue: ColorScale[];
-	indigo: ColorScale[];
-	violet: ColorScale[];
-	purple: ColorScale[];
-	fuchsia: ColorScale[];
-	pink: ColorScale[];
-	rose: ColorScale[];
+} & {
+	[Color in BaseColor]: ColorScale[];
 };
 
 export const baseColors = [
