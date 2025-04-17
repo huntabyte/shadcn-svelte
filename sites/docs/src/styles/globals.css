@@ -125,10 +125,13 @@
 	}
 }
 
-@layer utilities {
-	.container {
-		@apply mx-auto max-w-screen-2xl border-dashed px-8 pb-8 2xl:border-x;
-	}
+@utility step {
+	@apply before:border-background before:bg-muted before:absolute before:ml-[-50px] before:mt-[-4px] before:inline-flex before:size-9 before:items-center before:justify-center before:rounded-full before:border-4 before:text-center before:-indent-px before:font-mono before:text-base before:font-medium before:content-[counter(step)];
+	counter-increment: step;
+}
+
+@utility container {
+	@apply mx-auto max-w-screen-2xl border-dashed px-8 pb-8 2xl:border-x;
 }
 
 .markdown code {
