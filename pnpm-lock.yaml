@@ -97,8 +97,8 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1
       package-manager-detector:
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^1.2.0
+        version: 1.2.0
       semver:
         specifier: ^7.7.1
         version: 7.7.1
@@ -3741,6 +3741,9 @@ packages:
 
   package-manager-detector@0.2.2:
     resolution: {integrity: sha512-VgXbyrSNsml4eHWIvxxG/nTL4wgybMTXCV2Un/+yEc3aDKKU6nQBZjbeP3Pl3qm9Qg92X/1ng4ffvCeD/zwHgg==}
+
+  package-manager-detector@1.2.0:
+    resolution: {integrity: sha512-PutJepsOtsqVfUsxCzgTTpyXmiAgvKptIgY4th5eq5UXXFhj5PxfQ9hnGkypMeovpAvVshFRItoFHYO18TCOqA==}
 
   paneforge@1.0.0-next.4:
     resolution: {integrity: sha512-xB7iqIx6sT+XDRx/Eps+lddN3X7zRy8RIqXXFimGuFF6d+3s4YoXrk8SdNwEK5U/mqwupeKX0BbSfy0z9W9feA==}
@@ -8804,6 +8807,8 @@ snapshots:
       netmask: 2.0.2
 
   package-manager-detector@0.2.2: {}
+
+  package-manager-detector@1.2.0: {}
 
   paneforge@1.0.0-next.4(svelte@5.25.3):
     dependencies:
