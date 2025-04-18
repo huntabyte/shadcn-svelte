@@ -21,11 +21,13 @@
 
 <Select.Root
 	type="single"
-	bind:value={() => value,
-	(v) => {
-		if (!isStyle(v)) return;
-		value = v;
-	}}
+	bind:value={
+		() => value,
+		(v) => {
+			if (!isStyle(v)) return;
+			value = v;
+		}
+	}
 >
 	<Select.Trigger class={cn("h-7 w-[145px] text-xs [&_svg]:size-4", className)} {...restProps}>
 		<span class="text-muted-foreground">Style: </span>
