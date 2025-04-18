@@ -50,7 +50,7 @@
 		<span class="sr-only">Toggle Menu</span>
 	</Drawer.Trigger>
 	<Drawer.Content class="max-h-[80svh]">
-		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] pb-12 pl-6 pt-4">
+		<ScrollArea orientation="both" class="h-[80svh] pb-12 pl-6 pt-4">
 			<div class="flex flex-col space-y-3">
 				<MobileLink href="/" bind:open class="text-foreground">Home</MobileLink>
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
@@ -66,7 +66,7 @@
 					<div class="flex flex-col space-y-3 pt-6">
 						<h4 class="font-medium">{navItem.title}</h4>
 						{#if navItem?.items?.length}
-							{#each navItem.items as item}
+							{#each navItem.items as item (item.href)}
 								{#if !item.disabled && item.href}
 									<MobileLink href={item.href} bind:open>
 										{item.title}
