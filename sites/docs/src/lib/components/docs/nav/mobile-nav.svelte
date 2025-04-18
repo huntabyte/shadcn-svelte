@@ -9,6 +9,8 @@
 	import { cn } from "$lib/utils.js";
 
 	let open = $state(false);
+
+	console.log(docsConfig);
 </script>
 
 <Sheet.Root bind:open>
@@ -56,41 +58,7 @@
 			<Icon.Logo class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
-		<div class="h-[calc(100vh-4.5rem)] overflow-y-auto py-4 pl-6">
-			<div class="flex flex-col space-y-3">
-				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
-					{#if navItem.href}
-						<MobileLink href={navItem.href} bind:open class="text-foreground">
-							{navItem.title}
-						</MobileLink>
-					{/if}
-				{/each}
-			</div>
-			<div class="flex flex-col space-y-2">
-				{#each docsConfig.sidebarNav as navItem, index (index)}
-					<div class="flex flex-col space-y-3 pt-6">
-						<h4 class="font-medium">{navItem.title}</h4>
-						{#if navItem?.items?.length}
-							{#each navItem.items as item (item.label)}
-								{#if !item.disabled && item.href}
-									<MobileLink href={item.href} bind:open>
-										{item.title}
-										{#if item.label}
-											<span
-												class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline"
-											>
-												{item.label}
-											</span>
-										{/if}
-									</MobileLink>
-								{/if}
-							{/each}
-						{/if}
-					</div>
-				{/each}
-			</div>
-		</div>
-		<!-- <ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] py-4 pl-6">
+		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] py-4 pl-6">
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
@@ -123,6 +91,6 @@
 					</div>
 				{/each}
 			</div>
-		</ScrollArea> -->
+		</ScrollArea>
 	</Sheet.Content>
 </Sheet.Root>
