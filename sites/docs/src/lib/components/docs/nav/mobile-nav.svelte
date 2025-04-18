@@ -1,16 +1,18 @@
 <script lang="ts">
+	import * as Icon from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
-	import * as Drawer from "$lib/registry/new-york/ui/drawer/index.js";
+	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
 	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
+	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
 
 	let open = $state(false);
 </script>
 
-<Drawer.Root bind:open direction="bottom">
-	<Drawer.Trigger
+<Sheet.Root bind:open>
+	<Sheet.Trigger
 		class={cn(
 			buttonVariants({
 				variant: "ghost",
@@ -48,11 +50,14 @@
 			></path>
 		</svg>
 		<span class="sr-only">Toggle Menu</span>
-	</Drawer.Trigger>
-	<Drawer.Content class="max-h-[80svh]">
-		<ScrollArea orientation="both" class="h-[80svh] pb-12 pl-6 pt-4">
+	</Sheet.Trigger>
+	<Sheet.Content side="left" class="pr-0">
+		<MobileLink href="/" class="flex items-center" bind:open>
+			<Icon.Logo class="mr-2 size-4" />
+			<span class="font-bold">{siteConfig.name}</span>
+		</MobileLink>
+		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] pb-12 pl-6 pt-4">
 			<div class="flex flex-col space-y-3">
-				<MobileLink href="/" bind:open class="text-foreground">Home</MobileLink>
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
 						<MobileLink href={navItem.href} bind:open class="text-foreground">
@@ -85,5 +90,5 @@
 				{/each}
 			</div>
 		</ScrollArea>
-	</Drawer.Content>
-</Drawer.Root>
+	</Sheet.Content>
+</Sheet.Root>
