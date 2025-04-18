@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 1.0.0-next.9
+
+### Patch Changes
+
+- 962d8be: fix: Improve error message when failing to fetch base colors.
+
+## 1.0.0-next.8
+
+### Patch Changes
+
+- d764bdf: fix(cli)(next): Add missing ui alias option
+
 ## 1.0.0-next.7
 
 ### Patch Changes
@@ -48,6 +60,11 @@
 ### Major Changes
 
 - b479077: Svelte 5
+## 0.14.1
+
+### Patch Changes
+
+- 283c5dc: chore: update `package-manager-detector`
 
 ## 0.14.0
 

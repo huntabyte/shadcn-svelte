@@ -87,7 +87,7 @@
 				<Command.List>
 					<Command.Empty>No results found.</Command.Empty>
 					<Command.Group>
-						{#each statuses as status}
+						{#each statuses as status (status.value)}
 							<Command.Item
 								value={status.value}
 								onSelect={() => {

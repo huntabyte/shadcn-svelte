@@ -241,7 +241,7 @@
 										{/if}
 									</Select.Trigger>
 									<Select.Content>
-										{#each models as model}
+										{#each models as model (model.value)}
 											<Select.Item value={model.value} label={model.label}>
 												{@render ModelItemContent(model)}
 											</Select.Item>
@@ -313,7 +313,7 @@
 									{/if}
 								</Select.Trigger>
 								<Select.Content>
-									{#each models as model}
+									{#each models as model (model.value)}
 										<Select.Item value={model.value} label={model.label}>
 											{@render ModelItemContent(model)}
 										</Select.Item>

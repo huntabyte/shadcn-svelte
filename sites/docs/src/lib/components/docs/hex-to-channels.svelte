@@ -31,16 +31,16 @@
 			<Label for="hsl">HSL</Label>
 			<Input name="hsl" value={hslString} readonly />
 			<CopyButton
-				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px]"
-				value={hslString}
+				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px] mb-1 size-6 [&_svg]:size-3"
+				text={hslString}
 			/>
 		</div>
 		<div class="relative grid gap-2">
 			<Label for="rgb">RGB</Label>
 			<Input name="rgb" value={rgbString} readonly />
 			<CopyButton
-				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px]"
-				value={rgbString}
+				class="text-primary hover:bg-accent hover:text-primary absolute right-2 top-[28.5px] mb-1 size-6 [&_svg]:size-3"
+				text={rgbString}
 			/>
 		</div>
 	</div>

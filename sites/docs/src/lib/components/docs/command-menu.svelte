@@ -11,7 +11,7 @@
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
-	let restProps: ComponentProps<typeof Button> = $props();
+	let { ...restProps }: ComponentProps<typeof Button> = $props();
 
 	let open = $state(false);
 
@@ -54,7 +54,7 @@
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Links">
-			{#each mainNav as navItem}
+			{#each mainNav as navItem (navItem.title)}
 				<Command.LinkItem
 					value={navItem.title}
 					href={navItem.href}
@@ -65,9 +65,9 @@
 				</Command.LinkItem>
 			{/each}
 		</Command.Group>
-		{#each sidebarNav as group}
+		{#each sidebarNav as group (group.title)}
 			<Command.Group heading={group.title}>
-				{#each group.items as navItem}
+				{#each group.items as navItem (navItem.title)}
 					<Command.LinkItem
 						value={navItem.title}
 						href={navItem.href}

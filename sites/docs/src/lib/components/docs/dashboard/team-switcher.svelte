@@ -13,7 +13,7 @@
 	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import * as Select from "$lib/registry/new-york/ui/select/index.js";
 
-	let { class: className }: PrimitiveElementAttributes = $props();
+	let { class: className, ..._restProps }: PrimitiveElementAttributes = $props();
 
 	const groups = [
 		{
@@ -110,9 +110,9 @@
 				<Command.Input placeholder="Search team..." />
 				<Command.List>
 					<Command.Empty>No team found.</Command.Empty>
-					{#each groups as group}
+					{#each groups as group (group.label)}
 						<Command.Group heading={group.label}>
-							{#each group.teams as team}
+							{#each group.teams as team (team.label)}
 								<Command.Item
 									onSelect={() => {
 										selectedTeam = team;
@@ -182,7 +182,7 @@
 							{/if}
 						</Select.Trigger>
 						<Select.Content>
-							{#each plans as plan}
+							{#each plans as plan (plan.value)}
 								<Select.Item value={plan.value} label={plan.label}>
 									{@render PlanItemContent(plan)}
 								</Select.Item>

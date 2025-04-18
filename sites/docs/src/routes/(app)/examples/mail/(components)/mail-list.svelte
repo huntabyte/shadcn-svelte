@@ -23,7 +23,7 @@
 
 <ScrollArea class="h-screen">
 	<div class="flex flex-col gap-2 p-4 pt-0">
-		{#each items as item}
+		{#each items as item (item.id)}
 			<button
 				class={cn(
 					"hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
@@ -57,7 +57,7 @@
 				</div>
 				{#if item.labels.length}
 					<div class="flex items-center gap-2">
-						{#each item.labels as label}
+						{#each item.labels as label (label)}
 							<Badge variant={get_badge_variant_from_label(label)}>
 								{label}
 							</Badge>
