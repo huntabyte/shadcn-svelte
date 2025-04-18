@@ -9,8 +9,6 @@
 	import { cn } from "$lib/utils.js";
 
 	let open = $state(false);
-
-	console.log(docsConfig);
 </script>
 
 <Sheet.Root bind:open>
