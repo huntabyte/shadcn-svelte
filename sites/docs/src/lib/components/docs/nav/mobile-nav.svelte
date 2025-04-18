@@ -56,7 +56,7 @@
 			<Icon.Logo class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
-		<div class="h-[calc(100vh-4.5rem)] py-4 pl-6 overflow-y-auto">
+		<div class="h-[calc(100vh-4.5rem)] overflow-y-auto py-4 pl-6">
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}

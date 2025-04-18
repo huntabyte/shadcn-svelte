@@ -789,9 +789,8 @@ Adding column visibility is fairly simple using `@tanstack/table-core` visibilit
           .filter((col) => col.getCanHide()) as column (column.id)}
           <DropdownMenu.CheckboxItem
             class="capitalize"
-            bind:checked={
-              () => column.getIsVisible(), (v) => column.toggleVisibility(!!v)
-            }
+            bind:checked={() => column.getIsVisible(),
+            (v) => column.toggleVisibility(!!v)}
           >
             {column.id}
           </DropdownMenu.CheckboxItem>
