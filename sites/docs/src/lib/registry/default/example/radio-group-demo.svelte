@@ -16,5 +16,4 @@
 		<RadioGroup.Item value="compact" id="r3" />
 		<Label for="r3">Compact</Label>
 	</div>
-	<RadioGroup.Input name="spacing" />
 </RadioGroup.Root>

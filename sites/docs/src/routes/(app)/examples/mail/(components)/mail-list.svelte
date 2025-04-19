@@ -6,7 +6,7 @@
 	import { Badge } from "$lib/registry/new-york/ui/badge/index.js";
 	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
-	export let items: Mail[];
+	let { items }: { items: Mail[] } = $props();
 
 	function get_badge_variant_from_label(label: string) {
 		if (["work"].includes(label.toLowerCase())) {
@@ -23,20 +23,20 @@
 
 <ScrollArea class="h-screen">
 	<div class="flex flex-col gap-2 p-4 pt-0">
-		{#each items as item}
+		{#each items as item (item.id)}
 			<button
 				class={cn(
 					"hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
 					$mailStore.selected === item.id && "bg-muted"
 				)}
-				on:click={() => mailStore.setMail(item.id)}
+				onclick={() => mailStore.setMail(item.id)}
 			>
 				<div class="flex w-full flex-col gap-1">
 					<div class="flex items-center">
 						<div class="flex items-center gap-2">
 							<div class="font-semibold">{item.name}</div>
 							{#if !item.read}
-								<span class="flex h-2 w-2 rounded-full bg-blue-600" />
+								<span class="flex size-2 rounded-full bg-blue-600"></span>
 							{/if}
 						</div>
 						<div
@@ -57,7 +57,7 @@
 				</div>
 				{#if item.labels.length}
 					<div class="flex items-center gap-2">
-						{#each item.labels as label}
+						{#each item.labels as label (label)}
 							<Badge variant={get_badge_variant_from_label(label)}>
 								{label}
 							</Badge>

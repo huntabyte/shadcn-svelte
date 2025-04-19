@@ -1,24 +1,24 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
-	import { cn, flyAndScale } from "$lib/utils.js";
+	import { cn } from "$lib/utils.js";
 
-	type $$Props = ContextMenuPrimitive.ContentProps;
-
-	let className: $$Props["class"] = undefined;
-	export let transition: $$Props["transition"] = flyAndScale;
-	export let transitionConfig: $$Props["transitionConfig"] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		portalProps,
+		...restProps
+	}: ContextMenuPrimitive.ContentProps & {
+		portalProps?: ContextMenuPrimitive.PortalProps;
+	} = $props();
 </script>
 
-<ContextMenuPrimitive.Content
-	{transition}
-	{transitionConfig}
-	class={cn(
-		"bg-popover text-popover-foreground z-50 min-w-[8rem] rounded-md border p-1 shadow-md focus:outline-none",
-		className
-	)}
-	{...$$restProps}
-	on:keydown
->
-	<slot />
-</ContextMenuPrimitive.Content>
+<ContextMenuPrimitive.Portal {...portalProps}>
+	<ContextMenuPrimitive.Content
+		class={cn(
+			"bg-popover text-popover-foreground z-50 min-w-[8rem] rounded-md border p-1 shadow-md focus:outline-none",
+			className
+		)}
+		{...restProps}
+		bind:ref
+	/>
+</ContextMenuPrimitive.Portal>

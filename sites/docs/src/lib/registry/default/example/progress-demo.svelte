@@ -2,7 +2,8 @@
 	import { onMount } from "svelte";
 	import { Progress } from "$lib/registry/default/ui/progress/index.js";
 
-	let value = 13;
+	let value = $state(13);
+
 	onMount(() => {
 		const timer = setTimeout(() => (value = 66), 500);
 		return () => clearTimeout(timer);

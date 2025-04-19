@@ -1,22 +1,24 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
-	export let id: string;
+	let { id }: { id: string } = $props();
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 p-0">
-			<span class="sr-only">Open menu</span>
-			<DotsHorizontal class="h-4 w-4" />
-		</Button>
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="ghost" size="icon" class="relative size-8 p-0">
+				<span class="sr-only">Open menu</span>
+				<Ellipsis />
+			</Button>
+		{/snippet}
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.Label>Actions</DropdownMenu.Label>
-			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
+			<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
+			<DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
 				Copy payment ID
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>

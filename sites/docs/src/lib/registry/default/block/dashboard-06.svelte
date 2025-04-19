@@ -1,17 +1,17 @@
 <script lang="ts">
-	import File from "lucide-svelte/icons/file";
-	import House from "lucide-svelte/icons/house";
-	import ChartLine from "lucide-svelte/icons/chart-line";
-	import ListFilter from "lucide-svelte/icons/list-filter";
-	import Ellipsis from "lucide-svelte/icons/ellipsis";
-	import Package from "lucide-svelte/icons/package";
-	import Package2 from "lucide-svelte/icons/package-2";
-	import PanelLeft from "lucide-svelte/icons/panel-left";
-	import CirclePlus from "lucide-svelte/icons/circle-plus";
-	import Search from "lucide-svelte/icons/search";
-	import Settings from "lucide-svelte/icons/settings";
-	import ShoppingCart from "lucide-svelte/icons/shopping-cart";
-	import UsersRound from "lucide-svelte/icons/users-round";
+	import File from "@lucide/svelte/icons/file";
+	import House from "@lucide/svelte/icons/house";
+	import ChartLine from "@lucide/svelte/icons/chart-line";
+	import ListFilter from "@lucide/svelte/icons/list-filter";
+	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import Package from "@lucide/svelte/icons/package";
+	import Package2 from "@lucide/svelte/icons/package-2";
+	import PanelLeft from "@lucide/svelte/icons/panel-left";
+	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import Search from "@lucide/svelte/icons/search";
+	import Settings from "@lucide/svelte/icons/settings";
+	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
+	import UsersRound from "@lucide/svelte/icons/users-round";
 
 	import { Badge } from "$lib/registry/default/ui/badge/index.js";
 	import * as Breadcrumb from "$lib/registry/default/ui/breadcrumb/index.js";
@@ -30,97 +30,107 @@
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a
 				href="##"
-				class="bg-primary text-primary-foreground group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
+				class="bg-primary text-primary-foreground group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
 			>
-				<Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
+				<Package2 class="size-4 transition-all group-hover:scale-110" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<House class="h-5 w-5" />
-						<span class="sr-only">Dashboard</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="bg-accent text-accent-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<ShoppingCart class="h-5 w-5" />
-						<span class="sr-only">Orders</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Orders</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<Package class="h-5 w-5" />
-						<span class="sr-only">Products</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Products</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<UsersRound class="h-5 w-5" />
-						<span class="sr-only">Customers</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Customers</Tooltip.Content>
-			</Tooltip.Root>
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<ChartLine class="h-5 w-5" />
-						<span class="sr-only">Analytics</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Analytics</Tooltip.Content>
-			</Tooltip.Root>
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<House class="size-5" />
+								<span class="sr-only">Dashboard</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Dashboard</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="bg-accent text-accent-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<ShoppingCart class="size-5" />
+								<span class="sr-only">Orders</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Orders</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<Package class="size-5" />
+								<span class="sr-only">Products</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Products</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<UsersRound class="size-5" />
+								<span class="sr-only">Customers</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Customers</Tooltip.Content>
+				</Tooltip.Root>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<ChartLine class="size-5" />
+								<span class="sr-only">Analytics</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Analytics</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<a
-						href="##"
-						class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
-					>
-						<Settings class="h-5 w-5" />
-						<span class="sr-only">Settings</span>
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Content side="right">Settings</Tooltip.Content>
-			</Tooltip.Root>
+			<Tooltip.Provider>
+				<Tooltip.Root>
+					<Tooltip.Trigger>
+						{#snippet child({ props })}
+							<a
+								href="##"
+								class="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+								{...props}
+							>
+								<Settings class="size-5" />
+								<span class="sr-only">Settings</span>
+							</a>
+						{/snippet}
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Settings</Tooltip.Content>
+				</Tooltip.Root>
+			</Tooltip.Provider>
 		</nav>
 	</aside>
 	<div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -128,51 +138,53 @@
 			class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
-				<Sheet.Trigger asChild let:builder>
-					<Button builders={[builder]} size="icon" variant="outline" class="sm:hidden">
-						<PanelLeft class="h-5 w-5" />
-						<span class="sr-only">Toggle Menu</span>
-					</Button>
+				<Sheet.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} variant="outline" size="icon" class="sm:hidden">
+							<PanelLeft class="size-5" />
+							<span class="sr-only">Toggle Menu</span>
+						</Button>
+					{/snippet}
 				</Sheet.Trigger>
 				<Sheet.Content side="left" class="sm:max-w-xs">
 					<nav class="grid gap-6 text-lg font-medium">
 						<a
 							href="##"
-							class="bg-primary text-primary-foreground group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
+							class="bg-primary text-primary-foreground group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
 						>
-							<Package2 class="h-5 w-5 transition-all group-hover:scale-110" />
+							<Package2 class="size-5 transition-all group-hover:scale-110" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<House class="h-5 w-5" />
+							<House class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<ShoppingCart class="h-5 w-5" />
+							<ShoppingCart class="size-5" />
 							Orders
 						</a>
 						<a href="##" class="text-foreground flex items-center gap-4 px-2.5">
-							<Package class="h-5 w-5" />
+							<Package class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<UsersRound class="h-5 w-5" />
+							<UsersRound class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
 						>
-							<ChartLine class="h-5 w-5" />
+							<ChartLine class="size-5" />
 							Settings
 						</a>
 					</nav>
@@ -194,7 +206,7 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 			<div class="relative ml-auto flex-1 md:grow-0">
-				<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
+				<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 				<Input
 					type="search"
 					placeholder="Search..."
@@ -202,29 +214,28 @@
 				/>
 			</div>
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="outline"
-						size="icon"
-						class="overflow-hidden rounded-full"
-					>
-						<img
-							src="/images/placeholder-user.jpg"
-							width={36}
-							height={36}
-							alt="Avatar"
-							class="overflow-hidden rounded-full"
-						/>
-					</Button>
+				<DropdownMenu.Trigger>
+					{#snippet child({ props })}
+						<Button {...props} size="icon" class="overflow-hidden rounded-full">
+							<img
+								src="/images/placeholder-user.jpg"
+								width={36}
+								height={36}
+								alt="Avatar"
+								class="overflow-hidden rounded-full"
+							/>
+						</Button>
+					{/snippet}
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
-					<DropdownMenu.Label>My Account</DropdownMenu.Label>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Settings</DropdownMenu.Item>
-					<DropdownMenu.Item>Support</DropdownMenu.Item>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					<DropdownMenu.Group>
+						<DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Settings</DropdownMenu.Item>
+						<DropdownMenu.Item>Support</DropdownMenu.Item>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>Logout</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</header>
@@ -241,37 +252,36 @@
 					</Tabs.List>
 					<div class="ml-auto flex items-center gap-2">
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									variant="outline"
-									size="sm"
-									class="h-8 gap-1"
-								>
-									<ListFilter class="h-3.5 w-3.5" />
-									<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
-										Filter
-									</span>
-								</Button>
+							<DropdownMenu.Trigger>
+								{#snippet child({ props })}
+									<Button {...props} size="sm" class="h-8 gap-1">
+										<ListFilter class="size-3.5" />
+										<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
+											Filter
+										</span>
+									</Button>
+								{/snippet}
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Label>Filter by</DropdownMenu.Label>
-								<DropdownMenu.Separator />
-								<DropdownMenu.CheckboxItem checked>
-									Active
-								</DropdownMenu.CheckboxItem>
-								<DropdownMenu.CheckboxItem>Draft</DropdownMenu.CheckboxItem>
-								<DropdownMenu.CheckboxItem>Archived</DropdownMenu.CheckboxItem>
+								<DropdownMenu.Group>
+									<DropdownMenu.GroupHeading>Filter by</DropdownMenu.GroupHeading>
+									<DropdownMenu.Separator />
+									<DropdownMenu.CheckboxItem checked>
+										Active
+									</DropdownMenu.CheckboxItem>
+									<DropdownMenu.CheckboxItem>Draft</DropdownMenu.CheckboxItem>
+									<DropdownMenu.CheckboxItem>Archived</DropdownMenu.CheckboxItem>
+								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 						<Button size="sm" variant="outline" class="h-8 gap-1">
-							<File class="h-3.5 w-3.5" />
+							<File class="size-3.5" />
 							<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
 								Export
 							</span>
 						</Button>
 						<Button size="sm" class="h-8 gap-1">
-							<CirclePlus class="h-3.5 w-3.5" />
+							<CirclePlus class="size-3.5" />
 							<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
 								Add Product
 							</span>
@@ -336,21 +346,27 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-														builders={[builder]}
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -380,21 +396,28 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														builders={[builder]}
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															aria-haspopup="true"
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -422,21 +445,28 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														builders={[builder]}
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															aria-haspopup="true"
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -464,21 +494,28 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														builders={[builder]}
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															aria-haspopup="true"
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -506,21 +543,28 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														builders={[builder]}
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															aria-haspopup="true"
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>
@@ -550,21 +594,28 @@
 										</Table.Cell>
 										<Table.Cell>
 											<DropdownMenu.Root>
-												<DropdownMenu.Trigger asChild let:builder>
-													<Button
-														builders={[builder]}
-														aria-haspopup="true"
-														size="icon"
-														variant="ghost"
-													>
-														<Ellipsis class="h-4 w-4" />
-														<span class="sr-only">Toggle menu</span>
-													</Button>
+												<DropdownMenu.Trigger>
+													{#snippet child({ props })}
+														<Button
+															{...props}
+															aria-haspopup="true"
+															size="icon"
+															variant="ghost"
+														>
+															<Ellipsis class="size-4" />
+															<span class="sr-only">Toggle menu</span>
+														</Button>
+													{/snippet}
 												</DropdownMenu.Trigger>
 												<DropdownMenu.Content align="end">
-													<DropdownMenu.Label>Actions</DropdownMenu.Label>
-													<DropdownMenu.Item>Edit</DropdownMenu.Item>
-													<DropdownMenu.Item>Delete</DropdownMenu.Item>
+													<DropdownMenu.Group>
+														<DropdownMenu.GroupHeading>
+															Actions
+														</DropdownMenu.GroupHeading>
+														<DropdownMenu.Item>Edit</DropdownMenu.Item>
+														<DropdownMenu.Item>Delete</DropdownMenu.Item
+														>
+													</DropdownMenu.Group>
 												</DropdownMenu.Content>
 											</DropdownMenu.Root>
 										</Table.Cell>

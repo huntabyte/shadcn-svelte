@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CalendarIcon from "svelte-radix/Calendar.svelte";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
 	import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
@@ -14,20 +14,22 @@
 </script>
 
 <Popover.Root>
-	<Popover.Trigger asChild let:builder>
-		<Button
-			variant="outline"
-			class={cn(
-				"w-[240px] justify-start text-left font-normal",
-				!value && "text-muted-foreground"
-			)}
-			builders={[builder]}
-		>
-			<CalendarIcon class="mr-2 h-4 w-4" />
-			{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
-		</Button>
+	<Popover.Trigger>
+		{#snippet child({ props })}
+			<Button
+				variant="outline"
+				class={cn(
+					"w-[240px] justify-start text-left font-normal",
+					!value && "text-muted-foreground"
+				)}
+				{...props}
+			>
+				<CalendarIcon />
+				{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
+			</Button>
+		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content class="w-auto p-0" align="start">
-		<Calendar bind:value />
+		<Calendar type="single" bind:value />
 	</Popover.Content>
 </Popover.Root>

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	const languages = [
@@ -27,18 +27,19 @@
 <script lang="ts">
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
-	import Check from "lucide-svelte/icons/check";
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
+	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
+	import { useId } from "bits-ui";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/default/ui/form/index.js";
 	import * as Popover from "$lib/registry/default/ui/popover/index.js";
 	import * as Command from "$lib/registry/default/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.combobox;
+	let data: SuperValidated<Infer<FormSchema>> = page.data.combobox;
 	export { data as form };
 
 	const form = superForm(data, {
@@ -65,45 +66,48 @@
 			document.getElementById(triggerId)?.focus();
 		});
 	}
+	const triggerId = useId();
 </script>
 
 <form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
-		<Popover.Root bind:open let:ids>
-			<Form.Control let:attrs>
-				<Form.Label>Language</Form.Label>
-				<Popover.Trigger
-					class={cn(
-						buttonVariants({ variant: "outline" }),
-						"w-[200px] justify-between",
-						!$formData.language && "text-muted-foreground"
-					)}
-					role="combobox"
-					{...attrs}
-				>
-					{languages.find((f) => f.value === $formData.language)?.label ??
-						"Select language"}
-					<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-				</Popover.Trigger>
-				<input hidden value={$formData.language} name={attrs.name} />
+		<Popover.Root bind:open>
+			<Form.Control id={triggerId}>
+				{#snippet children({ props })}
+					<Form.Label>Language</Form.Label>
+					<Popover.Trigger
+						class={cn(
+							buttonVariants({ variant: "outline" }),
+							"w-[200px] justify-between",
+							!$formData.language && "text-muted-foreground"
+						)}
+						role="combobox"
+						{...props}
+					>
+						{languages.find((f) => f.value === $formData.language)?.label ??
+							"Select language"}
+						<ChevronsUpDown class="opacity-50" />
+					</Popover.Trigger>
+					<input hidden value={$formData.language} name={props.name} />
+				{/snippet}
 			</Form.Control>
 			<Popover.Content class="w-[200px] p-0">
 				<Command.Root>
 					<Command.Input autofocus placeholder="Search language..." class="h-9" />
 					<Command.Empty>No language found.</Command.Empty>
 					<Command.Group>
-						{#each languages as language}
+						{#each languages as language (language.value)}
 							<Command.Item
 								value={language.label}
 								onSelect={() => {
 									$formData.language = language.value;
-									closeAndFocusTrigger(ids.trigger);
+									closeAndFocusTrigger(triggerId);
 								}}
 							>
 								{language.label}
 								<Check
 									class={cn(
-										"ml-auto h-4 w-4",
+										"ml-auto",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

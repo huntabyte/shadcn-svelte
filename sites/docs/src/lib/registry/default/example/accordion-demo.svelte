@@ -2,7 +2,7 @@
 	import * as Accordion from "$lib/registry/default/ui/accordion/index.js";
 </script>
 
-<Accordion.Root class="w-full sm:max-w-[70%]">
+<Accordion.Root type="single" class="w-full sm:max-w-[70%]">
 	<Accordion.Item value="item-1">
 		<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
 		<Accordion.Content>Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
