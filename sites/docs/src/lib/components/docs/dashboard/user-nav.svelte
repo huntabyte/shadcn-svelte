@@ -6,12 +6,12 @@
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
+		<div variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
 			<Avatar.Root class="h-8 w-8">
 				<Avatar.Image src="/avatars/01.png" alt="@shadcn" />
 				<Avatar.Fallback>SC</Avatar.Fallback>
 			</Avatar.Root>
-		</Button>
+		</div>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Label class="font-normal">
