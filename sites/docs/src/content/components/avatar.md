@@ -4,8 +4,8 @@ description: An image element with a fallback for representing the user.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/avatar
-  doc: https://next.bits-ui.com/docs/components/avatar
-  api: https://next.bits-ui.com/docs/components/avatar#api-reference
+  doc: https://bits-ui.com/docs/components/avatar
+  api: https://bits-ui.com/docs/components/avatar#api-reference
 ---
 
 <script>

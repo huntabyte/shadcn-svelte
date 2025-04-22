@@ -4,8 +4,8 @@ description: Displays an indicator showing the completion progress of a task, ty
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/progress
-  doc: https://next.bits-ui.com/docs/components/progress
-  api: https://next.bits-ui.com/docs/components/progress#api-reference
+  doc: https://bits-ui.com/docs/components/progress
+  api: https://bits-ui.com/docs/components/progress#api-reference
 ---
 
 <script>
