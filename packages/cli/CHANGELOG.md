@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.14.2
+
+### Patch Changes
+
+- 9f96ae1: chore: remove `exports` and `main` fields
+
 ## 0.14.1
 
 ### Patch Changes
