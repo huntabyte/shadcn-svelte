@@ -13,8 +13,6 @@
 		"directory": "packages/cli"
 	},
 	"type": "module",
-	"exports": "./dist/index.js",
-	"main": "./dist/index.js",
 	"bin": "./dist/index.js",
 	"files": [
 		"dist"
