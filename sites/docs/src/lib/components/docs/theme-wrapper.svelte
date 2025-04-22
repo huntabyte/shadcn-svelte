@@ -6,6 +6,7 @@
 		class: className,
 		defaultTheme,
 		children,
+		...restProps
 	}: PrimitiveDivAttributes & { defaultTheme?: string } = $props();
 </script>
 
@@ -13,6 +14,7 @@
 	class={cn(`theme-${defaultTheme || $config.theme}`, "w-full", className)}
 	data-style={$config.style}
 	style="--radius: {defaultTheme ? 0.5 : $config.radius}rem"
+	{...restProps}
 >
 	{@render children?.()}
 </div>

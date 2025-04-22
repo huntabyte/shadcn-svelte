@@ -123,7 +123,7 @@
 						{monthLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each months as { value, label }}
+						{#each months as { value, label } (value)}
 							<Select.Item {value} {label} />
 						{/each}
 					</Select.Content>
@@ -136,7 +136,7 @@
 						{year ? year : "Year"}
 					</Select.Trigger>
 					<Select.Content>
-						{#each { length: 10 } as _, i}
+						{#each { length: 10 } as _, i (i)}
 							<Select.Item
 								value={`${new Date().getFullYear() + i}`}
 								label={`${new Date().getFullYear() + i}`}

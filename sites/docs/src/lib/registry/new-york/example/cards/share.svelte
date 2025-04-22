@@ -53,7 +53,7 @@
 		<div class="space-y-4">
 			<h4 class="text-sm font-medium">People with access</h4>
 			<div class="grid gap-6">
-				{#each people as person}
+				{#each people as person (person.email)}
 					<div class="flex items-center justify-between space-x-4">
 						<div class="flex items-center space-x-4">
 							<Avatar.Root>
@@ -76,7 +76,7 @@
 								{person.permission.label}
 							</Select.Trigger>
 							<Select.Content>
-								{#each permissions as permission}
+								{#each permissions as permission (permission.value)}
 									<Select.Item
 										value={permission.value}
 										label={permission.label}

@@ -39,7 +39,7 @@
 							<Breadcrumb.Ellipsis class="size-4" />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
-							{#each items.slice(1, -2) as item}
+							{#each items.slice(1, -2) as item (item.label)}
 								<DropdownMenu.Item>
 									<a href={item.href ? item.href : "#"}>
 										{item.label}
@@ -61,7 +61,7 @@
 								</Drawer.Description>
 							</Drawer.Header>
 							<div class="grid gap-1 px-4">
-								{#each items.slice(1, -2) as item}
+								{#each items.slice(1, -2) as item (item.label)}
 									<a href={item.href ? item.href : "#"} class="py-1 text-sm">
 										{item.label}
 									</a>
@@ -79,7 +79,7 @@
 			<Breadcrumb.Separator />
 		{/if}
 
-		{#each items.slice(-ITEMS_TO_DISPLAY + 1) as item}
+		{#each items.slice(-ITEMS_TO_DISPLAY + 1) as item (item.label)}
 			<Breadcrumb.Item>
 				{#if item.href}
 					<Breadcrumb.Link href={item.href} class="max-w-20 truncate md:max-w-none">

@@ -40,7 +40,7 @@
 				<InputOTP.Root maxlength={6} {...props} bind:value={$formData.pin}>
 					{#snippet children({ cells })}
 						<InputOTP.Group>
-							{#each cells as cell}
+							{#each cells as cell (cell)}
 								<InputOTP.Slot {cell} />
 							{/each}
 						</InputOTP.Group>

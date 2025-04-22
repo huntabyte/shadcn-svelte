@@ -21,18 +21,20 @@
 
 <Select.Root
 	type="single"
-	bind:value={() => value,
-	(v) => {
-		if (!isStyle(v)) return;
-		value = v;
-	}}
+	bind:value={
+		() => value,
+		(v) => {
+			if (!isStyle(v)) return;
+			value = v;
+		}
+	}
 >
 	<Select.Trigger class={cn("h-7 w-[145px] text-xs [&_svg]:size-4", className)} {...restProps}>
 		<span class="text-muted-foreground">Style: </span>
 		{styleLabel}
 	</Select.Trigger>
 	<Select.Content>
-		{#each styles as style}
+		{#each styles as style (style.name)}
 			<Select.Item value={style.name} label={style.label} class="text-xs" />
 		{/each}
 	</Select.Content>

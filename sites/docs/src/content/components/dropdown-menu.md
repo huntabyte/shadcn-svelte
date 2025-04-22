@@ -36,6 +36,7 @@ Install `bits-ui`:
 </Steps>
 {/snippet}
 </InstallTabs>
+
 ## Usage
 
 ```svelte

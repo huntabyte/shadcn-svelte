@@ -156,7 +156,7 @@
 					<Command.Input placeholder="Search language..." />
 					<Command.Empty>No language found.</Command.Empty>
 					<Command.List>
-						{#each languages as language}
+						{#each languages as language (language)}
 							<Command.Item
 								{...form}
 								value={language.label}
