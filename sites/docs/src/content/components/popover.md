@@ -4,8 +4,8 @@ description: Displays rich content in a portal, triggered by a button.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/popover
-  doc: https://next.bits-ui.com/docs/components/popover
-  api: https://next.bits-ui.com/docs/components/popover#api-reference
+  doc: https://bits-ui.com/docs/components/popover
+  api: https://bits-ui.com/docs/components/popover#api-reference
 ---
 
 <script>

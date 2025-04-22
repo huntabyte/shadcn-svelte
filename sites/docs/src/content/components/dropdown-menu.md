@@ -4,8 +4,8 @@ description: Displays a menu to the user — such as a set of actions or functio
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
-  doc: https://next.bits-ui.com/docs/components/dropdown-menu
-  api: https://next.bits-ui.com/docs/components/dropdown-menu#api-reference
+  doc: https://bits-ui.com/docs/components/dropdown-menu
+  api: https://bits-ui.com/docs/components/dropdown-menu#api-reference
 ---
 
 <script>

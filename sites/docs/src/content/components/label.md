@@ -4,8 +4,8 @@ description: Renders an accessible label associated with controls.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/label
-  doc: https://next.bits-ui.com/docs/components/label
-  api: https://next.bits-ui.com/docs/components/label#api-reference
+  doc: https://bits-ui.com/docs/components/label
+  api: https://bits-ui.com/docs/components/label#api-reference
 ---
 
 <script>

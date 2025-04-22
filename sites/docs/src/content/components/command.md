@@ -4,8 +4,8 @@ description: Fast, composable, unstyled command menu for Svelte.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
-  doc: https://next.bits-ui.com/docs/components/command
-  api: https://next.bits-ui.com/docs/components/command#api-reference
+  doc: https://bits-ui.com/docs/components/command
+  api: https://bits-ui.com/docs/components/command#api-reference
 ---
 
 <script>

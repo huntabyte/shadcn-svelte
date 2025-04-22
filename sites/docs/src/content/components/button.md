@@ -4,8 +4,8 @@ description: Displays a button or a component that looks like a button.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
-  doc: https://next.bits-ui.com/docs/components/button
-  api: https://next.bits-ui.com/docs/components/button#api-reference
+  doc: https://bits-ui.com/docs/components/button
+  api: https://bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>

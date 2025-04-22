@@ -4,8 +4,8 @@ description: A vertically stacked set of interactive headings that each reveal a
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/accordion
-  doc: https://next.bits-ui.com/docs/components/accordion
-  api: https://next.bits-ui.com/docs/components/accordion#api-reference
+  doc: https://bits-ui.com/docs/components/accordion
+  api: https://bits-ui.com/docs/components/accordion#api-reference
 ---
 
 <script>
