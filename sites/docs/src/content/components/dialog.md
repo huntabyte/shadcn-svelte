@@ -4,8 +4,8 @@ description: A window overlaid on either the primary window or another dialog wi
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/dialog
-  doc: https://next.bits-ui.com/docs/components/dialog
-  api: https://next.bits-ui.com/docs/components/dialog#api-reference
+  doc: https://bits-ui.com/docs/components/dialog
+  api: https://bits-ui.com/docs/components/dialog#api-reference
 ---
 
 <script>

@@ -4,8 +4,8 @@ description: A popup that displays information related to an element when the el
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/tooltip
-  doc: https://next.bits-ui.com/docs/components/tooltip
-  api: https://next.bits-ui.com/docs/components/tooltip#api-reference
+  doc: https://bits-ui.com/docs/components/tooltip
+  api: https://bits-ui.com/docs/components/tooltip#api-reference
 ---
 
 <script>
