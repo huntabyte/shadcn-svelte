@@ -4,8 +4,8 @@ description: Augments native scroll functionality for custom, cross-browser styl
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/scroll-area
-  doc: https://next.bits-ui.com/docs/components/scroll-area
-  api: https://next.bits-ui.com/docs/components/scroll-area#api-reference
+  doc: https://bits-ui.com/docs/components/scroll-area
+  api: https://bits-ui.com/docs/components/scroll-area#api-reference
 ---
 
 <script>

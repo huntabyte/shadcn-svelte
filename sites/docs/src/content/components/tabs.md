@@ -4,8 +4,8 @@ description: A set of layered sections of content—known as tab panels—that a
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/tabs
-  doc: https://next.bits-ui.com/docs/components/tabs
-  api: https://next.bits-ui.com/docs/components/tabs#api-reference
+  doc: https://bits-ui.com/docs/components/tabs
+  api: https://bits-ui.com/docs/components/tabs#api-reference
 ---
 
 <script>

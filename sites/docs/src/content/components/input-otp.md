@@ -4,8 +4,8 @@ description: Accessible one-time password component with copy paste functionalit
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/input-otp
-  doc: https://next.bits-ui.com/docs/components/pin-input
-  api: https://next.bits-ui.com/docs/components/pin-input#api-reference
+  doc: https://bits-ui.com/docs/components/pin-input
+  api: https://bits-ui.com/docs/components/pin-input#api-reference
 ---
 
 <script>
@@ -20,7 +20,7 @@ links:
 
 ## About
 
-Input OTP is built on top of Bits UI's [PinInput](https://next.bits-ui.com/docs/components/pin-input) which is inspired by [@guilherme_rodz](https://twitter.com/guilherme_rodz)'s Input OTP component.
+Input OTP is built on top of Bits UI's [PinInput](https://bits-ui.com/docs/components/pin-input) which is inspired by [@guilherme_rodz](https://twitter.com/guilherme_rodz)'s Input OTP component.
 
 ## Installation
 
