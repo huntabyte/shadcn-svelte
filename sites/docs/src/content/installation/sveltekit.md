@@ -1,6 +1,6 @@
 ---
 title: SvelteKit
-description: How to setup shadcn-svelte in a SvelteKit project.
+description: How to set up shadcn-svelte in a SvelteKit project.
 ---
 
 <script>
@@ -8,7 +8,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
   import { Steps, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
-## Setup your project
+## Set up your project
 
 <Steps>
 
@@ -24,7 +24,7 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv@0.6.18 add tailwindcss" />
 
-### Setup path aliases
+### Set up path aliases
 
 If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
