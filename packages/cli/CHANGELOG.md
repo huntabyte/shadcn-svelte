@@ -1,5 +1,6 @@
 # shadcn-svelte
 
+
 ## 1.0.0-next.9
 
 ### Patch Changes
@@ -60,6 +61,13 @@
 ### Major Changes
 
 - b479077: Svelte 5
+
+## 0.14.2
+
+### Patch Changes
+
+- 9f96ae1: chore: remove `exports` and `main` fields
+
 ## 0.14.1
 
 ### Patch Changes
