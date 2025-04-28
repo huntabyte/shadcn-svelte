@@ -4,8 +4,8 @@ description: A control that allows the user to toggle between checked and not ch
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/switch
-  doc: https://next.bits-ui.com/docs/components/switch
-  api: https://next.bits-ui.com/docs/components/switch#api-reference
+  doc: https://bits-ui.com/docs/components/switch
+  api: https://bits-ui.com/docs/components/switch#api-reference
 ---
 
 <script>
