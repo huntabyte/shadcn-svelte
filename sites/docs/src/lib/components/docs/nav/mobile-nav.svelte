@@ -56,7 +56,7 @@
 			<Icon.Logo class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
-		<ScrollArea orientation="both" class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] pb-16 pl-6 pt-4">
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
@@ -71,7 +71,7 @@
 					<div class="flex flex-col space-y-3 pt-6">
 						<h4 class="font-medium">{navItem.title}</h4>
 						{#if navItem?.items?.length}
-							{#each navItem.items as item (item.label)}
+							{#each navItem.items as item (item.href)}
 								{#if !item.disabled && item.href}
 									<MobileLink href={item.href} bind:open>
 										{item.title}
