@@ -4,8 +4,8 @@ description: An input where the user selects a value from within a given range.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/slider
-  doc: https://next.bits-ui.com/docs/components/slider
-  api: https://next.bits-ui.com/docs/components/slider#api-reference
+  doc: https://bits-ui.com/docs/components/slider
+  api: https://bits-ui.com/docs/components/slider#api-reference
 ---
 
 <script>

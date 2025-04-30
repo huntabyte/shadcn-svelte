@@ -17,7 +17,11 @@
 
 <a
 	{href}
-	class={cn(page.url.pathname === href ? "text-foreground" : "text-foreground/60", className)}
+	class={cn(
+		"text-[1.15rem]",
+		page.url.pathname === href ? "text-foreground" : "text-foreground/80",
+		className
+	)}
 	onclick={handleClick}
 	{...restProps}
 >

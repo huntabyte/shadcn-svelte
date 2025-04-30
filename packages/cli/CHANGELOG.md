@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+
+## 1.0.0-next.9
+
+### Patch Changes
+
+- 962d8be: fix: Improve error message when failing to fetch base colors.
+
 ## 1.0.0-next.8
 
 ### Patch Changes
@@ -54,6 +61,18 @@
 ### Major Changes
 
 - b479077: Svelte 5
+
+## 0.14.2
+
+### Patch Changes
+
+- 9f96ae1: chore: remove `exports` and `main` fields
+
+## 0.14.1
+
+### Patch Changes
+
+- 283c5dc: chore: update `package-manager-detector`
 
 ## 0.14.0
 

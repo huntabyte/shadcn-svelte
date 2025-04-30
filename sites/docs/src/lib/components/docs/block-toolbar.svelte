@@ -100,7 +100,7 @@
 			aria-label="View block source code"
 			href={blockSource}
 			target="_blank"
-			class="z-50 h-[calc(theme(spacing.7)_-_1px)] gap-1 rounded-[6px] px-0 text-xs"
+			class="h-[calc(theme(spacing.7)_-_1px)] gap-1 rounded-[6px] px-0 text-xs"
 			variant="link"
 		>
 			View source
