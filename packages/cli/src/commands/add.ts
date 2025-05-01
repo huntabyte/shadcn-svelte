@@ -1,9 +1,10 @@
+import path from "node:path";
+import process from "node:process";
+import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
 import { Command } from "commander";
 import { exec } from "tinyexec";
-import { existsSync, promises as fs } from "node:fs";
-import path from "node:path";
-import process from "node:process";
+import merge from "deepmerge";
 import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
@@ -172,6 +173,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
 	const tasks: p.Task[] = [];
+	let cssVars = {};
 
 	for (const item of itemsWithContent) {
 		const targetDir = registry.getRegistryItemTargetDir(config, item.type, targetPath);
@@ -231,9 +233,8 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 					await fs.writeFile(filePath, content, "utf8");
 				}
 
-				const cssContent = updateCssVars(config, item.cssVars);
-				if (cssContent) {
-					await fs.writeFile(config.resolvedPaths.tailwindCss, cssContent, "utf8");
+				if (item.cssVars) {
+					cssVars = merge(cssVars, item.cssVars);
 				}
 
 				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
@@ -264,6 +265,23 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			return `Config file ${highlight("components.json")} updated`;
 		},
 	});
+
+	if (Object.keys(cssVars).length > 0) {
+		// Update the stylesheet
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				const cssPath = config.resolvedPaths.tailwindCss;
+				const cssSource = await fs.readFile(cssPath, "utf8");
+
+				const updatedCss = updateCssVars(cssSource, cssVars);
+				await fs.writeFile(cssPath, updatedCss, "utf8");
+
+				const relative = path.relative(cwd, cssPath);
+				return `Stylesheet ${highlight(relative)} updated`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 

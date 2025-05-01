@@ -1,15 +1,14 @@
-import fs from "node:fs";
 import { parse, Declaration, Rule, type AtRule } from "postcss";
 import type { CssVars } from "./registry/schema.js";
-import type { Config } from "./get-config.js";
 
-export function updateCssVars(config: Config, cssVars?: CssVars): string | undefined {
-	if (!cssVars || Object.keys(cssVars).length === 0) return;
+export function updateCssVars(source: string, cssVars: CssVars): string {
+	if (Object.keys(cssVars).length === 0) return source;
 
-	const source = fs.readFileSync(config.resolvedPaths.tailwindCss);
 	const ast = parse(source);
 
 	// TODO: Consider adding status logs for each update. Perhaps this function could return a `string[]` of them.
+
+	// TODO: Should we error out if we fail to find/update any of the selectors?
 
 	// updates colors for `dark` and `light`
 	if (cssVars.light || cssVars.dark) {

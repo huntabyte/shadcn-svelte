@@ -93,6 +93,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
       get-tsconfig:
         specifier: ^4.7.3
         version: 4.7.5

@@ -50,6 +50,7 @@
 		"@types/semver": "^7.5.8",
 		"chalk": "^5.4.0",
 		"cross-env": "^7.0.3",
+		"deepmerge": "^4.3.1",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
 		"package-manager-detector": "^1.2.0",
