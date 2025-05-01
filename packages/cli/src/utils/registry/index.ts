@@ -7,7 +7,6 @@ import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
-import type { RegistryIndex, RegistryItem, RegistryItemType, RegistryIndexItem } from "./schema.js";
 
 export function getRegistryUrl(config: Config) {
 	let url = process.env.COMPONENTS_REGISTRY_URL;
@@ -59,12 +58,12 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 
 type ResolveRegistryItemsProps = {
 	baseUrl: string;
-	registryIndex: RegistryIndex;
+	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	includeRegDeps?: boolean;
 };
 
-type ResolvedRegistryItem = RegistryItem | RegistryIndexItem;
+type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
 	registryIndex,
 	baseUrl,
@@ -113,7 +112,7 @@ type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
 export async function fetchRegistryItems({
 	baseUrl,
 	items,
-}: FetchTreeProps): Promise<RegistryItem[]> {
+}: FetchTreeProps): Promise<schemas.RegistryItem[]> {
 	const itemsWithContent = items.filter((item) => !("relativeUrl" in item));
 	const itemsToFetch = items.filter((item) => "relativeUrl" in item);
 
@@ -126,18 +125,6 @@ export async function fetchRegistryItems({
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
-}
-
-export function getItemTargetPath(config: Config, item: RegistryItem, override?: string) {
-	// Allow overrides for all items but ui.
-	if (override && item.type !== "registry:ui") {
-		return override;
-	}
-
-	const [, type] = item.type.split(":");
-	if (!type || !(type in config.resolvedPaths)) return null;
-
-	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
 async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
@@ -168,9 +155,21 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	}
 }
 
-export function getRegistryItemTargetPath(
+export function getItemTargetPath(config: Config, item: schemas.RegistryItem, override?: string) {
+	// Allow overrides for all items but ui.
+	if (override && item.type !== "registry:ui") {
+		return override;
+	}
+
+	const [, type] = item.type.split(":");
+	if (!type || !(type in config.resolvedPaths)) return null;
+
+	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
+}
+
+export function getRegistryItemTargetDir(
 	config: Config,
-	type: RegistryItemType,
+	type: schemas.RegistryItemType,
 	override?: string
 ) {
 	if (override) return override;
@@ -187,4 +186,39 @@ export function getRegistryItemTargetPath(
 	// TODO - we put this in components for now but will move to the appropriate route location
 	// depending on if using SvelteKit or whatever
 	return config.resolvedPaths.components;
+}
+
+export function resolveItemFilePath(
+	config: Config,
+	item: schemas.RegistryItem,
+	file: schemas.RegistryItemFile
+): string {
+	const targetDir = getRegistryItemTargetDir(config, item.type);
+	if (file.target) {
+		// resolves relative to the root (cwd)
+		if (file.target.startsWith("~/")) {
+			return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
+		}
+		// resolves relative to the item's dir
+		return path.resolve(targetDir, file.target);
+	}
+
+	// inserted as grouped files
+	if (
+		file.type === "registry:ui" ||
+		file.type === "registry:component" ||
+		file.type === "registry:block"
+	) {
+		// resolves to `[alias]/[registry-item]/[file]`
+		return path.resolve(targetDir, item.name, file.name);
+	}
+
+	// inserted as single files
+	if (file.type === "registry:hook") {
+		// resolves to `[hooks-alias]/[file]`
+		return path.resolve(targetDir, file.name);
+	}
+
+	// TODO: keep going
+	throw new Error(`TODO: unhandled file type ${file.type}`);
 }

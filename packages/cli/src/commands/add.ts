@@ -123,6 +123,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
+	// TODO: deal with this stupid `--path` option
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
@@ -131,8 +132,8 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		}
 
 		const componentExists = item.files.some((file) => {
-			const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
-			return existsSync(path.resolve(targetDir, file.target));
+			const filePath = registry.resolveItemFilePath(config, item, file);
+			return existsSync(filePath);
 		});
 		if (componentExists) {
 			existingComponents.push(item.name);
@@ -172,9 +173,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const tasks: p.Task[] = [];
 
 	for (const item of itemsWithContent) {
-		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
-		if (targetDir === null) continue;
-
+		const targetDir = registry.getRegistryItemTargetDir(config, item.type, targetPath);
 		if (!existsSync(targetDir)) {
 			await fs.mkdir(targetDir, { recursive: true });
 		}
@@ -214,8 +213,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
 				for (const file of item.files) {
-					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					let filePath = path.resolve(targetDir, file.target);
+					let filePath = registry.resolveItemFilePath(config, item, file);
 
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);

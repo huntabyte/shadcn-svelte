@@ -21,11 +21,13 @@ const registryItemTypeSchema = v.picklist([
 	...registryItemInternalType,
 ]);
 
+export type RegistryItemFile = v.InferOutput<typeof registryItemFileSchema>;
 const registryItemFileSchema = v.variant("type", [
 	v.object({
 		name: v.string(),
 		content: v.string(),
 		type: v.picklist(registryItemSimpleType),
+		target: v.optional(v.string()),
 	}),
 	// target is required for registry:file and registry:page
 	v.object({
@@ -85,32 +87,18 @@ const registryItemCssSchema: v.GenericSchema<CssSchema> = v.record(
 
 export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
 /** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
-export const registryItemSchema = v.pipe(
-	v.intersect([
-		baseIndexItemSchema,
-		v.object({
-			$schema: v.optional(v.string()),
-			categories: v.optional(v.array(v.string())),
-			css: v.optional(registryItemCssSchema),
-			meta: v.optional(v.record(v.string(), v.any())),
-			docs: v.optional(v.string()),
-			files: v.array(registryItemFileSchema),
-			cssVars: v.optional(registryItemCssVarsSchema),
-		}),
-	]),
-	v.transform((item) => ({
-		...item,
-		files: item.files.map((file) => {
-			if ("name" in file) {
-				return { ...file, target: `${item.name}/${file.name}` };
-			}
-			if (file.target.startsWith("~/")) {
-				file.target = file.target.replace("~/", "");
-			}
-			return file;
-		}),
-	}))
-);
+export const registryItemSchema = v.intersect([
+	baseIndexItemSchema,
+	v.object({
+		$schema: v.optional(v.string()),
+		categories: v.optional(v.array(v.string())),
+		css: v.optional(registryItemCssSchema),
+		meta: v.optional(v.record(v.string(), v.any())),
+		docs: v.optional(v.string()),
+		files: v.array(registryItemFileSchema),
+		cssVars: v.optional(registryItemCssVarsSchema),
+	}),
+]);
 
 /** Schema for `registry.json` */
 export const registrySchema = v.object({

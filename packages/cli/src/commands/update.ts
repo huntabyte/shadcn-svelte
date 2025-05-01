@@ -215,9 +215,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					let filePath = path.resolve(targetDir, file.target);
-
+					let filePath = registry.resolveItemFilePath(config, item, file);
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
 					}
@@ -230,10 +228,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 				const installedFiles = await fs.readdir(componentDir);
 				const remoteFiles = item.files.map((file) => {
-					if (!config.typescript && file.target.endsWith(".ts")) {
-						return file.target.replace(".ts", ".js");
+					const name = "name" in file ? file.name : path.basename(file.target);
+					if (!config.typescript && name.endsWith(".ts")) {
+						return name.replace(".ts", ".js");
 					}
-					return file.target;
+					return name;
 				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))
