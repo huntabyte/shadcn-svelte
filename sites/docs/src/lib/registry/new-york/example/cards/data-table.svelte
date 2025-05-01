@@ -104,7 +104,7 @@
 			accessorKey: "email",
 			header: ({ column }) =>
 				renderComponent(DataTableEmailButton, {
-					onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+					onclick: column.getToggleSortingHandler(),
 				}),
 			cell: ({ row }) => {
 				const emailSnippet = createRawSnippet<[string]>((getEmail) => {
