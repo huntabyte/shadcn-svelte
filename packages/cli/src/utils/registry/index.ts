@@ -88,7 +88,7 @@ export async function resolveRegistryItems({
 			}
 
 			const [result] = await fetchRegistry([url]);
-			resolvedItem = v.parse(schemas.registryIndexItemSchema, result);
+			resolvedItem = v.parse(schemas.registryItemSchema, result);
 		}
 
 		resolvedItems.push(resolvedItem);
@@ -121,7 +121,7 @@ export async function fetchRegistryItems({
 		const itemUrls = itemsToFetch.map((item) => resolveURL(baseUrl, item.relativeUrl));
 		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
 
-		return v.parse(v.array(schemas.registryIndexItemSchema), result);
+		return v.parse(v.array(schemas.registryItemSchema), result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
