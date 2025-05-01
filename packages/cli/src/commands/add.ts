@@ -15,7 +15,6 @@ import * as registry from "../utils/registry/index.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
-import { extractFileNameFromPath } from "../utils/utils.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -131,14 +130,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			selectedComponents.add(regDep);
 		}
 
-		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
-
-		if (targetDir === null) continue;
-
 		const componentExists = item.files.some((file) => {
-			return existsSync(
-				path.resolve(targetDir, file.target ?? extractFileNameFromPath(file.path))
-			);
+			const targetDir = registry.getRegistryItemTargetPath(config, file.type, targetPath);
+			return existsSync(path.resolve(targetDir, file.target));
 		});
 		if (componentExists) {
 			existingComponents.push(item.name);
@@ -219,11 +213,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		tasks.push({
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
-				let pageName: string | undefined;
 				for (const file of item.files) {
 					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					let fileTarget = file.target ?? extractFileNameFromPath(file.path);
-					let filePath = path.resolve(targetDir, fileTarget);
+					let filePath = path.resolve(targetDir, file.target);
 
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
@@ -235,20 +227,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
-						fileTarget = fileTarget.replace(".ts", ".js");
 					}
 
-					await fs.writeFile(filePath, content);
-					if (file.type === "registry:page") {
-						pageName = file.target;
-					}
-				}
-				if (item.type === "registry:block") {
-					const blockPath = path.relative(cwd, targetDir);
-					if (pageName) {
-						return `${highlight(item.name)} page installed at ${color.gray(`${blockPath}/${pageName}`)}`;
-					}
-					return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
+					await fs.writeFile(filePath, content, "utf8");
 				}
 
 				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;

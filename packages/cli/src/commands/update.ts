@@ -16,7 +16,6 @@ import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
-import { extractFileNameFromPath } from "../utils/utils.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -107,12 +106,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
+		title: "utils",
 		type: "registry:ui",
-		files: [],
 		dependencies: [],
-		// TODO:
-		devDependencies: [],
 		registryDependencies: [],
+		devDependencies: [],
 		relativeUrl: "",
 	});
 
@@ -217,11 +215,8 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					let filePath = path.resolve(
-						targetDir,
-						item.name,
-						extractFileNameFromPath(file.path)
-					);
+					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
+					let filePath = path.resolve(targetDir, file.target);
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
@@ -230,17 +225,15 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
 
-					await fs.writeFile(filePath, content);
+					await fs.writeFile(filePath, content, "utf8");
 				}
 
 				const installedFiles = await fs.readdir(componentDir);
 				const remoteFiles = item.files.map((file) => {
-					const fileName = extractFileNameFromPath(file.path);
-					if (!config.typescript && fileName.endsWith(".ts")) {
-						return fileName.replace(".ts", ".js");
+					if (!config.typescript && file.target.endsWith(".ts")) {
+						return file.target.replace(".ts", ".js");
 					}
-
-					return fileName;
+					return file.target;
 				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))

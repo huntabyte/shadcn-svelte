@@ -24,11 +24,3 @@ export function resolveURL(base: URL | string, path: string): URL {
 	const url = normalizeURL(base);
 	return new URL(path, url);
 }
-
-export function extractFileNameFromPath(path: string): string {
-	const parts = path.split("/");
-	const fileName = parts[parts.length - 1];
-	// TODO: should this throw be handled differently?
-	if (!fileName) throw new Error(`Invalid file path: ${path}`);
-	return fileName;
-}
