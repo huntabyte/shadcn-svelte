@@ -37,23 +37,8 @@ export const registryItemFileSchema = v.variant("type", [
 	}),
 ]);
 
-const registryItemCssVarsSchema = v.object({
-	theme: v.optional(v.record(v.string(), v.string())),
-	light: v.optional(v.record(v.string(), v.string())),
-	dark: v.optional(v.record(v.string(), v.string())),
-});
-
-export const registryItemCssSchema = v.record(
-	v.string(),
-	v.lazy(() =>
-		v.union([
-			v.string(),
-			v.record(v.string(), v.union([v.string(), v.record(v.string(), v.string())])),
-		])
-	)
-);
-
 export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
+/** Schema for registry items defined in the index */
 export const registryIndexItemSchema = v.pipe(
 	v.object({
 		name: v.string(),
@@ -72,9 +57,32 @@ export const registryIndexItemSchema = v.pipe(
 );
 
 export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
+/** Schema for the registry's index (e.g. `https://example.com/registry/index.json`) */
 export const registryIndexSchema = v.array(registryIndexItemSchema);
 
+const colorSchema = v.record(v.string(), v.string());
+/** Schema for base color endpoints (e.g. `https://example.com/registry/colors/slate.json`) */
+export const registryBaseColorSchema = v.object({
+	inlineColors: v.object({ light: colorSchema, dark: colorSchema }),
+	cssVars: v.object({ light: colorSchema, dark: colorSchema }),
+	inlineColorsTemplate: v.string(),
+	cssVarsTemplate: v.string(),
+});
+
+const registryItemCssVarsSchema = v.object({
+	theme: v.optional(colorSchema),
+	light: v.optional(colorSchema),
+	dark: v.optional(colorSchema),
+});
+
+type CssSchema = { [x: string]: string | CssSchema };
+const registryItemCssSchema: v.GenericSchema<CssSchema> = v.record(
+	v.string(),
+	v.lazy(() => v.union([v.string(), registryItemCssSchema]))
+);
+
 export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
+/** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
 export const registryItemSchema = v.intersect([
 	registryIndexItemSchema,
 	v.object({
@@ -89,16 +97,9 @@ export const registryItemSchema = v.intersect([
 	}),
 ]);
 
+/** Schema for `registry.json` */
 export const registrySchema = v.object({
 	name: v.string(),
 	homepage: v.string(),
 	items: v.array(registryIndexItemSchema),
-});
-
-const colorSchema = v.record(v.string(), v.string());
-export const registryBaseColorSchema = v.object({
-	inlineColors: v.object({ light: colorSchema, dark: colorSchema }),
-	cssVars: v.object({ light: colorSchema, dark: colorSchema }),
-	inlineColorsTemplate: v.string(),
-	cssVarsTemplate: v.string(),
 });
