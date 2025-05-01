@@ -16,6 +16,7 @@ import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { extractFileNameFromPath } from "../utils/utils.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -109,6 +110,8 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		type: "registry:ui",
 		files: [],
 		dependencies: [],
+		// TODO:
+		devDependencies: [],
 		registryDependencies: [],
 		relativeUrl: "",
 	});
@@ -214,7 +217,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					let filePath = path.resolve(targetDir, item.name, file.name);
+					let filePath = path.resolve(
+						targetDir,
+						item.name,
+						extractFileNameFromPath(file.path)
+					);
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
@@ -228,11 +235,12 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 				const installedFiles = await fs.readdir(componentDir);
 				const remoteFiles = item.files.map((file) => {
-					if (!config.typescript && file.name.endsWith(".ts")) {
-						return file.name.replace(".ts", ".js");
+					const fileName = extractFileNameFromPath(file.path);
+					if (!config.typescript && fileName.endsWith(".ts")) {
+						return fileName.replace(".ts", ".js");
 					}
 
-					return file.name;
+					return fileName;
 				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))

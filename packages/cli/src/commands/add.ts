@@ -15,6 +15,7 @@ import * as registry from "../utils/registry/index.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { extractFileNameFromPath } from "../utils/utils.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -135,7 +136,9 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		if (targetDir === null) continue;
 
 		const componentExists = item.files.some((file) => {
-			return existsSync(path.resolve(targetDir, file.target));
+			return existsSync(
+				path.resolve(targetDir, file.target ?? extractFileNameFromPath(file.path))
+			);
 		});
 		if (componentExists) {
 			existingComponents.push(item.name);
@@ -219,7 +222,8 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				let pageName: string | undefined;
 				for (const file of item.files) {
 					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					let filePath = path.resolve(targetDir, file.target);
+					let fileTarget = file.target ?? extractFileNameFromPath(file.path);
+					let filePath = path.resolve(targetDir, fileTarget);
 
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
@@ -231,7 +235,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
-						file.target = file.target.replace(".ts", ".js");
+						fileTarget = fileTarget.replace(".ts", ".js");
 					}
 
 					await fs.writeFile(filePath, content);
