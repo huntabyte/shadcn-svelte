@@ -35,9 +35,7 @@ const registryItemFileSchema = v.variant("type", [
 	}),
 ]);
 
-export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
-/** Schema for registry items defined in the index */
-export const registryIndexItemSchema = v.pipe(
+const baseIndexItemSchema = v.pipe(
 	v.object({
 		name: v.string(),
 		title: v.optional(v.string()),
@@ -49,10 +47,16 @@ export const registryIndexItemSchema = v.pipe(
 		dependencies: v.optional(v.array(v.string()), []),
 		devDependencies: v.optional(v.array(v.string()), []),
 		registryDependencies: v.optional(v.array(v.string()), []),
-		relativeUrl: v.string(),
 	}),
 	v.transform((item) => ({ ...item, title: item.title ?? item.name }))
 );
+
+export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
+/** Schema for registry items defined in the index */
+export const registryIndexItemSchema = v.intersect([
+	baseIndexItemSchema,
+	v.object({ relativeUrl: v.string() }),
+]);
 
 export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
 /** Schema for the registry's index (e.g. `https://example.com/registry/index.json`) */
@@ -83,16 +87,15 @@ export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
 /** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
 export const registryItemSchema = v.pipe(
 	v.intersect([
-		registryIndexItemSchema,
+		baseIndexItemSchema,
 		v.object({
 			$schema: v.optional(v.string()),
 			categories: v.optional(v.array(v.string())),
 			css: v.optional(registryItemCssSchema),
 			meta: v.optional(v.record(v.string(), v.any())),
 			docs: v.optional(v.string()),
-			files: v.optional(v.array(registryItemFileSchema), []),
+			files: v.array(registryItemFileSchema),
 			cssVars: v.optional(registryItemCssVarsSchema),
-			relativeUrl: v.never(),
 		}),
 	]),
 	v.transform((item) => ({
