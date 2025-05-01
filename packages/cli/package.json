@@ -42,7 +42,8 @@
 		"@svecosystem/strip-types": "^0.0.2",
 		"commander": "^13.1.0",
 		"is-unicode-supported": "^2.0.0",
-		"node-fetch-native": "^1.6.4"
+		"node-fetch-native": "^1.6.4",
+		"postcss": "^8.4.39"
 	},
 	"devDependencies": {
 		"@types/node": "^18.19.22",

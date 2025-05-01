@@ -73,6 +73,7 @@ export const registryBaseColorSchema = v.object({
 	cssVarsTemplate: v.string(),
 });
 
+export type CssVars = v.InferOutput<typeof registryItemCssVarsSchema>;
 const registryItemCssVarsSchema = v.object({
 	theme: v.optional(colorSchema),
 	light: v.optional(colorSchema),

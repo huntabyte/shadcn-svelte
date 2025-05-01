@@ -13,6 +13,7 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
+import { updateCssVars } from "../utils/updaters.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
@@ -224,6 +225,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 					const content = await transformContent(file.content, filePath, config);
 
 					await fs.writeFile(filePath, content, "utf8");
+				}
+
+				const cssContent = updateCssVars(config, item.cssVars);
+				if (cssContent) {
+					await fs.writeFile(config.resolvedPaths.tailwindCss, cssContent, "utf8");
 				}
 
 				const installedFiles = await fs.readdir(componentDir);

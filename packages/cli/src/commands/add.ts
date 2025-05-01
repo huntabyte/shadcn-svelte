@@ -12,6 +12,7 @@ import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
+import { updateCssVars } from "../utils/updaters.js";
 import { transformContent } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
@@ -228,6 +229,11 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 					}
 
 					await fs.writeFile(filePath, content, "utf8");
+				}
+
+				const cssContent = updateCssVars(config, item.cssVars);
+				if (cssContent) {
+					await fs.writeFile(config.resolvedPaths.tailwindCss, cssContent, "utf8");
 				}
 
 				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
