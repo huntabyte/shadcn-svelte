@@ -146,7 +146,7 @@ export const Index = {
 		if (!allowedTypes.includes(item.type)) continue;
 
 		// discard `path` prop
-		const files = item.files.map((file) => ({ ...file, path: undefined }));
+		const files = item.files.map((file) => ({ ...file, path: undefined, target: undefined }));
 		const filePath = path.resolve(targetPath, `${item.name}.json`);
 
 		const payload = {
