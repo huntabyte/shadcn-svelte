@@ -219,12 +219,7 @@ describe("updateCssVars", () => {
 	it("should return unchanged CSS when no vars are provided", () => {
 		const source = ":root { --test: value; }";
 		const result = transformCss(source, {});
-		expect(result.css).toMatchInlineSnapshot(`":root { --test: value; }"`);
-		expect(result.status).toEqual({
-			updated: [],
-			skipped: [],
-			added: [],
-		});
+		expect(result).toMatchInlineSnapshot(`":root { --test: value; }"`);
 	});
 
 	it("should update existing light theme variables", () => {
@@ -240,14 +235,13 @@ describe("updateCssVars", () => {
 			},
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			":root {
 						--primary: new;
 						--secondary: new;
 						--unrelated: value;
 					}"
 		`);
-		expect(result.status.updated).toContain(":root");
 	});
 
 	it("should update existing dark theme variables", () => {
@@ -263,14 +257,13 @@ describe("updateCssVars", () => {
 			},
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			".dark {
 						--primary: new;
 						--secondary: new;
 						--unrelated: value;
 					}"
 		`);
-		expect(result.status.updated).toContain(".dark");
 	});
 
 	it("should update existing theme variables", () => {
@@ -286,14 +279,13 @@ describe("updateCssVars", () => {
 			},
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@theme {
 						--primary: new;
 						--secondary: new;
 						--unrelated: value;
 					}"
 		`);
-		expect(result.status.updated).toContain("@theme");
 	});
 
 	it("should add new variables that don't exist", () => {
@@ -308,14 +300,13 @@ describe("updateCssVars", () => {
 			},
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			":root {
 						--existing: new;
 						--unrelated: value;
 						--newVar: value;
 					}"
 		`);
-		expect(result.status.added).toContain("--newVar");
 	});
 
 	it("should track skipped selectors", () => {
@@ -328,12 +319,11 @@ describe("updateCssVars", () => {
 			},
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			":root {
 						--test: value;
 					}"
 		`);
-		expect(result.status.skipped).toContain(".dark");
 	});
 
 	it("should handle missing selectors gracefully", () => {
@@ -346,16 +336,11 @@ describe("updateCssVars", () => {
 			theme: { tertiary: "new" },
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			".some-other-class {
 						--test: value;
 					}"
 		`);
-		expect(result.status.skipped).toContain(":root");
-		expect(result.status.skipped).toContain(".dark");
-		expect(result.status.skipped).toContain("@theme");
-		expect(result.status.updated).toHaveLength(0);
-		expect(result.status.added).toHaveLength(0);
 	});
 
 	it("should handle multiple theme updates simultaneously", () => {
@@ -377,7 +362,7 @@ describe("updateCssVars", () => {
 			theme: { tertiary: "new" },
 		};
 		const result = transformCss(source, cssVars);
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			":root {
 						--primary: new;
 						--unrelated: value;
@@ -391,35 +376,6 @@ describe("updateCssVars", () => {
 						--unrelated: value;
 					}"
 		`);
-		expect(result.status.updated).toHaveLength(3);
-	});
-
-	it("should not overwrite existing variables when overwrite is false", () => {
-		const source = `:root {
-			--primary: old;
-			--secondary: old;
-			--unrelated: value;
-		}`;
-		const cssVars = {
-			light: {
-				primary: "new",
-				secondary: "new",
-				newVar: "value",
-			},
-		};
-		const result = transformCss(source, cssVars, { overwrite: false });
-		expect(result.css).toMatchInlineSnapshot(`
-			":root {
-						--primary: old;
-						--secondary: old;
-						--unrelated: value;
-						--newVar: value;
-					}"
-		`);
-		expect(result.status.updated).toContain(":root");
-		expect(result.status.added).toContain("--newVar");
-		expect(result.status.added).not.toContain("--primary");
-		expect(result.status.added).not.toContain("--secondary");
 	});
 
 	it("should add plugins that don't exist", () => {
@@ -427,13 +383,12 @@ describe("updateCssVars", () => {
 			--primary: old;
 		}`;
 		const result = transformCss(source, {}, { plugins: ["my-plugin"] });
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@plugin \\"my-plugin\\";
 			:root {
 						--primary: old;
 					}"
 		`);
-		expect(result.status.added).toContain("@plugin my-plugin");
 	});
 
 	it("should add multiple plugins", () => {
@@ -442,7 +397,7 @@ describe("updateCssVars", () => {
 			--primary: old;
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin1", "plugin2"] });
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@plugin \\"unrelated-plugin\\";
 			@plugin \\"plugin2\\";
 			@plugin \\"plugin1\\";
@@ -450,8 +405,6 @@ describe("updateCssVars", () => {
 						--primary: old;
 					}"
 		`);
-		expect(result.status.added).toContain("@plugin plugin1");
-		expect(result.status.added).toContain("@plugin plugin2");
 	});
 
 	it("should not add/duplicate plugins that already exist", () => {
@@ -460,7 +413,7 @@ describe("updateCssVars", () => {
 			--primary: old;
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin1"] });
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@plugin \\"plugin1\\";
 					:root {
 						--primary: old;
@@ -474,7 +427,7 @@ describe("updateCssVars", () => {
 			--primary: old;
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin2"] });
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@import \\"tailwindcss\\";
 			@plugin \\"plugin2\\";
 					:root {
@@ -490,7 +443,7 @@ describe("updateCssVars", () => {
 			--primary: old;
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin3"] });
-		expect(result.css).toMatchInlineSnapshot(`
+		expect(result).toMatchInlineSnapshot(`
 			"@plugin \\"plugin1\\";
 					@plugin \\"plugin2\\";
 					@plugin \\"plugin3\\";
