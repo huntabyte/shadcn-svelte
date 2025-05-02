@@ -37,8 +37,6 @@ export async function stripTypes(content: string, filename: string) {
 }
 
 type TransformCssOptions = {
-	/** Whether to overwrite conflicting variables */
-	overwrite?: boolean;
 	/** Array of plugin names to update */
 	plugins?: string[];
 };
@@ -48,7 +46,7 @@ export function transformCss(
 	cssVars: CssVars,
 	options: TransformCssOptions = {}
 ): string {
-	const opts = { overwrite: true, plugins: [], ...options };
+	const opts = { plugins: [], ...options };
 
 	// if no CSS variables are provided to update and no plugins,
 	// we don't need to do anything so we can just return the source
@@ -62,7 +60,7 @@ export function transformCss(
 	}
 
 	// update CSS variables/themes
-	updateCssVars(ast, cssVars, opts.overwrite);
+	updateCssVars(ast, cssVars);
 
 	return ast.toString();
 }

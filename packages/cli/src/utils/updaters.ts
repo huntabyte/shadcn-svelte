@@ -4,7 +4,7 @@ import type { CssVars } from "./registry/schema.js";
 const DARK_SELECTOR = ".dark";
 const LIGHT_SELECTOR = ":root";
 
-export function updateCssVars(ast: Root, cssVars: CssVars, overwrite: boolean = true): void {
+export function updateCssVars(ast: Root, cssVars: CssVars): void {
 	// updates colors for `dark` and `light`
 	if (cssVars.light || cssVars.dark) {
 		ast.walkRules((rule) => {
@@ -13,11 +13,11 @@ export function updateCssVars(ast: Root, cssVars: CssVars, overwrite: boolean = 
 
 			let remainingDark, remainingLight;
 			if (cssVars.light && rule.selectors.includes(LIGHT_SELECTOR)) {
-				remainingDark = updateCssRule(rule, cssVars.light, overwrite);
+				remainingDark = updateCssRule(rule, cssVars.light);
 			}
 
 			if (cssVars.dark && rule.selectors.includes(DARK_SELECTOR)) {
-				remainingLight = updateCssRule(rule, cssVars.dark, overwrite);
+				remainingLight = updateCssRule(rule, cssVars.dark);
 			}
 
 			// appends the remaining
@@ -34,7 +34,7 @@ export function updateCssVars(ast: Root, cssVars: CssVars, overwrite: boolean = 
 			if (atRule.name !== "theme") return;
 
 			// updates existing css vars
-			const remaining = updateCssRule(atRule, cssVars.theme!, overwrite);
+			const remaining = updateCssRule(atRule, cssVars.theme!);
 
 			// appends the remaining
 			for (const [prop, value] of Object.entries(remaining)) {
@@ -86,16 +86,14 @@ export function updateTailwindPlugins(ast: Root, plugins: string[]): void {
 	}
 }
 
-function updateCssRule(rule: Rule | AtRule, _vars: Record<string, string>, overwrite: boolean) {
+function updateCssRule(rule: Rule | AtRule, _vars: Record<string, string>) {
 	const vars = structuredClone(_vars);
 	rule.walkDecls((decl) => {
 		if (!decl.variable) return;
 		const prop = decl.prop.slice(2);
 		const value = vars[prop];
 		if (value) {
-			if (overwrite) {
-				decl.value = value;
-			}
+			decl.value = value;
 			delete vars[prop];
 		}
 	});
