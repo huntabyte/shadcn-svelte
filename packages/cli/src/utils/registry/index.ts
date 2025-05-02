@@ -52,7 +52,9 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
-		throw error(`Failed to fetch base color from registry. Error: ${err}`);
+		throw error(
+			`Failed to fetch base color from registry. ${err instanceof Error ? err.message : err}`
+		);
 	}
 }
 
@@ -151,7 +153,7 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry. Error: ${e}`);
+		throw error(`Failed to fetch registry. ${e instanceof Error ? `Error: ${e.message}` : e}`);
 	}
 }
 
