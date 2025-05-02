@@ -299,13 +299,13 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				const messages = [];
 
 				if (updateResult.status.updated.length > 0) {
-					messages.push(`Updated selectors: ${updateResult.status.updated.join(", ")}`);
+					messages.push(`Updated: ${updateResult.status.updated.join(", ")}`);
 				}
 				if (updateResult.status.added.length > 0) {
-					messages.push(`Added variables: ${updateResult.status.added.join(", ")}`);
+					messages.push(`Added: ${updateResult.status.added.join(", ")}`);
 				}
 				if (updateResult.status.skipped.length > 0) {
-					messages.push(`Skipped selectors: ${updateResult.status.skipped.join(", ")}`);
+					messages.push(`Skipped: ${updateResult.status.skipped.join(", ")}`);
 				}
 
 				return `Stylesheet ${highlight(relative)} updated${messages.length > 0 ? `\n${messages.join("\n")}` : ""}`;

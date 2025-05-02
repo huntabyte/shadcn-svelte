@@ -13,8 +13,7 @@ import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
-import { updateCssVars } from "../utils/updaters.js";
-import { transformContent } from "../utils/transformers.js";
+import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -274,11 +273,23 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				const cssPath = config.resolvedPaths.tailwindCss;
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const updatedCss = updateCssVars(cssSource, cssVars);
-				await fs.writeFile(cssPath, updatedCss, "utf8");
+				const updateResult = transformCss(cssSource, cssVars);
+				await fs.writeFile(cssPath, updateResult.css, "utf8");
 
 				const relative = path.relative(cwd, cssPath);
-				return `Stylesheet ${highlight(relative)} updated`;
+				const messages = [];
+
+				if (updateResult.status.updated.length > 0) {
+					messages.push(`Updated: ${updateResult.status.updated.join(", ")}`);
+				}
+				if (updateResult.status.added.length > 0) {
+					messages.push(`Added: ${updateResult.status.added.join(", ")}`);
+				}
+				if (updateResult.status.skipped.length > 0) {
+					messages.push(`Skipped: ${updateResult.status.skipped.join(", ")}`);
+				}
+
+				return `Stylesheet ${highlight(relative)} updated${messages.length > 0 ? `\n${messages.join("\n")}` : ""}`;
 			},
 		});
 	}
