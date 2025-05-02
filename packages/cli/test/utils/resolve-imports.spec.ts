@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { resolveImport } from "../../src/utils/resolve-imports";
+import { resolveImport } from "../../src/utils/resolve-imports.js";
 import type { TsConfigResult } from "get-tsconfig";
 import path from "node:path";
+import { toPosixPath } from "./test-helpers.js";
 
 describe("resolveImport", () => {
 	it("returns first path match from tsconfig", () => {
@@ -18,9 +19,7 @@ describe("resolveImport", () => {
 
 		const result = resolveImport("@/components/Button", mockConfig);
 		expect(result).toBeDefined();
-		expect(path.posix.normalize(result!)).toBe(
-			path.posix.normalize("/project/src/components/Button")
-		);
+		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
 	});
 
 	it("returns undefined when the path alias being used is not defined in the tsconfig", () => {
