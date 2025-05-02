@@ -66,7 +66,9 @@ describe("getItemTargetPath", () => {
 				config,
 				{
 					name: "label",
+					title: "label",
 					dependencies: ["bits-ui@next"],
+					devDependencies: [],
 					registryDependencies: [],
 					files: [
 						//... snip this since it doesn't matter
@@ -82,8 +84,10 @@ describe("getItemTargetPath", () => {
 		expect(
 			getItemTargetPath(config, {
 				name: "label",
+				title: "label",
 				dependencies: ["bits-ui@next"],
 				registryDependencies: [],
+				devDependencies: [],
 				files: [
 					//... snip this since it doesn't matter
 				],
