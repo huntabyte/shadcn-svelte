@@ -8,14 +8,15 @@ export function isUrl(path: string) {
 }
 
 /** Adds a trailing slash to the end of the URL, if missing. */
-function normalizeURL(url: URL | string): URL {
+export function normalizeURL(url: URL | string): URL {
 	if (!(url instanceof URL)) {
 		url = new URL(url);
 	}
 
-	if (!url.href.endsWith("/")) {
+	// only add trailing slash if there's no query and pathname doesn't end with one
+	if (!url.search && !url.pathname.endsWith("/")) {
 		url = new URL(url);
-		url.href += "/";
+		url.pathname = url.pathname + "/";
 	}
 	return url;
 }
