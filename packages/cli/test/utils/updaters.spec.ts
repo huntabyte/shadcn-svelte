@@ -166,4 +166,31 @@ describe("updateCssVars", () => {
 		expect(result.css).toBe(expected);
 		expect(result.status.updated).toHaveLength(3);
 	});
+
+	it("should not overwrite existing variables when overwrite is false", () => {
+		const source = `:root {
+			--primary: old;
+			--secondary: old;
+			--unrelated: value;
+		}`;
+		const expected = `:root {
+			--primary: old;
+			--secondary: old;
+			--unrelated: value;
+			--newVar: value;
+		}`;
+		const cssVars = {
+			light: {
+				primary: "new",
+				secondary: "new",
+				newVar: "value",
+			},
+		};
+		const result = updateCssVars(source, cssVars, { overwrite: false });
+		expect(result.css).toBe(expected);
+		expect(result.status.updated).toContain(":root");
+		expect(result.status.added).toContain("--newVar");
+		expect(result.status.added).not.toContain("--primary");
+		expect(result.status.added).not.toContain("--secondary");
+	});
 });

@@ -7,18 +7,24 @@ type UpdateStatus = {
 	added: string[];
 };
 
+type UpdateOptions = {
+	/** Whether to overwrite conflicting variables */
+	overwrite?: boolean;
+};
+
 export function updateCssVars(
 	source: string,
-	cssVars: CssVars
+	cssVars: CssVars,
+	options: UpdateOptions = { overwrite: true }
 ): { css: string; status: UpdateStatus } {
-	//if no CSS variables are provided to update, bail
+	// if no CSS variables are provided to update, bail
 	if (Object.keys(cssVars).length === 0)
 		return { css: source, status: { updated: [], skipped: [], added: [] } };
 
 	const ast = parse(source);
 	const status: UpdateStatus = { updated: [], skipped: [], added: [] };
 
-	// TODO: Should we error out if we fail to find/update any of the selectors?
+	const processRule = options.overwrite ? overwriteRule : updateRule;
 
 	// updates colors for `dark` and `light`
 	if (cssVars.light || cssVars.dark) {
@@ -27,11 +33,11 @@ export function updateCssVars(
 
 			let remainingDark, remainingLight;
 			if (cssVars.light && rule.selectors.includes(":root")) {
-				remainingLight = updateRule(rule, cssVars.light);
+				remainingLight = processRule(rule, cssVars.light);
 				status.updated.push(":root");
 			}
 			if (cssVars.dark && rule.selectors.includes(".dark")) {
-				remainingDark = updateRule(rule, cssVars.dark);
+				remainingDark = processRule(rule, cssVars.dark);
 				status.updated.push(".dark");
 			}
 
@@ -50,7 +56,7 @@ export function updateCssVars(
 			if (atRule.name !== "theme") return;
 
 			// updates existing css vars
-			const remainingVars = updateRule(atRule, cssVars.theme!);
+			const remainingVars = processRule(atRule, cssVars.theme!);
 			status.updated.push("@theme");
 
 			// appends the remaining
@@ -70,8 +76,21 @@ export function updateCssVars(
 	return { css: ast.toString(), status };
 }
 
-/** Updates existing CSS vars */
+/** Updates existing CSS vars without overwriting */
 function updateRule(rule: Rule | AtRule, _vars: Record<string, string>) {
+	const vars = structuredClone(_vars);
+	rule.walkDecls((decl) => {
+		if (!decl.variable) return;
+		const prop = decl.prop.slice(2);
+		if (vars[prop]) {
+			delete vars[prop];
+		}
+	});
+	return vars;
+}
+
+/** Overwrites existing CSS vars */
+function overwriteRule(rule: Rule | AtRule, _vars: Record<string, string>) {
 	const vars = structuredClone(_vars);
 	rule.walkDecls((decl) => {
 		if (!decl.variable) return;
