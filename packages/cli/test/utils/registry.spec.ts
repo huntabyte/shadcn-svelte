@@ -16,6 +16,7 @@ import type {
 	RegistryIndex,
 	RegistryItemFile,
 } from "../../src/utils/registry/schema";
+import path from "node:path";
 
 vi.mock("node-fetch-native", () => ({
 	fetch: vi.fn(),
@@ -25,10 +26,10 @@ describe("Registry Utilities", () => {
 	const mockConfig: Config = {
 		registry: "https://example.com/registry",
 		resolvedPaths: {
-			ui: "/path/to/ui",
-			hooks: "/path/to/hooks",
-			components: "/path/to/components",
-			cwd: "/path/to/cwd",
+			ui: path.posix.normalize("/path/to/ui"),
+			hooks: path.posix.normalize("/path/to/hooks"),
+			components: path.posix.normalize("/path/to/components"),
+			cwd: path.posix.normalize("/path/to/cwd"),
 		},
 	} as Config;
 
@@ -234,7 +235,7 @@ describe("Registry Utilities", () => {
 				registryDependencies: [],
 				files: [],
 			};
-			expect(getItemTargetPath(mockConfig, item)).toBe("/path/to/ui");
+			expect(getItemTargetPath(mockConfig, item)).toBe(path.posix.normalize("/path/to/ui"));
 		});
 	});
 
@@ -246,12 +247,18 @@ describe("Registry Utilities", () => {
 		});
 
 		it("should return correct directory for each type", () => {
-			expect(getRegistryItemTargetDir(mockConfig, "registry:ui")).toBe("/path/to/ui");
-			expect(getRegistryItemTargetDir(mockConfig, "registry:hook")).toBe("/path/to/hooks");
-			expect(getRegistryItemTargetDir(mockConfig, "registry:component")).toBe(
-				"/path/to/components"
+			expect(getRegistryItemTargetDir(mockConfig, "registry:ui")).toBe(
+				path.posix.normalize("/path/to/ui")
 			);
-			expect(getRegistryItemTargetDir(mockConfig, "registry:file")).toBe("/path/to/cwd");
+			expect(getRegistryItemTargetDir(mockConfig, "registry:hook")).toBe(
+				path.posix.normalize("/path/to/hooks")
+			);
+			expect(getRegistryItemTargetDir(mockConfig, "registry:component")).toBe(
+				path.posix.normalize("/path/to/components")
+			);
+			expect(getRegistryItemTargetDir(mockConfig, "registry:file")).toBe(
+				path.posix.normalize("/path/to/cwd")
+			);
 		});
 	});
 
@@ -273,7 +280,7 @@ describe("Registry Utilities", () => {
 				target: "~/src/components/button.svelte",
 			};
 			expect(resolveItemFilePath(mockConfig, item, file)).toBe(
-				"/path/to/cwd/src/components/button.svelte"
+				path.posix.normalize("/path/to/cwd/src/components/button.svelte")
 			);
 		});
 
@@ -293,7 +300,7 @@ describe("Registry Utilities", () => {
 				content: "",
 			};
 			expect(resolveItemFilePath(mockConfig, item, file)).toBe(
-				"/path/to/ui/button/button.svelte"
+				path.posix.normalize("/path/to/ui/button/button.svelte")
 			);
 		});
 
@@ -313,7 +320,7 @@ describe("Registry Utilities", () => {
 				content: "",
 			};
 			expect(resolveItemFilePath(mockConfig, item, file)).toBe(
-				"/path/to/hooks/use-hook.svelte.ts"
+				path.posix.normalize("/path/to/hooks/use-hook.svelte.ts")
 			);
 		});
 	});

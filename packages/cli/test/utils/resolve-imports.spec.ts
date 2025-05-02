@@ -13,12 +13,14 @@ describe("resolveImport", () => {
 					},
 				},
 			},
-			path: path.normalize("/project/tsconfig.json"),
+			path: path.posix.normalize("/project/tsconfig.json"),
 		} as TsConfigResult;
 
 		const result = resolveImport("@/components/Button", mockConfig);
 		expect(result).toBeDefined();
-		expect(path.normalize(result!)).toBe(path.normalize("/project/src/components/Button"));
+		expect(path.posix.normalize(result!)).toBe(
+			path.posix.normalize("/project/src/components/Button")
+		);
 	});
 
 	it("returns undefined when the path alias being used is not defined in the tsconfig", () => {
@@ -26,7 +28,7 @@ describe("resolveImport", () => {
 			config: {
 				compilerOptions: {},
 			},
-			path: path.normalize("/project/tsconfig.json"),
+			path: path.posix.normalize("/project/tsconfig.json"),
 		} as TsConfigResult;
 
 		const result = resolveImport("@/components/Button", mockConfig);
@@ -42,7 +44,7 @@ describe("resolveImport", () => {
 					},
 				},
 			},
-			path: path.normalize("/project/tsconfig.json"),
+			path: path.posix.normalize("/project/tsconfig.json"),
 		} as TsConfigResult;
 
 		const result = resolveImport("unknown/path", mockConfig);
