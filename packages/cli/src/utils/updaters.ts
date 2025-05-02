@@ -1,30 +1,13 @@
-import { parse, Declaration, Rule, type AtRule } from "postcss";
+import { Declaration, Rule, AtRule, Root } from "postcss";
 import type { CssVars } from "./registry/schema.js";
-
-type UpdateStatus = {
-	updated: string[];
-	skipped: string[];
-	added: string[];
-};
-
-type UpdateOptions = {
-	/** Whether to overwrite conflicting variables */
-	overwrite?: boolean;
-};
+import { OperationStatus } from "./types.js";
 
 export function updateCssVars(
-	source: string,
+	ast: Root,
 	cssVars: CssVars,
-	options: UpdateOptions = { overwrite: true }
-): { css: string; status: UpdateStatus } {
-	// if no CSS variables are provided to update, bail
-	if (Object.keys(cssVars).length === 0)
-		return { css: source, status: { updated: [], skipped: [], added: [] } };
-
-	const ast = parse(source);
-	const status: UpdateStatus = { updated: [], skipped: [], added: [] };
-
-	const processRule = options.overwrite ? overwriteRule : updateRule;
+	overwrite: boolean = true
+): OperationStatus {
+	const status: OperationStatus = { updated: [], skipped: [], added: [] };
 
 	// updates colors for `dark` and `light`
 	if (cssVars.light || cssVars.dark) {
@@ -33,11 +16,11 @@ export function updateCssVars(
 
 			let remainingDark, remainingLight;
 			if (cssVars.light && rule.selectors.includes(":root")) {
-				remainingLight = processRule(rule, cssVars.light);
+				remainingLight = updateCssRule(rule, cssVars.light, overwrite);
 				status.updated.push(":root");
 			}
 			if (cssVars.dark && rule.selectors.includes(".dark")) {
-				remainingDark = processRule(rule, cssVars.dark);
+				remainingDark = updateCssRule(rule, cssVars.dark, overwrite);
 				status.updated.push(".dark");
 			}
 
@@ -56,7 +39,7 @@ export function updateCssVars(
 			if (atRule.name !== "theme") return;
 
 			// updates existing css vars
-			const remainingVars = processRule(atRule, cssVars.theme!);
+			const remainingVars = updateCssRule(atRule, cssVars.theme!, overwrite);
 			status.updated.push("@theme");
 
 			// appends the remaining
@@ -73,31 +56,68 @@ export function updateCssVars(
 	if (cssVars.dark && !status.updated.includes(".dark")) status.skipped.push(".dark");
 	if (cssVars.theme && !status.updated.includes("@theme")) status.skipped.push("@theme");
 
-	return { css: ast.toString(), status };
+	return status;
 }
 
-/** Updates existing CSS vars without overwriting */
-function updateRule(rule: Rule | AtRule, _vars: Record<string, string>) {
-	const vars = structuredClone(_vars);
-	rule.walkDecls((decl) => {
-		if (!decl.variable) return;
-		const prop = decl.prop.slice(2);
-		if (vars[prop]) {
-			delete vars[prop];
+export function updateTailwindPlugins(ast: Root, plugins: string[]): OperationStatus {
+	const status: OperationStatus = { updated: [], skipped: [], added: [] };
+	const foundPlugins: string[] = [];
+
+	/**
+	 * we track the last import and plugin to know where to insert the new ones
+	 *
+	 * this goes like this:
+	 * - if there are existing plugins, we insert after the last plugin
+	 * - if there are no existing plugins and an import exists, we insert after the last import
+	 * - if there are no existing plugins and no import exists, we prepend the new plugins
+	 */
+	let lastImport: AtRule | undefined;
+	let lastPlugin: AtRule | undefined;
+
+	ast.walkAtRules((atRule: AtRule) => {
+		if (atRule.name === "import") {
+			lastImport = atRule;
+		}
+		if (atRule.name !== "plugin") return;
+		const pluginName = atRule.params.trim();
+		lastPlugin = atRule;
+		if (plugins.includes(pluginName.replace(/['"]/g, ""))) {
+			foundPlugins.push(pluginName.replace(/['"]/g, ""));
 		}
 	});
-	return vars;
+
+	// add any plugins that don't exist yet
+	for (const plugin of plugins) {
+		if (!foundPlugins.includes(plugin)) {
+			const atRule = new AtRule({ name: "plugin", params: `"${plugin}"` });
+			if (lastPlugin) {
+				lastPlugin.after(atRule);
+			} else if (lastImport) {
+				lastImport.after(atRule);
+			} else {
+				ast.prepend(atRule);
+			}
+			status.added.push(`@plugin ${plugin}`);
+		}
+	}
+
+	return status;
 }
 
-/** Overwrites existing CSS vars */
-function overwriteRule(rule: Rule | AtRule, _vars: Record<string, string>) {
+function updateCssRule(
+	rule: Rule | AtRule,
+	_vars: Record<string, string>,
+	overwrite: boolean = false
+) {
 	const vars = structuredClone(_vars);
 	rule.walkDecls((decl) => {
 		if (!decl.variable) return;
 		const prop = decl.prop.slice(2);
 		const value = vars[prop];
 		if (value) {
-			decl.value = value;
+			if (overwrite) {
+				decl.value = value;
+			}
 			delete vars[prop];
 		}
 	});
