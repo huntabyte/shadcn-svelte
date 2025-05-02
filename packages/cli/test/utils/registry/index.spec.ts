@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import { getItemTargetPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
+// TODO: this is a duplicate of registry.spec.ts so we can probably remove it
+
 const config = {
 	tailwind: {
 		config: "tailwind.config.js",
