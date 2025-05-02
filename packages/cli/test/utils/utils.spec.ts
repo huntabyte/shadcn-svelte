@@ -1,22 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { resolveURL, normalizeURL } from "../../src/utils/utils";
-
-describe("normalizeURL", () => {
-	it("works with string URLs", () => {
-		const normalized = normalizeURL("https://example.com");
-		expect(normalized.href).toEqual("https://example.com/");
-	});
-
-	it("handles URLs that already have trailing slash", () => {
-		expect(normalizeURL("https://example.com/").href).toEqual("https://example.com/");
-	});
-
-	it("handles URLs with query parameters", () => {
-		expect(normalizeURL("https://example.com?foo=bar").href).toEqual(
-			"https://example.com/?foo=bar"
-		);
-	});
-});
+import { resolveURL } from "../../src/utils/utils";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {
@@ -31,6 +14,11 @@ describe("resolveURL", () => {
 		expect(resolveURL(base, "./foo/bar/index.json").href).toEqual(
 			"https://example.com/registry/foo/bar/index.json"
 		);
+	});
+
+	it("handles URLs that already a have trailing slash", () => {
+		const base = "https://example.com/";
+		expect(resolveURL(base, "index.json").href).toEqual("https://example.com/index.json");
 	});
 
 	it("works with URL objects", () => {
@@ -54,6 +42,13 @@ describe("resolveURL", () => {
 
 	it("works with different protocols", () => {
 		const base = "http://example.com/registry";
+		expect(resolveURL(base, "index.json").href).toEqual(
+			"http://example.com/registry/index.json"
+		);
+	});
+
+	it("works with query parameters", () => {
+		const base = "http://example.com/registry?foo=bar";
 		expect(resolveURL(base, "index.json").href).toEqual(
 			"http://example.com/registry/index.json"
 		);
