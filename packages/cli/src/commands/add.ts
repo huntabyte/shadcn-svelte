@@ -266,13 +266,6 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	});
 
 	if (Object.keys(cssVars).length > 0) {
-		const overwrite =
-			options.overwrite ||
-			(await p.confirm({
-				message: `There are pending changes to your ${highlight("stylesheet")}. Would you like to ${color.bold.red("apply")} these changes?`,
-			}));
-		if (p.isCancel(overwrite)) cancel();
-
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
@@ -281,7 +274,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 				const relative = path.relative(cwd, cssPath);
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const modifiedCss = transformCss(cssSource, cssVars, { overwrite });
+				const modifiedCss = transformCss(cssSource, cssVars);
 				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
