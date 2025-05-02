@@ -292,23 +292,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				const cssPath = config.resolvedPaths.tailwindCss;
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const updateResult = transformCss(cssSource, cssVars);
-				await fs.writeFile(cssPath, updateResult.css, "utf8");
+				const modifiedCss = transformCss(cssSource, cssVars);
+				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 				const relative = path.relative(cwd, cssPath);
-				const messages = [];
-
-				if (updateResult.status.updated.length > 0) {
-					messages.push(`Updated: ${updateResult.status.updated.join(", ")}`);
-				}
-				if (updateResult.status.added.length > 0) {
-					messages.push(`Added: ${updateResult.status.added.join(", ")}`);
-				}
-				if (updateResult.status.skipped.length > 0) {
-					messages.push(`Skipped: ${updateResult.status.skipped.join(", ")}`);
-				}
-
-				return `Stylesheet ${highlight(relative)} updated${messages.length > 0 ? `\n${messages.join("\n")}` : ""}`;
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 			},
 		});
 	}

@@ -1,10 +1,9 @@
-import type { Config } from "./get-config.js";
+import { parse } from "postcss";
 import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
 import { CssVars } from "./registry/schema.js";
-import { OperationStatus } from "./types.js";
-import { parse } from "postcss";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
+import type { Config } from "./get-config.js";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
@@ -44,36 +43,26 @@ type TransformCssOptions = {
 	plugins?: string[];
 };
 
-const DEFAULT_STATUS: OperationStatus = { updated: [], skipped: [], added: [] };
-
 export function transformCss(
 	source: string,
 	cssVars: CssVars,
 	options: TransformCssOptions = {}
-): { css: string; status: OperationStatus } {
+): string {
 	const opts = { overwrite: true, plugins: [], ...options };
 
 	// if no CSS variables are provided to update and no plugins,
 	// we don't need to do anything so we can just return the source
-	if (Object.keys(cssVars).length === 0 && !opts.plugins.length)
-		return { css: source, status: DEFAULT_STATUS };
+	if (Object.keys(cssVars).length === 0 && !opts.plugins.length) return source;
 
 	const ast = parse(source);
 
 	// add plugins if any
-	const pluginStatus = opts.plugins.length
-		? updateTailwindPlugins(ast, opts.plugins)
-		: DEFAULT_STATUS;
+	if (opts.plugins.length) {
+		updateTailwindPlugins(ast, opts.plugins);
+	}
 
 	// update CSS variables/themes
-	const varStatus = updateCssVars(ast, cssVars, opts.overwrite);
+	updateCssVars(ast, cssVars, opts.overwrite);
 
-	return {
-		css: ast.toString(),
-		status: {
-			updated: pluginStatus.updated.concat(varStatus.updated),
-			skipped: pluginStatus.skipped.concat(varStatus.skipped),
-			added: pluginStatus.added.concat(varStatus.added),
-		},
-	};
+	return ast.toString();
 }

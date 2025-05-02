@@ -1,34 +1,29 @@
 import { Declaration, Rule, AtRule, Root } from "postcss";
 import type { CssVars } from "./registry/schema.js";
-import { OperationStatus } from "./types.js";
 
-export function updateCssVars(
-	ast: Root,
-	cssVars: CssVars,
-	overwrite: boolean = true
-): OperationStatus {
-	const status: OperationStatus = { updated: [], skipped: [], added: [] };
+const DARK_SELECTOR = ".dark";
+const LIGHT_SELECTOR = ":root";
 
+export function updateCssVars(ast: Root, cssVars: CssVars, overwrite: boolean = true): void {
 	// updates colors for `dark` and `light`
 	if (cssVars.light || cssVars.dark) {
 		ast.walkRules((rule) => {
-			if (!rule.selectors.includes(":root") && !rule.selectors.includes(".dark")) return;
+			if (!rule.selectors.includes(LIGHT_SELECTOR) && !rule.selectors.includes(DARK_SELECTOR))
+				return;
 
 			let remainingDark, remainingLight;
-			if (cssVars.light && rule.selectors.includes(":root")) {
-				remainingLight = updateCssRule(rule, cssVars.light, overwrite);
-				status.updated.push(":root");
+			if (cssVars.light && rule.selectors.includes(LIGHT_SELECTOR)) {
+				remainingDark = updateCssRule(rule, cssVars.light, overwrite);
 			}
-			if (cssVars.dark && rule.selectors.includes(".dark")) {
-				remainingDark = updateCssRule(rule, cssVars.dark, overwrite);
-				status.updated.push(".dark");
+
+			if (cssVars.dark && rule.selectors.includes(DARK_SELECTOR)) {
+				remainingLight = updateCssRule(rule, cssVars.dark, overwrite);
 			}
 
 			// appends the remaining
 			for (const [prop, value] of Object.entries(remainingLight ?? remainingDark ?? {})) {
 				const decl = new Declaration({ prop: `--${prop}`, value });
 				rule.append(decl);
-				status.added.push(`--${prop}`);
 			}
 		});
 	}
@@ -39,28 +34,18 @@ export function updateCssVars(
 			if (atRule.name !== "theme") return;
 
 			// updates existing css vars
-			const remainingVars = updateCssRule(atRule, cssVars.theme!, overwrite);
-			status.updated.push("@theme");
+			const remaining = updateCssRule(atRule, cssVars.theme!, overwrite);
 
 			// appends the remaining
-			for (const [prop, value] of Object.entries(remainingVars)) {
+			for (const [prop, value] of Object.entries(remaining)) {
 				const decl = new Declaration({ prop: `--${prop}`, value });
 				atRule.append(decl);
-				status.added.push(`--${prop}`);
 			}
 		});
 	}
-
-	// handle skipped selectors
-	if (cssVars.light && !status.updated.includes(":root")) status.skipped.push(":root");
-	if (cssVars.dark && !status.updated.includes(".dark")) status.skipped.push(".dark");
-	if (cssVars.theme && !status.updated.includes("@theme")) status.skipped.push("@theme");
-
-	return status;
 }
 
-export function updateTailwindPlugins(ast: Root, plugins: string[]): OperationStatus {
-	const status: OperationStatus = { updated: [], skipped: [], added: [] };
+export function updateTailwindPlugins(ast: Root, plugins: string[]): void {
 	const foundPlugins: string[] = [];
 
 	/**
@@ -97,18 +82,11 @@ export function updateTailwindPlugins(ast: Root, plugins: string[]): OperationSt
 			} else {
 				ast.prepend(atRule);
 			}
-			status.added.push(`@plugin ${plugin}`);
 		}
 	}
-
-	return status;
 }
 
-function updateCssRule(
-	rule: Rule | AtRule,
-	_vars: Record<string, string>,
-	overwrite: boolean = false
-) {
+function updateCssRule(rule: Rule | AtRule, _vars: Record<string, string>, overwrite: boolean) {
 	const vars = structuredClone(_vars);
 	rule.walkDecls((decl) => {
 		if (!decl.variable) return;

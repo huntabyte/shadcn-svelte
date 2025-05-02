@@ -266,30 +266,25 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	});
 
 	if (Object.keys(cssVars).length > 0) {
+		const overwrite =
+			options.overwrite ||
+			(await p.confirm({
+				message: `There are pending changes to your ${highlight("stylesheet")}. Would you like to ${color.bold.red("apply")} these changes?`,
+			}));
+		if (p.isCancel(overwrite)) cancel();
+
 		// Update the stylesheet
 		tasks.push({
 			title: "Updating stylesheet",
 			async task() {
 				const cssPath = config.resolvedPaths.tailwindCss;
+				const relative = path.relative(cwd, cssPath);
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const updateResult = transformCss(cssSource, cssVars);
-				await fs.writeFile(cssPath, updateResult.css, "utf8");
+				const modifiedCss = transformCss(cssSource, cssVars, { overwrite });
+				await fs.writeFile(cssPath, modifiedCss, "utf8");
 
-				const relative = path.relative(cwd, cssPath);
-				const messages = [];
-
-				if (updateResult.status.updated.length > 0) {
-					messages.push(`Updated: ${updateResult.status.updated.join(", ")}`);
-				}
-				if (updateResult.status.added.length > 0) {
-					messages.push(`Added: ${updateResult.status.added.join(", ")}`);
-				}
-				if (updateResult.status.skipped.length > 0) {
-					messages.push(`Skipped: ${updateResult.status.skipped.join(", ")}`);
-				}
-
-				return `Stylesheet ${highlight(relative)} updated${messages.length > 0 ? `\n${messages.join("\n")}` : ""}`;
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 			},
 		});
 	}
