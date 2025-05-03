@@ -13,9 +13,9 @@ function normalizeURL(url: URL | string): URL {
 		url = new URL(url);
 	}
 
-	if (!url.href.endsWith("/")) {
+	if (!url.pathname.endsWith("/")) {
 		url = new URL(url);
-		url.href += "/";
+		url.pathname = url.pathname + "/";
 	}
 	return url;
 }

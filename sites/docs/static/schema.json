@@ -39,5 +39,5 @@
 			"type": "string"
 		}
 	},
-	"required": ["style", "tailwind", "aliases"]
+	"required": ["tailwind", "aliases"]
 }

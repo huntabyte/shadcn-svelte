@@ -1,0 +1,41 @@
+{
+	"name": "@shadcn-svelte/registry",
+	"version": "0.0.0",
+	"description": "Types, schemas, and utils for the shadcn-svelte registry.",
+	"license": "MIT",
+	"author": {
+		"name": "huntabyte & CokaKoala",
+		"url": "https://twitter.com/huntabyte"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/huntabyte/shadcn-svelte.git",
+		"directory": "packages/registry"
+	},
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"private": true,
+	"files": [
+		"dist/**"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"check": "tsc --noEmit",
+		"release": "changeset version",
+		"test": "vitest"
+	},
+	"peerDependencies": {
+		"valibot": "^1.0.0"
+	},
+	"devDependencies": {
+		"tsup": "^8.4.0"
+	}
+}
