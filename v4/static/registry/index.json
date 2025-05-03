@@ -1,0 +1,457 @@
+[
+	{
+		"name": "accordion",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "accordion.json"
+	},
+	{
+		"name": "alert",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "alert.json"
+	},
+	{
+		"name": "alert-dialog",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "alert-dialog.json"
+	},
+	{
+		"name": "aspect-ratio",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "aspect-ratio.json"
+	},
+	{
+		"name": "avatar",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "avatar.json"
+	},
+	{
+		"name": "badge",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "badge.json"
+	},
+	{
+		"name": "breadcrumb",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "breadcrumb.json"
+	},
+	{
+		"name": "button",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "button.json"
+	},
+	{
+		"name": "calendar",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "calendar.json"
+	},
+	{
+		"name": "card",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "card.json"
+	},
+	{
+		"name": "carousel",
+		"type": "registry:ui",
+		"dependencies": [
+			"embla-carousel-svelte",
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "carousel.json"
+	},
+	{
+		"name": "checkbox",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "checkbox.json"
+	},
+	{
+		"name": "collapsible",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "collapsible.json"
+	},
+	{
+		"name": "command",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"dialog"
+		],
+		"relativeUrl": "command.json"
+	},
+	{
+		"name": "context-menu",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "context-menu.json"
+	},
+	{
+		"name": "data-table",
+		"type": "registry:ui",
+		"dependencies": [],
+		"registryDependencies": [],
+		"relativeUrl": "data-table.json"
+	},
+	{
+		"name": "dialog",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "dialog.json"
+	},
+	{
+		"name": "drawer",
+		"type": "registry:ui",
+		"dependencies": [
+			"vaul-svelte@next",
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "drawer.json"
+	},
+	{
+		"name": "dropdown-menu",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "dropdown-menu.json"
+	},
+	{
+		"name": "form",
+		"type": "registry:ui",
+		"dependencies": [
+			"formsnap",
+			"zod",
+			"sveltekit-superforms",
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button",
+			"label"
+		],
+		"relativeUrl": "form.json"
+	},
+	{
+		"name": "hover-card",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "hover-card.json"
+	},
+	{
+		"name": "input",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "input.json"
+	},
+	{
+		"name": "input-otp",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "input-otp.json"
+	},
+	{
+		"name": "label",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "label.json"
+	},
+	{
+		"name": "menubar",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "menubar.json"
+	},
+	{
+		"name": "pagination",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "pagination.json"
+	},
+	{
+		"name": "popover",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "popover.json"
+	},
+	{
+		"name": "progress",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "progress.json"
+	},
+	{
+		"name": "radio-group",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "radio-group.json"
+	},
+	{
+		"name": "range-calendar",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "range-calendar.json"
+	},
+	{
+		"name": "resizable",
+		"type": "registry:ui",
+		"dependencies": [
+			"paneforge@next",
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "resizable.json"
+	},
+	{
+		"name": "scroll-area",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "scroll-area.json"
+	},
+	{
+		"name": "select",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"separator"
+		],
+		"relativeUrl": "select.json"
+	},
+	{
+		"name": "separator",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "separator.json"
+	},
+	{
+		"name": "sheet",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "sheet.json"
+	},
+	{
+		"name": "sidebar",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"is-mobile",
+			"input",
+			"tooltip",
+			"skeleton",
+			"separator",
+			"button",
+			"sheet"
+		],
+		"relativeUrl": "sidebar.json"
+	},
+	{
+		"name": "skeleton",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "skeleton.json"
+	},
+	{
+		"name": "slider",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "slider.json"
+	},
+	{
+		"name": "sonner",
+		"type": "registry:ui",
+		"dependencies": [
+			"svelte-sonner",
+			"mode-watcher"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "sonner.json"
+	},
+	{
+		"name": "switch",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "switch.json"
+	},
+	{
+		"name": "table",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "table.json"
+	},
+	{
+		"name": "tabs",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "tabs.json"
+	},
+	{
+		"name": "textarea",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "textarea.json"
+	},
+	{
+		"name": "toggle",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "toggle.json"
+	},
+	{
+		"name": "toggle-group",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"toggle"
+		],
+		"relativeUrl": "toggle-group.json"
+	},
+	{
+		"name": "tooltip",
+		"type": "registry:ui",
+		"dependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "tooltip.json"
+	},
+	{
+		"name": "is-mobile",
+		"type": "registry:hook",
+		"dependencies": [],
+		"registryDependencies": [],
+		"relativeUrl": "is-mobile.json"
+	}
+]

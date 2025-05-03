@@ -1,0 +1,28 @@
+{
+	"name": "hover-card",
+	"type": "registry:ui",
+	"dependencies": [
+		"bits-ui"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"name": "hover-card-content.svelte",
+			"content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\talign = \"center\",\n\t\tsideOffset = 4,\n\t\tportalProps,\n\t\t...restProps\n\t}: HoverCardPrimitive.ContentProps & {\n\t\tportalProps?: HoverCardPrimitive.PortalProps;\n\t} = $props();\n</script>\n\n<HoverCardPrimitive.Portal {...portalProps}>\n\t<HoverCardPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"hover-card-content\"\n\t\t{align}\n\t\t{sideOffset}\n\t\tclass={cn(\n\t\t\t\"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 outline-hidden z-50 mt-3 w-64 rounded-md border p-4 shadow-md outline-none\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</HoverCardPrimitive.Portal>\n",
+			"type": "registry:ui",
+			"target": "hover-card/hover-card-content.svelte"
+		},
+		{
+			"name": "hover-card-trigger.svelte",
+			"content": "<script lang=\"ts\">\n\timport { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: HoverCardPrimitive.TriggerProps = $props();\n</script>\n\n<HoverCardPrimitive.Trigger bind:ref data-slot=\"hover-card-trigger\" {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "hover-card/hover-card-trigger.svelte"
+		},
+		{
+			"name": "index.ts",
+			"content": "import { LinkPreview as HoverCardPrimitive } from \"bits-ui\";\nimport Content from \"./hover-card-content.svelte\";\nimport Trigger from \"./hover-card-trigger.svelte\";\n\nconst Root = HoverCardPrimitive.Root;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\tRoot as HoverCard,\n\tContent as HoverCardContent,\n\tTrigger as HoverCardTrigger,\n};\n",
+			"type": "registry:ui",
+			"target": "hover-card/index.ts"
+		}
+	]
+}

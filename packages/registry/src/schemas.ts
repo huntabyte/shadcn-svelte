@@ -26,7 +26,7 @@ const registryItemFileSchema = v.variant("type", [
 	v.object({
 		name: v.string(),
 		content: v.string(),
-		type: v.picklist(registryItemSimpleType),
+		type: v.picklist([...registryItemSimpleType, ...registryItemInternalType]),
 		target: v.optional(v.string()),
 	}),
 	// target is required for registry:file and registry:page
@@ -49,8 +49,7 @@ const baseIndexItemSchema = v.pipe(
 		dependencies: v.optional(v.array(v.string()), []),
 		devDependencies: v.optional(v.array(v.string()), []),
 		registryDependencies: v.optional(v.array(v.string()), []),
-	}),
-	v.transform((item) => ({ ...item, title: item.title ?? item.name }))
+	})
 );
 
 export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
@@ -101,9 +100,18 @@ export const registryItemSchema = v.intersect([
 	}),
 ]);
 
+export type Registry = v.InferOutput<typeof registrySchema>;
 /** Schema for `registry.json` */
 export const registrySchema = v.object({
 	name: v.string(),
 	homepage: v.string(),
-	items: v.array(registryIndexItemSchema),
+	items: v.optional(
+		v.array(
+			v.object({
+				path: v.string(),
+				type: registryItemTypeSchema,
+			})
+		),
+		[]
+	),
 });

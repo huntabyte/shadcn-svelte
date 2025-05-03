@@ -1,0 +1,22 @@
+{
+	"name": "input",
+	"type": "registry:ui",
+	"dependencies": [
+		"bits-ui"
+	],
+	"registryDependencies": [],
+	"files": [
+		{
+			"name": "index.ts",
+			"content": "import Root from \"./input.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Input,\n};\n",
+			"type": "registry:ui",
+			"target": "input/index.ts"
+		},
+		{
+			"name": "input.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes, HTMLInputTypeAttribute } from \"svelte/elements\";\n\timport type { WithElementRef } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype InputType = Exclude<HTMLInputTypeAttribute, \"file\">;\n\n\ttype Props = WithElementRef<\n\t\tOmit<HTMLInputAttributes, \"type\"> &\n\t\t\t({ type: \"file\"; files?: FileList } | { type?: InputType; files?: undefined })\n\t>;\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\ttype,\n\t\tfiles = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if type === \"file\"}\n\t<input\n\t\tbind:this={ref}\n\t\tclass={cn(\n\t\t\t\"selection:bg-primary dark:bg-input/30 selection:text-primary-foreground border-input ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-2 text-sm font-medium outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n\t\t\t\"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]\",\n\t\t\t\"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n\t\t\tclassName\n\t\t)}\n\t\ttype=\"file\"\n\t\tbind:files\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{:else}\n\t<input\n\t\tbind:this={ref}\n\t\tclass={cn(\n\t\t\t\"border-input bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground shadow-xs flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n\t\t\t\"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]\",\n\t\t\t\"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n\t\t\tclassName\n\t\t)}\n\t\t{type}\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{/if}\n",
+			"type": "registry:ui",
+			"target": "input/input.svelte"
+		}
+	]
+}
