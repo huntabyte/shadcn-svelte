@@ -12,7 +12,7 @@
 		"build:cli": "pnpm -F shadcn-svelte build",
 		"build:docs": "pnpm -F docs build",
 		"dev": "pnpm -F docs dev",
-		"dev:cli": "pnpm -F shadcn-svelte start:dev",
+		"dev:cli": "pnpm -F shadcn-svelte svelte-kit sync && pnpm -r --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"check": "pnpm -F docs check",

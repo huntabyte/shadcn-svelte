@@ -1,9 +1,9 @@
 import { parse } from "postcss";
 import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
-import { CssVars } from "./registry/schema.js";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
 import type { Config } from "./get-config.js";
+import type { CssVars } from "@shadcn-svelte/registry";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 

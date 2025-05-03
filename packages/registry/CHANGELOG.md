@@ -1,0 +1,2 @@
+# shadcn-svelte@registry
+

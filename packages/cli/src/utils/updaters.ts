@@ -1,5 +1,5 @@
 import { Declaration, Rule, AtRule, Root } from "postcss";
-import type { CssVars } from "./registry/schema.js";
+import type { CssVars } from "@shadcn-svelte/registry";
 
 const DARK_SELECTOR = ".dark";
 const LIGHT_SELECTOR = ":root";

@@ -6,7 +6,7 @@ import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
-import * as schemas from "./schema.js";
+import * as schemas from "@shadcn-svelte/registry";
 
 export function getRegistryUrl(config: Config) {
 	let url = process.env.COMPONENTS_REGISTRY_URL;
