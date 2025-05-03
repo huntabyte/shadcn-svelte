@@ -38,7 +38,6 @@
 	},
 	"dependencies": {
 		"@clack/core": "^0.3.4",
-		"@shadcn-svelte/registry": "workspace:*",
 		"@svecosystem/strip-types": "^0.0.2",
 		"commander": "^13.1.0",
 		"is-unicode-supported": "^2.0.0",
