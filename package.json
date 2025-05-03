@@ -9,10 +9,10 @@
 	"private": true,
 	"scripts": {
 		"build": "pnpm build:docs",
-		"build:cli": "pnpm -F \"./packages/**\" -r build",
+		"build:cli": "pnpm -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
 		"dev": "pnpm -F docs dev",
-		"dev:cli": "pnpm -F \"./packages/**\" svelte-kit sync && pnpm -r --parallel --reporter append-only --color dev",
+		"dev:cli": "pnpm -F \"./packages/**\" svelte-kit sync && pnpm --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"check": "pnpm -F docs check",
