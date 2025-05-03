@@ -7,7 +7,7 @@
 
 	let { block, children }: { block: RawBlock; children: Snippet } = $props();
 
-	const { isLiftMode } = getLiftMode(block.name);
+	const liftMode = getLiftMode(block.name);
 
 	/**
 	 * Gets the non "lifted" chunks in the block, which we use to apply styles
@@ -75,12 +75,12 @@
 	}
 
 	$effect(() => {
-		updateChunkStyles($isLiftMode);
+		updateChunkStyles(liftMode.current);
 	});
 </script>
 
 {@render children?.()}
-{#if $isLiftMode}
+{#if liftMode.current}
 	<div
 		class="bg-background/90 absolute inset-0 z-30"
 		style="animation-fill-mode: backwards;"

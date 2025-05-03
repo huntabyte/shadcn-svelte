@@ -1,11 +1,10 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { cubicOut } from "svelte/easing";
-import { derived, get, writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
-import { persisted } from "svelte-local-storage-store";
 import type { WithElementRef } from "bits-ui";
 import type {
 	HTMLAnchorAttributes,
@@ -23,6 +22,7 @@ import type {
 } from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
 import { docs } from "$content/index.js";
+import { PersistedState } from "runed";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -243,19 +243,20 @@ export function slugFromPathname(pathname: string) {
 	return pathname.split("/").pop() ?? "";
 }
 
-const liftMode = persisted<string[]>("lift-mode", []);
+const liftMode = new PersistedState<string[]>("lift-mode", []);
 
 export function getLiftMode(name: string) {
 	function toggleLiftMode(name: string) {
-		liftMode.update((prev) => {
-			return prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
-		});
+		const prev = liftMode.current;
+		liftMode.current = prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
 	}
 
-	const isLiftMode = derived(liftMode, ($configStore) => $configStore.includes(name));
+	const isLiftMode = $derived(liftMode.current.includes(name));
 
 	return {
-		isLiftMode,
+		get current() {
+			return isLiftMode;
+		},
 		toggleLiftMode,
 	};
 }

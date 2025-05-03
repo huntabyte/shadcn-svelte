@@ -16,10 +16,10 @@
 	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: ResizablePane } = $props();
 
 	const copier = new CopyToClipboard();
-	const selectedPackageManager = getPackageManager();
+	const agent = getPackageManager();
 
 	const addCommand = $derived(
-		getCommand($selectedPackageManager, "execute", `shadcn-svelte@next add ${block.name}`)
+		getCommand(agent.current, "execute", `shadcn-svelte@next add ${block.name}`)
 	);
 
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));

@@ -1,0 +1,431 @@
+<script lang="ts">
+	import ChartDisplay from "$lib/components/docs/chart-display.svelte";
+	import ChartsNav from "$lib/components/docs/charts-nav.svelte";
+	import ThemesStyle from "$lib/components/docs/themes-style.svelte";
+	import ThemesSwitcher from "$lib/components/docs/themes-switcher.svelte";
+	import ChartAreaAxes from "$lib/registry/block/chart-area-axes.svelte";
+	import ChartAreaDefault from "$lib/registry/block/chart-area-default.svelte";
+	import ChartAreaGradient from "$lib/registry/block/chart-area-gradient.svelte";
+	import ChartAreaIcons from "$lib/registry/block/chart-area-icons.svelte";
+	import ChartAreaInteractive from "$lib/registry/block/chart-area-interactive.svelte";
+	import ChartAreaLegend from "$lib/registry/block/chart-area-legend.svelte";
+	import ChartAreaLinear from "$lib/registry/block/chart-area-linear.svelte";
+	import ChartAreaStackedExpand from "$lib/registry/block/chart-area-stacked-expand.svelte";
+	import ChartAreaStacked from "$lib/registry/block/chart-area-stacked.svelte";
+	import ChartAreaStep from "$lib/registry/block/chart-area-step.svelte";
+	import ChartBarActive from "$lib/registry/block/chart-bar-active.svelte";
+	import ChartBarDefault from "$lib/registry/block/chart-bar-default.svelte";
+	import ChartBarHorizontal from "$lib/registry/block/chart-bar-horizontal.svelte";
+	import ChartBarInteractive from "$lib/registry/block/chart-bar-interactive.svelte";
+	import ChartBarLabelCustom from "$lib/registry/block/chart-bar-label-custom.svelte";
+	import ChartBarLabel from "$lib/registry/block/chart-bar-label.svelte";
+	import ChartBarMixed from "$lib/registry/block/chart-bar-mixed.svelte";
+	import ChartBarMultiple from "$lib/registry/block/chart-bar-multiple.svelte";
+	import ChartBarNegative from "$lib/registry/block/chart-bar-negative.svelte";
+	import ChartBarStacked from "$lib/registry/block/chart-bar-stacked.svelte";
+	import ChartLineDefault from "$lib/registry/block/chart-line-default.svelte";
+	import ChartLineDotsColors from "$lib/registry/block/chart-line-dots-colors.svelte";
+	import ChartLineDotsCustom from "$lib/registry/block/chart-line-dots-custom.svelte";
+	import ChartLineDots from "$lib/registry/block/chart-line-dots.svelte";
+	import ChartLineInteractive from "$lib/registry/block/chart-line-interactive.svelte";
+	import ChartLineLabelCustom from "$lib/registry/block/chart-line-label-custom.svelte";
+	import ChartLineLabel from "$lib/registry/block/chart-line-label.svelte";
+	import ChartLineLinear from "$lib/registry/block/chart-line-linear.svelte";
+	import ChartLineMultiple from "$lib/registry/block/chart-line-multiple.svelte";
+	import ChartLineStep from "$lib/registry/block/chart-line-step.svelte";
+	import ChartPieDonutActive from "$lib/registry/block/chart-pie-donut-active.svelte";
+	import ChartPieDonutText from "$lib/registry/block/chart-pie-donut-text.svelte";
+	import ChartPieDonut from "$lib/registry/block/chart-pie-donut.svelte";
+	import ChartPieInteractive from "$lib/registry/block/chart-pie-interactive.svelte";
+	import ChartPieLabelCustom from "$lib/registry/block/chart-pie-label-custom.svelte";
+	import ChartPieLabelList from "$lib/registry/block/chart-pie-label-list.svelte";
+	import ChartPieLabel from "$lib/registry/block/chart-pie-label.svelte";
+	import ChartPieLegend from "$lib/registry/block/chart-pie-legend.svelte";
+	import ChartPieSimple from "$lib/registry/block/chart-pie-simple.svelte";
+	import ChartPieStacked from "$lib/registry/block/chart-pie-stacked.svelte";
+	import ChartRadarDefault from "$lib/registry/block/chart-radar-default.svelte";
+	import ChartRadarDots from "$lib/registry/block/chart-radar-dots.svelte";
+	import ChartRadarGridCircleFill from "$lib/registry/block/chart-radar-grid-circle-fill.svelte";
+	import ChartRadarGridCircleNoLines from "$lib/registry/block/chart-radar-grid-circle-no-lines.svelte";
+	import ChartRadarGridCircle from "$lib/registry/block/chart-radar-grid-circle.svelte";
+	import ChartRadarGridCustom from "$lib/registry/block/chart-radar-grid-custom.svelte";
+	import ChartRadarGridFill from "$lib/registry/block/chart-radar-grid-fill.svelte";
+	import ChartRadarGridNone from "$lib/registry/block/chart-radar-grid-none.svelte";
+	import ChartRadarIcons from "$lib/registry/block/chart-radar-icons.svelte";
+	import ChartRadarLabelCustom from "$lib/registry/block/chart-radar-label-custom.svelte";
+	import ChartRadarLegend from "$lib/registry/block/chart-radar-legend.svelte";
+	import ChartRadarLinesOnly from "$lib/registry/block/chart-radar-lines-only.svelte";
+	import ChartRadarMultiple from "$lib/registry/block/chart-radar-multiple.svelte";
+	import ChartRadarRadius from "$lib/registry/block/chart-radar-radius.svelte";
+	import ChartRadialGrid from "$lib/registry/block/chart-radial-grid.svelte";
+	import ChartRadialLabel from "$lib/registry/block/chart-radial-label.svelte";
+	import ChartRadialShape from "$lib/registry/block/chart-radial-shape.svelte";
+	import ChartRadialSimple from "$lib/registry/block/chart-radial-simple.svelte";
+	import ChartRadialStacked from "$lib/registry/block/chart-radial-stacked.svelte";
+	import ChartRadialText from "$lib/registry/block/chart-radial-text.svelte";
+	import ChartTooltipAdvanced from "$lib/registry/block/chart-tooltip-advanced.svelte";
+	import ChartTooltipDefault from "$lib/registry/block/chart-tooltip-default.svelte";
+	import ChartTooltipFormatter from "$lib/registry/block/chart-tooltip-formatter.svelte";
+	import ChartTooltipIcons from "$lib/registry/block/chart-tooltip-icons.svelte";
+	import ChartTooltipIndicatorLine from "$lib/registry/block/chart-tooltip-indicator-line.svelte";
+	import ChartTooltipIndicatorNone from "$lib/registry/block/chart-tooltip-indicator-none.svelte";
+	import ChartTooltipLabelCustom from "$lib/registry/block/chart-tooltip-label-custom.svelte";
+	import ChartTooltipLabelFormatter from "$lib/registry/block/chart-tooltip-label-formatter.svelte";
+	import ChartTooltipLabelNone from "$lib/registry/block/chart-tooltip-label-none.svelte";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { THEMES } from "$lib/themes.js";
+</script>
+
+<ChartsNav
+	class="[&>a:first-child]:bg-muted [&>a:first-child]:text-primary mb-4 [&>a:first-child]:font-medium"
+/>
+<div class="grid gap-4">
+	<ThemesStyle />
+	<div class="gap-6 md:flex md:flex-row-reverse">
+		<ThemesSwitcher
+			themes={THEMES}
+			class="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed inset-x-0 bottom-0 z-40 flex backdrop-blur lg:sticky lg:bottom-auto lg:top-20"
+		/>
+		<div class="grid flex-1 gap-12">
+			<h2 class="sr-only">Examples</h2>
+			<div
+				id="examples"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-area-stacked">
+					<ChartAreaStacked />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-multiple">
+					<ChartBarMultiple />
+				</ChartDisplay>
+
+				<ChartDisplay
+					status="Done"
+					name="chart-pie-donut-text"
+					class="[&_[data-chart]]:xl:max-h-[243px]"
+				>
+					<ChartPieDonutText />
+				</ChartDisplay>
+			</div>
+			<Separator />
+			<div
+				id="area-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-area-default">
+					<ChartAreaDefault />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-linear">
+					<ChartAreaLinear />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-step">
+					<ChartAreaStep />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-stacked">
+					<ChartAreaStacked />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-stacked-expand">
+					<ChartAreaStackedExpand />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-legend">
+					<ChartAreaLegend />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Very Close"
+					description="Lacking the support for custom icons because we'd need to have some sort of legend payload we can pass to a custom legend component. I think LayerChart's legend is more than fine for now, especially because those custom icons indicate nothing about the data or how to locate it in the chart."
+					name="chart-area-icons"
+				>
+					<ChartAreaIcons />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-gradient">
+					<ChartAreaGradient />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-area-axes">
+					<ChartAreaAxes />
+				</ChartDisplay>
+
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay status="Done" name="chart-area-interactive">
+						<ChartAreaInteractive />
+					</ChartDisplay>
+				</div>
+			</div>
+			<Separator />
+			<div
+				id="bar-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-bar-default">
+					<ChartBarDefault />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-horizontal">
+					<ChartBarHorizontal />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-multiple">
+					<ChartBarMultiple />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Needs Parity"
+					description="The labels should animate in as well but I'm unsure of how to accomplish that right now."
+					name="chart-bar-label"
+				>
+					<ChartBarLabel />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Done"
+					description="Animation of the labels could be improved."
+					name="chart-bar-label-custom"
+				>
+					<ChartBarLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-mixed">
+					<ChartBarMixed />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-stacked">
+					<ChartBarStacked />
+				</ChartDisplay>
+				<ChartDisplay name="chart-bar-active" status="Done">
+					<ChartBarActive />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-bar-negative">
+					<ChartBarNegative />
+				</ChartDisplay>
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay status="Done" name="chart-bar-interactive">
+						<ChartBarInteractive />
+					</ChartDisplay>
+				</div>
+			</div>
+			<Separator />
+			<div
+				id="line-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-line-default">
+					<ChartLineDefault />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-linear">
+					<ChartLineLinear />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-step">
+					<ChartLineStep />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-multiple">
+					<ChartLineMultiple />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-dots">
+					<ChartLineDots />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-dots-custom">
+					<ChartLineDotsCustom />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Blocked (External)"
+					description="I need Sean's assistance in figuring out how this will even work."
+					name="chart-line-dots-colors"
+				>
+					<ChartLineDotsColors />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-line-label">
+					<ChartLineLabel />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Blocked (External)"
+					description="I need Sean's assistance in figuring out how this will even work."
+					name="chart-line-label-custom"
+				>
+					<ChartLineLabelCustom />
+				</ChartDisplay>
+				<div class="md:col-span-2 lg:col-span-3">
+					<ChartDisplay status="Done" name="chart-line-interactive">
+						<ChartLineInteractive />
+					</ChartDisplay>
+				</div>
+			</div>
+			<Separator />
+			<div
+				id="pie-chart"
+				class="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-pie-simple">
+					<ChartPieSimple />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-separator-none">
+					<ChartPieSimple />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Need little annotation lines."
+					name="chart-pie-label"
+				>
+					<ChartPieLabel />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Blocked (External)"
+					description="Pending the labels prop being exposed on the chart"
+					name="chart-pie-label-custom"
+				>
+					<ChartPieLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-label-list">
+					<ChartPieLabelList />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-legend">
+					<ChartPieLegend />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-donut">
+					<ChartPieDonut />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-donut-active">
+					<ChartPieDonutActive />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-donut-text">
+					<ChartPieDonutText />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-pie-stacked">
+					<ChartPieStacked />
+				</ChartDisplay>
+				<ChartDisplay
+					description="It feels like I am doing something totally wrong in there with the massive amounts of inner and outer radius"
+					status="Needs Sean Review"
+					name="chart-pie-interactive"
+				>
+					<ChartPieInteractive />
+				</ChartDisplay>
+			</div>
+			<Separator />
+			<div
+				id="radar-chart"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay
+					status="Done"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-default"
+				>
+					<ChartRadarDefault />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Done"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-dots"
+				>
+					<ChartRadarDots />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Done"
+					description="How do we increase the tick count without breaking the positioning of this thing?"
+					name="chart-radar-multiple"
+				>
+					<ChartRadarMultiple />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-lines-only">
+					<ChartRadarLinesOnly />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Very Close"
+					description="More flexible text component."
+					name="chart-radar-label-custom"
+				>
+					<ChartRadarLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Needs Parity"
+					description="How do we rotate these tick labels?"
+					name="chart-radar-radius"
+				>
+					<ChartRadarRadius />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-custom">
+					<ChartRadarGridCustom />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-fill">
+					<ChartRadarGridFill />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-none">
+					<ChartRadarGridNone />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-circle">
+					<ChartRadarGridCircle />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-circle-no-lines">
+					<ChartRadarGridCircleNoLines />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-grid-circle-fill">
+					<ChartRadarGridCircleFill />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radar-legend">
+					<ChartRadarLegend />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Needs Parity"
+					description="Need to work on getting a legend payload similar to tooltip payload to render custom legends."
+					name="chart-radar-icons"
+				>
+					<ChartRadarIcons />
+				</ChartDisplay>
+			</div>
+			<Separator />
+			<div
+				id="radial-chart"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-radial-simple">
+					<ChartRadialSimple />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radial-label">
+					<ChartRadialLabel />
+				</ChartDisplay>
+				<ChartDisplay
+					status="Needs Parity"
+					description="First class grid support in ArcChart"
+					name="chart-radial-grid"
+				>
+					<ChartRadialGrid />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radial-text">
+					<ChartRadialText />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radial-shape">
+					<ChartRadialShape />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-radial-stacked">
+					<ChartRadialStacked />
+				</ChartDisplay>
+			</div>
+			<Separator />
+			<div
+				id="tooltip"
+				class="grid flex-1 scroll-mt-20 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+			>
+				<ChartDisplay status="Done" name="chart-tooltip-default">
+					<ChartTooltipDefault />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-indicator-line">
+					<ChartTooltipIndicatorLine />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-indicator-none">
+					<ChartTooltipIndicatorNone />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-label-custom">
+					<ChartTooltipLabelCustom />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-label-formatter">
+					<ChartTooltipLabelFormatter />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-none">
+					<ChartTooltipLabelNone />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-formatter">
+					<ChartTooltipFormatter />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-icons">
+					<ChartTooltipIcons />
+				</ChartDisplay>
+				<ChartDisplay status="Done" name="chart-tooltip-advanced">
+					<ChartTooltipAdvanced />
+				</ChartDisplay>
+			</div>
+		</div>
+	</div>
+</div>

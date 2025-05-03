@@ -1,4 +1,4 @@
-import { persisted } from "svelte-persisted-store";
+import { PersistedState } from "runed";
 
 import type { Theme } from "$lib/registry/themes.js";
 
@@ -7,7 +7,4 @@ type Config = {
 	radius: number;
 };
 
-export const config = persisted<Config>("config", {
-	theme: "zinc",
-	radius: 0.5,
-});
+export const config = new PersistedState<Config>("config", { theme: "zinc", radius: 0.5 });
