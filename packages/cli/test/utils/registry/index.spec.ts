@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import { getItemTargetPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
+// TODO: this is a duplicate of registry.spec.ts so we can probably remove it
+
 const config = {
 	tailwind: {
 		config: "tailwind.config.js",
@@ -66,7 +68,9 @@ describe("getItemTargetPath", () => {
 				config,
 				{
 					name: "label",
+					title: "label",
 					dependencies: ["bits-ui@next"],
+					devDependencies: [],
 					registryDependencies: [],
 					files: [
 						//... snip this since it doesn't matter
@@ -82,8 +86,10 @@ describe("getItemTargetPath", () => {
 		expect(
 			getItemTargetPath(config, {
 				name: "label",
+				title: "label",
 				dependencies: ["bits-ui@next"],
 				registryDependencies: [],
+				devDependencies: [],
 				files: [
 					//... snip this since it doesn't matter
 				],

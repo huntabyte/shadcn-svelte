@@ -1,9 +1,10 @@
-import color from "chalk";
-import { Command } from "commander";
-import { exec } from "tinyexec";
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { existsSync, promises as fs } from "node:fs";
+import color from "chalk";
+import merge from "deepmerge";
+import { Command } from "commander";
+import { exec } from "tinyexec";
 import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
@@ -13,7 +14,7 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
-import { transformContent } from "../utils/transformers.js";
+import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -106,10 +107,11 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
+		title: "utils",
 		type: "registry:ui",
-		files: [],
 		dependencies: [],
 		registryDependencies: [],
+		devDependencies: [],
 		relativeUrl: "",
 	});
 
@@ -191,6 +193,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
+	let cssVars = {};
 	for (const item of payload) {
 		const targetDir = registry.getItemTargetPath(config, item);
 		if (!targetDir) {
@@ -214,8 +217,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					let filePath = path.resolve(targetDir, item.name, file.name);
-
+					let filePath = registry.resolveItemFilePath(config, item, file);
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
 					}
@@ -223,16 +225,20 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
 
-					await fs.writeFile(filePath, content);
+					await fs.writeFile(filePath, content, "utf8");
+				}
+
+				if (item.cssVars) {
+					cssVars = merge(cssVars, item.cssVars);
 				}
 
 				const installedFiles = await fs.readdir(componentDir);
 				const remoteFiles = item.files.map((file) => {
-					if (!config.typescript && file.name.endsWith(".ts")) {
-						return file.name.replace(".ts", ".js");
+					const name = "name" in file ? file.name : path.basename(file.target);
+					if (!config.typescript && name.endsWith(".ts")) {
+						return name.replace(".ts", ".js");
 					}
-
-					return file.name;
+					return name;
 				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))
@@ -277,6 +283,23 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			return `Config file ${highlight("components.json")} updated`;
 		},
 	});
+
+	if (Object.keys(cssVars).length > 0) {
+		// Update the stylesheet
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				const cssPath = config.resolvedPaths.tailwindCss;
+				const cssSource = await fs.readFile(cssPath, "utf8");
+
+				const modifiedCss = transformCss(cssSource, cssVars);
+				await fs.writeFile(cssPath, modifiedCss, "utf8");
+
+				const relative = path.relative(cwd, cssPath);
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 

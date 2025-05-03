@@ -170,11 +170,8 @@ export const Index = {
 				...item,
 				// The `default` style uses `@lucide/svelte`, so we'll discard it for the purposes of the index
 				dependencies: item.dependencies.filter((dep) => dep !== "@lucide/svelte"),
-				// We only want the relative file paths
-				files: item.files.map((file) => ({
-					path: file.path,
-					type: "registry:ui",
-				})),
+				// We don't care about files in the index
+				files: undefined,
 				// Registry item's endpoint, relative to the registry's index
 				relativeUrl: relativeUrlPath,
 			};
