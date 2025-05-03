@@ -46,6 +46,7 @@
 		"postcss": "^8.4.39"
 	},
 	"devDependencies": {
+		"@shadcn-svelte/registry": "workspace:*",
 		"@types/node": "^18.19.22",
 		"@types/semver": "^7.5.8",
 		"chalk": "^5.4.0",

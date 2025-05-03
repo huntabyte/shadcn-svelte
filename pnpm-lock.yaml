@@ -84,6 +84,9 @@ importers:
         specifier: ^8.4.39
         version: 8.5.3
     devDependencies:
+      '@shadcn-svelte/registry':
+        specifier: workspace:*
+        version: link:../registry
       '@types/node':
         specifier: ^18.19.22
         version: 18.19.22
