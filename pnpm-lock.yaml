@@ -65,9 +65,6 @@ importers:
       '@clack/core':
         specifier: ^0.3.4
         version: 0.3.4
-      '@shadcn-svelte/registry':
-        specifier: workspace:*
-        version: link:../registry
       '@svecosystem/strip-types':
         specifier: ^0.0.2
         version: 0.0.2
@@ -84,6 +81,9 @@ importers:
         specifier: ^8.4.39
         version: 8.5.3
     devDependencies:
+      '@shadcn-svelte/registry':
+        specifier: workspace:*
+        version: link:../registry
       '@types/node':
         specifier: ^18.19.22
         version: 18.19.22
