@@ -26,7 +26,7 @@
 		}
 	},
 	"scripts": {
-		"dev": "tsup --watch",
+		"dev": "tsup --watch --sourcemap",
 		"build": "tsup",
 		"check": "tsc --noEmit",
 		"release": "changeset version",

@@ -45,9 +45,9 @@ const baseIndexItemSchema = v.object({
 		v.pipe(v.string(), v.minLength(2, "Author name must be at least 2 characters"))
 	),
 	description: v.optional(v.string()),
-	dependencies: v.optional(v.array(v.string()), []),
-	devDependencies: v.optional(v.array(v.string()), []),
-	registryDependencies: v.optional(v.array(v.string()), []),
+	dependencies: v.optional(v.array(v.string())),
+	devDependencies: v.optional(v.array(v.string())),
+	registryDependencies: v.optional(v.array(v.string())),
 });
 
 export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
