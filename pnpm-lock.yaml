@@ -431,6 +431,9 @@ importers:
       valibot:
         specifier: ^1.0.0
         version: 1.0.0(typescript@5.8.2)
+      vaul-svelte:
+        specifier: 1.0.0-next.7
+        version: 1.0.0-next.7(svelte@5.28.2)
       vite:
         specifier: ^6.2.5
         version: 6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)
@@ -9694,6 +9697,11 @@ snapshots:
       esm-env: 1.2.2
       svelte: 5.28.2
 
+  runed@0.23.4(svelte@5.25.3):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.25.3
+
   runed@0.23.4(svelte@5.28.2):
     dependencies:
       esm-env: 1.2.2
@@ -10415,9 +10423,15 @@ snapshots:
 
   vaul-svelte@1.0.0-next.7(svelte@5.25.3):
     dependencies:
-      runed: 0.23.3(svelte@5.25.3)
+      runed: 0.23.4(svelte@5.25.3)
       svelte: 5.25.3
       svelte-toolbelt: 0.7.1(svelte@5.25.3)
+
+  vaul-svelte@1.0.0-next.7(svelte@5.28.2):
+    dependencies:
+      runed: 0.23.4(svelte@5.28.2)
+      svelte: 5.28.2
+      svelte-toolbelt: 0.7.1(svelte@5.28.2)
 
   velite@0.2.0:
     dependencies:
