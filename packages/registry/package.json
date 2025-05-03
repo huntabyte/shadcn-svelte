@@ -26,13 +26,13 @@
 		}
 	},
 	"scripts": {
-		"dev": "tsup --watch --sourcemap",
-		"build": "tsup --minify",
+		"dev": "tsup --watch",
+		"build": "tsup",
 		"check": "tsc --noEmit",
 		"release": "changeset version",
 		"test": "vitest"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"valibot": "^1.0.0"
 	},
 	"devDependencies": {
