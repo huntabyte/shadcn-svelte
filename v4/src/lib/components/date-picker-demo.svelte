@@ -1,8 +1,9 @@
 <script lang="ts">
-	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import type { DateRange } from "bits-ui";
-	import { cn } from "$lib/utils.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import DatePickerSimple from "./date-picker-simple.svelte";
+	import DatePickerWithRange from "./date-picker-with-range.svelte";
 </script>
+
+<div class="flex flex-col items-start gap-4 md:flex-row">
+	<DatePickerSimple />
+	<DatePickerWithRange />
+</div>

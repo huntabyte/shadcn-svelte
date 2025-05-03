@@ -3,10 +3,13 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
-	import type { DateValue } from "@internationalized/date";
+	import { DateFormatter, getLocalTimeZone, type DateValue } from "@internationalized/date";
 	import { cn } from "$lib/utils.js";
 
 	let value = $state<DateValue | undefined>();
+	const df = new DateFormatter("en-US", {
+		dateStyle: "long",
+	});
 </script>
 
 <Popover.Root>
@@ -22,7 +25,7 @@
 			>
 				<CalendarIcon class="text-muted-foreground" />
 				{#if value}
-					{value}
+					{df.format(value.toDate(getLocalTimeZone()))}
 				{:else}
 					<span> Pick a date </span>
 				{/if}

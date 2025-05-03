@@ -14,6 +14,7 @@ import SubTrigger from "./dropdown-menu-sub-trigger.svelte";
 
 const Sub = DropdownMenuPrimitive.Sub;
 const Root = DropdownMenuPrimitive.Root;
+const Portal = DropdownMenuPrimitive.Portal;
 
 export {
 	CheckboxItem,
@@ -32,6 +33,7 @@ export {
 	SubContent as DropdownMenuSubContent,
 	SubTrigger as DropdownMenuSubTrigger,
 	Trigger as DropdownMenuTrigger,
+	Portal as DropdownMenuPortal,
 	Group,
 	Item,
 	Label,
@@ -44,4 +46,5 @@ export {
 	SubContent,
 	SubTrigger,
 	Trigger,
+	Portal,
 };
