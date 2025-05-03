@@ -33,7 +33,7 @@
 	defaultTheme={data.activeTheme ?? "default"}
 	{themeColors}
 	darkClassNames={["dark", ...themeClassNames]}
-	lightClassNames={[...themeClassNames]}
+	lightClassNames={["light", ...themeClassNames]}
 />
 
 {@render children()}

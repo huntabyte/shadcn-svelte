@@ -267,8 +267,46 @@ async function crawlHook(rootPath: string) {
 	return registry;
 }
 
+// TODO: this isn't being used yet, but this will be used to gather all the files for the lib
+// folder once I work out how to get the registry index setup to depend on utils and whatnot
+async function _crawlLib(rootPath: string) {
+	const type = `registry:lib` as const;
+
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
+
+	const registry: Registry = [];
+
+	for (const dirent of dir) {
+		if (!dirent.isFile()) continue;
+
+		const [name] = dirent.name.split(".svelte.ts");
+
+		const filepath = path.join(rootPath, dirent.name);
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const relativePath = path.join("lib", dirent.name);
+
+		const file = {
+			name: dirent.name,
+			content: source,
+			path: relativePath,
+			target: dirent.name,
+			type,
+		};
+		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
+
+		registry.push({
+			name,
+			type,
+			files: [file],
+			registryDependencies: Array.from(registryDependencies),
+			dependencies: Array.from(dependencies),
+		});
+	}
+
+	return registry;
+}
+
 async function getFileDependencies(filename: string, sourceCode: string) {
-	console.log("getting file dependencies", filename);
 	let ast: unknown;
 	let moduleAst: unknown;
 

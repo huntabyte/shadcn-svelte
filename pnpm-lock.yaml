@@ -346,6 +346,9 @@ importers:
 
   v4:
     dependencies:
+      '@internationalized/date':
+        specifier: ^3.5.6
+        version: 3.5.6
       svelte-sonner:
         specifier: ^0.3.28
         version: 0.3.28(svelte@5.28.2)
