@@ -37,20 +37,18 @@ const registryItemFileSchema = v.variant("type", [
 	}),
 ]);
 
-const baseIndexItemSchema = v.pipe(
-	v.object({
-		name: v.string(),
-		title: v.optional(v.string()),
-		type: registryItemTypeSchema,
-		author: v.optional(
-			v.pipe(v.string(), v.minLength(2, "Author name must be at least 2 characters"))
-		),
-		description: v.optional(v.string()),
-		dependencies: v.optional(v.array(v.string()), []),
-		devDependencies: v.optional(v.array(v.string()), []),
-		registryDependencies: v.optional(v.array(v.string()), []),
-	})
-);
+const baseIndexItemSchema = v.object({
+	name: v.string(),
+	title: v.optional(v.string()),
+	type: registryItemTypeSchema,
+	author: v.optional(
+		v.pipe(v.string(), v.minLength(2, "Author name must be at least 2 characters"))
+	),
+	description: v.optional(v.string()),
+	dependencies: v.optional(v.array(v.string()), []),
+	devDependencies: v.optional(v.array(v.string()), []),
+	registryDependencies: v.optional(v.array(v.string()), []),
+});
 
 export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
 /** Schema for registry items defined in the index */
