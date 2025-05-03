@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "pnpm build:registry && vite dev",
 		"build": "vite build",
 		"build:registry": "tsx ./src/scripts/build-registry.ts",
 		"preview": "vite preview",
@@ -22,7 +22,6 @@
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/lodash.template": "^4.5.3",
 		"acorn": "^8.13.0",
-		"acorn-typescript": "^1.4.13",
 		"bits-ui": "^1.4.3",
 		"clsx": "^2.1.1",
 		"estree-walker": "^3.0.3",

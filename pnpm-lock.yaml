@@ -377,9 +377,6 @@ importers:
       acorn:
         specifier: ^8.13.0
         version: 8.14.1
-      acorn-typescript:
-        specifier: ^1.4.13
-        version: 1.4.13(acorn@8.14.1)
       bits-ui:
         specifier: ^1.4.3
         version: 1.4.3(svelte@5.28.2)
