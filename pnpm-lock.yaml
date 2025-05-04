@@ -350,8 +350,8 @@ importers:
         specifier: ^3.5.6
         version: 3.5.6
       svelte-sonner:
-        specifier: ^0.3.28
-        version: 0.3.28(svelte@5.28.2)
+        specifier: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73
+        version: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2)
     devDependencies:
       '@lucide/svelte':
         specifier: ^0.482.0
@@ -4663,6 +4663,12 @@ packages:
     resolution: {integrity: sha512-K3AmlySeFifF/cKgsYNv5uXqMVNln0NBAacOYgmkQStLa/UoU0LhfAACU6Gr+YYC8bOCHdVmFNoKuDbMEsppJg==}
     peerDependencies:
       svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
+
+  svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73:
+    resolution: {tarball: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73}
+    version: 0.3.26
+    peerDependencies:
+      svelte: ^5.0.0
 
   svelte-toolbelt@0.5.0:
     resolution: {integrity: sha512-t3tenZcnfQoIeRuQf/jBU7bvTeT3TGkcEE+1EUr5orp0lR7NEpprflpuie3x9Dn0W9nOKqs3HwKGJeeN5Ok1sQ==}
@@ -9975,7 +9981,7 @@ snapshots:
     dependencies:
       svelte: 5.25.3
 
-  svelte-sonner@0.3.28(svelte@5.28.2):
+  svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2):
     dependencies:
       svelte: 5.28.2
 
