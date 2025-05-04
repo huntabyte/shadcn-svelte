@@ -45,6 +45,6 @@
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.5.6",
-		"svelte-sonner": "^0.3.28"
+		"svelte-sonner": "https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73"
 	}
 }

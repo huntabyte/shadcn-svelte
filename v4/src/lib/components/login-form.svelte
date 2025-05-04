@@ -75,7 +75,7 @@
 						</Button>
 					</div>
 					<div class="text-center text-sm">
-						Don&apos;t have an account?{" "}
+						Don&apos;t have an account?
 						<a href="##" class="underline underline-offset-4"> Sign up </a>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 	<div
 		class="text-muted-foreground *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4 text-balance text-center text-xs"
 	>
-		By clicking continue, you agree to our <a href="##">Terms of Service</a>{" "}
+		By clicking continue, you agree to our <a href="##">Terms of Service</a>
 		and <a href="##">Privacy Policy</a>.
 	</div>
 </div>

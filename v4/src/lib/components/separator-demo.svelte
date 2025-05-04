@@ -3,12 +3,12 @@
 </script>
 
 <div>
-	<div class="space-y-1">
-		<h4 class="text-sm font-medium leading-none">Bits UI Primitives</h4>
-		<p class="text-muted-foreground text-sm">An open-source UI component library.</p>
+	<div class="flex flex-col gap-1">
+		<div class="text-sm font-medium leading-none">Tailwind CSS</div>
+		<div class="text-muted-foreground text-sm">A utility-first CSS framework.</div>
 	</div>
 	<Separator class="my-4" />
-	<div class="flex h-5 items-center space-x-4 text-sm">
+	<div class="flex h-5 items-center gap-4 text-sm">
 		<div>Blog</div>
 		<Separator orientation="vertical" />
 		<div>Docs</div>

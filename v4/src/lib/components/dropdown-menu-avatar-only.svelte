@@ -20,7 +20,7 @@
 			</Button>
 		{/snippet}
 	</DropdownMenu.Trigger>
-	<DropdownMenu.Content class="w-(--radix-dropdown-menu-trigger-width) min-w-56" align="start">
+	<DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width) min-w-56" align="start">
 		<DropdownMenu.Label class="p-0 font-normal">
 			<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 				<Avatar.Root>

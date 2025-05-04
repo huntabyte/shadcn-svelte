@@ -54,7 +54,7 @@
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
-	<Popover.Content class="w-(--radix-popover-trigger-width) p-0">
+	<Popover.Content class="w-(--bits-popover-anchor-width) p-0">
 		<Command.Root>
 			<Command.Input placeholder="Search user..." />
 			<Command.List>
