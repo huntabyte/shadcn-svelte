@@ -74,7 +74,7 @@
 									(f) => f.value === framework.value
 								)}
 							>
-								<CheckIcon className="size-3.5 text-current" />
+								<CheckIcon class="size-3.5 text-current" />
 							</div>
 							{framework.label}
 						</Command.Item>

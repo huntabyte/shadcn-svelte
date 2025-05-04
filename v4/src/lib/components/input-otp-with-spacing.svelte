@@ -10,8 +10,8 @@
 			<InputOTP.Group
 				class="gap-2 *:data-[slot=input-otp-slot]:rounded-md *:data-[slot=input-otp-slot]:border"
 			>
-				{#each cells.slice(0, 3) as cell (cell)}
-					<InputOTP.Slot {cell} />
+				{#each cells.slice(0, 4) as cell (cell)}
+					<InputOTP.Slot {cell} aria-invalid="true" />
 				{/each}
 			</InputOTP.Group>
 		{/snippet}

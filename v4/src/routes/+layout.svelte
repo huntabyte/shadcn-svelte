@@ -1,6 +1,8 @@
 <script lang="ts">
 	import "../app.css";
-	import { ModeWatcher, setTheme } from "mode-watcher";
+	import { mode, ModeWatcher, setTheme } from "mode-watcher";
+	import { untrack } from "svelte";
+	import Sonner from "$lib/registry/ui/sonner/sonner.svelte";
 
 	let { children, data } = $props();
 
@@ -22,8 +24,10 @@
 
 	$effect.pre(() => {
 		const theme = data.activeTheme ?? "default";
-		setTheme(theme);
-		document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${window.location.protocol === "https:" ? "Secure;" : ""}`;
+		untrack(() => {
+			setTheme(theme);
+			document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${window.location.protocol === "https:" ? "Secure;" : ""}`;
+		});
 	});
 </script>
 
@@ -35,5 +39,6 @@
 	darkClassNames={["dark", ...themeClassNames]}
 	lightClassNames={["light", ...themeClassNames]}
 />
+<Sonner theme={mode.current} />
 
 {@render children()}

@@ -33,10 +33,12 @@
 	</div>
 	<Tooltip.Root>
 		<Tooltip.Trigger>
-			<Button variant="ghost" size="icon">
-				<InfoIcon />
-				<span class="sr-only">Info</span>
-			</Button>
+			{#snippet child({ props })}
+				<Button variant="ghost" size="icon" {...props}>
+					<InfoIcon />
+					<span class="sr-only">Info</span>
+				</Button>
+			{/snippet}
 		</Tooltip.Trigger>
 		<Tooltip.Content>
 			To learn more about how this works, check out the docs. If you have any questions,

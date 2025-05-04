@@ -386,6 +386,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-svelte:
+        specifier: 8.1.6
+        version: 8.1.6(svelte@5.28.2)
       estree-walker:
         specifier: ^3.0.3
         version: 3.0.3
@@ -396,8 +399,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       mode-watcher:
-        specifier: ^1.0.4
-        version: 1.0.4(svelte@5.28.2)
+        specifier: ^1.0.5
+        version: 1.0.5(svelte@5.28.2)
       paneforge:
         specifier: 1.0.0-next.5
         version: 1.0.0-next.5(svelte@5.28.2)
@@ -3878,8 +3881,8 @@ packages:
     peerDependencies:
       svelte: ^5.27.0
 
-  mode-watcher@1.0.4:
-    resolution: {integrity: sha512-Jrz6/fXtJur5GAvJHSZ2cRPgBAIJ044sldEazydp+jc00qNXLc/BIGOSCNAu28JY1yxvZXeM6ye9iFqS8te9qQ==}
+  mode-watcher@1.0.5:
+    resolution: {integrity: sha512-HRURoPayaI+5Wv7OeRZ0P+Y1MjeQixdy2aC4lfnxtZdxfRSU5XIVQvqWqkkN9Bxtz8RHM6I3AaZKD7ZS1z1sBQ==}
     peerDependencies:
       svelte: ^5.27.0
 
@@ -7662,6 +7665,12 @@ snapshots:
       embla-carousel-reactive-utils: 8.1.6(embla-carousel@8.1.6)
       svelte: 5.25.3
 
+  embla-carousel-svelte@8.1.6(svelte@5.28.2):
+    dependencies:
+      embla-carousel: 8.1.6
+      embla-carousel-reactive-utils: 8.1.6(embla-carousel@8.1.6)
+      svelte: 5.28.2
+
   embla-carousel@8.1.6: {}
 
   emoji-regex@8.0.0: {}
@@ -9142,7 +9151,7 @@ snapshots:
       svelte: 5.25.3
       svelte-toolbelt: 0.7.1(svelte@5.25.3)
 
-  mode-watcher@1.0.4(svelte@5.28.2):
+  mode-watcher@1.0.5(svelte@5.28.2):
     dependencies:
       runed: 0.25.0(svelte@5.28.2)
       svelte: 5.28.2

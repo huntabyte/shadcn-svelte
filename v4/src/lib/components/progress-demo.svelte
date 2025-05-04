@@ -4,7 +4,7 @@
 	let progress = $state(13);
 
 	$effect(() => {
-		const timer = setTimeout(() => 66, 500);
+		const timer = setTimeout(() => (progress = 66), 500);
 		return () => clearTimeout(timer);
 	});
 </script>

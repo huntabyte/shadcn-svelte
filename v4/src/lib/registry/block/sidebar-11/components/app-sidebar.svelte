@@ -98,7 +98,7 @@
 				<Collapsible.Trigger>
 					{#snippet child({ props })}
 						<Sidebar.MenuButton {...props}>
-							<ChevronRight className="transition-transform" />
+							<ChevronRight class="transition-transform" />
 							<Folder />
 							{name}
 						</Sidebar.MenuButton>
