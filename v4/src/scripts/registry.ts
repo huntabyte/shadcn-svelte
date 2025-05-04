@@ -38,9 +38,9 @@ export async function buildRegistry() {
 	const registry: Registry = [];
 
 	const uiPath = path.resolve(registryRootPath, "ui");
-	const examplePath = path.resolve(registryRootPath, "example");
-	const blockPath = path.resolve(registryRootPath, "block");
-	const hookPath = path.resolve(registryRootPath, "hook");
+	const examplePath = path.resolve(registryRootPath, "examples");
+	const blockPath = path.resolve(registryRootPath, "blocks");
+	const hookPath = path.resolve(registryRootPath, "hooks");
 
 	const [ui, example, block, hook] = await Promise.all([
 		crawlUI(uiPath),
@@ -124,7 +124,7 @@ async function crawlExample(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("example", dirent.name);
+		const relativePath = path.join("examples", dirent.name);
 
 		const file = {
 			name: dirent.name,
@@ -207,7 +207,7 @@ async function crawlBlock(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("example", dirent.name);
+		const relativePath = path.join("examples", dirent.name);
 
 		const file = {
 			name: dirent.name,

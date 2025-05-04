@@ -59,7 +59,7 @@ export const Blocks = {
 		if (block.type !== "registry:block") continue;
 
 		const isDir = !fs.existsSync(
-			path.resolve("src", "lib", "registry", "block", `${block.name}.svelte`)
+			path.resolve("src", "lib", "registry", "blocks", `${block.name}.svelte`)
 		);
 		const blockFile = isDir ? `${block.name}/+page.svelte` : `${block.name}.svelte`;
 
@@ -67,8 +67,8 @@ export const Blocks = {
 	"${block.name}": {
 		name: "${block.name}",
 		type: "${block.type}",
-		component: () => import("../lib/registry/block/${blockFile}").then((m) => m.default),
-		raw: () => import("../lib/registry/block/${blockFile}?raw").then((m) => m.default),
+		component: () => import("../lib/registry/blocks/${blockFile}").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/${blockFile}?raw").then((m) => m.default),
 	},`;
 	}
 

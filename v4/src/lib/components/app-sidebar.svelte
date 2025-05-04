@@ -9,8 +9,8 @@
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import SquareTerminalIcon from "@lucide/svelte/icons/square";
 
-	import NavUser from "$lib/registry/block/sidebar-07/components/nav-user.svelte";
-	import TeamSwitcher from "$lib/registry/block/sidebar-07/components/team-switcher.svelte";
+	import NavUser from "$lib/registry/blocks/sidebar-07/components/nav-user.svelte";
+	import TeamSwitcher from "$lib/registry/blocks/sidebar-07/components/team-switcher.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
