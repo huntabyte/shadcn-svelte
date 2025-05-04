@@ -39,7 +39,7 @@
 	/>
 	<RangeCalendar
 		bind:value={rangeTwo}
-		class="@4xl:flex hidden rounded-md border shadow-sm [&>div]:gap-5"
+		class="rounded-md border shadow-sm [&>div]:gap-5"
 		placeholder={rangeTwo?.start}
 		numberOfMonths={3}
 	/>

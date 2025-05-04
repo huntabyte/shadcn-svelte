@@ -46,6 +46,7 @@
 	import ToggleDemo from "$lib/components/toggle-demo.svelte";
 	import ToggleGroupDemo from "$lib/components/toggle-group-demo.svelte";
 	import TooltipDemo from "$lib/components/tooltip-demo.svelte";
+	import RangeCalendarDemo from "$lib/components/range-calendar-demo.svelte";
 </script>
 
 <div class="@container grid flex-1 gap-4 p-4">
@@ -144,6 +145,9 @@
 	</ComponentWrapper>
 	<ComponentWrapper name="radio-group" status="done">
 		<RadioGroupDemo />
+	</ComponentWrapper>
+	<ComponentWrapper name="range-calendar" status="needs parity">
+		<RangeCalendarDemo />
 	</ComponentWrapper>
 	<ComponentWrapper name="resizable" status="done">
 		<ResizableDemo />
