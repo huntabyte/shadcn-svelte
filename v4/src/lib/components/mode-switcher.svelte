@@ -6,10 +6,10 @@
 </script>
 
 <Button variant="outline" size="icon" class="group/toggle size-8" onclick={toggleMode}>
-	{#if mode.current === "light"}
-		<SunIcon class="hidden [html.dark_&]:block" />
+	{#if mode.current === "dark"}
+		<SunIcon />
 	{:else}
-		<MoonIcon class="hidden [html.light_&]:block" />
+		<MoonIcon />
 	{/if}
 	<span class="sr-only">Toggle theme</span>
 </Button>
