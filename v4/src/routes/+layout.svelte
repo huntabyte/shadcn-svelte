@@ -6,7 +6,7 @@
 
 	let { children, data } = $props();
 
-	const isScaled = $derived(data.activeTheme?.endsWith("-scaled"));
+	const isScaled = $derived(data.activeTheme?.endsWith("scaled"));
 
 	const themeColors = {
 		light: "#ffffff",

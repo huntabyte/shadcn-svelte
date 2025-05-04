@@ -343,7 +343,8 @@
 	}
 }
 
-[data-theme="scaled"] {
+[data-theme="scaled"],
+.theme-scaled {
 	@media (min-width: 1024px) {
 		--radius: 0.6rem;
 		--text-lg: 1.05rem;
