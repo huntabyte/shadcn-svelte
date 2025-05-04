@@ -1,11 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
-
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
-
-@import "./themes.css";
 
 :root {
 	--radius: 0.625rem;
@@ -75,6 +71,8 @@
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.439 0 0);
 }
+
+@import "./themes.css";
 
 @theme inline {
 	--radius-sm: calc(var(--radius) - 4px);

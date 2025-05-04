@@ -1,4 +1,4 @@
-.theme-stone {
+[data-theme="stone"] {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.147 0.004 49.25);
@@ -32,7 +32,7 @@
 	--sidebar-border: oklch(0.923 0.003 48.717);
 	--sidebar-ring: oklch(0.709 0.01 56.259);
 
-	@variant dark {
+	&:where(.dark) {
 		--background: oklch(0.147 0.004 49.25);
 		--foreground: oklch(0.985 0.001 106.423);
 		--card: oklch(0.216 0.006 56.043);
@@ -67,7 +67,7 @@
 	}
 }
 
-.theme-zinc {
+[data-theme="zinc"] {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.141 0.005 285.823);
@@ -101,7 +101,7 @@
 	--sidebar-border: oklch(0.92 0.004 286.32);
 	--sidebar-ring: oklch(0.705 0.015 286.067);
 
-	@variant dark {
+	&:where(.dark) {
 		--background: oklch(0.141 0.005 285.823);
 		--foreground: oklch(0.985 0 0);
 		--card: oklch(0.21 0.006 285.885);
@@ -136,7 +136,7 @@
 	}
 }
 
-.theme-neutral {
+[data-theme="neutral"] {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
@@ -170,7 +170,7 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 
-	@variant dark {
+	&:where(.dark) {
 		--background: oklch(0.145 0 0);
 		--foreground: oklch(0.985 0 0);
 		--card: oklch(0.205 0 0);
@@ -205,7 +205,7 @@
 	}
 }
 
-.theme-gray {
+[data-theme="gray"] {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.13 0.028 261.692);
@@ -239,7 +239,7 @@
 	--sidebar-border: oklch(0.928 0.006 264.531);
 	--sidebar-ring: oklch(0.707 0.022 261.325);
 
-	@variant dark {
+	&:where(.dark) {
 		--background: oklch(0.13 0.028 261.692);
 		--foreground: oklch(0.985 0.002 247.839);
 		--card: oklch(0.21 0.034 264.665);
@@ -274,7 +274,7 @@
 	}
 }
 
-.theme-slate {
+[data-theme="slate"] {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.129 0.042 264.695);
@@ -308,7 +308,7 @@
 	--sidebar-border: oklch(0.929 0.013 255.508);
 	--sidebar-ring: oklch(0.704 0.04 256.788);
 
-	@variant dark {
+	&:where(.dark) {
 		--background: oklch(0.129 0.042 264.695);
 		--foreground: oklch(0.984 0.003 247.858);
 		--card: oklch(0.208 0.042 265.755);
@@ -343,7 +343,7 @@
 	}
 }
 
-.theme-scaled {
+[data-theme="scaled"] {
 	@media (min-width: 1024px) {
 		--radius: 0.6rem;
 		--text-lg: 1.05rem;
