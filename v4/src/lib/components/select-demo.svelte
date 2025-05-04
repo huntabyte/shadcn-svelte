@@ -1,5 +1,10 @@
 <script lang="ts">
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import LineChartIcon from "@lucide/svelte/icons/line-chart";
+	import BarChartIcon from "@lucide/svelte/icons/bar-chart";
+	import PieChartIcon from "@lucide/svelte/icons/pie-chart";
+	import CircleDashedIcon from "@lucide/svelte/icons/circle-dashed";
+	import type { Component } from "svelte";
 
 	const fruits = [
 		{ value: "apple", label: "Apple" },
@@ -22,6 +27,28 @@
 	);
 
 	const largeListLabel = $derived(largeListValue ? `Item ${largeListValue}` : "Large List");
+
+	type ChartItem = {
+		value: string;
+		label: string;
+		icon: Component;
+	};
+
+	const charts: ChartItem[] = [
+		{ value: "line", label: "Line", icon: LineChartIcon },
+		{ value: "bar", label: "Bar", icon: BarChartIcon },
+		{ value: "pie", label: "Pie", icon: PieChartIcon },
+	];
+
+	let chartValue = $state("");
+
+	const activeChart: ChartItem = $derived(
+		charts.find((c) => c.value === chartValue) ?? {
+			label: "With Icon",
+			icon: CircleDashedIcon,
+			value: "",
+		}
+	);
 </script>
 
 <Select.Root type="single" name="favoriteFruit" bind:value={fruitValue}>
@@ -76,3 +103,21 @@
 		</Select.Group>
 	</Select.Content>
 </Select.Root>
+
+<Select.Root type="single" name="favoriteChart" bind:value={chartValue}>
+	<Select.Trigger class="w-[180px]">
+		{@render SelectIconItemContent(activeChart)}
+	</Select.Trigger>
+	<Select.Content>
+		{#each charts as chart (chart.value)}
+			<Select.Item value={chart.value}>
+				{@render SelectIconItemContent(chart)}
+			</Select.Item>
+		{/each}
+	</Select.Content>
+</Select.Root>
+
+{#snippet SelectIconItemContent(item: ChartItem)}
+	<item.icon />
+	{item.label}
+{/snippet}

@@ -23,6 +23,6 @@
 		"size-7 bg-transparent p-0 opacity-50 hover:opacity-100 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		className
 	)}
-	children={children || Fallback}
+	children={children ?? Fallback}
 	{...restProps}
 />

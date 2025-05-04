@@ -155,7 +155,7 @@
 	<ComponentWrapper name="scroll-area" status="done">
 		<ScrollAreaDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="select" status="in progress">
+	<ComponentWrapper name="select" status="done">
 		<SelectDemo />
 	</ComponentWrapper>
 	<ComponentWrapper name="separator" status="done">

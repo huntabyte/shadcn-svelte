@@ -24,6 +24,8 @@
 	)}
 	{...restProps}
 >
-	{@render children?.()}
+	<span data-slot="select-value">
+		{@render children?.()}
+	</span>
 	<ChevronDown class="size-4 opacity-50" />
 </SelectPrimitive.Trigger>
