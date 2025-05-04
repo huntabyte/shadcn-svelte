@@ -132,7 +132,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			options: existingComponents.map((component) => ({
 				label: component.name,
 				value: component,
-				hint: component.registryDependencies
+				hint: component.registryDependencies?.length
 					? `also updates: ${component.registryDependencies.join(", ")}`
 					: undefined,
 			})),
