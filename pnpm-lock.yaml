@@ -353,6 +353,9 @@ importers:
         specifier: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73
         version: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2)
     devDependencies:
+      '@layerstack/utils':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@lucide/svelte':
         specifier: ^0.482.0
         version: 0.482.0(svelte@5.28.2)
@@ -374,6 +377,12 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.0.15(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4))
+      '@types/d3-scale':
+        specifier: ^4.0.8
+        version: 4.0.8
+      '@types/d3-shape':
+        specifier: ^3.1.7
+        version: 3.1.7
       '@types/lodash.template':
         specifier: ^4.5.3
         version: 4.5.3
@@ -386,6 +395,12 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      d3-scale:
+        specifier: ^4.0.2
+        version: 4.0.2
+      d3-shape:
+        specifier: ^3.2.0
+        version: 3.2.0
       embla-carousel-svelte:
         specifier: 8.1.6
         version: 8.1.6(svelte@5.28.2)
@@ -1465,6 +1480,9 @@ packages:
   '@layerstack/tailwind@2.0.0-next.2':
     resolution: {integrity: sha512-ApSF+4CqczFS7rqPJ7aEOaloEPageatc1je/K6cj7nO8IPZJqynGBkQ5sJ0M5DrGDJr7x9qmfLE842oCszh6ZA==}
 
+  '@layerstack/utils@1.0.0':
+    resolution: {integrity: sha512-kIH8lo4MEzPGtdxQRacy8RsSVhMQwe62ckuev62xQDE5QcUJ4wB9EMaRWaQK8CfEOpUERGPgkMPMbMqPhdp0gw==}
+
   '@layerstack/utils@1.1.0-next.0':
     resolution: {integrity: sha512-xDUHUhI8CALTYvpTlJ9P0Eo8qKIoga9w1px6GFY7aSccKjLStOFjdCFCyLe0L/EUHDODpcP1o8Vl/HaBiHP6hg==}
 
@@ -1908,6 +1926,9 @@ packages:
 
   '@types/d3-shape@3.1.6':
     resolution: {integrity: sha512-5KKk5aKGu2I+O6SONMYSNflgiP0WfZIQvVUMan50wHsLG1G94JlxEVnCpQARfTtzytuY0p/9PXXZb3I7giofIA==}
+
+  '@types/d3-shape@3.1.7':
+    resolution: {integrity: sha512-VLvUQ33C+3J+8p+Daf+nYSOsjB4GXp19/S/aGo60m9h1v6XaxjiT82lKVWJCfzhtuZ3yD7i/TPeC/fuKLLOSmg==}
 
   '@types/d3-time-format@4.0.3':
     resolution: {integrity: sha512-5xg9rC+wWL8kdDj153qZcsJ0FWiFt0J5RB6LYUNZjwSnesfblqrI/bJ1wBdJ8OQfncgbJG5+2F+qfqnqyzYxyg==}
@@ -6092,7 +6113,7 @@ snapshots:
 
   '@layerstack/tailwind@2.0.0-next.2':
     dependencies:
-      '@layerstack/utils': 1.1.0-next.0
+      '@layerstack/utils': 1.1.0-next.1
       clsx: 2.1.1
       culori: 4.0.1
       d3-array: 3.2.4
@@ -6100,6 +6121,12 @@ snapshots:
       lodash-es: 4.17.21
       tailwind-merge: 3.0.2
       tailwindcss: 4.0.15
+
+  '@layerstack/utils@1.0.0':
+    dependencies:
+      d3-array: 3.2.4
+      date-fns: 4.1.0
+      lodash-es: 4.17.21
 
   '@layerstack/utils@1.1.0-next.0':
     dependencies:
@@ -6569,6 +6596,10 @@ snapshots:
       '@types/d3-path': 1.0.11
 
   '@types/d3-shape@3.1.6':
+    dependencies:
+      '@types/d3-path': 3.1.0
+
+  '@types/d3-shape@3.1.7':
     dependencies:
       '@types/d3-path': 3.1.0
 

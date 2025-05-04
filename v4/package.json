@@ -13,6 +13,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@layerstack/utils": "^1.0.0",
 		"@lucide/svelte": "^0.482.0",
 		"@shadcn-svelte/registry": "workspace:*",
 		"@sveltejs/acorn-typescript": "^1.0.5",
@@ -20,10 +21,14 @@
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.0",
+		"@types/d3-scale": "^4.0.8",
+		"@types/d3-shape": "^3.1.7",
 		"@types/lodash.template": "^4.5.3",
 		"acorn": "^8.13.0",
 		"bits-ui": "^1.4.3",
 		"clsx": "^2.1.1",
+		"d3-scale": "^4.0.2",
+		"d3-shape": "^3.2.0",
 		"embla-carousel-svelte": "8.1.6",
 		"estree-walker": "^3.0.3",
 		"formsnap": "^2.0.1",

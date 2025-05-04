@@ -53,145 +53,145 @@
 	<!-- <ComponentWrapper name="chart" class="w-full">
 	  <ChartDemo />
 	</ComponentWrapper> -->
-	<ComponentWrapper name="accordion" status="done">
+	<ComponentWrapper name="accordion">
 		<AccordionDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="alert" status="done">
+	<ComponentWrapper name="alert">
 		<AlertDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="alert-dialog" status="done">
+	<ComponentWrapper name="alert-dialog">
 		<AlertDialogDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="aspect-ratio" status="done">
+	<ComponentWrapper name="aspect-ratio">
 		<AspectRatioDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="avatar" status="done">
+	<ComponentWrapper name="avatar">
 		<AvatarDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="badge" status="done">
+	<ComponentWrapper name="badge">
 		<BadgeDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="breadcrumb" status="done">
+	<ComponentWrapper name="breadcrumb">
 		<BreadcrumbDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="button" status="done">
+	<ComponentWrapper name="button">
 		<ButtonDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="calendar" status="done">
+	<ComponentWrapper name="calendar">
 		<CalendarDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="card" status="done">
+	<ComponentWrapper name="card">
 		<CardDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="carousel" status="done">
+	<ComponentWrapper name="carousel">
 		<CarouselDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="checkbox" status="done">
+	<ComponentWrapper name="checkbox">
 		<CheckboxDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="collapsible" status="done">
+	<ComponentWrapper name="collapsible">
 		<CollapsibleDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="combobox" status="done">
+	<ComponentWrapper name="combobox">
 		<ComboboxDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="command" status="done">
+	<ComponentWrapper name="command">
 		<CommandDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="context-menu" status="done">
+	<ComponentWrapper name="context-menu">
 		<ContextMenuDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="date-picker" status="done">
+	<ComponentWrapper name="date-picker">
 		<DatePickerDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="dialog" status="done">
+	<ComponentWrapper name="dialog">
 		<DialogDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="drawer" status="not started">
+	<ComponentWrapper name="drawer">
 		<DrawerDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="dropdown-menu" status="done">
+	<ComponentWrapper name="dropdown-menu">
 		<DropdownMenuDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="form" status="not started">
+	<ComponentWrapper name="form">
 		<FormDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="hover-card" status="done">
+	<ComponentWrapper name="hover-card">
 		<HoverCardDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="input" status="done">
+	<ComponentWrapper name="input">
 		<InputDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="input-otp" status="done">
+	<ComponentWrapper name="input-otp">
 		<InputOTPDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="label" status="done">
+	<ComponentWrapper name="label">
 		<LabelDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="menubar" status="done">
+	<ComponentWrapper name="menubar">
 		<MenubarDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="navigation-menu" status="needs parity">
+	<ComponentWrapper name="navigation-menu">
 		<NavigationMenuDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="pagination" status="done">
+	<ComponentWrapper name="pagination">
 		<PaginationDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="popover" status="done">
+	<ComponentWrapper name="popover">
 		<PopoverDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="progress" status="done">
+	<ComponentWrapper name="progress">
 		<ProgressDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="radio-group" status="done">
+	<ComponentWrapper name="radio-group">
 		<RadioGroupDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="range-calendar" status="needs parity">
+	<ComponentWrapper name="range-calendar">
 		<RangeCalendarDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="resizable" status="done">
+	<ComponentWrapper name="resizable">
 		<ResizableDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="scroll-area" status="done">
+	<ComponentWrapper name="scroll-area">
 		<ScrollAreaDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="select" status="done">
+	<ComponentWrapper name="select">
 		<SelectDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="separator" status="done">
+	<ComponentWrapper name="separator">
 		<SeparatorDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="sheet" status="done">
+	<ComponentWrapper name="sheet">
 		<SheetDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="skeleton" status="done">
+	<ComponentWrapper name="skeleton">
 		<SkeletonDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="slider" status="done">
+	<ComponentWrapper name="slider">
 		<SliderDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="sonner" status="done">
+	<ComponentWrapper name="sonner">
 		<SonnerDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="switch" status="done">
+	<ComponentWrapper name="switch">
 		<SwitchDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="table" status="done">
+	<ComponentWrapper name="table">
 		<TableDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="tabs" status="done">
+	<ComponentWrapper name="tabs">
 		<TabsDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="textarea" status="done">
+	<ComponentWrapper name="textarea">
 		<TextareaDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="toggle" status="done">
+	<ComponentWrapper name="toggle">
 		<ToggleDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="toggle-group" status="done">
+	<ComponentWrapper name="toggle-group">
 		<ToggleGroupDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="tooltip" status="done">
+	<ComponentWrapper name="tooltip">
 		<TooltipDemo />
 	</ComponentWrapper>
 </div>
