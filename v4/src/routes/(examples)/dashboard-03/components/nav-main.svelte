@@ -32,6 +32,7 @@
 						<Sidebar.MenuButton
 							isActive={page.url.pathname === item.url}
 							disabled={item.disabled}
+							class="data-[disabled=true]:opacity-60"
 						>
 							{#snippet tooltipContent()}
 								{item.title}
@@ -41,7 +42,6 @@
 									href={item.disabled ? "#" : item.url}
 									data-disabled={item.disabled}
 									{...props}
-									class="data-[disabled=true]:opacity-50"
 								>
 									<item.icon class="text-muted-foreground" />
 									<span>{item.title}</span>

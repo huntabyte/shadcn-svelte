@@ -40,13 +40,12 @@
 		<Card.Title class="text-3xl font-bold tracking-tight">$45,231.89</Card.Title>
 	</Card.Header>
 	<Card.Content>
-		<Chart.Container config={chartConfig}>
+		<Chart.Container config={chartConfig} class="aspect-[3/1]">
 			<BarChart
 				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
-				axis="x"
 				rule={false}
 				series={[
 					{
@@ -66,10 +65,10 @@
 					bars: {
 						stroke: "none",
 						initialY: context?.height,
-						initialHeight: 0,
 						motion: {
-							y: { type: "tween", duration: 500, easing: cubicInOut },
-							height: { type: "tween", duration: 500, easing: cubicInOut },
+							type: "tween",
+							duration: 500,
+							easing: cubicInOut,
 						},
 					},
 					highlight: { area: false },

@@ -53,7 +53,6 @@
 				<Select.Content align="end" class="rounded-xl">
 					{#each months as month (month)}
 						{@const config = chartConfig[month as keyof typeof chartConfig]}
-
 						{#if config}
 							<Select.Item
 								value={month}
@@ -70,8 +69,12 @@
 			</Select.Root>
 		</Card.Action>
 	</Card.Header>
-	<Card.Content class="flex-1">
-		<Chart.Container {id} config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
+	<Card.Content class="flex flex-1 justify-center pb-0">
+		<Chart.Container
+			{id}
+			config={chartConfig}
+			class="mx-auto aspect-square w-full max-w-[300px]"
+		>
 			<PieChart
 				data={desktopData}
 				label="month"
@@ -88,7 +91,7 @@
 					},
 				}}
 				innerRadius={60}
-				padding={29}
+				padding={30}
 			>
 				{#snippet aboveMarks()}
 					<Text
@@ -109,13 +112,13 @@
 				{#snippet arc({ props, index })}
 					{@const isActive = index === activeIndex}
 					{@const arcProps = isActive
-						? { ...props, outerRadius: 60, innerRadius: 105 }
+						? { ...props, outerRadius: 135, innerRadius: 60 }
 						: props}
 
 					{#if isActive}
 						<g>
 							<Arc {...arcProps} />
-							<Arc {...arcProps} outerRadius={107} innerRadius={119} />
+							<Arc {...arcProps} outerRadius={137} innerRadius={150} />
 						</g>
 					{:else}
 						<Arc {...arcProps} />
