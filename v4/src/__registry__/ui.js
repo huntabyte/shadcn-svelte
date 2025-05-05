@@ -45,6 +45,10 @@ export const UI = {
 	name: "carousel",
 	type: "registry:ui",
 },
+"chart": {
+	name: "chart",
+	type: "registry:ui",
+},
 "checkbox": {
 	name: "checkbox",
 	type: "registry:ui",
