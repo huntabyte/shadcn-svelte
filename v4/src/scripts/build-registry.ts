@@ -47,7 +47,9 @@ async function main() {
 		items: registry,
 	});
 	const registryJsonPath = path.resolve("registry.json");
-	fs.writeFileSync(registryJsonPath, JSON.stringify(registryData), { encoding: "utf8" });
+	fs.writeFileSync(registryJsonPath, JSON.stringify(registryData, null, "\t"), {
+		encoding: "utf8",
+	});
 
 	const result = registrySchema.parse(registry);
 
