@@ -239,8 +239,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6(svelte@5.28.2)
       mode-watcher:
-        specifier: ^1.0.2
-        version: 1.0.5(svelte@5.28.2)
+        specifier: ^1.0.6
+        version: 1.0.6(svelte@5.28.2)
       package-manager-detector:
         specifier: ^0.2.2
         version: 0.2.2
@@ -3855,11 +3855,6 @@ packages:
 
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
-
-  mode-watcher@1.0.5:
-    resolution: {integrity: sha512-HRURoPayaI+5Wv7OeRZ0P+Y1MjeQixdy2aC4lfnxtZdxfRSU5XIVQvqWqkkN9Bxtz8RHM6I3AaZKD7ZS1z1sBQ==}
-    peerDependencies:
-      svelte: ^5.27.0
 
   mode-watcher@1.0.6:
     resolution: {integrity: sha512-6bG6KfPPaZoaw523rLR3z8dlCK/dskIBv7z7qdRPizD5b5BDYyCCLQ33FSCRTd7Ai3i7FWIBuXCZaF5IVVC3GQ==}
@@ -9155,12 +9150,6 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.5.4
-
-  mode-watcher@1.0.5(svelte@5.28.2):
-    dependencies:
-      runed: 0.25.0(svelte@5.28.2)
-      svelte: 5.28.2
-      svelte-toolbelt: 0.7.1(svelte@5.28.2)
 
   mode-watcher@1.0.6(svelte@5.28.2):
     dependencies:
