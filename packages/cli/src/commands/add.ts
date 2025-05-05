@@ -92,11 +92,15 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: shadcnIndex.map(({ name, dependencies, registryDependencies }) => {
-				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
+			options: shadcnIndex.map((item) => {
+				let deps: string[] = [...(item.registryDependencies ?? [])];
+				if (options.deps) {
+					deps = deps.concat(item.dependencies ?? []);
+					deps = deps.concat(item.devDependencies ?? []);
+				}
 				return {
-					label: name,
-					value: name,
+					label: item.name,
+					value: item.name,
 					hint: deps.length ? `also installs: ${deps.join(", ")}` : undefined,
 				};
 			}),
@@ -128,7 +132,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
-		for (const regDep of item.registryDependencies) {
+		for (const regDep of item.registryDependencies ?? []) {
 			selectedComponents.add(regDep);
 		}
 
@@ -171,6 +175,7 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
+	const devDependencies = new Set<string>();
 	const tasks: p.Task[] = [];
 	let cssVars = {};
 
@@ -205,9 +210,11 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 		// Add dependencies to the install list
 		if (options.deps) {
-			item.dependencies.forEach((dep) => dependencies.add(dep));
+			item.dependencies?.forEach((dep) => dependencies.add(dep));
+			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 		} else {
-			item.dependencies.forEach((dep) => skippedDeps.add(dep));
+			item.dependencies?.forEach((dep) => skippedDeps.add(dep));
+			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 		}
 
 		// Install Component
@@ -244,13 +251,25 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	// Install dependencies.
 	const pm = await detectPM(cwd, options.deps);
 	if (pm) {
-		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDependencies]);
+		const addDeps = resolveCommand(pm, "add", [...dependencies]);
+		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0,
+			enabled: dependencies.size > 0 || devDependencies.size > 0,
 			async task() {
-				await exec(add.command, add.args, { throwOnError: true, nodeOptions: { cwd } });
+				if (dependencies.size > 0) {
+					await exec(addDeps.command, addDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
+				if (devDependencies.size > 0) {
+					await exec(addDevDeps.command, addDevDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});

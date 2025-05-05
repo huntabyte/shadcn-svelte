@@ -132,7 +132,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			options: existingComponents.map((component) => ({
 				label: component.name,
 				value: component,
-				hint: component.registryDependencies.length
+				hint: component.registryDependencies?.length
 					? `also updates: ${component.registryDependencies.join(", ")}`
 					: undefined,
 			})),
@@ -193,6 +193,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
+	const devDependencies = new Set<string>();
 	let cssVars = {};
 	for (const item of payload) {
 		const targetDir = registry.getItemTargetPath(config, item);
@@ -201,7 +202,8 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		}
 
 		// Add dependencies to the install list
-		item.dependencies.forEach((dep) => dependencies.add(dep));
+		item.dependencies?.forEach((dep) => dependencies.add(dep));
+		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 
 		// Update Components
 		tasks.push({
@@ -260,16 +262,25 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// Install dependencies.
 	const pm = await detectPM(cwd, true);
 	if (pm) {
-		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
+		const addDeps = resolveCommand(pm, "add", [...dependencies]);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDependencies]);
+		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0,
+			enabled: dependencies.size > 0 || devDependencies.size > 0,
 			async task() {
-				await exec(add.command, [...add.args], {
-					throwOnError: true,
-					nodeOptions: { cwd },
-				});
+				if (dependencies.size > 0) {
+					await exec(addDeps.command, addDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
+				if (devDependencies.size > 0) {
+					await exec(addDevDeps.command, addDevDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
