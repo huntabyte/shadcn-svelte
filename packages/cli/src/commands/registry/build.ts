@@ -12,6 +12,7 @@ import * as p from "../../utils/prompts.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
+// TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
 
 const buildOptionsSchema = v.object({
@@ -27,7 +28,7 @@ export const build = new Command()
 	.description("build components for a shadcn registry")
 	.argument("[registry]", "path to registry.json file", "./registry.json")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
-	.option("-o, --output", "destination directory for json files", "./static/r")
+	.option("-o, --output <path>", "destination directory for json files", "./static/r")
 	.action(async (registryPath, opts) => {
 		try {
 			intro();
@@ -61,8 +62,14 @@ export const build = new Command()
 	});
 
 async function runBuild(options: BuildOptions) {
+	const spinner = p.spinner();
+
+	spinner.start(`Parsing registry schema`);
 	const registryJson = await fs.readFile(options.registry, "utf8");
 	const registry = v.parse(schema.registrySchema, JSON.parse(registryJson));
+	spinner.stop(
+		`Parsed registry schema at ${color.dim(path.relative(options.cwd, options.registry))}`
+	);
 
 	const registryIndex: schema.RegistryIndex = registry.items.map((item) => {
 		return { ...item, relativeUrl: `${item.name}.json` };
@@ -73,25 +80,47 @@ async function runBuild(options: BuildOptions) {
 		await fs.mkdir(options.output, { recursive: true });
 	}
 
+	const tasks: p.Task[] = [];
+
 	// Write registry index: `registry/index.json`
-	const indexPath = path.resolve(options.output, "index.json");
-	const parsedIndex = v.parse(schema.registryIndexSchema, registryIndex);
-	// TODO: perhaps a `--mini` flag to remove spacing?
-	await fs.writeFile(indexPath, JSON.stringify(parsedIndex, null, SPACER), "utf8");
+	tasks.push({
+		title: "Building registry index",
+		async task() {
+			const indexPath = path.resolve(options.output, "index.json");
+			const parsedIndex = v.parse(schema.registryIndexSchema, registryIndex);
+
+			await fs.writeFile(indexPath, JSON.stringify(parsedIndex, null, SPACER), "utf8");
+
+			const relative = path.relative(options.cwd, indexPath);
+			return `Registry index written to ${color.dim(relative)}`;
+		},
+	});
 
 	// Write registry items: `registry/[item].json`
-	for (const item of registry.items) {
-		const toResolve = item.files.map(async (file) => {
-			const content = await fs.readFile(file.path, "utf8");
-			const name = path.basename(file.path);
-			const target = `${item.name}/${name}`;
-			return { content, type: file.type, name, target };
-		});
-		const files = await Promise.all(toResolve);
+	tasks.push({
+		title: "Building registry items",
+		async task(message) {
+			for (const item of registry.items) {
+				message(`Building item ${color.cyan(item.name)}`);
 
-		const parsedItem = v.parse(schema.registryItemSchema, { ...item, files });
-		const outputPath = path.resolve(options.output, `${item.name}.json`);
+				const toResolve = item.files.map(async (file) => {
+					const content = await fs.readFile(file.path, "utf8");
+					const name = path.basename(file.path);
+					const target = `${item.name}/${name}`;
+					return { content, type: file.type, name, target };
+				});
+				const files = await Promise.all(toResolve);
 
-		await fs.writeFile(outputPath, JSON.stringify(parsedItem, null, SPACER), "utf8");
-	}
+				const parsedItem = v.parse(schema.registryItemSchema, { ...item, files });
+				const outputPath = path.resolve(options.output, `${item.name}.json`);
+
+				await fs.writeFile(outputPath, JSON.stringify(parsedItem, null, SPACER), "utf8");
+			}
+
+			const relative = path.relative(options.cwd, options.output);
+			return `Registry items written to ${color.dim(relative)}`;
+		},
+	});
+
+	await p.tasks(tasks);
 }
