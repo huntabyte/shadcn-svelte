@@ -103,13 +103,17 @@ export type Registry = v.InferOutput<typeof registrySchema>;
 export const registrySchema = v.object({
 	name: v.string(),
 	homepage: v.string(),
-	items: v.optional(
-		v.array(
+	items: v.array(
+		v.intersect([
+			baseIndexItemSchema,
 			v.object({
-				path: v.string(),
-				type: registryItemTypeSchema,
-			})
-		),
-		[]
+				files: v.array(
+					v.object({
+						path: v.string(),
+						type: registryItemTypeSchema,
+					})
+				),
+			}),
+		])
 	),
 });

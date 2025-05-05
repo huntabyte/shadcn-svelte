@@ -7,6 +7,8 @@ import { registrySchema, type RegistryItemType } from "../lib/registry/schema";
 import { baseColors } from "../lib/registry/colors.js";
 import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../lib/registry/templates";
+import * as v from "valibot";
+import { registrySchema as RS } from "@shadcn-svelte/registry";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
@@ -35,6 +37,17 @@ async function main() {
 	if (selfReferenceError) {
 		throw new Error(selfReferenceError);
 	}
+
+	// ----------------------------------------------------------------------------
+	// Build `registry.json` file.
+	// ----------------------------------------------------------------------------
+	const registryData = v.parse(RS, {
+		name: "shadcn-svelte",
+		homepage: "https://shadcn-svelte.com",
+		items: registry,
+	});
+	const registryJsonPath = path.resolve("registry.json");
+	fs.writeFileSync(registryJsonPath, JSON.stringify(registryData), { encoding: "utf8" });
 
 	const result = registrySchema.parse(registry);
 
