@@ -89,6 +89,11 @@
 						},
 						motion: "tween",
 					},
+					tooltip: {
+						context: {
+							hideDelay: 250,
+						},
+					},
 				}}
 				innerRadius={60}
 				padding={30}
