@@ -84,7 +84,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		if (!dirent.isFile()) continue;
 
 		const filepath = path.join(componentPath, dirent.name);
-		const relativePath = path.join("ui", componentName, dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const target = `${componentName}/${dirent.name}`;
 
@@ -124,7 +124,7 @@ async function crawlExample(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("examples", dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
 			name: dirent.name,
@@ -164,7 +164,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		// TODO: fix
 		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
 		const filepath = path.join(blockPath, compPath);
-		const relativePath = path.join("block", blockName, compPath);
+		const relativePath = path.relative(process.cwd(), filepath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const target = isPage ? getPageBlockTarget(blockName) : dirent.name;
 
@@ -207,7 +207,7 @@ async function crawlBlock(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("examples", dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
 			name: dirent.name,
@@ -244,7 +244,7 @@ async function crawlHook(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("hook", dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
 			name: dirent.name,
@@ -283,7 +283,7 @@ async function _crawlLib(rootPath: string) {
 
 		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
-		const relativePath = path.join("lib", dirent.name);
+		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
 			name: dirent.name,
