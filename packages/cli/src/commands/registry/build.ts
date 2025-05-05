@@ -112,6 +112,8 @@ async function runBuild(options: BuildOptions) {
 				const files = await Promise.all(toResolve);
 
 				const parsedItem = v.parse(schema.registryItemSchema, { ...item, files });
+				parsedItem["$schema"] ??= "https://shadcn-svelte.com/schema/registry-item.json";
+
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 
 				await fs.writeFile(outputPath, JSON.stringify(parsedItem, null, SPACER), "utf8");
