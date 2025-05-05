@@ -21,7 +21,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm -r sync",
+		"postinstall": "pnpm -r sync && pnpm -F @shadcn-svelte/registry build",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
