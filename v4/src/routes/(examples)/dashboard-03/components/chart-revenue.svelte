@@ -76,7 +76,7 @@
 				}}
 			>
 				{#snippet tooltip()}
-					<Chart.Tooltip />
+					<Chart.Tooltip hideIndicator />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

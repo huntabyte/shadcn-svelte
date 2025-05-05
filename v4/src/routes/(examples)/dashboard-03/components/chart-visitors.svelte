@@ -130,14 +130,7 @@
 					{/if}
 				{/snippet}
 				{#snippet tooltip()}
-					<Chart.Tooltip
-						labelKey="visitors"
-						nameKey="month"
-						indicator="line"
-						labelFormatter={(_, payload) => {
-							return chartConfig[payload?.[0].key as keyof typeof chartConfig].label;
-						}}
-					/>
+					<Chart.Tooltip labelKey="visitors" nameKey="month" hideLabel />
 				{/snippet}
 			</PieChart>
 		</Chart.Container>
