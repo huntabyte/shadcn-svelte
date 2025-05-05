@@ -4,13 +4,15 @@ import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
+import * as schema from "@shadcn-svelte/registry";
 import { ConfigError, error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
-import { cancel, intro } from "../../utils/prompt-helpers.js";
+import { intro } from "../../utils/prompt-helpers.js";
 import * as p from "../../utils/prompts.js";
-import { registrySchema } from "@shadcn-svelte/registry";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
+
+const SPACER = "\t";
 
 const buildOptionsSchema = v.object({
 	registry: v.string(),
@@ -59,11 +61,37 @@ export const build = new Command()
 	});
 
 async function runBuild(options: BuildOptions) {
-	const registryData = await fs.readFile(options.registry, "utf8");
-	const registry = v.parse(registrySchema, registryData);
+	const registryJson = await fs.readFile(options.registry, "utf8");
+	const registry = v.parse(schema.registrySchema, JSON.parse(registryJson));
+
+	const registryIndex: schema.RegistryIndex = registry.items.map((item) => {
+		return { ...item, relativeUrl: `${item.name}.json` };
+	});
 
 	// write to output
 	if (!existsSync(options.output)) {
 		await fs.mkdir(options.output, { recursive: true });
+	}
+
+	// Write registry index: `registry/index.json`
+	const indexPath = path.resolve(options.output, "index.json");
+	const parsedIndex = v.parse(schema.registryIndexSchema, registryIndex);
+	// TODO: perhaps a `--mini` flag to remove spacing?
+	await fs.writeFile(indexPath, JSON.stringify(parsedIndex, null, SPACER), "utf8");
+
+	// Write registry items: `registry/[item].json`
+	for (const item of registry.items) {
+		const toResolve = item.files.map(async (file) => {
+			const content = await fs.readFile(file.path, "utf8");
+			const name = path.basename(file.path);
+			const target = `${item.name}/${name}`;
+			return { content, type: file.type, name, target };
+		});
+		const files = await Promise.all(toResolve);
+
+		const parsedItem = v.parse(schema.registryItemSchema, { ...item, files });
+		const outputPath = path.resolve(options.output, `${item.name}.json`);
+
+		await fs.writeFile(outputPath, JSON.stringify(parsedItem, null, SPACER), "utf8");
 	}
 }
