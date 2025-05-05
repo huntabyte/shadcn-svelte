@@ -1,0 +1,37 @@
+name: Upload Preview Deployment Tailwind 4
+
+on:
+  workflow_run:
+    workflows: [Build Preview Tailwind 4]
+    types:
+      - completed
+
+permissions:
+  actions: read
+  deployments: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy-preview-tw-4:
+    runs-on: macos-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        id: preview-tw-4-build-artifact
+        with:
+          name: preview-build-tailwind-4
+          path: build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: scn-svelte-v4
+          deploymentName: Preview Tailwind 4
+          directory: ${{ steps.preview-tw-4-build-artifact.outputs.download-path }}
