@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm build:registry && vite dev",
-		"build": "vite build",
+		"build": "pnpm build:registry && vite build",
 		"build:registry": "tsx ./src/scripts/build-registry.ts",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
