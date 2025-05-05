@@ -69,7 +69,7 @@
 			<Command.Input placeholder="Search framework..." class="h-9" />
 			<Command.List>
 				<Command.Empty>No framework found.</Command.Empty>
-				<Command.Group>
+				<Command.Group value="frameworks">
 					{#each frameworks as framework (framework.value)}
 						<Command.Item
 							value={framework.value}
