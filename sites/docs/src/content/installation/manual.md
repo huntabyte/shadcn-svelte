@@ -1,13 +1,13 @@
 ---
 title: Manual Installation
-description: How to setup shadcn-svelte manually.
+description: How to set up shadcn-svelte manually.
 ---
 
 <script>
 	import { Steps, Step, PMAddComp, PMInstall, PMExecute } from '$lib/components/docs'
 </script>
 
-## Setup your project
+## Set up your project
 
 <Steps>
 
