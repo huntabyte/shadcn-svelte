@@ -47,6 +47,8 @@
 						motion: {
 							x: { type: "tween", duration: 500, easing: cubicInOut },
 							width: { type: "tween", duration: 500, easing: cubicInOut },
+							height: { type: "tween", duration: 500, easing: cubicInOut },
+							y: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
 					highlight: { area: { fill: "none" } },

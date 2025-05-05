@@ -47,12 +47,13 @@
 	import ToggleGroupDemo from "$lib/components/toggle-group-demo.svelte";
 	import TooltipDemo from "$lib/components/tooltip-demo.svelte";
 	import RangeCalendarDemo from "$lib/components/range-calendar-demo.svelte";
+	import ChartDemo from "$lib/components/chart-demo.svelte";
 </script>
 
 <div class="@container grid flex-1 gap-4 p-4">
-	<!-- <ComponentWrapper name="chart" class="w-full">
-	  <ChartDemo />
-	</ComponentWrapper> -->
+	<ComponentWrapper name="chart" class="w-full">
+		<ChartDemo />
+	</ComponentWrapper>
 	<ComponentWrapper name="accordion">
 		<AccordionDemo />
 	</ComponentWrapper>
