@@ -99,11 +99,12 @@ async function runBuild(options: BuildOptions) {
 		async task(message) {
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
+				const singleFile = item.files.length === 1;
 
 				const toResolve = item.files.map(async (file) => {
 					const content = await fs.readFile(file.path, "utf8");
 					const name = path.basename(file.path);
-					const target = `${item.name}/${name}`;
+					const target = singleFile ? name : `${item.name}/${name}`;
 					return { content, type: file.type, name, target };
 				});
 				const files = await Promise.all(toResolve);
