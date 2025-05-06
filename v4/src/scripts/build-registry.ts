@@ -1,17 +1,16 @@
 import template from "lodash.template";
 import fs from "node:fs";
 import path from "node:path";
+import * as v from "valibot";
 import { rimraf } from "rimraf";
+import { registrySchema } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../lib/colors.js";
 import { baseColors } from "../lib/registry/colors.js";
 import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../lib/registry/templates";
-import * as v from "valibot";
-import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
-const REGISTRY_IGNORE = ["super-form"];
 
 function writeFileWithDirs(
 	filePath: string,
@@ -48,9 +47,7 @@ async function main() {
 		items: registry,
 	});
 	const registryJsonPath = path.resolve("registry.json");
-	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), {
-		encoding: "utf8",
-	});
+	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
 
 	// ----------------------------------------------------------------------------
 	// Build blocks registry (__registry__/blocks.js) and block chunks (__registry__/chunks/[style]/[block]-[chunk].svelte)
@@ -154,56 +151,6 @@ export const Index = {
 	const registryPath = path.resolve("src", "__registry__", "index.js");
 	rimraf.sync(registryPath);
 	writeFileWithDirs(registryPath, index);
-
-	// ----------------------------------------------------------------------------
-	// Build registry/[name].json.
-	// ----------------------------------------------------------------------------
-	// Create the registry directory
-	const targetPath = path.join(REGISTRY_PATH);
-
-	// Create directory if it doesn't exist.
-	if (!fs.existsSync(targetPath)) {
-		fs.mkdirSync(targetPath, { recursive: true });
-	}
-
-	for (const item of result.items) {
-		const allowedTypes: RegistryItemType[] = ["registry:ui", "registry:hook", "registry:block"];
-		if (!allowedTypes.includes(item.type)) continue;
-
-		// discard `path` prop
-		const files = item.files.map((file) => ({ ...file, path: undefined }));
-		const filePath = path.resolve(targetPath, `${item.name}.json`);
-
-		const payload = {
-			...item,
-			files,
-		};
-
-		writeFileWithDirs(filePath, JSON.stringify(payload, null, "\t"), "utf-8");
-	}
-
-	// ----------------------------------------------------------------------------
-	// Build registry/index.json.
-	// ----------------------------------------------------------------------------
-	const ITEM_TYPES: RegistryItemType[] = ["registry:ui", "registry:hook"];
-	const names = result.items
-		.filter((item) => ITEM_TYPES.includes(item.type) && !REGISTRY_IGNORE.includes(item.name))
-		.map((item) => {
-			const filePath = path.resolve(REGISTRY_PATH, `${item.name}.json`);
-			const relativeUrlPath = path.relative(targetPath, filePath).split(path.sep).join("/");
-			return {
-				...item,
-				// The `default` style uses `@lucide/svelte`, so we'll discard it for the purposes of the index
-				dependencies: item.dependencies?.filter((dep) => dep !== "@lucide/svelte"),
-				// We don't care about files in the index
-				files: undefined,
-				// Registry item's endpoint, relative to the registry's index
-				relativeUrl: relativeUrlPath,
-			};
-		});
-	const registryJson = JSON.stringify(names, null, "\t");
-	rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
-	writeFileWithDirs(path.join(REGISTRY_PATH, "index.json"), registryJson, "utf-8");
 
 	// ----------------------------------------------------------------------------
 	// Build registry/colors/index.json.

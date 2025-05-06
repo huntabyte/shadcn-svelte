@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "pnpm build:registry && vite dev",
 		"build": "pnpm build:registry && vite build",
-		"build:registry": "tsx ./src/scripts/build-registry.ts",
+		"build:registry": "tsx ./src/scripts/build-registry.ts && shadcn-svelte registry build --output static/registry",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -37,6 +37,7 @@
 		"mode-watcher": "^1.0.6",
 		"paneforge": "1.0.0-next.5",
 		"rimraf": "^4.4.1",
+		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.0.2",

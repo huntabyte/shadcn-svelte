@@ -5,12 +5,9 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import { ConfigError, error, handleError } from "../../utils/errors.js";
-import * as cliConfig from "../../utils/get-config.js";
+import { error, handleError } from "../../utils/errors.js";
 import { intro } from "../../utils/prompt-helpers.js";
 import * as p from "../../utils/prompts.js";
-
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -46,12 +43,12 @@ export const build = new Command()
 				}
 			}
 
-			const config = await cliConfig.getConfig(cwd);
-			if (!config) {
-				throw new ConfigError(
-					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
-				);
-			}
+			// const config = await cliConfig.getConfig(cwd);
+			// if (!config) {
+			// 	throw new ConfigError(
+			// 		`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
+			// 	);
+			// }
 
 			await runBuild({ cwd, output, registry });
 

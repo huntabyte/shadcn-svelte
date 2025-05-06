@@ -425,6 +425,9 @@ importers:
       rimraf:
         specifier: ^4.4.1
         version: 4.4.1
+      shadcn-svelte:
+        specifier: workspace:*
+        version: link:../packages/cli
       svelte:
         specifier: ^5.28.2
         version: 5.28.2
