@@ -5,10 +5,7 @@
 		{
 			"name": "accordion",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/accordion/accordion-content.svelte",
@@ -35,9 +32,7 @@
 		{
 			"name": "alert",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/alert/alert-description.svelte",
@@ -60,12 +55,8 @@
 		{
 			"name": "alert-dialog",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["bits-ui"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/alert-dialog/alert-dialog-action.svelte",
@@ -112,9 +103,7 @@
 		{
 			"name": "aspect-ratio",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/aspect-ratio/aspect-ratio.svelte",
@@ -129,9 +118,7 @@
 		{
 			"name": "avatar",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/avatar/avatar-fallback.svelte",
@@ -154,9 +141,7 @@
 		{
 			"name": "badge",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/badge/badge.svelte",
@@ -171,10 +156,7 @@
 		{
 			"name": "breadcrumb",
 			"type": "registry:ui",
-			"dependencies": [
-				"@lucide/svelte",
-				"bits-ui"
-			],
+			"dependencies": ["@lucide/svelte", "bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/breadcrumb/breadcrumb-ellipsis.svelte",
@@ -213,9 +195,7 @@
 		{
 			"name": "button",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/button/button.svelte",
@@ -230,14 +210,8 @@
 		{
 			"name": "calendar",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@internationalized/date",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["bits-ui", "@internationalized/date", "@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/calendar/calendar-cell.svelte",
@@ -300,9 +274,7 @@
 		{
 			"name": "card",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/card/card-action.svelte",
@@ -341,14 +313,8 @@
 		{
 			"name": "carousel",
 			"type": "registry:ui",
-			"dependencies": [
-				"embla-carousel-svelte",
-				"bits-ui",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["embla-carousel-svelte", "bits-ui", "@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/carousel/carousel-content.svelte",
@@ -383,9 +349,7 @@
 		{
 			"name": "chart",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/chart/chart-container.svelte",
@@ -412,10 +376,7 @@
 		{
 			"name": "checkbox",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/checkbox/checkbox.svelte",
@@ -430,9 +391,7 @@
 		{
 			"name": "collapsible",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/collapsible/collapsible-content.svelte",
@@ -455,13 +414,8 @@
 		{
 			"name": "command",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"dialog"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": ["dialog"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/command/command-dialog.svelte",
@@ -512,10 +466,7 @@
 		{
 			"name": "context-menu",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/context-menu/context-menu-checkbox-item.svelte",
@@ -596,10 +547,7 @@
 		{
 			"name": "dialog",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/dialog/dialog-close.svelte",
@@ -642,10 +590,7 @@
 		{
 			"name": "drawer",
 			"type": "registry:ui",
-			"dependencies": [
-				"vaul-svelte@next",
-				"bits-ui"
-			],
+			"dependencies": ["vaul-svelte@next", "bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/drawer/drawer-close.svelte",
@@ -696,10 +641,7 @@
 		{
 			"name": "dropdown-menu",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
@@ -758,16 +700,8 @@
 		{
 			"name": "form",
 			"type": "registry:ui",
-			"dependencies": [
-				"formsnap",
-				"zod",
-				"sveltekit-superforms",
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"button",
-				"label"
-			],
+			"dependencies": ["formsnap", "zod", "sveltekit-superforms", "bits-ui"],
+			"registryDependencies": ["button", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/form/form-button.svelte",
@@ -810,9 +744,7 @@
 		{
 			"name": "hover-card",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/hover-card/hover-card-content.svelte",
@@ -831,9 +763,7 @@
 		{
 			"name": "input",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/input/index.ts",
@@ -848,10 +778,7 @@
 		{
 			"name": "input-otp",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/input-otp/index.ts",
@@ -878,9 +805,7 @@
 		{
 			"name": "label",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/label/index.ts",
@@ -895,10 +820,7 @@
 		{
 			"name": "menubar",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/menubar/index.ts",
@@ -953,10 +875,7 @@
 		{
 			"name": "navigation-menu",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/navigation-menu/index.ts",
@@ -999,13 +918,8 @@
 		{
 			"name": "pagination",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/pagination/index.ts",
@@ -1044,9 +958,7 @@
 		{
 			"name": "popover",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/popover/index.ts",
@@ -1065,9 +977,7 @@
 		{
 			"name": "progress",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/progress/index.ts",
@@ -1082,10 +992,7 @@
 		{
 			"name": "radio-group",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/radio-group/index.ts",
@@ -1104,14 +1011,8 @@
 		{
 			"name": "range-calendar",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@internationalized/date",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["bits-ui", "@internationalized/date", "@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/range-calendar/index.ts",
@@ -1166,11 +1067,7 @@
 		{
 			"name": "resizable",
 			"type": "registry:ui",
-			"dependencies": [
-				"paneforge@next",
-				"@lucide/svelte",
-				"bits-ui"
-			],
+			"dependencies": ["paneforge@next", "@lucide/svelte", "bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/resizable/index.ts",
@@ -1189,9 +1086,7 @@
 		{
 			"name": "scroll-area",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/scroll-area/index.ts",
@@ -1210,13 +1105,8 @@
 		{
 			"name": "select",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"separator"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": ["separator"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/select/index.ts",
@@ -1259,9 +1149,7 @@
 		{
 			"name": "separator",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/separator/index.ts",
@@ -1276,10 +1164,7 @@
 		{
 			"name": "sheet",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/sheet/index.ts",
@@ -1322,10 +1207,7 @@
 		{
 			"name": "sidebar",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [
 				"is-mobile",
 				"input",
@@ -1445,9 +1327,7 @@
 		{
 			"name": "skeleton",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/skeleton/index.ts",
@@ -1462,9 +1342,7 @@
 		{
 			"name": "slider",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/slider/index.ts",
@@ -1479,10 +1357,7 @@
 		{
 			"name": "sonner",
 			"type": "registry:ui",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/sonner/index.ts",
@@ -1497,9 +1372,7 @@
 		{
 			"name": "switch",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/switch/index.ts",
@@ -1514,9 +1387,7 @@
 		{
 			"name": "table",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/table/index.ts",
@@ -1559,9 +1430,7 @@
 		{
 			"name": "tabs",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/tabs/index.ts",
@@ -1588,9 +1457,7 @@
 		{
 			"name": "textarea",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/textarea/index.ts",
@@ -1605,9 +1472,7 @@
 		{
 			"name": "toggle",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/toggle/index.ts",
@@ -1622,12 +1487,8 @@
 		{
 			"name": "toggle-group",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["bits-ui"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/toggle-group/index.ts",
@@ -1646,9 +1507,7 @@
 		{
 			"name": "tooltip",
 			"type": "registry:ui",
-			"dependencies": [
-				"bits-ui"
-			],
+			"dependencies": ["bits-ui"],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/tooltip/index.ts",
@@ -1675,9 +1534,7 @@
 		{
 			"name": "accordion-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"accordion"
-			],
+			"registryDependencies": ["accordion"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/accordion-demo.svelte",
@@ -1688,12 +1545,8 @@
 		{
 			"name": "alert-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"alert"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["alert"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/alert-demo.svelte",
@@ -1704,12 +1557,8 @@
 		{
 			"name": "alert-destructive",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"alert"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["alert"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/alert-destructive.svelte",
@@ -1720,10 +1569,7 @@
 		{
 			"name": "alert-dialog-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"alert-dialog",
-				"button"
-			],
+			"registryDependencies": ["alert-dialog", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/alert-dialog-demo.svelte",
@@ -1734,9 +1580,7 @@
 		{
 			"name": "aspect-ratio-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"aspect-ratio"
-			],
+			"registryDependencies": ["aspect-ratio"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/aspect-ratio-demo.svelte",
@@ -1747,9 +1591,7 @@
 		{
 			"name": "avatar-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"avatar"
-			],
+			"registryDependencies": ["avatar"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/avatar-demo.svelte",
@@ -1760,9 +1602,7 @@
 		{
 			"name": "badge-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"badge"
-			],
+			"registryDependencies": ["badge"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/badge-demo.svelte",
@@ -1773,9 +1613,7 @@
 		{
 			"name": "badge-destructive",
 			"type": "registry:example",
-			"registryDependencies": [
-				"badge"
-			],
+			"registryDependencies": ["badge"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/badge-destructive.svelte",
@@ -1786,9 +1624,7 @@
 		{
 			"name": "badge-outline",
 			"type": "registry:example",
-			"registryDependencies": [
-				"badge"
-			],
+			"registryDependencies": ["badge"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/badge-outline.svelte",
@@ -1799,9 +1635,7 @@
 		{
 			"name": "badge-secondary",
 			"type": "registry:example",
-			"registryDependencies": [
-				"badge"
-			],
+			"registryDependencies": ["badge"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/badge-secondary.svelte",
@@ -1812,10 +1646,7 @@
 		{
 			"name": "breadcrumb-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"breadcrumb",
-				"dropdown-menu"
-			],
+			"registryDependencies": ["breadcrumb", "dropdown-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-demo.svelte",
@@ -1826,13 +1657,8 @@
 		{
 			"name": "breadcrumb-dropdown",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"dropdown-menu"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb", "dropdown-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-dropdown.svelte",
@@ -1843,9 +1669,7 @@
 		{
 			"name": "breadcrumb-ellipsis",
 			"type": "registry:example",
-			"registryDependencies": [
-				"breadcrumb"
-			],
+			"registryDependencies": ["breadcrumb"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-ellipsis.svelte",
@@ -1856,9 +1680,7 @@
 		{
 			"name": "breadcrumb-link",
 			"type": "registry:example",
-			"registryDependencies": [
-				"breadcrumb"
-			],
+			"registryDependencies": ["breadcrumb"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-link.svelte",
@@ -1869,12 +1691,7 @@
 		{
 			"name": "breadcrumb-responsive",
 			"type": "registry:example",
-			"registryDependencies": [
-				"breadcrumb",
-				"drawer",
-				"dropdown-menu",
-				"button"
-			],
+			"registryDependencies": ["breadcrumb", "drawer", "dropdown-menu", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-responsive.svelte",
@@ -1885,12 +1702,8 @@
 		{
 			"name": "breadcrumb-separator",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/breadcrumb-separator.svelte",
@@ -1901,9 +1714,7 @@
 		{
 			"name": "button-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-demo.svelte",
@@ -1914,9 +1725,7 @@
 		{
 			"name": "button-destructive",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-destructive.svelte",
@@ -1927,9 +1736,7 @@
 		{
 			"name": "button-ghost",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-ghost.svelte",
@@ -1940,12 +1747,8 @@
 		{
 			"name": "button-icon",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-icon.svelte",
@@ -1956,9 +1759,7 @@
 		{
 			"name": "button-link",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-link.svelte",
@@ -1969,12 +1770,8 @@
 		{
 			"name": "button-loading",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-loading.svelte",
@@ -1985,9 +1782,7 @@
 		{
 			"name": "button-outline",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-outline.svelte",
@@ -1998,9 +1793,7 @@
 		{
 			"name": "button-secondary",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button"
-			],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-secondary.svelte",
@@ -2011,12 +1804,8 @@
 		{
 			"name": "button-with-icon",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/button-with-icon.svelte",
@@ -2027,9 +1816,7 @@
 		{
 			"name": "calendar-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"calendar"
-			],
+			"registryDependencies": ["calendar"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/calendar-demo.svelte",
@@ -2040,13 +1827,8 @@
 		{
 			"name": "calendar-with-selects",
 			"type": "registry:example",
-			"dependencies": [
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"calendar",
-				"select"
-			],
+			"dependencies": ["bits-ui"],
+			"registryDependencies": ["calendar", "select"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/calendar-with-selects.svelte",
@@ -2057,14 +1839,8 @@
 		{
 			"name": "card-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button",
-				"card",
-				"switch"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "card", "switch"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/card-demo.svelte",
@@ -2075,13 +1851,7 @@
 		{
 			"name": "card-with-form",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button",
-				"card",
-				"select",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "card", "select", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/card-with-form.svelte",
@@ -2092,10 +1862,7 @@
 		{
 			"name": "carousel-api",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-api.svelte",
@@ -2106,10 +1873,7 @@
 		{
 			"name": "carousel-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-demo.svelte",
@@ -2120,10 +1884,7 @@
 		{
 			"name": "carousel-orientation",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-orientation.svelte",
@@ -2134,10 +1895,7 @@
 		{
 			"name": "carousel-plugin",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-plugin.svelte",
@@ -2148,10 +1906,7 @@
 		{
 			"name": "carousel-size",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-size.svelte",
@@ -2162,10 +1917,7 @@
 		{
 			"name": "carousel-spacing",
 			"type": "registry:example",
-			"registryDependencies": [
-				"card",
-				"carousel"
-			],
+			"registryDependencies": ["card", "carousel"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/carousel-spacing.svelte",
@@ -2176,10 +1928,7 @@
 		{
 			"name": "checkbox-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"checkbox",
-				"label"
-			],
+			"registryDependencies": ["checkbox", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/checkbox-demo.svelte",
@@ -2190,10 +1939,7 @@
 		{
 			"name": "checkbox-disabled",
 			"type": "registry:example",
-			"registryDependencies": [
-				"checkbox",
-				"label"
-			],
+			"registryDependencies": ["checkbox", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/checkbox-disabled.svelte",
@@ -2204,14 +1950,8 @@
 		{
 			"name": "checkbox-form-multiple",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"checkbox"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "checkbox"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/checkbox-form-multiple.svelte",
@@ -2222,14 +1962,8 @@
 		{
 			"name": "checkbox-form-single",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"checkbox"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "checkbox"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/checkbox-form-single.svelte",
@@ -2240,10 +1974,7 @@
 		{
 			"name": "checkbox-with-text",
 			"type": "registry:example",
-			"registryDependencies": [
-				"checkbox",
-				"label"
-			],
+			"registryDependencies": ["checkbox", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/checkbox-with-text.svelte",
@@ -2254,13 +1985,8 @@
 		{
 			"name": "collapsible-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"collapsible",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["collapsible", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/collapsible-demo.svelte",
@@ -2271,14 +1997,8 @@
 		{
 			"name": "combobox-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"command",
-				"popover",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["command", "popover", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/combobox-demo.svelte",
@@ -2289,14 +2009,8 @@
 		{
 			"name": "combobox-dropdown-menu",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"dropdown-menu",
-				"command",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["dropdown-menu", "command", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/combobox-dropdown-menu.svelte",
@@ -2307,18 +2021,8 @@
 		{
 			"name": "combobox-form",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte",
-				"svelte-sonner",
-				"mode-watcher",
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"form",
-				"popover",
-				"command",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte", "svelte-sonner", "mode-watcher", "bits-ui"],
+			"registryDependencies": ["form", "popover", "command", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/combobox-form.svelte",
@@ -2329,15 +2033,8 @@
 		{
 			"name": "combobox-popover",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte",
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"popover",
-				"command",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte", "bits-ui"],
+			"registryDependencies": ["popover", "command", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/combobox-popover.svelte",
@@ -2348,12 +2045,8 @@
 		{
 			"name": "command-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"command"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["command"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/command-demo.svelte",
@@ -2364,12 +2057,8 @@
 		{
 			"name": "command-dialog",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"command"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["command"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/command-dialog.svelte",
@@ -2380,9 +2069,7 @@
 		{
 			"name": "context-menu-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"context-menu"
-			],
+			"registryDependencies": ["context-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/context-menu-demo.svelte",
@@ -2393,13 +2080,8 @@
 		{
 			"name": "dark-mode-dropdown-menu",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"dropdown-menu",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["dropdown-menu", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dark-mode-dropdown-menu.svelte",
@@ -2410,12 +2092,8 @@
 		{
 			"name": "dark-mode-light-switch",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dark-mode-light-switch.svelte",
@@ -2426,16 +2104,8 @@
 		{
 			"name": "data-table-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"table",
-				"button",
-				"dropdown-menu",
-				"input",
-				"data-table"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["table", "button", "dropdown-menu", "input", "data-table"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/data-table-demo.svelte",
@@ -2446,14 +2116,8 @@
 		{
 			"name": "date-picker-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button",
-				"calendar",
-				"popover"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "calendar", "popover"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/date-picker-demo.svelte",
@@ -2464,17 +2128,8 @@
 		{
 			"name": "date-picker-form",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte",
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"button",
-				"calendar",
-				"popover",
-				"form"
-			],
+			"dependencies": ["@lucide/svelte", "svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["button", "calendar", "popover", "form"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/date-picker-form.svelte",
@@ -2485,15 +2140,8 @@
 		{
 			"name": "date-picker-with-presets",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"button",
-				"calendar",
-				"popover",
-				"select"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "calendar", "popover", "select"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/date-picker-with-presets.svelte",
@@ -2504,15 +2152,8 @@
 		{
 			"name": "date-picker-with-range",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte",
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"button",
-				"range-calendar",
-				"popover"
-			],
+			"dependencies": ["@lucide/svelte", "bits-ui"],
+			"registryDependencies": ["button", "range-calendar", "popover"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/date-picker-with-range.svelte",
@@ -2523,12 +2164,7 @@
 		{
 			"name": "dialog-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button",
-				"dialog",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "dialog", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dialog-demo.svelte",
@@ -2539,13 +2175,8 @@
 		{
 			"name": "drawer-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"drawer",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["drawer", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/drawer-demo.svelte",
@@ -2556,13 +2187,7 @@
 		{
 			"name": "drawer-dialog",
 			"type": "registry:example",
-			"registryDependencies": [
-				"dialog",
-				"drawer",
-				"input",
-				"label",
-				"button"
-			],
+			"registryDependencies": ["dialog", "drawer", "input", "label", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/drawer-dialog.svelte",
@@ -2573,10 +2198,7 @@
 		{
 			"name": "dropdown-menu-checkboxes",
 			"type": "registry:example",
-			"registryDependencies": [
-				"dropdown-menu",
-				"button"
-			],
+			"registryDependencies": ["dropdown-menu", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dropdown-menu-checkboxes.svelte",
@@ -2587,13 +2209,8 @@
 		{
 			"name": "dropdown-menu-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"dropdown-menu",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["dropdown-menu", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dropdown-menu-demo.svelte",
@@ -2604,10 +2221,7 @@
 		{
 			"name": "dropdown-menu-radio-group",
 			"type": "registry:example",
-			"registryDependencies": [
-				"dropdown-menu",
-				"button"
-			],
+			"registryDependencies": ["dropdown-menu", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/dropdown-menu-radio-group.svelte",
@@ -2618,14 +2232,8 @@
 		{
 			"name": "form-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"input"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "input"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/form-demo.svelte",
@@ -2636,13 +2244,8 @@
 		{
 			"name": "hover-card-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"avatar",
-				"hover-card"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["avatar", "hover-card"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/hover-card-demo.svelte",
@@ -2653,9 +2256,7 @@
 		{
 			"name": "input-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input"
-			],
+			"registryDependencies": ["input"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-demo.svelte",
@@ -2666,9 +2267,7 @@
 		{
 			"name": "input-disabled",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input"
-			],
+			"registryDependencies": ["input"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-disabled.svelte",
@@ -2679,10 +2278,7 @@
 		{
 			"name": "input-file",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input",
-				"label"
-			],
+			"registryDependencies": ["input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-file.svelte",
@@ -2693,9 +2289,7 @@
 		{
 			"name": "input-invalid",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input"
-			],
+			"registryDependencies": ["input"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-invalid.svelte",
@@ -2706,9 +2300,7 @@
 		{
 			"name": "input-otp-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input-otp"
-			],
+			"registryDependencies": ["input-otp"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-otp-demo.svelte",
@@ -2719,14 +2311,8 @@
 		{
 			"name": "input-otp-form",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"input-otp",
-				"form"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["input-otp", "form"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-otp-form.svelte",
@@ -2737,9 +2323,7 @@
 		{
 			"name": "input-otp-invalid",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input-otp"
-			],
+			"registryDependencies": ["input-otp"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-otp-invalid.svelte",
@@ -2750,12 +2334,8 @@
 		{
 			"name": "input-otp-pattern",
 			"type": "registry:example",
-			"dependencies": [
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"input-otp"
-			],
+			"dependencies": ["bits-ui"],
+			"registryDependencies": ["input-otp"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-otp-pattern.svelte",
@@ -2766,9 +2346,7 @@
 		{
 			"name": "input-otp-separator",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input-otp"
-			],
+			"registryDependencies": ["input-otp"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-otp-separator.svelte",
@@ -2779,10 +2357,7 @@
 		{
 			"name": "input-with-button",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button",
-				"input"
-			],
+			"registryDependencies": ["button", "input"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-with-button.svelte",
@@ -2793,10 +2368,7 @@
 		{
 			"name": "input-with-label",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input",
-				"label"
-			],
+			"registryDependencies": ["input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-with-label.svelte",
@@ -2807,10 +2379,7 @@
 		{
 			"name": "input-with-text",
 			"type": "registry:example",
-			"registryDependencies": [
-				"input",
-				"label"
-			],
+			"registryDependencies": ["input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/input-with-text.svelte",
@@ -2821,10 +2390,7 @@
 		{
 			"name": "label-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"checkbox",
-				"label"
-			],
+			"registryDependencies": ["checkbox", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/label-demo.svelte",
@@ -2835,9 +2401,7 @@
 		{
 			"name": "menubar-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"menubar"
-			],
+			"registryDependencies": ["menubar"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/menubar-demo.svelte",
@@ -2848,12 +2412,8 @@
 		{
 			"name": "pagination-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"pagination"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["pagination"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/pagination-demo.svelte",
@@ -2864,12 +2424,7 @@
 		{
 			"name": "popover-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button",
-				"input",
-				"label",
-				"popover"
-			],
+			"registryDependencies": ["button", "input", "label", "popover"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/popover-demo.svelte",
@@ -2880,9 +2435,7 @@
 		{
 			"name": "progress-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"progress"
-			],
+			"registryDependencies": ["progress"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/progress-demo.svelte",
@@ -2893,10 +2446,7 @@
 		{
 			"name": "radio-group-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"radio-group",
-				"label"
-			],
+			"registryDependencies": ["radio-group", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/radio-group-demo.svelte",
@@ -2907,14 +2457,8 @@
 		{
 			"name": "radio-group-form",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"radio-group"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "radio-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/radio-group-form.svelte",
@@ -2925,9 +2469,7 @@
 		{
 			"name": "range-calendar-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"range-calendar"
-			],
+			"registryDependencies": ["range-calendar"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/range-calendar-demo.svelte",
@@ -2938,9 +2480,7 @@
 		{
 			"name": "resizable-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"resizable"
-			],
+			"registryDependencies": ["resizable"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/resizable-demo.svelte",
@@ -2951,9 +2491,7 @@
 		{
 			"name": "resizable-handle",
 			"type": "registry:example",
-			"registryDependencies": [
-				"resizable"
-			],
+			"registryDependencies": ["resizable"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/resizable-handle.svelte",
@@ -2964,9 +2502,7 @@
 		{
 			"name": "resizable-vertical",
 			"type": "registry:example",
-			"registryDependencies": [
-				"resizable"
-			],
+			"registryDependencies": ["resizable"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/resizable-vertical.svelte",
@@ -2977,9 +2513,7 @@
 		{
 			"name": "scroll-area-both",
 			"type": "registry:example",
-			"registryDependencies": [
-				"scroll-area"
-			],
+			"registryDependencies": ["scroll-area"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/scroll-area-both.svelte",
@@ -2990,10 +2524,7 @@
 		{
 			"name": "scroll-area-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"scroll-area",
-				"separator"
-			],
+			"registryDependencies": ["scroll-area", "separator"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/scroll-area-demo.svelte",
@@ -3004,9 +2535,7 @@
 		{
 			"name": "scroll-area-horizontal",
 			"type": "registry:example",
-			"registryDependencies": [
-				"scroll-area"
-			],
+			"registryDependencies": ["scroll-area"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/scroll-area-horizontal.svelte",
@@ -3017,9 +2546,7 @@
 		{
 			"name": "select-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"select"
-			],
+			"registryDependencies": ["select"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/select-demo.svelte",
@@ -3030,14 +2557,8 @@
 		{
 			"name": "select-form",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"select"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "select"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/select-form.svelte",
@@ -3048,9 +2569,7 @@
 		{
 			"name": "separator-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"separator"
-			],
+			"registryDependencies": ["separator"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/separator-demo.svelte",
@@ -3061,12 +2580,7 @@
 		{
 			"name": "sheet-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"sheet",
-				"button",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["sheet", "button", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/sheet-demo.svelte",
@@ -3077,12 +2591,7 @@
 		{
 			"name": "sheet-side",
 			"type": "registry:example",
-			"registryDependencies": [
-				"sheet",
-				"button",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["sheet", "button", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/sheet-side.svelte",
@@ -3093,9 +2602,7 @@
 		{
 			"name": "skeleton-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"skeleton"
-			],
+			"registryDependencies": ["skeleton"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/skeleton-demo.svelte",
@@ -3106,9 +2613,7 @@
 		{
 			"name": "slider-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"slider"
-			],
+			"registryDependencies": ["slider"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/slider-demo.svelte",
@@ -3119,9 +2624,7 @@
 		{
 			"name": "slider-multiple",
 			"type": "registry:example",
-			"registryDependencies": [
-				"slider"
-			],
+			"registryDependencies": ["slider"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/slider-multiple.svelte",
@@ -3132,9 +2635,7 @@
 		{
 			"name": "slider-vertical",
 			"type": "registry:example",
-			"registryDependencies": [
-				"slider"
-			],
+			"registryDependencies": ["slider"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/slider-vertical.svelte",
@@ -3145,13 +2646,8 @@
 		{
 			"name": "sonner-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"button"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["button"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/sonner-demo.svelte",
@@ -3162,10 +2658,7 @@
 		{
 			"name": "switch-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"label",
-				"switch"
-			],
+			"registryDependencies": ["label", "switch"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/switch-demo.svelte",
@@ -3176,14 +2669,8 @@
 		{
 			"name": "switch-form",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"switch"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "switch"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/switch-form.svelte",
@@ -3194,9 +2681,7 @@
 		{
 			"name": "table-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"table"
-			],
+			"registryDependencies": ["table"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/table-demo.svelte",
@@ -3207,13 +2692,7 @@
 		{
 			"name": "tabs-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"tabs",
-				"card",
-				"button",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["tabs", "card", "button", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/tabs-demo.svelte",
@@ -3224,9 +2703,7 @@
 		{
 			"name": "textarea-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"textarea"
-			],
+			"registryDependencies": ["textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-demo.svelte",
@@ -3237,9 +2714,7 @@
 		{
 			"name": "textarea-disabled",
 			"type": "registry:example",
-			"registryDependencies": [
-				"textarea"
-			],
+			"registryDependencies": ["textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-disabled.svelte",
@@ -3250,14 +2725,8 @@
 		{
 			"name": "textarea-form",
 			"type": "registry:example",
-			"dependencies": [
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"form",
-				"textarea"
-			],
+			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["form", "textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-form.svelte",
@@ -3268,10 +2737,7 @@
 		{
 			"name": "textarea-with-button",
 			"type": "registry:example",
-			"registryDependencies": [
-				"button",
-				"textarea"
-			],
+			"registryDependencies": ["button", "textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-with-button.svelte",
@@ -3282,10 +2748,7 @@
 		{
 			"name": "textarea-with-label",
 			"type": "registry:example",
-			"registryDependencies": [
-				"label",
-				"textarea"
-			],
+			"registryDependencies": ["label", "textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-with-label.svelte",
@@ -3296,10 +2759,7 @@
 		{
 			"name": "textarea-with-text",
 			"type": "registry:example",
-			"registryDependencies": [
-				"label",
-				"textarea"
-			],
+			"registryDependencies": ["label", "textarea"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/textarea-with-text.svelte",
@@ -3310,12 +2770,8 @@
 		{
 			"name": "toggle-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-demo.svelte",
@@ -3326,12 +2782,8 @@
 		{
 			"name": "toggle-disabled",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-disabled.svelte",
@@ -3342,12 +2794,8 @@
 		{
 			"name": "toggle-group-demo",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-demo.svelte",
@@ -3358,12 +2806,8 @@
 		{
 			"name": "toggle-group-disabled",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-disabled.svelte",
@@ -3374,12 +2818,8 @@
 		{
 			"name": "toggle-group-lg",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-lg.svelte",
@@ -3390,12 +2830,8 @@
 		{
 			"name": "toggle-group-outline",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-outline.svelte",
@@ -3406,12 +2842,8 @@
 		{
 			"name": "toggle-group-single",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-single.svelte",
@@ -3422,12 +2854,8 @@
 		{
 			"name": "toggle-group-sm",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle-group"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle-group"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-group-sm.svelte",
@@ -3438,12 +2866,8 @@
 		{
 			"name": "toggle-lg",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-lg.svelte",
@@ -3454,12 +2878,8 @@
 		{
 			"name": "toggle-outline",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-outline.svelte",
@@ -3470,12 +2890,8 @@
 		{
 			"name": "toggle-sm",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-sm.svelte",
@@ -3486,12 +2902,8 @@
 		{
 			"name": "toggle-with-text",
 			"type": "registry:example",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"toggle"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["toggle"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/toggle-with-text.svelte",
@@ -3502,9 +2914,7 @@
 		{
 			"name": "tooltip-demo",
 			"type": "registry:example",
-			"registryDependencies": [
-				"tooltip"
-			],
+			"registryDependencies": ["tooltip"],
 			"files": [
 				{
 					"path": "src/lib/registry/examples/tooltip-demo.svelte",
@@ -3655,12 +3065,7 @@
 		{
 			"name": "authentication-01",
 			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"card",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "card", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/authentication-01.svelte",
@@ -3671,12 +3076,7 @@
 		{
 			"name": "authentication-02",
 			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"card",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "card", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/authentication-02.svelte",
@@ -3687,12 +3087,7 @@
 		{
 			"name": "authentication-03",
 			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"card",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "card", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/authentication-03.svelte",
@@ -3703,11 +3098,7 @@
 		{
 			"name": "authentication-04",
 			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/authentication-04.svelte",
@@ -3718,9 +3109,7 @@
 		{
 			"name": "dashboard-01",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"avatar",
 				"badge",
@@ -3741,17 +3130,8 @@
 		{
 			"name": "dashboard-02",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"badge",
-				"button",
-				"card",
-				"dropdown-menu",
-				"input",
-				"sheet"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["badge", "button", "card", "dropdown-menu", "input", "sheet"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/dashboard-02.svelte",
@@ -3762,9 +3142,7 @@
 		{
 			"name": "dashboard-03",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"badge",
 				"button",
@@ -3785,9 +3163,7 @@
 		{
 			"name": "dashboard-04",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"button",
 				"card",
@@ -3806,9 +3182,7 @@
 		{
 			"name": "dashboard-05",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"badge",
 				"breadcrumb",
@@ -3834,9 +3208,7 @@
 		{
 			"name": "dashboard-06",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"badge",
 				"breadcrumb",
@@ -3859,9 +3231,7 @@
 		{
 			"name": "dashboard-07",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"badge",
 				"breadcrumb",
@@ -3887,13 +3257,8 @@
 		{
 			"name": "demo-sidebar-controlled",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"button"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "button"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-controlled.svelte",
@@ -3904,13 +3269,8 @@
 		{
 			"name": "demo-sidebar-footer",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"dropdown-menu"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "dropdown-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-footer.svelte",
@@ -3921,15 +3281,8 @@
 		{
 			"name": "demo-sidebar-group-action",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte",
-				"svelte-sonner",
-				"mode-watcher"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"sonner"
-			],
+			"dependencies": ["@lucide/svelte", "svelte-sonner", "mode-watcher"],
+			"registryDependencies": ["sidebar", "sonner"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-group-action.svelte",
@@ -3940,13 +3293,8 @@
 		{
 			"name": "demo-sidebar-group-collapsible",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"collapsible"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "collapsible"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-group-collapsible.svelte",
@@ -3957,12 +3305,8 @@
 		{
 			"name": "demo-sidebar-group",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-group.svelte",
@@ -3973,13 +3317,8 @@
 		{
 			"name": "demo-sidebar-header",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"dropdown-menu"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "dropdown-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-header.svelte",
@@ -3990,13 +3329,8 @@
 		{
 			"name": "demo-sidebar-menu-action",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"dropdown-menu"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "dropdown-menu"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-menu-action.svelte",
@@ -4007,12 +3341,8 @@
 		{
 			"name": "demo-sidebar-menu-badge",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-menu-badge.svelte",
@@ -4023,13 +3353,8 @@
 		{
 			"name": "demo-sidebar-menu-collapsible",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar",
-				"collapsible"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar", "collapsible"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-menu-collapsible.svelte",
@@ -4040,9 +3365,7 @@
 		{
 			"name": "demo-sidebar-menu-sub",
 			"type": "registry:block",
-			"registryDependencies": [
-				"sidebar"
-			],
+			"registryDependencies": ["sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-menu-sub.svelte",
@@ -4053,12 +3376,8 @@
 		{
 			"name": "demo-sidebar-menu",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar-menu.svelte",
@@ -4069,12 +3388,8 @@
 		{
 			"name": "demo-sidebar",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/demo-sidebar.svelte",
@@ -4085,12 +3400,7 @@
 		{
 			"name": "login-01",
 			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"card",
-				"input",
-				"label"
-			],
+			"registryDependencies": ["button", "card", "input", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/login-01/+page.svelte",
@@ -4105,10 +3415,7 @@
 		{
 			"name": "sidebar-01",
 			"type": "registry:block",
-			"dependencies": [
-				"bits-ui",
-				"@lucide/svelte"
-			],
+			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4138,10 +3445,7 @@
 		{
 			"name": "sidebar-02",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte",
-				"bits-ui"
-			],
+			"dependencies": ["@lucide/svelte", "bits-ui"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4172,14 +3476,8 @@
 		{
 			"name": "sidebar-03",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"separator",
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb", "separator", "sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-03/+page.svelte",
@@ -4194,14 +3492,8 @@
 		{
 			"name": "sidebar-04",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"separator",
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb", "separator", "sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-04/+page.svelte",
@@ -4216,17 +3508,8 @@
 		{
 			"name": "sidebar-05",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte",
-				"bits-ui"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"separator",
-				"sidebar",
-				"collapsible",
-				"label"
-			],
+			"dependencies": ["@lucide/svelte", "bits-ui"],
+			"registryDependencies": ["breadcrumb", "separator", "sidebar", "collapsible", "label"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-05/+page.svelte",
@@ -4245,9 +3528,7 @@
 		{
 			"name": "sidebar-06",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4278,9 +3559,7 @@
 		{
 			"name": "sidebar-07",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4319,9 +3598,7 @@
 		{
 			"name": "sidebar-08",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4360,9 +3637,7 @@
 		{
 			"name": "sidebar-09",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4390,9 +3665,7 @@
 		{
 			"name": "sidebar-10",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4440,15 +3713,8 @@
 		{
 			"name": "sidebar-11",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"separator",
-				"sidebar",
-				"collapsible"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb", "separator", "sidebar", "collapsible"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-11/+page.svelte",
@@ -4463,9 +3729,7 @@
 		{
 			"name": "sidebar-12",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
@@ -4501,15 +3765,8 @@
 		{
 			"name": "sidebar-13",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
-			"registryDependencies": [
-				"breadcrumb",
-				"button",
-				"dialog",
-				"sidebar"
-			],
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["breadcrumb", "button", "dialog", "sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-13/+page.svelte",
@@ -4524,10 +3781,7 @@
 		{
 			"name": "sidebar-14",
 			"type": "registry:block",
-			"registryDependencies": [
-				"breadcrumb",
-				"sidebar"
-			],
+			"registryDependencies": ["breadcrumb", "sidebar"],
 			"files": [
 				{
 					"path": "src/lib/registry/blocks/sidebar-14/+page.svelte",
@@ -4542,9 +3796,7 @@
 		{
 			"name": "sidebar-15",
 			"type": "registry:block",
-			"dependencies": [
-				"@lucide/svelte"
-			],
+			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": [
 				"breadcrumb",
 				"separator",
