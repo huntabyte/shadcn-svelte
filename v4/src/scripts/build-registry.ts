@@ -3,11 +3,15 @@ import fs from "node:fs";
 import path from "node:path";
 import * as v from "valibot";
 import { rimraf } from "rimraf";
-import { registrySchema } from "@shadcn-svelte/registry";
+import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../lib/colors.js";
 import { baseColors } from "../lib/registry/colors.js";
 import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../lib/registry/templates";
+import prettier from "prettier";
+
+const prettierConfig = await prettier.resolveConfig(import.meta.url)!;
+if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const REGISTRY_PATH = path.resolve("static", "registry");
 const THEMES_CSS_PATH = path.resolve("static");
@@ -46,8 +50,20 @@ async function main() {
 		homepage: "https://shadcn-svelte.com",
 		items: registry,
 	});
+	const ITEM_TYPES: RegistryItemType[] = [
+		"registry:ui",
+		"registry:hook",
+		"registry:style",
+		"registry:lib",
+	];
+	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
 	const registryJsonPath = path.resolve("registry.json");
-	fs.writeFileSync(registryJsonPath, JSON.stringify(result, null, "\t"), "utf8");
+	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
+	const formatted = await prettier.format(registryJson, {
+		...prettierConfig,
+		filepath: registryJsonPath,
+	});
+	fs.writeFileSync(registryJsonPath, formatted, "utf8");
 
 	// ----------------------------------------------------------------------------
 	// Build blocks registry (__registry__/blocks.js) and block chunks (__registry__/chunks/[style]/[block]-[chunk].svelte)

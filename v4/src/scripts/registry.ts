@@ -1,12 +1,13 @@
+import fs from "node:fs";
+import path from "node:path";
 import * as acorn from "acorn";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
-import fs from "node:fs";
-import path from "node:path";
 import * as svelte from "svelte/compiler";
 import type { Registry } from "@shadcn-svelte/registry";
-import config from "../../svelte.config.js";
-import { TMP_NEXT_DEPS } from "./tmp";
+
+// will be removed once moving from `next` to `latest`
+export const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
 
 // [Dependency, [...PeerDependencies]]
 const DEPENDENCIES: Record<string, string[]> = {
@@ -41,16 +42,18 @@ export async function buildRegistry(): Promise<Registry["items"]> {
 		example: path.resolve(registryRootPath, "examples"),
 		block: path.resolve(registryRootPath, "blocks"),
 		hook: path.resolve(registryRootPath, "hooks"),
+		lib: path.resolve(registryRootPath, "lib"),
 	};
 
-	const [ui, example, block, hook] = await Promise.all([
+	const resolvedItems = await Promise.all([
 		crawlUI(paths.ui),
 		crawlExample(paths.example),
 		crawlBlock(paths.block),
 		crawlHook(paths.hook),
+		crawlLib(paths.lib),
 	]);
 
-	items.push(...ui, ...example, ...block, ...hook);
+	resolvedItems.forEach((i) => items.push(...i));
 
 	return items;
 }
@@ -83,7 +86,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 
 		const filepath = path.join(componentPath, dirent.name);
 		const relativePath = path.relative(process.cwd(), filepath);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 
 		files.push({ path: relativePath, type });
 
@@ -118,7 +121,7 @@ async function crawlExample(rootPath: string) {
 		const [name] = dirent.name.split(".svelte");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
@@ -158,7 +161,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
 		const filepath = path.join(blockPath, compPath);
 		const relativePath = path.relative(process.cwd(), filepath);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 
 		files.push({ path: relativePath, type });
 
@@ -196,7 +199,7 @@ async function crawlBlock(rootPath: string) {
 		const [name] = dirent.name.split(".svelte");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
@@ -228,10 +231,10 @@ async function crawlHook(rootPath: string) {
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
 
-		const [name] = dirent.name.split(".svelte.ts");
+		const [name] = dirent.name.split(".svelte.ts")[0].split(".ts");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 		const relativePath = path.relative(process.cwd(), filepath);
 
 		const file = {
@@ -257,7 +260,7 @@ async function crawlHook(rootPath: string) {
 
 // TODO: this isn't being used yet, but this will be used to gather all the files for the lib
 // folder once I work out how to get the registry index setup to depend on utils and whatnot
-async function _crawlLib(rootPath: string) {
+async function crawlLib(rootPath: string) {
 	const type = `registry:lib` as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
@@ -265,25 +268,18 @@ async function _crawlLib(rootPath: string) {
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
 
-		const [name] = dirent.name.split(".svelte.ts");
+		const [name] = dirent.name.split(".svelte.ts")[0].split(".ts");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const source = fs.readFileSync(filepath, "utf8");
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
 			type,
-			files: [file],
+			files: [{ path: relativePath, type }],
 			registryDependencies: toArray(registryDependencies),
 			dependencies: toArray(dependencies),
 		});
@@ -297,7 +293,7 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 	let moduleAst: unknown;
 
 	if (filename.endsWith(".svelte")) {
-		const { code } = await svelte.preprocess(sourceCode, config.preprocess, { filename });
+		const { code } = await svelte.preprocess(sourceCode, [], { filename });
 		const result = svelte.parse(code, { filename });
 		ast = result.instance;
 		if (result.module) {
