@@ -7,8 +7,6 @@ import { build } from "./scripts/build-registry.js";
 
 export default defineConfig({
 	plugins: [
-		tailwindcss(),
-		sveltekit(),
 		{
 			name: "registry-builder",
 			enforce: "pre",
@@ -24,6 +22,8 @@ export default defineConfig({
 				this.info("Registry built.");
 			},
 		},
+		tailwindcss(),
+		sveltekit(),
 	],
 });
 
