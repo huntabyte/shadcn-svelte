@@ -200,8 +200,8 @@ export function resolveItemFilePath(
 	}
 
 	// inserted as single files
-	if (file.type === "registry:hook") {
-		// resolves to `[hooks-alias]/[file]`
+	if (file.type === "registry:hook" || file.type === "registry:lib") {
+		// resolves to `[alias]/[filename]`
 		return path.resolve(aliasDir, file.name);
 	}
 
