@@ -94,7 +94,7 @@ export async function resolveRegistryItems({
 
 		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && resolvedItem.registryDependencies.length > 0) {
+		if (includeRegDeps && resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
 				baseUrl,
 				registryIndex: registryIndex,
@@ -157,26 +157,11 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	}
 }
 
-export function getItemTargetPath(config: Config, item: schemas.RegistryItem, override?: string) {
-	// Allow overrides for all items but ui.
-	if (override && item.type !== "registry:ui") {
-		return override;
-	}
-
-	const [, type] = item.type.split(":");
-	if (!type || !(type in config.resolvedPaths)) return null;
-
-	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
-}
-
-export function getRegistryItemTargetDir(
-	config: Config,
-	type: schemas.RegistryItemType,
-	override?: string
-) {
+export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, override?: string) {
 	if (override) return override;
 
 	if (type === "registry:ui") return config.resolvedPaths.ui;
+	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
 
 	if (type === "registry:block" || type === "registry:component") {
@@ -185,9 +170,8 @@ export function getRegistryItemTargetDir(
 	if (type === "registry:file" || type === "registry:page") {
 		return config.resolvedPaths.cwd;
 	}
-	// TODO - we put this in components for now but will move to the appropriate route location
-	// depending on if using SvelteKit or whatever
-	return config.resolvedPaths.components;
+
+	throw new Error(`TODO: unhandled item type ${type}`);
 }
 
 export function resolveItemFilePath(
@@ -195,14 +179,14 @@ export function resolveItemFilePath(
 	item: schemas.RegistryItem,
 	file: schemas.RegistryItemFile
 ): string {
-	const targetDir = getRegistryItemTargetDir(config, item.type);
+	const aliasDir = getItemAliasDir(config, item.type);
 	if (file.target) {
 		// resolves relative to the root (cwd)
 		if (file.target.startsWith("~/")) {
 			return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
 		}
 		// resolves relative to the item's dir
-		return path.resolve(targetDir, file.target);
+		return path.resolve(aliasDir, file.target);
 	}
 
 	// inserted as grouped files
@@ -212,13 +196,13 @@ export function resolveItemFilePath(
 		file.type === "registry:block"
 	) {
 		// resolves to `[alias]/[registry-item]/[file]`
-		return path.resolve(targetDir, item.name, file.name);
+		return path.resolve(aliasDir, item.name, file.name);
 	}
 
 	// inserted as single files
 	if (file.type === "registry:hook") {
 		// resolves to `[hooks-alias]/[file]`
-		return path.resolve(targetDir, file.name);
+		return path.resolve(aliasDir, file.name);
 	}
 
 	// TODO: keep going

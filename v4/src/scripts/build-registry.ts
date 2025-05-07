@@ -10,7 +10,7 @@ import { buildRegistry } from "./registry";
 import { THEME_STYLES_WITH_VARIABLES } from "../lib/registry/templates";
 import prettier from "prettier";
 
-const prettierConfig = await prettier.resolveConfig(import.meta.url)!;
+const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const REGISTRY_PATH = path.resolve("static", "registry");
