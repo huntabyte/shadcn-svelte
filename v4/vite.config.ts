@@ -13,7 +13,7 @@ export default defineConfig({
 			name: "registry-builder",
 			enforce: "pre",
 			async watchChange(id) {
-				if (!minimatch(id, "**/lib/registry/**")) return;
+				if (!minimatch(id, "**/src/lib/registry/**")) return;
 				this.info("Registry file updated. Rebuilding registry...");
 				buildRegistry();
 				this.info("Registry built.");
