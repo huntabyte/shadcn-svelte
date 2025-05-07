@@ -1,14 +1,14 @@
-import template from "lodash.template";
 import fs from "node:fs";
 import path from "node:path";
 import * as v from "valibot";
-import { rimraf } from "rimraf";
-import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
-import { generateBaseColorTemplate, getColorsData } from "../lib/colors.js";
-import { baseColors } from "../lib/registry/colors.js";
-import { buildRegistry } from "./registry";
-import { THEME_STYLES_WITH_VARIABLES } from "../lib/registry/templates";
 import prettier from "prettier";
+import { rimraf } from "rimraf";
+import template from "lodash.template";
+import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
+import { generateBaseColorTemplate, getColorsData } from "../src/lib/colors.js";
+import { baseColors } from "../src/lib/registry/colors.js";
+import { buildRegistry } from "./registry.js";
+import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
@@ -29,7 +29,7 @@ function writeFileWithDirs(
 	fs.writeFileSync(filePath, data, options);
 }
 
-async function main() {
+export async function build() {
 	const registry = await buildRegistry();
 
 	const selfReferenced = registry.filter((item) =>
@@ -212,8 +212,6 @@ export const Index = {
 	// ----------------------------------------------------------------------------
 
 	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
-
-	console.info("✅ Done!");
 }
 
-await main();
+// await build();
