@@ -5,8 +5,14 @@ import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { build } from "./scripts/build-registry.js";
 
+console.log("Building registry...");
+await buildRegistry();
+console.log("Registry built.");
+
 export default defineConfig({
 	plugins: [
+		tailwindcss(),
+		sveltekit(),
 		{
 			name: "registry-builder",
 			enforce: "pre",
@@ -16,14 +22,7 @@ export default defineConfig({
 				await buildRegistry();
 				this.info("Registry built.");
 			},
-			async options() {
-				this.info("Building registry...");
-				await buildRegistry();
-				this.info("Registry built.");
-			},
 		},
-		tailwindcss(),
-		sveltekit(),
 	],
 });
 
