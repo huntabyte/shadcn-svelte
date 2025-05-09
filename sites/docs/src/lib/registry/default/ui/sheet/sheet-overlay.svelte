@@ -8,7 +8,8 @@
 		...restProps
 	}: SheetPrimitive.OverlayProps = $props();
 
-	export { className as class };
+	//removed export { className as class } since it is already exported by props
+
 </script>
 
 <SheetPrimitive.Overlay
