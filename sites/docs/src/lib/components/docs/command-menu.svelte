@@ -53,7 +53,7 @@
 	<Command.Input placeholder="Type a command or search" />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
-		<Command.Group heading="Links">
+		<Command.Group heading="Links" value="Links">
 			{#each mainNav as navItem (navItem.title)}
 				<Command.LinkItem
 					value={navItem.title}
@@ -66,7 +66,7 @@
 			{/each}
 		</Command.Group>
 		{#each sidebarNav as group (group.title)}
-			<Command.Group heading={group.title}>
+			<Command.Group heading={group.title} value={group.title}>
 				{#each group.items as navItem (navItem.title)}
 					<Command.LinkItem
 						value={navItem.title}
@@ -82,7 +82,7 @@
 			</Command.Group>
 		{/each}
 		<Command.Separator />
-		<Command.Group heading="Theme">
+		<Command.Group heading="Theme" value="Theme">
 			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
 				<Sun class="mr-2 size-4" />
 				Light
