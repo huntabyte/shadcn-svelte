@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import Button from "$lib/registry/new-york/ui/button/button.svelte";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import Button from "$lib/registry/ui/button/button.svelte";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 </script>
 
 <DropdownMenu.Root>
@@ -17,12 +17,12 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Group>
-			<DropdownMenu.GroupHeading class="font-normal">
+			<DropdownMenu.Label class="font-normal">
 				<div class="flex flex-col space-y-1">
 					<p class="text-sm font-medium leading-none">shadcn</p>
 					<p class="text-muted-foreground text-xs leading-none">m@example.com</p>
 				</div>
-			</DropdownMenu.GroupHeading>
+			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>

@@ -1,9 +1,10 @@
-import color from "chalk";
-import { Command } from "commander";
-import { execa } from "execa";
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { existsSync, promises as fs } from "node:fs";
+import color from "chalk";
+import merge from "deepmerge";
+import { Command } from "commander";
+import { exec } from "tinyexec";
 import * as v from "valibot";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
@@ -13,7 +14,7 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { UTILS, UTILS_JS } from "../utils/templates.js";
-import { transformImports } from "../utils/transformers.js";
+import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 
@@ -33,7 +34,7 @@ export const update = new Command()
 	.command("update")
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
-	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-a, --all", "update all existing components", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
@@ -59,8 +60,6 @@ export const update = new Command()
 				);
 			}
 
-			registry.setRegistry(config.registry);
-
 			checkPreconditions(cwd);
 
 			await runUpdate(cwd, config, options);
@@ -82,7 +81,9 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	const components = options.components;
-	const registryIndex = await registry.getRegistryIndex();
+
+	const registryUrl = registry.getRegistryUrl(config);
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
 	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
 	if (!existsSync(componentDir)) {
@@ -106,10 +107,12 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// add `utils` option to the end
 	existingComponents.push({
 		name: "utils",
+		title: "utils",
 		type: "registry:ui",
-		files: [],
 		dependencies: [],
 		registryDependencies: [],
+		devDependencies: [],
+		relativeUrl: "",
 	});
 
 	// If the user specifies component args
@@ -129,7 +132,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			options: existingComponents.map((component) => ({
 				label: component.name,
 				value: component,
-				hint: component.registryDependencies.length
+				hint: component.registryDependencies?.length
 					? `also updates: ${component.registryDependencies.join(", ")}`
 					: undefined,
 			})),
@@ -176,17 +179,22 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		});
 	}
 
-	const tree = await registry.resolveTree({
-		index: registryIndex,
-		names: selectedComponents.map((com) => com.name),
-		config,
+	const resolvedItems = await registry.resolveRegistryItems({
+		baseUrl: registryUrl,
+		registryIndex: registryIndex,
+		items: selectedComponents.map((com) => com.name),
 	});
-	const payload = (await registry.fetchTree(config, tree)).sort((a, b) =>
-		a.name.localeCompare(b.name)
-	);
+
+	const payload = await registry.fetchRegistryItems({
+		baseUrl: registryUrl,
+		items: resolvedItems,
+	});
+	payload.sort((a, b) => a.name.localeCompare(b.name));
 
 	const componentsToRemove: Record<string, string[]> = {};
 	const dependencies = new Set<string>();
+	const devDependencies = new Set<string>();
+	let cssVars = {};
 	for (const item of payload) {
 		const targetDir = registry.getItemTargetPath(config, item);
 		if (!targetDir) {
@@ -194,7 +202,8 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		}
 
 		// Add dependencies to the install list
-		item.dependencies.forEach((dep) => dependencies.add(dep));
+		item.dependencies?.forEach((dep) => dependencies.add(dep));
+		item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 
 		// Update Components
 		tasks.push({
@@ -210,16 +219,29 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 				}
 
 				for (const file of item.files) {
-					const filePath = path.resolve(targetDir, item.name, file.name);
+					let filePath = registry.resolveItemFilePath(config, item, file);
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replace(".ts", ".js");
+					}
 
 					// Run transformers.
-					const content = transformImports(file.content, config);
+					const content = await transformContent(file.content, filePath, config);
 
-					await fs.writeFile(filePath, content);
+					await fs.writeFile(filePath, content, "utf8");
+				}
+
+				if (item.cssVars) {
+					cssVars = merge(cssVars, item.cssVars);
 				}
 
 				const installedFiles = await fs.readdir(componentDir);
-				const remoteFiles = item.files.map((file) => file.name);
+				const remoteFiles = item.files.map((file) => {
+					const name = "name" in file ? file.name : path.basename(file.target);
+					if (!config.typescript && name.endsWith(".ts")) {
+						return name.replace(".ts", ".js");
+					}
+					return name;
+				});
 				const filesToDelete = installedFiles
 					.filter((file) => !remoteFiles.includes(file))
 					.map((file) => path.resolve(targetDir, item.name, file));
@@ -240,15 +262,25 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// Install dependencies.
 	const pm = await detectPM(cwd, true);
 	if (pm) {
-		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
+		const addDeps = resolveCommand(pm, "add", [...dependencies]);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDependencies]);
+		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0,
+			enabled: dependencies.size > 0 || devDependencies.size > 0,
 			async task() {
-				await execa(add.command, [...add.args], {
-					cwd,
-				});
+				if (dependencies.size > 0) {
+					await exec(addDeps.command, addDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
+				if (devDependencies.size > 0) {
+					await exec(addDevDeps.command, addDevDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
@@ -262,6 +294,23 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 			return `Config file ${highlight("components.json")} updated`;
 		},
 	});
+
+	if (Object.keys(cssVars).length > 0) {
+		// Update the stylesheet
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				const cssPath = config.resolvedPaths.tailwindCss;
+				const cssSource = await fs.readFile(cssPath, "utf8");
+
+				const modifiedCss = transformCss(cssSource, cssVars);
+				await fs.writeFile(cssPath, modifiedCss, "utf8");
+
+				const relative = path.relative(cwd, cssPath);
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 

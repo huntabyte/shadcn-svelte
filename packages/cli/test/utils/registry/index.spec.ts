@@ -3,11 +3,12 @@ import { describe, expect, it } from "vitest";
 import { getItemTargetPath } from "../../../src/utils/registry/index";
 import { SITE_BASE_URL } from "../../../src/constants";
 
+// TODO: this is a duplicate of registry.spec.ts so we can probably remove it
+
 const config = {
-	style: "new-york",
 	tailwind: {
 		config: "tailwind.config.js",
-		css: "src/app.pcss",
+		css: "src/app.css",
 		baseColor: "zinc",
 	},
 	aliases: {
@@ -20,7 +21,7 @@ const config = {
 	resolvedPaths: {
 		components: "./src/lib/components",
 		tailwindConfig: "./tailwind.config.js",
-		tailwindCss: "./src/app.pcss",
+		tailwindCss: "./src/app.css",
 		utils: "./src/lib/utils",
 		cwd: "./",
 		hooks: "./src/lib/hooks",
@@ -67,7 +68,9 @@ describe("getItemTargetPath", () => {
 				config,
 				{
 					name: "label",
+					title: "label",
 					dependencies: ["bits-ui@next"],
+					devDependencies: [],
 					registryDependencies: [],
 					files: [
 						//... snip this since it doesn't matter
@@ -83,8 +86,10 @@ describe("getItemTargetPath", () => {
 		expect(
 			getItemTargetPath(config, {
 				name: "label",
+				title: "label",
 				dependencies: ["bits-ui@next"],
 				registryDependencies: [],
+				devDependencies: [],
 				files: [
 					//... snip this since it doesn't matter
 				],

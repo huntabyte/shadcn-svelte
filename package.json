@@ -9,10 +9,12 @@
 	"private": true,
 	"scripts": {
 		"build": "pnpm build:docs",
-		"build:cli": "pnpm -F shadcn-svelte build",
+		"build:cli": "pnpm -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
+		"build:v4": "pnpm -F v4 build",
 		"dev": "pnpm -F docs dev",
-		"dev:cli": "pnpm -F shadcn-svelte start:dev",
+		"dev:cli": "pnpm -F \"./packages/**\" svelte-kit sync && pnpm --parallel --reporter append-only --color dev",
+		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"check": "pnpm -F docs check",
@@ -37,6 +39,7 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
+		"@eslint/compat": "^1.2.7",
 		"@eslint/js": "^9.22.0",
 		"@typescript-eslint/eslint-plugin": "^8.26.1",
 		"@typescript-eslint/scope-manager": "^8.26.1",
@@ -52,5 +55,10 @@
 		"svelte": "^5.23.1",
 		"typescript": "^5.8.2",
 		"typescript-eslint": "^8.26.1"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
 	}
 }

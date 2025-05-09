@@ -3,9 +3,7 @@
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { CardsDefault } from "$lib/registry/default/example/cards/index.js";
-	import { CardsNewYork } from "$lib/registry/new-york/example/cards/index.js";
-	import { config } from "$lib/stores/index.js";
+	import { CardsDefault } from "$lib/registry/example/cards/index.js";
 </script>
 
 <svelte:head>
@@ -41,10 +39,6 @@
 		</PageHeader.Root>
 	</ThemeWrapper>
 	<ThemeWrapper>
-		{#if $config.style === "new-york"}
-			<CardsNewYork />
-		{:else}
-			<CardsDefault />
-		{/if}
+		<CardsDefault />
 	</ThemeWrapper>
 </div>
