@@ -51,71 +51,73 @@
 	);
 </script>
 
-<Select.Root type="single" name="favoriteFruit" bind:value={fruitValue}>
-	<Select.Trigger class="w-[180px]">
-		{fruitLabel}
-	</Select.Trigger>
-	<Select.Content>
-		<Select.Group>
-			<Select.Label>Fruits</Select.Label>
-			{#each fruits as fruit (fruit.value)}
-				<Select.Item
-					value={fruit.value}
-					label={fruit.label}
-					disabled={fruit.value === "grapes"}
-				>
-					{fruit.label}
+<div class="flex flex-wrap items-start gap-4">
+	<Select.Root type="single" name="favoriteFruit" bind:value={fruitValue}>
+		<Select.Trigger class="w-[180px]">
+			{fruitLabel}
+		</Select.Trigger>
+		<Select.Content>
+			<Select.Group>
+				<Select.Label>Fruits</Select.Label>
+				{#each fruits as fruit (fruit.value)}
+					<Select.Item
+						value={fruit.value}
+						label={fruit.label}
+						disabled={fruit.value === "grapes"}
+					>
+						{fruit.label}
+					</Select.Item>
+				{/each}
+			</Select.Group>
+		</Select.Content>
+	</Select.Root>
+
+	<Select.Root type="single" name="largeList" bind:value={largeListValue}>
+		<Select.Trigger class="w-[180px]">
+			{largeListLabel}
+		</Select.Trigger>
+		<Select.Content>
+			{#each { length: 100 } as _, index (index)}
+				<Select.Item value={`${index}`}>
+					Item {index}
 				</Select.Item>
 			{/each}
-		</Select.Group>
-	</Select.Content>
-</Select.Root>
+		</Select.Content>
+	</Select.Root>
 
-<Select.Root type="single" name="largeList" bind:value={largeListValue}>
-	<Select.Trigger class="w-[180px]">
-		{largeListLabel}
-	</Select.Trigger>
-	<Select.Content>
-		{#each { length: 100 } as _, index (index)}
-			<Select.Item value={`${index}`}>
-				Item {index}
-			</Select.Item>
-		{/each}
-	</Select.Content>
-</Select.Root>
+	<Select.Root type="single" name="favoriteFruit" bind:value={fruitValue2} disabled>
+		<Select.Trigger class="w-[180px]">
+			{fruitLabel2}
+		</Select.Trigger>
+		<Select.Content>
+			<Select.Group>
+				<Select.Label>Fruits</Select.Label>
+				{#each fruits as fruit (fruit.value)}
+					<Select.Item
+						value={fruit.value}
+						label={fruit.label}
+						disabled={fruit.value === "grapes"}
+					>
+						{fruit.label}
+					</Select.Item>
+				{/each}
+			</Select.Group>
+		</Select.Content>
+	</Select.Root>
 
-<Select.Root type="single" name="favoriteFruit" bind:value={fruitValue2} disabled>
-	<Select.Trigger class="w-[180px]">
-		{fruitLabel2}
-	</Select.Trigger>
-	<Select.Content>
-		<Select.Group>
-			<Select.Label>Fruits</Select.Label>
-			{#each fruits as fruit (fruit.value)}
-				<Select.Item
-					value={fruit.value}
-					label={fruit.label}
-					disabled={fruit.value === "grapes"}
-				>
-					{fruit.label}
+	<Select.Root type="single" name="favoriteChart" bind:value={chartValue}>
+		<Select.Trigger class="w-[180px]">
+			{@render SelectIconItemContent(activeChart)}
+		</Select.Trigger>
+		<Select.Content>
+			{#each charts as chart (chart.value)}
+				<Select.Item value={chart.value}>
+					{@render SelectIconItemContent(chart)}
 				</Select.Item>
 			{/each}
-		</Select.Group>
-	</Select.Content>
-</Select.Root>
-
-<Select.Root type="single" name="favoriteChart" bind:value={chartValue}>
-	<Select.Trigger class="w-[180px]">
-		{@render SelectIconItemContent(activeChart)}
-	</Select.Trigger>
-	<Select.Content>
-		{#each charts as chart (chart.value)}
-			<Select.Item value={chart.value}>
-				{@render SelectIconItemContent(chart)}
-			</Select.Item>
-		{/each}
-	</Select.Content>
-</Select.Root>
+		</Select.Content>
+	</Select.Root>
+</div>
 
 {#snippet SelectIconItemContent(item: ChartItem)}
 	<item.icon />
