@@ -20,7 +20,7 @@
 		class={cn("flex w-full scroll-mt-16 flex-col rounded-lg border", className)}
 		{...restProps}
 	>
-		<div class="flex border-b px-4 py-3">
+		<div class="border-b px-4 py-3">
 			<div class="text-sm font-medium">{getComponentName(name)}</div>
 		</div>
 		<div class="flex flex-1 items-center gap-2 p-4">
