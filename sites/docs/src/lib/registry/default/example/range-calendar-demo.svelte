@@ -5,10 +5,10 @@
 	const start = today(getLocalTimeZone());
 	const end = start.add({ days: 7 });
 
-	let value = {
+	let value = $state({
 		start,
 		end,
-	};
+	});
 </script>
 
 <RangeCalendar bind:value class="rounded-md border" />

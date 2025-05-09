@@ -1,6 +1,8 @@
 ---
 title: Formsnap & Superforms
 description: Building forms with Formsnap, Superforms, & Zod.
+links:
+  doc: https://formsnap.dev
 ---
 
 <script>
@@ -53,9 +55,11 @@ If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](
 ```svelte
 <form method="POST" use:enhance>
   <Form.Field {form} name="email">
-    <Form.Control let:attrs>
-      <Form.Label>Email</Form.Label>
-      <Input {...attrs} bind:value={$formData.email} />
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Email</Form.Label>
+        <Input {...props} bind:value={$formData.email} />
+      {/snippet}
     </Form.Control>
     <Form.Description />
     <Form.FieldErrors />
@@ -106,8 +110,8 @@ For this example, we'll be passing the `form` returned from the load function as
 
 ```svelte title="src/routes/settings/settings-form.svelte" showLineNumbers
 <script lang="ts">
-  import * as Form from "$lib/components/ui/form";
-  import { Input } from "$lib/components/ui/input";
+  import * as Form from "$lib/components/ui/form/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
   import { formSchema, type FormSchema } from "./schema";
   import {
     type SuperValidated,
@@ -116,9 +120,10 @@ For this example, we'll be passing the `form` returned from the load function as
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
 
-  export let data: SuperValidated<Infer<FormSchema>>;
+  let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } =
+    $props();
 
-  const form = superForm(data, {
+  const form = superForm(data.form, {
     validators: zodClient(formSchema),
   });
 
@@ -127,9 +132,11 @@ For this example, we'll be passing the `form` returned from the load function as
 
 <form method="POST" use:enhance>
   <Form.Field {form} name="username">
-    <Form.Control let:attrs>
-      <Form.Label>Username</Form.Label>
-      <Input {...attrs} bind:value={$formData.username} />
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Username</Form.Label>
+        <Input {...props} bind:value={$formData.username} />
+      {/snippet}
     </Form.Control>
     <Form.Description>This is your public display name.</Form.Description>
     <Form.FieldErrors />
@@ -148,10 +155,10 @@ We'll pass the `form` from the data returned from the load function to the form 
 <script lang="ts">
   import type { PageData } from "./$types.js";
   import SettingsForm from "./settings-form.svelte";
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 </script>
 
-<SettingsForm data={data.form} />
+<SettingsForm {data} />
 ```
 
 ### Create an Action that handles the form submission

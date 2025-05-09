@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { z } from "zod";
 
 	const items = [
@@ -41,11 +41,12 @@
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import * as Form from "$lib/registry/new-york/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = $page.data.checkboxMultiple;
-	export { data as form };
+
+	let { form: data = page.data.checkboxMultiple }: { form: SuperValidated<Infer<FormSchema>> } =
+		$props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -78,25 +79,27 @@
 			</Form.Description>
 		</div>
 		<div class="space-y-2">
-			{#each items as item}
+			{#each items as item (item.id)}
 				{@const checked = $formData.items.includes(item.id)}
 				<div class="flex flex-row items-start space-x-3">
-					<Form.Control let:attrs>
-						<Checkbox
-							{...attrs}
-							{checked}
-							onCheckedChange={(v) => {
-								if (v) {
-									addItem(item.id);
-								} else {
-									removeItem(item.id);
-								}
-							}}
-						/>
-						<Form.Label class="text-sm font-normal">
-							{item.label}
-						</Form.Label>
-						<input hidden type="checkbox" name={attrs.name} value={item.id} {checked} />
+					<Form.Control>
+						{#snippet children({ props })}
+							<Checkbox
+								{...props}
+								{checked}
+								value={item.id}
+								onCheckedChange={(v) => {
+									if (v) {
+										addItem(item.id);
+									} else {
+										removeItem(item.id);
+									}
+								}}
+							/>
+							<Form.Label class="text-sm font-normal">
+								{item.label}
+							</Form.Label>
+						{/snippet}
 					</Form.Control>
 				</div>
 			{/each}

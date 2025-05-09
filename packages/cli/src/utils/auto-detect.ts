@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
-import { AGENTS, type Agent, type AgentName, detect, getUserAgent } from "package-manager-detector";
+import { detect } from "package-manager-detector";
+import { AGENTS, type Agent } from "package-manager-detector";
 import * as p from "./prompts.js";
 import { cancel } from "./prompt-helpers.js";
 
@@ -95,26 +96,28 @@ export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
 	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
 }
 
-const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];
 type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | undefined> {
-	const agent = (await detect({ cwd }))?.agent;
+	const detectResult = await detect({ cwd });
 
-	if (!agent && prompt) {
-		const options: Options = AGENT_NAMES.map((pm) => ({ value: pm, label: pm }));
+	let agent: Agent | undefined;
+	if (detectResult != null) {
+		agent = detectResult.agent;
+	} else if (detectResult == null && prompt) {
+		// prompt for package manager
+		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
+			value: pm,
+			label: pm,
+		}));
 		options.unshift({ label: "None", value: undefined });
 
-		const userAgent = getUserAgent() ?? undefined; // replaces `null` for `undefined`
-		const pm = await p.select({
-			options,
+		const res = await p.select({
 			message: "Which package manager do you want to use?",
-			initialValue: userAgent,
+			options,
 		});
-		if (p.isCancel(pm)) {
-			cancel();
-		}
+		if (p.isCancel(res)) cancel();
 
-		return pm;
+		agent = res;
 	}
 
 	return agent;

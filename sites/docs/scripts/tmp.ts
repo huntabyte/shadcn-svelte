@@ -1,4 +1,2 @@
-export const TMP_PINNED_DEPS = new Map<string, string>([
-	["formsnap", "formsnap@1.0.1"],
-	["bits-ui", "bits-ui@0.22.0"],
-]);
+// will be removed once moving from `next` to `latest`
+export const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];

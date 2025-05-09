@@ -1,15 +1,20 @@
 <script lang="ts">
 	import { config } from "$lib/stores/index.js";
-	import { cn } from "$lib/utils.js";
-	export let defaultTheme: string | undefined = undefined;
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+
+	let {
+		class: className,
+		defaultTheme,
+		children,
+		...restProps
+	}: PrimitiveDivAttributes & { defaultTheme?: string } = $props();
 </script>
 
 <div
 	class={cn(`theme-${defaultTheme || $config.theme}`, "w-full", className)}
 	data-style={$config.style}
 	style="--radius: {defaultTheme ? 0.5 : $config.radius}rem"
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </div>

@@ -87,6 +87,13 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Migration",
+					label: "v5",
+					// if there is a svelte 6 migration etc point to /docs/migration
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
+				{
 					title: "About",
 					href: "/docs/about",
 					items: [],
@@ -96,6 +103,12 @@ export const docsConfig: DocsConfig = {
 		{
 			title: "Components",
 			items: [
+				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+					label: "New",
+				},
 				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
@@ -217,6 +230,12 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Input OTP",
+					href: "/docs/components/input-otp",
+					items: [],
+					label: "New",
+				},
+				{
 					title: "Label",
 					href: "/docs/components/label",
 					items: [],
@@ -318,13 +337,6 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/textarea",
 					items: [],
 				},
-				// {
-				//   title: "Toast",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
 				{
 					title: "Toggle",
 					href: "/docs/components/toggle",

@@ -1,28 +1,25 @@
 <script lang="ts">
-	import Activity from "lucide-svelte/icons/activity";
-	import CreditCard from "lucide-svelte/icons/credit-card";
-	import DollarSign from "lucide-svelte/icons/dollar-sign";
-	import Download from "lucide-svelte/icons/download";
-	import Users from "lucide-svelte/icons/users";
-	import {
-		DashboardMainNav,
-		Overview,
-		RecentSales,
-		Search,
-		TeamSwitcher,
-		UserNav,
-	} from "./index.js";
+	import Activity from "@lucide/svelte/icons/activity";
+	import CreditCard from "@lucide/svelte/icons/credit-card";
+	import DollarSign from "@lucide/svelte/icons/dollar-sign";
+	import Download from "@lucide/svelte/icons/download";
+	import Users from "@lucide/svelte/icons/users";
+	import DashboardMainNav from "./main-nav.svelte";
+	import Overview from "./overview.svelte";
+	import RecentSales from "./recent-sales.svelte";
+	import Search from "./search.svelte";
+	import TeamSwitcher from "./team-switcher.svelte";
+	import UserNav from "./user-nav.svelte";
+
 	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
-	import DashboardLight from "$lib/img/examples/dashboard-light.png?enhanced";
-	import DashboardDark from "$lib/img/examples/dashboard-dark.png?enhanced";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={DashboardLight} alt="Dashboard" class="block dark:hidden" />
-	<enhanced:img src={DashboardDark} alt="Dashboard" class="hidden dark:block" />
+	<img src="/img/examples/dashboard-light.png" alt="Dashboard" class="block dark:hidden" />
+	<img src="/img/examples/dashboard-dark.png" alt="Dashboard" class="hidden dark:block" />
 </div>
 <div class="hidden flex-col md:flex">
 	<div class="border-b">
@@ -41,7 +38,7 @@
 			<div class="flex items-center space-x-2">
 				<DatePickerWithRange />
 				<Button size="sm">
-					<Download class="mr-2 h-4 w-4" />
+					<Download class="mr-2 size-4" />
 					Download
 				</Button>
 			</div>
@@ -60,7 +57,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-							<DollarSign class="text-muted-foreground h-4 w-4" />
+							<DollarSign class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">$45,231.89</div>
@@ -72,7 +69,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-							<Users class="text-muted-foreground h-4 w-4" />
+							<Users class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+2350</div>
@@ -84,7 +81,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Sales</Card.Title>
-							<CreditCard class="text-muted-foreground h-4 w-4" />
+							<CreditCard class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+12,234</div>
@@ -96,7 +93,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-							<Activity class="text-muted-foreground h-4 w-4" />
+							<Activity class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+573</div>
