@@ -8,11 +8,6 @@ import * as svelte from "svelte/compiler";
 import type { PackageJson } from "type-fest";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
-// will be removed once moving from `next` to `latest`
-const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
-
-// const ICON_DEPENDENCIES = ["@lucide/svelte"];
-
 const tsParser = acorn.Parser.extend(tsPlugin());
 
 export async function resolveProjectDeps(cwd: string) {
@@ -98,10 +93,10 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 
 		// TODO: consider peer deps with arbitrary version ranges
 
-		const deps = addDeps(source, opts.dependencies);
+		const deps = resolveDepsFromImport(source, opts.dependencies);
 		deps.forEach((dep) => dependencies.add(dep));
 
-		const devDeps = addDeps(source, opts.devDependencies);
+		const devDeps = resolveDepsFromImport(source, opts.devDependencies);
 		devDeps.forEach((dep) => devDependencies.add(dep));
 	};
 
@@ -120,7 +115,7 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 }
 
 /** Returns an array of found deps. */
-function addDeps(source: string, projectDeps: ReturnType<typeof resolvePeerDeps>) {
+function resolveDepsFromImport(source: string, projectDeps: ReturnType<typeof resolvePeerDeps>) {
 	const depsFound: string[] = [];
 	const simple = projectDeps.versionMap[source] ? source : undefined;
 	const depName =
