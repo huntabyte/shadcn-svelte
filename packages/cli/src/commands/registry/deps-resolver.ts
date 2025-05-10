@@ -7,20 +7,15 @@ import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
 import type { PackageJson } from "type-fest";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
-import { getTSConfig, type Config } from "../../utils/get-config.js";
-import { resolveImport } from "../../utils/resolve-imports.js";
-import type { Registry, RegistryIndex } from "@shadcn-svelte/registry";
-import { resolveURL } from "../../utils/utils.js";
 
 // will be removed once moving from `next` to `latest`
-export const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
+const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
 
 const ICON_DEPENDENCIES = ["@lucide/svelte"];
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 
-export async function resolveProjectDeps(config: Config) {
-	const cwd = config.resolvedPaths.cwd;
+export async function resolveProjectDeps(cwd: string) {
 	const pkg = loadProjectPackageInfo(cwd);
 
 	// Record<Dependency, [...PeerDependencies]>
@@ -39,7 +34,7 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 
 		const versioned = version ? `${name}@${version}` : name;
 		versionMap[name] = versioned;
-		const dep = (deps[versioned] ??= []);
+		const peers = (deps[versioned] ??= []);
 
 		const paths = require.resolve.paths(name);
 		if (!paths) continue;
@@ -60,7 +55,7 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 			// ignore `svelte` as a peerDep
 			if (peerName === "svelte") continue;
 			const peerVersioned = peerVersion ? `${peerName}@${peerVersion}` : peerName;
-			dep.push(peerVersioned);
+			peers.push(peerVersioned);
 			// TODO: maybe do this recursively or nah?
 		}
 	}
@@ -68,18 +63,13 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 }
 
 type GetFileDepOpts = {
-	config: Config;
 	filename: string;
 	source: string;
-	output: string;
 	dependencies: ReturnType<typeof resolvePeerDeps>;
 	devDependencies: ReturnType<typeof resolvePeerDeps>;
-	registryDependencies?: string[];
-	registry: Registry;
-	registryIndex: RegistryIndex;
 };
 export async function getFileDependencies(opts: GetFileDepOpts) {
-	const { filename, source, config } = opts;
+	const { filename, source } = opts;
 	let ast: unknown;
 	let moduleAst: unknown;
 
@@ -97,17 +87,16 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 		return {};
 	}
 
-	const registryDependencies = new Set<string>();
 	const dependencies = new Set<string>();
 	const devDependencies = new Set<string>();
 
-	const tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
-	const tsconfig = getTSConfig(config.resolvedPaths.cwd, tsconfigType)!;
 	const enter = (node: Node) => {
 		if (node.type !== "ImportDeclaration") return;
 		const source = node.source.value as string;
 
 		// TODO: consider deep imports
+
+		// TODO: consider peer deps with arbitrary version ranges
 
 		const depVersioned = opts.dependencies.versionMap[source];
 		if (depVersioned) {
@@ -121,47 +110,6 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 			const depPeers = opts.devDependencies.deps[devDepVersioned];
 			devDependencies.add(devDepVersioned);
 			depPeers?.forEach((dep) => devDependencies.add(dep));
-		}
-
-		// resolve the import path
-		const resolvedPath = resolveImport(source, tsconfig);
-
-		const aliases: Array<keyof Config["resolvedPaths"]> = ["ui", "hooks", "components", "lib"];
-
-		if (resolvedPath && !resolvedPath.startsWith(config.resolvedPaths.utils)) {
-			for (const alias of aliases) {
-				const aliasPath = config.resolvedPaths[alias];
-				if (resolvedPath.startsWith(aliasPath)) {
-					const [filename] = resolvedPath
-						.replace(aliasPath + path.sep, "")
-						.split(path.sep);
-					const itemName = stripExt(filename!);
-
-					const customItem = opts.registry.items.find((item) => item.name === itemName);
-					const registryItem = opts.registryIndex.find((item) => item.name === itemName);
-
-					// super fucking hacky
-					if (!opts.registry.homepage.includes("shadcn-svelte.com") && customItem) {
-						// added as a url reference
-						const [, registryPath] = opts.output
-							.split(path.sep)
-							.join("/")
-							.split("static/");
-						const url = resolveURL(
-							opts.registry.homepage,
-							registryPath! + "/" + `${itemName}.json`
-						);
-						registryDependencies.add(url.href);
-					} else if (registryItem) {
-						// gets added as-is (e.g. `button`, `calendar`, etc.)
-						registryDependencies.add(itemName);
-					} else {
-						// TODO: throw an error if it doesn't exist in the `registry.json` and or the registry index
-						throw "TODO: an unknown item";
-					}
-					break;
-				}
-			}
 		}
 
 		const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
@@ -179,7 +127,6 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 	}
 
 	return {
-		registryDependencies: toArray(registryDependencies),
 		dependencies: toArray(dependencies),
 		devDependencies: toArray(devDependencies),
 	};
@@ -191,8 +138,4 @@ function toArray<T>(set: Set<T>): Array<T> | undefined {
 		return Array.from(set);
 	}
 	return undefined;
-}
-
-function stripExt(name: string) {
-	return name.replace(/(\.svelte)?\.(ts|js|svelte)/, "");
 }

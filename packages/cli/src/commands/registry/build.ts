@@ -5,12 +5,10 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import { ConfigError, error, handleError } from "../../utils/errors.js";
+import { error, handleError } from "../../utils/errors.js";
 import { intro } from "../../utils/prompt-helpers.js";
 import * as p from "../../utils/prompts.js";
-import * as cliConfig from "../../utils/get-config.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
-import { getRegistryIndex, getRegistryUrl } from "../../utils/registry/index.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -46,14 +44,7 @@ export const build = new Command()
 				}
 			}
 
-			const config = await cliConfig.getConfig(cwd);
-			if (!config) {
-				throw new ConfigError(
-					`Configuration file is missing. Please run ${color.green("init")} to create a ${color.bold.cyan("components.json")} file.`
-				);
-			}
-
-			await runBuild({ cwd, output, registry, config });
+			await runBuild({ cwd, output, registry });
 
 			p.outro(`${color.green("Success!")} Registry build completed.`);
 		} catch (error) {
@@ -61,7 +52,7 @@ export const build = new Command()
 		}
 	});
 
-async function runBuild(options: BuildOptions & { config: cliConfig.Config }) {
+async function runBuild(options: BuildOptions) {
 	const spinner = p.spinner();
 
 	spinner.start(`Parsing registry schema`);
@@ -81,7 +72,6 @@ async function runBuild(options: BuildOptions & { config: cliConfig.Config }) {
 	}
 
 	const tasks: p.Task[] = [];
-	const ogRegistryIndex = await getRegistryIndex(getRegistryUrl(options.config));
 
 	// Write registry index: `registry/index.json`
 	tasks.push({
@@ -101,7 +91,7 @@ async function runBuild(options: BuildOptions & { config: cliConfig.Config }) {
 	tasks.push({
 		title: "Building registry items",
 		async task(message) {
-			const projectDeps = await resolveProjectDeps(options.config);
+			const projectDeps = await resolveProjectDeps(options.cwd);
 
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
@@ -118,23 +108,23 @@ async function runBuild(options: BuildOptions & { config: cliConfig.Config }) {
 
 				const dependencies = new Set(item.dependencies);
 				const devDependencies = new Set(item.devDependencies);
-				const registryDependencies = new Set();
+				const registryDependencies = new Set(item.registryDependencies);
 
-				for (const file of files) {
-					const fileDeps = await getFileDependencies({
-						...projectDeps,
-						filename: file.name,
-						source: file.content,
-						config: options.config,
-						registryDependencies: item.registryDependencies,
-						output: options.output,
-						registryIndex: ogRegistryIndex,
-						registry,
-					});
+				const predefinedDeps = dependencies.size > 0 && devDependencies.size > 0;
+				if (!predefinedDeps) {
+					for (const file of files) {
+						const fileDeps = await getFileDependencies({
+							...projectDeps,
+							filename: file.name,
+							source: file.content,
+						});
 
-					fileDeps.dependencies?.forEach((dep) => dependencies.add(dep));
-					fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));
-					fileDeps.registryDependencies?.forEach((dep) => registryDependencies.add(dep));
+						// don't add detected deps if they're already predefined
+						if (!item.dependencies)
+							fileDeps.dependencies?.forEach((dep) => dependencies.add(dep));
+						if (!item.devDependencies)
+							fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));
+					}
 				}
 
 				const resolved = {
