@@ -11,7 +11,7 @@ import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 // will be removed once moving from `next` to `latest`
 const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
 
-const ICON_DEPENDENCIES = ["@lucide/svelte"];
+// const ICON_DEPENDENCIES = ["@lucide/svelte"];
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 
@@ -98,24 +98,11 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 
 		// TODO: consider peer deps with arbitrary version ranges
 
-		const depVersioned = opts.dependencies.versionMap[source];
-		if (depVersioned) {
-			const depPeers = opts.dependencies.deps[depVersioned];
-			dependencies.add(depVersioned);
-			depPeers?.forEach((dep) => dependencies.add(dep));
-		}
+		const deps = addDeps(source, opts.dependencies);
+		deps.forEach((dep) => dependencies.add(dep));
 
-		const devDepVersioned = opts.devDependencies.versionMap[source];
-		if (devDepVersioned) {
-			const depPeers = opts.devDependencies.deps[devDepVersioned];
-			devDependencies.add(devDepVersioned);
-			depPeers?.forEach((dep) => devDependencies.add(dep));
-		}
-
-		const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
-		if (iconDep !== undefined) {
-			dependencies.add(iconDep);
-		}
+		const devDeps = addDeps(source, opts.devDependencies);
+		devDeps.forEach((dep) => devDependencies.add(dep));
 	};
 
 	// @ts-expect-error yea, stfu
@@ -130,6 +117,25 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 		dependencies: toArray(dependencies),
 		devDependencies: toArray(devDependencies),
 	};
+}
+
+/** Returns an array of found deps. */
+function addDeps(source: string, projectDeps: ReturnType<typeof resolvePeerDeps>) {
+	const depsFound: string[] = [];
+	const simple = projectDeps.versionMap[source] ? source : undefined;
+	const depName =
+		simple ??
+		// considers deep imports
+		Object.keys(projectDeps.versionMap).find((dep) => source.startsWith(dep));
+
+	if (depName) {
+		const versioned = projectDeps.versionMap[depName]!;
+		const peers = projectDeps.deps[versioned];
+		depsFound.push(versioned);
+		peers?.forEach((dep) => depsFound.push(dep));
+	}
+
+	return depsFound;
 }
 
 /** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
