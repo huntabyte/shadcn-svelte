@@ -5,9 +5,12 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import { error, handleError } from "../../utils/errors.js";
+import { ConfigError, error, handleError } from "../../utils/errors.js";
 import { intro } from "../../utils/prompt-helpers.js";
 import * as p from "../../utils/prompts.js";
+import * as cliConfig from "../../utils/get-config.js";
+import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
+import { getRegistryIndex, getRegistryUrl } from "../../utils/registry/index.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -43,14 +46,14 @@ export const build = new Command()
 				}
 			}
 
-			// const config = await cliConfig.getConfig(cwd);
-			// if (!config) {
-			// 	throw new ConfigError(
-			// 		`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
-			// 	);
-			// }
+			const config = await cliConfig.getConfig(cwd);
+			if (!config) {
+				throw new ConfigError(
+					`Configuration file is missing. Please run ${color.green("init")} to create a ${color.bold.cyan("components.json")} file.`
+				);
+			}
 
-			await runBuild({ cwd, output, registry });
+			await runBuild({ cwd, output, registry, config });
 
 			p.outro(`${color.green("Success!")} Registry build completed.`);
 		} catch (error) {
@@ -58,7 +61,7 @@ export const build = new Command()
 		}
 	});
 
-async function runBuild(options: BuildOptions) {
+async function runBuild(options: BuildOptions & { config: cliConfig.Config }) {
 	const spinner = p.spinner();
 
 	spinner.start(`Parsing registry schema`);
@@ -78,6 +81,7 @@ async function runBuild(options: BuildOptions) {
 	}
 
 	const tasks: p.Task[] = [];
+	const ogRegistryIndex = await getRegistryIndex(getRegistryUrl(options.config));
 
 	// Write registry index: `registry/index.json`
 	tasks.push({
@@ -97,6 +101,8 @@ async function runBuild(options: BuildOptions) {
 	tasks.push({
 		title: "Building registry items",
 		async task(message) {
+			const projectDeps = await resolveProjectDeps(options.config);
+
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
 				const singleFile = item.files.length === 1;
@@ -105,11 +111,41 @@ async function runBuild(options: BuildOptions) {
 					const content = await fs.readFile(file.path, "utf8");
 					const name = path.basename(file.path);
 					const target = singleFile ? name : `${item.name}/${name}`;
+
 					return { content, type: file.type, name, target };
 				});
 				const files = await Promise.all(toResolve);
 
-				const parsedItem = v.parse(schema.registryItemSchema, { ...item, files });
+				const dependencies = new Set(item.dependencies);
+				const devDependencies = new Set(item.devDependencies);
+				const registryDependencies = new Set();
+
+				for (const file of files) {
+					const fileDeps = await getFileDependencies({
+						...projectDeps,
+						filename: file.name,
+						source: file.content,
+						config: options.config,
+						registryDependencies: item.registryDependencies,
+						output: options.output,
+						registryIndex: ogRegistryIndex,
+						registry,
+					});
+
+					fileDeps.dependencies?.forEach((dep) => dependencies.add(dep));
+					fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));
+					fileDeps.registryDependencies?.forEach((dep) => registryDependencies.add(dep));
+				}
+
+				const resolved = {
+					...item,
+					registryDependencies: toArray(registryDependencies),
+					dependencies: toArray(dependencies),
+					devDependencies: toArray(devDependencies),
+					files,
+				};
+
+				const parsedItem = v.parse(schema.registryItemSchema, resolved);
 				parsedItem["$schema"] ??= "https://shadcn-svelte.com/schema/registry-item.json";
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
@@ -123,4 +159,12 @@ async function runBuild(options: BuildOptions) {
 	});
 
 	await p.tasks(tasks);
+}
+
+/** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
+function toArray<T>(set: Set<T>): Array<T> | undefined {
+	if (set.size > 0) {
+		return Array.from(set);
+	}
+	return undefined;
 }
