@@ -103,7 +103,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		type,
 		files,
 		name: componentName,
-		registryDependencies: toArray(registryDependencies),
+		registryDependencies: Array.from(registryDependencies),
 		dependencies: toArray(dependencies)?.map((dep) =>
 			TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep
 		),
@@ -137,7 +137,7 @@ async function crawlExample(rootPath: string) {
 			name,
 			type,
 			files: [file],
-			registryDependencies: toArray(registryDependencies),
+			registryDependencies: Array.from(registryDependencies),
 			dependencies: toArray(dependencies),
 		});
 	}
@@ -178,7 +178,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		type: "registry:block",
 		files,
 		name: blockName,
-		registryDependencies: toArray(registryDependencies),
+		registryDependencies: Array.from(registryDependencies),
 		dependencies: toArray(dependencies),
 	} satisfies RegistryItems[number];
 }
@@ -215,7 +215,7 @@ async function crawlBlock(rootPath: string) {
 			name,
 			type,
 			files: [file],
-			registryDependencies: toArray(registryDependencies),
+			registryDependencies: Array.from(registryDependencies),
 			dependencies: toArray(dependencies),
 		});
 	}
@@ -250,7 +250,7 @@ async function crawlHook(rootPath: string) {
 			name,
 			type,
 			files: [file],
-			registryDependencies: toArray(registryDependencies),
+			registryDependencies: Array.from(registryDependencies),
 			dependencies: toArray(dependencies),
 		});
 	}
@@ -280,7 +280,7 @@ async function crawlLib(rootPath: string) {
 			name,
 			type,
 			files: [{ path: relativePath, type }],
-			registryDependencies: toArray(registryDependencies),
+			registryDependencies: Array.from(registryDependencies),
 			dependencies: toArray(dependencies),
 		});
 	}

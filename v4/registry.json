@@ -6,6 +6,7 @@
 			"name": "accordion",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/accordion/accordion-content.svelte",
@@ -33,6 +34,7 @@
 			"name": "alert",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/alert/alert-description.svelte",
@@ -104,6 +106,7 @@
 			"name": "aspect-ratio",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/aspect-ratio/aspect-ratio.svelte",
@@ -119,6 +122,7 @@
 			"name": "avatar",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/avatar/avatar-fallback.svelte",
@@ -142,6 +146,7 @@
 			"name": "badge",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/badge/badge.svelte",
@@ -157,6 +162,7 @@
 			"name": "breadcrumb",
 			"type": "registry:ui",
 			"dependencies": ["@lucide/svelte", "bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/breadcrumb/breadcrumb-ellipsis.svelte",
@@ -196,6 +202,7 @@
 			"name": "button",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/button/button.svelte",
@@ -275,6 +282,7 @@
 			"name": "card",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/card/card-action.svelte",
@@ -350,6 +358,7 @@
 			"name": "chart",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/chart/chart-container.svelte",
@@ -377,6 +386,7 @@
 			"name": "checkbox",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/checkbox/checkbox.svelte",
@@ -392,6 +402,7 @@
 			"name": "collapsible",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/collapsible/collapsible-content.svelte",
@@ -467,6 +478,7 @@
 			"name": "context-menu",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/context-menu/context-menu-checkbox-item.svelte",
@@ -525,6 +537,7 @@
 		{
 			"name": "data-table",
 			"type": "registry:ui",
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/data-table/data-table.svelte.ts",
@@ -548,6 +561,7 @@
 			"name": "dialog",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/dialog/dialog-close.svelte",
@@ -591,6 +605,7 @@
 			"name": "drawer",
 			"type": "registry:ui",
 			"dependencies": ["vaul-svelte@next", "bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/drawer/drawer-close.svelte",
@@ -642,6 +657,7 @@
 			"name": "dropdown-menu",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
@@ -745,6 +761,7 @@
 			"name": "hover-card",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/hover-card/hover-card-content.svelte",
@@ -764,6 +781,7 @@
 			"name": "input",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/input/index.ts",
@@ -779,6 +797,7 @@
 			"name": "input-otp",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/input-otp/index.ts",
@@ -806,6 +825,7 @@
 			"name": "label",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/label/index.ts",
@@ -821,6 +841,7 @@
 			"name": "menubar",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/menubar/index.ts",
@@ -876,6 +897,7 @@
 			"name": "navigation-menu",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/navigation-menu/index.ts",
@@ -959,6 +981,7 @@
 			"name": "popover",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/popover/index.ts",
@@ -978,6 +1001,7 @@
 			"name": "progress",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/progress/index.ts",
@@ -993,6 +1017,7 @@
 			"name": "radio-group",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/radio-group/index.ts",
@@ -1068,6 +1093,7 @@
 			"name": "resizable",
 			"type": "registry:ui",
 			"dependencies": ["paneforge@next", "@lucide/svelte", "bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/resizable/index.ts",
@@ -1087,6 +1113,7 @@
 			"name": "scroll-area",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/scroll-area/index.ts",
@@ -1150,6 +1177,7 @@
 			"name": "separator",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/separator/index.ts",
@@ -1165,6 +1193,7 @@
 			"name": "sheet",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui", "@lucide/svelte"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/sheet/index.ts",
@@ -1328,6 +1357,7 @@
 			"name": "skeleton",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/skeleton/index.ts",
@@ -1343,6 +1373,7 @@
 			"name": "slider",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/slider/index.ts",
@@ -1358,6 +1389,7 @@
 			"name": "sonner",
 			"type": "registry:ui",
 			"dependencies": ["svelte-sonner", "mode-watcher"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/sonner/index.ts",
@@ -1373,6 +1405,7 @@
 			"name": "switch",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/switch/index.ts",
@@ -1388,6 +1421,7 @@
 			"name": "table",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/table/index.ts",
@@ -1431,6 +1465,7 @@
 			"name": "tabs",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/tabs/index.ts",
@@ -1458,6 +1493,7 @@
 			"name": "textarea",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/textarea/index.ts",
@@ -1473,6 +1509,7 @@
 			"name": "toggle",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/toggle/index.ts",
@@ -1508,6 +1545,7 @@
 			"name": "tooltip",
 			"type": "registry:ui",
 			"dependencies": ["bits-ui"],
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/ui/tooltip/index.ts",
@@ -1534,6 +1572,7 @@
 		{
 			"name": "is-mobile",
 			"type": "registry:hook",
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/hooks/is-mobile.svelte.ts",
@@ -1544,6 +1583,7 @@
 		{
 			"name": "utils",
 			"type": "registry:lib",
+			"registryDependencies": [],
 			"files": [
 				{
 					"path": "src/lib/registry/lib/utils.ts",

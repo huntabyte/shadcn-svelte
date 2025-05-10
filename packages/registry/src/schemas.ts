@@ -52,10 +52,10 @@ const baseIndexItemSchema = v.object({
 
 export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
 /** Schema for registry items defined in the index */
-export const registryIndexItemSchema = v.intersect([
-	baseIndexItemSchema,
-	v.object({ relativeUrl: v.string() }),
-]);
+export const registryIndexItemSchema = v.object({
+	...baseIndexItemSchema.entries,
+	relativeUrl: v.string(),
+});
 
 export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
 /** Schema for the registry's index (e.g. `https://example.com/registry/index.json`) */
@@ -85,18 +85,16 @@ const registryItemCssSchema: v.GenericSchema<CssSchema> = v.record(
 
 export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
 /** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
-export const registryItemSchema = v.intersect([
-	baseIndexItemSchema,
-	v.object({
-		$schema: v.optional(v.string()),
-		categories: v.optional(v.array(v.string())),
-		css: v.optional(registryItemCssSchema),
-		meta: v.optional(v.record(v.string(), v.any())),
-		docs: v.optional(v.string()),
-		files: v.array(registryItemFileSchema),
-		cssVars: v.optional(registryItemCssVarsSchema),
-	}),
-]);
+export const registryItemSchema = v.object({
+	$schema: v.optional(v.string()),
+	...baseIndexItemSchema.entries,
+	categories: v.optional(v.array(v.string())),
+	css: v.optional(registryItemCssSchema),
+	meta: v.optional(v.record(v.string(), v.any())),
+	docs: v.optional(v.string()),
+	files: v.array(registryItemFileSchema),
+	cssVars: v.optional(registryItemCssVarsSchema),
+});
 
 export type Registry = v.InferOutput<typeof registrySchema>;
 /** Schema for `registry.json` */
@@ -104,16 +102,15 @@ export const registrySchema = v.object({
 	name: v.string(),
 	homepage: v.string(),
 	items: v.array(
-		v.intersect([
-			baseIndexItemSchema,
-			v.object({
-				files: v.array(
-					v.object({
-						path: v.string(),
-						type: registryItemTypeSchema,
-					})
-				),
-			}),
-		])
+		v.object({
+			...baseIndexItemSchema.entries,
+			files: v.array(
+				v.object({
+					path: v.string(),
+					type: registryItemTypeSchema,
+				})
+			),
+			registryDependencies: v.array(v.string()),
+		})
 	),
 });
