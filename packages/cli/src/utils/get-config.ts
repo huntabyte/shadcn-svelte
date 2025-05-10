@@ -13,6 +13,7 @@ export const DEFAULT_COMPONENTS = "$lib/components";
 export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_HOOKS = "$lib/hooks";
 export const DEFAULT_UI = "$lib/components/ui";
+export const DEFAULT_LIB = "$lib";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
@@ -50,6 +51,7 @@ const newConfigFields = v.object({
 	aliases: v.object({
 		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
 		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
+		lib: v.optional(aliasSchema("lib"), DEFAULT_LIB),
 	}),
 	typescript: v.optional(v.boolean(), true),
 	// TODO: if they're missing this field then they're likely using svelte 4
@@ -79,6 +81,7 @@ export const configSchema = v.object({
 			components: v.string(),
 			hooks: v.string(),
 			ui: v.string(),
+			lib: v.string(),
 		}),
 	}).entries,
 });
@@ -112,6 +115,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	let componentsPath = resolveImport(config.aliases.components, pathAliases);
 	let hooksPath = resolveImport(config.aliases.hooks, pathAliases);
 	let uiPath = resolveImport(config.aliases.ui, pathAliases);
+	let libPath = resolveImport(config.aliases.lib, pathAliases);
 
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
@@ -124,11 +128,13 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
 	if (hooksPath === undefined) throw aliasError("hooks", config.aliases.hooks);
 	if (uiPath === undefined) throw aliasError("ui", config.aliases.ui);
+	if (libPath === undefined) throw aliasError("lib", config.aliases.lib);
 
 	utilsPath = path.normalize(utilsPath);
 	componentsPath = path.normalize(componentsPath);
 	hooksPath = path.normalize(hooksPath);
 	uiPath = path.normalize(uiPath);
+	libPath = path.normalize(libPath);
 
 	return v.parse(configSchema, {
 		...config,
@@ -139,6 +145,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 			components: componentsPath,
 			hooks: hooksPath,
 			ui: uiPath,
+			lib: libPath,
 		},
 	});
 }

@@ -19,10 +19,10 @@ import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import * as templates from "../utils/templates.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { transformContent } from "../utils/transformers.js";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -41,6 +41,7 @@ const initOptionsSchema = v.object({
 	css: v.optional(v.string()),
 	componentsAlias: v.optional(v.string()),
 	utilsAlias: v.optional(v.string()),
+	libAlias: v.optional(v.string()),
 	hooksAlias: v.optional(v.string()),
 	uiAlias: v.optional(v.string()),
 	deps: v.boolean(),
@@ -60,6 +61,7 @@ export const init = new Command()
 	)
 	.option("--css <path>", "path to the global CSS file")
 	.option("--components-alias <path>", "import alias for components")
+	.option("--lib-alias <path>", "import alias for lib")
 	.option("--utils-alias <path>", "import alias for utils")
 	.option("--hooks-alias <path>", "import alias for hooks")
 	.option("--ui-alias <path>", "import alias for ui")
@@ -106,6 +108,13 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 
 	if (options.utilsAlias) {
 		const validationResult = validateImportAlias(options.utilsAlias, langConfig);
+		if (validationResult) {
+			throw error(validationResult);
+		}
+	}
+
+	if (options.libAlias) {
+		const validationResult = validateImportAlias(options.libAlias, langConfig);
 		if (validationResult) {
 			throw error(validationResult);
 		}
@@ -203,6 +212,21 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		utilsAlias = input;
 	}
 
+	// Lib Alias
+	let libAlias = options.libAlias;
+	if (libAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("lib")}:`,
+			initialValue: defaultConfig?.aliases.lib ?? inferAlias(""),
+			placeholder: cliConfig.DEFAULT_LIB,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		libAlias = input;
+	}
+
 	// Hooks Alias
 	let hooksAlias = options.hooksAlias;
 	if (hooksAlias === undefined) {
@@ -243,6 +267,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		},
 		aliases: {
 			utils: utilsAlias,
+			lib: libAlias,
 			components: componentAlias,
 			hooks: hooksAlias,
 			ui: uiAlias,
@@ -306,10 +331,24 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			);
 			await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
 
-			const utilsPath = config.resolvedPaths.utils + (config.typescript ? ".ts" : ".js");
-			const utilsTemplate = config.typescript ? templates.UTILS : templates.UTILS_JS;
-			// Write cn file.
-			await fs.writeFile(utilsPath, utilsTemplate, "utf8");
+			const registryIndex = await registry.getRegistryIndex(registryUrl);
+			const items = await registry.fetchRegistryItems({
+				baseUrl: registryUrl,
+				items: registryIndex.filter((item) => item.name === "utils"),
+			});
+			const utilsItem = items[0];
+			if (utilsItem) {
+				const utilsFile = utilsItem.files[0]!;
+				let filepath = registry.resolveItemFilePath(config, utilsItem, utilsFile);
+				const utilsContent = await transformContent(utilsFile.content, filepath, config);
+
+				if (!config.typescript && filepath.endsWith(".ts")) {
+					filepath = filepath.replace(".ts", ".js");
+				}
+
+				// Write cn file.
+				await fs.writeFile(filepath, utilsContent, "utf8");
+			}
 
 			return "Project initialized";
 		},

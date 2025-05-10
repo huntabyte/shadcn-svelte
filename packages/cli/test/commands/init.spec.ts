@@ -27,6 +27,25 @@ it("init (config-full)", async () => {
 		cssVarsTemplate: "@import 'tailwindcss';\n",
 	});
 
+	vi.spyOn(registry, "getRegistryIndex").mockResolvedValue([
+		{ name: "utils", relativeUrl: "utils.json", type: "registry:lib" },
+	]);
+
+	vi.spyOn(registry, "fetchRegistryItems").mockResolvedValue([
+		{
+			name: "utils",
+			type: "registry:lib",
+			files: [
+				{
+					name: "utils.ts",
+					type: "registry:lib",
+					target: "utils.ts",
+					content: `import { type ClassValue, clsx } from "clsx"`,
+				},
+			],
+		},
+	]);
+
 	const mockMkdir = vi.spyOn(fs.promises, "mkdir").mockResolvedValue(undefined);
 	const mockWriteFile = vi.spyOn(fs.promises, "writeFile").mockResolvedValue();
 

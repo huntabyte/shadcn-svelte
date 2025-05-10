@@ -17,6 +17,7 @@ const mockConfig: Config = {
 		components: "$lib/components",
 		hooks: "$lib/hooks",
 		ui: "$lib/components/ui",
+		lib: "$lib",
 	},
 	resolvedPaths: {
 		components: "./src/lib/components",
@@ -25,6 +26,7 @@ const mockConfig: Config = {
 		cwd: "./",
 		hooks: "./src/lib/hooks",
 		ui: "./src/lib/components/ui",
+		lib: "./src/lib",
 	},
 	typescript: true,
 	registry: "https://next.shadcn-svelte.com/registry",
@@ -162,6 +164,7 @@ describe("transformImports with more custom paths", () => {
 			components: "@components",
 			hooks: "@hooks",
 			ui: "@ui",
+			lib: "@lib",
 		},
 		resolvedPaths: {
 			components: "./src/components",
@@ -170,6 +173,7 @@ describe("transformImports with more custom paths", () => {
 			cwd: "./",
 			hooks: "./src/hooks",
 			ui: "./src/ui",
+			lib: "./src/lib",
 		},
 		typescript: true,
 		registry: "https://next.shadcn-svelte.com/registry",

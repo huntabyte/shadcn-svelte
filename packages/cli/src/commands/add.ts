@@ -180,12 +180,12 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	let cssVars = {};
 
 	for (const item of itemsWithContent) {
-		const targetDir = registry.getRegistryItemTargetDir(config, item.type, targetPath);
-		if (!existsSync(targetDir)) {
-			await fs.mkdir(targetDir, { recursive: true });
+		const aliasDir = registry.getItemAliasDir(config, item.type, targetPath);
+		if (!existsSync(aliasDir)) {
+			await fs.mkdir(aliasDir, { recursive: true });
 		}
 
-		const componentPath = path.relative(cwd, path.resolve(targetDir, item.name));
+		const componentPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
 		if (!options.overwrite && existingComponents.includes(item.name)) {
 			// Only confirm overwrites for selected components and not transitive dependencies

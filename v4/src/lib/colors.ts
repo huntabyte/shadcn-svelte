@@ -1,8 +1,7 @@
 import { z } from "zod";
-
-import { colorMapping, colors, type BaseColor } from "$lib/registry/colors.js";
 import template from "lodash.template";
-import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES } from "$lib/registry/templates.js";
+import { colorMapping, colors, type BaseColor } from "./registry/colors.js";
+import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES } from "./registry/templates.js";
 
 const colorSchema = z.object({
 	name: z.string(),

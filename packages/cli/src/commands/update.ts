@@ -13,7 +13,6 @@ import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
-import { UTILS, UTILS_JS } from "../utils/templates.js";
 import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
@@ -85,35 +84,34 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	const registryUrl = registry.getRegistryUrl(config);
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 
-	const componentDir = path.resolve(config.resolvedPaths.components, "ui");
-	if (!existsSync(componentDir)) {
-		throw error(`Component directory ${color.cyan(componentDir)} does not exist.`);
-	}
+	const dirs = {
+		ui: config.resolvedPaths.ui,
+		components: config.resolvedPaths.components,
+		hooks: config.resolvedPaths.hooks,
+	};
 
-	// Retrieve existing components in user's project
+	// Retrieve existing items in the user's project
 	const existingComponents: typeof registryIndex = [];
-	const files = await fs.readdir(componentDir, {
-		withFileTypes: true,
-	});
-	for (const file of files) {
-		if (file.isDirectory()) {
-			const component = registryIndex.find((comp) => comp.name === file.name);
-			if (component) {
-				// is a valid shadcn component
-				existingComponents.push(component);
+	for (const [name, dir] of Object.entries(dirs)) {
+		if (!existsSync(dir)) {
+			throw error(`'${name}' directory ${color.cyan(dir)} does not exist.`);
+		}
+
+		const files = await fs.readdir(dir, { withFileTypes: true });
+		for (const file of files) {
+			if (file.isDirectory()) {
+				const item = registryIndex.find((item) => item.name === file.name);
+				// is a valid shadcn item
+				if (item) existingComponents.push(item);
 			}
 		}
 	}
-	// add `utils` option to the end
-	existingComponents.push({
-		name: "utils",
-		title: "utils",
-		type: "registry:ui",
-		dependencies: [],
-		registryDependencies: [],
-		devDependencies: [],
-		relativeUrl: "",
-	});
+
+	// Always offer to update the `utils`
+	const utilsItem = registryIndex.find((item) => item.name === "utils");
+	if (utilsItem) {
+		existingComponents.push(utilsItem);
+	}
 
 	// If the user specifies component args
 	let selectedComponents = options.all ? existingComponents : [];
@@ -157,32 +155,10 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 
 	const tasks: p.Task[] = [];
 
-	const utils = selectedComponents.find((item) => item.name === "utils");
-	// `update utils` - update the utils.(ts|js) file
-	if (utils) {
-		// remove utils so that it isn't fetched from the registry
-		selectedComponents = selectedComponents.filter((item) => item !== utils);
-
-		const extension = config.typescript ? ".ts" : ".js";
-		const utilsPath = config.resolvedPaths.utils + extension;
-
-		if (!existsSync(utilsPath)) {
-			throw error(`Failed to find ${highlight("utils")} at ${color.cyan(utilsPath)}`);
-		}
-
-		tasks.push({
-			title: `Updating ${highlight(utilsPath)}`,
-			async task() {
-				// utils.(ts|js) is not in the registry, it is a template, so we'll just overwrite it
-				await fs.writeFile(utilsPath, config.typescript ? UTILS : UTILS_JS);
-			},
-		});
-	}
-
 	const resolvedItems = await registry.resolveRegistryItems({
 		baseUrl: registryUrl,
 		registryIndex: registryIndex,
-		items: selectedComponents.map((com) => com.name),
+		items: selectedComponents.map((comp) => comp.name),
 	});
 
 	const payload = await registry.fetchRegistryItems({
@@ -196,10 +172,7 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	const devDependencies = new Set<string>();
 	let cssVars = {};
 	for (const item of payload) {
-		const targetDir = registry.getItemTargetPath(config, item);
-		if (!targetDir) {
-			continue;
-		}
+		const aliasDir = registry.getItemAliasDir(config, item.type);
 
 		// Add dependencies to the install list
 		item.dependencies?.forEach((dep) => dependencies.add(dep));
@@ -209,23 +182,20 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		tasks.push({
 			title: `Updating ${highlight(item.name)}`,
 			async task() {
-				if (!existsSync(targetDir)) {
-					await fs.mkdir(targetDir, { recursive: true });
-				}
-
-				const componentDir = path.resolve(targetDir, item.name);
-				if (!existsSync(componentDir)) {
-					await fs.mkdir(componentDir, { recursive: true });
-				}
-
 				for (const file of item.files) {
 					let filePath = registry.resolveItemFilePath(config, item, file);
-					if (!config.typescript && filePath.endsWith(".ts")) {
-						filePath = filePath.replace(".ts", ".js");
-					}
 
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
+
+					const dir = path.parse(filePath).dir;
+					if (!existsSync(dir)) {
+						await fs.mkdir(dir, { recursive: true });
+					}
+
+					if (!config.typescript && filePath.endsWith(".ts")) {
+						filePath = filePath.replace(".ts", ".js");
+					}
 
 					await fs.writeFile(filePath, content, "utf8");
 				}
@@ -234,26 +204,27 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 					cssVars = merge(cssVars, item.cssVars);
 				}
 
-				const installedFiles = await fs.readdir(componentDir);
-				const remoteFiles = item.files.map((file) => {
-					const name = "name" in file ? file.name : path.basename(file.target);
-					if (!config.typescript && name.endsWith(".ts")) {
-						return name.replace(".ts", ".js");
-					}
-					return name;
-				});
-				const filesToDelete = installedFiles
-					.filter((file) => !remoteFiles.includes(file))
-					.map((file) => path.resolve(targetDir, item.name, file));
+				const itemDir = path.resolve(aliasDir, item.name);
+				if (item.files.length > 1) {
+					const remoteFiles = item.files.map((file) => {
+						const filepath = registry.resolveItemFilePath(config, item, file);
+						if (!config.typescript && filepath.endsWith(".ts")) {
+							return filepath.replace(".ts", ".js");
+						}
+						return filepath;
+					});
 
-				if (filesToDelete.length > 0) {
-					componentsToRemove[item.name] = filesToDelete;
+					const installedFiles = await fs.readdir(itemDir, { withFileTypes: true });
+					const filesToDelete = installedFiles
+						.map((file) => path.resolve(file.path, file.name))
+						.filter((filepath) => !remoteFiles.includes(filepath));
+
+					if (filesToDelete.length > 0) {
+						componentsToRemove[item.name] = filesToDelete;
+					}
 				}
 
-				const componentPath = path.relative(
-					process.cwd(),
-					path.resolve(targetDir, item.name)
-				);
+				const componentPath = path.relative(options.cwd, itemDir);
 				return `${highlight(item.name)} updated at ${color.gray(componentPath)}`;
 			},
 		});

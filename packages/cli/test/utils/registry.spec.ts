@@ -6,16 +6,11 @@ import {
 	getBaseColors,
 	getRegistryBaseColor,
 	resolveRegistryItems,
-	getItemTargetPath,
-	getRegistryItemTargetDir,
+	getItemAliasDir,
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
 import type { Config } from "../../src/utils/get-config.js";
-import type {
-	RegistryItem,
-	RegistryIndex,
-	RegistryItemFile,
-} from "../../src/utils/registry/schema.js";
+import type { RegistryItem, RegistryIndex, RegistryItemFile } from "@shadcn-svelte/registry";
 import path from "node:path";
 import { toPosixPath } from "./test-helpers.js";
 
@@ -198,68 +193,20 @@ describe("Registry Utilities", () => {
 		});
 	});
 
-	describe("getItemTargetPath", () => {
-		it("should return override path if provided", () => {
-			const item: RegistryItem = {
-				name: "test",
-				title: "Test",
-				type: "registry:component",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
-			};
-			expect(getItemTargetPath(mockConfig, item, "/custom/path")).toBe("/custom/path");
-		});
-
-		it("should return null for unknown types", () => {
-			const item: RegistryItem = {
-				name: "test",
-				title: "Test",
-				// @ts-expect-error this is a test
-				type: "registry:unknown",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
-			};
-			expect(getItemTargetPath(mockConfig, item)).toBeNull();
-		});
-
-		it("should return correct path for known types", () => {
-			const item: RegistryItem = {
-				name: "test",
-				title: "Test",
-				type: "registry:ui",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
-			};
-			expect(toPosixPath(getItemTargetPath(mockConfig, item)!)).toBe("/path/to/ui");
-		});
-	});
-
-	describe("getRegistryItemTargetDir", () => {
+	describe("getItemAliasDir", () => {
 		it("should return override if provided", () => {
-			expect(getRegistryItemTargetDir(mockConfig, "registry:ui", "/custom/path")).toBe(
-				"/custom/path"
-			);
+			expect(getItemAliasDir(mockConfig, "registry:ui", "/custom/path")).toBe("/custom/path");
 		});
 
 		it("should return correct directory for each type", () => {
-			expect(toPosixPath(getRegistryItemTargetDir(mockConfig, "registry:ui"))).toBe(
-				"/path/to/ui"
-			);
-			expect(toPosixPath(getRegistryItemTargetDir(mockConfig, "registry:hook"))).toBe(
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:ui"))).toBe("/path/to/ui");
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:hook"))).toBe(
 				"/path/to/hooks"
 			);
-			expect(toPosixPath(getRegistryItemTargetDir(mockConfig, "registry:component"))).toBe(
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:component"))).toBe(
 				"/path/to/components"
 			);
-			expect(toPosixPath(getRegistryItemTargetDir(mockConfig, "registry:file"))).toBe(
-				"/path/to/cwd"
-			);
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:file"))).toBe("/path/to/cwd");
 		});
 	});
 
