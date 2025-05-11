@@ -5,7 +5,6 @@
 		{
 			"name": "accordion",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -33,7 +32,6 @@
 		{
 			"name": "alert",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -57,7 +55,6 @@
 		{
 			"name": "alert-dialog",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": ["button"],
 			"files": [
 				{
@@ -105,7 +102,6 @@
 		{
 			"name": "aspect-ratio",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -121,7 +117,6 @@
 		{
 			"name": "avatar",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -145,7 +140,6 @@
 		{
 			"name": "badge",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -161,7 +155,6 @@
 		{
 			"name": "breadcrumb",
 			"type": "registry:ui",
-			"dependencies": ["@lucide/svelte", "bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -201,7 +194,6 @@
 		{
 			"name": "button",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -217,7 +209,6 @@
 		{
 			"name": "calendar",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@internationalized/date", "@lucide/svelte"],
 			"registryDependencies": ["button"],
 			"files": [
 				{
@@ -281,7 +272,6 @@
 		{
 			"name": "card",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -321,7 +311,6 @@
 		{
 			"name": "carousel",
 			"type": "registry:ui",
-			"dependencies": ["embla-carousel-svelte", "bits-ui", "@lucide/svelte"],
 			"registryDependencies": ["button"],
 			"files": [
 				{
@@ -357,7 +346,6 @@
 		{
 			"name": "chart",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -385,7 +373,6 @@
 		{
 			"name": "checkbox",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -401,7 +388,6 @@
 		{
 			"name": "collapsible",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -425,7 +411,6 @@
 		{
 			"name": "command",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": ["dialog"],
 			"files": [
 				{
@@ -477,7 +462,6 @@
 		{
 			"name": "context-menu",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -560,7 +544,6 @@
 		{
 			"name": "dialog",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -604,7 +587,6 @@
 		{
 			"name": "drawer",
 			"type": "registry:ui",
-			"dependencies": ["vaul-svelte@next", "bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -656,7 +638,6 @@
 		{
 			"name": "dropdown-menu",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -716,7 +697,6 @@
 		{
 			"name": "form",
 			"type": "registry:ui",
-			"dependencies": ["formsnap", "zod", "sveltekit-superforms", "bits-ui"],
 			"registryDependencies": ["button", "label"],
 			"files": [
 				{
@@ -760,7 +740,6 @@
 		{
 			"name": "hover-card",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -780,7 +759,6 @@
 		{
 			"name": "input",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -796,7 +774,6 @@
 		{
 			"name": "input-otp",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -824,7 +801,6 @@
 		{
 			"name": "label",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -840,7 +816,6 @@
 		{
 			"name": "menubar",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -896,7 +871,6 @@
 		{
 			"name": "navigation-menu",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -940,7 +914,6 @@
 		{
 			"name": "pagination",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": ["button"],
 			"files": [
 				{
@@ -980,7 +953,6 @@
 		{
 			"name": "popover",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1000,7 +972,6 @@
 		{
 			"name": "progress",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1016,7 +987,6 @@
 		{
 			"name": "radio-group",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1036,7 +1006,6 @@
 		{
 			"name": "range-calendar",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@internationalized/date", "@lucide/svelte"],
 			"registryDependencies": ["button"],
 			"files": [
 				{
@@ -1092,7 +1061,6 @@
 		{
 			"name": "resizable",
 			"type": "registry:ui",
-			"dependencies": ["paneforge@next", "@lucide/svelte", "bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1112,7 +1080,6 @@
 		{
 			"name": "scroll-area",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1132,7 +1099,6 @@
 		{
 			"name": "select",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": ["separator"],
 			"files": [
 				{
@@ -1176,7 +1142,6 @@
 		{
 			"name": "separator",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1192,7 +1157,6 @@
 		{
 			"name": "sheet",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1236,7 +1200,6 @@
 		{
 			"name": "sidebar",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui", "@lucide/svelte"],
 			"registryDependencies": [
 				"is-mobile",
 				"input",
@@ -1356,7 +1319,6 @@
 		{
 			"name": "skeleton",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1372,7 +1334,6 @@
 		{
 			"name": "slider",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1388,7 +1349,6 @@
 		{
 			"name": "sonner",
 			"type": "registry:ui",
-			"dependencies": ["svelte-sonner", "mode-watcher"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1404,7 +1364,6 @@
 		{
 			"name": "switch",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1420,7 +1379,6 @@
 		{
 			"name": "table",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1464,7 +1422,6 @@
 		{
 			"name": "tabs",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1492,7 +1449,6 @@
 		{
 			"name": "textarea",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1508,7 +1464,6 @@
 		{
 			"name": "toggle",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{
@@ -1524,7 +1479,6 @@
 		{
 			"name": "toggle-group",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": ["toggle"],
 			"files": [
 				{
@@ -1544,7 +1498,6 @@
 		{
 			"name": "tooltip",
 			"type": "registry:ui",
-			"dependencies": ["bits-ui"],
 			"registryDependencies": [],
 			"files": [
 				{

@@ -24,13 +24,14 @@ const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
 
 function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string) {
 	const deps: Record<string, string[]> = {};
-	const versionMap: Record<string, string> = {};
+	/** `<Dep, Dep@Version>` */
+	const versions: Record<string, string> = {};
 	const require = createRequire(path.resolve(cwd, "noop.js"));
 	for (const [name, version] of Object.entries(dependencies ?? {})) {
 		let pkgPath: string | undefined;
 
 		const versioned = version ? `${name}@${version}` : name;
-		versionMap[name] = versioned;
+		versions[name] = versioned;
 		const peers = (deps[versioned] ??= []);
 
 		const paths = require.resolve.paths(name);
@@ -55,7 +56,7 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 			peers.push(peerVersioned);
 		}
 	}
-	return { deps, versionMap };
+	return { deps, versions };
 }
 
 type GetFileDepOpts = {
@@ -116,14 +117,14 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 /** Returns an array of found deps. */
 function resolveDepsFromImport(source: string, projectDeps: ReturnType<typeof resolvePeerDeps>) {
 	const depsFound: string[] = [];
-	const simple = projectDeps.versionMap[source] ? source : undefined;
+	const simple = projectDeps.versions[source] ? source : undefined;
 	const depName =
 		simple ??
 		// considers deep imports
-		Object.keys(projectDeps.versionMap).find((dep) => source.startsWith(dep));
+		Object.keys(projectDeps.versions).find((dep) => source.startsWith(dep));
 
 	if (depName && !IGNORE_DEPS.includes(depName)) {
-		const versioned = projectDeps.versionMap[depName]!;
+		const versioned = projectDeps.versions[depName]!;
 		const peers = projectDeps.deps[versioned];
 		depsFound.push(versioned);
 		peers?.forEach((dep) => depsFound.push(dep));

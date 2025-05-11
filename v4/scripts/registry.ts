@@ -9,22 +9,6 @@ import type { Registry } from "@shadcn-svelte/registry";
 // will be removed once moving from `next` to `latest`
 export const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
 
-// [Dependency, [...PeerDependencies]]
-const DEPENDENCIES: Record<string, string[]> = {
-	"bits-ui": [],
-	formsnap: ["zod", "sveltekit-superforms"],
-	"svelte-sonner": ["mode-watcher"],
-	"vaul-svelte": [],
-	"embla-carousel-svelte": [],
-	paneforge: [],
-};
-const ICON_DEPENDENCIES = ["@lucide/svelte"];
-// these are required dependencies for particular components
-// where the dependencies are not specified in the import declarations of the component file
-const REQUIRED_COMPONENT_DEPS: Record<string, string[]> = {
-	calendar: ["@internationalized/date"],
-	"range-calendar": ["@internationalized/date"],
-};
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
 
@@ -77,7 +61,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	const dir = fs.readdirSync(componentPath, { withFileTypes: true });
 
 	const files: RegistryItemFiles = [];
-	const dependencies = new Set<string>();
 	const registryDependencies = new Set<string>();
 	const type = "registry:ui";
 
@@ -93,9 +76,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		const deps = await getFileDependencies(filepath, source);
 		if (!deps) continue;
 
-		deps.dependencies.forEach((dep) => dependencies.add(dep));
-		REQUIRED_COMPONENT_DEPS[componentName]?.forEach((dep) => dependencies.add(dep));
-
 		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
@@ -104,9 +84,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: toArray(dependencies)?.map((dep) =>
-			TMP_NEXT_DEPS.includes(dep) ? `${dep}@next` : dep
-		),
 	} satisfies RegistryItems[number];
 }
 
@@ -131,14 +108,13 @@ async function crawlExample(rootPath: string) {
 			target: dirent.name,
 			type,
 		};
-		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
+		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
 			type,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: toArray(dependencies),
 		});
 	}
 
@@ -149,7 +125,6 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
 
 	const files: RegistryItemFiles = [];
-	const dependencies = new Set<string>();
 	const registryDependencies = new Set<string>();
 
 	for (const dirent of dir) {
@@ -168,9 +143,6 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		const deps = await getFileDependencies(filepath, source);
 		if (!deps) continue;
 
-		deps.dependencies.forEach((dep) => dependencies.add(dep));
-		REQUIRED_COMPONENT_DEPS[blockName]?.forEach((dep) => dependencies.add(dep));
-
 		deps.registryDependencies.forEach((dep) => registryDependencies.add(dep));
 	}
 
@@ -179,7 +151,6 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		files,
 		name: blockName,
 		registryDependencies: Array.from(registryDependencies),
-		dependencies: toArray(dependencies),
 	} satisfies RegistryItems[number];
 }
 
@@ -209,14 +180,13 @@ async function crawlBlock(rootPath: string) {
 			target: dirent.name,
 			type,
 		};
-		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
+		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
 			type,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: toArray(dependencies),
 		});
 	}
 
@@ -244,14 +214,13 @@ async function crawlHook(rootPath: string) {
 			target: dirent.name,
 			type,
 		};
-		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
+		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
 			type,
 			files: [file],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: toArray(dependencies),
 		});
 	}
 
@@ -274,14 +243,13 @@ async function crawlLib(rootPath: string) {
 		const source = fs.readFileSync(filepath, "utf8");
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const { dependencies, registryDependencies } = await getFileDependencies(filepath, source);
+		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
 			type,
 			files: [{ path: relativePath, type }],
 			registryDependencies: Array.from(registryDependencies),
-			dependencies: toArray(dependencies),
 		});
 	}
 
@@ -307,17 +275,10 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 	}
 
 	const registryDependencies = new Set<string>();
-	const dependencies = new Set<string>();
 
 	const enter = (node: Node) => {
 		if (node.type === "ImportDeclaration") {
 			const source = node.source.value as string;
-
-			const peerDeps = DEPENDENCIES[source];
-			if (peerDeps !== undefined) {
-				dependencies.add(source);
-				peerDeps.forEach((dep) => dependencies.add(dep));
-			}
 
 			if (source.startsWith(REGISTRY_DEPENDENCY) && source !== UTILS_PATH) {
 				if (source.includes("ui")) {
@@ -327,11 +288,6 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 					const hook = source.split("/").at(-1)!.split(".")[0];
 					registryDependencies.add(hook);
 				}
-			}
-
-			const iconDep = ICON_DEPENDENCIES.find((dep) => source.startsWith(dep));
-			if (iconDep !== undefined) {
-				dependencies.add(iconDep);
 			}
 		}
 	};
@@ -344,13 +300,5 @@ async function getFileDependencies(filename: string, sourceCode: string) {
 		walk(moduleAst, { enter });
 	}
 
-	return { registryDependencies, dependencies };
-}
-
-/** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
-function toArray<T>(set: Set<T>): Array<T> | undefined {
-	if (set.size > 0) {
-		return Array.from(set);
-	}
-	return undefined;
+	return { registryDependencies };
 }
