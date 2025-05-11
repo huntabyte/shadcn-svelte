@@ -25,6 +25,13 @@ Update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 ```json title="tsconfig.json" {3-7}
 {
   "compilerOptions": {
+
+    // Recommended: Use Target ES2022 or Higher
+    "target": "ES2022"
+    // Or Use ES Target Lower Than ES2022 With 'useDefineForClassFields' set to true e.g:
+    // "target": "ES2019",
+    // "useDefineForClassFields": true
+
     "baseUrl": ".",
     "paths": {
       "$lib": ["./src/lib"],
