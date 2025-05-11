@@ -172,6 +172,9 @@ importers:
       '@prettier/sync':
         specifier: 0.3.0
         version: 0.3.0(prettier@3.5.3)
+      '@shadcn-svelte/registry':
+        specifier: workspace:*
+        version: link:../../packages/registry
       '@sveltejs/adapter-cloudflare':
         specifier: 4.6.1
         version: 4.6.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.28.2)(vite@5.4.9(@types/node@20.17.27)(lightningcss@1.29.2)(terser@5.36.0)))(svelte@5.28.2)(vite@5.4.9(@types/node@20.17.27)(lightningcss@1.29.2)(terser@5.36.0)))(wrangler@3.81.0)
@@ -208,6 +211,9 @@ importers:
       '@unovis/ts':
         specifier: 1.4.3
         version: 1.4.3
+      '@valibot/to-json-schema':
+        specifier: ^1.1.0
+        version: 1.1.0(valibot@1.0.0(typescript@5.5.3))
       acorn:
         specifier: ^8.13.0
         version: 8.14.1
@@ -343,6 +349,9 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+      valibot:
+        specifier: ^1.0.0
+        version: 1.0.0(typescript@5.5.3)
       vaul-svelte:
         specifier: 1.0.0-next.7
         version: 1.0.0-next.7(svelte@5.28.2)
@@ -2151,6 +2160,11 @@ packages:
 
   '@unovis/ts@1.4.3':
     resolution: {integrity: sha512-QYh1Qot1N9L6ZQg+uuhcsI3iuic9c6VVjlex3ipRqYDvrDDN6N+SG2555+9z+yAV6cbVsD1/EkMfK+o84PPjSw==}
+
+  '@valibot/to-json-schema@1.1.0':
+    resolution: {integrity: sha512-vpF5NKL5MmqbVVFzp3Z6CuoaYXJB75QxmW+tJNnng9UVUx9Yx+FVCyEm1kIWr05EzkuPI0b/EbVWIs25UL9mNQ==}
+    peerDependencies:
+      valibot: ^1.1.0
 
   '@vinejs/compiler@2.4.1':
     resolution: {integrity: sha512-WZqCZEQBvuPEghAxnpvNLclyyfqkmU+2V2K4zoZhOUJRD9KRJ+hCNQQ6LSzt7ZwSh+wwxq0r9FpAfeC3tswB8Q==}
@@ -6939,6 +6953,10 @@ snapshots:
       topojson-client: 3.1.0
       tslib: 2.8.1
 
+  '@valibot/to-json-schema@1.1.0(valibot@1.0.0(typescript@5.5.3))':
+    dependencies:
+      valibot: 1.0.0(typescript@5.5.3)
+
   '@vinejs/compiler@2.4.1':
     optional: true
 
@@ -10379,6 +10397,10 @@ snapshots:
 
   valibot@0.35.0:
     optional: true
+
+  valibot@1.0.0(typescript@5.5.3):
+    optionalDependencies:
+      typescript: 5.5.3
 
   valibot@1.0.0(typescript@5.8.2):
     optionalDependencies:
