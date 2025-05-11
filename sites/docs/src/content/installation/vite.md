@@ -22,15 +22,14 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 Update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 
+*NOTE. —The Target is required and recommended by Svelte, you can read about it [here](https://svelte.dev/docs/svelte/typescript)*
+
 ```json title="tsconfig.json" {3-7}
 {
   "compilerOptions": {
 
     // Recommended: Use Target ES2022 or Higher
     "target": "ES2022"
-    // Or Use ES Target Lower Than ES2022 With 'useDefineForClassFields' set to true e.g:
-    // "target": "ES2019",
-    // "useDefineForClassFields": true
 
     "baseUrl": ".",
     "paths": {
