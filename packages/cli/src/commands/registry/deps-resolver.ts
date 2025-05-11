@@ -20,6 +20,8 @@ export async function resolveProjectDeps(cwd: string) {
 	return { dependencies, devDependencies };
 }
 
+const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
+
 function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string) {
 	const deps: Record<string, string[]> = {};
 	const versionMap: Record<string, string> = {};
@@ -47,8 +49,8 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 		const { peerDependencies = {} }: PackageJson = JSON.parse(json);
 
 		for (const [peerName, peerVersion] of Object.entries(peerDependencies)) {
-			// ignore `svelte` as a peerDep
-			if (peerName === "svelte") continue;
+			// ignores certain peer deps
+			if (IGNORE_DEPS.includes(peerName)) continue;
 			const peerVersioned = peerVersion ? `${peerName}@${peerVersion}` : peerName;
 			peers.push(peerVersioned);
 			// TODO: maybe do this recursively or nah?
@@ -89,8 +91,6 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 		if (node.type !== "ImportDeclaration") return;
 		const source = node.source.value as string;
 
-		// TODO: consider deep imports
-
 		// TODO: consider peer deps with arbitrary version ranges
 
 		const deps = resolveDepsFromImport(source, opts.dependencies);
@@ -123,7 +123,7 @@ function resolveDepsFromImport(source: string, projectDeps: ReturnType<typeof re
 		// considers deep imports
 		Object.keys(projectDeps.versionMap).find((dep) => source.startsWith(dep));
 
-	if (depName) {
+	if (depName && !IGNORE_DEPS.includes(depName)) {
 		const versioned = projectDeps.versionMap[depName]!;
 		const peers = projectDeps.deps[versioned];
 		depsFound.push(versioned);
