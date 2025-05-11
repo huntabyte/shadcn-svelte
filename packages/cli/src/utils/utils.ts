@@ -24,3 +24,20 @@ export function resolveURL(base: URL | string, path: string): URL {
 	const url = normalizeURL(base);
 	return new URL(path, url);
 }
+
+export function parseDependency(dep: string) {
+	let name = dep;
+	let version = "latest";
+	if (dep.startsWith("@")) {
+		if (dep.includes("@", 1)) {
+			// @ts-expect-error should always be true
+			[, name, version] = dep.split(/(.*)(?:@)(.*)/);
+		}
+	} else {
+		if (dep.includes("@", 1)) {
+			// @ts-expect-error should always be true
+			[name, version] = dep.split("@");
+		}
+	}
+	return { name, version };
+}

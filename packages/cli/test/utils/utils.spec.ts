@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { resolveURL } from "../../src/utils/utils";
+import { parseDependency, resolveURL } from "../../src/utils/utils";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {
@@ -59,5 +59,16 @@ describe("resolveURL", () => {
 		expect(resolveURL(base, "index.json").href).toEqual(
 			"https://example.com:8080/registry/index.json"
 		);
+	});
+});
+
+describe("parseDependency", () => {
+	it("parses without tags", () => {
+		expect(parseDependency("foo")).toEqual({ name: "foo", version: "latest" });
+		expect(parseDependency("@foo/bar")).toEqual({ name: "@foo/bar", version: "latest" });
+	});
+	it("parses with tags", () => {
+		expect(parseDependency("svelte@5.0.0")).toEqual({ name: "svelte", version: "5.0.0" });
+		expect(parseDependency("@foo/bar@1.0.0")).toEqual({ name: "@foo/bar", version: "1.0.0" });
 	});
 });
