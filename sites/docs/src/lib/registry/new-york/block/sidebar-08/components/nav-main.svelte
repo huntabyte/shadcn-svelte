@@ -46,7 +46,9 @@
 										{...props}
 										class="data-[state=open]:rotate-90"
 									>
-										<ChevronRight />
+										{#if mainItem.items && mainItem.items.length > 1}
+											<ChevronRight />
+										{/if}
 										<span class="sr-only">Toggle</span>
 									</Sidebar.MenuAction>
 								{/snippet}
