@@ -6,6 +6,7 @@ import merge from "deepmerge";
 import { Command } from "commander";
 import { exec } from "tinyexec";
 import * as v from "valibot";
+import semver from "semver";
 import { detectPM } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
@@ -16,6 +17,8 @@ import * as registry from "../utils/registry/index.js";
 import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { loadProjectPackageInfo } from "../utils/get-package-info.js";
+import { parseDependency } from "../utils/utils.js";
 
 const highlight = (msg: string) => color.bold.cyan(msg);
 
@@ -233,20 +236,36 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	// Install dependencies.
 	const pm = await detectPM(cwd, true);
 	if (pm) {
-		const addDeps = resolveCommand(pm, "add", [...dependencies]);
-		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDependencies]);
+		const pkg = loadProjectPackageInfo(config.resolvedPaths.cwd);
+		const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
+
+		const validateDep = (dep: string) => {
+			const { name, version } = parseDependency(dep);
+			const depVersion = semver.coerce(projectDeps[name]);
+			if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
+				return undefined;
+			}
+			return `${name}@${version}`;
+		};
+
+		const devDeps = [...devDependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
+
+		const deps = [...dependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDeps = resolveCommand(pm, "add", deps);
+
 		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0 || devDependencies.size > 0,
+			enabled: deps.length > 0 || devDeps.length > 0,
 			async task() {
-				if (dependencies.size > 0) {
+				if (deps.length > 0) {
 					await exec(addDeps.command, addDeps.args, {
 						throwOnError: true,
 						nodeOptions: { cwd },
 					});
 				}
-				if (devDependencies.size > 0) {
+				if (devDeps.length > 0) {
 					await exec(addDevDeps.command, addDevDeps.args, {
 						throwOnError: true,
 						nodeOptions: { cwd },
