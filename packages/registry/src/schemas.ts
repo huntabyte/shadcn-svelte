@@ -101,6 +101,8 @@ export type Registry = v.InferOutput<typeof registrySchema>;
 export const registrySchema = v.object({
 	name: v.string(),
 	homepage: v.string(),
+	// installs specified versions of dependencies during auto-detection
+	overrideDependencies: v.optional(v.array(v.string())),
 	items: v.array(
 		v.object({
 			...baseIndexItemSchema.entries,

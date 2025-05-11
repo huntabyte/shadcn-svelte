@@ -1,4 +1,5 @@
 import * as v from "valibot";
+import { error } from "./errors.js";
 
 const URLSchema = v.pipe(v.string(), v.url());
 
@@ -26,18 +27,20 @@ export function resolveURL(base: URL | string, path: string): URL {
 }
 
 export function parseDependency(dep: string) {
-	let name = dep;
-	let version = "latest";
+	let name: string | undefined = dep;
+	let version: string | undefined = "latest";
+
 	if (dep.startsWith("@")) {
 		if (dep.includes("@", 1)) {
-			// @ts-expect-error should always be true
 			[, name, version] = dep.split(/(.*)(?:@)(.*)/);
 		}
 	} else {
 		if (dep.includes("@", 1)) {
-			// @ts-expect-error should always be true
 			[name, version] = dep.split("@");
 		}
 	}
+
+	if (!name || !version) throw error(`Failed to parse dependency: ${dep}`);
+
 	return { name, version };
 }

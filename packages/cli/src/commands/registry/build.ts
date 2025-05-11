@@ -5,9 +5,10 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import { error, handleError } from "../../utils/errors.js";
-import { intro } from "../../utils/prompt-helpers.js";
 import * as p from "../../utils/prompts.js";
+import { intro } from "../../utils/prompt-helpers.js";
+import { parseDependency } from "../../utils/utils.js";
+import { error, handleError } from "../../utils/errors.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
@@ -92,6 +93,26 @@ async function runBuild(options: BuildOptions) {
 		title: "Building registry items",
 		async task(message) {
 			const projectDeps = await resolveProjectDeps(options.cwd);
+
+			// apply overrides
+			if (registry.overrideDependencies) {
+				type Dependencies = (typeof projectDeps)["dependencies"];
+				const overrideDep = (override: string, deps: Dependencies) => {
+					const { name } = parseDependency(override);
+					const versioned = deps.versions[name];
+					if (versioned) {
+						const peers = deps.deps[versioned];
+						delete deps.deps[versioned];
+
+						deps.versions[name] = override;
+						deps.deps[override] = peers ?? [];
+					}
+				};
+				for (const override of registry.overrideDependencies) {
+					overrideDep(override, projectDeps.dependencies);
+					overrideDep(override, projectDeps.devDependencies);
+				}
+			}
 
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
