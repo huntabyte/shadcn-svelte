@@ -53,7 +53,6 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 			if (IGNORE_DEPS.includes(peerName)) continue;
 			const peerVersioned = peerVersion ? `${peerName}@${peerVersion}` : peerName;
 			peers.push(peerVersioned);
-			// TODO: maybe do this recursively or nah?
 		}
 	}
 	return { deps, versionMap };
