@@ -91,8 +91,6 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 		if (node.type !== "ImportDeclaration") return;
 		const source = node.source.value as string;
 
-		// TODO: consider peer deps with arbitrary version ranges
-
 		const deps = resolveDepsFromImport(source, opts.dependencies);
 		deps.forEach((dep) => dependencies.add(dep));
 
