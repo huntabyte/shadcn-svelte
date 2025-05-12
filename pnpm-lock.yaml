@@ -415,7 +415,7 @@ importers:
         version: 8.14.1
       bits-ui:
         specifier: ^1.4.6
-        version: 1.4.6(svelte@5.28.2)
+        version: 1.4.7(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2341,12 +2341,6 @@ packages:
   binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-
-  bits-ui@1.4.6:
-    resolution: {integrity: sha512-EN2niBF9iBe03GzSJ64I369DA/pRdoC7sCKVAqIxMkxrk/ClfDurzNJkf4RMK6EFOxeqWzTVFJTGyPdmBAy6Lw==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.11.0
 
   bits-ui@1.4.7:
     resolution: {integrity: sha512-oqfSbgB/2Nc3qwOvohkRzw0nQcUKsNPwthD4uzy9E21wSbhc00RDcZqCJmFrrcW336J+aStM1sITsVGQFjT+iw==}
@@ -7129,21 +7123,10 @@ snapshots:
 
   binary-extensions@2.2.0: {}
 
-  bits-ui@1.4.6(svelte@5.28.2):
+  bits-ui@1.4.7(svelte@5.28.2):
     dependencies:
       '@floating-ui/core': 1.7.0
       '@floating-ui/dom': 1.7.0
-      '@internationalized/date': 3.5.6
-      esm-env: 1.2.2
-      runed: 0.23.4(svelte@5.28.2)
-      svelte: 5.28.2
-      svelte-toolbelt: 0.7.1(svelte@5.28.2)
-      tabbable: 6.2.0
-
-  bits-ui@1.4.7(svelte@5.28.2):
-    dependencies:
-      '@floating-ui/core': 1.6.4
-      '@floating-ui/dom': 1.6.7
       '@internationalized/date': 3.5.6
       esm-env: 1.2.2
       runed: 0.23.4(svelte@5.28.2)
