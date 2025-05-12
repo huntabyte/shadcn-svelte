@@ -45,7 +45,7 @@
 		>
 			Blocks
 		</a>
-		<a
+		<!-- <a
 			href="/charts"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
@@ -56,7 +56,7 @@
 			)}
 		>
 			Charts
-		</a>
+		</a> -->
 		<a
 			href="/themes"
 			class={cn(
