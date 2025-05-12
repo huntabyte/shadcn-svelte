@@ -7,7 +7,7 @@ import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
 import * as p from "../../utils/prompts.js";
 import { intro } from "../../utils/prompt-helpers.js";
-import { parseDependency } from "../../utils/utils.js";
+import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
 
@@ -170,12 +170,4 @@ async function runBuild(options: BuildOptions) {
 	});
 
 	await p.tasks(tasks);
-}
-
-/** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
-function toArray<T>(set: Set<T>): Array<T> | undefined {
-	if (set.size > 0) {
-		return Array.from(set);
-	}
-	return undefined;
 }

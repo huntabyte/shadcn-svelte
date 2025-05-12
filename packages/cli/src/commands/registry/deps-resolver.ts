@@ -7,6 +7,7 @@ import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
 import type { PackageJson } from "type-fest";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
+import { toArray } from "../../utils/utils.js";
 
 const tsParser = acorn.Parser.extend(tsPlugin());
 
@@ -129,12 +130,4 @@ function resolveDepsFromImport(source: string, projectDeps: ReturnType<typeof re
 	}
 
 	return depsFound;
-}
-
-/** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
-function toArray<T>(set: Set<T>): Array<T> | undefined {
-	if (set.size > 0) {
-		return Array.from(set);
-	}
-	return undefined;
 }
