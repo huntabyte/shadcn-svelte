@@ -60,7 +60,7 @@
 		"css": {
 			"type": "object",
 			"additionalProperties": {
-				"$ref": "#/$defs/0"
+				"$ref": "#/$defs/1"
 			}
 		},
 		"meta": {
@@ -162,7 +162,7 @@
 		"files"
 	],
 	"$defs": {
-		"0": {
+		"1": {
 			"anyOf": [
 				{
 					"type": "string"
@@ -170,7 +170,7 @@
 				{
 					"type": "object",
 					"additionalProperties": {
-						"$ref": "#/$defs/0"
+						"$ref": "#/$defs/1"
 					}
 				}
 			]

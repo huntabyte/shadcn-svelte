@@ -33,7 +33,7 @@
 		"test": "vitest"
 	},
 	"peerDependencies": {
-		"valibot": "^1.0.0"
+		"valibot": "^1.1.0"
 	},
 	"devDependencies": {
 		"tsup": "^8.4.0"
