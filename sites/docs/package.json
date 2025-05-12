@@ -14,16 +14,16 @@
 	"scripts": {
 		"dev": "pnpm \"/dev:/\"",
 		"dev:content": "velite dev --watch",
-		"dev:svelte": "pnpm build:registry && vite dev",
-		"build": "pnpm build:registry && pnpm build:content && pnpm build:svelte",
+		"dev:svelte": "vite dev",
+		"build": "pnpm build:content && pnpm build:svelte",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
-		"build:registry": "tsx scripts/build-registry.ts && prettier --write src/__registry__/chunks/**/*",
+		"build:registry": "tsx scripts/build-registry.ts",
 		"build:screenshots": "tsx scripts/capture-screenshots.ts",
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"preview": "vite preview",
 		"sync": "svelte-kit sync",
-		"check": "pnpm build:content && pnpm build:registry && pnpm sync && svelte-check --tsconfig ./tsconfig.json"
+		"check": "pnpm build:content && pnpm sync && svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
 		"@internationalized/date": "^3.5.6",

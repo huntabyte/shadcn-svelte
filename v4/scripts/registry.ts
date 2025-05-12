@@ -6,9 +6,6 @@ import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
 import type { Registry } from "@shadcn-svelte/registry";
 
-// will be removed once moving from `next` to `latest`
-export const TMP_NEXT_DEPS = ["paneforge", "vaul-svelte"];
-
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
 
@@ -123,7 +120,6 @@ async function crawlExample(rootPath: string) {
 
 async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
-
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
 
@@ -256,22 +252,19 @@ async function crawlLib(rootPath: string) {
 	return items;
 }
 
-async function getFileDependencies(filename: string, sourceCode: string) {
+async function getFileDependencies(filename: string, content: string) {
 	let ast: unknown;
 	let moduleAst: unknown;
 
 	if (filename.endsWith(".svelte")) {
-		const { code } = await svelte.preprocess(sourceCode, [], { filename });
+		const { code } = await svelte.preprocess(content, [], { filename });
 		const result = svelte.parse(code, { filename });
 		ast = result.instance;
 		if (result.module) {
 			moduleAst = result.module;
 		}
 	} else {
-		ast = tsParser.parse(sourceCode, {
-			ecmaVersion: "latest",
-			sourceType: "module",
-		});
+		ast = tsParser.parse(content, { ecmaVersion: "latest", sourceType: "module" });
 	}
 
 	const registryDependencies = new Set<string>();
