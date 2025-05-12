@@ -387,7 +387,7 @@ Next, we'll add pagination to our table.
 
 ### Update `<DataTable />`
 
-```svelte showLineNumbers
+```svelte showLineNumbers title="routes/payments/data-table.svelte"
 <script lang="ts" generics="TData, TValue">
   import {
     type ColumnDef,
@@ -447,6 +447,18 @@ We can add pagination controls to our table using the `<Button />` component and
       return data;
     },
     columns,
+    state: {
+      get pagination() {
+        return pagination;
+      },
+    },
+    onPaginationChange: (updater) => {
+      if (typeof updater === "function") {
+        pagination = updater(pagination);
+      } else {
+        pagination = updater;
+      }
+    },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });

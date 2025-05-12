@@ -34,6 +34,7 @@
 			<LineChart
 				data={chartData}
 				y="visitors"
+				c={(v) => v.color}
 				yPadding={[0, 25]}
 				x="browser"
 				axis={false}

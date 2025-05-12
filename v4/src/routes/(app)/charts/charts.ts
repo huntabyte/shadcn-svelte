@@ -26,7 +26,7 @@ export { default as ChartLineStep } from "$lib/registry/charts/chart-line-step.s
 export { default as ChartLineMultiple } from "$lib/registry/charts/chart-line-multiple.svelte";
 export { default as ChartLineDots } from "$lib/registry/charts/chart-line-dots.svelte";
 export { default as ChartLineDotsCustom } from "$lib/registry/charts/chart-line-dots-custom.svelte";
-export { default as ChartLineDotsColors } from "$lib/registry/charts/chart-line-dots-colors.svelte";
+// export { default as ChartLineDotsColors } from "$lib/registry/charts/chart-line-dots-colors.svelte";
 export { default as ChartLineLabel } from "$lib/registry/charts/chart-line-label.svelte";
 export { default as ChartLineLabelCustom } from "$lib/registry/charts/chart-line-label-custom.svelte";
 export { default as ChartLineInteractive } from "$lib/registry/charts/chart-line-interactive.svelte";
