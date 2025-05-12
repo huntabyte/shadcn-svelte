@@ -44,6 +44,9 @@ function writeJsonSchemas() {
 	const registry = toJsonSchema(registrySchema);
 	const registryItem = toJsonSchema(registryItemSchema);
 	const schemaDir = path.resolve("static", "schema");
+	if (!fs.existsSync(schemaDir)) {
+		fs.mkdirSync(schemaDir, { recursive: true });
+	}
 	fs.writeFileSync(
 		path.resolve(schemaDir, "registry.json"),
 		JSON.stringify(registry, null, "\t")
