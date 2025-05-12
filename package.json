@@ -54,6 +54,7 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"pretty-quick": "^4.1.1",
+		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.23.1",
 		"typescript": "^5.8.2",
 		"typescript-eslint": "^8.26.1"
