@@ -2,10 +2,11 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
-import { Command } from "commander";
-import { exec } from "tinyexec";
-import merge from "deepmerge";
 import * as v from "valibot";
+import semver from "semver";
+import merge from "deepmerge";
+import { exec } from "tinyexec";
+import { Command } from "commander";
 import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
@@ -16,6 +17,8 @@ import * as registry from "../utils/registry/index.js";
 import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { parseDependency } from "../utils/utils.js";
+import { loadProjectPackageInfo } from "../utils/get-package-info.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -180,12 +183,12 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	let cssVars = {};
 
 	for (const item of itemsWithContent) {
-		const targetDir = registry.getRegistryItemTargetDir(config, item.type, targetPath);
-		if (!existsSync(targetDir)) {
-			await fs.mkdir(targetDir, { recursive: true });
+		const aliasDir = registry.getItemAliasDir(config, item.type, targetPath);
+		if (!existsSync(aliasDir)) {
+			await fs.mkdir(aliasDir, { recursive: true });
 		}
 
-		const componentPath = path.relative(cwd, path.resolve(targetDir, item.name));
+		const componentPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
 		if (!options.overwrite && existingComponents.includes(item.name)) {
 			// Only confirm overwrites for selected components and not transitive dependencies
@@ -251,20 +254,36 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	// Install dependencies.
 	const pm = await detectPM(cwd, options.deps);
 	if (pm) {
-		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDependencies]);
-		const addDeps = resolveCommand(pm, "add", [...dependencies]);
+		const pkg = loadProjectPackageInfo(config.resolvedPaths.cwd);
+		const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
+
+		const validateDep = (dep: string) => {
+			const { name, version } = parseDependency(dep);
+			const depVersion = semver.coerce(projectDeps[name]);
+			if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
+				return undefined;
+			}
+			return `${name}@${version}`;
+		};
+
+		const devDeps = [...devDependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
+
+		const deps = [...dependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDeps = resolveCommand(pm, "add", deps);
+
 		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0 || devDependencies.size > 0,
+			enabled: deps.length > 0 || devDeps.length > 0,
 			async task() {
-				if (dependencies.size > 0) {
+				if (deps.length > 0) {
 					await exec(addDeps.command, addDeps.args, {
 						throwOnError: true,
 						nodeOptions: { cwd },
 					});
 				}
-				if (devDependencies.size > 0) {
+				if (devDeps.length > 0) {
 					await exec(addDevDeps.command, addDevDeps.args, {
 						throwOnError: true,
 						nodeOptions: { cwd },

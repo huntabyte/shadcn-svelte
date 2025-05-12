@@ -18,7 +18,6 @@ export type RawBlockChunk = {
 export type RawBlock = {
 	name: string;
 	type: string;
-	chunks: RawBlockChunk[];
 	raw: () => Promise<string>;
 	component: () => Promise<Component>;
 };
@@ -57,12 +56,10 @@ export function getAllBlockIds() {
 export async function getBlock(name: BlockName) {
 	const block = Blocks[name];
 	const content = await getBlockContent(name);
-	const chunks = (block.chunks as Array<RawBlockChunk>).map((chunk) => chunk.name);
 
 	return blockSchema.parse({
 		...block,
 		...content,
-		chunks,
 	});
 }
 

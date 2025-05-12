@@ -4,9 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "pnpm build:registry && vite dev",
-		"build": "pnpm build:registry && vite build",
-		"build:registry": "tsx ./src/scripts/build-registry.ts",
+		"dev": "vite dev",
+		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -37,6 +36,7 @@
 		"mode-watcher": "^1.0.6",
 		"paneforge": "1.0.0-next.5",
 		"rimraf": "^4.4.1",
+		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.0.2",
@@ -45,7 +45,7 @@
 		"tsx": "^4.19.4",
 		"tw-animate-css": "^1.2.4",
 		"typescript": "^5.0.0",
-		"valibot": "^1.0.0",
+		"valibot": "^1.1.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"vite": "^6.2.5",
 		"zod": "^3.23.8"

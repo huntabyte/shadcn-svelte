@@ -46,11 +46,14 @@
 	},
 	"devDependencies": {
 		"@shadcn-svelte/registry": "workspace:*",
+		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@types/node": "^18.19.22",
 		"@types/semver": "^7.5.8",
+		"acorn": "^8.13.0",
 		"chalk": "^5.4.0",
 		"cross-env": "^7.0.3",
 		"deepmerge": "^4.3.1",
+		"estree-walker": "^3.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^5.3.1",
 		"package-manager-detector": "^1.2.0",
@@ -61,7 +64,7 @@
 		"tsup": "^8.4.0",
 		"type-fest": "^3.13.1",
 		"typescript": "^5.0.0",
-		"valibot": "^1.0.0",
+		"valibot": "^1.1.0",
 		"vitest": "^0.34.6"
 	}
 }

@@ -1,4 +1,5 @@
 import * as v from "valibot";
+import { error } from "./errors.js";
 
 const URLSchema = v.pipe(v.string(), v.url());
 
@@ -23,4 +24,31 @@ function normalizeURL(url: URL | string): URL {
 export function resolveURL(base: URL | string, path: string): URL {
 	const url = normalizeURL(base);
 	return new URL(path, url);
+}
+
+export function parseDependency(dep: string) {
+	let name: string | undefined = dep;
+	let version: string | undefined = "latest";
+
+	if (dep.startsWith("@")) {
+		if (dep.includes("@", 1)) {
+			[, name, version] = dep.split(/(.*)(?:@)(.*)/);
+		}
+	} else {
+		if (dep.includes("@", 1)) {
+			[name, version] = dep.split("@");
+		}
+	}
+
+	if (!name || !version) throw error(`Failed to parse dependency: ${dep}`);
+
+	return { name, version };
+}
+
+/** Converts a `Set` into an array if its size is greater than 0. Otherwise, `undefined` is returned. */
+export function toArray<T>(set: Set<T>): Array<T> | undefined {
+	if (set.size > 0) {
+		return Array.from(set);
+	}
+	return undefined;
 }
