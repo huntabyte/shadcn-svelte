@@ -66,22 +66,22 @@
 				{/snippet}
 				{#snippet marks({ getBarsProps, visibleSeries })}
 					{@const baseBarProps = getBarsProps(visibleSeries[0], 0)}
-					{#each chartData as d, i (i)}
+					{#each chartData as data, i (i)}
 						{#if i === 2}
 							<!-- The "active" bar -->
 							<Bar
 								{...baseBarProps}
 								motion="tween"
-								fill={d.color}
-								bar={d}
+								fill={data.color}
+								{data}
 								fillOpacity={0.8}
-								stroke={d.color}
+								stroke={data.color}
 								strokeWidth={2}
 								stroke-dasharray={4}
 								stroke-dashoffset={4}
 							/>
 						{:else}
-							<Bar {...baseBarProps} fill={d.color} bar={d} motion="tween" />
+							<Bar {...baseBarProps} fill={data.color} {data} motion="tween" />
 						{/if}
 					{/each}
 				{/snippet}
