@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Component, Snippet } from "svelte";
 	import * as Icon from "./icons/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as DocTabs from "$lib/components/docs/doc-tabs/index.js";
 	import { Index } from "$lib/../__registry__/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
@@ -52,24 +52,24 @@
 {/snippet}
 
 <div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...restProps}>
-	<Tabs.Root value="preview" class="relative mr-auto w-full">
+	<DocTabs.Root value="preview" class="relative mr-auto w-full">
 		<div class="flex items-center justify-between pb-3">
-			<Tabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
-				<Tabs.Trigger
+			<DocTabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
+				<DocTabs.Trigger
 					value="preview"
 					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Preview
-				</Tabs.Trigger>
-				<Tabs.Trigger
+				</DocTabs.Trigger>
+				<DocTabs.Trigger
 					value="code"
 					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
 				>
 					Code
-				</Tabs.Trigger>
-			</Tabs.List>
+				</DocTabs.Trigger>
+			</DocTabs.List>
 		</div>
-		<Tabs.Content value="preview" class="relative rounded-md border">
+		<DocTabs.Content value="preview" class="relative rounded-md border">
 			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn(
@@ -90,8 +90,8 @@
 					{/if}
 				</div>
 			</ThemeWrapper>
-		</Tabs.Content>
-		<Tabs.Content value="code">
+		</DocTabs.Content>
+		<DocTabs.Content value="code">
 			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
@@ -99,6 +99,6 @@
 					{@render children?.()}
 				</div>
 			</ThemeWrapper>
-		</Tabs.Content>
-	</Tabs.Root>
+		</DocTabs.Content>
+	</DocTabs.Root>
 </div>
