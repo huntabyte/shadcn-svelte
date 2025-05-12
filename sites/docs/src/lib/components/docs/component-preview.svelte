@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Component, Snippet } from "svelte";
-	import * as Icon from "./icons/index.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { Index } from "$lib/../__registry__/index.js";
+	import type { Index } from "$lib/../__registry__/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 
@@ -14,6 +13,7 @@
 		children,
 		form,
 		style,
+		component,
 		...restProps
 	}: Omit<PrimitiveDivAttributes, "style" | "form"> & {
 		name: keyof typeof Index;
@@ -21,33 +21,22 @@
 		style?: string;
 		form?: unknown;
 		example?: Snippet;
+		component?: Component;
 	} = $props();
-
-	let component: Promise<Component> = $state() as Promise<Component>;
-
-	$effect(() => {
-		component = Index[name]?.component() as Promise<Component>;
-	});
 </script>
 
 {#snippet ExampleFallback()}
 	{#if component}
-		{#await component}
-			<div class="text-muted-foreground flex items-center text-sm">
-				<Icon.Spinner class="mr-2 size-4 animate-spin" />
-				Loading...
-			</div>
-		{:then Component}
-			<Component {form} />
-		{:catch}
-			<p class="text-muted-foreground text-sm">
-				Component
-				<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
-					{name}
-				</code>
-				not found in registry.
-			</p>
-		{/await}
+		{@const Component = component}
+		<Component {form} />
+	{:else}
+		<p class="text-muted-foreground text-sm">
+			Component
+			<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+				{name}
+			</code>
+			not found in registry.
+		</p>
 	{/if}
 {/snippet}
 
