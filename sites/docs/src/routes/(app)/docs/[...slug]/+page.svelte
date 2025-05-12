@@ -75,7 +75,7 @@
 		{/if}
 		<div class="pb-12 pt-8" id="markdown">
 			<div class="markdown">
-				<Markdown />
+				<Markdown form={data.form} />
 			</div>
 		</div>
 		<DocsPager />
