@@ -1,5 +1,5 @@
 {
-	"name": "shadcn-svelte",
+	"name": "@shadcn-svelte/monorepo",
 	"version": "0.0.1",
 	"description": "monorepo for shadcn-svelte",
 	"author": {
