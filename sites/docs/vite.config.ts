@@ -2,13 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { sveltekit } from "@sveltejs/kit/vite";
+import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { sveltekit } from "@sveltejs/kit/vite";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
-import { minimatch } from "minimatch";
 
 console.log("Building registry...");
 writeJsonSchemas();

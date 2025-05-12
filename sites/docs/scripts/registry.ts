@@ -3,9 +3,8 @@ import path from "node:path";
 import * as acorn from "acorn";
 import tsPlugin from "acorn-typescript";
 import { walk, type Node } from "estree-walker";
-import { parse, preprocess } from "svelte/compiler";
+import * as svelte from "svelte/compiler";
 import type { Registry } from "@shadcn-svelte/registry";
-import config from "../svelte.config.js";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
@@ -229,8 +228,8 @@ async function getFileDependencies(filename: string, content: string) {
 	let moduleAst: unknown;
 
 	if (filename.endsWith(".svelte")) {
-		const { code } = await preprocess(content, config.preprocess, { filename });
-		const result = parse(code, { filename });
+		const { code } = await svelte.preprocess(content, [], { filename });
+		const result = svelte.parse(code, { filename });
 		ast = result.instance;
 		if (result.module) {
 			moduleAst = result.module;
