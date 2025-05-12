@@ -34,4 +34,6 @@
 	let { title, description, source, component, radix }: Props = $props();
 </script>
 
+<!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
+<!-- svelte-ignore slot_element_deprecated -->
 <slot {title} {description} {source} {component} {radix} />

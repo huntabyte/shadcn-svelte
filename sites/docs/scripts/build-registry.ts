@@ -7,8 +7,8 @@ import { rimraf } from "rimraf";
 import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { baseColors } from "../src/lib/registry/colors.js";
-import { buildRegistry } from "./registry";
-import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates";
+import { buildRegistry } from "./registry.js";
+import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
