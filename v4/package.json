@@ -36,6 +36,7 @@
 		"mode-watcher": "^1.0.6",
 		"paneforge": "1.0.0-next.5",
 		"rimraf": "^4.4.1",
+		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.0.2",

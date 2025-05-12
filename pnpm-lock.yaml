@@ -56,9 +56,6 @@ importers:
       pretty-quick:
         specifier: ^4.1.1
         version: 4.1.1(prettier@3.5.3)
-      shadcn-svelte:
-        specifier: workspace:*
-        version: link:packages/cli
       svelte:
         specifier: ^5.23.1
         version: 5.28.2
@@ -298,6 +295,9 @@ importers:
       runed:
         specifier: ^0.25.0
         version: 0.25.0(svelte@5.28.2)
+      shadcn-svelte:
+        specifier: workspace:*
+        version: link:../../packages/cli
       shiki:
         specifier: ^1.2.1
         version: 1.2.1
@@ -452,6 +452,9 @@ importers:
       rimraf:
         specifier: ^4.4.1
         version: 4.4.1
+      shadcn-svelte:
+        specifier: workspace:*
+        version: link:../packages/cli
       svelte:
         specifier: ^5.28.2
         version: 5.28.2
