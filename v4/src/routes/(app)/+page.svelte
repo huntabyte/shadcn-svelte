@@ -132,9 +132,9 @@
 	<ComponentWrapper name="menubar">
 		<MenubarDemo />
 	</ComponentWrapper>
-	<ComponentWrapper name="navigation-menu">
+	<!-- <ComponentWrapper name="navigation-menu">
 		<NavigationMenuDemo />
-	</ComponentWrapper>
+	</ComponentWrapper> -->
 	<ComponentWrapper name="pagination">
 		<PaginationDemo />
 	</ComponentWrapper>

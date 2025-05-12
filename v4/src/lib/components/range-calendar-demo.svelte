@@ -20,7 +20,7 @@
 	});
 </script>
 
-<div class="@md:flex-row flex flex-col flex-wrap items-start gap-2">
+<div class="flex flex-col flex-wrap items-start gap-2">
 	<RangeCalendar
 		bind:value={rangeOne}
 		class="rounded-md border shadow-sm"
@@ -39,7 +39,7 @@
 	/>
 	<RangeCalendar
 		bind:value={rangeTwo}
-		class="rounded-md border shadow-sm [&>div]:gap-5"
+		class="@4xl:flex hidden rounded-md border shadow-sm [&>div]:gap-5"
 		placeholder={rangeTwo?.start}
 		numberOfMonths={3}
 	/>
