@@ -121,8 +121,40 @@
 		@apply border-border outline-ring/50;
 	}
 
+	html {
+		@apply scroll-smooth;
+	}
+
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground overscroll-none;
+		/* font-feature-settings: "rlig" 1, "calt" 1; */
+		font-synthesis-weight: none;
+		text-rendering: optimizeLegibility;
+	}
+
+	@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+		[data-wrapper] {
+			@apply min-[1800px]:border-t;
+		}
+	}
+
+	/* Custom scrollbar styling. Thanks @pranathiperii. */
+	::-webkit-scrollbar {
+		width: 5px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: var(--border);
+		border-radius: 5px;
+	}
+
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--border) transparent;
 	}
 }
 
@@ -131,8 +163,21 @@
 	counter-increment: step;
 }
 
+
+@utility no-scrollbar {
+	@apply [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none];
+}
+
+@utility border-grid {
+	@apply border-border/50 dark:border-border border-dashed;
+}
+
+@utility container-wrapper {
+	@apply max-w-[1400px] min-[1800px]:max-w-screen-2xl min-[1400px]:border-x border-border/70 dark:border-border mx-auto w-full border-dashed;
+}
+
 @utility container {
-	@apply mx-auto max-w-screen-2xl border-dashed px-8 pb-8 2xl:border-x;
+	@apply px-4 xl:px-6 mx-auto max-w-screen-2xl;
 }
 
 .markdown code {
@@ -192,7 +237,7 @@
 	padding: 0 calc(var(--spacing) * 2);
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-fragment] [data-line-numbers]>.line::before {
 	font-size: 0.875rem;
 	color: color-mix(in oklab, var(--color-zinc-50) 40%, transparent);
 	counter-increment: line;
@@ -238,7 +283,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title]+pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 

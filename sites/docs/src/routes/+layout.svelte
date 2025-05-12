@@ -9,6 +9,8 @@
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 	import { setPackageManager } from "$lib/stores/package-manager.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { dev } from "$app/environment";
+	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
 
 	let { children } = $props();
 
@@ -19,15 +21,16 @@
 	});
 </script>
 
-<ModeWatcher />
+<ModeWatcher disableTransitions />
 <Metadata />
 <Toaster />
 <Tooltip.Provider>
-	<div
-		class="bg-background relative flex min-h-screen flex-col"
-		id="page"
-		data-vaul-drawer-wrapper
-	>
-		{@render children?.()}
+	<div data-vaul-drawer-wrapper="">
+		<div class="bg-background relative flex min-h-dvh flex-col" id="page">
+			{@render children?.()}
+		</div>
 	</div>
+	{#if dev}
+		<TailwindIndicator />
+	{/if}
 </Tooltip.Provider>
