@@ -26,7 +26,7 @@
 	import InputOTPDemo from "$lib/components/input-otp-demo.svelte";
 	import LabelDemo from "$lib/components/label-demo.svelte";
 	import MenubarDemo from "$lib/components/menubar-demo.svelte";
-	import NavigationMenuDemo from "$lib/components/navigation-menu-demo.svelte";
+	// import NavigationMenuDemo from "$lib/components/navigation-menu-demo.svelte";
 	import PaginationDemo from "$lib/components/pagination-demo.svelte";
 	import PopoverDemo from "$lib/components/popover-demo.svelte";
 	import ProgressDemo from "$lib/components/progress-demo.svelte";
