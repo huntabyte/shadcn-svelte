@@ -91,9 +91,7 @@ export type Config = v.InferOutput<typeof configSchema>;
 export async function getConfig(cwd: string) {
 	const config = await getRawConfig(cwd);
 
-	if (!config) {
-		return null;
-	}
+	if (!config) return null;
 
 	return await resolveConfigPaths(cwd, config);
 }
