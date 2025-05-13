@@ -14,7 +14,7 @@ We use CSS variables for styling. This allows you to easily change the colors of
 
 We use a simple `background` and `foreground` convention for colors. The `background` variable is used for the background color of the component and the `foreground` variable is used for the text color.
 
-<Callout class="mt-4>
+<Callout class="mt-4">
 
 The `background` suffix is omitted when the variable is used for the background color of the component.
 
