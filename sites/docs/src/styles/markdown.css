@@ -1,4 +1,4 @@
-.markdown code {
+.markdown code:not(pre code) {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
 	font-size: 0.875rem;
@@ -52,10 +52,7 @@
 	padding: 2px 1rem;
 }
 
-[data-rehype-pretty-code-figure]
-	> pre[data-language="txt"]
-	> code[data-language="txt"]
-	span[data-line] {
+[data-rehype-pretty-code-figure]>pre[data-language="txt"]>code[data-language="txt"] span[data-line] {
 	color: white;
 }
 
@@ -63,7 +60,7 @@
 	padding: 0 0.5rem;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
+[data-rehype-pretty-code-figure] [data-line-numbers]>[data-line]::before {
 	/* color: var(--color-zinc-50) / 40; */
 	font-size: 0.875rem;
 	counter-increment: line;
@@ -110,12 +107,12 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title]+pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 
 code[data-theme*="github-dark"],
 code[data-theme*="github-dark"] span {
 	color: var(--shiki-light);
-	background-color: var(--shiki-light-bg);
+	/* background-color: var(--shiki-light-bg); */
 }

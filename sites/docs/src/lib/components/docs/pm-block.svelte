@@ -8,12 +8,13 @@
 	import Clipboard from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
 
-	type Props = {
+	const {
+		type,
+		command,
+	}: {
 		type: Command | "create";
 		command: string | string[];
-	};
-
-	const { type, command }: Props = $props();
+	} = $props();
 
 	const agent = getPackageManager();
 

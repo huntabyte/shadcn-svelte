@@ -3,4 +3,4 @@
 	let { command }: { command: string } = $props();
 </script>
 
-<PMBlock type="uninstall" {command} />
+<PMBlock type="upgrade" {command} />
