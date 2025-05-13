@@ -8,7 +8,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["accordion"],
 	component: () => import("../lib/registry/example/accordion-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/accordion-demo.svelte"],
+	files: ["../lib/registry/examples/accordion-demo.svelte"],
 	raw: () => import("../lib/registry/example/accordion-demo.svelte?raw").then((m) => m.default),
 },
 "alert-demo": {
@@ -16,7 +16,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["alert"],
 	component: () => import("../lib/registry/example/alert-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/alert-demo.svelte"],
+	files: ["../lib/registry/examples/alert-demo.svelte"],
 	raw: () => import("../lib/registry/example/alert-demo.svelte?raw").then((m) => m.default),
 },
 "alert-destructive": {
@@ -24,7 +24,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["alert"],
 	component: () => import("../lib/registry/example/alert-destructive.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/alert-destructive.svelte"],
+	files: ["../lib/registry/examples/alert-destructive.svelte"],
 	raw: () => import("../lib/registry/example/alert-destructive.svelte?raw").then((m) => m.default),
 },
 "alert-dialog-demo": {
@@ -32,7 +32,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["alert-dialog","button"],
 	component: () => import("../lib/registry/example/alert-dialog-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/alert-dialog-demo.svelte"],
+	files: ["../lib/registry/examples/alert-dialog-demo.svelte"],
 	raw: () => import("../lib/registry/example/alert-dialog-demo.svelte?raw").then((m) => m.default),
 },
 "aspect-ratio-demo": {
@@ -40,7 +40,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["aspect-ratio"],
 	component: () => import("../lib/registry/example/aspect-ratio-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/aspect-ratio-demo.svelte"],
+	files: ["../lib/registry/examples/aspect-ratio-demo.svelte"],
 	raw: () => import("../lib/registry/example/aspect-ratio-demo.svelte?raw").then((m) => m.default),
 },
 "avatar-demo": {
@@ -48,7 +48,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["avatar"],
 	component: () => import("../lib/registry/example/avatar-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/avatar-demo.svelte"],
+	files: ["../lib/registry/examples/avatar-demo.svelte"],
 	raw: () => import("../lib/registry/example/avatar-demo.svelte?raw").then((m) => m.default),
 },
 "badge-demo": {
@@ -56,7 +56,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["badge"],
 	component: () => import("../lib/registry/example/badge-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/badge-demo.svelte"],
+	files: ["../lib/registry/examples/badge-demo.svelte"],
 	raw: () => import("../lib/registry/example/badge-demo.svelte?raw").then((m) => m.default),
 },
 "badge-destructive": {
@@ -64,7 +64,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["badge"],
 	component: () => import("../lib/registry/example/badge-destructive.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/badge-destructive.svelte"],
+	files: ["../lib/registry/examples/badge-destructive.svelte"],
 	raw: () => import("../lib/registry/example/badge-destructive.svelte?raw").then((m) => m.default),
 },
 "badge-outline": {
@@ -72,7 +72,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["badge"],
 	component: () => import("../lib/registry/example/badge-outline.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/badge-outline.svelte"],
+	files: ["../lib/registry/examples/badge-outline.svelte"],
 	raw: () => import("../lib/registry/example/badge-outline.svelte?raw").then((m) => m.default),
 },
 "badge-secondary": {
@@ -80,7 +80,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["badge"],
 	component: () => import("../lib/registry/example/badge-secondary.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/badge-secondary.svelte"],
+	files: ["../lib/registry/examples/badge-secondary.svelte"],
 	raw: () => import("../lib/registry/example/badge-secondary.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-demo": {
@@ -88,7 +88,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb","dropdown-menu"],
 	component: () => import("../lib/registry/example/breadcrumb-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-demo.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-demo.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-demo.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-dropdown": {
@@ -96,7 +96,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb","dropdown-menu"],
 	component: () => import("../lib/registry/example/breadcrumb-dropdown.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-dropdown.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-dropdown.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-dropdown.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-ellipsis": {
@@ -104,7 +104,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb"],
 	component: () => import("../lib/registry/example/breadcrumb-ellipsis.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-ellipsis.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-ellipsis.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-ellipsis.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-link": {
@@ -112,7 +112,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb"],
 	component: () => import("../lib/registry/example/breadcrumb-link.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-link.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-link.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-link.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-responsive": {
@@ -120,7 +120,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb","drawer","dropdown-menu","button"],
 	component: () => import("../lib/registry/example/breadcrumb-responsive.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-responsive.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-responsive.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-responsive.svelte?raw").then((m) => m.default),
 },
 "breadcrumb-separator": {
@@ -128,7 +128,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["breadcrumb"],
 	component: () => import("../lib/registry/example/breadcrumb-separator.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/breadcrumb-separator.svelte"],
+	files: ["../lib/registry/examples/breadcrumb-separator.svelte"],
 	raw: () => import("../lib/registry/example/breadcrumb-separator.svelte?raw").then((m) => m.default),
 },
 "button-demo": {
@@ -136,7 +136,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-demo.svelte"],
+	files: ["../lib/registry/examples/button-demo.svelte"],
 	raw: () => import("../lib/registry/example/button-demo.svelte?raw").then((m) => m.default),
 },
 "button-destructive": {
@@ -144,7 +144,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-destructive.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-destructive.svelte"],
+	files: ["../lib/registry/examples/button-destructive.svelte"],
 	raw: () => import("../lib/registry/example/button-destructive.svelte?raw").then((m) => m.default),
 },
 "button-ghost": {
@@ -152,7 +152,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-ghost.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-ghost.svelte"],
+	files: ["../lib/registry/examples/button-ghost.svelte"],
 	raw: () => import("../lib/registry/example/button-ghost.svelte?raw").then((m) => m.default),
 },
 "button-icon": {
@@ -160,7 +160,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-icon.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-icon.svelte"],
+	files: ["../lib/registry/examples/button-icon.svelte"],
 	raw: () => import("../lib/registry/example/button-icon.svelte?raw").then((m) => m.default),
 },
 "button-link": {
@@ -168,7 +168,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-link.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-link.svelte"],
+	files: ["../lib/registry/examples/button-link.svelte"],
 	raw: () => import("../lib/registry/example/button-link.svelte?raw").then((m) => m.default),
 },
 "button-loading": {
@@ -176,7 +176,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-loading.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-loading.svelte"],
+	files: ["../lib/registry/examples/button-loading.svelte"],
 	raw: () => import("../lib/registry/example/button-loading.svelte?raw").then((m) => m.default),
 },
 "button-outline": {
@@ -184,7 +184,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-outline.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-outline.svelte"],
+	files: ["../lib/registry/examples/button-outline.svelte"],
 	raw: () => import("../lib/registry/example/button-outline.svelte?raw").then((m) => m.default),
 },
 "button-secondary": {
@@ -192,7 +192,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-secondary.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-secondary.svelte"],
+	files: ["../lib/registry/examples/button-secondary.svelte"],
 	raw: () => import("../lib/registry/example/button-secondary.svelte?raw").then((m) => m.default),
 },
 "button-with-icon": {
@@ -200,7 +200,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/button-with-icon.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/button-with-icon.svelte"],
+	files: ["../lib/registry/examples/button-with-icon.svelte"],
 	raw: () => import("../lib/registry/example/button-with-icon.svelte?raw").then((m) => m.default),
 },
 "calendar-demo": {
@@ -208,7 +208,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["calendar"],
 	component: () => import("../lib/registry/example/calendar-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/calendar-demo.svelte"],
+	files: ["../lib/registry/examples/calendar-demo.svelte"],
 	raw: () => import("../lib/registry/example/calendar-demo.svelte?raw").then((m) => m.default),
 },
 "calendar-with-selects": {
@@ -216,7 +216,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["calendar","select"],
 	component: () => import("../lib/registry/example/calendar-with-selects.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/calendar-with-selects.svelte"],
+	files: ["../lib/registry/examples/calendar-with-selects.svelte"],
 	raw: () => import("../lib/registry/example/calendar-with-selects.svelte?raw").then((m) => m.default),
 },
 "card-demo": {
@@ -224,7 +224,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","card","switch"],
 	component: () => import("../lib/registry/example/card-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/card-demo.svelte"],
+	files: ["../lib/registry/examples/card-demo.svelte"],
 	raw: () => import("../lib/registry/example/card-demo.svelte?raw").then((m) => m.default),
 },
 "card-with-form": {
@@ -232,7 +232,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","card","select","input","label"],
 	component: () => import("../lib/registry/example/card-with-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/card-with-form.svelte"],
+	files: ["../lib/registry/examples/card-with-form.svelte"],
 	raw: () => import("../lib/registry/example/card-with-form.svelte?raw").then((m) => m.default),
 },
 "carousel-api": {
@@ -240,7 +240,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-api.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-api.svelte"],
+	files: ["../lib/registry/examples/carousel-api.svelte"],
 	raw: () => import("../lib/registry/example/carousel-api.svelte?raw").then((m) => m.default),
 },
 "carousel-demo": {
@@ -248,7 +248,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-demo.svelte"],
+	files: ["../lib/registry/examples/carousel-demo.svelte"],
 	raw: () => import("../lib/registry/example/carousel-demo.svelte?raw").then((m) => m.default),
 },
 "carousel-orientation": {
@@ -256,7 +256,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-orientation.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-orientation.svelte"],
+	files: ["../lib/registry/examples/carousel-orientation.svelte"],
 	raw: () => import("../lib/registry/example/carousel-orientation.svelte?raw").then((m) => m.default),
 },
 "carousel-plugin": {
@@ -264,7 +264,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-plugin.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-plugin.svelte"],
+	files: ["../lib/registry/examples/carousel-plugin.svelte"],
 	raw: () => import("../lib/registry/example/carousel-plugin.svelte?raw").then((m) => m.default),
 },
 "carousel-size": {
@@ -272,7 +272,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-size.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-size.svelte"],
+	files: ["../lib/registry/examples/carousel-size.svelte"],
 	raw: () => import("../lib/registry/example/carousel-size.svelte?raw").then((m) => m.default),
 },
 "carousel-spacing": {
@@ -280,7 +280,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["card","carousel"],
 	component: () => import("../lib/registry/example/carousel-spacing.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/carousel-spacing.svelte"],
+	files: ["../lib/registry/examples/carousel-spacing.svelte"],
 	raw: () => import("../lib/registry/example/carousel-spacing.svelte?raw").then((m) => m.default),
 },
 "checkbox-demo": {
@@ -288,7 +288,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["checkbox","label"],
 	component: () => import("../lib/registry/example/checkbox-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/checkbox-demo.svelte"],
+	files: ["../lib/registry/examples/checkbox-demo.svelte"],
 	raw: () => import("../lib/registry/example/checkbox-demo.svelte?raw").then((m) => m.default),
 },
 "checkbox-disabled": {
@@ -296,7 +296,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["checkbox","label"],
 	component: () => import("../lib/registry/example/checkbox-disabled.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/checkbox-disabled.svelte"],
+	files: ["../lib/registry/examples/checkbox-disabled.svelte"],
 	raw: () => import("../lib/registry/example/checkbox-disabled.svelte?raw").then((m) => m.default),
 },
 "checkbox-form-multiple": {
@@ -304,7 +304,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","checkbox"],
 	component: () => import("../lib/registry/example/checkbox-form-multiple.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/checkbox-form-multiple.svelte"],
+	files: ["../lib/registry/examples/checkbox-form-multiple.svelte"],
 	raw: () => import("../lib/registry/example/checkbox-form-multiple.svelte?raw").then((m) => m.default),
 },
 "checkbox-form-single": {
@@ -312,7 +312,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","checkbox"],
 	component: () => import("../lib/registry/example/checkbox-form-single.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/checkbox-form-single.svelte"],
+	files: ["../lib/registry/examples/checkbox-form-single.svelte"],
 	raw: () => import("../lib/registry/example/checkbox-form-single.svelte?raw").then((m) => m.default),
 },
 "checkbox-with-text": {
@@ -320,7 +320,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["checkbox","label"],
 	component: () => import("../lib/registry/example/checkbox-with-text.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/checkbox-with-text.svelte"],
+	files: ["../lib/registry/examples/checkbox-with-text.svelte"],
 	raw: () => import("../lib/registry/example/checkbox-with-text.svelte?raw").then((m) => m.default),
 },
 "collapsible-demo": {
@@ -328,7 +328,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["collapsible","button"],
 	component: () => import("../lib/registry/example/collapsible-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/collapsible-demo.svelte"],
+	files: ["../lib/registry/examples/collapsible-demo.svelte"],
 	raw: () => import("../lib/registry/example/collapsible-demo.svelte?raw").then((m) => m.default),
 },
 "combobox-demo": {
@@ -336,7 +336,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["command","popover","button"],
 	component: () => import("../lib/registry/example/combobox-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/combobox-demo.svelte"],
+	files: ["../lib/registry/examples/combobox-demo.svelte"],
 	raw: () => import("../lib/registry/example/combobox-demo.svelte?raw").then((m) => m.default),
 },
 "combobox-dropdown-menu": {
@@ -344,7 +344,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dropdown-menu","command","button"],
 	component: () => import("../lib/registry/example/combobox-dropdown-menu.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/combobox-dropdown-menu.svelte"],
+	files: ["../lib/registry/examples/combobox-dropdown-menu.svelte"],
 	raw: () => import("../lib/registry/example/combobox-dropdown-menu.svelte?raw").then((m) => m.default),
 },
 "combobox-form": {
@@ -352,7 +352,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","popover","command","button"],
 	component: () => import("../lib/registry/example/combobox-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/combobox-form.svelte"],
+	files: ["../lib/registry/examples/combobox-form.svelte"],
 	raw: () => import("../lib/registry/example/combobox-form.svelte?raw").then((m) => m.default),
 },
 "combobox-popover": {
@@ -360,7 +360,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["popover","command","button"],
 	component: () => import("../lib/registry/example/combobox-popover.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/combobox-popover.svelte"],
+	files: ["../lib/registry/examples/combobox-popover.svelte"],
 	raw: () => import("../lib/registry/example/combobox-popover.svelte?raw").then((m) => m.default),
 },
 "command-demo": {
@@ -368,7 +368,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["command"],
 	component: () => import("../lib/registry/example/command-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/command-demo.svelte"],
+	files: ["../lib/registry/examples/command-demo.svelte"],
 	raw: () => import("../lib/registry/example/command-demo.svelte?raw").then((m) => m.default),
 },
 "command-dialog": {
@@ -376,7 +376,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["command"],
 	component: () => import("../lib/registry/example/command-dialog.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/command-dialog.svelte"],
+	files: ["../lib/registry/examples/command-dialog.svelte"],
 	raw: () => import("../lib/registry/example/command-dialog.svelte?raw").then((m) => m.default),
 },
 "context-menu-demo": {
@@ -384,7 +384,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["context-menu"],
 	component: () => import("../lib/registry/example/context-menu-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/context-menu-demo.svelte"],
+	files: ["../lib/registry/examples/context-menu-demo.svelte"],
 	raw: () => import("../lib/registry/example/context-menu-demo.svelte?raw").then((m) => m.default),
 },
 "dark-mode-dropdown-menu": {
@@ -392,7 +392,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dropdown-menu","button"],
 	component: () => import("../lib/registry/example/dark-mode-dropdown-menu.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dark-mode-dropdown-menu.svelte"],
+	files: ["../lib/registry/examples/dark-mode-dropdown-menu.svelte"],
 	raw: () => import("../lib/registry/example/dark-mode-dropdown-menu.svelte?raw").then((m) => m.default),
 },
 "dark-mode-light-switch": {
@@ -400,7 +400,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/dark-mode-light-switch.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dark-mode-light-switch.svelte"],
+	files: ["../lib/registry/examples/dark-mode-light-switch.svelte"],
 	raw: () => import("../lib/registry/example/dark-mode-light-switch.svelte?raw").then((m) => m.default),
 },
 "data-table-demo": {
@@ -408,7 +408,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["table","button","dropdown-menu","input","data-table"],
 	component: () => import("../lib/registry/example/data-table-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/data-table-demo.svelte"],
+	files: ["../lib/registry/examples/data-table-demo.svelte"],
 	raw: () => import("../lib/registry/example/data-table-demo.svelte?raw").then((m) => m.default),
 },
 "date-picker-demo": {
@@ -416,7 +416,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","calendar","popover"],
 	component: () => import("../lib/registry/example/date-picker-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/date-picker-demo.svelte"],
+	files: ["../lib/registry/examples/date-picker-demo.svelte"],
 	raw: () => import("../lib/registry/example/date-picker-demo.svelte?raw").then((m) => m.default),
 },
 "date-picker-form": {
@@ -424,7 +424,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","calendar","popover","form"],
 	component: () => import("../lib/registry/example/date-picker-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/date-picker-form.svelte"],
+	files: ["../lib/registry/examples/date-picker-form.svelte"],
 	raw: () => import("../lib/registry/example/date-picker-form.svelte?raw").then((m) => m.default),
 },
 "date-picker-with-presets": {
@@ -432,7 +432,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","calendar","popover","select"],
 	component: () => import("../lib/registry/example/date-picker-with-presets.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/date-picker-with-presets.svelte"],
+	files: ["../lib/registry/examples/date-picker-with-presets.svelte"],
 	raw: () => import("../lib/registry/example/date-picker-with-presets.svelte?raw").then((m) => m.default),
 },
 "date-picker-with-range": {
@@ -440,7 +440,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","range-calendar","popover"],
 	component: () => import("../lib/registry/example/date-picker-with-range.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/date-picker-with-range.svelte"],
+	files: ["../lib/registry/examples/date-picker-with-range.svelte"],
 	raw: () => import("../lib/registry/example/date-picker-with-range.svelte?raw").then((m) => m.default),
 },
 "dialog-demo": {
@@ -448,7 +448,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","dialog","input","label"],
 	component: () => import("../lib/registry/example/dialog-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dialog-demo.svelte"],
+	files: ["../lib/registry/examples/dialog-demo.svelte"],
 	raw: () => import("../lib/registry/example/dialog-demo.svelte?raw").then((m) => m.default),
 },
 "drawer-demo": {
@@ -456,7 +456,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["drawer","button"],
 	component: () => import("../lib/registry/example/drawer-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/drawer-demo.svelte"],
+	files: ["../lib/registry/examples/drawer-demo.svelte"],
 	raw: () => import("../lib/registry/example/drawer-demo.svelte?raw").then((m) => m.default),
 },
 "drawer-dialog": {
@@ -464,7 +464,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dialog","drawer","input","label","button"],
 	component: () => import("../lib/registry/example/drawer-dialog.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/drawer-dialog.svelte"],
+	files: ["../lib/registry/examples/drawer-dialog.svelte"],
 	raw: () => import("../lib/registry/example/drawer-dialog.svelte?raw").then((m) => m.default),
 },
 "dropdown-menu-checkboxes": {
@@ -472,7 +472,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dropdown-menu","button"],
 	component: () => import("../lib/registry/example/dropdown-menu-checkboxes.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dropdown-menu-checkboxes.svelte"],
+	files: ["../lib/registry/examples/dropdown-menu-checkboxes.svelte"],
 	raw: () => import("../lib/registry/example/dropdown-menu-checkboxes.svelte?raw").then((m) => m.default),
 },
 "dropdown-menu-demo": {
@@ -480,7 +480,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dropdown-menu","button"],
 	component: () => import("../lib/registry/example/dropdown-menu-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dropdown-menu-demo.svelte"],
+	files: ["../lib/registry/examples/dropdown-menu-demo.svelte"],
 	raw: () => import("../lib/registry/example/dropdown-menu-demo.svelte?raw").then((m) => m.default),
 },
 "dropdown-menu-radio-group": {
@@ -488,7 +488,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["dropdown-menu","button"],
 	component: () => import("../lib/registry/example/dropdown-menu-radio-group.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/dropdown-menu-radio-group.svelte"],
+	files: ["../lib/registry/examples/dropdown-menu-radio-group.svelte"],
 	raw: () => import("../lib/registry/example/dropdown-menu-radio-group.svelte?raw").then((m) => m.default),
 },
 "form-demo": {
@@ -496,7 +496,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","input"],
 	component: () => import("../lib/registry/example/form-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/form-demo.svelte"],
+	files: ["../lib/registry/examples/form-demo.svelte"],
 	raw: () => import("../lib/registry/example/form-demo.svelte?raw").then((m) => m.default),
 },
 "hover-card-demo": {
@@ -504,7 +504,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["avatar","hover-card"],
 	component: () => import("../lib/registry/example/hover-card-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/hover-card-demo.svelte"],
+	files: ["../lib/registry/examples/hover-card-demo.svelte"],
 	raw: () => import("../lib/registry/example/hover-card-demo.svelte?raw").then((m) => m.default),
 },
 "input-demo": {
@@ -512,7 +512,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input"],
 	component: () => import("../lib/registry/example/input-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-demo.svelte"],
+	files: ["../lib/registry/examples/input-demo.svelte"],
 	raw: () => import("../lib/registry/example/input-demo.svelte?raw").then((m) => m.default),
 },
 "input-disabled": {
@@ -520,7 +520,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input"],
 	component: () => import("../lib/registry/example/input-disabled.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-disabled.svelte"],
+	files: ["../lib/registry/examples/input-disabled.svelte"],
 	raw: () => import("../lib/registry/example/input-disabled.svelte?raw").then((m) => m.default),
 },
 "input-file": {
@@ -528,7 +528,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input","label"],
 	component: () => import("../lib/registry/example/input-file.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-file.svelte"],
+	files: ["../lib/registry/examples/input-file.svelte"],
 	raw: () => import("../lib/registry/example/input-file.svelte?raw").then((m) => m.default),
 },
 "input-invalid": {
@@ -536,7 +536,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input"],
 	component: () => import("../lib/registry/example/input-invalid.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-invalid.svelte"],
+	files: ["../lib/registry/examples/input-invalid.svelte"],
 	raw: () => import("../lib/registry/example/input-invalid.svelte?raw").then((m) => m.default),
 },
 "input-otp-demo": {
@@ -544,7 +544,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input-otp"],
 	component: () => import("../lib/registry/example/input-otp-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-otp-demo.svelte"],
+	files: ["../lib/registry/examples/input-otp-demo.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-demo.svelte?raw").then((m) => m.default),
 },
 "input-otp-form": {
@@ -552,7 +552,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input-otp","form"],
 	component: () => import("../lib/registry/example/input-otp-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-otp-form.svelte"],
+	files: ["../lib/registry/examples/input-otp-form.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-form.svelte?raw").then((m) => m.default),
 },
 "input-otp-invalid": {
@@ -560,7 +560,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input-otp"],
 	component: () => import("../lib/registry/example/input-otp-invalid.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-otp-invalid.svelte"],
+	files: ["../lib/registry/examples/input-otp-invalid.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-invalid.svelte?raw").then((m) => m.default),
 },
 "input-otp-pattern": {
@@ -568,7 +568,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input-otp"],
 	component: () => import("../lib/registry/example/input-otp-pattern.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-otp-pattern.svelte"],
+	files: ["../lib/registry/examples/input-otp-pattern.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-pattern.svelte?raw").then((m) => m.default),
 },
 "input-otp-separator": {
@@ -576,7 +576,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input-otp"],
 	component: () => import("../lib/registry/example/input-otp-separator.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-otp-separator.svelte"],
+	files: ["../lib/registry/examples/input-otp-separator.svelte"],
 	raw: () => import("../lib/registry/example/input-otp-separator.svelte?raw").then((m) => m.default),
 },
 "input-with-button": {
@@ -584,7 +584,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","input"],
 	component: () => import("../lib/registry/example/input-with-button.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-with-button.svelte"],
+	files: ["../lib/registry/examples/input-with-button.svelte"],
 	raw: () => import("../lib/registry/example/input-with-button.svelte?raw").then((m) => m.default),
 },
 "input-with-label": {
@@ -592,7 +592,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input","label"],
 	component: () => import("../lib/registry/example/input-with-label.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-with-label.svelte"],
+	files: ["../lib/registry/examples/input-with-label.svelte"],
 	raw: () => import("../lib/registry/example/input-with-label.svelte?raw").then((m) => m.default),
 },
 "input-with-text": {
@@ -600,7 +600,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["input","label"],
 	component: () => import("../lib/registry/example/input-with-text.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/input-with-text.svelte"],
+	files: ["../lib/registry/examples/input-with-text.svelte"],
 	raw: () => import("../lib/registry/example/input-with-text.svelte?raw").then((m) => m.default),
 },
 "label-demo": {
@@ -608,7 +608,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["checkbox","label"],
 	component: () => import("../lib/registry/example/label-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/label-demo.svelte"],
+	files: ["../lib/registry/examples/label-demo.svelte"],
 	raw: () => import("../lib/registry/example/label-demo.svelte?raw").then((m) => m.default),
 },
 "menubar-demo": {
@@ -616,7 +616,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["menubar"],
 	component: () => import("../lib/registry/example/menubar-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/menubar-demo.svelte"],
+	files: ["../lib/registry/examples/menubar-demo.svelte"],
 	raw: () => import("../lib/registry/example/menubar-demo.svelte?raw").then((m) => m.default),
 },
 "pagination-demo": {
@@ -624,7 +624,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["pagination"],
 	component: () => import("../lib/registry/example/pagination-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/pagination-demo.svelte"],
+	files: ["../lib/registry/examples/pagination-demo.svelte"],
 	raw: () => import("../lib/registry/example/pagination-demo.svelte?raw").then((m) => m.default),
 },
 "popover-demo": {
@@ -632,7 +632,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","input","label","popover"],
 	component: () => import("../lib/registry/example/popover-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/popover-demo.svelte"],
+	files: ["../lib/registry/examples/popover-demo.svelte"],
 	raw: () => import("../lib/registry/example/popover-demo.svelte?raw").then((m) => m.default),
 },
 "progress-demo": {
@@ -640,7 +640,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["progress"],
 	component: () => import("../lib/registry/example/progress-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/progress-demo.svelte"],
+	files: ["../lib/registry/examples/progress-demo.svelte"],
 	raw: () => import("../lib/registry/example/progress-demo.svelte?raw").then((m) => m.default),
 },
 "radio-group-demo": {
@@ -648,7 +648,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["radio-group","label"],
 	component: () => import("../lib/registry/example/radio-group-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/radio-group-demo.svelte"],
+	files: ["../lib/registry/examples/radio-group-demo.svelte"],
 	raw: () => import("../lib/registry/example/radio-group-demo.svelte?raw").then((m) => m.default),
 },
 "radio-group-form": {
@@ -656,7 +656,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","radio-group"],
 	component: () => import("../lib/registry/example/radio-group-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/radio-group-form.svelte"],
+	files: ["../lib/registry/examples/radio-group-form.svelte"],
 	raw: () => import("../lib/registry/example/radio-group-form.svelte?raw").then((m) => m.default),
 },
 "range-calendar-demo": {
@@ -664,7 +664,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["range-calendar"],
 	component: () => import("../lib/registry/example/range-calendar-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/range-calendar-demo.svelte"],
+	files: ["../lib/registry/examples/range-calendar-demo.svelte"],
 	raw: () => import("../lib/registry/example/range-calendar-demo.svelte?raw").then((m) => m.default),
 },
 "resizable-demo": {
@@ -672,7 +672,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["resizable"],
 	component: () => import("../lib/registry/example/resizable-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/resizable-demo.svelte"],
+	files: ["../lib/registry/examples/resizable-demo.svelte"],
 	raw: () => import("../lib/registry/example/resizable-demo.svelte?raw").then((m) => m.default),
 },
 "resizable-handle": {
@@ -680,7 +680,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["resizable"],
 	component: () => import("../lib/registry/example/resizable-handle.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/resizable-handle.svelte"],
+	files: ["../lib/registry/examples/resizable-handle.svelte"],
 	raw: () => import("../lib/registry/example/resizable-handle.svelte?raw").then((m) => m.default),
 },
 "resizable-vertical": {
@@ -688,7 +688,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["resizable"],
 	component: () => import("../lib/registry/example/resizable-vertical.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/resizable-vertical.svelte"],
+	files: ["../lib/registry/examples/resizable-vertical.svelte"],
 	raw: () => import("../lib/registry/example/resizable-vertical.svelte?raw").then((m) => m.default),
 },
 "scroll-area-both": {
@@ -696,7 +696,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["scroll-area"],
 	component: () => import("../lib/registry/example/scroll-area-both.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/scroll-area-both.svelte"],
+	files: ["../lib/registry/examples/scroll-area-both.svelte"],
 	raw: () => import("../lib/registry/example/scroll-area-both.svelte?raw").then((m) => m.default),
 },
 "scroll-area-demo": {
@@ -704,7 +704,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["scroll-area","separator"],
 	component: () => import("../lib/registry/example/scroll-area-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/scroll-area-demo.svelte"],
+	files: ["../lib/registry/examples/scroll-area-demo.svelte"],
 	raw: () => import("../lib/registry/example/scroll-area-demo.svelte?raw").then((m) => m.default),
 },
 "scroll-area-horizontal": {
@@ -712,7 +712,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["scroll-area"],
 	component: () => import("../lib/registry/example/scroll-area-horizontal.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/scroll-area-horizontal.svelte"],
+	files: ["../lib/registry/examples/scroll-area-horizontal.svelte"],
 	raw: () => import("../lib/registry/example/scroll-area-horizontal.svelte?raw").then((m) => m.default),
 },
 "select-demo": {
@@ -720,7 +720,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["select"],
 	component: () => import("../lib/registry/example/select-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/select-demo.svelte"],
+	files: ["../lib/registry/examples/select-demo.svelte"],
 	raw: () => import("../lib/registry/example/select-demo.svelte?raw").then((m) => m.default),
 },
 "select-form": {
@@ -728,7 +728,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","select"],
 	component: () => import("../lib/registry/example/select-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/select-form.svelte"],
+	files: ["../lib/registry/examples/select-form.svelte"],
 	raw: () => import("../lib/registry/example/select-form.svelte?raw").then((m) => m.default),
 },
 "separator-demo": {
@@ -736,7 +736,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["separator"],
 	component: () => import("../lib/registry/example/separator-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/separator-demo.svelte"],
+	files: ["../lib/registry/examples/separator-demo.svelte"],
 	raw: () => import("../lib/registry/example/separator-demo.svelte?raw").then((m) => m.default),
 },
 "sheet-demo": {
@@ -744,7 +744,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["sheet","button","input","label"],
 	component: () => import("../lib/registry/example/sheet-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/sheet-demo.svelte"],
+	files: ["../lib/registry/examples/sheet-demo.svelte"],
 	raw: () => import("../lib/registry/example/sheet-demo.svelte?raw").then((m) => m.default),
 },
 "sheet-side": {
@@ -752,7 +752,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["sheet","button","input","label"],
 	component: () => import("../lib/registry/example/sheet-side.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/sheet-side.svelte"],
+	files: ["../lib/registry/examples/sheet-side.svelte"],
 	raw: () => import("../lib/registry/example/sheet-side.svelte?raw").then((m) => m.default),
 },
 "skeleton-demo": {
@@ -760,7 +760,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["skeleton"],
 	component: () => import("../lib/registry/example/skeleton-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/skeleton-demo.svelte"],
+	files: ["../lib/registry/examples/skeleton-demo.svelte"],
 	raw: () => import("../lib/registry/example/skeleton-demo.svelte?raw").then((m) => m.default),
 },
 "slider-demo": {
@@ -768,7 +768,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["slider"],
 	component: () => import("../lib/registry/example/slider-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/slider-demo.svelte"],
+	files: ["../lib/registry/examples/slider-demo.svelte"],
 	raw: () => import("../lib/registry/example/slider-demo.svelte?raw").then((m) => m.default),
 },
 "slider-multiple": {
@@ -776,7 +776,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["slider"],
 	component: () => import("../lib/registry/example/slider-multiple.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/slider-multiple.svelte"],
+	files: ["../lib/registry/examples/slider-multiple.svelte"],
 	raw: () => import("../lib/registry/example/slider-multiple.svelte?raw").then((m) => m.default),
 },
 "slider-vertical": {
@@ -784,7 +784,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["slider"],
 	component: () => import("../lib/registry/example/slider-vertical.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/slider-vertical.svelte"],
+	files: ["../lib/registry/examples/slider-vertical.svelte"],
 	raw: () => import("../lib/registry/example/slider-vertical.svelte?raw").then((m) => m.default),
 },
 "sonner-demo": {
@@ -792,7 +792,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button"],
 	component: () => import("../lib/registry/example/sonner-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/sonner-demo.svelte"],
+	files: ["../lib/registry/examples/sonner-demo.svelte"],
 	raw: () => import("../lib/registry/example/sonner-demo.svelte?raw").then((m) => m.default),
 },
 "switch-demo": {
@@ -800,7 +800,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["label","switch"],
 	component: () => import("../lib/registry/example/switch-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/switch-demo.svelte"],
+	files: ["../lib/registry/examples/switch-demo.svelte"],
 	raw: () => import("../lib/registry/example/switch-demo.svelte?raw").then((m) => m.default),
 },
 "switch-form": {
@@ -808,7 +808,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","switch"],
 	component: () => import("../lib/registry/example/switch-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/switch-form.svelte"],
+	files: ["../lib/registry/examples/switch-form.svelte"],
 	raw: () => import("../lib/registry/example/switch-form.svelte?raw").then((m) => m.default),
 },
 "table-demo": {
@@ -816,7 +816,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["table"],
 	component: () => import("../lib/registry/example/table-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/table-demo.svelte"],
+	files: ["../lib/registry/examples/table-demo.svelte"],
 	raw: () => import("../lib/registry/example/table-demo.svelte?raw").then((m) => m.default),
 },
 "tabs-demo": {
@@ -824,7 +824,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["tabs","card","button","input","label"],
 	component: () => import("../lib/registry/example/tabs-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/tabs-demo.svelte"],
+	files: ["../lib/registry/examples/tabs-demo.svelte"],
 	raw: () => import("../lib/registry/example/tabs-demo.svelte?raw").then((m) => m.default),
 },
 "textarea-demo": {
@@ -832,7 +832,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["textarea"],
 	component: () => import("../lib/registry/example/textarea-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-demo.svelte"],
+	files: ["../lib/registry/examples/textarea-demo.svelte"],
 	raw: () => import("../lib/registry/example/textarea-demo.svelte?raw").then((m) => m.default),
 },
 "textarea-disabled": {
@@ -840,7 +840,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["textarea"],
 	component: () => import("../lib/registry/example/textarea-disabled.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-disabled.svelte"],
+	files: ["../lib/registry/examples/textarea-disabled.svelte"],
 	raw: () => import("../lib/registry/example/textarea-disabled.svelte?raw").then((m) => m.default),
 },
 "textarea-form": {
@@ -848,7 +848,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["form","textarea"],
 	component: () => import("../lib/registry/example/textarea-form.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-form.svelte"],
+	files: ["../lib/registry/examples/textarea-form.svelte"],
 	raw: () => import("../lib/registry/example/textarea-form.svelte?raw").then((m) => m.default),
 },
 "textarea-with-button": {
@@ -856,7 +856,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["button","textarea"],
 	component: () => import("../lib/registry/example/textarea-with-button.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-with-button.svelte"],
+	files: ["../lib/registry/examples/textarea-with-button.svelte"],
 	raw: () => import("../lib/registry/example/textarea-with-button.svelte?raw").then((m) => m.default),
 },
 "textarea-with-label": {
@@ -864,7 +864,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["label","textarea"],
 	component: () => import("../lib/registry/example/textarea-with-label.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-with-label.svelte"],
+	files: ["../lib/registry/examples/textarea-with-label.svelte"],
 	raw: () => import("../lib/registry/example/textarea-with-label.svelte?raw").then((m) => m.default),
 },
 "textarea-with-text": {
@@ -872,7 +872,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["label","textarea"],
 	component: () => import("../lib/registry/example/textarea-with-text.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/textarea-with-text.svelte"],
+	files: ["../lib/registry/examples/textarea-with-text.svelte"],
 	raw: () => import("../lib/registry/example/textarea-with-text.svelte?raw").then((m) => m.default),
 },
 "toggle-demo": {
@@ -880,7 +880,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-demo.svelte"],
+	files: ["../lib/registry/examples/toggle-demo.svelte"],
 	raw: () => import("../lib/registry/example/toggle-demo.svelte?raw").then((m) => m.default),
 },
 "toggle-disabled": {
@@ -888,7 +888,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-disabled.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-disabled.svelte"],
+	files: ["../lib/registry/examples/toggle-disabled.svelte"],
 	raw: () => import("../lib/registry/example/toggle-disabled.svelte?raw").then((m) => m.default),
 },
 "toggle-group-demo": {
@@ -896,7 +896,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-demo.svelte"],
+	files: ["../lib/registry/examples/toggle-group-demo.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-demo.svelte?raw").then((m) => m.default),
 },
 "toggle-group-disabled": {
@@ -904,7 +904,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-disabled.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-disabled.svelte"],
+	files: ["../lib/registry/examples/toggle-group-disabled.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-disabled.svelte?raw").then((m) => m.default),
 },
 "toggle-group-lg": {
@@ -912,7 +912,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-lg.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-lg.svelte"],
+	files: ["../lib/registry/examples/toggle-group-lg.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-lg.svelte?raw").then((m) => m.default),
 },
 "toggle-group-outline": {
@@ -920,7 +920,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-outline.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-outline.svelte"],
+	files: ["../lib/registry/examples/toggle-group-outline.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-outline.svelte?raw").then((m) => m.default),
 },
 "toggle-group-single": {
@@ -928,7 +928,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-single.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-single.svelte"],
+	files: ["../lib/registry/examples/toggle-group-single.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-single.svelte?raw").then((m) => m.default),
 },
 "toggle-group-sm": {
@@ -936,7 +936,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle-group"],
 	component: () => import("../lib/registry/example/toggle-group-sm.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-group-sm.svelte"],
+	files: ["../lib/registry/examples/toggle-group-sm.svelte"],
 	raw: () => import("../lib/registry/example/toggle-group-sm.svelte?raw").then((m) => m.default),
 },
 "toggle-lg": {
@@ -944,7 +944,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-lg.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-lg.svelte"],
+	files: ["../lib/registry/examples/toggle-lg.svelte"],
 	raw: () => import("../lib/registry/example/toggle-lg.svelte?raw").then((m) => m.default),
 },
 "toggle-outline": {
@@ -952,7 +952,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-outline.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-outline.svelte"],
+	files: ["../lib/registry/examples/toggle-outline.svelte"],
 	raw: () => import("../lib/registry/example/toggle-outline.svelte?raw").then((m) => m.default),
 },
 "toggle-sm": {
@@ -960,7 +960,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-sm.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-sm.svelte"],
+	files: ["../lib/registry/examples/toggle-sm.svelte"],
 	raw: () => import("../lib/registry/example/toggle-sm.svelte?raw").then((m) => m.default),
 },
 "toggle-with-text": {
@@ -968,7 +968,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["toggle"],
 	component: () => import("../lib/registry/example/toggle-with-text.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/toggle-with-text.svelte"],
+	files: ["../lib/registry/examples/toggle-with-text.svelte"],
 	raw: () => import("../lib/registry/example/toggle-with-text.svelte?raw").then((m) => m.default),
 },
 "tooltip-demo": {
@@ -976,7 +976,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: ["tooltip"],
 	component: () => import("../lib/registry/example/tooltip-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/tooltip-demo.svelte"],
+	files: ["../lib/registry/examples/tooltip-demo.svelte"],
 	raw: () => import("../lib/registry/example/tooltip-demo.svelte?raw").then((m) => m.default),
 },
 "typography-blockquote": {
@@ -984,7 +984,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-blockquote.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-blockquote.svelte"],
+	files: ["../lib/registry/examples/typography-blockquote.svelte"],
 	raw: () => import("../lib/registry/example/typography-blockquote.svelte?raw").then((m) => m.default),
 },
 "typography-demo": {
@@ -992,7 +992,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-demo.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-demo.svelte"],
+	files: ["../lib/registry/examples/typography-demo.svelte"],
 	raw: () => import("../lib/registry/example/typography-demo.svelte?raw").then((m) => m.default),
 },
 "typography-h1": {
@@ -1000,7 +1000,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-h1.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-h1.svelte"],
+	files: ["../lib/registry/examples/typography-h1.svelte"],
 	raw: () => import("../lib/registry/example/typography-h1.svelte?raw").then((m) => m.default),
 },
 "typography-h2": {
@@ -1008,7 +1008,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-h2.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-h2.svelte"],
+	files: ["../lib/registry/examples/typography-h2.svelte"],
 	raw: () => import("../lib/registry/example/typography-h2.svelte?raw").then((m) => m.default),
 },
 "typography-h3": {
@@ -1016,7 +1016,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-h3.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-h3.svelte"],
+	files: ["../lib/registry/examples/typography-h3.svelte"],
 	raw: () => import("../lib/registry/example/typography-h3.svelte?raw").then((m) => m.default),
 },
 "typography-h4": {
@@ -1024,7 +1024,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-h4.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-h4.svelte"],
+	files: ["../lib/registry/examples/typography-h4.svelte"],
 	raw: () => import("../lib/registry/example/typography-h4.svelte?raw").then((m) => m.default),
 },
 "typography-inline-code": {
@@ -1032,7 +1032,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-inline-code.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-inline-code.svelte"],
+	files: ["../lib/registry/examples/typography-inline-code.svelte"],
 	raw: () => import("../lib/registry/example/typography-inline-code.svelte?raw").then((m) => m.default),
 },
 "typography-large": {
@@ -1040,7 +1040,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-large.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-large.svelte"],
+	files: ["../lib/registry/examples/typography-large.svelte"],
 	raw: () => import("../lib/registry/example/typography-large.svelte?raw").then((m) => m.default),
 },
 "typography-lead": {
@@ -1048,7 +1048,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-lead.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-lead.svelte"],
+	files: ["../lib/registry/examples/typography-lead.svelte"],
 	raw: () => import("../lib/registry/example/typography-lead.svelte?raw").then((m) => m.default),
 },
 "typography-list": {
@@ -1056,7 +1056,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-list.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-list.svelte"],
+	files: ["../lib/registry/examples/typography-list.svelte"],
 	raw: () => import("../lib/registry/example/typography-list.svelte?raw").then((m) => m.default),
 },
 "typography-muted": {
@@ -1064,7 +1064,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-muted.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-muted.svelte"],
+	files: ["../lib/registry/examples/typography-muted.svelte"],
 	raw: () => import("../lib/registry/example/typography-muted.svelte?raw").then((m) => m.default),
 },
 "typography-p": {
@@ -1072,7 +1072,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-p.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-p.svelte"],
+	files: ["../lib/registry/examples/typography-p.svelte"],
 	raw: () => import("../lib/registry/example/typography-p.svelte?raw").then((m) => m.default),
 },
 "typography-small": {
@@ -1080,7 +1080,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-small.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-small.svelte"],
+	files: ["../lib/registry/examples/typography-small.svelte"],
 	raw: () => import("../lib/registry/example/typography-small.svelte?raw").then((m) => m.default),
 },
 "typography-table": {
@@ -1088,7 +1088,7 @@ export const Index = {
 	type: "registry:example",
 	registryDependencies: [],
 	component: () => import("../lib/registry/example/typography-table.svelte").then((m) => m.default),
-	files: ["../lib/registry/example/typography-table.svelte"],
+	files: ["../lib/registry/examples/typography-table.svelte"],
 	raw: () => import("../lib/registry/example/typography-table.svelte?raw").then((m) => m.default),
 },
 "is-mobile": {
@@ -1096,7 +1096,7 @@ export const Index = {
 	type: "registry:hook",
 	registryDependencies: [],
 	component: () => {},
-	files: ["../lib/registry/hook/is-mobile.svelte.ts"],
+	files: ["../lib/registry/hooks/is-mobile.svelte.ts"],
 	raw: () => import("../lib/registry/hook/is-mobile.svelte?raw").then((m) => m.default),
 },
 }

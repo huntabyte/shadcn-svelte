@@ -3,7 +3,7 @@
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { CardsDefault } from "$lib/registry/example/cards/index.js";
+	import { CardsDefault } from "$lib/registry/examples/cards/index.js";
 </script>
 
 <svelte:head>

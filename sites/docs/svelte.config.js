@@ -83,7 +83,7 @@ function componentPreviews() {
 			const importIndex = content.search("import {");
 			for (const name of components) {
 				const identifier = camelize(name);
-				const importStatement = `import ${identifier} from "$lib/registry/example/${name}.svelte";`;
+				const importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
 
 				ms.appendLeft(importIndex, importStatement);
 			}

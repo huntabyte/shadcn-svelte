@@ -87,8 +87,8 @@ export const Blocks = {
 	"${block.name}": {
 		name: "${block.name}",
 		type: "${block.type}",
-		component: () => import("../lib/registry/block/${blockFile}").then((m) => m.default),
-		raw: () => import("../lib/registry/block/${blockFile}?raw").then((m) => m.default),
+		component: () => import("../lib/registry/blocks/${blockFile}").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/${blockFile}?raw").then((m) => m.default),
 	},`;
 	}
 

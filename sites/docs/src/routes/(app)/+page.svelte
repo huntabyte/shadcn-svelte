@@ -5,7 +5,7 @@
 	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import CardsDemo from "$lib/registry/example/cards/all.svelte";
+	import CardsDemo from "$lib/registry/examples/cards/all.svelte";
 </script>
 
 <PageHeader.Root>

@@ -21,16 +21,16 @@ export async function buildRegistry() {
 
 	const paths = {
 		ui: path.resolve(registryRootPath, "ui"),
-		example: path.resolve(registryRootPath, "example"),
-		block: path.resolve(registryRootPath, "block"),
-		hook: path.resolve(registryRootPath, "hook"),
+		examples: path.resolve(registryRootPath, "examples"),
+		blocks: path.resolve(registryRootPath, "blocks"),
+		hooks: path.resolve(registryRootPath, "hooks"),
 	};
 
 	const resolvedItems = await Promise.all([
 		crawlUI(paths.ui),
-		crawlExample(paths.example),
-		crawlBlock(paths.block),
-		crawlHook(paths.hook),
+		crawlExamples(paths.examples),
+		crawlBlocks(paths.blocks),
+		crawlHooks(paths.hooks),
 	]);
 
 	resolvedItems.forEach((i) => items.push(...i));
@@ -85,7 +85,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	} satisfies RegistryItems[number];
 }
 
-async function crawlExample(rootPath: string) {
+async function crawlExamples(rootPath: string) {
 	const type = "registry:example" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
@@ -151,7 +151,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	} satisfies RegistryItems[number];
 }
 
-async function crawlBlock(rootPath: string) {
+async function crawlBlocks(rootPath: string) {
 	const type = "registry:block" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
@@ -189,7 +189,7 @@ async function crawlBlock(rootPath: string) {
 	return items;
 }
 
-async function crawlHook(rootPath: string) {
+async function crawlHooks(rootPath: string) {
 	const type = "registry:hook" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
