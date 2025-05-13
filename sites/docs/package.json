@@ -31,7 +31,7 @@
 		"@prettier/sync": "0.3.0",
 		"@shadcn-svelte/registry": "workspace:*",
 		"@sveltejs/acorn-typescript": "^1.0.5",
-		"@sveltejs/adapter-cloudflare": "4.6.1",
+		"@sveltejs/adapter-cloudflare": "4.8.0",
 		"@sveltejs/kit": "^2.12.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tanstack/table-core": "^8.20.5",
