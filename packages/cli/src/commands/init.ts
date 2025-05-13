@@ -21,8 +21,8 @@ import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
-import { checkPreconditions } from "../utils/preconditions.js";
 import { transformContent } from "../utils/transformers.js";
+import { preflightInit } from "../utils/preflight-init";
 
 const PROJECT_DEPENDENCIES = [
 	"tailwind-variants",
@@ -76,7 +76,7 @@ export const init = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			checkPreconditions(cwd);
+			preflightInit(cwd);
 
 			// Read config.
 			const existingConfig = await cliConfig.getConfig(cwd);

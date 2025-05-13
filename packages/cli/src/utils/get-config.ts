@@ -43,10 +43,9 @@ const originalConfigSchema = v.object({
 		},
 		`Missing ${color.bold("aliases")} object`
 	),
+	style: v.optional(v.string()),
 });
 
-// fields that were added after the fact so they must be optional so we can gracefully migrate
-// TODO: ideally, prompts would be triggered if these fields are not populated
 const newConfigFields = v.object({
 	aliases: v.object({
 		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
@@ -54,8 +53,6 @@ const newConfigFields = v.object({
 		lib: v.optional(aliasSchema("lib"), DEFAULT_LIB),
 	}),
 	typescript: v.optional(v.boolean(), true),
-	// TODO: if they're missing this field then they're likely using svelte 4
-	// and we should prompt them to see if they'd like to use the new registry
 	registry: v.optional(v.string(), `${SITE_BASE_URL}/registry`),
 });
 
@@ -159,14 +156,18 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	return parsedConfig;
 }
 
-export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+// the temp style field is so we can grab the style from the old config before it's stripped out
+export async function getRawConfig(cwd: string): Promise<(RawConfig & { style?: string }) | null> {
 	const configPath = path.resolve(cwd, "components.json");
 	if (!fs.existsSync(configPath)) return null;
 
 	try {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
-		return v.parse(rawConfigSchema, config);
+		return v.parse(
+			v.object({ ...rawConfigSchema.entries, style: v.optional(v.string()) }),
+			config
+		);
 	} catch (e) {
 		if (!(e instanceof v.ValiError)) throw e;
 		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
@@ -176,9 +177,9 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	}
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function writeConfig(cwd: string, config: any): void {
+export function writeConfig(cwd: string, config: RawConfig): void {
 	const targetPath = path.resolve(cwd, "components.json");
-	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do
+	// this looks wrong but it feels so so right
+	const conf = v.parse(v.omit(rawConfigSchema, ["style"]), config);
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }

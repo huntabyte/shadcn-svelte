@@ -1,11 +1,8 @@
-import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
-import { getConfig, getRawConfig } from "../../src/utils/get-config";
 import { SITE_BASE_URL } from "../../src/constants";
+import { getConf, getRaw, resolvePath } from "./test-helpers";
 
 vi.mock("tinyexec");
-
-const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 vi.mock("node:fs", async () => {
 	return {
@@ -13,11 +10,6 @@ vi.mock("node:fs", async () => {
 		readFileSync: vi.fn(),
 	};
 });
-
-// gets the raw config from a fixture directory
-async function getRaw(fixtureDir: string) {
-	return await getRawConfig(resolvePath(`../fixtures/${fixtureDir}`));
-}
 
 describe("getRawConfig", () => {
 	it("handles cases where no config is present", async () => {
@@ -44,15 +36,29 @@ describe("getRawConfig", () => {
 		});
 	});
 
+	it("handles legacy tailwind v3 configs", async () => {
+		expect(await getRaw("legacy/post-init-default")).toEqual({
+			style: "default",
+			tailwind: {
+				css: "src/app.css",
+				baseColor: "zinc",
+			},
+			aliases: {
+				components: "$lib/components",
+				hooks: "$lib/hooks",
+				utils: "$lib/utils",
+				lib: "$lib",
+				ui: "$lib/components/ui",
+			},
+			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
+
 	it("handles invalid configurations", async () => {
 		expect(getRaw("config-invalid")).rejects.toThrowError();
 	});
 });
-
-// gets the config from a fixture directory
-async function getConf(fixtureDir: string) {
-	return await getConfig(resolvePath(`../fixtures/${fixtureDir}`));
-}
 
 describe("getConfig", () => {
 	it("handles cases where no config is present", async () => {

@@ -19,8 +19,7 @@ import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 import { loadProjectPackageInfo } from "../utils/get-package-info.js";
 import { parseDependency } from "../utils/utils.js";
-
-const highlight = (msg: string) => color.bold.cyan(msg);
+import { highlight } from "../utils/highlight.js";
 
 const updateOptionsSchema = v.object({
 	all: v.boolean(),

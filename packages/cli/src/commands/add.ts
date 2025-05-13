@@ -16,11 +16,10 @@ import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
-import { checkPreconditions } from "../utils/preconditions.js";
 import { parseDependency } from "../utils/utils.js";
 import { loadProjectPackageInfo } from "../utils/get-package-info.js";
-
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
+import { preflightAdd } from "../utils/preflight-add";
+import { highlight } from "../utils/highlight";
 
 const addOptionsSchema = v.object({
 	components: v.optional(v.array(v.string())),
@@ -60,14 +59,14 @@ export const add = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
+			preflightAdd(cwd);
+
 			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw new ConfigError(
 					`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
 				);
 			}
-
-			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
 
