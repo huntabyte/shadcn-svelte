@@ -73,18 +73,6 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
-					title: "Tailwind v4",
-					href: "/docs/migration/tailwind-v4",
-					items: [],
-					label: "New",
-				},
-				{
-					title: "Svelte 5",
-					// if there is a svelte 6 migration etc point to /docs/migration
-					href: "/docs/migration/svelte-5",
-					items: [],
-				},
-				{
 					title: "Typography",
 					href: "/docs/typography",
 					items: [],
@@ -99,7 +87,13 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/changelog",
 					items: [],
 				},
-
+				{
+					title: "Migration",
+					label: "v5",
+					// if there is a svelte 6 migration etc point to /docs/migration
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
 				{
 					title: "About",
 					href: "/docs/about",
@@ -110,6 +104,12 @@ export const docsConfig: DocsConfig = {
 		{
 			title: "Components",
 			items: [
+				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+					label: "New",
+				},
 				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
@@ -304,11 +304,6 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
-					title: "Sidebar",
-					href: "/docs/components/sidebar",
-					items: [],
-				},
-				{
 					title: "Skeleton",
 					href: "/docs/components/skeleton",
 					items: [],
@@ -356,6 +351,42 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Tooltip",
 					href: "/docs/components/tooltip",
+					items: [],
+				},
+			],
+		},
+		{
+			title: "Registry",
+			label: "New",
+			items: [
+				{
+					title: "Introduction",
+					href: "/docs/registry",
+					items: [],
+				},
+				{
+					title: "Getting Started",
+					href: "/docs/registry/getting-started",
+					items: [],
+				},
+				{
+					title: "Examples",
+					href: "/docs/registry/examples",
+					items: [],
+				},
+				{
+					title: "FAQ",
+					href: "/docs/registry/faq",
+					items: [],
+				},
+				{
+					title: "registry.json",
+					href: "/docs/registry/registry-json",
+					items: [],
+				},
+				{
+					title: "registry-item.json",
+					href: "/docs/registry/registry-item-json",
 					items: [],
 				},
 			],
