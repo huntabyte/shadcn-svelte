@@ -16,7 +16,7 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 
 Use the SvelteKit CLI to create a new project.
 
-<PMCreate command="svelte@latest my-app" />
+<PMExecute command="sv@0.6.18 create my-app" />
 
 ### Add TailwindCSS
 
@@ -42,7 +42,7 @@ const config = {
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
@@ -56,6 +56,8 @@ Where is your global CSS file? › src/app.css
 Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
+Configure the import alias for hooks: › $lib/hooks
+Configure the import alias for ui: › $lib/components/ui
 ```
 
 ### That's it
@@ -68,7 +70,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```svelte {2,5} showLineNumbers
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <Button>Click me</Button>

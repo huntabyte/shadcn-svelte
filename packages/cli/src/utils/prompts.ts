@@ -442,10 +442,10 @@ export function groupMultiselect<Value>(opts: GroupMultiSelectOptions<Value>) {
 		options: Option<Value>[] = []
 	) => {
 		const label = option.label ?? String(option.value);
-		// eslint-disable-next-line ts/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const isItem = typeof (option as any).group === "string";
 		const next = isItem && (options[options.indexOf(option) + 1] ?? { group: true });
-		// eslint-disable-next-line ts/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const isLast = isItem && (next as any).group === true;
 		const prefix = isItem ? `${isLast ? S_BAR_END : S_BAR} ` : "";
 
@@ -733,7 +733,6 @@ export function spinner() {
 // Adapted from https://github.com/chalk/ansi-regex
 // @see LICENSE
 function ansiRegex() {
-	// eslint-disable-next-line regexp/no-useless-non-capturing-group, regexp/no-trivially-nested-quantifier, regexp/no-useless-quantifier, regexp/prefer-w, regexp/no-useless-escape
 	const pattern = [
 		"[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
 		"(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))",
@@ -772,7 +771,7 @@ export async function group<T>(
 	prompts: PromptGroup<T>,
 	opts?: PromptGroupOptions<T>
 ): Promise<Prettify<PromptGroupAwaitedReturn<T>>> {
-	// eslint-disable-next-line ts/no-explicit-any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const results = {} as any;
 	const promptNames = Object.keys(prompts);
 
