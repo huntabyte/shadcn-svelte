@@ -1,14 +1,14 @@
 <script lang="ts">
-	import CircleUser from "@lucide/svelte/icons/circle-user";
-	import ChartLine from "@lucide/svelte/icons/chart-line";
-	import Package from "@lucide/svelte/icons/package";
-	import House from "@lucide/svelte/icons/house";
-	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
-	import Bell from "@lucide/svelte/icons/bell";
-	import Menu from "@lucide/svelte/icons/menu";
-	import Package2 from "@lucide/svelte/icons/package-2";
-	import Search from "@lucide/svelte/icons/search";
-	import Users from "@lucide/svelte/icons/users";
+	import CircleUserIcon from "@lucide/svelte/icons/circle-user";
+	import ChartLineIcon from "@lucide/svelte/icons/chart-line";
+	import PackageIcon from "@lucide/svelte/icons/package";
+	import HouseIcon from "@lucide/svelte/icons/house";
+	import ShoppingCartIcon from "@lucide/svelte/icons/shopping-cart";
+	import BellIcon from "@lucide/svelte/icons/bell";
+	import MenuIcon from "@lucide/svelte/icons/menu";
+	import Package2Icon from "@lucide/svelte/icons/package-2";
+	import SearchIcon from "@lucide/svelte/icons/search";
+	import UsersIcon from "@lucide/svelte/icons/users";
 
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -23,11 +23,11 @@
 		<div class="flex h-full max-h-screen flex-col gap-2">
 			<div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
 				<a href="/" class="flex items-center gap-2 font-semibold">
-					<Package2 class="size-6" />
+					<Package2Icon class="size-6" />
 					<span class="">Acme Inc</span>
 				</a>
 				<Button variant="outline" size="icon" class="ml-auto size-8">
-					<Bell class="size-4" />
+					<BellIcon class="size-4" />
 					<span class="sr-only">Toggle notifications</span>
 				</Button>
 			</div>
@@ -37,14 +37,14 @@
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<House class="h-4 w-4" />
+						<HouseIcon class="h-4 w-4" />
 						Dashboard
 					</a>
 					<a
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<ShoppingCart class="size-4" />
+						<ShoppingCartIcon class="size-4" />
 						Orders
 						<Badge
 							class="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full"
@@ -56,21 +56,21 @@
 						href="##"
 						class="bg-muted text-primary hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<Package class="size-4" />
+						<PackageIcon class="size-4" />
 						Products
 					</a>
 					<a
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<Users class="size-4" />
+						<UsersIcon class="size-4" />
 						Customers
 					</a>
 					<a
 						href="##"
 						class="text-muted-foreground hover:text-primary flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
 					>
-						<ChartLine class="h-4 w-4" />
+						<ChartLineIcon class="h-4 w-4" />
 						Analytics
 					</a>
 				</nav>
@@ -99,7 +99,7 @@
 				<Sheet.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="outline" size="icon" class="shrink-0 md:hidden">
-							<Menu class="size-5" />
+							<MenuIcon class="size-5" />
 							<span class="sr-only">Toggle navigation menu</span>
 						</Button>
 					{/snippet}
@@ -107,21 +107,21 @@
 				<Sheet.Content side="left" class="flex flex-col">
 					<nav class="grid gap-2 text-lg font-medium">
 						<a href="##" class="flex items-center gap-2 text-lg font-semibold">
-							<Package2 class="size-6" />
+							<Package2Icon class="size-6" />
 							<span class="sr-only">Acme Inc</span>
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<House class="size-5" />
+							<HouseIcon class="size-5" />
 							Dashboard
 						</a>
 						<a
 							href="##"
 							class="bg-muted text-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<ShoppingCart class="size-5" />
+							<ShoppingCartIcon class="size-5" />
 							Orders
 							<Badge
 								class="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full"
@@ -133,21 +133,21 @@
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<Package class="size-5" />
+							<PackageIcon class="size-5" />
 							Products
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<Users class="size-5" />
+							<UsersIcon class="size-5" />
 							Customers
 						</a>
 						<a
 							href="##"
 							class="text-muted-foreground hover:text-foreground mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2"
 						>
-							<ChartLine class="size-5" />
+							<ChartLineIcon class="size-5" />
 							Analytics
 						</a>
 					</nav>
@@ -170,7 +170,9 @@
 			<div class="w-full flex-1">
 				<form>
 					<div class="relative">
-						<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
+						<SearchIcon
+							class="text-muted-foreground absolute left-2.5 top-2.5 size-4"
+						/>
 						<Input
 							type="search"
 							placeholder="Search products..."
@@ -183,7 +185,7 @@
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="secondary" size="icon" class="rounded-full">
-							<CircleUser class="size-5" />
+							<CircleUserIcon class="size-5" />
 							<span class="sr-only">Toggle user menu</span>
 						</Button>
 					{/snippet}

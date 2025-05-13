@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Circle from "@lucide/svelte/icons/circle";
-	import File from "@lucide/svelte/icons/file";
-	import Laptop from "@lucide/svelte/icons/laptop";
-	import Moon from "@lucide/svelte/icons/moon";
-	import Sun from "@lucide/svelte/icons/sun";
+	import CircleIcon from "@lucide/svelte/icons/circle";
+	import FileIcon from "@lucide/svelte/icons/file";
+	import LaptopIcon from "@lucide/svelte/icons/laptop";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -60,7 +60,7 @@
 					href={navItem.href}
 					onSelect={() => (open = false)}
 				>
-					<File class="mr-2 size-4" />
+					<FileIcon class="mr-2 size-4" />
 					{navItem.title}
 				</Command.LinkItem>
 			{/each}
@@ -74,7 +74,7 @@
 						onSelect={() => (open = false)}
 					>
 						<div class="mr-2 flex size-4 items-center justify-center">
-							<Circle class="size-3" />
+							<CircleIcon class="size-3" />
 						</div>
 						{navItem.title}
 					</Command.LinkItem>
@@ -84,15 +84,15 @@
 		<Command.Separator />
 		<Command.Group heading="Theme" value="Theme">
 			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
-				<Sun class="mr-2 size-4" />
+				<SunIcon class="mr-2 size-4" />
 				Light
 			</Command.Item>
 			<Command.Item value="dark" onSelect={() => runCommand(() => setMode("dark"))}>
-				<Moon class="mr-2 size-4" />
+				<MoonIcon class="mr-2 size-4" />
 				Dark
 			</Command.Item>
 			<Command.Item value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Laptop class="mr-2 size-4" />
+				<LaptopIcon class="mr-2 size-4" />
 				System
 			</Command.Item>
 		</Command.Group>

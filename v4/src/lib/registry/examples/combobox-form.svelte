@@ -27,8 +27,8 @@
 <script lang="ts">
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
-	import Check from "@lucide/svelte/icons/check";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
@@ -86,7 +86,7 @@
 					>
 						{languages.find((f) => f.value === $formData.language)?.label ??
 							"Select language"}
-						<ChevronsUpDown class="opacity-50" />
+						<ChevronsUpDownIcon class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -105,7 +105,7 @@
 								}}
 							>
 								{language.label}
-								<Check
+								<CheckIcon
 									class={cn(
 										"ml-auto",
 										language.value !== $formData.language && "text-transparent"

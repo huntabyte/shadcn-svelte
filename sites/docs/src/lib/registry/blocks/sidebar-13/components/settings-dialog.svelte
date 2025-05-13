@@ -3,33 +3,33 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Bell from "@lucide/svelte/icons/bell";
-	import Check from "@lucide/svelte/icons/check";
-	import Globe from "@lucide/svelte/icons/globe";
-	import House from "@lucide/svelte/icons/house";
-	import Keyboard from "@lucide/svelte/icons/keyboard";
-	import Link from "@lucide/svelte/icons/link";
-	import Lock from "@lucide/svelte/icons/lock";
-	import Menu from "@lucide/svelte/icons/menu";
-	import MessageCircle from "@lucide/svelte/icons/message-circle";
-	import Paintbrush from "@lucide/svelte/icons/paintbrush";
-	import Settings from "@lucide/svelte/icons/settings";
-	import Video from "@lucide/svelte/icons/video";
+	import BellIcon from "@lucide/svelte/icons/bell";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import GlobeIcon from "@lucide/svelte/icons/globe";
+	import HouseIcon from "@lucide/svelte/icons/house";
+	import KeyboardIcon from "@lucide/svelte/icons/keyboard";
+	import LinkIcon from "@lucide/svelte/icons/link";
+	import LockIcon from "@lucide/svelte/icons/lock";
+	import MenuIcon from "@lucide/svelte/icons/menu";
+	import MessageCircleIcon from "@lucide/svelte/icons/message-circle";
+	import PaintbrushIcon from "@lucide/svelte/icons/paintbrush";
+	import SettingsIcon from "@lucide/svelte/icons/settings";
+	import VideoIcon from "@lucide/svelte/icons/video";
 
 	const data = {
 		nav: [
-			{ name: "Notifications", icon: Bell },
-			{ name: "Navigation", icon: Menu },
-			{ name: "Home", icon: House },
-			{ name: "Appearance", icon: Paintbrush },
-			{ name: "Messages & media", icon: MessageCircle },
-			{ name: "Language & region", icon: Globe },
-			{ name: "Accessibility", icon: Keyboard },
-			{ name: "Mark as read", icon: Check },
-			{ name: "Audio & video", icon: Video },
-			{ name: "Connected accounts", icon: Link },
-			{ name: "Privacy & visibility", icon: Lock },
-			{ name: "Advanced", icon: Settings },
+			{ name: "Notifications", icon: BellIcon },
+			{ name: "Navigation", icon: MenuIcon },
+			{ name: "Home", icon: HouseIcon },
+			{ name: "Appearance", icon: PaintbrushIcon },
+			{ name: "Messages & media", icon: MessageCircleIcon },
+			{ name: "Language & region", icon: GlobeIcon },
+			{ name: "Accessibility", icon: KeyboardIcon },
+			{ name: "Mark as read", icon: CheckIcon },
+			{ name: "Audio & video", icon: VideoIcon },
+			{ name: "Connected accounts", icon: LinkIcon },
+			{ name: "Privacy & visibility", icon: LockIcon },
+			{ name: "Advanced", icon: SettingsIcon },
 		],
 	};
 

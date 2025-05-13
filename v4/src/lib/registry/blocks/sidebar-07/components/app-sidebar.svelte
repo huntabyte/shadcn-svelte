@@ -1,14 +1,14 @@
 <script lang="ts" module>
-	import AudioWaveform from "@lucide/svelte/icons/audio-waveform";
-	import BookOpen from "@lucide/svelte/icons/book-open";
-	import Bot from "@lucide/svelte/icons/bot";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Command from "@lucide/svelte/icons/command";
-	import Frame from "@lucide/svelte/icons/frame";
-	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
-	import Map from "@lucide/svelte/icons/map";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
+	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
+	import BookOpenIcon from "@lucide/svelte/icons/book-open";
+	import BotIcon from "@lucide/svelte/icons/bot";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import CommandIcon from "@lucide/svelte/icons/command";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+	import MapIcon from "@lucide/svelte/icons/map";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
 
 	// This is sample data.
 	const data = {
@@ -20,17 +20,17 @@
 		teams: [
 			{
 				name: "Acme Inc",
-				logo: GalleryVerticalEnd,
+				logo: GalleryVerticalEndIcon,
 				plan: "Enterprise",
 			},
 			{
 				name: "Acme Corp.",
-				logo: AudioWaveform,
+				logo: AudioWaveformIcon,
 				plan: "Startup",
 			},
 			{
 				name: "Evil Corp.",
-				logo: Command,
+				logo: CommandIcon,
 				plan: "Free",
 			},
 		],
@@ -38,7 +38,7 @@
 			{
 				title: "Playground",
 				url: "#",
-				icon: SquareTerminal,
+				icon: SquareTerminalIcon,
 				isActive: true,
 				items: [
 					{
@@ -58,7 +58,7 @@
 			{
 				title: "Models",
 				url: "#",
-				icon: Bot,
+				icon: BotIcon,
 				items: [
 					{
 						title: "Genesis",
@@ -77,7 +77,7 @@
 			{
 				title: "Documentation",
 				url: "#",
-				icon: BookOpen,
+				icon: BookOpenIcon,
 				items: [
 					{
 						title: "Introduction",
@@ -100,7 +100,7 @@
 			{
 				title: "Settings",
 				url: "#",
-				icon: Settings2,
+				icon: Settings2Icon,
 				items: [
 					{
 						title: "General",
@@ -125,17 +125,17 @@
 			{
 				name: "Design Engineering",
 				url: "#",
-				icon: Frame,
+				icon: FrameIcon,
 			},
 			{
 				name: "Sales & Marketing",
 				url: "#",
-				icon: ChartPie,
+				icon: ChartPieIcon,
 			},
 			{
 				name: "Travel",
 				url: "#",
-				icon: Map,
+				icon: MapIcon,
 			},
 		],
 	};

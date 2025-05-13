@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
@@ -10,7 +10,7 @@
 		<Collapsible.Trigger
 			class={buttonVariants({ variant: "ghost", size: "sm", class: "w-9 p-0" })}
 		>
-			<ChevronsUpDown />
+			<ChevronsUpDownIcon />
 			<span class="sr-only">Toggle</span>
 		</Collapsible.Trigger>
 	</div>

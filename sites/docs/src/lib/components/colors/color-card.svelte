@@ -4,8 +4,8 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { AspectRatio } from "$lib/registry/ui/aspect-ratio/index.js";
 	import { getColors, type ColorPalette } from "$lib/components/colors/colors.js";
-	import Clipboard from "@lucide/svelte/icons/clipboard";
-	import Check from "@lucide/svelte/icons/check";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import { scale } from "svelte/transition";
 
 	type Format = {
@@ -112,11 +112,11 @@
 							>
 								{#if copied === shade.className}
 									<div in:scale>
-										<Check class="size-4" />
+										<CheckIcon class="size-4" />
 									</div>
 								{:else}
 									<div in:scale>
-										<Clipboard class="size-4" />
+										<ClipboardIcon class="size-4" />
 									</div>
 								{/if}
 							</div>

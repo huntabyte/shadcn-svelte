@@ -2,12 +2,11 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import Plus from "@lucide/svelte/icons/plus";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import type { Component } from "svelte";
 
-	// This should be `Component` after @lucide/svelte updates types
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let { teams }: { teams: { name: string; logo: any; plan: string }[] } = $props();
+	let { teams }: { teams: { name: string; logo: Component; plan: string }[] } = $props();
 	const sidebar = useSidebar();
 
 	let activeTeam = $state(teams[0]);
@@ -34,7 +33,7 @@
 							</span>
 							<span class="truncate text-xs">{activeTeam.plan}</span>
 						</div>
-						<ChevronsUpDown class="ml-auto" />
+						<ChevronsUpDownIcon class="ml-auto" />
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -59,7 +58,7 @@
 					<div
 						class="bg-background flex size-6 items-center justify-center rounded-md border"
 					>
-						<Plus class="size-4" />
+						<PlusIcon class="size-4" />
 					</div>
 					<div class="text-muted-foreground font-medium">Add team</div>
 				</DropdownMenu.Item>

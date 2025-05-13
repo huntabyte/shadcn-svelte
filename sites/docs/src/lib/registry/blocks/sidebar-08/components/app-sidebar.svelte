@@ -1,13 +1,13 @@
 <script lang="ts" module>
-	import BookOpen from "@lucide/svelte/icons/book-open";
-	import Bot from "@lucide/svelte/icons/bot";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Frame from "@lucide/svelte/icons/frame";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Map from "@lucide/svelte/icons/map";
-	import Send from "@lucide/svelte/icons/send";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
+	import BookOpenIcon from "@lucide/svelte/icons/book-open";
+	import BotIcon from "@lucide/svelte/icons/bot";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import MapIcon from "@lucide/svelte/icons/map";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
 
 	const data = {
 		user: {
@@ -19,7 +19,7 @@
 			{
 				title: "Playground",
 				url: "#",
-				icon: SquareTerminal,
+				icon: SquareTerminalIcon,
 				isActive: true,
 				items: [
 					{
@@ -39,7 +39,7 @@
 			{
 				title: "Models",
 				url: "#",
-				icon: Bot,
+				icon: BotIcon,
 				items: [
 					{
 						title: "Genesis",
@@ -58,7 +58,7 @@
 			{
 				title: "Documentation",
 				url: "#",
-				icon: BookOpen,
+				icon: BookOpenIcon,
 				items: [
 					{
 						title: "Introduction",
@@ -81,7 +81,7 @@
 			{
 				title: "Settings",
 				url: "#",
-				icon: Settings2,
+				icon: Settings2Icon,
 				items: [
 					{
 						title: "General",
@@ -106,29 +106,29 @@
 			{
 				title: "Support",
 				url: "#",
-				icon: LifeBuoy,
+				icon: LifeBuoyIcon,
 			},
 			{
 				title: "Feedback",
 				url: "#",
-				icon: Send,
+				icon: SendIcon,
 			},
 		],
 		projects: [
 			{
 				name: "Design Engineering",
 				url: "#",
-				icon: Frame,
+				icon: FrameIcon,
 			},
 			{
 				name: "Sales & Marketing",
 				url: "#",
-				icon: ChartPie,
+				icon: ChartPieIcon,
 			},
 			{
 				name: "Travel",
 				url: "#",
-				icon: Map,
+				icon: MapIcon,
 			},
 		],
 	};
@@ -140,7 +140,7 @@
 	import NavSecondary from "$lib/registry/blocks/sidebar-08/components/nav-secondary.svelte";
 	import NavUser from "$lib/registry/blocks/sidebar-08/components/nav-user.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Command from "@lucide/svelte/icons/command";
+	import CommandIcon from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -156,7 +156,7 @@
 							<div
 								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 							>
-								<Command class="size-4" />
+								<CommandIcon class="size-4" />
 							</div>
 							<div class="grid flex-1 text-left text-sm leading-tight">
 								<span class="truncate font-semibold">Acme Inc</span>

@@ -38,9 +38,9 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
-	import File from "@lucide/svelte/icons/file";
-	import Folder from "@lucide/svelte/icons/folder";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import FileIcon from "@lucide/svelte/icons/file";
+	import FolderIcon from "@lucide/svelte/icons/folder";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -55,7 +55,7 @@
 					{#each data.changes as item, index (index)}
 						<Sidebar.MenuItem>
 							<Sidebar.MenuButton>
-								<File />
+								<FileIcon />
 								{item.file}
 							</Sidebar.MenuButton>
 							<Sidebar.MenuBadge>{item.state}</Sidebar.MenuBadge>
@@ -86,7 +86,7 @@
 			isActive={name === "button.svelte"}
 			class="data-[active=true]:bg-transparent"
 		>
-			<File />
+			<FileIcon />
 			{name}
 		</Sidebar.MenuButton>
 	{:else}
@@ -98,8 +98,8 @@
 				<Collapsible.Trigger>
 					{#snippet child({ props })}
 						<Sidebar.MenuButton {...props}>
-							<ChevronRight class="transition-transform" />
-							<Folder />
+							<ChevronRightIcon class="transition-transform" />
+							<FolderIcon />
 							{name}
 						</Sidebar.MenuButton>
 					{/snippet}

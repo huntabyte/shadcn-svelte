@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import ChevronUp from "@lucide/svelte/icons/chevron-up";
+	import ChevronUpIcon from "@lucide/svelte/icons/chevron-up";
 </script>
 
 <Sidebar.Provider>
@@ -19,7 +19,7 @@
 									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 								>
 									Username
-									<ChevronUp class="ml-auto" />
+									<ChevronUpIcon class="ml-auto" />
 								</Sidebar.MenuButton>
 							{/snippet}
 						</DropdownMenu.Trigger>

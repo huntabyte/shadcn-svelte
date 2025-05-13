@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
-	import ExternalLink from "@lucide/svelte/icons/external-link";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/state";
@@ -19,7 +19,7 @@
 	<div class="mx-auto w-full min-w-0 max-w-2xl">
 		<div class="text-muted-foreground mb-4 flex items-center space-x-1 text-sm leading-none">
 			<a href="/docs" class="truncate"> Docs </a>
-			<ChevronRight class="h-3.5 w-3.5" />
+			<ChevronRightIcon class="size-3.5" />
 			<div class="text-foreground">{doc.title}</div>
 		</div>
 		<div class="space-y-2">
@@ -42,7 +42,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Docs
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLinkIcon class="size-3" />
 					</a>
 				{/if}
 				{#if doc.links?.api}
@@ -53,7 +53,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						API Reference
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLinkIcon class="size-3" />
 					</a>
 				{/if}
 			</div>

@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import ArchiveX from "@lucide/svelte/icons/archive-x";
-	import File from "@lucide/svelte/icons/file";
-	import Inbox from "@lucide/svelte/icons/inbox";
-	import Send from "@lucide/svelte/icons/send";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import ArchiveXIcon from "@lucide/svelte/icons/archive-x";
+	import FileIcon from "@lucide/svelte/icons/file";
+	import InboxIcon from "@lucide/svelte/icons/inbox";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 
 	// This is sample data
 	const data = {
@@ -16,31 +16,31 @@
 			{
 				title: "Inbox",
 				url: "#",
-				icon: Inbox,
+				icon: InboxIcon,
 				isActive: true,
 			},
 			{
 				title: "Drafts",
 				url: "#",
-				icon: File,
+				icon: FileIcon,
 				isActive: false,
 			},
 			{
 				title: "Sent",
 				url: "#",
-				icon: Send,
+				icon: SendIcon,
 				isActive: false,
 			},
 			{
 				title: "Junk",
 				url: "#",
-				icon: ArchiveX,
+				icon: ArchiveXIcon,
 				isActive: false,
 			},
 			{
 				title: "Trash",
 				url: "#",
-				icon: Trash2,
+				icon: Trash2Icon,
 				isActive: false,
 			},
 		],
@@ -125,7 +125,7 @@
 	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { Switch } from "$lib/registry/ui/switch/index.js";
-	import Command from "@lucide/svelte/icons/command";
+	import CommandIcon from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -154,7 +154,7 @@
 								<div
 									class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 								>
-									<Command class="size-4" />
+									<CommandIcon class="size-4" />
 								</div>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-semibold">Acme Inc</span>

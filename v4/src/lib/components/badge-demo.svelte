@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AlertCircle from "@lucide/svelte/icons/alert-circle";
-	import ArrowRight from "@lucide/svelte/icons/arrow-right";
-	import Check from "@lucide/svelte/icons/check";
+	import AlertCircleIcon from "@lucide/svelte/icons/alert-circle";
+	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 </script>
 
@@ -12,11 +12,11 @@
 		<Badge variant="destructive">Destructive</Badge>
 		<Badge variant="outline">Outline</Badge>
 		<Badge variant="outline">
-			<Check />
+			<CheckIcon />
 			Badge
 		</Badge>
 		<Badge variant="destructive">
-			<AlertCircle />
+			<AlertCircleIcon />
 			Alert
 		</Badge>
 		<Badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
@@ -29,16 +29,16 @@
 	</div>
 	<div class="flex w-full flex-wrap gap-2">
 		<Badge href="#">
-			Link <ArrowRight />
+			Link <ArrowRightIcon />
 		</Badge>
 		<Badge href="#" variant="secondary">
-			Link <ArrowRight />
+			Link <ArrowRightIcon />
 		</Badge>
 		<Badge href="#" variant="destructive">
-			Link <ArrowRight />
+			Link <ArrowRightIcon />
 		</Badge>
 		<Badge href="#" variant="outline">
-			Link <ArrowRight />
+			Link <ArrowRightIcon />
 		</Badge>
 	</div>
 </div>

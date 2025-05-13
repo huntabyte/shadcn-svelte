@@ -1,39 +1,39 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import PanelLeftOpen from "@lucide/svelte/icons/panel-left-open";
-	import PanelLeftClose from "@lucide/svelte/icons/panel-left-close";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
-	import Frame from "@lucide/svelte/icons/frame";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Map from "@lucide/svelte/icons/map";
+	import PanelLeftOpenIcon from "@lucide/svelte/icons/panel-left-open";
+	import PanelLeftCloseIcon from "@lucide/svelte/icons/panel-left-close";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import MapIcon from "@lucide/svelte/icons/map";
 
 	const projects = [
 		{
 			name: "Design Engineering",
 			url: "#",
-			icon: Frame,
+			icon: FrameIcon,
 		},
 		{
 			name: "Sales & Marketing",
 			url: "#",
-			icon: ChartPie,
+			icon: ChartPieIcon,
 		},
 		{
 			name: "Travel",
 			url: "#",
-			icon: Map,
+			icon: MapIcon,
 		},
 		{
 			name: "Support",
 			url: "#",
-			icon: LifeBuoy,
+			icon: LifeBuoyIcon,
 		},
 		{
 			name: "Feedback",
 			url: "#",
-			icon: Send,
+			icon: SendIcon,
 		},
 	];
 
@@ -68,9 +68,9 @@
 		<header class="flex h-12 items-center justify-between px-4">
 			<Button onclick={() => (open = !open)} size="sm" variant="ghost">
 				{#if open}
-					<PanelLeftClose />
+					<PanelLeftCloseIcon />
 				{:else}
-					<PanelLeftOpen />
+					<PanelLeftOpenIcon />
 				{/if}
 				<span>{open ? "Close" : "Open"} Sidebar</span>
 			</Button>

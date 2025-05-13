@@ -134,7 +134,7 @@
 
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
+	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -150,7 +150,7 @@
 							<div
 								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 							>
-								<GalleryVerticalEnd class="size-4" />
+								<GalleryVerticalEndIcon class="size-4" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
 								<span class="font-semibold">Documentation</span>

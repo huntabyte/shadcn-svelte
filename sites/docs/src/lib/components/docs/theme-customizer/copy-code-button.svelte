@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import Copy from "@lucide/svelte/icons/copy";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CopyIcon from "@lucide/svelte/icons/copy";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";
@@ -37,9 +37,9 @@
 						class="bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground absolute right-4 top-4"
 					>
 						{#if $copied}
-							<Check class="mr-2 size-4" />
+							<CheckIcon class="mr-2 size-4" />
 						{:else}
-							<Copy class="mr-2 size-4" />
+							<CopyIcon class="mr-2 size-4" />
 						{/if}
 						Copy
 					</Button>

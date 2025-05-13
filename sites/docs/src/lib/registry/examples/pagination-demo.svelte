@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import { MediaQuery } from "svelte/reactivity";
 	import * as Pagination from "$lib/registry/ui/pagination/index.js";
 
@@ -17,7 +17,7 @@
 		<Pagination.Content>
 			<Pagination.Item>
 				<Pagination.PrevButton>
-					<ChevronLeft class="size-4" />
+					<ChevronLeftIcon class="size-4" />
 					<span class="hidden sm:block">Previous</span>
 				</Pagination.PrevButton>
 			</Pagination.Item>
@@ -37,7 +37,7 @@
 			<Pagination.Item>
 				<Pagination.NextButton>
 					<span class="hidden sm:block">Next</span>
-					<ChevronRight class="size-4" />
+					<ChevronRightIcon class="size-4" />
 				</Pagination.NextButton>
 			</Pagination.Item>
 		</Pagination.Content>

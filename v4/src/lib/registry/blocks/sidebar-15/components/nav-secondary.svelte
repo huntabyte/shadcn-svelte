@@ -1,16 +1,14 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
-
+	import type { Component } from "svelte";
 	let {
 		ref = $bindable(null),
 		items,
 		...restProps
-	}: ComponentProps<
-		typeof Sidebar.Group
-		// The `any` should be `Component` after @lucide/svelte updates types
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	> & { items: { title: string; url: string; icon: any; badge?: string }[] } = $props();
+	}: ComponentProps<typeof Sidebar.Group> & {
+		items: { title: string; url: string; icon: Component; badge?: string }[];
+	} = $props();
 </script>
 
 <Sidebar.Group bind:ref {...restProps}>

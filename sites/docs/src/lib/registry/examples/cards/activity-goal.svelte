@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Minus from "@lucide/svelte/icons/minus";
-	import Plus from "@lucide/svelte/icons/plus";
+	import MinusIcon from "@lucide/svelte/icons/minus";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Activity } from "$lib/components/docs/charts/index.js";
@@ -25,7 +25,7 @@
 				onclick={() => updateGoal(-10)}
 				disabled={goal <= 200}
 			>
-				<Minus class="size-4" />
+				<MinusIcon class="size-4" />
 				<span class="sr-only">Decrease</span>
 			</Button>
 			<div class="flex-1 text-center">
@@ -40,7 +40,7 @@
 				onclick={() => updateGoal(10)}
 				disabled={goal >= 400}
 			>
-				<Plus class="size-4" />
+				<PlusIcon class="size-4" />
 				<span class="sr-only">Increase</span>
 			</Button>
 		</div>

@@ -319,7 +319,7 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
 
 ```svelte showLineNumbers title="routes/payments/data-table-actions.svelte"
 <script lang="ts">
-  import Ellipsis from "@lucide/svelte/icons/ellipsis";
+  import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
@@ -336,7 +336,7 @@ We'll start by defining the actions menu in our `data-table-actions.svelte` comp
         class="relative size-8 p-0"
       >
         <span class="sr-only">Open menu</span>
-        <Ellipsis />
+        <EllipsisIcon />
       </Button>
     {/snippet}
   </DropdownMenu.Trigger>
@@ -508,7 +508,7 @@ We'll start by creating a component to render a sortable email header button.
 ```svelte showLineNumbers title="routes/payments/data-table-email-button.svelte"
 <script lang="ts">
   import type { ComponentProps } from "svelte";
-  import ArrowUpDown from "@lucide/svelte/icons/arrow-up-down";
+  import ArrowUpDownIcon from "@lucide/svelte/icons/arrow-up-down";
   import { Button } from "$lib/components/ui/button/index.js";
 
   let { variant = "ghost", ...restProps }: ComponentProps<typeof Button> =
@@ -517,7 +517,7 @@ We'll start by creating a component to render a sortable email header button.
 
 <Button {variant} {...restProps}>
   Email
-  <ArrowUpDown class="ml-2" />
+  <ArrowUpDownIcon class="ml-2" />
 </Button>
 ```
 

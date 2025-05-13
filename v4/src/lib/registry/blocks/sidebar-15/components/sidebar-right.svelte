@@ -3,7 +3,7 @@
 	import DatePicker from "$lib/registry/blocks/sidebar-15/components/date-picker.svelte";
 	import NavUser from "$lib/registry/blocks/sidebar-15/components/nav-user.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Plus from "@lucide/svelte/icons/plus";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import type { ComponentProps } from "svelte";
 
 	// This is sample data.
@@ -50,7 +50,7 @@
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton>
-					<Plus />
+					<PlusIcon />
 					<span>New Calendar</span>
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>

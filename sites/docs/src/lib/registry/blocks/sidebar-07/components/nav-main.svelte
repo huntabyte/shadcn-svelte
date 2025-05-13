@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 
 	let {
 		items,
@@ -38,7 +38,7 @@
 										<mainItem.icon />
 									{/if}
 									<span>{mainItem.title}</span>
-									<ChevronRight
+									<ChevronRightIcon
 										class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
 									/>
 								</Sidebar.MenuButton>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import CircleUser from "@lucide/svelte/icons/circle-user";
-	import Menu from "@lucide/svelte/icons/menu";
-	import Package2 from "@lucide/svelte/icons/package-2";
-	import Search from "@lucide/svelte/icons/search";
+	import CircleUserIcon from "@lucide/svelte/icons/circle-user";
+	import MenuIcon from "@lucide/svelte/icons/menu";
+	import Package2Icon from "@lucide/svelte/icons/package-2";
+	import SearchIcon from "@lucide/svelte/icons/search";
 
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -18,7 +18,7 @@
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
 			<a href="##" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-				<Package2 class="size-6" />
+				<Package2Icon class="size-6" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<a href="##" class="text-muted-foreground hover:text-foreground transition-colors">
@@ -41,7 +41,7 @@
 			<Sheet.Trigger>
 				{#snippet child({ props })}
 					<Button {...props} variant="outline" size="icon" class="shrink-0 md:hidden">
-						<Menu class="size-5" />
+						<MenuIcon class="size-5" />
 						<span class="sr-only">Toggle navigation menu</span>
 					</Button>
 				{/snippet}
@@ -49,7 +49,7 @@
 			<Sheet.Content side="left">
 				<nav class="grid gap-6 text-lg font-medium">
 					<a href="##" class="flex items-center gap-2 text-lg font-semibold">
-						<Package2 class="size-6" />
+						<Package2Icon class="size-6" />
 						<span class="sr-only">Acme Inc</span>
 					</a>
 					<a href="##" class="text-muted-foreground hover:text-foreground"> Dashboard </a>
@@ -63,7 +63,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
+					<SearchIcon class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -75,7 +75,7 @@
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="secondary" size="icon" class="rounded-full">
-							<CircleUser class="size-5" />
+							<CircleUserIcon class="size-5" />
 							<span class="sr-only">Toggle user menu</span>
 						</Button>
 					{/snippet}

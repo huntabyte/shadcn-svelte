@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import Plus from "@lucide/svelte/icons/plus";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 
 	let {
 		workspaces,
@@ -41,12 +41,12 @@
 									class="bg-sidebar-accent text-sidebar-accent-foreground left-2 data-[state=open]:rotate-90"
 									showOnHover
 								>
-									<ChevronRight />
+									<ChevronRightIcon />
 								</Sidebar.MenuAction>
 							{/snippet}
 						</Collapsible.Trigger>
 						<Sidebar.MenuAction showOnHover>
-							<Plus />
+							<PlusIcon />
 						</Sidebar.MenuAction>
 						<Collapsible.Content>
 							<Sidebar.MenuSub>
@@ -69,7 +69,7 @@
 			{/each}
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton class="text-sidebar-foreground/70">
-					<Ellipsis />
+					<EllipsisIcon />
 					<span>More</span>
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>

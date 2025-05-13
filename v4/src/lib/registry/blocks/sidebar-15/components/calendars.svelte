@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Check from "@lucide/svelte/icons/check";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 
 	let { calendars }: { calendars: { name: string; items: string[] }[] } = $props();
 </script>
@@ -16,7 +16,7 @@
 				{#snippet child({ props })}
 					<Collapsible.Trigger {...props}>
 						{calendar.name}
-						<ChevronRight
+						<ChevronRightIcon
 							class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 						/>
 					</Collapsible.Trigger>
@@ -32,7 +32,7 @@
 										data-active={index < 2}
 										class="group/calendar-item border-sidebar-border text-sidebar-primary-foreground data-[active=true]:border-sidebar-primary data-[active=true]:bg-sidebar-primary flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border"
 									>
-										<Check
+										<CheckIcon
 											class="hidden size-3 group-data-[active=true]/calendar-item:block"
 										/>
 									</div>

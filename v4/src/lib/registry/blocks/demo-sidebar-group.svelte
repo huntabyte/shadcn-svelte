@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
 </script>
 
 <Sidebar.Provider>
@@ -13,13 +13,13 @@
 					<Sidebar.Menu>
 						<Sidebar.MenuItem>
 							<Sidebar.MenuButton>
-								<LifeBuoy />
+								<LifeBuoyIcon />
 								Support
 							</Sidebar.MenuButton>
 						</Sidebar.MenuItem>
 						<Sidebar.MenuItem>
 							<Sidebar.MenuButton>
-								<Send />
+								<SendIcon />
 								Feedback
 							</Sidebar.MenuButton>
 						</Sidebar.MenuItem>

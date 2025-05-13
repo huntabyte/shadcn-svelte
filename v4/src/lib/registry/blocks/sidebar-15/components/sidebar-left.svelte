@@ -1,15 +1,15 @@
 <script lang="ts">
-	import AudioWaveform from "@lucide/svelte/icons/audio-waveform";
-	import Blocks from "@lucide/svelte/icons/blocks";
-	import Calendar from "@lucide/svelte/icons/calendar";
-	import Command from "@lucide/svelte/icons/command";
-	import House from "@lucide/svelte/icons/house";
-	import Inbox from "@lucide/svelte/icons/inbox";
-	import MessageCircleQuestion from "@lucide/svelte/icons/message-circle-question";
-	import Search from "@lucide/svelte/icons/search";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import Sparkles from "@lucide/svelte/icons/sparkles";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
+	import BlocksIcon from "@lucide/svelte/icons/blocks";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import CommandIcon from "@lucide/svelte/icons/command";
+	import HouseIcon from "@lucide/svelte/icons/house";
+	import InboxIcon from "@lucide/svelte/icons/inbox";
+	import MessageCircleQuestionIcon from "@lucide/svelte/icons/message-circle-question";
+	import SearchIcon from "@lucide/svelte/icons/search";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import SparklesIcon from "@lucide/svelte/icons/sparkles";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 
 	import NavFavorites from "$lib/registry/blocks/sidebar-15/components/nav-favorites.svelte";
 	import NavMain from "$lib/registry/blocks/sidebar-15/components/nav-main.svelte";
@@ -24,17 +24,17 @@
 		teams: [
 			{
 				name: "Acme Inc",
-				logo: Command,
+				logo: CommandIcon,
 				plan: "Enterprise",
 			},
 			{
 				name: "Acme Corp.",
-				logo: AudioWaveform,
+				logo: AudioWaveformIcon,
 				plan: "Startup",
 			},
 			{
 				name: "Evil Corp.",
-				logo: Command,
+				logo: CommandIcon,
 				plan: "Free",
 			},
 		],
@@ -42,23 +42,23 @@
 			{
 				title: "Search",
 				url: "#",
-				icon: Search,
+				icon: SearchIcon,
 			},
 			{
 				title: "Ask AI",
 				url: "#",
-				icon: Sparkles,
+				icon: SparklesIcon,
 			},
 			{
 				title: "Home",
 				url: "#",
-				icon: House,
+				icon: HouseIcon,
 				isActive: true,
 			},
 			{
 				title: "Inbox",
 				url: "#",
-				icon: Inbox,
+				icon: InboxIcon,
 				badge: "10",
 			},
 		],
@@ -66,27 +66,27 @@
 			{
 				title: "Calendar",
 				url: "#",
-				icon: Calendar,
+				icon: CalendarIcon,
 			},
 			{
 				title: "Settings",
 				url: "#",
-				icon: Settings2,
+				icon: Settings2Icon,
 			},
 			{
 				title: "Templates",
 				url: "#",
-				icon: Blocks,
+				icon: BlocksIcon,
 			},
 			{
 				title: "Trash",
 				url: "#",
-				icon: Trash2,
+				icon: Trash2Icon,
 			},
 			{
 				title: "Help",
 				url: "#",
-				icon: MessageCircleQuestion,
+				icon: MessageCircleQuestionIcon,
 			},
 		],
 		favorites: [

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import Fullscreen from "@lucide/svelte/icons/fullscreen";
-	import Monitor from "@lucide/svelte/icons/monitor";
-	import Smartphone from "@lucide/svelte/icons/smartphone";
-	import Tablet from "@lucide/svelte/icons/tablet";
-	import Terminal from "@lucide/svelte/icons/terminal";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
+	import MonitorIcon from "@lucide/svelte/icons/monitor";
+	import SmartphoneIcon from "@lucide/svelte/icons/smartphone";
+	import TabletIcon from "@lucide/svelte/icons/tablet";
+	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
@@ -43,9 +43,9 @@
 			}}
 		>
 			{#if copier.isCopied}
-				<Check />
+				<CheckIcon />
 			{:else}
-				<Terminal />
+				<TerminalIcon />
 			{/if}
 			{command}
 		</Button>
@@ -65,21 +65,21 @@
 					class="h-[22px] w-[22px] rounded-sm p-0"
 					title="Desktop"
 				>
-					<Monitor class="h-3.5 w-3.5" />
+					<MonitorIcon class="h-3.5 w-3.5" />
 				</ToggleGroup.Item>
 				<ToggleGroup.Item
 					value="60"
 					class="h-[22px] w-[22px] rounded-sm p-0"
 					title="Tablet"
 				>
-					<Tablet class="h-3.5 w-3.5" />
+					<TabletIcon class="h-3.5 w-3.5" />
 				</ToggleGroup.Item>
 				<ToggleGroup.Item
 					value="30"
 					class="h-[22px] w-[22px] rounded-sm p-0"
 					title="Mobile"
 				>
-					<Smartphone class="h-3.5 w-3.5" />
+					<SmartphoneIcon class="h-3.5 w-3.5" />
 				</ToggleGroup.Item>
 				<Separator orientation="vertical" class="h-4" />
 				<Button
@@ -91,7 +91,7 @@
 					target="_blank"
 				>
 					<span class="sr-only">Open in New Tab</span>
-					<Fullscreen class="h-3.5 w-3.5" />
+					<FullscreenIcon class="h-3.5 w-3.5" />
 				</Button>
 			</ToggleGroup.Root>
 		</div>

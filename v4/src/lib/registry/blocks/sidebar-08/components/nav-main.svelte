@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import type { Component } from "svelte";
 
 	let {
 		items,
@@ -9,9 +10,7 @@
 		items: {
 			title: string;
 			url: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
+			icon: Component;
 			isActive?: boolean;
 			items?: {
 				title: string;
@@ -46,7 +45,7 @@
 										{...props}
 										class="data-[state=open]:rotate-90"
 									>
-										<ChevronRight />
+										<ChevronRightIcon />
 										<span class="sr-only">Toggle</span>
 									</Sidebar.MenuAction>
 								{/snippet}

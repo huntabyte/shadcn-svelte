@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RotateCCW from "@lucide/svelte/icons/rotate-ccw";
+	import RotateCCWIcon from "@lucide/svelte/icons/rotate-ccw";
 	import {
 		CodeViewer,
 		MaxLengthSelector,
@@ -242,7 +242,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -262,7 +262,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW class="size-4" />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -295,7 +295,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW class="size-4" />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>

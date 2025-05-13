@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import {
 		type ColumnDef,
 		type ColumnFiltersState,
@@ -231,7 +231,7 @@
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="outline" class="ml-auto">
-							Columns <ChevronDown class="ml-2 size-4" />
+							Columns <ChevronDownIcon class="ml-2 size-4" />
 						</Button>
 					{/snippet}
 				</DropdownMenu.Trigger>

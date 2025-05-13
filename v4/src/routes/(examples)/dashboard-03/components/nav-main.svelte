@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import { page } from "$app/state";
 	import type { Component } from "svelte";
 
@@ -55,7 +55,7 @@
 										{...props}
 										class="data-[state=open]:rotate-90"
 									>
-										<ChevronRight />
+										<ChevronRightIcon />
 										<span class="sr-only">Toggle</span>
 									</Sidebar.MenuAction>
 								{/snippet}

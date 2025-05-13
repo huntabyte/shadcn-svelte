@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AtSign from "@lucide/svelte/icons/at-sign";
-	import Bell from "@lucide/svelte/icons/bell";
-	import BellOff from "@lucide/svelte/icons/bell-off";
+	import AtSignIcon from "@lucide/svelte/icons/at-sign";
+	import BellIcon from "@lucide/svelte/icons/bell";
+	import BellOffIcon from "@lucide/svelte/icons/bell-off";
 	import * as Card from "$lib/registry/ui/card/index.js";
 </script>
 
@@ -14,14 +14,14 @@
 		<div
 			class="hover:bg-accent hover:text-accent-foreground flex items-center space-x-4 rounded-md p-2"
 		>
-			<Bell class="size-5" />
+			<BellIcon class="size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Everything</p>
 				<p class="text-muted-foreground text-sm">Email digest, mentions & all activity.</p>
 			</div>
 		</div>
 		<div class="bg-accent text-accent-foreground flex items-center space-x-4 rounded-md p-2">
-			<AtSign class="size-5" />
+			<AtSignIcon class="size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Available</p>
 				<p class="text-muted-foreground text-sm">Only mentions and comments.</p>
@@ -30,7 +30,7 @@
 		<div
 			class="hover:bg-accent hover:text-accent-foreground flex items-center space-x-4 rounded-md p-2"
 		>
-			<BellOff class="size-5" />
+			<BellOffIcon class="size-5" />
 			<div class="space-y-1">
 				<p class="text-sm font-medium leading-none">Ignoring</p>
 				<p class="text-muted-foreground text-sm">Turn off all notifications.</p>

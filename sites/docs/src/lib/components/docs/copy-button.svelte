@@ -2,9 +2,9 @@
 	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { cn } from "$lib/utils.js";
-	import Copy from "@lucide/svelte/icons/copy";
-	import Check from "@lucide/svelte/icons/check";
-	import X from "@lucide/svelte/icons/x";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import XIcon from "@lucide/svelte/icons/x";
 	import type { Snippet } from "svelte";
 	import { scale } from "svelte/transition";
 
@@ -43,12 +43,12 @@
 >
 	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<Check tabindex={-1} />
+			<CheckIcon tabindex={-1} />
 			<span class="sr-only">Copied</span>
 		</div>
 	{:else if clipboard.status === "failure"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<X tabindex={-1} />
+			<XIcon tabindex={-1} />
 			<span class="sr-only">Failed to copy</span>
 		</div>
 	{:else}
@@ -56,7 +56,7 @@
 			{#if icon}
 				{@render icon()}
 			{:else}
-				<Copy tabindex={-1} />
+				<CopyIcon tabindex={-1} />
 			{/if}
 			<span class="sr-only">Copy</span>
 		</div>

@@ -4,10 +4,10 @@
 </script>
 
 <script lang="ts" generics="TData, TValue">
-	import EyeOff from "@lucide/svelte/icons/eye-off";
-	import ArrowDown from "@lucide/svelte/icons/arrow-down";
-	import ArrowUp from "@lucide/svelte/icons/arrow-up";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import EyeOffIcon from "@lucide/svelte/icons/eye-off";
+	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
+	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Column } from "@tanstack/table-core";
 	import type { WithoutChildren } from "bits-ui";
@@ -42,27 +42,27 @@
 							{title}
 						</span>
 						{#if column.getIsSorted() === "desc"}
-							<ArrowDown />
+							<ArrowDownIcon />
 						{:else if column.getIsSorted() === "asc"}
-							<ArrowUp />
+							<ArrowUpIcon />
 						{:else}
-							<ChevronsUpDown />
+							<ChevronsUpDownIcon />
 						{/if}
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="start">
 				<DropdownMenu.Item onclick={() => column.toggleSorting(false)}>
-					<ArrowUp class="text-muted-foreground/70 mr-2 size-3.5" />
+					<ArrowUpIcon class="text-muted-foreground/70 mr-2 size-3.5" />
 					Asc
 				</DropdownMenu.Item>
 				<DropdownMenu.Item onclick={() => column.toggleSorting(true)}>
-					<ArrowDown class="text-muted-foreground/70 mr-2 size-3.5" />
+					<ArrowDownIcon class="text-muted-foreground/70 mr-2 size-3.5" />
 					Desc
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
-					<EyeOff class="text-muted-foreground/70 mr-2 size-3.5" />
+					<EyeOffIcon class="text-muted-foreground/70 mr-2 size-3.5" />
 					Hide
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

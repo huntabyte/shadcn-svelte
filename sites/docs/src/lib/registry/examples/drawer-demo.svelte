@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Minus from "@lucide/svelte/icons/minus";
-	import Plus from "@lucide/svelte/icons/plus";
+	import MinusIcon from "@lucide/svelte/icons/minus";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import { VisGroupedBar, VisXYContainer } from "@unovis/svelte";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
@@ -87,7 +87,7 @@
 						onclick={() => handleClick(-10)}
 						disabled={goal <= 200}
 					>
-						<Minus />
+						<MinusIcon />
 						<span class="sr-only">Decrease</span>
 					</Button>
 					<div class="flex-1 text-center">
@@ -105,7 +105,7 @@
 						onclick={() => handleClick(10)}
 						disabled={goal >= 400}
 					>
-						<Plus />
+						<PlusIcon />
 						<span class="sr-only">Increase</span>
 					</Button>
 				</div>

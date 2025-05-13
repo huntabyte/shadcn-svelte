@@ -2,14 +2,14 @@
 	import ComponentWrapper from "$lib/components/component-wrapper.svelte";
 	import * as Charts from "./charts.js";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
-	import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
+	import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
 </script>
 
 <div class="flex flex-col gap-4 p-4">
 	<Alert.Root
 		class="border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-200"
 	>
-		<TriangleAlert />
+		<TriangleAlertIcon />
 		<Alert.Title>Experimental - Use at Your Own Risk</Alert.Title>
 		<Alert.Description class="text-foreground/90">
 			<span>

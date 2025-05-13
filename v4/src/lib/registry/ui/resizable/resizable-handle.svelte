@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GripVertical from "@lucide/svelte/icons/grip-vertical";
+	import GripVerticalIcon from "@lucide/svelte/icons/grip-vertical";
 	import * as ResizablePrimitive from "paneforge";
 	import type { WithoutChildrenOrChild } from "bits-ui";
 	import { cn } from "$lib/utils.js";
@@ -25,7 +25,7 @@
 >
 	{#if withHandle}
 		<div class="bg-border rounded-xs z-10 flex h-4 w-3 items-center justify-center border">
-			<GripVertical class="size-2.5" />
+			<GripVerticalIcon class="size-2.5" />
 		</div>
 	{/if}
 </ResizablePrimitive.PaneResizer>

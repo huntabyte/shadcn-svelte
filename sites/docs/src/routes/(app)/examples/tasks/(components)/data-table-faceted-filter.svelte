@@ -4,8 +4,8 @@
 </script>
 
 <script lang="ts" generics="TData, TValue">
-	import CirclePlus from "@lucide/svelte/icons/circle-plus";
-	import Check from "@lucide/svelte/icons/check";
+	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import type { Column } from "@tanstack/table-core";
 	import { SvelteSet } from "svelte/reactivity";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -14,20 +14,21 @@
 	import { cn } from "$lib/utils.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
+	import type { Component } from "svelte";
 
-	type Props<TData, TValue> = {
+	let {
+		column,
+		title,
+		options,
+	}: {
 		column: Column<TData, TValue>;
 		title: string;
 		options: {
 			label: string;
 			value: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon?: any;
+			icon?: Component;
 		}[];
-	};
-
-	let { column, title, options }: Props<TData, TValue> = $props();
+	} = $props();
 
 	const facets = $derived(column?.getFacetedUniqueValues());
 	const selectedValues = $derived(new SvelteSet(column?.getFilterValue() as string[]));
@@ -37,7 +38,7 @@
 	<Popover.Trigger>
 		{#snippet child({ props })}
 			<Button {...props} variant="outline" size="sm" class="h-8 border-dashed">
-				<CirclePlus />
+				<CirclePlusIcon />
 				{title}
 				{#if selectedValues.size > 0}
 					<Separator orientation="vertical" class="mx-2 h-4" />
@@ -90,7 +91,7 @@
 										: "opacity-50 [&_svg]:invisible"
 								)}
 							>
-								<Check class="size-4" />
+								<CheckIcon class="size-4" />
 							</div>
 							{#if option.icon}
 								{@const Icon = option.icon}
