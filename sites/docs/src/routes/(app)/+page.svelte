@@ -2,7 +2,6 @@
 	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/registry/examples/cards/all.svelte";
