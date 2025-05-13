@@ -18,7 +18,7 @@ The `registry.json` schema is used to define your custom component registry.
       "description": "A simple hello world component.",
       "files": [
         {
-          "path": "registry/new-york/hello-world/hello-world.tsx",
+          "path": "registry/hello-world/hello-world.svelte",
           "type": "registry:component"
         }
       ]

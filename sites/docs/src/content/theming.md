@@ -5,7 +5,6 @@ description: Use CSS Variables to customize the look and feel of your applicatio
 
 <script>
   import { Callout, Steps } from '$lib/components/docs';
-  import HexToChannels from "$lib/components/docs/hex-to-channels.svelte";
 </script>
 
 We use CSS variables for styling. This allows you to easily change the colors of components without having to update class names.
