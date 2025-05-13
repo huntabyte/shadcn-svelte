@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
 	import type { ComponentProps } from "svelte";
 
 	let { children, ...restProps }: ComponentProps<typeof Tabs.List> = $props();

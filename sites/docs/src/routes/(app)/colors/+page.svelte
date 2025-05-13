@@ -2,7 +2,7 @@
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import ColorCard from "$lib/components/colors/color-card.svelte";
+	import ColorCard from "$lib/colors/color-card.svelte";
 </script>
 
 <svelte:head>
@@ -28,10 +28,12 @@
 			<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
 			<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
 			<PageHeader.Description>
-				Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats.
+				Tailwind CSS colors in HSL, RGB, and HEX formats.
 			</PageHeader.Description>
 		</PageHeader.Root>
 	</ThemeWrapper>
 
-	<ColorCard />
+	<div class="flex flex-col gap-2">
+		<ColorCard />
+	</div>
 </div>

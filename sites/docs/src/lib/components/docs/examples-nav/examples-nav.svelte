@@ -5,7 +5,7 @@
 	import { page } from "$app/state";
 	import { examples } from "$lib/config/docs.js";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 
 	let { class: className, ...restProps }: PrimitiveElementAttributes = $props();
 

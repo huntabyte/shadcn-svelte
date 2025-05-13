@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+export const registryStyleSchema = z.enum(["default", "new-york"]);
+
 // This also defines the order they appear on the blocks page.
 export const blockNames = [
 	"sidebar-01",
@@ -32,12 +34,69 @@ export const blockNames = [
 	"demo-sidebar-controlled",
 ] as const;
 
+export const registryItemTypeSchema = z.enum([
+	"registry:style",
+	"registry:lib",
+	"registry:example",
+	"registry:block",
+	"registry:component",
+	"registry:ui",
+	"registry:hook",
+	"registry:theme",
+	"registry:page",
+]);
+
+export const registryItemFileSchema = z.object({
+	name: z.string(),
+	path: z.string(),
+	content: z.string().default(""),
+	type: registryItemTypeSchema,
+	target: z.string().default(""),
+});
+
+export const registryItemTailwindSchema = z.object({
+	config: z.object({
+		content: z.array(z.string()).optional(),
+		theme: z.record(z.string(), z.any()).optional(),
+		plugins: z.array(z.string()).optional(),
+	}),
+});
+
+export const registryItemCssVarsSchema = z.object({
+	light: z.record(z.string(), z.string()).optional(),
+	dark: z.record(z.string(), z.string()).optional(),
+});
+
+export const registryEntrySchema = z.object({
+	name: z.string(),
+	type: registryItemTypeSchema,
+	style: registryStyleSchema,
+	description: z.string().optional(),
+	dependencies: z.array(z.string()).default([]),
+	registryDependencies: z.array(z.string()).default([]),
+	files: z.array(registryItemFileSchema).default([]),
+	tailwind: registryItemTailwindSchema.optional(),
+	cssVars: registryItemCssVarsSchema.optional(),
+	source: z.string().optional(),
+	category: z.string().optional(),
+	subcategory: z.string().optional(),
+	docs: z.string().optional(),
+});
+
+export const registrySchema = z.array(registryEntrySchema);
+
+export type RegistryEntry = z.output<typeof registryEntrySchema>;
+export type RegistryItemFile = z.output<typeof registryItemFileSchema>;
+export type RegistryStyle = z.output<typeof registryStyleSchema>;
+export type Registry = z.output<typeof registrySchema>;
+
 export type BlockName = (typeof blockNames)[number];
 
 export const blockSchema = z.object({
 	name: z.enum(blockNames),
 	type: z.literal("registry:block"),
 	description: z.string(),
+	style: registryStyleSchema,
 	container: z
 		.object({
 			height: z.string().optional(),

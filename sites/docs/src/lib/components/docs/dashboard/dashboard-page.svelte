@@ -11,10 +11,10 @@
 	import TeamSwitcher from "./team-switcher.svelte";
 	import UserNav from "./user-nav.svelte";
 
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import DatePickerWithRange from "$lib/registry/examples/date-picker-with-range.svelte";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import DatePickerWithRange from "$lib/registry/new-york/examples/date-picker-with-range.svelte";
 </script>
 
 <div class="md:hidden">

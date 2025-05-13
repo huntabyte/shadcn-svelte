@@ -6,8 +6,8 @@
 	import Sun from "@lucide/svelte/icons/sun";
 	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
@@ -36,15 +36,15 @@
 <Button
 	variant="outline"
 	class={cn(
-		"bg-muted/50 text-muted-foreground relative h-8 w-full justify-start rounded-[0.5rem] text-sm font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+		"text-muted-foreground relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
 	)}
 	onclick={() => (open = true)}
 	{...restProps}
 >
-	<span class="hidden lg:inline-flex">Search documentation...</span>
+	<span class="hidden lg:inline-flex"> Search documentation... </span>
 	<span class="inline-flex lg:hidden">Search...</span>
 	<kbd
-		class="bg-muted pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
+		class="bg-muted pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
 	>
 		<span class="text-xs">⌘</span>K
 	</kbd>

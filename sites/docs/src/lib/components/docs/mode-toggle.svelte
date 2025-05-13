@@ -2,8 +2,8 @@
 	import Moon from "@lucide/svelte/icons/moon";
 	import Sun from "@lucide/svelte/icons/sun";
 	import { resetMode, setMode } from "mode-watcher";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 </script>
 

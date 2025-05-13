@@ -3,9 +3,11 @@
 	import Code from "@lucide/svelte/icons/code";
 	import ExternalLink from "@lucide/svelte/icons/external-link";
 	import type { PageData } from "./$types.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import { config } from "$lib/stores/index.js";
 	import DocsPager from "$lib/components/docs/docs-pager.svelte";
 	import TableOfContents from "$lib/components/docs/table-of-contents.svelte";
-	import { badgeVariants } from "$lib/registry/ui/badge/index.js";
+	import { badgeVariants } from "$lib/registry/new-york/ui/badge/index.js";
 	import { cn } from "$lib/utils.js";
 	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/state";
@@ -14,24 +16,26 @@
 
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
-	const componentSource = $derived(data.metadata.links?.source);
+	const componentSource = $derived(
+		data.metadata.links?.source?.replace("default", $config.style ?? "default")
+	);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
 </script>
 
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-	<div class="mx-auto w-full min-w-0 max-w-2xl">
-		<div class="text-muted-foreground mb-4 flex items-center space-x-1 text-sm leading-none">
-			<a href="/docs" class="truncate"> Docs </a>
-			<ChevronRight class="h-3.5 w-3.5" />
-			<div class="text-foreground">{doc.title}</div>
+	<div class="mx-auto w-full min-w-0">
+		<div class="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
+			<div class="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
+			<ChevronRight class="size-4" />
+			<div class="text-foreground font-medium">{doc.title}</div>
 		</div>
 		<div class="space-y-2">
-			<h1 class={cn("scroll-m-20 text-3xl font-bold tracking-tight")}>
+			<h1 class={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>
 				{doc.title}
 			</h1>
 			{#if doc.description}
-				<p class="text-muted-foreground text-balance text-base">
+				<p class="text-muted-foreground text-balance text-lg">
 					{doc.description}
 				</p>
 			{/if}
@@ -46,7 +50,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Docs
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLink class="size-3" />
 					</a>
 				{/if}
 				{#if apiLink}
@@ -57,7 +61,7 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						API Reference
-						<ExternalLink class="h-3 w-3" />
+						<ExternalLink class="size-3" />
 					</a>
 				{/if}
 				{#if componentSource}
@@ -68,28 +72,24 @@
 						class={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
 					>
 						Component Source
-						<Code class="h-3 w-3" />
+						<Code class="size-3.5" />
 					</a>
 				{/if}
 			</div>
 		{/if}
-		<div class="pb-12 pt-8" id="markdown">
-			<div class="markdown">
-				<Markdown form={data.form} />
-			</div>
+		<div class="markdown pb-12 pt-8" id="markdown">
+			<Markdown form={data.form} />
 		</div>
 		<DocsPager />
 	</div>
 	<div class="hidden text-sm xl:block">
-		<div class="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4">
-			<div class="no-scrollbar h-full overflow-auto pb-10">
+		<div class="sticky top-14 -mt-10 h-[calc(100vh-3.5rem)] py-8">
+			<ScrollArea class="h-full">
 				{#key page.url.pathname}
 					<TableOfContents />
 				{/key}
-			</div>
-			<div class="z-10 pt-4">
 				<Carbon />
-			</div>
+			</ScrollArea>
 		</div>
 	</div>
 </main>

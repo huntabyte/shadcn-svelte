@@ -3,7 +3,7 @@ title: Menubar
 description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/menubar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/menubar
   doc: https://bits-ui.com/docs/components/menubar
   api: https://bits-ui.com/docs/components/menubar#api-reference
 ---

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Check from "@lucide/svelte/icons/check";
 	import Copy from "@lucide/svelte/icons/copy";
-	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
 	import { config } from "$lib/stores/index.js";
 	import { themes } from "$lib/registry/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import CustomizerCode from "$lib/components/docs/theme-customizer/customizer-code.svelte";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { createCopyCodeButton } from "$lib/utils.js";
@@ -21,7 +21,7 @@
 				<Button {...props} class="flex" size="sm" variant="ghost">Copy Code</Button>
 			{/snippet}
 		</Dialog.Trigger>
-		<Dialog.Content class="flex max-w-2xl flex-col outline-none">
+		<Dialog.Content class="max-w-2xl outline-none">
 			<Dialog.Header>
 				<Dialog.Title>Theme</Dialog.Title>
 				<Dialog.Description>

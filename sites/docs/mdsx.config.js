@@ -139,6 +139,17 @@ function rehypePreData() {
 	};
 }
 
+const styles = [
+	{
+		name: "default",
+		label: "Default",
+	},
+	{
+		name: "new-york",
+		label: "New York",
+	},
+];
+
 /**
  *
  * @returns {HastTransformer} - Unified Transformer
@@ -154,40 +165,49 @@ export function rehypeComponentExample() {
 				if (!name) return null;
 
 				try {
-					// @ts-expect-error - this is fine
-					const component = Index[name];
-					const src = component.files[0].replace("/lib/", "/src/lib/");
-					let sourceCode = getComponentSourceFileContent(src);
-					if (!sourceCode || sourceCode === null) return;
+					for (const style of styles) {
+						// @ts-expect-error - this is fine
+						const component = Index[style.name][name];
+						const src = component.files[0].replace("/lib/", "/src/lib/");
+						let sourceCode = getComponentSourceFileContent(src);
+						if (!sourceCode || sourceCode === null) return;
 
-					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
-					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
+						sourceCode = sourceCode.replaceAll(
+							"$lib/registry/new-york/",
+							"$lib/components/"
+						);
+						sourceCode = sourceCode.replaceAll(
+							"$lib/registry/default/",
+							"$lib/components/"
+						);
 
-					const sourceCodeNode = u("element", {
-						tagName: "pre",
-						properties: {
-							__src__: src,
-							className: ["code"],
-						},
-						children: [
-							u("element", {
-								tagName: "code",
-								properties: {
-									className: [`language-svelte`],
-								},
-								attributes: {},
-								children: [
-									{
-										type: "text",
-										value: sourceCode,
+						const sourceCodeNode = u("element", {
+							tagName: "pre",
+							properties: {
+								__src__: src,
+								__style__: style.name,
+								className: ["code"],
+							},
+							children: [
+								u("element", {
+									tagName: "code",
+									properties: {
+										className: [`language-svelte`],
 									},
-								],
-							}),
-						],
-					});
-					if (!index) return;
-					// @ts-expect-error - this is fine
-					parent?.children.splice(index + 1, 0, sourceCodeNode);
+									attributes: {},
+									children: [
+										{
+											type: "text",
+											value: sourceCode,
+										},
+									],
+								}),
+							],
+						});
+						if (!index) return;
+						// @ts-expect-error - this is fine
+						parent?.children.splice(index + 1, 0, sourceCodeNode);
+					}
 				} catch (e) {
 					console.error(e);
 				}

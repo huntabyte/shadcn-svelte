@@ -5,9 +5,9 @@
 	import { useId } from "bits-ui";
 	import type { Preset } from "../(data)/presets.js";
 	import { cn } from "$lib/utils.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 
 	let { presets }: { presets: Preset[] } = $props();
 

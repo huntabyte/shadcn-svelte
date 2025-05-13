@@ -1,12 +1,24 @@
-// @ts-check
-import { mdsx } from "mdsx";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import adapter from "@sveltejs/adapter-cloudflare";
-import MagicString from "magic-string";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import { mdsx } from "mdsx";
 import { mdsxConfig } from "./mdsx.config.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: [mdsx(mdsxConfig), componentPreviews()],
+	preprocess: [
+		mdsx(mdsxConfig),
+		vitePreprocess({
+			style: {
+				css: {
+					postcss: join(__dirname, "postcss.config.cjs"),
+				},
+			},
+		}),
+	],
 	extensions: [".svelte", ".md"],
 
 	kit: {
@@ -52,46 +64,3 @@ const config = {
 };
 
 export default config;
-
-/**
- * Detects the `name` of the previewing component, imports it directly and
- * passes it to the `ComponentPreview` as a prop.
- * @returns {import("svelte/compiler").PreprocessorGroup}
- */
-function componentPreviews() {
-	const TARGET = "<ComponentPreview";
-	const camelize = (/** @type {string} */ s) => s.replace(/-./g, (w) => w[1].toUpperCase());
-
-	return {
-		name: "inject-component-preview",
-		markup: ({ content, filename }) => {
-			if (!filename?.endsWith(".md") || !content.includes(TARGET)) return;
-
-			const ms = new MagicString(content);
-			const results = content.matchAll(/<ComponentPreview name=["|']([^\s]*)["|']/g);
-			const components = new Set();
-			for (const exec of results) {
-				const [, name] = exec;
-				const insertIndex = exec.index + TARGET.length;
-				const identifier = camelize(name);
-				const prop = ` component={${identifier}}`;
-				ms.appendRight(insertIndex, prop);
-
-				components.add(name);
-			}
-
-			const importIndex = content.search("import {");
-			for (const name of components) {
-				const identifier = camelize(name);
-				const importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
-
-				ms.appendLeft(importIndex, importStatement);
-			}
-
-			return {
-				code: ms.toString(),
-				map: ms.generateMap(),
-			};
-		},
-	};
-}

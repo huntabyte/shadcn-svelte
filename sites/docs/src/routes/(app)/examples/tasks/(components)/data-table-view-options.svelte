@@ -5,8 +5,8 @@
 <script lang="ts" generics="TData">
 	import Settings2 from "@lucide/svelte/icons/settings-2";
 	import type { Table } from "@tanstack/table-core";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
 
 	let { table }: { table: Table<TData> } = $props();
 </script>
@@ -24,7 +24,7 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>
+			<DropdownMenu.GroupHeading>Toggle columns</DropdownMenu.GroupHeading>
 			<DropdownMenu.Separator />
 			{#each table
 				.getAllColumns()

@@ -1,14 +1,13 @@
 import fs from "node:fs";
-import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
-import { minimatch } from "minimatch";
-import { defineConfig } from "vite";
-import tailwindcss from "@tailwindcss/vite";
+import path, { join } from "node:path";
 import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
+import { minimatch } from "minimatch";
 import { toJsonSchema } from "@valibot/to-json-schema";
 import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
+import { execSync } from "node:child_process";
 
 console.log("Building registry...");
 writeJsonSchemas();
@@ -16,11 +15,10 @@ await buildRegistry();
 console.log("Registry built.");
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
-export const veliteDirPath = path.join(__dirname, ".velite");
+export const veliteDirPath = join(__dirname, ".velite");
 
 export default defineConfig({
 	plugins: [
-		tailwindcss(),
 		sveltekit(),
 		{
 			name: "registry-builder",
@@ -59,5 +57,9 @@ function writeJsonSchemas() {
 
 async function buildRegistry() {
 	await build();
-	execSync("pnpm shadcn-svelte registry build --output static/registry");
+	for (const style of ["default", "new-york"]) {
+		execSync(
+			`pnpm shadcn-svelte registry build ./registry-${style}.json --output static/registry/${style}`
+		);
+	}
 }

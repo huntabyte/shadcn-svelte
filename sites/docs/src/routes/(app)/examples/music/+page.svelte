@@ -3,10 +3,10 @@
 	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import * as Tabs from "$lib/registry/ui/tabs/index.js";
-	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
+	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
 </script>
 
 <div class="md:hidden">

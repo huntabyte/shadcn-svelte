@@ -3,7 +3,7 @@ title: Sheet
 description: Extends the Dialog component to display content that complements the main content of the screen.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/sheet
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/sheet
   doc: https://bits-ui.com/docs/components/dialog
   api: https://bits-ui.com/docs/components/dialog#api-reference
 ---

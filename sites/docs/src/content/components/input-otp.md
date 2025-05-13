@@ -3,7 +3,7 @@ title: Input OTP
 description: Accessible one-time password component with copy paste functionality.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/input-otp
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/input-otp
   doc: https://bits-ui.com/docs/components/pin-input
   api: https://bits-ui.com/docs/components/pin-input#api-reference
 ---
@@ -119,14 +119,6 @@ You can use the `InputOTP.Separator` component to add a separator between the gr
   {/snippet}
 </InputOTP.Root>
 ```
-
-### Invalid
-
-<ComponentPreview name="input-otp-invalid">
-
-<div></div>
-
-</ComponentPreview>
 
 ### Form
 

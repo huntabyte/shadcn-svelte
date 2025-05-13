@@ -12,8 +12,8 @@
 	import type { Column } from "@tanstack/table-core";
 	import type { WithoutChildren } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import Button from "$lib/registry/ui/button/button.svelte";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 
 	type Props = HTMLAttributes<HTMLDivElement> & {
 		column: Column<TData, TValue>;

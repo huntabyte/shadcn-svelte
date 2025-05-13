@@ -1,0 +1,1376 @@
+{
+	"name": "shadcn-svelte",
+	"homepage": "https://shadcn-svelte.com",
+	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
+	"items": [
+		{
+			"name": "accordion",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/accordion/accordion-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/accordion/accordion-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/accordion/accordion-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/accordion/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "alert",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/alert/alert-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert/alert-title.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert/alert.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "alert-dialog",
+			"type": "registry:ui",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-action.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-cancel.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-overlay.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/alert-dialog-title.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/alert-dialog/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "aspect-ratio",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/aspect-ratio/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "avatar",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/avatar/avatar-fallback.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/avatar/avatar-image.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/avatar/avatar.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/avatar/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "badge",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/badge/badge.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/badge/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "breadcrumb",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-ellipsis.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-link.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-list.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-page.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/breadcrumb.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/breadcrumb/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "button",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/button/button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/button/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "calendar",
+			"type": "registry:ui",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-cell.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-day.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-grid-body.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-grid-head.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-grid-row.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-grid.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-head-cell.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-months.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-next-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar-prev-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/calendar.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/calendar/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "card",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/card/card-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/card-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/card-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/card-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/card-title.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/card.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/card/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "carousel",
+			"type": "registry:ui",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/carousel-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/carousel-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/carousel-next.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/carousel-previous.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/carousel.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/context.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/carousel/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "checkbox",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/checkbox/checkbox.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/checkbox/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "collapsible",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/collapsible/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "command",
+			"type": "registry:ui",
+			"registryDependencies": ["dialog"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-dialog.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-empty.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-group.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-input.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-link-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-list.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command-shortcut.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/command.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/command/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "context-menu",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-checkbox-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-radio-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-shortcut.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-sub-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/context-menu-sub-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/context-menu/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "data-table",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/data-table/data-table.svelte.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/data-table/flex-render.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/data-table/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/data-table/render-helpers.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "dialog",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-overlay.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/dialog-title.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dialog/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "drawer",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-nested.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-overlay.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer-title.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/drawer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/drawer/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "dropdown-menu",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-label.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-radio-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-shortcut.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-sub-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/dropdown-menu-sub-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/dropdown-menu/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "form",
+			"type": "registry:ui",
+			"registryDependencies": ["button", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-element-field.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-field-errors.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-field.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-fieldset.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-label.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/form-legend.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/form/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "hover-card",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/hover-card/hover-card-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/hover-card/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "input",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/input/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/input/input.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "input-otp",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/input-otp/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/input-otp/input-otp-group.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/input-otp/input-otp-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/input-otp/input-otp-slot.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/input-otp/input-otp.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "label",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/label/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/label/label.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "menubar",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-checkbox-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-radio-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-shortcut.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-sub-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-sub-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/menubar/menubar.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "pagination",
+			"type": "registry:ui",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-ellipsis.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-link.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-next-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination-prev-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/pagination/pagination.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "popover",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/popover/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/popover/popover-content.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "progress",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/progress/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/progress/progress.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "radio-group",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/radio-group/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/radio-group/radio-group-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/radio-group/radio-group.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "range-calendar",
+			"type": "registry:ui",
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-cell.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-day.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-grid-body.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-grid-head.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-grid-row.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-grid.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-head-cell.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-months.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-next-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar-prev-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/range-calendar/range-calendar.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "resizable",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/resizable/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/resizable/resizable-handle.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/resizable/resizable-pane-group.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "scroll-area",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/scroll-area/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/scroll-area/scroll-area-scrollbar.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/scroll-area/scroll-area.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "select",
+			"type": "registry:ui",
+			"registryDependencies": ["separator"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/select/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-scroll-down-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-scroll-up-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/select/select-trigger.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "separator",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/separator/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/separator/separator.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "sheet",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-description.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-overlay.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sheet/sheet-title.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "sidebar",
+			"type": "registry:ui",
+			"registryDependencies": [
+				"is-mobile",
+				"input",
+				"tooltip",
+				"skeleton",
+				"separator",
+				"button",
+				"sheet"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/constants.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/context.svelte.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-group-action.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-group-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-group-label.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-group.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-input.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-inset.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-action.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-badge.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-skeleton.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-sub-button.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-sub-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu-sub.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-menu.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-provider.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-rail.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-separator.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar-trigger.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sidebar/sidebar.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "skeleton",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/skeleton/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/skeleton/skeleton.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "slider",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/slider/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/slider/slider.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "sonner",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/sonner/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/sonner/sonner.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "switch",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/switch/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/switch/switch.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "table",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/table/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-body.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-caption.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-cell.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-footer.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-head.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-header.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table-row.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/table/table.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "tabs",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/tabs/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/tabs/tabs-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/tabs/tabs-list.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/tabs/tabs-trigger.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "textarea",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/textarea/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/textarea/textarea.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "toggle",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/toggle/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/toggle/toggle.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "toggle-group",
+			"type": "registry:ui",
+			"registryDependencies": ["toggle"],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/toggle-group/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/toggle-group/toggle-group-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/toggle-group/toggle-group.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "tooltip",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/ui/tooltip/index.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/new-york/ui/tooltip/tooltip-content.svelte",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "is-mobile",
+			"type": "registry:hook",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/new-york/hooks/is-mobile.svelte.ts",
+					"type": "registry:hook"
+				}
+			]
+		}
+	]
+}

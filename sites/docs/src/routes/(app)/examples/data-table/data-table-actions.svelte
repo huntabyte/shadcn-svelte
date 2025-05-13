@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
 
 	let { id }: { id: string } = $props();
 </script>
@@ -18,7 +18,7 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.Label>Actions</DropdownMenu.Label>
+			<DropdownMenu.GroupHeading>Actions</DropdownMenu.GroupHeading>
 			<DropdownMenu.Item onclick={() => navigator.clipboard.writeText(id)}>
 				Copy payment ID
 			</DropdownMenu.Item>

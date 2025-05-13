@@ -3,7 +3,7 @@ title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/checkbox
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/checkbox
   doc: https://bits-ui.com/docs/components/checkbox
   api: https://bits-ui.com/docs/components/checkbox#api-reference
 ---

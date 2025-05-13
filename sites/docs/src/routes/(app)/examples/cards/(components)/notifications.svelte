@@ -2,7 +2,7 @@
 	import Bell from "@lucide/svelte/icons/bell";
 	import EyeOff from "@lucide/svelte/icons/eye-off";
 	import User from "@lucide/svelte/icons/user";
-	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
 </script>
 
 <Card.Root>

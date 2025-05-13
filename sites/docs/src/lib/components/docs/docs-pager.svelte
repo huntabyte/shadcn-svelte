@@ -3,7 +3,7 @@
 	import ChevronRight from "@lucide/svelte/icons/chevron-right";
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
 	import { page } from "$app/state";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
 	function getPagerForDoc(slug: string) {

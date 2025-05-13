@@ -4,13 +4,12 @@
 	import Metadata from "$lib/components/docs/metadata.svelte";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
-	import "../styles/carbon.css";
+	import "../styles/carbon.pcss";
 	import { config } from "$lib/stores/index.js";
-	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
+	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
 	import { setPackageManager } from "$lib/stores/package-manager.js";
-	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { dev } from "$app/environment";
-	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
+	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
 
 	let { children } = $props();
 
@@ -21,16 +20,19 @@
 	});
 </script>
 
-<ModeWatcher disableTransitions />
+<ModeWatcher />
 <Metadata />
-<Toaster />
+{#if $config.style === "new-york"}
+	<NYSonner />
+{:else}
+	<DefaultSonner />
+{/if}
 <Tooltip.Provider>
-	<div data-vaul-drawer-wrapper="">
-		<div class="bg-background relative flex min-h-dvh flex-col" id="page">
-			{@render children?.()}
-		</div>
+	<div
+		class="bg-background relative flex min-h-screen flex-col"
+		id="page"
+		data-vaul-drawer-wrapper
+	>
+		{@render children?.()}
 	</div>
-	{#if dev}
-		<TailwindIndicator />
-	{/if}
 </Tooltip.Provider>

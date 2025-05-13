@@ -3,7 +3,7 @@
 	import { crossfade } from "svelte/transition";
 	import { cn } from "$lib/utils.js";
 	import { page } from "$app/state";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
 
 	let { items, class: className }: { items: { href: string; title: string }[]; class?: string } =
 		$props();

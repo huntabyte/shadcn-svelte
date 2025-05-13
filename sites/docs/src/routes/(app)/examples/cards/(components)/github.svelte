@@ -3,11 +3,11 @@
 	import Circle from "@lucide/svelte/icons/circle";
 	import Plus from "@lucide/svelte/icons/plus";
 	import Star from "@lucide/svelte/icons/star";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 </script>
 
@@ -33,7 +33,7 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content class="w-[200px]" align="end">
 					<DropdownMenu.Group>
-						<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
+						<DropdownMenu.GroupHeading>Suggested Lists</DropdownMenu.GroupHeading>
 						<DropdownMenu.Separator />
 						<DropdownMenu.CheckboxItem checked>Future Ideas</DropdownMenu.CheckboxItem>
 						<DropdownMenu.CheckboxItem>My Stack</DropdownMenu.CheckboxItem>

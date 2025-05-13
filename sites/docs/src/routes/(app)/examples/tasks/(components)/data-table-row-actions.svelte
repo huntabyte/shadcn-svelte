@@ -7,8 +7,8 @@
 	import type { Row } from "@tanstack/table-core";
 	import { labels } from "../(data)/data.js";
 	import { taskSchema } from "../(data)/schemas.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import Button from "$lib/registry/ui/button/button.svelte";
+	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import Button from "$lib/registry/new-york/ui/button/button.svelte";
 
 	let { row }: { row: Row<TData> } = $props();
 

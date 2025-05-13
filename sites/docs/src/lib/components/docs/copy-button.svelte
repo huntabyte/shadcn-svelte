@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
+	import { Button, type ButtonProps } from "$lib/registry/default/ui/button/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import Copy from "@lucide/svelte/icons/copy";
@@ -33,7 +33,7 @@
 	{...restProps}
 	{variant}
 	size="icon"
-	class={cn("", className)}
+	class={cn(className)}
 	type="button"
 	onclick={async () => {
 		const status = await clipboard.copy(text);

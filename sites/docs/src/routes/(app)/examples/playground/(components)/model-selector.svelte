@@ -4,11 +4,11 @@
 	import { useId } from "bits-ui";
 	import type { Model, ModelType } from "../(data)/models.js";
 	import ModelItem from "./model-item.svelte";
-	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
-	import { Label } from "$lib/registry/ui/label/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	import * as Command from "$lib/registry/ui/command/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/new-york/ui/command/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 
 	let { types, models }: { types: ModelType[]; models: Model[] } = $props();
 

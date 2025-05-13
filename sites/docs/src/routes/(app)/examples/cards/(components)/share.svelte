@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
-	import * as Select from "$lib/registry/ui/select/index.js";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Card from "$lib/registry/new-york/ui/card/index.js";
+	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
 
 	const permissions = [
 		{

@@ -3,7 +3,7 @@ title: Dropdown Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/dropdown-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/dropdown-menu
   doc: https://bits-ui.com/docs/components/dropdown-menu
   api: https://bits-ui.com/docs/components/dropdown-menu#api-reference
 ---
@@ -48,7 +48,7 @@ Install `bits-ui`:
   <DropdownMenu.Trigger>Open</DropdownMenu.Trigger>
   <DropdownMenu.Content>
     <DropdownMenu.Group>
-      <DropdownMenu.Label>My Account</DropdownMenu.Label>
+      <DropdownMenu.GroupHeading>My Account</DropdownMenu.GroupHeading>
       <DropdownMenu.Separator />
       <DropdownMenu.Item>Profile</DropdownMenu.Item>
       <DropdownMenu.Item>Billing</DropdownMenu.Item>

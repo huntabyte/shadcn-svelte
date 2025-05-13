@@ -1,14 +1,15 @@
 <script lang="ts">
+	import Check from "@lucide/svelte/icons/check";
 	import CircleHelp from "@lucide/svelte/icons/circle-help";
 	import Moon from "@lucide/svelte/icons/moon";
 	import Repeat from "@lucide/svelte/icons/repeat";
 	import Sun from "@lucide/svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
-	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Label } from "$lib/registry/new-york/ui/label/index.js";
 	import { cn } from "$lib/utils.js";
 	import { themes } from "$lib/registry/index.js";
 </script>
@@ -66,6 +67,24 @@
 					</Popover.Content>
 				</Popover.Root>
 			</div>
+			<div class="grid grid-cols-3 gap-2">
+				<Button
+					variant="outline"
+					size="sm"
+					onclick={() => ($config.style = "default")}
+					class={cn($config.style === "default" && "border-primary border-2")}
+				>
+					Default
+				</Button>
+				<Button
+					variant="outline"
+					size="sm"
+					onclick={() => ($config.style = "new-york")}
+					class={cn($config.style === "new-york" && "border-primary border-2")}
+				>
+					New York
+				</Button>
+			</div>
 		</div>
 		<div class="5 space-y-1">
 			<Label class="text-xs">Color</Label>
@@ -78,12 +97,15 @@
 						onclick={() => {
 							$config.theme = theme.name;
 						}}
-						class={cn("justify-start gap-0", isActive && "border-primary border-2")}
+						class={cn("justify-start", isActive && "border-primary border-2")}
 						style="--theme-primary: hsl({theme.activeColor[mode.current ?? 'dark']})"
 					>
 						<span
-							class="bg-(--theme-primary) mr-1 flex size-4 shrink-0 -translate-x-1 items-center justify-center rounded-full"
+							class="mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
 						>
+							{#if isActive}
+								<Check class="size-4 text-white" />
+							{/if}
 						</span>
 						{theme.label}
 					</Button>

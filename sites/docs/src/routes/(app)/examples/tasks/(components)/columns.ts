@@ -9,7 +9,7 @@ import {
 	DataTableStatusCell,
 	DataTableTitleCell,
 } from "./index.js";
-import { renderComponent, renderSnippet } from "$lib/registry/ui/data-table/index.js";
+import { renderComponent, renderSnippet } from "$lib/registry/new-york/ui/data-table/index.js";
 
 export const columns: ColumnDef<Task>[] = [
 	{

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Checkbox as CheckboxPrimitive, WithoutChildrenOrChild } from "bits-ui";
-	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
+	import { Checkbox } from "$lib/registry/new-york/ui/checkbox/index.js";
 
 	let {
 		checked = false,
