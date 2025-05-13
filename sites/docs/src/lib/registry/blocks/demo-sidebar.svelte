@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Calendar from "@lucide/svelte/icons/calendar";
-	import House from "@lucide/svelte/icons/house";
-	import Inbox from "@lucide/svelte/icons/inbox";
-	import Search from "@lucide/svelte/icons/search";
-	import Settings from "@lucide/svelte/icons/settings";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import HouseIcon from "@lucide/svelte/icons/house";
+	import InboxIcon from "@lucide/svelte/icons/inbox";
+	import SearchIcon from "@lucide/svelte/icons/search";
+	import SettingsIcon from "@lucide/svelte/icons/settings";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 
 	// Menu items.
@@ -11,27 +11,27 @@
 		{
 			title: "Home",
 			url: "#",
-			icon: House,
+			icon: HouseIcon,
 		},
 		{
 			title: "Inbox",
 			url: "#",
-			icon: Inbox,
+			icon: InboxIcon,
 		},
 		{
 			title: "Calendar",
 			url: "#",
-			icon: Calendar,
+			icon: CalendarIcon,
 		},
 		{
 			title: "Search",
 			url: "#",
-			icon: Search,
+			icon: SearchIcon,
 		},
 		{
 			title: "Settings",
 			url: "#",
-			icon: Settings,
+			icon: SettingsIcon,
 		},
 	];
 </script>

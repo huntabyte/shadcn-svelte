@@ -2,10 +2,10 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import Folder from "@lucide/svelte/icons/folder";
-	import Forward from "@lucide/svelte/icons/forward";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import FolderIcon from "@lucide/svelte/icons/folder";
+	import ForwardIcon from "@lucide/svelte/icons/forward";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 	import type { Component } from "svelte";
 
 	let {
@@ -38,7 +38,7 @@
 					<DropdownMenu.Trigger>
 						{#snippet child({ props })}
 							<Sidebar.MenuAction showOnHover {...props}>
-								<Ellipsis />
+								<EllipsisIcon />
 								<span class="sr-only">More</span>
 							</Sidebar.MenuAction>
 						{/snippet}
@@ -49,16 +49,16 @@
 						align={sidebar.isMobile ? "end" : "start"}
 					>
 						<DropdownMenu.Item>
-							<Folder class="text-muted-foreground" />
+							<FolderIcon class="text-muted-foreground" />
 							<span>View Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<Forward class="text-muted-foreground" />
+							<ForwardIcon class="text-muted-foreground" />
 							<span>Share Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<Trash2 class="text-muted-foreground" />
+							<Trash2Icon class="text-muted-foreground" />
 							<span>Delete Project</span>
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>
@@ -67,7 +67,7 @@
 		{/each}
 		<Sidebar.MenuItem>
 			<Sidebar.MenuButton class="text-sidebar-foreground/70">
-				<Ellipsis class="text-sidebar-foreground/70" />
+				<EllipsisIcon class="text-sidebar-foreground/70" />
 				<span>More</span>
 			</Sidebar.MenuButton>
 		</Sidebar.MenuItem>

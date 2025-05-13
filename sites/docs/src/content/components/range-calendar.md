@@ -30,13 +30,13 @@ The `<RangeCalendar />` component is built on top of the [Bits Range Calendar](h
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui` and `@internalized/date`:
+### Install `bits-ui` and `@internationalized/date`:
 
-</Step>
 <PMInstall command="bits-ui @internationalized/date -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

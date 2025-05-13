@@ -137,7 +137,7 @@
 	import VersionSwitcher from "$lib/registry/blocks/sidebar-02/components/version-switcher.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -159,7 +159,7 @@
 						{#snippet child({ props })}
 							<Collapsible.Trigger {...props}>
 								{group.title}
-								<ChevronRight
+								<ChevronRightIcon
 									class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 								/>
 							</Collapsible.Trigger>

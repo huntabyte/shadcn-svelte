@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Command as CommandPrimitive } from "bits-ui";
-	import Check from "@lucide/svelte/icons/check";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import type { Model } from "../(data)/models.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
@@ -46,7 +46,7 @@
 		>
 			{model.name}
 			{#if isSelected}
-				<Check className={cn("ml-auto size-4")} />
+				<CheckIcon class={cn("ml-auto size-4")} />
 			{/if}
 		</div>
 	{/snippet}

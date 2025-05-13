@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Circle from "@lucide/svelte/icons/circle";
-	import CircleArrowUp from "@lucide/svelte/icons/circle-arrow-up";
-	import CircleCheck from "@lucide/svelte/icons/circle-check";
-	import CircleHelp from "@lucide/svelte/icons/circle-help";
-	import CircleX from "@lucide/svelte/icons/circle-x";
+	import CircleIcon from "@lucide/svelte/icons/circle";
+	import CircleArrowUpIcon from "@lucide/svelte/icons/circle-arrow-up";
+	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
+	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
+	import CircleXIcon from "@lucide/svelte/icons/circle-x";
 	import { type Component, tick } from "svelte";
 	import { useId } from "bits-ui";
 	import { cn } from "$lib/utils.js";
@@ -21,27 +21,27 @@
 		{
 			value: "backlog",
 			label: "Backlog",
-			icon: CircleHelp,
+			icon: CircleHelpIcon,
 		},
 		{
 			value: "todo",
 			label: "Todo",
-			icon: Circle,
+			icon: CircleIcon,
 		},
 		{
 			value: "in progress",
 			label: "In Progress",
-			icon: CircleArrowUp,
+			icon: CircleArrowUpIcon,
 		},
 		{
 			value: "done",
 			label: "Done",
-			icon: CircleCheck,
+			icon: CircleCheckIcon,
 		},
 		{
 			value: "canceled",
 			label: "Canceled",
-			icon: CircleX,
+			icon: CircleXIcon,
 		},
 	];
 

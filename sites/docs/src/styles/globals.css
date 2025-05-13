@@ -179,7 +179,7 @@
 	@apply mx-auto max-w-screen-2xl px-4 xl:px-6;
 }
 
-.markdown code {
+.markdown code:not(pre code) {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
 	border-radius: var(--radius);
@@ -287,38 +287,45 @@
 }
 
 .super-debug {
-	background-color: var(--color-zinc-950);
-	color: #fff8;
+	background-color: var(--color-zinc-950) !important;
+	color: #fff8 !important;
 }
 
-/*
 .super-debug--pre {
-	@apply !bg-transparent !text-[#FFF8];
+	background-color: transparent !important;
+	color: #fff8 !important;
 }
 
 .super-debug--code {
-	@apply !bg-transparent;
+	background-color: transparent !important;
 }
 
 .super-debug--code .key {
-	@apply text-white !important;
+	color: #fff8 !important;
 }
 
 .super-debug--code .undefined {
-	@apply !text-[#FFF8];
+	color: #fff8 !important;
 }
+
 .super-debug--code .string {
-	@apply !text-[#FFF8];
+	color: #fff8 !important;
 }
+
 .super-debug--code .number {
-	@apply !text-[#FFF8];
+	color: #fff8 !important;
 }
+
 .super-debug--code .boolean {
-	@apply !text-[#FFF8];
+	color: #fff8 !important;
+}
+
+.super-debug--code .boolean {
+	color: #fff8 !important;
 }
 
 .vis-xy-container {
 	--vis-tooltip-padding: "0px";
 	--vis-tooltip-background-color: "transparent";
 	--vis-tooltip-border-color: "transparent";
-} */
+}

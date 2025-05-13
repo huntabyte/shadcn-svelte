@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
 </script>
 
 <Sidebar.Provider>
@@ -17,7 +17,7 @@
 						{#snippet child({ props })}
 							<Collapsible.Trigger {...props}>
 								Help
-								<ChevronDown
+								<ChevronDownIcon
 									class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
 								/>
 							</Collapsible.Trigger>
@@ -28,13 +28,13 @@
 							<Sidebar.Menu>
 								<Sidebar.MenuItem>
 									<Sidebar.MenuButton>
-										<LifeBuoy />
+										<LifeBuoyIcon />
 										Support
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>
 								<Sidebar.MenuItem>
 									<Sidebar.MenuButton>
-										<Send />
+										<SendIcon />
 										Feedback
 									</Sidebar.MenuButton>
 								</Sidebar.MenuItem>

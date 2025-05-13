@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
-
+	import type { Component } from "svelte";
 	let {
 		ref = $bindable(null),
 		items,
@@ -10,9 +10,7 @@
 		items: {
 			title: string;
 			url: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
+			icon: Component;
 		}[];
 	} & ComponentProps<typeof Sidebar.Group> = $props();
 </script>

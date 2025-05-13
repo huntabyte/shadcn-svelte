@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Calculator from "@lucide/svelte/icons/calculator";
-	import Calendar from "@lucide/svelte/icons/calendar";
-	import CreditCard from "@lucide/svelte/icons/credit-card";
-	import Settings from "@lucide/svelte/icons/settings";
-	import Smile from "@lucide/svelte/icons/smile";
-	import User from "@lucide/svelte/icons/user";
+	import CalculatorIcon from "@lucide/svelte/icons/calculator";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
+	import SettingsIcon from "@lucide/svelte/icons/settings";
+	import SmileIcon from "@lucide/svelte/icons/smile";
+	import UserIcon from "@lucide/svelte/icons/user";
 	import * as Command from "$lib/registry/ui/command/index.js";
 
 	let open = $state(false);
@@ -33,32 +33,32 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Suggestions">
 			<Command.Item>
-				<Calendar class="mr-2 size-4" />
+				<CalendarIcon class="mr-2 size-4" />
 				<span>Calendar</span>
 			</Command.Item>
 			<Command.Item>
-				<Smile class="mr-2 size-4" />
+				<SmileIcon class="mr-2 size-4" />
 				<span>Search Emoji</span>
 			</Command.Item>
 			<Command.Item>
-				<Calculator class="mr-2 size-4" />
+				<CalculatorIcon class="mr-2 size-4" />
 				<span>Calculator</span>
 			</Command.Item>
 		</Command.Group>
 		<Command.Separator />
 		<Command.Group heading="Settings">
 			<Command.Item>
-				<User class="mr-2 size-4" />
+				<UserIcon class="mr-2 size-4" />
 				<span>Profile</span>
 				<Command.Shortcut>⌘P</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<CreditCard class="mr-2 size-4" />
+				<CreditCardIcon class="mr-2 size-4" />
 				<span>Billing</span>
 				<Command.Shortcut>⌘B</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<Settings class="mr-2 size-4" />
+				<SettingsIcon class="mr-2 size-4" />
 				<span>Settings</span>
 				<Command.Shortcut>⌘S</Command.Shortcut>
 			</Command.Item>

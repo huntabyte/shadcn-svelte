@@ -5,15 +5,16 @@
 		PACKAGE_MANAGERS,
 	} from "$lib/stores/package-manager.js";
 	import type { Command } from "package-manager-detector";
-	import Clipboard from "@lucide/svelte/icons/clipboard";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
 
-	type Props = {
+	const {
+		type,
+		command,
+	}: {
 		type: Command | "create";
 		command: string | string[];
-	};
-
-	const { type, command }: Props = $props();
+	} = $props();
 
 	const agent = getPackageManager();
 
@@ -41,7 +42,7 @@
 			</div>
 			<CopyButton text={commandText} class="mb-1 size-6 [&_svg]:size-3">
 				{#snippet icon()}
-					<Clipboard />
+					<ClipboardIcon />
 				{/snippet}
 			</CopyButton>
 		</div>

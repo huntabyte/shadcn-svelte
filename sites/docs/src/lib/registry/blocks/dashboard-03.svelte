@@ -1,20 +1,20 @@
 <script lang="ts">
-	import Triangle from "@lucide/svelte/icons/triangle";
-	import Bot from "@lucide/svelte/icons/bot";
-	import SquareTerminal from "@lucide/svelte/icons/square-terminal";
-	import CodeXML from "@lucide/svelte/icons/code-xml";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Book from "@lucide/svelte/icons/book";
-	import SquareUser from "@lucide/svelte/icons/square-user";
-	import Settings from "@lucide/svelte/icons/settings";
-	import Rabbit from "@lucide/svelte/icons/rabbit";
-	import Bird from "@lucide/svelte/icons/bird";
-	import Turtle from "@lucide/svelte/icons/turtle";
-	import Share from "@lucide/svelte/icons/share";
-	import Paperclip from "@lucide/svelte/icons/paperclip";
-	import Mic from "@lucide/svelte/icons/mic";
-	import CornerDownLeft from "@lucide/svelte/icons/corner-down-left";
+	import TriangleIcon from "@lucide/svelte/icons/triangle";
+	import BotIcon from "@lucide/svelte/icons/bot";
+	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
+	import CodeXMLIcon from "@lucide/svelte/icons/code-xml";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import BookIcon from "@lucide/svelte/icons/book";
+	import SquareUserIcon from "@lucide/svelte/icons/square-user";
+	import SettingsIcon from "@lucide/svelte/icons/settings";
+	import RabbitIcon from "@lucide/svelte/icons/rabbit";
+	import BirdIcon from "@lucide/svelte/icons/bird";
+	import TurtleIcon from "@lucide/svelte/icons/turtle";
+	import ShareIcon from "@lucide/svelte/icons/share";
+	import PaperclipIcon from "@lucide/svelte/icons/paperclip";
+	import MicIcon from "@lucide/svelte/icons/mic";
+	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -39,19 +39,19 @@
 			value: "genesis",
 			label: "Neural Genesis",
 			description: "Our fastest model for general use cases.",
-			Icon: Rabbit,
+			Icon: RabbitIcon,
 		},
 		{
 			value: "explorer",
 			label: "Neural Explorer",
 			description: "Performance and speed for efficiency.",
-			Icon: Bird,
+			Icon: BirdIcon,
 		},
 		{
 			value: "quantum",
 			label: "Neural Quantum",
 			description: "The most powerful model for complex computations.",
-			Icon: Turtle,
+			Icon: TurtleIcon,
 		},
 	];
 
@@ -80,7 +80,7 @@
 	<aside class="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
 		<div class="border-b p-2">
 			<Button variant="outline" size="icon" aria-label="Home">
-				<Triangle class="fill-foreground size-5" />
+				<TriangleIcon class="fill-foreground size-5" />
 			</Button>
 		</div>
 		<nav class="grid gap-1 p-2">
@@ -95,7 +95,7 @@
 								class="bg-muted rounded-lg"
 								aria-label="Playground"
 							>
-								<SquareTerminal class="size-5" />
+								<SquareTerminalIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -111,7 +111,7 @@
 								size="icon"
 								class="rounded-lg"
 							>
-								<Bot class="size-5" />
+								<BotIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -127,7 +127,7 @@
 								size="icon"
 								class="rounded-lg"
 							>
-								<CodeXML class="size-5" />
+								<CodeXMLIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -143,7 +143,7 @@
 								size="icon"
 								class="rounded-lg"
 							>
-								<Book class="size-5" />
+								<BookIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -159,7 +159,7 @@
 								size="icon"
 								class="rounded-lg"
 							>
-								<Settings2 class="size-5" />
+								<Settings2Icon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -179,7 +179,7 @@
 								size="icon"
 								class="mt-auto rounded-lg"
 							>
-								<LifeBuoy class="size-5" />
+								<LifeBuoyIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -195,7 +195,7 @@
 								size="icon"
 								class="mt-auto rounded-lg"
 							>
-								<SquareUser class="size-5" />
+								<SquareUserIcon class="size-5" />
 							</Button>
 						{/snippet}
 					</Tooltip.Trigger>
@@ -213,7 +213,7 @@
 				<Drawer.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="ghost" size="icon" class="md:hidden">
-							<Settings class="size-4" />
+							<SettingsIcon class="size-4" />
 							<span class="sr-only">Settings</span>
 						</Button>
 					{/snippet}
@@ -287,7 +287,7 @@
 				</Drawer.Content>
 			</Drawer.Root>
 			<Button variant="outline" size="sm" class="ml-auto gap-1.5 text-sm">
-				<Share class="size-3.5" />
+				<ShareIcon class="size-3.5" />
 				Share
 			</Button>
 		</header>
@@ -385,7 +385,7 @@
 								<Tooltip.Trigger>
 									{#snippet child({ props })}
 										<Button {...props} variant="ghost" size="icon">
-											<Paperclip class="size-4" />
+											<PaperclipIcon class="size-4" />
 											<span class="sr-only">Attach file</span>
 										</Button>
 									{/snippet}
@@ -396,7 +396,7 @@
 								<Tooltip.Trigger>
 									{#snippet child({ props })}
 										<Button {...props} variant="ghost" size="icon">
-											<Mic class="size-4" />
+											<MicIcon class="size-4" />
 											<span class="sr-only">Use Microphone</span>
 										</Button>
 									{/snippet}
@@ -407,7 +407,7 @@
 
 						<Button type="submit" size="sm" class="ml-auto gap-1.5">
 							Send Message
-							<CornerDownLeft class="size-3.5" />
+							<CornerDownLeftIcon class="size-3.5" />
 						</Button>
 					</div>
 				</form>

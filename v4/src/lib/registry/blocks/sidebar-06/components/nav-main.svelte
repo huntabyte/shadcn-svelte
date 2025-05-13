@@ -2,7 +2,8 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import type { Component } from "svelte";
 
 	let {
 		items,
@@ -10,7 +11,7 @@
 		items: {
 			title: string;
 			url: string;
-			icon?: typeof Ellipsis;
+			icon?: Component;
 			isActive?: boolean;
 			items?: {
 				title: string;
@@ -34,7 +35,7 @@
 								class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 							>
 								{mainItem.title}
-								<Ellipsis class="ml-auto" />
+								<EllipsisIcon class="ml-auto" />
 							</Sidebar.MenuButton>
 						{/snippet}
 					</DropdownMenu.Trigger>

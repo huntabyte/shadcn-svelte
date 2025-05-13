@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Calendar from "@lucide/svelte/icons/calendar";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import Tags from "@lucide/svelte/icons/tags";
-	import Trash from "@lucide/svelte/icons/trash";
-	import User from "@lucide/svelte/icons/user";
+	import CalendarIcon from "@lucide/svelte/icons/calendar";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import TagsIcon from "@lucide/svelte/icons/tags";
+	import TrashIcon from "@lucide/svelte/icons/trash";
+	import UserIcon from "@lucide/svelte/icons/user";
 	import { tick } from "svelte";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -47,7 +47,7 @@
 		<DropdownMenu.Trigger bind:ref={triggerRef}>
 			{#snippet child({ props })}
 				<Button variant="ghost" size="sm" {...props} aria-label="Open menu">
-					<Ellipsis />
+					<EllipsisIcon />
 				</Button>
 			{/snippet}
 		</DropdownMenu.Trigger>
@@ -55,17 +55,17 @@
 			<DropdownMenu.Group>
 				<DropdownMenu.Label>Actions</DropdownMenu.Label>
 				<DropdownMenu.Item>
-					<User class="mr-2 size-4" />
+					<UserIcon class="mr-2 size-4" />
 					Assign to...
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<Calendar class="mr-2 size-4" />
+					<CalendarIcon class="mr-2 size-4" />
 					Set due date...
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Sub>
 					<DropdownMenu.SubTrigger>
-						<Tags class="mr-2 size-4" />
+						<TagsIcon class="mr-2 size-4" />
 						Apply label
 					</DropdownMenu.SubTrigger>
 					<DropdownMenu.SubContent class="p-0">
@@ -92,7 +92,7 @@
 				</DropdownMenu.Sub>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item class="text-red-600">
-					<Trash class="mr-2 size-4" />
+					<TrashIcon class="mr-2 size-4" />
 					Delete
 					<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>

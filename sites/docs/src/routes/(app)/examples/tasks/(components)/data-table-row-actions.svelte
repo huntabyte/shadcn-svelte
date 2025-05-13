@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import type { Row } from "@tanstack/table-core";
 	import { labels } from "../(data)/data.js";
 	import { taskSchema } from "../(data)/schemas.js";
@@ -19,7 +19,7 @@
 	<DropdownMenu.Trigger>
 		{#snippet child({ props })}
 			<Button {...props} variant="ghost" class="data-[state=open]:bg-muted flex h-8 w-8 p-0">
-				<Ellipsis />
+				<EllipsisIcon />
 				<span class="sr-only">Open Menu</span>
 			</Button>
 		{/snippet}

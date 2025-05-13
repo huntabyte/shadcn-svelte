@@ -1,11 +1,11 @@
-import ArrowDown from "@lucide/svelte/icons/arrow-down";
-import ArrowRight from "@lucide/svelte/icons/arrow-right";
-import ArrowUp from "@lucide/svelte/icons/arrow-up";
-import CircleCheck from "@lucide/svelte/icons/circle-check";
-import Circle from "@lucide/svelte/icons/circle";
-import CircleOff from "@lucide/svelte/icons/circle-off";
-import CircleHelp from "@lucide/svelte/icons/circle-help";
-import Timer from "@lucide/svelte/icons/timer";
+import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
+import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
+import CircleIcon from "@lucide/svelte/icons/circle";
+import CircleOffIcon from "@lucide/svelte/icons/circle-off";
+import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
+import TimerIcon from "@lucide/svelte/icons/timer";
 
 export const labels = [
 	{
@@ -26,27 +26,27 @@ export const statuses = [
 	{
 		value: "backlog",
 		label: "Backlog",
-		icon: CircleHelp,
+		icon: CircleHelpIcon,
 	},
 	{
 		value: "todo",
 		label: "Todo",
-		icon: Circle,
+		icon: CircleIcon,
 	},
 	{
 		value: "in progress",
 		label: "In Progress",
-		icon: Timer,
+		icon: TimerIcon,
 	},
 	{
 		value: "done",
 		label: "Done",
-		icon: CircleCheck,
+		icon: CircleCheckIcon,
 	},
 	{
 		value: "canceled",
 		label: "Canceled",
-		icon: CircleOff,
+		icon: CircleOffIcon,
 	},
 ];
 
@@ -54,16 +54,16 @@ export const priorities = [
 	{
 		label: "Low",
 		value: "low",
-		icon: ArrowDown,
+		icon: ArrowDownIcon,
 	},
 	{
 		label: "Medium",
 		value: "medium",
-		icon: ArrowRight,
+		icon: ArrowRightIcon,
 	},
 	{
 		label: "High",
 		value: "high",
-		icon: ArrowUp,
+		icon: ArrowUpIcon,
 	},
 ];

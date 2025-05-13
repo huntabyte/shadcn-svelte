@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import Plus from "@lucide/svelte/icons/plus";
-	import Frame from "@lucide/svelte/icons/frame";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Map from "@lucide/svelte/icons/map";
+	import PlusIcon from "@lucide/svelte/icons/plus";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import MapIcon from "@lucide/svelte/icons/map";
 	import { toast } from "svelte-sonner";
 </script>
 
@@ -23,7 +23,7 @@
 					title="Add Project"
 					onclick={() => toast("You clicked the group action!")}
 				>
-					<Plus /> <span class="sr-only">Add Project</span>
+					<PlusIcon /> <span class="sr-only">Add Project</span>
 				</Sidebar.GroupAction>
 				<Sidebar.GroupContent>
 					<Sidebar.Menu>
@@ -31,7 +31,7 @@
 							<Sidebar.MenuButton>
 								{#snippet child({ props })}
 									<a href="##" {...props}>
-										<Frame />
+										<FrameIcon />
 										<span>Design Engineering</span>
 									</a>
 								{/snippet}
@@ -41,7 +41,7 @@
 							<Sidebar.MenuButton>
 								{#snippet child({ props })}
 									<a href="##" {...props}>
-										<ChartPie />
+										<ChartPieIcon />
 										<span>Sales & Marketing</span>
 									</a>
 								{/snippet}
@@ -51,7 +51,7 @@
 							<Sidebar.MenuButton>
 								{#snippet child({ props })}
 									<a href="##" {...props}>
-										<Map />
+										<MapIcon />
 										<span>Travel</span>
 									</a>
 								{/snippet}

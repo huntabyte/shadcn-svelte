@@ -1,18 +1,18 @@
 <script lang="ts">
-	import Bold from "@lucide/svelte/icons/bold";
-	import Italic from "@lucide/svelte/icons/italic";
-	import Underline from "@lucide/svelte/icons/underline";
+	import BoldIcon from "@lucide/svelte/icons/bold";
+	import ItalicIcon from "@lucide/svelte/icons/italic";
+	import UnderlineIcon from "@lucide/svelte/icons/underline";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 </script>
 
 <ToggleGroup.Root disabled type="single">
 	<ToggleGroup.Item value="bold" aria-label="Toggle bold">
-		<Bold class="size-4" />
+		<BoldIcon class="size-4" />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="italic" aria-label="Toggle italic">
-		<Italic class="size-4" />
+		<ItalicIcon class="size-4" />
 	</ToggleGroup.Item>
 	<ToggleGroup.Item value="strikethrough" aria-label="Toggle strikethrough">
-		<Underline class="size-4" />
+		<UnderlineIcon class="size-4" />
 	</ToggleGroup.Item>
 </ToggleGroup.Root>

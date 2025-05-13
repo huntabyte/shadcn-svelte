@@ -1,10 +1,10 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { Component } from "svelte";
 
-	// The `any` should be `Component` after @lucide/svelte updates types
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let { items }: { items: { title: string; url: string; icon: any; isActive?: boolean }[] } =
-		$props();
+	let {
+		items,
+	}: { items: { title: string; url: string; icon: Component; isActive?: boolean }[] } = $props();
 </script>
 
 <Sidebar.Menu>

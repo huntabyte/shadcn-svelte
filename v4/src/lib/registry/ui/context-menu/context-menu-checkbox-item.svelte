@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import Check from "@lucide/svelte/icons/check";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import { cn } from "$lib/utils.js";
 	import type { Snippet } from "svelte";
 
@@ -30,7 +30,7 @@
 	{#snippet children({ checked })}
 		<span class="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
 			{#if checked}
-				<Check class="size-4" />
+				<CheckIcon class="size-4" />
 			{/if}
 		</span>
 		{@render childrenProp?.()}

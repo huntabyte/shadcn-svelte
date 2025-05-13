@@ -1,13 +1,13 @@
 <script lang="ts">
-	import ChartLine from "@lucide/svelte/icons/chart-line";
-	import File from "@lucide/svelte/icons/file";
-	import Home from "@lucide/svelte/icons/home";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import ShoppingBag from "@lucide/svelte/icons/shopping-bag";
-	import ShoppingCart from "@lucide/svelte/icons/shopping-cart";
-	import User from "@lucide/svelte/icons/user";
+	import ChartLineIcon from "@lucide/svelte/icons/chart-line";
+	import FileIcon from "@lucide/svelte/icons/file";
+	import HomeIcon from "@lucide/svelte/icons/home";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import ShoppingBagIcon from "@lucide/svelte/icons/shopping-bag";
+	import ShoppingCartIcon from "@lucide/svelte/icons/shopping-cart";
+	import UserIcon from "@lucide/svelte/icons/user";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import NavMain from "./nav-main.svelte";
 	import NavSecondary from "./nav-secondary.svelte";
@@ -20,49 +20,49 @@
 			{
 				title: "Dashboard",
 				url: "/dashboard",
-				icon: Home,
+				icon: HomeIcon,
 			},
 			{
 				title: "Analytics",
 				url: "/dashboard/analytics",
-				icon: ChartLine,
+				icon: ChartLineIcon,
 			},
 			{
 				title: "Orders",
 				url: "/dashboard/orders",
-				icon: ShoppingBag,
+				icon: ShoppingBagIcon,
 			},
 			{
 				title: "Products",
 				url: "/dashboard/products",
-				icon: ShoppingCart,
+				icon: ShoppingCartIcon,
 			},
 			{
 				title: "Invoices",
 				url: "/dashboard/invoices",
-				icon: File,
+				icon: FileIcon,
 			},
 			{
 				title: "Customers",
 				url: "/dashboard/customers",
-				icon: User,
+				icon: UserIcon,
 			},
 			{
 				title: "Settings",
 				url: "/dashboard/settings",
-				icon: Settings2,
+				icon: Settings2Icon,
 			},
 		],
 		navSecondary: [
 			{
 				title: "Support",
 				url: "#",
-				icon: LifeBuoy,
+				icon: LifeBuoyIcon,
 			},
 			{
 				title: "Feedback",
 				url: "#",
-				icon: Send,
+				icon: SendIcon,
 			},
 		],
 	};

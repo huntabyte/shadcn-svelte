@@ -2,10 +2,11 @@
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import Folder from "@lucide/svelte/icons/folder";
-	import Share from "@lucide/svelte/icons/share";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import FolderIcon from "@lucide/svelte/icons/folder";
+	import ShareIcon from "@lucide/svelte/icons/share";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
+	import type { Component } from "svelte";
 
 	let {
 		projects,
@@ -13,9 +14,7 @@
 		projects: {
 			name: string;
 			url: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
+			icon: Component;
 		}[];
 	} = $props();
 
@@ -39,7 +38,7 @@
 					<DropdownMenu.Trigger>
 						{#snippet child({ props })}
 							<Sidebar.MenuAction showOnHover {...props}>
-								<Ellipsis />
+								<EllipsisIcon />
 								<span class="sr-only">More</span>
 							</Sidebar.MenuAction>
 						{/snippet}
@@ -50,16 +49,16 @@
 						align={sidebar.isMobile ? "end" : "start"}
 					>
 						<DropdownMenu.Item>
-							<Folder class="text-muted-foreground" />
+							<FolderIcon class="text-muted-foreground" />
 							<span>View Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<Share class="text-muted-foreground" />
+							<ShareIcon class="text-muted-foreground" />
 							<span>Share Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<Trash2 class="text-muted-foreground" />
+							<Trash2Icon class="text-muted-foreground" />
 							<span>Delete Project</span>
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>
@@ -68,7 +67,7 @@
 		{/each}
 		<Sidebar.MenuItem>
 			<Sidebar.MenuButton>
-				<Ellipsis />
+				<EllipsisIcon />
 				<span>More</span>
 			</Sidebar.MenuButton>
 		</Sidebar.MenuItem>

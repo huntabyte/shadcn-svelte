@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Model, ModelType } from "../(data)/models.js";
@@ -78,7 +78,7 @@
 			id={triggerId}
 		>
 			{selectedValue}
-			<ChevronsUpDown class="opacity-50" />
+			<ChevronsUpDownIcon class="opacity-50" />
 		</Popover.Trigger>
 		<Popover.Content class="w-[250px] p-0" onInteractOutside={onPopoverOutsideClick}>
 			<HoverCard.Root open={hoverCardIsOpen} openDelay={0}>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Checkbox as CheckboxPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import Check from "@lucide/svelte/icons/check";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -29,7 +29,7 @@
 			class="flex items-center justify-center text-current transition-none"
 		>
 			{#if checked}
-				<Check class="size-3.5" />
+				<CheckIcon class="size-3.5" />
 			{/if}
 		</div>
 	{/snippet}

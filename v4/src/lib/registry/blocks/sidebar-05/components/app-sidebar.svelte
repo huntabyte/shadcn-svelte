@@ -136,9 +136,9 @@
 	import SearchForm from "$lib/registry/blocks/sidebar-05/components/search-form.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
-	import Minus from "@lucide/svelte/icons/minus";
-	import Plus from "@lucide/svelte/icons/plus";
+	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+	import MinusIcon from "@lucide/svelte/icons/minus";
+	import PlusIcon from "@lucide/svelte/icons/plus";
 	import type { ComponentProps } from "svelte";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -154,7 +154,7 @@
 							<div
 								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 							>
-								<GalleryVerticalEnd class="size-4" />
+								<GalleryVerticalEndIcon class="size-4" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
 								<span class="font-semibold">Documentation</span>
@@ -177,10 +177,10 @@
 								{#snippet child({ props })}
 									<Sidebar.MenuButton {...props}>
 										{mainItem.title}
-										<Plus
+										<PlusIcon
 											class="ml-auto group-data-[state=open]/collapsible:hidden"
 										/>
-										<Minus
+										<MinusIcon
 											class="ml-auto group-data-[state=closed]/collapsible:hidden"
 										/>
 									</Sidebar.MenuButton>

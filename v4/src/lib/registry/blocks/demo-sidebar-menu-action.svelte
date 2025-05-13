@@ -1,38 +1,38 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
-	import Frame from "@lucide/svelte/icons/frame";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Map from "@lucide/svelte/icons/map";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import MapIcon from "@lucide/svelte/icons/map";
 
 	const projects = [
 		{
 			name: "Design Engineering",
 			url: "#",
-			icon: Frame,
+			icon: FrameIcon,
 		},
 		{
 			name: "Sales & Marketing",
 			url: "#",
-			icon: ChartPie,
+			icon: ChartPieIcon,
 		},
 		{
 			name: "Travel",
 			url: "#",
-			icon: Map,
+			icon: MapIcon,
 		},
 		{
 			name: "Support",
 			url: "#",
-			icon: LifeBuoy,
+			icon: LifeBuoyIcon,
 		},
 		{
 			name: "Feedback",
 			url: "#",
-			icon: Send,
+			icon: SendIcon,
 		},
 	];
 </script>
@@ -60,7 +60,7 @@
 									<DropdownMenu.Trigger>
 										{#snippet child({ props })}
 											<Sidebar.MenuAction {...props}>
-												<Ellipsis />
+												<EllipsisIcon />
 												<span class="sr-only">More</span>
 											</Sidebar.MenuAction>
 										{/snippet}

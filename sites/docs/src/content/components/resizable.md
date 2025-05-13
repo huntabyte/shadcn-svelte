@@ -29,13 +29,13 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `paneforge`:
+### Install `paneforge`:
 
-</Step>
-<PMInstall command="paneforge -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+<PMInstall command="paneforge@next -D" />
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

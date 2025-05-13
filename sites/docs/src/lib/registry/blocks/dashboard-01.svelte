@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Activity from "@lucide/svelte/icons/activity";
-	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
-	import CircleUser from "@lucide/svelte/icons/circle-user";
-	import CreditCard from "@lucide/svelte/icons/credit-card";
-	import DollarSign from "@lucide/svelte/icons/dollar-sign";
-	import Menu from "@lucide/svelte/icons/menu";
-	import Package2 from "@lucide/svelte/icons/package-2";
-	import Search from "@lucide/svelte/icons/search";
-	import Users from "@lucide/svelte/icons/users";
+	import ActivityIcon from "@lucide/svelte/icons/activity";
+	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
+	import CircleUserIcon from "@lucide/svelte/icons/circle-user";
+	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
+	import DollarSignIcon from "@lucide/svelte/icons/dollar-sign";
+	import MenuIcon from "@lucide/svelte/icons/menu";
+	import Package2Icon from "@lucide/svelte/icons/package-2";
+	import SearchIcon from "@lucide/svelte/icons/search";
+	import UsersIcon from "@lucide/svelte/icons/users";
 
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
@@ -25,7 +25,7 @@
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
 			<a href="##" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-				<Package2 class="size-6" />
+				<Package2Icon class="size-6" />
 				<span class="sr-only">Acme Inc</span>
 			</a>
 			<a href="##" class="text-foreground hover:text-foreground transition-colors">
@@ -48,7 +48,7 @@
 			<Sheet.Trigger>
 				{#snippet child({ props })}
 					<Button {...props} variant="outline" size="icon" class="shrink-0 md:hidden">
-						<Menu class="size-5" />
+						<MenuIcon class="size-5" />
 						<span class="sr-only">Toggle navigation menu</span>
 					</Button>
 				{/snippet}
@@ -56,7 +56,7 @@
 			<Sheet.Content side="left">
 				<nav class="grid gap-6 text-lg font-medium">
 					<a href="##" class="flex items-center gap-2 text-lg font-semibold">
-						<Package2 class="size-6" />
+						<Package2Icon class="size-6" />
 						<span class="sr-only">Acme Inc</span>
 					</a>
 					<a href="##" class="hover:text-foreground"> Dashboard </a>
@@ -70,7 +70,7 @@
 		<div class="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 			<form class="ml-auto flex-1 sm:flex-initial">
 				<div class="relative">
-					<Search class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
+					<SearchIcon class="text-muted-foreground absolute left-2.5 top-2.5 size-4" />
 					<Input
 						type="search"
 						placeholder="Search products..."
@@ -82,7 +82,7 @@
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
 						<Button {...props} variant="secondary" size="icon" class="rounded-full">
-							<CircleUser class="size-5" />
+							<CircleUserIcon class="size-5" />
 							<span class="sr-only">Toggle user menu</span>
 						</Button>
 					{/snippet}
@@ -108,7 +108,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-					<DollarSign class="text-muted-foreground size-4" />
+					<DollarSignIcon class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">$45,231.89</div>
@@ -121,7 +121,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-					<Users class="text-muted-foreground size-4" />
+					<UsersIcon class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+2350</div>
@@ -134,7 +134,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Sales</Card.Title>
-					<CreditCard class="text-muted-foreground size-4" />
+					<CreditCardIcon class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+12,234</div>
@@ -147,7 +147,7 @@
 			>
 				<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
 					<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-					<Activity class="text-muted-foreground size-4" />
+					<ActivityIcon class="text-muted-foreground size-4" />
 				</Card.Header>
 				<Card.Content>
 					<div class="text-2xl font-bold">+573</div>
@@ -168,7 +168,7 @@
 					</div>
 					<Button href="##" size="sm" class="ml-auto gap-1">
 						View All
-						<ArrowUpRight class="size-4" />
+						<ArrowUpRightIcon class="size-4" />
 					</Button>
 				</Card.Header>
 				<Card.Content>

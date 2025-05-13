@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Slash from "@lucide/svelte/icons/slash";
+	import SlashIcon from "@lucide/svelte/icons/slash";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 </script>
 
@@ -9,13 +9,13 @@
 			<Breadcrumb.Link href="/">Home</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<Slash />
+			<SlashIcon />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<Breadcrumb.Link href="/components">Components</Breadcrumb.Link>
 		</Breadcrumb.Item>
 		<Breadcrumb.Separator>
-			<Slash />
+			<SlashIcon />
 		</Breadcrumb.Separator>
 		<Breadcrumb.Item>
 			<Breadcrumb.Page>Breadcrumb</Breadcrumb.Page>

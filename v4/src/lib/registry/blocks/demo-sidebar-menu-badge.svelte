@@ -1,40 +1,40 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import LifeBuoy from "@lucide/svelte/icons/life-buoy";
-	import Send from "@lucide/svelte/icons/send";
-	import Frame from "@lucide/svelte/icons/frame";
-	import ChartPie from "@lucide/svelte/icons/chart-pie";
-	import Map from "@lucide/svelte/icons/map";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
+	import MapIcon from "@lucide/svelte/icons/map";
 
 	const projects = [
 		{
 			name: "Design Engineering",
 			url: "#",
-			icon: Frame,
+			icon: FrameIcon,
 			badge: "24",
 		},
 		{
 			name: "Sales & Marketing",
 			url: "#",
-			icon: ChartPie,
+			icon: ChartPieIcon,
 			badge: "12",
 		},
 		{
 			name: "Travel",
 			url: "#",
-			icon: Map,
+			icon: MapIcon,
 			badge: "3",
 		},
 		{
 			name: "Support",
 			url: "#",
-			icon: LifeBuoy,
+			icon: LifeBuoyIcon,
 			badge: "21",
 		},
 		{
 			name: "Feedback",
 			url: "#",
-			icon: Send,
+			icon: SendIcon,
 			badge: "8",
 		},
 	];

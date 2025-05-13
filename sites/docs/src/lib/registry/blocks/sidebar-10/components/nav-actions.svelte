@@ -1,77 +1,77 @@
 <script lang="ts" module>
-	import ArrowDown from "@lucide/svelte/icons/arrow-down";
-	import ArrowUp from "@lucide/svelte/icons/arrow-up";
-	import Bell from "@lucide/svelte/icons/bell";
-	import ChartLine from "@lucide/svelte/icons/chart-line";
-	import Copy from "@lucide/svelte/icons/copy";
-	import CornerUpLeft from "@lucide/svelte/icons/corner-up-left";
-	import CornerUpRight from "@lucide/svelte/icons/corner-up-right";
-	import FileText from "@lucide/svelte/icons/file-text";
-	import GalleryVerticalEnd from "@lucide/svelte/icons/gallery-vertical-end";
-	import Link from "@lucide/svelte/icons/link";
-	import Settings2 from "@lucide/svelte/icons/settings-2";
-	import Trash from "@lucide/svelte/icons/trash";
-	import Trash2 from "@lucide/svelte/icons/trash-2";
+	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
+	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
+	import BellIcon from "@lucide/svelte/icons/bell";
+	import ChartLineIcon from "@lucide/svelte/icons/chart-line";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import CornerUpLeftIcon from "@lucide/svelte/icons/corner-up-left";
+	import CornerUpRightIcon from "@lucide/svelte/icons/corner-up-right";
+	import FileTextIcon from "@lucide/svelte/icons/file-text";
+	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
+	import LinkIcon from "@lucide/svelte/icons/link";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import TrashIcon from "@lucide/svelte/icons/trash";
+	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 
 	const data = [
 		[
 			{
 				label: "Customize Page",
-				icon: Settings2,
+				icon: Settings2Icon,
 			},
 			{
 				label: "Turn into wiki",
-				icon: FileText,
+				icon: FileTextIcon,
 			},
 		],
 		[
 			{
 				label: "Copy Link",
-				icon: Link,
+				icon: LinkIcon,
 			},
 			{
 				label: "Duplicate",
-				icon: Copy,
+				icon: CopyIcon,
 			},
 			{
 				label: "Move to",
-				icon: CornerUpRight,
+				icon: CornerUpRightIcon,
 			},
 			{
 				label: "Move to Trash",
-				icon: Trash2,
+				icon: Trash2Icon,
 			},
 		],
 		[
 			{
 				label: "Undo",
-				icon: CornerUpLeft,
+				icon: CornerUpLeftIcon,
 			},
 			{
 				label: "View analytics",
-				icon: ChartLine,
+				icon: ChartLineIcon,
 			},
 			{
 				label: "Version History",
-				icon: GalleryVerticalEnd,
+				icon: GalleryVerticalEndIcon,
 			},
 			{
 				label: "Show delete pages",
-				icon: Trash,
+				icon: TrashIcon,
 			},
 			{
 				label: "Notifications",
-				icon: Bell,
+				icon: BellIcon,
 			},
 		],
 		[
 			{
 				label: "Import",
-				icon: ArrowUp,
+				icon: ArrowUpIcon,
 			},
 			{
 				label: "Export",
-				icon: ArrowDown,
+				icon: ArrowDownIcon,
 			},
 		],
 	];
@@ -81,8 +81,8 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import Star from "@lucide/svelte/icons/star";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import StarIcon from "@lucide/svelte/icons/star";
 	import { untrack } from "svelte";
 
 	let open = $state(false);
@@ -97,7 +97,7 @@
 <div class="flex items-center gap-2 text-sm">
 	<div class="text-muted-foreground hidden font-medium md:inline-block">Edit Oct 08</div>
 	<Button variant="ghost" size="icon" class="h-7 w-7">
-		<Star />
+		<StarIcon />
 	</Button>
 	<Popover.Root bind:open>
 		<Popover.Trigger>
@@ -108,7 +108,7 @@
 					size="icon"
 					class="data-[state=open]:bg-accent h-7 w-7"
 				>
-					<Ellipsis />
+					<EllipsisIcon />
 				</Button>
 			{/snippet}
 		</Popover.Trigger>

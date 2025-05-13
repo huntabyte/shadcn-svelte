@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import Clipboard from "@lucide/svelte/icons/clipboard";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import type { TooltipTriggerProps } from "bits-ui";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
@@ -60,9 +60,9 @@
 		>
 			<span class="sr-only">Copy</span>
 			{#if hasCopied}
-				<Check />
+				<CheckIcon />
 			{:else}
-				<Clipboard />
+				<ClipboardIcon />
 			{/if}
 		</Tooltip.Trigger>
 		<Tooltip.Content avoidCollisions={false}>Copy code</Tooltip.Content>

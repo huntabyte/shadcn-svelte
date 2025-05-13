@@ -1,10 +1,10 @@
 <script lang="ts">
-	import BadgeCheck from "@lucide/svelte/icons/badge-check";
-	import Bell from "@lucide/svelte/icons/bell";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import CreditCard from "@lucide/svelte/icons/credit-card";
-	import LogOut from "@lucide/svelte/icons/log-out";
-	import Sparkles from "@lucide/svelte/icons/sparkles";
+	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
+	import BellIcon from "@lucide/svelte/icons/bell";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
+	import LogOutIcon from "@lucide/svelte/icons/log-out";
+	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
@@ -34,7 +34,7 @@
 							<span class="truncate font-semibold">{user.name}</span>
 							<span class="truncate text-xs">{user.email}</span>
 						</div>
-						<ChevronsUpDown class="ml-auto size-4" />
+						<ChevronsUpDownIcon class="ml-auto size-4" />
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -59,28 +59,28 @@
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
-						<Sparkles />
+						<SparklesIcon />
 						Upgrade to Pro
 					</DropdownMenu.Item>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
-						<BadgeCheck />
+						<BadgeCheckIcon />
 						Account
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<CreditCard />
+						<CreditCardIcon />
 						Billing
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<Bell />
+						<BellIcon />
 						Notifications
 					</DropdownMenu.Item>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
-					<LogOut />
+					<LogOutIcon />
 					Log out
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

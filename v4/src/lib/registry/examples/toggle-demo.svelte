@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Bold from "@lucide/svelte/icons/bold";
+	import BoldIcon from "@lucide/svelte/icons/bold";
 	import { Toggle } from "$lib/registry/ui/toggle/index.js";
 </script>
 
 <Toggle aria-label="toggle bold">
-	<Bold class="size-4" />
+	<BoldIcon class="size-4" />
 </Toggle>

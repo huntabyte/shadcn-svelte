@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
@@ -58,7 +58,7 @@
 				aria-expanded={open}
 			>
 				{selectedValue || "Select a framework..."}
-				<ChevronsUpDown class="opacity-50" />
+				<ChevronsUpDownIcon class="opacity-50" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -76,7 +76,9 @@
 								closeAndFocusTrigger();
 							}}
 						>
-							<Check class={cn(value !== framework.value && "text-transparent")} />
+							<CheckIcon
+								class={cn(value !== framework.value && "text-transparent")}
+							/>
 							{framework.label}
 						</Command.Item>
 					{/each}

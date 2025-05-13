@@ -65,16 +65,12 @@ Instead of importing icons like so:
 
 ```ts
 import { Check } from "@lucide/svelte";
-// or
-import { Check } from "radix-icons-svelte";
 ```
 
 We now import them directly:
 
 ```ts
 import Check from "@lucide/svelte/icons/check";
-// or
-import Check from "svelte-radix/Check.svelte";
 ```
 
 With deep imports, we're preventing Vite from optimizing the entire icon collections, and instead only optimizing the icons that are actually used in your project. From what we've seen, this has a massive impact on dev server performance. Enjoy! 🚀

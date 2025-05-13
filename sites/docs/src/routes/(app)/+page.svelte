@@ -2,7 +2,6 @@
 	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/registry/examples/cards/all.svelte";
@@ -12,7 +11,8 @@
 	<Announcement />
 	<PageHeader.Heading>Build your component library</PageHeader.Heading>
 	<PageHeader.Description>
-		Beautifully designed components that you can copy and paste into your apps.
+		A set of beautifully-designed, accessible components and a code distribution platform. Open
+		Source. Open Code.
 	</PageHeader.Description>
 	<p class="text-center text-sm text-orange-700 dark:text-orange-400">
 		This is an unofficial port of <a
@@ -31,10 +31,7 @@
 	</p>
 	<PageHeader.Actions>
 		<Button href="/docs" size="sm">Get Started</Button>
-		<Button href="/blocks" variant="ghost" size="sm">
-			<Icon.GitHub class="mr-2 size-4" />
-			Browse Blocks
-		</Button>
+		<Button href="/blocks" variant="ghost" size="sm" class="rounded-md">Browse Blocks</Button>
 	</PageHeader.Actions>
 </PageHeader.Root>
 <div class="border-grid border-b">

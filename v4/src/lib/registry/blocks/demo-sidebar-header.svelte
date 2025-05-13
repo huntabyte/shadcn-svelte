@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 </script>
 
 <Sidebar.Provider>
@@ -17,7 +17,7 @@
 									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 								>
 									Select Workspace
-									<ChevronDown class="ml-auto" />
+									<ChevronDownIcon class="ml-auto" />
 								</Sidebar.MenuButton>
 							{/snippet}
 						</DropdownMenu.Trigger>

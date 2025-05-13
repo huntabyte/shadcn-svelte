@@ -3,10 +3,10 @@
 </script>
 
 <script lang="ts" generics="TData">
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
-	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
-	import ChevronsRight from "@lucide/svelte/icons/chevrons-right";
-	import ChevronsLeft from "@lucide/svelte/icons/chevrons-left";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
+	import ChevronsRightIcon from "@lucide/svelte/icons/chevrons-right";
+	import ChevronsLeftIcon from "@lucide/svelte/icons/chevrons-left";
 	import type { Table } from "@tanstack/table-core";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -54,7 +54,7 @@
 				disabled={!table.getCanPreviousPage()}
 			>
 				<span class="sr-only">Go to first page</span>
-				<ChevronsLeft />
+				<ChevronsLeftIcon />
 			</Button>
 			<Button
 				variant="outline"
@@ -63,7 +63,7 @@
 				disabled={!table.getCanPreviousPage()}
 			>
 				<span class="sr-only">Go to previous page</span>
-				<ChevronLeft />
+				<ChevronLeftIcon />
 			</Button>
 			<Button
 				variant="outline"
@@ -72,7 +72,7 @@
 				disabled={!table.getCanNextPage()}
 			>
 				<span class="sr-only">Go to next page</span>
-				<ChevronRight />
+				<ChevronRightIcon />
 			</Button>
 			<Button
 				variant="outline"
@@ -81,7 +81,7 @@
 				disabled={!table.getCanNextPage()}
 			>
 				<span class="sr-only">Go to last page</span>
-				<ChevronsRight />
+				<ChevronsRightIcon />
 			</Button>
 		</div>
 	</div>

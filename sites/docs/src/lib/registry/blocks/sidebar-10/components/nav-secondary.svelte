@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import type { ComponentProps } from "svelte";
+	import type { Component, ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -10,9 +10,7 @@
 		items: {
 			title: string;
 			url: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
+			icon: Component;
 			badge?: string;
 		}[];
 	} = $props();
