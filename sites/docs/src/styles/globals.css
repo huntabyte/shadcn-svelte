@@ -236,7 +236,7 @@
 	padding: 0 calc(var(--spacing) * 2);
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers]>.line::before {
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
 	font-size: 0.875rem;
 	color: color-mix(in oklab, var(--color-zinc-50) 40%, transparent);
 	counter-increment: line;
@@ -282,7 +282,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title]+pre {
+[data-rehype-pretty-code-title] + pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 
