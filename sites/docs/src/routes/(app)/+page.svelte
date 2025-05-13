@@ -12,7 +12,8 @@
 	<Announcement />
 	<PageHeader.Heading>Build your component library</PageHeader.Heading>
 	<PageHeader.Description>
-		Beautifully designed components that you can copy and paste into your apps.
+		A set of beautifully-designed, accessible components and a code distribution platform. Open
+		Source. Open Code.
 	</PageHeader.Description>
 	<p class="text-center text-sm text-orange-700 dark:text-orange-400">
 		This is an unofficial port of <a
@@ -31,10 +32,7 @@
 	</p>
 	<PageHeader.Actions>
 		<Button href="/docs" size="sm">Get Started</Button>
-		<Button href="/blocks" variant="ghost" size="sm">
-			<Icon.GitHub class="mr-2 size-4" />
-			Browse Blocks
-		</Button>
+		<Button href="/blocks" variant="ghost" size="sm" class="rounded-md">Browse Blocks</Button>
 	</PageHeader.Actions>
 </PageHeader.Root>
 <div class="border-grid border-b">
