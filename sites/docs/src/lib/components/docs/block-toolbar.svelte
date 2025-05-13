@@ -25,7 +25,7 @@
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 
 	const blockSource = $derived(
-		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/block/${block.name}`
+		`https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/blocks/${block.name}`
 	);
 </script>
 

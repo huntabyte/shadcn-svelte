@@ -130,10 +130,15 @@ export const Index = {
 
 	// Build style index.
 	for (const item of result.items) {
-		if (item.type === "registry:ui" || item.type === "registry:block") {
+		if (
+			item.type === "registry:ui" ||
+			item.type === "registry:block" ||
+			item.type === "registry:lib"
+		) {
 			continue;
 		}
-		const type = item.type.split(":")[1];
+		// pluralize
+		const type = item.type.split(":")[1] + "s";
 
 		const resolveFiles = item.files.map((file) => `../lib/registry/${file.path}`);
 		const componentLine =

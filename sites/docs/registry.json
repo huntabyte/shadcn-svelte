@@ -1451,7 +1451,7 @@
 			"registryDependencies": [],
 			"files": [
 				{
-					"path": "src/lib/registry/hook/is-mobile.svelte.ts",
+					"path": "src/lib/registry/hooks/is-mobile.svelte.ts",
 					"type": "registry:hook"
 				}
 			]
