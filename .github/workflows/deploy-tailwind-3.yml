@@ -48,3 +48,4 @@ jobs:
           directory: ./.svelte-kit/cloudflare
           workingDirectory: sites/docs
           deploymentName: Production Tailwind 3
+          wranglerVersion: ""
