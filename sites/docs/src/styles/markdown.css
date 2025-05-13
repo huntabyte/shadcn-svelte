@@ -1,6 +1,6 @@
 @import "./globals.css";
 
-.markdown code:not(pre code) {
+.markdown code {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
 	font-size: 0.875rem;

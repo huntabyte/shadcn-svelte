@@ -73,6 +73,18 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Tailwind v4",
+					label: "New",
+					href: "/docs/migration/tailwind-v4",
+					items: [],
+				},
+				{
+					title: "Svelte v5",
+					label: "New",
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
+				{
 					title: "Typography",
 					href: "/docs/typography",
 					items: [],
@@ -88,13 +100,6 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
-					title: "Migration",
-					label: "v5",
-					// if there is a svelte 6 migration etc point to /docs/migration
-					href: "/docs/migration/svelte-5",
-					items: [],
-				},
-				{
 					title: "About",
 					href: "/docs/about",
 					items: [],
@@ -104,12 +109,6 @@ export const docsConfig: DocsConfig = {
 		{
 			title: "Components",
 			items: [
-				{
-					title: "Sidebar",
-					href: "/docs/components/sidebar",
-					items: [],
-					label: "New",
-				},
 				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
@@ -301,6 +300,11 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Sheet",
 					href: "/docs/components/sheet",
+					items: [],
+				},
+				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
 					items: [],
 				},
 				{
