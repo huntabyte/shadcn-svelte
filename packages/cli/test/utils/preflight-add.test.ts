@@ -33,6 +33,7 @@ const configLegacy = {
 		utils: "$lib/utils",
 		ui: "$lib/components/ui",
 		hooks: "$lib/hooks",
+		lib: "$lib",
 	},
 	typescript: true,
 	registry: "https://next.shadcn-svelte.com/registry",
