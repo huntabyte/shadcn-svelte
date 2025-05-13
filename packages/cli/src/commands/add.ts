@@ -59,7 +59,7 @@ export const add = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			preflightAdd(cwd);
+			await preflightAdd(cwd);
 
 			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
