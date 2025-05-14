@@ -53,6 +53,7 @@ export async function build() {
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
 	const result = v.parse(registrySchema, {
+		$schema: "./static/schema/registry.json",
 		name: "shadcn-svelte",
 		homepage: "https://shadcn-svelte.com",
 		// TODO: remove when moving from `next` to `latest`
