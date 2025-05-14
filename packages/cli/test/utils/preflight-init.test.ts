@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { preflightInit } from "../../src/utils/preflight-init.js";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
+import { preflightInit } from "../../src/commands/init/preflight.js";
 
 vi.mock("../../src/utils/get-package-info.js");
 

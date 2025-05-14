@@ -13,6 +13,7 @@ import * as registry from "../../utils/registry/index.js";
 import { preflightAdd } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/utils.js";
+import { installDependencies } from "../../utils/install-deps.js";
 
 const addOptionsSchema = v.object({
 	components: v.optional(v.array(v.string())),
@@ -130,6 +131,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	});
 
 	tasks.push(...result.tasks);
+
+	const installTask = await installDependencies({
+		cwd,
+		prompt: options.deps,
+		dependencies: Array.from(result.dependencies),
+		devDependencies: Array.from(result.devDependencies),
+	});
+	if (installTask) tasks.push(installTask);
 
 	await p.tasks(tasks);
 

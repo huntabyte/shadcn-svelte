@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { preflightAdd } from "../../src/utils/preflight-add.js";
+import { preflightAdd } from "../../src/commands/add/preflight.js";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
 import { getRawConfig, writeConfig } from "../../src/utils/get-config.js";
 import { ConfigError } from "../../src/utils/errors.js";

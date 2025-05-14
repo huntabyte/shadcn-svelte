@@ -160,5 +160,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	return {
 		tasks,
 		skippedDeps,
+		dependencies,
+		devDependencies,
 	};
 }

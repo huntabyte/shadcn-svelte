@@ -22,6 +22,7 @@ import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { highlight } from "../../utils/utils.js";
+import { installDependencies } from "../../utils/install-deps.js";
 
 const baseColors = registry.getBaseColors();
 
@@ -361,6 +362,14 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 	});
 
 	tasks.push(...result.tasks);
+
+	const installTask = await installDependencies({
+		cwd,
+		prompt: options.deps,
+		dependencies: Array.from(result.dependencies),
+		devDependencies: Array.from(result.devDependencies),
+	});
+	if (installTask) tasks.push(installTask);
 
 	await p.tasks(tasks);
 

@@ -109,7 +109,7 @@ it("init (config-full)", async () => {
 
 	expect(exec).toHaveBeenCalledWith(
 		"pnpm",
-		["add", "-D", "tailwind-variants", "clsx", "tailwind-merge", "tw-animate-css"],
+		["add", "-D", "tailwind-variants@latest", "@lucide/svelte@latest", "tw-animate-css@latest"],
 		{ throwOnError: true, nodeOptions: { cwd: targetDir } }
 	);
 
