@@ -1,10 +1,20 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { preflightAdd } from "../../src/commands/add/preflight.js";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
-import { getRawConfig, writeConfig } from "../../src/utils/get-config.js";
+import { getConfig, writeConfig } from "../../src/utils/get-config.js";
 import { ConfigError } from "../../src/utils/errors.js";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
-import { getRaw } from "./test-helpers";
+import { getConf } from "./test-helpers";
+
+const resolvedPaths = {
+	cwd: "n/a",
+	components: "n/a",
+	hooks: "n/a",
+	lib: "n/a",
+	tailwindCss: "n/a",
+	ui: "n/a",
+	utils: "n/a",
+};
 
 const configFull = {
 	tailwind: {
@@ -18,6 +28,7 @@ const configFull = {
 		hooks: "$lib/hooks",
 		lib: "$lib",
 	},
+	resolvedPaths,
 	typescript: true,
 	registry: "https://next.shadcn-svelte.com/registry",
 };
@@ -35,6 +46,7 @@ const configLegacy = {
 		hooks: "$lib/hooks",
 		lib: "$lib",
 	},
+	resolvedPaths,
 	typescript: true,
 	registry: "https://next.shadcn-svelte.com/registry",
 };
@@ -51,7 +63,7 @@ vi.mock("../../src/utils/get-config.js", async () => ({
 		"../../src/utils/get-config.js"
 	)),
 	writeConfig: vi.fn(),
-	getRawConfig: vi.fn(),
+	getConfig: vi.fn(),
 }));
 
 describe("preflightAdd", () => {
@@ -62,14 +74,14 @@ describe("preflightAdd", () => {
 	});
 
 	it("should throw if config is missing", async () => {
-		vi.mocked(getRawConfig).mockResolvedValueOnce(await getRaw("config-none"));
+		vi.mocked(getConfig).mockResolvedValueOnce(await getConf("config-none"));
 
 		await expect(preflightAdd(mockCwd)).rejects.toThrow(ConfigError);
-		expect(getRawConfig).toHaveBeenCalledWith(mockCwd);
+		expect(getConfig).toHaveBeenCalledWith(mockCwd);
 	});
 
 	it("should pass for Tailwind v4 + Svelte v5", async () => {
-		vi.mocked(getRawConfig).mockResolvedValue(configFull);
+		vi.mocked(getConfig).mockResolvedValue(configFull);
 
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
 			dependencies: {
@@ -83,7 +95,7 @@ describe("preflightAdd", () => {
 	});
 
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
-		vi.mocked(getRawConfig).mockResolvedValue(configLegacy);
+		vi.mocked(getConfig).mockResolvedValue(configLegacy);
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
@@ -103,7 +115,7 @@ describe("preflightAdd", () => {
 	});
 
 	it("should not update config for Tailwind v3 + Svelte v5 if no style field", async () => {
-		vi.mocked(getRawConfig).mockResolvedValue(configLegacyUpdated);
+		vi.mocked(getConfig).mockResolvedValue(configLegacyUpdated);
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
@@ -126,7 +138,7 @@ describe("preflightAdd", () => {
 		];
 
 		for (const deps of testCases) {
-			vi.mocked(getRawConfig).mockResolvedValue(configFull);
+			vi.mocked(getConfig).mockResolvedValue({ ...configFull, resolvedPaths });
 			vi.mocked(loadProjectPackageInfo).mockReturnValue({
 				dependencies: deps,
 				devDependencies: {},

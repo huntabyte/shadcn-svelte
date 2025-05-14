@@ -98,6 +98,23 @@ export async function getConfig(cwd: string) {
 	return await resolveConfigPaths(cwd, config);
 }
 
+function getRawConfig(cwd: string): RawConfig | null {
+	const configPath = path.resolve(cwd, "components.json");
+	if (!fs.existsSync(configPath)) return null;
+
+	try {
+		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
+		const config = JSON.parse(configResult);
+		return v.parse(rawConfigSchema, config);
+	} catch (e) {
+		if (!(e instanceof v.ValiError)) throw e;
+		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
+	}
+}
+
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
@@ -156,7 +173,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	});
 }
 
-function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json") {
+export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json") {
 	const parsedConfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigName);
 	if (parsedConfig === null) {
 		throw error(
@@ -165,23 +182,6 @@ function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json
 	}
 
 	return parsedConfig;
-}
-
-function getRawConfig(cwd: string): RawConfig | null {
-	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return null;
-
-	try {
-		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
-		const config = JSON.parse(configResult);
-		return v.parse(rawConfigSchema, config);
-	} catch (e) {
-		if (!(e instanceof v.ValiError)) throw e;
-		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
-		throw new ConfigError(
-			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
-		);
-	}
 }
 
 export function writeConfig(cwd: string, config: RawConfig): void {

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { SITE_BASE_URL } from "../../src/constants";
-import { getConf, getRaw, resolvePath } from "./test-helpers";
+import { getConf, resolvePath } from "./test-helpers";
 
 vi.mock("tinyexec");
 
@@ -11,58 +11,13 @@ vi.mock("node:fs", async () => {
 	};
 });
 
-describe("getRawConfig", () => {
-	it("handles cases where no config is present", async () => {
-		expect(await getRaw("config-none")).toEqual(null);
-	});
-
-	// this case will be more important once we add support for
-	// partial configs via tw prefixes, tw vars, etc.
-	it("handles cases where a partial config is present", async () => {
-		expect(await getRaw("config-partial")).toEqual({
-			tailwind: {
-				css: "src/app.css",
-				baseColor: "zinc",
-			},
-			aliases: {
-				utils: "$lib/utils",
-				components: "$lib/components",
-				hooks: "$lib/hooks",
-				ui: "$lib/components/ui",
-				lib: "$lib",
-			},
-			typescript: true,
-			registry: `${SITE_BASE_URL}/registry`,
-		});
-	});
-
-	it("handles legacy tailwind v3 configs", async () => {
-		expect(await getRaw("legacy/post-init-default")).toEqual({
-			style: "default",
-			tailwind: {
-				css: "src/app.css",
-				baseColor: "zinc",
-			},
-			aliases: {
-				components: "$lib/components",
-				hooks: "$lib/hooks",
-				utils: "$lib/utils",
-				lib: "$lib",
-				ui: "$lib/components/ui",
-			},
-			typescript: true,
-			registry: `${SITE_BASE_URL}/registry`,
-		});
-	});
-
-	it("handles invalid configurations", async () => {
-		expect(getRaw("config-invalid")).rejects.toThrowError();
-	});
-});
-
 describe("getConfig", () => {
 	it("handles cases where no config is present", async () => {
 		expect(await getConf("config-none")).toEqual(null);
+	});
+
+	it("handles invalid configurations", async () => {
+		expect(getConf("config-invalid")).rejects.toThrowError();
 	});
 
 	// this case will be more important once we add support for
@@ -174,6 +129,34 @@ describe("getConfig", () => {
 			},
 			typescript: false,
 			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
+
+	it("handles legacy tailwind v3 configs", async () => {
+		expect(await getConf("legacy/post-init-default")).toEqual({
+			style: "default",
+			tailwind: {
+				css: "src/app.css",
+				baseColor: "zinc",
+			},
+			aliases: {
+				components: "$lib/components",
+				hooks: "$lib/hooks",
+				utils: "$lib/utils",
+				lib: "$lib",
+				ui: "$lib/components/ui",
+			},
+			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
+			resolvedPaths: {
+				cwd: resolvePath("../fixtures/legacy/post-init-default"),
+				components: resolvePath("../fixtures/legacy/src/lib/components"),
+				hooks: resolvePath("../fixtures/legacy/src/lib/hooks"),
+				lib: resolvePath("../fixtures/legacy/src/lib"),
+				tailwindCss: resolvePath("../fixtures/legacy/post-init-default/src/app.css"),
+				ui: resolvePath("../fixtures/legacy/src/lib/components/ui"),
+				utils: resolvePath("../fixtures/legacy/src/lib/utils"),
+			},
 		});
 	});
 });
