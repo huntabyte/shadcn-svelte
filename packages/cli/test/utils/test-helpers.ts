@@ -8,8 +8,6 @@ export const resolvePath = (path: string) => fileURLToPath(new URL(path, import.
 
 // gets the raw config from a fixture directory
 export async function getRaw(fixtureDir: string) {
-	const resolvedPath = resolvePath(`../fixtures/${fixtureDir}`);
-	console.log("RESOLVED PATH", resolvedPath);
 	return await getRawConfig(resolvePath(`../fixtures/${fixtureDir}`));
 }
 // gets the config from a fixture directory

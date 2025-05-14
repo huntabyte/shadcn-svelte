@@ -57,7 +57,6 @@ export const init = new Command()
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (opts) => {
 		intro();
-		console.log(opts);
 		const options = v.parse(initOptionsSchema, opts);
 		const cwd = path.resolve(options.cwd);
 
