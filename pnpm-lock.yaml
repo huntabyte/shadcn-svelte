@@ -85,7 +85,7 @@ importers:
         version: 8.5.3
     devDependencies:
       '@clack/prompts':
-        specifier: 1.0.0-alpha.0
+        specifier: ^1.0.0-alpha.0
         version: 1.0.0-alpha.0
       '@shadcn-svelte/registry':
         specifier: workspace:*
