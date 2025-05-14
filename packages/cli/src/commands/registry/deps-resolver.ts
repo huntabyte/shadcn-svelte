@@ -39,7 +39,7 @@ export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: 
 	const typeVersions = new Map<string, string>();
 	const require = createRequire(path.resolve(cwd, "noop.js"));
 
-	/** first pass: find highest versions for each dependency and their @types */
+	/** first pass: find highest versions for each dependency and their `@types/*` */
 	for (const [name, version] of Object.entries(dependencies ?? {})) {
 		const versioned = version ? `${name}@${version}` : name;
 		const current = highestVersions.get(name);
@@ -48,7 +48,8 @@ export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: 
 		}
 
 		// check for @types package
-		const typesName = `@types/${name.replace(/^@/, "").split("/").pop()}`;
+		// transforms orgs into the proper types package name (e.g. `@org/pkg-name` => `@types/org__pkg-name`)
+		const typesName = `@types/${name.replace(/^@(.*)\/(.*)/, "$1__$2")}`;
 		const typesVersion = dependencies?.[typesName];
 		if (typesVersion) {
 			const typesVersioned = `${typesName}@${typesVersion}`;

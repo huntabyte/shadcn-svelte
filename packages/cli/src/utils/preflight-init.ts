@@ -4,7 +4,7 @@ import { error } from "./errors";
 
 /**
  * Runs preflight checks for the `init` command.
- * `init` in this CLI version should only be run if the user has a project that
+ * `init` in this CLI version should only run if the user has a project that
  * is using Tailwind CSS v4 and Svelte v5.
  *
  * If the user is using Tailwind CSS v3 and/or Svelte v4, we need to let them
