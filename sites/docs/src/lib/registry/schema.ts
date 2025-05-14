@@ -44,8 +44,6 @@ export const blockSchema = z.object({
 			className: z.string().nullish(),
 		})
 		.optional(),
-	code: z.string(),
-	highlightedCode: z.string().default(""),
 });
 
 export type Block = z.infer<typeof blockSchema>;
