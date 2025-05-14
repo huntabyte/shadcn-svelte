@@ -1,16 +1,10 @@
 import color from "chalk";
 import { Command, Option } from "commander";
-import { exec } from "tinyexec";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import * as v from "valibot";
-import {
-	type DetectLanguageResult,
-	detectConfigs,
-	detectLanguage,
-	detectPM,
-} from "../utils/auto-detect.js";
+import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
 import { error, handleError } from "../utils/errors.js";
 import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
@@ -19,19 +13,11 @@ import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
-import { resolveCommand } from "package-manager-detector/commands";
 import { SITE_BASE_URL } from "../constants.js";
-import { transformContent } from "../utils/transformers.js";
 import { preflightInit } from "../utils/preflight-init";
-
-const PROJECT_DEPENDENCIES = [
-	"tailwind-variants",
-	"clsx",
-	"tailwind-merge",
-	"tw-animate-css",
-] as const;
-
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
+import { highlight } from "../utils/highlight";
+import { addRegistryItems } from "../utils/add-registry-items";
+import { getEnvProxy } from "../utils/get-env-proxy";
 
 const baseColors = registry.getBaseColors();
 
@@ -45,6 +31,8 @@ const initOptionsSchema = v.object({
 	hooksAlias: v.optional(v.string()),
 	uiAlias: v.optional(v.string()),
 	deps: v.boolean(),
+	overwrite: v.boolean(),
+	proxy: v.optional(v.string()),
 });
 
 type InitOptions = v.InferOutput<typeof initOptionsSchema>;
@@ -53,6 +41,7 @@ export const init = new Command()
 	.command("init")
 	.description("initialize your project and install dependencies")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
+	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--no-deps", "disable adding & installing dependencies")
 	.addOption(
 		new Option("--base-color <name>", "the base color for the components").choices(
@@ -65,8 +54,10 @@ export const init = new Command()
 	.option("--utils-alias <path>", "import alias for utils")
 	.option("--hooks-alias <path>", "import alias for hooks")
 	.option("--ui-alias <path>", "import alias for ui")
+	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (opts) => {
 		intro();
+		console.log(opts);
 		const options = v.parse(initOptionsSchema, opts);
 		const cwd = path.resolve(options.cwd);
 
@@ -300,6 +291,10 @@ function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
 }
 
 export async function runInit(cwd: string, config: Config, options: InitOptions) {
+	if (options.proxy !== undefined) {
+		process.env.HTTP_PROXY = options.proxy;
+		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);
+	}
 	const registryUrl = registry.getRegistryUrl(config);
 
 	const tasks: p.Task[] = [];
@@ -313,9 +308,8 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 		},
 	});
 
-	// Initialize project
 	tasks.push({
-		title: "Initializing project",
+		title: "Validating alias paths",
 		async task() {
 			// Ensure all resolved paths directories exist.
 			for (const [key, resolvedPath] of Object.entries(config.resolvedPaths)) {
@@ -336,59 +330,39 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 					await fs.mkdir(dirname, { recursive: true });
 				}
 			}
+			return `Alias paths validated`;
+		},
+	});
 
-			// Write css file.
+	// update stylesheet
+	tasks.push({
+		title: "Updating stylesheet",
+		async task() {
 			const baseColor = await registry.getRegistryBaseColor(
 				registryUrl,
 				config.tailwind.baseColor
 			);
+			const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
 			await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
-
-			const registryIndex = await registry.getRegistryIndex(registryUrl);
-			const items = await registry.fetchRegistryItems({
-				baseUrl: registryUrl,
-				items: registryIndex.filter((item) => item.name === "utils"),
-			});
-			const utilsItem = items[0];
-			if (utilsItem) {
-				const utilsFile = utilsItem.files[0]!;
-				let filepath = registry.resolveItemFilePath(config, utilsItem, utilsFile);
-				const utilsContent = await transformContent(utilsFile.content, filepath, config);
-
-				if (!config.typescript && filepath.endsWith(".ts")) {
-					filepath = filepath.replace(".ts", ".js");
-				}
-
-				// Write cn file.
-				await fs.writeFile(filepath, utilsContent, "utf8");
-			}
-
-			return "Project initialized";
+			return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
 		},
 	});
 
-	// Install dependencies.
-	const pm = await detectPM(cwd, options.deps);
-	if (pm) {
-		const add = resolveCommand(pm, "add", ["-D", ...PROJECT_DEPENDENCIES]);
-		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
-		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: options.deps,
-			async task() {
-				await exec(add.command, [...add.args], {
-					throwOnError: true,
-					nodeOptions: { cwd },
-				});
-				return `Dependencies installed with ${highlight(pm)}`;
-			},
-		});
-	}
+	const result = await addRegistryItems({
+		selectedItems: ["init"],
+		registryUrl,
+		config,
+		cwd,
+		deps: options.deps,
+		overwrite: options.overwrite,
+	});
+
+	tasks.push(...result.tasks);
 
 	await p.tasks(tasks);
 
 	if (!options.deps) {
-		const prettyList = prettifyList([...PROJECT_DEPENDENCIES], 7);
+		const prettyList = prettifyList([...result.skippedDeps], 7);
 		p.log.warn(
 			`shadcn-svelte has been initialized ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
