@@ -2,12 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 import * as acorn from "acorn";
-import { tsPlugin } from "@sveltejs/acorn-typescript";
-import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
+import { walk, type Node } from "estree-walker";
+import { tsPlugin } from "@sveltejs/acorn-typescript";
 import type { PackageJson } from "type-fest";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 import { toArray } from "../../utils/utils.js";
+import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
 type ResolvedDependencies = {
 	/** `<Dep@Version, Peers[]>` */
