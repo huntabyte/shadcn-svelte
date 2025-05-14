@@ -4,20 +4,24 @@ import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import * as v from "valibot";
-import { type DetectLanguageResult, detectConfigs, detectLanguage } from "../utils/auto-detect.js";
-import { error, handleError } from "../utils/errors.js";
-import type { Config } from "../utils/get-config.js";
-import * as cliConfig from "../utils/get-config.js";
-import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
+import {
+	type DetectLanguageResult,
+	detectConfigs,
+	detectLanguage,
+} from "../../utils/auto-detect.js";
+import { error, handleError } from "../../utils/errors.js";
+import type { Config } from "../../utils/get-config.js";
+import * as cliConfig from "../../utils/get-config.js";
+import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
-import * as registry from "../utils/registry/index.js";
-import { resolveImport } from "../utils/resolve-imports.js";
-import { syncSvelteKit } from "../utils/sveltekit.js";
-import { SITE_BASE_URL } from "../constants.js";
-import { preflightInit } from "../utils/preflight-init";
-import { addRegistryItems } from "../utils/add-registry-items";
-import { getEnvProxy } from "../utils/get-env-proxy";
-import { highlight } from "../utils/utils.js";
+import * as registry from "../../utils/registry/index.js";
+import { resolveImport } from "../../utils/resolve-imports.js";
+import { syncSvelteKit } from "../../utils/sveltekit.js";
+import { SITE_BASE_URL } from "../../constants.js";
+import { preflightInit } from "./preflight.js";
+import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
+import { highlight } from "../../utils/utils.js";
 
 const baseColors = registry.getBaseColors();
 

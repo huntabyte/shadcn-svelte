@@ -1,10 +1,10 @@
 import color from "chalk";
 import * as semver from "semver";
-import { loadProjectPackageInfo } from "./get-package-info.js";
-import { ConfigError, error } from "./errors.js";
-import * as cliConfig from "./get-config.js";
-import { TW3_SITE_BASE_URL } from "../constants.js";
-import { highlight } from "./utils.js";
+import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
+import { ConfigError, error } from "../../utils/errors.js";
+import * as cliConfig from "../../utils/get-config.js";
+import { TW3_SITE_BASE_URL } from "../../constants.js";
+import { highlight } from "../../utils/utils.js";
 
 /**
  * Runs preflight checks for the `add` command.

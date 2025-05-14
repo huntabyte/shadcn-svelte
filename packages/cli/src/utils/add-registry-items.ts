@@ -5,9 +5,9 @@ import merge from "deepmerge";
 import { Config } from "./get-config";
 import * as registry from "./registry";
 import * as p from "@clack/prompts";
-import { cancel, prettifyList } from "./prompt-helpers";
+import { cancel, prettifyList } from "./prompt-helpers.js";
 import { highlight } from "./utils.js";
-import { transformContent, transformCss } from "./transformers";
+import { transformContent, transformCss } from "./transformers.js";
 
 type AddRegistryItemsProps = {
 	selectedItems: string[];

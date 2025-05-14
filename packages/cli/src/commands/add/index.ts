@@ -4,15 +4,15 @@ import { existsSync } from "node:fs";
 import color from "chalk";
 import * as v from "valibot";
 import { Command } from "commander";
-import { ConfigError, error, handleError } from "../utils/errors.js";
-import * as cliConfig from "../utils/get-config.js";
-import { getEnvProxy } from "../utils/get-env-proxy.js";
-import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
+import { ConfigError, error, handleError } from "../../utils/errors.js";
+import * as cliConfig from "../../utils/get-config.js";
+import { getEnvProxy } from "../../utils/get-env-proxy.js";
+import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
-import * as registry from "../utils/registry/index.js";
-import { preflightAdd } from "../utils/preflight-add";
-import { addRegistryItems } from "../utils/add-registry-items";
-import { highlight } from "../utils/utils.js";
+import * as registry from "../../utils/registry/index.js";
+import { preflightAdd } from "./preflight.js";
+import { addRegistryItems } from "../../utils/add-registry-items.js";
+import { highlight } from "../../utils/utils.js";
 
 const addOptionsSchema = v.object({
 	components: v.optional(v.array(v.string())),

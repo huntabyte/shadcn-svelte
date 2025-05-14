@@ -1,6 +1,6 @@
 import * as semver from "semver";
-import { loadProjectPackageInfo } from "./get-package-info.js";
-import { error } from "./errors";
+import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
+import { error } from "../../utils/errors.js";
 
 /**
  * Runs preflight checks for the `init` command.
