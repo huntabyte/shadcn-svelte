@@ -75,12 +75,8 @@
 						data-rehype-pretty-code-fragment
 						class="w-full overflow-hidden [&_pre]:overflow-auto [&_pre]:!bg-black [&_pre]:py-6 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed"
 					>
-						{#await chart.highlightedCode}
-							<span>Highlighting...</span>
-						{:then highlightedCode}
-							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-							{@html highlightedCode}
-						{/await}
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html chart.highlightedCode}
 					</div>
 				</div>
 			</Tabs.Content>
