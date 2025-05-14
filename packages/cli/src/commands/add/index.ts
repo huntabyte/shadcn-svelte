@@ -123,8 +123,6 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	const result = await addRegistryItems({
 		config,
-		registryUrl,
-		cwd,
 		deps: options.deps,
 		overwrite: options.overwrite,
 		selectedItems: Array.from(selectedComponents),

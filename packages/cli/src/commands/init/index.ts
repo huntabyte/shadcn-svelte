@@ -354,9 +354,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	const result = await addRegistryItems({
 		selectedItems: ["init"],
-		registryUrl,
 		config,
-		cwd,
 		deps: options.deps,
 		overwrite: options.overwrite,
 	});

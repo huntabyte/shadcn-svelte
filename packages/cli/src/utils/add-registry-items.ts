@@ -11,10 +11,8 @@ import { transformContent, transformCss } from "./transformers.js";
 
 type AddRegistryItemsProps = {
 	selectedItems: string[];
-	registryUrl: string;
 	config: Config;
 	overwrite: boolean;
-	cwd: string;
 	deps: boolean;
 	path?: string;
 };
@@ -26,17 +24,19 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const skippedDeps = new Set<string>();
 	const selectedItems = new Set<string>(opts.selectedItems);
 	const tasks: p.Task[] = [];
+	const cwd = opts.config.resolvedPaths.cwd;
+	const registryUrl = registry.getRegistryUrl(opts.config);
 	let cssVars = {};
 
-	const registryIndex = await registry.getRegistryIndex(opts.registryUrl);
+	const registryIndex = await registry.getRegistryIndex(registryUrl);
 	const resolvedItems = await registry.resolveRegistryItems({
-		baseUrl: opts.registryUrl,
+		baseUrl: registryUrl,
 		items: Array.from(selectedItems),
 		registryIndex,
 	});
 
 	const itemsWithContent = await registry.fetchRegistryItems({
-		baseUrl: opts.registryUrl,
+		baseUrl: registryUrl,
 		items: resolvedItems,
 	});
 
@@ -44,7 +44,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	// build a list of existing items
 	const existingItems: string[] = [];
-	const targetPath = opts.path ? path.resolve(opts.cwd, opts.path) : undefined;
+	const targetPath = opts.path ? path.resolve(cwd, opts.path) : undefined;
 	for (const item of itemsWithContent) {
 		if (selectedItems.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies ?? []) {
@@ -86,7 +86,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				await fs.mkdir(aliasDir, { recursive: true });
 			}
 
-			const itemPath = path.relative(opts.cwd, path.resolve(aliasDir, item.name));
+			const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
 			if (!opts.overwrite && existingItems.includes(item.name)) {
 				if (selectedItems.has(item.name)) {
@@ -146,7 +146,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 			title: "Updating stylesheet",
 			async task() {
 				const cssPath = opts.config.resolvedPaths.tailwindCss;
-				const relative = path.relative(opts.cwd, cssPath);
+				const relative = path.relative(cwd, cssPath);
 				const cssSource = await fs.readFile(cssPath, "utf8");
 
 				const modifiedCss = transformCss(cssSource, cssVars);
