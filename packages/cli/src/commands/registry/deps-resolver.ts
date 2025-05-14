@@ -50,6 +50,7 @@ export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: 
 		const json = fs.readFileSync(pkgPath, "utf8");
 		const { peerDependencies = {}, peerDependenciesMeta = {} }: PackageJson = JSON.parse(json);
 
+		// TODO: dedupe peers with other deps with the same name :)
 		for (const [peerName, peerVersion] of Object.entries(peerDependencies)) {
 			// ignores certain peer deps and optional peer deps
 			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional)
