@@ -166,6 +166,9 @@ importers:
       '@internationalized/date':
         specifier: ^3.5.6
         version: 3.5.6
+      '@layerstack/utils':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@lucide/svelte':
         specifier: ^0.482.0
         version: 0.482.0(svelte@5.28.2)
@@ -193,6 +196,9 @@ importers:
       '@types/d3-scale':
         specifier: ^4.0.8
         version: 4.0.8
+      '@types/d3-shape':
+        specifier: ^3.1.7
+        version: 3.1.7
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -232,6 +238,9 @@ importers:
       d3-scale:
         specifier: ^4.0.2
         version: 4.0.2
+      d3-shape:
+        specifier: ^3.2.0
+        version: 3.2.0
       embla-carousel-autoplay:
         specifier: 8.1.6
         version: 8.1.6(embla-carousel@8.1.6)
@@ -250,6 +259,9 @@ importers:
       is-reference:
         specifier: ^3.0.2
         version: 3.0.3
+      layerchart:
+        specifier: 2.0.0-next.5
+        version: 2.0.0-next.5(svelte@5.28.2)
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
@@ -3476,6 +3488,11 @@ packages:
 
   known-css-properties@0.35.0:
     resolution: {integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==}
+
+  layerchart@2.0.0-next.5:
+    resolution: {integrity: sha512-o5YbOFyVA26lOaX++3P1mncq7LqgD3jpq83Z3jXbSKyfZyinP2Bknfm1tEvDPqNeKRgwMBlXglrn5oIsL+657g==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   layerchart@https://pkg.pr.new/techniq/layerchart/layerchart@5ca5943:
     resolution: {tarball: https://pkg.pr.new/techniq/layerchart/layerchart@5ca5943}
@@ -8445,6 +8462,38 @@ snapshots:
   kleur@4.1.5: {}
 
   known-css-properties@0.35.0: {}
+
+  layerchart@2.0.0-next.5(svelte@5.28.2):
+    dependencies:
+      '@dagrejs/dagre': 1.1.4
+      '@layerstack/svelte-actions': 1.0.1-next.0
+      '@layerstack/svelte-state': 0.1.0-next.1
+      '@layerstack/svelte-stores': 1.0.2-next.0
+      '@layerstack/tailwind': 2.0.0-next.2
+      '@layerstack/utils': 1.1.0-next.0
+      d3-array: 3.2.4
+      d3-color: 3.1.0
+      d3-delaunay: 6.0.4
+      d3-dsv: 3.0.1
+      d3-force: 3.0.0
+      d3-geo: 3.1.1
+      d3-geo-voronoi: 2.1.0
+      d3-hierarchy: 3.1.2
+      d3-interpolate: 3.0.1
+      d3-interpolate-path: 2.3.0
+      d3-path: 3.1.0
+      d3-quadtree: 3.0.1
+      d3-random: 3.0.1
+      d3-sankey: 0.12.3
+      d3-scale: 4.0.2
+      d3-scale-chromatic: 3.1.0
+      d3-shape: 3.2.0
+      d3-tile: 1.0.0
+      d3-time: 3.1.0
+      date-fns: 4.1.0
+      lodash-es: 4.17.21
+      runed: 0.26.0(svelte@5.28.2)
+      svelte: 5.28.2
 
   layerchart@https://pkg.pr.new/techniq/layerchart/layerchart@5ca5943(svelte@5.28.2):
     dependencies:

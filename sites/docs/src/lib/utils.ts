@@ -7,20 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
 import { persisted } from "svelte-local-storage-store";
 import type { WithElementRef } from "bits-ui";
-import type {
-	HTMLAnchorAttributes,
-	HTMLAttributes,
-	HTMLButtonAttributes,
-	HTMLImgAttributes,
-	HTMLInputAttributes,
-	HTMLLabelAttributes,
-	HTMLLiAttributes,
-	HTMLOlAttributes,
-	HTMLTableAttributes,
-	HTMLTdAttributes,
-	HTMLTextareaAttributes,
-	HTMLThAttributes,
-} from "svelte/elements";
+import type { HTMLAnchorAttributes, HTMLAttributes, HTMLImgAttributes } from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
 import { docs } from "$content/index.js";
 
@@ -265,19 +252,7 @@ export function getLiftMode(name: string) {
 export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;
 export type PrimitiveElementAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
 export type PrimitiveAnchorAttributes = WithElementRef<HTMLAnchorAttributes>;
-export type PrimitiveButtonAttributes = WithElementRef<HTMLButtonAttributes>;
-export type PrimitiveInputAttributes = WithElementRef<HTMLInputAttributes>;
-export type PrimitiveSpanAttributes = WithElementRef<HTMLAttributes<HTMLSpanElement>>;
-export type PrimitiveTextareaAttributes = WithElementRef<HTMLTextareaAttributes>;
 export type PrimitiveHeadingAttributes = WithElementRef<HTMLAttributes<HTMLHeadingElement>>;
-export type PrimitiveLiAttributes = WithElementRef<HTMLLiAttributes>;
-export type PrimitiveOlAttributes = WithElementRef<HTMLOlAttributes>;
-export type PrimitiveLabelAttributes = WithElementRef<HTMLLabelAttributes>;
-export type PrimitiveUlAttributes = WithElementRef<HTMLAttributes<HTMLUListElement>>;
-export type PrimitiveTableAttributes = WithElementRef<HTMLTableAttributes>;
-export type PrimitiveTdAttributes = WithElementRef<HTMLTdAttributes>;
-export type PrimitiveTrAttributes = WithElementRef<HTMLAttributes<HTMLTableRowElement>>;
-export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
 export type PrimitiveTableSectionAttributes = WithElementRef<
 	HTMLAttributes<HTMLTableSectionElement>
 >;
