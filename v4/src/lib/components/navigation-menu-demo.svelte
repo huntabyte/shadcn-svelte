@@ -1,8 +1,5 @@
 <script lang="ts">
 	import * as NavigationMenu from "$lib/registry/ui/navigation-menu/index.js";
-	import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
-	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
-	import CircleIcon from "@lucide/svelte/icons/circle";
 	import ListItem from "$lib/components/list-item.svelte";
 	import { navigationMenuTriggerStyle } from "$lib/registry/ui/navigation-menu";
 
@@ -50,20 +47,26 @@
 			<NavigationMenu.Item>
 				<NavigationMenu.Trigger>Getting started</NavigationMenu.Trigger>
 				<NavigationMenu.Content>
-					<ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+					<ul class="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 						<li class="row-span-3">
-							<NavigationMenu.Link
-								class="from-muted/50 to-muted bg-linear-to-b outline-hidden flex h-full w-full select-none flex-col justify-end rounded-md p-6 no-underline focus:shadow-md"
-								href="/"
-							>
-								<div class="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
-								<p class="text-muted-foreground text-sm leading-tight">
-									Beautifully designed components built with Tailwind CSS.
-								</p>
+							<NavigationMenu.Link>
+								{#snippet child()}
+									<a
+										class="from-muted/50 to-muted bg-linear-to-b outline-hidden flex h-full w-full select-none flex-col justify-end rounded-md p-6 no-underline focus:shadow-md"
+										href="/"
+									>
+										<div class="mb-2 mt-4 text-lg font-medium">
+											shadcn-svelte
+										</div>
+										<p class="text-muted-foreground text-sm leading-tight">
+											Beautifully designed components built with Tailwind CSS.
+										</p>
+									</a>
+								{/snippet}
 							</NavigationMenu.Link>
 						</li>
 						<ListItem href="/docs" title="Introduction">
-							Re-usable components built using Radix UI and Tailwind CSS.
+							Re-usable components built using Bits UI and Tailwind CSS.
 						</ListItem>
 						<ListItem href="/docs/installation" title="Installation">
 							How to install dependencies and structure your app.
@@ -77,7 +80,7 @@
 			<NavigationMenu.Item>
 				<NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
 				<NavigationMenu.Content>
-					<ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+					<ul class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 						{#each components as component (component.title)}
 							<ListItem title={component.title} href={component.href}>
 								{component.description}
@@ -87,76 +90,11 @@
 				</NavigationMenu.Content>
 			</NavigationMenu.Item>
 			<NavigationMenu.Item>
-				<NavigationMenu.Link class={navigationMenuTriggerStyle()} href="/docs">
-					Documentation
-				</NavigationMenu.Link>
-			</NavigationMenu.Item>
-		</NavigationMenu.List>
-	</NavigationMenu.Root>
-	<NavigationMenu.Root viewport={false}>
-		<NavigationMenu.List>
-			<NavigationMenu.Item>
-				<NavigationMenu.Link href="/docs" class={navigationMenuTriggerStyle()}>
-					Documentation
-				</NavigationMenu.Link>
-			</NavigationMenu.Item>
-			<NavigationMenu.Item>
-				<NavigationMenu.Trigger>List</NavigationMenu.Trigger>
-				<NavigationMenu.Content>
-					<ul class="grid w-[300px] gap-4">
-						<li>
-							<NavigationMenu.Link href="#">
-								<div class="font-medium">Components</div>
-								<div class="text-muted-foreground">
-									Browse all components in the library.
-								</div>
-							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">
-								<div class="font-medium">Documentation</div>
-								<div class="text-muted-foreground">
-									Learn how to use the library.
-								</div>
-							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">
-								<div class="font-medium">Blog</div>
-								<div class="text-muted-foreground">Read our latest blog posts.</div>
-							</NavigationMenu.Link>
-						</li>
-					</ul>
-				</NavigationMenu.Content>
-			</NavigationMenu.Item>
-			<NavigationMenu.Item>
-				<NavigationMenu.Trigger>Simple List</NavigationMenu.Trigger>
-				<NavigationMenu.Content>
-					<ul class="grid w-[200px] gap-4">
-						<li>
-							<NavigationMenu.Link href="#">Components</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">Documentation</NavigationMenu.Link>
-							<NavigationMenu.Link href="#">Blocks</NavigationMenu.Link>
-						</li>
-					</ul>
-				</NavigationMenu.Content>
-			</NavigationMenu.Item>
-			<NavigationMenu.Item>
-				<NavigationMenu.Trigger>With Icon</NavigationMenu.Trigger>
-				<NavigationMenu.Content>
-					<ul class="grid w-[200px] gap-4">
-						<li>
-							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-								<CircleHelpIcon />
-								Backlog
-							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-								<CircleIcon />
-								To Do
-							</NavigationMenu.Link>
-							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
-								<CircleCheckIcon />
-								Done
-							</NavigationMenu.Link>
-						</li>
-					</ul>
-				</NavigationMenu.Content>
+				<a href="/docs">
+					<NavigationMenu.Link class={navigationMenuTriggerStyle()}>
+						Documentation
+					</NavigationMenu.Link>
+				</a>
 			</NavigationMenu.Item>
 		</NavigationMenu.List>
 	</NavigationMenu.Root>
