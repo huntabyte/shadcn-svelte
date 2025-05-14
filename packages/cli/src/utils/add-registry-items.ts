@@ -116,7 +116,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				item.name === "init"
 					? "Setting up shadcn-svelte base configuration"
 					: `Adding ${highlight(item.name)}`,
-			// @ts-expect-error yea yea, shuddup
+			// @ts-expect-error this is intentional since we don't want to return a string during `init`
 			async task() {
 				for (const file of item.files) {
 					let filePath = registry.resolveItemFilePath(opts.config, item, file);

@@ -91,7 +91,7 @@ export const configSchema = v.object({
 export type Config = v.InferOutput<typeof configSchema>;
 
 export async function getConfig(cwd: string) {
-	const config = await getRawConfig(cwd);
+	const config = getRawConfig(cwd);
 
 	if (!config) return null;
 
@@ -109,6 +109,12 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		throw error(
 			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 		);
+	}
+
+	const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
+	for (const [alias, path] of Object.entries(config.aliases)) {
+		// @ts-expect-error simmer down
+		config.aliases[alias] = stripTrailingSlash(path);
 	}
 
 	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
@@ -150,7 +156,7 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	});
 }
 
-export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json") {
+function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json") {
 	const parsedConfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigName);
 	if (parsedConfig === null) {
 		throw error(
@@ -161,7 +167,7 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	return parsedConfig;
 }
 
-export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+function getRawConfig(cwd: string): RawConfig | null {
 	const configPath = path.resolve(cwd, "components.json");
 	if (!fs.existsSync(configPath)) return null;
 

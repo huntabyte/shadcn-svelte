@@ -17,11 +17,16 @@ export async function transformContent(content: string, filename: string, config
 	return content;
 }
 
+const aliases = ["components", "ui", "hooks", "lib"] as const;
 export function transformImports(content: string, config: Config) {
-	let str = content.replace(/\$lib\/registry\/.*\/components/g, config.aliases.components);
-	str = str.replace(/\$lib\/registry\/.*\/ui/g, config.aliases.ui);
-	str = str.replace(/\$lib\/registry\/.*\/hook/g, config.aliases.hooks);
-	str = str.replace(/\$lib\/utils/g, config.aliases.utils);
+	// utils is a special case since it points to a single file
+	let str = content.replace(/\$lib\/utils/g, config.aliases.utils);
+
+	for (const alias of aliases) {
+		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
+		str = str.replace(regex, config.aliases[alias] + "/");
+	}
+
 	return str;
 }
 

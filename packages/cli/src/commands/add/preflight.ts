@@ -15,7 +15,7 @@ import { highlight } from "../../utils/utils.js";
  */
 export async function preflightAdd(cwd: string) {
 	const pkg = loadProjectPackageInfo(cwd);
-	const config = await cliConfig.getRawConfig(cwd);
+	const config = await cliConfig.getConfig(cwd);
 	if (!config) {
 		throw new ConfigError(
 			`Configuration file is missing. Please run ${color.green("init")} to create a ${highlight("components.json")} file.`
