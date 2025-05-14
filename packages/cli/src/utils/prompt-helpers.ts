@@ -1,6 +1,6 @@
 import process from "node:process";
 import color from "chalk";
-import * as p from "./prompts.js";
+import * as p from "@clack/prompts";
 import { getPackageInfo } from "./get-package-info.js";
 
 export function intro() {

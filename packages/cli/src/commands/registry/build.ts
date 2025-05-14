@@ -5,7 +5,7 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import * as p from "../../utils/prompts.js";
+import * as p from "@clack/prompts";
 import { intro } from "../../utils/prompt-helpers.js";
 import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";

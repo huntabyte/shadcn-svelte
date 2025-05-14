@@ -12,7 +12,7 @@ import { error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
 import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
-import * as p from "../utils/prompts.js";
+import * as p from "@clack/prompts";
 import * as registry from "../utils/registry/index.js";
 import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";

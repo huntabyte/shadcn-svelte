@@ -3,7 +3,7 @@ import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
 import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
-import * as p from "./prompts.js";
+import * as p from "@clack/prompts";
 import { cancel } from "./prompt-helpers.js";
 
 const STYLESHEETS = ["app.css", "main.css", "globals.css"];

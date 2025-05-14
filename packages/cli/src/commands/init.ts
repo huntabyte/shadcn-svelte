@@ -9,7 +9,7 @@ import { error, handleError } from "../utils/errors.js";
 import type { Config } from "../utils/get-config.js";
 import * as cliConfig from "../utils/get-config.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
-import * as p from "../utils/prompts.js";
+import * as p from "@clack/prompts";
 import * as registry from "../utils/registry/index.js";
 import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
