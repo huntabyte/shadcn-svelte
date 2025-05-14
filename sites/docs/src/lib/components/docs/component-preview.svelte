@@ -14,6 +14,7 @@
 		form,
 		style,
 		component,
+		hideCode = false,
 		...restProps
 	}: Omit<PrimitiveDivAttributes, "style" | "form"> & {
 		name: keyof typeof Index;
@@ -22,6 +23,7 @@
 		form?: unknown;
 		example?: Snippet;
 		component?: Component;
+		hideCode?: boolean;
 	} = $props();
 </script>
 
@@ -43,22 +45,24 @@
 <div class={cn("group relative my-4 flex flex-col space-y-2", className)} {...restProps}>
 	<DocTabs.Root value="preview" class="relative mr-auto w-full">
 		<div class="flex items-center justify-between pb-3">
-			<DocTabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
-				<DocTabs.Trigger
-					value="preview"
-					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
-				>
-					Preview
-				</DocTabs.Trigger>
-				<DocTabs.Trigger
-					value="code"
-					class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
-				>
-					Code
-				</DocTabs.Trigger>
-			</DocTabs.List>
+			{#if !hideCode}
+				<DocTabs.List class="w-full justify-start rounded-none border-b bg-transparent p-0">
+					<DocTabs.Trigger
+						value="preview"
+						class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
+					>
+						Preview
+					</DocTabs.Trigger>
+					<DocTabs.Trigger
+						value="code"
+						class="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
+					>
+						Code
+					</DocTabs.Trigger>
+				</DocTabs.List>
+			{/if}
 		</div>
-		<DocTabs.Content value="preview" class="relative rounded-md border">
+		<DocTabs.Content value="preview" class="preview relative rounded-md border">
 			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn(
