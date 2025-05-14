@@ -25,7 +25,7 @@ const aliasSchema = (alias: string) =>
 		v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
 	);
 
-const originalConfigSchema = v.object({
+const baseConfigSchema = v.object({
 	$schema: v.optional(v.string()),
 	tailwind: v.object(
 		{
@@ -42,26 +42,32 @@ const originalConfigSchema = v.object({
 		},
 		`Missing ${color.bold("aliases")} object`
 	),
+	typescript: v.optional(v.boolean(), true),
+});
+
+const originalConfigSchema = v.object({
+	...baseConfigSchema.entries,
 	style: v.optional(v.string()),
 });
 
-const newConfigFields = v.object({
+const newConfigSchema = v.object({
+	...baseConfigSchema.entries,
 	aliases: v.object({
+		...baseConfigSchema.entries.aliases.entries,
 		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
 		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
 		lib: v.optional(aliasSchema("lib"), DEFAULT_LIB),
 	}),
-	typescript: v.optional(v.boolean(), true),
 	registry: v.optional(v.string(), `${SITE_BASE_URL}/registry`),
 });
 
 // combines the old with the new
 export const rawConfigSchema = v.object({
 	...originalConfigSchema.entries,
-	...newConfigFields.entries,
+	...newConfigSchema.entries,
 	aliases: v.object({
 		...originalConfigSchema.entries.aliases.entries,
-		...newConfigFields.entries.aliases.entries,
+		...newConfigSchema.entries.aliases.entries,
 	}),
 });
 
@@ -155,18 +161,14 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	return parsedConfig;
 }
 
-// the temp style field is so we can grab the style from the old config before it's stripped out
-export async function getRawConfig(cwd: string): Promise<(RawConfig & { style?: string }) | null> {
+export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 	const configPath = path.resolve(cwd, "components.json");
 	if (!fs.existsSync(configPath)) return null;
 
 	try {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
-		return v.parse(
-			v.object({ ...rawConfigSchema.entries, style: v.optional(v.string()) }),
-			config
-		);
+		return v.parse(rawConfigSchema, config);
 	} catch (e) {
 		if (!(e instanceof v.ValiError)) throw e;
 		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
@@ -178,7 +180,6 @@ export async function getRawConfig(cwd: string): Promise<(RawConfig & { style?: 
 
 export function writeConfig(cwd: string, config: RawConfig): void {
 	const targetPath = path.resolve(cwd, "components.json");
-	// this looks wrong but it feels so so right
-	const conf = v.parse(v.omit(rawConfigSchema, ["style"]), config);
+	const conf = v.parse(newConfigSchema, config);
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }
