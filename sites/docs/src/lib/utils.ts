@@ -1,32 +1,23 @@
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
-import { cubicOut } from "svelte/easing";
 import { derived, get, writable } from "svelte/store";
-import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 import { error } from "@sveltejs/kit";
 import { persisted } from "svelte-local-storage-store";
-import type { WithElementRef } from "bits-ui";
-import type {
-	HTMLAnchorAttributes,
-	HTMLAttributes,
-	HTMLButtonAttributes,
-	HTMLImgAttributes,
-	HTMLInputAttributes,
-	HTMLLabelAttributes,
-	HTMLLiAttributes,
-	HTMLOlAttributes,
-	HTMLTableAttributes,
-	HTMLTdAttributes,
-	HTMLTextareaAttributes,
-	HTMLThAttributes,
-} from "svelte/elements";
+import type { HTMLAnchorAttributes, HTMLAttributes, HTMLImgAttributes } from "svelte/elements";
 import type { DocResolver } from "$lib/types/docs.js";
 import { docs } from "$content/index.js";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
 
 export const isBrowser = typeof document !== "undefined";
 
@@ -139,58 +130,6 @@ export function updateTheme(activeTheme: string, path: string) {
 	}
 }
 
-type FlyAndScaleParams = {
-	y?: number;
-	x?: number;
-	start?: number;
-	duration?: number;
-};
-
-export function styleToString(style: Record<string, number | string | undefined>): string {
-	return Object.keys(style).reduce((str, key) => {
-		if (style[key] === undefined) return str;
-		return `${str}${key}:${style[key]};`;
-	}, "");
-}
-
-export function flyAndScale(
-	node: Element,
-	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
-): TransitionConfig {
-	const style = getComputedStyle(node);
-	const transform = style.transform === "none" ? "" : style.transform;
-
-	const scaleConversion = (
-		valueA: number,
-		scaleA: [number, number],
-		scaleB: [number, number]
-	) => {
-		const [minA, maxA] = scaleA;
-		const [minB, maxB] = scaleB;
-
-		const percentage = (valueA - minA) / (maxA - minA);
-		const valueB = percentage * (maxB - minB) + minB;
-
-		return valueB;
-	};
-
-	return {
-		duration: params.duration ?? 200,
-		delay: 0,
-		css: (t) => {
-			const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0]);
-			const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0]);
-			const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1]);
-
-			return styleToString({
-				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-				opacity: t,
-			});
-		},
-		easing: cubicOut,
-	};
-}
-
 type Modules = Record<string, () => Promise<unknown>>;
 
 function findMatch(slug: string, modules: Modules) {
@@ -265,19 +204,7 @@ export function getLiftMode(name: string) {
 export type PrimitiveDivAttributes = WithElementRef<HTMLAttributes<HTMLDivElement>>;
 export type PrimitiveElementAttributes = WithElementRef<HTMLAttributes<HTMLElement>>;
 export type PrimitiveAnchorAttributes = WithElementRef<HTMLAnchorAttributes>;
-export type PrimitiveButtonAttributes = WithElementRef<HTMLButtonAttributes>;
-export type PrimitiveInputAttributes = WithElementRef<HTMLInputAttributes>;
-export type PrimitiveSpanAttributes = WithElementRef<HTMLAttributes<HTMLSpanElement>>;
-export type PrimitiveTextareaAttributes = WithElementRef<HTMLTextareaAttributes>;
 export type PrimitiveHeadingAttributes = WithElementRef<HTMLAttributes<HTMLHeadingElement>>;
-export type PrimitiveLiAttributes = WithElementRef<HTMLLiAttributes>;
-export type PrimitiveOlAttributes = WithElementRef<HTMLOlAttributes>;
-export type PrimitiveLabelAttributes = WithElementRef<HTMLLabelAttributes>;
-export type PrimitiveUlAttributes = WithElementRef<HTMLAttributes<HTMLUListElement>>;
-export type PrimitiveTableAttributes = WithElementRef<HTMLTableAttributes>;
-export type PrimitiveTdAttributes = WithElementRef<HTMLTdAttributes>;
-export type PrimitiveTrAttributes = WithElementRef<HTMLAttributes<HTMLTableRowElement>>;
-export type PrimitiveThAttributes = WithElementRef<HTMLThAttributes>;
 export type PrimitiveTableSectionAttributes = WithElementRef<
 	HTMLAttributes<HTMLTableSectionElement>
 >;
