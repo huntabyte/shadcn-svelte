@@ -157,7 +157,8 @@ async function runBuild(options: BuildOptions) {
 				};
 
 				const parsedItem = v.parse(schema.registryItemSchema, resolved);
-				parsedItem["$schema"] ??= "https://shadcn-svelte.com/schema/registry-item.json";
+				parsedItem["$schema"] ??=
+					"https://next.shadcn-svelte.com/schema/registry-item.json";
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 

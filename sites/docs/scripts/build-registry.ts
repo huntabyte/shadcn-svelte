@@ -4,7 +4,7 @@ import path from "node:path";
 import * as v from "valibot";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
-import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
+import { registrySchema, type RegistryItem, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry.js";
@@ -40,6 +40,15 @@ export async function build() {
 		throw new Error(selfReferenceError);
 	}
 
+	const initItem: RegistryItem = {
+		name: "init",
+		type: "registry:style",
+		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+		registryDependencies: ["utils"],
+		files: [],
+		cssVars: {},
+	};
+
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
@@ -48,8 +57,9 @@ export async function build() {
 		homepage: "https://shadcn-svelte.com",
 		// TODO: remove when moving from `next` to `latest`
 		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
-		items: registry,
+		items: [initItem, ...registry],
 	});
+
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",
 		"registry:hook",

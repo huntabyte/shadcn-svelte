@@ -4,6 +4,13 @@
 	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
 	"items": [
 		{
+			"name": "init",
+			"type": "registry:style",
+			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+			"registryDependencies": ["utils"],
+			"files": []
+		},
+		{
 			"name": "accordion",
 			"type": "registry:ui",
 			"registryDependencies": [],
@@ -1453,6 +1460,17 @@
 				{
 					"path": "src/lib/registry/hooks/is-mobile.svelte.ts",
 					"type": "registry:hook"
+				}
+			]
+		},
+		{
+			"name": "utils",
+			"type": "registry:lib",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/lib/utils.ts",
+					"type": "registry:lib"
 				}
 			]
 		}
