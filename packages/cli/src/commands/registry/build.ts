@@ -93,7 +93,7 @@ async function runBuild(options: BuildOptions) {
 	tasks.push({
 		title: "Building registry items",
 		async task(message) {
-			const projectDeps = await resolveProjectDeps(options.cwd);
+			const projectDeps = resolveProjectDeps(options.cwd);
 
 			// apply overrides
 			if (registry.overrideDependencies) {
@@ -143,7 +143,11 @@ async function runBuild(options: BuildOptions) {
 
 						// don't add detected deps if they're already predefined
 						if (!item.dependencies)
-							fileDeps.dependencies?.forEach((dep) => dependencies.add(dep));
+							fileDeps.dependencies?.forEach((dep) => {
+								// type def packages should be inserted into dev deps
+								if (dep.startsWith("@types/")) devDependencies.add(dep);
+								else dependencies.add(dep);
+							});
 						if (!item.devDependencies)
 							fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));
 					}

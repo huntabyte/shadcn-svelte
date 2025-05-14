@@ -9,16 +9,75 @@ import type { PackageJson } from "type-fest";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 import { toArray } from "../../utils/utils.js";
 
+type ResolvedDependencies = {
+	/** `<Dep@Version, Peers[]>` */
+	deps: Record<string, string[]>;
+	/** `<Dep, Dep@Version>` */
+	versions: Record<string, string>;
+};
+
+type ProjectDependencies = {
+	dependencies: ResolvedDependencies;
+	devDependencies: ResolvedDependencies;
+};
+
 const tsParser = acorn.Parser.extend(tsPlugin());
 
-export async function resolveProjectDeps(cwd: string) {
+export function resolveProjectDeps(cwd: string): ProjectDependencies {
 	const pkg = loadProjectPackageInfo(cwd);
 
 	// Record<Dependency, [...PeerDependencies]>
 	const dependencies = resolvePeerDeps(pkg.dependencies, cwd);
 	const devDependencies = resolvePeerDeps(pkg.devDependencies, cwd);
 
-	return { dependencies, devDependencies };
+	let projectDeps = resolveTypeDeps({ dependencies, devDependencies });
+	projectDeps = resolvePeerVersions(projectDeps);
+
+	return projectDeps;
+}
+
+/**
+ * Adds a dependency's type definition package to their respective peer list (if applicable).
+ */
+function resolveTypeDeps(projectDeps: ProjectDependencies) {
+	for (const dependencies of Object.values(projectDeps)) {
+		for (const [name, versioned] of Object.entries(dependencies.versions)) {
+			const peers = dependencies.deps[versioned]!;
+			// transforms orgs into the proper types package name (e.g. `@org/pkg-name` => `@types/org__pkg-name`)
+			const typesName = `@types/${name.replace(/^@(.*)\/(.*)/, "$1__$2")}`;
+			const typesVersion =
+				projectDeps.dependencies.versions[typesName] ??
+				projectDeps.devDependencies.versions[typesName];
+
+			// if the types package exists, we'll add it to the peers
+			if (typesVersion) {
+				peers.push(typesName);
+			}
+		}
+	}
+
+	return projectDeps;
+}
+
+/**
+ * Applies version tags to the peer dependencies in their respective lists.
+ *
+ * `dependencies.deps` goes from `<DepName@Version, PeerName[]>` to `<DepName@Version, PeerName@Version[]>`
+ */
+function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDependencies {
+	for (const dependencies of Object.values(projectDeps)) {
+		for (const [name, peers] of Object.entries(dependencies.deps)) {
+			dependencies.deps[name] = peers
+				.map(
+					(peer) =>
+						projectDeps.dependencies.versions[peer] ||
+						projectDeps.devDependencies.versions[peer]
+				)
+				.filter((peer) => peer !== undefined);
+		}
+	}
+
+	return projectDeps;
 }
 
 const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
@@ -26,52 +85,23 @@ const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
 /**
  * Resolves peer dependencies from a given set of dependencies from a package.json.
  *
- * It does this by first finding the highest version of each dependency, then resolving
- * the peer dependencies from the highest versions. Optional peer dependencies are ignored.
+ * Optional peer dependencies are ignored.
  */
-export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string) {
-	const deps: Record<string, string[]> = {};
-	/** `<Dep, Dep@Version>` */
-	const versions: Record<string, string> = {};
-	/** `<DepName, HighestVersion>` */
-	const highestVersions = new Map<string, string>();
-	/** `<DepName, @types/DepName@Version>` */
-	const typeVersions = new Map<string, string>();
+function resolvePeerDeps(
+	dependencies: PackageJson["dependencies"],
+	cwd: string
+): ResolvedDependencies {
+	const deps: ResolvedDependencies["deps"] = {};
+	const versions: ResolvedDependencies["versions"] = {};
 	const require = createRequire(path.resolve(cwd, "noop.js"));
 
-	/** first pass: find highest versions for each dependency and their `@types/*` */
-	for (const [name, version] of Object.entries(dependencies ?? {})) {
-		const versioned = version ? `${name}@${version}` : name;
-		const current = highestVersions.get(name);
-		if (!current || versioned > current) {
-			highestVersions.set(name, versioned);
-		}
-
-		// check for @types package
-		// transforms orgs into the proper types package name (e.g. `@org/pkg-name` => `@types/org__pkg-name`)
-		const typesName = `@types/${name.replace(/^@(.*)\/(.*)/, "$1__$2")}`;
-		const typesVersion = dependencies?.[typesName];
-		if (typesVersion) {
-			const typesVersioned = `${typesName}@${typesVersion}`;
-			const currentTypes = typeVersions.get(name);
-			if (!currentTypes || typesVersioned > currentTypes) {
-				typeVersions.set(name, typesVersioned);
-			}
-		}
-	}
-
-	/** second pass: resolve peer dependencies using highest versions */
 	for (const [name, version] of Object.entries(dependencies ?? {})) {
 		let pkgPath: string | undefined;
+
 		const versioned = version ? `${name}@${version}` : name;
-		versions[name] = highestVersions.get(name) ?? versioned;
 		const peers = (deps[versioned] ??= []);
 
-		// add @types package if it exists
-		const typesVersion = typeVersions.get(name);
-		if (typesVersion) {
-			peers.push(typesVersion);
-		}
+		versions[name] = versioned;
 
 		const paths = require.resolve.paths(name);
 		if (!paths) continue;
@@ -88,46 +118,13 @@ export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: 
 		const json = fs.readFileSync(pkgPath, "utf8");
 		const { peerDependencies = {}, peerDependenciesMeta = {} }: PackageJson = JSON.parse(json);
 
-		for (const [peerName, peerVersion] of Object.entries(peerDependencies)) {
+		for (const [peerName] of Object.entries(peerDependencies)) {
 			// ignores certain peer deps and optional peer deps
 			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional)
 				continue;
-
-			const peerVersioned = peerVersion ? `${peerName}@${peerVersion}` : peerName;
-			const current = highestVersions.get(peerName);
-
-			// only add if this is a new peer dep or has a higher version
-			if (!current || peerVersioned > current) {
-				highestVersions.set(peerName, peerVersioned);
-				peers.push(peerVersioned);
-
-				// check for @types package for this peer dependency
-				const typesName = `@types/${peerName.replace(/^@/, "").split("/").pop()}`;
-				const typesVersion = dependencies?.[typesName];
-				if (typesVersion) {
-					const typesVersioned = `${typesName}@${typesVersion}`;
-					const currentTypes = typeVersions.get(peerName);
-					if (!currentTypes || typesVersioned > currentTypes) {
-						typeVersions.set(peerName, typesVersioned);
-						peers.push(typesVersioned);
-					}
-				}
-			} else {
-				peers.push(current);
-				// add @types for the current version if it exists
-				const typesVersion = typeVersions.get(peerName);
-				if (typesVersion) {
-					peers.push(typesVersion);
-				}
-			}
+			peers.push(peerName);
 		}
 	}
-
-	/** update versions to use highest versions */
-	for (const [name, version] of Object.entries(versions)) {
-		versions[name] = highestVersions.get(name) ?? version;
-	}
-
 	return { deps, versions };
 }
 
@@ -185,17 +182,17 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 }
 
 /** Returns an array of found deps. */
-function resolveDepsFromImport(source: string, projectDeps: ReturnType<typeof resolvePeerDeps>) {
+function resolveDepsFromImport(source: string, dependencies: ResolvedDependencies) {
 	const depsFound: string[] = [];
-	const simple = projectDeps.versions[source] ? source : undefined;
+	const simple = dependencies.versions[source] ? source : undefined;
 	const depName =
 		simple ??
 		// considers deep imports
-		Object.keys(projectDeps.versions).find((dep) => source.startsWith(dep));
+		Object.keys(dependencies.versions).find((dep) => source.startsWith(dep));
 
 	if (depName && !IGNORE_DEPS.includes(depName)) {
-		const versioned = projectDeps.versions[depName]!;
-		const peers = projectDeps.deps[versioned];
+		const versioned = dependencies.versions[depName]!;
+		const peers = dependencies.deps[versioned];
 		depsFound.push(versioned);
 		peers?.forEach((dep) => depsFound.push(dep));
 	}

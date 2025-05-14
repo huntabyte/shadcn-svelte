@@ -168,7 +168,6 @@ async function crawlBlocks(rootPath: string) {
 		if (!dirent.name.endsWith(".svelte") || !dirent.isFile()) continue;
 
 		const [name] = dirent.name.split(".svelte");
-		console.log("name", name);
 
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
