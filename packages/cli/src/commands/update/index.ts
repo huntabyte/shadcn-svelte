@@ -4,10 +4,7 @@ import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
 import merge from "deepmerge";
 import { Command } from "commander";
-import { exec } from "tinyexec";
 import * as v from "valibot";
-import semver from "semver";
-import { detectPM } from "../../utils/auto-detect.js";
 import { error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -15,10 +12,9 @@ import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
 import { transformContent, transformCss } from "../../utils/transformers.js";
-import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
-import { highlight, parseDependency } from "../../utils/utils.js";
+import { highlight } from "../../utils/utils.js";
+import { installDependencies } from "../../utils/install-deps.js";
 
 const updateOptionsSchema = v.object({
 	all: v.boolean(),
@@ -231,48 +227,13 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		});
 	}
 
-	// Install dependencies.
-	const pm = await detectPM(cwd, true);
-	if (pm) {
-		const pkg = loadProjectPackageInfo(config.resolvedPaths.cwd);
-		const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
-
-		const validateDep = (dep: string) => {
-			const { name, version } = parseDependency(dep);
-			const depVersion = semver.coerce(projectDeps[name]);
-			if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
-				return undefined;
-			}
-			return `${name}@${version}`;
-		};
-
-		const devDeps = [...devDependencies].map(validateDep).filter((d) => d !== undefined);
-		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
-
-		const deps = [...dependencies].map(validateDep).filter((d) => d !== undefined);
-		const addDeps = resolveCommand(pm, "add", deps);
-
-		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
-		tasks.push({
-			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: deps.length > 0 || devDeps.length > 0,
-			async task() {
-				if (deps.length > 0) {
-					await exec(addDeps.command, addDeps.args, {
-						throwOnError: true,
-						nodeOptions: { cwd },
-					});
-				}
-				if (devDeps.length > 0) {
-					await exec(addDevDeps.command, addDevDeps.args, {
-						throwOnError: true,
-						nodeOptions: { cwd },
-					});
-				}
-				return `Dependencies installed with ${highlight(pm)}`;
-			},
-		});
-	}
+	const installTask = await installDependencies({
+		cwd,
+		dependencies: Array.from(dependencies),
+		devDependencies: Array.from(devDependencies),
+		prompt: true,
+	});
+	if (installTask) tasks.push(installTask);
 
 	// Update the config
 	tasks.push({
