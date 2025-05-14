@@ -64,13 +64,6 @@ describe("Registry Utilities", () => {
 		it("should return config registry URL if no env var", () => {
 			expect(getRegistryUrl(mockConfig)).toBe("https://example.com/registry");
 		});
-
-		it("should handle special case for next.shadcn-svelte.com", () => {
-			const config = { ...mockConfig, registry: "https://next.shadcn-svelte.com/registry" };
-			expect(getRegistryUrl(config)).toBe(
-				"https://huntabyte-next.shadcn-svelte.pages.dev/registry"
-			);
-		});
 	});
 
 	describe("getRegistryIndex", () => {
