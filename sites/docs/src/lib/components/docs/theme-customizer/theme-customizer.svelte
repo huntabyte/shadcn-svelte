@@ -4,7 +4,7 @@
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import { IsMobile } from "$lib/registry/hook/is-mobile.svelte.js";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	const isMobile = new IsMobile();
 </script>

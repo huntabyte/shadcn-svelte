@@ -4,8 +4,8 @@ description: Displays a menu to the user — such as a set of actions or functio
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/context-menu
-  doc: https://next.bits-ui.com/docs/components/context-menu
-  api: https://next.bits-ui.com/docs/components/context-menu#api-reference
+  doc: https://bits-ui.com/docs/components/context-menu
+  api: https://bits-ui.com/docs/components/context-menu#api-reference
 ---
 
 <script>
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

@@ -4,8 +4,8 @@ description: A control that allows the user to toggle between checked and not ch
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/checkbox
-  doc: https://next.bits-ui.com/docs/components/checkbox
-  api: https://next.bits-ui.com/docs/components/checkbox#api-reference
+  doc: https://bits-ui.com/docs/components/checkbox
+  api: https://bits-ui.com/docs/components/checkbox#api-reference
 ---
 
 <script>
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

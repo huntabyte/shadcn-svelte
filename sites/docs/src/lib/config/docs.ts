@@ -1,8 +1,9 @@
 import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 
-type DocsConfig = {
+export type DocsConfig = {
 	mainNav: NavItem[];
 	sidebarNav: SidebarNavItem[];
+	// chartsNav: NavItem[]
 };
 
 export const docsConfig: DocsConfig = {
@@ -72,6 +73,18 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Tailwind v4",
+					label: "New",
+					href: "/docs/migration/tailwind-v4",
+					items: [],
+				},
+				{
+					title: "Svelte v5",
+					label: "New",
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
+				{
 					title: "Typography",
 					href: "/docs/typography",
 					items: [],
@@ -87,13 +100,6 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
-					title: "Migration",
-					label: "v5",
-					// if there is a svelte 6 migration etc point to /docs/migration
-					href: "/docs/migration/svelte-5",
-					items: [],
-				},
-				{
 					title: "About",
 					href: "/docs/about",
 					items: [],
@@ -103,12 +109,6 @@ export const docsConfig: DocsConfig = {
 		{
 			title: "Components",
 			items: [
-				{
-					title: "Sidebar",
-					href: "/docs/components/sidebar",
-					items: [],
-					label: "New",
-				},
 				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
@@ -302,6 +302,11 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+				},
+				{
 					title: "Skeleton",
 					href: "/docs/components/skeleton",
 					items: [],
@@ -336,13 +341,6 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/textarea",
 					items: [],
 				},
-				// {
-				//   title: "Toast",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
 				{
 					title: "Toggle",
 					href: "/docs/components/toggle",
@@ -356,6 +354,42 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Tooltip",
 					href: "/docs/components/tooltip",
+					items: [],
+				},
+			],
+		},
+		{
+			title: "Registry",
+			label: "New",
+			items: [
+				{
+					title: "Introduction",
+					href: "/docs/registry",
+					items: [],
+				},
+				{
+					title: "Getting Started",
+					href: "/docs/registry/getting-started",
+					items: [],
+				},
+				{
+					title: "Examples",
+					href: "/docs/registry/examples",
+					items: [],
+				},
+				{
+					title: "FAQ",
+					href: "/docs/registry/faq",
+					items: [],
+				},
+				{
+					title: "registry.json",
+					href: "/docs/registry/registry-json",
+					items: [],
+				},
+				{
+					title: "registry-item.json",
+					href: "/docs/registry/registry-item-json",
 					items: [],
 				},
 			],

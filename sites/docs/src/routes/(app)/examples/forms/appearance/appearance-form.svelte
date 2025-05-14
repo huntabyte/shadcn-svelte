@@ -15,7 +15,7 @@
 </script>
 
 <script lang="ts">
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import { browser } from "$app/environment";
@@ -52,7 +52,7 @@
 						<option value="manrope">Manrope</option>
 						<option value="system">System</option>
 					</select>
-					<ChevronDown class="absolute right-3 top-2.5 size-4 opacity-50" />
+					<ChevronDownIcon class="absolute right-3 top-2.5 size-4 opacity-50" />
 				</div>
 			{/snippet}
 		</Form.Control>

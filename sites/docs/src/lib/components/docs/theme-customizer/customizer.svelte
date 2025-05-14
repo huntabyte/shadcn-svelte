@@ -1,8 +1,8 @@
 <script lang="ts">
-	import CircleHelp from "@lucide/svelte/icons/circle-help";
-	import Moon from "@lucide/svelte/icons/moon";
-	import Repeat from "@lucide/svelte/icons/repeat";
-	import Sun from "@lucide/svelte/icons/sun";
+	import CircleHelpIcon from "@lucide/svelte/icons/circle-help";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import RepeatIcon from "@lucide/svelte/icons/repeat";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { mode, setMode } from "mode-watcher";
 	import { config } from "$lib/stores/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -30,7 +30,7 @@
 				$config.theme = "zinc";
 			}}
 		>
-			<Repeat />
+			<RepeatIcon />
 			<span class="sr-only"> Reset </span>
 		</Button>
 	</div>
@@ -40,7 +40,7 @@
 				<Label class="text-xs">Style</Label>
 				<Popover.Root>
 					<Popover.Trigger>
-						<CircleHelp class="ml-1 size-3" />
+						<CircleHelpIcon class="ml-1 size-3" />
 						<span class="sr-only">About styles</span>
 					</Popover.Trigger>
 					<Popover.Content
@@ -79,7 +79,7 @@
 							$config.theme = theme.name;
 						}}
 						class={cn("justify-start gap-0", isActive && "border-primary border-2")}
-						style="--theme-primary: hsl({theme.activeColor[$mode ?? 'dark']})"
+						style="--theme-primary: hsl({theme.activeColor[mode.current ?? 'dark']})"
 					>
 						<span
 							class="bg-(--theme-primary) mr-1 flex size-4 shrink-0 -translate-x-1 items-center justify-center rounded-full"
@@ -115,18 +115,18 @@
 					variant="outline"
 					size="sm"
 					onclick={() => setMode("light")}
-					class={cn($mode === "light" && "border-primary border-2")}
+					class={cn(mode.current === "light" && "border-primary border-2")}
 				>
-					<Sun class="mr-1 -translate-x-1" />
+					<SunIcon class="mr-1 -translate-x-1" />
 					Light
 				</Button>
 				<Button
 					variant="outline"
 					size="sm"
 					onclick={() => setMode("dark")}
-					class={cn($mode === "dark" && "border-primary border-2")}
+					class={cn(mode.current === "dark" && "border-primary border-2")}
 				>
-					<Moon class="mr-1 -translate-x-1" />
+					<MoonIcon class="mr-1 -translate-x-1" />
 					Dark
 				</Button>
 			</div>

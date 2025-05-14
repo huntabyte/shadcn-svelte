@@ -7,7 +7,7 @@ links:
 
 <script>
   import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
-  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '$lib/registry/example'
+  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '$lib/registry/examples'
 </script>
 
 <ComponentPreview name="badge-demo">
@@ -24,7 +24,9 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

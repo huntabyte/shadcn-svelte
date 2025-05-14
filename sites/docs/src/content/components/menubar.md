@@ -4,8 +4,8 @@ description: A visually persistent menu common in desktop applications that prov
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/menubar
-  doc: https://next.bits-ui.com/docs/components/menubar
-  api: https://next.bits-ui.com/docs/components/menubar#api-reference
+  doc: https://bits-ui.com/docs/components/menubar
+  api: https://bits-ui.com/docs/components/menubar#api-reference
 ---
 
 <script>
@@ -24,13 +24,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

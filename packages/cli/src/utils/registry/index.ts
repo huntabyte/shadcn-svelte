@@ -6,8 +6,7 @@ import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
-import * as schemas from "./schema.js";
-import type { RegistryIndex, RegistryItem, RegistryItemType, RegistryIndexItem } from "./schema.js";
+import * as schemas from "@shadcn-svelte/registry";
 
 export function getRegistryUrl(config: Config) {
 	let url = process.env.COMPONENTS_REGISTRY_URL;
@@ -53,18 +52,20 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {
-		throw error(`Failed to fetch base color from registry. Error: ${err}`);
+		throw error(
+			`Failed to fetch base color from registry. ${err instanceof Error ? err.message : err}`
+		);
 	}
 }
 
 type ResolveRegistryItemsProps = {
 	baseUrl: string;
-	registryIndex: RegistryIndex;
+	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	includeRegDeps?: boolean;
 };
 
-type ResolvedRegistryItem = RegistryItem | RegistryIndexItem;
+type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
 	registryIndex,
 	baseUrl,
@@ -93,7 +94,7 @@ export async function resolveRegistryItems({
 
 		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && resolvedItem.registryDependencies.length > 0) {
+		if (includeRegDeps && resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
 				baseUrl,
 				registryIndex: registryIndex,
@@ -113,7 +114,7 @@ type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
 export async function fetchRegistryItems({
 	baseUrl,
 	items,
-}: FetchTreeProps): Promise<RegistryItem[]> {
+}: FetchTreeProps): Promise<schemas.RegistryItem[]> {
 	const itemsWithContent = items.filter((item) => !("relativeUrl" in item));
 	const itemsToFetch = items.filter((item) => "relativeUrl" in item);
 
@@ -126,18 +127,6 @@ export async function fetchRegistryItems({
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
-}
-
-export function getItemTargetPath(config: Config, item: RegistryItem, override?: string) {
-	// Allow overrides for all items but ui.
-	if (override && item.type !== "registry:ui") {
-		return override;
-	}
-
-	const [, type] = item.type.split(":");
-	if (!type || !(type in config.resolvedPaths)) return null;
-
-	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
 }
 
 async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
@@ -164,23 +153,58 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry. Error: ${e}`);
+		throw error(`Failed to fetch registry. ${e instanceof Error ? `Error: ${e.message}` : e}`);
 	}
 }
 
-export function getRegistryItemTargetPath(
-	config: Config,
-	type: RegistryItemType,
-	override?: string
-) {
+export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, override?: string) {
 	if (override) return override;
 
 	if (type === "registry:ui") return config.resolvedPaths.ui;
-	if (type === "registry:block" || type === "registry:component" || type === "registry:page") {
+	if (type === "registry:lib") return config.resolvedPaths.lib;
+	if (type === "registry:hook") return config.resolvedPaths.hooks;
+
+	if (type === "registry:block" || type === "registry:component") {
 		return config.resolvedPaths.components;
 	}
-	if (type === "registry:hook") return config.resolvedPaths.hooks;
-	// TODO - we put this in components for now but will move to the appropriate route location
-	// depending on if using SvelteKit or whatever
-	return config.resolvedPaths.components;
+	if (type === "registry:file" || type === "registry:page") {
+		return config.resolvedPaths.cwd;
+	}
+
+	throw new Error(`TODO: unhandled item type ${type}`);
+}
+
+export function resolveItemFilePath(
+	config: Config,
+	item: schemas.RegistryItem,
+	file: schemas.RegistryItemFile
+): string {
+	const aliasDir = getItemAliasDir(config, item.type);
+	if (file.target) {
+		// resolves relative to the root (cwd)
+		if (file.target.startsWith("~/")) {
+			return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
+		}
+		// resolves relative to the item's dir
+		return path.resolve(aliasDir, file.target);
+	}
+
+	// inserted as grouped files
+	if (
+		file.type === "registry:ui" ||
+		file.type === "registry:component" ||
+		file.type === "registry:block"
+	) {
+		// resolves to `[alias]/[registry-item]/[file]`
+		return path.resolve(aliasDir, item.name, file.name);
+	}
+
+	// inserted as single files
+	if (file.type === "registry:hook" || file.type === "registry:lib") {
+		// resolves to `[alias]/[filename]`
+		return path.resolve(aliasDir, file.name);
+	}
+
+	// TODO: keep going
+	throw new Error(`TODO: unhandled file type ${file.type}`);
 }

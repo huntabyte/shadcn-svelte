@@ -28,7 +28,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
  * @type {import('rehype-pretty-code').Options}
  */
 const prettyCodeOptions = {
-	theme: "github-dark",
+	theme: "github-dark-default",
 	getHighlighter: (options) =>
 		getHighlighter({
 			...options,
@@ -40,6 +40,7 @@ const prettyCodeOptions = {
 				import("shiki/langs/svelte.mjs"),
 				import("shiki/langs/shellscript.mjs"),
 				import("shiki/langs/markdown.mjs"),
+				import("shiki/langs/json.mjs"),
 			],
 		}),
 	keepBackground: false,

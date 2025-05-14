@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PMBlock from "./pm-block.svelte";
-	export let command: string;
+	let { command }: { command: string } = $props();
 </script>
 
 <PMBlock type="create" {command} />

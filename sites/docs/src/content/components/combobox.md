@@ -24,8 +24,8 @@ See installation instructions for the [Popover](/docs/components/popover#install
 
 ```svelte
 <script lang="ts">
-  import Check from "@lucide/svelte/icons/check";
-  import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+  import CheckIcon from "@lucide/svelte/icons/check";
+  import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
   import { tick } from "svelte";
   import * as Command from "$lib/components/ui/command/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
@@ -85,7 +85,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
         aria-expanded={open}
       >
         {selectedValue || "Select a framework..."}
-        <ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
+        <ChevronsUpDownIcon class="ml-2 size-4 shrink-0 opacity-50" />
       </Button>
     {/snippet}
   </Popover.Trigger>
@@ -103,7 +103,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
                 closeAndFocusTrigger();
               }}
             >
-              <Check
+              <CheckIcon
                 class={cn(
                   "mr-2 size-4",
                   value !== framework.value && "text-transparent"

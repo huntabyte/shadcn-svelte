@@ -19,7 +19,7 @@ How you add the ` dark` class to the `html` element is up to you. In this guide,
 
 Start by installing `mode-watcher`:
 
-<PMInstall command="mode-watcher" />
+<PMInstall command="mode-watcher@0.5.1" />
 
 ### Add the ModeWatcher component
 
@@ -27,6 +27,7 @@ Import the `ModeWatcher` component and use it in your root layout:
 
 ```svelte title="src/routes/+layout.svelte"
 <script lang="ts">
+  import "../app.css";
   import { ModeWatcher } from "mode-watcher";
   let { children } = $props();
 </script>

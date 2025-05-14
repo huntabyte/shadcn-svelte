@@ -11,17 +11,10 @@ export async function syncSvelteKit(cwd: string) {
 		// we'll exit early since syncing is rather slow
 		if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
 
-		let agent = await detect({ cwd });
+		const agent = (await detect({ cwd }))?.agent ?? "npm";
+		const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
 
-		agent ??= { agent: "npm", name: "npm" };
-
-		const cmd = resolveCommand(agent.agent, "execute-local", ["svelte-kit", "sync"]);
-		if (cmd) {
-			await exec(cmd.command, cmd.args, {
-				throwOnError: true,
-				nodeOptions: { cwd },
-			});
-		}
+		await exec(cmd.command, cmd.args, { throwOnError: true, nodeOptions: { cwd } });
 	}
 }
 

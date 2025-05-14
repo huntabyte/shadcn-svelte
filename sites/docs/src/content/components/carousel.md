@@ -30,13 +30,13 @@ The carousel component is built using the [Embla Carousel](https://www.embla-car
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `embla-carousel-svelte`:
+### Install `embla-carousel-svelte`:
 
-</Step>
 <PMInstall command="embla-carousel-svelte -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

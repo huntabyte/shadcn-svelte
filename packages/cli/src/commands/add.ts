@@ -1,10 +1,12 @@
-import color from "chalk";
-import { Command } from "commander";
-import { exec } from "tinyexec";
-import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { existsSync, promises as fs } from "node:fs";
+import color from "chalk";
 import * as v from "valibot";
+import semver from "semver";
+import merge from "deepmerge";
+import { exec } from "tinyexec";
+import { Command } from "commander";
 import { detectPM } from "../utils/auto-detect.js";
 import { ConfigError, error, handleError } from "../utils/errors.js";
 import * as cliConfig from "../utils/get-config.js";
@@ -12,9 +14,11 @@ import { getEnvProxy } from "../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
-import { transformContent } from "../utils/transformers.js";
+import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
+import { parseDependency } from "../utils/utils.js";
+import { loadProjectPackageInfo } from "../utils/get-package-info.js";
 
 const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
@@ -35,7 +39,7 @@ export const add = new Command()
 	.command("add")
 	.description("add components to your project")
 	.argument("[components...]", "the components to add or a url to the component")
-	.option("-c, --cwd <cwd>", "the working directory", process.cwd())
+	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("--no-deps", "skips adding & installing package dependencies")
 	.option("-a, --all", "install all components to your project", false)
 	.option("-y, --yes", "skip confirmation prompt", false)
@@ -91,11 +95,15 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 		const components = await p.multiselect({
 			message: `Which ${highlight("components")} would you like to install?`,
 			maxItems: 10,
-			options: shadcnIndex.map(({ name, dependencies, registryDependencies }) => {
-				const deps = [...(options.deps ? dependencies : []), ...registryDependencies];
+			options: shadcnIndex.map((item) => {
+				let deps: string[] = [...(item.registryDependencies ?? [])];
+				if (options.deps) {
+					deps = deps.concat(item.dependencies ?? []);
+					deps = deps.concat(item.devDependencies ?? []);
+				}
 				return {
-					label: name,
-					value: name,
+					label: item.name,
+					value: item.name,
 					hint: deps.length ? `also installs: ${deps.join(", ")}` : undefined,
 				};
 			}),
@@ -123,19 +131,17 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	// build a list of existing components
 	const existingComponents: string[] = [];
+	// TODO: deal with this stupid `--path` option
 	const targetPath = options.path ? path.resolve(cwd, options.path) : undefined;
 	for (const item of itemsWithContent) {
 		if (selectedComponents.has(item.name) === false) continue;
-		for (const regDep of item.registryDependencies) {
+		for (const regDep of item.registryDependencies ?? []) {
 			selectedComponents.add(regDep);
 		}
 
-		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
-
-		if (targetDir === null) continue;
-
 		const componentExists = item.files.some((file) => {
-			return existsSync(path.resolve(targetDir, file.target));
+			const filePath = registry.resolveItemFilePath(config, item, file);
+			return existsSync(filePath);
 		});
 		if (componentExists) {
 			existingComponents.push(item.name);
@@ -172,17 +178,17 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	const skippedDeps = new Set<string>();
 	const dependencies = new Set<string>();
+	const devDependencies = new Set<string>();
 	const tasks: p.Task[] = [];
+	let cssVars = {};
 
 	for (const item of itemsWithContent) {
-		const targetDir = registry.getRegistryItemTargetPath(config, item.type, targetPath);
-		if (targetDir === null) continue;
-
-		if (!existsSync(targetDir)) {
-			await fs.mkdir(targetDir, { recursive: true });
+		const aliasDir = registry.getItemAliasDir(config, item.type, targetPath);
+		if (!existsSync(aliasDir)) {
+			await fs.mkdir(aliasDir, { recursive: true });
 		}
 
-		const componentPath = path.relative(cwd, path.resolve(targetDir, item.name));
+		const componentPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 
 		if (!options.overwrite && existingComponents.includes(item.name)) {
 			// Only confirm overwrites for selected components and not transitive dependencies
@@ -207,19 +213,19 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 		// Add dependencies to the install list
 		if (options.deps) {
-			item.dependencies.forEach((dep) => dependencies.add(dep));
+			item.dependencies?.forEach((dep) => dependencies.add(dep));
+			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 		} else {
-			item.dependencies.forEach((dep) => skippedDeps.add(dep));
+			item.dependencies?.forEach((dep) => skippedDeps.add(dep));
+			item.devDependencies?.forEach((dep) => devDependencies.add(dep));
 		}
 
 		// Install Component
 		tasks.push({
 			title: `Installing ${highlight(item.name)}`,
 			async task() {
-				let pageName: string | undefined;
 				for (const file of item.files) {
-					const targetDir = registry.getRegistryItemTargetPath(config, file.type);
-					let filePath = path.resolve(targetDir, file.target);
+					let filePath = registry.resolveItemFilePath(config, item, file);
 
 					// Run transformers.
 					const content = await transformContent(file.content, filePath, config);
@@ -231,20 +237,13 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 					if (!config.typescript && filePath.endsWith(".ts")) {
 						filePath = filePath.replace(".ts", ".js");
-						file.target = file.target.replace(".ts", ".js");
 					}
 
-					await fs.writeFile(filePath, content);
-					if (file.type === "registry:page") {
-						pageName = file.target;
-					}
+					await fs.writeFile(filePath, content, "utf8");
 				}
-				if (item.type === "registry:block") {
-					const blockPath = path.relative(cwd, targetDir);
-					if (pageName) {
-						return `${highlight(item.name)} page installed at ${color.gray(`${blockPath}/${pageName}`)}`;
-					}
-					return `${highlight(item.name)} components installed at ${color.gray(blockPath)}.`;
+
+				if (item.cssVars) {
+					cssVars = merge(cssVars, item.cssVars);
 				}
 
 				return `${highlight(item.name)} installed at ${color.gray(componentPath)}`;
@@ -255,13 +254,41 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 	// Install dependencies.
 	const pm = await detectPM(cwd, options.deps);
 	if (pm) {
-		const add = resolveCommand(pm, "add", ["-D", ...dependencies]);
-		if (!add) throw error(`Could not detect a package manager in ${cwd}.`);
+		const pkg = loadProjectPackageInfo(config.resolvedPaths.cwd);
+		const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
+
+		const validateDep = (dep: string) => {
+			const { name, version } = parseDependency(dep);
+			const depVersion = semver.coerce(projectDeps[name]);
+			if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
+				return undefined;
+			}
+			return `${name}@${version}`;
+		};
+
+		const devDeps = [...devDependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDevDeps = resolveCommand(pm, "add", ["-D", ...devDeps]);
+
+		const deps = [...dependencies].map(validateDep).filter((d) => d !== undefined);
+		const addDeps = resolveCommand(pm, "add", deps);
+
+		if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
 		tasks.push({
 			title: `${highlight(pm)}: Installing dependencies`,
-			enabled: dependencies.size > 0,
+			enabled: deps.length > 0 || devDeps.length > 0,
 			async task() {
-				await exec(add.command, add.args, { throwOnError: true, nodeOptions: { cwd } });
+				if (deps.length > 0) {
+					await exec(addDeps.command, addDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
+				if (devDeps.length > 0) {
+					await exec(addDevDeps.command, addDevDeps.args, {
+						throwOnError: true,
+						nodeOptions: { cwd },
+					});
+				}
 				return `Dependencies installed with ${highlight(pm)}`;
 			},
 		});
@@ -275,6 +302,23 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 			return `Config file ${highlight("components.json")} updated`;
 		},
 	});
+
+	if (Object.keys(cssVars).length > 0) {
+		// Update the stylesheet
+		tasks.push({
+			title: "Updating stylesheet",
+			async task() {
+				const cssPath = config.resolvedPaths.tailwindCss;
+				const relative = path.relative(cwd, cssPath);
+				const cssSource = await fs.readFile(cssPath, "utf8");
+
+				const modifiedCss = transformCss(cssSource, cssVars);
+				await fs.writeFile(cssPath, modifiedCss, "utf8");
+
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		});
+	}
 
 	await p.tasks(tasks);
 

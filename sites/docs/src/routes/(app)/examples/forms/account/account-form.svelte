@@ -38,8 +38,8 @@
 
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import {
@@ -146,7 +146,7 @@
 					>
 						{languages.find((lang) => lang.value === $formData.language)?.label ||
 							"Select a language"}
-						<ChevronsUpDown class="opacity-50" />
+						<ChevronsUpDownIcon class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -165,7 +165,7 @@
 									validate("language");
 								}}
 							>
-								<Check
+								<CheckIcon
 									class={cn(
 										language.value === $formData.language
 											? "opacity-100"

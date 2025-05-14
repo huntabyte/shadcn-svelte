@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
@@ -14,7 +14,7 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "secondary" })}>
 		<span class="sr-only">Actions</span>
-		<Ellipsis />
+		<EllipsisIcon />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
 		<DropdownMenu.Item onSelect={() => (open = true)}>

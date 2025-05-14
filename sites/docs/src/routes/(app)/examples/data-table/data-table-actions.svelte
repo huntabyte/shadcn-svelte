@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
@@ -14,7 +14,7 @@
 		})}
 	>
 		<span class="sr-only">Open menu</span>
-		<Ellipsis />
+		<EllipsisIcon />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import Check from "@lucide/svelte/icons/check";
-	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import { tick } from "svelte";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
@@ -103,7 +103,7 @@
 				<Avatar.Fallback>SC</Avatar.Fallback>
 			</Avatar.Root>
 			{selectedTeam.label}
-			<ChevronsUpDown class="ml-auto size-4 shrink-0 opacity-50" />
+			<ChevronsUpDownIcon class="ml-auto size-4 shrink-0 opacity-50" />
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
 			<Command.Root>
@@ -130,7 +130,7 @@
 										<Avatar.Fallback>SC</Avatar.Fallback>
 									</Avatar.Root>
 									{team.label}
-									<Check
+									<CheckIcon
 										class={cn(
 											"ml-auto size-4",
 											selectedTeam.value !== team.value && "text-transparent"
@@ -150,7 +150,7 @@
 								showTeamDialog = true;
 							}}
 						>
-							<CirclePlus class="mr-2 size-5" />
+							<CirclePlusIcon class="mr-2 size-5" />
 							Create Team
 						</Command.Item>
 					</Command.Group>

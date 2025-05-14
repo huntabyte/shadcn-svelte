@@ -12,9 +12,9 @@ The `components.json` file holds configuration for your project.
 We use it to understand how your project is set up and how to generate components customized for your project.
 
 <Callout class="mt-6">
-  Note: The <code>components.json</code> file is optional and **only required if you're
-  using the CLI** to add components to your project. If you're using the copy
-  and paste method, you don't need this file.
+
+Note: The `components.json` file is optional and **only required if you're using the CLI** to add components to your project. If you're using the copy and paste method, you don't need this file.
+
 </Callout>
 
 You can create a `components.json` file in your project by running the following command:
@@ -54,18 +54,6 @@ The style for your components. **This cannot be changed after initialization.**
 Configuration to help the CLI understand how Tailwind CSS is set up in your project.
 
 See the [installation section](/docs/installation) for how to set up Tailwind CSS.
-
-### tailwind.config
-
-Path to where your `tailwind.config.js` file is located.
-
-```json title="components.json"
-{
-  "tailwind": {
-    "config": "tailwind.config.js" | "tailwind.config.ts"
-  }
-}
-```
 
 ### tailwind.css
 

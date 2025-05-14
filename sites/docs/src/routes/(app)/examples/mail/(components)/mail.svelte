@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Search from "@lucide/svelte/icons/search";
+	import SearchIcon from "@lucide/svelte/icons/search";
 	import { primaryRoutes, secondaryRoutes } from "../config.js";
 	import { mailStore } from "../store.js";
 	import type { Account, Mail } from "../data.js";
@@ -99,7 +99,7 @@
 					>
 						<form>
 							<div class="relative">
-								<Search
+								<SearchIcon
 									class="text-muted-foreground absolute left-2 top-[50%] size-4 translate-y-[-50%]"
 								/>
 								<Input placeholder="Search" class="pl-8" />

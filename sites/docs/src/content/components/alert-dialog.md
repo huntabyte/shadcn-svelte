@@ -4,8 +4,8 @@ description: A modal dialog that interrupts the user with important content and 
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/alert-dialog
-  doc: https://next.bits-ui.com/docs/components/alert-dialog
-  api: https://next.bits-ui.com/docs/components/alert-dialog#api-reference
+  doc: https://bits-ui.com/docs/components/alert-dialog
+  api: https://bits-ui.com/docs/components/alert-dialog#api-reference
 ---
 
 <script>
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>
