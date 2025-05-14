@@ -47,7 +47,7 @@ describe("transformImports", () => {
 
 	it("transforms hook imports correctly", () => {
 		const content =
-			'import { IsMobile } from "$lib/registry/default/hook/is-mobile.svelte.js";';
+			'import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";';
 		expect(transformImports(content, mockConfig)).toBe(expected);
 	});
@@ -61,7 +61,7 @@ describe("transformImports", () => {
 	it("handles multiple imports in the same file", () => {
 		const content = `
       import { Button } from "$lib/registry/default/components/button";
-      import { IsMobile } from "$lib/registry/default/hook/is-mobile.svelte.js";
+      import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";
       import { cn } from "$lib/utils";
     `;
 		const expected = `
@@ -193,7 +193,7 @@ describe("transformImports with more custom paths", () => {
 
 	it("transforms hook imports with custom paths", () => {
 		const content =
-			'import { IsMobile } from "$lib/registry/default/hook/is-mobile.svelte.js";';
+			'import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "@hooks/is-mobile.svelte.js";';
 		expect(transformImports(content, customConfig)).toBe(expected);
 	});
@@ -207,7 +207,7 @@ describe("transformImports with more custom paths", () => {
 	it("handles multiple imports with custom paths", () => {
 		const content = `
       import { Button } from "$lib/registry/default/components/button";
-      import { IsMobile } from "$lib/registry/default/hook/is-mobile.svelte.js";
+      import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";
       import { cn } from "$lib/utils";
     `;
 		const expected = `
