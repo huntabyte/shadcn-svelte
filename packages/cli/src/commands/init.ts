@@ -99,8 +99,22 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 		}
 	}
 
+	if (options.libAlias) {
+		const validationResult = validateImportAlias(options.libAlias, langConfig);
+		if (validationResult) {
+			throw error(validationResult);
+		}
+	}
+
 	if (options.componentsAlias) {
 		const validationResult = validateImportAlias(options.componentsAlias, langConfig);
+		if (validationResult) {
+			throw error(validationResult);
+		}
+	}
+
+	if (options.uiAlias) {
+		const validationResult = validateImportAlias(options.uiAlias, langConfig);
 		if (validationResult) {
 			throw error(validationResult);
 		}
@@ -113,8 +127,8 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 		}
 	}
 
-	if (options.libAlias) {
-		const validationResult = validateImportAlias(options.libAlias, langConfig);
+	if (options.hooksAlias) {
+		const validationResult = validateImportAlias(options.hooksAlias, langConfig);
 		if (validationResult) {
 			throw error(validationResult);
 		}
@@ -178,12 +192,30 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		globalCss = input;
 	}
 
+	// Lib Alias
+	let libAlias = options.libAlias;
+	if (libAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("lib")}:`,
+			initialValue: defaultConfig?.aliases.lib ?? "$lib",
+			placeholder: cliConfig.DEFAULT_LIB,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		libAlias = input;
+	}
+
+	// infers the alias from `lib`. if `lib = $lib` then suggest `alias = $lib/alias`
+	const inferAlias = (alias: string) => `${libAlias}/${alias}`;
+
 	// Components Alias
 	let componentAlias = options.componentsAlias;
 	if (componentAlias === undefined) {
 		const promptResult = await p.text({
 			message: `Configure the import alias for ${highlight("components")}:`,
-			initialValue: defaultConfig?.aliases.components ?? cliConfig.DEFAULT_COMPONENTS,
+			initialValue: defaultConfig?.aliases.components ?? inferAlias("components"),
 			placeholder: cliConfig.DEFAULT_COMPONENTS,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});
@@ -192,10 +224,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 
 		componentAlias = promptResult;
 	}
-
-	// infers the alias from `components`. if `components = $lib/components` then suggest `alias = $lib/alias`
-	const inferAlias = (alias: string) =>
-		`${componentAlias.split("/").slice(0, -1).join("/")}/${alias}`;
 
 	// Utils Alias
 	let utilsAlias = options.utilsAlias;
@@ -210,21 +238,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		if (p.isCancel(input)) cancel();
 
 		utilsAlias = input;
-	}
-
-	// Lib Alias
-	let libAlias = options.libAlias;
-	if (libAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("lib")}:`,
-			initialValue: defaultConfig?.aliases.lib ?? "$lib",
-			placeholder: cliConfig.DEFAULT_LIB,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		libAlias = input;
 	}
 
 	// Hooks Alias
