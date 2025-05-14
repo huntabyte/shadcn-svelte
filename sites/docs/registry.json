@@ -352,6 +352,33 @@
 			]
 		},
 		{
+			"name": "chart",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/chart/chart-container.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-style.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-tooltip.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-utils.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
 			"name": "checkbox",
 			"type": "registry:ui",
 			"registryDependencies": [],
