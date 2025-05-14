@@ -8,8 +8,11 @@
 		sideOffset = 0,
 		side = "top",
 		children,
+		arrowClasses,
 		...restProps
-	}: TooltipPrimitive.ContentProps = $props();
+	}: TooltipPrimitive.ContentProps & {
+		arrowClasses?: string;
+	} = $props();
 </script>
 
 <TooltipPrimitive.Portal>
@@ -33,7 +36,8 @@
 						side === "top" && "translate-x-1/2 translate-y-[calc(-50%_+_2px)]",
 						side === "bottom" && "-translate-x-1/2 -translate-y-[calc(-50%_+_1px)]",
 						side === "right" && "translate-x-[calc(50%_+_2px)] translate-y-1/2",
-						side === "left" && "-translate-y-[calc(50%_-_3px)]"
+						side === "left" && "-translate-y-[calc(50%_-_3px)]",
+						arrowClasses
 					)}
 					{...props}
 				></div>

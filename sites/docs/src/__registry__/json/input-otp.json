@@ -1,0 +1,41 @@
+{
+	"name": "input-otp",
+	"type": "registry:ui",
+	"devDependencies": [
+		"@lucide/svelte@^0.482.0",
+		"bits-ui@^1.4.7"
+	],
+	"files": [
+		{
+			"name": "index.ts",
+			"content": "import Root from \"./input-otp.svelte\";\nimport Group from \"./input-otp-group.svelte\";\nimport Slot from \"./input-otp-slot.svelte\";\nimport Separator from \"./input-otp-separator.svelte\";\n\nexport {\n\tRoot,\n\tGroup,\n\tSlot,\n\tSeparator,\n\tRoot as InputOTP,\n\tGroup as InputOTPGroup,\n\tSlot as InputOTPSlot,\n\tSeparator as InputOTPSeparator,\n};\n",
+			"type": "registry:ui",
+			"target": "input-otp/index.ts"
+		},
+		{
+			"name": "input-otp-group.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"input-otp-group\"\n\tclass={cn(\"flex items-center\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "input-otp/input-otp-group.svelte"
+		},
+		{
+			"name": "input-otp-separator.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport type { WithElementRef } from \"$lib/utils.js\";\n\timport DotIcon from \"@lucide/svelte/icons/dot\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div bind:this={ref} data-slot=\"input-otp-separator\" role=\"separator\" {...restProps}>\n\t{#if children}\n\t\t{@render children?.()}\n\t{:else}\n\t\t<DotIcon />\n\t{/if}\n</div>\n",
+			"type": "registry:ui",
+			"target": "input-otp/input-otp-separator.svelte"
+		},
+		{
+			"name": "input-otp-slot.svelte",
+			"content": "<script lang=\"ts\">\n\timport { PinInput as InputOTPPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tcell,\n\t\tclass: className,\n\t\t...restProps\n\t}: InputOTPPrimitive.CellProps = $props();\n</script>\n\n<InputOTPPrimitive.Cell\n\t{cell}\n\tbind:ref\n\tdata-slot=\"input-otp-slot\"\n\tclass={cn(\n\t\t\"border-input aria-invalid:border-destructive dark:bg-input/30 relative flex size-10 items-center justify-center border-y border-r text-sm outline-none transition-all first:rounded-l-md first:border-l last:rounded-r-md\",\n\t\tcell.isActive &&\n\t\t\t\"border-ring ring-ring/50 aria-invalid:border-destructive dark:aria-invalid:ring-destructive/40 aria-invalid:ring-destructive/20 ring-offset-background z-10 ring-[3px]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{cell.char}\n\t{#if cell.hasFakeCaret}\n\t\t<div class=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n\t\t\t<div class=\"animate-caret-blink bg-foreground h-4 w-px duration-1000\"></div>\n\t\t</div>\n\t{/if}\n</InputOTPPrimitive.Cell>\n",
+			"type": "registry:ui",
+			"target": "input-otp/input-otp-slot.svelte"
+		},
+		{
+			"name": "input-otp.svelte",
+			"content": "<script lang=\"ts\">\n\timport { PinInput as InputOTPPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: InputOTPPrimitive.RootProps = $props();\n</script>\n\n<InputOTPPrimitive.Root\n\tbind:ref\n\tbind:value\n\tdata-slot=\"input-otp\"\n\tclass={cn(\n\t\t\"has-disabled:opacity-50 flex items-center gap-2 [&_input]:disabled:cursor-not-allowed\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "input-otp/input-otp.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

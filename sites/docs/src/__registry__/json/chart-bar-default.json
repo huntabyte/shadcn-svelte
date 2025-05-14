@@ -1,0 +1,22 @@
+{
+	"name": "chart-bar-default",
+	"type": "registry:block",
+	"devDependencies": [
+		"d3-scale@^4.0.2",
+		"layerchart@2.0.0-next.5",
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"chart",
+		"card"
+	],
+	"files": [
+		{
+			"name": "chart-bar-default.svelte",
+			"content": "<script lang=\"ts\">\n\timport { scaleBand } from \"d3-scale\";\n\timport { BarChart, type ChartContextValue } from \"layerchart\";\n\timport TrendingUpIcon from \"@lucide/svelte/icons/trending-up\";\n\timport * as Chart from \"$lib/registry/ui/chart/index.js\";\n\timport * as Card from \"$lib/registry/ui/card/index.js\";\n\timport { cubicInOut } from \"svelte/easing\";\n\n\tconst chartData = [\n\t\t{ month: \"January\", desktop: 186 },\n\t\t{ month: \"February\", desktop: 305 },\n\t\t{ month: \"March\", desktop: 237 },\n\t\t{ month: \"April\", desktop: 73 },\n\t\t{ month: \"May\", desktop: 209 },\n\t\t{ month: \"June\", desktop: 214 },\n\t];\n\n\tconst chartConfig = {\n\t\tdesktop: { label: \"Desktop\", color: \"var(--chart-1)\" },\n\t} satisfies Chart.ChartConfig;\n\n\tlet context = $state<ChartContextValue>();\n</script>\n\n<Card.Root>\n\t<Card.Header>\n\t\t<Card.Title>Bar Chart</Card.Title>\n\t\t<Card.Description>January - June 2024</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<Chart.Container config={chartConfig}>\n\t\t\t<BarChart\n\t\t\t\tbind:context\n\t\t\t\tdata={chartData}\n\t\t\t\txScale={scaleBand().padding(0.25)}\n\t\t\t\tx=\"month\"\n\t\t\t\taxis=\"x\"\n\t\t\t\tseries={[{ key: \"desktop\", label: \"Desktop\", color: chartConfig.desktop.color }]}\n\t\t\t\tprops={{\n\t\t\t\t\tbars: {\n\t\t\t\t\t\tstroke: \"none\",\n\t\t\t\t\t\trounded: \"all\",\n\t\t\t\t\t\tradius: 8,\n\t\t\t\t\t\t// use the height of the chart to animate the bars\n\t\t\t\t\t\tinitialY: context?.height,\n\t\t\t\t\t\tinitialHeight: 0,\n\t\t\t\t\t\tmotion: {\n\t\t\t\t\t\t\tx: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t\twidth: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t\theight: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t\ty: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\thighlight: { area: { fill: \"none\" } },\n\t\t\t\t\txAxis: { format: (d) => d.slice(0, 3) },\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{#snippet tooltip()}\n\t\t\t\t\t<Chart.Tooltip hideLabel />\n\t\t\t\t{/snippet}\n\t\t\t</BarChart>\n\t\t</Chart.Container>\n\t</Card.Content>\n\t<Card.Footer>\n\t\t<div class=\"flex w-full items-start gap-2 text-sm\">\n\t\t\t<div class=\"grid gap-2\">\n\t\t\t\t<div class=\"flex items-center gap-2 font-medium leading-none\">\n\t\t\t\t\tTrending up by 5.2% this month <TrendingUpIcon class=\"size-4\" />\n\t\t\t\t</div>\n\t\t\t\t<div class=\"text-muted-foreground flex items-center gap-2 leading-none\">\n\t\t\t\t\tShowing total visitors for the last 6 months\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:block",
+			"target": "chart-bar-default.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

@@ -73,6 +73,7 @@
 		"[&_.lc-axis-tick-label]:fill-muted-foreground [&_.lc-axis-tick-label]:font-normal",
 		"[&_.lc-tooltip-rects-g]:fill-transparent",
 		"[&_.lc-layout-svg-g]:fill-transparent",
+		"[&_.lc-root-container]:w-full",
 		className
 	)}
 	{...restProps}

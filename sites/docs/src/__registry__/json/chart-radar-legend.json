@@ -1,0 +1,23 @@
+{
+	"name": "chart-radar-legend",
+	"type": "registry:block",
+	"devDependencies": [
+		"layerchart@2.0.0-next.5",
+		"@lucide/svelte@^0.482.0",
+		"d3-shape@^3.2.0",
+		"d3-scale@^4.0.2"
+	],
+	"registryDependencies": [
+		"chart",
+		"card"
+	],
+	"files": [
+		{
+			"name": "chart-radar-legend.svelte",
+			"content": "<script lang=\"ts\">\n\timport { LineChart } from \"layerchart\";\n\timport TrendingUpIcon from \"@lucide/svelte/icons/trending-up\";\n\timport { curveLinearClosed } from \"d3-shape\";\n\timport { scaleBand } from \"d3-scale\";\n\timport * as Chart from \"$lib/registry/ui/chart/index.js\";\n\timport * as Card from \"$lib/registry/ui/card/index.js\";\n\n\tconst chartData = [\n\t\t{ month: \"January\", desktop: 186, mobile: 80 },\n\t\t{ month: \"February\", desktop: 305, mobile: 200 },\n\t\t{ month: \"March\", desktop: 237, mobile: 120 },\n\t\t{ month: \"April\", desktop: 73, mobile: 190 },\n\t\t{ month: \"May\", desktop: 209, mobile: 130 },\n\t\t{ month: \"June\", desktop: 214, mobile: 140 },\n\t];\n\n\tconst chartConfig = {\n\t\tdesktop: { label: \"Desktop\", color: \"var(--chart-1)\" },\n\t\tmobile: { label: \"Mobile\", color: \"var(--chart-2)\" },\n\t} satisfies Chart.ChartConfig;\n</script>\n\n<Card.Root>\n\t<Card.Header class=\"items-center\">\n\t\t<Card.Title>Radar Chart - Legend</Card.Title>\n\t\t<Card.Description>Showing total visitors for the last 6 months</Card.Description>\n\t</Card.Header>\n\t<Card.Content class=\"flex-1\">\n\t\t<Chart.Container config={chartConfig} class=\"mx-auto aspect-square max-h-[250px]\">\n\t\t\t<LineChart\n\t\t\t\tdata={chartData}\n\t\t\t\tseries={[\n\t\t\t\t\t{\n\t\t\t\t\t\tkey: \"desktop\",\n\t\t\t\t\t\tlabel: \"Desktop\",\n\t\t\t\t\t\tcolor: chartConfig.desktop.color,\n\t\t\t\t\t\tprops: {\n\t\t\t\t\t\t\tfill: chartConfig.desktop.color,\n\t\t\t\t\t\t\tfillOpacity: 0.6,\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\tkey: \"mobile\",\n\t\t\t\t\t\tlabel: \"Mobile\",\n\t\t\t\t\t\tcolor: chartConfig.mobile.color,\n\t\t\t\t\t\tprops: {\n\t\t\t\t\t\t\tfill: chartConfig.mobile.color,\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t]}\n\t\t\t\tradial\n\t\t\t\tx=\"month\"\n\t\t\t\txScale={scaleBand()}\n\t\t\t\tpadding={8}\n\t\t\t\tlegend={{ classes: { root: \"-bottom-5\" } }}\n\t\t\t\tprops={{\n\t\t\t\t\tspline: {\n\t\t\t\t\t\tcurve: curveLinearClosed,\n\t\t\t\t\t\tstroke: \"0\",\n\t\t\t\t\t\tmotion: \"tween\",\n\t\t\t\t\t},\n\t\t\t\t\txAxis: {\n\t\t\t\t\t\ttickLength: -8,\n\t\t\t\t\t},\n\t\t\t\t\tyAxis: {\n\t\t\t\t\t\tformat: () => \"\",\n\t\t\t\t\t},\n\t\t\t\t\tgrid: {\n\t\t\t\t\t\tradialY: \"linear\",\n\t\t\t\t\t},\n\t\t\t\t\ttooltip: {\n\t\t\t\t\t\tcontext: {\n\t\t\t\t\t\t\tmode: \"voronoi\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\thighlight: {\n\t\t\t\t\t\tlines: false,\n\t\t\t\t\t\tpoints: { r: 4 },\n\t\t\t\t\t},\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{#snippet tooltip()}\n\t\t\t\t\t<Chart.Tooltip />\n\t\t\t\t{/snippet}\n\t\t\t</LineChart>\n\t\t</Chart.Container>\n\t</Card.Content>\n\t<Card.Footer class=\"flex-col gap-2 pt-4 text-sm\">\n\t\t<div class=\"flex items-center gap-2 font-medium leading-none\">\n\t\t\tTrending up by 5.2% this month <TrendingUpIcon class=\"size-4\" />\n\t\t</div>\n\t\t<div class=\"text-muted-foreground flex items-center gap-2 leading-none\">\n\t\t\tJanuary - June 2024\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:block",
+			"target": "chart-radar-legend.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}
