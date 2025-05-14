@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getPayloadConfigFromPayload, useChart, type TooltipPayload } from "./chart-utils.js";
 	import { getTooltipContext, Tooltip as TooltipPrimitive } from "layerchart";
