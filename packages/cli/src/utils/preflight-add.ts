@@ -3,8 +3,8 @@ import * as semver from "semver";
 import { loadProjectPackageInfo } from "./get-package-info.js";
 import { ConfigError, error } from "./errors.js";
 import * as cliConfig from "./get-config.js";
-import { highlight } from "./highlight.js";
-import { TW3_SITE_BASE_URL } from "../constants";
+import { TW3_SITE_BASE_URL } from "../constants.js";
+import { highlight } from "./utils.js";
 
 /**
  * Runs preflight checks for the `add` command.

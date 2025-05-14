@@ -15,9 +15,9 @@ import { resolveImport } from "../utils/resolve-imports.js";
 import { syncSvelteKit } from "../utils/sveltekit.js";
 import { SITE_BASE_URL } from "../constants.js";
 import { preflightInit } from "../utils/preflight-init";
-import { highlight } from "../utils/highlight";
 import { addRegistryItems } from "../utils/add-registry-items";
 import { getEnvProxy } from "../utils/get-env-proxy";
+import { highlight } from "../utils/utils.js";
 
 const baseColors = registry.getBaseColors();
 

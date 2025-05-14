@@ -11,8 +11,8 @@ import { cancel, intro, prettifyList } from "../utils/prompt-helpers.js";
 import * as p from "../utils/prompts.js";
 import * as registry from "../utils/registry/index.js";
 import { preflightAdd } from "../utils/preflight-add";
-import { highlight } from "../utils/highlight";
 import { addRegistryItems } from "../utils/add-registry-items";
+import { highlight } from "../utils/utils.js";
 
 const addOptionsSchema = v.object({
 	components: v.optional(v.array(v.string())),

@@ -18,8 +18,7 @@ import { transformContent, transformCss } from "../utils/transformers.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import { checkPreconditions } from "../utils/preconditions.js";
 import { loadProjectPackageInfo } from "../utils/get-package-info.js";
-import { parseDependency } from "../utils/utils.js";
-import { highlight } from "../utils/highlight.js";
+import { highlight, parseDependency } from "../utils/utils.js";
 
 const updateOptionsSchema = v.object({
 	all: v.boolean(),

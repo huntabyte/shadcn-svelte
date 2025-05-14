@@ -10,6 +10,7 @@ import { intro } from "../../utils/prompt-helpers.js";
 import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
+import { SITE_BASE_URL } from "../../constants.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -150,6 +151,7 @@ async function runBuild(options: BuildOptions) {
 
 				const resolved = {
 					...item,
+					$schema: `${SITE_BASE_URL}/schema/registry-item.json`,
 					registryDependencies: toArray(registryDependencies),
 					dependencies: toArray(dependencies),
 					devDependencies: toArray(devDependencies),
@@ -157,8 +159,6 @@ async function runBuild(options: BuildOptions) {
 				};
 
 				const parsedItem = v.parse(schema.registryItemSchema, resolved);
-				parsedItem["$schema"] ??=
-					"https://next.shadcn-svelte.com/schema/registry-item.json";
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 

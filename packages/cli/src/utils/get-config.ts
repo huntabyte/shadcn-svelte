@@ -7,7 +7,7 @@ import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
 import { SITE_BASE_URL } from "../constants.js";
-import { highlight } from "./highlight";
+import { highlight } from "./utils.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
