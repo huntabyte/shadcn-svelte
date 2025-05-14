@@ -117,24 +117,20 @@ export const Index = {`;
 
 	// Build style index.
 	for (const item of result.items) {
-		if (item.type === "registry:ui" || item.type === "registry:block") {
+		if (item.type !== "registry:example") {
 			continue;
 		}
 		// pluralize
 		const type = item.type.split(":")[1] + "s";
 
 		const resolveFiles = item.files.map((file) => file.path.replace("src/", "../"));
-		const componentLine =
-			item.type === "registry:hook"
-				? "component: () => {}"
-				: `component: () => import("../lib/registry/${type}/${item.name}.svelte").then((m) => m.default)`;
 
 		index += `
 "${item.name}": {
 	name: "${item.name}",
 	type: "${item.type}",
 	registryDependencies: ${JSON.stringify(item.registryDependencies)},
-	${componentLine},
+	component: () => import("../lib/registry/${type}/${item.name}.svelte").then((m) => m.default),
 	files: [${resolveFiles.map((file) => `"${file.replaceAll(path.sep, "/")}"`)}],
 	raw: () => import("../lib/registry/${type}/${item.name}.svelte?raw").then((m) => m.default),
 },`;
