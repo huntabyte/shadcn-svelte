@@ -81,7 +81,7 @@
 }
 
 [data-rehype-pretty-code-figure] .line--highlighted {
-	background-color: color-mix(in oklab, var(--color-zinc-700), 50);
+	background-color: color-mix(in oklab, var(--color-zinc-700) 50%, transparent);
 }
 
 [data-rehype-pretty-code-figure] .with--meta {
@@ -94,8 +94,8 @@
 
 [data-rehype-pretty-code-figure] .chars--highlighted {
 	border-radius: var(--radius-md);
-	border-color: color-mix(in oklab, var(--color-zinc-700) / 70);
-	background-color: color-mix(in oklab, var(--color-zinc-500) / 50);
+	border-color: color-mix(in oklab, var(--color-zinc-700) 70%, transparent);
+	background-color: color-mix(in oklab, var(--color-zinc-500) 50%, transparent);
 	padding: var(--spacing);
 }
 

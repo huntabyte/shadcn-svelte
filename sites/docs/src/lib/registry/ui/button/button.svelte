@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { WithElementRef } from "bits-ui";
+	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 	import { type VariantProps, tv } from "tailwind-variants";
 
@@ -40,8 +40,6 @@
 </script>
 
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-
 	let {
 		class: className,
 		variant = "default",

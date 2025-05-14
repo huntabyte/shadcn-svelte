@@ -5,13 +5,6 @@
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 
-	type Props = {
-		album: Album;
-		aspectRatio?: "portrait" | "square";
-		width: number;
-		height: number;
-	} & PrimitiveDivAttributes;
-
 	let {
 		album,
 		class: className,
@@ -19,7 +12,12 @@
 		width,
 		height,
 		...restProps
-	}: Props = $props();
+	}: {
+		album: Album;
+		aspectRatio?: "portrait" | "square";
+		width: number;
+		height: number;
+	} & PrimitiveDivAttributes = $props();
 </script>
 
 <div class={cn("space-y-3", className)} {...restProps}>
