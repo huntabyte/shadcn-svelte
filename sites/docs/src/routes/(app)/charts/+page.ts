@@ -2,6 +2,7 @@ import { registryItemSchema } from "@shadcn-svelte/registry";
 import type { PageLoad } from "./$types.js";
 import * as v from "valibot";
 import { highlightCode } from "$lib/highlight-code.js";
+
 export const prerender = true;
 
 export const load: PageLoad = async () => {
