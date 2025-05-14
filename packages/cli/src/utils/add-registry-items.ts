@@ -116,6 +116,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				item.name === "init"
 					? "Setting up shadcn-svelte base configuration"
 					: `Adding ${highlight(item.name)}`,
+			// @ts-expect-error yea yea, shuddup
 			async task() {
 				for (const file of item.files) {
 					let filePath = registry.resolveItemFilePath(opts.config, item, file);
@@ -136,6 +137,12 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 				if (item.cssVars) {
 					cssVars = merge(cssVars, item.cssVars);
+				}
+
+				if (item.name !== "init") {
+					const aliasDir = registry.getItemAliasDir(opts.config, item.type, targetPath);
+					const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
+					return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 				}
 			},
 		});
