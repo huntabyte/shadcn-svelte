@@ -23,7 +23,7 @@ export async function resolveProjectDeps(cwd: string) {
 
 const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
 
-function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string) {
+export function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string) {
 	const deps: Record<string, string[]> = {};
 	/** `<Dep, Dep@Version>` */
 	const versions: Record<string, string> = {};
@@ -48,11 +48,12 @@ function resolvePeerDeps(dependencies: PackageJson["dependencies"], cwd: string)
 		if (!pkgPath) continue;
 
 		const json = fs.readFileSync(pkgPath, "utf8");
-		const { peerDependencies = {} }: PackageJson = JSON.parse(json);
+		const { peerDependencies = {}, peerDependenciesMeta = {} }: PackageJson = JSON.parse(json);
 
 		for (const [peerName, peerVersion] of Object.entries(peerDependencies)) {
-			// ignores certain peer deps
-			if (IGNORE_DEPS.includes(peerName)) continue;
+			// ignores certain peer deps and optional peer deps
+			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional)
+				continue;
 			const peerVersioned = peerVersion ? `${peerName}@${peerVersion}` : peerName;
 			peers.push(peerVersioned);
 		}
