@@ -217,7 +217,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	if (libAlias === undefined) {
 		const input = await p.text({
 			message: `Configure the import alias for ${highlight("lib")}:`,
-			initialValue: defaultConfig?.aliases.lib ?? inferAlias(""),
+			initialValue: defaultConfig?.aliases.lib ?? "$lib",
 			placeholder: cliConfig.DEFAULT_LIB,
 			validate: (value) => validateImportAlias(value, langConfig),
 		});

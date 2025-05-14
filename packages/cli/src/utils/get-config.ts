@@ -7,6 +7,7 @@ import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
 import { SITE_BASE_URL } from "../constants.js";
+import { highlight } from "./highlight";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
@@ -17,8 +18,6 @@ export const DEFAULT_LIB = "$lib";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
-
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 const aliasSchema = (alias: string) =>
 	v.pipe(
