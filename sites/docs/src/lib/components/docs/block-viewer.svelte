@@ -37,6 +37,12 @@
 	);
 	let resizablePaneRef = $state<Pane>(null!);
 
+	$effect(() => {
+		console.log("activeFile", activeFile);
+	});
+
+	console.log(tree);
+
 	BlockViewerContext.set({
 		get item() {
 			return item;

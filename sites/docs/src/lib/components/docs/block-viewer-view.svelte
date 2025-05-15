@@ -5,7 +5,7 @@
 	const ctx = BlockViewerContext.get();
 </script>
 
-<div class="group-data-[view=code]/block-view-wrapper:hidden md:h-[--height]">
+<div class="md:h-(--height) group-data-[view=code]/block-view-wrapper:hidden">
 	<div class="grid w-full gap-4">
 		<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 			<Resizable.Pane
