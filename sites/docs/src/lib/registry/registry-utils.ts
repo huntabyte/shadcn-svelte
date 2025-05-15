@@ -59,17 +59,11 @@ export function createFileTreeForRegistryItemFiles(
 
 	return root;
 }
-const blocksRegex = /^\$lib\/registry\/blocks\/[^/]+\/(?:components\/)?(.+)$/;
-const uiRegex = /^\$lib\/registry\/ui\/(.+)$/;
-const importRegex = /(import\s+(?:{[^}]*}|\*\s+as\s+\w+|\w+)\s+from\s+['"])([^'"]+)(['"])/g;
 
 export function transformImportPaths(content: string): string {
-	return content.replace(importRegex, (_, importStart, path, importEnd) => {
-		// Transform the path using our existing logic
-		let newPath = path.replace(blocksRegex, "$lib/components/$1");
-		if (newPath !== path) return importStart + newPath + importEnd;
-
-		newPath = path.replace(uiRegex, "$lib/components/ui/$1");
-		return importStart + newPath + importEnd;
-	});
+	for (const alias of ["blocks", "ui"]) {
+		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
+		content = content.replace(regex, `$lib/components/${alias}/`);
+	}
+	return content;
 }
