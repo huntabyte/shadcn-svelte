@@ -54,7 +54,6 @@ To opt out of TypeScript, set the `typescript` flag to `false` in your `componen
 {
   "style": "default",
   "tailwind": {
-    "config": "",
     "css": "src/app.css"
   },
   "typescript": false,
