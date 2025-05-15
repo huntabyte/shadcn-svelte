@@ -49,6 +49,13 @@ async function buildRegistryJson(style: "default" | "new-york") {
 		homepage: "https://shadcn-svelte.com",
 		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
 		items: registry,
+		aliases: {
+			lib: `$lib/registry/${style}/lib`,
+			ui: `$lib/registry/${style}/ui`,
+			components: `$lib/registry/${style}/components`,
+			hooks: `$lib/registry/${style}/hooks`,
+			utils: "$lib/utils",
+		},
 	});
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",
