@@ -2,6 +2,7 @@ import { parse } from "postcss";
 import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
 import type { CssVars } from "@shadcn-svelte/registry";
+import { ALIASES, ALIAS_DEFAULTS } from "../constants.js";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
 import type { Config } from "./get-config.js";
 
@@ -17,15 +18,9 @@ export async function transformContent(content: string, filename: string, config
 	return content;
 }
 
-export const ALIASES = ["components", "ui", "hooks", "lib", "utils"] as const;
-export const ALIAS_PLACEHOLDERS = ALIASES.reduce(
-	(acc, a) => ((acc[a] = `$${a.toUpperCase()}$`), acc),
-	{} as Record<(typeof ALIASES)[number], string>
-);
-
 export function transformImports(content: string, config: Config) {
 	for (const alias of ALIASES) {
-		content = content.replaceAll(ALIAS_PLACEHOLDERS[alias], config.aliases[alias]);
+		content = content.replaceAll(ALIAS_DEFAULTS[alias].placeholder, config.aliases[alias]);
 	}
 	return content;
 }
