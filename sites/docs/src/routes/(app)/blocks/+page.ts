@@ -36,9 +36,16 @@ export const load: PageLoad = async () => {
 					const res = v.parse(registryItemSchema, (m as { default: unknown }).default);
 					const files = await Promise.all(
 						res.files.map(async (v) => {
+							let lang: "svelte" | "ts" | "json" = "svelte";
+							if (v.target && v.target.endsWith(".ts")) {
+								lang = "ts";
+							} else if (v.target && v.target.endsWith(".json")) {
+								lang = "json";
+							}
+
 							const highlightedContent = await highlightCode(
 								transformImportPaths(v.content),
-								v.target && v.target.endsWith(".ts") ? "ts" : "svelte"
+								lang
 							);
 							const target = v.target ? transformBlockPath(v.target, v.type) : "";
 							return {

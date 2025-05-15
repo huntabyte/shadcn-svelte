@@ -2323,6 +2323,10 @@
 					"type": "registry:page"
 				},
 				{
+					"path": "src/lib/registry/blocks/dashboard-01/data.ts",
+					"type": "registry:page"
+				},
+				{
 					"path": "src/lib/registry/blocks/dashboard-01/components/app-sidebar.svelte",
 					"type": "registry:component"
 				},

@@ -14,7 +14,7 @@
 				defaultSize={100}
 				minSize={30}
 			>
-				<img
+				<!-- <img
 					src="/r/{ctx.item.name}-light.png"
 					alt={ctx.item.name}
 					data-block={ctx.item.name}
@@ -29,11 +29,11 @@
 					width={1440}
 					height={900}
 					class="hidden object-cover md:hidden dark:block md:dark:hidden"
-				/>
+				/> -->
 				<iframe
 					title={ctx.item.name}
 					src="/view/{ctx.item.name}"
-					height={ctx.item.meta?.iframeHeight ?? 930}
+					height={930}
 					class="bg-background relative z-20 hidden w-full md:block"
 				></iframe>
 			</Resizable.Pane>

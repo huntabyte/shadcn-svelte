@@ -1,6 +1,6 @@
 import { codeToHtml } from "shiki";
 
-export async function highlightCode(code: string, lang: "svelte" | "ts" = "svelte") {
+export async function highlightCode(code: string, lang: "svelte" | "ts" | "json" = "svelte") {
 	const html = await codeToHtml(code, {
 		lang: lang,
 		theme: "github-dark-default",
