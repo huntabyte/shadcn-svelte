@@ -6,8 +6,8 @@ import prettier from "prettier";
 import { rimraf } from "rimraf";
 import { registrySchema, type RegistryItem, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
-import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry.js";
+import { baseColors } from "../src/lib/registry/colors.js";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
@@ -97,10 +97,7 @@ export const Blocks = {
 
 		blocksIndex += `
 	"${block.name}": {
-		name: "${block.name}",
-		type: "${block.type}",
 		component: () => import("../lib/registry/blocks/${blockFile}").then((m) => m.default),
-		raw: () => import("../lib/registry/blocks/${blockFile}?raw").then((m) => m.default),
 	},`;
 	}
 

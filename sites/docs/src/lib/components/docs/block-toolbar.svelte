@@ -8,7 +8,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
-	import type { Block } from "$lib/registry/schema.js";
+	import type { Block } from "$lib/blocks.js";
 	import type { ResizablePane } from "$lib/registry/ui/resizable/index.js";
 	import { CopyToClipboard } from "$lib/utils/copy-to-clipboard.svelte.js";
 	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";

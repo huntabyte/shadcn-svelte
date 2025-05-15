@@ -3,7 +3,7 @@
 
 	import * as Resizable from "$lib/registry/ui/resizable/index.js";
 	import * as Icon from "$lib/components/docs/icons/index.js";
-	import type { Block } from "$lib/registry/schema.js";
+	import type { Block } from "$lib/blocks.js";
 
 	let isLoading = $state(true);
 	let resizablePaneRef = $state<Resizable.Pane>(null!);
