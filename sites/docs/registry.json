@@ -2303,18 +2303,18 @@
 				"card",
 				"select",
 				"toggle-group",
-				"data-table",
-				"dropdown-menu",
-				"button",
 				"drawer",
+				"button",
 				"is-mobile",
 				"label",
 				"input",
 				"separator",
 				"checkbox",
-				"table",
-				"badge",
+				"data-table",
 				"tabs",
+				"table",
+				"dropdown-menu",
+				"badge",
 				"avatar"
 			],
 			"files": [
@@ -2335,14 +2335,6 @@
 					"type": "registry:component"
 				},
 				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/columns.ts",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-actions.svelte",
-					"type": "registry:component"
-				},
-				{
 					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-cell-viewer.svelte",
 					"type": "registry:component"
 				},
@@ -2351,31 +2343,7 @@
 					"type": "registry:component"
 				},
 				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-drag-handle.svelte",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-draggable-row.svelte",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-limit.svelte",
-					"type": "registry:component"
-				},
-				{
 					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-reviewer.svelte",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-status.svelte",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-target.svelte",
-					"type": "registry:component"
-				},
-				{
-					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-type.svelte",
 					"type": "registry:component"
 				},
 				{

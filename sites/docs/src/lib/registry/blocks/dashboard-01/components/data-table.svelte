@@ -1,3 +1,77 @@
+<script lang="ts" module>
+	export const columns: ColumnDef<Schema>[] = [
+		{
+			id: "drag",
+			header: () => null,
+			cell: ({ row }) => renderSnippet(DragHandle, { id: row.original.id }),
+		},
+		{
+			id: "select",
+			header: ({ table }) =>
+				renderComponent(DataTableCheckbox, {
+					checked: table.getIsAllPageRowsSelected(),
+					indeterminate:
+						table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected(),
+					onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+					"aria-label": "Select all",
+				}),
+			cell: ({ row }) =>
+				renderComponent(DataTableCheckbox, {
+					checked: row.getIsSelected(),
+					onCheckedChange: (value) => row.toggleSelected(!!value),
+					"aria-label": "Select row",
+				}),
+			enableSorting: false,
+			enableHiding: false,
+		},
+		{
+			accessorKey: "header",
+			header: "Header",
+			cell: ({ row }) => renderComponent(DataTableCellViewer, { item: row.original }),
+			enableHiding: false,
+		},
+		{
+			accessorKey: "type",
+			header: "Section Type",
+			cell: ({ row }) => renderSnippet(DataTableType, { row }),
+		},
+		{
+			accessorKey: "status",
+			header: "Status",
+			cell: ({ row }) => renderSnippet(DataTableStatus, { row }),
+		},
+		{
+			accessorKey: "target",
+			header: () =>
+				renderSnippet(
+					createRawSnippet(() => ({
+						render: () => '<div class="w-full text-right">Target</div>',
+					}))
+				),
+			cell: ({ row }) => renderSnippet(DataTableTarget, { row }),
+		},
+		{
+			accessorKey: "limit",
+			header: () =>
+				renderSnippet(
+					createRawSnippet(() => ({
+						render: () => '<div class="w-full text-right">Limit</div>',
+					}))
+				),
+			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
+		},
+		{
+			accessorKey: "reviewer",
+			header: "Reviewer",
+			cell: ({ row }) => renderComponent(DataTableReviewer, { row }),
+		},
+		{
+			id: "actions",
+			cell: () => renderSnippet(DataTableActions),
+		},
+	];
+</script>
+
 <script lang="ts">
 	import {
 		getCoreRowModel,
@@ -6,8 +80,10 @@
 		getFilteredRowModel,
 		getPaginationRowModel,
 		getSortedRowModel,
+		type ColumnDef,
 		type ColumnFiltersState,
 		type PaginationState,
+		type Row,
 		type RowSelectionState,
 		type SortingState,
 		type VisibilityState,
@@ -27,11 +103,11 @@
 	import {
 		arrayMove,
 		SortableContext,
+		useSortable,
 		verticalListSortingStrategy,
 	} from "@dnd-kit-svelte/sortable";
 	import { restrictToVerticalAxis } from "@dnd-kit-svelte/modifiers";
 	import { createSvelteTable } from "$lib/registry/ui/data-table/data-table.svelte.js";
-	import { columns } from "./columns.js";
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
@@ -39,15 +115,29 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Badge } from "$lib/registry/ui/badge/index.js";
-	import { FlexRender } from "$lib/registry/ui/data-table/index.js";
-	import DataTableDraggableRow from "./data-table-draggable-row.svelte";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import {
+		FlexRender,
+		renderComponent,
+		renderSnippet,
+	} from "$lib/registry/ui/data-table/index.js";
 	import LayoutColumnsIcon from "@tabler/icons-svelte/icons/layout-columns";
+	import GripVerticalIcon from "@tabler/icons-svelte/icons/grip-vertical";
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import PlusIcon from "@tabler/icons-svelte/icons/plus";
 	import ChevronsLeftIcon from "@tabler/icons-svelte/icons/chevrons-left";
 	import ChevronLeftIcon from "@tabler/icons-svelte/icons/chevron-left";
 	import ChevronRightIcon from "@tabler/icons-svelte/icons/chevron-right";
 	import ChevronsRightIcon from "@tabler/icons-svelte/icons/chevrons-right";
+	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
+	import LoaderIcon from "@tabler/icons-svelte/icons/loader";
+	import DotsVerticalIcon from "@tabler/icons-svelte/icons/dots-vertical";
+	import { toast } from "svelte-sonner";
+	import DataTableCheckbox from "./data-table-checkbox.svelte";
+	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
+	import { createRawSnippet } from "svelte";
+	import DataTableReviewer from "./data-table-reviewer.svelte";
+	import { CSS } from "@dnd-kit-svelte/utilities";
 
 	let { data }: { data: Schema[] } = $props();
 	let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
@@ -256,7 +346,7 @@
 						{#if table.getRowModel().rows?.length}
 							<SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
 								{#each table.getRowModel().rows as row (row.id)}
-									<DataTableDraggableRow {row} />
+									{@render DraggableRow({ row })}
 								{/each}
 							</SortableContext>
 						{:else}
@@ -355,3 +445,130 @@
 		<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
 	</Tabs.Content>
 </Tabs.Root>
+
+{#snippet DataTableLimit({ row }: { row: Row<Schema> })}
+	<form
+		onsubmit={(e) => {
+			e.preventDefault();
+			toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+				loading: `Saving ${row.original.header}`,
+				success: "Done",
+				error: "Error",
+			});
+		}}
+	>
+		<Label for="{row.original.id}-limit" class="sr-only">Limit</Label>
+		<Input
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			value={row.original.limit}
+			id="{row.original.id}-limit"
+		/>
+	</form>
+{/snippet}
+
+{#snippet DataTableTarget({ row }: { row: Row<Schema> })}
+	<form
+		onsubmit={(e) => {
+			e.preventDefault();
+			toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+				loading: `Saving ${row.original.header}`,
+				success: "Done",
+				error: "Error",
+			});
+		}}
+	>
+		<Label for="{row.original.id}-target" class="sr-only">Target</Label>
+		<Input
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			value={row.original.target}
+			id="{row.original.id}-target"
+		/>
+	</form>
+{/snippet}
+
+{#snippet DataTableType({ row }: { row: Row<Schema> })}
+	<div class="w-32">
+		<Badge variant="outline" class="text-muted-foreground px-1.5">
+			{row.original.type}
+		</Badge>
+	</div>
+{/snippet}
+
+{#snippet DataTableStatus({ row }: { row: Row<Schema> })}
+	<Badge variant="outline" class="text-muted-foreground px-1.5">
+		{#if row.original.status === "Done"}
+			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
+		{:else}
+			<LoaderIcon />
+		{/if}
+		{row.original.status}
+	</Badge>
+{/snippet}
+
+{#snippet DataTableActions()}
+	<script lang="ts">
+		import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+		import { Button } from "$lib/registry/ui/button/index.js";
+		import DotsVerticalIcon from "@tabler/icons-svelte/icons/dots-vertical";
+	</script>
+
+	<DropdownMenu.Root>
+		<DropdownMenu.Trigger>
+			{#snippet child({ props })}
+				<Button
+					variant="ghost"
+					class="data-[state=open]:bg-muted text-muted-foreground flex size-8"
+					size="icon"
+					{...props}
+				>
+					<DotsVerticalIcon />
+					<span class="sr-only">Open menu</span>
+				</Button>
+			{/snippet}
+		</DropdownMenu.Trigger>
+		<DropdownMenu.Content align="end" class="w-32">
+			<DropdownMenu.Item>Edit</DropdownMenu.Item>
+			<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
+			<DropdownMenu.Item>Favorite</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item variant="destructive">Delete</DropdownMenu.Item>
+		</DropdownMenu.Content>
+	</DropdownMenu.Root>
+{/snippet}
+
+{#snippet DraggableRow({ row }: { row: Row<Schema> })}
+	{@const { transform, transition, node, isDragging } = useSortable({
+		id: () => row.original.id,
+	})}
+
+	<Table.Row
+		data-state={row.getIsSelected() && "selected"}
+		data-dragging={isDragging.current}
+		bind:ref={node.current}
+		class="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+		style="transition: {transition.current}; transform: {CSS.Transform.toString(
+			transform.current
+		)}"
+	>
+		{#each row.getVisibleCells() as cell (cell.id)}
+			<Table.Cell>
+				<FlexRender content={cell.column.columnDef.cell} context={cell.getContext()} />
+			</Table.Cell>
+		{/each}
+	</Table.Row>
+{/snippet}
+
+{#snippet DragHandle({ id }: { id: number })}
+	{@const { attributes, listeners } = useSortable({ id: () => id })}
+
+	<Button
+		{...attributes.current}
+		{...listeners.current}
+		variant="ghost"
+		size="icon"
+		class="text-muted-foreground size-7 hover:bg-transparent"
+	>
+		<GripVerticalIcon class="text-muted-foreground size-3" />
+		<span class="sr-only">Drag to reorder</span>
+	</Button>
+{/snippet}
