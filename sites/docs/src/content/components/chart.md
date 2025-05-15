@@ -19,7 +19,7 @@ links:
 
 </ComponentPreview>
 
-<Alert.Root class="border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-200 mb-4">
+<Alert.Root class="border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-200 mb-4 mt-8">
 <TriangleAlertIcon />
 <Alert.Title>Preview - Use at Your Own Risk</Alert.Title>
 <Alert.Description class="text-foreground/90">
