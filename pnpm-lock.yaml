@@ -118,8 +118,8 @@ importers:
         specifier: ^4.7.3
         version: 4.7.5
       ignore:
-        specifier: ^5.3.1
-        version: 5.3.1
+        specifier: ^7.0.4
+        version: 7.0.4
       package-manager-detector:
         specifier: ^1.2.0
         version: 1.2.0
@@ -3322,8 +3322,8 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
-  ignore@7.0.3:
-    resolution: {integrity: sha512-bAH5jbK/F3T3Jls4I0SO1hmPR0dKU0a7+SY6n1yzRtG54FLO8d6w/nxLFX2Nb7dBu6cCWXPaAME6cYqFUMmuCA==}
+  ignore@7.0.4:
+    resolution: {integrity: sha512-gJzzk+PQNznz8ysRrC0aOkBNVRBDtE1n53IqyqEf3PXrYwomFs5q4pGMizBMJF+ykh03insJ27hB8gSrD2Hn8A==}
     engines: {node: '>= 4'}
 
   immer@10.1.1:
@@ -8374,7 +8374,7 @@ snapshots:
 
   ignore@5.3.1: {}
 
-  ignore@7.0.3: {}
+  ignore@7.0.4: {}
 
   immer@10.1.1: {}
 
@@ -9522,7 +9522,7 @@ snapshots:
   pretty-quick@4.1.1(prettier@3.5.3):
     dependencies:
       find-up: 5.0.0
-      ignore: 7.0.3
+      ignore: 7.0.4
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 4.0.2
