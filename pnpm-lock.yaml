@@ -4962,9 +4962,6 @@ packages:
   tailwindcss@4.0.15:
     resolution: {integrity: sha512-6ZMg+hHdMJpjpeCCFasX7K+U615U9D+7k5/cDK/iRwl6GptF24+I/AbKgOnXhVKePzrEyIXutLv36n4cRsq3Sg==}
 
-  tailwindcss@4.1.6:
-    resolution: {integrity: sha512-j0cGLTreM6u4OWzBeLBpycK0WIh8w7kSwcUsQZoGLHZ7xDTdM69lN64AgoIEEwFi0tnhs4wSykUa5YWxAzgFYg==}
-
   tailwindcss@4.1.7:
     resolution: {integrity: sha512-kr1o/ErIdNhTz8uzAYL7TpaUuzKIE6QPQ4qmSdxnoX/lo+5wmUHQA6h3L5yIqEImSRnAAURDirLu/BgiXGPAhg==}
 
@@ -6475,7 +6472,7 @@ snapshots:
       date-fns: 4.1.0
       lodash-es: 4.17.21
       tailwind-merge: 3.0.2
-      tailwindcss: 4.1.6
+      tailwindcss: 4.1.7
 
   '@layerstack/tailwind@2.0.0-next.4':
     dependencies:
@@ -9049,7 +9046,7 @@ snapshots:
 
   lightningcss@1.30.1:
     dependencies:
-      detect-libc: 2.0.3
+      detect-libc: 2.0.4
     optionalDependencies:
       lightningcss-darwin-arm64: 1.30.1
       lightningcss-darwin-x64: 1.30.1
@@ -10573,8 +10570,6 @@ snapshots:
       tailwindcss: 4.1.7
 
   tailwindcss@4.0.15: {}
-
-  tailwindcss@4.1.6: {}
 
   tailwindcss@4.1.7: {}
 
