@@ -4,7 +4,6 @@
 	import * as v from "valibot";
 	import { Pane } from "paneforge";
 	import { Context } from "runed";
-	import type { Snippet } from "svelte";
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
 	import BlockViewerView from "./block-viewer-view.svelte";
 	import BlockViewerCode from "./block-viewer-code.svelte";
