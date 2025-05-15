@@ -1,14 +1,15 @@
 {
 	"compilerOptions": {
+		"strict": true,
+		"module": "Node18",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
-		"moduleResolution": "Bundler",
-		"module": "ES2022",
-		"target": "ES2022",
 		"skipLibCheck": true,
-		"strict": true,
+		"noEmit": true,
+		"verbatimModuleSyntax": true,
+		"erasableSyntaxOnly": true,
 		"noUncheckedIndexedAccess": true
 	},
-	"include": ["src/**/*.ts"]
+	"include": ["src"]
 }
