@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+dist
 /build
 /.svelte-kit
 /package
@@ -103,9 +104,6 @@ web_modules/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-packages/cli/dist
-dist/
-dist
 generated-assets
 
 # JetBrains IDEs
