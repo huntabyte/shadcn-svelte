@@ -67,7 +67,7 @@
 
 [data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
 	color: color-mix(in oklch, var(--color-zinc-50) 40%, transparent);
-	font-size: 0.875rem;
+	font-size: 12px;
 	counter-increment: line;
 	content: counter(line);
 	display: inline-block;

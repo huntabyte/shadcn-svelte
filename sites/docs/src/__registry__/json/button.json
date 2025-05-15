@@ -1,0 +1,22 @@
+{
+	"name": "button",
+	"type": "registry:ui",
+	"devDependencies": [
+		"tailwind-variants@^0.2.1"
+	],
+	"files": [
+		{
+			"name": "button.svelte",
+			"content": "<script lang=\"ts\" module>\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAnchorAttributes, HTMLButtonAttributes } from \"svelte/elements\";\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const buttonVariants = tv({\n\t\tbase: \"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-primary text-primary-foreground shadow-xs hover:bg-primary/90\",\n\t\t\t\tdestructive:\n\t\t\t\t\t\"bg-destructive shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white\",\n\t\t\t\toutline:\n\t\t\t\t\t\"bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border\",\n\t\t\t\tsecondary: \"bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80\",\n\t\t\t\tghost: \"hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50\",\n\t\t\t\tlink: \"text-primary underline-offset-4 hover:underline\",\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tdefault: \"h-9 px-4 py-2 has-[>svg]:px-3\",\n\t\t\t\tsm: \"h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5\",\n\t\t\t\tlg: \"h-10 rounded-md px-6 has-[>svg]:px-4\",\n\t\t\t\ticon: \"size-9\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t\tsize: \"default\",\n\t\t},\n\t});\n\n\texport type ButtonVariant = VariantProps<typeof buttonVariants>[\"variant\"];\n\texport type ButtonSize = VariantProps<typeof buttonVariants>[\"size\"];\n\n\texport type ButtonProps = WithElementRef<HTMLButtonAttributes> &\n\t\tWithElementRef<HTMLAnchorAttributes> & {\n\t\t\tvariant?: ButtonVariant;\n\t\t\tsize?: ButtonSize;\n\t\t};\n</script>\n\n<script lang=\"ts\">\n\tlet {\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tsize = \"default\",\n\t\tref = $bindable(null),\n\t\thref = undefined,\n\t\ttype = \"button\",\n\t\tdisabled,\n\t\tchildren,\n\t\t...restProps\n\t}: ButtonProps = $props();\n</script>\n\n{#if href}\n\t<a\n\t\tbind:this={ref}\n\t\tdata-slot=\"button\"\n\t\tclass={cn(buttonVariants({ variant, size }), className)}\n\t\thref={disabled ? undefined : href}\n\t\taria-disabled={disabled}\n\t\trole={disabled ? \"link\" : undefined}\n\t\ttabindex={disabled ? -1 : undefined}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</a>\n{:else}\n\t<button\n\t\tbind:this={ref}\n\t\tdata-slot=\"button\"\n\t\tclass={cn(buttonVariants({ variant, size }), className)}\n\t\t{type}\n\t\t{disabled}\n\t\t{...restProps}\n\t>\n\t\t{@render children?.()}\n\t</button>\n{/if}\n",
+			"type": "registry:ui",
+			"target": "button/button.svelte"
+		},
+		{
+			"name": "index.ts",
+			"content": "import Root, {\n\ttype ButtonProps,\n\ttype ButtonSize,\n\ttype ButtonVariant,\n\tbuttonVariants,\n} from \"./button.svelte\";\n\nexport {\n\tRoot,\n\ttype ButtonProps as Props,\n\t//\n\tRoot as Button,\n\tbuttonVariants,\n\ttype ButtonProps,\n\ttype ButtonSize,\n\ttype ButtonVariant,\n};\n",
+			"type": "registry:ui",
+			"target": "button/index.ts"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

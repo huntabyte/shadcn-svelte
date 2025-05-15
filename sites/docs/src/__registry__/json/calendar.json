@@ -1,0 +1,98 @@
+{
+	"name": "calendar",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^1.4.7",
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"name": "calendar-cell.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.CellProps = $props();\n</script>\n\n<CalendarPrimitive.Cell\n\tbind:ref\n\tclass={cn(\n\t\t\"[&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50 relative size-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:rounded-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-cell.svelte"
+		},
+		{
+			"name": "calendar-day.svelte",
+			"content": "<script lang=\"ts\">\n\timport { buttonVariants } from \"$lib/registry/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.DayProps = $props();\n</script>\n\n<CalendarPrimitive.Day\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"size-9 select-none p-0 font-normal\",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selected\n\t\t\"data-selected:bg-primary data-selected:text-primary-foreground data-selected:hover:bg-primary data-selected:hover:text-primary-foreground data-selected:focus:bg-primary data-selected:focus:text-primary-foreground data-selected:opacity-100\",\n\t\t// Disabled\n\t\t\"data-disabled:text-muted-foreground data-disabled:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-unavailable:text-destructive-foreground data-unavailable:line-through\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:pointer-events-none data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-day.svelte"
+		},
+		{
+			"name": "calendar-grid-body.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.GridBodyProps = $props();\n</script>\n\n<CalendarPrimitive.GridBody bind:ref class={cn(className)} {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-grid-body.svelte"
+		},
+		{
+			"name": "calendar-grid-head.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.GridHeadProps = $props();\n</script>\n\n<CalendarPrimitive.GridHead bind:ref class={cn(className)} {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-grid-head.svelte"
+		},
+		{
+			"name": "calendar-grid-row.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.GridRowProps = $props();\n</script>\n\n<CalendarPrimitive.GridRow bind:ref class={cn(\"flex\", className)} {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-grid-row.svelte"
+		},
+		{
+			"name": "calendar-grid.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.GridProps = $props();\n</script>\n\n<CalendarPrimitive.Grid\n\tbind:ref\n\tclass={cn(\"w-full border-collapse space-y-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-grid.svelte"
+		},
+		{
+			"name": "calendar-head-cell.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.HeadCellProps = $props();\n</script>\n\n<CalendarPrimitive.HeadCell\n\tbind:ref\n\tclass={cn(\"text-muted-foreground w-9 rounded-md text-[0.8rem] font-normal\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-head-cell.svelte"
+		},
+		{
+			"name": "calendar-header.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.HeaderProps = $props();\n</script>\n\n<CalendarPrimitive.Header\n\tbind:ref\n\tclass={cn(\"relative flex w-full items-center justify-between pt-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-header.svelte"
+		},
+		{
+			"name": "calendar-heading.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CalendarPrimitive.HeadingProps = $props();\n</script>\n\n<CalendarPrimitive.Heading bind:ref class={cn(\"text-sm font-medium\", className)} {...restProps} />\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-heading.svelte"
+		},
+		{
+			"name": "calendar-months.svelte",
+			"content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-months.svelte"
+		},
+		{
+			"name": "calendar-next-button.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport ChevronRightIcon from \"@lucide/svelte/icons/chevron-right\";\n\timport { buttonVariants } from \"$lib/registry/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: CalendarPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronRightIcon class=\"size-4\" />\n{/snippet}\n\n<CalendarPrimitive.NextButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-next-button.svelte"
+		},
+		{
+			"name": "calendar-prev-button.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport ChevronLeftIcon from \"@lucide/svelte/icons/chevron-left\";\n\timport { buttonVariants } from \"$lib/registry/ui/button/index.js\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: CalendarPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronLeftIcon class=\"size-4\" />\n{/snippet}\n\n<CalendarPrimitive.PrevButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar-prev-button.svelte"
+		},
+		{
+			"name": "calendar.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Calendar as CalendarPrimitive } from \"bits-ui\";\n\timport * as Calendar from \"./index.js\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tplaceholder = $bindable(),\n\t\tclass: className,\n\t\tweekdayFormat = \"short\",\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> = $props();\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<CalendarPrimitive.Root\n\tbind:value={value as never}\n\tbind:ref\n\tbind:placeholder\n\t{weekdayFormat}\n\tclass={cn(\"p-3\", className)}\n\t{...restProps}\n>\n\t{#snippet children({ months, weekdays })}\n\t\t<Calendar.Header>\n\t\t\t<Calendar.PrevButton />\n\t\t\t<Calendar.Heading />\n\t\t\t<Calendar.NextButton />\n\t\t</Calendar.Header>\n\t\t<Calendar.Months>\n\t\t\t{#each months as month (month)}\n\t\t\t\t<Calendar.Grid>\n\t\t\t\t\t<Calendar.GridHead>\n\t\t\t\t\t\t<Calendar.GridRow class=\"flex\">\n\t\t\t\t\t\t\t{#each weekdays as weekday (weekday)}\n\t\t\t\t\t\t\t\t<Calendar.HeadCell>\n\t\t\t\t\t\t\t\t\t{weekday.slice(0, 2)}\n\t\t\t\t\t\t\t\t</Calendar.HeadCell>\n\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t</Calendar.GridRow>\n\t\t\t\t\t</Calendar.GridHead>\n\t\t\t\t\t<Calendar.GridBody>\n\t\t\t\t\t\t{#each month.weeks as weekDates (weekDates)}\n\t\t\t\t\t\t\t<Calendar.GridRow class=\"mt-2 w-full\">\n\t\t\t\t\t\t\t\t{#each weekDates as date (date)}\n\t\t\t\t\t\t\t\t\t<Calendar.Cell {date} month={month.value}>\n\t\t\t\t\t\t\t\t\t\t<Calendar.Day />\n\t\t\t\t\t\t\t\t\t</Calendar.Cell>\n\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t</Calendar.GridRow>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Calendar.GridBody>\n\t\t\t\t</Calendar.Grid>\n\t\t\t{/each}\n\t\t</Calendar.Months>\n\t{/snippet}\n</CalendarPrimitive.Root>\n",
+			"type": "registry:ui",
+			"target": "calendar/calendar.svelte"
+		},
+		{
+			"name": "index.ts",
+			"content": "import Root from \"./calendar.svelte\";\nimport Cell from \"./calendar-cell.svelte\";\nimport Day from \"./calendar-day.svelte\";\nimport Grid from \"./calendar-grid.svelte\";\nimport Header from \"./calendar-header.svelte\";\nimport Months from \"./calendar-months.svelte\";\nimport GridRow from \"./calendar-grid-row.svelte\";\nimport Heading from \"./calendar-heading.svelte\";\nimport GridBody from \"./calendar-grid-body.svelte\";\nimport GridHead from \"./calendar-grid-head.svelte\";\nimport HeadCell from \"./calendar-head-cell.svelte\";\nimport NextButton from \"./calendar-next-button.svelte\";\nimport PrevButton from \"./calendar-prev-button.svelte\";\n\nexport {\n\tDay,\n\tCell,\n\tGrid,\n\tHeader,\n\tMonths,\n\tGridRow,\n\tHeading,\n\tGridBody,\n\tGridHead,\n\tHeadCell,\n\tNextButton,\n\tPrevButton,\n\t//\n\tRoot as Calendar,\n};\n",
+			"type": "registry:ui",
+			"target": "calendar/index.ts"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

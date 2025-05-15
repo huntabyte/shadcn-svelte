@@ -40,13 +40,13 @@
 				series={[
 					{
 						key: "desktop",
-						label: "Desktop",
+						label: chartConfig.desktop.label,
 						color: chartConfig.desktop.color,
 						props: { rounded: "bottom" },
 					},
 					{
 						key: "mobile",
-						label: "Mobile",
+						label: chartConfig.mobile.label,
 						color: chartConfig.mobile.color,
 					},
 				]}

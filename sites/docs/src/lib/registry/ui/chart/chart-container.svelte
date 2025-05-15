@@ -35,8 +35,6 @@
 		"flex aspect-video justify-center overflow-visible text-xs",
 		// Overrides
 		//
-		// TODO: Ask for default/unique classnames to target when trying to override LayerChart styles
-		//
 		// Stroke around dots/marks when hovering
 		"[&_.stroke-white]:stroke-transparent",
 		// override the default stroke color of lines
@@ -73,6 +71,7 @@
 		"[&_.lc-axis-tick-label]:fill-muted-foreground [&_.lc-axis-tick-label]:font-normal",
 		"[&_.lc-tooltip-rects-g]:fill-transparent",
 		"[&_.lc-layout-svg-g]:fill-transparent",
+		"[&_.lc-root-container]:w-full",
 		className
 	)}
 	{...restProps}

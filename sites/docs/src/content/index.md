@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Re-usable components built with Bits UI, Melt UI, and Tailwind CSS.
+description: Re-usable components built with Bits UI and Tailwind CSS.
 ---
 
 <script>

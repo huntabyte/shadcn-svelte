@@ -83,7 +83,12 @@ function componentPreviews() {
 			const importIndex = content.search("import {");
 			for (const name of components) {
 				const identifier = camelize(name);
-				const importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
+				let importStatement = "";
+				if (name.startsWith("chart") && !name.includes("demo")) {
+					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
+				} else {
+					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
+				}
 
 				ms.appendLeft(importIndex, importStatement);
 			}

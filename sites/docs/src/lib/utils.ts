@@ -167,7 +167,7 @@ export async function getDoc(slug: string) {
 	const doc = await match?.resolver?.();
 
 	const metadata = docs.find((doc) => doc.path === slug);
-	if (!doc || !metadata) {
+	if (!doc || !metadata || !("default" in doc)) {
 		error(404);
 	}
 
