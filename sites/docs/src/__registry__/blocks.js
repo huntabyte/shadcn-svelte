@@ -383,6 +383,10 @@ export const Blocks = {
 		component: () => import("../lib/registry/blocks/login-03/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/login-03/+page.svelte?raw").then((m) => m.default),
 	},
+	"login-04": {
+		component: () => import("../lib/registry/blocks/login-04/+page.svelte").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/login-04/+page.svelte?raw").then((m) => m.default),
+	},
 	"sidebar-01": {
 		component: () => import("../lib/registry/blocks/sidebar-01/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/sidebar-01/+page.svelte?raw").then((m) => m.default),

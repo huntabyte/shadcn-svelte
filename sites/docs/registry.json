@@ -2664,6 +2664,21 @@
 			]
 		},
 		{
+			"name": "login-04",
+			"type": "registry:block",
+			"registryDependencies": ["card", "label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-04/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-04/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
 			"name": "sidebar-01",
 			"type": "registry:block",
 			"registryDependencies": [
