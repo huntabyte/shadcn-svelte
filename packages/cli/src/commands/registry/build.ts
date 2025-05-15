@@ -119,7 +119,7 @@ async function runBuild(options: BuildOptions) {
 			 * Transforms registry import aliases into a standardized format.
 			 *
 			 * ```
-			 * import Button from "$lib/registry/ui/button/index.js`
+			 * import Button from "$lib/registry/ui/button/index.js"
 			 * ```
 			 * transforms into:
 			 * ```
