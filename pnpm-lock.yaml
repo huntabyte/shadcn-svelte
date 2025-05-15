@@ -178,6 +178,9 @@ importers:
       '@shadcn-svelte/registry':
         specifier: workspace:*
         version: link:../../packages/registry
+      '@sveltejs/acorn-typescript':
+        specifier: ^1.0.5
+        version: 1.0.5(acorn@8.14.1)
       '@sveltejs/adapter-cloudflare':
         specifier: 4.6.1
         version: 4.6.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)))(wrangler@3.81.0)
@@ -223,9 +226,6 @@ importers:
       acorn:
         specifier: ^8.13.0
         version: 8.14.1
-      acorn-typescript:
-        specifier: ^1.4.13
-        version: 1.4.13(acorn@8.14.1)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.20(postcss@8.5.3)
@@ -333,13 +333,13 @@ importers:
         version: 2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2)
       tailwind-merge:
         specifier: ^3.0.2
-        version: 3.0.2
+        version: 3.3.0
       tailwind-variants:
         specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@4.0.15)
+        version: 0.2.1(tailwindcss@4.1.6)
       tailwindcss:
         specifier: ^4.0.15
-        version: 4.0.15
+        version: 4.1.6
       ts-blank-space:
         specifier: ^0.4.4
         version: 0.4.4
@@ -381,7 +381,7 @@ importers:
         version: 2.1.3(@types/node@20.17.27)(lightningcss@1.29.2)(terser@5.36.0)
       zod:
         specifier: ^3.23.8
-        version: 3.24.2
+        version: 3.24.4
 
   v4:
     dependencies:
@@ -475,13 +475,13 @@ importers:
         version: 4.1.1(picomatch@4.0.2)(svelte@5.28.2)(typescript@5.8.2)
       tailwind-merge:
         specifier: ^3.0.2
-        version: 3.0.2
+        version: 3.3.0
       tailwind-variants:
         specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@4.0.15)
+        version: 0.2.1(tailwindcss@4.1.6)
       tailwindcss:
         specifier: ^4.0.0
-        version: 4.0.15
+        version: 4.1.6
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
@@ -502,7 +502,7 @@ importers:
         version: 6.3.4(@types/node@22.15.15)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.36.0)(tsx@4.19.4)
       zod:
         specifier: ^3.23.8
-        version: 3.24.2
+        version: 3.24.4
 
 packages:
 
@@ -2229,11 +2229,6 @@ packages:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-
-  acorn-typescript@1.4.13:
-    resolution: {integrity: sha512-xsc9Xv0xlVfwp2o7sQ+GCQ1PgbkdcpWdTzrwXxO3xDMTAywVS3oXVOcOHuRjAPkS4P9b+yc/qNF15460v+jp4Q==}
-    peerDependencies:
-      acorn: '>=8.9.0'
 
   acorn-walk@8.3.4:
     resolution: {integrity: sha512-ueEepnujpqee2o5aIYnvHU6C0A42MNdsIDeqy5BydrkuC5R1ZuUFnm27EeFJGoEHJQgn3uleRvmTXaJgfXbt4g==}
@@ -4712,9 +4707,6 @@ packages:
   tailwind-merge@2.6.0:
     resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
 
-  tailwind-merge@3.0.2:
-    resolution: {integrity: sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==}
-
   tailwind-merge@3.3.0:
     resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
 
@@ -5332,9 +5324,6 @@ packages:
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
-  zod@3.24.2:
-    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
-
   zod@3.24.4:
     resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
 
@@ -5562,7 +5551,7 @@ snapshots:
   '@cloudflare/workers-shared@0.6.0':
     dependencies:
       mime: 3.0.0
-      zod: 3.24.2
+      zod: 3.24.4
 
   '@cloudflare/workers-types@4.20240222.0': {}
 
@@ -6171,7 +6160,7 @@ snapshots:
       date-fns: 4.1.0
       immer: 10.1.1
       lodash-es: 4.17.21
-      zod: 3.24.2
+      zod: 3.24.4
 
   '@layerstack/svelte-stores@1.0.2-next.2':
     dependencies:
@@ -6184,14 +6173,14 @@ snapshots:
 
   '@layerstack/tailwind@2.0.0-next.2':
     dependencies:
-      '@layerstack/utils': 1.1.0-next.1
+      '@layerstack/utils': 1.1.0-next.2
       clsx: 2.1.1
       culori: 4.0.1
       d3-array: 3.2.4
       date-fns: 4.1.0
       lodash-es: 4.17.21
-      tailwind-merge: 3.0.2
-      tailwindcss: 4.0.15
+      tailwind-merge: 3.3.0
+      tailwindcss: 4.1.6
 
   '@layerstack/tailwind@2.0.0-next.4':
     dependencies:
@@ -7082,10 +7071,6 @@ snapshots:
       tinyrainbow: 1.2.0
 
   acorn-jsx@5.3.2(acorn@8.14.1):
-    dependencies:
-      acorn: 8.14.1
-
-  acorn-typescript@1.4.13(acorn@8.14.1):
     dependencies:
       acorn: 8.14.1
 
@@ -9221,7 +9206,7 @@ snapshots:
       workerd: 1.20241011.1
       ws: 8.18.1
       youch: 3.3.4
-      zod: 3.24.2
+      zod: 3.24.4
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -10112,8 +10097,8 @@ snapshots:
       superstruct: 2.0.2
       valibot: 0.35.0
       yup: 1.4.0
-      zod: 3.24.2
-      zod-to-json-schema: 3.23.3(zod@3.24.2)
+      zod: 3.24.4
+      zod-to-json-schema: 3.23.3(zod@3.24.4)
     transitivePeerDependencies:
       - '@types/json-schema'
 
@@ -10138,8 +10123,8 @@ snapshots:
       superstruct: 2.0.2
       valibot: 0.35.0
       yup: 1.4.0
-      zod: 3.24.2
-      zod-to-json-schema: 3.23.3(zod@3.24.2)
+      zod: 3.24.4
+      zod-to-json-schema: 3.23.3(zod@3.24.4)
     transitivePeerDependencies:
       - '@types/json-schema'
 
@@ -10147,14 +10132,12 @@ snapshots:
 
   tailwind-merge@2.6.0: {}
 
-  tailwind-merge@3.0.2: {}
-
   tailwind-merge@3.3.0: {}
 
-  tailwind-variants@0.2.1(tailwindcss@4.0.15):
+  tailwind-variants@0.2.1(tailwindcss@4.1.6):
     dependencies:
       tailwind-merge: 2.6.0
-      tailwindcss: 4.0.15
+      tailwindcss: 4.1.6
 
   tailwindcss@4.0.15: {}
 
@@ -10813,14 +10796,12 @@ snapshots:
 
   zimmerframe@1.1.2: {}
 
-  zod-to-json-schema@3.23.3(zod@3.24.2):
+  zod-to-json-schema@3.23.3(zod@3.24.4):
     dependencies:
-      zod: 3.24.2
+      zod: 3.24.4
     optional: true
 
   zod@3.23.8: {}
-
-  zod@3.24.2: {}
 
   zod@3.24.4: {}
 
