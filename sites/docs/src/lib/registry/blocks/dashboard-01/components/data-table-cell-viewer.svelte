@@ -37,9 +37,13 @@
 	const isMobile = new IsMobile();
 
 	let { item }: { item: Schema } = $props();
+
+	let type = $state(item.type);
+	let status = $state(item.status);
+	let reviewer = $state(item.reviewer);
 </script>
 
-<Drawer.Root direction={isMobile ? "bottom" : "right"}>
+<Drawer.Root direction={isMobile.current ? "bottom" : "right"}>
 	<Drawer.Trigger>
 		{#snippet child({ props })}
 			<Button variant="link" class="text-foreground w-fit px-0 text-left" {...props}>
@@ -119,9 +123,9 @@
 				<div class="grid grid-cols-2 gap-4">
 					<div class="flex flex-col gap-3">
 						<Label for="type">Type</Label>
-						<Select.Root type="single" value={item.type}>
+						<Select.Root type="single" bind:value={type}>
 							<Select.Trigger id="type" class="w-full">
-								{item.type ?? "Select a type"}
+								{type ?? "Select a type"}
 							</Select.Trigger>
 							<Select.Content>
 								<Select.Item value="Table of Contents"
@@ -143,9 +147,9 @@
 					</div>
 					<div class="flex flex-col gap-3">
 						<Label for="status">Status</Label>
-						<Select.Root type="single" value={item.status}>
+						<Select.Root type="single" bind:value={status}>
 							<Select.Trigger id="status" class="w-full">
-								{item.status ?? "Select a status"}
+								{status ?? "Select a status"}
 							</Select.Trigger>
 							<Select.Content>
 								<Select.Item value="Done">Done</Select.Item>
@@ -167,9 +171,9 @@
 				</div>
 				<div class="flex flex-col gap-3">
 					<Label for="reviewer">Reviewer</Label>
-					<Select.Root type="single" value={item.reviewer}>
+					<Select.Root type="single" bind:value={reviewer}>
 						<Select.Trigger id="reviewer" class="w-full">
-							{item.reviewer ?? "Select a reviewer"}
+							{reviewer ?? "Select a reviewer"}
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Item value="Eddie Lake">Eddie Lake</Select.Item>

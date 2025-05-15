@@ -4,7 +4,7 @@
 	import AppSidebar from "./components/app-sidebar.svelte";
 	import SiteHeader from "./components/site-header.svelte";
 	import SectionCards from "./components/section-cards.svelte";
-	import ChartAreaInteractive from "../chart-area-interactive.svelte";
+	import ChartAreaInteractive from "./components/chart-area-interactive.svelte";
 	import DataTable from "./components/data-table.svelte";
 </script>
 

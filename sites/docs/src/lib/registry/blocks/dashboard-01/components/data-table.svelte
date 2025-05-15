@@ -513,14 +513,9 @@
 	</script>
 
 	<DropdownMenu.Root>
-		<DropdownMenu.Trigger>
+		<DropdownMenu.Trigger class="data-[state=open]:bg-muted text-muted-foreground flex size-8">
 			{#snippet child({ props })}
-				<Button
-					variant="ghost"
-					class="data-[state=open]:bg-muted text-muted-foreground flex size-8"
-					size="icon"
-					{...props}
-				>
+				<Button variant="ghost" size="icon" {...props}>
 					<DotsVerticalIcon />
 					<span class="sr-only">Open menu</span>
 				</Button>

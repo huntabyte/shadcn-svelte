@@ -217,7 +217,8 @@
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {
 							return v.toLocaleDateString("en-US", {
-								month: "long",
+								month: "short",
+								day: "numeric",
 							});
 						}}
 						indicator="line"
