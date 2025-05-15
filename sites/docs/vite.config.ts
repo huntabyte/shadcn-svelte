@@ -10,10 +10,13 @@ import { toJsonSchema } from "@valibot/to-json-schema";
 import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 
-console.log("Building registry...");
-writeJsonSchemas();
-await buildRegistry();
-console.log("Registry built.");
+// don't build when we're running `vite preview`
+if (!process.argv.includes("preview")) {
+	console.log("Building registry...");
+	writeJsonSchemas();
+	await buildRegistry();
+	console.log("Registry built.");
+}
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 export const veliteDirPath = path.join(__dirname, ".velite");
@@ -60,6 +63,10 @@ function writeJsonSchemas() {
 
 async function buildRegistry() {
 	await build();
-	execSync("pnpm shadcn-svelte registry build --output static/registry");
-	execSync("pnpm shadcn-svelte registry build --output src/__registry__/json");
+	execSync("pnpm shadcn-svelte registry build --output static/registry", {
+		stdio: ["pipe", "pipe", "inherit"],
+	});
+	execSync("pnpm shadcn-svelte registry build --output src/__registry__/json", {
+		stdio: ["pipe", "pipe", "inherit"],
+	});
 }

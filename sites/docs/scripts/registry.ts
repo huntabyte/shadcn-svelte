@@ -24,6 +24,7 @@ export async function buildRegistry() {
 		examples: path.resolve(registryRootPath, "examples"),
 		blocks: path.resolve(registryRootPath, "blocks"),
 		hooks: path.resolve(registryRootPath, "hooks"),
+		lib: path.resolve(registryRootPath, "lib"),
 	};
 
 	const resolvedItems = await Promise.all([
@@ -31,6 +32,7 @@ export async function buildRegistry() {
 		crawlExamples(paths.examples),
 		crawlBlocks(paths.blocks),
 		crawlHooks(paths.hooks),
+		crawlLib(paths.lib),
 	]);
 
 	resolvedItems.forEach((i) => items.push(...i));
@@ -166,6 +168,40 @@ async function crawlBlocks(rootPath: string) {
 		if (!dirent.name.endsWith(".svelte") || !dirent.isFile()) continue;
 
 		const [name] = dirent.name.split(".svelte");
+
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const relativePath = path.relative(process.cwd(), filepath);
+
+		const file = {
+			name: dirent.name,
+			content: source,
+			path: relativePath,
+			target: dirent.name,
+			type,
+		};
+		const { registryDependencies } = await getFileDependencies(filepath, source);
+
+		items.push({
+			name,
+			type,
+			files: [file],
+			registryDependencies: Array.from(registryDependencies),
+		});
+	}
+
+	return items;
+}
+
+async function crawlLib(rootPath: string) {
+	const type = "registry:lib" as const;
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
+	const items: RegistryItems = [];
+	for (const dirent of dir) {
+		if (!dirent.isFile()) continue;
+
+		const [name] = dirent.name.split(".ts");
+
+		const filepath = path.join(rootPath, dirent.name);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 

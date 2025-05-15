@@ -99,6 +99,7 @@ export const registryItemSchema = v.object({
 export type Registry = v.InferOutput<typeof registrySchema>;
 /** Schema for `registry.json` */
 export const registrySchema = v.object({
+	$schema: v.optional(v.string()),
 	name: v.string(),
 	homepage: v.string(),
 	// installs specified versions of dependencies during auto-detection

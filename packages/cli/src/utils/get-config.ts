@@ -7,6 +7,7 @@ import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { syncSvelteKit } from "./sveltekit.js";
 import { SITE_BASE_URL } from "../constants.js";
+import { highlight } from "./utils.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
@@ -18,15 +19,13 @@ export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
 
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
-
 const aliasSchema = (alias: string) =>
 	v.pipe(
 		v.string(`Missing aliases.${color.bold(`${alias}`)} alias`),
 		v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
 	);
 
-const originalConfigSchema = v.object({
+const baseConfigSchema = v.object({
 	$schema: v.optional(v.string()),
 	tailwind: v.object(
 		{
@@ -43,29 +42,32 @@ const originalConfigSchema = v.object({
 		},
 		`Missing ${color.bold("aliases")} object`
 	),
+	typescript: v.optional(v.boolean(), true),
 });
 
-// fields that were added after the fact so they must be optional so we can gracefully migrate
-// TODO: ideally, prompts would be triggered if these fields are not populated
-const newConfigFields = v.object({
+const originalConfigSchema = v.object({
+	...baseConfigSchema.entries,
+	style: v.optional(v.string()),
+});
+
+const newConfigSchema = v.object({
+	...baseConfigSchema.entries,
 	aliases: v.object({
+		...baseConfigSchema.entries.aliases.entries,
 		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
 		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
 		lib: v.optional(aliasSchema("lib"), DEFAULT_LIB),
 	}),
-	typescript: v.optional(v.boolean(), true),
-	// TODO: if they're missing this field then they're likely using svelte 4
-	// and we should prompt them to see if they'd like to use the new registry
 	registry: v.optional(v.string(), `${SITE_BASE_URL}/registry`),
 });
 
 // combines the old with the new
 export const rawConfigSchema = v.object({
 	...originalConfigSchema.entries,
-	...newConfigFields.entries,
+	...newConfigSchema.entries,
 	aliases: v.object({
 		...originalConfigSchema.entries.aliases.entries,
-		...newConfigFields.entries.aliases.entries,
+		...newConfigSchema.entries.aliases.entries,
 	}),
 });
 
@@ -89,13 +91,28 @@ export const configSchema = v.object({
 export type Config = v.InferOutput<typeof configSchema>;
 
 export async function getConfig(cwd: string) {
-	const config = await getRawConfig(cwd);
+	const config = getRawConfig(cwd);
 
-	if (!config) {
-		return null;
-	}
+	if (!config) return null;
 
 	return await resolveConfigPaths(cwd, config);
+}
+
+function getRawConfig(cwd: string): RawConfig | null {
+	const configPath = path.resolve(cwd, "components.json");
+	if (!fs.existsSync(configPath)) return null;
+
+	try {
+		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
+		const config = JSON.parse(configResult);
+		return v.parse(rawConfigSchema, config);
+	} catch (e) {
+		if (!(e instanceof v.ValiError)) throw e;
+		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
+	}
 }
 
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
@@ -109,6 +126,12 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		throw error(
 			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 		);
+	}
+
+	const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
+	for (const [alias, path] of Object.entries(config.aliases)) {
+		// @ts-expect-error simmer down
+		config.aliases[alias] = stripTrailingSlash(path);
 	}
 
 	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
@@ -161,26 +184,8 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	return parsedConfig;
 }
 
-export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
-	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return null;
-
-	try {
-		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
-		const config = JSON.parse(configResult);
-		return v.parse(rawConfigSchema, config);
-	} catch (e) {
-		if (!(e instanceof v.ValiError)) throw e;
-		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
-		throw new ConfigError(
-			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
-		);
-	}
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function writeConfig(cwd: string, config: any): void {
+export function writeConfig(cwd: string, config: RawConfig): void {
 	const targetPath = path.resolve(cwd, "components.json");
-	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do
+	const conf = v.parse(newConfigSchema, config);
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }

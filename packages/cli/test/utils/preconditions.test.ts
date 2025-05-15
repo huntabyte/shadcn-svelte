@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { checkPreconditions } from "../../src/utils/preconditions.js";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
-import { log } from "../../src/utils/prompts.js";
+import { log } from "@clack/prompts";
 
 vi.mock("../../src/utils/get-package-info.js", () => ({
 	loadProjectPackageInfo: vi.fn(),
 }));
 
-vi.mock("../../src/utils/prompts.js", () => ({
+vi.mock("@clack/prompts", () => ({
 	log: {
 		warn: vi.fn(),
 	},

@@ -1,3 +1,4 @@
+import color from "chalk";
 import * as v from "valibot";
 import { error } from "./errors.js";
 
@@ -7,6 +8,8 @@ export function isUrl(path: string) {
 	const result = v.safeParse(URLSchema, path);
 	return result.success;
 }
+
+export const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
 /** Adds a trailing slash to the end of the URL, if missing. */
 function normalizeURL(url: URL | string): URL {

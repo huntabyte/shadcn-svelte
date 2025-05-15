@@ -4,10 +4,10 @@ import path from "node:path";
 import * as v from "valibot";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
-import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
+import { registrySchema, type RegistryItem, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
-import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry.js";
+import { baseColors } from "../src/lib/registry/colors.js";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
@@ -40,16 +40,27 @@ export async function build() {
 		throw new Error(selfReferenceError);
 	}
 
+	const initItem: RegistryItem = {
+		name: "init",
+		type: "registry:style",
+		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+		registryDependencies: ["utils"],
+		files: [],
+		cssVars: {},
+	};
+
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
 	const result = v.parse(registrySchema, {
+		$schema: "./static/schema/registry.json",
 		name: "shadcn-svelte",
 		homepage: "https://shadcn-svelte.com",
 		// TODO: remove when moving from `next` to `latest`
 		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
-		items: registry,
+		items: [initItem, ...registry],
 	});
+
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",
 		"registry:hook",
@@ -83,8 +94,6 @@ export const Blocks = {
 
 		blocksIndex += `
 	"${block.name}": {
-		name: "${block.name}",
-		type: "${block.type}",
 		component: () => import("../lib/registry/blocks/${blockFile}").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/${blockFile}?raw").then((m) => m.default),
 	},`;
@@ -104,24 +113,20 @@ export const Index = {`;
 
 	// Build style index.
 	for (const item of result.items) {
-		if (item.type === "registry:ui" || item.type === "registry:block") {
+		if (item.type !== "registry:example") {
 			continue;
 		}
 		// pluralize
 		const type = item.type.split(":")[1] + "s";
 
 		const resolveFiles = item.files.map((file) => file.path.replace("src/", "../"));
-		const componentLine =
-			item.type === "registry:hook"
-				? "component: () => {}"
-				: `component: () => import("../lib/registry/${type}/${item.name}.svelte").then((m) => m.default)`;
 
 		index += `
 "${item.name}": {
 	name: "${item.name}",
 	type: "${item.type}",
 	registryDependencies: ${JSON.stringify(item.registryDependencies)},
-	${componentLine},
+	component: () => import("../lib/registry/${type}/${item.name}.svelte").then((m) => m.default),
 	files: [${resolveFiles.map((file) => `"${file.replaceAll(path.sep, "/")}"`)}],
 	raw: () => import("../lib/registry/${type}/${item.name}.svelte?raw").then((m) => m.default),
 },`;

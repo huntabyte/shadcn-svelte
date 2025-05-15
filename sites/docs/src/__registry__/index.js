@@ -1130,12 +1130,4 @@ export const Index = {
 	files: ["../lib/registry/examples/typography-table.svelte"],
 	raw: () => import("../lib/registry/examples/typography-table.svelte?raw").then((m) => m.default),
 },
-"is-mobile": {
-	name: "is-mobile",
-	type: "registry:hook",
-	registryDependencies: [],
-	component: () => {},
-	files: ["../lib/registry/hooks/is-mobile.svelte.ts"],
-	raw: () => import("../lib/registry/hooks/is-mobile.svelte?raw").then((m) => m.default),
-},
 }

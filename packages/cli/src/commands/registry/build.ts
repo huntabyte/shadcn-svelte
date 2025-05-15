@@ -5,11 +5,12 @@ import color from "chalk";
 import { Command } from "commander";
 import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
-import * as p from "../../utils/prompts.js";
+import * as p from "@clack/prompts";
 import { intro } from "../../utils/prompt-helpers.js";
 import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
+import { SITE_BASE_URL } from "../../constants.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -92,7 +93,7 @@ async function runBuild(options: BuildOptions) {
 	tasks.push({
 		title: "Building registry items",
 		async task(message) {
-			const projectDeps = await resolveProjectDeps(options.cwd);
+			const projectDeps = resolveProjectDeps(options.cwd);
 
 			// apply overrides
 			if (registry.overrideDependencies) {
@@ -142,7 +143,11 @@ async function runBuild(options: BuildOptions) {
 
 						// don't add detected deps if they're already predefined
 						if (!item.dependencies)
-							fileDeps.dependencies?.forEach((dep) => dependencies.add(dep));
+							fileDeps.dependencies?.forEach((dep) => {
+								// type def packages should be inserted into dev deps
+								if (dep.startsWith("@types/")) devDependencies.add(dep);
+								else dependencies.add(dep);
+							});
 						if (!item.devDependencies)
 							fileDeps.devDependencies?.forEach((dep) => devDependencies.add(dep));
 					}
@@ -150,6 +155,7 @@ async function runBuild(options: BuildOptions) {
 
 				const resolved = {
 					...item,
+					$schema: `${SITE_BASE_URL}/schema/registry-item.json`,
 					registryDependencies: toArray(registryDependencies),
 					dependencies: toArray(dependencies),
 					devDependencies: toArray(devDependencies),
@@ -157,7 +163,6 @@ async function runBuild(options: BuildOptions) {
 				};
 
 				const parsedItem = v.parse(schema.registryItemSchema, resolved);
-				parsedItem["$schema"] ??= "https://shadcn-svelte.com/schema/registry-item.json";
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 

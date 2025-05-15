@@ -1,7 +1,7 @@
 import color from "chalk";
 import * as semver from "semver";
 import { loadProjectPackageInfo } from "./get-package-info.js";
-import { log } from "./prompts.js";
+import { log } from "@clack/prompts";
 import { getPadding } from "./prompt-helpers.js";
 
 const peerDependencies: Record<string, string> = {

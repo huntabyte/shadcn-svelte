@@ -12,7 +12,7 @@
 	},
 	"private": true,
 	"scripts": {
-		"dev": "pnpm --reporter append-only --color \"/dev:/\" ",
+		"dev": "pnpm --reporter append-only --color \"/dev:/\"",
 		"dev:content": "velite dev --watch",
 		"dev:svelte": "vite dev",
 		"build": "pnpm build:content && pnpm build:svelte",

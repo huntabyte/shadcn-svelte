@@ -9,18 +9,7 @@ import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "@shadcn-svelte/registry";
 
 export function getRegistryUrl(config: Config) {
-	let url = process.env.COMPONENTS_REGISTRY_URL;
-
-	if (url) return url;
-
-	url = config.registry;
-
-	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
-	// this will be removed once we have a proper solution and or we merge with main
-	if (url === "https://next.shadcn-svelte.com/registry") {
-		return "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
-	}
-
+	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
 	return url;
 }
 
