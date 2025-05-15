@@ -11,6 +11,7 @@ import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
 import { SITE_BASE_URL } from "../../constants.js";
+import { ALIAS_PLACEHOLDERS, ALIASES } from "../../utils/transformers.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -115,12 +116,25 @@ async function runBuild(options: BuildOptions) {
 				}
 			}
 
+			const transformAliases = (content: string) => {
+				registry.aliases ??= {};
+				for (const alias of ALIASES) {
+					registry.aliases[alias] ??= `$lib/registry/${alias}`;
+					const placeholder = ALIAS_PLACEHOLDERS[alias];
+					content = content.replaceAll(registry.aliases[alias], placeholder);
+				}
+
+				return content;
+			};
+
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
 				const singleFile = item.files.length === 1;
 
 				const toResolve = item.files.map(async (file) => {
-					const content = await fs.readFile(file.path, "utf8");
+					let content = await fs.readFile(file.path, "utf8");
+					content = transformAliases(content);
+
 					const name = path.basename(file.path);
 					const target = singleFile ? name : `${item.name}/${name}`;
 

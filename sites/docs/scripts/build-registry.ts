@@ -4,7 +4,12 @@ import path from "node:path";
 import * as v from "valibot";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
-import { registrySchema, type RegistryItem, type RegistryItemType } from "@shadcn-svelte/registry";
+import {
+	registrySchema,
+	type Registry,
+	type RegistryItem,
+	type RegistryItemType,
+} from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { buildRegistry } from "./registry.js";
 import { baseColors } from "../src/lib/registry/colors.js";
@@ -56,10 +61,17 @@ export async function build() {
 		$schema: "./static/schema/registry.json",
 		name: "shadcn-svelte",
 		homepage: "https://shadcn-svelte.com",
+		aliases: {
+			lib: "$lib/registry/lib",
+			ui: "$lib/registry/ui",
+			components: "$lib/registry/components",
+			hooks: "$lib/registry/hooks",
+			utils: "$lib/utils",
+		},
 		// TODO: remove when moving from `next` to `latest`
 		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
 		items: [initItem, ...registry],
-	});
+	} as Registry);
 
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",

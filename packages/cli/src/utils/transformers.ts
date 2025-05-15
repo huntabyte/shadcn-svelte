@@ -17,17 +17,17 @@ export async function transformContent(content: string, filename: string, config
 	return content;
 }
 
-const aliases = ["components", "ui", "hooks", "lib"] as const;
+export const ALIASES = ["components", "ui", "hooks", "lib", "utils"] as const;
+export const ALIAS_PLACEHOLDERS = ALIASES.reduce(
+	(acc, a) => ((acc[a] = `$${a.toUpperCase()}$`), acc),
+	{} as Record<(typeof ALIASES)[number], string>
+);
+
 export function transformImports(content: string, config: Config) {
-	// utils is a special case since it points to a single file
-	let str = content.replace(/\$lib\/utils/g, config.aliases.utils);
-
-	for (const alias of aliases) {
-		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
-		str = str.replace(regex, config.aliases[alias] + "/");
+	for (const alias of ALIASES) {
+		content = content.replaceAll(ALIAS_PLACEHOLDERS[alias], config.aliases[alias]);
 	}
-
-	return str;
+	return content;
 }
 
 export async function stripTypes(content: string, filename: string) {

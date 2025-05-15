@@ -3,6 +3,13 @@
 	"name": "shadcn-svelte",
 	"homepage": "https://shadcn-svelte.com",
 	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
+	"aliases": {
+		"lib": "$lib/registry/lib",
+		"ui": "$lib/registry/ui",
+		"components": "$lib/registry/components",
+		"utils": "$lib/utils",
+		"hooks": "$lib/registry/hooks"
+	},
 	"items": [
 		{
 			"name": "init",
