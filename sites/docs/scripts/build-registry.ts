@@ -98,6 +98,7 @@ export const Blocks = {
 		blocksIndex += `
 	"${block.name}": {
 		component: () => import("../lib/registry/blocks/${blockFile}").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/${blockFile}?raw").then((m) => m.default),
 	},`;
 	}
 

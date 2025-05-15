@@ -1,9 +1,12 @@
 import * as v from "valibot";
 import type { Component } from "svelte";
+import { type Highlighter, getHighlighter } from "shiki";
 import { Blocks } from "../__registry__/blocks.js";
+import { lambdaStudioBlackout } from "../styles/dark.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
 export type RawBlock = {
+	raw: () => Promise<string>;
 	component: () => Promise<Component>;
 };
 
@@ -54,16 +57,45 @@ export async function getBlock(name: BlockName) {
 	return v.parse(blockSchema, { name, ...block, ...content });
 }
 
+async function getBlockCode(name: BlockName) {
+	const block = Blocks[name];
+	const code = await block.raw();
+	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
+	const detabbed = code.replaceAll("\t", "  ");
+	return detabbed;
+}
+
 async function getBlockContent(name: BlockName) {
+	const raw = await getBlockCode(name);
 	const { description, iframeHeight, className } = blockMeta[name];
+	const code = raw.replaceAll(`$lib/registry/`, "$lib/components/");
 
 	return {
 		description,
+		code,
 		container: {
 			height: iframeHeight,
 			className,
 		},
 	};
+}
+
+let highlighter: Highlighter;
+
+export async function highlightCode(code: string) {
+	if (!highlighter) {
+		highlighter = await getHighlighter({
+			langs: ["svelte"],
+			themes: [lambdaStudioBlackout],
+		});
+	}
+
+	const html = highlighter.codeToHtml(code, {
+		lang: "svelte",
+		theme: "Lambda Studio - Blackout",
+	});
+
+	return html;
 }
 
 export function isBlock(name: string): name is BlockName {
