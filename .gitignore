@@ -118,6 +118,7 @@ sites/docs/src/lib/registry-json/**/*.css
 sites/docs/static/themes.css
 sites/docs/static/schema/registry.json
 sites/docs/static/schema/registry-item.json
+sites/docs/src/__registry__/json/**/*.json
 v4/static/registry
 v4/static/themes.css
 v4/src/__registry__
