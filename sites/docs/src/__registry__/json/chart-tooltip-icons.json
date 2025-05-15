@@ -3,7 +3,7 @@
 	"type": "registry:block",
 	"devDependencies": [
 		"d3-scale@^4.0.2",
-		"layerchart@2.0.0-next.5",
+		"layerchart@2.0.0-next.6",
 		"@lucide/svelte@^0.482.0"
 	],
 	"registryDependencies": [
