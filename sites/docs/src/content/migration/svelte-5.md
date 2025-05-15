@@ -36,7 +36,6 @@ Add the `registry` to the root object, and add `hooks` and `ui` keys under `alia
   "$schema": "https://next.shadcn-svelte.com/schema.json",
   "style": "default",
   "tailwind": {
-    "config": "",
     "css": "src/app.css",
     "baseColor": "slate"
   },
