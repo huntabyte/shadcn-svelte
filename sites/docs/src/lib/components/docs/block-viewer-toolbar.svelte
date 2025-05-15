@@ -11,10 +11,19 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
 
 	const ctx = BlockViewerContext.get();
 
 	const clipboard = new UseClipboard();
+
+	const agent = getPackageManager();
+
+	const addCommand = $derived(
+		getCommand($agent, "execute", `shadcn-svelte@next add ${ctx.item.name}`)
+	);
+
+	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 </script>
 
 <div class="flex w-full items-center gap-2 md:pr-[14px]">
@@ -88,7 +97,7 @@
 				size="sm"
 				onclick={() => {
 					// todo make this use the right pm command
-					clipboard.copy(`npx shadcn@latest add ${ctx.item.name}`);
+					clipboard.copy(command);
 				}}
 			>
 				{#if clipboard.copied}
@@ -96,7 +105,7 @@
 				{:else}
 					<TerminalIcon />
 				{/if}
-				<span class="hidden lg:inline">npx shadcn add {ctx.item.name}</span>
+				<span class="hidden lg:inline">{command}</span>
 			</Button>
 		</div>
 		<Separator orientation="vertical" class="mx-1 hidden h-4 xl:flex" />

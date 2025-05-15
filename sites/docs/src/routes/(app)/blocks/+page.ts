@@ -66,7 +66,14 @@ export const load: PageLoad = async () => {
 	}
 
 	const result = await Promise.all(promises);
+
 	return {
-		blocks: result.filter((block): block is CachedItem => block !== null),
+		blocks: result
+			.filter((block): block is CachedItem => block !== null)
+			.sort((a, b) => {
+				const aIndex = FEATURED_BLOCKS.indexOf(a.name);
+				const bIndex = FEATURED_BLOCKS.indexOf(b.name);
+				return aIndex - bIndex;
+			}),
 	};
 };

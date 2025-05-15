@@ -31,7 +31,7 @@
 		highlightedFiles,
 	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> = $props();
 
-	let view = $state<BlockViewerContextType["view"]>("code");
+	let view = $state<BlockViewerContextType["view"]>("preview");
 
 	function getFirstFileTargetInTree(_tree: typeof tree = tree): string | null {
 		if (!_tree?.length) return null;
