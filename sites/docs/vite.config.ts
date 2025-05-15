@@ -17,6 +17,7 @@ console.log("Registry built.");
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 export const veliteDirPath = path.join(__dirname, ".velite");
+export const staticDirPath = path.join(__dirname, "src/registry/json");
 
 export default defineConfig({
 	plugins: [
@@ -35,7 +36,7 @@ export default defineConfig({
 	],
 	server: {
 		fs: {
-			allow: [veliteDirPath],
+			allow: [veliteDirPath, staticDirPath],
 		},
 	},
 });
@@ -60,4 +61,5 @@ function writeJsonSchemas() {
 async function buildRegistry() {
 	await build();
 	execSync("pnpm shadcn-svelte registry build --output static/registry");
+	execSync("pnpm shadcn-svelte registry build --output src/__registry__/json");
 }

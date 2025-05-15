@@ -1,0 +1,19 @@
+{
+	"name": "demo-sidebar-menu",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"sidebar"
+	],
+	"files": [
+		{
+			"name": "demo-sidebar-menu.svelte",
+			"content": "<script lang=\"ts\">\n\timport * as Sidebar from \"$lib/registry/ui/sidebar/index.js\";\n\timport LifeBuoyIcon from \"@lucide/svelte/icons/life-buoy\";\n\timport SendIcon from \"@lucide/svelte/icons/send\";\n\timport FrameIcon from \"@lucide/svelte/icons/frame\";\n\timport ChartPieIcon from \"@lucide/svelte/icons/chart-pie\";\n\timport MapIcon from \"@lucide/svelte/icons/map\";\n\tconst projects = [\n\t\t{\n\t\t\tname: \"Design Engineering\",\n\t\t\turl: \"#\",\n\t\t\ticon: FrameIcon,\n\t\t},\n\t\t{\n\t\t\tname: \"Sales & Marketing\",\n\t\t\turl: \"#\",\n\t\t\ticon: ChartPieIcon,\n\t\t},\n\t\t{\n\t\t\tname: \"Travel\",\n\t\t\turl: \"#\",\n\t\t\ticon: MapIcon,\n\t\t},\n\t\t{\n\t\t\tname: \"Support\",\n\t\t\turl: \"#\",\n\t\t\ticon: LifeBuoyIcon,\n\t\t},\n\t\t{\n\t\t\tname: \"Feedback\",\n\t\t\turl: \"#\",\n\t\t\ticon: SendIcon,\n\t\t},\n\t];\n</script>\n\n<Sidebar.Provider>\n\t<Sidebar.Root>\n\t\t<Sidebar.Content>\n\t\t\t<Sidebar.Group>\n\t\t\t\t<Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>\n\t\t\t\t<Sidebar.GroupContent>\n\t\t\t\t\t<Sidebar.Menu>\n\t\t\t\t\t\t{#each projects as project (project.name)}\n\t\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t\t<a href={project.url} {...props}>\n\t\t\t\t\t\t\t\t\t\t\t<project.icon />\n\t\t\t\t\t\t\t\t\t\t\t<span>{project.name}</span>\n\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Sidebar.Menu>\n\t\t\t\t</Sidebar.GroupContent>\n\t\t\t</Sidebar.Group>\n\t\t</Sidebar.Content>\n\t</Sidebar.Root>\n</Sidebar.Provider>\n",
+			"type": "registry:block",
+			"target": "demo-sidebar-menu.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "chart-radial-text",
+	"type": "registry:block",
+	"devDependencies": [
+		"layerchart@2.0.0-next.6",
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"card",
+		"chart"
+	],
+	"files": [
+		{
+			"name": "chart-radial-text.svelte",
+			"content": "<script lang=\"ts\">\n\timport * as Card from \"$lib/registry/ui/card/index.js\";\n\timport * as Chart from \"$lib/registry/ui/chart/index.js\";\n\timport { ArcChart, Text } from \"layerchart\";\n\timport TrendingUpIcon from \"@lucide/svelte/icons/trending-up\";\n\n\tconst chartData = [{ browser: \"safari\", visitors: 200, color: \"var(--color-safari)\" }];\n\n\tconst chartConfig = {\n\t\tvisitors: { label: \"Visitors\" },\n\t\tsafari: { label: \"Safari\", color: \"var(--chart-2)\" },\n\t} satisfies Chart.ChartConfig;\n</script>\n\n<Card.Root>\n\t<Card.Header class=\"items-center\">\n\t\t<Card.Title>Radial Chart - Text</Card.Title>\n\t\t<Card.Description>Showing total visitors for the last 6 months</Card.Description>\n\t</Card.Header>\n\t<Card.Content class=\"flex-1\">\n\t\t<Chart.Container config={chartConfig} class=\"mx-auto aspect-square max-h-[250px]\">\n\t\t\t<ArcChart\n\t\t\t\tlabel=\"browser\"\n\t\t\t\tvalue=\"visitors\"\n\t\t\t\touterRadius={-20}\n\t\t\t\tinnerRadius={-12}\n\t\t\t\tpadding={40}\n\t\t\t\trange={[90, -270]}\n\t\t\t\tmaxValue={300}\n\t\t\t\tcornerRadius={20}\n\t\t\t\tseries={chartData.map((d) => ({\n\t\t\t\t\tkey: d.browser,\n\t\t\t\t\tcolor: d.color,\n\t\t\t\t\tdata: [d],\n\t\t\t\t}))}\n\t\t\t\tprops={{\n\t\t\t\t\tarc: { track: { fill: \"var(--muted)\" }, motion: \"tween\" },\n\t\t\t\t\ttooltip: { context: { hideDelay: 350 } },\n\t\t\t\t}}\n\t\t\t\ttooltip={false}\n\t\t\t>\n\t\t\t\t{#snippet belowMarks()}\n\t\t\t\t\t<circle cx=\"0\" cy=\"0\" r=\"60\" class=\"fill-background\" />\n\t\t\t\t{/snippet}\n\n\t\t\t\t{#snippet aboveMarks()}\n\t\t\t\t\t<Text\n\t\t\t\t\t\tvalue={String(chartData[0].visitors)}\n\t\t\t\t\t\ttextAnchor=\"middle\"\n\t\t\t\t\t\tverticalAnchor=\"middle\"\n\t\t\t\t\t\tclass=\"fill-foreground text-4xl! font-bold\"\n\t\t\t\t\t\tdy={3}\n\t\t\t\t\t/>\n\t\t\t\t\t<Text\n\t\t\t\t\t\tvalue=\"Visitors\"\n\t\t\t\t\t\ttextAnchor=\"middle\"\n\t\t\t\t\t\tverticalAnchor=\"middle\"\n\t\t\t\t\t\tclass=\"fill-muted-foreground!\"\n\t\t\t\t\t\tdy={22}\n\t\t\t\t\t/>\n\t\t\t\t{/snippet}\n\t\t\t</ArcChart>\n\t\t</Chart.Container>\n\t</Card.Content>\n\t<Card.Footer class=\"flex-col gap-2 text-sm\">\n\t\t<div class=\"flex items-center gap-2 font-medium leading-none\">\n\t\t\tTrending up by 5.2% this month <TrendingUpIcon class=\"size-4\" />\n\t\t</div>\n\t\t<div class=\"text-muted-foreground flex items-center gap-2 leading-none\">\n\t\t\tJanuary - June 2024\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:block",
+			"target": "chart-radial-text.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

@@ -1,0 +1,22 @@
+{
+	"name": "progress",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^1.4.7"
+	],
+	"files": [
+		{
+			"name": "index.ts",
+			"content": "import Root from \"./progress.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Progress,\n};\n",
+			"type": "registry:ui",
+			"target": "progress/index.ts"
+		},
+		{
+			"name": "progress.svelte",
+			"content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tmax = 100,\n\t\tvalue,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ProgressPrimitive.RootProps> = $props();\n</script>\n\n<ProgressPrimitive.Root\n\tbind:ref\n\tdata-slot=\"progress\"\n\tclass={cn(\"bg-primary/20 relative h-2 w-full overflow-hidden rounded-full\", className)}\n\t{value}\n\t{max}\n\t{...restProps}\n>\n\t<div\n\t\tdata-slot=\"progress-indicator\"\n\t\tclass=\"bg-primary h-full w-full flex-1 transition-all\"\n\t\tstyle={`transform: translateX(-${100 - (100 * (value ?? 0)) / (max ?? 1)}%)`}\n\t></div>\n</ProgressPrimitive.Root>\n",
+			"type": "registry:ui",
+			"target": "progress/progress.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

@@ -345,6 +345,33 @@
 			]
 		},
 		{
+			"name": "chart",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/ui/chart/chart-container.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-style.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-tooltip.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/chart-utils.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/chart/index.ts",
+					"type": "registry:ui"
+				}
+			]
+		},
+		{
 			"name": "checkbox",
 			"type": "registry:ui",
 			"registryDependencies": [],
@@ -1442,6 +1469,1535 @@
 				{
 					"path": "src/lib/registry/ui/tooltip/tooltip-trigger.svelte",
 					"type": "registry:ui"
+				}
+			]
+		},
+		{
+			"name": "authentication-01",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "input", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/authentication-01.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "authentication-02",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "input", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/authentication-02.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "authentication-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "input", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/authentication-03.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "authentication-04",
+			"type": "registry:block",
+			"registryDependencies": ["button", "input", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/authentication-04.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-axes",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-axes.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-default.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-gradient",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-gradient.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-icons",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-icons.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card", "select"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-interactive.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-legend.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-linear",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-linear.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-stacked-expand",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-stacked-expand.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-stacked.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-area-step",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-area-step.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-active",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-active.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-default.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-horizontal",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-horizontal.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-interactive.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-label-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-label.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-mixed",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-mixed.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-multiple.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-negative",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-negative.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-bar-stacked.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-default.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots-colors",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-dots-colors.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-dots-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-dots.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-interactive.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-label-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-label.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-linear",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-linear.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-multiple.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-line-step",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-line-step.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut-active",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-donut-active.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut-text",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-donut-text.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-donut.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card", "select"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-interactive.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-label-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label-list",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-label-list.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-label.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-legend.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-separator-none",
+			"type": "registry:block",
+			"registryDependencies": ["card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-separator-none.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-simple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-simple.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-pie-stacked.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-default.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-dots",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-dots.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle-fill",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle-fill.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle-no-lines",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle-no-lines.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-fill",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-fill.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-none",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-grid-none.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-icons",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-icons.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-label-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-legend.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-lines-only",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-lines-only.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-multiple.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-radius",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radar-radius.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-grid",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-grid.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-label",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-label.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-shape",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-shape.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-simple",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-simple.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-stacked.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-text",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-radial-text.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-advanced",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-advanced.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-default",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-default.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-formatter",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-formatter.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-icons",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-icons.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-indicator-line",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-indicator-line.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-indicator-none",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-indicator-none.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-label-custom.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-formatter",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-label-formatter.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-none",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/chart-tooltip-label-none.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-01",
+			"type": "registry:block",
+			"registryDependencies": [
+				"avatar",
+				"badge",
+				"button",
+				"card",
+				"dropdown-menu",
+				"input",
+				"sheet",
+				"table"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-01.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-02",
+			"type": "registry:block",
+			"registryDependencies": ["badge", "button", "card", "dropdown-menu", "input", "sheet"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-02.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-03",
+			"type": "registry:block",
+			"registryDependencies": [
+				"badge",
+				"button",
+				"tooltip",
+				"drawer",
+				"input",
+				"textarea",
+				"label",
+				"select"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-03.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-04",
+			"type": "registry:block",
+			"registryDependencies": [
+				"button",
+				"card",
+				"checkbox",
+				"dropdown-menu",
+				"input",
+				"sheet"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-04.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-05",
+			"type": "registry:block",
+			"registryDependencies": [
+				"badge",
+				"breadcrumb",
+				"button",
+				"card",
+				"dropdown-menu",
+				"input",
+				"pagination",
+				"progress",
+				"separator",
+				"sheet",
+				"table",
+				"tabs",
+				"tooltip"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-05.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-06",
+			"type": "registry:block",
+			"registryDependencies": [
+				"badge",
+				"breadcrumb",
+				"button",
+				"card",
+				"dropdown-menu",
+				"input",
+				"sheet",
+				"table",
+				"tabs",
+				"tooltip"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-06.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "dashboard-07",
+			"type": "registry:block",
+			"registryDependencies": [
+				"badge",
+				"breadcrumb",
+				"button",
+				"card",
+				"dropdown-menu",
+				"input",
+				"label",
+				"select",
+				"sheet",
+				"table",
+				"textarea",
+				"toggle-group",
+				"tooltip"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/dashboard-07.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-controlled",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-controlled.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-footer",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-footer.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group-action",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "sonner"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-group-action.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group-collapsible",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "collapsible"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-group-collapsible.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-group.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-header",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-header.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-action",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-action.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-badge",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-badge.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-collapsible",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "collapsible"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-collapsible.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-sub",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-sub.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar-menu.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/demo-sidebar.svelte",
+					"type": "registry:block"
+				}
+			]
+		},
+		{
+			"name": "login-01",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "input", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-01/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-01/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-01",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"label",
+				"dropdown-menu"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-01/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-01/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-01/components/search-form.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-01/components/version-switcher.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-02",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"collapsible",
+				"label",
+				"dropdown-menu"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-02/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-02/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-02/components/search-form.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-02/components/version-switcher.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-03",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "separator", "sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-03/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-03/components/app-sidebar.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-04",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "separator", "sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-04/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-04/components/app-sidebar.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-05",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "separator", "sidebar", "collapsible", "label"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-05/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-05/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-05/components/search-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-06",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"dropdown-menu",
+				"button",
+				"card"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-06/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-06/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-06/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-06/components/sidebar-opt-in-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-07",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"collapsible",
+				"dropdown-menu",
+				"avatar"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/components/nav-projects.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-07/components/team-switcher.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-08",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"collapsible",
+				"dropdown-menu",
+				"avatar"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/components/nav-projects.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-08/components/nav-user.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-09",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"label",
+				"switch",
+				"avatar",
+				"dropdown-menu"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-09/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-09/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-09/components/nav-user.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-10",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"button",
+				"popover",
+				"dropdown-menu",
+				"collapsible"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/nav-actions.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/nav-favorites.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/nav-workspaces.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-10/components/team-switcher.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-11",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "separator", "sidebar", "collapsible"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-11/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-11/components/app-sidebar.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-12",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"collapsible",
+				"calendar",
+				"avatar",
+				"dropdown-menu"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-12/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-12/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-12/components/calendars.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-12/components/date-picker.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-12/components/nav-user.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-13",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "button", "dialog", "sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-13/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-13/components/settings-dialog.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-14",
+			"type": "registry:block",
+			"registryDependencies": ["breadcrumb", "sidebar"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-14/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-14/components/app-sidebar.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-15",
+			"type": "registry:block",
+			"registryDependencies": [
+				"breadcrumb",
+				"separator",
+				"sidebar",
+				"collapsible",
+				"calendar",
+				"dropdown-menu",
+				"avatar"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/calendars.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/date-picker.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/nav-favorites.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/nav-workspaces.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/sidebar-left.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/sidebar-right.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-15/components/team-switcher.svelte",
+					"type": "registry:component"
 				}
 			]
 		},

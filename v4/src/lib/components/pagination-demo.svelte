@@ -9,8 +9,6 @@
 
 	const perPage = $derived(isDesktop.current ? 3 : 8);
 	const siblingCount = $derived(isDesktop.current ? 1 : 0);
-
-	// TODO: parity with OG
 </script>
 
 <div class="flex flex-col gap-6">

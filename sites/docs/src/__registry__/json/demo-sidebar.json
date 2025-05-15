@@ -1,0 +1,19 @@
+{
+	"name": "demo-sidebar",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"sidebar"
+	],
+	"files": [
+		{
+			"name": "demo-sidebar.svelte",
+			"content": "<script lang=\"ts\">\n\timport CalendarIcon from \"@lucide/svelte/icons/calendar\";\n\timport HouseIcon from \"@lucide/svelte/icons/house\";\n\timport InboxIcon from \"@lucide/svelte/icons/inbox\";\n\timport SearchIcon from \"@lucide/svelte/icons/search\";\n\timport SettingsIcon from \"@lucide/svelte/icons/settings\";\n\timport * as Sidebar from \"$lib/registry/ui/sidebar/index.js\";\n\n\t// Menu items.\n\tconst items = [\n\t\t{\n\t\t\ttitle: \"Home\",\n\t\t\turl: \"#\",\n\t\t\ticon: HouseIcon,\n\t\t},\n\t\t{\n\t\t\ttitle: \"Inbox\",\n\t\t\turl: \"#\",\n\t\t\ticon: InboxIcon,\n\t\t},\n\t\t{\n\t\t\ttitle: \"Calendar\",\n\t\t\turl: \"#\",\n\t\t\ticon: CalendarIcon,\n\t\t},\n\t\t{\n\t\t\ttitle: \"Search\",\n\t\t\turl: \"#\",\n\t\t\ticon: SearchIcon,\n\t\t},\n\t\t{\n\t\t\ttitle: \"Settings\",\n\t\t\turl: \"#\",\n\t\t\ticon: SettingsIcon,\n\t\t},\n\t];\n</script>\n\n<Sidebar.Provider>\n\t<Sidebar.Root>\n\t\t<Sidebar.Content>\n\t\t\t<Sidebar.Group>\n\t\t\t\t<Sidebar.GroupLabel>Application</Sidebar.GroupLabel>\n\t\t\t\t<Sidebar.GroupContent>\n\t\t\t\t\t<Sidebar.Menu>\n\t\t\t\t\t\t{#each items as item (item.title)}\n\t\t\t\t\t\t\t<Sidebar.MenuItem>\n\t\t\t\t\t\t\t\t<Sidebar.MenuButton>\n\t\t\t\t\t\t\t\t\t{#snippet child({ props })}\n\t\t\t\t\t\t\t\t\t\t<a href={item.url} {...props}>\n\t\t\t\t\t\t\t\t\t\t\t<item.icon />\n\t\t\t\t\t\t\t\t\t\t\t<span>{item.title}</span>\n\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t{/snippet}\n\t\t\t\t\t\t\t\t</Sidebar.MenuButton>\n\t\t\t\t\t\t\t</Sidebar.MenuItem>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</Sidebar.Menu>\n\t\t\t\t</Sidebar.GroupContent>\n\t\t\t</Sidebar.Group>\n\t\t</Sidebar.Content>\n\t</Sidebar.Root>\n\t<Sidebar.Inset>\n\t\t<header class=\"flex h-12 items-center justify-between px-4\">\n\t\t\t<Sidebar.Trigger />\n\t\t</header>\n\t</Sidebar.Inset>\n</Sidebar.Provider>\n",
+			"type": "registry:block",
+			"target": "demo-sidebar.svelte"
+		}
+	],
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+}

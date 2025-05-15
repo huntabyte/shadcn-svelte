@@ -157,7 +157,11 @@ export function rehypeComponentExample() {
 				try {
 					// @ts-expect-error - this is fine
 					const component = Index[name];
-					const src = component.files[0].replace("/lib/", "/src/lib/");
+					if (!component) return;
+					const files = component?.files;
+					if (!files) return;
+					const src = files[0]?.replace("/lib/", "/src/lib/");
+
 					let sourceCode = getComponentSourceFileContent(src);
 					if (!sourceCode || sourceCode === null) return;
 
