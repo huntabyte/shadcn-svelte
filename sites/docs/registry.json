@@ -3106,6 +3106,54 @@
 			]
 		},
 		{
+			"name": "sidebar-16",
+			"type": "registry:block",
+			"registryDependencies": [
+				"sidebar",
+				"collapsible",
+				"dropdown-menu",
+				"avatar",
+				"label",
+				"breadcrumb",
+				"button",
+				"separator"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-projects.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/search-form.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/site-header.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
 			"name": "is-mobile",
 			"type": "registry:hook",
 			"registryDependencies": [],

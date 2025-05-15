@@ -1,8 +1,4 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/ui/avatar/index.js";
-	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import { useSidebar } from "$lib/registry/ui/sidebar/index.js";
 	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
@@ -10,8 +6,21 @@
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 
-	let { user }: { user: { name: string; email: string; avatar: string } } = $props();
-	const sidebar = useSidebar();
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+
+	let {
+		user,
+	}: {
+		user: {
+			name: string;
+			email: string;
+			avatar: string;
+		};
+	} = $props();
+
+	const sidebar = Sidebar.useSidebar();
 </script>
 
 <Sidebar.Menu>

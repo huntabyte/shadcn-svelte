@@ -1,39 +1,21 @@
 <script lang="ts" module>
-	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
-	import BookOpenIcon from "@lucide/svelte/icons/book-open";
-	import BotIcon from "@lucide/svelte/icons/bot";
-	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import CommandIcon from "@lucide/svelte/icons/command";
-	import FrameIcon from "@lucide/svelte/icons/frame";
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import MapIcon from "@lucide/svelte/icons/map";
-	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
+	import BotIcon from "@lucide/svelte/icons/bot";
+	import BookOpenIcon from "@lucide/svelte/icons/book-open";
+	import Settings2Icon from "@lucide/svelte/icons/settings-2";
+	import LifeBuoyIcon from "@lucide/svelte/icons/life-buoy";
+	import SendIcon from "@lucide/svelte/icons/send";
+	import FrameIcon from "@lucide/svelte/icons/frame";
+	import PieChartIcon from "@lucide/svelte/icons/pie-chart";
+	import MapIcon from "@lucide/svelte/icons/map";
+	import CommandIcon from "@lucide/svelte/icons/command";
 
-	// This is sample data.
 	const data = {
 		user: {
 			name: "shadcn",
 			email: "m@example.com",
 			avatar: "/avatars/shadcn.jpg",
 		},
-		teams: [
-			{
-				name: "Acme Inc",
-				logo: GalleryVerticalEndIcon,
-				plan: "Enterprise",
-			},
-			{
-				name: "Acme Corp.",
-				logo: AudioWaveformIcon,
-				plan: "Startup",
-			},
-			{
-				name: "Evil Corp.",
-				logo: CommandIcon,
-				plan: "Free",
-			},
-		],
 		navMain: [
 			{
 				title: "Playground",
@@ -121,6 +103,18 @@
 				],
 			},
 		],
+		navSecondary: [
+			{
+				title: "Support",
+				url: "#",
+				icon: LifeBuoyIcon,
+			},
+			{
+				title: "Feedback",
+				url: "#",
+				icon: SendIcon,
+			},
+		],
 		projects: [
 			{
 				name: "Design Engineering",
@@ -130,7 +124,7 @@
 			{
 				name: "Sales & Marketing",
 				url: "#",
-				icon: ChartPieIcon,
+				icon: PieChartIcon,
 			},
 			{
 				name: "Travel",
@@ -142,30 +136,44 @@
 </script>
 
 <script lang="ts">
-	import NavMain from "$lib/registry/blocks/sidebar-07/components/nav-main.svelte";
-	import NavProjects from "$lib/registry/blocks/sidebar-07/components/nav-projects.svelte";
-	import NavUser from "$lib/registry/blocks/sidebar-07/components/nav-user.svelte";
-	import TeamSwitcher from "$lib/registry/blocks/sidebar-07/components/team-switcher.svelte";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import NavMain from "./nav-main.svelte";
+	import NavProjects from "./nav-projects.svelte";
+	import NavSecondary from "./nav-secondary.svelte";
+	import NavUser from "./nav-user.svelte";
 
-	let {
-		ref = $bindable(null),
-		collapsible = "icon",
-		...restProps
-	}: ComponentProps<typeof Sidebar.Root> = $props();
+	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root {collapsible} {...restProps}>
+<Sidebar.Root class="top-(--header-height) h-[calc(100svh-var(--header-height))]!" {...restProps}>
 	<Sidebar.Header>
-		<TeamSwitcher teams={data.teams} />
+		<Sidebar.Menu>
+			<Sidebar.MenuItem>
+				<Sidebar.MenuButton size="lg">
+					{#snippet child({ props })}
+						<a href="##" {...props}>
+							<div
+								class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+							>
+								<CommandIcon class="size-4" />
+							</div>
+							<div class="grid flex-1 text-left text-sm leading-tight">
+								<span class="truncate font-medium">Acme Inc</span>
+								<span class="truncate text-xs">Enterprise</span>
+							</div>
+						</a>
+					{/snippet}
+				</Sidebar.MenuButton>
+			</Sidebar.MenuItem>
+		</Sidebar.Menu>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
 		<NavProjects projects={data.projects} />
+		<NavSecondary items={data.navSecondary} class="mt-auto" />
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser user={data.user} />
 	</Sidebar.Footer>
-	<Sidebar.Rail />
 </Sidebar.Root>

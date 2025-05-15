@@ -1,7 +1,8 @@
 <script lang="ts">
-	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import type { Component } from "svelte";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 
 	let {
 		items,
@@ -9,9 +10,7 @@
 		items: {
 			title: string;
 			url: string;
-			// This should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
+			icon: Component;
 			isActive?: boolean;
 			items?: {
 				title: string;
@@ -24,19 +23,19 @@
 <Sidebar.Group>
 	<Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
 	<Sidebar.Menu>
-		{#each items as mainItem (mainItem.title)}
-			<Collapsible.Root open={mainItem.isActive}>
+		{#each items as item (item.title)}
+			<Collapsible.Root open={item.isActive}>
 				{#snippet child({ props })}
 					<Sidebar.MenuItem {...props}>
-						<Sidebar.MenuButton tooltipContent={mainItem.title}>
+						<Sidebar.MenuButton tooltipContent={item.title}>
 							{#snippet child({ props })}
-								<a href={mainItem.url} {...props}>
-									<mainItem.icon />
-									<span>{mainItem.title}</span>
+								<a href={item.url} {...props}>
+									<item.icon />
+									<span>{item.title}</span>
 								</a>
 							{/snippet}
 						</Sidebar.MenuButton>
-						{#if mainItem.items?.length}
+						{#if item.items?.length}
 							<Collapsible.Trigger>
 								{#snippet child({ props })}
 									<Sidebar.MenuAction
@@ -50,10 +49,14 @@
 							</Collapsible.Trigger>
 							<Collapsible.Content>
 								<Sidebar.MenuSub>
-									{#each mainItem.items as subItem (subItem.title)}
+									{#each item.items as subItem (subItem.title)}
 										<Sidebar.MenuSubItem>
-											<Sidebar.MenuSubButton href={subItem.url}>
-												<span>{subItem.title}</span>
+											<Sidebar.MenuSubButton>
+												{#snippet child({ props })}
+													<a href={subItem.url} {...props}>
+														<span>{subItem.title}</span>
+													</a>
+												{/snippet}
 											</Sidebar.MenuSubButton>
 										</Sidebar.MenuSubItem>
 									{/each}

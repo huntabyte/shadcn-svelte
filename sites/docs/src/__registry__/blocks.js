@@ -447,4 +447,8 @@ export const Blocks = {
 		component: () => import("../lib/registry/blocks/sidebar-15/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/sidebar-15/+page.svelte?raw").then((m) => m.default),
 	},
+	"sidebar-16": {
+		component: () => import("../lib/registry/blocks/sidebar-16/+page.svelte").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/sidebar-16/+page.svelte?raw").then((m) => m.default),
+	},
 };
