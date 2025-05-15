@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "card",
 	"type": "registry:ui",
 	"files": [
@@ -50,6 +51,5 @@
 			"type": "registry:ui",
 			"target": "card/index.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

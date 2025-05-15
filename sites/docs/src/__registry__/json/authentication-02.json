@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "authentication-02",
 	"type": "registry:block",
 	"registryDependencies": [
@@ -14,6 +15,5 @@
 			"type": "registry:block",
 			"target": "authentication-02.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

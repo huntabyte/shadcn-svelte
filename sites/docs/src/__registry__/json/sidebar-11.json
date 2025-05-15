@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "sidebar-11",
 	"type": "registry:block",
 	"devDependencies": [
@@ -22,6 +23,5 @@
 			"type": "registry:component",
 			"target": "sidebar-11/app-sidebar.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

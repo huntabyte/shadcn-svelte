@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "is-mobile",
 	"type": "registry:hook",
 	"files": [
@@ -8,6 +9,5 @@
 			"type": "registry:hook",
 			"target": "is-mobile.svelte.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

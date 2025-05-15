@@ -1,8 +1,10 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-tooltip-default",
 	"type": "registry:block",
 	"devDependencies": [
 		"d3-scale@^4.0.2",
+		"@types/d3-scale@^4.0.8",
 		"layerchart@2.0.0-next.6"
 	],
 	"registryDependencies": [
@@ -16,6 +18,5 @@
 			"type": "registry:block",
 			"target": "chart-tooltip-default.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

@@ -20,632 +20,282 @@ export const Blocks = {
 		raw: () => import("../lib/registry/blocks/authentication-04.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-axes": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-axes",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-axes.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-axes.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-default": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-default",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-default.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-default.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-gradient": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-gradient",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-gradient.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-gradient.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-icons": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-icons",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-icons.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-icons.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-interactive": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-interactive",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-interactive.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-interactive.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-legend": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-legend",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-legend.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-legend.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-linear": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-linear",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-linear.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-linear.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-stacked-expand": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-stacked-expand",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-stacked-expand.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-stacked-expand.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-stacked": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-stacked",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-stacked.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-stacked.svelte?raw").then((m) => m.default),
 	},
 	"chart-area-step": {
-<<<<<<< HEAD
-=======
-		name: "chart-area-step",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-area-step.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-area-step.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-active": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-active",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-active.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-active.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-default": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-default",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-default.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-default.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-horizontal": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-horizontal",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-horizontal.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-horizontal.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-interactive": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-interactive",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-interactive.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-interactive.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-label-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-label-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-label-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-label-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-label": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-label",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-label.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-label.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-mixed": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-mixed",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-mixed.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-mixed.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-multiple": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-multiple",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-multiple.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-multiple.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-negative": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-negative",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-negative.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-negative.svelte?raw").then((m) => m.default),
 	},
 	"chart-bar-stacked": {
-<<<<<<< HEAD
-=======
-		name: "chart-bar-stacked",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-bar-stacked.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-bar-stacked.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-default": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-default",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-default.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-default.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-dots-colors": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-dots-colors",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-dots-colors.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-dots-colors.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-dots-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-dots-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-dots-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-dots-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-dots": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-dots",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-dots.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-dots.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-interactive": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-interactive",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-interactive.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-interactive.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-label-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-label-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-label-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-label-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-label": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-label",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-label.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-label.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-linear": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-linear",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-linear.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-linear.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-multiple": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-multiple",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-multiple.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-multiple.svelte?raw").then((m) => m.default),
 	},
 	"chart-line-step": {
-<<<<<<< HEAD
-=======
-		name: "chart-line-step",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-line-step.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-line-step.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-donut-active": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-donut-active",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-donut-active.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-donut-active.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-donut-text": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-donut-text",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-donut-text.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-donut-text.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-donut": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-donut",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-donut.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-donut.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-interactive": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-interactive",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-interactive.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-interactive.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-label-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-label-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-label-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-label-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-label-list": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-label-list",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-label-list.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-label-list.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-label": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-label",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-label.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-label.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-legend": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-legend",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-legend.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-legend.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-separator-none": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-separator-none",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-separator-none.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-separator-none.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-simple": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-simple",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-simple.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-simple.svelte?raw").then((m) => m.default),
 	},
 	"chart-pie-stacked": {
-<<<<<<< HEAD
-=======
-		name: "chart-pie-stacked",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-pie-stacked.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-pie-stacked.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-default": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-default",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-default.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-default.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-dots": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-dots",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-dots.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-dots.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-circle-fill": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-circle-fill",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-circle-fill.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-circle-fill.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-circle-no-lines": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-circle-no-lines",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-circle-no-lines.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-circle-no-lines.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-circle": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-circle",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-circle.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-circle.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-fill": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-fill",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-fill.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-fill.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-grid-none": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-grid-none",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-grid-none.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-grid-none.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-icons": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-icons",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-icons.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-icons.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-label-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-label-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-label-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-label-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-legend": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-legend",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-legend.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-legend.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-lines-only": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-lines-only",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-lines-only.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-lines-only.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-multiple": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-multiple",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-multiple.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-multiple.svelte?raw").then((m) => m.default),
 	},
 	"chart-radar-radius": {
-<<<<<<< HEAD
-=======
-		name: "chart-radar-radius",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radar-radius.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radar-radius.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-grid": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-grid",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-grid.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-grid.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-label": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-label",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-label.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-label.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-shape": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-shape",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-shape.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-shape.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-simple": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-simple",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-simple.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-simple.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-stacked": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-stacked",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-stacked.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-stacked.svelte?raw").then((m) => m.default),
 	},
 	"chart-radial-text": {
-<<<<<<< HEAD
-=======
-		name: "chart-radial-text",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-radial-text.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-radial-text.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-advanced": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-advanced",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-advanced.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-advanced.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-default": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-default",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-default.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-default.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-formatter": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-formatter",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-formatter.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-formatter.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-icons": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-icons",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-icons.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-icons.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-indicator-line": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-indicator-line",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-indicator-line.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-indicator-line.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-indicator-none": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-indicator-none",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-indicator-none.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-indicator-none.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-label-custom": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-label-custom",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-label-custom.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-label-custom.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-label-formatter": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-label-formatter",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-label-formatter.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-label-formatter.svelte?raw").then((m) => m.default),
 	},
 	"chart-tooltip-label-none": {
-<<<<<<< HEAD
-=======
-		name: "chart-tooltip-label-none",
-		type: "registry:block",
->>>>>>> next-tailwind-4
 		component: () => import("../lib/registry/blocks/chart-tooltip-label-none.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/chart-tooltip-label-none.svelte?raw").then((m) => m.default),
 	},

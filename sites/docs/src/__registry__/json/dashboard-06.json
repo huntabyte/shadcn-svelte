@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "dashboard-06",
 	"type": "registry:block",
 	"devDependencies": [
@@ -23,6 +24,5 @@
 			"type": "registry:block",
 			"target": "dashboard-06.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

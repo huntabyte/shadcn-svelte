@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "progress",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -17,6 +18,5 @@
 			"type": "registry:ui",
 			"target": "progress/progress.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "checkbox",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -18,6 +19,5 @@
 			"type": "registry:ui",
 			"target": "checkbox/index.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

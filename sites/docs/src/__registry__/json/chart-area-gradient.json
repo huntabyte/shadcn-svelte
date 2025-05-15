@@ -1,10 +1,13 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-area-gradient",
 	"type": "registry:block",
 	"devDependencies": [
 		"@layerstack/utils@^1.0.0",
 		"d3-scale@^4.0.2",
+		"@types/d3-scale@^4.0.8",
 		"d3-shape@^3.2.0",
+		"@types/d3-shape@^3.1.7",
 		"layerchart@2.0.0-next.6",
 		"@lucide/svelte@^0.482.0"
 	],
@@ -19,6 +22,5 @@
 			"type": "registry:block",
 			"target": "chart-area-gradient.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

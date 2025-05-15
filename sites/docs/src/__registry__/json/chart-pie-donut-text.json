@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-pie-donut-text",
 	"type": "registry:block",
 	"devDependencies": [
@@ -16,6 +17,5 @@
 			"type": "registry:block",
 			"target": "chart-pie-donut-text.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

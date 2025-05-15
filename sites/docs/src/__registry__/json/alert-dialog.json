@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "alert-dialog",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -68,6 +69,5 @@
 			"type": "registry:ui",
 			"target": "alert-dialog/index.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "textarea",
 	"type": "registry:ui",
 	"files": [
@@ -14,6 +15,5 @@
 			"type": "registry:ui",
 			"target": "textarea/textarea.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

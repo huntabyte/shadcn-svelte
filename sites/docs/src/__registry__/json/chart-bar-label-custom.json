@@ -1,10 +1,12 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-bar-label-custom",
 	"type": "registry:block",
 	"devDependencies": [
 		"@lucide/svelte@^0.482.0",
 		"layerchart@2.0.0-next.6",
-		"d3-scale@^4.0.2"
+		"d3-scale@^4.0.2",
+		"@types/d3-scale@^4.0.8"
 	],
 	"registryDependencies": [
 		"chart",
@@ -17,6 +19,5 @@
 			"type": "registry:block",
 			"target": "chart-bar-label-custom.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

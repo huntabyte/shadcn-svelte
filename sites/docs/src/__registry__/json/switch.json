@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "switch",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -17,6 +18,5 @@
 			"type": "registry:ui",
 			"target": "switch/switch.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

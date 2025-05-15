@@ -1,5 +1,18 @@
 [
 	{
+		"name": "init",
+		"type": "registry:style",
+		"devDependencies": [
+			"tailwind-variants",
+			"@lucide/svelte",
+			"tw-animate-css"
+		],
+		"registryDependencies": [
+			"utils"
+		],
+		"relativeUrl": "init.json"
+	},
+	{
 		"name": "accordion",
 		"type": "registry:ui",
 		"registryDependencies": [],
@@ -1397,5 +1410,11 @@
 		"type": "registry:hook",
 		"registryDependencies": [],
 		"relativeUrl": "is-mobile.json"
+	},
+	{
+		"name": "utils",
+		"type": "registry:lib",
+		"registryDependencies": [],
+		"relativeUrl": "utils.json"
 	}
 ]

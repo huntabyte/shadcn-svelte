@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "data-table",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -29,6 +30,5 @@
 			"type": "registry:ui",
 			"target": "data-table/render-helpers.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

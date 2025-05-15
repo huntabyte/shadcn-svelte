@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "scroll-area",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -23,6 +24,5 @@
 			"type": "registry:ui",
 			"target": "scroll-area/scroll-area.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

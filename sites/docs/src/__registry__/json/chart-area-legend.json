@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-area-legend",
 	"type": "registry:block",
 	"devDependencies": [
@@ -6,7 +7,9 @@
 		"@lucide/svelte@^0.482.0",
 		"@layerstack/utils@^1.0.0",
 		"d3-shape@^3.2.0",
-		"d3-scale@^4.0.2"
+		"@types/d3-shape@^3.1.7",
+		"d3-scale@^4.0.2",
+		"@types/d3-scale@^4.0.8"
 	],
 	"registryDependencies": [
 		"chart",
@@ -19,6 +22,5 @@
 			"type": "registry:block",
 			"target": "chart-area-legend.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

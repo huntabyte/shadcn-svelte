@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "button",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -17,6 +18,5 @@
 			"type": "registry:ui",
 			"target": "button/index.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

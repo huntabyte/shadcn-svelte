@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "sidebar-07",
 	"type": "registry:block",
 	"devDependencies": [
@@ -48,6 +49,5 @@
 			"type": "registry:component",
 			"target": "sidebar-07/team-switcher.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

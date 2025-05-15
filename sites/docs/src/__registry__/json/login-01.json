@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "login-01",
 	"type": "registry:block",
 	"registryDependencies": [
@@ -19,6 +20,5 @@
 			"type": "registry:component",
 			"target": "login-01/login-form.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

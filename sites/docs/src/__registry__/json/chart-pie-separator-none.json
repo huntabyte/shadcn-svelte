@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "chart-pie-separator-none",
 	"type": "registry:block",
 	"devDependencies": [
@@ -14,6 +15,5 @@
 			"type": "registry:block",
 			"target": "chart-pie-separator-none.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "drawer",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -71,6 +72,5 @@
 			"type": "registry:ui",
 			"target": "drawer/index.ts"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

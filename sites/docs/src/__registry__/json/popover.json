@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "popover",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -23,6 +24,5 @@
 			"type": "registry:ui",
 			"target": "popover/popover-trigger.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }

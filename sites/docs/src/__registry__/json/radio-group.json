@@ -1,4 +1,5 @@
 {
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
 	"name": "radio-group",
 	"type": "registry:ui",
 	"devDependencies": [
@@ -24,6 +25,5 @@
 			"type": "registry:ui",
 			"target": "radio-group/radio-group.svelte"
 		}
-	],
-	"$schema": "https://shadcn-svelte.com/schema/registry-item.json"
+	]
 }
