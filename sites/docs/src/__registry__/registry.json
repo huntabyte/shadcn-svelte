@@ -2298,19 +2298,113 @@
 			"name": "dashboard-01",
 			"type": "registry:block",
 			"registryDependencies": [
-				"avatar",
-				"badge",
-				"button",
+				"sidebar",
+				"chart",
 				"card",
+				"select",
+				"toggle-group",
+				"data-table",
 				"dropdown-menu",
+				"button",
+				"drawer",
+				"is-mobile",
+				"label",
 				"input",
-				"sheet",
-				"table"
+				"separator",
+				"checkbox",
+				"table",
+				"badge",
+				"tabs",
+				"avatar"
 			],
 			"files": [
 				{
-					"path": "src/lib/registry/blocks/dashboard-01.svelte",
-					"type": "registry:block"
+					"path": "src/lib/registry/blocks/dashboard-01/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/chart-area-interactive.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/columns.ts",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-actions.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-cell-viewer.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-checkbox.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-drag-handle.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-draggable-row.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-limit.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-reviewer.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-status.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-target.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-type.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-documents.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/schemas.ts",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/section-cards.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/site-header.svelte",
+					"type": "registry:component"
 				}
 			]
 		},

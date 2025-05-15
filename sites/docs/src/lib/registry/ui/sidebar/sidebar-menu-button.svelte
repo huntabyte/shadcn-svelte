@@ -50,7 +50,7 @@
 		isActive?: boolean;
 		variant?: SidebarMenuButtonVariant;
 		size?: SidebarMenuButtonSize;
-		tooltipContent?: Snippet;
+		tooltipContent?: Snippet | string;
 		tooltipContentProps?: WithoutChildrenOrChild<ComponentProps<typeof Tooltip.Content>>;
 		child?: Snippet<[{ props: Record<string, unknown> }]>;
 	} = $props();
@@ -91,8 +91,13 @@
 			side="right"
 			align="center"
 			hidden={sidebar.state !== "collapsed" || sidebar.isMobile}
-			children={tooltipContent}
 			{...tooltipContentProps}
-		/>
+		>
+			{#if typeof tooltipContent === "string"}
+				{tooltipContent}
+			{:else if tooltipContent}
+				{@render tooltipContent()}
+			{/if}
+		</Tooltip.Content>
 	</Tooltip.Root>
 {/if}

@@ -37,7 +37,8 @@ export const load: PageLoad = async () => {
 					const files = await Promise.all(
 						res.files.map(async (v) => {
 							const highlightedContent = await highlightCode(
-								transformImportPaths(v.content)
+								transformImportPaths(v.content),
+								v.target && v.target.endsWith(".ts") ? "ts" : "svelte"
 							);
 							const target = v.target ? transformBlockPath(v.target, v.type) : "";
 							return {
@@ -58,7 +59,6 @@ export const load: PageLoad = async () => {
 	}
 
 	const result = await Promise.all(promises);
-	console.log(result);
 	return {
 		blocks: result.filter((block): block is CachedItem => block !== null),
 	};

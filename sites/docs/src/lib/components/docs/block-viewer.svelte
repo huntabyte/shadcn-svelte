@@ -46,18 +46,10 @@
 		return null;
 	}
 
-	console.log(getFirstFileTargetInTree());
-
 	let activeFile = $state<BlockViewerContextType["activeFile"]>(
 		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
-
-	$effect(() => {
-		console.log("activeFile", activeFile);
-	});
-
-	console.log(tree);
 
 	BlockViewerContext.set({
 		get item() {

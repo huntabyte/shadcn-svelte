@@ -300,8 +300,8 @@ export const Blocks = {
 		raw: () => import("../lib/registry/blocks/chart-tooltip-label-none.svelte?raw").then((m) => m.default),
 	},
 	"dashboard-01": {
-		component: () => import("../lib/registry/blocks/dashboard-01.svelte").then((m) => m.default),
-		raw: () => import("../lib/registry/blocks/dashboard-01.svelte?raw").then((m) => m.default),
+		component: () => import("../lib/registry/blocks/dashboard-01/+page.svelte").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/dashboard-01/+page.svelte?raw").then((m) => m.default),
 	},
 	"dashboard-02": {
 		component: () => import("../lib/registry/blocks/dashboard-02.svelte").then((m) => m.default),

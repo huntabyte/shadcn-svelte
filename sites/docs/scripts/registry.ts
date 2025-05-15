@@ -129,6 +129,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
 		const isPage = dirent.name === "+page.svelte";
+		if (dirent.name === "data.json") continue;
 		const type = isPage ? "registry:page" : "registry:component";
 
 		// TODO: fix

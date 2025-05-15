@@ -25,6 +25,10 @@
 		"check": "pnpm build:content && pnpm sync && svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
+		"@dnd-kit-svelte/core": "^0.0.8",
+		"@dnd-kit-svelte/modifiers": "^0.0.8",
+		"@dnd-kit-svelte/sortable": "^0.0.8",
+		"@dnd-kit-svelte/utilities": "^0.0.8",
 		"@internationalized/date": "^3.5.6",
 		"@layerstack/utils": "^1.0.0",
 		"@lucide/svelte": "^0.482.0",
@@ -33,6 +37,7 @@
 		"@sveltejs/adapter-cloudflare": "4.6.1",
 		"@sveltejs/kit": "^2.12.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@tabler/icons-svelte": "^3.31.0",
 		"@tailwindcss/vite": "^4.0.15",
 		"@tanstack/table-core": "^8.20.5",
 		"@types/d3-scale": "^4.0.8",
