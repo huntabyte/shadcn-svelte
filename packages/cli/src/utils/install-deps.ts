@@ -5,7 +5,7 @@ import { highlight, parseDependency } from "./utils.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
-import { Task } from "@clack/prompts";
+import type { Task } from "@clack/prompts";
 
 type InstallOptions = {
 	dependencies: string[];

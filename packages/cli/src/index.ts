@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from "node:process";
 import { Command } from "commander";
-import * as commands from "./commands";
+import * as commands from "./commands/index.js";
 import { getPackageInfo } from "./utils/get-package-info.js";
 
 process.on("SIGINT", () => process.exit(0));
