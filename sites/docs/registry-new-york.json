@@ -2,6 +2,13 @@
 	"name": "shadcn-svelte",
 	"homepage": "https://shadcn-svelte.com",
 	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
+	"aliases": {
+		"lib": "$lib/registry/new-york/lib",
+		"ui": "$lib/registry/new-york/ui",
+		"components": "$lib/registry/new-york/components",
+		"utils": "$lib/utils",
+		"hooks": "$lib/registry/new-york/hooks"
+	},
 	"items": [
 		{
 			"name": "accordion",
