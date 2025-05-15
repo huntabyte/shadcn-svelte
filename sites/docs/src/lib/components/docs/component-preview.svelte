@@ -62,7 +62,7 @@
 				</DocTabs.List>
 			{/if}
 		</div>
-		<DocTabs.Content value="preview" class="preview relative rounded-md border">
+		<DocTabs.Content value="preview" class="relative rounded-md border">
 			<ThemeWrapper defaultTheme="zinc">
 				<div
 					class={cn(

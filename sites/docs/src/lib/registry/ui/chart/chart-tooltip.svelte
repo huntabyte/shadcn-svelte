@@ -102,7 +102,7 @@
 				{@const indicatorColor = color || item.payload?.color || item.color}
 				<div
 					class={cn(
-						"[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5",
+						"[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:size-2.5",
 						indicator === "dot" && "items-center"
 					)}
 				>
@@ -121,9 +121,9 @@
 							<div
 								style="--color-bg: {indicatorColor}; --color-border: {indicatorColor};"
 								class={cn(
-									"shrink-0 rounded-[2px] border-[var(--color-border)] bg-[var(--color-bg)]",
+									"border-(--color-border) bg-(--color-bg) shrink-0 rounded-[2px]",
 									{
-										"h-2.5 w-2.5": indicator === "dot",
+										"size-2.5": indicator === "dot",
 										"h-full w-1": indicator === "line",
 										"w-0 border-[1.5px] border-dashed bg-transparent":
 											indicator === "dashed",

@@ -84,7 +84,7 @@ function componentPreviews() {
 			for (const name of components) {
 				const identifier = camelize(name);
 				let importStatement = "";
-				if (name.startsWith("chart")) {
+				if (name.startsWith("chart") && !name.includes("demo")) {
 					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
