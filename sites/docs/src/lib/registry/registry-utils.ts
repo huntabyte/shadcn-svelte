@@ -6,7 +6,7 @@ export type FileTree = {
 	children?: FileTree[];
 };
 
-function transformPath(target: string, type: RegistryItemFile["type"]): string {
+export function transformBlockPath(target: string, type: RegistryItemFile["type"]): string {
 	const parts = target.split("/");
 
 	if (type === "registry:page") {
@@ -28,8 +28,8 @@ export function createFileTreeForRegistryItemFiles(
 	const root: FileTree[] = [];
 
 	for (const file of files) {
-		const transformedPath = transformPath(file.target, file.type);
-		const parts = transformedPath.split("/");
+		const path = file.target;
+		const parts = path.split("/");
 		let currentLevel = root;
 
 		for (let i = 0; i < parts.length; i++) {
@@ -39,13 +39,13 @@ export function createFileTreeForRegistryItemFiles(
 
 			if (existingNode) {
 				if (isFile) {
-					existingNode.path = transformedPath;
+					existingNode.path = path;
 				} else {
 					currentLevel = existingNode.children!;
 				}
 			} else {
 				const newNode: FileTree = isFile
-					? { name: part, path: transformedPath }
+					? { name: part, path }
 					: { name: part, children: [] };
 
 				currentLevel.push(newNode);

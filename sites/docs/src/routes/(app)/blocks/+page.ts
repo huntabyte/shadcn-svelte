@@ -2,7 +2,7 @@ import { registryItemSchema, type RegistryItemFile } from "@shadcn-svelte/regist
 import type { PageLoad } from "./$types.js";
 import * as v from "valibot";
 import { highlightCode } from "$lib/highlight-code.js";
-import { transformImportPaths } from "$lib/registry/registry-utils.js";
+import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 
 export const prerender = true;
 
@@ -39,10 +39,11 @@ export const load: PageLoad = async () => {
 							const highlightedContent = await highlightCode(
 								transformImportPaths(v.content)
 							);
+							const target = v.target ? transformBlockPath(v.target, v.type) : "";
 							return {
 								...v,
 								highlightedContent,
-								target: v.target ?? "",
+								target,
 							};
 						})
 					);

@@ -32,8 +32,24 @@
 	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> = $props();
 
 	let view = $state<BlockViewerContextType["view"]>("code");
+
+	function getFirstFileTargetInTree(_tree: typeof tree = tree): string | null {
+		if (!_tree?.length) return null;
+
+		for (const node of _tree) {
+			if (node.path) return node.path;
+			if (node.children) {
+				const result = getFirstFileTargetInTree(node.children);
+				if (result) return result;
+			}
+		}
+		return null;
+	}
+
+	console.log(getFirstFileTargetInTree());
+
 	let activeFile = $state<BlockViewerContextType["activeFile"]>(
-		highlightedFiles?.[0]?.target ?? null
+		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
 
