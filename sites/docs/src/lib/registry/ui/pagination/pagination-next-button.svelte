@@ -17,7 +17,6 @@
 	<ChevronRightIcon class="size-4" />
 {/snippet}
 
-<!-- TODO: Fix this error: Expression produces a union type that is too complex to represent. Note: Removing `Fallback` in children={children || Fallback} fixes, makes you wonder how/why `Fallback` is causing this. -->
 <PaginationPrimitive.NextButton
 	bind:ref
 	aria-label="Go to next page"

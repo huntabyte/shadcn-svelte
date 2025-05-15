@@ -35,8 +35,6 @@
 		"flex aspect-video justify-center overflow-visible text-xs",
 		// Overrides
 		//
-		// TODO: Ask for default/unique classnames to target when trying to override LayerChart styles
-		//
 		// Stroke around dots/marks when hovering
 		"[&_.stroke-white]:stroke-transparent",
 		// override the default stroke color of lines

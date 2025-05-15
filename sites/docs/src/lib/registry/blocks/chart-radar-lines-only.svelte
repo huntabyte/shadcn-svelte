@@ -49,7 +49,6 @@
 					},
 				]}
 				props={{
-					// TODO: How to draw hexagons instead of circles?
 					spline: { curve: curveLinearClosed, motion: "tween" },
 					grid: { radialY: "linear", x: false },
 					yAxis: { format: () => "" },
