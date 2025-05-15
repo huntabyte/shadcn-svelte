@@ -108,7 +108,7 @@
 			<div class="ml-auto font-medium tabular-nums">$135,000</div>
 		</Card.Footer>
 	</Card.Root>
-	<div class="flex w-full flex-wrap items-start gap-8 md:*:data-[slot=card]:basis-1/4">
+	<div class="flex w-full flex-wrap items-start gap-8 [&>*]:data-[slot=card]:basis-1/3 md:[&>*]:data-[slot=card]:basis-1/4">
 		<Card.Root>
 			<Card.Content class="text-sm">Content Only</Card.Content>
 		</Card.Root>
