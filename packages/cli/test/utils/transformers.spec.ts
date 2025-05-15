@@ -34,35 +34,34 @@ const mockConfig: Config = {
 
 describe("transformImports", () => {
 	it("transforms component imports correctly", () => {
-		const content = 'import { Button } from "$lib/registry/default/components/button";';
+		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "$lib/components/button";';
 		expect(transformImports(content, mockConfig)).toBe(expected);
 	});
 
 	it("transforms UI imports correctly", () => {
-		const content = 'import { Button } from "$lib/registry/default/ui/button";';
+		const content = 'import { Button } from "$UI$/button";';
 		const expected = 'import { Button } from "$lib/components/ui/button";';
 		expect(transformImports(content, mockConfig)).toBe(expected);
 	});
 
 	it("transforms hook imports correctly", () => {
-		const content =
-			'import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";';
+		const content = 'import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";';
 		expect(transformImports(content, mockConfig)).toBe(expected);
 	});
 
 	it("transforms utils imports correctly", () => {
-		const content = 'import { cn } from "$lib/utils/index.js";';
+		const content = 'import { cn } from "$UTILS$/index.js";';
 		const expected = 'import { cn } from "$lib/utils/index.js";';
 		expect(transformImports(content, mockConfig)).toBe(expected);
 	});
 
 	it("handles multiple imports in the same file", () => {
 		const content = `
-      import { Button } from "$lib/registry/default/components/button";
-      import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";
-      import { cn } from "$lib/utils";
+      import { Button } from "$COMPONENTS$/button";
+      import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";
+      import { cn } from "$UTILS$";
     `;
 		const expected = `
       import { Button } from "$lib/components/button";
@@ -122,7 +121,7 @@ describe("stripTypes", () => {
 describe("transformContent", () => {
 	it("transforms content with TypeScript enabled", async () => {
 		const content = `
-      import { Button } from "$lib/registry/default/components/button";
+      import { Button } from "$COMPONENTS$/button";
       interface Props {
         name: string;
       }
@@ -137,7 +136,7 @@ describe("transformContent", () => {
 
 	it("transforms content with TypeScript disabled", async () => {
 		const content = `
-      import { Button } from "$lib/registry/default/components/button";
+      import { Button } from "$COMPONENTS$/button";
       interface Props {
         name: string;
       }
@@ -180,35 +179,34 @@ describe("transformImports with more custom paths", () => {
 	};
 
 	it("transforms component imports with custom paths", () => {
-		const content = 'import { Button } from "$lib/registry/default/components/button";';
+		const content = 'import { Button } from "$COMPONENTS$/button";';
 		const expected = 'import { Button } from "@components/button";';
 		expect(transformImports(content, customConfig)).toBe(expected);
 	});
 
 	it("transforms UI imports with custom paths", () => {
-		const content = 'import { Button } from "$lib/registry/default/ui/button";';
+		const content = 'import { Button } from "$UI$/button";';
 		const expected = 'import { Button } from "@ui/button";';
 		expect(transformImports(content, customConfig)).toBe(expected);
 	});
 
 	it("transforms hook imports with custom paths", () => {
-		const content =
-			'import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";';
+		const content = 'import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";';
 		const expected = 'import { IsMobile } from "@hooks/is-mobile.svelte.js";';
 		expect(transformImports(content, customConfig)).toBe(expected);
 	});
 
 	it("transforms utils imports with custom paths", () => {
-		const content = 'import { cn } from "$lib/utils/index.js";';
+		const content = 'import { cn } from "$UTILS$/index.js";';
 		const expected = 'import { cn } from "@lib/helpers/index.js";';
 		expect(transformImports(content, customConfig)).toBe(expected);
 	});
 
 	it("handles multiple imports with custom paths", () => {
 		const content = `
-      import { Button } from "$lib/registry/default/components/button";
-      import { IsMobile } from "$lib/registry/default/hooks/is-mobile.svelte.js";
-      import { cn } from "$lib/utils";
+      import { Button } from "$COMPONENTS$/button";
+      import { IsMobile } from "$HOOKS$/is-mobile.svelte.js";
+      import { cn } from "$UTILS$";
     `;
 		const expected = `
       import { Button } from "@components/button";

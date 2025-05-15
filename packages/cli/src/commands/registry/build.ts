@@ -7,10 +7,10 @@ import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
 import * as p from "@clack/prompts";
 import { intro } from "../../utils/prompt-helpers.js";
-import { parseDependency, toArray } from "../../utils/utils.js";
 import { error, handleError } from "../../utils/errors.js";
+import { parseDependency, toArray } from "../../utils/utils.js";
+import { ALIAS_DEFAULTS, ALIASES, SITE_BASE_URL } from "../../constants.js";
 import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
-import { SITE_BASE_URL } from "../../constants.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
@@ -115,12 +115,36 @@ async function runBuild(options: BuildOptions) {
 				}
 			}
 
+			/**
+			 * Transforms registry import aliases into a standardized format.
+			 *
+			 * ```
+			 * import Button from "$lib/registry/ui/button/index.js"
+			 * ```
+			 * transforms into:
+			 * ```
+			 * import Button from "$UI$/button/index.js"
+			 * ```
+			 */
+			const transformAliases = (content: string) => {
+				registry.aliases ??= {};
+				for (const alias of ALIASES) {
+					const defaults = ALIAS_DEFAULTS[alias];
+					const path = (registry.aliases[alias] ??= defaults.defaultPath);
+					content = content.replaceAll(path, defaults.placeholder);
+				}
+
+				return content;
+			};
+
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
 				const singleFile = item.files.length === 1;
 
 				const toResolve = item.files.map(async (file) => {
-					const content = await fs.readFile(file.path, "utf8");
+					let content = await fs.readFile(file.path, "utf8");
+					content = transformAliases(content);
+
 					const name = path.basename(file.path);
 					const target = singleFile ? name : `${item.name}/${name}`;
 
