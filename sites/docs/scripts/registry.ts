@@ -126,16 +126,20 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
 
+	const pagesNames = ["+page.svelte"];
+	const fileNames = ["data.json", "data.ts"];
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-		const isPage =
-			dirent.name === "+page.svelte" ||
-			dirent.name === "data.json" ||
-			dirent.name === "data.ts";
-		const type = isPage ? "registry:page" : "registry:component";
+		const isPage = pagesNames.includes(dirent.name);
+		const isFile = fileNames.includes(dirent.name);
+
+		const type = isPage ? "registry:page" : isFile ? "registry:file" : "registry:component";
 
 		// TODO: fix
-		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
+		const compPath =
+			isPage || isFile
+				? dirent.name
+				: path.join(path.basename(dirent.parentPath), dirent.name);
 		const filepath = path.join(blockPath, compPath);
 		const relativePath = path.relative(process.cwd(), filepath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
