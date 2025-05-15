@@ -54,7 +54,10 @@
 	padding: 2px 1rem;
 }
 
-[data-rehype-pretty-code-figure]>pre[data-language="txt"]>code[data-language="txt"] span[data-line] {
+[data-rehype-pretty-code-figure]
+	> pre[data-language="txt"]
+	> code[data-language="txt"]
+	span[data-line] {
 	color: white;
 }
 
@@ -62,7 +65,7 @@
 	padding: 0 0.5rem;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers]>[data-line]::before {
+[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
 	color: color-mix(in oklch, var(--color-zinc-50) 40%, transparent);
 	font-size: 12px;
 	counter-increment: line;
@@ -109,7 +112,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title]+pre {
+[data-rehype-pretty-code-title] + pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 
