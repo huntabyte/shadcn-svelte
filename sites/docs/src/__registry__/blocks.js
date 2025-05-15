@@ -379,6 +379,10 @@ export const Blocks = {
 		component: () => import("../lib/registry/blocks/login-01/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/login-01/+page.svelte?raw").then((m) => m.default),
 	},
+	"login-02": {
+		component: () => import("../lib/registry/blocks/login-02/+page.svelte").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/login-02/+page.svelte?raw").then((m) => m.default),
+	},
 	"login-03": {
 		component: () => import("../lib/registry/blocks/login-03/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/login-03/+page.svelte?raw").then((m) => m.default),
@@ -386,6 +390,10 @@ export const Blocks = {
 	"login-04": {
 		component: () => import("../lib/registry/blocks/login-04/+page.svelte").then((m) => m.default),
 		raw: () => import("../lib/registry/blocks/login-04/+page.svelte?raw").then((m) => m.default),
+	},
+	"login-05": {
+		component: () => import("../lib/registry/blocks/login-05/+page.svelte").then((m) => m.default),
+		raw: () => import("../lib/registry/blocks/login-05/+page.svelte?raw").then((m) => m.default),
 	},
 	"sidebar-01": {
 		component: () => import("../lib/registry/blocks/sidebar-01/+page.svelte").then((m) => m.default),

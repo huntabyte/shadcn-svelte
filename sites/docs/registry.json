@@ -2649,6 +2649,21 @@
 			]
 		},
 		{
+			"name": "login-02",
+			"type": "registry:block",
+			"registryDependencies": ["label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-02/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-02/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
 			"name": "login-03",
 			"type": "registry:block",
 			"registryDependencies": ["button", "card", "label", "input"],
@@ -2674,6 +2689,21 @@
 				},
 				{
 					"path": "src/lib/registry/blocks/login-04/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "login-05",
+			"type": "registry:block",
+			"registryDependencies": ["label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-05/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-05/components/login-form.svelte",
 					"type": "registry:component"
 				}
 			]
