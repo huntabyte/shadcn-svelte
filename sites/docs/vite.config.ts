@@ -10,6 +10,7 @@ import { toJsonSchema } from "@valibot/to-json-schema";
 import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 
+// don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
 	console.log("Building registry...");
 	writeJsonSchemas();
