@@ -2,6 +2,7 @@ import { parse } from "postcss";
 import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
 import type { CssVars } from "@shadcn-svelte/registry";
+import { ALIASES, ALIAS_DEFAULTS } from "../constants.js";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
 import type { Config } from "./get-config.js";
 
@@ -17,17 +18,11 @@ export async function transformContent(content: string, filename: string, config
 	return content;
 }
 
-const aliases = ["components", "ui", "hooks", "lib"] as const;
 export function transformImports(content: string, config: Config) {
-	// utils is a special case since it points to a single file
-	let str = content.replace(/\$lib\/utils/g, config.aliases.utils);
-
-	for (const alias of aliases) {
-		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
-		str = str.replace(regex, config.aliases[alias] + "/");
+	for (const alias of ALIASES) {
+		content = content.replaceAll(ALIAS_DEFAULTS[alias].placeholder, config.aliases[alias]);
 	}
-
-	return str;
+	return content;
 }
 
 export async function stripTypes(content: string, filename: string) {
