@@ -39,7 +39,6 @@
 	"dependencies": {
 		"@svecosystem/strip-types": "^0.0.2",
 		"commander": "^13.1.0",
-		"is-unicode-supported": "^2.0.0",
 		"node-fetch-native": "^1.6.4",
 		"postcss": "^8.4.39"
 	},
@@ -58,7 +57,6 @@
 		"ignore": "^7.0.4",
 		"package-manager-detector": "^1.2.0",
 		"semver": "^7.7.1",
-		"sisteransi": "^1.0.5",
 		"sucrase": "^3.35.0",
 		"tinyexec": "^1.0.1",
 		"tsup": "^8.4.0",

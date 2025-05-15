@@ -74,9 +74,6 @@ importers:
       commander:
         specifier: ^13.1.0
         version: 13.1.0
-      is-unicode-supported:
-        specifier: ^2.0.0
-        version: 2.0.0
       node-fetch-native:
         specifier: ^1.6.4
         version: 1.6.4
@@ -126,9 +123,6 @@ importers:
       semver:
         specifier: ^7.7.1
         version: 7.7.1
-      sisteransi:
-        specifier: ^1.0.5
-        version: 1.0.5
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0
@@ -3416,10 +3410,6 @@ packages:
   is-subdir@1.2.0:
     resolution: {integrity: sha512-2AT6j+gXe/1ueqbW6fLZJiIw3F8iXGJtt0yDrZaBhAZEG1raiTxKWU+IPqMCzQAXOUCKdA4UDMgacKH25XG2Cw==}
     engines: {node: '>=4'}
-
-  is-unicode-supported@2.0.0:
-    resolution: {integrity: sha512-FRdAyx5lusK1iHG0TWpVtk9+1i+GjrzRffhDg4ovQ7mcidMQ6mj+MhKPmvh7Xwyv5gIS06ns49CA7Sqg7lC22Q==}
-    engines: {node: '>=18'}
 
   is-windows@1.0.2:
     resolution: {integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==}
@@ -8446,8 +8436,6 @@ snapshots:
   is-subdir@1.2.0:
     dependencies:
       better-path-resolve: 1.0.0
-
-  is-unicode-supported@2.0.0: {}
 
   is-windows@1.0.2: {}
 
