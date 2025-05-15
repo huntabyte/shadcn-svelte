@@ -9,7 +9,7 @@ export type FileTree = {
 export function transformBlockPath(target: string, type: RegistryItemFile["type"]): string {
 	const parts = target.split("/");
 
-	if (type === "registry:page") {
+	if (type === "registry:page" || type === "registry:file") {
 		return `routes/${target}`;
 	}
 
