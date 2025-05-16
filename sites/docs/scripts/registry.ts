@@ -75,7 +75,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 
 		if (dirent.name === "meta.json") {
 			meta = v.parse(v.partial(registryItemSchema), JSON.parse(source));
-			console.log("META", meta);
 			continue;
 		}
 
