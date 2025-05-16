@@ -25,7 +25,7 @@ type BuildOptions = z.infer<typeof buildOptionsSchema>;
 
 export const build = new Command()
 	.command("build")
-	.description("build components for a shadcn registry")
+	.description("build components for a shadcn-svelte registry")
 	.argument("[registry]", "path to registry.json file", "./registry.json")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
 	.option("-o, --output <path>", "destination directory for json files", "./static/r")
