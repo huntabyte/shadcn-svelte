@@ -73,7 +73,7 @@ const registryItemCssVarsSchema = z.object({
 });
 
 type CssSchema = { [x: string]: string | CssSchema };
-const registryItemCssSchema: z.ZodType<CssSchema> = z.record(
+const registryItemCssSchema: z.ZodType<CssSchema, CssSchema> = z.record(
 	z.string(),
 	z.lazy(() => z.union([z.string(), registryItemCssSchema]))
 );
