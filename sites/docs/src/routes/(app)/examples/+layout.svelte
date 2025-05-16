@@ -15,8 +15,8 @@
 	<Announcement />
 	<PageHeader.Heading>Build your component library</PageHeader.Heading>
 	<PageHeader.Description>
-		A set of beautifully-designed, accessible components and a code distribution platform. Works
-		with your favorite frameworks. Open Source. Open Code.
+		A set of beautifully-designed, accessible components and a code distribution platform. Open
+		Source. Open Code.
 	</PageHeader.Description>
 	<PageHeader.Actions>
 		<Button href="/docs" size="sm">Get Started</Button>
