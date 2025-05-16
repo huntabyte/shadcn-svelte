@@ -26,14 +26,14 @@
 							<GalleryVerticalEndIcon class="size-4" />
 						</div>
 						<div class="flex flex-col gap-0.5 leading-none">
-							<span class="font-semibold">Documentation</span>
+							<span class="font-medium">Documentation</span>
 							<span class="">v{selectedVersion}</span>
 						</div>
 						<ChevronsUpDownIcon class="ml-auto" />
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content class="w-[var(--bits-dropdown-menu-anchor-width)]" align="start">
+			<DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)" align="start">
 				{#each versions as version (version)}
 					<DropdownMenu.Item onSelect={() => (selectedVersion = version)}>
 						v{version}

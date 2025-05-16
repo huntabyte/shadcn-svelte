@@ -463,7 +463,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content class="w-[--bits-dropdown-menu-anchor-width]">
+          <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
             <DropdownMenu.Item>
               <span>Acme Inc</span>
             </DropdownMenu.Item>
@@ -510,7 +510,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               side="top"
-              class="w-[--bits-dropdown-menu-anchor-width]"
+              class="w-(--bits-dropdown-menu-anchor-width)"
             >
               <DropdownMenu.Item>
                 <span>Account</span>

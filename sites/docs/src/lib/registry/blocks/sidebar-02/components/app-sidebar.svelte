@@ -115,7 +115,7 @@
 						url: "#",
 					},
 					{
-						title: "Svelte Compiler",
+						title: "Next.js Compiler",
 						url: "#",
 					},
 					{
@@ -123,7 +123,17 @@
 						url: "#",
 					},
 					{
-						title: "Rollup",
+						title: "Turbopack",
+						url: "#",
+					},
+				],
+			},
+			{
+				title: "Community",
+				url: "#",
+				items: [
+					{
+						title: "Contribution Guide",
 						url: "#",
 					},
 				],
@@ -149,16 +159,16 @@
 		<SearchForm />
 	</Sidebar.Header>
 	<Sidebar.Content class="gap-0">
-		<!-- We create a Sidebar.Group for each parent. -->
-		{#each data.navMain as group (group.title)}
-			<Collapsible.Root title={group.title} open={true} class="group/collapsible">
+		<!-- We create a collapsible SidebarGroup for each parent. -->
+		{#each data.navMain as item (item.title)}
+			<Collapsible.Root title={item.title} open class="group/collapsible">
 				<Sidebar.Group>
 					<Sidebar.GroupLabel
 						class="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
 					>
 						{#snippet child({ props })}
 							<Collapsible.Trigger {...props}>
-								{group.title}
+								{item.title}
 								<ChevronRightIcon
 									class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 								/>
@@ -168,11 +178,11 @@
 					<Collapsible.Content>
 						<Sidebar.GroupContent>
 							<Sidebar.Menu>
-								{#each group.items as item (item.title)}
+								{#each item.items as subItem (subItem.title)}
 									<Sidebar.MenuItem>
-										<Sidebar.MenuButton isActive={item.isActive}>
+										<Sidebar.MenuButton isActive={subItem.isActive}>
 											{#snippet child({ props })}
-												<a href={item.url} {...props}>{item.title}</a>
+												<a href={subItem.url} {...props}>{subItem.title}</a>
 											{/snippet}
 										</Sidebar.MenuButton>
 									</Sidebar.MenuItem>

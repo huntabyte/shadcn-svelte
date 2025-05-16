@@ -1488,50 +1488,6 @@
 			]
 		},
 		{
-			"name": "authentication-01",
-			"type": "registry:block",
-			"registryDependencies": ["button", "card", "input", "label"],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/authentication-01.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "authentication-02",
-			"type": "registry:block",
-			"registryDependencies": ["button", "card", "input", "label"],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/authentication-02.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "authentication-03",
-			"type": "registry:block",
-			"registryDependencies": ["button", "card", "input", "label"],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/authentication-03.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "authentication-04",
-			"type": "registry:block",
-			"registryDependencies": ["button", "input", "label"],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/authentication-04.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],
@@ -2305,140 +2261,85 @@
 			"name": "dashboard-01",
 			"type": "registry:block",
 			"registryDependencies": [
-				"avatar",
-				"badge",
-				"button",
+				"sidebar",
+				"chart",
 				"card",
-				"dropdown-menu",
-				"input",
-				"sheet",
-				"table"
-			],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-01.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-02",
-			"type": "registry:block",
-			"registryDependencies": ["badge", "button", "card", "dropdown-menu", "input", "sheet"],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-02.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-03",
-			"type": "registry:block",
-			"registryDependencies": [
-				"badge",
-				"button",
-				"tooltip",
-				"drawer",
-				"input",
-				"textarea",
-				"label",
-				"select"
-			],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-03.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-04",
-			"type": "registry:block",
-			"registryDependencies": [
-				"button",
-				"card",
-				"checkbox",
-				"dropdown-menu",
-				"input",
-				"sheet"
-			],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-04.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-05",
-			"type": "registry:block",
-			"registryDependencies": [
-				"badge",
-				"breadcrumb",
-				"button",
-				"card",
-				"dropdown-menu",
-				"input",
-				"pagination",
-				"progress",
-				"separator",
-				"sheet",
-				"table",
-				"tabs",
-				"tooltip"
-			],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-05.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-06",
-			"type": "registry:block",
-			"registryDependencies": [
-				"badge",
-				"breadcrumb",
-				"button",
-				"card",
-				"dropdown-menu",
-				"input",
-				"sheet",
-				"table",
-				"tabs",
-				"tooltip"
-			],
-			"files": [
-				{
-					"path": "src/lib/registry/blocks/dashboard-06.svelte",
-					"type": "registry:block"
-				}
-			]
-		},
-		{
-			"name": "dashboard-07",
-			"type": "registry:block",
-			"registryDependencies": [
-				"badge",
-				"breadcrumb",
-				"button",
-				"card",
-				"dropdown-menu",
-				"input",
-				"label",
 				"select",
-				"sheet",
-				"table",
-				"textarea",
 				"toggle-group",
-				"tooltip"
+				"drawer",
+				"button",
+				"is-mobile",
+				"label",
+				"input",
+				"separator",
+				"checkbox",
+				"data-table",
+				"tabs",
+				"table",
+				"dropdown-menu",
+				"badge",
+				"avatar"
 			],
 			"files": [
 				{
-					"path": "src/lib/registry/blocks/dashboard-07.svelte",
-					"type": "registry:block"
+					"path": "src/lib/registry/blocks/dashboard-01/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/data.ts",
+					"type": "registry:file"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/chart-area-interactive.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-cell-viewer.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-checkbox.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table-reviewer.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/data-table.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-documents.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/schemas.ts",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/section-cards.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/dashboard-01/components/site-header.svelte",
+					"type": "registry:component"
 				}
 			]
 		},
@@ -2585,6 +2486,66 @@
 				},
 				{
 					"path": "src/lib/registry/blocks/login-01/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "login-02",
+			"type": "registry:block",
+			"registryDependencies": ["label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-02/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-02/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "login-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "label", "input"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-03/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-03/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "login-04",
+			"type": "registry:block",
+			"registryDependencies": ["card", "label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-04/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-04/components/login-form.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "login-05",
+			"type": "registry:block",
+			"registryDependencies": ["label", "input", "button"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/login-05/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/login-05/components/login-form.svelte",
 					"type": "registry:component"
 				}
 			]
@@ -3012,6 +2973,54 @@
 				},
 				{
 					"path": "src/lib/registry/blocks/sidebar-15/components/team-switcher.svelte",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar-16",
+			"type": "registry:block",
+			"registryDependencies": [
+				"sidebar",
+				"collapsible",
+				"dropdown-menu",
+				"avatar",
+				"label",
+				"breadcrumb",
+				"button",
+				"separator"
+			],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/+page.svelte",
+					"type": "registry:page"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/app-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-main.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-projects.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-secondary.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/nav-user.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/search-form.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/sidebar-16/components/site-header.svelte",
 					"type": "registry:component"
 				}
 			]

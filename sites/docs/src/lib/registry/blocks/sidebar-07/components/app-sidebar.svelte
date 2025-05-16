@@ -156,7 +156,7 @@
 	}: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root bind:ref {collapsible} {...restProps}>
+<Sidebar.Root {collapsible} {...restProps}>
 	<Sidebar.Header>
 		<TeamSwitcher teams={data.teams} />
 	</Sidebar.Header>
