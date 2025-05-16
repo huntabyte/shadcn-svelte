@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync } from "node:fs";
 import color from "chalk";
-import { z } from "zod";
+import { z } from "zod/v4";
 import { Command } from "commander";
 import { ConfigError, error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
