@@ -525,12 +525,12 @@
 					"path": "src/lib/registry/ui/context-menu/context-menu-item.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/context-menu/context-menu-label.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu-label.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -693,12 +693,12 @@
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-content.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group-heading.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group-heading.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -879,24 +879,24 @@
 					"path": "src/lib/registry/ui/menubar/menubar-content.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/menubar/menubar-group-heading.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-group-heading.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/menubar/menubar-group.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-group.svelte"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-item.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/menubar/menubar-label.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-label.svelte"
 				},
 				{
-					"path": "src/lib/registry/ui/menubar/menubar-radio-item.svelte",
-					"type": "registry:ui"
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-radio-item.svelte"
 				},
 				{
 					"type": "registry:file",
