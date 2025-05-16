@@ -61,7 +61,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
-	const type = "registry:ui";
 
 	let meta = {};
 
@@ -76,7 +75,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 			continue;
 		}
 
-		files.push({ path: relativePath, type });
+		files.push({ path: relativePath, type: "registry:file" });
 
 		const deps = await getFileDependencies(filepath, source);
 		if (!deps) continue;
@@ -86,7 +85,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 
 	return {
 		...meta,
-		type,
+		type: "registry:ui",
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
@@ -94,7 +93,6 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 }
 
 async function crawlExamples(rootPath: string) {
-	const type = "registry:example" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -107,19 +105,12 @@ async function crawlExamples(rootPath: string) {
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:example",
+			files: [{ path: relativePath, type: "registry:example" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -167,7 +158,6 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 }
 
 async function crawlBlocks(rootPath: string) {
-	const type = "registry:block" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -185,19 +175,12 @@ async function crawlBlocks(rootPath: string) {
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:block",
+			files: [{ path: relativePath, type: "registry:block" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -206,7 +189,6 @@ async function crawlBlocks(rootPath: string) {
 }
 
 async function crawlLib(rootPath: string) {
-	const type = "registry:lib" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 	for (const dirent of dir) {
@@ -218,19 +200,12 @@ async function crawlLib(rootPath: string) {
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:lib",
+			files: [{ path: relativePath, type: "registry:lib" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -239,7 +214,6 @@ async function crawlLib(rootPath: string) {
 }
 
 async function crawlHooks(rootPath: string) {
-	const type = "registry:hook" as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -252,19 +226,12 @@ async function crawlHooks(rootPath: string) {
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:hook",
+			files: [{ path: relativePath, type: "registry:hook" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
