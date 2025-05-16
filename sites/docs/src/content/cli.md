@@ -104,7 +104,7 @@ This command reads the `registry.json` file and generates the registry JSON file
 ### Options
 
 ```txt
-Usage: shadcn-svelte build [options] [registry]
+Usage: shadcn-svelte registry build [options] [registry]
 
 build components for a shadcn-svelte registry
 
@@ -121,7 +121,7 @@ Options:
 
 ### Proxy
 
-This enables the use of a proxy when sending out requests to fetch from the `shadcn` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
+This enables the use of a proxy when sending out requests to fetch from the `shadcn-svelte` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
 
 ```bash
 HTTP_PROXY="<proxy-url>" npx shadcn-svelte@next init
