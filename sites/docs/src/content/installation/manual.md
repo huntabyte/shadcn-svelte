@@ -150,7 +150,6 @@ Add the following to your global CSS file. You can learn more about using CSS va
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
