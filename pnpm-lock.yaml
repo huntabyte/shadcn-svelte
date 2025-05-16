@@ -319,8 +319,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(svelte@5.28.2)
       svelte-sonner:
-        specifier: ^0.3.25
-        version: 0.3.28(svelte@5.28.2)
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@5.28.2)
       sveltekit-superforms:
         specifier: ^2.19.1
         version: 2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.36.0)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.4(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.36.0)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2)
@@ -4683,10 +4683,10 @@ packages:
     peerDependencies:
       svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
 
-  svelte-sonner@0.3.28:
-    resolution: {integrity: sha512-K3AmlySeFifF/cKgsYNv5uXqMVNln0NBAacOYgmkQStLa/UoU0LhfAACU6Gr+YYC8bOCHdVmFNoKuDbMEsppJg==}
+  svelte-sonner@1.0.1:
+    resolution: {integrity: sha512-vz0eqcs9GNnJ2CTtTno7v/jSA0P3r+X+3y/hrJg+FPpB2rZCFywIKNKD3wiRI8449i3LXVcgQ+q5R5ocOd6ydA==}
     peerDependencies:
-      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
+      svelte: ^5.0.0
 
   svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73:
     resolution: {tarball: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73}
@@ -10074,8 +10074,9 @@ snapshots:
     dependencies:
       svelte: 5.28.2
 
-  svelte-sonner@0.3.28(svelte@5.28.2):
+  svelte-sonner@1.0.1(svelte@5.28.2):
     dependencies:
+      runed: 0.26.0(svelte@5.28.2)
       svelte: 5.28.2
 
   svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2):

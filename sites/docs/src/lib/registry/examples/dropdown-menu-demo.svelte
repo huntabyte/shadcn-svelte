@@ -26,22 +26,22 @@
 			<DropdownMenu.Separator />
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>
-					<UserIcon class="mr-2 size-4" />
+					<UserIcon />
 					<span>Profile</span>
 					<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<CreditCardIcon class="mr-2 size-4" />
+					<CreditCardIcon />
 					<span>Billing</span>
 					<DropdownMenu.Shortcut>⌘B</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<SettingsIcon class="mr-2 size-4" />
+					<SettingsIcon />
 					<span>Settings</span>
 					<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<KeyboardIcon class="mr-2 size-4" />
+					<KeyboardIcon />
 					<span>Keyboard shortcuts</span>
 					<DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
@@ -49,51 +49,51 @@
 			<DropdownMenu.Separator />
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>
-					<UsersIcon class="mr-2 size-4" />
+					<UsersIcon />
 					<span>Team</span>
 				</DropdownMenu.Item>
 				<DropdownMenu.Sub>
 					<DropdownMenu.SubTrigger>
-						<UserPlusIcon class="mr-2 size-4" />
+						<UserPlusIcon />
 						<span>Invite users</span>
 					</DropdownMenu.SubTrigger>
 					<DropdownMenu.SubContent>
 						<DropdownMenu.Item>
-							<MailIcon class="mr-2 size-4" />
+							<MailIcon />
 							<span>Email</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<MessageSquareIcon class="mr-2 size-4" />
+							<MessageSquareIcon />
 							<span>Message</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<CirclePlusIcon class="mr-2 size-4" />
+							<CirclePlusIcon />
 							<span>More...</span>
 						</DropdownMenu.Item>
 					</DropdownMenu.SubContent>
 				</DropdownMenu.Sub>
 				<DropdownMenu.Item>
-					<PlusIcon class="mr-2 size-4" />
+					<PlusIcon />
 					<span>New Team</span>
 					<DropdownMenu.Shortcut>⌘+T</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>
 			</DropdownMenu.Group>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item>
-				<GithubIcon class="mr-2 size-4" />
+				<GithubIcon />
 				<span>GitHub</span>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<LifeBuoyIcon class="mr-2 size-4" />
+				<LifeBuoyIcon />
 				<span>Support</span>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<CloudIcon class="mr-2 size-4" />
+				<CloudIcon />
 				<span>API</span>
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item>
-				<LogOutIcon class="mr-2 size-4" />
+				<LogOutIcon />
 				<span>Log out</span>
 				<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
