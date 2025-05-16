@@ -16,7 +16,7 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant: "ghost" }),
-		"size-8 p-0 font-normal data-[selected]:opacity-100",
+		"size-8 select-none p-0 font-normal data-[selected]:opacity-100",
 		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground",
 		// Selection Start
 		"data-[selection-start]:bg-primary data-[selection-start]:text-primary-foreground data-[selection-start]:hover:bg-primary data-[selection-start]:hover:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground",
