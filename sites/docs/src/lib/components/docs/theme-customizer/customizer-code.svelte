@@ -56,10 +56,10 @@
 		{/if}
 		Copy
 	</Button>
-	<figure data-rehype-pretty-code-fragment="">
+	<figure data-rehype-pretty-code-fragment="" class="mt-12">
 		<pre
 			class="flex max-h-[450px] flex-col overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900">
-			<code class="bg-muted relative max-w-full rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+			<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
 			  <span class="line text-white">&nbsp;:root &#123;</span>
 			  <span class="line text-white">&nbsp;&nbsp;&nbsp;--radius: {$config.radius}rem;</span>
 			  {#each Object.entries(activeThemeOKLCH?.light) as [key, value] (key)}

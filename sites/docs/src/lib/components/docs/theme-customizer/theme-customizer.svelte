@@ -4,6 +4,7 @@
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CopyCodeButton from "./copy-code-button.svelte";
+	import "../../styles/markdown.css";
 </script>
 
 <div class="flex items-center gap-2">

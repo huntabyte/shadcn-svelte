@@ -46,7 +46,7 @@
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>
-	<Dialog.Content class="w-auto overflow-hidden outline-none">
+	<Dialog.Content class="w-full overflow-hidden outline-none sm:max-w-2xl">
 		<Dialog.Header>
 			<Dialog.Title>Theme</Dialog.Title>
 			<Dialog.Description>
