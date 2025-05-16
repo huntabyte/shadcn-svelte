@@ -39,7 +39,7 @@
 			</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-	<Separator orientation="vertical" class="mx-2 hidden h-4 lg:flex" />
+	<Separator orientation="vertical" class="mx-2 hidden !h-4 lg:flex" />
 	<a href={`#${ctx.item.name}`} class="text-sm font-medium underline-offset-2 hover:underline">
 		{ctx.item.description}
 	</a>
@@ -89,10 +89,7 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator
-			orientation="vertical"
-			class="mx-1 hidden w-[1px] data-[orientation=vertical]:h-4 lg:flex"
-		/>
+		<Separator orientation="vertical" class="mx-1 hidden !h-4 lg:flex" />
 		<div class="flex h-7 items-center gap-1 rounded-md border p-[2px]">
 			<Button
 				variant="ghost"
@@ -108,6 +105,5 @@
 				<span class="hidden lg:inline">{command}</span>
 			</Button>
 		</div>
-		<Separator orientation="vertical" class="mx-1 hidden h-4 xl:flex" />
 	</div>
 </div>
