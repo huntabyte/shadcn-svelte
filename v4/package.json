@@ -39,16 +39,16 @@
 		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.0.0",
+		"sveltekit-superforms": "^2.19.1",
 		"tailwind-merge": "^3.0.2",
 		"tailwind-variants": "^0.2.1",
 		"tailwindcss": "^4.0.0",
 		"tsx": "^4.19.4",
 		"tw-animate-css": "^1.2.4",
 		"typescript": "^5.0.0",
-		"valibot": "^1.1.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"vite": "^6.2.5",
-		"zod": "^3.23.8"
+		"zod": "^3.24.4"
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.5.6",

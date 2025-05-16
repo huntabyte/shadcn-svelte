@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	import type { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { registryItemSchema, RegistryItemFile } from "@shadcn-svelte/registry";
-	import * as v from "valibot";
+	import type { RegistryItemFile, RegistryItem } from "@shadcn-svelte/registry";
 	import { Pane } from "paneforge";
 	import { Context } from "runed";
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
@@ -9,7 +8,7 @@
 	import BlockViewerCode from "./block-viewer-code.svelte";
 
 	type BlockViewerContextType = {
-		item: v.InferOutput<typeof registryItemSchema>;
+		item: RegistryItem;
 		view: "code" | "preview";
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;

@@ -1,11 +1,10 @@
-import { registryItemSchema } from "@shadcn-svelte/registry";
+import { registryItemSchema, type RegistryItem } from "@shadcn-svelte/registry";
 import type { PageLoad } from "./$types.js";
-import * as v from "valibot";
 import { highlightCode } from "$lib/highlight-code.js";
 
 export const prerender = true;
 
-type CachedItem = v.InferOutput<typeof registryItemSchema> & { highlightedCode: string };
+type CachedItem = RegistryItem & { highlightedCode: string };
 const registryCache = new Map<string, CachedItem>();
 
 export const load: PageLoad = async () => {
@@ -21,7 +20,7 @@ export const load: PageLoad = async () => {
 			promises.push(
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				registryJsonItems[path]().then(async (m: any) => {
-					const parsed = v.parse(registryItemSchema, m.default);
+					const parsed = registryItemSchema.parse(m.default);
 					const highlightedCode = await highlightCode(parsed.files?.[0]?.content ?? "");
 					const item = { ...parsed, highlightedCode };
 					registryCache.set(filename, item);

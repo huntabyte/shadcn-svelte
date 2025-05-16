@@ -1,16 +1,12 @@
 <script lang="ts" module>
-	import { registryItemSchema } from "@shadcn-svelte/registry";
-	import * as v from "valibot";
-	export type Chart = v.InferOutput<typeof registryItemSchema> & {
-		highlightedCode: string;
-	};
+	import type { RegistryItem } from "@shadcn-svelte/registry";
+	export type Chart = RegistryItem & { highlightedCode: string };
 </script>
 
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
 	import ChartToolbar from "./chart-toolbar.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { RegistryItem } from "@shadcn-svelte/registry";
 
 	let {
 		name,

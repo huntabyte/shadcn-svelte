@@ -2,11 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
+import { toJSONSchema } from "zod4/v4";
 import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
-import { toJsonSchema } from "@valibot/to-json-schema";
 import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 
@@ -45,8 +45,8 @@ export default defineConfig({
 });
 
 function writeJsonSchemas() {
-	const registry = toJsonSchema(registrySchema);
-	const registryItem = toJsonSchema(registryItemSchema);
+	const registry = toJSONSchema(registrySchema);
+	const registryItem = toJSONSchema(registryItemSchema);
 	const schemaDir = path.resolve("static", "schema");
 	if (!fs.existsSync(schemaDir)) {
 		fs.mkdirSync(schemaDir, { recursive: true });

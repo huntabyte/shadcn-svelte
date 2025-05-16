@@ -1,13 +1,16 @@
-import { registryItemSchema, type RegistryItemFile } from "@shadcn-svelte/registry";
+import {
+	registryItemSchema,
+	type RegistryItem,
+	type RegistryItemFile,
+} from "@shadcn-svelte/registry";
 import type { PageLoad } from "./$types.js";
-import * as v from "valibot";
 import { highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
 export const prerender = true;
 
-type CachedItem = Omit<v.InferOutput<typeof registryItemSchema>, "files"> & {
+type CachedItem = Omit<RegistryItem, "files"> & {
 	files: (RegistryItemFile & {
 		highlightedContent: string;
 		target: string;
@@ -31,7 +34,7 @@ export const load: PageLoad = async () => {
 
 		promises.push(
 			registryJsonItems[path]().then(async (m: unknown) => {
-				const res = v.parse(registryItemSchema, (m as { default: unknown }).default);
+				const res = registryItemSchema.parse((m as { default: unknown }).default);
 				const files = await Promise.all(
 					res.files.map(async (v) => {
 						let lang: "svelte" | "ts" | "json" = "svelte";

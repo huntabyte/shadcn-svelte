@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync } from "node:fs";
 import color from "chalk";
-import * as v from "valibot";
+import { z } from "zod/v4";
 import { Command } from "commander";
 import { ConfigError, error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
@@ -15,18 +15,18 @@ import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
 
-const addOptionsSchema = v.object({
-	components: v.optional(v.array(v.string())),
-	yes: v.boolean(),
-	all: v.boolean(),
-	overwrite: v.boolean(),
-	cwd: v.string(),
-	path: v.optional(v.string()),
-	deps: v.boolean(),
-	proxy: v.optional(v.string()),
+const addOptionsSchema = z.object({
+	components: z.string().array().optional(),
+	yes: z.boolean(),
+	all: z.boolean(),
+	overwrite: z.boolean(),
+	cwd: z.string(),
+	path: z.string().optional(),
+	deps: z.boolean(),
+	proxy: z.string().optional(),
 });
 
-type AddOptions = v.InferOutput<typeof addOptionsSchema>;
+type AddOptions = z.infer<typeof addOptionsSchema>;
 
 export const add = new Command()
 	.command("add")
@@ -42,10 +42,7 @@ export const add = new Command()
 	.action(async (components, opts) => {
 		try {
 			intro();
-			const options = v.parse(addOptionsSchema, {
-				components,
-				...opts,
-			});
+			const options = addOptionsSchema.parse({ components, ...opts });
 
 			const cwd = path.resolve(options.cwd);
 

@@ -3,7 +3,7 @@ import { Command, Option } from "commander";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import * as v from "valibot";
+import { z } from "zod/v4";
 import {
 	type DetectLanguageResult,
 	detectConfigs,
@@ -26,21 +26,21 @@ import { installDependencies } from "../../utils/install-deps.js";
 
 const baseColors = registry.getBaseColors();
 
-const initOptionsSchema = v.object({
-	cwd: v.string(),
-	baseColor: v.optional(v.string()),
-	css: v.optional(v.string()),
-	componentsAlias: v.optional(v.string()),
-	utilsAlias: v.optional(v.string()),
-	libAlias: v.optional(v.string()),
-	hooksAlias: v.optional(v.string()),
-	uiAlias: v.optional(v.string()),
-	deps: v.boolean(),
-	overwrite: v.boolean(),
-	proxy: v.optional(v.string()),
+const initOptionsSchema = z.object({
+	cwd: z.string(),
+	baseColor: z.string().optional(),
+	css: z.string().optional(),
+	componentsAlias: z.string().optional(),
+	utilsAlias: z.string().optional(),
+	libAlias: z.string().optional(),
+	hooksAlias: z.string().optional(),
+	uiAlias: z.string().optional(),
+	deps: z.boolean(),
+	overwrite: z.boolean(),
+	proxy: z.string().optional(),
 });
 
-type InitOptions = v.InferOutput<typeof initOptionsSchema>;
+type InitOptions = z.infer<typeof initOptionsSchema>;
 
 export const init = new Command()
 	.command("init")
@@ -62,7 +62,7 @@ export const init = new Command()
 	.option("--proxy <proxy>", "fetch items from registry using a proxy", getEnvProxy())
 	.action(async (opts) => {
 		intro();
-		const options = v.parse(initOptionsSchema, opts);
+		const options = initOptionsSchema.parse(opts);
 		const cwd = path.resolve(options.cwd);
 
 		try {
@@ -265,7 +265,7 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		uiAlias = input;
 	}
 
-	const config = v.parse(cliConfig.rawConfigSchema, {
+	const config = cliConfig.rawConfigSchema.parse({
 		$schema: `${SITE_BASE_URL}/schema.json`,
 		typescript: langConfig.type === "tsconfig.json",
 		registry: defaultConfig?.registry,

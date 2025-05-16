@@ -1,7 +1,6 @@
 import template from "lodash.template";
 import fs from "node:fs";
 import path from "node:path";
-import * as v from "valibot";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import {
@@ -51,27 +50,30 @@ export async function build() {
 		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 		registryDependencies: ["utils"],
 		files: [],
-		cssVars: {},
 	};
 
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
-	const result = v.parse(registrySchema, {
-		$schema: "./static/schema/registry.json",
-		name: "shadcn-svelte",
-		homepage: "https://shadcn-svelte.com",
-		aliases: {
-			lib: "$lib/registry/lib",
-			ui: "$lib/registry/ui",
-			components: "$lib/registry/components",
-			hooks: "$lib/registry/hooks",
-			utils: "$lib/utils",
-		},
-		// TODO: remove when moving from `next` to `latest`
-		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
-		items: [initItem, ...registry],
-	} as Registry);
+	const result = registrySchema.parse(
+		{
+			$schema: "./static/schema/registry.json",
+			name: "shadcn-svelte",
+			homepage: "https://shadcn-svelte.com",
+			aliases: {
+				lib: "$lib/registry/lib",
+				ui: "$lib/registry/ui",
+				components: "$lib/registry/components",
+				hooks: "$lib/registry/hooks",
+				utils: "$lib/utils",
+			},
+			// TODO: remove when moving from `next` to `latest`
+			overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
+			items: [initItem, ...registry],
+		} as Registry,
+		// maintains the schema defined property order
+		{ jitless: true }
+	);
 
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",

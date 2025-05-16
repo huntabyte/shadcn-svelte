@@ -1,4 +1,4 @@
-import * as v from "valibot";
+import { z } from "zod/v4";
 
 const registryItemTargetType = ["registry:file", "registry:page"] as const;
 const registryItemSimpleType = [
@@ -14,117 +14,106 @@ const registryItemSimpleType = [
 /** Used for internal purposes only. */
 const registryItemInternalType = ["registry:example", "registry:internal"] as const;
 
-export type RegistryItemType = v.InferOutput<typeof registryItemTypeSchema>;
-const registryItemTypeSchema = v.picklist([
+export type RegistryItemType = z.infer<typeof registryItemTypeSchema>;
+const registryItemTypeSchema = z.enum([
 	...registryItemTargetType,
 	...registryItemSimpleType,
 	...registryItemInternalType,
 ]);
 
-export type RegistryItemFile = v.InferOutput<typeof registryItemFileSchema>;
-const registryItemFileSchema = v.variant("type", [
-	v.object({
-		name: v.string(),
-		content: v.string(),
-		type: v.picklist([...registryItemSimpleType, ...registryItemInternalType]),
-		target: v.optional(v.string()),
+export type RegistryItemFile = z.infer<typeof registryItemFileSchema>;
+const registryItemFileSchema = z.discriminatedUnion("type", [
+	z.object({
+		name: z.string(),
+		content: z.string(),
+		type: z.enum([...registryItemSimpleType, ...registryItemInternalType]),
+		target: z.string().optional(),
 	}),
 	// target is required for registry:file and registry:page
-	v.object({
-		content: v.string(),
-		type: v.picklist(registryItemTargetType),
-		target: v.string(),
+	z.object({
+		content: z.string(),
+		type: z.enum(registryItemTargetType),
+		target: z.string(),
 	}),
 ]);
 
-const baseIndexItemSchema = v.object({
-	name: v.string(),
-	title: v.optional(v.string()),
+const baseIndexItemSchema = z.object({
+	name: z.string(),
+	title: z.string().optional(),
 	type: registryItemTypeSchema,
-	author: v.optional(
-		v.pipe(v.string(), v.minLength(2, "Author name must be at least 2 characters"))
-	),
-	description: v.optional(v.string()),
-	dependencies: v.optional(v.array(v.string())),
-	devDependencies: v.optional(v.array(v.string())),
-	registryDependencies: v.optional(v.array(v.string())),
+	author: z.string().min(2, "Author name must be at least 2 characters").optional(),
+	description: z.string().optional(),
+	dependencies: z.string().array().optional(),
+	devDependencies: z.string().array().optional(),
+	registryDependencies: z.string().array().optional(),
 });
 
-export type RegistryIndexItem = v.InferOutput<typeof registryIndexItemSchema>;
+export type RegistryIndexItem = z.infer<typeof registryIndexItemSchema>;
 /** Schema for registry items defined in the index */
-export const registryIndexItemSchema = v.object({
-	...baseIndexItemSchema.entries,
-	relativeUrl: v.string(),
-});
+export const registryIndexItemSchema = baseIndexItemSchema.extend({ relativeUrl: z.string() });
 
-export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
+export type RegistryIndex = z.infer<typeof registryIndexSchema>;
 /** Schema for the registry's index (e.g. `https://example.com/registry/index.json`) */
-export const registryIndexSchema = v.array(registryIndexItemSchema);
+export const registryIndexSchema = z.array(registryIndexItemSchema);
 
-const colorSchema = v.record(v.string(), v.string());
+const colorSchema = z.record(z.string(), z.string());
 /** Schema for base color endpoints (e.g. `https://example.com/registry/colors/slate.json`) */
-export const registryBaseColorSchema = v.object({
-	inlineColors: v.object({ light: colorSchema, dark: colorSchema }),
-	cssVars: v.object({ light: colorSchema, dark: colorSchema }),
-	inlineColorsTemplate: v.string(),
-	cssVarsTemplate: v.string(),
+export const registryBaseColorSchema = z.object({
+	inlineColors: z.object({ light: colorSchema, dark: colorSchema }),
+	cssVars: z.object({ light: colorSchema, dark: colorSchema }),
+	inlineColorsTemplate: z.string(),
+	cssVarsTemplate: z.string(),
 });
 
-export type CssVars = v.InferOutput<typeof registryItemCssVarsSchema>;
-const registryItemCssVarsSchema = v.object({
-	theme: v.optional(colorSchema),
-	light: v.optional(colorSchema),
-	dark: v.optional(colorSchema),
+export type CssVars = z.infer<typeof registryItemCssVarsSchema>;
+const registryItemCssVarsSchema = z.object({
+	theme: z.optional(colorSchema),
+	light: z.optional(colorSchema),
+	dark: z.optional(colorSchema),
 });
 
 type CssSchema = { [x: string]: string | CssSchema };
-const registryItemCssSchema: v.GenericSchema<CssSchema> = v.record(
-	v.string(),
-	v.lazy(() => v.union([v.string(), registryItemCssSchema]))
+const registryItemCssSchema: z.ZodType<CssSchema, CssSchema> = z.record(
+	z.string(),
+	z.lazy(() => z.union([z.string(), registryItemCssSchema]))
 );
 
-export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
+export type RegistryItem = z.infer<typeof registryItemSchema>;
 /** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
-export const registryItemSchema = v.object({
-	$schema: v.optional(v.string()),
-	...baseIndexItemSchema.entries,
-	categories: v.optional(v.array(v.string())),
-	css: v.optional(registryItemCssSchema),
-	meta: v.optional(v.record(v.string(), v.any())),
-	docs: v.optional(v.string()),
-	files: v.array(registryItemFileSchema),
-	cssVars: v.optional(registryItemCssVarsSchema),
+export const registryItemSchema = z.object({
+	$schema: z.string().optional(),
+	...baseIndexItemSchema.shape,
+	docs: z.string().optional(),
+	categories: z.string().array().optional(),
+	css: z.optional(registryItemCssSchema),
+	cssVars: z.optional(registryItemCssVarsSchema),
+	meta: z.record(z.string(), z.any()).optional(),
+	files: z.array(registryItemFileSchema),
 });
 
-export type Registry = v.InferOutput<typeof registrySchema>;
+export type Registry = z.infer<typeof registrySchema>;
 /** Schema for `registry.json` */
-export const registrySchema = v.object({
-	$schema: v.optional(v.string()),
-	name: v.string(),
-	homepage: v.string(),
+export const registrySchema = z.object({
+	$schema: z.string().optional(),
+	name: z.string(),
+	homepage: z.string(),
 	// installs specified versions of dependencies during auto-detection
-	overrideDependencies: v.optional(v.array(v.string())),
-	aliases: v.optional(
-		v.object({
-			lib: v.optional(v.string()),
-			ui: v.optional(v.string()),
-			components: v.optional(v.string()),
-			utils: v.optional(v.string()),
-			hooks: v.optional(v.string()),
+	overrideDependencies: z.string().array().optional(),
+	aliases: z
+		.object({
+			lib: z.string().optional(),
+			ui: z.string().optional(),
+			components: z.string().optional(),
+			utils: z.string().optional(),
+			hooks: z.string().optional(),
 		})
-	),
-	items: v.array(
-		v.object({
-			...baseIndexItemSchema.entries,
-			files: v.array(
-				v.object({
-					path: v.string(),
-					type: registryItemTypeSchema,
-				})
-			),
-			registryDependencies: v.array(v.string()),
-			cssVars: v.optional(registryItemCssVarsSchema),
-			css: v.optional(registryItemCssSchema),
+		.optional(),
+	items: baseIndexItemSchema
+		.extend({
+			files: z.object({ path: z.string(), type: registryItemTypeSchema }).array(),
+			registryDependencies: z.string().array(),
+			cssVars: z.optional(registryItemCssVarsSchema),
+			css: z.optional(registryItemCssSchema),
 		})
-	),
+		.array(),
 });

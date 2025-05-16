@@ -2,9 +2,9 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
+import { z } from "zod/v4";
 import merge from "deepmerge";
 import { Command } from "commander";
-import * as v from "valibot";
 import { error, handleError } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
@@ -16,15 +16,15 @@ import { checkPreconditions } from "../../utils/preconditions.js";
 import { highlight } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
 
-const updateOptionsSchema = v.object({
-	all: v.boolean(),
-	components: v.optional(v.array(v.string())),
-	cwd: v.string(),
-	proxy: v.optional(v.string()),
-	yes: v.boolean(),
+const updateOptionsSchema = z.object({
+	all: z.boolean(),
+	components: z.string().array().optional(),
+	cwd: z.string(),
+	proxy: z.string().optional(),
+	yes: z.boolean(),
 });
 
-type UpdateOptions = v.InferOutput<typeof updateOptionsSchema>;
+type UpdateOptions = z.infer<typeof updateOptionsSchema>;
 
 export const update = new Command()
 	.command("update")
@@ -38,7 +38,7 @@ export const update = new Command()
 		intro();
 
 		try {
-			const options = v.parse(updateOptionsSchema, {
+			const options = updateOptionsSchema.parse({
 				components,
 				...opts,
 			});
