@@ -115,11 +115,9 @@ Run the `shadcn-svelte` init command to setup your project:
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Would you like to use TypeScript (recommended)? › Yes
-Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/styles/app.css
-Where is your tailwind.config.[cjs|mjs|js|ts] located? › tailwind.config.mjs
+Which base color would you like to use? › Slate
+Where is your global CSS file? (this file will be overwritten) › src/app.css
+Configure the import alias for lib: › $lib
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 Configure the import alias for hooks: › $lib/hooks
@@ -139,19 +137,6 @@ export default defineConfig({
     // ...
   ],
 });
-```
-
-### Update tailwind.config.mjs
-
-When running `shadcn-svelte@next init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
-
-```js title="tailwind.config.mjs" {1-4} showLineNumbers
-const config = {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  // ...
-};
-// ...
-export default config;
 ```
 
 ### That's it

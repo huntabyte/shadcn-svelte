@@ -11,19 +11,20 @@ description: Use the CLI to add components to your project.
 
 Use the `init` command to initialize dependencies for a new project.
 
-The `init` command installs dependencies, adds the `cn` util, configures `tailwind.config.cjs`, and creates CSS variables for the project.
+The `init` command installs dependencies, adds the `cn` util, and creates CSS variables for the project.
 
 <PMExecute command="shadcn-svelte@next init" />
 
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Which style would you like to use? › Default
 Which base color would you like to use? › Slate
 Where is your global CSS file? (this file will be overwritten) › src/app.css
-Where is your Tailwind config located? (this file will be overwritten) › tailwind.config.[cjs|js|ts]
+Configure the import alias for lib: › $lib
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
+Configure the import alias for hooks: › $lib/hooks
+Configure the import alias for ui: › $lib/components/ui
 ```
 
 ### Options
@@ -34,14 +35,17 @@ Usage: shadcn-svelte init [options]
 initialize your project and install dependencies
 
 Options:
-  -c, --cwd <cwd>            the working directory (default: the current directory)
+  -c, --cwd <path>           the working directory (default: the current directory)
+  -o, --overwrite            overwrite existing files (default: false)
   --no-deps                  disable adding & installing dependencies
-  --style <name>             the style for the components (choices: "default", "new-york")
   --base-color <name>        the base color for the components (choices: "slate", "gray", "zinc", "neutral", "stone")
   --css <path>               path to the global CSS file
-  --tailwind-config <path>   path to the tailwind config file
   --components-alias <path>  import alias for components
+  --lib-alias <path>         import alias for lib
   --utils-alias <path>       import alias for utils
+  --hooks-alias <path>       import alias for hooks
+  --ui-alias <path>          import alias for ui
+  --proxy <proxy>            fetch items from registry using a proxy
   -h, --help                 display help for command
 ```
 
@@ -76,10 +80,10 @@ Usage: shadcn-svelte add [options] [components...]
 add components to your project
 
 Arguments:
-  components         name of components
+  components         the components to add or a url to the component
 
 Options:
-  -c, --cwd <cwd>    the working directory (default: the current directory)
+  -c, --cwd <path>   the working directory (default: the current directory)
   --no-deps          skips adding & installing package dependencies
   -a, --all          install all components to your project (default: false)
   -y, --yes          skip confirmation prompt (default: false)
@@ -103,14 +107,14 @@ Usage: shadcn-svelte update [options] [components...]
 update components in your project
 
 Arguments:
-  components       name of components
+  components        name of components
 
 Options:
-  -c, --cwd <cwd>  the working directory (default: the current directory)
-  -a, --all        update all existing components (default: false)
-  -y, --yes        skip confirmation prompt (default: false)
-  --proxy <proxy>  fetch components from registry using a proxy
-  -h, --help       display help for command
+  -c, --cwd <path>  the working directory (default: the current directory)
+  -a, --all         update all existing components (default: false)
+  -y, --yes         skip confirmation prompt (default: false)
+  --proxy <proxy>   fetch components from registry using a proxy
+  -h, --help        display help for command
 ```
 
 ## Outgoing Requests

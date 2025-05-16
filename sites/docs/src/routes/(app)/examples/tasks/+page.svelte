@@ -1,8 +1,7 @@
 <script lang="ts">
-	import DataTable from "./(components)/data-table.svelte";
-	import UserNav from "./(components)/user-nav.svelte";
-	import { data } from "./(data)/tasks.js";
-	import { columns } from "./(components)/columns.js";
+	import DataTable from "./components/data-table.svelte";
+	import UserNav from "./components/user-nav.svelte";
+	import { data } from "./data/tasks.js";
 </script>
 
 <div class="md:hidden">
@@ -19,5 +18,5 @@
 			<UserNav />
 		</div>
 	</div>
-	<DataTable {data} {columns} />
+	<DataTable {data} />
 </div>

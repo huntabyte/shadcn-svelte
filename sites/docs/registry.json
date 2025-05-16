@@ -525,8 +525,12 @@
 					"path": "src/lib/registry/ui/context-menu/context-menu-item.svelte"
 				},
 				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte"
+					"path": "src/lib/registry/ui/context-menu/context-menu-label.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte",
+					"type": "registry:ui"
 				},
 				{
 					"type": "registry:file",
@@ -689,8 +693,12 @@
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-content.svelte"
 				},
 				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group.svelte"
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group.svelte",
+					"type": "registry:ui"
 				},
 				{
 					"type": "registry:file",
@@ -871,16 +879,24 @@
 					"path": "src/lib/registry/ui/menubar/menubar-content.svelte"
 				},
 				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/menubar/menubar-group.svelte"
+					"path": "src/lib/registry/ui/menubar/menubar-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/menubar/menubar-group.svelte",
+					"type": "registry:ui"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-item.svelte"
 				},
 				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/menubar/menubar-radio-item.svelte"
+					"path": "src/lib/registry/ui/menubar/menubar-label.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/menubar/menubar-radio-item.svelte",
+					"type": "registry:ui"
 				},
 				{
 					"type": "registry:file",

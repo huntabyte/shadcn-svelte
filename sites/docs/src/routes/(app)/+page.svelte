@@ -2,9 +2,8 @@
 	import ExamplesNav from "$lib/components/docs/examples-nav/examples-nav.svelte";
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
-	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import CardsDemo from "$lib/registry/examples/cards/all.svelte";
+	import CardsDemo from "$lib/components/docs/cards/demo.svelte";
 </script>
 
 <PageHeader.Root>
@@ -14,21 +13,6 @@
 		A set of beautifully-designed, accessible components and a code distribution platform. Open
 		Source. Open Code.
 	</PageHeader.Description>
-	<p class="text-center text-sm text-orange-700 dark:text-orange-400">
-		This is an unofficial port of <a
-			href={siteConfig.links.shadGithub}
-			target="_blank"
-			rel="noreferrer"
-			class="font-medium underline underline-offset-4">shadcn/ui</a
-		>
-		to Svelte, and is not affiliated with
-		<a
-			href={siteConfig.links.shadTwitter}
-			target="_blank"
-			rel="noreferrer"
-			class="font-medium underline underline-offset-4">@shadcn</a
-		>.
-	</p>
 	<PageHeader.Actions>
 		<Button href="/docs" size="sm">Get Started</Button>
 		<Button href="/blocks" variant="ghost" size="sm" class="rounded-md">Browse Blocks</Button>
@@ -36,7 +20,7 @@
 </PageHeader.Root>
 <div class="border-grid border-b">
 	<div class="container-wrapper">
-		<div class="container py-4">
+		<div class="container pt-4">
 			<ExamplesNav class="[&>a:first-child]:text-primary" />
 		</div>
 	</div>
