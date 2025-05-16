@@ -177,16 +177,18 @@ async function runBuild(options: BuildOptions) {
 					}
 				}
 
-				const resolved = {
-					...item,
-					$schema: `${SITE_BASE_URL}/schema/registry-item.json`,
-					registryDependencies: toArray(registryDependencies),
-					dependencies: toArray(dependencies),
-					devDependencies: toArray(devDependencies),
-					files,
-				};
-
-				const parsedItem = schema.registryItemSchema.parse(resolved);
+				const parsedItem = schema.registryItemSchema.parse(
+					{
+						...item,
+						$schema: `${SITE_BASE_URL}/schema/registry-item.json`,
+						registryDependencies: toArray(registryDependencies),
+						dependencies: toArray(dependencies),
+						devDependencies: toArray(devDependencies),
+						files,
+					},
+					// maintains the schema defined property order
+					{ jitless: true }
+				);
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 

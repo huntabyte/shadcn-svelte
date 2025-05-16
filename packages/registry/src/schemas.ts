@@ -80,14 +80,15 @@ const registryItemCssSchema: z.ZodType<CssSchema> = z.record(
 
 export type RegistryItem = z.infer<typeof registryItemSchema>;
 /** Schema for registry item endpoints (e.g. `https://example.com/registry/item.json`) */
-export const registryItemSchema = baseIndexItemSchema.extend({
+export const registryItemSchema = z.object({
 	$schema: z.string().optional(),
+	...baseIndexItemSchema.shape,
+	docs: z.string().optional(),
 	categories: z.string().array().optional(),
 	css: z.optional(registryItemCssSchema),
-	meta: z.record(z.string(), z.any()).optional(),
-	docs: z.string().optional(),
-	files: z.array(registryItemFileSchema),
 	cssVars: z.optional(registryItemCssVarsSchema),
+	meta: z.record(z.string(), z.any()).optional(),
+	files: z.array(registryItemFileSchema),
 });
 
 export type Registry = z.infer<typeof registrySchema>;
