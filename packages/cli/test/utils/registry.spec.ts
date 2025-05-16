@@ -10,7 +10,7 @@ import {
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
 import type { Config } from "../../src/utils/get-config.js";
-import type { RegistryItem, RegistryIndex, RegistryItemFile } from "@shadcn-svelte/registry";
+import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
 import path from "node:path";
 import { toPosixPath } from "./test-helpers.js";
 
@@ -19,14 +19,18 @@ vi.mock("node-fetch-native", () => ({
 }));
 
 describe("Registry Utilities", () => {
+	const cwd = "/path/to/cwd";
 	const mockConfig: Config = {
 		registry: "https://example.com/registry",
 		resolvedPaths: {
-			ui: path.posix.normalize("/path/to/ui"),
-			hooks: path.posix.normalize("/path/to/hooks"),
-			components: path.posix.normalize("/path/to/components"),
-			cwd: path.posix.normalize("/path/to/cwd"),
+			ui: path.posix.normalize(`${cwd}/ui`),
+			hooks: path.posix.normalize(`${cwd}/hooks`),
+			components: path.posix.normalize(`${cwd}/components`),
+			cwd: path.posix.normalize(cwd),
+			lib: path.posix.normalize(`${cwd}/lib`),
+			utils: path.posix.normalize(`${cwd}/utils`),
 		},
+		sveltekit: true,
 	} as Config;
 
 	const mockRegistryIndex: RegistryIndex = [
@@ -152,9 +156,6 @@ describe("Registry Utilities", () => {
 				title: "Remote Button",
 				type: "registry:ui",
 				files: [],
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
 			};
 			const mockResponse = {
 				json: () => Promise.resolve(mockRemoteItem),
@@ -192,12 +193,12 @@ describe("Registry Utilities", () => {
 		});
 
 		it("should return correct directory for each type", () => {
-			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:ui"))).toBe("/path/to/ui");
+			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:ui"))).toBe("/path/to/cwd/ui");
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:hook"))).toBe(
-				"/path/to/hooks"
+				"/path/to/cwd/hooks"
 			);
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:component"))).toBe(
-				"/path/to/components"
+				"/path/to/cwd/components"
 			);
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:file"))).toBe("/path/to/cwd");
 		});
@@ -207,20 +208,16 @@ describe("Registry Utilities", () => {
 		it("should resolve path with target starting with ~/", () => {
 			const item: RegistryItem = {
 				name: "button",
-				title: "Button",
 				type: "registry:ui",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
+				files: [
+					{
+						type: "registry:component",
+						content: "",
+						target: "~/src/components/button.svelte",
+					},
+				],
 			};
-			const file: RegistryItemFile = {
-				type: "registry:ui",
-				name: "button.svelte",
-				content: "",
-				target: "~/src/components/button.svelte",
-			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, file))).toBe(
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
 				"/path/to/cwd/src/components/button.svelte"
 			);
 		});
@@ -228,20 +225,49 @@ describe("Registry Utilities", () => {
 		it("should resolve path for UI components", () => {
 			const item: RegistryItem = {
 				name: "button",
-				title: "Button",
 				type: "registry:ui",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
+				files: [
+					{
+						type: "registry:file",
+						content: "",
+						target: "button/button.svelte",
+					},
+				],
 			};
-			const file: RegistryItemFile = {
-				type: "registry:ui",
-				name: "button.svelte",
-				content: "",
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+				"/path/to/cwd/ui/button/button.svelte"
+			);
+		});
+
+		it("should resolve path for components", () => {
+			const item: RegistryItem = {
+				name: "button",
+				type: "registry:component",
+				files: [{ type: "registry:component", content: "", target: "button.svelte" }],
 			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, file))).toBe(
-				"/path/to/ui/button/button.svelte"
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+				"/path/to/cwd/components/button.svelte"
+			);
+		});
+
+		it("should resolve path for blocks", () => {
+			const item: RegistryItem = {
+				name: "login",
+				type: "registry:block",
+				files: [
+					{ type: "registry:component", content: "", target: "complex-button.svelte" },
+					{ type: "registry:ui", content: "", target: "button/button.svelte" },
+					{ type: "registry:page", content: "", target: "login/+page.svelte" },
+				],
+			};
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+				"/path/to/cwd/components/complex-button.svelte"
+			);
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[1]))).toBe(
+				"/path/to/cwd/ui/button/button.svelte"
+			);
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[2]))).toBe(
+				"/path/to/cwd/src/routes/login/+page.svelte"
 			);
 		});
 
@@ -250,18 +276,16 @@ describe("Registry Utilities", () => {
 				name: "use-hook",
 				title: "Use Hook",
 				type: "registry:hook",
-				dependencies: [],
-				devDependencies: [],
-				registryDependencies: [],
-				files: [],
+				files: [
+					{
+						type: "registry:hook",
+						target: "use-hook.svelte.ts",
+						content: "",
+					},
+				],
 			};
-			const file: RegistryItemFile = {
-				type: "registry:hook",
-				name: "use-hook.svelte.ts",
-				content: "",
-			};
-			expect(toPosixPath(resolveItemFilePath(mockConfig, item, file))).toBe(
-				"/path/to/hooks/use-hook.svelte.ts"
+			expect(toPosixPath(resolveItemFilePath(mockConfig, item, item.files[0]))).toBe(
+				"/path/to/cwd/hooks/use-hook.svelte.ts"
 			);
 		});
 	});

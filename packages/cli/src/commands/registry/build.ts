@@ -140,15 +140,23 @@ async function runBuild(options: BuildOptions) {
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
 				const singleFile = item.files.length === 1;
-
+				const nested: schema.RegistryItemFileType[] = [
+					"registry:page",
+					"registry:ui",
+					"registry:file",
+				];
 				const toResolve = item.files.map(async (file) => {
 					let content = await fs.readFile(file.path, "utf8");
 					content = transformAliases(content);
 
 					const name = path.basename(file.path);
-					const target = singleFile ? name : `${item.name}/${name}`;
 
-					return { content, type: file.type, name, target };
+					let target;
+					if (singleFile) target = name;
+					else if (nested.includes(file.type)) target = `${item.name}/${name}`;
+					else target = name;
+
+					return { content, name, target, ...file };
 				});
 				const files = await Promise.all(toResolve);
 

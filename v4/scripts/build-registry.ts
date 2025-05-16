@@ -3,7 +3,7 @@ import path from "node:path";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import template from "lodash.template";
-import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
+import { registrySchema, type RegistryItem, type RegistryItemType } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/colors.js";
 import { baseColors } from "../src/lib/registry/colors.js";
 import { buildRegistry } from "./registry.js";
@@ -41,13 +41,29 @@ export async function build() {
 		throw new Error(selfReferenceError);
 	}
 
+	const initItem: RegistryItem = {
+		name: "init",
+		type: "registry:style",
+		devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
+		registryDependencies: ["utils"],
+		files: [],
+	};
+
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
 	const result = registrySchema.parse({
 		name: "shadcn-svelte",
 		homepage: "https://shadcn-svelte.com",
-		items: registry,
+		aliases: {
+			lib: "$lib/registry/lib",
+			ui: "$lib/registry/ui",
+			components: "./components",
+			hooks: "$lib/registry/hooks",
+			utils: "$lib/utils",
+		},
+		overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
+		items: [initItem, ...registry],
 	});
 	const ITEM_TYPES: RegistryItemType[] = [
 		"registry:ui",

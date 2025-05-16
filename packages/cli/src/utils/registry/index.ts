@@ -1,6 +1,6 @@
+import path from "node:path";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
-import path from "node:path";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
@@ -151,12 +151,17 @@ export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, 
 	if (type === "registry:ui") return config.resolvedPaths.ui;
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
+	if (type === "registry:file") return config.resolvedPaths.cwd;
 
 	if (type === "registry:block" || type === "registry:component") {
 		return config.resolvedPaths.components;
 	}
-	if (type === "registry:file" || type === "registry:page") {
-		return config.resolvedPaths.cwd;
+
+	if (type === "registry:page") {
+		if (config.sveltekit) return path.resolve(config.resolvedPaths.cwd, "src", "routes");
+
+		// we'll fallback to components alias
+		return config.resolvedPaths.components;
 	}
 
 	throw new Error(`TODO: unhandled item type ${type}`);
@@ -167,32 +172,19 @@ export function resolveItemFilePath(
 	item: schemas.RegistryItem,
 	file: schemas.RegistryItemFile
 ): string {
-	const aliasDir = getItemAliasDir(config, item.type);
-	if (file.target) {
-		// resolves relative to the root (cwd)
-		if (file.target.startsWith("~/")) {
-			return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
-		}
-		// resolves relative to the item's dir
-		return path.resolve(aliasDir, file.target);
+	// resolves relative to the root (cwd)
+	if (file.target.startsWith("~/")) {
+		return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
 	}
 
-	// inserted as grouped files
-	if (
-		file.type === "registry:ui" ||
-		file.type === "registry:component" ||
-		file.type === "registry:block"
-	) {
-		// resolves to `[alias]/[registry-item]/[file]`
-		return path.resolve(aliasDir, item.name, file.name);
+	let aliasDir;
+	if (file.type === "registry:file") {
+		// resolves relative to the item-type's alias
+		aliasDir = getItemAliasDir(config, item.type);
+	} else {
+		// resolves relative to the file-type's alias
+		aliasDir = getItemAliasDir(config, file.type);
 	}
 
-	// inserted as single files
-	if (file.type === "registry:hook" || file.type === "registry:lib") {
-		// resolves to `[alias]/[filename]`
-		return path.resolve(aliasDir, file.name);
-	}
-
-	// TODO: keep going
-	throw new Error(`TODO: unhandled file type ${file.type}`);
+	return path.resolve(aliasDir, file.target);
 }

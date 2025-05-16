@@ -44,6 +44,7 @@ describe("getConfig", () => {
 				ui: resolvePath("../fixtures/config-partial/src/lib/components/ui"),
 				lib: resolvePath("../fixtures/config-partial/src/lib"),
 			},
+			sveltekit: true,
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
 		});
@@ -71,6 +72,7 @@ describe("getConfig", () => {
 				ui: resolvePath("../fixtures/config-full/src/lib/components/ui"),
 				lib: resolvePath("../fixtures/config-full/src/lib"),
 			},
+			sveltekit: true,
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
 		});
@@ -98,6 +100,7 @@ describe("getConfig", () => {
 				lib: resolvePath("../fixtures/config-vite/src/lib"),
 				cwd: resolvePath("../fixtures/config-vite"),
 			},
+			sveltekit: false,
 			typescript: true,
 			registry: `${SITE_BASE_URL}/registry`,
 		});
@@ -127,6 +130,7 @@ describe("getConfig", () => {
 				lib: resolvePath("../fixtures/config-jsconfig/src/lib"),
 				cwd: resolvePath("../fixtures/config-jsconfig"),
 			},
+			sveltekit: false,
 			typescript: false,
 			registry: `${SITE_BASE_URL}/registry`,
 		});
@@ -147,6 +151,7 @@ describe("getConfig", () => {
 				ui: "$lib/components/ui",
 			},
 			typescript: true,
+			sveltekit: true,
 			registry: `${SITE_BASE_URL}/registry`,
 			resolvedPaths: {
 				cwd: resolvePath("../fixtures/legacy/post-init-default"),
