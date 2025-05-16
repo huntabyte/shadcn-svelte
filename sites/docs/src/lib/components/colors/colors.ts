@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-import { colorMapping, colors, type BaseColor } from "../../registry/colors.js";
+import { colorMapping, colors, type BaseColor } from "../../registry/registry-colors.js";
 import template from "lodash.template";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES } from "../../registry/templates.js";
+import { baseColorsV4 } from "../../registry/registry-base-colors.js";
 
 const colorSchema = z.object({
 	name: z.string(),
@@ -120,9 +121,16 @@ export function generateBaseColorTemplate(baseColor: BaseColor) {
 
 	// Build css vars.
 	base.inlineColorsTemplate = template(BASE_STYLES)({});
-	base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-		colors: base.cssVars,
-	});
+
+	if (["stone", "slate", "gray", "zinc", "neutral"].includes(baseColor)) {
+		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
+			colors: baseColorsV4[baseColor as keyof typeof baseColorsV4],
+		});
+	} else {
+		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
+			colors: base.cssVars,
+		});
+	}
 
 	return base;
 }

@@ -1,2 +1,2 @@
-export * from "./colors.js";
+export * from "./registry-colors.js";
 export * from "./themes.js";

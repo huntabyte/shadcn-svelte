@@ -12,7 +12,7 @@ import {
 } from "@shadcn-svelte/registry";
 import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
 import { buildRegistry } from "./registry.js";
-import { baseColors } from "../src/lib/registry/colors.js";
+import { baseColors } from "../src/lib/registry/registry-colors.js";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
