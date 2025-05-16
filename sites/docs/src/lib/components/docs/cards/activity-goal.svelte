@@ -66,12 +66,12 @@
 	let context = $state<ChartContextValue>();
 </script>
 
-<Card.Root class="w-full">
-	<Card.Header class="pb-4">
+<Card.Root class="w-full gap-3">
+	<Card.Header>
 		<Card.Title>Move Goal</Card.Title>
 		<Card.Description>Set your daily activity goal.</Card.Description>
 	</Card.Header>
-	<Card.Content class="pb-2">
+	<Card.Content>
 		<div class="flex items-center justify-center space-x-2">
 			<Button
 				variant="outline"
