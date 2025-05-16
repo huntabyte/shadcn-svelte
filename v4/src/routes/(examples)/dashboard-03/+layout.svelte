@@ -6,7 +6,7 @@
 	let { data, children } = $props();
 </script>
 
-<main class="[--header-height:calc(theme(spacing.14))]">
+<main style="--header-height:calc(theme(spacing.14))">
 	<Sidebar.Provider open={data.sidebarState} class="flex flex-col">
 		<SiteHeader />
 		<div class="flex flex-1">

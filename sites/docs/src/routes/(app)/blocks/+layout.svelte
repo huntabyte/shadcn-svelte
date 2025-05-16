@@ -2,30 +2,30 @@
 	import Announcement from "$lib/components/docs/announcement.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as PageHeader from "$lib/components/docs/page-header/index.js";
+	import BlocksNav from "$lib/components/docs/blocks-nav.svelte";
+	import "../../../styles/markdown.css";
 
 	let { children } = $props();
+
+	const title = "Building Blocks for the Web";
+	const description =
+		"Clean, modern building blocks. Copy and paste into your apps. Works with all React frameworks. Open Source. Free forever.";
 </script>
 
-<div class="container relative">
-	<PageHeader.Root>
-		<Announcement />
-		<PageHeader.Heading>Building Blocks for the Web</PageHeader.Heading>
-		<PageHeader.Description>
-			Beautifully designed. Copy and paste into your apps. Open source.
-		</PageHeader.Description>
-		<PageHeader.Actions>
-			<Button href="#blocks" size="sm">Browse</Button>
-			<Button
-				href="https://github.com/shadcn-ui/ui/discussions/new?category=blocks-request"
-				target="_blank"
-				variant="ghost"
-				size="sm"
-			>
-				Request a block
-			</Button>
-		</PageHeader.Actions>
-	</PageHeader.Root>
-	<section id="blocks" class="grid scroll-mt-24 gap-24 lg:gap-48">
-		{@render children?.()}
-	</section>
+<PageHeader.Root>
+	<Announcement />
+	<PageHeader.Heading>{title}</PageHeader.Heading>
+	<PageHeader.Description>{description}</PageHeader.Description>
+	<PageHeader.Actions>
+		<Button href="#blocks" size="sm">Browse Blocks</Button>
+		<Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button>
+	</PageHeader.Actions>
+</PageHeader.Root>
+<div id="blocks" class="border-grid scroll-mt-24 border-b">
+	<div class="container-wrapper">
+		<div class="container flex items-center py-4">
+			<BlocksNav />
+		</div>
+	</div>
 </div>
+<div class="container-wrapper flex-1">{@render children()}</div>

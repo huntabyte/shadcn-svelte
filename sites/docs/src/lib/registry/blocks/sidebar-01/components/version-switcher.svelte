@@ -33,7 +33,7 @@
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content class="w-[var(--bits-dropdown-menu-anchor-width)]" align="start">
+			<DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)" align="start">
 				{#each versions as version (version)}
 					<DropdownMenu.Item onSelect={() => (selectedVersion = version)}>
 						v{version}

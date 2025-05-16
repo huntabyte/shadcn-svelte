@@ -98,11 +98,26 @@ export const blockMeta = {
 		description: "A left and right sidebar.",
 		target: "sidebar-page.svelte",
 	},
+	"sidebar-16": {
+		description: "A sidebar with a sticky site header.",
+	},
 	"login-01": {
 		iframeHeight: "870px",
 		className: "w-full h-full",
 		description: "A simple login form.",
 		target: "login-page.svelte",
+	},
+	"login-02": {
+		description: "A login page with a muted background color.",
+	},
+	"login-03": {
+		description: "A login page with a background image.",
+	},
+	"login-04": {
+		description: "A login page with form and image.",
+	},
+	"dashboard-01": {
+		description: "A dashboard with sidebar, charts and data table.",
 	},
 	"demo-sidebar": {
 		iframeHeight: "",

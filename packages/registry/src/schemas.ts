@@ -110,6 +110,8 @@ export const registrySchema = z.object({
 		.extend({
 			files: z.object({ path: z.string(), type: registryItemTypeSchema }).array(),
 			registryDependencies: z.string().array(),
+			cssVars: z.optional(registryItemCssVarsSchema),
+			css: z.optional(registryItemCssSchema),
 		})
 		.array(),
 });

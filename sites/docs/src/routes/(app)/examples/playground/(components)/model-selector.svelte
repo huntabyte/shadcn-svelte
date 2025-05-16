@@ -109,7 +109,7 @@
 				</HoverCard.Content>
 				<Command.Root loop>
 					<Command.Input placeholder="Search Models...." />
-					<Command.List class="h-[var(--cmdk-list-height)] max-h-[400px]">
+					<Command.List class="h-(--bits-command-list-height) max-h-[400px]">
 						<Command.Empty>No models found.</Command.Empty>
 						{#each types as type (type)}
 							<Command.Group heading={type}>
