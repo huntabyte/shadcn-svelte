@@ -17,7 +17,7 @@
 		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
-		"check": "pnpm -r check",
+		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
