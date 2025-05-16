@@ -67,6 +67,7 @@ export function transformImportPaths(content: string): string {
 		ui: "$lib/components/ui",
 		utils: "$lib/utils",
 		components: "$lib/components",
+		hooks: "$lib/hooks",
 		lib: "$lib",
 	};
 	for (const [alias, path] of Object.entries(aliases)) {
