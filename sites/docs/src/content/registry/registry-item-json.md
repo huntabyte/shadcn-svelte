@@ -9,8 +9,8 @@ The `registry-item.json` schema is used to define your custom registry items.
 {
   "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
   "name": "hello-world",
-  "type": "registry:block",
   "title": "Hello World",
+  "type": "registry:block",
   "description": "A simple hello world component.",
   "files": [
     {
@@ -44,7 +44,7 @@ The `registry-item.json` schema is used to define your custom registry items.
 
 ## Definitions
 
-You can see the JSON Schema for `registry-item.json` [here](https://next.shadcn-svelte.com/schema/registry-item.json).
+You can see the JSON Schema for `registry-item.json` [here](/schema/registry-item.json).
 
 ### $schema
 
@@ -199,7 +199,7 @@ The `target` property is used to indicate where the file should be placed in a p
 
 By default, the `shadcn-svelte` cli will read a project's `components.json` file to determine the target path. For some files, such as routes or config you can specify the target path manually.
 
-TODO: (is this correct?) - Use `~` to refer to the root of the project e.g `~/foo.config.js`.
+Use `~` to refer to the root of the project e.g `~/foo.config.js`.
 
 ### cssVars
 

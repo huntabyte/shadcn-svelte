@@ -97,7 +97,7 @@ Options:
 
 Use the `build` command to generate the registry JSON files.
 
-<PMExecute command="shadcn-svelte@next build" />
+<PMExecute command="shadcn-svelte@next registry build [registry.json]" />
 
 This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
 

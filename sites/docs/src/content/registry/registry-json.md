@@ -33,7 +33,7 @@ The `registry.json` schema is used to define your custom component registry.
 
 ## Definitions
 
-You can see the JSON Schema for `registry.json` [here](https://next.shadcn-svelte.com/schema/registry.json).
+You can see the JSON Schema for `registry.json` [here](/schema/registry.json).
 
 ### $schema
 
@@ -67,7 +67,7 @@ The homepage of your registry. This is used for data attributes and other metada
 
 ### items
 
-The `items` in your registry. Each item must implement the [registry-item schema specification](https://next.shadcn-svelte.com/schema/registry-item.json).
+The `items` in your registry. Each item must implement the [registry-item schema specification](/schema/registry-item.json).
 
 ```json title="registry.json" showLineNumbers
 {
@@ -135,7 +135,7 @@ Default aliases (if you don't specify any):
 
 ### overrideDependencies
 
-`overrideDependencies` lets you force specific version ranges for dependencies, overriding what `shadcn-svelte build` detects in your `package.json`.
+`overrideDependencies` lets you force specific version ranges for dependencies, overriding what `shadcn-svelte registry build` detects in your `package.json`.
 
 Common use cases:
 
