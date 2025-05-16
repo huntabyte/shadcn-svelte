@@ -110,7 +110,7 @@ async function crawlExamples(rootPath: string) {
 		items.push({
 			name,
 			type: "registry:example",
-			files: [{ path: relativePath, type: "registry:example" }],
+			files: [{ path: relativePath, type: "registry:component" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -180,7 +180,7 @@ async function crawlBlocks(rootPath: string) {
 		items.push({
 			name,
 			type: "registry:block",
-			files: [{ path: relativePath, type: "registry:block" }],
+			files: [{ path: relativePath, type: "registry:component" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}

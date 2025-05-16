@@ -1,41 +1,37 @@
 import { z } from "zod/v4";
 
-const registryItemTargetType = ["registry:file", "registry:page"] as const;
-const registryItemSimpleType = [
-	"registry:lib",
-	"registry:block",
-	"registry:component",
+const registryItemFileType = [
+	"registry:file",
+	"registry:page",
 	"registry:ui",
+	"registry:component",
+	"registry:lib",
 	"registry:hook",
 	"registry:theme",
 	"registry:style",
 ] as const;
+
+const registryItemComplexType = ["registry:block"] as const;
 
 /** Used for internal purposes only. */
 const registryItemInternalType = ["registry:example", "registry:internal"] as const;
 
 export type RegistryItemType = z.infer<typeof registryItemTypeSchema>;
 const registryItemTypeSchema = z.enum([
-	...registryItemTargetType,
-	...registryItemSimpleType,
+	...registryItemFileType,
+	...registryItemComplexType,
 	...registryItemInternalType,
 ]);
 
+export type RegistryItemFileType = z.infer<typeof registryItemFileTypeSchema>;
+const registryItemFileTypeSchema = z.enum(registryItemFileType);
+
 export type RegistryItemFile = z.infer<typeof registryItemFileSchema>;
-const registryItemFileSchema = z.discriminatedUnion("type", [
-	z.object({
-		name: z.string(),
-		content: z.string(),
-		type: z.enum([...registryItemSimpleType, ...registryItemInternalType]),
-		target: z.string().optional(),
-	}),
-	// target is required for registry:file and registry:page
-	z.object({
-		content: z.string(),
-		type: z.enum(registryItemTargetType),
-		target: z.string(),
-	}),
-]);
+const registryItemFileSchema = z.object({
+	content: z.string(),
+	type: registryItemFileTypeSchema,
+	target: z.string(),
+});
 
 const baseIndexItemSchema = z.object({
 	name: z.string(),
@@ -92,6 +88,7 @@ export const registryItemSchema = z.object({
 });
 
 export type Registry = z.infer<typeof registrySchema>;
+
 /** Schema for `registry.json` */
 export const registrySchema = z.object({
 	$schema: z.string().optional(),
@@ -110,7 +107,13 @@ export const registrySchema = z.object({
 		.optional(),
 	items: baseIndexItemSchema
 		.extend({
-			files: z.object({ path: z.string(), type: registryItemTypeSchema }).array(),
+			files: registryItemFileSchema
+				.partial()
+				.extend({
+					path: z.string(),
+					type: registryItemFileTypeSchema,
+				})
+				.array(),
 			registryDependencies: z.string().array(),
 			cssVars: z.optional(registryItemCssVarsSchema),
 			css: z.optional(registryItemCssSchema),
