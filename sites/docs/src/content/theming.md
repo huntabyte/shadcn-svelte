@@ -109,7 +109,7 @@ Here's the list of variables available for customization:
 
 ## Adding new colors
 
-To add new colors, you need to add them to your CSS file and to your `tailwind.config.js` file.
+To add new colors, you need to add them to your CSS file.
 
 ```css title="src/app.css"
 :root {

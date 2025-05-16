@@ -6,7 +6,7 @@ A CLI for adding shadcn components to your project.
 
 Use the `init` command to initialize dependencies for a new project.
 
-The `init` command installs dependencies, adds the `cn` util, configures `tailwind.config.cjs`, and sets up CSS variables for the project.
+The `init` command installs dependencies, adds the `cn` util, configures, and sets up CSS variables for the project.
 
 ```bash
 npx shadcn-svelte init
