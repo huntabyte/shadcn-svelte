@@ -3,11 +3,11 @@ import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod/v4";
+import { highlight } from "./utils.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
-import { syncSvelteKit } from "./sveltekit.js";
-import { SITE_BASE_URL } from "../constants.js";
-import { highlight } from "./utils.js";
+import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
@@ -68,6 +68,7 @@ export const rawConfigSchema = z.object({
 
 export type Config = z.infer<typeof configSchema>;
 export const configSchema = rawConfigSchema.extend({
+	sveltekit: z.boolean(),
 	resolvedPaths: z.object({
 		cwd: z.string(),
 		tailwindCss: z.string(),
@@ -148,8 +149,11 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	uiPath = path.normalize(uiPath);
 	libPath = path.normalize(libPath);
 
+	const sveltekit = isUsingSvelteKit(cwd);
+
 	return configSchema.parse({
 		...config,
+		sveltekit,
 		resolvedPaths: {
 			cwd,
 			tailwindCss: path.resolve(cwd, config.tailwind.css),

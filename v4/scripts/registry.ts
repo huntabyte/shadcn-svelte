@@ -4,7 +4,7 @@ import * as acorn from "acorn";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
-import type { Registry } from "@shadcn-svelte/registry";
+import { registryItemSchema, type Registry } from "@shadcn-svelte/registry";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
@@ -14,23 +14,23 @@ const tsParser = acorn.Parser.extend(tsPlugin());
 type RegistryItems = Registry["items"];
 type RegistryItemFiles = Registry["items"][number]["files"];
 
-export async function buildRegistry(): Promise<Registry["items"]> {
+export async function buildRegistry() {
 	const registryRootPath = path.resolve("src", "lib", "registry");
 	const items: RegistryItems = [];
 
 	const paths = {
 		ui: path.resolve(registryRootPath, "ui"),
-		example: path.resolve(registryRootPath, "examples"),
-		block: path.resolve(registryRootPath, "blocks"),
-		hook: path.resolve(registryRootPath, "hooks"),
+		examples: path.resolve(registryRootPath, "examples"),
+		blocks: path.resolve(registryRootPath, "blocks"),
+		hooks: path.resolve(registryRootPath, "hooks"),
 		lib: path.resolve(registryRootPath, "lib"),
 	};
 
 	const resolvedItems = await Promise.all([
 		crawlUI(paths.ui),
-		crawlExample(paths.example),
-		crawlBlock(paths.block),
-		crawlHook(paths.hook),
+		crawlExamples(paths.examples),
+		crawlBlocks(paths.blocks),
+		crawlHooks(paths.hooks),
 		crawlLib(paths.lib),
 	]);
 
@@ -55,20 +55,27 @@ async function crawlUI(rootPath: string) {
 }
 
 async function buildUIRegistry(componentPath: string, componentName: string) {
-	const dir = fs.readdirSync(componentPath, { withFileTypes: true });
+	const dir = fs.readdirSync(componentPath, {
+		withFileTypes: true,
+	});
 
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
-	const type = "registry:ui";
+
+	let meta = {};
 
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-
 		const filepath = path.join(componentPath, dirent.name);
 		const relativePath = path.relative(process.cwd(), filepath);
-		const source = fs.readFileSync(filepath, "utf8");
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 
-		files.push({ path: relativePath, type });
+		if (dirent.name === "meta.json") {
+			meta = registryItemSchema.partial().parse(JSON.parse(source));
+			continue;
+		}
+
+		files.push({ path: relativePath, type: "registry:file" });
 
 		const deps = await getFileDependencies(filepath, source);
 		if (!deps) continue;
@@ -77,15 +84,15 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	}
 
 	return {
-		type,
+		...meta,
+		type: "registry:ui",
 		files,
 		name: componentName,
 		registryDependencies: Array.from(registryDependencies),
 	} satisfies RegistryItems[number];
 }
 
-async function crawlExample(rootPath: string) {
-	const type = `registry:example` as const;
+async function crawlExamples(rootPath: string) {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -95,22 +102,15 @@ async function crawlExample(rootPath: string) {
 		const [name] = dirent.name.split(".svelte");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, "utf8");
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:example",
+			files: [{ path: relativePath, type: "registry:component" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -123,16 +123,23 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
 
+	const pagesNames = ["+page.svelte"];
+	const fileNames = ["data.json", "data.ts"];
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-		const isPage = dirent.name === "+page.svelte";
-		const type = isPage ? "registry:page" : "registry:component";
+		const isPage = pagesNames.includes(dirent.name);
+		const isFile = fileNames.includes(dirent.name);
+
+		const type = isPage ? "registry:page" : isFile ? "registry:file" : "registry:component";
 
 		// TODO: fix
-		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
+		const compPath =
+			isPage || isFile
+				? dirent.name
+				: path.join(path.basename(dirent.parentPath), dirent.name);
 		const filepath = path.join(blockPath, compPath);
 		const relativePath = path.relative(process.cwd(), filepath);
-		const source = fs.readFileSync(filepath, "utf8");
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 
 		files.push({ path: relativePath, type });
 
@@ -150,14 +157,14 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	} satisfies RegistryItems[number];
 }
 
-async function crawlBlock(rootPath: string) {
-	const type = `registry:block` as const;
+async function crawlBlocks(rootPath: string) {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
 	for (const dirent of dir) {
+		const filepath = path.join(rootPath, dirent.name);
 		if (!dirent.isFile()) {
-			const result = await buildBlockRegistry(`${rootPath}/${dirent.name}`, dirent.name);
+			const result = await buildBlockRegistry(filepath, dirent.name);
 			items.push(result);
 			continue;
 		}
@@ -165,23 +172,15 @@ async function crawlBlock(rootPath: string) {
 
 		const [name] = dirent.name.split(".svelte");
 
-		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, "utf8");
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [file],
+			type: "registry:block",
+			files: [{ path: relativePath, type: "registry:component" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}
@@ -189,62 +188,50 @@ async function crawlBlock(rootPath: string) {
 	return items;
 }
 
-async function crawlHook(rootPath: string) {
-	const type = `registry:hook` as const;
-	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
-	const items: RegistryItems = [];
-
-	for (const dirent of dir) {
-		if (!dirent.isFile()) continue;
-
-		const [name] = dirent.name.split(".svelte.ts")[0].split(".ts");
-
-		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, "utf8");
-		const relativePath = path.relative(process.cwd(), filepath);
-
-		const file = {
-			name: dirent.name,
-			content: source,
-			path: relativePath,
-			target: dirent.name,
-			type,
-		};
-		const { registryDependencies } = await getFileDependencies(filepath, source);
-
-		items.push({
-			name,
-			type,
-			files: [file],
-			registryDependencies: Array.from(registryDependencies),
-		});
-	}
-
-	return items;
-}
-
-// TODO: this isn't being used yet, but this will be used to gather all the files for the lib
-// folder once I work out how to get the registry index setup to depend on utils and whatnot
 async function crawlLib(rootPath: string) {
-	const type = `registry:lib` as const;
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
-
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
 
-		const [name] = dirent.name.split(".svelte.ts")[0].split(".ts");
+		const [name] = dirent.name.split(".ts");
 
 		const filepath = path.join(rootPath, dirent.name);
-		const source = fs.readFileSync(filepath, "utf8");
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
 		const relativePath = path.relative(process.cwd(), filepath);
 
 		const { registryDependencies } = await getFileDependencies(filepath, source);
 
 		items.push({
 			name,
-			type,
-			files: [{ path: relativePath, type }],
+			type: "registry:lib",
+			files: [{ path: relativePath, type: "registry:lib" }],
+			registryDependencies: Array.from(registryDependencies),
+		});
+	}
+
+	return items;
+}
+
+async function crawlHooks(rootPath: string) {
+	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
+	const items: RegistryItems = [];
+
+	for (const dirent of dir) {
+		if (!dirent.isFile()) continue;
+
+		const [name] = dirent.name.split(".svelte.ts");
+
+		const filepath = path.join(rootPath, dirent.name);
+		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+		const relativePath = path.relative(process.cwd(), filepath);
+
+		const { registryDependencies } = await getFileDependencies(filepath, source);
+
+		items.push({
+			name,
+			type: "registry:hook",
+			files: [{ path: relativePath, type: "registry:hook" }],
 			registryDependencies: Array.from(registryDependencies),
 		});
 	}

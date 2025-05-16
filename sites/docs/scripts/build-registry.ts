@@ -64,7 +64,7 @@ export async function build() {
 			aliases: {
 				lib: "$lib/registry/lib",
 				ui: "$lib/registry/ui",
-				components: "$lib/registry/components",
+				components: "./components",
 				hooks: "$lib/registry/hooks",
 				utils: "$lib/utils",
 			},
