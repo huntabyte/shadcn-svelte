@@ -126,6 +126,7 @@ export function generateBaseColorTemplate(baseColor: BaseColor) {
 		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
 			colors: baseColorsV4[baseColor as keyof typeof baseColorsV4],
 		});
+		base.cssVars = baseColorsV4[baseColor as keyof typeof baseColorsV4];
 	} else {
 		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
 			colors: base.cssVars,

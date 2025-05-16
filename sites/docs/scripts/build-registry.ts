@@ -14,6 +14,7 @@ import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/
 import { buildRegistry } from "./registry.js";
 import { baseColors } from "../src/lib/registry/registry-colors.js";
 import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
+import { baseColorsOKLCH } from "../src/lib/registry/registry-base-colors.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
@@ -181,16 +182,21 @@ export const Index = {`;
 
 		themeCSS.push(
 			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: base.cssVars,
+				colors: {
+					...baseColorsOKLCH[baseColor as keyof typeof baseColorsOKLCH],
+					...base.cssVars,
+				},
 				theme: baseColor,
 			})
 		);
 
-		writeFileWithDirs(
-			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
-			JSON.stringify(base, null, "\t"),
-			"utf-8"
-		);
+		if (["zinc", "stone", "slate", "gray", "neutral"].includes(baseColor)) {
+			writeFileWithDirs(
+				path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
+				JSON.stringify(base, null, "\t"),
+				"utf-8"
+			);
+		}
 	}
 
 	// ----------------------------------------------------------------------------
