@@ -105,12 +105,14 @@ For example, if your registry's component has:
 
 Then your `registry.json` should have matching aliases:
 
-```json
+```json title="registry.json" showLineNumbers
 {
   "aliases": {
     "lib": "@/lib", // Matches your internal imports
     "ui": "@/lib/registry/ui", // Matches your internal imports
-    "utils": "@/lib/utils" // Matches your internal imports
+    "components": "@/lib/registry/components", // Matches your internal imports
+    "utils": "@/lib/utils", // Matches your internal imports
+    "hooks": "@/lib/hooks" // Matches your internal imports
   }
 }
 ```
@@ -119,13 +121,15 @@ When users install your component, these paths will be transformed according to 
 
 Default aliases (if you don't specify any):
 
-```json
-"aliases": {
-  "lib": "$lib/registry/lib",    // For internal library code
-  "ui": "$lib/registry/ui",      // For UI components
-  "components": "$lib/registry/components", // For component-specific code
-  "utils": "$lib/utils",         // For utility functions
-  "hooks": "$lib/registry/hooks" // For reactive state and logic (.svelte.js|ts)
+```json title="registry.json" showLineNumbers
+{
+  "aliases": {
+    "lib": "$lib/registry/lib", // For internal library code
+    "ui": "$lib/registry/ui", // For UI components
+    "components": "$lib/registry/components", // For component-specific code
+    "utils": "$lib/utils", // For utility functions
+    "hooks": "$lib/registry/hooks" // For reactive state and logic (.svelte.js|ts)
+  }
 }
 ```
 
