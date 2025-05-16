@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as acorn from "acorn";
-import tsPlugin from "acorn-typescript";
+import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
 import type { Registry } from "@shadcn-svelte/registry";
@@ -9,7 +9,6 @@ import type { Registry } from "@shadcn-svelte/registry";
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
 
-// @ts-expect-error - shh
 const tsParser = acorn.Parser.extend(tsPlugin());
 
 type RegistryItems = Registry["items"];

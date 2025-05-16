@@ -66,7 +66,7 @@ async function buildRegistry() {
 	execSync("pnpm shadcn-svelte registry build --output static/registry", {
 		stdio: ["pipe", "pipe", "inherit"],
 	});
-	execSync("pnpm shadcn-svelte registry build --output src/__registry__/json", {
-		stdio: ["pipe", "pipe", "inherit"],
+	fs.cpSync(path.resolve("static", "registry"), path.resolve("src", "__registry__", "json"), {
+		recursive: true,
 	});
 }

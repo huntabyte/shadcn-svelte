@@ -104,6 +104,15 @@ export const registrySchema = v.object({
 	homepage: v.string(),
 	// installs specified versions of dependencies during auto-detection
 	overrideDependencies: v.optional(v.array(v.string())),
+	aliases: v.optional(
+		v.object({
+			lib: v.optional(v.string()),
+			ui: v.optional(v.string()),
+			components: v.optional(v.string()),
+			utils: v.optional(v.string()),
+			hooks: v.optional(v.string()),
+		})
+	),
 	items: v.array(
 		v.object({
 			...baseIndexItemSchema.entries,

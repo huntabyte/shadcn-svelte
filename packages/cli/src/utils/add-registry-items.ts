@@ -2,12 +2,12 @@ import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
 import merge from "deepmerge";
-import { Config } from "./get-config";
-import * as registry from "./registry";
 import * as p from "@clack/prompts";
-import { cancel, prettifyList } from "./prompt-helpers.js";
+import * as registry from "./registry/index.js";
 import { highlight } from "./utils.js";
+import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformContent, transformCss } from "./transformers.js";
+import type { Config } from "./get-config.js";
 
 type AddRegistryItemsProps = {
 	selectedItems: string[];
