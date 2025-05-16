@@ -73,8 +73,9 @@ const registryItemCssVarsSchema = z.object({
 });
 
 type CssSchema = { [x: string]: string | CssSchema };
-const registryItemCssSchema: z.ZodType<CssSchema> = z.lazy(() =>
-	z.record(z.string(), z.union([z.string(), registryItemCssSchema]))
+const registryItemCssSchema: z.ZodType<CssSchema> = z.record(
+	z.string(),
+	z.lazy(() => z.union([z.string(), registryItemCssSchema]))
 );
 
 export type RegistryItem = z.infer<typeof registryItemSchema>;
