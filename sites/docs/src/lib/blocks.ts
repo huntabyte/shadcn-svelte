@@ -1,4 +1,4 @@
-import * as v from "valibot";
+import { z } from "zod/v4";
 import type { Component } from "svelte";
 import { type Highlighter, getHighlighter } from "shiki";
 import { Blocks } from "../__registry__/blocks.js";
@@ -32,18 +32,18 @@ export const BLOCK_WHITELIST: BlockName[] = [
 
 export type BlockName = keyof typeof Blocks;
 
-export const blockSchema = v.object({
-	name: v.picklist(getAllBlockIds()),
-	description: v.string(),
-	container: v.optional(
-		v.object({
-			height: v.optional(v.string()),
-			className: v.nullish(v.string()),
+export const blockSchema = z.object({
+	name: z.enum(getAllBlockIds()),
+	description: z.string(),
+	container: z
+		.object({
+			height: z.string().optional(),
+			className: z.string().nullish(),
 		})
-	),
+		.optional(),
 });
 
-export type Block = v.InferOutput<typeof blockSchema>;
+export type Block = z.infer<typeof blockSchema>;
 
 export function getAllBlockIds() {
 	const blocks = Object.keys(Blocks);
@@ -54,7 +54,7 @@ export async function getBlock(name: BlockName) {
 	const block = Blocks[name];
 	const content = await getBlockContent(name);
 
-	return v.parse(blockSchema, { name, ...block, ...content });
+	return blockSchema.parse({ name, ...block, ...content });
 }
 
 async function getBlockCode(name: BlockName) {

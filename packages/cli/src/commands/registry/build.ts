@@ -2,8 +2,8 @@ import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
 import color from "chalk";
+import { z } from "zod/v4";
 import { Command } from "commander";
-import * as v from "valibot";
 import * as schema from "@shadcn-svelte/registry";
 import * as p from "@clack/prompts";
 import { intro } from "../../utils/prompt-helpers.js";
@@ -15,13 +15,13 @@ import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
 
-const buildOptionsSchema = v.object({
-	registry: v.string(),
-	cwd: v.string(),
-	output: v.string(),
+const buildOptionsSchema = z.object({
+	registry: z.string(),
+	cwd: z.string(),
+	output: z.string(),
 });
 
-type BuildOptions = v.InferOutput<typeof buildOptionsSchema>;
+type BuildOptions = z.infer<typeof buildOptionsSchema>;
 
 export const build = new Command()
 	.command("build")
@@ -32,7 +32,7 @@ export const build = new Command()
 	.action(async (registryPath, opts) => {
 		try {
 			intro();
-			const options = v.parse(buildOptionsSchema, { registry: registryPath, ...opts });
+			const options = buildOptionsSchema.parse({ registry: registryPath, ...opts });
 
 			// resolve paths
 			const cwd = path.resolve(options.cwd);
@@ -59,7 +59,7 @@ async function runBuild(options: BuildOptions) {
 
 	spinner.start(`Parsing registry schema`);
 	const registryJson = await fs.readFile(options.registry, "utf8");
-	const registry = v.parse(schema.registrySchema, JSON.parse(registryJson));
+	const registry = schema.registrySchema.parse(JSON.parse(registryJson));
 	spinner.stop(
 		`Parsed registry schema at ${color.dim(path.relative(options.cwd, options.registry))}`
 	);
@@ -80,7 +80,7 @@ async function runBuild(options: BuildOptions) {
 		title: "Building registry index",
 		async task() {
 			const indexPath = path.resolve(options.output, "index.json");
-			const parsedIndex = v.parse(schema.registryIndexSchema, registryIndex);
+			const parsedIndex = schema.registryIndexSchema.parse(registryIndex);
 
 			await fs.writeFile(indexPath, JSON.stringify(parsedIndex, null, SPACER), "utf8");
 
@@ -186,7 +186,7 @@ async function runBuild(options: BuildOptions) {
 					files,
 				};
 
-				const parsedItem = v.parse(schema.registryItemSchema, resolved);
+				const parsedItem = schema.registryItemSchema.parse(resolved);
 
 				const outputPath = path.resolve(options.output, `${item.name}.json`);
 

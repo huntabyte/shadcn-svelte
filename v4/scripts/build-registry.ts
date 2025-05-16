@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import * as v from "valibot";
 import prettier from "prettier";
 import { rimraf } from "rimraf";
 import template from "lodash.template";
@@ -45,7 +44,7 @@ export async function build() {
 	// ----------------------------------------------------------------------------
 	// Build `registry.json` file.
 	// ----------------------------------------------------------------------------
-	const result = v.parse(registrySchema, {
+	const result = registrySchema.parse({
 		name: "shadcn-svelte",
 		homepage: "https://shadcn-svelte.com",
 		items: registry,

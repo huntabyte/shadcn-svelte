@@ -1,7 +1,6 @@
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import path from "node:path";
-import * as v from "valibot";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
@@ -17,7 +16,7 @@ export async function getRegistryIndex(registryUrl: string) {
 	try {
 		const url = resolveURL(registryUrl, "index.json");
 		const [result] = await fetchRegistry([url]);
-		return v.parse(schemas.registryIndexSchema, result);
+		return schemas.registryIndexSchema.parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch components from registry.`);
@@ -39,7 +38,7 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
 		const [result] = await fetchRegistry([url]);
 
-		return v.parse(schemas.registryBaseColorSchema, result);
+		return schemas.registryBaseColorSchema.parse(result);
 	} catch (err) {
 		throw error(
 			`Failed to fetch base color from registry. ${err instanceof Error ? err.message : err}`
@@ -78,7 +77,7 @@ export async function resolveRegistryItems({
 			}
 
 			const [result] = await fetchRegistry([url]);
-			resolvedItem = v.parse(schemas.registryItemSchema, result);
+			resolvedItem = schemas.registryItemSchema.parse(result);
 		}
 
 		resolvedItems.push(resolvedItem);
@@ -111,7 +110,7 @@ export async function fetchRegistryItems({
 		const itemUrls = itemsToFetch.map((item) => resolveURL(baseUrl, item.relativeUrl));
 		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
 
-		return v.parse(v.array(schemas.registryItemSchema), result);
+		return schemas.registryItemSchema.array().parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);

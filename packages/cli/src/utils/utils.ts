@@ -1,11 +1,9 @@
 import color from "chalk";
-import * as v from "valibot";
+import { z } from "zod/v4";
 import { error } from "./errors.js";
 
-const URLSchema = v.pipe(v.string(), v.url());
-
 export function isUrl(path: string) {
-	const result = v.safeParse(URLSchema, path);
+	const result = z.url().safeParse(path);
 	return result.success;
 }
 
