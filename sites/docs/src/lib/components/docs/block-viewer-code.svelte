@@ -10,7 +10,7 @@
 
 {#if file}
 	<div
-		class="md:h-(--height) mr-[14px] flex overflow-hidden rounded-xl bg-zinc-950 text-white group-data-[view=preview]/block-view-wrapper:hidden"
+		class="md:h-(--height) mr-[14px] flex overflow-hidden rounded-xl border bg-zinc-950 text-white group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		<div class="w-[280px]">
 			<BlockViewerFileTree />

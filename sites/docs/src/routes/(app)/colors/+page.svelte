@@ -18,20 +18,20 @@
 	</style>
 </svelte:head>
 
-<div class="container">
-	<ThemeWrapper
-		defaultTheme="zinc"
-		class="relative flex flex-col items-start md:flex-row md:items-center"
-	>
-		<PageHeader.Root class="w-full">
-			<Announcement />
-			<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
-			<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
-			<PageHeader.Description>
-				Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats.
-			</PageHeader.Description>
-		</PageHeader.Root>
-	</ThemeWrapper>
+<ThemeWrapper
+	defaultTheme="zinc"
+	class="relative flex flex-col items-start md:flex-row md:items-center"
+>
+	<PageHeader.Root class="w-full">
+		<Announcement />
+		<PageHeader.Heading class="hidden md:block">Tailwind Colors</PageHeader.Heading>
+		<PageHeader.Heading class="md:hidden">Tailwind Colors</PageHeader.Heading>
+		<PageHeader.Description>
+			Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats.
+		</PageHeader.Description>
+	</PageHeader.Root>
+</ThemeWrapper>
 
+<div class="container-wrapper relative p-6">
 	<ColorCard />
 </div>

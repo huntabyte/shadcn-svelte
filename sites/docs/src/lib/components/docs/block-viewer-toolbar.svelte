@@ -89,21 +89,21 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator orientation="vertical" class="mx-1 hidden h-4 md:flex" />
+		<Separator
+			orientation="vertical"
+			class="mx-1 hidden w-[1px] data-[orientation=vertical]:h-4 lg:flex"
+		/>
 		<div class="flex h-7 items-center gap-1 rounded-md border p-[2px]">
 			<Button
 				variant="ghost"
-				class="hidden h-[22px] w-auto gap-1 rounded-sm px-2 md:flex lg:w-auto"
+				class="hidden h-[22px] w-auto gap-1 rounded-sm px-2 text-xs md:flex lg:w-auto"
 				size="sm"
-				onclick={() => {
-					// todo make this use the right pm command
-					clipboard.copy(command);
-				}}
+				onclick={() => clipboard.copy(command)}
 			>
 				{#if clipboard.copied}
-					<CheckIcon />
+					<CheckIcon class="size-3" />
 				{:else}
-					<TerminalIcon />
+					<TerminalIcon class="size-3" />
 				{/if}
 				<span class="hidden lg:inline">{command}</span>
 			</Button>

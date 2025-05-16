@@ -19,25 +19,24 @@
 	</style>
 </svelte:head>
 
-<div class="container">
-	<ThemeWrapper
-		defaultTheme="zinc"
-		class="relative flex flex-col items-start md:flex-row md:items-center"
-	>
-		<PageHeader.Root class="w-full">
-			<Announcement />
-			<PageHeader.Heading class="hidden md:block">
-				Add colors. Make it yours.
-			</PageHeader.Heading>
-			<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
-			<PageHeader.Description>
-				Hand-picked themes that you can copy and paste into your apps.
-			</PageHeader.Description>
-			<PageHeader.Actions>
-				<ThemeCustomizer />
-			</PageHeader.Actions>
-		</PageHeader.Root>
-	</ThemeWrapper>
+<ThemeWrapper
+	defaultTheme="zinc"
+	class="relative flex flex-col items-start md:flex-row md:items-center"
+>
+	<PageHeader.Root class="w-full">
+		<Announcement />
+		<PageHeader.Heading class="hidden md:block">Add colors. Make it yours.</PageHeader.Heading>
+		<PageHeader.Heading class="md:hidden">Make it yours.</PageHeader.Heading>
+		<PageHeader.Description>
+			Hand-picked themes that you can copy and paste into your apps.
+		</PageHeader.Description>
+		<PageHeader.Actions>
+			<ThemeCustomizer />
+		</PageHeader.Actions>
+	</PageHeader.Root>
+</ThemeWrapper>
+
+<div class="container-wrapper relative p-6">
 	<ThemeWrapper>
 		<CardsDefault />
 	</ThemeWrapper>
