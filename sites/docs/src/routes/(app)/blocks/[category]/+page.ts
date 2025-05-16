@@ -3,6 +3,7 @@ import type { PageLoad } from "./$types.js";
 import * as v from "valibot";
 import { highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
+import { isBlock } from "$lib/blocks.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
 export const prerender = true;
@@ -14,20 +15,27 @@ type CachedItem = Omit<v.InferOutput<typeof registryItemSchema>, "files"> & {
 	})[];
 };
 
-const FEATURED_BLOCKS = ["dashboard-01", "sidebar-07", "sidebar-03", "login-03", "login-04"];
+export const load: PageLoad = async ({ params }) => {
+	const category = params.category;
 
-export const load: PageLoad = async () => {
-	const registryJsonItems = import.meta.glob([
-		"../../../__registry__/json/dashboard-*.json",
-		"../../../__registry__/json/sidebar-*.json",
-		"../../../__registry__/json/login-*.json",
-	]);
+	let registryJsonItems: Record<string, () => Promise<unknown>> = {};
+
+	// remove the items that don't match the category from the object.
+
+	if (category === "sidebar") {
+		registryJsonItems = import.meta.glob("../../../../__registry__/json/sidebar-*.json");
+	} else if (category === "dashboard") {
+		registryJsonItems = import.meta.glob("../../../../__registry__/json/dashboard-*.json");
+	} else if (category === "login" || category === "authentication") {
+		registryJsonItems = import.meta.glob("../../../../__registry__/json/login-*.json");
+	}
+
 	const promises: Promise<CachedItem | null>[] = [];
 
 	for (const path in registryJsonItems) {
 		const filename = path.split("/").pop()?.split(".")[0];
 		if (!filename) continue;
-		if (!FEATURED_BLOCKS.includes(filename)) continue;
+		if (!isBlock(filename)) continue;
 
 		promises.push(
 			registryJsonItems[path]().then(async (m: unknown) => {
@@ -69,12 +77,6 @@ export const load: PageLoad = async () => {
 	const result = await Promise.all(promises);
 
 	return {
-		blocks: result
-			.filter((block): block is CachedItem => block !== null)
-			.sort((a, b) => {
-				const aIndex = FEATURED_BLOCKS.indexOf(a.name);
-				const bIndex = FEATURED_BLOCKS.indexOf(b.name);
-				return aIndex - bIndex;
-			}),
+		blocks: result.filter((block): block is CachedItem => block !== null),
 	};
 };

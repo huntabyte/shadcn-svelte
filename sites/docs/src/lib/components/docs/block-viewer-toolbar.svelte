@@ -75,7 +75,7 @@
 				>
 					<SmartphoneIcon class="size-3.5" />
 				</ToggleGroup.Item>
-				<Separator orientation="vertical" class="h-4" />
+				<Separator orientation="vertical" class="!h-4 w-px" />
 				<Button
 					size="icon"
 					variant="ghost"

@@ -121,7 +121,9 @@
 								<Sidebar.Menu>
 									{#each group as item, index (index)}
 										<Sidebar.MenuItem>
-											<Sidebar.MenuButton>
+											<Sidebar.MenuButton
+												class="hover:bg-accent hover:text-accent-foreground"
+											>
 												<item.icon /> <span>{item.label}</span>
 											</Sidebar.MenuButton>
 										</Sidebar.MenuItem>

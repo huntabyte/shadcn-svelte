@@ -1,6 +1,11 @@
 import { codeToHtml } from "shiki";
 
+const highlightCodeCache = new Map<string, string>();
+
 export async function highlightCode(code: string, lang: "svelte" | "ts" | "json" = "svelte") {
+	const cachedCode = highlightCodeCache.get(code);
+	if (cachedCode) return cachedCode;
+
 	const html = await codeToHtml(code, {
 		lang: lang,
 		theme: "github-dark-default",
@@ -12,6 +17,8 @@ export async function highlightCode(code: string, lang: "svelte" | "ts" | "json"
 			},
 		],
 	});
+
+	highlightCodeCache.set(code, html);
 
 	return html;
 }
