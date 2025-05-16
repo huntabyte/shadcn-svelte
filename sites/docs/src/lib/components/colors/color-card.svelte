@@ -57,7 +57,7 @@
 	}
 </script>
 
-<div class="flex w-full max-w-full flex-col gap-8">
+<div class="flex w-full flex-col gap-8">
 	{#each colors as color (color.name)}
 		<div class="flex w-full flex-col gap-2 rounded-lg border p-2">
 			<div class="flex place-items-center justify-between">
