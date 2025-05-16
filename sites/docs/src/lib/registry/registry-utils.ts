@@ -63,9 +63,14 @@ export function createFileTreeForRegistryItemFiles(
 }
 
 export function transformImportPaths(content: string): string {
-	for (const alias of ["ui"]) {
-		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
-		content = content.replace(`$${alias.toUpperCase()}$`, `$lib/components/${alias}`);
+	const aliases = {
+		ui: "$lib/components/ui",
+		utils: "$lib/utils",
+		components: "$lib/components",
+		lib: "$lib",
+	};
+	for (const [alias, path] of Object.entries(aliases)) {
+		content = content.replaceAll(`$${alias.toUpperCase()}$`, path);
 	}
 	return content;
 }
