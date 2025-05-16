@@ -120,7 +120,7 @@
 </script>
 
 <script lang="ts">
-	import NavUser from "$lib/registry/blocks/sidebar-09/components/nav-user.svelte";
+	import NavUser from "./nav-user.svelte";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";

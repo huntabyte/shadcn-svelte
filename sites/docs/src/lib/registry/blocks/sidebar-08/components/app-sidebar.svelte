@@ -135,10 +135,10 @@
 </script>
 
 <script lang="ts">
-	import NavMain from "$lib/registry/blocks/sidebar-08/components/nav-main.svelte";
-	import NavProjects from "$lib/registry/blocks/sidebar-08/components/nav-projects.svelte";
-	import NavSecondary from "$lib/registry/blocks/sidebar-08/components/nav-secondary.svelte";
-	import NavUser from "$lib/registry/blocks/sidebar-08/components/nav-user.svelte";
+	import NavMain from "./nav-main.svelte";
+	import NavProjects from "./nav-projects.svelte";
+	import NavSecondary from "./nav-secondary.svelte";
+	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import CommandIcon from "@lucide/svelte/icons/command";
 	import type { ComponentProps } from "svelte";
