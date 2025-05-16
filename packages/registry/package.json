@@ -33,9 +33,11 @@
 		"test": "vitest"
 	},
 	"peerDependencies": {
-		"valibot": "^1.1.0"
+		"valibot": "^1.1.0",
+		"zod": "^3.25.0-beta"
 	},
 	"devDependencies": {
-		"tsup": "^8.4.0"
+		"tsup": "^8.4.0",
+		"zod": "^3.25.0-beta.20250515T234756"
 	}
 }
