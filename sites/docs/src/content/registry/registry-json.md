@@ -157,9 +157,15 @@ Example transformation:
     "paneforge": "1.0.0-next.1"
   }
 }
+```
 
-// With overrideDependencies: ["paneforge@next"]
+When the user installs your component, the latest `@next` version will be used instead of `1.0.0-next.1`
 
-
-// When the user installs your component, the latest next version will be used instead of 1.0.0-next.1
+```json
+{
+  "dependencies": {
+    "paneforge": "1.0.0-next.1", // overrideDependencies: []
+    "paneforge": "1.0.0-next.5" // overrideDependencies: ["paneforge@next"]
+  }
+}
 ```
