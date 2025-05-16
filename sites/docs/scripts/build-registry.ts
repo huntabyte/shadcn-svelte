@@ -10,11 +10,10 @@ import {
 	type RegistryItem,
 	type RegistryItemType,
 } from "@shadcn-svelte/registry";
-import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { buildRegistry } from "./registry.js";
 import { BASE_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
 import { baseColorsV4 } from "../src/lib/registry/registry-base-colors";
-import { colorMapping } from "../src/lib/registry/registry-colors";
+import { colorMapping, colors } from "../src/lib/registry/registry-colors";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
@@ -163,12 +162,37 @@ export const Index = {`;
 		fs.mkdirSync(colorsTargetPath, { recursive: true });
 	}
 
-	const colorsData = getColorsData();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const colorsData: Record<string, any> = {};
+	for (const [color, value] of Object.entries(colors)) {
+		if (typeof value === "string") {
+			colorsData[color] = value;
+			continue;
+		}
 
-	writeFileWithDirs(
+		if (Array.isArray(value)) {
+			colorsData[color] = value.map((item) => ({
+				...item,
+				rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+				hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+			}));
+			continue;
+		}
+
+		if (typeof value === "object") {
+			colorsData[color] = {
+				...value,
+				rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+				hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+			};
+			continue;
+		}
+	}
+
+	fs.writeFileSync(
 		path.join(colorsTargetPath, "index.json"),
-		JSON.stringify(colorsData, null, "\t"),
-		"utf-8"
+		JSON.stringify(colorsData, null, 2),
+		"utf8"
 	);
 
 	// ----------------------------------------------------------------------------
