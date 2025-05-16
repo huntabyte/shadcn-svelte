@@ -93,35 +93,35 @@ Options:
   -h, --help         display help for command
 ```
 
-## update
+## build
 
-Use the `update` command to update components in your project. This will overwrite any modifications you've made to the components, so be sure to commit your changes before running this command.
+Use the `build` command to generate the registry JSON files.
 
-<PMExecute command="shadcn-svelte@next update [component]" />
+<PMExecute command="shadcn-svelte@next registry build [registry.json]" />
+
+This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
 
 ### Options
 
 ```txt
-Usage: shadcn-svelte update [options] [components...]
+Usage: shadcn-svelte registry build [options] [registry]
 
-update components in your project
+build components for a shadcn-svelte registry
 
 Arguments:
-  components        name of components
+  registry             path to registry.json file (default: ./registry.json)
 
 Options:
-  -c, --cwd <path>  the working directory (default: the current directory)
-  -a, --all         update all existing components (default: false)
-  -y, --yes         skip confirmation prompt (default: false)
-  --proxy <proxy>   fetch components from registry using a proxy
-  -h, --help        display help for command
+  -c, --cwd <path>     the working directory (default: the current directory)
+  -o, --output <path>  destination directory for json files (default: ./static/r)
+  -h, --help           display help for command
 ```
 
 ## Outgoing Requests
 
 ### Proxy
 
-This enables the use of a proxy when sending out requests to fetch from the `shadcn` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
+This enables the use of a proxy when sending out requests to fetch from the `shadcn-svelte` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
 
 ```bash
 HTTP_PROXY="<proxy-url>" npx shadcn-svelte@next init
