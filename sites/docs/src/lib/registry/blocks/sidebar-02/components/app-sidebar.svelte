@@ -143,8 +143,8 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "$lib/registry/blocks/sidebar-02/components/search-form.svelte";
-	import VersionSwitcher from "$lib/registry/blocks/sidebar-02/components/version-switcher.svelte";
+	import SearchForm from "./search-form.svelte";
+	import VersionSwitcher from "./version-switcher.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";

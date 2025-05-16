@@ -144,7 +144,7 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "$lib/registry/blocks/sidebar-05/components/search-form.svelte";
+	import SearchForm from "./search-form.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";

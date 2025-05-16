@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AppSidebar from "$lib/registry/blocks/sidebar-11/components/app-sidebar.svelte";
+	import AppSidebar from "./components/app-sidebar.svelte";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";

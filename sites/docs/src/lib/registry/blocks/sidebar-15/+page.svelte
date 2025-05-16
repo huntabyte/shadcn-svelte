@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SidebarLeft from "$lib/registry/blocks/sidebar-15/components/sidebar-left.svelte";
-	import SidebarRight from "$lib/registry/blocks/sidebar-15/components/sidebar-right.svelte";
+	import SidebarLeft from "./components/sidebar-left.svelte";
+	import SidebarRight from "./components/sidebar-right.svelte";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";

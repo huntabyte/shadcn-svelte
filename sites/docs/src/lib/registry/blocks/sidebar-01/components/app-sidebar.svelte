@@ -133,8 +133,8 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "$lib/registry/blocks/sidebar-01/components/search-form.svelte";
-	import VersionSwitcher from "$lib/registry/blocks/sidebar-01/components/version-switcher.svelte";
+	import SearchForm from "./search-form.svelte";
+	import VersionSwitcher from "./version-switcher.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 
