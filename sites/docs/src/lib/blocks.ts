@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 import type { Component } from "svelte";
 import { type Highlighter, getHighlighter } from "shiki";
 import { Blocks } from "../__registry__/blocks.js";
@@ -33,7 +33,8 @@ export const BLOCK_WHITELIST: BlockName[] = [
 export type BlockName = keyof typeof Blocks;
 
 export const blockSchema = z.object({
-	name: z.enum(getAllBlockIds()),
+	// @ts-expect-error TODO: remove later in zod 4
+	name: z.enum<BlockName, BlockName[]>(getAllBlockIds()),
 	description: z.string(),
 	container: z
 		.object({
@@ -45,9 +46,9 @@ export const blockSchema = z.object({
 
 export type Block = z.infer<typeof blockSchema>;
 
-export function getAllBlockIds() {
-	const blocks = Object.keys(Blocks);
-	return blocks.map((name) => name as BlockName).filter((b) => BLOCK_WHITELIST.includes(b));
+export function getAllBlockIds(): readonly BlockName[] {
+	const blocks = Object.keys(Blocks) as BlockName[];
+	return blocks.map((name) => name).filter((b) => BLOCK_WHITELIST.includes(b));
 }
 
 export async function getBlock(name: BlockName) {

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { z } from "zod/v4";
+import { toJSONSchema } from "zod4/v4";
 import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -45,8 +45,8 @@ export default defineConfig({
 });
 
 function writeJsonSchemas() {
-	const registry = z.toJSONSchema(registrySchema);
-	const registryItem = z.toJSONSchema(registryItemSchema);
+	const registry = toJSONSchema(registrySchema);
+	const registryItem = toJSONSchema(registryItemSchema);
 	const schemaDir = path.resolve("static", "schema");
 	if (!fs.existsSync(schemaDir)) {
 		fs.mkdirSync(schemaDir, { recursive: true });
