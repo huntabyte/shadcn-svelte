@@ -39,6 +39,7 @@
 		"shadcn-svelte": "workspace:*",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.0.0",
+		"sveltekit-superforms": "^2.19.1",
 		"tailwind-merge": "^3.0.2",
 		"tailwind-variants": "^0.2.1",
 		"tailwindcss": "^4.0.0",
