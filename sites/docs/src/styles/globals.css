@@ -114,6 +114,8 @@
 	--color-sidebar-ring: var(--sidebar-ring);
 	--font-sans: "Geist", sans-serif;
 	--font-mono: "Geist Mono", monospace;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+	--animate-accordion-down: accordion-down 0.2s ease-out;
 }
 
 @layer base {
@@ -179,6 +181,26 @@
 	@apply mx-auto max-w-screen-2xl px-4 xl:px-6;
 }
 
+@keyframes accordion-down {
+	from {
+		height: 0;
+	}
+
+	to {
+		height: var(--bits-accordion-content-height);
+	}
+}
+
+@keyframes accordion-up {
+	from {
+		height: var(--bits-accordion-content-height);
+	}
+
+	to {
+		height: 0;
+	}
+}
+
 .markdown code:not(pre code) {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
@@ -236,7 +258,7 @@
 	padding: 0 calc(var(--spacing) * 2);
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-fragment] [data-line-numbers]>.line::before {
 	font-size: 0.875rem;
 	color: color-mix(in oklab, var(--color-zinc-50) 40%, transparent);
 	counter-increment: line;
@@ -282,7 +304,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title]+pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 
