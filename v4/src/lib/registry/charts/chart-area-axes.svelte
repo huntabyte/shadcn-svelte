@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { PeriodType } from "@layerstack/utils";
 	import { scaleUtc } from "d3-scale";
 	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
@@ -54,7 +53,7 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: { format: PeriodType.Month },
+					xAxis: { format: (v) => v.toLocaleDateString("en-US", { month: "short" }) },
 					yAxis: { ticks: [0, 300, 600] },
 				}}
 			>

@@ -123,6 +123,8 @@ export const registrySchema = v.object({
 				})
 			),
 			registryDependencies: v.array(v.string()),
+			cssVars: v.optional(registryItemCssVarsSchema),
+			css: v.optional(registryItemCssSchema),
 		})
 	),
 });

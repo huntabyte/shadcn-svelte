@@ -5,6 +5,8 @@ import { tsPlugin } from "@sveltejs/acorn-typescript";
 import { walk, type Node } from "estree-walker";
 import * as svelte from "svelte/compiler";
 import type { Registry } from "@shadcn-svelte/registry";
+import * as v from "valibot";
+import { registryItemSchema } from "@shadcn-svelte/registry";
 
 const REGISTRY_DEPENDENCY = "$lib/";
 const UTILS_PATH = "$lib/utils.js";
@@ -63,12 +65,18 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	const registryDependencies = new Set<string>();
 	const type = "registry:ui";
 
+	let meta = {};
+
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-
 		const filepath = path.join(componentPath, dirent.name);
 		const relativePath = path.relative(process.cwd(), filepath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });
+
+		if (dirent.name === "meta.json") {
+			meta = v.parse(v.partial(registryItemSchema), JSON.parse(source));
+			continue;
+		}
 
 		files.push({ path: relativePath, type });
 
@@ -79,6 +87,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	}
 
 	return {
+		...meta,
 		type,
 		files,
 		name: componentName,
@@ -125,13 +134,20 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
 
+	const pagesNames = ["+page.svelte"];
+	const fileNames = ["data.json", "data.ts"];
 	for (const dirent of dir) {
 		if (!dirent.isFile()) continue;
-		const isPage = dirent.name === "+page.svelte";
-		const type = isPage ? "registry:page" : "registry:component";
+		const isPage = pagesNames.includes(dirent.name);
+		const isFile = fileNames.includes(dirent.name);
+
+		const type = isPage ? "registry:page" : isFile ? "registry:file" : "registry:component";
 
 		// TODO: fix
-		const compPath = isPage ? dirent.name : `components/${dirent.name}`;
+		const compPath =
+			isPage || isFile
+				? dirent.name
+				: path.join(path.basename(dirent.parentPath), dirent.name);
 		const filepath = path.join(blockPath, compPath);
 		const relativePath = path.relative(process.cwd(), filepath);
 		const source = fs.readFileSync(filepath, { encoding: "utf8" });

@@ -30,7 +30,7 @@
 						>
 							<activeTeam.logo class="size-3" />
 						</div>
-						<span class="truncate font-semibold">{activeTeam.name}</span>
+						<span class="truncate font-medium">{activeTeam.name}</span>
 						<ChevronDownIcon class="opacity-50" />
 					</Sidebar.MenuButton>
 				{/snippet}

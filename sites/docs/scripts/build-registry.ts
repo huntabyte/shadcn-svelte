@@ -82,6 +82,7 @@ export async function build() {
 	];
 	const filteredItems = result.items.filter((item) => ITEM_TYPES.includes(item.type));
 	const registryJsonPath = path.resolve("registry.json");
+
 	const registryJson = JSON.stringify({ ...result, items: filteredItems }, null, "\t");
 	const formatted = await prettier.format(registryJson, {
 		...prettierConfig,

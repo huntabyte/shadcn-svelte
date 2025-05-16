@@ -44,6 +44,10 @@ const config = {
 				if (details.id === "#") return;
 				console.warn(details.message);
 			},
+			handleHttpError: (details) => {
+				// TODO: remove once all referenced pages are added
+				console.warn(details.message);
+			},
 		},
 		alias: {
 			"$content/*": ".velite/*",
