@@ -15,7 +15,9 @@ export function transformBlockPath(target: string, type: RegistryItemFile["type"
 
 	if (type === "registry:component" || type === "registry:hook") {
 		const dir = type === "registry:component" ? "components" : "hooks";
-		const remainingPath = parts.slice(1).join("/");
+		const idx = parts.indexOf(dir);
+
+		const remainingPath = parts.slice(idx + 1).join("/");
 		return `${dir}/${remainingPath}`;
 	}
 
@@ -61,9 +63,9 @@ export function createFileTreeForRegistryItemFiles(
 }
 
 export function transformImportPaths(content: string): string {
-	for (const alias of ["blocks", "ui"]) {
+	for (const alias of ["ui"]) {
 		const regex = new RegExp(`\\$lib/registry.*?(/${alias}/)`, "g");
-		content = content.replace(regex, `$lib/components/${alias}/`);
+		content = content.replace(`$${alias.toUpperCase()}$`, `$lib/components/${alias}`);
 	}
 	return content;
 }
