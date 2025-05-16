@@ -170,7 +170,13 @@ export const registrySchema = z.object({
 	name: z.string().describe("The name of the registry."),
 	homepage: z.string().describe("The homepage of the registry."),
 	// installs specified versions of dependencies during auto-detection
-	overrideDependencies: z.string().array().optional(),
+	overrideDependencies: z
+		.string()
+		.array()
+		.optional()
+		.describe(
+			"An array of NPM dependencies that should have their versions overridden during registry `build`."
+		),
 	aliases: z
 		.object({
 			lib: z.string().optional(),
@@ -180,7 +186,9 @@ export const registrySchema = z.object({
 			hooks: z.string().optional(),
 		})
 		.optional()
-		.describe("Defines which internal import paths should be transformed during `build`."),
+		.describe(
+			"Defines which internal import paths should be transformed during registry `build`."
+		),
 	items: baseIndexItemSchema
 		.extend({
 			files: registryItemFileSchema
