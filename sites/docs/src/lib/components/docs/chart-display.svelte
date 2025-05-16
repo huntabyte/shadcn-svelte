@@ -1,8 +1,6 @@
 <script lang="ts" module>
 	import type { RegistryItem } from "@shadcn-svelte/registry";
-	export type Chart = RegistryItem & {
-		highlightedCode: string;
-	};
+	export type Chart = RegistryItem & { highlightedCode: string };
 </script>
 
 <script lang="ts">
