@@ -409,46 +409,50 @@ type Example = {
 	href: string;
 	label?: string;
 	code: string;
+	hidden?: boolean;
 };
+
 export const examples: Example[] = [
 	{
 		name: "Mail",
 		href: "/examples/mail",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/mail",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/mail",
+		hidden: false,
 	},
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/dashboard",
-	},
-	{
-		name: "Cards",
-		href: "/examples/cards",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/cards",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/dashboard",
+		hidden: false,
 	},
 	{
 		name: "Tasks",
 		href: "/examples/tasks",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/tasks",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/tasks",
+		hidden: false,
 	},
 	{
 		name: "Playground",
 		href: "/examples/playground",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/playground",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/playground",
+		hidden: false,
 	},
 	{
 		name: "Forms",
 		href: "/examples/forms",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/forms",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/forms",
+		hidden: false,
 	},
 	{
 		name: "Music",
 		href: "/examples/music",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/music",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/music",
+		hidden: false,
 	},
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/authentication",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/authentication",
+		hidden: false,
 	},
 ];

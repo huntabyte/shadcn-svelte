@@ -19,22 +19,13 @@ links:
 
 </ComponentPreview>
 
-<Alert.Root class="border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-200 mb-4 mt-8">
-<TriangleAlertIcon />
-<Alert.Title>Preview - Use at Your Own Risk</Alert.Title>
-<Alert.Description class="text-foreground/90">
-<span>
-LayerChart v2 is still in pre-release and is actively evolving. Only use if
-you're comfortable with potential breaking changes before stable v2. Your feedback will be invaluable in shaping the release and features.
-</span><span>
-Current development status can be tracked <a
-			href="https://github.com/techniq/layerchart/pull/449"
-			class="inline underline hover:text-yellow-900 dark:hover:text-yellow-100"
-			>here</a
-		>.
-</span>
-</Alert.Description>
-</Alert.Root>
+<Callout class="bg-blue-50 mt-6 border-blue-600 dark:border-blue-900 dark:bg-blue-950 mb-6 [&_code]:bg-blue-100 dark:[&_code]:bg-blue-900 text-foreground">
+
+**Important:** LayerChart v2 is still in pre-release and is actively evolving. Only use if you're comfortable with potential breaking changes before stable v2.
+
+Your feedback will be invaluable in shaping the release and features. Current development status can be tracked [here](https://github.com/techniq/layerchart/pull/449).
+
+</Callout>
 
 Introducing **Charts**. A collection of chart components that you can copy and paste into your apps.
 

@@ -43,7 +43,7 @@
 		// override the default stroke color of lines
 		"[&_.lc-line]:stroke-border/50",
 
-		// by default, layerchart shows a line intersecting the point when hovering, this hides that
+		// by default, layerchart shows a line intersecting the point when hovering, this hides that by default
 		"[&_.lc-highlight-line]:stroke-0",
 
 		// by default, when you hover a point on a stacked series chart, it will drop the opacity
