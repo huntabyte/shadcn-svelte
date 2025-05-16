@@ -12,10 +12,12 @@ import { blockMeta } from "$lib/registry/registry-block-meta.js";
 export const prerender = true;
 
 type CachedItem = Omit<RegistryItem, "files"> & {
-	files: (RegistryItemFile & {
-		highlightedContent: string;
-		target: string;
-	})[];
+	files: Array<
+		RegistryItemFile & {
+			highlightedContent: string;
+			target: string;
+		}
+	>;
 };
 
 export const load: PageLoad = async ({ params }) => {

@@ -42,6 +42,12 @@ export default defineConfig({
 			allow: [veliteDirPath, staticDirPath],
 		},
 	},
+	// temp hack to fix the "missing './v4' specifier for 'zod'" error
+	resolve: {
+		alias: {
+			"zod/v4": path.resolve(__dirname, "node_modules/zod4"),
+		},
+	},
 });
 
 function writeJsonSchemas() {

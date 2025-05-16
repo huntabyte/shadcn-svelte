@@ -28,6 +28,7 @@ const mockConfig: Config = {
 		ui: "./src/lib/components/ui",
 		lib: "./src/lib",
 	},
+	sveltekit: true,
 	typescript: true,
 	registry: "https://next.shadcn-svelte.com/registry",
 };
@@ -174,6 +175,7 @@ describe("transformImports with more custom paths", () => {
 			ui: "./src/ui",
 			lib: "./src/lib",
 		},
+		sveltekit: true,
 		typescript: true,
 		registry: "https://next.shadcn-svelte.com/registry",
 	};
@@ -386,7 +388,7 @@ describe("updateCssVars", () => {
 		}`;
 		const result = transformCss(source, {}, { plugins: ["my-plugin"] });
 		expect(result).toMatchInlineSnapshot(`
-			"@plugin \\"my-plugin\\";
+			"@plugin "my-plugin";
 			:root {
 						--primary: old;
 					}"
@@ -400,9 +402,9 @@ describe("updateCssVars", () => {
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin1", "plugin2"] });
 		expect(result).toMatchInlineSnapshot(`
-			"@plugin \\"unrelated-plugin\\";
-			@plugin \\"plugin2\\";
-			@plugin \\"plugin1\\";
+			"@plugin "unrelated-plugin";
+			@plugin "plugin2";
+			@plugin "plugin1";
 					:root {
 						--primary: old;
 					}"
@@ -416,7 +418,7 @@ describe("updateCssVars", () => {
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin1"] });
 		expect(result).toMatchInlineSnapshot(`
-			"@plugin \\"plugin1\\";
+			"@plugin "plugin1";
 					:root {
 						--primary: old;
 					}"
@@ -430,8 +432,8 @@ describe("updateCssVars", () => {
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin2"] });
 		expect(result).toMatchInlineSnapshot(`
-			"@import \\"tailwindcss\\";
-			@plugin \\"plugin2\\";
+			"@import "tailwindcss";
+			@plugin "plugin2";
 					:root {
 						--primary: old;
 					}"
@@ -446,9 +448,9 @@ describe("updateCssVars", () => {
 		}`;
 		const result = transformCss(source, {}, { plugins: ["plugin3"] });
 		expect(result).toMatchInlineSnapshot(`
-			"@plugin \\"plugin1\\";
-					@plugin \\"plugin2\\";
-					@plugin \\"plugin3\\";
+			"@plugin "plugin1";
+					@plugin "plugin2";
+					@plugin "plugin3";
 					:root {
 						--primary: old;
 					}"

@@ -17,7 +17,7 @@
 		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
-		"check": "pnpm -F docs check",
+		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
@@ -55,7 +55,7 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"pretty-quick": "^4.1.1",
 		"svelte": "^5.23.1",
-		"typescript": "^5.8.2",
+		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.26.1"
 	},
 	"pnpm": {
