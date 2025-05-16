@@ -10,16 +10,16 @@ import {
 	type RegistryItem,
 	type RegistryItemType,
 } from "@shadcn-svelte/registry";
-import { generateBaseColorTemplate, getColorsData } from "../src/lib/components/colors/colors.js";
+import { getColorsData } from "../src/lib/components/colors/colors.js";
 import { buildRegistry } from "./registry.js";
-import { baseColors } from "../src/lib/registry/colors.js";
-import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
+import { BASE_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
+import { baseColorsV4 } from "../src/lib/registry/registry-base-colors";
+import { colorMapping } from "../src/lib/registry/registry-colors";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
 
 const REGISTRY_PATH = path.resolve("static", "registry");
-const THEMES_CSS_PATH = path.resolve("static");
 
 function writeFileWithDirs(
 	filePath: string,
@@ -175,16 +175,42 @@ export const Index = {`;
 	// Build registry/colors/[base].json.
 	// ----------------------------------------------------------------------------
 
-	const themeCSS = [];
-	for (const baseColor of baseColors) {
-		const base = generateBaseColorTemplate(baseColor);
+	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone"] as const) {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const base: Record<string, any> = {
+			inlineColors: {},
+			cssVars: {},
+		};
+		for (const [mode, values] of Object.entries(colorMapping)) {
+			base["inlineColors"][mode] = {};
+			base["cssVars"][mode] = {};
+			for (const [key, value] of Object.entries(values)) {
+				if (typeof value === "string") {
+					// Chart colors do not have a 1-to-1 mapping with tailwind colors.
+					if (key.startsWith("chart-")) {
+						base["cssVars"][mode][key] = value;
+						continue;
+					}
 
-		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: base.cssVars,
-				theme: baseColor,
-			})
-		);
+					const resolvedColor = value.replace(/{{base}}-/g, `${baseColor}-`);
+					base["inlineColors"][mode][key] = resolvedColor;
+				}
+			}
+		}
+
+		base["cssVars"] = baseColorsV4[baseColor];
+		base["cssVarsTemplate"] = template(BASE_STYLES_WITH_VARIABLES)({
+			colors: base["cssVars"],
+		});
+		base["inlineColorsTemplate"] = `@import "tailwindcss";
+@import "tw-animate-css";`;
+
+		// themeCSS.push(
+		// 	template(THEME_STYLES_WITH_VARIABLES)({
+		// 		colors: baseColorsV4[baseColor],
+		// 		theme: baseColor,
+		// 	})
+		// );
 
 		writeFileWithDirs(
 			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
@@ -197,5 +223,5 @@ export const Index = {`;
 	// Build registry/themes.css
 	// ----------------------------------------------------------------------------
 
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
+	// writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 }

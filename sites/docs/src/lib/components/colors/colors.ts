@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { colorMapping, colors, type BaseColor } from "../../registry/colors.js";
 import template from "lodash.template";
 import { BASE_STYLES, BASE_STYLES_WITH_VARIABLES } from "../../registry/templates.js";
+import { colorMapping, colors } from "../../registry/registry-colors.js";
 
 const colorSchema = z.object({
 	name: z.string(),
@@ -88,7 +88,7 @@ function getForegroundFromBackground(rgb: string) {
 	return luminance > 0.179 ? "#000" : "#fff";
 }
 
-export function generateBaseColorTemplate(baseColor: BaseColor) {
+export function generateBaseColorTemplate(baseColor: any) {
 	const colorsData = getColorsData();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
