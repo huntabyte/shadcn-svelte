@@ -5,26 +5,35 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { children } = $props();
+
+	// todo meta
+	// const title = "Examples";
+	// const description = "Check out some examples app built using the components.";
 </script>
 
-<div class="container relative pb-10">
-	<PageHeader.Root>
-		<Announcement />
-		<PageHeader.Heading class="hidden md:block">Check out some examples</PageHeader.Heading>
-		<PageHeader.Heading class="md:hidden">Examples</PageHeader.Heading>
-		<PageHeader.Description>
-			Dashboard, cards, authentication. Some examples built using the components. Use this as
-			a guide to build your own.
-		</PageHeader.Description>
-		<PageHeader.Actions>
-			<Button href="/docs" class="rounded-[6px]">Get Started</Button>
-			<Button href="/components" variant="outline" class="rounded-[6px]">Components</Button>
-		</PageHeader.Actions>
-	</PageHeader.Root>
-	<section>
-		<ExamplesNav />
-		<div class="bg-background overflow-hidden rounded-[0.5rem] border shadow-xl">
-			{@render children?.()}
+<PageHeader.Root>
+	<Announcement />
+	<PageHeader.Heading>Build your component library</PageHeader.Heading>
+	<PageHeader.Description>
+		A set of beautifully-designed, accessible components and a code distribution platform. Open
+		Source. Open Code.
+	</PageHeader.Description>
+	<PageHeader.Actions>
+		<Button href="/docs" size="sm">Get Started</Button>
+		<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
+	</PageHeader.Actions>
+</PageHeader.Root>
+<div class="border-grid border-b">
+	<div class="container-wrapper">
+		<div class="container py-4">
+			<ExamplesNav />
 		</div>
-	</section>
+	</div>
+</div>
+<div class="container-wrapper">
+	<div class="container py-6">
+		<section class="bg-background overflow-hidden rounded-[0.5rem] border shadow">
+			{@render children()}
+		</section>
+	</div>
 </div>
