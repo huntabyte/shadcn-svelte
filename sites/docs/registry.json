@@ -16,7 +16,8 @@
 			"type": "registry:style",
 			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			"registryDependencies": ["utils"],
-			"files": []
+			"files": [],
+			"cssVars": {}
 		},
 		{
 			"name": "accordion",
