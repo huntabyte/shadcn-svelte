@@ -16,7 +16,7 @@ description: How to setup shadcn-svelte in a Vite project.
 
 Use the Svelte CLI to add Tailwind CSS to your project.
 
-<PMExecute command="sv@0.6.18 add tailwindcss" />
+<PMExecute command="sv add tailwindcss" />
 
 ### Edit tsconfig.json file
 
@@ -84,11 +84,9 @@ export default defineConfig({
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Would you like to use TypeScript (recommended)? › Yes
-Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/app.css
-Where is your tailwind.config.[cjs|js|ts] located? › tailwind.config.js
+Which base color would you like to use? › Slate
+Where is your global CSS file? (this file will be overwritten) › src/app.css
+Configure the import alias for lib: › $lib
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 Configure the import alias for hooks: › $lib/hooks

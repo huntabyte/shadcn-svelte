@@ -16,8 +16,7 @@
 			"type": "registry:style",
 			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			"registryDependencies": ["utils"],
-			"files": [],
-			"cssVars": {}
+			"files": []
 		},
 		{
 			"name": "accordion",
@@ -526,6 +525,10 @@
 					"type": "registry:ui"
 				},
 				{
+					"path": "src/lib/registry/ui/context-menu/context-menu-label.svelte",
+					"type": "registry:ui"
+				},
+				{
 					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte",
 					"type": "registry:ui"
 				},
@@ -687,6 +690,10 @@
 				},
 				{
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-content.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group-heading.svelte",
 					"type": "registry:ui"
 				},
 				{
@@ -872,11 +879,19 @@
 					"type": "registry:ui"
 				},
 				{
+					"path": "src/lib/registry/ui/menubar/menubar-group-heading.svelte",
+					"type": "registry:ui"
+				},
+				{
 					"path": "src/lib/registry/ui/menubar/menubar-group.svelte",
 					"type": "registry:ui"
 				},
 				{
 					"path": "src/lib/registry/ui/menubar/menubar-item.svelte",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/lib/registry/ui/menubar/menubar-label.svelte",
 					"type": "registry:ui"
 				},
 				{
