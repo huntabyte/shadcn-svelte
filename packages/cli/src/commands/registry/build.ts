@@ -115,18 +115,6 @@ async function runBuild(options: BuildOptions) {
 				}
 			}
 
-			/**
-			 * Transforms registry import aliases into a standardized format.
-			 *
-			 * ```
-			 * import Button from "$lib/registry/ui/button/index.js"
-			 * ```
-			 * transforms into:
-			 * ```
-			 * import Button from "$UI$/button/index.js"
-			 * ```
-			 */
-
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
 				const singleFile = item.files.length === 1;
@@ -137,8 +125,7 @@ async function runBuild(options: BuildOptions) {
 				];
 				const toResolve = item.files.map(async (file) => {
 					let content = await fs.readFile(file.path, "utf8");
-					registry.aliases ??= {};
-					content = transformAliases(registry.aliases, content);
+					content = transformAliases((registry.aliases ??= {}), content);
 
 					const name = path.basename(file.path);
 

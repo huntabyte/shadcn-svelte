@@ -1,3 +1,4 @@
+import path from "node:path";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { fetch } from "node-fetch-native";
 import {
@@ -11,7 +12,6 @@ import {
 } from "../../src/utils/registry/index.js";
 import type { Config } from "../../src/utils/get-config.js";
 import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
-import path from "node:path";
 import { toPosixPath } from "./test-helpers.js";
 
 vi.mock("node-fetch-native", () => ({
