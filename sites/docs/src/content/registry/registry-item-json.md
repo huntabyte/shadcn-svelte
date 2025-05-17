@@ -183,29 +183,13 @@ Which the CLI will convert to the following in the output `registry-item.json` f
 
 #### Relative Path
 
-If you're not using the CLI and defining the item directly in its `registry-item.json` file, you can specify a path relative to the current item to reference another item in the registry (e.g. `./stepper.json`).
+If you're not using the CLI and defining the item directly in its `registry-item.json` file, you can specify a relative path, which is relative to the current item, to reference another item in the registry (e.g. `./stepper.json`).
 
 ```json title="registry-item.json" showLineNumbers
 {
   "registryDependencies": ["./stepper.json"]
 }
 ```
-
-Which the CLI will convert to the following in the output:
-
-```json title="registry-item.json" showLineNumbers
-{
-  "registryDependencies": [
-    "button",
-    "input",
-    "select",
-    "https://example.com/r/editor.json",
-    "./stepper.json"
-  ]
-}
-```
-
-Note: The CLI will automatically resolve remote registry dependencies.
 
 ### files
 
@@ -338,8 +322,4 @@ Use `meta` to add additional metadata to your registry item. You can add any key
 {
   "meta": { "foo": "bar" }
 }
-```
-
-```
-
 ```
