@@ -72,18 +72,7 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/cli",
 					items: [],
 				},
-				{
-					title: "Tailwind v4",
-					label: "New",
-					href: "/docs/migration/tailwind-v4",
-					items: [],
-				},
-				{
-					title: "Svelte v5",
-					label: "New",
-					href: "/docs/migration/svelte-5",
-					items: [],
-				},
+
 				{
 					title: "Typography",
 					href: "/docs/typography",
@@ -102,6 +91,23 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "About",
 					href: "/docs/about",
+					items: [],
+				},
+			],
+		},
+		{
+			title: "Migrate",
+			items: [
+				{
+					title: "Svelte v5",
+					label: "New",
+					href: "/docs/migration/svelte-5",
+					items: [],
+				},
+				{
+					title: "Tailwind v4",
+					label: "New",
+					href: "/docs/migration/tailwind-v4",
 					items: [],
 				},
 			],
