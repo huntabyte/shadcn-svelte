@@ -73,11 +73,7 @@ export async function resolveRegistryItems({
 		 */
 		if (!resolvedItem) {
 			const isRelative = item.startsWith("./") || item.startsWith("../");
-			if (isUrl(item)) {
-				remoteUrl = new URL(item);
-				const [result] = await fetchRegistry([remoteUrl]);
-				resolvedItem = schemas.registryItemSchema.parse(result);
-			} else if (parentUrl && isRelative) {
+			if (isUrl(item) || (parentUrl && isRelative)) {
 				remoteUrl = new URL(item, parentUrl);
 				const [result] = await fetchRegistry([remoteUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
