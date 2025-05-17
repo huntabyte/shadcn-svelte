@@ -21,14 +21,14 @@
 {#if type === "block"}
 	<div class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border">
 		<img
-			src={`/images/blocks/${name}.png`}
+			src="/images/blocks/{name}.png"
 			alt={name}
 			width={1440}
 			height={900}
 			class="bg-background absolute left-0 top-0 z-20 w-[970px] max-w-none sm:w-[1280px] md:hidden dark:hidden md:dark:hidden"
 		/>
 		<img
-			src={`/images/blocks/${name}-dark.png`}
+			src="/images/blocks/{name}-dark.png"
 			alt={name}
 			width={1440}
 			height={900}

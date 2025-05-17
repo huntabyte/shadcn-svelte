@@ -30,7 +30,7 @@
 </script>
 
 <div class="flex items-center gap-2 md:gap-4">
-	<Button href={`#${block.name}`} variant="link" class="whitespace-normal px-1 md:px-2">
+	<Button href="#{block.name}" variant="link" class="whitespace-normal px-1 md:px-2">
 		{block.description}
 	</Button>
 	<div class="ml-auto hidden items-center gap-2 md:flex md:pr-[14px]">
@@ -87,7 +87,7 @@
 					variant="ghost"
 					class="h-[22px] w-[22px] rounded-sm p-0"
 					title="Open in New Tab"
-					href={`/blocks/${block.name}`}
+					href="/blocks/{block.name}"
 					target="_blank"
 				>
 					<span class="sr-only">Open in New Tab</span>

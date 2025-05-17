@@ -40,7 +40,7 @@
 		</Tabs.List>
 	</Tabs.Root>
 	<Separator orientation="vertical" class="mx-2 hidden !h-4 lg:flex" />
-	<a href={`#${ctx.item.name}`} class="text-sm font-medium underline-offset-2 hover:underline">
+	<a href="#{ctx.item.name}" class="text-sm font-medium underline-offset-2 hover:underline">
 		{ctx.item.description}
 	</a>
 	<div class="ml-auto hidden items-center gap-2 md:flex">

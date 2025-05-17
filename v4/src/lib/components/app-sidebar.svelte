@@ -210,7 +210,7 @@
 					<Sidebar.MenuItem>
 						<Sidebar.MenuButton>
 							{#snippet child({ props })}
-								<a href={`/#${item.name}`} {...props}>
+								<a href="/#{item.name}" {...props}>
 									<span>{getComponentName(item.name)}</span>
 								</a>
 							{/snippet}
