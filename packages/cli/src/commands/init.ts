@@ -88,8 +88,6 @@ export const init = new Command()
 			const existingConfig = await cliConfig.getConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
-			registry.setRegistry(config.registry);
-
 			await runInit(cwd, config, options);
 
 			p.outro(`${color.green("Success!")} Project initialization completed.`);
@@ -373,7 +371,7 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 			await fs.writeFile(config.resolvedPaths.tailwindConfig, tailwindConfigContent, "utf8");
 
 			// Write css file.
-			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor);
+			const baseColor = await registry.getRegistryBaseColor(config.tailwind.baseColor, config.style);
 			if (baseColor) {
 				await fs.writeFile(
 					config.resolvedPaths.tailwindCss,
