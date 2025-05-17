@@ -1,37 +1,40 @@
 ---
-title: Svelte 5 Migration
-description: How to migrate to Svelte 5 from Svelte 4.
+title: Svelte 5
+description: How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.
 ---
+
+<script>
+    import { Steps, PMExecute, PMInstall, PMRemove, Callout } from "$lib/components/docs";
+</script>
+
+<Callout>
+
+**Note**: With Svelte 5 comes significant changes to this project, along with the headless UI library used [bits-ui](https://bits-ui.com). This guide is specifically focused on migrating the shadcn-svelte portions and does not cover the migration of `bits-ui`. See [Bits UI's migration guide](https://bits-ui.com/docs/migration-guide) for more information.
+
+</Callout>
+
+## Svelte 4 to Svelte 5
+
+This first guide will take your project from Svelte 4 with Tailwind 3 to Svelte 5 and Tailwind 3. Tailwind 3 is still supported by the `@next` CLI.
+
+Once you've completed this guide and you're comfortable everything is working, you can move on to the next guide to migrate to Tailwind 4.
 
 ## Prerequisites
 
 1. Ensure you have read up on the changes from Svelte 4 to Svelte 5. Svelte provides a comprehensive guide for this on their [website](https://svelte.dev/docs/svelte/v5-migration-guide).
 2. Commit any pending changes to your repository.
 3. Determine which of your components have custom behavior/styles so that you can reimplement those after updating.
+4. Use [`sv-migrate`](https://svelte.dev/docs/cli/sv-migrate) to help you migrate your project to Svelte 5.
 
-<script>
-    import { Steps, PMExecute, PMInstall, PMRemove } from "$lib/components/docs";
-</script>
+## Update Configs
 
-## Migrate Configs
-
-The `components.json`, `utils`, and the global css files have all changed for Svelte 5.
-
-### Automatic
-
-Note: This works best for projects that have not changed the contents of `utils` and the global CSS file.
-
-<PMExecute command="shadcn-svelte@next init"/>
-
-### Manual
-
-<Steps>
+The `components.json`, `utils`, and the global CSS file have changed for Svelte 5.
 
 ### Update `components.json`
 
-Add the `registry` to the root object, and add `hooks` and `ui` keys under `aliases`.
+Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys under `aliases`.
 
-```json {2} {12-13} {16}
+```diff
 {
   "$schema": "https://next.shadcn-svelte.com/schema.json",
   "style": "default",
@@ -42,148 +45,93 @@ Add the `registry` to the root object, and add `hooks` and `ui` keys under `alia
   "aliases": {
     "components": "$lib/components",
     "utils": "$lib/utils",
-    "ui": "$lib/components/ui",
-    "hooks": "$lib/hooks"
++   "ui": "$lib/components/ui",
++   "hooks": "$lib/hooks",
++   "lib": "$lib"
   },
   "typescript": true,
-  "registry": "https://next.shadcn-svelte.com/registry"
++ "registry": "https://next.shadcn-svelte.com/registry"
 }
 ```
 
-### Update the global CSS file
+### Update `tailwind.config.js`
 
-Add the following to your global CSS file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
+Add `tailwindcss-animate`.
 
-```css title="src/app.css"
-@import "tailwindcss";
-@import "tw-animate-css";
-@custom-variant dark (&:is(.dark *));
+<PMInstall command="tailwindcss-animate" />
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+Add the `tailwindcss-animate` plugin, sidebar colors, and animations config.
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.269 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.439 0 0);
-}
+```ts title="tailwind.config.js"
+import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+const config: Config = {
+  darkMode: ["class"],
+  content: ["./src/**/*.{html,js,svelte,ts}"],
+  safelist: ["dark"],
+  theme: {
+    container: {
+      // unchanged ...
+    },
+    extend: {
+      colors: {
+        // unchanged ...
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      borderRadius: {
+        // unchanged ...
+      },
+      fontFamily: {
+        // unchanged ...
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--bits-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--bits-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+    },
+  },
+  plugins: [tailwindcssAnimate],
+};
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+export default config;
 ```
 
-### Update `utils`
+### Update `utils.ts`
 
-Note: You may not want to do this if you aren't going to upgrade all your components, as some components may still rely on the now removed `flyAndScale` function.
+<Callout>
 
-The only function exported from utils now is `cn`.
+**Note**: You may not want to do this step until after you've update your components, as some components may rely on the now removed `flyAndScale` function.
 
-```ts
+</Callout>
+
+The only function now exported from `utils.ts` is `cn`:
+
+```ts title="src/lib/utils.ts"
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -192,32 +140,94 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-</Steps>
-
 ## Upgrade Components
 
-Pick and choose which components to upgrade with the `update` command.
+### Alias Dependencies (optional)
 
-<PMExecute command="shadcn-svelte@next update"/>
+If you plan to slowly migrate components, it's recommended to alias the old versions of the major dependencies, like `bits-ui`, in your `package.json` file so that you can use both versions of the library in your project while you migrate.
 
-## Upgrade `bits-ui`
+```diff title="package.json"
+{
+  "devDependencies": {
+-	"bits-ui": "^0.22.0",
++   "bits-ui-old": "npm:bits-ui@0.22.0",
+  }
+}
+```
 
-The `update` command doesn't upgrade `bits-ui` so you will need to do that yourself.
+You'll then want to replace all the imports used in your project to `bits-ui-old`.
 
-<PMInstall command="bits-ui"/>
+```diff title="src/lib/components/ui/dialog-content.svelte"
+<script lang="ts">
+-  import { Dialog as DialogPrimitive } from "bits-ui";
++  import { Dialog as DialogPrimitive } from "bits-ui-old";
+</script>
+```
 
-## Remove unused dependencies
+You can do the same for any of the other dependencies that you're using in your project.
 
-In Svelte 5 we have changed some dependencies.
+### Update Dependencies
 
-### Remove `cmdk-sv`
+The following dependencies have been updated to support Svelte 5:
 
-`cmdk-sv` has been merged into `bits-ui` and is no longer necessary. Update any imports from `cmdk-sv` to `bits-ui`.
+- `bits-ui` - `^1.0.0`
+- `svelte-sonner` - `^1.0.0`
+- `@lucide/svelte` - `^0.482.0`
+- `paneforge` - `^1.0.0-next.5`
+- `vaul-svelte` - `^1.0.0-next.7`
+- `mode-watcher` - `^1.0.0`
+- `cmdk-sv` - deprecated in favor of Bits UI's `Command` component
+- `svelte-headless-table` - deprecated in favor of `@tanstack/table-core`
+- `svelte-radix` - icons deprecated in favor of `@lucide/svelte`
+- `lucide-svelte` - replaced with `@lucide/svelte`
 
-<PMRemove command="cmdk-sv"/>
+You can update your dependencies by running the following command:
 
-### Remove `svelte-headless-table`
+<PMInstall command="bits-ui@latest svelte-sonner@latest @lucide/svelte@latest paneforge@next vaul-svelte@next mode-watcher@latest -D" />
 
-`svelte-headless-table` has been removed in favor of `@tanstack/table-core`.
+### Start Migrating Components
 
-<PMRemove command="svelte-headless-table"/>
+Now you're ready to begin updating your components to their new versions. The CLI doesn't actually _update_ your components, it simply replaces them with the new versions, so be sure to commit your changes before running the CLI.
+
+```bash
+git add .
+git commit -m 'before migration'
+```
+
+Now you can run the `add` command to start migrating your components.
+
+<PMExecute command="shadcn-svelte@next add dialog --overwrite" />
+
+Review the diff to see what was updated and make any necessary adjustments. Rinse and repeat for each component you want to migrate.
+
+## Remove Unused Dependencies
+
+Once you've updated all your components, you can remove the old dependencies from your `package.json` file.
+
+### cmdk-sv
+
+`cmdk-sv` has been replaced with Bits UI's `Command` component.
+
+<PMRemove command="cmdk-sv" />
+
+### svelte-headless-table
+
+`svelte-headless-table` has been replaced with `@tanstack/table-core`.
+
+<PMRemove command="svelte-headless-table" />
+
+### svelte-radix
+
+`svelte-radix` has been replaced with `@lucide/svelte`.
+
+<PMRemove command="svelte-radix" />
+
+### lucide-svelte
+
+`lucide-svelte` has been replaced with `@lucide/svelte`.
+
+<PMRemove command="lucide-svelte" />
+
+## Next Steps
+
+Once you've completed this guide and you're comfortable everything is working as expected, you can move on to the [Tailwind 4 Guide](/docs/migration/tailwind-v4).

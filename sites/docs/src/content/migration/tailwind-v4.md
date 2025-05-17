@@ -5,7 +5,7 @@ description: How to use shadcn-svelte with Tailwind v4 and Svelte 5.
 
 <script>
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { InstallCards, Callout, PMUpgrade, PMExecute, Step, Steps } from "$lib/components/docs";
+	import { InstallCards, Callout, PMUpgrade, PMExecute, Step, Steps, PMRemove, PMInstall } from "$lib/components/docs";
 </script>
 
 It's here! Tailwind v4 and Svelte 5. Ready for you to try out. You can start using it today.
@@ -41,6 +41,12 @@ You can start using Tailwind v4 and Svelte 5 today using the `@next` CLI. See th
 <InstallCards />
 
 ## Upgrade Your Project
+
+<Callout>
+
+**Note**: This guide assumes you are coming from a Svelte 5 and Tailwind 3 project. If you are coming from a Svelte 4 project, you should first follow the [Svelte 4 and Tailwind 3 to Svelte 5](./svelte-4-tailwind-3-to-svelte-5) guide.
+
+</Callout>
 
 <Callout class="bg-blue-50 mt-6 border-blue-600 dark:border-blue-900 dark:bg-blue-950 mb-6 [&_code]:bg-blue-100 dark:[&_code]:bg-blue-900 text-foreground">
 
@@ -119,7 +125,7 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 
 ### 4. Update your dependencies
 
-<PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next" />
+<PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
 ### 5. Replace `tailwindcss-animate` with `tw-animate-css`
 
@@ -129,13 +135,23 @@ New projects will have `tw-animate-css` installed by default.
 
 For existing projects, follow the steps below:
 
-1. Remove `tailwindcss-animate` from your dependencies.
+1. Remove `tailwindcss-animate` from your dependencies
+
+<PMRemove command="tailwindcss-animate" />
+
 2. Remove the `@plugin 'tailwindcss-animate'` from your `app.css` file.
-3. Install `tw-animate-css` as a dev dependency.
-4. Add the `@import 'tw-animate-css'` to your `app.css` file.
 
 ```diff
 - @plugin 'tailwindcss-animate'
+```
+
+3. Install `tw-animate-css` as a dev dependency.
+
+<PMInstall command="tw-animate-css" />
+
+4. Add `@import 'tw-animate-css'` to your `app.css` file.
+
+```diff
 + @import 'tw-animate-css'
 ```
 

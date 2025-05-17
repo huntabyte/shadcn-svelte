@@ -132,7 +132,7 @@ Add a `registry:build` script to your `package.json` file.
 ```json title="package.json" showLineNumbers
 {
   "scripts": {
-    "registry:build": "shadcn-svelte registry build"
+    "registry:build": "pnpm shadcn-svelte registry build"
   }
 }
 ```
