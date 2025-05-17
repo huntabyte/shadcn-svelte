@@ -11,8 +11,8 @@ This is a template for creating a custom registry using SvelteKit.
 - The template uses a `registry.json` file to define components and their files.
 - The `shadcn-svelte build` command is used to build the registry.
 - The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
 - Every registry item is compatible with the `shadcn-svelte` CLI.
+- The `card`, `button`, `input`, `label`, `textarea` components here would come from the `shadcn-svelte` registry, but the `stepper` component is a custom `ui` component you can use as a reference for creating and referencing "local" `ui` components.
 
 ## Documentation
 
