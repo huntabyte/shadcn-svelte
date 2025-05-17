@@ -136,11 +136,62 @@ Use `@version` to specify the version of your registry item.
 
 ### registryDependencies
 
-Specifies the registry dependencies of the registry item, which can be one of the following:
+Defines other registry items that this item depends on. Each entry may be one of:
 
-- A name eg. `['button', 'input', 'select']` - which will resolve to the component in the shadcn-svelte registry
-- A URL to a custom registry item eg. `['https://example.com/r/hello-world.json']`
-- A name prefixed with `local:` eg. `local:stepper` - which will resolve to a component in the current registry
+#### shadcn-svelte Registry Item
+
+The name of a shadcn-svelte registry item (e.g., `'button'`, `'input'`, `'select'`), which will resolve to that item in the shadcn-svelte registry.
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["button", "input", "select"]
+}
+```
+
+#### Remote URL
+
+A full URL to a custom registry item (e.g. `https://example.com/r/hello-world.json`)
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["https://example.com/r/hello-world.json"]
+}
+```
+
+#### Local alias (when building with the CLI)
+
+If you're defining the item in `registry.json` and using the CLI to build the registry, you can use a name prefixed with `local:` (e.g. `local:stepper`) to reference an item in the current registry. The CLI will convert this to a relative path (e.g. `./stepper.json`) in the output `registry-item.json` file.
+
+```json title="registry.json" showLineNumbers
+{
+  "items": [
+    {
+      "name": "hello-world",
+      "registryDependencies": ["local:stepper"]
+    }
+  ]
+}
+```
+
+Which the CLI will convert to the following in the output `registry-item.json` file:
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["./stepper.json"]
+}
+```
+
+#### Relative Path
+
+If you're not using the CLI and defining the item directly in its `registry-item.json` file, you can specify a path relative to the current item to reference another item in the registry (e.g. `./stepper.json`).
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["./stepper.json"]
+}
+```
+
+Which the CLI will convert to the following in the output:
 
 ```json title="registry-item.json" showLineNumbers
 {
@@ -149,7 +200,7 @@ Specifies the registry dependencies of the registry item, which can be one of th
     "input",
     "select",
     "https://example.com/r/editor.json",
-    "local:stepper"
+    "./stepper.json"
   ]
 }
 ```
@@ -287,4 +338,8 @@ Use `meta` to add additional metadata to your registry item. You can add any key
 {
   "meta": { "foo": "bar" }
 }
+```
+
+```
+
 ```
