@@ -12,7 +12,6 @@ const baseUrl = `${SITE_BASE_URL}/registry`;
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
 
-
 function getRegistryUrl(path: string) {
 	if (!baseUrl) throw new Error("Registry URL not set");
 
@@ -51,7 +50,10 @@ export function getStyles() {
 	];
 }
 
-export async function getRegistryBaseColor(baseColor: string, style: "default" | "new-york" | (string &{})) {
+export async function getRegistryBaseColor(
+	baseColor: string,
+	style: "default" | "new-york" | (string & {})
+) {
 	try {
 		const [result] = await fetchRegistry([`${style}/colors/${baseColor}.json`]);
 
