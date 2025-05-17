@@ -15,7 +15,7 @@ out to us](https://github.com/huntabyte/shadcn-svelte/discussions).
 
 </Callout>
 
-You can use the `shadcn-svelte` CLI to create your own component registry. Creating your own registry allows you to distribute your custom components, hooks, pages, and other files to any Svelte project.
+You can use the `shadcn-svelte` CLI to create your own component registry. Creating your own registry allows you to distribute your own custom components, hooks, pages, and other files to any Svelte project.
 
 Registry items are automatically compatible with the `shadcn-svelte` CLI.
 
@@ -27,4 +27,4 @@ If you'd like to see an example of a registry, we have a [template project](http
 
 You can clone it using `degit`
 
-<PMExecute command="degit huntabyte/shadcn-svelte/registry-template" />
+<PMExecute command="degit huntabyte/shadcn-svelte/registry-template#next-tailwind-4" />
