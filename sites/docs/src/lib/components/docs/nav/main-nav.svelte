@@ -28,7 +28,7 @@
 			href="/docs/components"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname?.startsWith("/docs/components") &&
+				page.url.pathname?.startsWith("/docs/components/") &&
 					!page.url.pathname?.startsWith("/docs/component/chart")
 					? "text-foreground"
 					: "text-foreground/80"
