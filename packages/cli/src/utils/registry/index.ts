@@ -47,59 +47,54 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 }
 
 type ResolveRegistryItemsProps = {
-	baseUrl: string;
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
-	includeRegDeps?: boolean;
-	remoteUrl?: URL;
+	parentUrl?: URL;
 };
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
 	registryIndex,
-	baseUrl,
 	items,
-	includeRegDeps = true,
-	remoteUrl: parentRemoteUrl,
+	parentUrl,
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
-	let remoteUrl: URL | undefined;
 
 	for (const item of items) {
+		let remoteUrl: URL | undefined;
 		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
 			(entry) => entry.name === item
 		);
 
 		/**
-		 * The `item` doesn't exist in the shadcn-svelte `index`, so it can be one of two things:
-		 * 1. remote registry item (URL)
-		 * 2. local:registryDep of a _remote_  item (relative path from that item to the dep)
+		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
+		 * 1. a remote registry item (URL)
+		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
 		 */
 		if (!resolvedItem) {
 			if (isUrl(item)) {
 				const [result] = await fetchRegistry([item]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
 				remoteUrl = new URL(item);
-			} else if (parentRemoteUrl) {
-				const resolvedUrl = new URL(item, parentRemoteUrl.href);
+			} else if (parentUrl) {
+				const resolvedUrl = new URL(item, parentUrl);
 				const [result] = await fetchRegistry([resolvedUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
 				remoteUrl = resolvedUrl;
 			} else {
 				throw error(
-					`Component item '${item}' does not exist in the registry, nor is it a valid URL/local:registryDep.`
+					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative path to a registry dependency.`
 				);
 			}
 		}
 
 		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && resolvedItem.registryDependencies?.length) {
+		if (resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
-				baseUrl,
 				registryIndex: registryIndex,
 				items: resolvedItem.registryDependencies,
-				remoteUrl,
+				parentUrl: remoteUrl,
 			});
 			resolvedItems.push(...registryDeps);
 		}
