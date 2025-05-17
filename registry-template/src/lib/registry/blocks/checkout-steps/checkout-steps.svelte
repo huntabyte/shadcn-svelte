@@ -4,7 +4,7 @@
 </script>
 
 <Stepper.Root>
-	{#each { length: 5 } as _, i}
+	{#each { length: 5 } as _, i (i)}
 		<Stepper.Item step={i + 1} />
 	{/each}
 </Stepper.Root>
