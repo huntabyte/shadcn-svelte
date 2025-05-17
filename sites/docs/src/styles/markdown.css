@@ -33,6 +33,7 @@
 
 [data-rehype-pretty-code-figure] {
 	position: relative;
+	width: 100%;
 }
 
 [data-rehype-pretty-code-figure] code {

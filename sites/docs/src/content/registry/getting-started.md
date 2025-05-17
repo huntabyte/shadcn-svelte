@@ -11,7 +11,7 @@ This guide will walk you through the process of setting up your own component re
 
 It assumes you already have a project with components and would like to turn it into a registry.
 
-If you're starting a new registry project, you can use the [TODO: registry template](https://github.com/huntabyte/scn-svelte-registry-template) as a starting point. We have already configured it for you.
+If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/registry-template) as a starting point. We have already configured it for you.
 
 ## registry.json
 
