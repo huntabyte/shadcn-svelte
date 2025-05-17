@@ -71,9 +71,9 @@ export async function resolveRegistryItems({
 		);
 
 		/**
-		 * The `item` doesn't exist in the shadcn-svelte `index`, so it can be one of two things:
-		 * 1. remote registry item (URL)
-		 * 2. local:registryDep of a _remote_  item (relative path from that item to the dep)
+		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
+		 * 1. a remote registry item (URL)
+		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
 		 */
 		if (!resolvedItem) {
 			if (isUrl(item)) {
@@ -87,7 +87,7 @@ export async function resolveRegistryItems({
 				remoteUrl = resolvedUrl;
 			} else {
 				throw error(
-					`Component item '${item}' does not exist in the registry, nor is it a valid URL/local:registryDep.`
+					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative registry dependency.`
 				);
 			}
 		}
