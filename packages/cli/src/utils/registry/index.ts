@@ -72,15 +72,15 @@ export async function resolveRegistryItems({
 		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
 		 */
 		if (!resolvedItem) {
+			const isRelative = item.startsWith("./") || item.startsWith("../");
 			if (isUrl(item)) {
-				const [result] = await fetchRegistry([item]);
-				resolvedItem = schemas.registryItemSchema.parse(result);
 				remoteUrl = new URL(item);
-			} else if (parentUrl) {
-				const resolvedUrl = new URL(item, parentUrl);
-				const [result] = await fetchRegistry([resolvedUrl]);
+				const [result] = await fetchRegistry([remoteUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
-				remoteUrl = resolvedUrl;
+			} else if (parentUrl && isRelative) {
+				remoteUrl = new URL(item, parentUrl);
+				const [result] = await fetchRegistry([remoteUrl]);
+				resolvedItem = schemas.registryItemSchema.parse(result);
 			} else {
 				throw error(
 					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative path to a registry dependency.`
