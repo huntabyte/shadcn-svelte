@@ -6,20 +6,11 @@ import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
+import { SITE_BASE_URL } from "../../constants.js";
 
-let baseUrl: string | undefined;
+const baseUrl = `${SITE_BASE_URL}/registry`;
 
 export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
-
-export function setRegistry(url: string) {
-	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
-	// this will be removed once we have a proper solution and or we merge with main
-	if (url === "https://next.shadcn-svelte.com/registry") {
-		baseUrl = "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
-	} else {
-		baseUrl = url;
-	}
-}
 
 function getRegistryUrl(path: string) {
 	if (!baseUrl) throw new Error("Registry URL not set");
@@ -59,9 +50,12 @@ export function getStyles() {
 	];
 }
 
-export async function getRegistryBaseColor(baseColor: string) {
+export async function getRegistryBaseColor(
+	baseColor: string,
+	style: "default" | "new-york" | (string & {})
+) {
 	try {
-		const [result] = await fetchRegistry([`colors/${baseColor}.json`]);
+		const [result] = await fetchRegistry([`${style}/colors/${baseColor}.json`]);
 
 		return v.parse(schemas.registryBaseColorSchema, result);
 	} catch (err) {

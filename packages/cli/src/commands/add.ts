@@ -63,8 +63,6 @@ export const add = new Command()
 				);
 			}
 
-			registry.setRegistry(config.registry);
-
 			checkPreconditions(cwd);
 
 			await runAdd(cwd, config, options);
