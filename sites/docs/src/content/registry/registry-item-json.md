@@ -136,7 +136,9 @@ Use `@version` to specify the version of your registry item.
 
 ### registryDependencies
 
-Defines other registry items that this item depends on. Each entry may be one of:
+Defines other registry items that this item depends on.
+
+Each entry may be one of the following:
 
 #### shadcn-svelte Registry Item
 
