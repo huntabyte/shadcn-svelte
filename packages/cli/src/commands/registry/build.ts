@@ -162,7 +162,8 @@ async function runBuild(options: BuildOptions) {
 
 				const dependencies = new Set(item.dependencies);
 				const devDependencies = new Set(item.devDependencies);
-				const registryDependencies = new Set(item.registryDependencies);
+
+				const registryDependencies = new Set(item.registryDependencies.map(transformLocal));
 
 				const predefinedDeps = dependencies.size > 0 && devDependencies.size > 0;
 				if (!predefinedDeps) {
@@ -209,4 +210,24 @@ async function runBuild(options: BuildOptions) {
 	});
 
 	await p.tasks(tasks);
+}
+
+/**
+ * Transforms registryDependencies that start with `local:` into a path
+ * relative to the current registry-item's json file.
+ *
+ * ```
+ * "local:stepper"
+ *```
+ * transforms into:
+ * ```
+ * "./stepper.json"
+ * ```
+ */
+function transformLocal(registryDep: string) {
+	if (registryDep.startsWith("local:")) {
+		const LOCAL_REGEX = /^local:(.*)/;
+		return registryDep.replace(LOCAL_REGEX, "./$1.json");
+	}
+	return registryDep;
 }

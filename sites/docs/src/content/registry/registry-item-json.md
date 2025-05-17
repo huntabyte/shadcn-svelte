@@ -136,23 +136,62 @@ Use `@version` to specify the version of your registry item.
 
 ### registryDependencies
 
-Used for registry dependencies. Can be names or URLs. Use the name of the item to reference shadcn/ui components and urls to reference other registries.
+Defines other registry items that this item depends on.
 
-- For `shadcn-svelte` registry items such as `button`, `input`, `select`, etc use the name eg. `['button', 'input', 'select']`.
-- For custom registry items use the URL of the registry item eg. `['https://example.com/r/hello-world.json']`.
+Each entry may be one of the following:
+
+#### shadcn-svelte Registry Item
+
+The name of a shadcn-svelte registry item (e.g., `'button'`, `'input'`, `'select'`), which will resolve to that item in the shadcn-svelte registry.
 
 ```json title="registry-item.json" showLineNumbers
 {
-  "registryDependencies": [
-    "button",
-    "input",
-    "select",
-    "https://example.com/r/editor.json"
+  "registryDependencies": ["button", "input", "select"]
+}
+```
+
+#### Remote URL
+
+A full URL to a custom registry item (e.g. `https://example.com/r/hello-world.json`)
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["https://example.com/r/hello-world.json"]
+}
+```
+
+#### Local alias (when building with the CLI)
+
+If you're defining the item in `registry.json` and using the CLI to build the registry, you can use a name prefixed with `local:` (e.g. `local:stepper`) to reference an item in the current registry. The CLI will convert this to a relative path (e.g. `./stepper.json`) in the output `registry-item.json` file.
+
+```json title="registry.json" showLineNumbers
+{
+  "items": [
+    {
+      "name": "hello-world",
+      "registryDependencies": ["local:stepper"]
+    }
   ]
 }
 ```
 
-Note: The CLI will automatically resolve remote registry dependencies.
+Which the CLI will convert to the following in the output `registry-item.json` file:
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["./stepper.json"]
+}
+```
+
+#### Relative Path
+
+If you're not using the CLI and defining the item directly in its `registry-item.json` file, you can specify a relative path, which is relative to the current item, to reference another item in the registry (e.g. `./stepper.json`).
+
+```json title="registry-item.json" showLineNumbers
+{
+  "registryDependencies": ["./stepper.json"]
+}
+```
 
 ### files
 

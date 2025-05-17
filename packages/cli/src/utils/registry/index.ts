@@ -47,46 +47,50 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 }
 
 type ResolveRegistryItemsProps = {
-	baseUrl: string;
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
-	includeRegDeps?: boolean;
+	parentUrl?: URL;
 };
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
 export async function resolveRegistryItems({
 	registryIndex,
-	baseUrl,
 	items,
-	includeRegDeps = true,
+	parentUrl,
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
 
 	for (const item of items) {
+		let remoteUrl: URL | undefined;
 		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
 			(entry) => entry.name === item
 		);
 
-		// the `item` doesn't exist in the `index`, so it _must_ be a remote item (in other words, it's a URL)
+		/**
+		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
+		 * 1. a remote registry item (URL)
+		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
+		 */
 		if (!resolvedItem) {
-			const url = item;
-			if (!isUrl(url)) {
+			const isRelative = item.startsWith("./") || item.startsWith("../");
+			if (isUrl(item) || (parentUrl && isRelative)) {
+				remoteUrl = new URL(item, parentUrl);
+				const [result] = await fetchRegistry([remoteUrl]);
+				resolvedItem = schemas.registryItemSchema.parse(result);
+			} else {
 				throw error(
-					`Component item '${item}' does not exist in the registry, nor is it a valid URL.`
+					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative path to a registry dependency.`
 				);
 			}
-
-			const [result] = await fetchRegistry([url]);
-			resolvedItem = schemas.registryItemSchema.parse(result);
 		}
 
 		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && resolvedItem.registryDependencies?.length) {
+		if (resolvedItem.registryDependencies?.length) {
 			const registryDeps = await resolveRegistryItems({
-				baseUrl,
 				registryIndex: registryIndex,
 				items: resolvedItem.registryDependencies,
+				parentUrl: remoteUrl,
 			});
 			resolvedItems.push(...registryDeps);
 		}
