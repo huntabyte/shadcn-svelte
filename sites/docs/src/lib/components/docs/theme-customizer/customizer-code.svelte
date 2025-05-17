@@ -26,7 +26,7 @@
 </script>
 
 <script lang="ts">
-	import { config } from "$lib/stores/index.js";
+	import { ConfigContext } from "$lib/config-state.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { baseColorsOKLCH } from "$lib/registry/registry-base-colors.js";
@@ -34,9 +34,11 @@
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
+	const config = ConfigContext.get();
+
 	const clipboard = new UseClipboard();
 	const activeThemeOKLCH = $derived(
-		baseColorsOKLCH[$config.theme as keyof typeof baseColorsOKLCH]
+		baseColorsOKLCH[config.current.theme as keyof typeof baseColorsOKLCH]
 	);
 </script>
 
@@ -45,7 +47,7 @@
 		size="sm"
 		variant="outline"
 		onclick={() => {
-			clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, $config.radius));
+			clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, config.current.radius));
 		}}
 		class="absolute right-0 top-0 shadow-none"
 	>
@@ -61,7 +63,7 @@
 			class="flex max-h-[450px] flex-col overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900">
 			<code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
 			  <span class="line text-white">&nbsp;:root &#123;</span>
-			  <span class="line text-white">&nbsp;&nbsp;&nbsp;--radius: {$config.radius}rem;</span>
+			  <span class="line text-white">&nbsp;&nbsp;&nbsp;--radius: {config.current.radius}rem;</span>
 			  {#each Object.entries(activeThemeOKLCH?.light) as [key, value] (key)}
 					<span class="line text-white">&nbsp;&nbsp;&nbsp;--{key}: {value};</span>
 				{/each}

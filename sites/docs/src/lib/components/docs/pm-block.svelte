@@ -1,12 +1,8 @@
 <script lang="ts">
-	import {
-		getCommand,
-		getPackageManager,
-		PACKAGE_MANAGERS,
-	} from "$lib/stores/package-manager.js";
 	import type { Command } from "package-manager-detector";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
+	import { getCommand, PACKAGE_MANAGERS, PackageManagerContext } from "$lib/package-manager.js";
 
 	const {
 		type,
@@ -16,9 +12,9 @@
 		command: string | string[];
 	} = $props();
 
-	const agent = getPackageManager();
+	const pm = PackageManagerContext.get();
 
-	const cmd = $derived(getCommand($agent, type, command));
+	const cmd = $derived(getCommand(pm.current, type, command));
 
 	const commandText = $derived(`${cmd.command} ${cmd.args.join(" ")}`);
 </script>
@@ -29,17 +25,17 @@
 			class="flex place-items-end justify-between rounded-lg border-b border-zinc-800 bg-zinc-900 p-2 pb-0"
 		>
 			<div class="flex place-items-center gap-1">
-				{#each PACKAGE_MANAGERS as pm (pm)}
+				{#each PACKAGE_MANAGERS as packageManager (packageManager)}
 					<button
 						type="button"
 						class={{
 							"-mb-0.5 border-b p-1 font-mono text-sm": true,
-							"border-b-zinc-50 text-zinc-50": $agent === pm,
-							"border-transparent text-zinc-400": $agent !== pm,
+							"border-b-zinc-50 text-zinc-50": pm.current === packageManager,
+							"border-transparent text-zinc-400": pm.current !== packageManager,
 						}}
-						onclick={() => ($agent = pm)}
+						onclick={() => (pm.current = packageManager)}
 					>
-						{pm}
+						{packageManager}
 					</button>
 				{/each}
 			</div>

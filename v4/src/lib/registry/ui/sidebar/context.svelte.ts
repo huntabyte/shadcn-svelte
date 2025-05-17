@@ -1,5 +1,5 @@
 import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
-import { getContext, setContext } from "svelte";
+import { getContext, hasContext, setContext } from "svelte";
 import { SIDEBAR_KEYBOARD_SHORTCUT } from "./constants.js";
 
 type Getter<T> = () => T;
@@ -34,13 +34,17 @@ class SidebarState {
 		this.props = props;
 	}
 
-	// Convenience getter for checking if the sidebar is mobile
-	// without this, we would need to use `sidebar.isMobile.current` everywhere
+	/**
+	 * Whether the sidebar is currently mobile
+	 */
 	get isMobile() {
 		return this.#isMobile.current;
 	}
 
-	// Event handler to apply to the `<svelte:window>`
+	/**
+	 * An event handler to apply to an element that should trigger the sidebar
+	 * to toggle when the keyboard shortcut is pressed.
+	 */
 	handleShortcutKeydown = (e: KeyboardEvent) => {
 		if (e.key === SIDEBAR_KEYBOARD_SHORTCUT && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault();
@@ -72,10 +76,35 @@ export function setSidebar(props: SidebarStateProps): SidebarState {
 }
 
 /**
- * Retrieves the `SidebarState` instance from the context. This is a class instance,
- * so you cannot destructure it.
+ * Retrieves the `SidebarState` instance from the context, meaning it must be called
+ * during the component lifecycle, and cannot be called programatically after the
+ * component has been mounted.
+ *
+ * This is a class instance, so you cannot destructure it.
+ *
+ * The component calling this function must be a descendant of the `Sidebar.Provider` component.
+ *
+ * @example
+ * ```svelte
+ * <Sidebar.Provider>
+ * <!--
+ *  I can call useSidebar() in this component, because it's a descendant of Sidebar.Provider
+ * -->
+ * 	<SomeComponent />
+ * </Sidebar.Provider>
+ *
+ * <!--
+ * I cannot call useSidebar() in this component, because it's not a descendant of Sidebar.Provider
+ * -->
+ * <SomeComponent />
+ * ```
+ *
  * @returns The `SidebarState` instance.
  */
 export function useSidebar(): SidebarState {
+	if (!hasContext(Symbol.for(SYMBOL_KEY))) {
+		throw new Error("useSidebar() must be called within a Sidebar.Provider component");
+	}
+
 	return getContext(Symbol.for(SYMBOL_KEY));
 }

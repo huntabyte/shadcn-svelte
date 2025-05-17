@@ -5,19 +5,20 @@
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
 	import "../styles/carbon.css";
-	import { config } from "$lib/stores/index.js";
+	import { setConfigContext } from "$lib/config-state.js";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import { setPackageManager } from "$lib/stores/package-manager.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { dev } from "$app/environment";
 	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
+	import { setPackageManagerContext } from "$lib/package-manager.js";
 
-	let { children } = $props();
+	let { children, data } = $props();
 
-	setPackageManager();
+	const config = setConfigContext(() => data.config);
+	setPackageManagerContext(() => data.packageManager);
 
 	$effect(() => {
-		updateTheme($config.theme, page.url.pathname);
+		updateTheme(config.current.theme, page.url.pathname);
 	});
 </script>
 
