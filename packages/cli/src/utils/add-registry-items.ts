@@ -30,7 +30,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 	const resolvedItems = await registry.resolveRegistryItems({
-		baseUrl: registryUrl,
 		items: Array.from(selectedItems),
 		registryIndex,
 	});
