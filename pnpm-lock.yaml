@@ -68,9 +68,6 @@ importers:
 
   packages/cli:
     dependencies:
-      '@svecosystem/strip-types':
-        specifier: ^0.0.2
-        version: 0.0.2
       commander:
         specifier: ^13.1.0
         version: 13.1.0
@@ -87,6 +84,9 @@ importers:
       '@shadcn-svelte/registry':
         specifier: workspace:*
         version: link:../registry
+      '@svecosystem/strip-types':
+        specifier: ^0.0.2
+        version: 0.0.2
       '@sveltejs/acorn-typescript':
         specifier: ^1.0.5
         version: 1.0.5(acorn@8.14.1)
