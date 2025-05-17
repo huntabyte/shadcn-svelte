@@ -35,7 +35,7 @@
 			class="bg-background absolute left-0 top-0 z-20 hidden w-[970px] max-w-none sm:w-[1280px] md:hidden dark:block md:dark:hidden"
 		/>
 		<div class="bg-background absolute inset-0 hidden w-[1600px] md:block">
-			<iframe {title} src={`/blocks/${name}`} class="size-full"></iframe>
+			<iframe {title} src={`/view/${name}`} class="size-full"></iframe>
 		</div>
 	</div>
 {:else}
