@@ -51,6 +51,7 @@ type ResolveRegistryItemsProps = {
 	registryIndex: schemas.RegistryIndex;
 	items: string[];
 	includeRegDeps?: boolean;
+	remoteUrl?: URL;
 };
 
 type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
@@ -59,6 +60,7 @@ export async function resolveRegistryItems({
 	baseUrl,
 	items,
 	includeRegDeps = true,
+	remoteUrl,
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
 
@@ -67,17 +69,26 @@ export async function resolveRegistryItems({
 			(entry) => entry.name === item
 		);
 
-		// the `item` doesn't exist in the `index`, so it _must_ be a remote item (in other words, it's a URL)
+		/**
+		 * The `item` doesn't exist in the shadcn-svelte `index`, so it can be one of two things:
+		 * 1. remote registry item (URL)
+		 * 2. local:registryDep of a _remote_  item (relative path from that item to the dep)
+		 */
 		if (!resolvedItem) {
-			const url = item;
-			if (!isUrl(url)) {
+			if (isUrl(item)) {
+				const [result] = await fetchRegistry([item]);
+				resolvedItem = schemas.registryItemSchema.parse(result);
+				remoteUrl = new URL(item);
+			} else if (remoteUrl) {
+				const resolvedUrl = new URL(item, remoteUrl.href);
+				const [result] = await fetchRegistry([resolvedUrl]);
+				resolvedItem = schemas.registryItemSchema.parse(result);
+				remoteUrl = resolvedUrl;
+			} else {
 				throw error(
-					`Component item '${item}' does not exist in the registry, nor is it a valid URL.`
+					`Component item '${item}' does not exist in the registry, nor is it a valid URL/local:registryDep..`
 				);
 			}
-
-			const [result] = await fetchRegistry([url]);
-			resolvedItem = schemas.registryItemSchema.parse(result);
 		}
 
 		resolvedItems.push(resolvedItem);
@@ -87,6 +98,7 @@ export async function resolveRegistryItems({
 				baseUrl,
 				registryIndex: registryIndex,
 				items: resolvedItem.registryDependencies,
+				remoteUrl,
 			});
 			resolvedItems.push(...registryDeps);
 		}

@@ -25,7 +25,7 @@
 			"registryDependencies": ["button", "input", "label", "textarea", "card"],
 			"files": [
 				{
-					"path": "registry/blocks/example-form/example-form.svelte",
+					"path": "src/lib/registry/blocks/example-form/example-form.svelte",
 					"type": "registry:component"
 				}
 			]
@@ -84,15 +84,15 @@
 			"files": [
 				{
 					"path": "src/lib/registry/ui/stepper/stepper.svelte",
-					"type": "registry:component"
+					"type": "registry:file"
 				},
 				{
 					"path": "src/lib/registry/ui/stepper/stepper-item.svelte",
-					"type": "registry:component"
+					"type": "registry:file"
 				},
 				{
 					"path": "src/lib/registry/ui/stepper/index.ts",
-					"type": "registry:lib"
+					"type": "registry:file"
 				}
 			]
 		},
