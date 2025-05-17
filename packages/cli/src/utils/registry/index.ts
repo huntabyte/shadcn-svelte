@@ -60,9 +60,10 @@ export async function resolveRegistryItems({
 	baseUrl,
 	items,
 	includeRegDeps = true,
-	remoteUrl,
+	remoteUrl: parentRemoteUrl,
 }: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
 	const resolvedItems: ResolvedRegistryItem[] = [];
+	let remoteUrl: URL | undefined;
 
 	for (const item of items) {
 		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
@@ -79,8 +80,8 @@ export async function resolveRegistryItems({
 				const [result] = await fetchRegistry([item]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
 				remoteUrl = new URL(item);
-			} else if (remoteUrl) {
-				const resolvedUrl = new URL(item, remoteUrl.href);
+			} else if (parentRemoteUrl) {
+				const resolvedUrl = new URL(item, parentRemoteUrl.href);
 				const [result] = await fetchRegistry([resolvedUrl]);
 				resolvedItem = schemas.registryItemSchema.parse(result);
 				remoteUrl = resolvedUrl;
