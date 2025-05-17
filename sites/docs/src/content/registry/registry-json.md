@@ -22,7 +22,7 @@ The `registry.json` schema is used to define your custom component registry.
       "description": "A simple hello world component.",
       "files": [
         {
-          "path": "registry/hello-world/hello-world.svelte",
+          "path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
           "type": "registry:component"
         }
       ]
@@ -79,7 +79,7 @@ The `items` in your registry. Each item must implement the [registry-item schema
       "description": "A simple hello world component.",
       "files": [
         {
-          "path": "registry/hello-world/hello-world.svelte",
+          "path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
           "type": "registry:component"
         }
       ]
