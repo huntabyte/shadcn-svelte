@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { mode } from "mode-watcher";
-	import { config } from "$lib/stores/index.js";
+	import { ConfigContext } from "$lib/config-state.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import ThemeWrapper from "$lib/components/docs/theme-wrapper.svelte";
 	import { Label } from "$lib/registry/ui/label/index.js";
@@ -12,6 +12,7 @@
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 
+	const config = ConfigContext.get();
 	const isMounted = new IsMounted();
 </script>
 
@@ -23,13 +24,13 @@
 			<Label class="sr-only text-xs">Color</Label>
 			<div class="flex flex-wrap gap-1 md:gap-2">
 				{#each baseColors.filter((theme) => !["slate", "stone", "gray", "neutral"].includes(theme.name)) as theme (theme.name)}
-					{@const isActive = $config.theme === theme.name}
+					{@const isActive = config.current.theme === theme.name}
 					{#if isMounted.current}
 						<Button
 							variant="outline"
 							size="sm"
 							onclick={() => {
-								config.update((c) => ({ ...c, theme: theme.name }));
+								config.current.theme = theme.name;
 							}}
 							class={cn(
 								"w-[32px] rounded-lg lg:px-2.5 xl:w-[86px]",
@@ -67,11 +68,11 @@
 						variant="outline"
 						size="sm"
 						onclick={() => {
-							config.update((c) => ({ ...c, radius: parseFloat(value) }));
+							config.current.radius = parseFloat(value);
 						}}
 						class={cn(
 							"w-[40px] rounded-lg",
-							$config.radius === parseFloat(value) &&
+							config.current.radius === parseFloat(value) &&
 								"border-primary/50 ring-primary/30 ring-[2px]"
 						)}
 					>

@@ -11,15 +11,15 @@
 	import type { Block } from "$lib/blocks.js";
 	import type { ResizablePane } from "$lib/registry/ui/resizable/index.js";
 	import { CopyToClipboard } from "$lib/utils/copy-to-clipboard.svelte.js";
-	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
+	import { PackageManagerContext, getCommand } from "$lib/package-manager.js";
 
 	let { block, resizablePaneRef }: { block: Block; resizablePaneRef: ResizablePane } = $props();
 
 	const copier = new CopyToClipboard();
-	const selectedPackageManager = getPackageManager();
+	const pm = PackageManagerContext.get();
 
 	const addCommand = $derived(
-		getCommand($selectedPackageManager, "execute", `shadcn-svelte@next add ${block.name}`)
+		getCommand(pm.current, "execute", `shadcn-svelte@next add ${block.name}`)
 	);
 
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));

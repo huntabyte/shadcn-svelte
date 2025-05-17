@@ -11,16 +11,16 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import { getCommand, getPackageManager } from "$lib/stores/package-manager.js";
+	import { getCommand, PackageManagerContext } from "$lib/package-manager.js";
 
 	const ctx = BlockViewerContext.get();
 
 	const clipboard = new UseClipboard();
 
-	const agent = getPackageManager();
+	const pm = PackageManagerContext.get();
 
 	const addCommand = $derived(
-		getCommand($agent, "execute", `shadcn-svelte@next add ${ctx.item.name}`)
+		getCommand(pm.current, "execute", `shadcn-svelte@next add ${ctx.item.name}`)
 	);
 
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
