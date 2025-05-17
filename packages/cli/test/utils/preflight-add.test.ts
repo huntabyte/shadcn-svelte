@@ -81,6 +81,7 @@ describe("preflightAdd", () => {
 	});
 
 	it("should pass for Tailwind v4 + Svelte v5", async () => {
+		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configFull);
 
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
@@ -95,6 +96,7 @@ describe("preflightAdd", () => {
 	});
 
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
+		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configLegacy);
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
 			dependencies: {
@@ -115,6 +117,7 @@ describe("preflightAdd", () => {
 	});
 
 	it("should not update config for Tailwind v3 + Svelte v5 if no style field", async () => {
+		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configLegacyUpdated);
 		vi.mocked(loadProjectPackageInfo).mockReturnValue({
 			dependencies: {
@@ -138,6 +141,7 @@ describe("preflightAdd", () => {
 		];
 
 		for (const deps of testCases) {
+			// @ts-expect-error - we're mocking the config
 			vi.mocked(getConfig).mockResolvedValue({ ...configFull, resolvedPaths });
 			vi.mocked(loadProjectPackageInfo).mockReturnValue({
 				dependencies: deps,

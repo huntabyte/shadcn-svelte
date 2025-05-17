@@ -126,16 +126,6 @@ async function runBuild(options: BuildOptions) {
 			 * import Button from "$UI$/button/index.js"
 			 * ```
 			 */
-			const transformAliases = (content: string) => {
-				registry.aliases ??= {};
-				for (const alias of ALIASES) {
-					const defaults = ALIAS_DEFAULTS[alias];
-					const path = (registry.aliases[alias] ??= defaults.defaultPath);
-					content = content.replaceAll(path, defaults.placeholder);
-				}
-
-				return content;
-			};
 
 			for (const item of registry.items) {
 				message(`Building item ${color.cyan(item.name)}`);
@@ -147,7 +137,8 @@ async function runBuild(options: BuildOptions) {
 				];
 				const toResolve = item.files.map(async (file) => {
 					let content = await fs.readFile(file.path, "utf8");
-					content = transformAliases(content);
+					registry.aliases ??= {};
+					content = transformAliases(registry.aliases, content);
 
 					const name = path.basename(file.path);
 
@@ -224,10 +215,34 @@ async function runBuild(options: BuildOptions) {
  * "./stepper.json"
  * ```
  */
-function transformLocal(registryDep: string) {
+export function transformLocal(registryDep: string) {
 	if (registryDep.startsWith("local:")) {
 		const LOCAL_REGEX = /^local:(.*)/;
 		return registryDep.replace(LOCAL_REGEX, "./$1.json");
 	}
 	return registryDep;
+}
+
+/**
+ * Transforms registry import aliases into a standardized format.
+ *
+ * ```
+ * import Button from "$lib/registry/ui/button/index.js"
+ * ```
+ * transforms into:
+ * ```
+ * import Button from "$UI$/button/index.js"
+ * ```
+ */
+export function transformAliases(
+	aliases: NonNullable<schema.Registry["aliases"]>,
+	content: string
+) {
+	for (const alias of ALIASES) {
+		const defaults = ALIAS_DEFAULTS[alias];
+		const path = (aliases[alias] ??= defaults.defaultPath);
+		content = content.replaceAll(path, defaults.placeholder);
+	}
+
+	return content;
 }

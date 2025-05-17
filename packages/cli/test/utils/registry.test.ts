@@ -140,7 +140,6 @@ describe("Registry Utilities", () => {
 	describe("resolveRegistryItems", () => {
 		it("should resolve items from registry index", async () => {
 			const result = await resolveRegistryItems({
-				baseUrl: "https://example.com/registry",
 				registryIndex: mockRegistryIndex,
 				items: ["button"],
 			});
@@ -166,7 +165,6 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockResolvedValueOnce(mockResponse as Response);
 
 			const result = await resolveRegistryItems({
-				baseUrl: "https://example.com/registry",
 				registryIndex: mockRegistryIndex,
 				items: ["https://remote.com/button.json"],
 			});
@@ -179,7 +177,6 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(
 				resolveRegistryItems({
-					baseUrl: "https://example.com/registry",
 					registryIndex: mockRegistryIndex,
 					items: ["https://remote.com/button.json"],
 				})

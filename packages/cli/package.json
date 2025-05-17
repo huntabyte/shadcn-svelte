@@ -34,7 +34,7 @@
 		"start": "node dist/index.js",
 		"start:dev": "cross-env COMPONENTS_REGISTRY_URL=http://localhost:5173/registry node dist/index.js",
 		"start:proxy": "pnpm dlx straightforward@latest --port 9000",
-		"test": "vitest"
+		"test": "pnpm -w build:registry-template && vitest"
 	},
 	"dependencies": {
 		"@svecosystem/strip-types": "^0.0.2",
@@ -55,6 +55,7 @@
 		"estree-walker": "^3.0.3",
 		"get-tsconfig": "^4.7.3",
 		"ignore": "^7.0.4",
+		"memfs": "^4.17.2",
 		"package-manager-detector": "^1.2.0",
 		"semver": "^7.7.1",
 		"sucrase": "^3.35.0",
