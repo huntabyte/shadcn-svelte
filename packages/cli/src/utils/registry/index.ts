@@ -6,6 +6,7 @@ import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "./schema.js";
+import { SITE_BASE_URL } from "../../constants.js";
 
 let baseUrl: string | undefined;
 
@@ -15,7 +16,7 @@ export function setRegistry(url: string) {
 	// temp workaround to circumvent some caching issues with CF between subdomain / root domain
 	// this will be removed once we have a proper solution and or we merge with main
 	if (url === "https://next.shadcn-svelte.com/registry") {
-		baseUrl = "https://huntabyte-next.shadcn-svelte.pages.dev/registry";
+		baseUrl = `${SITE_BASE_URL}/registry`;
 	} else {
 		baseUrl = url;
 	}
