@@ -2,3 +2,4 @@ packages:
     - "sites/*"
     - "packages/*"
     - "v4"
+    - "registry-template"
