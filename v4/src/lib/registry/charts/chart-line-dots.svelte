@@ -52,7 +52,6 @@
 					xAxis: { format: PeriodType.Month },
 				}}
 			>
-				<!-- TODO: How to style active do, say, add a wider radius? -->
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
