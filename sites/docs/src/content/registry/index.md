@@ -15,7 +15,7 @@ out to us](https://github.com/huntabyte/shadcn-svelte/discussions).
 
 </Callout>
 
-You can use the `shadcn-svelte` CLI to run your own component registry. Running your own registry allows you to distribute your custom components, hooks, pages, and other files to any Svelte project.
+You can use the `shadcn-svelte` CLI to create your own component registry. Creating your own registry allows you to distribute your custom components, hooks, pages, and other files to any Svelte project.
 
 Registry items are automatically compatible with the `shadcn-svelte` CLI.
 
