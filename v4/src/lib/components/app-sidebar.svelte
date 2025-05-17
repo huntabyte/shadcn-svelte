@@ -132,7 +132,7 @@
 			},
 		],
 		components: Object.values(UI)
-			.filter((item) => item.type === "registry:ui" && item.name !== "navigation-menu")
+			.filter((item) => item.type === "registry:ui")
 			.concat([
 				{
 					name: "combobox",
