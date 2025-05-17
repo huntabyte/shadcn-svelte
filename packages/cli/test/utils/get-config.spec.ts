@@ -4,13 +4,6 @@ import { getConf, resolvePath } from "./test-helpers";
 
 vi.mock("tinyexec");
 
-vi.mock("node:fs", async () => {
-	return {
-		...(await vi.importActual<typeof import("node:fs")>("node:fs")),
-		readFileSync: vi.fn(),
-	};
-});
-
 describe("getConfig", () => {
 	it("handles cases where no config is present", async () => {
 		expect(await getConf("config-none")).toEqual(null);
