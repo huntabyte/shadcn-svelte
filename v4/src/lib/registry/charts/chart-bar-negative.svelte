@@ -26,7 +26,6 @@
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
-			<!-- TODO: How to add `month` labels to bars and give them a custom color? -->
 			<BarChart
 				labels={{
 					offset: 5,

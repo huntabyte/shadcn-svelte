@@ -1,6 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
 import { preflightInit } from "../../src/commands/init/preflight.js";
+import { highlight } from "../../src/utils/utils";
+import color from "chalk";
+import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
 
 vi.mock("../../src/utils/get-package-info.js");
 
@@ -19,10 +22,15 @@ describe("preflightInit", () => {
 		});
 
 		expect(() => preflightInit("/test")).toThrow(
-			"You are using Tailwind CSS v3 with Svelte v5.\n\n" +
-				"You have two options:\n" +
-				"1. Update Tailwind CSS to v4 and try again.\n" +
-				"2. Use shadcn-svelte@<TODO: version> that supports Tailwind v3.\n\n"
+			`Initializing a project with Tailwind v3 is not supported.\n\n` +
+				`This CLI version requires Tailwind v4 and Svelte v5 for the ` +
+				`${highlight("init")} command.\n\n` +
+				`You have two options:\n` +
+				`1. Update Tailwind CSS to v4 and try again.\n` +
+				`2. Use ${highlight("shadcn-svelte@1.0.0-next.9")} that supports initializing projects with Tailwind v3.\n\n` +
+				`References:\n` +
+				`Tailwind v4 Guide: ${color.underline(`${SITE_BASE_URL}/docs/migration/tailwind-v4`)}\n` +
+				`Legacy Tailwind v3 Docs: ${color.underline(`${TW3_SITE_BASE_URL}/docs`)}\n\n`
 		);
 	});
 
@@ -36,9 +44,10 @@ describe("preflightInit", () => {
 		});
 
 		expect(() => preflightInit("/test")).toThrow(
-			"You are using Tailwind CSS v3 with Svelte v4.\n\n" +
-				"This CLI version requires Tailwind CSS v4 and Svelte v5.\n" +
-				"Please use shadcn-svelte@<TODO: version> that supports Tailwind v3 + Svelte v4.\n\n"
+			`Initializing a project with Tailwind v3 and Svelte v4 is not supported..\n\n` +
+				`This CLI version requires Tailwind v4 and Svelte v5 for the ` +
+				`${highlight("init")} command.\n\n` +
+				`Please use ${highlight("shadcn-svelte@0.14.2")} that supports Tailwind v3 + Svelte v4.\n\n`
 		);
 	});
 
@@ -52,7 +61,7 @@ describe("preflightInit", () => {
 		});
 
 		expect(() => preflightInit("/test")).toThrow(
-			"This CLI version requires Tailwind CSS v4 and Svelte v5.\n"
+			`This CLI version requires Tailwind CSS v4 and Svelte v5 to initialize a project.\n`
 		);
 	});
 
@@ -88,7 +97,7 @@ describe("preflightInit", () => {
 		});
 
 		expect(() => preflightInit("/test")).toThrow(
-			"This CLI version requires Tailwind CSS v4 and Svelte v5.\n"
+			`This CLI version requires Tailwind CSS v4 and Svelte v5 to initialize a project.\n`
 		);
 	});
 });

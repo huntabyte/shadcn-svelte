@@ -21,7 +21,6 @@
 	{page.value}
 {/snippet}
 
-<!-- TODO: Fix this error: Expression produces a union type that is too complex to represent. Note: Removing `Fallback` in children={children || Fallback} fixes, makes you wonder how/why `Fallback` is causing this. -->
 <PaginationPrimitive.Page
 	bind:ref
 	{page}
