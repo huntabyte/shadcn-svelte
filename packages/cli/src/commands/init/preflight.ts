@@ -56,7 +56,7 @@ function checkInitDependencies(dependencies: Partial<Record<string, string>>) {
 	// TODO: add link to upgrade guide?
 	if (isTailwind3 && isSvelte4) {
 		throw error(
-			`Initializing a project with Tailwind v3 and Svelte v4 is not supported..\n\n` +
+			`Initializing a project with Tailwind v3 and Svelte v4 is not supported.\n\n` +
 				`This CLI version requires Tailwind v4 and Svelte v5 for the ` +
 				`${highlight("init")} command.\n\n` +
 				`Please use ${highlight("shadcn-svelte@0.14.2")} that supports Tailwind v3 + Svelte v4.\n\n`
