@@ -206,86 +206,89 @@ export const Index = {
 		if (!fs.existsSync(colorsTargetPath)) {
 			fs.mkdirSync(colorsTargetPath, { recursive: true });
 		}
-	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const colorsData: Record<string, any> = {};
-	for (const [color, value] of Object.entries(colors)) {
-		if (typeof value === "string") {
-			colorsData[color] = value;
-			continue;
-		}
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const colorsData: Record<string, any> = {};
+		for (const [color, value] of Object.entries(colors)) {
+			if (typeof value === "string") {
+				colorsData[color] = value;
+				continue;
+			}
 
-		if (Array.isArray(value)) {
-			colorsData[color] = value.map((item) => ({
-				...item,
-				rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-				hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
-			}));
-			continue;
-		}
+			if (Array.isArray(value)) {
+				colorsData[color] = value.map((item) => ({
+					...item,
+					rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+					hslChannel: item.hsl.replace(
+						/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
+						"$1 $2 $3"
+					),
+				}));
+				continue;
+			}
 
-		if (typeof value === "object") {
-			colorsData[color] = {
-				...value,
-				rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
-				hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
-			};
-			continue;
-		}
+			if (typeof value === "object") {
+				colorsData[color] = {
+					...value,
+					rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+					hslChannel: value.hsl.replace(
+						/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
+						"$1 $2 $3"
+					),
+				};
+				continue;
+			}
 
-		for (const style of STYLES) {
-			const colorsTargetPath = path.join(REGISTRY_PATH, style, "colors");
 			writeFileWithDirs(
 				path.join(colorsTargetPath, "index.json"),
 				JSON.stringify(colorsData[style], null, "\t"),
 				"utf-8"
 			);
 		}
-	}
 
-	// ----------------------------------------------------------------------------
-	// Build registry/colors/[base].json.
-	// ----------------------------------------------------------------------------
-	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const base: Record<string, any> = {
-			inlineColors: {},
-			cssVars: {},
-		};
-		for (const [mode, values] of Object.entries(colorMapping)) {
-			base.inlineColors[mode] = {};
-			base.cssVars[mode] = {};
-			for (const [key, value] of Object.entries(values)) {
-				if (typeof value === "string") {
-					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
-					base.inlineColors[mode][key] = resolvedColor;
+		// ----------------------------------------------------------------------------
+		// Build registry/colors/[base].json.
+		// ----------------------------------------------------------------------------
+		for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const base: Record<string, any> = {
+				inlineColors: {},
+				cssVars: {},
+			};
+			for (const [mode, values] of Object.entries(colorMapping)) {
+				base.inlineColors[mode] = {};
+				base.cssVars[mode] = {};
+				for (const [key, value] of Object.entries(values)) {
+					if (typeof value === "string") {
+						const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
+						base.inlineColors[mode][key] = resolvedColor;
 
-					const [resolvedBase, scale] = resolvedColor.split("-");
-					const color = scale
-						? colorsData[resolvedBase].find(
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
-								(item: any) => item.scale === Number.parseInt(scale)
-							)
-						: colorsData[resolvedBase];
-					if (color) {
-						base.cssVars[mode][key] = color.hslChannel;
+						const [resolvedBase, scale] = resolvedColor.split("-");
+						const color = scale
+							? colorsData[resolvedBase].find(
+									// eslint-disable-next-line @typescript-eslint/no-explicit-any
+									(item: any) => item.scale === Number.parseInt(scale)
+								)
+							: colorsData[resolvedBase];
+						if (color) {
+							base.cssVars[mode][key] = color.hslChannel;
+						}
 					}
 				}
 			}
+
+			// Build css vars.
+			base.inlineColorsTemplate = template(BASE_STYLES)({});
+			base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
+				colors: base.cssVars,
+			});
+
+			writeFileWithDirs(
+				path.join(colorsTargetPath, `${baseColor}.json`),
+				JSON.stringify(base, null, "\t"),
+				"utf-8"
+			);
 		}
-
-		// Build css vars.
-		base.inlineColorsTemplate = template(BASE_STYLES)({});
-		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
-			colors: base.cssVars,
-		});
-
-		writeFileWithDirs(
-			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
-			JSON.stringify(base, null, "\t"),
-			"utf-8"
-		);
 	}
 
 	// ----------------------------------------------------------------------------
