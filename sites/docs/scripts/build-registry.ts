@@ -5,10 +5,14 @@ import prettier from "prettier";
 import { rimraf } from "rimraf";
 import template from "lodash.template";
 import { registrySchema, type RegistryItemType } from "@shadcn-svelte/registry";
-import { generateBaseColorTemplate, getColorsData } from "../src/lib/colors/colors.js";
-import { baseColors } from "../src/lib/registry/colors.js";
+import { colorMapping, colors } from "../src/lib/registry/colors.js";
+import { themes } from "../src/lib/registry/themes.js";
 import { buildRegistry } from "./registry.js";
-import { THEME_STYLES_WITH_VARIABLES } from "../src/lib/registry/templates.js";
+import {
+	BASE_STYLES,
+	BASE_STYLES_WITH_VARIABLES,
+	THEME_STYLES_WITH_VARIABLES,
+} from "../src/lib/registry/templates.js";
 
 const prettierConfig = await prettier.resolveConfig(import.meta.url);
 if (!prettierConfig) throw new Error("Failed to resolve prettier config.");
@@ -202,44 +206,105 @@ export const Index = {
 		if (!fs.existsSync(colorsTargetPath)) {
 			fs.mkdirSync(colorsTargetPath, { recursive: true });
 		}
-
-		const colorsData = getColorsData();
-
-		writeFileWithDirs(
-			path.join(colorsTargetPath, "index.json"),
-			JSON.stringify(colorsData, null, "\t"),
-			"utf-8"
-		);
 	}
 
-	// ----------------------------------------------------------------------------
-	// Build registry/colors/[base].json.
-	// ----------------------------------------------------------------------------
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const colorsData: Record<string, any> = {};
+	for (const [color, value] of Object.entries(colors)) {
+		if (typeof value === "string") {
+			colorsData[color] = value;
+			continue;
+		}
 
-	const themeCSS = [];
-	for (const baseColor of baseColors) {
-		const base = generateBaseColorTemplate(baseColor);
+		if (Array.isArray(value)) {
+			colorsData[color] = value.map((item) => ({
+				...item,
+				rgbChannel: item.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+				hslChannel: item.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+			}));
+			continue;
+		}
 
-		themeCSS.push(
-			template(THEME_STYLES_WITH_VARIABLES)({
-				colors: base.cssVars,
-				theme: baseColor,
-			})
-		);
+		if (typeof value === "object") {
+			colorsData[color] = {
+				...value,
+				rgbChannel: value.rgb.replace(/^rgb\((\d+),(\d+),(\d+)\)$/, "$1 $2 $3"),
+				hslChannel: value.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
+			};
+			continue;
+		}
+
 		for (const style of STYLES) {
+			const colorsTargetPath = path.join(REGISTRY_PATH, style, "colors");
 			writeFileWithDirs(
-				path.join(REGISTRY_PATH, style, "colors", `${baseColor}.json`),
-				JSON.stringify(base, null, "\t"),
+				path.join(colorsTargetPath, "index.json"),
+				JSON.stringify(colorsData[style], null, "\t"),
 				"utf-8"
 			);
 		}
 	}
 
 	// ----------------------------------------------------------------------------
+	// Build registry/colors/[base].json.
+	// ----------------------------------------------------------------------------
+	for (const baseColor of ["slate", "gray", "zinc", "neutral", "stone", "lime"]) {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const base: Record<string, any> = {
+			inlineColors: {},
+			cssVars: {},
+		};
+		for (const [mode, values] of Object.entries(colorMapping)) {
+			base.inlineColors[mode] = {};
+			base.cssVars[mode] = {};
+			for (const [key, value] of Object.entries(values)) {
+				if (typeof value === "string") {
+					const resolvedColor = value.replace(/\{\{base\}\}-/g, `${baseColor}-`);
+					base.inlineColors[mode][key] = resolvedColor;
+
+					const [resolvedBase, scale] = resolvedColor.split("-");
+					const color = scale
+						? colorsData[resolvedBase].find(
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
+								(item: any) => item.scale === Number.parseInt(scale)
+							)
+						: colorsData[resolvedBase];
+					if (color) {
+						base.cssVars[mode][key] = color.hslChannel;
+					}
+				}
+			}
+		}
+
+		// Build css vars.
+		base.inlineColorsTemplate = template(BASE_STYLES)({});
+		base.cssVarsTemplate = template(BASE_STYLES_WITH_VARIABLES)({
+			colors: base.cssVars,
+		});
+
+		writeFileWithDirs(
+			path.join(REGISTRY_PATH, "colors", `${baseColor}.json`),
+			JSON.stringify(base, null, "\t"),
+			"utf-8"
+		);
+	}
+
+	// ----------------------------------------------------------------------------
 	// Build registry/themes.css
 	// ----------------------------------------------------------------------------
 
-	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
+	const themeCSS = [];
+	for (const theme of themes) {
+		themeCSS.push(
+			template(THEME_STYLES_WITH_VARIABLES)({
+				colors: theme.cssVars,
+				theme: theme.name,
+			})
+		);
+	}
+
+	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n"), "utf-8");
+
+	console.info("✅ Done!");
 }
 
 // await build();
