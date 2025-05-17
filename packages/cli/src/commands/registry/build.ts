@@ -14,7 +14,6 @@ import { getFileDependencies, resolveProjectDeps } from "./deps-resolver.js";
 
 // TODO: perhaps a `--mini` flag to remove spacing?
 const SPACER = "\t";
-const LOCAL_REGEX = /^local:(.*)/;
 
 const buildOptionsSchema = z.object({
 	registry: z.string(),
@@ -164,26 +163,7 @@ async function runBuild(options: BuildOptions) {
 				const dependencies = new Set(item.dependencies);
 				const devDependencies = new Set(item.devDependencies);
 
-				const registryDependencies = new Set(
-					/**
-					 * Transforms registryDependencies that start with `local:` into a path
-					 * relative to the current registry-item's json file.
-					 *
-					 * ```
-					 * "local:stepper"
-					 *```
-					 * transforms into:
-					 * ```
-					 * "./stepper.json"
-					 * ```
-					 */
-					item.registryDependencies.map((registryDep) => {
-						if (registryDep.startsWith("local:")) {
-							return registryDep.replace(LOCAL_REGEX, "./$1.json");
-						}
-						return registryDep;
-					})
-				);
+				const registryDependencies = new Set(item.registryDependencies.map(transformLocal));
 
 				const predefinedDeps = dependencies.size > 0 && devDependencies.size > 0;
 				if (!predefinedDeps) {
@@ -230,4 +210,24 @@ async function runBuild(options: BuildOptions) {
 	});
 
 	await p.tasks(tasks);
+}
+
+/**
+ * Transforms registryDependencies that start with `local:` into a path
+ * relative to the current registry-item's json file.
+ *
+ * ```
+ * "local:stepper"
+ *```
+ * transforms into:
+ * ```
+ * "./stepper.json"
+ * ```
+ */
+function transformLocal(registryDep: string) {
+	if (registryDep.startsWith("local:")) {
+		const LOCAL_REGEX = /^local:(.*)/;
+		return registryDep.replace(LOCAL_REGEX, "./$1.json");
+	}
+	return registryDep;
 }
