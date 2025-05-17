@@ -19,7 +19,6 @@ describe("getPackageInfo", () => {
 			{
 				"./package.json": JSON.stringify(mockPackageJson),
 			},
-			// default cwd
 			"/tmp"
 		);
 
@@ -50,7 +49,6 @@ describe("loadProjectPackageInfo", () => {
 			{
 				"./package.json": JSON.stringify(mockPackageJson),
 			},
-			// default cwd
 			"/tmp"
 		);
 		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");

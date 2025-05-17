@@ -9,14 +9,14 @@ import type { PackageJson } from "type-fest";
 import { toArray } from "../../utils/utils.js";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
-type ResolvedDependencies = {
+export type ResolvedDependencies = {
 	/** `<Dep@Version, Peers[]>` */
 	deps: Record<string, string[]>;
 	/** `<Dep, Dep@Version>` */
 	versions: Record<string, string>;
 };
 
-type ProjectDependencies = {
+export type ProjectDependencies = {
 	dependencies: ResolvedDependencies;
 	devDependencies: ResolvedDependencies;
 };
@@ -39,7 +39,7 @@ export function resolveProjectDeps(cwd: string): ProjectDependencies {
 /**
  * Adds a dependency's type definition package to their respective peer list (if applicable).
  */
-function resolveTypeDeps(projectDeps: ProjectDependencies) {
+export function resolveTypeDeps(projectDeps: ProjectDependencies) {
 	for (const dependencies of Object.values(projectDeps)) {
 		for (const [name, versioned] of Object.entries(dependencies.versions)) {
 			const peers = dependencies.deps[versioned]!;
@@ -64,7 +64,7 @@ function resolveTypeDeps(projectDeps: ProjectDependencies) {
  *
  * `dependencies.deps` goes from `<DepName@Version, PeerName[]>` to `<DepName@Version, PeerName@Version[]>`
  */
-function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDependencies {
+export function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDependencies {
 	for (const dependencies of Object.values(projectDeps)) {
 		for (const [name, peers] of Object.entries(dependencies.deps)) {
 			dependencies.deps[name] = peers
@@ -80,7 +80,7 @@ function resolvePeerVersions(projectDeps: ProjectDependencies): ProjectDependenc
 	return projectDeps;
 }
 
-const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
+export const IGNORE_DEPS = ["svelte", "@sveltejs/kit", "tailwindcss", "vite"];
 
 /**
  * Resolves peer dependencies from a given set of dependencies from a package.json.
@@ -182,7 +182,7 @@ export async function getFileDependencies(opts: GetFileDepOpts) {
 }
 
 /** Returns an array of found deps. */
-function resolveDepsFromImport(source: string, dependencies: ResolvedDependencies) {
+export function resolveDepsFromImport(source: string, dependencies: ResolvedDependencies) {
 	const depsFound: string[] = [];
 	const simple = dependencies.versions[source] ? source : undefined;
 	const depName =
