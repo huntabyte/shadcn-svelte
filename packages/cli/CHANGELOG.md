@@ -1,5 +1,10 @@
 # shadcn-svelte
 
+## 1.0.0-next.10
+
+### Patch Changes
+
+- dc196c3: chore: point to `tw3.shadcn-svelte.com` subdomain on `init`
 
 ## 1.0.0-next.9
 
