@@ -4,6 +4,9 @@
 	let { children, ...restProps }: PrimitiveDivAttributes = $props();
 </script>
 
-<div class="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]" {...restProps}>
+<div
+	class="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8"
+	{...restProps}
+>
 	{@render children?.()}
 </div>

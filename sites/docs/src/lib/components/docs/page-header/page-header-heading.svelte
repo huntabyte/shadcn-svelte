@@ -6,7 +6,7 @@
 
 <h1
 	class={cn(
-		"text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]",
+		"text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:leading-[1.1]",
 		className
 	)}
 	{...restProps}

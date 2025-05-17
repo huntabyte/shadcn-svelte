@@ -1,5 +1,5 @@
 {
-	"name": "shadcn-svelte",
+	"name": "@shadcn-svelte/monorepo",
 	"version": "0.0.1",
 	"description": "monorepo for shadcn-svelte",
 	"author": {
@@ -9,17 +9,20 @@
 	"private": true,
 	"scripts": {
 		"build": "pnpm build:docs",
-		"build:cli": "pnpm -F shadcn-svelte build",
+		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
+		"build:v4": "pnpm -F v4 build",
 		"dev": "pnpm -F docs dev",
-		"dev:cli": "pnpm -F shadcn-svelte start:dev",
+		"dev:cli": "pnpm -F \"./packages/**\" svelte-kit sync && pnpm --parallel --reporter append-only --color dev",
+		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
-		"check": "pnpm -F docs check",
+		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
+		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm -r sync",
+		"postinstall": "pnpm -r sync && pnpm build:cli",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
@@ -37,7 +40,9 @@
 	"type": "module",
 	"devDependencies": {
 		"@changesets/cli": "^2.28.1",
+		"@eslint/compat": "^1.2.7",
 		"@eslint/js": "^9.22.0",
+		"@types/node": "^22.15.15",
 		"@typescript-eslint/eslint-plugin": "^8.26.1",
 		"@typescript-eslint/scope-manager": "^8.26.1",
 		"@typescript-eslint/utils": "^8.26.1",
@@ -45,12 +50,18 @@
 		"eslint-config-prettier": "^10.1.1",
 		"eslint-plugin-svelte": "^3.2.1",
 		"globals": "^16.0.0",
+		"minimatch": "^10.0.1",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"pretty-quick": "^4.1.1",
 		"svelte": "^5.23.1",
-		"typescript": "^5.8.2",
+		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.26.1"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
 	}
 }

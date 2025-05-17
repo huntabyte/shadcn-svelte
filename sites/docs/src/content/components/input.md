@@ -3,7 +3,7 @@ title: Input
 description: Displays a form input field or a component that looks like an input field.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/input
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/input
 ---
 
 <script>
@@ -26,7 +26,9 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>
@@ -78,6 +80,14 @@ links:
 ### With Button
 
 <ComponentPreview name="input-with-button">
+
+<div></div>
+
+</ComponentPreview>
+
+### Invalid
+
+<ComponentPreview name="input-invalid">
 
 <div></div>
 

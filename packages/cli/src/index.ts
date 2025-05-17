@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from "node:process";
 import { Command } from "commander";
-import { add, init, update } from "./commands";
+import * as commands from "./commands/index.js";
 import { getPackageInfo } from "./utils/get-package-info.js";
 
 process.on("SIGINT", () => process.exit(0));
@@ -27,7 +27,10 @@ async function main() {
 		.description("Add shadcn-svelte components to your project")
 		.version(packageInfo.version || "0.0.0", "-v, --version", "display the version number");
 
-	program.addCommand(init).addCommand(add).addCommand(update);
+	// register commands
+	for (const cmd of Object.values(commands)) {
+		program.addCommand(cmd);
+	}
 
 	program.parse();
 }

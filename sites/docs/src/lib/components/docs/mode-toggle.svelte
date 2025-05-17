@@ -1,18 +1,18 @@
 <script lang="ts">
-	import Moon from "@lucide/svelte/icons/moon";
-	import Sun from "@lucide/svelte/icons/sun";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { resetMode, setMode } from "mode-watcher";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import { cn } from "$lib/utils.js";
 </script>
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={cn(buttonVariants({ variant: "ghost", class: "w-9 px-0" }))}>
-		<Sun
+		<SunIcon
 			class="dark:-roate-90 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:scale-0"
 		/>
-		<Moon
+		<MoonIcon
 			class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
 		/>
 		<span class="sr-only">Toggle theme</span>

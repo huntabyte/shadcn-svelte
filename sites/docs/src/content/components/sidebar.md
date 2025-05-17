@@ -216,11 +216,11 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
 <script lang="ts">
-  import Calendar from "@lucide/svelte/icons/calendar";
-  import House from "@lucide/svelte/icons/house";
-  import Inbox from "@lucide/svelte/icons/inbox";
-  import Search from "@lucide/svelte/icons/search";
-  import Settings from "@lucide/svelte/icons/settings";
+  import CalendarIcon from "@lucide/svelte/icons/calendar";
+  import HouseIcon from "@lucide/svelte/icons/house";
+  import InboxIcon from "@lucide/svelte/icons/inbox";
+  import SearchIcon from "@lucide/svelte/icons/search";
+  import SettingsIcon from "@lucide/svelte/icons/settings";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
   // Menu items.
@@ -228,27 +228,27 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
     {
       title: "Home",
       url: "#",
-      icon: House,
+      icon: HouseIcon,
     },
     {
       title: "Inbox",
       url: "#",
-      icon: Inbox,
+      icon: InboxIcon,
     },
     {
       title: "Calendar",
       url: "#",
-      icon: Calendar,
+      icon: CalendarIcon,
     },
     {
       title: "Search",
       url: "#",
-      icon: Search,
+      icon: SearchIcon,
     },
     {
       title: "Settings",
       url: "#",
-      icon: Settings,
+      icon: SettingsIcon,
     },
   ];
 </script>
@@ -463,7 +463,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content class="w-[--bits-dropdown-menu-anchor-width]">
+          <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
             <DropdownMenu.Item>
               <span>Acme Inc</span>
             </DropdownMenu.Item>
@@ -510,7 +510,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               side="top"
-              class="w-[--bits-dropdown-menu-anchor-width]"
+              class="w-(--bits-dropdown-menu-anchor-width)"
             >
               <DropdownMenu.Item>
                 <span>Account</span>

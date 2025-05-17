@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Check from "@lucide/svelte/icons/check";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { tick } from "svelte";
 	import { useId } from "bits-ui";
 	import type { Preset } from "../(data)/presets.js";
 	import { cn } from "$lib/utils.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 
 	let { presets }: { presets: Preset[] } = $props();
 
@@ -43,7 +43,7 @@
 		id={triggerId}
 	>
 		{selectedValue}
-		<ChevronsUpDown class="opacity-50" />
+		<ChevronsUpDownIcon class="opacity-50" />
 	</Popover.Trigger>
 	<Popover.Content class="w-full p-0 md:w-[200px] lg:w-[300px]">
 		<Command.Root>
@@ -61,7 +61,7 @@
 							}}
 						>
 							{preset.name}
-							<Check
+							<CheckIcon
 								class={cn(value === preset.name ? "opacity-100" : "opacity-0")}
 							/>
 						</Command.Item>

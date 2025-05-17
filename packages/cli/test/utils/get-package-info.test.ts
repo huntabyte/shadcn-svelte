@@ -1,0 +1,72 @@
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { getPackageInfo, loadProjectPackageInfo } from "../../src/utils/get-package-info";
+import { vol } from "memfs";
+import path from "node:path";
+
+vi.mock("node:path");
+vi.mock("node:url");
+vi.mock("node:fs");
+vi.mock("node:fs/promises");
+beforeEach(() => {
+	vol.reset();
+	vi.resetAllMocks();
+});
+
+describe("getPackageInfo", () => {
+	it("reads and parses package.json", () => {
+		const mockPackageJson = { name: "test-package", version: "1.0.0" };
+		vol.fromJSON(
+			{
+				"./package.json": JSON.stringify(mockPackageJson),
+			},
+			"/tmp"
+		);
+
+		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
+
+		const result = getPackageInfo();
+		expect(result).toEqual(mockPackageJson);
+	});
+
+	it("throws on invalid JSON", () => {
+		vol.fromJSON(
+			{
+				"./package.json": "invalid json",
+			},
+			"/tmp"
+		);
+		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
+
+		expect(() => getPackageInfo()).toThrow();
+	});
+});
+
+describe("loadProjectPackageInfo", () => {
+	it("reads and parses project package.json", () => {
+		const mockPackageJson = { name: "project-package", version: "1.0.0" };
+
+		vol.fromJSON(
+			{
+				"./package.json": JSON.stringify(mockPackageJson),
+			},
+			"/tmp"
+		);
+		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
+
+		const result = loadProjectPackageInfo("/tmp");
+		expect(result).toEqual(mockPackageJson);
+		expect(path.resolve).toHaveBeenCalledWith("/tmp", "package.json");
+	});
+
+	it("throws on invalid JSON", () => {
+		vol.fromJSON(
+			{
+				"./package.json": "invalid json",
+			},
+			"/tmp"
+		);
+		vi.mocked(path.resolve).mockReturnValue("/tmp/package.json");
+
+		expect(() => loadProjectPackageInfo("/tmp")).toThrow();
+	});
+});

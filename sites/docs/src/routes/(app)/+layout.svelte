@@ -1,15 +1,14 @@
 <script lang="ts">
 	import SiteFooter from "$lib/components/docs/site-footer.svelte";
 	import SiteHeader from "$lib/components/docs/site-header.svelte";
-	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
-	import { dev } from "$app/environment";
+
+	let { children } = $props();
 </script>
 
-<SiteHeader />
-<div class="flex-1">
-	<slot />
+<div data-wrapper="" class="border-grid flex flex-1 flex-col">
+	<SiteHeader />
+	<main class="flex flex-1 flex-col">
+		{@render children()}
+	</main>
+	<SiteFooter />
 </div>
-<SiteFooter />
-{#if dev}
-	<TailwindIndicator />
-{/if}

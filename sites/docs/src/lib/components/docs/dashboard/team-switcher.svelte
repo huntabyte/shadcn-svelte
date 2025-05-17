@@ -1,17 +1,17 @@
 <script lang="ts">
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import Check from "@lucide/svelte/icons/check";
-	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import { tick } from "svelte";
 	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
 
 	let { class: className, ..._restProps }: PrimitiveElementAttributes = $props();
 
@@ -103,7 +103,7 @@
 				<Avatar.Fallback>SC</Avatar.Fallback>
 			</Avatar.Root>
 			{selectedTeam.label}
-			<ChevronsUpDown class="ml-auto size-4 shrink-0 opacity-50" />
+			<ChevronsUpDownIcon class="ml-auto size-4 shrink-0 opacity-50" />
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
 			<Command.Root>
@@ -130,7 +130,7 @@
 										<Avatar.Fallback>SC</Avatar.Fallback>
 									</Avatar.Root>
 									{team.label}
-									<Check
+									<CheckIcon
 										class={cn(
 											"ml-auto size-4",
 											selectedTeam.value !== team.value && "text-transparent"
@@ -150,7 +150,7 @@
 								showTeamDialog = true;
 							}}
 						>
-							<CirclePlus class="mr-2 size-5" />
+							<CirclePlusIcon class="mr-2 size-5" />
 							Create Team
 						</Command.Item>
 					</Command.Group>

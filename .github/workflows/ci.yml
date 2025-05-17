@@ -58,5 +58,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build packages
+        run: pnpm build:cli
+
       - name: Run tests
         run: pnpm -F shadcn-svelte test

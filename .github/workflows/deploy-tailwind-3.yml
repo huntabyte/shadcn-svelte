@@ -1,0 +1,50 @@
+name: Tailwind 3 Deployment
+on:
+  push:
+    branches:
+      - next-tailwind-3
+    paths:
+      - sites/docs/**
+  workflow_dispatch:
+
+
+jobs:
+  deploy-production:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy Production Site to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # Image cache setup
+      - name: Setup Image cache
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules/.cache/imagetools"
+          key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build site
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: pnpm build
+
+      - name: Deploy to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: shadcn-svelte-tw-3
+          directory: ./.svelte-kit/cloudflare
+          workingDirectory: sites/docs
+          deploymentName: Production Tailwind 3

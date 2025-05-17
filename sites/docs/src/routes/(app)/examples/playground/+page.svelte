@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RotateCCW from "@lucide/svelte/icons/rotate-ccw";
+	import RotateCCWIcon from "@lucide/svelte/icons/rotate-ccw";
 	import {
 		CodeViewer,
 		MaxLengthSelector,
@@ -13,12 +13,12 @@
 	} from "./(components)/index.js";
 	import { models, types } from "./(data)/models.js";
 	import { presets } from "./(data)/presets.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
-	import * as HoverCard from "$lib/registry/new-york/ui/hover-card/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
 </script>
 
 <div class="md:hidden">
@@ -242,7 +242,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -262,7 +262,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW class="size-4" />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -295,7 +295,7 @@
 								<Button>Submit</Button>
 								<Button variant="secondary">
 									<span class="sr-only">Show history</span>
-									<RotateCCW class="size-4" />
+									<RotateCCWIcon class="size-4" />
 								</Button>
 							</div>
 						</div>

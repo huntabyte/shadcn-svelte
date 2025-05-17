@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Ellipsis from "@lucide/svelte/icons/ellipsis";
-	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import * as AlertDialog from "$lib/registry/new-york/ui/alert-dialog/index.js";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
+	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import * as AlertDialog from "$lib/registry/ui/alert-dialog/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
 
 	let open = $state(false);
 	let showDeleteDialog = $state(false);
@@ -14,7 +14,7 @@
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger class={buttonVariants({ variant: "secondary" })}>
 		<span class="sr-only">Actions</span>
-		<Ellipsis />
+		<EllipsisIcon />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
 		<DropdownMenu.Item onSelect={() => (open = true)}>

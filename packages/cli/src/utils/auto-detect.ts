@@ -2,45 +2,25 @@ import fs from "node:fs";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type TsConfigResult, getTsconfig } from "get-tsconfig";
-import { detect } from "package-manager-detector";
-import { AGENTS, type Agent } from "package-manager-detector";
-import * as p from "./prompts.js";
+import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
+import * as p from "@clack/prompts";
 import { cancel } from "./prompt-helpers.js";
 
-const STYLESHEETS = [
-	"app.css",
-	"app.pcss",
-	"app.postcss",
-	"main.css",
-	"main.pcss",
-	"main.postcss",
-	"globals.css",
-	"globals.pcss",
-	"globals.postcss",
-];
-const TAILWIND_CONFIGS = [
-	"tailwind.config.js",
-	"tailwind.config.cjs",
-	"tailwind.config.mjs",
-	"tailwind.config.ts",
-];
+const STYLESHEETS = ["app.css", "main.css", "globals.css"];
 
 // commonly ignored
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
-	let tailwindPath, cssPath;
+	let cssPath;
 	const paths = findFiles(cwd);
 	for (const filepath of paths) {
 		const filename = path.parse(filepath).base;
 		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
 			cssPath = config?.relative ? path.relative(cwd, filepath) : filepath;
 		}
-		if (tailwindPath === undefined && TAILWIND_CONFIGS.includes(filename)) {
-			tailwindPath = config?.relative ? path.relative(cwd, filepath) : filepath;
-		}
 	}
-	return { tailwindPath, cssPath };
+	return { cssPath };
 }
 
 /**
@@ -96,28 +76,27 @@ export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
 	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
 }
 
+const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];
 type Options = Array<{ value: Agent | undefined; label: Agent | "None" }>;
 export async function detectPM(cwd: string, prompt: boolean): Promise<Agent | undefined> {
-	const detectResult = await detect({ cwd });
+	const agent = (await detect({ cwd }))?.agent;
 
-	let agent: Agent | undefined;
-	if (detectResult != null) {
-		agent = detectResult.agent;
-	} else if (detectResult == null && prompt) {
-		// prompt for package manager
-		const options: Options = AGENTS.filter((agent) => !agent.includes("@")).map((pm) => ({
-			value: pm,
-			label: pm,
-		}));
+	// prompt for package manager
+	if (!agent && prompt) {
+		const options: Options = AGENT_NAMES.map((pm) => ({ value: pm, label: pm }));
 		options.unshift({ label: "None", value: undefined });
 
-		const res = await p.select({
-			message: "Which package manager do you want to use?",
+		const userAgent = getUserAgent() ?? undefined; // replaces `null` for `undefined`
+		const pm = await p.select({
 			options,
+			initialValue: userAgent,
+			message: "Which package manager do you want to use?",
 		});
-		if (p.isCancel(res)) cancel();
+		if (p.isCancel(pm)) {
+			cancel();
+		}
 
-		agent = res;
+		return pm;
 	}
 
 	return agent;

@@ -3,7 +3,7 @@ title: Avatar
 description: An image element with a fallback for representing the user.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/avatar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/avatar
   doc: https://bits-ui.com/docs/components/avatar
   api: https://bits-ui.com/docs/components/avatar#api-reference
 ---
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
 <PMInstall command="bits-ui -D" />
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>
