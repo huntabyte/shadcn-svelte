@@ -35,6 +35,8 @@ You can see the JSON Schema for `components.json` [here](https://next.shadcn-sve
 
 ## style
 
+_Deprecated in Tailwind v4 as all projects use `new-york`_
+
 The style for your components. **This cannot be changed after initialization.**
 
 ```json title="components.json"
@@ -85,6 +87,18 @@ The CLI uses these values and the `alias` config from your `svelte.config.js` fi
 
 Path aliases have to be set up in your `svelte.config.js` file.
 
+### aliases.lib
+
+Import alias for your library, which is _typically_ where you store your components, utils, hooks, etc.
+
+```json title="components.json"
+{
+  "aliases": {
+    "lib": "$lib"
+  }
+}
+```
+
 ### aliases.utils
 
 Import alias for your utility functions.
@@ -109,6 +123,30 @@ Import alias for your components.
 }
 ```
 
+### aliases.ui
+
+Import alias for your UI components.
+
+```json title="components.json"
+{
+  "aliases": {
+    "ui": "$lib/components/ui"
+  }
+}
+```
+
+### aliases.hooks
+
+Import alias for your hooks, which in Svelte 5 are reactive functions/classes whose files typically end in `.svelte.ts` or `.svelte.js`.
+
+```json title="components.json"
+{
+  "aliases": {
+    "hooks": "$lib/hooks"
+  }
+}
+```
+
 ## Typescript
 
 ```json title="components.json"
@@ -119,7 +157,7 @@ Import alias for your components.
 
 ## Registry
 
-The registry URL tells the CLI where to fetch the components/registry from. You can pin this to a specific preview release or your own fork.
+The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.
 
 ```json title="components.json"
 {
