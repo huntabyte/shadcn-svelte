@@ -2,11 +2,11 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import {
 	resolveDepsFromImport,
 	IGNORE_DEPS,
-	type ResolvedDependencies,
-	ProjectDependencies,
 	resolvePeerVersions,
 	resolveTypeDeps,
 	getFileDependencies,
+	type ResolvedDependencies,
+	type ProjectDependencies,
 } from "../../src/commands/registry/deps-resolver.js";
 
 vi.mock("node:fs");

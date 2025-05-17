@@ -1,4 +1,4 @@
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 import { getConfig } from "../../src/utils/get-config";
 
 export function toPosixPath(p: string) {
