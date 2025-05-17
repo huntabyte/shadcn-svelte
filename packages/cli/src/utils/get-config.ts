@@ -179,6 +179,6 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 
 export function writeConfig(cwd: string, config: RawConfig): void {
 	const targetPath = path.resolve(cwd, "components.json");
-	const conf = newConfigSchema.parse(config);
+	const conf = newConfigSchema.parse(config, { jitless: true }); // `jitless` to retain the property order
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }

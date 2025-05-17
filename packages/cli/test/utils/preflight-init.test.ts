@@ -27,7 +27,7 @@ describe("preflightInit", () => {
 				`${highlight("init")} command.\n\n` +
 				`You have two options:\n` +
 				`1. Update Tailwind CSS to v4 and try again.\n` +
-				`2. Use ${highlight("shadcn-svelte@1.0.0-next.9")} that supports initializing projects with Tailwind v3.\n\n` +
+				`2. Use ${highlight("shadcn-svelte@1.0.0-next.10")} that supports initializing projects with Tailwind v3.\n\n` +
 				`References:\n` +
 				`Tailwind v4 Guide: ${color.underline(`${SITE_BASE_URL}/docs/migration/tailwind-v4`)}\n` +
 				`Legacy Tailwind v3 Docs: ${color.underline(`${TW3_SITE_BASE_URL}/docs`)}\n\n`
