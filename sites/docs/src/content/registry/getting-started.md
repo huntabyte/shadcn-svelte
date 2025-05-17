@@ -11,7 +11,7 @@ This guide will walk you through the process of setting up your own component re
 
 It assumes you already have a project with components and would like to turn it into a registry.
 
-If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/registry-template) as a starting point. We have already configured it for you.
+If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/tree/next-tailwind-4/registry-template) as a starting point. It's already configured for you.
 
 ## registry.json
 
@@ -98,7 +98,7 @@ To add your component to the registry, you need to add your component definition
       "description": "A simple hello world component.",
       "files": [
         {
-          "path": "registry/hello-world/hello-world.svelte",
+          "path": "./src/lib/hello-world/hello-world.svelte",
           "type": "registry:component"
         }
       ]
@@ -183,11 +183,8 @@ Use the secure token to authenticate requests and return a 401 Unauthorized resp
 
 Here are some guidelines to follow when building components for a registry.
 
-- Place your registry item in the `registry/[NAME]` directory. It can be anything you want as long as it's nested under the `registry` directory.
 - The following properties are required for the block definition: `name`, `description`, `type` and `files`.
-- Make sure to list all registry dependencies in `registryDependencies`. A registry dependency is the name of the component in the registry eg. `input`, `button`, `card`, etc or a URL to a registry item eg. `http://localhost:5173/r/editor.json`.
-- Make sure to list all dependencies in `dependencies`. A dependency is the name of the package in the registry eg. `zod`, `sonner`, etc. To set a version, you can use the `name@version` format eg. `zod@^3.20.0`.
-- **Imports should always use the `$lib/registry` path.** eg. `import HelloWorld from "$lib/registry/hello-world/hello-world.svelte"`
+- Make sure to list all registry dependencies in `registryDependencies`. A registry dependency is the name of the component in the registry eg. `input`, `button`, `card`, etc or a URL to a registry item eg. `http://localhost:5173/r/editor.json`
 - Ideally, place your files within a registry item in `components`, `hooks`, `lib` directories.
 
 ## Install using the CLI
