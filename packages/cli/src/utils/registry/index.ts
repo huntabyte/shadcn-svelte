@@ -87,7 +87,7 @@ export async function resolveRegistryItems({
 				remoteUrl = resolvedUrl;
 			} else {
 				throw error(
-					`Component item '${item}' does not exist in the registry, nor is it a valid URL/local:registryDep..`
+					`Component item '${item}' does not exist in the registry, nor is it a valid URL/local:registryDep.`
 				);
 			}
 		}

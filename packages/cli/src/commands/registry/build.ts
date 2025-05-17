@@ -163,20 +163,20 @@ async function runBuild(options: BuildOptions) {
 
 				const dependencies = new Set(item.dependencies);
 				const devDependencies = new Set(item.devDependencies);
-				/**
-				 * Transforms registryDependencies that start with `local:` into a relative path
-				 * that points to the registry json file.
-				 *
-				 * ```
-				 * "local:stepper"
-				 *```
-				 * transforms into:
-				 * ```
-				 * "./stepper.json"
-				 * ```
-				 */
 
 				const registryDependencies = new Set(
+					/**
+					 * Transforms registryDependencies that start with `local:` into a path
+					 * relative to the current registry-item's json file.
+					 *
+					 * ```
+					 * "local:stepper"
+					 *```
+					 * transforms into:
+					 * ```
+					 * "./stepper.json"
+					 * ```
+					 */
 					item.registryDependencies.map((registryDep) => {
 						if (registryDep.startsWith("local:")) {
 							return registryDep.replace(LOCAL_REGEX, "./$1.json");
