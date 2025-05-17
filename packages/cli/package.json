@@ -37,7 +37,6 @@
 		"test": "pnpm -w build:registry-template && vitest"
 	},
 	"dependencies": {
-		"@svecosystem/strip-types": "^0.0.2",
 		"commander": "^13.1.0",
 		"node-fetch-native": "^1.6.4",
 		"postcss": "^8.4.39"
@@ -45,6 +44,7 @@
 	"devDependencies": {
 		"@clack/prompts": "^1.0.0-alpha.0",
 		"@shadcn-svelte/registry": "workspace:*",
+		"@svecosystem/strip-types": "^0.0.2",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@types/node": "^18.19.22",
 		"@types/semver": "^7.5.8",
