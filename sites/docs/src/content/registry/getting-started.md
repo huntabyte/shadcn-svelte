@@ -147,7 +147,7 @@ Run the build script to generate the registry JSON files.
 
 **Note:** By default, the build script will generate the registry JSON files in `static/r` e.g `static/r/hello-world.json`.
 
-You can change the output directory by passing the `--output` option. See the [shadcn-svelte registry build command](/docs/cli#build) for more information.
+You can change the output directory by passing the `--output` option. See the [shadcn-svelte registry build command](/docs/cli#registry-build) for more information.
 
 </Callout>
 

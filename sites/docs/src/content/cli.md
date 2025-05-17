@@ -93,9 +93,9 @@ Options:
   -h, --help         display help for command
 ```
 
-## build
+## registry build
 
-Use the `build` command to generate the registry JSON files.
+Use the `registry build` command to generate the registry JSON files.
 
 <PMExecute command="shadcn-svelte@next registry build [registry.json]" />
 
