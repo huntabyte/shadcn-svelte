@@ -136,10 +136,11 @@ Use `@version` to specify the version of your registry item.
 
 ### registryDependencies
 
-Used for registry dependencies. Can be names or URLs. Use the name of the item to reference shadcn/ui components and urls to reference other registries.
+Specifies the registry dependencies of the registry item, which can be one of the following:
 
-- For `shadcn-svelte` registry items such as `button`, `input`, `select`, etc use the name eg. `['button', 'input', 'select']`.
-- For custom registry items use the URL of the registry item eg. `['https://example.com/r/hello-world.json']`.
+- A name eg. `['button', 'input', 'select']` - which will resolve to the component in the shadcn-svelte registry
+- A URL to a custom registry item eg. `['https://example.com/r/hello-world.json']`
+- A name prefixed with `local:` eg. `local:stepper` - which will resolve to a component in the current registry
 
 ```json title="registry-item.json" showLineNumbers
 {
@@ -147,7 +148,8 @@ Used for registry dependencies. Can be names or URLs. Use the name of the item t
     "button",
     "input",
     "select",
-    "https://example.com/r/editor.json"
+    "https://example.com/r/editor.json",
+    "local:stepper"
   ]
 }
 ```
