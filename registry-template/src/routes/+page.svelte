@@ -11,7 +11,9 @@
 <div class="mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-8">
 	<header class="flex flex-col gap-1">
 		<h1 class="text-3xl font-bold tracking-tight">Custom Registry</h1>
-		<p class="text-muted-foreground">A custom registry for distributing code using shadcn.</p>
+		<p class="text-muted-foreground">
+			A custom registry for distributing code using shadcn-svelte.
+		</p>
 	</header>
 	<main class="flex flex-1 flex-col gap-8">
 		<div class="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
