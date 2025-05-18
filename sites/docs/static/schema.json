@@ -60,7 +60,7 @@
 			"type": "string"
 		},
 		"typescript": {
-			"description": "Used to determine if Typescript is used for this project. If set to `false`, `.js` files will be installed instead. Defaults to `true`. ",
+			"description": "Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`. ",
 			"type": "boolean"
 		}
 	},

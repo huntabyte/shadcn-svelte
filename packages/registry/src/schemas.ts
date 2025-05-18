@@ -263,6 +263,6 @@ export const componentsJsonSchema = z.object({
 		.boolean()
 		.optional()
 		.describe(
-			"Used to determine if Typescript is used for this project. If set to `false`, `.js` files will be installed instead. Defaults to `true`. "
+			"Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`. "
 		),
 });
