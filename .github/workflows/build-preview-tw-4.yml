@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-preview-tw-4:
-    if: github.head_ref == 'next-tailwind-4' || github.base_ref == 'next-tailwind-4'
+    if: github.head_ref == 'next' || github.base_ref == 'next'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
