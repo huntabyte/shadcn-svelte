@@ -37,7 +37,7 @@
 				value="visitors"
 				c="color"
 				innerRadius={60}
-				padding={29}
+				padding={28}
 				props={{ pie: { motion: "tween" } }}
 			>
 				{#snippet aboveMarks()}

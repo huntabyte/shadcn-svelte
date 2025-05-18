@@ -50,7 +50,7 @@
 	<div class="ml-auto flex items-center gap-2 [&>form]:flex">
 		<ChartCopyButton
 			code={chart.files?.[0]?.content ?? ""}
-			class="[&_svg]-h-3 text-foreground hover:bg-muted dark:text-foreground h-6 w-6 rounded-[6px] bg-transparent shadow-none [&_svg]:w-3"
+			class="text-foreground hover:bg-muted dark:text-foreground size-6 rounded-[6px] bg-transparent shadow-none [&_svg]:!size-3"
 		/>
 		<Separator orientation="vertical" class="mx-0 hidden !h-4 md:flex" />
 		<ChartCodeViewer {chart}>{@render children?.()}</ChartCodeViewer>

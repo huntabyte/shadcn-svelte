@@ -27,7 +27,7 @@
 				{...props}
 				class="text-foreground hover:bg-muted dark:text-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs shadow-none"
 			>
-				Open
+				View Code
 			</Button>
 		{/snippet}
 	</Sheet.Trigger>
