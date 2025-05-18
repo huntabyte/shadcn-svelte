@@ -361,15 +361,14 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	tasks.push(...result.tasks);
 
-	const installTask = await installDependencies({
+	await p.tasks(tasks);
+
+	await installDependencies({
 		cwd,
 		prompt: options.deps,
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 	});
-	if (installTask) tasks.push(installTask);
-
-	await p.tasks(tasks);
 
 	if (!options.deps) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);

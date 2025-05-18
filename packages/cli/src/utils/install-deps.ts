@@ -1,11 +1,11 @@
 import semver from "semver";
+import * as p from "@clack/prompts";
 import { detectPM } from "./auto-detect.js";
 import { loadProjectPackageInfo } from "./get-package-info.js";
-import { highlight, parseDependency } from "./utils.js";
+import { parseDependency } from "./utils.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
 import { error } from "./errors.js";
-import type { Task } from "@clack/prompts";
 
 type InstallOptions = {
 	dependencies: string[];
@@ -18,7 +18,7 @@ export async function installDependencies({
 	prompt,
 	dependencies,
 	devDependencies,
-}: InstallOptions): Promise<Task | undefined> {
+}: InstallOptions): Promise<void> {
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
 
@@ -41,23 +41,36 @@ export async function installDependencies({
 	const addDeps = resolveCommand(pm, "add", deps);
 
 	if (!addDevDeps || !addDeps) throw error(`Could not detect a package manager in ${cwd}.`);
-	return {
-		title: `${highlight(pm)}: Installing dependencies`,
-		enabled: deps.length > 0 || devDeps.length > 0,
-		async task() {
-			if (deps.length > 0) {
-				await exec(addDeps.command, addDeps.args, {
-					throwOnError: true,
-					nodeOptions: { cwd },
-				});
-			}
-			if (devDeps.length > 0) {
-				await exec(addDevDeps.command, addDevDeps.args, {
-					throwOnError: true,
-					nodeOptions: { cwd },
-				});
-			}
-			return `Dependencies installed with ${highlight(pm)}`;
-		},
+
+	const task = p.taskLog({
+		title: `Installing dependencies with ${pm}...`,
+		limit: Math.ceil(process.stdout.rows / 2),
+		spacing: 0,
+		retainLog: true,
+	});
+
+	const install = (cmd: string, args: string[]) => {
+		const proc = exec(cmd, args, { throwOnError: true, nodeOptions: { cwd } });
+
+		proc.process?.stdout?.on("data", (data) => task.message(data.toString(), { raw: true }));
+		proc.process?.stderr?.on("data", (data) => task.message(data.toString(), { raw: true }));
+
+		return proc;
 	};
+
+	try {
+		if (deps.length > 0) {
+			await install(addDeps.command, addDeps.args);
+		}
+
+		if (devDeps.length > 0) {
+			await install(addDevDeps.command, addDevDeps.args);
+		}
+
+		task.success("Successfully installed dependencies");
+	} catch {
+		task.error("Failed to install dependencies");
+		p.cancel("Operation failed.");
+		process.exit(2);
+	}
 }

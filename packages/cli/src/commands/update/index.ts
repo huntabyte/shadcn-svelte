@@ -226,14 +226,6 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 		});
 	}
 
-	const installTask = await installDependencies({
-		cwd,
-		dependencies: Array.from(dependencies),
-		devDependencies: Array.from(devDependencies),
-		prompt: true,
-	});
-	if (installTask) tasks.push(installTask);
-
 	// Update the config
 	tasks.push({
 		title: "Updating config file",
@@ -261,6 +253,13 @@ async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateO
 	}
 
 	await p.tasks(tasks);
+
+	await installDependencies({
+		cwd,
+		dependencies: Array.from(dependencies),
+		devDependencies: Array.from(devDependencies),
+		prompt: true,
+	});
 
 	for (const [component, files] of Object.entries(componentsToRemove)) {
 		p.log.warn(
