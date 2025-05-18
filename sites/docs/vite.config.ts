@@ -7,7 +7,7 @@ import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
-import { registrySchema, registryItemSchema } from "@shadcn-svelte/registry";
+import { registrySchema, registryItemSchema, componentsJsonSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 
 // don't build when we're running `vite preview`
@@ -51,16 +51,24 @@ export default defineConfig({
 });
 
 function writeJsonSchemas() {
-	const registry = toJSONSchema(registrySchema);
-	const registryItem = toJSONSchema(registryItemSchema);
 	const schemaDir = path.resolve("static", "schema");
 	if (!fs.existsSync(schemaDir)) {
 		fs.mkdirSync(schemaDir, { recursive: true });
 	}
+
+	const componentsJSON = toJSONSchema(componentsJsonSchema);
+	fs.writeFileSync(
+		path.resolve("static", "schema.json"),
+		JSON.stringify(componentsJSON, null, "\t")
+	);
+
+	const registry = toJSONSchema(registrySchema);
 	fs.writeFileSync(
 		path.resolve(schemaDir, "registry.json"),
 		JSON.stringify(registry, null, "\t")
 	);
+
+	const registryItem = toJSONSchema(registryItemSchema);
 	fs.writeFileSync(
 		path.resolve(schemaDir, "registry-item.json"),
 		JSON.stringify(registryItem, null, "\t")

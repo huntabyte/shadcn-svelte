@@ -207,9 +207,10 @@ export const Index = {`;
 	// ----------------------------------------------------------------------------
 
 	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
-	writeFileWithDirs(
-		path.resolve("src", "styles", "old-themes.css"),
-		themeCSS.join("\n\n"),
-		"utf-8"
-	);
+	const oldThemesPath = path.resolve("src", "styles", "old-themes.css");
+	const oldThemes = await prettier.format(themeCSS.join("\n\n"), {
+		...prettierConfig,
+		filepath: oldThemesPath,
+	});
+	writeFileWithDirs(oldThemesPath, oldThemes, "utf-8");
 }
