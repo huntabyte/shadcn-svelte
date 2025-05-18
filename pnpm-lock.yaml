@@ -393,12 +393,6 @@ importers:
       svelte-check:
         specifier: ^4.2.1
         version: 4.2.1(picomatch@4.0.2)(svelte@5.28.2)(typescript@5.8.3)
-      svelte-local-storage-store:
-        specifier: ^0.6.4
-        version: 0.6.4(svelte@5.28.2)
-      svelte-persisted-store:
-        specifier: ^0.11.0
-        version: 0.11.0(svelte@5.28.2)
       svelte-sonner:
         specifier: ^1.0.1
         version: 1.0.1(svelte@5.28.2)
@@ -4628,18 +4622,6 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
-
-  svelte-local-storage-store@0.6.4:
-    resolution: {integrity: sha512-45WoY2vSGPQM1sIQJ9jTkPPj20hYeqm+af6mUGRFSPP5WglZf36YYoZqwmZZ8Dt/2SU8lem+BTA8/Z/8TkqNLg==}
-    engines: {node: '>=0.14'}
-    peerDependencies:
-      svelte: ^3.48.0 || >4.0.0
-
-  svelte-persisted-store@0.11.0:
-    resolution: {integrity: sha512-9RgJ5DrawGyyfK22A80cfu8Jose3CV8YjEZKz9Tn94rQ0tWyEmYr+XI+wrVF6wjRbW99JMDSVcFRiM3XzVJj/w==}
-    engines: {node: '>=0.14'}
-    peerDependencies:
-      svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
 
   svelte-sonner@1.0.1:
     resolution: {integrity: sha512-vz0eqcs9GNnJ2CTtTno7v/jSA0P3r+X+3y/hrJg+FPpB2rZCFywIKNKD3wiRI8449i3LXVcgQ+q5R5ocOd6ydA==}
@@ -9833,14 +9815,6 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.3)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
-      svelte: 5.28.2
-
-  svelte-local-storage-store@0.6.4(svelte@5.28.2):
-    dependencies:
-      svelte: 5.28.2
-
-  svelte-persisted-store@0.11.0(svelte@5.28.2):
-    dependencies:
       svelte: 5.28.2
 
   svelte-sonner@1.0.1(svelte@5.28.2):
