@@ -46,7 +46,8 @@
 			} else if (
 				level === 3 &&
 				currentLevel?.items &&
-				!heading.hasAttribute("data-toc-ignore")
+				!heading.hasAttribute("data-toc-ignore") &&
+				!heading.closest("[data-manual-install]")
 			) {
 				currentLevel.items.push(item);
 			}
