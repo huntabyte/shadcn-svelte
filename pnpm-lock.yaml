@@ -306,12 +306,6 @@ importers:
       '@types/node':
         specifier: ^20.14.10
         version: 20.17.27
-      '@unovis/svelte':
-        specifier: 1.4.3
-        version: 1.4.3(@unovis/ts@1.4.3)(svelte@5.28.2)
-      '@unovis/ts':
-        specifier: 1.4.3
-        version: 1.4.3
       acorn:
         specifier: ^8.13.0
         version: 8.14.1

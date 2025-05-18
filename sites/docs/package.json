@@ -47,8 +47,6 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^20.14.10",
-		"@unovis/svelte": "1.4.3",
-		"@unovis/ts": "1.4.3",
 		"acorn": "^8.13.0",
 		"bits-ui": "^1.4.7",
 		"clsx": "^2.1.1",

@@ -8,6 +8,7 @@
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
+	import TmpManualTheme from "./tmp-manual-theme.svelte";
 
 	let tab = $state("code");
 
@@ -84,13 +85,13 @@
 				value="theme"
 				class="h-full flex-1 flex-col overflow-hidden data-[state=active]:flex"
 			>
-				<div
-					data-rehype-pretty-code-fragment
-					class="relative overflow-auto rounded-lg bg-black py-6"
-				>
-					<pre class="bg-black font-mono text-sm leading-relaxed">
-						<code data-line-numbers=""></code>
-					</pre>
+				<div class="relative overflow-auto rounded-lg bg-black">
+					<div
+						data-rehype-pretty-code-fragment
+						class="w-full overflow-hidden [&_pre]:overflow-auto [&_pre]:!bg-black [&_pre]:py-6 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed"
+					>
+						<TmpManualTheme />
+					</div>
 				</div>
 			</Tabs.Content>
 		</Tabs.Root>
