@@ -1,11 +1,12 @@
 <script lang="ts">
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import PaypalIcon from "$lib/components/docs/icons/paypal.svelte";
+	import AppleIcon from "$lib/components/docs/icons/apple.svelte";
 
 	const months = [
 		{
@@ -95,7 +96,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="paypal" id="paypal" class="sr-only" aria-label="Paypal" />
-				<Icon.PayPal class="mb-3 size-6" />
+				<PaypalIcon class="mb-3 size-6" />
 				Paypal
 			</Label>
 			<Label
@@ -103,7 +104,7 @@
 				class="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4"
 			>
 				<RadioGroup.Item value="apple" id="apple" class="sr-only" aria-label="Apple" />
-				<Icon.Apple class="mb-3 size-6" />
+				<AppleIcon class="mb-3 size-6" />
 				Apple
 			</Label>
 		</RadioGroup.Root>

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Icon from "$lib/components/docs/icons/index.js";
 	import CommandMenu from "$lib/components/docs/command-menu.svelte";
 	import MainNav from "$lib/components/docs/nav/main-nav.svelte";
 	import MobileNav from "$lib/components/docs/nav/mobile-nav.svelte";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import ModeSwitcher from "$lib/components/docs/mode-switcher.svelte";
+	import GitHubIcon from "$lib/components/docs/icons/github.svelte";
 </script>
 
 <header
@@ -23,12 +23,12 @@
 					<Button
 						variant="ghost"
 						size="icon"
-						class="h-8 w-8 px-0"
+						class="size-8 px-0"
 						href={siteConfig.links.github}
 						target="_blank"
 						rel="noreferrer"
 					>
-						<Icon.GitHub class="h-4 w-4" />
+						<GitHubIcon class="size-4" />
 						<span class="sr-only">GitHub</span>
 					</Button>
 					<ModeSwitcher />
