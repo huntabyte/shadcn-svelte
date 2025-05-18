@@ -319,10 +319,10 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       embla-carousel-autoplay:
-        specifier: 8.6.0
+        specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-svelte:
-        specifier: 8.6.0
+        specifier: ^8.6.0
         version: 8.6.0(svelte@5.28.2)
       estree-walker:
         specifier: ^3.0.3
