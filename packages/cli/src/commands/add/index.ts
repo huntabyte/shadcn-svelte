@@ -127,15 +127,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	tasks.push(...result.tasks);
 
-	const installTask = await installDependencies({
+	await p.tasks(tasks);
+
+	await installDependencies({
 		cwd,
 		prompt: options.deps,
 		dependencies: Array.from(result.dependencies),
 		devDependencies: Array.from(result.devDependencies),
 	});
-	if (installTask) tasks.push(installTask);
-
-	await p.tasks(tasks);
 
 	if (!options.deps) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
