@@ -14,7 +14,6 @@
 	const emblaCtx = getEmblaContext("<Carousel.Content/>");
 </script>
 
-<!-- svelte-ignore event_directive_deprecated -->
 <div
 	data-slot="carousel-content"
 	class="overflow-hidden"
@@ -27,7 +26,7 @@
 		},
 		plugins: emblaCtx.plugins,
 	}}
-	on:emblaInit={emblaCtx.onInit}
+	onemblaInit={emblaCtx.onInit}
 >
 	<div
 		bind:this={ref}
