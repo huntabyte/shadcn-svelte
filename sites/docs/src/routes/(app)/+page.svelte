@@ -31,16 +31,8 @@
 			class="bg-background overflow-hidden rounded-lg border shadow-md md:hidden md:shadow-xl"
 		>
 			<div class="md:hidden">
-				<enhanced:img
-					src="$lib/img/examples/cards-light.png"
-					alt="cards"
-					class="block dark:hidden"
-				></enhanced:img>
-				<enhanced:img
-					src="$lib/img/examples/cards-dark.png"
-					alt="cards"
-					class="hidden dark:block"
-				></enhanced:img>
+				<img src="/img/examples/cards-light.png" alt="cards" class="block dark:hidden" />
+				<img src="/img/examples/cards-dark.png" alt="cards" class="hidden dark:block" />
 			</div>
 		</section>
 		<section class="hidden md:block [&>div]:p-0" style="--radius: 0.75rem;">

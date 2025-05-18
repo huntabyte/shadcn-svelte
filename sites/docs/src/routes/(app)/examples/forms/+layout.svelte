@@ -30,14 +30,14 @@
 
 <div class="md:hidden">
 	<img
-		src="/examples/forms-light.png"
+		src="/img/examples/forms-light.png"
 		width={1280}
 		height={791}
 		alt="Forms"
 		class="block dark:hidden"
 	/>
 	<img
-		src="/examples/forms-dark.png"
+		src="/img/examples/forms-dark.png"
 		width={1280}
 		height={791}
 		alt="Forms"
