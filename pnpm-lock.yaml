@@ -307,8 +307,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: ^1.4.7
-        version: 1.4.8(svelte@5.28.2)
+        specifier: ^1.5.0
+        version: 1.5.0(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -328,8 +328,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       formsnap:
-        specifier: 2.0.0
-        version: 2.0.0(svelte@5.28.2)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2))
+        specifier: ^2.0.1
+        version: 2.0.1(svelte@5.28.2)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2))
       globby:
         specifier: ^14.1.0
         version: 14.1.0
@@ -451,8 +451,8 @@ importers:
         specifier: ^3.5.6
         version: 3.5.6
       svelte-sonner:
-        specifier: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73
-        version: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2)
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@5.28.2)
     devDependencies:
       '@layerstack/utils':
         specifier: ^1.0.0
@@ -497,8 +497,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: ^1.4.6
-        version: 1.4.8(svelte@5.28.2)
+        specifier: ^1.5.0
+        version: 1.5.0(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2445,6 +2445,12 @@ packages:
     peerDependencies:
       svelte: ^5.11.0
 
+  bits-ui@1.5.0:
+    resolution: {integrity: sha512-53hxHPohzwgnUYlFwklFu9ESB7KbH2Kb0ekk8Y5CPLRNpnZj26kH3sfV+4MFkC3g5oIztLqAtgYlg0sSbIcZzQ==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.11.0
+
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
 
@@ -3164,13 +3170,6 @@ packages:
   foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
     engines: {node: '>=14'}
-
-  formsnap@2.0.0:
-    resolution: {integrity: sha512-W61elddvdzeBEs10nNvwxQnx/FctJFHBXPk9uluNQAckHo1nuSUvSQGIjtLjTKIbQdQnwEOoxqWrk9tuv0U7hA==}
-    engines: {node: '>=18', pnpm: '>=8.7.0'}
-    peerDependencies:
-      svelte: ^5.0.0
-      sveltekit-superforms: ^2.19.0
 
   formsnap@2.0.1:
     resolution: {integrity: sha512-iJSe4YKd/W6WhLwKDVJU9FQeaJRpEFuolhju7ZXlRpUVyDdqFdMP8AUBICgnVvQPyP41IPAlBa/v0Eo35iE6wQ==}
@@ -4625,12 +4624,6 @@ packages:
 
   svelte-sonner@1.0.1:
     resolution: {integrity: sha512-vz0eqcs9GNnJ2CTtTno7v/jSA0P3r+X+3y/hrJg+FPpB2rZCFywIKNKD3wiRI8449i3LXVcgQ+q5R5ocOd6ydA==}
-    peerDependencies:
-      svelte: ^5.0.0
-
-  svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73:
-    resolution: {tarball: https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73}
-    version: 0.3.26
     peerDependencies:
       svelte: ^5.0.0
 
@@ -7128,6 +7121,17 @@ snapshots:
       svelte-toolbelt: 0.7.1(svelte@5.28.2)
       tabbable: 6.2.0
 
+  bits-ui@1.5.0(svelte@5.28.2):
+    dependencies:
+      '@floating-ui/core': 1.7.0
+      '@floating-ui/dom': 1.7.0
+      '@internationalized/date': 3.5.6
+      esm-env: 1.2.2
+      runed: 0.23.4(svelte@5.28.2)
+      svelte: 5.28.2
+      svelte-toolbelt: 0.7.1(svelte@5.28.2)
+      tabbable: 6.2.0
+
   blake3-wasm@2.1.5: {}
 
   brace-expansion@1.1.11:
@@ -7935,7 +7939,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  formsnap@2.0.0(svelte@5.28.2)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2)):
+  formsnap@2.0.1(svelte@5.28.2)(sveltekit-superforms@2.19.1(@sveltejs/kit@2.20.8(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(svelte@5.28.2)(vite@6.3.5(@types/node@20.17.27)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.2)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.28.2)):
     dependencies:
       svelte: 5.28.2
       svelte-toolbelt: 0.5.0(svelte@5.28.2)
@@ -9820,10 +9824,6 @@ snapshots:
   svelte-sonner@1.0.1(svelte@5.28.2):
     dependencies:
       runed: 0.26.0(svelte@5.28.2)
-      svelte: 5.28.2
-
-  svelte-sonner@https://pkg.pr.new/wobsoriano/svelte-sonner/svelte-sonner@f25fb37b0191540f9d896521aa729edd9c0c8a73(svelte@5.28.2):
-    dependencies:
       svelte: 5.28.2
 
   svelte-toolbelt@0.5.0(svelte@5.28.2):
