@@ -18,6 +18,10 @@
 				"baseColor": {
 					"description": "Used to generate the default color palette for your components. This cannot be changed after initialization.",
 					"type": "string"
+				},
+				"config": {
+					"description": "DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file.",
+					"type": "string"
 				}
 			},
 			"required": [

@@ -220,6 +220,21 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		componentAlias = promptResult;
 	}
 
+	// UI Alias
+	let uiAlias = options.uiAlias;
+	if (uiAlias === undefined) {
+		const input = await p.text({
+			message: `Configure the import alias for ${highlight("ui")}:`,
+			initialValue: defaultConfig?.aliases.ui ?? `${componentAlias}/ui`,
+			placeholder: cliConfig.DEFAULT_UI,
+			validate: (value) => validateImportAlias(value, langConfig),
+		});
+
+		if (p.isCancel(input)) cancel();
+
+		uiAlias = input;
+	}
+
 	// Utils Alias
 	let utilsAlias = options.utilsAlias;
 	if (utilsAlias === undefined) {
@@ -248,21 +263,6 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		if (p.isCancel(input)) cancel();
 
 		hooksAlias = input;
-	}
-
-	// UI Alias
-	let uiAlias = options.uiAlias;
-	if (uiAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("ui")}:`,
-			initialValue: defaultConfig?.aliases.ui ?? `${componentAlias}/ui`,
-			placeholder: cliConfig.DEFAULT_UI,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		uiAlias = input;
 	}
 
 	const config = cliConfig.rawConfigSchema.parse({

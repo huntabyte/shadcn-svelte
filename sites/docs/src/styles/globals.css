@@ -116,6 +116,7 @@
 	--font-mono: "Geist Mono", monospace;
 	--animate-accordion-up: accordion-up 0.2s ease-out;
 	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-caret-blink: caret-blink 1.25s ease-out infinite;
 }
 
 @layer base {
@@ -198,6 +199,19 @@
 
 	to {
 		height: 0;
+	}
+}
+
+@keyframes caret-blink {
+	0%,
+	70%,
+	100% {
+		opacity: 1;
+	}
+
+	20%,
+	50% {
+		opacity: 0;
 	}
 }
 
@@ -344,10 +358,4 @@
 
 .super-debug--code .boolean {
 	color: #fff8 !important;
-}
-
-.vis-xy-container {
-	--vis-tooltip-padding: "0px";
-	--vis-tooltip-background-color: "transparent";
-	--vis-tooltip-border-color: "transparent";
 }
