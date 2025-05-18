@@ -106,7 +106,7 @@ Import alias for your utility functions.
 ```json title="components.json"
 {
   "aliases": {
-    "utils": "$lib/utils.js"
+    "utils": "$lib/utils"
   }
 }
 ```

@@ -210,3 +210,59 @@ export const registrySchema = z.object({
 		.array()
 		.describe("Defines a custom component registry."),
 });
+
+/** Schema for a project's `components.json` config file. */
+export const componentsJsonSchema = z.object({
+	$schema: z.string().optional(),
+	style: z
+		.string()
+		.optional()
+		.describe(
+			"DEPRECATED IN TAILWIND v4! The style for your components. This cannot be changed after initialization."
+		),
+	tailwind: z.object({
+		css: z
+			.string()
+			.describe("Path to the CSS file that imports Tailwind CSS into your project."),
+		baseColor: z
+			.string()
+			.describe(
+				"Used to generate the default color palette for your components. This cannot be changed after initialization."
+			),
+		// cssVariables: z.boolean().default(true)
+	}),
+	aliases: z
+		.object({
+			components: z.string().describe("Import alias for your components."),
+			utils: z.string().describe("Import alias for your utility functions."),
+			ui: z
+				.string()
+				.optional()
+				.describe("Import alias for your UI components. Defaults to `$lib/components/ui`."),
+			hooks: z
+				.string()
+				.optional()
+				.describe("Import alias for your hooks. Defaults to `$lib/hooks`."),
+			lib: z
+				.string()
+				.optional()
+				.describe(
+					"Import alias for your library, which is typically where you store your components, utils, hooks, etc. Defaults to `$lib`."
+				),
+		})
+		.describe(
+			"The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location."
+		),
+	registry: z
+		.string()
+		.optional()
+		.describe(
+			"The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry."
+		),
+	typescript: z
+		.boolean()
+		.optional()
+		.describe(
+			"Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`. "
+		),
+});
