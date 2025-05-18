@@ -6,8 +6,6 @@
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">@custom-variant</span><span style="color:#E6EDF3"> dark (&#x26;:is(.dark *));</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FF7B72">@import</span><span style="color:#A5D6FF"> "./themes.css"</span><span style="color:#E6EDF3">;</span></span>
-<span class="line"></span>
 <span class="line"><span style="color:#79C0FF">:root</span><span style="color:#E6EDF3"> {</span></span>
 <span class="line"><span style="color:#FFA657">	--radius</span><span style="color:#E6EDF3">: </span><span style="color:#79C0FF">0.625</span><span style="color:#FF7B72">rem</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"><span style="color:#FFA657">	--background</span><span style="color:#E6EDF3">: </span><span style="color:#79C0FF">oklch</span><span style="color:#E6EDF3">(</span><span style="color:#79C0FF">1</span><span style="color:#79C0FF"> 0</span><span style="color:#79C0FF"> 0</span><span style="color:#E6EDF3">);</span></span>

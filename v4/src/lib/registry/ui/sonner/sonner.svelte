@@ -7,13 +7,7 @@
 
 <Sonner
 	theme={mode.current}
-	toastOptions={{
-		classes: {
-			toast: "group toast !bg-popover !text-popover-foreground !border-border !shadow-lg",
-			description: "group-[.toast]:text-muted-foreground",
-			actionButton: "group-[.toast]:bg-popover group-[.toast]:text-popover-foreground",
-			cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-		},
-	}}
+	class="toaster group"
+	style="--normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border);"
 	{...restProps}
 />
