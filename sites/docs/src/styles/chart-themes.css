@@ -106,7 +106,6 @@
 	}
 }
 
-
 .palette {
 	--background: oklch(100% 0 0);
 	--foreground: oklch(14% 0 290);
@@ -160,7 +159,6 @@
 		--chart-5: oklch(61% 0.2 6.4);
 	}
 }
-
 
 .ruby {
 	--background: oklch(100% 0 0);
@@ -323,8 +321,6 @@
 		--chart-5: oklch(68% 0.1 74);
 	}
 }
-
-
 
 .midnight {
 	--background: oklch(17% 0 290);
