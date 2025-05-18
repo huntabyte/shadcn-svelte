@@ -1,6 +1,6 @@
 ---
 title: Vite
-description: How to setup shadcn-svelte in a Vite project.
+description: How to set up shadcn-svelte in a Vite project.
 ---
 
 <script>
@@ -8,7 +8,7 @@ description: How to setup shadcn-svelte in a Vite project.
   import { Steps, PMAddComp, PMInstall, PMExecute } from "$lib/components/docs";
 </script>
 
-## Setup your project
+## Set up your project
 
 <Steps>
 
@@ -18,7 +18,7 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 <PMExecute command="sv@0.6.18 add tailwindcss" />
 
-### Setup path aliases
+### Set up path aliases
 
 Update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 

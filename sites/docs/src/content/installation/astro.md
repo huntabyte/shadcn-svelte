@@ -1,6 +1,6 @@
 ---
 title: Astro
-description: How to setup shadcn-svelte in an Astro project.
+description: How to set up shadcn-svelte in an Astro project.
 ---
 
 <script>
@@ -8,7 +8,7 @@ description: How to setup shadcn-svelte in an Astro project.
   import { Steps, Callout, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
-## Setup your project
+## Set up your project
 
 <Steps>
 
@@ -61,7 +61,7 @@ Answer `Yes` to all the question prompted by the CLI when installing Svelte.
 
 </Callout>
 
-### Setup path aliases
+### Set up path aliases
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
@@ -106,7 +106,7 @@ import "$lib/styles/app.css";
 
 ### Run the CLI
 
-Run the `shadcn-svelte` init command to setup your project:
+Run the `shadcn-svelte` init command to set up your project:
 
 <PMExecute command="shadcn-svelte@latest init" />
 
