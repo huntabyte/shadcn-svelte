@@ -1,6 +1,10 @@
 import fs from "node:fs";
+import promises from "node:fs/promises";
 import path from "node:path";
 import puppeteer, { Browser } from "puppeteer";
+import { globby } from "globby";
+import sharp from "sharp";
+
 import { getAllBlockIds } from "../src/lib/blocks.js";
 
 const SCREENSHOT_PATH = path.join(process.cwd(), "static/img/registry");
@@ -11,7 +15,7 @@ async function captureBlockScreenshot(browser: Browser, block: string) {
 	await page.goto(pageUrl);
 
 	for (const theme of ["light", "dark"]) {
-		const screenshotPath = path.join(SCREENSHOT_PATH, `${block}-${theme}.png`);
+		const screenshotPath = path.join(SCREENSHOT_PATH, `${block}-${theme}-uncompressed.png`);
 		if (fs.existsSync(screenshotPath)) {
 			fs.unlinkSync(screenshotPath);
 		}
@@ -38,7 +42,6 @@ async function captureBlockScreenshot(browser: Browser, block: string) {
 }
 
 async function captureScreenshots() {
-	// if the screenshot path doesn't exist, create it
 	if (!fs.existsSync(SCREENSHOT_PATH)) {
 		fs.mkdirSync(SCREENSHOT_PATH, { recursive: true });
 	}
@@ -61,9 +64,36 @@ async function captureScreenshots() {
 	await browser.close();
 }
 
+async function compressImages(): Promise<void> {
+	const files = await globby([`${SCREENSHOT_PATH}/**/*-uncompressed.png`], { absolute: true });
+
+	await Promise.all(
+		files.map(async (file) => {
+			const beforeStat = await promises.stat(file);
+			const beforeKB = (beforeStat.size / 1024).toFixed(1);
+
+			console.log(`🔄 Compressing ${path.basename(file)} (before: ${beforeKB} KB)…`);
+			const out = file.replace("-uncompressed", "");
+			await sharp(file).png({ compressionLevel: 9, quality: 75 }).toFile(out);
+
+			const afterStat = await promises.stat(out);
+			const afterKB = (afterStat.size / 1024).toFixed(1);
+			const delta = (((afterStat.size - beforeStat.size) / beforeStat.size) * 100).toFixed(1);
+
+			fs.unlinkSync(file);
+
+			console.log(
+				`✅ ${path.basename(file)}: ${beforeKB} KB → ${afterKB} KB (${delta}% change)`
+			);
+		})
+	);
+}
+
 try {
 	console.log("🎬 Capturing registry screenshots...");
 	await captureScreenshots();
+	console.log("⚙️ Converting PNGs to WebP...");
+	await compressImages();
 	console.log("✨ Done!");
 } catch (error) {
 	console.error("❌ Error:", error);
