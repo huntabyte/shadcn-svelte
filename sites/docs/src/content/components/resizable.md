@@ -3,7 +3,7 @@ title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/resizable
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/resizable
   doc: https://www.paneforge.com
 ---
 
@@ -29,13 +29,13 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `paneforge`:
+### Install `paneforge`:
 
-</Step>
-<PMInstall command="paneforge -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+<PMInstall command="paneforge@next -D" />
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

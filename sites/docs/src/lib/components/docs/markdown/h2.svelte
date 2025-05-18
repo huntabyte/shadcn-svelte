@@ -6,7 +6,7 @@
 
 <h2
 	class={cn(
-		"font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+		"font-heading mt-16 scroll-m-20 border-b pb-4 text-xl font-semibold tracking-tight first:mt-0",
 		className
 	)}
 	{...restProps}

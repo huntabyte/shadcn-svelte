@@ -3,11 +3,11 @@ title: Breadcrumb
 description: Displays the path to the current resource using a hierarchy of links.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/breadcrumb
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/breadcrumb
 ---
 
 <script>
-  import { ComponentPreview, PMAddComp, Steps, Step, InstallTabs } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="breadcrumb-demo">
@@ -24,7 +24,9 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

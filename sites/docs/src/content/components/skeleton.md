@@ -3,7 +3,7 @@ title: Skeleton
 description: Use to show a placeholder while content is loading.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/skeleton
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/skeleton
 ---
 
 <script>
@@ -24,7 +24,9 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

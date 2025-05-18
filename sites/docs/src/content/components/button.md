@@ -3,7 +3,7 @@ title: Button
 description: Displays a button or a component that looks like a button.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/button
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/button
   doc: https://bits-ui.com/docs/components/button
   api: https://bits-ui.com/docs/components/button#api-reference
 ---
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

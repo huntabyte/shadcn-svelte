@@ -1,16 +1,9 @@
 <script lang="ts">
-	import CirclePlus from "@lucide/svelte/icons/circle-plus";
+	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
-	import * as ContextMenu from "$lib/registry/new-york/ui/context-menu/index.js";
-
-	type Props = {
-		album: Album;
-		aspectRatio?: "portrait" | "square";
-		width: number;
-		height: number;
-	} & PrimitiveDivAttributes;
+	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
 
 	let {
 		album,
@@ -19,7 +12,12 @@
 		width,
 		height,
 		...restProps
-	}: Props = $props();
+	}: {
+		album: Album;
+		aspectRatio?: "portrait" | "square";
+		width: number;
+		height: number;
+	} & PrimitiveDivAttributes = $props();
 </script>
 
 <div class={cn("space-y-3", className)} {...restProps}>
@@ -44,7 +42,7 @@
 				<ContextMenu.SubTrigger>Add to Playlist</ContextMenu.SubTrigger>
 				<ContextMenu.SubContent class="w-48">
 					<ContextMenu.Item>
-						<CirclePlus class="mr-2 size-4" /> New Playlist
+						<CirclePlusIcon class="mr-2 size-4" /> New Playlist
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					{#each playlists as playlist (playlist)}

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Circle from "@lucide/svelte/icons/circle";
-	import File from "@lucide/svelte/icons/file";
-	import Laptop from "@lucide/svelte/icons/laptop";
-	import Moon from "@lucide/svelte/icons/moon";
-	import Sun from "@lucide/svelte/icons/sun";
+	import CircleIcon from "@lucide/svelte/icons/circle";
+	import FileIcon from "@lucide/svelte/icons/file";
+	import LaptopIcon from "@lucide/svelte/icons/laptop";
+	import MoonIcon from "@lucide/svelte/icons/moon";
+	import SunIcon from "@lucide/svelte/icons/sun";
 	import { type ComponentProps } from "svelte";
 	import { resetMode, setMode } from "mode-watcher";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
@@ -36,15 +36,15 @@
 <Button
 	variant="outline"
 	class={cn(
-		"text-muted-foreground relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
+		"bg-muted/50 text-muted-foreground relative h-8 w-full justify-start rounded-[0.5rem] text-sm font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
 	)}
 	onclick={() => (open = true)}
 	{...restProps}
 >
-	<span class="hidden lg:inline-flex"> Search documentation... </span>
+	<span class="hidden lg:inline-flex">Search documentation...</span>
 	<span class="inline-flex lg:hidden">Search...</span>
 	<kbd
-		class="bg-muted pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
+		class="bg-muted pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex"
 	>
 		<span class="text-xs">⌘</span>K
 	</kbd>
@@ -60,7 +60,7 @@
 					href={navItem.href}
 					onSelect={() => (open = false)}
 				>
-					<File class="mr-2 size-4" />
+					<FileIcon class="mr-2 size-4" />
 					{navItem.title}
 				</Command.LinkItem>
 			{/each}
@@ -74,7 +74,7 @@
 						onSelect={() => (open = false)}
 					>
 						<div class="mr-2 flex size-4 items-center justify-center">
-							<Circle class="size-3" />
+							<CircleIcon class="size-3" />
 						</div>
 						{navItem.title}
 					</Command.LinkItem>
@@ -84,15 +84,15 @@
 		<Command.Separator />
 		<Command.Group heading="Theme" value="Theme">
 			<Command.Item value="light" onSelect={() => runCommand(() => setMode("light"))}>
-				<Sun class="mr-2 size-4" />
+				<SunIcon class="mr-2 size-4" />
 				Light
 			</Command.Item>
 			<Command.Item value="dark" onSelect={() => runCommand(() => setMode("dark"))}>
-				<Moon class="mr-2 size-4" />
+				<MoonIcon class="mr-2 size-4" />
 				Dark
 			</Command.Item>
 			<Command.Item value="system" onSelect={() => runCommand(() => resetMode())}>
-				<Laptop class="mr-2 size-4" />
+				<LaptopIcon class="mr-2 size-4" />
 				System
 			</Command.Item>
 		</Command.Group>

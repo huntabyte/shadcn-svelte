@@ -1,32 +1,22 @@
+import path from "node:path";
 import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
-import path from "node:path";
-import * as v from "valibot";
+import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
 import type { Config } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
-import * as schemas from "./schema.js";
-import { SITE_BASE_URL } from "../../constants.js";
+import * as schemas from "@shadcn-svelte/registry";
 
-const baseUrl = `${SITE_BASE_URL}/registry`;
-
-export type RegistryItem = v.InferOutput<typeof schemas.registryItemSchema>;
-
-function getRegistryUrl(path: string) {
-	if (!baseUrl) throw new Error("Registry URL not set");
-
-	if (isUrl(path)) {
-		const url = new URL(path);
-		return url.toString();
-	}
-	return `${baseUrl}/${path}`;
+export function getRegistryUrl(config: Config) {
+	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
+	return url;
 }
 
-export async function getRegistryIndex() {
+export async function getRegistryIndex(registryUrl: string) {
 	try {
-		const [result] = await fetchRegistry(["index.json"]);
-
-		return v.parse(schemas.registryIndexSchema, result);
+		const url = resolveURL(registryUrl, "index.json");
+		const [result] = await fetchRegistry([url]);
+		return schemas.registryIndexSchema.parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch components from registry.`);
@@ -43,157 +33,162 @@ export function getBaseColors() {
 	];
 }
 
-export function getStyles() {
-	return [
-		{ name: "default", label: "Default" },
-		{ name: "new-york", label: "New York" },
-	];
-}
-
-export async function getRegistryBaseColor(
-	baseColor: string,
-	style: "default" | "new-york" | (string & {})
-) {
+export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 	try {
-		const [result] = await fetchRegistry([`${style}/colors/${baseColor}.json`]);
+		const url = resolveURL(baseUrl, `colors/${baseColor}.json`);
+		const [result] = await fetchRegistry([url]);
 
-		return v.parse(schemas.registryBaseColorSchema, result);
+		return schemas.registryBaseColorSchema.parse(result);
 	} catch (err) {
-		throw error(`Failed to fetch base color from registry. Error: ${err}`);
+		throw error(
+			`Failed to fetch base color from registry. ${err instanceof Error ? err.message : err}`
+		);
 	}
 }
 
-type RegistryIndex = v.InferOutput<typeof schemas.registryIndexSchema>;
-
-type ResolveTreeProps = {
-	index: RegistryIndex;
-	names: string[];
-	includeRegDeps?: boolean;
-	config: Config;
+type ResolveRegistryItemsProps = {
+	registryIndex: schemas.RegistryIndex;
+	items: string[];
+	parentUrl?: URL;
 };
 
-export async function resolveTree({
-	index,
-	names,
-	includeRegDeps = true,
-	config,
-}: ResolveTreeProps) {
-	const tree: RegistryIndex = [];
+type ResolvedRegistryItem = schemas.RegistryItem | schemas.RegistryIndexItem;
+export async function resolveRegistryItems({
+	registryIndex,
+	items,
+	parentUrl,
+}: ResolveRegistryItemsProps): Promise<ResolvedRegistryItem[]> {
+	const resolvedItems: ResolvedRegistryItem[] = [];
 
-	for (const name of names) {
-		let entry = index.find((entry) => entry.name === name);
+	for (const item of items) {
+		let remoteUrl: URL | undefined;
+		let resolvedItem: ResolvedRegistryItem | undefined = registryIndex.find(
+			(entry) => entry.name === item
+		);
 
-		if (!entry) {
-			// attempt to find entry elsewhere in the registry
-			const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-			const [item] = await fetchRegistry([`styles/${trueStyle}/${name}.json`]);
-			if (item) entry = item;
-			if (!entry) continue;
+		/**
+		 * The `item` doesn't exist in the registry's `index`, so it can be one of two things:
+		 * 1. a remote registry item (URL)
+		 * 2. a `local:registryDep` of a _remote_  item (relative path from that item to the dep)
+		 */
+		if (!resolvedItem) {
+			const isRelative = item.startsWith("./") || item.startsWith("../");
+			if (isUrl(item) || (parentUrl && isRelative)) {
+				remoteUrl = new URL(item, parentUrl);
+				const [result] = await fetchRegistry([remoteUrl]);
+				resolvedItem = schemas.registryItemSchema.parse(result);
+			} else {
+				throw error(
+					`Registry item '${item}' does not exist in the registry, nor is it a valid URL or a relative path to a registry dependency.`
+				);
+			}
 		}
 
-		tree.push(entry);
+		resolvedItems.push(resolvedItem);
 
-		if (includeRegDeps && entry.registryDependencies) {
-			const dependencies = await resolveTree({
-				index,
-				names: entry.registryDependencies,
-				config,
+		if (resolvedItem.registryDependencies?.length) {
+			const registryDeps = await resolveRegistryItems({
+				registryIndex: registryIndex,
+				items: resolvedItem.registryDependencies,
+				parentUrl: remoteUrl,
 			});
-			tree.push(...dependencies);
+			resolvedItems.push(...registryDeps);
 		}
 	}
 
-	return tree.filter(
+	// dedupes tree
+	return resolvedItems.filter(
 		(component, index, self) => self.findIndex((c) => c.name === component.name) === index
 	);
 }
 
-export async function fetchTree(config: Config, tree: RegistryIndex) {
-	try {
-		const trueStyle = config.typescript ? config.style : `${config.style}-js`;
-		const paths = tree.map((item) => `styles/${trueStyle}/${item.name}.json`);
-		const result = await fetchRegistry(paths);
+type FetchTreeProps = { baseUrl: string; items: ResolvedRegistryItem[] };
+export async function fetchRegistryItems({
+	baseUrl,
+	items,
+}: FetchTreeProps): Promise<schemas.RegistryItem[]> {
+	const itemsWithContent = items.filter((item) => !("relativeUrl" in item));
+	const itemsToFetch = items.filter((item) => "relativeUrl" in item);
 
-		return v.parse(schemas.registryWithContentSchema, result);
+	try {
+		const itemUrls = itemsToFetch.map((item) => resolveURL(baseUrl, item.relativeUrl));
+		const result = (await fetchRegistry(itemUrls)).concat(itemsWithContent);
+
+		return schemas.registryItemSchema.array().parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
 		throw error(`Failed to fetch tree from registry.`);
 	}
 }
 
-export function getItemTargetPath(
-	config: Config,
-	item: v.InferOutput<typeof schemas.registryItemWithContentSchema>,
-	override?: string
-) {
-	// Allow overrides for all items but ui.
-	if (override && item.type !== "registry:ui") {
-		return override;
-	}
-
-	const [, type] = item.type.split(":");
-	if (!type || !(type in config.resolvedPaths)) return null;
-
-	return path.join(config.resolvedPaths[type as keyof typeof config.resolvedPaths]);
-}
-
-async function fetchRegistry(paths: string[]) {
-	if (!baseUrl) throw new Error("Registry URL not set");
-
+async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	const proxyUrl = getEnvProxy();
 	const proxy = proxyUrl ? createProxy({ url: proxyUrl }) : {};
+
+	const loaders = urls.map(async (url) => {
+		const response = await fetch(url, { ...proxy });
+		if (!response.ok) {
+			throw error(
+				`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
+			);
+		}
+
+		try {
+			return await response.json();
+		} catch (e) {
+			throw error(`Error parsing json response from ${url}: Error ${e}`);
+		}
+	});
+
 	try {
-		const results = await Promise.all(
-			paths.map(async (path) => {
-				const url = getRegistryUrl(path);
-
-				const response = await fetch(url, {
-					...proxy,
-				});
-
-				if (!response.ok) {
-					throw error(
-						`Failed to fetch registry from ${url}: ${response.status} ${response.statusText}`
-					);
-				}
-
-				try {
-					return await response.json();
-				} catch (e) {
-					throw error(`Error parsing json response from ${url}: Error ${e}`);
-				}
-			})
-		);
-
+		const results = await Promise.all(loaders);
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry from ${baseUrl}. Error: ${e}`);
+		throw error(`Failed to fetch registry. ${e instanceof Error ? `Error: ${e.message}` : e}`);
 	}
 }
 
-function isUrl(path: string) {
-	try {
-		new URL(path);
-		return true;
-	} catch {
-		return false;
-	}
-}
-
-export function getRegistryItemTargetPath(
-	config: Config,
-	type: schemas.RegistryItemType,
-	override?: string
-) {
+export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, override?: string) {
 	if (override) return override;
 
 	if (type === "registry:ui") return config.resolvedPaths.ui;
-	if (type === "registry:block" || type === "registry:component" || type === "registry:page") {
+	if (type === "registry:lib") return config.resolvedPaths.lib;
+	if (type === "registry:hook") return config.resolvedPaths.hooks;
+	if (type === "registry:file") return config.resolvedPaths.cwd;
+
+	if (type === "registry:block" || type === "registry:component") {
 		return config.resolvedPaths.components;
 	}
-	if (type === "registry:hook") return config.resolvedPaths.hooks;
-	// TODO - we put this in components for now but will move to the appropriate route location
-	// depending on if using SvelteKit or whatever
-	return config.resolvedPaths.components;
+
+	if (type === "registry:page") {
+		if (config.sveltekit) return path.resolve(config.resolvedPaths.cwd, "src", "routes");
+
+		// we'll fallback to components alias
+		return config.resolvedPaths.components;
+	}
+
+	throw new Error(`TODO: unhandled item type ${type}`);
+}
+
+export function resolveItemFilePath(
+	config: Config,
+	item: schemas.RegistryItem,
+	file: schemas.RegistryItemFile
+): string {
+	// resolves relative to the root (cwd)
+	if (file.target.startsWith("~/")) {
+		return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
+	}
+
+	let aliasDir;
+	if (file.type === "registry:file") {
+		// resolves relative to the item-type's alias
+		aliasDir = getItemAliasDir(config, item.type);
+	} else {
+		// resolves relative to the file-type's alias
+		aliasDir = getItemAliasDir(config, file.type);
+	}
+
+	return path.resolve(aliasDir, file.target);
 }

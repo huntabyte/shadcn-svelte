@@ -1,61 +1,57 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+
+	let sales = $state([
+		{
+			name: "Olivia Martin",
+			email: "olivia.martin@email.com",
+			amount: 1999,
+		},
+		{
+			name: "Jackson Lee",
+			email: "jackson.lee@email.com",
+			amount: 2999,
+		},
+		{
+			name: "Isabella Nguyen",
+			email: "isabella.nguyen@email.com",
+			amount: 999,
+		},
+		{
+			name: "William Kim",
+			email: "william.kim@email.com",
+			amount: 3999,
+		},
+		{
+			name: "Sofia Davis",
+			email: "sofia.davis@email.com",
+			amount: 4999,
+		},
+	]);
 </script>
 
 <div class="space-y-8">
-	<div class="flex items-center">
-		<Avatar.Root class="size-9">
-			<Avatar.Image src="/avatars/01.png" alt="Avatar" />
-			<Avatar.Fallback>OM</Avatar.Fallback>
-		</Avatar.Root>
-		<div class="ml-4 space-y-1">
-			<p class="text-sm font-medium leading-none">Olivia Martin</p>
-			<p class="text-muted-foreground text-sm">olivia.martin@email.com</p>
+	{#each sales as sale (sale.name)}
+		<div class="flex items-center">
+			<Avatar.Root class="size-9">
+				<Avatar.Image src="/avatars/01.png" alt="Avatar" />
+				<Avatar.Fallback>
+					{sale.name
+						.split(" ")
+						.map((n) => n[0])
+						.join("")}
+				</Avatar.Fallback>
+			</Avatar.Root>
+			<div class="ml-4 space-y-1">
+				<p class="text-sm font-medium leading-none">{sale.name}</p>
+				<p class="text-muted-foreground text-sm">{sale.email}</p>
+			</div>
+			<div class="ml-auto font-medium">
+				{new Intl.NumberFormat("en-US", {
+					style: "currency",
+					currency: "USD",
+				}).format(sale.amount)}
+			</div>
 		</div>
-		<div class="ml-auto font-medium">+$1,999.00</div>
-	</div>
-	<div class="flex items-center">
-		<Avatar.Root class="flex size-9 items-center justify-center space-y-0 border">
-			<Avatar.Image src="/avatars/02.png" alt="Avatar" />
-			<Avatar.Fallback>JL</Avatar.Fallback>
-		</Avatar.Root>
-		<div class="ml-4 space-y-1">
-			<p class="text-sm font-medium leading-none">Jackson Lee</p>
-			<p class="text-muted-foreground text-sm">jackson.lee@email.com</p>
-		</div>
-		<div class="ml-auto font-medium">+$39.00</div>
-	</div>
-	<div class="flex items-center">
-		<Avatar.Root class="size-9">
-			<Avatar.Image src="/avatars/03.png" alt="Avatar" />
-			<Avatar.Fallback>IN</Avatar.Fallback>
-		</Avatar.Root>
-		<div class="ml-4 space-y-1">
-			<p class="text-sm font-medium leading-none">Isabella Nguyen</p>
-			<p class="text-muted-foreground text-sm">isabella.nguyen@email.com</p>
-		</div>
-		<div class="ml-auto font-medium">+$299.00</div>
-	</div>
-	<div class="flex items-center">
-		<Avatar.Root class="size-9">
-			<Avatar.Image src="/avatars/04.png" alt="Avatar" />
-			<Avatar.Fallback>WK</Avatar.Fallback>
-		</Avatar.Root>
-		<div class="ml-4 space-y-1">
-			<p class="text-sm font-medium leading-none">William Kim</p>
-			<p class="text-muted-foreground text-sm">will@email.com</p>
-		</div>
-		<div class="ml-auto font-medium">+$99.00</div>
-	</div>
-	<div class="flex items-center">
-		<Avatar.Root class="size-9">
-			<Avatar.Image src="/avatars/05.png" alt="Avatar" />
-			<Avatar.Fallback>SD</Avatar.Fallback>
-		</Avatar.Root>
-		<div class="ml-4 space-y-1">
-			<p class="text-sm font-medium leading-none">Sofia Davis</p>
-			<p class="text-muted-foreground text-sm">sofia.davis@email.com</p>
-		</div>
-		<div class="ml-auto font-medium">+$39.00</div>
-	</div>
+	{/each}
 </div>

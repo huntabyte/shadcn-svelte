@@ -3,7 +3,7 @@ title: Calendar
 description: A calendar component that allows users to select dates.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/calendar
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/calendar
   doc: https://bits-ui.com/docs/components/calendar
   api: https://bits-ui.com/docs/components/calendar#api-reference
 ---
@@ -32,13 +32,13 @@ If you're looking for a range calendar, check out the [Range Calendar](/docs/com
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui` and `@internationalized/date`:
+### Install `bits-ui` and `@internationalized/date`:
 
-</Step>
 <PMInstall command="bits-ui @internationalized/date -D" />
-<Step> Copy and paste the component source files linked at the top of this page into your project. </Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

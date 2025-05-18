@@ -4,35 +4,34 @@
 	import Metadata from "$lib/components/docs/metadata.svelte";
 	import { updateTheme } from "$lib/utils.js";
 	import "../styles/globals.css";
-	import "../styles/carbon.pcss";
-	import { config } from "$lib/stores/index.js";
-	import { Toaster as DefaultSonner } from "$lib/registry/default/ui/sonner/index.js";
-	import { Toaster as NYSonner } from "$lib/registry/new-york/ui/sonner/index.js";
-	import { setPackageManager } from "$lib/stores/package-manager.js";
-	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import "../styles/carbon.css";
+	import { setConfigContext } from "$lib/config-state.js";
+	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { dev } from "$app/environment";
+	import TailwindIndicator from "$lib/components/docs/tailwind-indicator.svelte";
+	import { setPackageManagerContext } from "$lib/package-manager.js";
 
-	let { children } = $props();
+	let { children, data } = $props();
 
-	setPackageManager();
+	const config = setConfigContext(() => data.config);
+	setPackageManagerContext(() => data.packageManager);
 
 	$effect(() => {
-		updateTheme($config.theme, page.url.pathname);
+		updateTheme(config.current.theme, page.url.pathname);
 	});
 </script>
 
-<ModeWatcher />
+<ModeWatcher disableTransitions />
 <Metadata />
-{#if $config.style === "new-york"}
-	<NYSonner />
-{:else}
-	<DefaultSonner />
-{/if}
+<Toaster />
 <Tooltip.Provider>
-	<div
-		class="bg-background relative flex min-h-screen flex-col"
-		id="page"
-		data-vaul-drawer-wrapper
-	>
-		{@render children?.()}
+	<div data-vaul-drawer-wrapper="">
+		<div class="bg-background relative flex min-h-dvh flex-col" id="page">
+			{@render children?.()}
+		</div>
 	</div>
+	{#if dev}
+		<TailwindIndicator />
+	{/if}
 </Tooltip.Provider>

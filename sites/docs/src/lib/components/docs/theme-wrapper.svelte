@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { config } from "$lib/stores/index.js";
+	import { ConfigContext } from "$lib/config-state.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	const config = ConfigContext.get();
 
 	let {
 		class: className,
@@ -11,9 +12,9 @@
 </script>
 
 <div
-	class={cn(`theme-${defaultTheme || $config.theme}`, "w-full", className)}
-	data-style={$config.style}
-	style="--radius: {defaultTheme ? 0.5 : $config.radius}rem"
+	class={cn(`theme-${defaultTheme || config.current.theme}`, "w-full", className)}
+	data-style="default"
+	style="--radius: {defaultTheme ? 0.5 : config.current.radius}rem"
 	{...restProps}
 >
 	{@render children?.()}

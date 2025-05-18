@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Activity from "@lucide/svelte/icons/activity";
-	import CreditCard from "@lucide/svelte/icons/credit-card";
-	import DollarSign from "@lucide/svelte/icons/dollar-sign";
-	import Download from "@lucide/svelte/icons/download";
-	import Users from "@lucide/svelte/icons/users";
+	import ActivityIcon from "@lucide/svelte/icons/activity";
+	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
+	import DollarSignIcon from "@lucide/svelte/icons/dollar-sign";
+	import DownloadIcon from "@lucide/svelte/icons/download";
+	import UsersIcon from "@lucide/svelte/icons/users";
 	import DashboardMainNav from "./main-nav.svelte";
 	import Overview from "./overview.svelte";
 	import RecentSales from "./recent-sales.svelte";
@@ -11,10 +11,10 @@
 	import TeamSwitcher from "./team-switcher.svelte";
 	import UserNav from "./user-nav.svelte";
 
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import DatePickerWithRange from "$lib/registry/new-york/example/date-picker-with-range.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import DatePickerWithRange from "$lib/registry/examples/date-picker-with-range.svelte";
 </script>
 
 <div class="md:hidden">
@@ -38,7 +38,7 @@
 			<div class="flex items-center space-x-2">
 				<DatePickerWithRange />
 				<Button size="sm">
-					<Download class="mr-2 size-4" />
+					<DownloadIcon class="mr-2 size-4" />
 					Download
 				</Button>
 			</div>
@@ -57,7 +57,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-							<DollarSign class="text-muted-foreground size-4" />
+							<DollarSignIcon class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">$45,231.89</div>
@@ -69,7 +69,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-							<Users class="text-muted-foreground size-4" />
+							<UsersIcon class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+2350</div>
@@ -81,7 +81,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Sales</Card.Title>
-							<CreditCard class="text-muted-foreground size-4" />
+							<CreditCardIcon class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+12,234</div>
@@ -93,7 +93,7 @@
 							class="flex flex-row items-center justify-between space-y-0 pb-2"
 						>
 							<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-							<Activity class="text-muted-foreground size-4" />
+							<ActivityIcon class="text-muted-foreground size-4" />
 						</Card.Header>
 						<Card.Content>
 							<div class="text-2xl font-bold">+573</div>

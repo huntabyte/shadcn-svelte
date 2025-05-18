@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { detect, resolveCommand } from "package-manager-detector";
 import { loadProjectPackageInfo } from "./get-package-info.js";
 
@@ -11,16 +11,10 @@ export async function syncSvelteKit(cwd: string) {
 		// we'll exit early since syncing is rather slow
 		if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
 
-		let agent = await detect({ cwd });
+		const agent = (await detect({ cwd }))?.agent ?? "npm";
+		const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
 
-		agent ??= { agent: "npm", name: "npm" };
-
-		const cmd = resolveCommand(agent.agent, "execute-local", ["svelte-kit", "sync"]);
-		if (cmd) {
-			await execa(cmd.command, cmd.args, {
-				cwd,
-			});
-		}
+		await exec(cmd.command, cmd.args, { throwOnError: true, nodeOptions: { cwd } });
 	}
 }
 

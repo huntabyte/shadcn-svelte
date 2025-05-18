@@ -1,6 +1,6 @@
 import process from "node:process";
 import color from "chalk";
-import * as p from "./prompts.js";
+import * as p from "@clack/prompts";
 import { getPackageInfo } from "./get-package-info.js";
 
 export function intro() {
@@ -12,7 +12,7 @@ export function intro() {
 	// @ts-expect-error types for these globals are not defined
 	if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
 		p.log.warn(
-			`You are currently using an unsupported runtime. Only Node.js v18 or higher is officially supported. Continue at your own risk.`
+			`You are currently using an unsupported runtime. Only Node.js v22 or higher is officially supported. Continue at your own risk.`
 		);
 	}
 }

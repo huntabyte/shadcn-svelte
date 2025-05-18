@@ -3,13 +3,13 @@ title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/accordion
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/accordion
   doc: https://bits-ui.com/docs/components/accordion
   api: https://bits-ui.com/docs/components/accordion#api-reference
 ---
 
 <script>
-    import { ComponentPreview, PMAddComp, PMInstall, InstallTabs, Steps, Step } from '$lib/components/docs';
+    import { ComponentPreview, PMAddComp, PMInstall, InstallTabs, Steps } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
@@ -32,15 +32,11 @@ links:
 
 <Steps>
 
-<Step>
-
-Install `bits-ui`
-
-</Step>
+### Install `bits-ui`
 
 <PMInstall command="bits-ui" />
 
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+### Copy and paste the component source files linked at the top of this page into your project.
 
 </Steps>
 

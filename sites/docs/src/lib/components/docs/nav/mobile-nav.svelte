@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as Icon from "../icons/index.js";
 	import MobileLink from "./mobile-link.svelte";
-	import * as Sheet from "$lib/registry/new-york/ui/sheet/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
+	import * as Sheet from "$lib/registry/ui/sheet/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
+	import LogoIcon from "$lib/components/docs/icons/logo.svelte";
 
 	let open = $state(false);
 </script>
@@ -53,7 +53,7 @@
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
 		<MobileLink href="/" class="flex items-center" bind:open>
-			<Icon.Logo class="mr-2 size-4" />
+			<LogoIcon class="mr-2 size-4" />
 			<span class="font-bold">{siteConfig.name}</span>
 		</MobileLink>
 		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] pb-16 pl-6 pt-4">

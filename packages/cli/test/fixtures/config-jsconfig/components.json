@@ -1,8 +1,7 @@
 {
-	"style": "new-york",
 	"tailwind": {
 		"config": "tailwind.config.js",
-		"css": "src/app.pcss",
+		"css": "src/app.css",
 		"baseColor": "zinc"
 	},
 	"aliases": {
@@ -12,5 +11,5 @@
 		"hooks": "$lib/hooks"
 	},
 	"typescript": false,
-	"registry": "https://tw3.shadcn-svelte.com/registry"
+	"registry": "https://next.shadcn-svelte.com/registry"
 }

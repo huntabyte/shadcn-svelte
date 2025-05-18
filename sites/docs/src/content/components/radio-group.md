@@ -3,7 +3,7 @@ title: Radio Group
 description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/radio-group
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/radio-group
   doc: https://bits-ui.com/docs/components/radio-group
   api: https://bits-ui.com/docs/components/radio-group#api-reference
 ---
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

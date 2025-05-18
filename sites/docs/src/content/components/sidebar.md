@@ -39,28 +39,26 @@ We now have a solid foundation to build on top of. Composable. Themeable. Custom
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
 ```css title="src/app.css"
-@layer base {
-  :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+:root {
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
-  .dark {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+.dark {
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 ```
 
@@ -82,28 +80,26 @@ Copy and paste the component source files linked at the top of this page into yo
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
 ```css title="src/app.css"
-@layer base {
-  :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+:root {
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
-  .dark {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+.dark {
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 ```
 
@@ -216,11 +212,11 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
 <script lang="ts">
-  import Calendar from "@lucide/svelte/icons/calendar";
-  import House from "@lucide/svelte/icons/house";
-  import Inbox from "@lucide/svelte/icons/inbox";
-  import Search from "@lucide/svelte/icons/search";
-  import Settings from "@lucide/svelte/icons/settings";
+  import CalendarIcon from "@lucide/svelte/icons/calendar";
+  import HouseIcon from "@lucide/svelte/icons/house";
+  import InboxIcon from "@lucide/svelte/icons/inbox";
+  import SearchIcon from "@lucide/svelte/icons/search";
+  import SettingsIcon from "@lucide/svelte/icons/settings";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
   // Menu items.
@@ -228,27 +224,27 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
     {
       title: "Home",
       url: "#",
-      icon: House,
+      icon: HouseIcon,
     },
     {
       title: "Inbox",
       url: "#",
-      icon: Inbox,
+      icon: InboxIcon,
     },
     {
       title: "Calendar",
       url: "#",
-      icon: Calendar,
+      icon: CalendarIcon,
     },
     {
       title: "Search",
       url: "#",
-      icon: Search,
+      icon: SearchIcon,
     },
     {
       title: "Settings",
       url: "#",
-      icon: Settings,
+      icon: SettingsIcon,
     },
   ];
 </script>
@@ -463,7 +459,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content class="w-[--bits-dropdown-menu-anchor-width]">
+          <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
             <DropdownMenu.Item>
               <span>Acme Inc</span>
             </DropdownMenu.Item>
@@ -510,7 +506,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               side="top"
-              class="w-[--bits-dropdown-menu-anchor-width]"
+              class="w-(--bits-dropdown-menu-anchor-width)"
             >
               <DropdownMenu.Item>
                 <span>Account</span>
@@ -943,28 +939,26 @@ Use Svelte's [Function Binding](https://svelte.dev/docs/svelte/bind#Function-bin
 We use the following CSS variables to theme the sidebar.
 
 ```css
-@layer base {
-  :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+:root {
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
-  .dark {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 0 0% 98%;
-    --sidebar-primary-foreground: 240 5.9% 10%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+.dark {
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 ```
 

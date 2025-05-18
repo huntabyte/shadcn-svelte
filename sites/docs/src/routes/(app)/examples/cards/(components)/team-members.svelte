@@ -1,10 +1,10 @@
 <script lang="ts">
-	import ChevronDown from "@lucide/svelte/icons/chevron-down";
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { buttonVariants } from "$lib/registry/default/ui/button/index.js";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 </script>
 
 <Card.Root>
@@ -32,7 +32,7 @@
 					})}
 				>
 					Owner
-					<ChevronDown class="text-muted-foreground" />
+					<ChevronDownIcon class="text-muted-foreground" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>
@@ -89,7 +89,7 @@
 					})}
 				>
 					Member
-					<ChevronDown class="text-muted-foreground ml-2 size-4" />
+					<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
 				</Popover.Trigger>
 				<Popover.Content class="p-0" align="end">
 					<Command.Root>

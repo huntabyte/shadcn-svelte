@@ -3,7 +3,7 @@ title: Toggle
 description: A two-state button that can be either on or off.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/toggle
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/toggle
   doc: https://bits-ui.com/docs/components/toggle
   api: https://bits-ui.com/docs/components/toggle#api-reference
 ---
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
+	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import type { NavItem, NavItemWithChildren } from "$lib/types/nav.js";
 	import { page } from "$app/state";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { docsConfig } from "$lib/config/docs.js";
 
 	function getPagerForDoc(slug: string) {
@@ -38,14 +38,14 @@
 <div class="flex flex-row items-center justify-between">
 	{#if pager?.prev?.href}
 		<Button href={pager.prev.href} variant="outline">
-			<ChevronLeft class="mr-2 size-4" />
+			<ChevronLeftIcon class="mr-2 size-4" />
 			{pager.prev.title}
 		</Button>
 	{/if}
 	{#if pager?.next?.href}
 		<Button href={pager.next.href} variant="outline" class="ml-auto">
 			{pager.next.title}
-			<ChevronRight class="ml-2 size-4" />
+			<ChevronRightIcon class="ml-2 size-4" />
 		</Button>
 	{/if}
 </div>

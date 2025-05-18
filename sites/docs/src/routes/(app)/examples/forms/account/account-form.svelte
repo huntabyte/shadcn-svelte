@@ -38,8 +38,8 @@
 
 <script lang="ts">
 	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import ChevronsUpDown from "@lucide/svelte/icons/chevrons-up-down";
-	import Check from "@lucide/svelte/icons/check";
+	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
+	import CheckIcon from "@lucide/svelte/icons/check";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
 	import {
@@ -48,12 +48,12 @@
 		getLocalTimeZone,
 		parseDate,
 	} from "@internationalized/date";
-	import * as Form from "$lib/registry/new-york/ui/form/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import * as Command from "$lib/registry/new-york/ui/command/index.js";
-	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
+	import * as Form from "$lib/registry/ui/form/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import * as Command from "$lib/registry/ui/command/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
 	import { browser } from "$app/environment";
 
@@ -146,7 +146,7 @@
 					>
 						{languages.find((lang) => lang.value === $formData.language)?.label ||
 							"Select a language"}
-						<ChevronsUpDown class="opacity-50" />
+						<ChevronsUpDownIcon class="opacity-50" />
 					</Popover.Trigger>
 					<input hidden value={$formData.language} name={props.name} />
 				{/snippet}
@@ -165,7 +165,7 @@
 									validate("language");
 								}}
 							>
-								<Check
+								<CheckIcon
 									class={cn(
 										language.value === $formData.language
 											? "opacity-100"

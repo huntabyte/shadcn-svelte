@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Search from "@lucide/svelte/icons/search";
+	import SearchIcon from "@lucide/svelte/icons/search";
 	import { primaryRoutes, secondaryRoutes } from "../config.js";
 	import { mailStore } from "../store.js";
 	import type { Account, Mail } from "../data.js";
@@ -8,11 +8,11 @@
 	import MailList from "./mail-list.svelte";
 	import Nav from "./nav.svelte";
 	import { cn } from "$lib/utils.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import * as Resizable from "$lib/registry/new-york/ui/resizable/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/select/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as Resizable from "$lib/registry/ui/resizable/index.js";
+	import { Separator } from "$lib/registry/ui/select/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let {
 		accounts,
@@ -99,7 +99,7 @@
 					>
 						<form>
 							<div class="relative">
-								<Search
+								<SearchIcon
 									class="text-muted-foreground absolute left-2 top-[50%] size-4 translate-y-[-50%]"
 								/>
 								<Input placeholder="Search" class="pl-8" />

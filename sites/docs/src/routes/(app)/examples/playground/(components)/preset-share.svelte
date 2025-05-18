@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Copy from "@lucide/svelte/icons/copy";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 </script>
 
 <Popover.Root>
@@ -27,7 +27,7 @@
 			</div>
 			<Button type="submit" size="sm" class="px-3">
 				<span class="sr-only"> Copy </span>
-				<Copy />
+				<CopyIcon />
 			</Button>
 		</div>
 	</Popover.Content>

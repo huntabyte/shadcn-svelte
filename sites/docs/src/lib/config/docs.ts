@@ -1,8 +1,9 @@
 import type { NavItem, SidebarNavItem } from "$lib/types/nav.js";
 
-type DocsConfig = {
+export type DocsConfig = {
 	mainNav: NavItem[];
 	sidebarNav: SidebarNavItem[];
+	// chartsNav: NavItem[]
 };
 
 export const docsConfig: DocsConfig = {
@@ -26,6 +27,10 @@ export const docsConfig: DocsConfig = {
 		{
 			title: "Blocks",
 			href: "/blocks",
+		},
+		{
+			title: "Charts",
+			href: "/charts",
 		},
 		{
 			title: "Colors",
@@ -71,6 +76,7 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/cli",
 					items: [],
 				},
+
 				{
 					title: "Typography",
 					href: "/docs/typography",
@@ -87,13 +93,6 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
-					title: "Migration",
-					label: "v5",
-					// if there is a svelte 6 migration etc point to /docs/migration
-					href: "/docs/migration/svelte-5",
-					items: [],
-				},
-				{
 					title: "About",
 					href: "/docs/about",
 					items: [],
@@ -101,14 +100,25 @@ export const docsConfig: DocsConfig = {
 			],
 		},
 		{
-			title: "Components",
+			title: "Migrate",
 			items: [
 				{
-					title: "Sidebar",
-					href: "/docs/components/sidebar",
-					items: [],
+					title: "Svelte v5",
 					label: "New",
+					href: "/docs/migration/svelte-5",
+					items: [],
 				},
+				{
+					title: "Tailwind v4",
+					label: "New",
+					href: "/docs/migration/tailwind-v4",
+					items: [],
+				},
+			],
+		},
+		{
+			title: "Components",
+			items: [
 				{
 					title: "Accordion",
 					href: "/docs/components/accordion",
@@ -162,6 +172,12 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Carousel",
 					href: "/docs/components/carousel",
+					items: [],
+				},
+				{
+					title: "Chart",
+					href: "/docs/components/chart",
+					label: "Preview",
 					items: [],
 				},
 				{
@@ -303,6 +319,11 @@ export const docsConfig: DocsConfig = {
 					items: [],
 				},
 				{
+					title: "Sidebar",
+					href: "/docs/components/sidebar",
+					items: [],
+				},
+				{
 					title: "Skeleton",
 					href: "/docs/components/skeleton",
 					items: [],
@@ -354,6 +375,42 @@ export const docsConfig: DocsConfig = {
 				},
 			],
 		},
+		{
+			title: "Registry",
+			label: "New",
+			items: [
+				{
+					title: "Introduction",
+					href: "/docs/registry",
+					items: [],
+				},
+				{
+					title: "Getting Started",
+					href: "/docs/registry/getting-started",
+					items: [],
+				},
+				{
+					title: "Examples",
+					href: "/docs/registry/examples",
+					items: [],
+				},
+				{
+					title: "FAQ",
+					href: "/docs/registry/faq",
+					items: [],
+				},
+				{
+					title: "registry.json",
+					href: "/docs/registry/registry-json",
+					items: [],
+				},
+				{
+					title: "registry-item.json",
+					href: "/docs/registry/registry-item-json",
+					items: [],
+				},
+			],
+		},
 	],
 };
 
@@ -362,46 +419,50 @@ type Example = {
 	href: string;
 	label?: string;
 	code: string;
+	hidden?: boolean;
 };
+
 export const examples: Example[] = [
 	{
 		name: "Mail",
 		href: "/examples/mail",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/mail",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/mail",
+		hidden: false,
 	},
 	{
 		name: "Dashboard",
 		href: "/examples/dashboard",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/dashboard",
-	},
-	{
-		name: "Cards",
-		href: "/examples/cards",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/cards",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/dashboard",
+		hidden: false,
 	},
 	{
 		name: "Tasks",
 		href: "/examples/tasks",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/tasks",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/tasks",
+		hidden: false,
 	},
 	{
 		name: "Playground",
 		href: "/examples/playground",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/playground",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/playground",
+		hidden: false,
 	},
 	{
 		name: "Forms",
 		href: "/examples/forms",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/forms",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/forms",
+		hidden: false,
 	},
 	{
 		name: "Music",
 		href: "/examples/music",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/music",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/music",
+		hidden: false,
 	},
 	{
 		name: "Authentication",
 		href: "/examples/authentication",
-		code: "https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/routes/(app)/examples/authentication",
+		code: "https://github.com/huntabyte/tree/next/sites/docs/src/routes/(app)/examples/authentication",
+		hidden: false,
 	},
 ];

@@ -3,7 +3,7 @@ title: Label
 description: Renders an accessible label associated with controls.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/label
+  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/label
   doc: https://bits-ui.com/docs/components/label
   api: https://bits-ui.com/docs/components/label#api-reference
 ---
@@ -26,13 +26,13 @@ links:
 {/snippet}
 {#snippet manual()}
 <Steps>
-<Step>
 
-Install `bits-ui`:
+### Install `bits-ui`:
 
-</Step>
 <PMInstall command="bits-ui -D" />
-<Step>Copy and paste the component source files linked at the top of this page into your project.</Step>
+
+### Copy and paste the component source files linked at the top of this page into your project.
+
 </Steps>
 {/snippet}
 </InstallTabs>

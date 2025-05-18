@@ -1,23 +1,25 @@
 <script lang="ts">
-	import * as Icon from "../icons/index.js";
 	import { page } from "$app/state";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
+	import LogoIcon from "$lib/components/docs/icons/logo.svelte";
 </script>
 
 <div class="mr-4 hidden md:flex">
-	<a href="/" class="mr-6 flex items-center space-x-2">
-		<Icon.Logo class="size-6" />
-		<span class="hidden font-bold xl:inline-block">
+	<a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+		<LogoIcon class="size-6" />
+		<span class="hidden font-bold lg:inline-block">
 			{siteConfig.name}
 		</span>
 	</a>
-	<nav class="flex items-center gap-6 text-sm">
+	<nav class="flex items-center gap-4 text-sm xl:gap-6">
 		<a
-			href="/docs"
+			href="/docs/installation"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+				page.url.pathname === "/docs/installation"
+					? "text-foreground"
+					: "text-foreground/80"
 			)}
 		>
 			Docs
@@ -26,9 +28,10 @@
 			href="/docs/components"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname.startsWith("/docs/components")
+				page.url.pathname?.startsWith("/docs/components/") &&
+					!page.url.pathname?.startsWith("/docs/component/chart")
 					? "text-foreground"
-					: "text-foreground/60"
+					: "text-foreground/80"
 			)}
 		>
 			Components
@@ -37,35 +40,37 @@
 			href="/blocks"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname.startsWith("/blocks") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname?.startsWith("/blocks") ? "text-foreground" : "text-foreground/80"
 			)}
 		>
 			Blocks
 		</a>
 		<a
+			href="/charts"
+			class={cn(
+				"hover:text-foreground/80 transition-colors",
+				page.url.pathname?.startsWith("/docs/component/chart") ||
+					page.url.pathname?.startsWith("/charts")
+					? "text-foreground"
+					: "text-foreground/80"
+			)}
+		>
+			Charts
+		</a>
+		<a
 			href="/themes"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname.startsWith("/themes") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname?.startsWith("/themes") ? "text-foreground" : "text-foreground/80"
 			)}
 		>
 			Themes
 		</a>
 		<a
-			href="/examples"
-			class={cn(
-				"hover:text-foreground/80 transition-colors",
-				page.url.pathname.startsWith("/examples") ? "text-foreground" : "text-foreground/60"
-			)}
-		>
-			Examples
-		</a>
-
-		<a
 			href="/colors"
 			class={cn(
 				"hover:text-foreground/80 transition-colors",
-				page.url.pathname.startsWith("/colors") ? "text-foreground" : "text-foreground/60"
+				page.url.pathname?.startsWith("/colors") ? "text-foreground" : "text-foreground/80"
 			)}
 		>
 			Colors

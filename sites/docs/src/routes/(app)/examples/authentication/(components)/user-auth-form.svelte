@@ -1,8 +1,9 @@
 <script lang="ts">
-	import * as Icon from "$lib/components/docs/icons/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import GithubIcon from "$lib/components/docs/icons/github.svelte";
+	import SpinnerIcon from "$lib/components/docs/icons/spinner.svelte";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
 
 	let { class: className, ...restProps }: PrimitiveDivAttributes = $props();
@@ -33,9 +34,9 @@
 					disabled={isLoading}
 				/>
 			</div>
-			<Button type="submit" disabled={isLoading}>
+			<Button disabled={isLoading}>
 				{#if isLoading}
-					<Icon.Spinner class="mr-2 size-4 animate-spin" />
+					<SpinnerIcon class="mr-2 size-4 animate-spin" />
 				{/if}
 				Sign In with Email
 			</Button>
@@ -51,9 +52,9 @@
 	</div>
 	<Button variant="outline" type="button" disabled={isLoading}>
 		{#if isLoading}
-			<Icon.Spinner class="mr-2 size-4 animate-spin" />
+			<SpinnerIcon class="mr-2 size-4 animate-spin" />
 		{:else}
-			<Icon.GitHub class="mr-2 size-4" />
+			<GithubIcon class="mr-2 size-4" />
 		{/if}
 		GitHub
 	</Button>

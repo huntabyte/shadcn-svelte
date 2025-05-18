@@ -1,64 +1,37 @@
 <script lang="ts">
-	import { Button, type ButtonProps } from "$lib/registry/default/ui/button/index.js";
+	import { Button, type ButtonProps } from "$lib/registry/ui/button/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { cn } from "$lib/utils.js";
-	import Copy from "@lucide/svelte/icons/copy";
-	import Check from "@lucide/svelte/icons/check";
-	import X from "@lucide/svelte/icons/x";
-	import type { Snippet } from "svelte";
-	import { scale } from "svelte/transition";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import CheckIcon from "@lucide/svelte/icons/check";
 
 	// omit href so you can't create a link
-	interface Props extends Omit<ButtonProps, "href"> {
-		text: string;
-		icon?: Snippet<[]>;
-		animationDuration?: number;
-		onCopy?: (status: UseClipboard["status"]) => void;
-	}
 
 	let {
 		text,
-		icon,
-		animationDuration = 500,
 		variant = "ghost",
-		onCopy,
 		class: className,
 		...restProps
-	}: Props = $props();
+	}: Omit<ButtonProps, "href"> & {
+		text: string;
+	} = $props();
 
 	const clipboard = new UseClipboard();
 </script>
 
 <Button
-	{...restProps}
-	{variant}
 	size="icon"
-	class={cn(className)}
-	type="button"
-	onclick={async () => {
-		const status = await clipboard.copy(text);
-
-		onCopy?.(status);
+	{variant}
+	class={cn("relative z-10 size-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50", className)}
+	onclick={() => {
+		clipboard.copy(text);
 	}}
+	{...restProps}
 >
-	{#if clipboard.status === "success"}
-		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<Check tabindex={-1} />
-			<span class="sr-only">Copied</span>
-		</div>
-	{:else if clipboard.status === "failure"}
-		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<X tabindex={-1} />
-			<span class="sr-only">Failed to copy</span>
-		</div>
+	<span class="sr-only">Copy</span>
+	{#if clipboard.copied}
+		<CheckIcon class="size-3" />
 	{:else}
-		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			{#if icon}
-				{@render icon()}
-			{:else}
-				<Copy tabindex={-1} />
-			{/if}
-			<span class="sr-only">Copy</span>
-		</div>
+		<ClipboardIcon class="size-3" />
 	{/if}
 </Button>

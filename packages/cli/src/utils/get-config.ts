@@ -2,101 +2,107 @@ import color from "chalk";
 import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
-import * as v from "valibot";
+import { z } from "zod/v4";
+import { highlight } from "./utils.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
-import { syncSvelteKit } from "./sveltekit.js";
-import { SITE_BASE_URL } from "../constants.js";
+import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_STYLE = "default";
 export const DEFAULT_COMPONENTS = "$lib/components";
 export const DEFAULT_UTILS = "$lib/utils";
 export const DEFAULT_HOOKS = "$lib/hooks";
 export const DEFAULT_UI = "$lib/components/ui";
+export const DEFAULT_LIB = "$lib";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
-export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.ts";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
 
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
-
 const aliasSchema = (alias: string) =>
-	v.pipe(
-		v.string(`Missing aliases.${color.bold(`${alias}`)} alias`),
-		v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-	);
+	z
+		.string(`Missing aliases.${color.bold(`${alias}`)} alias`)
+		.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""));
 
-const originalConfigSchema = v.object({
-	$schema: v.optional(v.string()),
-	style: v.string(`Missing ${color.bold("style")} field`),
-	tailwind: v.object(
+const baseConfigSchema = z.object({
+	$schema: z.string().optional(),
+	tailwind: z.object(
 		{
-			config: v.string(`Missing tailwind.${color.bold("config")} path`),
-			css: v.string(`Missing tailwind.${color.bold("css")} path`),
-			baseColor: v.string(`Missing tailwind.${color.bold("baseColor")} field`),
-			// cssVariables: v.boolean().default(true)
+			css: z.string(`Missing tailwind.${color.bold("css")} path`),
+			baseColor: z.string(`Missing tailwind.${color.bold("baseColor")} field`),
+			// cssVariables: z.boolean().default(true)
 		},
 		`Missing ${color.bold("tailwind")} object`
 	),
-	aliases: v.object(
+	aliases: z.object(
 		{
 			components: aliasSchema("components"),
 			utils: aliasSchema("utils"),
 		},
 		`Missing ${color.bold("aliases")} object`
 	),
+	typescript: z.boolean().default(true),
 });
 
-// fields that were added after the fact so they must be optional so we can gracefully migrate
-// TODO: ideally, prompts would be triggered if these fields are not populated
-const newConfigFields = v.object({
-	aliases: v.object({
-		ui: v.optional(aliasSchema("ui"), DEFAULT_UI),
-		hooks: v.optional(aliasSchema("hooks"), DEFAULT_HOOKS),
+const originalConfigSchema = baseConfigSchema.extend({ style: z.string().optional() });
+
+const newConfigSchema = baseConfigSchema.extend({
+	aliases: baseConfigSchema.shape.aliases.extend({
+		ui: aliasSchema("ui").default(DEFAULT_UI),
+		hooks: aliasSchema("hooks").default(DEFAULT_HOOKS),
+		lib: aliasSchema("lib").default(DEFAULT_LIB),
 	}),
-	typescript: v.optional(v.boolean(), true),
-	// TODO: if they're missing this field then they're likely using svelte 4
-	// and we should prompt them to see if they'd like to use the new registry
-	registry: v.optional(v.string(), `${SITE_BASE_URL}/registry`),
+	registry: z.string().default(`${SITE_BASE_URL}/registry`),
 });
 
+export type RawConfig = z.infer<typeof rawConfigSchema>;
 // combines the old with the new
-export const rawConfigSchema = v.object({
-	...originalConfigSchema.entries,
-	...newConfigFields.entries,
-	aliases: v.object({
-		...originalConfigSchema.entries.aliases.entries,
-		...newConfigFields.entries.aliases.entries,
+export const rawConfigSchema = z.object({
+	...originalConfigSchema.shape,
+	...newConfigSchema.shape,
+	aliases: z.object({
+		...originalConfigSchema.shape.aliases.shape,
+		...newConfigSchema.shape.aliases.shape,
 	}),
 });
 
-export type RawConfig = v.InferOutput<typeof rawConfigSchema>;
-
-export const configSchema = v.object({
-	...rawConfigSchema.entries,
-	...v.object({
-		resolvedPaths: v.object({
-			cwd: v.string(),
-			tailwindConfig: v.string(),
-			tailwindCss: v.string(),
-			utils: v.string(),
-			components: v.string(),
-			hooks: v.string(),
-			ui: v.string(),
-		}),
-	}).entries,
+export type Config = z.infer<typeof configSchema>;
+export const configSchema = rawConfigSchema.extend({
+	sveltekit: z.boolean(),
+	resolvedPaths: z.object({
+		cwd: z.string(),
+		tailwindCss: z.string(),
+		utils: z.string(),
+		components: z.string(),
+		hooks: z.string(),
+		ui: z.string(),
+		lib: z.string(),
+	}),
 });
-
-export type Config = v.InferOutput<typeof configSchema>;
 
 export async function getConfig(cwd: string) {
-	const config = await getRawConfig(cwd);
+	const config = getRawConfig(cwd);
 
-	if (!config) {
-		return null;
-	}
+	if (!config) return null;
 
 	return await resolveConfigPaths(cwd, config);
+}
+
+function getRawConfig(cwd: string): RawConfig | null {
+	const configPath = path.resolve(cwd, "components.json");
+	if (!fs.existsSync(configPath)) return null;
+
+	try {
+		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
+		const config = JSON.parse(configResult);
+		return rawConfigSchema.parse(config);
+	} catch (e) {
+		if (!(e instanceof z.ZodError)) throw e;
+		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
+	}
 }
 
 export async function resolveConfigPaths(cwd: string, config: RawConfig) {
@@ -112,10 +118,17 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
+	const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
+	for (const [alias, path] of Object.entries(config.aliases)) {
+		// @ts-expect-error simmer down
+		config.aliases[alias] = stripTrailingSlash(path);
+	}
+
 	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
 	let componentsPath = resolveImport(config.aliases.components, pathAliases);
 	let hooksPath = resolveImport(config.aliases.hooks, pathAliases);
 	let uiPath = resolveImport(config.aliases.ui, pathAliases);
+	let libPath = resolveImport(config.aliases.lib, pathAliases);
 
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
@@ -128,22 +141,27 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
 	if (hooksPath === undefined) throw aliasError("hooks", config.aliases.hooks);
 	if (uiPath === undefined) throw aliasError("ui", config.aliases.ui);
+	if (libPath === undefined) throw aliasError("lib", config.aliases.lib);
 
 	utilsPath = path.normalize(utilsPath);
 	componentsPath = path.normalize(componentsPath);
 	hooksPath = path.normalize(hooksPath);
 	uiPath = path.normalize(uiPath);
+	libPath = path.normalize(libPath);
 
-	return v.parse(configSchema, {
+	const sveltekit = isUsingSvelteKit(cwd);
+
+	return configSchema.parse({
 		...config,
+		sveltekit,
 		resolvedPaths: {
 			cwd,
-			tailwindConfig: path.resolve(cwd, config.tailwind.config),
 			tailwindCss: path.resolve(cwd, config.tailwind.css),
 			utils: utilsPath,
 			components: componentsPath,
 			hooks: hooksPath,
 			ui: uiPath,
+			lib: libPath,
 		},
 	});
 }
@@ -159,26 +177,8 @@ export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconf
 	return parsedConfig;
 }
 
-export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
-	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return null;
-
-	try {
-		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
-		const config = JSON.parse(configResult);
-		return v.parse(rawConfigSchema, config);
-	} catch (e) {
-		if (!(e instanceof v.ValiError)) throw e;
-		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
-		throw new ConfigError(
-			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
-		);
-	}
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function writeConfig(cwd: string, config: any): void {
+export function writeConfig(cwd: string, config: RawConfig): void {
 	const targetPath = path.resolve(cwd, "components.json");
-	const conf = v.parse(rawConfigSchema, config); // inefficient, but it'll do
+	const conf = newConfigSchema.parse(config, { jitless: true }); // `jitless` to retain the property order
 	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }

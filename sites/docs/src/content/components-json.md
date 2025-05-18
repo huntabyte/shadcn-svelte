@@ -12,9 +12,9 @@ The `components.json` file holds configuration for your project.
 We use it to understand how your project is set up and how to generate components customized for your project.
 
 <Callout class="mt-6">
-  Note: The <code>components.json</code> file is optional and **only required if you're
-  using the CLI** to add components to your project. If you're using the copy
-  and paste method, you don't need this file.
+
+Note: The `components.json` file is optional and **only required if you're using the CLI** to add components to your project. If you're using the copy and paste method, you don't need this file.
+
 </Callout>
 
 You can create a `components.json` file in your project by running the following command:
@@ -35,6 +35,8 @@ You can see the JSON Schema for `components.json` [here](https://next.shadcn-sve
 
 ## style
 
+_Deprecated in Tailwind v4 as all projects use `new-york`_
+
 The style for your components. **This cannot be changed after initialization.**
 
 ```json title="components.json"
@@ -54,18 +56,6 @@ The style for your components. **This cannot be changed after initialization.**
 Configuration to help the CLI understand how Tailwind CSS is set up in your project.
 
 See the [installation section](/docs/installation) for how to set up Tailwind CSS.
-
-### tailwind.config
-
-Path to where your `tailwind.config.js` file is located.
-
-```json title="components.json"
-{
-  "tailwind": {
-    "config": "tailwind.config.js" | "tailwind.config.ts"
-  }
-}
-```
 
 ### tailwind.css
 
@@ -97,6 +87,18 @@ The CLI uses these values and the `alias` config from your `svelte.config.js` fi
 
 Path aliases have to be set up in your `svelte.config.js` file.
 
+### aliases.lib
+
+Import alias for your library, which is _typically_ where you store your components, utils, hooks, etc.
+
+```json title="components.json"
+{
+  "aliases": {
+    "lib": "$lib"
+  }
+}
+```
+
 ### aliases.utils
 
 Import alias for your utility functions.
@@ -104,7 +106,7 @@ Import alias for your utility functions.
 ```json title="components.json"
 {
   "aliases": {
-    "utils": "$lib/utils.js"
+    "utils": "$lib/utils"
   }
 }
 ```
@@ -121,6 +123,30 @@ Import alias for your components.
 }
 ```
 
+### aliases.ui
+
+Import alias for your UI components.
+
+```json title="components.json"
+{
+  "aliases": {
+    "ui": "$lib/components/ui"
+  }
+}
+```
+
+### aliases.hooks
+
+Import alias for your hooks, which in Svelte 5 are reactive functions/classes whose files typically end in `.svelte.ts` or `.svelte.js`.
+
+```json title="components.json"
+{
+  "aliases": {
+    "hooks": "$lib/hooks"
+  }
+}
+```
+
 ## Typescript
 
 ```json title="components.json"
@@ -131,7 +157,7 @@ Import alias for your components.
 
 ## Registry
 
-The registry URL tells the CLI where to fetch the components/registry from. You can pin this to a specific preview release or your own fork.
+The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.
 
 ```json title="components.json"
 {
