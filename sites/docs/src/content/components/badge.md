@@ -2,7 +2,7 @@
 title: Badge
 description: Displays a badge or a component that looks like a badge.
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/badge
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/badge
 ---
 
 <script>

@@ -3,7 +3,7 @@ title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/accordion
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/accordion
   doc: https://bits-ui.com/docs/components/accordion
   api: https://bits-ui.com/docs/components/accordion#api-reference
 ---

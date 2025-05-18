@@ -3,7 +3,7 @@ title: Switch
 description: A control that allows the user to toggle between checked and not checked.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/switch
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/switch
   doc: https://bits-ui.com/docs/components/switch
   api: https://bits-ui.com/docs/components/switch#api-reference
 ---

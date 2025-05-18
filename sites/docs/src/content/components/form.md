@@ -3,6 +3,7 @@ title: Formsnap & Superforms
 description: Building forms with Formsnap, Superforms, & Zod.
 links:
   doc: https://formsnap.dev
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/form
 ---
 
 <script>
