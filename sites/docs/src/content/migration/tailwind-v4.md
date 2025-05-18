@@ -212,7 +212,7 @@ The codemod will update your `app.css` file to look something like this, where i
 }
 ```
 
-In the following steps, we'll update this to completely remove the `tailwind.config.ts` and adopt the CSS-based config
+In the following steps, we'll update this to completely remove the `tailwind.config.ts` and adopt the CSS-based config.
 
 #### Replace `tailwind-css-animate` with `tw-animate-css`
 
