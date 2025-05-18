@@ -229,6 +229,12 @@ export const componentsJsonSchema = z.object({
 			.describe(
 				"Used to generate the default color palette for your components. This cannot be changed after initialization."
 			),
+		config: z
+			.string()
+			.optional()
+			.describe(
+				"DEPRECATED IN TAILWIND v4! The path to your `tailwind.config.[js|ts]` file."
+			),
 		// cssVariables: z.boolean().default(true)
 	}),
 	aliases: z
