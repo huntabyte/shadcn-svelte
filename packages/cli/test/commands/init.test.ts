@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import { getConfig } from "../../src/utils/get-config";
