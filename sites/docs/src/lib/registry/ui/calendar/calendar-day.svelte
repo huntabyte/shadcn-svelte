@@ -17,7 +17,7 @@
 		"size-8 select-none p-0 font-normal",
 		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground",
 		// Selected
-		"data-selected:bg-primary data-selected:text-primary-foreground data-selected:hover:bg-primary data-selected:hover:text-primary-foreground data-selected:focus:bg-primary data-selected:focus:text-primary-foreground data-selected:opacity-100",
+		"data-selected:bg-primary data-selected:text-primary-foreground data-selected:hover:bg-primary data-selected:hover:text-primary-foreground data-selected:focus:bg-primary data-selected:focus:text-primary-foreground data-selected:opacity-100 dark:data-selected:hover:bg-primary dark:data-selected:focus:bg-primary",
 		// Disabled
 		"data-disabled:text-muted-foreground data-disabled:opacity-50",
 		// Unavailable
