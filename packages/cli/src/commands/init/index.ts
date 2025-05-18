@@ -363,14 +363,14 @@ export async function runInit(cwd: string, config: Config, options: InitOptions)
 
 	await p.tasks(tasks);
 
-	await installDependencies({
-		cwd,
-		prompt: options.deps,
-		dependencies: Array.from(result.dependencies),
-		devDependencies: Array.from(result.devDependencies),
-	});
-
-	if (!options.deps) {
+	if (options.deps) {
+		await installDependencies({
+			cwd,
+			prompt: options.deps,
+			dependencies: Array.from(result.dependencies),
+			devDependencies: Array.from(result.devDependencies),
+		});
+	} else if (result.skippedDeps) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
 		p.log.warn(
 			`shadcn-svelte has been initialized ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
