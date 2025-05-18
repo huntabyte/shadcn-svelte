@@ -1,11 +1,11 @@
 <script lang="ts">
 	import * as Icon from "$lib/components/docs/icons/index.js";
-	import ModeToggle from "$lib/components/docs/mode-toggle.svelte";
 	import CommandMenu from "$lib/components/docs/command-menu.svelte";
 	import MainNav from "$lib/components/docs/nav/main-nav.svelte";
 	import MobileNav from "$lib/components/docs/nav/mobile-nav.svelte";
 	import { siteConfig } from "$lib/config/site.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
+	import ModeSwitcher from "$lib/components/docs/mode-switcher.svelte";
 </script>
 
 <header
@@ -31,7 +31,7 @@
 						<Icon.GitHub class="h-4 w-4" />
 						<span class="sr-only">GitHub</span>
 					</Button>
-					<ModeToggle />
+					<ModeSwitcher />
 				</nav>
 			</div>
 		</div>

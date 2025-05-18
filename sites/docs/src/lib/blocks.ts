@@ -23,8 +23,8 @@ export const blockSchema = z.object({
 
 export type Block = z.infer<typeof blockSchema>;
 
-export function getAllBlockIds(): readonly BlockName[] {
-	const blocks = Object.keys(Blocks) as BlockName[];
+export function getAllBlockIds(): string[] {
+	const blocks = Object.keys(Blocks) as string[];
 	return blocks.filter((b) => !b.startsWith("chart-"));
 }
 

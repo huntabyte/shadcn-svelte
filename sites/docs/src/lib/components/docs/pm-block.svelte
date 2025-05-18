@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Command } from "package-manager-detector";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import CopyButton from "./copy-button.svelte";
 	import { getCommand, PACKAGE_MANAGERS, PackageManagerContext } from "$lib/package-manager.js";
 
