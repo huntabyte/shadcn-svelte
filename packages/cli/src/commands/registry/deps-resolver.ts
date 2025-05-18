@@ -1,12 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
-import { createRequire } from "node:module";
 import * as acorn from "acorn";
 import * as svelte from "svelte/compiler";
 import { walk, type Node } from "estree-walker";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import type { PackageJson } from "type-fest";
-import { toArray } from "../../utils/utils.js";
+import { resolveDependencyPkg, toArray } from "../../utils/utils.js";
 import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
 export type ResolvedDependencies = {
@@ -93,31 +90,17 @@ function resolvePeerDeps(
 ): ResolvedDependencies {
 	const deps: ResolvedDependencies["deps"] = {};
 	const versions: ResolvedDependencies["versions"] = {};
-	const require = createRequire(path.resolve(cwd, "noop.js"));
 
 	for (const [name, version] of Object.entries(dependencies ?? {})) {
-		let pkgPath: string | undefined;
-
 		const versioned = version ? `${name}@${version}` : name;
 		const peers = (deps[versioned] ??= []);
 
 		versions[name] = versioned;
 
-		const paths = require.resolve.paths(name);
-		if (!paths) continue;
+		const pkg = resolveDependencyPkg(cwd, name);
+		if (!pkg) continue;
 
-		for (const nodeModulesPath of paths) {
-			const check = path.join(nodeModulesPath, name, "package.json");
-			if (fs.existsSync(check)) {
-				pkgPath = check;
-				break;
-			}
-		}
-		if (!pkgPath) continue;
-
-		const json = fs.readFileSync(pkgPath, "utf8");
-		const { peerDependencies = {}, peerDependenciesMeta = {} }: PackageJson = JSON.parse(json);
-
+		const { peerDependencies = {}, peerDependenciesMeta = {} } = pkg;
 		for (const [peerName] of Object.entries(peerDependencies)) {
 			// ignores certain peer deps and optional peer deps
 			if (IGNORE_DEPS.includes(peerName) || peerDependenciesMeta[peerName]?.optional)

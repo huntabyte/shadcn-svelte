@@ -1,10 +1,9 @@
 import color from "chalk";
 import * as semver from "semver";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { TW3_SITE_BASE_URL } from "../../constants.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight, resolveDependencyPkg } from "../../utils/utils.js";
 
 /**
  * Runs preflight checks for the `add` command.
@@ -14,7 +13,6 @@ import { highlight } from "../../utils/utils.js";
  * @param cwd - The current working directory.
  */
 export async function preflightAdd(cwd: string) {
-	const pkg = loadProjectPackageInfo(cwd);
 	const config = await cliConfig.getConfig(cwd);
 	if (!config) {
 		throw new ConfigError(
@@ -22,9 +20,10 @@ export async function preflightAdd(cwd: string) {
 		);
 	}
 
-	const dependencies = { ...pkg.dependencies, ...pkg.devDependencies };
+	const svelte = resolveDependencyPkg(cwd, "svelte");
+	const tailwind = resolveDependencyPkg(cwd, "tailwindcss");
 
-	checkAddDependencies(dependencies, cwd, config);
+	checkAddDependencies({ svelte: svelte?.version, tailwindcss: tailwind?.version }, cwd, config);
 }
 
 /**

@@ -1,9 +1,8 @@
-import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
-import * as semver from "semver";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
-import { error } from "../../utils/errors.js";
 import color from "chalk";
-import { highlight } from "../../utils/utils.js";
+import * as semver from "semver";
+import { error } from "../../utils/errors.js";
+import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
+import { highlight, resolveDependencyPkg } from "../../utils/utils.js";
 
 /**
  * Runs preflight checks for the `init` command.
@@ -16,11 +15,10 @@ import { highlight } from "../../utils/utils.js";
  * @param cwd - The current working directory.
  */
 export function preflightInit(cwd: string) {
-	const pkg = loadProjectPackageInfo(cwd);
+	const sveltePkg = resolveDependencyPkg(cwd, "svelte");
+	const tailwindPkg = resolveDependencyPkg(cwd, "tailwindcss");
 
-	const dependencies = { ...pkg.dependencies, ...pkg.devDependencies };
-
-	checkInitDependencies(dependencies);
+	checkInitDependencies({ svelte: sveltePkg?.version, tailwindcss: tailwindPkg?.version });
 }
 
 function checkInitDependencies(dependencies: Partial<Record<string, string>>) {
