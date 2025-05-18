@@ -5,7 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "./themes.css";
 
 :root {
 	--radius: 0.625rem;
@@ -75,6 +74,8 @@
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.439 0 0);
 }
+
+@import "./old-themes.css";
 
 @theme inline {
 	--radius-sm: calc(var(--radius) - 4px);
@@ -258,7 +259,7 @@
 	padding: 0 calc(var(--spacing) * 2);
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-fragment] [data-line-numbers]>.line::before {
 	font-size: 0.875rem;
 	color: color-mix(in oklab, var(--color-zinc-50) 40%, transparent);
 	counter-increment: line;
@@ -304,7 +305,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title]+pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 

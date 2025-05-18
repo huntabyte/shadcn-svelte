@@ -3,11 +3,7 @@
 	import CardsDemo from "$lib/components/docs/cards/demo.svelte";
 </script>
 
-<svelte:head>
-	<style>
-		@import "/themes.css";
-	</style>
-</svelte:head>
+<svelte:head></svelte:head>
 
 <ThemeWrapper>
 	<CardsDemo />

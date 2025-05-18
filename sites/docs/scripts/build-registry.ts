@@ -181,12 +181,13 @@ export const Index = {`;
 	const themeCSS = [];
 	for (const baseColor of baseColors) {
 		const base = generateBaseColorTemplate(baseColor);
+		const zincCssVars = generateBaseColorTemplate("zinc");
 
 		themeCSS.push(
 			template(THEME_STYLES_WITH_VARIABLES)({
 				colors: {
+					...zincCssVars.cssVars,
 					...baseColorsOKLCH[baseColor as keyof typeof baseColorsOKLCH],
-					...base.cssVars,
 				},
 				theme: baseColor,
 			})
@@ -206,4 +207,9 @@ export const Index = {`;
 	// ----------------------------------------------------------------------------
 
 	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
+	writeFileWithDirs(
+		path.resolve("src", "styles", "old-themes.css"),
+		themeCSS.join("\n\n"),
+		"utf-8"
+	);
 }
