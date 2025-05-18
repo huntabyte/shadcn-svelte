@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.11
+
+### Patch Changes
+
+- ad4cd6b: breaking: svelte 5 + tailwindcss v4
+
 ## 1.0.0-next.10
 
 ### Patch Changes

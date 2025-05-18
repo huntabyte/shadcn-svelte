@@ -3,7 +3,10 @@
   "tag": "next",
   "initialVersions": {
     "shadcn-svelte": "0.14.0",
-    "docs": "0.1.0"
+    "docs": "0.1.0",
+    "@shadcn-svelte/registry": "0.0.0",
+    "@shadcn-svelte/registry-template": "0.0.0",
+    "v4": "0.0.0"
   },
   "changesets": [
     "blue-drinks-rush",
@@ -12,6 +15,7 @@
     "hot-weeks-spend",
     "loud-flies-smoke",
     "new-turkeys-breathe",
+    "sixty-lizards-end",
     "sweet-steaks-teach",
     "swift-tips-share",
     "ten-bats-beg",
