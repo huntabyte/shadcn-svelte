@@ -54,7 +54,6 @@
 	}
 
 	$effect(() => {
-		console.log("effect running");
 		if (carouselState.api) {
 			onSelect(carouselState.api);
 			carouselState.api.on("select", onSelect);
@@ -72,7 +71,7 @@
 		}
 	}
 
-	$effect.pre(() => {
+	$effect(() => {
 		setApi(carouselState.api);
 	});
 
