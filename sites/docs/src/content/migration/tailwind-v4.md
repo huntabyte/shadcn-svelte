@@ -5,7 +5,7 @@ description: How to use shadcn-svelte with Tailwind v4 and Svelte 5.
 
 <script>
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { InstallCards, Callout, PMUpgrade, PMExecute, Step, Steps, PMRemove, PMInstall } from "$lib/components/docs";
+	import { InstallCards, Callout, PMUpgrade, PMExecute, Step, Steps, PMRemove, PMInstall, PMRun } from "$lib/components/docs";
 </script>
 
 It's here! Tailwind v4 and Svelte 5. Ready for you to try out. You can start using it today.
@@ -70,51 +70,352 @@ Here's how to upgrade your existing projects:
 - Upgrade to Tailwind v4 by following the official upgrade guide: https://tailwindcss.com/docs/upgrade-guide
 - Use the `@tailwindcss/upgrade` codemod to remove deprecated utility classes and update the tailwind config.
 
-### 2. Update your CSS Variables
+### 2. Replace PostCSS with Vite
 
-The codemod will migrate your CSS variables as references under the `@theme` directive.
+The upgrade script will automatically migrate your project to the latest PostCSS configuration of Tailwind v4, but the Tailwind team recommends using Vite instead, so we'll use that instead.
+
+#### Delete `postcss.config.js`
+
+```diff title="postcss.config.js"
+- export default {
+-   plugins: {
+-     '@tailwindcss/postcss': {},
+-   }
+- };
+```
+
+#### Uninstall `@tailwindcss/postcss`
+
+<PMRemove command="@tailwindcss/postcss" />
+
+#### Install `@tailwindcss/vite`
+
+<PMInstall command="@tailwindcss/vite -D" />
+
+#### Update `vite.config.ts`
+
+```diff title="vite.config.ts"
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
++ import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+-	plugins: [sveltekit()],
++   plugins: [tailwindcss(), sveltekit()],
+});
+```
+
+#### Verify the upgrade
+
+Start your dev server and verify that all your styles are working as expected.
+
+<PMRun command="dev" />
+
+### 2. Update your `app.css` file
+
+The codemod will update your `app.css` file to look something like this, where it's defining the colors as CSS variables and importing your existing `tailwind.config.ts` file:
 
 ```css showLineNumbers
+@import "tailwindcss";
+
+@config '../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-@theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 240 4.9% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 ```
 
-This works. But to make it easier to work with colors and other variables, we'll need to move the `hsl` wrappers and use `@theme inline`.
+In the following steps, we'll update this to completely remove the `tailwind.config.ts` and adopt the CSS-based config
 
-Here's how you do it:
+#### Replace `tailwind-css-animate` with `tw-animate-css`
 
-1. Move `:root` and `.dark` out of the `@layer` base.
-2. Wrap the color values in `hsl()`
-3. Add the `inline` option to `@theme` i.e `@theme inline`
-4. Remove the `hsl()` wrappers from `@theme`
+We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`, which has support for Tailwind v4.
 
-```css showLineNumbers
+<PMRemove command="tailwindcss-animate" />
+
+<PMInstall command="tw-animate-css -D" />
+
+#### Import `tw-animate-css`
+
+```diff title="app.css"
+  @import "tailwindcss";
++ @import "tw-animate-css";
+/* ... */
+```
+
+#### CSS Variables and Theme Config
+
+We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and setup an `@theme inline` directive to replace our Tailwind v3 config.
+
+Once complete, your `app.css` file should look something like this (the color values will differ depending on your theme):
+
+```css title="app.css"
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
 :root {
-  --background: hsl(0 0% 100%); // <-- Wrap in hsl
-  --foreground: hsl(0 0% 3.9%);
+  --background: hsl(0 0% 100%) /* <- Wrap in HSL */;
+  --foreground: hsl(240 10% 3.9%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --primary: hsl(240 5.9% 10%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 72.2% 50.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --ring: hsl(240 10% 3.9%);
+  --sidebar-background: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+
+  --radius: 0.5rem;
 }
 
 .dark {
-  --background: hsl(0 0% 3.9%); // <-- Wrap in hsl
+  --background: hsl(240 10% 3.9%);
   --foreground: hsl(0 0% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --primary: hsl(0 0% 98%);
+  --primary-foreground: hsl(240 5.9% 10%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --ring: hsl(240 4.9% 83.9%);
+  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 @theme inline {
-  --color-background: var(--background); // <-- Remove hsl
+  /* Radius (for rounded-*) */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Colors */
+  --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+  --color-radius: var(--radius);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Animations */
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--bits-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--bits-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  50% {
+    opacity: 0;
+  }
 }
 ```
 
-This change makes it much simpler to access your theme variables in both utility classes and outside of CSS for eg. using color values in JavaScript.
+#### Verify the update
+
+Restart your dev server and verify that all your styles are working as expected.
+
+<PMRun command="dev" />
+
+#### Remove the `tailwind.config` file
+
+Once you've verified that your styles are working as expected, you can remove the `tailwind.config.ts` file.
 
 ### 3. Use new `size-*` utility
 
@@ -127,41 +428,13 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 
 ### 4. Update your dependencies
 
-<PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
+<PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
-### 5. Replace `tailwindcss-animate` with `tw-animate-css`
+### 5. Update Your Colors (optional)
 
-We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`.
+The dark mode colors have been revisited and updated to be more accessible, as you can see in these docs as well as the [v4.shadcn-svelte.com](https://v4.shadcn-svelte.com) demo site.
 
-New projects will have `tw-animate-css` installed by default.
-
-For existing projects, follow the steps below:
-
-1. Remove `tailwindcss-animate` from your dependencies
-
-<PMRemove command="tailwindcss-animate" />
-
-2. Remove the `@plugin 'tailwindcss-animate'` from your `app.css` file.
-
-```diff
-- @plugin 'tailwindcss-animate'
-```
-
-3. Install `tw-animate-css` as a dev dependency.
-
-<PMInstall command="tw-animate-css" />
-
-4. Add `@import 'tw-animate-css'` to your `app.css` file.
-
-```diff
-+ @import 'tw-animate-css'
-```
-
-### 6. Update Your Colors (optional)
-
-We've revisited the dark mode colors and updated them to be more accessible.
-
-If you're running an existing Tailwind v4 project (**not an upgraded one**[^1]), you can update your components to use the new dark mode colors by re-adding your components using the CLI[^2].
+You can update your components to use the new dark mode colors by re-adding your components using the CLI[^1].
 
 <Steps>
 
@@ -188,6 +461,4 @@ Review and re-apply any changes you've made to your components using the git dif
 
 </Steps>
 
-[^1]: Upgraded projects are not affected by this change. You can continue using the old dark mode colors.
-
-[^2]: Updating your components will overwrite your existing components.
+[^1]: Updating your components will overwrite your existing components.

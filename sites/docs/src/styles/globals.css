@@ -116,6 +116,7 @@
 	--font-mono: "Geist Mono", monospace;
 	--animate-accordion-up: accordion-up 0.2s ease-out;
 	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-caret-blink: caret-blink 1.25s ease-out infinite;
 }
 
 @layer base {
@@ -201,6 +202,20 @@
 	}
 }
 
+@keyframes caret-blink {
+
+	0%,
+	70%,
+	100% {
+		opacity: 1;
+	}
+
+	20%,
+	50% {
+		opacity: 0;
+	}
+}
+
 .markdown code:not(pre code) {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
@@ -258,7 +273,7 @@
 	padding: 0 calc(var(--spacing) * 2);
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+[data-rehype-pretty-code-fragment] [data-line-numbers]>.line::before {
 	font-size: 0.875rem;
 	color: color-mix(in oklab, var(--color-zinc-50) 40%, transparent);
 	counter-increment: line;
@@ -304,7 +319,7 @@
 	font-size: 0.875rem;
 }
 
-[data-rehype-pretty-code-title] + pre {
+[data-rehype-pretty-code-title]+pre {
 	margin-top: calc(var(--spacing) * 2);
 }
 
