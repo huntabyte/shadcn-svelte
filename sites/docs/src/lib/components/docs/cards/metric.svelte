@@ -85,7 +85,10 @@
 				props={{
 					spline: { curve: curveNatural, strokeWidth: 2 },
 					points: {
-						r: 4,
+						r: 3,
+						stroke: "var(--color-today)",
+						strokeWidth: 2,
+						fill: "var(--foreground)",
 					},
 					highlight: {
 						points: {
@@ -93,35 +96,8 @@
 							r: 8,
 						},
 					},
-					// highlight: {
-					// 	lines: {
-					// 		stroke: "var(--color-average)",
-					// 		fill: "var(--color-average)",
-					// 	},
-					// },
 				}}
 			>
-				<!-- <Line
-			type="monotone"
-			strokeWidth={2}
-			dataKey="average"
-			stroke="var(--color-average)"
-			strokeOpacity={0.5}
-			activeDot={{
-			  r: 6,
-			  fill: "var(--color-average)",
-			}}
-		  />
-		  <
-			type="monotone"
-			dataKey="today"
-			strokeWidth={2}
-			stroke="var(--color-today)"
-			activeDot={{
-			  r: 8,
-			  style: { fill: "var(--color-today)" },
-			}}
-		  > -->
 				{#snippet tooltip()}
 					<Chart.Tooltip label="Minutes" />
 				{/snippet}
