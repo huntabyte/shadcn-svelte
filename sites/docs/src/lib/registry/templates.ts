@@ -135,7 +135,6 @@ export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
   --accent: <%- colors.light["accent"] %>;
   --accent-foreground: <%- colors.light["accent-foreground"] %>;
   --destructive: <%- colors.light["destructive"] %>;
-  --destructive-foreground: <%- colors.light["destructive-foreground"] %>;
   --ring: <%- colors.light["ring"] %>;
   --radius: 0.5rem;
   --sidebar: <%- colors.light["sidebar"] %>;
@@ -166,7 +165,6 @@ export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
   --accent: <%- colors.dark["accent"] %>;
   --accent-foreground: <%- colors.dark["accent-foreground"] %>;
   --destructive: <%- colors.dark["destructive"] %>;
-  --destructive-foreground: <%- colors.dark["destructive-foreground"] %>;
   --ring: <%- colors.dark["ring"] %>;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: <%- colors.dark["sidebar-foreground"] %>;

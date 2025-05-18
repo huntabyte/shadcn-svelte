@@ -8,13 +8,6 @@
 <svelte:head>
 	<style>
 		@import "/themes.css";
-		:root {
-			--vis-color0: var(--primary);
-			--vis-color1: #ffffff;
-			--vis-color2: #ffffff;
-			--vis-color3: #ffffff;
-			--vis-color4: #ffffff;
-		}
 	</style>
 </svelte:head>
 

@@ -21,7 +21,7 @@
 	<DocTabs.Content value="cli">
 		{@render cli?.()}
 	</DocTabs.Content>
-	<DocTabs.Content value="manual">
+	<DocTabs.Content value="manual" data-manual-install="">
 		{@render manual?.()}
 	</DocTabs.Content>
 </DocTabs.Root>

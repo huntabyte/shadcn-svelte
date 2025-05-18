@@ -122,6 +122,7 @@
 								height: { type: "tween", duration: 500, easing: cubicInOut },
 								y: { type: "tween", duration: 500, easing: cubicInOut },
 							},
+							fill: "var(--color-goal)",
 						},
 						highlight: { area: { fill: "none" } },
 					}}

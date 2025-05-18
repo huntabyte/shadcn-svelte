@@ -76,8 +76,11 @@
 							strokeWidth: 2,
 							stroke: "var(--color-revenue)",
 						},
+
 						points: {
-							r: 4,
+							r: 3,
+							stroke: "var(--color-revenue)",
+							strokeWidth: 2,
 						},
 					}}
 				/>
@@ -103,6 +106,7 @@
 						bars: {
 							stroke: "none",
 							rounded: "all",
+							fill: "var(--color-revenue)",
 						},
 					}}
 				/>

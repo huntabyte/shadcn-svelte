@@ -7,12 +7,7 @@
 </script>
 
 <div class="grid gap-4">
-	<!-- <ThemesStyle /> -->
 	<div class="gap-6 md:flex md:flex-row-reverse md:items-start">
-		<!-- <ThemesSwitcher
-		themes={THEMES}
-		class="fixed inset-x-0 bottom-0 z-40 flex bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:sticky lg:bottom-auto lg:top-20"
-	  /> -->
 		<div class="grid flex-1 gap-12">
 			<h2 class="sr-only">Examples</h2>
 			<div

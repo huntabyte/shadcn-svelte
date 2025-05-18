@@ -2,7 +2,6 @@
 	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
-	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
@@ -48,7 +47,9 @@
 				]}
 				props={{
 					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
-					xAxis: { format: PeriodType.Month },
+					xAxis: {
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+					},
 					highlight: { points: { r: 4 } },
 				}}
 			>

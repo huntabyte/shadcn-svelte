@@ -1,13 +1,13 @@
 <script lang="ts">
-	import * as Icon from "../icons/index.js";
 	import { page } from "$app/state";
 	import { siteConfig } from "$lib/config/site.js";
 	import { cn } from "$lib/utils.js";
+	import LogoIcon from "$lib/components/docs/icons/logo.svelte";
 </script>
 
 <div class="mr-4 hidden md:flex">
 	<a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
-		<Icon.Logo class="h-6 w-6" />
+		<LogoIcon class="size-6" />
 		<span class="hidden font-bold lg:inline-block">
 			{siteConfig.name}
 		</span>

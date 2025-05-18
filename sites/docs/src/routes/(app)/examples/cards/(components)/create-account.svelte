@@ -1,9 +1,10 @@
 <script lang="ts">
-	import * as Icon from "$lib/components/docs/icons/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
+	import GitHubIcon from "$lib/components/docs/icons/github.svelte";
+	import GoogleIcon from "$lib/components/docs/icons/google.svelte";
 </script>
 
 <Card.Root>
@@ -14,11 +15,11 @@
 	<Card.Content class="grid gap-4">
 		<div class="grid grid-cols-2 gap-6">
 			<Button variant="outline">
-				<Icon.GitHub class="mr-2 size-4" />
+				<GitHubIcon class="mr-2 size-4" />
 				GitHub
 			</Button>
 			<Button variant="outline">
-				<Icon.Google class="mr-2 size-4" />
+				<GoogleIcon class="mr-2 size-4" />
 				Google
 			</Button>
 		</div>

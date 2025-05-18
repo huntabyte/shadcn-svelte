@@ -43,7 +43,7 @@
 						radius: 8,
 						rounded: "all",
 						// use the height of the chart to animate the bars
-						initialY: (context?.height || 0) + 180,
+						initialY: (context?.height ?? 0) + 180,
 						initialHeight: 0,
 						motion: {
 							y: { type: "tween", duration: 500, easing: cubicInOut },

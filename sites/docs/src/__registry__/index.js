@@ -493,7 +493,7 @@ export const Index = {
 "drawer-demo": {
 	name: "drawer-demo",
 	type: "registry:example",
-	registryDependencies: ["drawer","button"],
+	registryDependencies: ["drawer","button","chart"],
 	component: () => import("../lib/registry/examples/drawer-demo.svelte").then((m) => m.default),
 	files: ["../lib/registry/examples/drawer-demo.svelte"],
 	raw: () => import("../lib/registry/examples/drawer-demo.svelte?raw").then((m) => m.default),

@@ -29,6 +29,10 @@ export const docsConfig: DocsConfig = {
 			href: "/blocks",
 		},
 		{
+			title: "Charts",
+			href: "/charts",
+		},
+		{
 			title: "Colors",
 			href: "/colors",
 		},

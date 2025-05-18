@@ -5,8 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "./themes.css";
-
 :root {
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
@@ -75,6 +73,8 @@
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.439 0 0);
 }
+
+@import "./old-themes.css";
 
 @theme inline {
 	--radius-sm: calc(var(--radius) - 4px);

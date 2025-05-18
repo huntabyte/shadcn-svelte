@@ -14,8 +14,8 @@
 				defaultSize={100}
 				minSize={30}
 			>
-				<!-- <img
-					src="/r/{ctx.item.name}-light.png"
+				<img
+					src="/img/registry/{ctx.item.name}-light.png"
 					alt={ctx.item.name}
 					data-block={ctx.item.name}
 					width={1440}
@@ -23,13 +23,13 @@
 					class="object-cover md:hidden dark:hidden md:dark:hidden"
 				/>
 				<img
-					src="/r/{ctx.item.name}-dark.png"
+					src="/img/registry/{ctx.item.name}-dark.png"
 					alt={ctx.item.name}
 					data-block={ctx.item.name}
 					width={1440}
 					height={900}
 					class="hidden object-cover md:hidden dark:block md:dark:hidden"
-				/> -->
+				/>
 				<iframe
 					title={ctx.item.name}
 					src="/view/{ctx.item.name}"
