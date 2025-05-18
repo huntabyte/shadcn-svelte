@@ -27,7 +27,7 @@ const updateOptionsSchema = z.object({
 type UpdateOptions = z.infer<typeof updateOptionsSchema>;
 
 export const update = new Command()
-	.command("update")
+	.command("update", { hidden: true })
 	.description("update components in your project")
 	.argument("[components...]", "name of components")
 	.option("-c, --cwd <path>", "the working directory", process.cwd())
