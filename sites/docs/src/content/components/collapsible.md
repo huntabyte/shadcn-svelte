@@ -3,7 +3,7 @@ title: Collapsible
 description: An interactive component which expands/collapses a panel.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/collapsible
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/collapsible
   doc: https://bits-ui.com/docs/components/collapsible
   api: https://bits-ui.com/docs/components/collapsible#api-reference
 ---

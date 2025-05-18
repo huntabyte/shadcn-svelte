@@ -3,7 +3,7 @@ title: Sonner
 description: An opinionated toast component for Svelte.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/sonner
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sonner
   doc: https://svelte-sonner.vercel.app/
   api: https://github.com/wobsoriano/svelte-sonner
 ---
