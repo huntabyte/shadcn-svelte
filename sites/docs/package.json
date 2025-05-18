@@ -76,8 +76,6 @@
 		"shiki": "^1.2.1",
 		"svelte": "^5.16.1",
 		"svelte-check": "^4.2.1",
-		"svelte-local-storage-store": "^0.6.4",
-		"svelte-persisted-store": "^0.11.0",
 		"svelte-sonner": "^1.0.1",
 		"sveltekit-superforms": "^2.19.1",
 		"tailwind-merge": "^3.0.2",
