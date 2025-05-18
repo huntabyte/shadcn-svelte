@@ -482,7 +482,7 @@ git commit -m '..."
 
 <Step>Update components</Step>
 
-<PMExecute command="shadcn-svelte@next update --all" />
+<PMExecute command="shadcn-svelte@next add --all --overwrite" />
 
 <Step> Update colors</Step>
 
