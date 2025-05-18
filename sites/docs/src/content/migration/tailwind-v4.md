@@ -430,7 +430,40 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 
 <PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
-### 5. Update Your Colors (optional)
+### 5. Update your utils (optional)
+
+If you're planning on adding additional components in the future or plan to update your existing components to the latest versions, you'll need to update your `utils.ts` file.
+
+Previously, we were depending on `bits-ui` for some simple type helpers that required you to have `bits-ui` installed, regardless if you were using components that depend on it.
+
+These helpers have been moved into the `utils.ts` file:
+
+```diff title="utils.ts"
+ import { clsx, type ClassValue } from "clsx";
+ import { twMerge } from "tailwind-merge";
+
+ export function cn(...inputs: ClassValue[]) {
+	 return twMerge(clsx(inputs));
+ }
+
++ // eslint-disable-next-line @typescript-eslint/no-explicit-any
++ export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
++ // eslint-disable-next-line @typescript-eslint/no-explicit-any
++ export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
++ export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
++ export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
+```
+
+And then you can incrementally replace these imports in your existing components:
+
+```diff title="card.svelte"
+<script lang="ts">
+-	import type { WithElementRef } from "bits-ui";
++	import type { WithElementRef } from "$lib/utils.js";
+</script>
+```
+
+### 6. Update Your Colors (optional)
 
 The dark mode colors have been revisited and updated to be more accessible, as you can see in these docs as well as the [v4.shadcn-svelte.com](https://v4.shadcn-svelte.com) demo site.
 
