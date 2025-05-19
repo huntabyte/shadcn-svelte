@@ -4,6 +4,7 @@ import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { TW3_SITE_BASE_URL } from "../../constants.js";
 import { highlight, resolveDependencyPkg } from "../../utils/utils.js";
+import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
 /**
  * Runs preflight checks for the `add` command.
@@ -20,10 +21,16 @@ export async function preflightAdd(cwd: string) {
 		);
 	}
 
-	const svelte = resolveDependencyPkg(cwd, "svelte");
-	const tailwind = resolveDependencyPkg(cwd, "tailwindcss");
+	const sveltePkg = resolveDependencyPkg(cwd, "svelte");
+	const tailwindPkg = resolveDependencyPkg(cwd, "tailwindcss");
 
-	checkAddDependencies({ svelte: svelte?.version, tailwindcss: tailwind?.version }, cwd, config);
+	const pkg = loadProjectPackageInfo(cwd);
+	const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+
+	const svelte = sveltePkg?.version ?? deps["svelte"];
+	const tailwindcss = tailwindPkg?.version ?? deps["tailwindcss"];
+
+	checkAddDependencies({ svelte, tailwindcss }, cwd, config);
 }
 
 /**

@@ -3,6 +3,7 @@ import * as semver from "semver";
 import { error } from "../../utils/errors.js";
 import { TW3_SITE_BASE_URL, SITE_BASE_URL } from "../../constants.js";
 import { highlight, resolveDependencyPkg } from "../../utils/utils.js";
+import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
 
 /**
  * Runs preflight checks for the `init` command.
@@ -18,7 +19,13 @@ export function preflightInit(cwd: string) {
 	const sveltePkg = resolveDependencyPkg(cwd, "svelte");
 	const tailwindPkg = resolveDependencyPkg(cwd, "tailwindcss");
 
-	checkInitDependencies({ svelte: sveltePkg?.version, tailwindcss: tailwindPkg?.version });
+	const pkg = loadProjectPackageInfo(cwd);
+	const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+
+	const svelte = sveltePkg?.version ?? deps["svelte"];
+	const tailwindcss = tailwindPkg?.version ?? deps["tailwindcss"];
+
+	checkInitDependencies({ svelte, tailwindcss });
 }
 
 function checkInitDependencies(dependencies: Partial<Record<string, string>>) {
