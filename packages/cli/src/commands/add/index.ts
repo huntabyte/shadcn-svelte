@@ -129,14 +129,14 @@ async function runAdd(cwd: string, config: cliConfig.Config, options: AddOptions
 
 	await p.tasks(tasks);
 
-	await installDependencies({
-		cwd,
-		prompt: options.deps,
-		dependencies: Array.from(result.dependencies),
-		devDependencies: Array.from(result.devDependencies),
-	});
-
-	if (!options.deps) {
+	if (options.deps) {
+		await installDependencies({
+			cwd,
+			prompt: options.deps,
+			dependencies: Array.from(result.dependencies),
+			devDependencies: Array.from(result.devDependencies),
+		});
+	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
 		p.log.warn(
 			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
