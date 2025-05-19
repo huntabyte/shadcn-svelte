@@ -15,8 +15,8 @@
 		<div class="container flex h-14 items-center gap-2 md:gap-4">
 			<MainNav />
 			<MobileNav />
-			<div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
-				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+			<div class="ml-auto flex flex-1 items-center gap-2 md:justify-end">
+				<div class="w-full flex-1 md:flex md:w-auto md:flex-none">
 					<CommandMenu />
 				</div>
 				<nav class="flex items-center gap-0.5">
