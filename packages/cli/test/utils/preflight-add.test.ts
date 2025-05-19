@@ -5,6 +5,7 @@ import { getConfig, writeConfig } from "../../src/utils/get-config.js";
 import { ConfigError } from "../../src/utils/errors.js";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
 import { getConf } from "./test-helpers";
+import { resolveDependencyPkg } from "../../src/utils/utils.js";
 
 const resolvedPaths = {
 	cwd: "n/a",
@@ -57,6 +58,7 @@ const configLegacyUpdated = {
 };
 
 vi.mock("../../src/utils/get-package-info.js");
+vi.mock("../../src/utils/utils.js");
 
 vi.mock("../../src/utils/get-config.js", async () => ({
 	...(await vi.importActual<typeof import("../../src/utils/get-config.js")>(
@@ -71,6 +73,7 @@ describe("preflightAdd", () => {
 
 	beforeEach(() => {
 		vi.resetAllMocks();
+		vi.mocked(resolveDependencyPkg).mockReturnValue(undefined);
 	});
 
 	it("should throw if config is missing", async () => {

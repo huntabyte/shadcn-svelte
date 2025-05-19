@@ -1,15 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
 import { preflightInit } from "../../src/commands/init/preflight.js";
-import { highlight } from "../../src/utils/utils";
+import { highlight, resolveDependencyPkg } from "../../src/utils/utils";
 import color from "chalk";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
 
 vi.mock("../../src/utils/get-package-info.js");
+vi.mock("../../src/utils/utils");
 
 describe("preflightInit", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
+
+		vi.mocked(resolveDependencyPkg).mockReturnValue(undefined);
 	});
 
 	it("should throw error for Tailwind v3 + Svelte v5", () => {
