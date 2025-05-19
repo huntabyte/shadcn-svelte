@@ -125,11 +125,11 @@ export default config;
 
 <Callout>
 
-**Note**: You may not want to do this step until after you've update your components, as some components may rely on the now removed `flyAndScale` function.
+**Note**: You may not want to do this step until after you've updated your components, as some components may rely on the now removed `flyAndScale` function.
 
 </Callout>
 
-The only function now exported from `utils.ts` is `cn`:
+`utils.ts` now only exports the `cn` function and a few utility types.
 
 ```ts title="src/lib/utils.ts"
 import { type ClassValue, clsx } from "clsx";
@@ -138,6 +138,17 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChildren<T> = T extends { children?: any }
+  ? Omit<T, "children">
+  : T;
+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & {
+  ref?: U | null;
+};
 ```
 
 ## Upgrade Components
