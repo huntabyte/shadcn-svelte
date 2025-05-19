@@ -33,10 +33,10 @@
 		"test": "vitest"
 	},
 	"peerDependencies": {
-		"zod": "^3.25.0-beta"
+		"zod": "^3.25.0"
 	},
 	"devDependencies": {
 		"tsup": "^8.4.0",
-		"zod": "3.25.0-beta.20250516T005923"
+		"zod": "^3.25.0"
 	}
 }
