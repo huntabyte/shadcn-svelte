@@ -20,15 +20,6 @@ importers:
       '@types/node':
         specifier: ^22.15.15
         version: 22.15.18
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.26.1
-        version: 8.26.1(@typescript-eslint/parser@8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.3)
-      '@typescript-eslint/scope-manager':
-        specifier: ^8.26.1
-        version: 8.26.1
-      '@typescript-eslint/utils':
-        specifier: ^8.26.1
-        version: 8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.3)
       eslint:
         specifier: ^9.22.0
         version: 9.22.0(jiti@2.4.2)
