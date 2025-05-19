@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.13
+
+### Patch Changes
+
+- ea9f77c: fix: remove dangling comma in 'components to install' list
+
 ## 1.0.0-next.12
 
 ### Patch Changes
