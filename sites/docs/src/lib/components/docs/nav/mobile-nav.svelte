@@ -16,7 +16,7 @@
 		class={cn(
 			buttonVariants({
 				variant: "ghost",
-				class: "mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden",
+				class: "-ml-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden",
 			})
 		)}
 	>
@@ -52,11 +52,16 @@
 		<span class="sr-only">Toggle Menu</span>
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="pr-0">
-		<MobileLink href="/" class="flex items-center" bind:open>
-			<LogoIcon class="mr-2 size-4" />
-			<span class="font-bold">{siteConfig.name}</span>
-		</MobileLink>
-		<ScrollArea orientation="both" class="h-[calc(100vh-4.5rem)] pb-16 pl-6 pt-4">
+		<Sheet.Header>
+			<MobileLink href="/" class="flex items-center" bind:open>
+				<LogoIcon class="mr-2 size-4" />
+				<span class="font-bold">{siteConfig.name}</span>
+			</MobileLink>
+		</Sheet.Header>
+		<ScrollArea
+			orientation="both"
+			class="h-[calc(100vh-4.5rem-env(safe-area-inset-bottom))] pb-8 pl-6"
+		>
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
