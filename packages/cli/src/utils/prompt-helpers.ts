@@ -30,7 +30,7 @@ export function prettifyList(arr: string[], max: number = 9): string {
 	return arr.reduce((pre, curr, i) => {
 		if (i % max === 0) return `${pre},\n${curr}`;
 		return `${pre}, ${curr}`;
-	}, "");
+	});
 }
 
 export function getPadding(lines: string[]) {
