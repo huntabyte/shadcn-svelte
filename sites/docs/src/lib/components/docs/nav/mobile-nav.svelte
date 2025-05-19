@@ -60,7 +60,7 @@
 		</Sheet.Header>
 		<ScrollArea
 			orientation="both"
-			class="h-[calc(100vh-4.5rem-env(safe-area-inset-bottom))] pb-8 pl-6"
+			class="h-[calc(100vh-4.5rem-env(safe-area-inset-bottom))] pb-16 pl-6"
 		>
 			<div class="flex flex-col space-y-3">
 				{#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
