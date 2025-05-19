@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { toJSONSchema } from "zod4/v4";
+import { toJSONSchema } from "zod/v4";
 import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -40,12 +40,6 @@ export default defineConfig({
 	server: {
 		fs: {
 			allow: [veliteDirPath, staticDirPath],
-		},
-	},
-	// temp hack to fix the "missing './v4' specifier for 'zod'" error
-	resolve: {
-		alias: {
-			"zod/v4": path.resolve(__dirname, "node_modules/zod4"),
 		},
 	},
 });

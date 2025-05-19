@@ -4,13 +4,19 @@ import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
 import { getConfig } from "../../src/utils/get-config";
 import * as registry from "../../src/utils/registry";
+import { exec } from "tinyexec";
 
-vi.mock("tinyexec");
-vi.mock("fs/promises", () => ({
-	writeFile: vi.fn(),
-	mkdir: vi.fn(),
-	readFile: vi.fn(),
-}));
+vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
+
+vi.mock("tinyexec", () => ({ exec: vi.fn(() => ({})) }));
+
+vi.mock(import("@clack/prompts"), async (importOriginal) => {
+	const actual = await importOriginal();
+	return {
+		...actual,
+		taskLog: vi.fn(() => ({ message: vi.fn(), error: vi.fn(), success: vi.fn() })),
+	};
+});
 
 it("init (config-full)", async () => {
 	vi.spyOn(registry, "getRegistryBaseColor").mockResolvedValue({
@@ -30,7 +36,20 @@ it("init (config-full)", async () => {
 		{
 			name: "init",
 			type: "registry:style",
+			devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			relativeUrl: "init.json",
+		},
+		{
+			name: "utils",
+			type: "registry:lib",
+			devDependencies: ["clsx@latest", "tailwind-merge@latest"],
+			files: [
+				{
+					content: 'import { clsx, type ClassValue } from "clsx";',
+					type: "registry:lib",
+					target: "utils.ts",
+				},
+			],
 		},
 	]);
 
@@ -38,9 +57,13 @@ it("init (config-full)", async () => {
 		{
 			name: "init",
 			type: "registry:style",
-			devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			registryDependencies: ["utils"],
 			relativeUrl: "init.json",
+		},
+		{
+			name: "utils",
+			type: "registry:lib",
+			relativeUrl: "utils.json",
 		},
 	]);
 
@@ -51,7 +74,14 @@ it("init (config-full)", async () => {
 			devDependencies: ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			registryDependencies: ["utils"],
 			files: [],
-			$schema: "https://next.shadcn-svelte.com/schema/registry-item.json",
+			$schema: "...",
+		},
+		{
+			name: "utils",
+			type: "registry:lib",
+			devDependencies: ["clsx", "tailwind-merge"],
+			files: [{ content: "<UTILS CONTENT>", type: "registry:lib", target: "utils.ts" }],
+			$schema: "...",
 		},
 	]);
 
@@ -63,34 +93,33 @@ it("init (config-full)", async () => {
 	const config = await getConfig(targetDir);
 	if (config === null) throw new Error("config is null");
 
-	await runInit(targetDir, config, { deps: false, cwd: targetDir, overwrite: true });
+	await runInit(targetDir, config, { deps: true, cwd: targetDir, overwrite: true });
 
 	// mkDir mocks
-	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
+	expect(mockMkdir).toHaveBeenNthCalledWith(
+		1,
+		expect.stringContaining(path.join("src", "lib")),
+		expect.anything()
+	);
+	expect(mockMkdir).toHaveBeenNthCalledWith(2, expect.stringContaining("src"), expect.anything());
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
 		1,
 		expect.stringContaining("app.css"),
 		expect.stringContaining(`@import 'tailwindcss'`),
 		"utf8"
 	);
+
 	expect(mockMkdir).toHaveBeenNthCalledWith(
-		2,
+		3,
 		expect.stringContaining(path.join("src", "lib", "components")),
 		expect.anything()
 	);
 
 	expect(mockMkdir).toHaveBeenNthCalledWith(
-		3,
+		4,
 		expect.stringContaining(path.join("src", "lib", "hooks")),
 		expect.anything()
 	);
-
-	// expect(mockWriteFile).toHaveBeenNthCalledWith(
-	// 	4,
-	// 	expect.stringContaining("utils.ts"),
-	// 	expect.stringContaining('import { type ClassValue, clsx } from "clsx"'),
-	// 	"utf8"
-	// );
 
 	expect(mockWriteFileSync).toHaveBeenNthCalledWith(
 		1,
@@ -99,18 +128,26 @@ it("init (config-full)", async () => {
 		"utf8"
 	);
 
-	// todo: this should be passing no?
-	// expect(mockWriteFile).toHaveBeenNthCalledWith(
-	// 	2,
-	// 	expect.stringContaining("utils"),
-	// 	expect.stringContaining("import { clsx")
-	// );
+	expect(mockWriteFile).toHaveBeenNthCalledWith(
+		2,
+		expect.stringContaining("utils"),
+		expect.stringContaining("<UTILS CONTENT>"),
+		"utf8"
+	);
 
-	// expect(exec).toHaveBeenCalledWith(
-	// 	"pnpm",
-	// 	["add", "-D", "tailwind-variants@latest", "@lucide/svelte@latest", "tw-animate-css@latest"],
-	// 	{ throwOnError: true, nodeOptions: { cwd: targetDir } }
-	// );
+	expect(exec).toHaveBeenCalledWith(
+		"pnpm",
+		[
+			"add",
+			"-D",
+			"tailwind-variants@latest",
+			"@lucide/svelte@latest",
+			"tw-animate-css@latest",
+			"clsx@latest",
+			"tailwind-merge@latest",
+		],
+		{ throwOnError: true, nodeOptions: { cwd: targetDir } }
+	);
 
 	mockMkdir.mockRestore();
 	mockWriteFile.mockRestore();
