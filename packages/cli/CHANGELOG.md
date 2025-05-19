@@ -1,5 +1,12 @@
 # shadcn-svelte
 
+## 1.0.0-next.12
+
+### Patch Changes
+
+- 5bddbc6: fix: resolve deps from node_modules when evaluating their versions
+- 34d0a9f: chore: display the output of a package manager's `install` process during dependency installation
+
 ## 1.0.0-next.11
 
 ### Patch Changes
