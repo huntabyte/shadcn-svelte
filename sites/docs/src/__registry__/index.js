@@ -789,7 +789,7 @@ export const Index = {
 "sheet-side": {
 	name: "sheet-side",
 	type: "registry:example",
-	registryDependencies: ["sheet","button","input","label"],
+	registryDependencies: ["sheet","button"],
 	component: () => import("../lib/registry/examples/sheet-side.svelte").then((m) => m.default),
 	files: ["../lib/registry/examples/sheet-side.svelte"],
 	raw: () => import("../lib/registry/examples/sheet-side.svelte?raw").then((m) => m.default),

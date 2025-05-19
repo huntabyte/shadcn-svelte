@@ -14,14 +14,14 @@
 				Make changes to your profile here. Click save when you're done.
 			</Sheet.Description>
 		</Sheet.Header>
-		<div class="grid gap-4 py-4">
-			<div class="grid grid-cols-4 items-center gap-4">
+		<div class="grid flex-1 auto-rows-min gap-6 px-4">
+			<div class="grid gap-3">
 				<Label for="name" class="text-right">Name</Label>
-				<Input id="name" value="Pedro Duarte" class="col-span-3" />
+				<Input id="name" value="Pedro Duarte" />
 			</div>
-			<div class="grid grid-cols-4 items-center gap-4">
+			<div class="grid gap-3">
 				<Label for="username" class="text-right">Username</Label>
-				<Input id="username" value="@peduarte" class="col-span-3" />
+				<Input id="username" value="@peduarte" />
 			</div>
 		</div>
 		<Sheet.Footer>
