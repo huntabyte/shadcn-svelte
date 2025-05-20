@@ -118,10 +118,10 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 		);
 	}
 
-	const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
+	const persistTrailingSlash = (s: string) => (!s.endsWith("/") ? s + "/" : s);
 	for (const [alias, path] of Object.entries(config.aliases)) {
 		// @ts-expect-error simmer down
-		config.aliases[alias] = stripTrailingSlash(path);
+		config.aliases[alias] = persistTrailingSlash(path);
 	}
 
 	let utilsPath = resolveImport(config.aliases.utils, pathAliases);
