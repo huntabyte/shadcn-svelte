@@ -65,7 +65,23 @@
 		},
 		"typescript": {
 			"description": "Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`. ",
-			"type": "boolean"
+			"anyOf": [
+				{
+					"type": "boolean"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"config": {
+							"description": "Path to the tsconfig/jsconfig file.",
+							"type": "string"
+						}
+					},
+					"required": [
+						"config"
+					]
+				}
+			]
 		}
 	},
 	"required": [

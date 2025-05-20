@@ -266,7 +266,10 @@ export const componentsJsonSchema = z.object({
 			"The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry."
 		),
 	typescript: z
-		.boolean()
+		.union([
+			z.boolean(),
+			z.object({ config: z.string().describe("Path to the tsconfig/jsconfig file.") }),
+		])
 		.optional()
 		.describe(
 			"Used to determine if Typescript is used for this project. When set to `false`, `.js` files will be installed instead. Defaults to `true`. "
