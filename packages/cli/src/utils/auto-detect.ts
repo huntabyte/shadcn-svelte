@@ -12,12 +12,13 @@ const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
-	let cssPath;
+	let cssPath: string | undefined;
 	const paths = findFiles(cwd);
 	for (const filepath of paths) {
 		const filename = path.basename(filepath);
-		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
+		if (STYLESHEETS.includes(filename)) {
 			cssPath = config?.relative ? path.relative(cwd, filepath) : filepath;
+			break;
 		}
 	}
 	return { cssPath };
