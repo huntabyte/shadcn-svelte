@@ -6,7 +6,7 @@ import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "packag
 import * as p from "@clack/prompts";
 import { cancel } from "./prompt-helpers.js";
 
-const STYLESHEETS = ["app.css", "main.css", "globals.css"];
+const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
 
 // commonly ignored
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
