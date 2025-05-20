@@ -1,9 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import ignore, { type Ignore } from "ignore";
-import { type TsConfigResult, getTsconfig } from "get-tsconfig";
-import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
 import * as p from "@clack/prompts";
+import * as find from "empathic/find";
+import ignore, { type Ignore } from "ignore";
+import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
+import { parseTsconfig, type TsConfigResult } from "get-tsconfig";
 import { cancel } from "./prompt-helpers.js";
 
 const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
@@ -21,17 +22,19 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 			break;
 		}
 	}
-	return { cssPath };
+
+	const tsconfig = findTSConfig(cwd);
+	return { cssPath, tsconfig };
 }
 
 /**
  * Walks down the directory tree, returning file paths that are _not_ ignored from their respective `.gitignore`'s
  */
 function findFiles(dirPath: string) {
-	return find(dirPath, []);
+	return walkDir(dirPath, []);
 }
 
-function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): string[] {
+function walkDir(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): string[] {
 	const paths: string[] = [];
 	const files = fs.readdirSync(dirPath, { withFileTypes: true });
 	const ignorePath = path.join(dirPath, ".gitignore");
@@ -57,24 +60,25 @@ function find(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): stri
 		if (ignored) continue;
 
 		if (file.isFile()) paths.push(filepath);
-		if (file.isDirectory()) paths.push(...find(filepath, ignores));
+		if (file.isDirectory()) paths.push(...walkDir(filepath, ignores));
 	}
 
 	return paths;
 }
 
 export type DetectLanguageResult = {
-	config: TsConfigResult;
 	type: "jsconfig.json" | "tsconfig.json";
+	config: TsConfigResult;
 };
 
-export function detectLanguage(cwd: string): DetectLanguageResult | undefined {
-	const rootPath = path.resolve(cwd, "package.json");
-	const tsConfig = getTsconfig(rootPath, "tsconfig.json");
-	if (tsConfig !== null) return { type: "tsconfig.json", config: tsConfig };
-
-	const jsConfig = getTsconfig(rootPath, "jsconfig.json");
-	if (jsConfig !== null) return { type: "jsconfig.json", config: jsConfig };
+function findTSConfig(cwd: string): DetectLanguageResult | undefined {
+	for (const type of ["tsconfig.json", "jsconfig.json"] as const) {
+		const path = find.up(type, { cwd });
+		if (path) {
+			const config = parseTsconfig(path);
+			return { type, config: { path, config } };
+		}
+	}
 }
 
 const AGENT_NAMES = AGENTS.filter((agent) => !agent.includes("@")) as AgentName[];

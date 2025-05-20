@@ -99,6 +99,9 @@ importers:
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
+      empathic:
+        specifier: ^1.1.0
+        version: 1.1.0
       estree-walker:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2926,6 +2929,10 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  empathic@1.1.0:
+    resolution: {integrity: sha512-rsPft6CK3eHtrlp9Y5ALBb+hfK+DWnA4WFebbazxjWyx8vSm3rZeoM3z9irsjcqO3PYRzlfv27XIB4tz2DV7RA==}
+    engines: {node: '>=14'}
 
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
@@ -7606,6 +7613,8 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
+
+  empathic@1.1.0: {}
 
   end-of-stream@1.4.4:
     dependencies:
