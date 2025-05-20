@@ -13,7 +13,7 @@
 		plugins = [],
 		setApi = () => {},
 		orientation = "horizontal",
-		class: className,
+		class: className = '',
 		children,
 		...restProps
 	}: WithElementRef<CarouselProps> = $props();

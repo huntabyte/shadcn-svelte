@@ -4,8 +4,8 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
-		inset,
+		class: className = '',
+		inset = undefined,
 		...restProps
 	}: ContextMenuPrimitive.GroupHeadingProps & {
 		inset?: boolean;

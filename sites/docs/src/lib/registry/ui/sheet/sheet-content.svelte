@@ -27,9 +27,9 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		side = "right",
-		portalProps,
+		portalProps = undefined,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {

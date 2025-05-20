@@ -5,8 +5,8 @@
 
 	let {
 		ref = $bindable(null),
-		inset,
-		class: className,
+		inset = undefined,
+		class: className = '',
 		...restProps
 	}: ComponentProps<typeof MenubarPrimitive.GroupHeading> & {
 		inset?: boolean;

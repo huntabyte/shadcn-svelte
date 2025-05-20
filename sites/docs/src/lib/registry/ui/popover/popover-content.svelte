@@ -4,10 +4,10 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		sideOffset = 4,
 		align = "center",
-		portalProps,
+		portalProps = undefined,
 		...restProps
 	}: PopoverPrimitive.ContentProps & {
 		portalProps?: PopoverPrimitive.PortalProps;

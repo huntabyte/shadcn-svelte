@@ -5,7 +5,7 @@
 	let {
 		ref = $bindable(null),
 		portalProps,
-		class: className,
+		class: className = '',
 		...restProps
 	}: ContextMenuPrimitive.ContentProps & {
 		portalProps?: ContextMenuPrimitive.PortalProps;

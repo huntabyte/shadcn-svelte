@@ -5,9 +5,9 @@
 
 	let {
 		ref = $bindable(null),
-		inset,
+		inset = undefined,
 		children,
-		class: className,
+		class: className = '',
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLElement>> & {
 		inset?: boolean;

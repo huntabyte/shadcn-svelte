@@ -9,8 +9,8 @@
 		ref = $bindable(null),
 		checked = $bindable(false),
 		indeterminate = $bindable(false),
-		class: className,
-		children: childrenProp,
+		class: className = '',
+		children: childrenProp = undefined,
 		...restProps
 	}: WithoutChildrenOrChild<DropdownMenuPrimitive.CheckboxItemProps> & {
 		children?: Snippet;

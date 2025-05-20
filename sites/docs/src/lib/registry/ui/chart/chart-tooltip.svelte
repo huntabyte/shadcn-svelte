@@ -12,17 +12,17 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		hideLabel = false,
 		indicator = "dot",
 		hideIndicator = false,
-		labelKey,
-		label,
+		labelKey = undefined,
+		label = undefined,
 		labelFormatter = defaultFormatter,
-		labelClassName,
-		formatter,
-		nameKey,
-		color,
+		labelClassName = '',
+		formatter = undefined,
+		nameKey = undefined,
+		color = undefined,
 		...restProps
 	}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> & {
 		hideLabel?: boolean;

@@ -22,7 +22,7 @@
 		context: TContext;
 	};
 
-	let { content, context }: Props = $props();
+	let { content = undefined, context }: Props = $props();
 </script>
 
 {#if typeof content === "string"}

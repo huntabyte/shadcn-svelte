@@ -4,12 +4,12 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		sideOffset = 8,
 		alignOffset = -4,
 		align = "start",
 		side = "bottom",
-		portalProps,
+		portalProps = undefined,
 		...restProps
 	}: MenubarPrimitive.ContentProps & {
 		portalProps?: MenubarPrimitive.PortalProps;

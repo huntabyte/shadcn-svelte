@@ -4,8 +4,8 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
-		inset,
+		class: className = '',
+		inset = undefined,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {

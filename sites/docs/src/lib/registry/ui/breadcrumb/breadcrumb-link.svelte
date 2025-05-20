@@ -5,9 +5,9 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		href = undefined,
-		child,
+		child = undefined,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAnchorAttributes> & {

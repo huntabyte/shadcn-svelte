@@ -11,7 +11,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		form,
 		name,
 		children: childrenProp,

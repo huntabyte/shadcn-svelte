@@ -4,11 +4,11 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		sideOffset = 0,
 		side = "top",
 		children,
-		arrowClasses,
+		arrowClasses = undefined,
 		...restProps
 	}: TooltipPrimitive.ContentProps & {
 		arrowClasses?: string;

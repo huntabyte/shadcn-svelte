@@ -17,7 +17,7 @@
 	let {
 		ref = $bindable(null),
 		value = $bindable(),
-		class: className,
+		class: className = '',
 		size = "default",
 		variant = "default",
 		...restProps

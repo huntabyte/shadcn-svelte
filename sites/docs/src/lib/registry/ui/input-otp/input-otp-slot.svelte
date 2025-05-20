@@ -5,7 +5,7 @@
 	let {
 		ref = $bindable(null),
 		cell,
-		class: className,
+		class: className = '',
 		...restProps
 	}: InputOTPPrimitive.CellProps = $props();
 </script>

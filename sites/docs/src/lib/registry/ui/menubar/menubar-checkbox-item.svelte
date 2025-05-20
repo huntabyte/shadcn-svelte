@@ -7,10 +7,10 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		checked = $bindable(false),
 		indeterminate = $bindable(false),
-		children: childrenProp,
+		children: childrenProp = undefined,
 		...restProps
 	}: WithoutChildrenOrChild<MenubarPrimitive.CheckboxItemProps> & {
 		children?: Snippet;

@@ -37,14 +37,14 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		children,
-		child,
+		child = undefined,
 		variant = "default",
 		size = "default",
 		isActive = false,
-		tooltipContent,
-		tooltipContentProps,
+		tooltipContent = undefined,
+		tooltipContentProps = undefined,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
 		isActive?: boolean;

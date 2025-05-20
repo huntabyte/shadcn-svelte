@@ -5,9 +5,9 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		children,
-		child,
+		child = undefined,
 		...restProps
 	}: WithElementRef<HTMLButtonAttributes> & {
 		child?: Snippet<[{ props: Record<string, unknown> }]>;

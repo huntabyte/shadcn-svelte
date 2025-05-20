@@ -4,8 +4,8 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
-		errorClasses,
+		class: className = '',
+		errorClasses = undefined,
 		children: childrenProp,
 		...restProps
 	}: WithoutChild<FormPrimitive.FieldErrorsProps> & {

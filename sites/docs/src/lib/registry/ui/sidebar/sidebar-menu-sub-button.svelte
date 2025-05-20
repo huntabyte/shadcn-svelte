@@ -6,8 +6,8 @@
 	let {
 		ref = $bindable(null),
 		children,
-		child,
-		class: className,
+		child = undefined,
+		class: className = '',
 		size = "md",
 		isActive = false,
 		...restProps

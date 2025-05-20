@@ -4,10 +4,10 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		children,
-		heading,
-		value,
+		heading = undefined,
+		value = undefined,
 		...restProps
 	}: CommandPrimitive.GroupProps & {
 		heading?: string;

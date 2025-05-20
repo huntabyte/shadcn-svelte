@@ -5,7 +5,7 @@
 	let {
 		ref = $bindable(null),
 		this: paneGroup = $bindable(),
-		class: className,
+		class: className = '',
 		...restProps
 	}: ResizablePrimitive.PaneGroupProps & {
 		this?: ResizablePrimitive.PaneGroup;

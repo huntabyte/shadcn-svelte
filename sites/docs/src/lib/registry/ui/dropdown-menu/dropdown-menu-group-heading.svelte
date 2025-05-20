@@ -5,8 +5,8 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
-		inset,
+		class: className = '',
+		inset = undefined,
 		...restProps
 	}: ComponentProps<typeof DropdownMenuPrimitive.GroupHeading> & {
 		inset?: boolean;

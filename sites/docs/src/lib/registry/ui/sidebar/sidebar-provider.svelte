@@ -14,8 +14,8 @@
 		ref = $bindable(null),
 		open = $bindable(true),
 		onOpenChange = () => {},
-		class: className,
-		style,
+		class: className = '',
+		style = undefined,
 		children,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {

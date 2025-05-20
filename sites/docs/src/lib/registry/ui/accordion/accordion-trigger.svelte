@@ -5,7 +5,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		level = 3,
 		children,
 		...restProps

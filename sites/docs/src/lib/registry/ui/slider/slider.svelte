@@ -6,7 +6,7 @@
 		ref = $bindable(null),
 		value = $bindable(),
 		orientation = "horizontal",
-		class: className,
+		class: className = '',
 		...restProps
 	}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();
 </script>

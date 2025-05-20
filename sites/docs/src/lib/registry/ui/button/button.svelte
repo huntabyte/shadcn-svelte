@@ -41,13 +41,13 @@
 
 <script lang="ts">
 	let {
-		class: className,
+		class: className = '',
 		variant = "default",
 		size = "default",
 		ref = $bindable(null),
 		href = undefined,
 		type = "button",
-		disabled,
+		disabled = false,
 		children,
 		...restProps
 	}: ButtonProps = $props();

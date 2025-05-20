@@ -6,9 +6,9 @@
 
 	let {
 		ref = $bindable(null),
-		class: className,
+		class: className = '',
 		sideOffset = 4,
-		portalProps,
+		portalProps = undefined,
 		children,
 		...restProps
 	}: WithoutChild<SelectPrimitive.ContentProps> & {
