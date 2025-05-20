@@ -60,7 +60,7 @@ try {
 		});
 
 		await page.screenshot({
-			path: `./static/images/blocks/${block}.png`,
+			path: `./static/img/blocks/${block}.png`,
 		});
 	}
 
@@ -88,7 +88,7 @@ try {
 		});
 
 		await page.screenshot({
-			path: `./static/images/blocks/${block}-dark.png`,
+			path: `./static/img/blocks/${block}-dark.png`,
 		});
 	}
 
