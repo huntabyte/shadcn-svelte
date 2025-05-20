@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.14
+
+### Patch Changes
+
+- 633a6de: fix: ensure path aliases resolve to the correct path
+
 ## 1.0.0-next.13
 
 ### Patch Changes
