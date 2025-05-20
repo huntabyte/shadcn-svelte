@@ -12,14 +12,14 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		hideLabel = false,
 		indicator = "dot",
 		hideIndicator = false,
 		labelKey = undefined,
 		label = undefined,
 		labelFormatter = defaultFormatter,
-		labelClassName = '',
+		labelClassName = "",
 		formatter = undefined,
 		nameKey = undefined,
 		color = undefined,

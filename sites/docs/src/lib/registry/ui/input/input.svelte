@@ -14,7 +14,7 @@
 		value = $bindable(),
 		type = undefined,
 		files = $bindable(),
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: Props = $props();
 </script>

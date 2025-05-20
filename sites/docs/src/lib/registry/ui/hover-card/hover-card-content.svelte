@@ -4,7 +4,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		align = "center",
 		sideOffset = 4,
 		portalProps = undefined,

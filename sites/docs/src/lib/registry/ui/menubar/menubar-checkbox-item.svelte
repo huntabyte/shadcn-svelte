@@ -7,7 +7,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		checked = $bindable(false),
 		indeterminate = $bindable(false),
 		children: childrenProp = undefined,

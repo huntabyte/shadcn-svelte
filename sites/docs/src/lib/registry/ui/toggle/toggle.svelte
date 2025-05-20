@@ -33,7 +33,7 @@
 	let {
 		ref = $bindable(null),
 		pressed = $bindable(false),
-		class: className = '',
+		class: className = "",
 		size = "default",
 		variant = "default",
 		...restProps

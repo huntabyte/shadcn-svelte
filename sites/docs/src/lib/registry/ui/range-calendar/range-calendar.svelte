@@ -8,7 +8,7 @@
 		value = $bindable(),
 		placeholder = $bindable(),
 		weekdayFormat = "short",
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> = $props();
 </script>

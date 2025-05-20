@@ -4,7 +4,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		orientation = "vertical",
 		children,
 		...restProps

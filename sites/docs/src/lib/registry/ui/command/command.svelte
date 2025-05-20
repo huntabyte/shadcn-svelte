@@ -5,7 +5,7 @@
 	let {
 		ref = $bindable(null),
 		value = $bindable(""),
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: CommandPrimitive.RootProps = $props();
 </script>

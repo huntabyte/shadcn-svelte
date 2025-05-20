@@ -4,7 +4,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: DialogPrimitive.DescriptionProps = $props();
 </script>

@@ -5,7 +5,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		count = 0,
 		perPage = 10,
 		page = $bindable(1),

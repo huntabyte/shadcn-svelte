@@ -14,7 +14,7 @@
 		ref = $bindable(null),
 		open = $bindable(true),
 		onOpenChange = () => {},
-		class: className = '',
+		class: className = "",
 		style = undefined,
 		children,
 		...restProps

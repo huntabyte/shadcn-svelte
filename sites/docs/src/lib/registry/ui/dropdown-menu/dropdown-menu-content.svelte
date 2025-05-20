@@ -6,7 +6,7 @@
 		ref = $bindable(null),
 		sideOffset = 4,
 		portalProps = undefined,
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: DropdownMenuPrimitive.ContentProps & {
 		portalProps?: DropdownMenuPrimitive.PortalProps;

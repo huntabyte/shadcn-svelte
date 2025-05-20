@@ -7,7 +7,7 @@
 		ref = $bindable(null),
 		children,
 		child = undefined,
-		class: className = '',
+		class: className = "",
 		size = "md",
 		isActive = false,
 		...restProps

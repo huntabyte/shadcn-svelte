@@ -29,7 +29,7 @@
 	let {
 		ref = $bindable(null),
 		href = undefined,
-		class: className = '',
+		class: className = "",
 		variant = "default",
 		children,
 		...restProps

@@ -7,7 +7,7 @@
 		ref = $bindable(null),
 		inset = undefined,
 		children,
-		class: className = '',
+		class: className = "",
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLElement>> & {
 		inset?: boolean;

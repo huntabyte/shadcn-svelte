@@ -6,7 +6,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		sideOffset = 4,
 		portalProps = undefined,
 		children,

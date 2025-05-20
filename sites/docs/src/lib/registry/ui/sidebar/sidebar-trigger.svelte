@@ -7,7 +7,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		onclick = undefined,
 		...restProps
 	}: ComponentProps<typeof Button> & {

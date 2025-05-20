@@ -7,7 +7,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		portalProps = undefined,
 		children,
 		...restProps

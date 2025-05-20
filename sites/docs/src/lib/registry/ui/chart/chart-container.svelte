@@ -9,7 +9,7 @@
 	let {
 		ref = $bindable(null),
 		id = uid,
-		class: className = '',
+		class: className = "",
 		children,
 		config,
 		...restProps

@@ -10,7 +10,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		form,
 		name,
 		...restProps

@@ -27,7 +27,7 @@
 
 	let {
 		ref = $bindable(null),
-		class: className = '',
+		class: className = "",
 		side = "right",
 		portalProps = undefined,
 		children,
