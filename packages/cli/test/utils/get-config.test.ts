@@ -22,7 +22,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils/",
+				utils: "$lib/utils",
 				components: "$lib/components/",
 				hooks: "$lib/hooks/",
 				ui: "$lib/components/ui/",
@@ -31,7 +31,7 @@ describe("getConfig", () => {
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-partial/src/lib/components/"),
 				tailwindCss: resolvePath("../fixtures/config-partial/src/app.css"),
-				utils: resolvePath("../fixtures/config-partial/src/lib/utils/"),
+				utils: resolvePath("../fixtures/config-partial/src/lib/utils"),
 				cwd: resolvePath("../fixtures/config-partial"),
 				hooks: resolvePath("../fixtures/config-partial/src/lib/hooks/"),
 				ui: resolvePath("../fixtures/config-partial/src/lib/components/ui/"),
@@ -50,7 +50,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils/",
+				utils: "$lib/utils",
 				components: "$lib/components/",
 				hooks: "$lib/hooks/",
 				ui: "$lib/components/ui/",
@@ -59,7 +59,7 @@ describe("getConfig", () => {
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-full/src/lib/components/"),
 				tailwindCss: resolvePath("../fixtures/config-full/src/app.css"),
-				utils: resolvePath("../fixtures/config-full/src/lib/utils/"),
+				utils: resolvePath("../fixtures/config-full/src/lib/utils"),
 				cwd: resolvePath("../fixtures/config-full"),
 				hooks: resolvePath("../fixtures/config-full/src/lib/hooks/"),
 				ui: resolvePath("../fixtures/config-full/src/lib/components/ui/"),
@@ -78,7 +78,7 @@ describe("getConfig", () => {
 				baseColor: "zinc",
 			},
 			aliases: {
-				utils: "$lib/utils/",
+				utils: "$lib/utils",
 				components: "$lib/components/",
 				hooks: "$lib/hooks/",
 				ui: "$lib/components/ui/",
@@ -87,7 +87,7 @@ describe("getConfig", () => {
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-vite/src/lib/components/"),
 				tailwindCss: resolvePath("../fixtures/config-vite/src/app.css"),
-				utils: resolvePath("../fixtures/config-vite/src/lib/utils/"),
+				utils: resolvePath("../fixtures/config-vite/src/lib/utils"),
 				hooks: resolvePath("../fixtures/config-vite/src/lib/hooks/"),
 				ui: resolvePath("../fixtures/config-vite/src/lib/components/ui/"),
 				lib: resolvePath("../fixtures/config-vite/src/lib/"),
@@ -109,7 +109,7 @@ describe("getConfig", () => {
 			},
 			aliases: {
 				components: "$lib/components/",
-				utils: "$lib/utils/",
+				utils: "$lib/utils",
 				ui: "$lib/components/ui/",
 				hooks: "$lib/hooks/",
 				lib: "$lib/",
@@ -117,7 +117,7 @@ describe("getConfig", () => {
 			resolvedPaths: {
 				components: resolvePath("../fixtures/config-jsconfig/src/lib/components/"),
 				tailwindCss: resolvePath("../fixtures/config-jsconfig/src/app.css"),
-				utils: resolvePath("../fixtures/config-jsconfig/src/lib/utils/"),
+				utils: resolvePath("../fixtures/config-jsconfig/src/lib/utils"),
 				hooks: resolvePath("../fixtures/config-jsconfig/src/lib/hooks/"),
 				ui: resolvePath("../fixtures/config-jsconfig/src/lib/components/ui/"),
 				lib: resolvePath("../fixtures/config-jsconfig/src/lib/"),
@@ -139,7 +139,7 @@ describe("getConfig", () => {
 			aliases: {
 				components: "$lib/components/",
 				hooks: "$lib/hooks/",
-				utils: "$lib/utils/",
+				utils: "$lib/utils",
 				lib: "$lib/",
 				ui: "$lib/components/ui/",
 			},
@@ -153,7 +153,7 @@ describe("getConfig", () => {
 				lib: resolvePath("../fixtures/legacy/src/lib/"),
 				tailwindCss: resolvePath("../fixtures/legacy/post-init-default/src/app.css"),
 				ui: resolvePath("../fixtures/legacy/src/lib/components/ui/"),
-				utils: resolvePath("../fixtures/legacy/src/lib/utils/"),
+				utils: resolvePath("../fixtures/legacy/src/lib/utils"),
 			},
 		});
 	});
