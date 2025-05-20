@@ -1,7 +1,7 @@
 import type { Cookies } from "@sveltejs/kit";
-import { type Agent, type Command, type ResolvedCommand } from "package-manager-detector";
-import { resolveCommand } from "package-manager-detector/commands";
 import { Context, PersistedState, watch } from "runed";
+import { resolveCommand } from "package-manager-detector/commands";
+import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
 import { useCookie } from "./hooks/use-cookie.svelte.js";
 
 export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
