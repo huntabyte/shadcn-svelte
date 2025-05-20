@@ -1,13 +1,21 @@
 {
 	"name": "shadcn-svelte",
 	"homepage": "https://shadcn-svelte.com",
+	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
+	"aliases": {
+		"lib": "$lib/registry/lib",
+		"ui": "$lib/registry/ui",
+		"components": "./components",
+		"utils": "$lib/utils",
+		"hooks": "$lib/registry/hooks"
+	},
 	"items": [
 		{
 			"name": "init",
 			"type": "registry:style",
+			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"],
 			"registryDependencies": ["utils"],
-			"files": [],
-			"devDependencies": ["tailwind-variants", "@lucide/svelte", "tw-animate-css"]
+			"files": []
 		},
 		{
 			"name": "accordion",
@@ -1551,13 +1559,5 @@
 				}
 			]
 		}
-	],
-	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
-	"aliases": {
-		"lib": "$lib/registry/lib",
-		"ui": "$lib/registry/ui",
-		"components": "./components",
-		"utils": "$lib/utils",
-		"hooks": "$lib/registry/hooks"
-	}
+	]
 }
