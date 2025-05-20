@@ -10,11 +10,11 @@ import { resolveImport } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_STYLE = "default";
-export const DEFAULT_COMPONENTS = "$lib/components";
+export const DEFAULT_COMPONENTS = "$lib/components/";
 export const DEFAULT_UTILS = "$lib/utils";
-export const DEFAULT_HOOKS = "$lib/hooks";
-export const DEFAULT_UI = "$lib/components/ui";
-export const DEFAULT_LIB = "$lib";
+export const DEFAULT_HOOKS = "$lib/hooks/";
+export const DEFAULT_UI = "$lib/components/ui/";
+export const DEFAULT_LIB = "$lib/";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
