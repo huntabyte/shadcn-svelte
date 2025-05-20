@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.15
+
+### Patch Changes
+
+- 6c54fae: fix: always strip trailing slashes from path aliases
+
 ## 1.0.0-next.14
 
 ### Patch Changes
