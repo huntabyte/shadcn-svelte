@@ -65,13 +65,14 @@ Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```jsonc title="tsconfig.json" {2-9} showLineNumbers
+```jsonc title="tsconfig.json" {2-10} showLineNumbers
 {
   "compilerOptions": {
     // ...
     "baseUrl": ".",
     "paths": {
-      "$lib/*": ["./src/*"],
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"],
     },
     // ...
   },
