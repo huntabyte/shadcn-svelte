@@ -10,23 +10,22 @@ import { resolveImport } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_STYLE = "default";
-export const DEFAULT_COMPONENTS = "$lib/components/";
+export const DEFAULT_COMPONENTS = "$lib/components";
 export const DEFAULT_UTILS = "$lib/utils";
-export const DEFAULT_HOOKS = "$lib/hooks/";
-export const DEFAULT_UI = "$lib/components/ui/";
-export const DEFAULT_LIB = "$lib/";
+export const DEFAULT_HOOKS = "$lib/hooks";
+export const DEFAULT_UI = "$lib/components/ui";
+export const DEFAULT_LIB = "$lib";
 export const DEFAULT_TAILWIND_CSS = "src/app.css";
 export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
 export const DEFAULT_TYPESCRIPT = true;
 
-const persistTrailingSlash = (s: string) => (!s.endsWith("/") ? s + "/" : s);
 const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
 
 const aliasSchema = (alias: string) =>
 	z
 		.string(`Missing aliases.${color.bold(`${alias}`)} alias`)
 		.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		.transform((v) => persistTrailingSlash(v));
+		.transform((v) => stripTrailingSlash(v));
 
 const baseConfigSchema = z.object({
 	$schema: z.string().optional(),
@@ -42,7 +41,7 @@ const baseConfigSchema = z.object({
 		{
 			components: aliasSchema("components"),
 			// `utils` points to a file, not a directory, so we'll want to strip any trailing slashes
-			utils: aliasSchema("utils").transform((i) => stripTrailingSlash(i)),
+			utils: aliasSchema("utils"),
 		},
 		`Missing ${color.bold("aliases")} object`
 	),
