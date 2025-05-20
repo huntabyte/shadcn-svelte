@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-fix: always strip the trailing slash for aliases
+fix: always strip trailing slashes from path aliases
