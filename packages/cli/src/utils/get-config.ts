@@ -25,6 +25,7 @@ const aliasSchema = (alias: string) =>
 	z
 		.string(`Missing aliases.${color.bold(`${alias}`)} alias`)
 		.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+		// trailing slashes are stripped for an easier alias replacement during transformation
 		.transform((v) => stripTrailingSlash(v));
 
 const baseConfigSchema = z.object({
@@ -40,7 +41,6 @@ const baseConfigSchema = z.object({
 	aliases: z.object(
 		{
 			components: aliasSchema("components"),
-			// `utils` points to a file, not a directory, so we'll want to strip any trailing slashes
 			utils: aliasSchema("utils"),
 		},
 		`Missing ${color.bold("aliases")} object`
