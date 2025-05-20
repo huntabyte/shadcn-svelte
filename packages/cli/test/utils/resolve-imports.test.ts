@@ -1,7 +1,7 @@
 import path from "node:path";
 import { describe, it, expect } from "vitest";
-import { resolveImport } from "../../src/utils/resolve-imports.js";
 import type { TsConfigResult } from "get-tsconfig";
+import { resolveImport } from "../../src/utils/resolve-imports.js";
 import { toPosixPath } from "./test-helpers.js";
 
 describe("resolveImport", () => {
