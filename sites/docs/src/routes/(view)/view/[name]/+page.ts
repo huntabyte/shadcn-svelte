@@ -4,6 +4,8 @@ import type { EntryGenerator, PageLoad } from "./$types.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { Blocks } from "../../../../__registry__/blocks.js";
 
+export const prerender = true;
+
 export const entries: EntryGenerator = async () => {
 	console.info("Prerendering /view/[name]");
 	const blockIds = getAllBlockIds();
