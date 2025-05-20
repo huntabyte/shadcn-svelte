@@ -15,7 +15,7 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	let cssPath;
 	const paths = findFiles(cwd);
 	for (const filepath of paths) {
-		const filename = path.parse(filepath).base;
+		const filename = path.basename(filepath);
 		if (cssPath === undefined && STYLESHEETS.includes(filename)) {
 			cssPath = config?.relative ? path.relative(cwd, filepath) : filepath;
 		}
