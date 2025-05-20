@@ -229,7 +229,7 @@
 							class="overflow-hidden rounded-full"
 						>
 							<img
-								src="/images/placeholder-user.jpg"
+								src="/img/placeholder-user.jpg"
 								width={36}
 								height={36}
 								alt="Avatar"
@@ -502,7 +502,7 @@
 										alt="Product"
 										class="aspect-square w-full rounded-md object-cover"
 										height="300"
-										src="/images/placeholder.svg"
+										src="/img/placeholder.svg"
 										width="300"
 									/>
 									<div class="grid grid-cols-3 gap-2">
@@ -511,7 +511,7 @@
 												alt="Product"
 												class="aspect-square w-full rounded-md object-cover"
 												height="84"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="84"
 											/>
 										</button>
@@ -520,7 +520,7 @@
 												alt="Product"
 												class="aspect-square w-full rounded-md object-cover"
 												height="84"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="84"
 											/>
 										</button>

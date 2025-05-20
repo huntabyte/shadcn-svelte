@@ -218,7 +218,7 @@
 					{#snippet child({ props })}
 						<Button {...props} size="icon" class="overflow-hidden rounded-full">
 							<img
-								src="/images/placeholder-user.jpg"
+								src="/img/placeholder-user.jpg"
 								width={36}
 								height={36}
 								alt="Avatar"
@@ -327,7 +327,7 @@
 												alt="Product example"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>
@@ -377,7 +377,7 @@
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>
@@ -428,7 +428,7 @@
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>
@@ -477,7 +477,7 @@
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>
@@ -526,7 +526,7 @@
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>
@@ -575,7 +575,7 @@
 												alt="Product"
 												class="aspect-square rounded-md object-cover"
 												height="64"
-												src="/images/placeholder.svg"
+												src="/img/placeholder.svg"
 												width="64"
 											/>
 										</Table.Cell>

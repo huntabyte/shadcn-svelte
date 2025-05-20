@@ -46,7 +46,7 @@
 	</div>
 	<div class="bg-muted hidden lg:block">
 		<img
-			src="/images/placeholder.svg"
+			src="/img/placeholder.svg"
 			alt="placeholder"
 			width="1920"
 			height="1080"
