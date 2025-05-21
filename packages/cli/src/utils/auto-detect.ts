@@ -66,17 +66,12 @@ function walkDir(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): s
 	return paths;
 }
 
-export type DetectLanguageResult = {
-	type: "jsconfig.json" | "tsconfig.json";
-	config: TsConfigResult;
-};
-
-function findTSConfig(cwd: string): DetectLanguageResult | undefined {
+function findTSConfig(cwd: string): TsConfigResult | undefined {
 	for (const type of ["tsconfig.json", "jsconfig.json"] as const) {
 		const path = find.up(type, { cwd });
 		if (path) {
 			const config = parseTsconfig(path);
-			return { type, config: { path, config } };
+			return { path, config };
 		}
 	}
 }
