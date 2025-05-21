@@ -50,7 +50,7 @@ However, we provide a JavaScript version of the components as well. The JavaScri
 
 To opt out of TypeScript, set the `typescript` flag to `false` in your `components.json` file.
 
-```json {7} title="components.json"
+```json {6} title="components.json"
 {
   "style": "default",
   "tailwind": {
