@@ -7,11 +7,11 @@ import * as registry from "./registry/index.js";
 import { highlight } from "./utils.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformContent, transformCss } from "./transformers.js";
-import type { Config } from "./get-config.js";
+import type { ResolvedConfig } from "./get-config.js";
 
 type AddRegistryItemsProps = {
 	selectedItems: string[];
-	config: Config;
+	config: ResolvedConfig;
 	overwrite: boolean;
 	deps: boolean;
 	path?: string;
