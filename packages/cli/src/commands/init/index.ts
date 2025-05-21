@@ -148,7 +148,8 @@ async function promptForConfig(
 	if (tailwindBaseColor === undefined) {
 		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
-			initialValue: config.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
+			initialValue:
+				existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
 			options: baseColors.map((color) => ({ label: color.label, value: color.name })),
 		});
 
@@ -163,7 +164,7 @@ async function promptForConfig(
 		const cssDefault = cliConfig.DEFAULT_CONFIG.tailwind.css;
 		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
-			initialValue: config.tailwind.css ?? cssPath ?? cssDefault,
+			initialValue: existingConfig?.tailwind.css ?? cssPath ?? cssDefault,
 			placeholder: cssPath ?? cssDefault,
 			validate: (value) => {
 				if (value && existsSync(path.resolve(cwd, value))) {
@@ -183,7 +184,7 @@ async function promptForConfig(
 		if (path === undefined) {
 			const input = await p.text({
 				message: `Configure the import alias for ${highlight(alias)}:`,
-				initialValue: config.aliases[alias] ?? initial,
+				initialValue: existingConfig?.aliases[alias] ?? initial,
 				placeholder: cliConfig.DEFAULT_CONFIG.aliases[alias],
 				validate: (value) => validateImportAlias(value, tsconfig),
 			});
@@ -198,20 +199,17 @@ async function promptForConfig(
 	// Lib Alias
 	const libAlias = await promptAlias("lib", "$lib");
 
-	// infers the alias from `lib` alias. if `lib = $lib` then suggest `alias = $lib/[alias]`
-	const inferAlias = (alias: string) => `${libAlias}/${alias}`;
-
 	// Components Alias
-	const componentAlias = await promptAlias("components", inferAlias("components"));
+	const componentAlias = await promptAlias("components", `${libAlias}/components`);
 
 	// UI Alias
 	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`);
 
 	// Utils Alias
-	const utilsAlias = await promptAlias("utils", inferAlias("utils"));
+	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`);
 
 	// Hooks Alias
-	const hooksAlias = await promptAlias("hooks", inferAlias("hooks"));
+	const hooksAlias = await promptAlias("hooks", `${libAlias}/hooks`);
 
 	const rawConfig = cliConfig.rawConfigSchema.parse({
 		...config,
