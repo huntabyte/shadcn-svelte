@@ -51,10 +51,18 @@ const baseConfigSchema = z.object({
 		`Missing ${color.bold("aliases")} object`
 	),
 	typescript: z
-		.union([
-			z.boolean(),
-			z.object({ config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`) }),
-		])
+		.union(
+			[
+				z.boolean(),
+				z.object(
+					{
+						config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
+					},
+					"its an object"
+				),
+			],
+			`Invalid ${color.bold("typescript")} field. Must either be 'true', 'false', or '{ "config": "path/to/tsconfig.json" }'`
+		)
 		.default(DEFAULT_CONFIG.typescript),
 });
 
@@ -174,9 +182,14 @@ export function resolveTSConfig(cwd: string, config: RawConfig) {
 	}
 
 	if (!tsconfig) {
-		throw error(
-			`Failed to find a ${highlight(tsconfigType)} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
-		);
+		let msg = `Failed to find a ${highlight(tsconfigType)} file. `;
+
+		if (config.typescript)
+			msg += `See: ${color.underline(`${SITE_BASE_URL}/docs/components-json#typescript`)}`;
+		else
+			msg += `See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`;
+
+		throw error(msg);
 	}
 
 	return tsconfig;
