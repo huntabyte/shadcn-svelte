@@ -9,15 +9,22 @@ import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
-export const DEFAULT_STYLE = "default";
-export const DEFAULT_COMPONENTS = "$lib/components";
-export const DEFAULT_UTILS = "$lib/utils";
-export const DEFAULT_HOOKS = "$lib/hooks";
-export const DEFAULT_UI = "$lib/components/ui";
-export const DEFAULT_LIB = "$lib";
-export const DEFAULT_TAILWIND_CSS = "src/app.css";
-export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
-export const DEFAULT_TYPESCRIPT = true;
+export const DEFAULT_CONFIG = {
+	$schema: `${SITE_BASE_URL}/schema.json`,
+	aliases: {
+		lib: "$lib",
+		utils: "$lib/utils",
+		hooks: "$lib/hooks",
+		components: "$lib/components",
+		ui: "$lib/components/ui",
+	},
+	tailwind: {
+		baseColor: "slate",
+		css: "src/app.css",
+	},
+	typescript: true,
+	registry: `${SITE_BASE_URL}/registry`,
+} as const;
 
 const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
 
@@ -50,18 +57,18 @@ const baseConfigSchema = z.object({
 			z.boolean(),
 			z.object({ config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`) }),
 		])
-		.default(true),
+		.default(DEFAULT_CONFIG.typescript),
 });
 
 const originalConfigSchema = baseConfigSchema.extend({ style: z.string().optional() });
 
 const newConfigSchema = baseConfigSchema.extend({
 	aliases: baseConfigSchema.shape.aliases.extend({
-		ui: aliasSchema("ui").default(DEFAULT_UI),
-		hooks: aliasSchema("hooks").default(DEFAULT_HOOKS),
-		lib: aliasSchema("lib").default(DEFAULT_LIB),
+		ui: aliasSchema("ui").default(DEFAULT_CONFIG.aliases.ui),
+		hooks: aliasSchema("hooks").default(DEFAULT_CONFIG.aliases.hooks),
+		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
 	}),
-	registry: z.string().default(`${SITE_BASE_URL}/registry`),
+	registry: z.string().default(DEFAULT_CONFIG.registry),
 });
 
 export type RawConfig = z.infer<typeof rawConfigSchema>;
@@ -75,8 +82,8 @@ export const rawConfigSchema = z.object({
 	}),
 });
 
-export type Config = z.infer<typeof configSchema>;
-export const configSchema = rawConfigSchema.extend({
+export type ResolvedConfig = z.infer<typeof resolvedConfigSchema>;
+export const resolvedConfigSchema = rawConfigSchema.extend({
 	sveltekit: z.boolean(),
 	resolvedPaths: z.object({
 		cwd: z.string(),
@@ -89,17 +96,16 @@ export const configSchema = rawConfigSchema.extend({
 	}),
 });
 
-export async function getConfig(cwd: string) {
+export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
 	const config = getRawConfig(cwd);
+	if (!config) return;
 
-	if (!config) return null;
-
-	return await resolveConfigPaths(cwd, config);
+	return await resolveConfig(cwd, config);
 }
 
-function getRawConfig(cwd: string): RawConfig | null {
+export function getRawConfig(cwd: string): RawConfig | undefined {
 	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return null;
+	if (!fs.existsSync(configPath)) return;
 
 	try {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
@@ -114,37 +120,23 @@ function getRawConfig(cwd: string): RawConfig | null {
 	}
 }
 
-export async function resolveConfigPaths(cwd: string, config: RawConfig) {
+export async function resolveConfig(cwd: string, config: RawConfig): Promise<ResolvedConfig> {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
-	let tsconfig;
-	let tsconfigType: TSConfigName;
-	if (typeof config.typescript === "object") {
-		const tsconfigPath = path.resolve(cwd, config.typescript.config);
-		tsconfigType = path.basename(tsconfigPath);
-		tsconfig = resolveTSConfig(tsconfigPath);
-	} else {
-		tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
-		tsconfig = resolveTSConfig(path.resolve(cwd, "package.json"), tsconfigType);
-	}
+	const tsconfig = resolveTSConfig(cwd, config);
 
-	if (!tsconfig) {
-		throw error(
-			`Failed to find ${highlight(tsconfigType)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
-		);
-	}
-
+	const tsconfigFilename = path.basename(tsconfig.path);
 	if (!tsconfig.config.compilerOptions?.paths) {
 		throw error(
-			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
+			`Missing ${highlight("paths")} field in your ${highlight(tsconfigFilename)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 		);
 	}
 
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
-   - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigType)} (e.g. "${type}": "$lib/${type}").
+   - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "$lib/${type}").
    - See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}.`
 		);
 
@@ -161,16 +153,29 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
 
 	const sveltekit = isUsingSvelteKit(cwd);
 
-	return configSchema.parse({ ...config, sveltekit, resolvedPaths });
+	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
 }
 
 type TSConfigName = "tsconfig.json" | "jsconfig.json" | (string & {});
-export function resolveTSConfig(
-	targetPath: string,
-	tsconfigName: TSConfigName = path.basename(targetPath)
-) {
-	const parsedConfig = getTsconfig(targetPath, tsconfigName) ?? undefined;
-	return parsedConfig;
+export function resolveTSConfig(cwd: string, config: RawConfig) {
+	let tsconfig;
+	let tsconfigType: TSConfigName;
+	if (typeof config.typescript === "object") {
+		const tsconfigPath = path.resolve(cwd, config.typescript.config);
+		tsconfigType = path.basename(tsconfigPath);
+		tsconfig = getTsconfig(tsconfigPath, tsconfigType);
+	} else {
+		tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
+		tsconfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigType);
+	}
+
+	if (!tsconfig) {
+		throw error(
+			`Failed to find a ${highlight(tsconfigType)} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
+		);
+	}
+
+	return tsconfig;
 }
 
 export function writeConfig(cwd: string, config: RawConfig): void {

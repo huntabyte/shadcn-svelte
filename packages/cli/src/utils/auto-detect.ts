@@ -4,7 +4,6 @@ import * as p from "@clack/prompts";
 import * as find from "empathic/find";
 import ignore, { type Ignore } from "ignore";
 import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
-import { parseTsconfig, type TsConfigResult } from "get-tsconfig";
 import { cancel } from "./prompt-helpers.js";
 
 const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
@@ -12,6 +11,9 @@ const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
 // commonly ignored
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
 
+/**
+ * Returns the auto-detected filepaths for the global css file and the typescript config.
+ */
 export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	let cssPath: string | undefined;
 	const paths = findFiles(cwd);
@@ -23,8 +25,12 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 		}
 	}
 
-	const tsconfig = findTSConfig(cwd);
-	return { cssPath, tsconfig };
+	const tsconfigPath = findTSConfig(cwd);
+	return {
+		cssPath,
+		tsconfigPath:
+			tsconfigPath && config?.relative ? path.relative(cwd, tsconfigPath) : tsconfigPath,
+	};
 }
 
 /**
@@ -66,13 +72,13 @@ function walkDir(dirPath: string, ignores: { dirPath: string; ig: Ignore }[]): s
 	return paths;
 }
 
-function findTSConfig(cwd: string): TsConfigResult | undefined {
+/**
+ * Returns the absolute path to the nearest typescript config file.
+ */
+function findTSConfig(cwd: string): string | undefined {
 	for (const type of ["tsconfig.json", "jsconfig.json"] as const) {
 		const path = find.up(type, { cwd });
-		if (path) {
-			const config = parseTsconfig(path);
-			return { path, config };
-		}
+		if (path) return path;
 	}
 }
 
