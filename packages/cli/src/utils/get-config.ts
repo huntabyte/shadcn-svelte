@@ -54,12 +54,9 @@ const baseConfigSchema = z.object({
 		.union(
 			[
 				z.boolean(),
-				z.object(
-					{
-						config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
-					},
-					"its an object"
-				),
+				z.object({
+					config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
+				}),
 			],
 			`Invalid ${color.bold("typescript")} field. Must either be 'true', 'false', or '{ "config": "path/to/tsconfig.json" }'`
 		)
