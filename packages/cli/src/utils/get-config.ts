@@ -55,7 +55,11 @@ const baseConfigSchema = z.object({
 			[
 				z.boolean(),
 				z.object({
-					config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
+					// config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
+					// Not sure why, but I can't get the above error msg to appear during zod parsing
+					// when `typescript` is set to an empty object: `"typescript": {}`
+					// Possibly a zod bug with unions?
+					config: z.string(),
 				}),
 			],
 			`Invalid ${color.bold("typescript")} field. Must either be 'true', 'false', or '{ "config": "path/to/tsconfig.json" }'`
