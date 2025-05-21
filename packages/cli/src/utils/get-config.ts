@@ -95,27 +95,10 @@ export const resolvedConfigSchema = rawConfigSchema.extend({
 });
 
 export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
-	const config = getRawConfig(cwd);
+	const config = loadConfig(cwd);
 	if (!config) return;
 
 	return await resolveConfig(cwd, config);
-}
-
-export function getRawConfig(cwd: string): RawConfig | undefined {
-	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return;
-
-	try {
-		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
-		const config = JSON.parse(configResult);
-		return rawConfigSchema.parse(config);
-	} catch (e) {
-		if (!(e instanceof z.ZodError)) throw e;
-		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
-		throw new ConfigError(
-			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
-		);
-	}
 }
 
 export async function resolveConfig(cwd: string, config: RawConfig): Promise<ResolvedConfig> {
@@ -154,6 +137,29 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
 }
 
+export function loadConfig(cwd: string): RawConfig | undefined {
+	const configPath = path.resolve(cwd, "components.json");
+	if (!fs.existsSync(configPath)) return;
+
+	try {
+		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
+		const config = JSON.parse(configResult);
+		return rawConfigSchema.parse(config);
+	} catch (e) {
+		if (!(e instanceof z.ZodError)) throw e;
+		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
+	}
+}
+
+export function writeConfig(cwd: string, config: RawConfig): void {
+	const targetPath = path.resolve(cwd, "components.json");
+	const conf = newConfigSchema.parse(config, { jitless: true }); // `jitless` to retain the property order
+	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
+}
+
 type TSConfigName = "tsconfig.json" | "jsconfig.json" | (string & {});
 export function resolveTSConfig(cwd: string, config: RawConfig) {
 	let tsconfig;
@@ -174,10 +180,4 @@ export function resolveTSConfig(cwd: string, config: RawConfig) {
 	}
 
 	return tsconfig;
-}
-
-export function writeConfig(cwd: string, config: RawConfig): void {
-	const targetPath = path.resolve(cwd, "components.json");
-	const conf = newConfigSchema.parse(config, { jitless: true }); // `jitless` to retain the property order
-	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
 }

@@ -71,7 +71,7 @@ export const init = new Command()
 			preflightInit(cwd);
 
 			// Read config.
-			const existingConfig = cliConfig.getRawConfig(cwd);
+			const existingConfig = cliConfig.loadConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
 			await runInit(cwd, config, options);
