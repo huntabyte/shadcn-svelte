@@ -230,6 +230,53 @@ We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`, which has s
 /* ... */
 ```
 
+#### Remove animations and keyframes
+
+Since `tw-animate-css` includes animations for the accordion and blinking caret, you can remove them from your `app.css`.
+
+```diff title="app.css"
+@theme inline {
+  /* ... */
+-  /* Animations */
+-  --animate-accordion-up: accordion-up 0.2s ease-out;
+-  --animate-accordion-down: accordion-down 0.2s ease-out;
+-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+}
+/* ... */
+- @keyframes accordion-down {
+-   from {
+-     height: 0;
+-   }
+-
+-   to {
+-     height: var(--bits-accordion-content-height);
+-   }
+- }
+-
+- @keyframes accordion-up {
+-   from {
+-     height: var(--bits-accordion-content-height);
+-   }
+-
+-   to {
+-     height: 0;
+-   }
+- }
+-
+- @keyframes caret-blink {
+-   0%,
+-   70%,
+-   100% {
+-     opacity: 1;
+-   }
+-
+-   20%,
+-   50% {
+-     opacity: 0;
+-   }
+- }
+```
+
 #### CSS Variables and Theme Config
 
 We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and setup an `@theme inline` directive to replace our Tailwind v3 config.
@@ -356,11 +403,6 @@ Once complete, your `app.css` file should look something like this (the color va
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
-  /* Animations */
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
 }
 
 @layer base {
@@ -370,39 +412,6 @@ Once complete, your `app.css` file should look something like this (the color va
 
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-
-  to {
-    height: var(--bits-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--bits-accordion-content-height);
-  }
-
-  to {
-    height: 0;
-  }
-}
-
-@keyframes caret-blink {
-  0%,
-  70%,
-  100% {
-    opacity: 1;
-  }
-
-  20%,
-  50% {
-    opacity: 0;
   }
 }
 ```
