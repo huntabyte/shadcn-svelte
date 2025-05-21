@@ -230,7 +230,7 @@ We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`, which has s
 /* ... */
 ```
 
-#### Remove animations and keyframes
+#### Remove Animations and Keyframes (optional)
 
 Since `tw-animate-css` includes animations for the accordion and blinking caret, you can remove them from your `app.css`.
 
