@@ -147,7 +147,7 @@ export function loadConfig(cwd: string): RawConfig | undefined {
 		return rawConfigSchema.parse(config);
 	} catch (e) {
 		if (!(e instanceof z.ZodError)) throw e;
-		const formatted = `Errors:\n- ${color.redBright(e.issues.map((i) => i.message).join("\n- "))}`;
+		const formatted = z.prettifyError(e);
 		throw new ConfigError(
 			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
 		);
