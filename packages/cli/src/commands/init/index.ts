@@ -91,36 +91,9 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 		}
 	}
 
-	if (options.libAlias) {
-		const validationResult = validateImportAlias(options.libAlias, tsconfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.componentsAlias) {
-		const validationResult = validateImportAlias(options.componentsAlias, tsconfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.uiAlias) {
-		const validationResult = validateImportAlias(options.uiAlias, tsconfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.utilsAlias) {
-		const validationResult = validateImportAlias(options.utilsAlias, tsconfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.hooksAlias) {
-		const validationResult = validateImportAlias(options.hooksAlias, tsconfig);
+	for (const [alias, path] of Object.entries(options)) {
+		if (!alias.endsWith("Alias")) continue;
+		const validationResult = validateImportAlias(path as string, tsconfig);
 		if (validationResult) {
 			throw error(validationResult);
 		}
@@ -259,11 +232,11 @@ async function promptForConfig(
 	return configPaths;
 }
 
-function validateImportAlias(alias: string, tsconfig: TsConfigResult) {
-	const resolvedPath = resolveImport(alias, tsconfig);
+function validateImportAlias(aliasedPath: string, tsconfig: TsConfigResult) {
+	const resolvedPath = resolveImport(aliasedPath, tsconfig);
 	if (resolvedPath !== undefined) return;
 
-	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(path.basename(tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
+	return `"${color.bold(aliasedPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 export async function runInit(cwd: string, config: ResolvedConfig, options: InitOptions) {
