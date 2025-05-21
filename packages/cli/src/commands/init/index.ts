@@ -17,7 +17,7 @@ import { SITE_BASE_URL } from "../../constants.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight, stripTrailingSlash } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import type { TsConfigResult } from "get-tsconfig";
 
@@ -175,12 +175,8 @@ async function promptForConfig(
 	if (tailwindBaseColor === undefined) {
 		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
-			initialValue:
-				existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
-			options: baseColors.map((color) => ({
-				label: color.label,
-				value: color.name,
-			})),
+			initialValue: config.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
+			options: baseColors.map((color) => ({ label: color.label, value: color.name })),
 		});
 
 		if (p.isCancel(input)) cancel();
@@ -194,7 +190,7 @@ async function promptForConfig(
 		const cssDefault = cliConfig.DEFAULT_CONFIG.tailwind.css;
 		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
-			initialValue: existingConfig?.tailwind.css ?? cssPath ?? cssDefault,
+			initialValue: config.tailwind.css ?? cssPath ?? cssDefault,
 			placeholder: cssPath ?? cssDefault,
 			validate: (value) => {
 				if (value && existsSync(path.resolve(cwd, value))) {
@@ -209,83 +205,40 @@ async function promptForConfig(
 		globalCss = input;
 	}
 
+	const promptAlias = async (alias: keyof cliConfig.RawConfig["aliases"], initial: string) => {
+		let path = options[`${alias}Alias`];
+		if (path === undefined) {
+			const input = await p.text({
+				message: `Configure the import alias for ${highlight(alias)}:`,
+				initialValue: config.aliases[alias] ?? initial,
+				placeholder: cliConfig.DEFAULT_CONFIG.aliases[alias],
+				validate: (value) => validateImportAlias(value, tsconfig),
+			});
+
+			if (p.isCancel(input)) cancel();
+
+			path = stripTrailingSlash(input);
+		}
+		return path;
+	};
+
 	// Lib Alias
-	let libAlias = options.libAlias;
-	if (libAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("lib")}:`,
-			initialValue: existingConfig?.aliases.lib ?? "$lib",
-			placeholder: cliConfig.DEFAULT_CONFIG.aliases.lib,
-			validate: (value) => validateImportAlias(value, tsconfig),
-		});
+	const libAlias = await promptAlias("lib", "$lib");
 
-		if (p.isCancel(input)) cancel();
-
-		libAlias = input;
-	}
-
-	// infers the alias from `lib`. if `lib = $lib` then suggest `alias = $lib/alias`
+	// infers the alias from `lib` alias. if `lib = $lib` then suggest `alias = $lib/[alias]`
 	const inferAlias = (alias: string) => `${libAlias}/${alias}`;
 
 	// Components Alias
-	let componentAlias = options.componentsAlias;
-	if (componentAlias === undefined) {
-		const promptResult = await p.text({
-			message: `Configure the import alias for ${highlight("components")}:`,
-			initialValue: existingConfig?.aliases.components ?? inferAlias("components"),
-			placeholder: cliConfig.DEFAULT_CONFIG.aliases.components,
-			validate: (value) => validateImportAlias(value, tsconfig),
-		});
-
-		if (p.isCancel(promptResult)) cancel();
-
-		componentAlias = promptResult;
-	}
+	const componentAlias = await promptAlias("components", inferAlias("components"));
 
 	// UI Alias
-	let uiAlias = options.uiAlias;
-	if (uiAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("ui")}:`,
-			initialValue: existingConfig?.aliases.ui ?? `${componentAlias}/ui`,
-			placeholder: cliConfig.DEFAULT_CONFIG.aliases.ui,
-			validate: (value) => validateImportAlias(value, tsconfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		uiAlias = input;
-	}
+	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`);
 
 	// Utils Alias
-	let utilsAlias = options.utilsAlias;
-	if (utilsAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("utils")}:`,
-			initialValue: existingConfig?.aliases.utils ?? inferAlias("utils"),
-			placeholder: cliConfig.DEFAULT_CONFIG.aliases.utils,
-			validate: (value) => validateImportAlias(value, tsconfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		utilsAlias = input;
-	}
+	const utilsAlias = await promptAlias("utils", inferAlias("utils"));
 
 	// Hooks Alias
-	let hooksAlias = options.hooksAlias;
-	if (hooksAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("hooks")}:`,
-			initialValue: existingConfig?.aliases.hooks ?? inferAlias("hooks"),
-			placeholder: cliConfig.DEFAULT_CONFIG.aliases.hooks,
-			validate: (value) => validateImportAlias(value, tsconfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		hooksAlias = input;
-	}
+	const hooksAlias = await promptAlias("hooks", inferAlias("hooks"));
 
 	const rawConfig = cliConfig.rawConfigSchema.parse({
 		...config,
