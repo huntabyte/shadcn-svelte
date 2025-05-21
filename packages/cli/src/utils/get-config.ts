@@ -3,7 +3,7 @@ import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod/v4";
-import { highlight } from "./utils.js";
+import { highlight, stripTrailingSlash } from "./utils.js";
 import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
 import { resolveImport } from "./resolve-imports.js";
@@ -25,8 +25,6 @@ export const DEFAULT_CONFIG = {
 	typescript: true,
 	registry: `${SITE_BASE_URL}/registry`,
 } as const;
-
-const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
 
 const aliasSchema = (alias: string) =>
 	z
