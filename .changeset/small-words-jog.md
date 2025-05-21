@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-feat: add new typescript config path option to `components.json`
+feat: add customizable `typescript.config` path option to `components.json` 
