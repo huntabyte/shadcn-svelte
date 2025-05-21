@@ -2326,7 +2326,7 @@
 					"path": "src/lib/registry/blocks/dashboard-01/+page.svelte"
 				},
 				{
-					"type": "registry:file",
+					"type": "registry:page",
 					"path": "src/lib/registry/blocks/dashboard-01/data.ts"
 				},
 				{

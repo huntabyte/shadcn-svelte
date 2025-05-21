@@ -130,7 +130,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		const isPage = pagesNames.includes(dirent.name);
 		const isFile = fileNames.includes(dirent.name);
 
-		const type = isPage ? "registry:page" : isFile ? "registry:file" : "registry:component";
+		const type = isPage || isFile ? "registry:page" : "registry:component";
 
 		// TODO: fix
 		const compPath =
