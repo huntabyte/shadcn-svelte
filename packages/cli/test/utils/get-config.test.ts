@@ -6,7 +6,7 @@ vi.mock("tinyexec");
 
 describe("getConfig", () => {
 	it("handles cases where no config is present", async () => {
-		expect(await getConf("config-none")).toEqual(null);
+		expect(await getConf("config-none")).toEqual(undefined);
 	});
 
 	it("handles invalid configurations", async () => {
