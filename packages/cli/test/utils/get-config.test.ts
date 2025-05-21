@@ -41,6 +41,34 @@ describe("getConfig", () => {
 		});
 	});
 
+	it("handles custom typescript config files", async () => {
+		expect(await getConf("config-custom-tsconfig")).toEqual({
+			tailwind: {
+				css: "src/app.css",
+				baseColor: "zinc",
+			},
+			aliases: {
+				utils: "$lib/utils",
+				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
+				lib: "$lib",
+			},
+			resolvedPaths: {
+				components: resolvePath("../fixtures/config-custom-tsconfig/src/lib/components"),
+				tailwindCss: resolvePath("../fixtures/config-custom-tsconfig/src/app.css"),
+				utils: resolvePath("../fixtures/config-custom-tsconfig/src/lib/utils"),
+				cwd: resolvePath("../fixtures/config-custom-tsconfig"),
+				hooks: resolvePath("../fixtures/config-custom-tsconfig/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-custom-tsconfig/src/lib/components/ui"),
+				lib: resolvePath("../fixtures/config-custom-tsconfig/src/lib"),
+			},
+			sveltekit: true,
+			typescript: { config: "tsconfig.base.json" },
+			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
+
 	// this case will be more important once we add support for
 	// partial configs via tw prefixes, tw vars, etc.
 	it("handles cases where a partial config is present", async () => {
