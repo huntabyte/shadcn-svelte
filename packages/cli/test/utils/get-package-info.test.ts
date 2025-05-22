@@ -1,7 +1,7 @@
+import path from "node:path";
+import { vol } from "memfs";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { getPackageInfo, loadProjectPackageInfo } from "../../src/utils/get-package-info";
-import { vol } from "memfs";
-import path from "node:path";
 
 vi.mock("node:path");
 vi.mock("node:url");

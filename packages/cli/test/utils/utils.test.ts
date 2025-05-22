@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
 import { parseDependency, resolveURL } from "../../src/utils/utils";
 import { transformAliases, transformLocal } from "../../src/commands/registry/build";
-import { ALIAS_DEFAULTS, ALIASES } from "../../src/constants";
 
 describe("resolveURL", () => {
 	it("Correctly resolves the relative url path", () => {

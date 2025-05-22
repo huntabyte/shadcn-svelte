@@ -4,11 +4,11 @@ import { strip } from "@svecosystem/strip-types";
 import type { CssVars } from "@shadcn-svelte/registry";
 import { ALIASES, ALIAS_DEFAULTS } from "../constants.js";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
-import type { Config } from "./get-config.js";
+import type { ResolvedConfig } from "./get-config.js";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
-export async function transformContent(content: string, filename: string, config: Config) {
+export async function transformContent(content: string, filename: string, config: ResolvedConfig) {
 	content = transformImports(content, config);
 
 	if (!config.typescript) {
@@ -18,7 +18,7 @@ export async function transformContent(content: string, filename: string, config
 	return content;
 }
 
-export function transformImports(content: string, config: Config) {
+export function transformImports(content: string, config: ResolvedConfig) {
 	for (const alias of ALIASES) {
 		content = content.replaceAll(ALIAS_DEFAULTS[alias].placeholder, config.aliases[alias]);
 	}

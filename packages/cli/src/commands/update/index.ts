@@ -70,7 +70,7 @@ export const update = new Command()
 		}
 	});
 
-async function runUpdate(cwd: string, config: cliConfig.Config, options: UpdateOptions) {
+async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options: UpdateOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);

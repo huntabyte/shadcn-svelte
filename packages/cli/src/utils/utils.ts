@@ -13,6 +13,8 @@ export function isUrl(path: string) {
 
 export const highlight = (...args: unknown[]) => color.bold.cyan(...args);
 
+export const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
+
 /** Adds a trailing slash to the end of the URL, if missing. */
 function normalizeURL(url: URL | string): URL {
 	if (!(url instanceof URL)) {

@@ -10,9 +10,9 @@ import {
 	getItemAliasDir,
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
-import type { Config } from "../../src/utils/get-config.js";
-import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
 import { toPosixPath } from "./test-helpers.js";
+import type { ResolvedConfig } from "../../src/utils/get-config.js";
+import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
 
 vi.mock("node-fetch-native", () => ({
 	fetch: vi.fn(),
@@ -20,7 +20,7 @@ vi.mock("node-fetch-native", () => ({
 
 describe("Registry Utilities", () => {
 	const cwd = "/path/to/cwd";
-	const mockConfig: Config = {
+	const mockConfig: ResolvedConfig = {
 		registry: "https://example.com/registry",
 		resolvedPaths: {
 			ui: path.posix.normalize(`${cwd}/ui`),
@@ -31,7 +31,7 @@ describe("Registry Utilities", () => {
 			utils: path.posix.normalize(`${cwd}/utils`),
 		},
 		sveltekit: true,
-	} as Config;
+	} as ResolvedConfig;
 
 	const mockRegistryIndex: RegistryIndex = [
 		{
@@ -185,10 +185,6 @@ describe("Registry Utilities", () => {
 	});
 
 	describe("getItemAliasDir", () => {
-		it("should return override if provided", () => {
-			expect(getItemAliasDir(mockConfig, "registry:ui", "/custom/path")).toBe("/custom/path");
-		});
-
 		it("should return correct directory for each type", () => {
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:ui"))).toBe("/path/to/cwd/ui");
 			expect(toPosixPath(getItemAliasDir(mockConfig, "registry:hook"))).toBe(

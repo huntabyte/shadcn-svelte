@@ -3,11 +3,11 @@ import { fetch } from "node-fetch-native";
 import { createProxy } from "node-fetch-native/proxy";
 import { isUrl, resolveURL } from "../utils.js";
 import { CLIError, error } from "../errors.js";
-import type { Config } from "../get-config.js";
+import type { ResolvedConfig } from "../get-config.js";
 import { getEnvProxy } from "../get-env-proxy.js";
 import * as schemas from "@shadcn-svelte/registry";
 
-export function getRegistryUrl(config: Config) {
+export function getRegistryUrl(config: ResolvedConfig) {
 	const url = process.env.COMPONENTS_REGISTRY_URL ?? config.registry;
 	return url;
 }
@@ -149,9 +149,7 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	}
 }
 
-export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, override?: string) {
-	if (override) return override;
-
+export function getItemAliasDir(config: ResolvedConfig, type: schemas.RegistryItemType) {
 	if (type === "registry:ui") return config.resolvedPaths.ui;
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
@@ -172,7 +170,7 @@ export function getItemAliasDir(config: Config, type: schemas.RegistryItemType, 
 }
 
 export function resolveItemFilePath(
-	config: Config,
+	config: ResolvedConfig,
 	item: schemas.RegistryItem,
 	file: schemas.RegistryItemFile
 ): string {

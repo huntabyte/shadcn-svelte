@@ -13,7 +13,7 @@
 		"build:docs": "pnpm -F docs build",
 		"build:v4": "pnpm -F v4 build",
 		"dev": "pnpm -F docs dev",
-		"dev:cli": "pnpm -F \"./packages/**\" svelte-kit sync && pnpm --parallel --reporter append-only --color dev",
+		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",

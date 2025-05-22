@@ -7,14 +7,13 @@ import * as registry from "./registry/index.js";
 import { highlight } from "./utils.js";
 import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformContent, transformCss } from "./transformers.js";
-import type { Config } from "./get-config.js";
+import type { ResolvedConfig } from "./get-config.js";
 
 type AddRegistryItemsProps = {
 	selectedItems: string[];
-	config: Config;
+	config: ResolvedConfig;
 	overwrite: boolean;
 	deps: boolean;
-	path?: string;
 };
 
 // this logic is shared between the `add` and `init` commands
@@ -43,7 +42,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	// build a list of existing items
 	const existingItems: string[] = [];
-	const targetPath = opts.path ? path.resolve(cwd, opts.path) : undefined;
 	for (const item of itemsWithContent) {
 		if (selectedItems.has(item.name) === false) continue;
 		for (const regDep of item.registryDependencies ?? []) {
@@ -80,7 +78,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	for (const item of itemsWithContent) {
 		if (item.type !== "registry:style") {
-			const aliasDir = registry.getItemAliasDir(opts.config, item.type, targetPath);
+			const aliasDir = registry.getItemAliasDir(opts.config, item.type);
 			if (!existsSync(aliasDir)) {
 				await fs.mkdir(aliasDir, { recursive: true });
 			}
@@ -139,7 +137,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				}
 
 				if (item.name !== "init") {
-					const aliasDir = registry.getItemAliasDir(opts.config, item.type, targetPath);
+					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
 					const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 					return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
 				}

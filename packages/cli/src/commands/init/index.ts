@@ -5,13 +5,9 @@ import path from "node:path";
 import process from "node:process";
 import { z } from "zod/v4";
 import * as p from "@clack/prompts";
-import {
-	type DetectLanguageResult,
-	detectConfigs,
-	detectLanguage,
-} from "../../utils/auto-detect.js";
+import { detectConfigs } from "../../utils/auto-detect.js";
 import { error, handleError } from "../../utils/errors.js";
-import type { Config } from "../../utils/get-config.js";
+import type { ResolvedConfig } from "../../utils/get-config.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
@@ -21,8 +17,9 @@ import { SITE_BASE_URL } from "../../constants.js";
 import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
-import { highlight } from "../../utils/utils.js";
+import { highlight, stripTrailingSlash } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import type { TsConfigResult } from "get-tsconfig";
 
 const baseColors = registry.getBaseColors();
 
@@ -74,7 +71,7 @@ export const init = new Command()
 			preflightInit(cwd);
 
 			// Read config.
-			const existingConfig = await cliConfig.getConfig(cwd);
+			const existingConfig = cliConfig.loadConfig(cwd);
 			const config = await promptForConfig(cwd, existingConfig, options);
 
 			await runInit(cwd, config, options);
@@ -85,7 +82,7 @@ export const init = new Command()
 		}
 	});
 
-function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLanguageResult) {
+function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigResult) {
 	if (options.css) {
 		if (!existsSync(path.resolve(cwd, options.css))) {
 			throw error(
@@ -94,57 +91,57 @@ function validateOptions(cwd: string, options: InitOptions, langConfig: DetectLa
 		}
 	}
 
-	if (options.libAlias) {
-		const validationResult = validateImportAlias(options.libAlias, langConfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.componentsAlias) {
-		const validationResult = validateImportAlias(options.componentsAlias, langConfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.uiAlias) {
-		const validationResult = validateImportAlias(options.uiAlias, langConfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.utilsAlias) {
-		const validationResult = validateImportAlias(options.utilsAlias, langConfig);
-		if (validationResult) {
-			throw error(validationResult);
-		}
-	}
-
-	if (options.hooksAlias) {
-		const validationResult = validateImportAlias(options.hooksAlias, langConfig);
+	for (const [alias, path] of Object.entries(options)) {
+		if (!alias.endsWith("Alias")) continue;
+		const validationResult = validateImportAlias(path as string, tsconfig);
 		if (validationResult) {
 			throw error(validationResult);
 		}
 	}
 }
 
-async function promptForConfig(cwd: string, defaultConfig: Config | null, options: InitOptions) {
+async function promptForConfig(
+	cwd: string,
+	existingConfig: cliConfig.RawConfig | undefined,
+	options: InitOptions
+) {
+	const config: cliConfig.RawConfig = existingConfig ?? structuredClone(cliConfig.DEFAULT_CONFIG);
+
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
-	const detectedConfigs = detectConfigs(cwd, { relative: true });
+	const { cssPath, tsconfigPath } = detectConfigs(cwd, { relative: true });
 
-	const langConfig = detectLanguage(cwd);
-	if (langConfig === undefined) {
-		throw error(
-			`Failed to find a ${highlight("tsconfig.json")} or ${highlight("jsconfig.json")} file. See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`
-		);
+	let tsconfig;
+	if (existingConfig) {
+		tsconfig = cliConfig.resolveTSConfig(cwd, existingConfig);
+	} else {
+		if (!tsconfigPath) {
+			const input = await p.text({
+				message: `Where is your ${highlight("tsconfig/jsconfig")} file?`,
+				// initialValue: "tsconfig.json",
+				placeholder: "tsconfig.json",
+				validate: (value) => {
+					const tsconfigPath = path.resolve(cwd, value);
+					if (value && existsSync(tsconfigPath)) {
+						return;
+					}
+					return `"${color.bold(value)}" does not exist. Please enter a valid path.`;
+				},
+			});
+
+			if (p.isCancel(input)) cancel();
+
+			config.typescript = { config: input };
+		} else {
+			config.typescript = tsconfigPath.includes("tsconfig");
+		}
+
+		tsconfig = cliConfig.resolveTSConfig(cwd, config);
 	}
 
 	// Validation for any paths provided by flags
-	validateOptions(cwd, options, langConfig);
+	validateOptions(cwd, options, tsconfig);
 
 	// Base Color
 	let tailwindBaseColor = baseColors.find((color) => color.name === options.baseColor)?.name;
@@ -152,11 +149,8 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		const input = await p.select({
 			message: `Which ${highlight("base color")} would you like to use?`,
 			initialValue:
-				defaultConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_TAILWIND_BASE_COLOR,
-			options: baseColors.map((color) => ({
-				label: color.label,
-				value: color.name,
-			})),
+				existingConfig?.tailwind.baseColor ?? cliConfig.DEFAULT_CONFIG.tailwind.baseColor,
+			options: baseColors.map((color) => ({ label: color.label, value: color.name })),
 		});
 
 		if (p.isCancel(input)) cancel();
@@ -167,13 +161,11 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 	// Global CSS File
 	let globalCss = options.css;
 	if (globalCss === undefined) {
+		const cssDefault = cliConfig.DEFAULT_CONFIG.tailwind.css;
 		const input = await p.text({
 			message: `Where is your ${highlight("global CSS")} file? ${color.gray("(this file will be overwritten)")}`,
-			initialValue:
-				defaultConfig?.tailwind.css ??
-				detectedConfigs.cssPath ??
-				cliConfig.DEFAULT_TAILWIND_CSS,
-			placeholder: detectedConfigs.cssPath ?? cliConfig.DEFAULT_TAILWIND_CSS,
+			initialValue: existingConfig?.tailwind.css ?? cssPath ?? cssDefault,
+			placeholder: cssPath ?? cssDefault,
 			validate: (value) => {
 				if (value && existsSync(path.resolve(cwd, value))) {
 					return;
@@ -187,88 +179,40 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		globalCss = input;
 	}
 
+	const promptAlias = async (alias: keyof cliConfig.RawConfig["aliases"], initial: string) => {
+		let path = options[`${alias}Alias`];
+		if (path === undefined) {
+			const input = await p.text({
+				message: `Configure the import alias for ${highlight(alias)}:`,
+				initialValue: existingConfig?.aliases[alias] ?? initial,
+				placeholder: cliConfig.DEFAULT_CONFIG.aliases[alias],
+				validate: (value) => validateImportAlias(value, tsconfig),
+			});
+
+			if (p.isCancel(input)) cancel();
+
+			path = stripTrailingSlash(input);
+		}
+		return path;
+	};
+
 	// Lib Alias
-	let libAlias = options.libAlias;
-	if (libAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("lib")}:`,
-			initialValue: defaultConfig?.aliases.lib ?? "$lib",
-			placeholder: cliConfig.DEFAULT_LIB,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		libAlias = input;
-	}
-
-	// infers the alias from `lib`. if `lib = $lib` then suggest `alias = $lib/alias`
-	const inferAlias = (alias: string) => `${libAlias}/${alias}`;
+	const libAlias = await promptAlias("lib", "$lib");
 
 	// Components Alias
-	let componentAlias = options.componentsAlias;
-	if (componentAlias === undefined) {
-		const promptResult = await p.text({
-			message: `Configure the import alias for ${highlight("components")}:`,
-			initialValue: defaultConfig?.aliases.components ?? inferAlias("components"),
-			placeholder: cliConfig.DEFAULT_COMPONENTS,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(promptResult)) cancel();
-
-		componentAlias = promptResult;
-	}
+	const componentAlias = await promptAlias("components", `${libAlias}/components`);
 
 	// UI Alias
-	let uiAlias = options.uiAlias;
-	if (uiAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("ui")}:`,
-			initialValue: defaultConfig?.aliases.ui ?? `${componentAlias}/ui`,
-			placeholder: cliConfig.DEFAULT_UI,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		uiAlias = input;
-	}
+	const uiAlias = await promptAlias("ui", `${componentAlias}/ui`);
 
 	// Utils Alias
-	let utilsAlias = options.utilsAlias;
-	if (utilsAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("utils")}:`,
-			initialValue: defaultConfig?.aliases.utils ?? inferAlias("utils"),
-			placeholder: cliConfig.DEFAULT_UTILS,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
-
-		if (p.isCancel(input)) cancel();
-
-		utilsAlias = input;
-	}
+	const utilsAlias = await promptAlias("utils", `${libAlias}/utils`);
 
 	// Hooks Alias
-	let hooksAlias = options.hooksAlias;
-	if (hooksAlias === undefined) {
-		const input = await p.text({
-			message: `Configure the import alias for ${highlight("hooks")}:`,
-			initialValue: defaultConfig?.aliases.hooks ?? inferAlias("hooks"),
-			placeholder: cliConfig.DEFAULT_HOOKS,
-			validate: (value) => validateImportAlias(value, langConfig),
-		});
+	const hooksAlias = await promptAlias("hooks", `${libAlias}/hooks`);
 
-		if (p.isCancel(input)) cancel();
-
-		hooksAlias = input;
-	}
-
-	const config = cliConfig.rawConfigSchema.parse({
-		$schema: `${SITE_BASE_URL}/schema.json`,
-		typescript: langConfig.type === "tsconfig.json",
-		registry: defaultConfig?.registry,
+	const rawConfig = cliConfig.rawConfigSchema.parse({
+		...config,
 		tailwind: {
 			css: globalCss,
 			baseColor: tailwindBaseColor,
@@ -282,19 +226,18 @@ async function promptForConfig(cwd: string, defaultConfig: Config | null, option
 		},
 	});
 
-	const configPaths = await cliConfig.resolveConfigPaths(cwd, config);
+	const configPaths = await cliConfig.resolveConfig(cwd, rawConfig);
 	return configPaths;
 }
 
-function validateImportAlias(alias: string, langConfig: DetectLanguageResult) {
-	const resolvedPath = resolveImport(alias, langConfig.config);
-	if (resolvedPath !== undefined) {
-		return;
-	}
-	return `"${color.bold(alias)}" does not use an existing path alias defined in your ${color.bold(langConfig.type)}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
+function validateImportAlias(aliasedPath: string, tsconfig: TsConfigResult) {
+	const resolvedPath = resolveImport(aliasedPath, tsconfig);
+	if (resolvedPath !== undefined) return;
+
+	return `"${color.bold(aliasedPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
-export async function runInit(cwd: string, config: Config, options: InitOptions) {
+export async function runInit(cwd: string, config: ResolvedConfig, options: InitOptions) {
 	if (options.proxy !== undefined) {
 		process.env.HTTP_PROXY = options.proxy;
 		p.log.info(`You are using the provided proxy: ${color.green(options.proxy)}`);

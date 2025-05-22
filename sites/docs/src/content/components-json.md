@@ -149,9 +149,21 @@ Import alias for your hooks, which in Svelte 5 are reactive functions/classes wh
 
 ## Typescript
 
+Typescript can be enabled or disabled.
+
 ```json title="components.json"
 {
   "typescript": true | false
+}
+```
+
+You can also specify a path to your own custom Typescript config file if it has a different name from `tsconfig.json` or `jsconfig.json`, or if it is located in a different directory:
+
+```json title="components.json"
+{
+  "typescript": {
+    "config": "path/to/tsconfig.custom.json"
+  }
 }
 ```
 

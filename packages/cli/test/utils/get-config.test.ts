@@ -6,7 +6,7 @@ vi.mock("tinyexec");
 
 describe("getConfig", () => {
 	it("handles cases where no config is present", async () => {
-		expect(await getConf("config-none")).toEqual(null);
+		expect(await getConf("config-none")).toEqual(undefined);
 	});
 
 	it("handles invalid configurations", async () => {
@@ -37,6 +37,34 @@ describe("getConfig", () => {
 			},
 			sveltekit: true,
 			typescript: true,
+			registry: `${SITE_BASE_URL}/registry`,
+		});
+	});
+
+	it("handles custom typescript config files", async () => {
+		expect(await getConf("config-custom-tsconfig")).toEqual({
+			tailwind: {
+				css: "src/app.css",
+				baseColor: "zinc",
+			},
+			aliases: {
+				utils: "$lib/utils",
+				components: "$lib/components",
+				hooks: "$lib/hooks",
+				ui: "$lib/components/ui",
+				lib: "$lib",
+			},
+			resolvedPaths: {
+				components: resolvePath("../fixtures/config-custom-tsconfig/src/lib/components"),
+				tailwindCss: resolvePath("../fixtures/config-custom-tsconfig/src/app.css"),
+				utils: resolvePath("../fixtures/config-custom-tsconfig/src/lib/utils"),
+				cwd: resolvePath("../fixtures/config-custom-tsconfig"),
+				hooks: resolvePath("../fixtures/config-custom-tsconfig/src/lib/hooks"),
+				ui: resolvePath("../fixtures/config-custom-tsconfig/src/lib/components/ui"),
+				lib: resolvePath("../fixtures/config-custom-tsconfig/src/lib"),
+			},
+			sveltekit: true,
+			typescript: { config: "tsconfig.base.json" },
 			registry: `${SITE_BASE_URL}/registry`,
 		});
 	});
