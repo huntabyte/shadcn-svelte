@@ -10,7 +10,7 @@ concurrency:
 jobs:
   check:
     name: Run svelte-check
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -20,13 +20,13 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Run svelte-check
         run: pnpm check
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     name: Lint
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - run: pnpm lint
 
@@ -56,7 +56,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Build packages
         run: pnpm build:cli
