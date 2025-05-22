@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   check:
-    name: Run svelte-check
+    name: Svelte Check
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
