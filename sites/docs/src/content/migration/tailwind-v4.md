@@ -356,11 +356,6 @@ Once complete, your `app.css` file should look something like this (the color va
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
-  /* Animations */
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
 }
 
 @layer base {
@@ -370,39 +365,6 @@ Once complete, your `app.css` file should look something like this (the color va
 
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-
-  to {
-    height: var(--bits-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--bits-accordion-content-height);
-  }
-
-  to {
-    height: 0;
-  }
-}
-
-@keyframes caret-blink {
-  0%,
-  70%,
-  100% {
-    opacity: 1;
-  }
-
-  20%,
-  50% {
-    opacity: 0;
   }
 }
 ```
