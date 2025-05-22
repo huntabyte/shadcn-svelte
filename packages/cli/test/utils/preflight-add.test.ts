@@ -1,11 +1,11 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { preflightAdd } from "../../src/commands/add/preflight.js";
-import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
-import { getConfig, writeConfig } from "../../src/utils/get-config.js";
+import { getConf } from "./test-helpers";
 import { ConfigError } from "../../src/utils/errors.js";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
-import { getConf } from "./test-helpers";
 import { resolveDependencyPkg } from "../../src/utils/utils.js";
+import { preflightAdd } from "../../src/commands/add/preflight.js";
+import { getConfig, writeConfig } from "../../src/utils/get-config.js";
+import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
 
 const resolvedPaths = {
 	cwd: "n/a",

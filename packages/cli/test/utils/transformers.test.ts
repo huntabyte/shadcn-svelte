@@ -5,9 +5,9 @@ import {
 	stripTypes,
 	transformCss,
 } from "../../src/utils/transformers";
-import type { Config } from "../../src/utils/get-config";
+import type { ResolvedConfig } from "../../src/utils/get-config";
 
-const mockConfig: Config = {
+const mockConfig: ResolvedConfig = {
 	tailwind: {
 		css: "src/app.css",
 		baseColor: "zinc",
@@ -154,7 +154,7 @@ describe("transformContent", () => {
 });
 
 describe("transformImports with more custom paths", () => {
-	const customConfig: Config = {
+	const customConfig: ResolvedConfig = {
 		tailwind: {
 			css: "styles/global.css",
 			baseColor: "slate",

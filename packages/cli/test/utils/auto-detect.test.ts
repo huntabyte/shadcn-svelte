@@ -1,6 +1,6 @@
-import { describe, it, expect, afterAll, beforeEach } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { describe, it, expect, afterAll, beforeEach } from "vitest";
 import { detectConfigs } from "../../src/utils/auto-detect";
 
 describe("detectConfigs", () => {

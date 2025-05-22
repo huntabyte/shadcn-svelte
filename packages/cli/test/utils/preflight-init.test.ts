@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
-import { preflightInit } from "../../src/commands/init/preflight.js";
-import { highlight, resolveDependencyPkg } from "../../src/utils/utils";
 import color from "chalk";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";
+import { highlight, resolveDependencyPkg } from "../../src/utils/utils";
+import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
 
 vi.mock("../../src/utils/get-package-info.js");
 vi.mock("../../src/utils/utils");

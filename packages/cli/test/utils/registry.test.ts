@@ -10,9 +10,9 @@ import {
 	getItemAliasDir,
 	resolveItemFilePath,
 } from "../../src/utils/registry/index.js";
+import { toPosixPath } from "./test-helpers.js";
 import type { ResolvedConfig } from "../../src/utils/get-config.js";
 import type { RegistryItem, RegistryIndex } from "@shadcn-svelte/registry";
-import { toPosixPath } from "./test-helpers.js";
 
 vi.mock("node-fetch-native", () => ({
 	fetch: vi.fn(),

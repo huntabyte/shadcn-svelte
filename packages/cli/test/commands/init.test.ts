@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
+import { exec } from "tinyexec";
 import { afterEach, expect, it, vi } from "vitest";
 import { runInit } from "../../src/commands/init";
-import { getConfig } from "../../src/utils/get-config";
 import * as registry from "../../src/utils/registry";
-import { exec } from "tinyexec";
+import { getConfig } from "../../src/utils/get-config";
 
 vi.mock("fs/promises", () => ({ writeFile: vi.fn(), mkdir: vi.fn(), readFile: vi.fn() }));
 
