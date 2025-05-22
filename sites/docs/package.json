@@ -57,7 +57,7 @@
 		"formsnap": "^2.0.1",
 		"globby": "^14.1.0",
 		"hast-util-to-html": "^9.0.1",
-		"layerchart": "2.0.0-next.6",
+		"layerchart": "2.0.0-next.10",
 		"lodash.template": "^4.5.0",
 		"magic-string": "^0.30.12",
 		"mdsx": "^0.0.6",

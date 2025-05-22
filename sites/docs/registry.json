@@ -43,31 +43,7 @@
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/accordion/index.ts"
 				}
-			],
-			"cssVars": {
-				"theme": {
-					"--animate-accordion-down": "accordion-down 0.2s ease-out",
-					"--animate-accordion-up": "accordion-up 0.2s ease-out"
-				}
-			},
-			"css": {
-				"@keyframes accordion-down": {
-					"from": {
-						"height": "0"
-					},
-					"to": {
-						"height": "var(--bits-accordion-content-height)"
-					}
-				},
-				"@keyframes accordion-up": {
-					"from": {
-						"height": "var(--bits-accordion-content-height)"
-					},
-					"to": {
-						"height": "0"
-					}
-				}
-			}
+			]
 		},
 		{
 			"name": "alert",
