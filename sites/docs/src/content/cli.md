@@ -89,7 +89,6 @@ Options:
   -y, --yes          skip confirmation prompt (default: false)
   -o, --overwrite    overwrite existing files (default: false)
   --proxy <proxy>    fetch components from registry using a proxy
-  -p, --path <path>  the path to add the component to
   -h, --help         display help for command
 ```
 

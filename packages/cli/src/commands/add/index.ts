@@ -21,7 +21,6 @@ const addOptionsSchema = z.object({
 	all: z.boolean(),
 	overwrite: z.boolean(),
 	cwd: z.string(),
-	path: z.string().optional(),
 	deps: z.boolean(),
 	proxy: z.string().optional(),
 });
@@ -38,7 +37,6 @@ export const add = new Command()
 	.option("-y, --yes", "skip confirmation prompt", false)
 	.option("-o, --overwrite", "overwrite existing files", false)
 	.option("--proxy <proxy>", "fetch components from registry using a proxy", getEnvProxy())
-	.option("-p, --path <path>", "the path to add the component to")
 	.action(async (components, opts) => {
 		try {
 			intro();

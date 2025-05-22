@@ -149,13 +149,7 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 	}
 }
 
-export function getItemAliasDir(
-	config: ResolvedConfig,
-	type: schemas.RegistryItemType,
-	override?: string
-) {
-	if (override) return override;
-
+export function getItemAliasDir(config: ResolvedConfig, type: schemas.RegistryItemType) {
 	if (type === "registry:ui") return config.resolvedPaths.ui;
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
