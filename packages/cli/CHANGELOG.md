@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.16
+
+### Patch Changes
+
+- 9488a61: feat: add customizable `typescript.config` path option to `components.json`
+
 ## 1.0.0-next.15
 
 ### Patch Changes
