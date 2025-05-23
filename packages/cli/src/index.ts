@@ -2,7 +2,7 @@
 import process from "node:process";
 import { Command } from "commander";
 import * as commands from "./commands/index.js";
-import { getPackageInfo } from "./utils/get-package-info.js";
+import { getCLIPackageInfo } from "./utils/get-package-info.js";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -20,7 +20,7 @@ if (currentMajorVersion < minimumMajorVersion) {
 async function main() {
 	console.clear();
 
-	const packageInfo = getPackageInfo();
+	const packageInfo = getCLIPackageInfo();
 
 	const program = new Command()
 		.name("shadcn-svelte")

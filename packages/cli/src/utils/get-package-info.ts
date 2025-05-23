@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { PackageJson } from "type-fest";
 
-export function getPackageInfo(): PackageJson {
+export function getCLIPackageInfo(): PackageJson {
 	const packageJsonPath = getPackageFilePath("../package.json");
 	return readJSONSync(packageJsonPath) as PackageJson;
 }
