@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Dialog from "$lib/registry/new-york/ui/dialog/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
+	import * as Dialog from "$lib/registry/ui/dialog/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
 </script>
 
 <div class="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
@@ -14,7 +14,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"
 			stroke-width="2"
-			class="text-muted-foreground h-10 w-10"
+			class="text-muted-foreground size-10"
 			viewBox="0 0 24 24"
 		>
 			<circle cx="12" cy="11" r="1" />
@@ -29,8 +29,8 @@
 			You have not added any podcasts. Add one below.
 		</p>
 		<Dialog.Root>
-			<Dialog.Trigger asChild let:builder>
-				<Button size="sm" builders={[builder]} class="relative">Add Podcast</Button>
+			<Dialog.Trigger class={buttonVariants({ size: "sm", class: "relative" })}>
+				Add Podcast
 			</Dialog.Trigger>
 			<Dialog.Content>
 				<Dialog.Header>

@@ -2,39 +2,46 @@
 title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/tabs
-bits: https://www.bits-ui.com/docs/components/tabs
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tabs
+  doc: https://bits-ui.com/docs/components/tabs
+  api: https://bits-ui.com/docs/components/tabs#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="tabs-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="tabs" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as Tabs from "$lib/components/ui/tabs";
+  import * as Tabs from "$lib/components/ui/tabs/index.js";
 </script>
 
 <Tabs.Root value="account" class="w-[400px]">

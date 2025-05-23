@@ -2,39 +2,46 @@
 title: Label
 description: Renders an accessible label associated with controls.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/label
-bits: https://www.bits-ui.com/docs/components/label
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/label
+  doc: https://bits-ui.com/docs/components/label
+  api: https://bits-ui.com/docs/components/label#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="label-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="label" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Label } from "$lib/components/ui/label";
+  import { Label } from "$lib/components/ui/label/index.js";
 </script>
 
 <Label for="email">Your email address</Label>

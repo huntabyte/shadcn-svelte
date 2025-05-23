@@ -1,19 +1,17 @@
 <script lang="ts">
-	import PlusCircled from "svelte-radix/PlusCircled.svelte";
+	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import { AlbumArtwork, Menu, PodcastEmptyPlaceholder, Sidebar } from "./(components)/index.js";
 	import { playlists } from "./(data)/playlists.js";
 	import { listenNowAlbums, madeForYouAlbums } from "./(data)/albums.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	import * as Tabs from "$lib/registry/new-york/ui/tabs/index.js";
-	import { ScrollArea } from "$lib/registry/new-york/ui/scroll-area/index.js";
-	import MusicLight from "$lib/img/examples/music-light.png?enhanced";
-	import MusicDark from "$lib/img/examples/music-dark.png?enhanced";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 </script>
 
 <div class="md:hidden">
-	<enhanced:img src={MusicLight} alt="Music" class="block dark:hidden" />
-	<enhanced:img src={MusicDark} alt="Music" class="hidden dark:block" />
+	<img src="/img/examples/music-light.png" alt="Music" class="block dark:hidden" />
+	<img src="/img/examples/music-dark.png" alt="Music" class="hidden dark:block" />
 </div>
 <div class="hidden md:block">
 	<Menu />
@@ -34,7 +32,7 @@
 								</Tabs.List>
 								<div class="ml-auto mr-4">
 									<Button>
-										<PlusCircled class="mr-2 h-4 w-4" />
+										<CirclePlusIcon />
 										Add music
 									</Button>
 								</div>
@@ -54,7 +52,7 @@
 								<div class="relative">
 									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
-											{#each listenNowAlbums as album}
+											{#each listenNowAlbums as album (album)}
 												<AlbumArtwork
 													{album}
 													class="w-[250px]"
@@ -78,7 +76,7 @@
 								<div class="relative">
 									<ScrollArea orientation="both">
 										<div class="flex space-x-4 pb-4">
-											{#each madeForYouAlbums as album}
+											{#each madeForYouAlbums as album (album)}
 												<AlbumArtwork
 													{album}
 													class="w-[150px]"

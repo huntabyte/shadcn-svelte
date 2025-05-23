@@ -2,34 +2,40 @@
 title: Skeleton
 description: Use to show a placeholder while content is loading.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/skeleton
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/skeleton
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="skeleton-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="skeleton" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Copy and paste the component source files linked at the top of this page into your project.
 
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Skeleton } from "$lib/components/ui/skeleton";
+  import { Skeleton } from "$lib/components/ui/skeleton/index.js";
 </script>
 ```
 

@@ -1,59 +1,56 @@
 <script lang="ts">
-	import Pre from "./markdown/pre.svelte";
-	import {
-		type PackageManager,
-		getPackageManager,
-		getPackageManagerInstallCmd,
-		getPackageManagerScriptCmd,
-	} from "$lib/stores/package-manager.js";
+	import type { Command } from "package-manager-detector";
+	import CopyButton from "./copy-button.svelte";
+	import { getCommand, PACKAGE_MANAGERS, PackageManagerContext } from "$lib/package-manager.js";
 
-	type PMBlockType = "execute" | "create" | "install";
+	const {
+		type,
+		command,
+	}: {
+		type: Command | "create";
+		command: string | string[];
+	} = $props();
 
-	export let type: PMBlockType;
-	export let command: string = "";
+	const pm = PackageManagerContext.get();
 
-	const selectedPackageManager = getPackageManager();
+	const cmd = $derived(getCommand(pm.current, type, command));
 
-	function getCmd(type: PMBlockType, pm: PackageManager) {
-		if (type === "execute") return getPackageManagerScriptCmd(pm);
-		return pm;
-	}
-
-	function getInstallCommand() {
-		if (command === "") return "install";
-		return getPackageManagerInstallCmd($selectedPackageManager);
-	}
-
-	let cmdStart = getCmd(type, $selectedPackageManager);
-
-	$: cmdStart = getCmd(type, $selectedPackageManager);
+	const commandText = $derived(`${cmd.command} ${cmd.args.join(" ")}`);
 </script>
 
 <figure data-rehype-pretty-code-figure>
-	<Pre
-		isPackageManagerBlock={true}
-		tabindex="0"
-		data-language="bash"
-		data-theme="Lambda Studio - Blackout"
-	>
-		<code data-language="bash" data-theme="Lambda Studio — Blackout" style="display: grid;">
-			<span data-line>
-				<span style="color:#FFF;font-weight:bold">{`${cmdStart}`}</span>
-				{#if type === "install" || type === "create"}
-					<span style="color:#FFF8">
-						{`${type === "install" ? getInstallCommand() : "create"}${command === "" ? "" : ` `}`}
-					</span>
-				{/if}
-				{#if command !== ""}
-					{#each command.split(" ") as word, i}
-						{#if i === 0}
-							<span style="color:#FFF8; margin-left:-8px">{`${word}`}</span>
-						{:else}
-							<span style="color:#FFF8">{` ${word}`}</span>
-						{/if}
-					{/each}
-				{/if}
+	<div class="mt-6 w-full rounded-lg border bg-zinc-950 dark:bg-zinc-900">
+		<div
+			class="relative flex place-items-end justify-between rounded-lg border-b border-zinc-800 bg-zinc-900 px-3 pt-3"
+		>
+			<div class="flex place-items-center gap-3 pl-1">
+				{#each PACKAGE_MANAGERS as packageManager (packageManager)}
+					<button
+						type="button"
+						class={{
+							"-mb-0.25 border-b pb-2 font-mono text-sm": true,
+							"border-b-zinc-50 text-zinc-50": pm.current === packageManager,
+							"border-transparent text-zinc-400": pm.current !== packageManager,
+						}}
+						onclick={() => (pm.current = packageManager)}
+					>
+						{packageManager}
+					</button>
+				{/each}
+			</div>
+			<CopyButton text={commandText} class="absolute right-2 top-2" />
+		</div>
+		<div class="no-scrollbar overflow-x-auto px-4 py-5">
+			<span class="text-nowrap font-mono text-sm text-white">
+				{commandText}
 			</span>
-		</code>
-	</Pre>
+		</div>
+	</div>
 </figure>
+
+<style lang="postcss">
+	:global(.no-scrollbar) {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+</style>

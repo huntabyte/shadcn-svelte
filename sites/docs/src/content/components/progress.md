@@ -2,39 +2,46 @@
 title: Progress
 description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/progress
-bits: https://www.bits-ui.com/docs/components/progress
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/progress
+  doc: https://bits-ui.com/docs/components/progress
+  api: https://bits-ui.com/docs/components/progress#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="progress-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="progress" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Progress } from "$lib/components/ui/progress";
+  import { Progress } from "$lib/components/ui/progress/index.js";
 </script>
 
 <Progress value={33} />

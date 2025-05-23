@@ -5,19 +5,33 @@ description: Latest updates and announcements.
 
 <script>
 	import { Steps, Callout, ComponentPreview } from '$lib/components/docs'
-	import DashboardDark from '$lib/img/blocks/dashboard-1-dark.jpg?enhanced';
-	import DashboardLight from '$lib/img/blocks/dashboard-1.jpg?enhanced';
 </script>
+
+## May 2025
+
+### Tailwind v4 Support
+
+Tailwind v4 support has officially landed. You can see a full demo of the refreshed styles that come with it here: [https://v4.shadcn-svelte.com](https://v4.shadcn-svelte.com).
+
+This release includes several key changes, all outlined in the [Tailwind v4 migration guide](/docs/migration/tailwind-v4). If you're still using Svelte v5 with Tailwind v3, your project and the CLI will continue to work as expected until you're ready to upgrade.
+
+### Charts
+
+Charts have been added as a preview component to the project. See the [Charts](/charts) page for examples.
+
+If you're running Svelte v5 and Tailwind v4 you can add them to your project via the CLI.
+
+### Custom Registry Support
+
+We've added support for custom/remote registries - This means you can publish your own components and share them with the community via the `shadcn-svelte` CLI.
+
+See the [Registry documentation](/docs/registry) for more information.
 
 ## March 2024
 
 ### Introducing Blocks
 
 [Blocks](/blocks) are ready-made components that you can use to build your apps. They are fully responsive, accessible, and composable, meaning they are built using the same principles as the rest of the components in shadcn-svelte.
-
-<enhanced:img src={DashboardDark} alt="A screenshot of the dashboard-01 block" class="h-full w-full hidden dark:block mt-6" />
-
-<enhanced:img src={DashboardLight} alt="A screenshot of the dashboard-01 block" class="h-full w-full block dark:hidden mt-6" />
 
 [v0](https://v0.dev) only supports React at the moment, so you can't customize them like you can the original from [shadcn/ui](https://ui.shadcn.com). However, if having support for Svelte interests you, I'm sure the v0 team would love to hear about it. :)
 
@@ -27,7 +41,7 @@ We've added a new component to the project, [Breadcrumb](/docs/components/breadc
 
 <ComponentPreview name="breadcrumb-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -41,13 +55,13 @@ It supports both vertical and horizontal scrolling, and is designed to provide a
 
 <ComponentPreview name="scroll-area-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 <ComponentPreview name="scroll-area-horizontal">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -59,7 +73,7 @@ We've added a new component to the project, [Resizable](/docs/components/resizab
 
 <ComponentPreview name="resizable-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -70,17 +84,13 @@ After some feedback about dev server performance, we've updated the way we impor
 Instead of importing icons like so:
 
 ```ts
-import { Check } from "lucide-svelte";
-// or
-import { Check } from "radix-icons-svelte";
+import { Check } from "@lucide/svelte";
 ```
 
 We now import them directly:
 
 ```ts
-import Check from "lucide-svelte/icons/check";
-// or
-import Check from "svelte-radix/Check.svelte";
+import Check from "@lucide/svelte/icons/check";
 ```
 
 With deep imports, we're preventing Vite from optimizing the entire icon collections, and instead only optimizing the icons that are actually used in your project. From what we've seen, this has a massive impact on dev server performance. Enjoy! 🚀
@@ -105,7 +115,7 @@ We've added a new component to the project, [Carousel](/docs/components/carousel
 
 <ComponentPreview name="carousel-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -115,7 +125,7 @@ The Drawer is built on top of [vaul-svelte](https://vaul-svelte.com) and is a po
 
 <ComponentPreview name="drawer-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -125,7 +135,7 @@ The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel
 
 <ComponentPreview name="sonner-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -135,7 +145,7 @@ Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagina
 
 <ComponentPreview name="pagination-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -147,7 +157,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="calendar-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -155,7 +165,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="range-calendar-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -163,7 +173,7 @@ We've added three new components to the project, [Calendar](/docs/components/cal
 
 <ComponentPreview name="date-picker-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -175,7 +185,7 @@ We've added a new component to the library, [Toggle Group](/docs/components/togg
 
 <ComponentPreview name="toggle-group-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -189,7 +199,7 @@ Command is a component that allows you to create a command palette. It's built o
 
 <ComponentPreview name="command-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -201,7 +211,7 @@ Combobox is a combination of the `<Command />` & `<Popover />` components. It al
 
 <ComponentPreview name="combobox-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 

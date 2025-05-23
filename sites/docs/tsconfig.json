@@ -11,7 +11,8 @@
 		"strict": true,
 		"moduleResolution": "NodeNext",
 		"module": "NodeNext",
-		"verbatimModuleSyntax": true
+		"verbatimModuleSyntax": true,
+		"useDefineForClassFields": true
 	},
 	"include": [
 		// SvelteKit defaults
@@ -27,7 +28,9 @@
 		"./tests/**/*.ts",
 		"./tests/**/*.svelte",
 		// Additions
-		"./mdsx.config.js"
+		"./mdsx.config.js",
+		"./velite.config.js",
+		".velite/**/*"
 	],
 	"exclude": [
 		"./node_modules/**",

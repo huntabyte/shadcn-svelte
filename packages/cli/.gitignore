@@ -6,6 +6,7 @@ node_modules
 .env
 .env.*
 !.env.example
+!test/**/*
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .turbo

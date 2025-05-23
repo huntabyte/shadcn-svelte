@@ -1,93 +1,35 @@
-import { type Highlighter, getHighlighter } from "shiki";
-import type { ComponentType } from "svelte";
+import { z } from "zod";
+import type { Component } from "svelte";
 import { Blocks } from "../__registry__/blocks.js";
-import { lambdaStudioBlackout } from "../styles/dark.js";
-import { blockMeta } from "./config/blocks.js";
-import { type BlockName, type Style, blockSchema } from "$lib/registry/index.js";
-
-const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"];
-
-export type RawBlockChunk = {
-	name: string;
-	description: string;
-	container: {
-		className: string;
-	};
-	raw: () => Promise<string>;
-	component: () => Promise<ComponentType>;
-};
 
 export type RawBlock = {
-	name: string;
-	type: string;
-	chunks: RawBlockChunk[];
 	raw: () => Promise<string>;
-	component: () => Promise<ComponentType>;
+	component: () => Promise<Component>;
 };
 
-export function getAllBlockIds(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const blocks = Object.values(Blocks[style]);
-	return blocks.map((block) => block.name as BlockName);
-}
+export type BlockName = keyof typeof Blocks;
 
-export async function getBlock(name: BlockName, style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-	const block = Blocks[style][name];
-	const content = await getBlockContent(name, style);
-	const chunks = block.chunks.map((chunk) => chunk.name);
+export const blockSchema = z.object({
+	// @ts-expect-error TODO: remove later in zod 4
+	name: z.enum<BlockName, BlockName[]>(getAllBlockIds()),
+	description: z.string(),
+	container: z
+		.object({
+			height: z.string().optional(),
+			className: z.string().nullish(),
+		})
+		.optional(),
+});
 
-	return blockSchema.parse({
-		...block,
-		...content,
-		style,
-		highlightedCode: await highlightCode(content.code),
-		chunks,
-	});
-}
+export type Block = z.infer<typeof blockSchema>;
 
-async function getBlockCode(name: BlockName, style: Style["name"]) {
-	const block = Blocks[style][name];
-	const code = await block.raw();
-	// use 2 spaces rather than tabs, making it the same as the rest of the codeblocks in /docs
-	const detabbed = code.replaceAll("\t", "  ");
-	return detabbed;
-}
-
-async function getBlockContent(name: BlockName, style: Style["name"]) {
-	const raw = await getBlockCode(name, style);
-	const { description, iframeHeight, className } = blockMeta[style][name];
-
-	const code = raw.replaceAll(`$lib/registry/${style}/`, "$lib/components/");
-
-	return {
-		description,
-		code,
-		container: {
-			height: iframeHeight,
-			className,
-		},
-	};
-}
-
-let highlighter: Highlighter;
-
-export async function highlightCode(code: string) {
-	if (!highlighter) {
-		highlighter = await getHighlighter({
-			langs: ["svelte"],
-			themes: [lambdaStudioBlackout],
-		});
-	}
-
-	const html = highlighter.codeToHtml(code, {
-		lang: "svelte",
-		theme: "Lambda Studio - Blackout",
-	});
-
-	return html;
+export function getAllBlockIds(): string[] {
+	const blocks = Object.keys(Blocks) as string[];
+	return blocks.filter((b) => !b.startsWith("chart-"));
 }
 
 export function isBlock(name: string): name is BlockName {
 	// @ts-expect-error we're smarter than you, tsc
-	const block = Blocks.default[name];
+	const block = Blocks[name];
 	return block !== undefined;
 }

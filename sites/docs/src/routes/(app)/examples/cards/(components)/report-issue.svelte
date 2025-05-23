@@ -1,10 +1,11 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
+	import { useId } from "bits-ui";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 
 	const areas = [
 		{
@@ -47,6 +48,14 @@
 			label: "Severity 4 (Lowest)",
 		},
 	];
+
+	const id = useId("report-issue");
+	let securityLevel = $state(securityLevels[1].value);
+	const securityLevelLabel = $derived(
+		securityLevels.find((l) => l.value === securityLevel)?.label ?? "Select level"
+	);
+	let area = $state(areas[1].value);
+	const areaLabel = $derived(areas.find((a) => a.value === area)?.label ?? "Select");
 </script>
 
 <Card.Root>
@@ -57,34 +66,27 @@
 	<Card.Content class="grid gap-6">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="grid gap-2">
-				<Label for="area">Area</Label>
-				<Select.Root selected={areas[1]}>
-					<Select.Trigger id="area">
-						<Select.Value placeholder="Select" />
+				<Label for="aria-{id}">Area</Label>
+				<Select.Root type="single" bind:value={area}>
+					<Select.Trigger id="aria-{id}">
+						{areaLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each areas as area}
-							<Select.Item value={area.value} label={area.label}
-								>{area.label}</Select.Item
-							>
+						{#each areas as area (area)}
+							<Select.Item value={area.value} label={area.label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
 			</div>
 			<div class="grid gap-2">
-				<Label for="security-level">Security Level</Label>
-				<Select.Root selected={securityLevels[1]}>
-					<Select.Trigger
-						id="security-level"
-						class="line-clamp-1 flex w-[160px] truncate"
-					>
-						<Select.Value placeholder="Select level" />
+				<Label for="security-level-{id}">Security Level</Label>
+				<Select.Root type="single" bind:value={securityLevel}>
+					<Select.Trigger id="security-level-{id}" class="w-full truncate">
+						{securityLevelLabel}
 					</Select.Trigger>
 					<Select.Content>
-						{#each securityLevels as level}
-							<Select.Item value={level.value} label={level.label}
-								>{level.label}</Select.Item
-							>
+						{#each securityLevels as level (level.value)}
+							<Select.Item value={level.value} label={level.label} />
 						{/each}
 					</Select.Content>
 				</Select.Root>
