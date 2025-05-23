@@ -3,8 +3,8 @@ import * as svelte from "svelte/compiler";
 import { walk, type Node } from "estree-walker";
 import { tsPlugin } from "@sveltejs/acorn-typescript";
 import type { PackageJson } from "type-fest";
-import { resolveDependencyPkg, toArray } from "../../utils/utils.js";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
+import { toArray } from "../../utils/utils.js";
+import { getProjectPackageInfo, getDependencyPackageInfo } from "../../utils/get-package-info.js";
 
 export type ResolvedDependencies = {
 	/** `<Dep@Version, Peers[]>` */
@@ -21,7 +21,7 @@ export type ProjectDependencies = {
 const tsParser = acorn.Parser.extend(tsPlugin());
 
 export function resolveProjectDeps(cwd: string): ProjectDependencies {
-	const pkg = loadProjectPackageInfo(cwd);
+	const pkg = getProjectPackageInfo(cwd);
 
 	// Record<Dependency, [...PeerDependencies]>
 	const dependencies = resolvePeerDeps(pkg.dependencies, cwd);
@@ -97,7 +97,7 @@ function resolvePeerDeps(
 
 		versions[name] = versioned;
 
-		const pkg = resolveDependencyPkg(cwd, name);
+		const pkg = getDependencyPackageInfo(cwd, name);
 		if (!pkg) continue;
 
 		const { peerDependencies = {}, peerDependenciesMeta = {} } = pkg;

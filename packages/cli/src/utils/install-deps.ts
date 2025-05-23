@@ -1,7 +1,7 @@
 import semver from "semver";
 import * as p from "@clack/prompts";
 import { detectPM } from "./auto-detect.js";
-import { loadProjectPackageInfo } from "./get-package-info.js";
+import { getProjectPackageInfo } from "./get-package-info.js";
 import { parseDependency } from "./utils.js";
 import { exec } from "tinyexec";
 import { resolveCommand } from "package-manager-detector";
@@ -22,7 +22,7 @@ export async function installDependencies({
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
 
-	const pkg = loadProjectPackageInfo(cwd);
+	const pkg = getProjectPackageInfo(cwd);
 	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
 	const validateDep = (dep: string) => {

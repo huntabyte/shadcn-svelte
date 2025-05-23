@@ -1,6 +1,6 @@
 import color from "chalk";
 import * as semver from "semver";
-import { loadProjectPackageInfo } from "./get-package-info.js";
+import { getProjectPackageInfo } from "./get-package-info.js";
 import { log } from "@clack/prompts";
 import { getPadding } from "./prompt-helpers.js";
 
@@ -10,7 +10,7 @@ const peerDependencies: Record<string, string> = {
 };
 
 export function checkPreconditions(cwd: string) {
-	const pkg = loadProjectPackageInfo(cwd);
+	const pkg = getProjectPackageInfo(cwd);
 
 	const dependencies = { ...pkg.dependencies, ...pkg.devDependencies };
 
