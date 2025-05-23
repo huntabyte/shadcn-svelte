@@ -1,6 +1,4 @@
-export const BASE_STYLES = `@tailwind base;
-@tailwind components;
-@tailwind utilities;
+export const BASE_STYLES = `@import tailwindcss;
 `;
 
 export const BASE_STYLES_WITH_VARIABLES = `@tailwind base;
@@ -75,10 +73,10 @@ export const BASE_STYLES_WITH_VARIABLES = `@tailwind base;
  
 @layer base {
   * {
-    @apply border-border;
+    @reference border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @reference bg-background text-foreground;
   }
 }`;
 
