@@ -5,7 +5,7 @@ description: How to use shadcn-svelte with Tailwind v4 and Svelte 5.
 
 <script>
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import { InstallCards, Callout, PMUpgrade, PMExecute, Step, Steps, PMRemove, PMInstall, PMRun } from "$lib/components/docs";
+	import { InstallCards, Callout, PMExecute, Step, Steps, PMRemove, PMInstall, PMRun } from "$lib/components/docs";
 </script>
 
 It's here! Tailwind v4 and Svelte 5. Ready for you to try out. You can start using it today.
@@ -390,7 +390,7 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 
 ### 4. Update your dependencies
 
-<PMUpgrade command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
+<PMInstall command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
 ### 5. Update your utils (optional)
 
