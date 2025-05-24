@@ -488,8 +488,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: ^1.5.0
-        version: 1.5.0(svelte@5.28.2)
+        specifier: ^1.7.0
+        version: 1.7.0(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -2442,6 +2442,12 @@ packages:
     peerDependencies:
       svelte: ^5.11.0
 
+  bits-ui@1.7.0:
+    resolution: {integrity: sha512-F8H2mr3Rd4S11lnQ0WU8oscISjXNuLlIWRZBhvW9so/cVEFFi8+cLPQBV/kU8nwznWu0C8z10fooc9BTToepfw==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.11.0
+
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
 
@@ -2618,6 +2624,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  css.escape@1.5.1:
+    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
 
   csscolorparser@1.0.3:
     resolution: {integrity: sha512-umPSgYwZkdFoUrH5hIq5kf0wPSXiro51nPw0j2K/c83KflkPSTBGMz6NJvMB+07VlL0y7VPo6QJcDjcgKTTm3w==}
@@ -7131,6 +7140,18 @@ snapshots:
       svelte-toolbelt: 0.7.1(svelte@5.28.2)
       tabbable: 6.2.0
 
+  bits-ui@1.7.0(svelte@5.28.2):
+    dependencies:
+      '@floating-ui/core': 1.7.0
+      '@floating-ui/dom': 1.7.0
+      '@internationalized/date': 3.5.6
+      css.escape: 1.5.1
+      esm-env: 1.2.2
+      runed: 0.23.4(svelte@5.28.2)
+      svelte: 5.28.2
+      svelte-toolbelt: 0.7.1(svelte@5.28.2)
+      tabbable: 6.2.0
+
   blake3-wasm@2.1.5: {}
 
   brace-expansion@1.1.11:
@@ -7290,6 +7311,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  css.escape@1.5.1: {}
 
   csscolorparser@1.0.3: {}
 

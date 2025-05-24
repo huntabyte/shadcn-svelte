@@ -85,7 +85,7 @@
 									class="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
 									href="/"
 								>
-									<Logo class="h-6 w-6" />
+									<Logo class="size-6" />
 									<div class="mb-2 mt-4 text-lg font-medium">shadcn-svelte</div>
 									<p class="text-muted-foreground text-sm leading-tight">
 										Beautifully designed components built with Bits UI and
@@ -99,7 +99,7 @@
 					{@render ListItem({
 						href: "/docs",
 						title: "Introduction",
-						content: "Re-usable components built using Radix UI and Tailwind CSS.",
+						content: "Re-usable components built using Bits UI and Tailwind CSS.",
 					})}
 
 					{@render ListItem({

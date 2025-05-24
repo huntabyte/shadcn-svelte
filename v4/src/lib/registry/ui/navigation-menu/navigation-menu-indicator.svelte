@@ -1,15 +1,12 @@
 <script lang="ts">
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
-	import {
-		NavigationMenu as NavigationMenuPrimitive,
-		type WithoutChildrenOrChild,
-	} from "bits-ui";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		...restProps
-	}: WithoutChildrenOrChild<NavigationMenuPrimitive.IndicatorProps> = $props();
+	}: NavigationMenuPrimitive.IndicatorProps = $props();
 </script>
 
 <NavigationMenuPrimitive.Indicator

@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import { cn } from "$lib/utils.js";
 	import { tv } from "tailwind-variants";
 
 	export const navigationMenuTriggerStyle = tv({
@@ -7,8 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive, type WithoutChild } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 
 	let {
@@ -16,7 +16,7 @@
 		class: className,
 		children,
 		...restProps
-	}: WithoutChild<NavigationMenuPrimitive.TriggerProps> = $props();
+	}: NavigationMenuPrimitive.TriggerProps = $props();
 </script>
 
 <NavigationMenuPrimitive.Trigger
@@ -26,6 +26,7 @@
 	{...restProps}
 >
 	{@render children?.()}
+
 	<ChevronDownIcon
 		class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
 		aria-hidden="true"
