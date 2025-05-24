@@ -1,12 +1,39 @@
 import path from "node:path";
-import { describe, it, expect } from "vitest";
+import { beforeEach, describe, it, expect, vi } from "vitest";
 import type { TsConfigResult } from "get-tsconfig";
 import { toPosixPath } from "./test-helpers.js";
-import { resolveImport } from "../../src/utils/resolve-imports.js";
+import { resolveImportAlias } from "../../src/utils/resolve-imports.js";
+import {
+	getProjectPackageInfo,
+	getDependencyPackageInfo,
+} from "../../src/utils/get-package-info.js";
 
-describe("resolveImport", () => {
+vi.mock("../../src/utils/get-package-info.js");
+
+beforeEach(() => {
+	vi.resetAllMocks();
+	vi.mocked(getProjectPackageInfo).mockReturnValue({
+		name: "foo",
+		imports: {
+			"#lib/*": "./src/*",
+		},
+		dependencies: { "@workspace/ui": "workspace:*" },
+		devDependencies: {},
+	});
+	vi.mocked(getDependencyPackageInfo).mockReturnValue({
+		pkg: {
+			name: "@workspace/ui",
+			exports: {
+				"./components/*": "./src/components/*",
+			},
+		},
+		path: "/project/node_modules/@workspace/ui/package.json",
+	});
+});
+
+describe("resolveImportAlias", () => {
 	it("returns first path match from tsconfig", () => {
-		const mockConfig = {
+		const mockTsconfig: TsConfigResult = {
 			config: {
 				compilerOptions: {
 					paths: {
@@ -15,27 +42,67 @@ describe("resolveImport", () => {
 				},
 			},
 			path: path.posix.normalize("/project/tsconfig.json"),
-		} as TsConfigResult;
+		};
 
-		const result = resolveImport("@/components/Button", mockConfig);
+		const result = resolveImportAlias({
+			importPath: "@/components/Button",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
 		expect(result).toBeDefined();
 		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
 	});
 
+	it("returns first path match from import map", () => {
+		const mockTsconfig: TsConfigResult = {
+			config: { compilerOptions: {} },
+			path: path.posix.normalize("/project/tsconfig.json"),
+		};
+
+		const result = resolveImportAlias({
+			importPath: "#lib/components/Button",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
+		expect(result).toBeDefined();
+		expect(toPosixPath(result!)).toBe("/project/src/components/Button");
+	});
+
+	it("returns first path match from workspace dependencies", () => {
+		const mockTsconfig: TsConfigResult = {
+			config: { compilerOptions: {} },
+			path: path.posix.normalize("/project/tsconfig.json"),
+		};
+
+		const result = resolveImportAlias({
+			importPath: "@workspace/ui/components/Button",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
+		expect(result).toBeDefined();
+		expect(toPosixPath(result!)).toBe(
+			"/project/node_modules/@workspace/ui/src/components/Button"
+		);
+	});
+
 	it("returns undefined when the path alias being used is not defined in the tsconfig", () => {
-		const mockConfig = {
+		const mockTsconfig: TsConfigResult = {
 			config: {
 				compilerOptions: {},
 			},
 			path: path.posix.normalize("/project/tsconfig.json"),
-		} as TsConfigResult;
+		};
 
-		const result = resolveImport("@/components/Button", mockConfig);
+		const result = resolveImportAlias({
+			importPath: "@/components/Button",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
 		expect(result).toBeUndefined();
 	});
 
 	it("returns undefined when no matching path is found", () => {
-		const mockConfig = {
+		const mockTsconfig: TsConfigResult = {
 			config: {
 				compilerOptions: {
 					paths: {
@@ -44,9 +111,13 @@ describe("resolveImport", () => {
 				},
 			},
 			path: path.posix.normalize("/project/tsconfig.json"),
-		} as TsConfigResult;
+		};
 
-		const result = resolveImport("unknown/path", mockConfig);
+		const result = resolveImportAlias({
+			importPath: "unknown/path",
+			tsconfig: mockTsconfig,
+			cwd: "/project",
+		});
 		expect(result).toBeUndefined();
 	});
 });

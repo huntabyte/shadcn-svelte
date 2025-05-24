@@ -1,10 +1,10 @@
 import { log } from "@clack/prompts";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { checkPreconditions } from "../../src/utils/preconditions.js";
-import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
+import { getProjectPackageInfo } from "../../src/utils/get-package-info.js";
 
 vi.mock("../../src/utils/get-package-info.js", () => ({
-	loadProjectPackageInfo: vi.fn(),
+	getProjectPackageInfo: vi.fn(),
 }));
 
 vi.mock("@clack/prompts", () => ({
@@ -19,7 +19,7 @@ describe("preconditions", () => {
 	});
 
 	it("should not warn when dependencies are compatible", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				svelte: "5.0.0",
 				tailwindcss: "4.0.0",
@@ -32,7 +32,7 @@ describe("preconditions", () => {
 	});
 
 	it("should warn when svelte version is incompatible", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				svelte: "4.0.0",
 				tailwindcss: "4.0.0",
@@ -45,7 +45,7 @@ describe("preconditions", () => {
 	});
 
 	it("should warn when tailwindcss version is incompatible", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				svelte: "5.0.0",
 				tailwindcss: "3.0.0",
@@ -58,7 +58,7 @@ describe("preconditions", () => {
 	});
 
 	it("should check both dependencies and devDependencies", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				svelte: "5.0.0",
 			},
@@ -72,7 +72,7 @@ describe("preconditions", () => {
 	});
 
 	it("should handle missing dependencies gracefully", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {},
 			devDependencies: {},
 		});
@@ -82,7 +82,7 @@ describe("preconditions", () => {
 	});
 
 	it("should handle invalid version strings", () => {
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				svelte: "invalid-version",
 				tailwindcss: "4.0.0",

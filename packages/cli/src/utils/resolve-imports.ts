@@ -18,10 +18,9 @@ type ResolveImportOpts = {
  */
 export function resolveImportAlias(opts: ResolveImportOpts): string | undefined {
 	const matcher = createPathsMatcher(opts.tsconfig);
-	if (matcher === null) return;
 
 	// resolves the path if it's defined in the tsconfig
-	const resolvedPath = matcher(opts.importPath)?.[0];
+	const resolvedPath = matcher?.(opts.importPath)?.[0];
 	if (resolvedPath) return resolvedPath;
 
 	// resolves the path if it's in the project's import map
@@ -29,6 +28,7 @@ export function resolveImportAlias(opts: ResolveImportOpts): string | undefined 
 	if (opts.importPath.startsWith("#")) {
 		const pkgPath = path.resolve(opts.cwd, "package.json");
 		const resolvedPath = resolveAlias(pkg, pkgPath, opts.importPath);
+		console.log(resolvedPath);
 		if (resolvedPath) return resolvedPath;
 	}
 
