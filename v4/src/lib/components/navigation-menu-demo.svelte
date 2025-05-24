@@ -149,7 +149,7 @@
 	<NavigationMenu.Root viewport={false}>
 		<NavigationMenu.List>
 			<NavigationMenu.Item>
-				<NavigationMenu.Link class={navigationMenuTriggerStyle()}>
+				<NavigationMenu.Link>
 					{#snippet child()}
 						<a href="/docs" class={navigationMenuTriggerStyle()}>Documentation</a>
 					{/snippet}
@@ -162,37 +162,23 @@
 				<NavigationMenu.Content>
 					<ul class="grid w-[300px] gap-4 p-2">
 						<li>
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">
-										<div class="font-medium">Components</div>
-										<div class="text-muted-foreground">
-											Browse all components in the library.
-										</div>
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#">
+								<div class="font-medium">Components</div>
+								<div class="text-muted-foreground">
+									Browse all components in the library.
+								</div>
 							</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">
-										<div class="font-medium">Documentation</div>
-										<div class="text-muted-foreground">
-											Learn how to use the library.
-										</div>
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#">
+								<div class="font-medium">Documentation</div>
+								<div class="text-muted-foreground">
+									Learn how to use the library.
+								</div>
 							</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">
-										<div class="font-medium">Blog</div>
-										<div class="text-muted-foreground">
-											Read our latest blog posts.
-										</div>
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#">
+								<div class="font-medium">Blog</div>
+								<div class="text-muted-foreground">Read our latest blog posts.</div>
 							</NavigationMenu.Link>
 						</li>
 					</ul>
@@ -205,23 +191,11 @@
 				<NavigationMenu.Content>
 					<ul class="grid w-[200px] gap-4 p-2">
 						<li>
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">Components</a>
-								{/snippet}
-							</NavigationMenu.Link>
+							<NavigationMenu.Link href="#">Components</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">Documentation</a>
-								{/snippet}
-							</NavigationMenu.Link>
+							<NavigationMenu.Link href="#">Documentation</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#">Blocks</a>
-								{/snippet}
-							</NavigationMenu.Link>
+							<NavigationMenu.Link href="#">Blocks</NavigationMenu.Link>
 						</li>
 					</ul>
 				</NavigationMenu.Content>
@@ -233,31 +207,19 @@
 				<NavigationMenu.Content>
 					<ul class="grid w-[200px] gap-4 p-2">
 						<li>
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#" class="flex-row items-center gap-2">
-										<CircleHelpIcon />
-										Backlog
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+								<CircleHelpIcon />
+								Backlog
 							</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#" class="flex-row items-center gap-2">
-										<CircleIcon />
-										To Do
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+								<CircleIcon />
+								To Do
 							</NavigationMenu.Link>
 
-							<NavigationMenu.Link>
-								{#snippet child()}
-									<a href="#" class="flex-row items-center gap-2">
-										<CircleCheckIcon />
-										Done
-									</a>
-								{/snippet}
+							<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+								<CircleCheckIcon />
+								Done
 							</NavigationMenu.Link>
 						</li>
 					</ul>
