@@ -26,7 +26,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@unovis/svelte": "1.4.3",
 		"acorn": "^8.13.0",
-		"bits-ui": "^1.5.0",
+		"bits-ui": "^1.7.0",
 		"clsx": "^2.1.1",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",

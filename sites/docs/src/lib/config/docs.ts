@@ -261,13 +261,12 @@ export const docsConfig: DocsConfig = {
 					href: "/docs/components/menubar",
 					items: [],
 				},
-				// {
-				//   title: "Navigation Menu",
-				//   href: "#",
-				//   label: "Soon",
-				//   disabled: true,
-				//   items: []
-				// },
+				{
+					title: "Navigation Menu",
+					href: "/docs/components/navigation-menu",
+					label: "New",
+					items: [],
+				},
 				{
 					title: "Pagination",
 					href: "/docs/components/pagination",
