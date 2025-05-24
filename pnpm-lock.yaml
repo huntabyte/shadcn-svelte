@@ -301,8 +301,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: ^1.5.0
-        version: 1.5.0(svelte@5.28.2)
+        specifier: ^1.7.0
+        version: 1.7.0(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
