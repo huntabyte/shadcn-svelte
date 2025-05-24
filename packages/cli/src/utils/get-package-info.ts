@@ -25,7 +25,7 @@ function readJSONSync(path: string): unknown {
 	return JSON.parse(content);
 }
 
-export function getDependencyPackageInfo(cwd: string, depName: string): PackageJson | undefined {
+export function getDependencyPackageInfo(cwd: string, depName: string) {
 	const require = createRequire(path.resolve(cwd, "noop.js"));
 
 	const paths = require.resolve.paths(depName);
@@ -43,5 +43,6 @@ export function getDependencyPackageInfo(cwd: string, depName: string): PackageJ
 	if (!pkgPath) return;
 
 	const json = fs.readFileSync(pkgPath, "utf8");
-	return JSON.parse(json);
+
+	return { pkg: JSON.parse(json) as PackageJson, path: pkgPath };
 }

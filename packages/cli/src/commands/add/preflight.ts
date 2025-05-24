@@ -21,8 +21,8 @@ export async function preflightAdd(cwd: string) {
 		);
 	}
 
-	const sveltePkg = getDependencyPackageInfo(cwd, "svelte");
-	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss");
+	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
+	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
 	const pkg = getProjectPackageInfo(cwd);
 	const deps = { ...pkg.dependencies, ...pkg.devDependencies };

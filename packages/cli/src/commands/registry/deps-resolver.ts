@@ -97,7 +97,7 @@ function resolvePeerDeps(
 
 		versions[name] = versioned;
 
-		const pkg = getDependencyPackageInfo(cwd, name);
+		const pkg = getDependencyPackageInfo(cwd, name)?.pkg;
 		if (!pkg) continue;
 
 		const { peerDependencies = {}, peerDependenciesMeta = {} } = pkg;

@@ -26,10 +26,12 @@ export function detectConfigs(cwd: string, config?: { relative: boolean }) {
 	}
 
 	const tsconfigPath = findTSConfig(cwd);
+	const resolvedTsconfigPath =
+		tsconfigPath && config?.relative ? path.relative(cwd, tsconfigPath) : tsconfigPath;
+
 	return {
 		cssPath,
-		tsconfigPath:
-			tsconfigPath && config?.relative ? path.relative(cwd, tsconfigPath) : tsconfigPath,
+		tsconfigPath: resolvedTsconfigPath,
 	};
 }
 

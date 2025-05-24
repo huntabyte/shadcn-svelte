@@ -58,6 +58,7 @@
 		"ignore": "^7.0.4",
 		"memfs": "^4.17.2",
 		"package-manager-detector": "^1.2.0",
+		"resolve.exports": "^2.0.3",
 		"semver": "^7.7.1",
 		"sucrase": "^3.35.0",
 		"tinyexec": "^1.0.1",

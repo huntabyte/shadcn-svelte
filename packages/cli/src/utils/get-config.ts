@@ -6,7 +6,7 @@ import { z } from "zod/v4";
 import { highlight, stripTrailingSlash } from "./utils.js";
 import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
-import { resolveImport } from "./resolve-imports.js";
+import { resolveImportAlias } from "./resolve-imports.js";
 import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
 export const DEFAULT_CONFIG = {
@@ -136,7 +136,7 @@ export async function resolveConfig(cwd: string, config: RawConfig): Promise<Res
 	};
 
 	for (const [alias, aliasPath] of Object.entries(config.aliases)) {
-		const resolvedPath = resolveImport(aliasPath, tsconfig);
+		const resolvedPath = resolveImportAlias({ cwd, importPath: aliasPath, tsconfig });
 		if (!resolvedPath) throw aliasError(alias, aliasPath);
 		resolvedPaths[alias] = path.normalize(resolvedPath);
 	}

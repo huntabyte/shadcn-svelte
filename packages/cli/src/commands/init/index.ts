@@ -11,7 +11,7 @@ import type { ResolvedConfig } from "../../utils/get-config.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as registry from "../../utils/registry/index.js";
-import { resolveImport } from "../../utils/resolve-imports.js";
+import { resolveImportAlias } from "../../utils/resolve-imports.js";
 import { syncSvelteKit } from "../../utils/sveltekit.js";
 import { SITE_BASE_URL } from "../../constants.js";
 import { preflightInit } from "./preflight.js";
@@ -93,7 +93,8 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 
 	for (const [alias, path] of Object.entries(options)) {
 		if (!alias.endsWith("Alias")) continue;
-		const validationResult = validateImportAlias(path as string, tsconfig);
+		const importPath = path as string;
+		const validationResult = validateImportAlias({ cwd, importPath, tsconfig });
 		if (validationResult) {
 			throw error(validationResult);
 		}
@@ -186,7 +187,7 @@ async function promptForConfig(
 				message: `Configure the import alias for ${highlight(alias)}:`,
 				initialValue: existingConfig?.aliases[alias] ?? initial,
 				placeholder: cliConfig.DEFAULT_CONFIG.aliases[alias],
-				validate: (value) => validateImportAlias(value, tsconfig),
+				validate: (value) => validateImportAlias({ cwd, tsconfig, importPath: value }),
 			});
 
 			if (p.isCancel(input)) cancel();
@@ -230,11 +231,11 @@ async function promptForConfig(
 	return configPaths;
 }
 
-function validateImportAlias(aliasedPath: string, tsconfig: TsConfigResult) {
-	const resolvedPath = resolveImport(aliasedPath, tsconfig);
+function validateImportAlias(opts: Parameters<typeof resolveImportAlias>[0]) {
+	const resolvedPath = resolveImportAlias(opts);
 	if (resolvedPath !== undefined) return;
 
-	return `"${color.bold(aliasedPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
+	return `"${color.bold(opts.importPath)}" does not use an existing path alias defined in your ${color.bold(path.basename(opts.tsconfig.path))}. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`;
 }
 
 export async function runInit(cwd: string, config: ResolvedConfig, options: InitOptions) {
