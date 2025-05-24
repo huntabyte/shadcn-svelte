@@ -3,7 +3,7 @@ title: Navigation Menu
 description: A collection of links for navigating websites.
 component: true
 links:
-  source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/ui/navigation-menu
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/navigation-menu
   doc: https://bits-ui.com/docs/components/navigation-menu
   api: https://bits-ui.com/docs/components/navigation-menu#api-reference
 ---
