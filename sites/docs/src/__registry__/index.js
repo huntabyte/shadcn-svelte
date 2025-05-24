@@ -658,6 +658,14 @@ export const Index = {
 	files: ["../lib/registry/examples/menubar-demo.svelte"],
 	raw: () => import("../lib/registry/examples/menubar-demo.svelte?raw").then((m) => m.default),
 },
+"navigation-menu-demo": {
+	name: "navigation-menu-demo",
+	type: "registry:example",
+	registryDependencies: ["navigation-menu"],
+	component: () => import("../lib/registry/examples/navigation-menu-demo.svelte").then((m) => m.default),
+	files: ["../lib/registry/examples/navigation-menu-demo.svelte"],
+	raw: () => import("../lib/registry/examples/navigation-menu-demo.svelte?raw").then((m) => m.default),
+},
 "pagination-demo": {
 	name: "pagination-demo",
 	type: "registry:example",
