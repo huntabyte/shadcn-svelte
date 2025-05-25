@@ -3,8 +3,8 @@ import * as semver from "semver";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
 import { TW3_SITE_BASE_URL } from "../../constants.js";
-import { highlight, resolveDependencyPkg } from "../../utils/utils.js";
-import { loadProjectPackageInfo } from "../../utils/get-package-info.js";
+import { highlight } from "../../utils/utils.js";
+import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get-package-info.js";
 
 /**
  * Runs preflight checks for the `add` command.
@@ -21,10 +21,10 @@ export async function preflightAdd(cwd: string) {
 		);
 	}
 
-	const sveltePkg = resolveDependencyPkg(cwd, "svelte");
-	const tailwindPkg = resolveDependencyPkg(cwd, "tailwindcss");
+	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
+	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
-	const pkg = loadProjectPackageInfo(cwd);
+	const pkg = getProjectPackageInfo(cwd);
 	const deps = { ...pkg.dependencies, ...pkg.devDependencies };
 
 	const svelte = sveltePkg?.version ?? deps["svelte"];

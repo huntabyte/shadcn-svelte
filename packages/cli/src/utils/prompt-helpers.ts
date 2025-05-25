@@ -1,10 +1,10 @@
 import process from "node:process";
 import color from "chalk";
 import * as p from "@clack/prompts";
-import { getPackageInfo } from "./get-package-info.js";
+import { getCLIPackageInfo } from "./get-package-info.js";
 
 export function intro() {
-	const packageInfo = getPackageInfo();
+	const packageInfo = getCLIPackageInfo();
 	const title = color.bgHex("#FF5500").black(" shadcn-svelte ");
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);

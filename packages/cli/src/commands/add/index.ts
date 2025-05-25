@@ -85,10 +85,9 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 			message: `Which ${highlight("components")} would you like to add?`,
 			maxItems: 10,
 			options: uiOnly.map((item) => {
-				let deps: string[] = [...(item.registryDependencies ?? [])];
+				let deps = [...(item.registryDependencies ?? [])];
 				if (options.deps) {
-					deps = deps.concat(item.dependencies ?? []);
-					deps = deps.concat(item.devDependencies ?? []);
+					deps = deps.concat(item.dependencies ?? []).concat(item.devDependencies ?? []);
 				}
 				return {
 					label: item.name,

@@ -2,10 +2,12 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { getConf } from "./test-helpers";
 import { ConfigError } from "../../src/utils/errors.js";
 import { TW3_SITE_BASE_URL } from "../../src/constants.js";
-import { resolveDependencyPkg } from "../../src/utils/utils.js";
 import { preflightAdd } from "../../src/commands/add/preflight.js";
 import { getConfig, writeConfig } from "../../src/utils/get-config.js";
-import { loadProjectPackageInfo } from "../../src/utils/get-package-info.js";
+import {
+	getProjectPackageInfo,
+	getDependencyPackageInfo,
+} from "../../src/utils/get-package-info.js";
 
 const resolvedPaths = {
 	cwd: "n/a",
@@ -73,7 +75,7 @@ describe("preflightAdd", () => {
 
 	beforeEach(() => {
 		vi.resetAllMocks();
-		vi.mocked(resolveDependencyPkg).mockReturnValue(undefined);
+		vi.mocked(getDependencyPackageInfo).mockReturnValue(undefined);
 	});
 
 	it("should throw if config is missing", async () => {
@@ -87,7 +89,7 @@ describe("preflightAdd", () => {
 		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configFull);
 
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "4.0.0",
 				svelte: "5.0.0",
@@ -101,7 +103,7 @@ describe("preflightAdd", () => {
 	it("should update legacy config for Tailwind v3 + Svelte v5", async () => {
 		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configLegacy);
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "5.0.0",
@@ -122,7 +124,7 @@ describe("preflightAdd", () => {
 	it("should not update config for Tailwind v3 + Svelte v5 if no style field", async () => {
 		// @ts-expect-error - we're mocking the config
 		vi.mocked(getConfig).mockResolvedValue(configLegacyUpdated);
-		vi.mocked(loadProjectPackageInfo).mockReturnValue({
+		vi.mocked(getProjectPackageInfo).mockReturnValue({
 			dependencies: {
 				tailwindcss: "3.0.0",
 				svelte: "5.0.0",
@@ -146,7 +148,7 @@ describe("preflightAdd", () => {
 		for (const deps of testCases) {
 			// @ts-expect-error - we're mocking the config
 			vi.mocked(getConfig).mockResolvedValue({ ...configFull, resolvedPaths });
-			vi.mocked(loadProjectPackageInfo).mockReturnValue({
+			vi.mocked(getProjectPackageInfo).mockReturnValue({
 				dependencies: deps,
 				devDependencies: {},
 			});
