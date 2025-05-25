@@ -247,7 +247,6 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 
 	const tasks: p.Task[] = [];
 
-	// Write to file.
 	tasks.push({
 		title: "Creating config file",
 		async task() {
@@ -282,19 +281,7 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 		},
 	});
 
-	// update stylesheet
-	tasks.push({
-		title: "Updating stylesheet",
-		async task() {
-			const baseColor = await registry.getRegistryBaseColor(
-				registryUrl,
-				config.tailwind.baseColor
-			);
-			const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
-			await fs.writeFile(config.resolvedPaths.tailwindCss, baseColor.cssVarsTemplate, "utf8");
-			return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
-		},
-	});
+	await p.tasks(tasks);
 
 	const result = await addRegistryItems({
 		selectedItems: ["init"],
@@ -303,9 +290,25 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 		overwrite: options.overwrite,
 	});
 
-	tasks.push(...result.tasks);
-
-	await p.tasks(tasks);
+	// update stylesheet
+	await p.tasks([
+		{
+			title: "Updating stylesheet",
+			async task() {
+				const baseColor = await registry.getRegistryBaseColor(
+					registryUrl,
+					config.tailwind.baseColor
+				);
+				const relative = path.relative(cwd, config.resolvedPaths.tailwindCss);
+				await fs.writeFile(
+					config.resolvedPaths.tailwindCss,
+					baseColor.cssVarsTemplate,
+					"utf8"
+				);
+				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+			},
+		},
+	]);
 
 	if (options.deps) {
 		await installDependencies({

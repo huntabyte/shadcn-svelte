@@ -159,7 +159,7 @@ export const registryItemSchema = z.object({
 		.describe(
 			"Additional metadata for the registry item. This is an object with any key value pairs."
 		),
-	files: z.array(registryItemFileSchema),
+	files: z.array(registryItemFileSchema).default([]),
 });
 
 export type Registry = z.infer<typeof registrySchema>;

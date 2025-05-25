@@ -145,24 +145,27 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 		});
 	}
 
+	await p.tasks(tasks);
+
 	if (Object.keys(cssVars).length > 0) {
-		tasks.push({
-			title: "Updating stylesheet",
-			async task() {
-				const cssPath = opts.config.resolvedPaths.tailwindCss;
-				const relative = path.relative(cwd, cssPath);
-				const cssSource = await fs.readFile(cssPath, "utf8");
+		await p.tasks([
+			{
+				title: "Updating stylesheet",
+				async task() {
+					const cssPath = opts.config.resolvedPaths.tailwindCss;
+					const relative = path.relative(cwd, cssPath);
+					const cssSource = await fs.readFile(cssPath, "utf8");
 
-				const modifiedCss = transformCss(cssSource, cssVars);
-				await fs.writeFile(cssPath, modifiedCss, "utf8");
+					const modifiedCss = transformCss(cssSource, cssVars);
+					await fs.writeFile(cssPath, modifiedCss, "utf8");
 
-				return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;
+				},
 			},
-		});
+		]);
 	}
 
 	return {
-		tasks,
 		skippedDeps,
 		dependencies,
 		devDependencies,
