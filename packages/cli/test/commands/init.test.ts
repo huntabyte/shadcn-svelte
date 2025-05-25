@@ -91,7 +91,7 @@ it("init (config-full)", async () => {
 
 	const targetDir = path.resolve(__dirname, "../fixtures/config-full");
 	const config = await getConfig(targetDir);
-	if (config === null) throw new Error("config is null");
+	if (!config) throw new Error("config is undefined");
 
 	await runInit(targetDir, config, { deps: true, cwd: targetDir, overwrite: true });
 
