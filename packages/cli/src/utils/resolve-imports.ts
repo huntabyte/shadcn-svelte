@@ -28,7 +28,6 @@ export function resolveImportAlias(opts: ResolveImportOpts): string | undefined 
 	if (opts.importPath.startsWith("#")) {
 		const pkgPath = path.resolve(opts.cwd, "package.json");
 		const resolvedPath = resolveAlias(pkg, pkgPath, opts.importPath);
-		console.log(resolvedPath);
 		if (resolvedPath) return resolvedPath;
 	}
 
@@ -46,10 +45,14 @@ export function resolveImportAlias(opts: ResolveImportOpts): string | undefined 
 }
 
 function resolveAlias(pkg: PackageJson, pkgPath: string, aliasedPath: string) {
-	const relativePath = resolve.resolve(pkg, aliasedPath + NOOP)?.[0];
-	if (relativePath) {
-		const fileUrl = pathToFileURL(pkgPath);
-		const resolvedPath = new URL(relativePath.slice(0, -NOOP.length), fileUrl).href;
-		return fileURLToPath(resolvedPath);
+	try {
+		const relativePath = resolve.resolve(pkg, aliasedPath + NOOP)?.[0];
+		if (relativePath) {
+			const fileUrl = pathToFileURL(pkgPath);
+			const resolvedPath = new URL(relativePath.slice(0, -NOOP.length), fileUrl).href;
+			return fileURLToPath(resolvedPath);
+		}
+	} catch {
+		return undefined;
 	}
 }
