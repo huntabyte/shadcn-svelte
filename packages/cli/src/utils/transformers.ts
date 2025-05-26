@@ -29,7 +29,10 @@ export async function stripTypes(content: string, filename: string) {
 	if (filename.endsWith(".svelte")) {
 		content = strip(content, { filename });
 	} else {
-		content = transform(content, { transforms: ["typescript"] }).code.trim();
+		content = transform(content, {
+			transforms: ["typescript"],
+			disableESTransforms: true,
+		}).code.trim();
 	}
 
 	// cursed formatting
