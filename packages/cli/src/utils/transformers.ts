@@ -1,10 +1,11 @@
 import { parse } from "postcss";
 import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
-import type { CssVars } from "@shadcn-svelte/registry";
+import type { CssSchema, CssVars } from "@shadcn-svelte/registry";
 import { ALIASES, ALIAS_DEFAULTS } from "../constants.js";
 import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
 import type { ResolvedConfig } from "./get-config.js";
+import { updateCss } from "./update-css.js";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
@@ -37,20 +38,18 @@ export async function stripTypes(content: string, filename: string) {
 }
 
 type TransformCssOptions = {
+	cssVars?: CssVars;
+	css?: CssSchema;
 	/** Array of plugin names to update */
 	plugins?: string[];
 };
 
-export function transformCss(
-	source: string,
-	cssVars: CssVars,
-	options: TransformCssOptions = {}
-): string {
+export async function transformCss(source: string, options?: TransformCssOptions): Promise<string> {
 	const opts = { plugins: [], ...options };
 
 	// if no CSS variables are provided to update and no plugins,
 	// we don't need to do anything so we can just return the source
-	if (Object.keys(cssVars).length === 0 && !opts.plugins.length) return source;
+	if (!opts.cssVars && !opts.css && !opts.plugins.length) return source;
 
 	const ast = parse(source);
 
@@ -60,7 +59,10 @@ export function transformCss(
 	}
 
 	// update CSS variables/themes
-	updateCssVars(ast, cssVars);
+	if (opts.cssVars) updateCssVars(ast, opts.cssVars);
 
-	return ast.toString();
+	let s = ast.toString();
+	if (opts.css) s = await updateCss(s, opts.css);
+
+	return s;
 }

@@ -26,6 +26,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	const cwd = opts.config.resolvedPaths.cwd;
 	const registryUrl = registry.getRegistryUrl(opts.config);
 	let cssVars = {};
+	let css = {};
 
 	const registryIndex = await registry.getRegistryIndex(registryUrl);
 	const resolvedItems = await registry.resolveRegistryItems({
@@ -135,6 +136,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				if (item.cssVars) {
 					cssVars = merge(cssVars, item.cssVars);
 				}
+				if (item.css) {
+					css = merge(css, item.css);
+				}
 
 				if (item.name !== "init") {
 					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
@@ -147,7 +151,8 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	await p.tasks(tasks);
 
-	if (Object.keys(cssVars).length > 0) {
+	if (Object.keys(cssVars).length || Object.keys(css).length) {
+		// TODO: PROMPT TO OVERWRITE OK
 		await p.tasks([
 			{
 				title: "Updating stylesheet",
@@ -156,7 +161,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					const relative = path.relative(cwd, cssPath);
 					const cssSource = await fs.readFile(cssPath, "utf8");
 
-					const modifiedCss = transformCss(cssSource, cssVars);
+					const modifiedCss = await transformCss(cssSource, { css, cssVars });
 					await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;

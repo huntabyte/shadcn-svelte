@@ -116,7 +116,7 @@ const registryItemCssVarsSchema = z
 		"The css variables for the registry item. This will be merged with the project's css variables."
 	);
 
-type CssSchema = { [x: string]: string | CssSchema };
+export type CssSchema = { [x: string]: string | CssSchema };
 const registryItemCssSchema: z.ZodType<CssSchema, CssSchema> = z
 	.record(
 		z
