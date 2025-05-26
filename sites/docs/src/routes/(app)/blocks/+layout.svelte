@@ -9,7 +9,7 @@
 
 	const title = "Building Blocks for the Web";
 	const description =
-		"Clean, modern building blocks. Copy and paste into your apps. Works with all React frameworks. Open Source. Free forever.";
+		"Clean, modern building blocks. Copy and paste into your apps. Open Source. Free forever.";
 </script>
 
 <PageHeader.Root>
