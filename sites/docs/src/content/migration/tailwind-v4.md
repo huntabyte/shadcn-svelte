@@ -160,7 +160,7 @@ The codemod will update your `app.css` file to look something like this, where i
     --destructive-foreground: 0 0% 98%;
     --ring: 240 10% 3.9%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
+    --sidebar: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -190,7 +190,7 @@ The codemod will update your `app.css` file to look something like this, where i
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --ring: 240 4.9% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -278,7 +278,7 @@ Once complete, your `app.css` file should look something like this (the color va
   --destructive: hsl(0 72.2% 50.6%);
   --destructive-foreground: hsl(0 0% 98%);
   --ring: hsl(240 10% 3.9%);
-  --sidebar-background: hsl(0 0% 98%);
+  --sidebar: hsl(0 0% 98%);
   --sidebar-foreground: hsl(240 5.3% 26.1%);
   --sidebar-primary: hsl(240 5.9% 10%);
   --sidebar-primary-foreground: hsl(0 0% 98%);
@@ -310,7 +310,7 @@ Once complete, your `app.css` file should look something like this (the color va
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(0 0% 98%);
   --ring: hsl(240 4.9% 83.9%);
-  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar: hsl(240 5.9% 10%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
   --sidebar-primary: hsl(224.3 76.3% 48%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
@@ -348,7 +348,7 @@ Once complete, your `app.css` file should look something like this (the color va
   --color-destructive-foreground: var(--destructive-foreground);
   --color-ring: var(--ring);
   --color-radius: var(--radius);
-  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
