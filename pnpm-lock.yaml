@@ -301,8 +301,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: ^1.7.0
-        version: 1.7.0(svelte@5.28.2)
+        specifier: ^2.1.0
+        version: 2.1.0(@internationalized/date@3.5.6)(svelte@5.28.2)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -397,8 +397,8 @@ importers:
         specifier: ^3.0.2
         version: 3.3.0
       tailwind-variants:
-        specifier: ^0.2.1
-        version: 0.2.1(tailwindcss@4.1.7)
+        specifier: ^1.0.0
+        version: 1.0.0(tailwindcss@4.1.7)
       tailwindcss:
         specifier: ^4.1.7
         version: 4.1.7
@@ -2447,6 +2447,13 @@ packages:
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.11.0
+
+  bits-ui@2.1.0:
+    resolution: {integrity: sha512-hDYT8NCzKbqPhm7E6af5ZfSOPV6JZ5F/a2X1I5x0Jxn11y4Ts7ufw8sdVE0rNpF+cyLnx/96+048jAY37FepOw==}
+    engines: {node: '>=20', pnpm: '>=8.7.0'}
+    peerDependencies:
+      '@internationalized/date': ^3.8.1
+      svelte: ^5.33.0
 
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
@@ -4645,6 +4652,12 @@ packages:
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0
+
+  svelte-toolbelt@0.8.2:
+    resolution: {integrity: sha512-qoQYJYkLlz/31EcpbZFk+2vp4qKJn9aM7iO2JvBnzaJD/fTmMtbrP9gwzgnvn/Y8miJFCnsF6CZ5zsHC2d/p/A==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.30.2
 
   svelte@5.28.2:
     resolution: {integrity: sha512-FbWBxgWOpQfhKvoGJv/TFwzqb4EhJbwCD17dB0tEpQiw1XyUEKZJtgm4nA4xq3LLsMo7hu5UY/BOFmroAxKTMg==}
@@ -7150,6 +7163,18 @@ snapshots:
       runed: 0.23.4(svelte@5.28.2)
       svelte: 5.28.2
       svelte-toolbelt: 0.7.1(svelte@5.28.2)
+      tabbable: 6.2.0
+
+  bits-ui@2.1.0(@internationalized/date@3.5.6)(svelte@5.28.2):
+    dependencies:
+      '@floating-ui/core': 1.7.0
+      '@floating-ui/dom': 1.7.0
+      '@internationalized/date': 3.5.6
+      css.escape: 1.5.1
+      esm-env: 1.2.2
+      runed: 0.28.0(svelte@5.28.2)
+      svelte: 5.28.2
+      svelte-toolbelt: 0.8.2(svelte@5.28.2)
       tabbable: 6.2.0
 
   blake3-wasm@2.1.5: {}
@@ -9854,6 +9879,13 @@ snapshots:
     dependencies:
       clsx: 2.1.1
       runed: 0.23.4(svelte@5.28.2)
+      style-to-object: 1.0.8
+      svelte: 5.28.2
+
+  svelte-toolbelt@0.8.2(svelte@5.28.2):
+    dependencies:
+      clsx: 2.1.1
+      runed: 0.28.0(svelte@5.28.2)
       style-to-object: 1.0.8
       svelte: 5.28.2
 
