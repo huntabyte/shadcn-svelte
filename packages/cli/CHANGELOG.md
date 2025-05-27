@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.18
+
+### Patch Changes
+
+- 670a3e4: fix: respect `utils` path-alias
+
 ## 1.0.0-next.17
 
 ### Patch Changes
