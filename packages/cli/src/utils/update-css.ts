@@ -1,145 +1,122 @@
 import postcss, { AtRule, Declaration, Root, Rule } from "postcss";
 import type { CssSchema } from "@shadcn-svelte/registry";
 
-export async function updateCss(source: string, css: CssSchema): Promise<string> {
-	const output = await transformCss(source, css);
-	return output;
-}
+const TAB = "\t";
 
-export async function transformCss(input: string, css: CssSchema) {
-	const plugins = [updateCssPlugin(css)];
+export function updateCss(root: Root, css: CssSchema): void {
+	for (const [selector, properties] of Object.entries(css)) {
+		if (selector.startsWith("@")) {
+			// Handle at-rules (@layer, @utility, etc.)
+			const atRuleMatch = selector.match(/@([a-zA-Z-]+)\s*(.*)/);
+			if (!atRuleMatch) continue;
 
-	const result = await postcss(plugins).process(input, { from: undefined });
+			const [, name, params] = atRuleMatch;
 
-	let output = result.css;
-	output = output.replace(/\/\* ---break--- \*\//g, "");
-	output = output.replace(/(\n\s*\n)+/g, "\n\n");
-	output = output.trimEnd();
+			// Special handling for keyframes - place them under @theme inline
+			if (name === "keyframes") {
+				let themeInline = root.nodes?.find(
+					(node): node is AtRule =>
+						node.type === "atrule" && node.name === "theme" && node.params === "inline"
+				) as AtRule | undefined;
 
-	return output;
-}
+				if (!themeInline) {
+					themeInline = postcss.atRule({
+						name: "theme",
+						params: "inline",
+						raws: { semicolon: true, between: " ", before: "\n" },
+					});
+					root.append(themeInline);
+					root.insertBefore(themeInline, postcss.comment({ text: "---break---" }));
+				}
 
-function updateCssPlugin(css: CssSchema): postcss.Plugin {
-	return {
-		postcssPlugin: "update-css",
-		Once(root) {
-			for (const [selector, properties] of Object.entries(css)) {
-				if (selector.startsWith("@")) {
-					// Handle at-rules (@layer, @utility, etc.)
-					const atRuleMatch = selector.match(/@([a-zA-Z-]+)\s*(.*)/);
-					if (!atRuleMatch) continue;
+				const keyframesRule = postcss.atRule({
+					name: "keyframes",
+					params,
+					raws: { semicolon: true, between: " ", before: `\n${TAB}` },
+				});
 
-					const [, name, params] = atRuleMatch;
+				themeInline.append(keyframesRule);
 
-					// Special handling for keyframes - place them under @theme inline
-					if (name === "keyframes") {
-						let themeInline = root.nodes?.find(
-							(node): node is AtRule =>
-								node.type === "atrule" &&
-								node.name === "theme" &&
-								node.params === "inline"
-						) as AtRule | undefined;
-
-						if (!themeInline) {
-							themeInline = postcss.atRule({
-								name: "theme",
-								params: "inline",
-								raws: { semicolon: true, between: " ", before: "\n" },
-							});
-							root.append(themeInline);
-							root.insertBefore(
-								themeInline,
-								postcss.comment({ text: "---break---" })
-							);
-						}
-
-						const keyframesRule = postcss.atRule({
-							name: "keyframes",
-							params,
-							raws: { semicolon: true, between: " ", before: "\n  " },
-						});
-
-						themeInline.append(keyframesRule);
-
-						if (typeof properties === "object") {
-							for (const [step, stepProps] of Object.entries(properties)) {
-								processRule(keyframesRule, step, stepProps);
-							}
-						}
+				if (typeof properties === "object") {
+					for (const [step, stepProps] of Object.entries(properties)) {
+						processRule(keyframesRule, step, stepProps);
 					}
-					// Special handling for utility classes to preserve property values
-					else if (name === "utility") {
-						const utilityAtRule = root.nodes?.find(
-							(node): node is AtRule =>
-								node.type === "atrule" &&
-								node.name === name &&
-								node.params === params
-						) as AtRule | undefined;
-
-						if (!utilityAtRule) {
-							const atRule = postcss.atRule({
-								name,
-								params,
-								raws: { semicolon: true, between: " ", before: "\n" },
-							});
-
-							root.append(atRule);
-							root.insertBefore(atRule, postcss.comment({ text: "---break---" }));
-
-							// Add declarations with their values preserved
-							if (typeof properties === "object") {
-								for (const [prop, value] of Object.entries(properties)) {
-									if (typeof value === "string") {
-										const decl = postcss.decl({
-											prop,
-											value: value,
-											raws: { semicolon: true, before: "\n    " },
-										});
-										atRule.append(decl);
-									} else if (typeof value === "object") {
-										processRule(atRule, prop, value);
-									}
-								}
-							}
-						} else {
-							// Update existing utility class
-							if (typeof properties === "object") {
-								for (const [prop, value] of Object.entries(properties)) {
-									if (typeof value === "string") {
-										const existingDecl = utilityAtRule.nodes?.find(
-											(node): node is Declaration =>
-												node.type === "decl" && node.prop === prop
-										);
-
-										const decl = postcss.decl({
-											prop,
-											value: value,
-											raws: { semicolon: true, before: "\n    " },
-										});
-
-										existingDecl
-											? existingDecl.replaceWith(decl)
-											: utilityAtRule.append(decl);
-									} else if (typeof value === "object") {
-										processRule(utilityAtRule, prop, value);
-									}
-								}
-							}
-						}
-					} else {
-						// Handle other at-rules normally
-						processAtRule(root, name, params, properties);
-					}
-				} else {
-					// Handle regular CSS rules
-					processRule(root, selector, properties);
 				}
 			}
-		},
-	};
+			// Special handling for utility classes to preserve property values
+			else if (name === "utility") {
+				const utilityAtRule = root.nodes?.find(
+					(node): node is AtRule =>
+						node.type === "atrule" && node.name === name && node.params === params
+				) as AtRule | undefined;
+
+				if (!utilityAtRule) {
+					const atRule = postcss.atRule({
+						name,
+						params,
+						raws: { semicolon: true, between: " ", before: "\n" },
+					});
+
+					root.append(atRule);
+					root.insertBefore(atRule, postcss.comment({ text: "---break---" }));
+
+					// Add declarations with their values preserved
+					if (typeof properties === "object") {
+						for (const [prop, value] of Object.entries(properties)) {
+							if (typeof value === "string") {
+								const decl = postcss.decl({
+									prop,
+									value: value,
+									raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
+								});
+								atRule.append(decl);
+							} else if (typeof value === "object") {
+								processRule(atRule, prop, value);
+							}
+						}
+					}
+				} else {
+					// Update existing utility class
+					if (typeof properties === "object") {
+						for (const [prop, value] of Object.entries(properties)) {
+							if (typeof value === "string") {
+								const existingDecl = utilityAtRule.nodes?.find(
+									(node): node is Declaration =>
+										node.type === "decl" && node.prop === prop
+								);
+
+								const decl = postcss.decl({
+									prop,
+									value: value,
+									raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
+								});
+
+								existingDecl
+									? existingDecl.replaceWith(decl)
+									: utilityAtRule.append(decl);
+							} else if (typeof value === "object") {
+								processRule(utilityAtRule, prop, value);
+							}
+						}
+					}
+				}
+			} else {
+				// Handle other at-rules normally
+				processAtRule(root, name, params, properties);
+			}
+		} else {
+			// Handle regular CSS rules
+			processRule(root, selector, properties);
+		}
+	}
 }
 
-function processAtRule(root: Root | AtRule, name: string, params: string, properties: any) {
+function processAtRule(
+	root: Root | AtRule,
+	name: string,
+	params: string,
+	properties: string | CssSchema
+) {
 	// Find or create the at-rule
 	let atRule = root.nodes?.find(
 		(node): node is AtRule =>
@@ -182,14 +159,14 @@ function processAtRule(root: Root | AtRule, name: string, params: string, proper
 				// Create a rule for the at-rule if needed
 				const rule = postcss.rule({
 					selector: "temp",
-					raws: { semicolon: true, between: " ", before: "\n  " },
+					raws: { semicolon: true, between: " ", before: `\n${TAB}` },
 				});
 
 				// Copy all declarations from the temp rule to our actual rule
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						clone.raws.before = "\n    ";
+						clone.raws.before = `\n${TAB.repeat(2)}`;
 						rule.append(clone);
 					}
 				});
@@ -206,7 +183,7 @@ function processAtRule(root: Root | AtRule, name: string, params: string, proper
 	}
 }
 
-function processRule(parent: Root | AtRule, selector: string, properties: any) {
+function processRule(parent: Root | AtRule, selector: string, properties: CssSchema[string]) {
 	let rule = parent.nodes?.find(
 		(node): node is Rule => node.type === "rule" && node.selector === selector
 	) as Rule | undefined;
@@ -214,7 +191,7 @@ function processRule(parent: Root | AtRule, selector: string, properties: any) {
 	if (!rule) {
 		rule = postcss.rule({
 			selector,
-			raws: { semicolon: true, between: " ", before: "\n  " },
+			raws: { semicolon: true, between: " ", before: `\n${TAB}` },
 		});
 		parent.append(rule);
 	}
@@ -225,7 +202,7 @@ function processRule(parent: Root | AtRule, selector: string, properties: any) {
 				const decl = postcss.decl({
 					prop,
 					value: value,
-					raws: { semicolon: true, before: "\n    " },
+					raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
 				});
 
 				// Replace existing property or add new one
@@ -254,7 +231,7 @@ function processRule(parent: Root | AtRule, selector: string, properties: any) {
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						clone.raws.before = "\n    ";
+						clone.raws.before = `\n${TAB.repeat(2)}`;
 						rule?.append(clone);
 					}
 				});

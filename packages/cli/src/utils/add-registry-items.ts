@@ -161,7 +161,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					const relative = path.relative(cwd, cssPath);
 					const cssSource = await fs.readFile(cssPath, "utf8");
 
-					const modifiedCss = await transformCss(cssSource, { css, cssVars });
+					const modifiedCss = transformCss(cssSource, { css, cssVars });
 					await fs.writeFile(cssPath, modifiedCss, "utf8");
 
 					return `${highlight("Stylesheet")} updated at ${color.dim(relative)}`;

@@ -47,7 +47,8 @@ type TransformCssOptions = {
 	plugins?: string[];
 };
 
-export async function transformCss(source: string, options?: TransformCssOptions): Promise<string> {
+export function transformCss(source: string, options?: TransformCssOptions): string {
+	const trailingNewline = source.endsWith("\n");
 	const opts = { plugins: [], ...options };
 
 	// if no CSS variables are provided to update and no plugins,
@@ -64,8 +65,17 @@ export async function transformCss(source: string, options?: TransformCssOptions
 	// update CSS variables/themes
 	if (opts.cssVars) updateCssVars(ast, opts.cssVars);
 
-	let s = ast.toString();
-	if (opts.css) s = await updateCss(s, opts.css);
+	if (opts.css) updateCss(ast, opts.css);
 
-	return s;
+	let output = ast.toString();
+	output = output.replace(/\/\* ---break--- \*\//g, "");
+	output = output.replace(/(\n\s*\n)+/g, "\n\n");
+	output = output.trimEnd();
+
+	if (trailingNewline && !output.endsWith("\n")) {
+		console.log("adding newline");
+		output += "\n";
+	}
+
+	return output;
 }
