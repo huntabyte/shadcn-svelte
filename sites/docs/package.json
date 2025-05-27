@@ -74,7 +74,7 @@
 		"shadcn-svelte": "workspace:*",
 		"sharp": "^0.34.1",
 		"shiki": "^1.2.1",
-		"svelte": "^5.16.1",
+		"svelte": "^5.33.3",
 		"svelte-check": "^4.2.1",
 		"svelte-sonner": "^1.0.1",
 		"sveltekit-superforms": "^2.19.1",
