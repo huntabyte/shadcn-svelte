@@ -1,5 +1,6 @@
 import postcss, { AtRule, Declaration, Root, Rule } from "postcss";
 import type { CssSchema } from "@shadcn-svelte/registry";
+import { error } from "../errors.js";
 
 const TAB = "\t";
 
@@ -11,6 +12,9 @@ export function updateCss(root: Root, css: CssSchema): void {
 			if (!atRuleMatch) continue;
 
 			const [, name, params] = atRuleMatch;
+			if (!name || !params) {
+				throw error(`Error parsing at-rule: ${atRuleMatch}`);
+			}
 
 			// Special handling for keyframes - place them under @theme inline
 			if (name === "keyframes") {
@@ -23,7 +27,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 					themeInline = postcss.atRule({
 						name: "theme",
 						params: "inline",
-						raws: { semicolon: true, between: " ", before: "\n" },
+						raws: { semicolon: true, between: " " },
 					});
 					root.append(themeInline);
 					root.insertBefore(themeInline, postcss.comment({ text: "---break---" }));
@@ -32,7 +36,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 				const keyframesRule = postcss.atRule({
 					name: "keyframes",
 					params,
-					raws: { semicolon: true, between: " ", before: `\n${TAB}` },
+					raws: { semicolon: true, between: " " },
 				});
 
 				themeInline.append(keyframesRule);
@@ -42,9 +46,8 @@ export function updateCss(root: Root, css: CssSchema): void {
 						processRule(keyframesRule, step, stepProps);
 					}
 				}
-			}
-			// Special handling for utility classes to preserve property values
-			else if (name === "utility") {
+			} else if (name === "utility") {
+				// Special handling for utility classes to preserve property values
 				const utilityAtRule = root.nodes?.find(
 					(node): node is AtRule =>
 						node.type === "atrule" && node.name === name && node.params === params
@@ -54,7 +57,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 					const atRule = postcss.atRule({
 						name,
 						params,
-						raws: { semicolon: true, between: " ", before: "\n" },
+						raws: { semicolon: true, between: " " },
 					});
 
 					root.append(atRule);
@@ -67,7 +70,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 								const decl = postcss.decl({
 									prop,
 									value: value,
-									raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
+									raws: { semicolon: true },
 								});
 								atRule.append(decl);
 							} else if (typeof value === "object") {
@@ -88,7 +91,7 @@ export function updateCss(root: Root, css: CssSchema): void {
 								const decl = postcss.decl({
 									prop,
 									value: value,
-									raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
+									raws: { semicolon: true },
 								});
 
 								existingDecl
@@ -127,7 +130,7 @@ function processAtRule(
 		atRule = postcss.atRule({
 			name,
 			params,
-			raws: { semicolon: true, between: " ", before: "\n" },
+			raws: { semicolon: true, between: " " },
 		});
 		root.append(atRule);
 		root.insertBefore(atRule, postcss.comment({ text: "---break---" }));
@@ -141,6 +144,10 @@ function processAtRule(
 				const nestedMatch = childSelector.match(/@([a-zA-Z-]+)\s*(.*)/);
 				if (nestedMatch) {
 					const [, nestedName, nestedParams] = nestedMatch;
+					if (!nestedName || !nestedParams) {
+						throw error(`Error parsing at-rule children: ${nestedMatch}`);
+					}
+
 					processAtRule(atRule, nestedName, nestedParams, childProps);
 				}
 			} else {
@@ -159,14 +166,14 @@ function processAtRule(
 				// Create a rule for the at-rule if needed
 				const rule = postcss.rule({
 					selector: "temp",
-					raws: { semicolon: true, between: " ", before: `\n${TAB}` },
+					raws: { semicolon: true, between: " " },
 				});
 
 				// Copy all declarations from the temp rule to our actual rule
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						clone.raws.before = `\n${TAB.repeat(2)}`;
+						// clone.raws.before = `\n${TAB.repeat(2)}`;
 						rule.append(clone);
 					}
 				});
@@ -189,10 +196,9 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 	) as Rule | undefined;
 
 	if (!rule) {
-		rule = postcss.rule({
-			selector,
-			raws: { semicolon: true, between: " ", before: `\n${TAB}` },
-		});
+		// uses the same indent level as the parent + 1 tab
+		const before = "\n" + (parent.raws.before?.replaceAll("\n", "") ?? "") + TAB;
+		rule = postcss.rule({ selector, raws: { semicolon: true, between: " ", before } });
 		parent.append(rule);
 	}
 
@@ -202,7 +208,7 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 				const decl = postcss.decl({
 					prop,
 					value: value,
-					raws: { semicolon: true, before: `\n${TAB.repeat(2)}` },
+					raws: { semicolon: true },
 				});
 
 				// Replace existing property or add new one
@@ -231,7 +237,6 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						clone.raws.before = `\n${TAB.repeat(2)}`;
 						rule?.append(clone);
 					}
 				});

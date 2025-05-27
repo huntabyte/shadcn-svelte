@@ -3,9 +3,8 @@ import { transform } from "sucrase";
 import { strip } from "@svecosystem/strip-types";
 import type { CssSchema, CssVars } from "@shadcn-svelte/registry";
 import { ALIASES, ALIAS_DEFAULTS } from "../constants.js";
-import { updateCssVars, updateTailwindPlugins } from "./updaters.js";
+import { updateCss, updateCssVars, updateTailwindPlugins } from "./updaters/index.js";
 import type { ResolvedConfig } from "./get-config.js";
-import { updateCss } from "./update-css.js";
 
 const CONSECUTIVE_NEWLINE_REGEX = new RegExp(/^\s\s*\n+/gm);
 
@@ -72,8 +71,8 @@ export function transformCss(source: string, options?: TransformCssOptions): str
 	output = output.replace(/(\n\s*\n)+/g, "\n\n");
 	output = output.trimEnd();
 
+	// adds the EOF new line, if it existed
 	if (trailingNewline && !output.endsWith("\n")) {
-		console.log("adding newline");
 		output += "\n";
 	}
 

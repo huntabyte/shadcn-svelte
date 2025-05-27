@@ -1,16 +1,8 @@
 import { Declaration, Rule, AtRule, Root } from "postcss";
-import type { CssSchema, CssVars } from "@shadcn-svelte/registry";
+import type { CssVars } from "@shadcn-svelte/registry";
 
 const DARK_SELECTOR = ".dark";
 const LIGHT_SELECTOR = ":root";
-
-/**
- * Adds new rules to the project's CSS file.
- * e.g. `@layer base`, `@layer components`, `@utility`, `@keyframes`, etc.
- */
-export function updateCssStuff(ast: Root, css: CssSchema): void {
-	// TODO:
-}
 
 export function updateCssVars(ast: Root, cssVars: CssVars): void {
 	// updates colors for `dark` and `light`
