@@ -2,8 +2,6 @@ import postcss, { AtRule, Declaration, Root, Rule } from "postcss";
 import type { CssSchema } from "@shadcn-svelte/registry";
 import { error } from "../errors.js";
 
-const TAB = "\t";
-
 export function updateCss(root: Root, css: CssSchema): void {
 	for (const [selector, properties] of Object.entries(css)) {
 		if (selector.startsWith("@")) {
@@ -36,7 +34,11 @@ export function updateCss(root: Root, css: CssSchema): void {
 				const keyframesRule = postcss.atRule({
 					name: "keyframes",
 					params,
-					raws: { semicolon: true, between: " " },
+					raws: {
+						semicolon: true,
+						between: " ",
+						before: inferBefore(themeInline.raws.before),
+					},
 				});
 
 				themeInline.append(keyframesRule);
@@ -70,7 +72,10 @@ export function updateCss(root: Root, css: CssSchema): void {
 								const decl = postcss.decl({
 									prop,
 									value: value,
-									raws: { semicolon: true },
+									raws: {
+										semicolon: true,
+										before: inferBefore(atRule.raws.before),
+									},
 								});
 								atRule.append(decl);
 							} else if (typeof value === "object") {
@@ -124,13 +129,13 @@ function processAtRule(
 	let atRule = root.nodes?.find(
 		(node): node is AtRule =>
 			node.type === "atrule" && node.name === name && node.params === params
-	) as AtRule | undefined;
+	);
 
 	if (!atRule) {
 		atRule = postcss.atRule({
 			name,
 			params,
-			raws: { semicolon: true, between: " " },
+			raws: { semicolon: true, between: " ", before: inferBefore(root.raws.before) },
 		});
 		root.append(atRule);
 		root.insertBefore(atRule, postcss.comment({ text: "---break---" }));
@@ -166,14 +171,13 @@ function processAtRule(
 				// Create a rule for the at-rule if needed
 				const rule = postcss.rule({
 					selector: "temp",
-					raws: { semicolon: true, between: " " },
+					raws: { semicolon: true, between: " ", before: inferBefore(root.raws.before) },
 				});
 
 				// Copy all declarations from the temp rule to our actual rule
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						// clone.raws.before = `\n${TAB.repeat(2)}`;
 						rule.append(clone);
 					}
 				});
@@ -193,11 +197,11 @@ function processAtRule(
 function processRule(parent: Root | AtRule, selector: string, properties: CssSchema[string]) {
 	let rule = parent.nodes?.find(
 		(node): node is Rule => node.type === "rule" && node.selector === selector
-	) as Rule | undefined;
+	);
 
 	if (!rule) {
 		// uses the same indent level as the parent + 1 tab
-		const before = "\n" + (parent.raws.before?.replaceAll("\n", "") ?? "") + TAB;
+		const before = inferBefore(parent.raws.before);
 		rule = postcss.rule({ selector, raws: { semicolon: true, between: " ", before } });
 		parent.append(rule);
 	}
@@ -208,7 +212,7 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 				const decl = postcss.decl({
 					prop,
 					value: value,
-					raws: { semicolon: true },
+					raws: { semicolon: true, before: inferBefore(rule.raws.before) },
 				});
 
 				// Replace existing property or add new one
@@ -237,7 +241,8 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 				tempRule.nodes.forEach((node) => {
 					if (node.type === "decl") {
 						const clone = node.clone();
-						rule?.append(clone);
+						clone.raws.before = inferBefore(rule.raws.before);
+						rule.append(clone);
 					}
 				});
 			}
@@ -246,4 +251,15 @@ function processRule(parent: Root | AtRule, selector: string, properties: CssSch
 			throw error;
 		}
 	}
+}
+
+const TAB = "\t";
+
+/**
+ * Returns the same indent level as the parent + 1 tab.
+ *
+ * TODO: consider detecting the use of spaces and tabs
+ */
+function inferBefore(parentBefore: string | undefined): string {
+	return "\n" + (parentBefore?.replaceAll("\n", "") ?? "") + TAB;
 }

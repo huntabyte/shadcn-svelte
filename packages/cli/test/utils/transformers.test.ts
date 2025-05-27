@@ -232,7 +232,8 @@ describe("updateCssVars", () => {
 	--primary: old;
 	--secondary: old;
 	--unrelated: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			light: {
 				primary: "new",
@@ -255,7 +256,8 @@ describe("updateCssVars", () => {
 	--primary: old;
 	--secondary: old;
 	--unrelated: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			dark: {
 				primary: "new",
@@ -278,7 +280,8 @@ describe("updateCssVars", () => {
 	--primary: old;
 	--secondary: old;
 	--unrelated: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			theme: {
 				primary: "new",
@@ -300,7 +303,8 @@ describe("updateCssVars", () => {
 :root {
 	--existing: value;
 	--unrelated: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			light: {
 				existing: "new",
@@ -321,7 +325,8 @@ describe("updateCssVars", () => {
 		const source = `
 :root {
 	--test: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			dark: {
 				test: "value",
@@ -339,7 +344,8 @@ describe("updateCssVars", () => {
 		const source = `
 .some-other-class {
 	--test: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			light: { primary: "new" },
 			dark: { secondary: "new" },
@@ -366,7 +372,8 @@ describe("updateCssVars", () => {
 @theme {
 	--tertiary: old;
 	--unrelated: value;
-}`.trim();
+}
+`.trim();
 		const cssVars = {
 			light: { primary: "new" },
 			dark: { secondary: "new" },
@@ -393,7 +400,8 @@ describe("updateCssVars", () => {
 		const source = `
 :root {
 	--primary: old;
-}`.trim();
+}
+`.trim();
 		const result = transformCss(source, { plugins: ["my-plugin"] });
 		expect(result).toMatchInlineSnapshot(`
 			"@plugin "my-plugin";
@@ -408,7 +416,8 @@ describe("updateCssVars", () => {
 @plugin "unrelated-plugin";
 :root {
 	--primary: old;
-}`.trim();
+}
+`.trim();
 		const result = transformCss(source, { plugins: ["plugin1", "plugin2"] });
 		expect(result).toMatchInlineSnapshot(`
 			"@plugin "unrelated-plugin";
@@ -425,7 +434,8 @@ describe("updateCssVars", () => {
 @plugin "plugin1";
 :root {
 	--primary: old;
-}`.trim();
+}
+`.trim();
 		const result = transformCss(source, { plugins: ["plugin1"] });
 		expect(result).toMatchInlineSnapshot(`
 			"@plugin "plugin1";
@@ -440,7 +450,8 @@ describe("updateCssVars", () => {
 @import "tailwindcss";
 :root {
 	--primary: old;
-}`.trim();
+}
+`.trim();
 		const result = transformCss(source, { plugins: ["plugin2"] });
 		expect(result).toMatchInlineSnapshot(`
 			"@import "tailwindcss";
@@ -457,7 +468,8 @@ describe("updateCssVars", () => {
 @plugin "plugin2";
 :root {
 	--primary: old;
-}`.trim();
+}
+`.trim();
 		const result = transformCss(source, { plugins: ["plugin3"] });
 		expect(result).toMatchInlineSnapshot(`
 			"@plugin "plugin1";
@@ -536,9 +548,11 @@ describe("updateCss", () => {
 	});
 
 	it("should add component styles", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -570,9 +584,11 @@ describe("updateCss", () => {
 	});
 
 	it("should add base styles", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -604,14 +620,16 @@ describe("updateCss", () => {
 	});
 
 	it("should update existing rules", async () => {
-		const input = `@import "tailwindcss";
+		const input = `
+@import "tailwindcss";
 
 @layer components {
-  .card {
-    background-color: white;
-    padding: 1rem;
-  }
-}`;
+	.card {
+		background-color: white;
+		padding: 1rem;
+	}
+}
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -640,9 +658,11 @@ describe("updateCss", () => {
 	});
 
 	it("should add multiple rules and types", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -688,9 +708,11 @@ describe("updateCss", () => {
 	});
 
 	it("should handle nested selectors with &", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -728,9 +750,11 @@ describe("updateCss", () => {
 	});
 
 	it("should handle direct string content", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -755,9 +779,11 @@ describe("updateCss", () => {
 	});
 
 	it("should handle nested at-rules", async () => {
-		const input = `@tailwind base;
+		const input = `
+@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;
+`.trim();
 
 		const result = transformCss(input, {
 			css: {
@@ -777,6 +803,7 @@ describe("updateCss", () => {
 			@tailwind utilities;
 
 			@layer components {
+
 				@media (min-width: 768px) {
 					.card {
 						padding: 2rem;
