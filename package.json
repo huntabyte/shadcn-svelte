@@ -52,7 +52,7 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"pretty-quick": "^4.1.1",
-		"svelte": "^5.23.1",
+		"svelte": "^5.33.3",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.26.1"
 	},

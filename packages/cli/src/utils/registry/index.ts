@@ -181,6 +181,12 @@ export function resolveItemFilePath(
 		return path.resolve(config.resolvedPaths.cwd, file.target.replace("~/", ""));
 	}
 
+	if (item.name === "utils") {
+		const utils = config.resolvedPaths.utils;
+		if (utils.match(/.*\.(ts|js)$/)) return utils;
+		else return `${utils}.ts`;
+	}
+
 	let aliasDir;
 	if (file.type === "registry:file") {
 		// resolves relative to the item-type's alias

@@ -281,5 +281,39 @@ describe("Registry Utilities", () => {
 				"/path/to/cwd/hooks/use-hook.svelte.ts"
 			);
 		});
+
+		it("should resolve path for utils", () => {
+			const config = { ...mockConfig };
+			const item: RegistryItem = {
+				name: "utils",
+				type: "registry:lib",
+				files: [
+					{
+						type: "registry:lib",
+						target: "utils.ts",
+						content: "",
+					},
+				],
+			};
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+				"/path/to/cwd/utils.ts"
+			);
+
+			// points to some other path
+			config.resolvedPaths = {
+				...mockConfig.resolvedPaths,
+				utils: `${cwd}/some-other-path/shadcn-utils`,
+			};
+
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+				"/path/to/cwd/some-other-path/shadcn-utils.ts"
+			);
+
+			// includes a file extension
+			config.resolvedPaths.utils += ".ts";
+			expect(toPosixPath(resolveItemFilePath(config, item, item.files[0]))).toBe(
+				"/path/to/cwd/some-other-path/shadcn-utils.ts"
+			);
+		});
 	});
 });

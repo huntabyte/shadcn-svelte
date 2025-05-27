@@ -1,5 +1,18 @@
 # shadcn-svelte
 
+## 1.0.0-next.18
+
+### Patch Changes
+
+- 670a3e4: fix: respect `utils` path-alias
+
+## 1.0.0-next.17
+
+### Patch Changes
+
+- 44b2445: feat: allow import maps to be used as path aliases
+- 425edb7: fix: disable ES transformations when stripping types
+
 ## 1.0.0-next.16
 
 ### Patch Changes
