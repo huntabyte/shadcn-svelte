@@ -1,7 +1,3 @@
-<script lang="ts" module>
-	type TData = unknown;
-</script>
-
 <script lang="ts" generics="TData">
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import type { Table } from "@tanstack/table-core";
