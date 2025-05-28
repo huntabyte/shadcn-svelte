@@ -113,18 +113,12 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 		if (p.isCancel(proceed) || proceed === false) cancel();
 	}
 
-	const tasks: p.Task[] = [];
-
 	const result = await addRegistryItems({
 		config,
 		deps: options.deps,
 		overwrite: options.overwrite,
 		selectedItems: Array.from(selectedComponents),
 	});
-
-	tasks.push(...result.tasks);
-
-	await p.tasks(tasks);
 
 	if (options.deps) {
 		await installDependencies({

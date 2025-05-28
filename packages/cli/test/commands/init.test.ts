@@ -91,33 +91,39 @@ it("init (config-full)", async () => {
 
 	const targetDir = path.resolve(__dirname, "../fixtures/config-full");
 	const config = await getConfig(targetDir);
-	if (config === null) throw new Error("config is null");
+	if (!config) throw new Error("config is undefined");
 
 	await runInit(targetDir, config, { deps: true, cwd: targetDir, overwrite: true });
 
 	// mkDir mocks
-	expect(mockMkdir).toHaveBeenNthCalledWith(
-		1,
-		expect.stringContaining(path.join("src", "lib")),
-		expect.anything()
-	);
-	expect(mockMkdir).toHaveBeenNthCalledWith(2, expect.stringContaining("src"), expect.anything());
+
 	expect(mockWriteFile).toHaveBeenNthCalledWith(
 		1,
+		expect.stringContaining("utils"),
+		expect.stringContaining("<UTILS CONTENT>"),
+		"utf8"
+	);
+	expect(mockWriteFile).toHaveBeenNthCalledWith(
+		2,
 		expect.stringContaining("app.css"),
 		expect.stringContaining(`@import 'tailwindcss'`),
 		"utf8"
 	);
 
+	expect(mockMkdir).toHaveBeenNthCalledWith(1, expect.stringContaining("src"), expect.anything());
 	expect(mockMkdir).toHaveBeenNthCalledWith(
-		3,
-		expect.stringContaining(path.join("src", "lib", "components")),
+		2,
+		expect.stringContaining(path.join("src", "lib")),
 		expect.anything()
 	);
-
+	expect(mockMkdir).toHaveBeenNthCalledWith(
+		3,
+		expect.stringContaining(path.join("src", "lib", "hooks")),
+		expect.anything()
+	);
 	expect(mockMkdir).toHaveBeenNthCalledWith(
 		4,
-		expect.stringContaining(path.join("src", "lib", "hooks")),
+		expect.stringContaining(path.join("src", "lib", "components")),
 		expect.anything()
 	);
 
@@ -125,13 +131,6 @@ it("init (config-full)", async () => {
 		1,
 		expect.stringContaining("components.json"),
 		expect.stringContaining('"aliases"'),
-		"utf8"
-	);
-
-	expect(mockWriteFile).toHaveBeenNthCalledWith(
-		2,
-		expect.stringContaining("utils"),
-		expect.stringContaining("<UTILS CONTENT>"),
 		"utf8"
 	);
 
