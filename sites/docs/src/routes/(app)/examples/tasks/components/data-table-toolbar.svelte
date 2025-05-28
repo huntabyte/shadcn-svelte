@@ -1,7 +1,3 @@
-<script lang="ts" module>
-	type TData = unknown;
-</script>
-
 <script lang="ts" generics="TData">
 	import XIcon from "@lucide/svelte/icons/x";
 	import type { Table } from "@tanstack/table-core";

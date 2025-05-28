@@ -1,8 +1,3 @@
-<script lang="ts" module>
-	type TData = unknown;
-	type TValue = unknown;
-</script>
-
 <script lang="ts" generics="TData, TValue">
 	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import CheckIcon from "@lucide/svelte/icons/check";
