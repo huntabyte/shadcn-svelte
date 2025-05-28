@@ -154,8 +154,10 @@ export function getItemAliasDir(config: ResolvedConfig, type: schemas.RegistryIt
 	if (type === "registry:lib") return config.resolvedPaths.lib;
 	if (type === "registry:hook") return config.resolvedPaths.hooks;
 	if (type === "registry:file") return config.resolvedPaths.cwd;
-	if (type === "registry:style") return config.resolvedPaths.tailwindCss;
-	if (type === "registry:theme") throw new Error(`TODO: ${type}`);
+
+	if (type === "registry:style" || type === "registry:theme") {
+		return path.basename(config.resolvedPaths.tailwindCss);
+	}
 
 	if (type === "registry:block" || type === "registry:component") {
 		return config.resolvedPaths.components;

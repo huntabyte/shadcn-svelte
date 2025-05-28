@@ -9,6 +9,8 @@ import { cancel, prettifyList } from "./prompt-helpers.js";
 import { transformContent, transformCss } from "./transformers.js";
 import type { ResolvedConfig } from "./get-config.js";
 
+const STYLE_TYPES = ["registry:style", "registry:theme"];
+
 type AddRegistryItemsProps = {
 	selectedItems: string[];
 	config: ResolvedConfig;
@@ -78,7 +80,8 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	}
 
 	for (const item of itemsWithContent) {
-		if (item.type !== "registry:style") {
+		// `theme`s and `style`s do the same thing, because why not?
+		if (!STYLE_TYPES.includes(item.type)) {
 			const aliasDir = registry.getItemAliasDir(opts.config, item.type);
 			if (!existsSync(aliasDir)) {
 				await fs.mkdir(aliasDir, { recursive: true });
@@ -141,6 +144,10 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 				}
 
 				if (item.name !== "init") {
+					if (STYLE_TYPES.includes(item.type)) {
+						const itemPath = path.relative(cwd, opts.config.resolvedPaths.tailwindCss);
+						return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
+					}
 					const aliasDir = registry.getItemAliasDir(opts.config, item.type);
 					const itemPath = path.relative(cwd, path.resolve(aliasDir, item.name));
 					return `${highlight(item.name)} installed at ${color.gray(itemPath)}`;
@@ -152,13 +159,24 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	await p.tasks(tasks);
 
 	if (Object.keys(cssVars).length || Object.keys(css).length) {
-		// TODO: PROMPT TO OVERWRITE OK
+		const cssPath = opts.config.resolvedPaths.tailwindCss;
+		const relative = path.relative(cwd, cssPath);
+
+		if (!opts.overwrite) {
+			const overwrite = await p.confirm({
+				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold.red("overwritten")} in ${highlight(relative)}. Continue?`,
+				initialValue: false,
+			});
+			if (p.isCancel(overwrite)) cancel();
+
+			opts.overwrite = overwrite;
+		}
+
 		await p.tasks([
 			{
 				title: "Updating stylesheet",
+				enabled: opts.overwrite,
 				async task() {
-					const cssPath = opts.config.resolvedPaths.tailwindCss;
-					const relative = path.relative(cwd, cssPath);
 					const cssSource = await fs.readFile(cssPath, "utf8");
 
 					const modifiedCss = transformCss(cssSource, { css, cssVars });
