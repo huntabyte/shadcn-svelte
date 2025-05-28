@@ -76,37 +76,66 @@ export function createSvelteTable<TData extends RowData>(options: TableOptions<T
 	return table;
 }
 
+type MaybeThunk<T extends object> = T | (() => T | null | undefined);
+type Intersection<T extends readonly unknown[]> = (T extends [infer H, ...infer R]
+	? H & Intersection<R>
+	: unknown) & {};
+
 /**
- * Merges objects together while keeping their getters alive.
- * Taken from SolidJS: {@link https://github.com/solidjs/solid/blob/24abc825c0996fd2bc8c1de1491efe9a7e743aff/packages/solid/src/server/rendering.ts#L82-L115}
+ * Lazily merges several objects (or thunks) while preserving
+ * getter semantics from every source.
+ *
+ * Proxy-based to avoid known WebKit recursion issue.
  */
-function mergeObjects<T>(source: T): T;
-function mergeObjects<T, U>(source: T, source1: U): T & U;
-function mergeObjects<T, U, V>(source: T, source1: U, source2: V): T & U & V;
-function mergeObjects<T, U, V, W>(source: T, source1: U, source2: V, source3: W): T & U & V & W;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mergeObjects(...sources: any): any {
-	const target = {};
-	for (let i = 0; i < sources.length; i++) {
-		let source = sources[i];
-		if (typeof source === "function") source = source();
-		if (source) {
-			const descriptors = Object.getOwnPropertyDescriptors(source);
-			for (const key in descriptors) {
-				if (key in target) continue;
-				Object.defineProperty(target, key, {
-					enumerable: true,
-					get() {
-						for (let i = sources.length - 1; i >= 0; i--) {
-							let s = sources[i];
-							if (typeof s === "function") s = s();
-							const v = (s || {})[key];
-							if (v !== undefined) return v;
-						}
-					},
-				});
-			}
+export function mergeObjects<Sources extends readonly MaybeThunk<any>[]>(
+	...sources: Sources
+): Intersection<{ [K in keyof Sources]: Sources[K] }> {
+	const resolve = <T extends object>(src: MaybeThunk<T>): T | undefined =>
+		typeof src === "function" ? (src() ?? undefined) : src;
+
+	const findSourceWithKey = (key: PropertyKey) => {
+		for (let i = sources.length - 1; i >= 0; i--) {
+			const obj = resolve(sources[i]);
+			if (obj && key in obj) return obj;
 		}
-	}
-	return target;
+		return undefined;
+	};
+
+	return new Proxy(Object.create(null), {
+		get(_, key) {
+			const src = findSourceWithKey(key);
+
+			return src?.[key as never];
+		},
+
+		has(_, key) {
+			return !!findSourceWithKey(key);
+		},
+
+		ownKeys(): (string | symbol)[] {
+			const all = new Set<string | symbol>();
+			for (const s of sources) {
+				const obj = resolve(s);
+				if (obj) {
+					for (const k of Reflect.ownKeys(obj) as (string | symbol)[]) {
+						all.add(k);
+					}
+				}
+			}
+			return [...all];
+		},
+
+		getOwnPropertyDescriptor(_, key) {
+			const src = findSourceWithKey(key);
+			if (!src) return undefined;
+			return {
+				configurable: true,
+				enumerable: true,
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				value: (src as any)[key],
+				writable: true,
+			};
+		},
+	}) as Intersection<{ [K in keyof Sources]: Sources[K] }>;
 }
