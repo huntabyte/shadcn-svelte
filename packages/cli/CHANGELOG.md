@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.0-next.19
+
+### Patch Changes
+
+- 9c94564: feat: add support for registry-item type `registry:style`
+
 ## 1.0.0-next.18
 
 ### Patch Changes
