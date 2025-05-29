@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-preview:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -20,15 +20,8 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      # Image cache setup
-      - name: Setup Image cache
-        uses: actions/cache@v4
-        with:
-          path: "**/node_modules/.cache/imagetools"
-          key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
-
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Build site
         env:

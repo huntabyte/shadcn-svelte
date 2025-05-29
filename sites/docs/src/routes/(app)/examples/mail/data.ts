@@ -1,8 +1,7 @@
-import type { ComponentType } from "svelte";
-import type { Icon } from "lucide-svelte";
 import Vercel from "./(components)/icons/vercel.svelte";
 import ICloud from "./(components)/icons/icloud.svelte";
 import Gmail from "./(components)/icons/gmail.svelte";
+import type { Component } from "svelte";
 
 export const mails = [
 	{
@@ -182,7 +181,7 @@ export type Mail = (typeof mails)[number];
 export type Account = {
 	label: string;
 	email: string;
-	icon: ComponentType<Icon>;
+	icon: Component;
 };
 
 export const accounts: Account[] = [

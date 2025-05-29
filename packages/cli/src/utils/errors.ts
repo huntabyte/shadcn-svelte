@@ -1,5 +1,5 @@
 import process from "node:process";
-import * as p from "./prompts.js";
+import * as p from "@clack/prompts";
 
 export function handleError(error: unknown) {
 	// provide a newline gap

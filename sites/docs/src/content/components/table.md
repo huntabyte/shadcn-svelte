@@ -2,34 +2,40 @@
 title: Table
 description: A responsive table component.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/table
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="table-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="table" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Copy and paste the component source files linked at the top of this page into your project.
 
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as Table from "$lib/components/ui/table";
+  import * as Table from "$lib/components/ui/table/index.js";
 </script>
 ```
 

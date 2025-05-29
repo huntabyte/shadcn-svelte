@@ -3,18 +3,18 @@
 
 	import type { Mail } from "../data.js";
 	import * as Icons from "../icons.js";
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import { Button, buttonVariants } from "$lib/registry/new-york/ui/button/index.js";
-	import { Calendar } from "$lib/registry/new-york/ui/calendar/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
-	import { Switch } from "$lib/registry/new-york/ui/switch/index.js";
-	import { Textarea } from "$lib/registry/new-york/ui/textarea/index.js";
-	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Calendar } from "$lib/registry/ui/calendar/index.js";
+	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
+	import { Switch } from "$lib/registry/ui/switch/index.js";
+	import { Textarea } from "$lib/registry/ui/textarea/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
-	export let mail: Mail | null = null;
+	let { mail }: { mail: Mail | null } = $props();
 
 	const fullFormatter = new DateFormatter("en-US", {
 		dateStyle: "medium",
@@ -27,7 +27,7 @@
 		minute: "2-digit",
 		hourCycle: "h12",
 	});
-	let todayDate = now(getLocalTimeZone());
+	let todayDate = $state(now(getLocalTimeZone()));
 
 	function getClosestWeekend() {
 		const dayOfWeek = getDayOfWeek(todayDate, "en-US");
@@ -41,7 +41,7 @@
 <div class="flex h-full flex-col">
 	<div class="mb-1 flex items-center p-2">
 		<div class="flex items-center gap-2">
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="archive_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -52,7 +52,7 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content>Archive</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="move_to_junk_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -63,7 +63,7 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content>Move to junk</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="move_to_trash_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -75,20 +75,18 @@
 				<Tooltip.Content>Move to trash</Tooltip.Content>
 			</Tooltip.Root>
 			<Separator orientation="vertical" class="mx-1 h-6" />
-			<Tooltip.Root openDelay={0} group>
-				<Popover.Root portal={null}>
-					<Tooltip.Trigger asChild let:builder={tooltip_builder} id="snooze_popover">
-						<Popover.Trigger asChild let:builder={popover_builder} id="snooze_popover">
-							<Button
-								builders={[tooltip_builder, popover_builder]}
-								variant="ghost"
-								size="icon"
-								disabled={!mail}
+			<Tooltip.Root>
+				<Popover.Root>
+					<Tooltip.Trigger id="snooze_popover" disabled={!mail}>
+						{#snippet child({ props })}
+							<Popover.Trigger
+								class={buttonVariants({ variant: "ghost", size: "icon" })}
+								{...props}
 							>
 								<Icons.Clock class="size-4" />
 								<span class="sr-only">Snooze</span>
-							</Button>
-						</Popover.Trigger>
+							</Popover.Trigger>
+						{/snippet}
 					</Tooltip.Trigger>
 					<Popover.Content class="flex w-[535px] p-0">
 						<div class="flex flex-col gap-2 border-r px-2 py-4">
@@ -127,7 +125,7 @@
 							</div>
 						</div>
 						<div class="p-2">
-							<Calendar bind:value={todayDate} initialFocus />
+							<Calendar type="single" bind:value={todayDate} preventDeselect />
 						</div>
 					</Popover.Content>
 				</Popover.Root>
@@ -135,7 +133,7 @@
 			</Tooltip.Root>
 		</div>
 		<div class="ml-auto flex items-center gap-2">
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="reply_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -146,7 +144,7 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content>Reply</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="reply_all_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -157,7 +155,7 @@
 				</Tooltip.Trigger>
 				<Tooltip.Content>Reply all</Tooltip.Content>
 			</Tooltip.Root>
-			<Tooltip.Root openDelay={0} group>
+			<Tooltip.Root>
 				<Tooltip.Trigger
 					id="forward_tooltip"
 					class={buttonVariants({ variant: "ghost", size: "icon" })}

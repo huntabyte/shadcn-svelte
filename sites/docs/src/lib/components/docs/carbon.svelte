@@ -4,9 +4,11 @@
 	import { beforeNavigate } from "$app/navigation";
 	import { dev } from "$app/environment";
 
+	let id = $props.id();
+
 	const src =
 		"//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover";
-	const localId = crypto.randomUUID();
+	const localId = id;
 
 	let container: HTMLElement | null = null;
 

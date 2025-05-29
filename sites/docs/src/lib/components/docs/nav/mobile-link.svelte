@@ -1,19 +1,29 @@
 <script lang="ts">
-	import { page } from "$app/stores";
-	import { cn } from "$lib/utils.js";
+	import { page } from "$app/state";
+	import { type PrimitiveAnchorAttributes, cn } from "$lib/utils.js";
 
-	export let href: string;
-	export let open: boolean;
+	let {
+		open = $bindable(false),
+		href,
+		class: className,
+		children,
+		...restProps
+	}: PrimitiveAnchorAttributes & { open: boolean } = $props();
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	function handleClick() {
+		open = false;
+	}
 </script>
 
 <a
 	{href}
-	class={cn($page.url.pathname === href ? "text-foreground" : "text-foreground/60", className)}
-	on:click={() => (open = false)}
-	{...$$restProps}
+	class={cn(
+		"text-[1.15rem]",
+		page.url.pathname === href ? "text-foreground" : "text-foreground/80",
+		className
+	)}
+	onclick={handleClick}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </a>

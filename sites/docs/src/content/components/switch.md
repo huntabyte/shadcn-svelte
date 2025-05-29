@@ -2,39 +2,46 @@
 title: Switch
 description: A control that allows the user to toggle between checked and not checked.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/switch
-bits: https://www.bits-ui.com/docs/components/switch
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/switch
+  doc: https://bits-ui.com/docs/components/switch
+  api: https://bits-ui.com/docs/components/switch#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="switch-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="switch" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Switch } from "$lib/components/ui/switch";
+  import { Switch } from "$lib/components/ui/switch/index.js";
 </script>
 
 <Switch />
@@ -46,6 +53,6 @@ bits: https://www.bits-ui.com/docs/components/switch
 
 <ComponentPreview name="switch-form">
 
-<div />
+<div></div>
 
 </ComponentPreview>

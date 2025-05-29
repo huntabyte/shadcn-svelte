@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Route } from "../config.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
-	import * as Tooltip from "$lib/registry/new-york/ui/tooltip/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
 	export let isCollapsed: boolean;
 	export let routes: Route[];
@@ -12,24 +13,22 @@
 	<nav
 		class="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2"
 	>
-		{#each routes as route}
+		{#each routes as route (route)}
 			{#if isCollapsed}
-				<Tooltip.Root openDelay={0}>
-					<Tooltip.Trigger asChild let:builder>
-						<Button
-							href="#"
-							builders={[builder]}
-							variant={route.variant}
-							size="icon"
-							class={cn(
-								"size-9",
-								route.variant === "default" &&
-									"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
-							)}
-						>
-							<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
-							<span class="sr-only">{route.title}</span>
-						</Button>
+				<Tooltip.Root>
+					<Tooltip.Trigger
+						class={cn(
+							buttonVariants({
+								variant: route.variant,
+								size: "icon",
+								class: "size-9",
+							}),
+							route.variant === "default" &&
+								"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+						)}
+					>
+						<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
+						<span class="sr-only">{route.title}</span>
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" class="flex items-center gap-4">
 						{route.title}

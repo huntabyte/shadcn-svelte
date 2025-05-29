@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveHeadingAttributes, cn } from "$lib/utils.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, children, ...restProps }: PrimitiveHeadingAttributes = $props();
 </script>
 
 <h1
 	class={cn(
-		"text-center text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]",
+		"text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:leading-[1.1]",
 		className
 	)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </h1>

@@ -1,15 +1,13 @@
 <script lang="ts">
-	import Copy from "svelte-radix/Copy.svelte";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import * as Popover from "$lib/registry/new-york/ui/popover/index.js";
+	import CopyIcon from "@lucide/svelte/icons/copy";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import * as Popover from "$lib/registry/ui/popover/index.js";
 </script>
 
 <Popover.Root>
-	<Popover.Trigger asChild let:builder>
-		<Button variant="secondary" builders={[builder]}>Share</Button>
-	</Popover.Trigger>
+	<Popover.Trigger class={buttonVariants({ variant: "secondary" })}>Share</Popover.Trigger>
 	<Popover.Content class="w-[520px]" align="end">
 		<div class="flex flex-col space-y-2 text-center sm:text-left">
 			<h3 class="text-lg font-semibold">Share preset</h3>
@@ -29,7 +27,7 @@
 			</div>
 			<Button type="submit" size="sm" class="px-3">
 				<span class="sr-only"> Copy </span>
-				<Copy class="h-4 w-4" />
+				<CopyIcon />
 			</Button>
 		</div>
 	</Popover.Content>

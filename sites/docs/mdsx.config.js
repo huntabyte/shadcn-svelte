@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import { readFileSync } from "node:fs";
 import process from "node:process";
 import { join, resolve } from "node:path";
@@ -28,7 +28,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
  * @type {import('rehype-pretty-code').Options}
  */
 const prettyCodeOptions = {
-	theme: JSON.parse(String(readFileSync(resolve(__dirname, "./other/themes/dark.json")))),
+	theme: "github-dark-default",
 	getHighlighter: (options) =>
 		getHighlighter({
 			...options,
@@ -40,13 +40,15 @@ const prettyCodeOptions = {
 				import("shiki/langs/svelte.mjs"),
 				import("shiki/langs/shellscript.mjs"),
 				import("shiki/langs/markdown.mjs"),
+				import("shiki/langs/json.mjs"),
 			],
 		}),
 	keepBackground: false,
 	onVisitLine(node) {
+		// Prevent lines from collapsing in `display: grid` mode, and allow empty
+		// lines to be copy/pasted
 		if (node.children.length === 0) {
-			// @ts-expect-error - we're changing the node type
-			node.children = { type: "text", value: " " };
+			node.children = [{ type: "text", value: " " }];
 		}
 	},
 	onVisitHighlightedLine(node) {
@@ -138,17 +140,6 @@ function rehypePreData() {
 	};
 }
 
-const styles = [
-	{
-		name: "default",
-		label: "Default",
-	},
-	{
-		name: "new-york",
-		label: "New York",
-	},
-];
-
 /**
  *
  * @returns {HastTransformer} - Unified Transformer
@@ -157,60 +148,51 @@ export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			// @ts-expect-error - this is fine
 			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
-				// @ts-expect-error - this is fine
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
 
-				if (!name) {
-					return null;
-				}
+				if (!name) return null;
 
 				try {
-					for (const style of styles) {
-						// @ts-expect-error - this is fine
-						const component = Index[style.name][name];
-						const src = component.files[0].replace("/lib/", "/src/lib/");
-						let sourceCode = getComponentSourceFileContent(src);
-						if (!sourceCode || sourceCode === null) return;
+					// @ts-expect-error - this is fine
+					const component = Index[name];
+					if (!component) return;
+					const files = component?.files;
+					if (!files) return;
+					const src = files[0]?.replace("/lib/", "/src/lib/");
 
-						sourceCode = sourceCode.replaceAll(
-							"$lib/registry/new-york/",
-							"$lib/components/"
-						);
-						sourceCode = sourceCode.replaceAll(
-							"$lib/registry/default/",
-							"$lib/components/"
-						);
+					let sourceCode = getComponentSourceFileContent(src);
+					if (!sourceCode || sourceCode === null) return;
 
-						const sourceCodeNode = u("element", {
-							tagName: "pre",
-							properties: {
-								__src__: src,
-								__style__: style.name,
-								className: ["code"],
-							},
-							children: [
-								u("element", {
-									tagName: "code",
-									properties: {
-										className: [`language-svelte`],
+					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
+					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
+
+					const sourceCodeNode = u("element", {
+						tagName: "pre",
+						properties: {
+							__src__: src,
+							className: ["code"],
+						},
+						children: [
+							u("element", {
+								tagName: "code",
+								properties: {
+									className: [`language-svelte`],
+								},
+								attributes: {},
+								children: [
+									{
+										type: "text",
+										value: sourceCode,
 									},
-									attributes: {},
-									children: [
-										{
-											type: "text",
-											value: sourceCode,
-										},
-									],
-								}),
-							],
-						});
-						if (!index) return;
-						// @ts-expect-error - this is fine
-						parent?.children.splice(index + 1, 0, sourceCodeNode);
-					}
+								],
+							}),
+						],
+					});
+					if (!index) return;
+					// @ts-expect-error - this is fine
+					parent?.children.splice(index + 1, 0, sourceCodeNode);
 				} catch (e) {
 					console.error(e);
 				}

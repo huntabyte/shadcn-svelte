@@ -10,7 +10,7 @@ component: true
 
 <ComponentPreview name="typography-demo">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -18,7 +18,7 @@ component: true
 
 <ComponentPreview name="typography-h1">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -26,7 +26,7 @@ component: true
 
 <ComponentPreview name="typography-h2">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -34,7 +34,7 @@ component: true
 
 <ComponentPreview name="typography-h3">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -42,7 +42,7 @@ component: true
 
 <ComponentPreview name="typography-h4">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -50,7 +50,7 @@ component: true
 
 <ComponentPreview name="typography-p">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -58,7 +58,7 @@ component: true
 
 <ComponentPreview name="typography-blockquote">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -66,7 +66,7 @@ component: true
 
 <ComponentPreview name="typography-table">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -74,7 +74,7 @@ component: true
 
 <ComponentPreview name="typography-list">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -82,7 +82,7 @@ component: true
 
 <ComponentPreview name="typography-inline-code">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -90,7 +90,7 @@ component: true
 
 <ComponentPreview name="typography-lead">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -98,7 +98,7 @@ component: true
 
 <ComponentPreview name="typography-large">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -106,7 +106,7 @@ component: true
 
 <ComponentPreview name="typography-small">
 
-<div/>
+<div></div>
 
 </ComponentPreview>
 
@@ -114,6 +114,6 @@ component: true
 
 <ComponentPreview name="typography-muted">
 
-<div/>
+<div></div>
 
 </ComponentPreview>

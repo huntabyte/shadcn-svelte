@@ -1,126 +1,197 @@
+import color from "chalk";
+import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";
-import color from "chalk";
-import * as v from "valibot";
-import { getTsconfig } from "get-tsconfig";
+import { z } from "zod/v4";
+import { highlight, stripTrailingSlash } from "./utils.js";
+import { SITE_BASE_URL } from "../constants.js";
 import { ConfigError, error } from "./errors.js";
-import { resolveImport } from "./resolve-imports.js";
-import { syncSvelteKit } from "./sveltekit.js";
+import { resolveImportAlias } from "./resolve-imports.js";
+import { isUsingSvelteKit, syncSvelteKit } from "./sveltekit.js";
 
-export const DEFAULT_STYLE = "default";
-export const DEFAULT_COMPONENTS = "$lib/components";
-export const DEFAULT_UTILS = "$lib/utils";
-export const DEFAULT_TAILWIND_CSS = "src/app.pcss";
-export const DEFAULT_TAILWIND_CONFIG = "tailwind.config.cjs";
-export const DEFAULT_TAILWIND_BASE_COLOR = "slate";
-export const DEFAULT_TYPESCRIPT = true;
+export const DEFAULT_CONFIG = {
+	$schema: `${SITE_BASE_URL}/schema.json`,
+	aliases: {
+		lib: "$lib",
+		utils: "$lib/utils",
+		hooks: "$lib/hooks",
+		components: "$lib/components",
+		ui: "$lib/components/ui",
+	},
+	tailwind: {
+		baseColor: "slate",
+		css: "src/app.css",
+	},
+	typescript: true,
+	registry: `${SITE_BASE_URL}/registry`,
+} as const;
 
-const highlight = (...args: unknown[]) => color.bold.cyan(...args);
+const aliasSchema = (alias: string) =>
+	z
+		.string(`Missing aliases.${color.bold(`${alias}`)} alias`)
+		.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
+		// trailing slashes are stripped for an easier alias replacement during transformation
+		.transform((v) => stripTrailingSlash(v));
 
-export const rawConfigSchema = v.object({
-	$schema: v.optional(v.string()),
-	style: v.string(),
-	tailwind: v.object({
-		config: v.string(),
-		css: v.string(),
-		baseColor: v.string(),
-		// cssVariables: v.boolean().default(true)
-	}),
-	aliases: v.object({
-		components: v.pipe(
-			v.string(),
-			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		),
-		utils: v.pipe(
-			v.string(),
-			v.transform((v) => v.replace(/[\u{0080}-\u{FFFF}]/gu, ""))
-		),
-	}),
-	typescript: v.optional(v.boolean(), true),
+const baseConfigSchema = z.object({
+	$schema: z.string().optional(),
+	tailwind: z.object(
+		{
+			css: z.string(`Missing tailwind.${color.bold("css")} path`),
+			baseColor: z.string(`Missing tailwind.${color.bold("baseColor")} field`),
+			// cssVariables: z.boolean().default(true)
+		},
+		`Missing ${color.bold("tailwind")} object`
+	),
+	aliases: z.object(
+		{
+			components: aliasSchema("components"),
+			utils: aliasSchema("utils"),
+		},
+		`Missing ${color.bold("aliases")} object`
+	),
+	typescript: z
+		.union(
+			[
+				z.boolean(),
+				z.object({
+					// config: z.string(`Missing path to ${color.bold("tsconfig/jsconfig")}`),
+					// Not sure why, but I can't get the above error msg to appear during zod parsing
+					// when `typescript` is set to an empty object: `"typescript": {}`
+					// Possibly a zod bug with unions?
+					config: z.string(),
+				}),
+			],
+			`Invalid ${color.bold("typescript")} field. Must either be 'true', 'false', or '{ "config": "path/to/tsconfig.json" }'`
+		)
+		.default(DEFAULT_CONFIG.typescript),
 });
 
-export type RawConfig = v.InferOutput<typeof rawConfigSchema>;
+const originalConfigSchema = baseConfigSchema.extend({ style: z.string().optional() });
 
-export const configSchema = v.object({
-	...rawConfigSchema.entries,
-	...v.object({
-		resolvedPaths: v.object({
-			tailwindConfig: v.string(),
-			tailwindCss: v.string(),
-			utils: v.string(),
-			components: v.string(),
-		}),
-	}).entries,
+const newConfigSchema = baseConfigSchema.extend({
+	aliases: baseConfigSchema.shape.aliases.extend({
+		ui: aliasSchema("ui").default(DEFAULT_CONFIG.aliases.ui),
+		hooks: aliasSchema("hooks").default(DEFAULT_CONFIG.aliases.hooks),
+		lib: aliasSchema("lib").default(DEFAULT_CONFIG.aliases.lib),
+	}),
+	registry: z.string().default(DEFAULT_CONFIG.registry),
 });
 
-export type Config = v.InferOutput<typeof configSchema>;
+export type RawConfig = z.infer<typeof rawConfigSchema>;
+// combines the old with the new
+export const rawConfigSchema = z.object({
+	...originalConfigSchema.shape,
+	...newConfigSchema.shape,
+	aliases: z.object({
+		...originalConfigSchema.shape.aliases.shape,
+		...newConfigSchema.shape.aliases.shape,
+	}),
+});
 
-export async function getConfig(cwd: string) {
-	const config = await getRawConfig(cwd);
+export type ResolvedConfig = z.infer<typeof resolvedConfigSchema>;
+export const resolvedConfigSchema = rawConfigSchema.extend({
+	sveltekit: z.boolean(),
+	resolvedPaths: z.object({
+		cwd: z.string(),
+		tailwindCss: z.string(),
+		utils: z.string(),
+		components: z.string(),
+		hooks: z.string(),
+		ui: z.string(),
+		lib: z.string(),
+	}),
+});
 
-	if (!config) {
-		return null;
-	}
+export async function getConfig(cwd: string): Promise<ResolvedConfig | undefined> {
+	const config = loadConfig(cwd);
+	if (!config) return;
 
-	return await resolveConfigPaths(cwd, config);
+	return await resolveConfig(cwd, config);
 }
 
-export async function resolveConfigPaths(cwd: string, config: RawConfig) {
+export async function resolveConfig(cwd: string, config: RawConfig): Promise<ResolvedConfig> {
 	// if it's a SvelteKit project, run sync so that the aliases are always up to date
 	await syncSvelteKit(cwd);
 
-	const tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
-	const pathAliases = getTSConfig(cwd, tsconfigType);
+	const tsconfig = resolveTSConfig(cwd, config);
 
-	if (pathAliases === null) {
+	const tsconfigFilename = path.basename(tsconfig.path);
+	if (!tsconfig.config.compilerOptions?.paths) {
 		throw error(
-			`Missing ${highlight("paths")} field in your ${highlight(tsconfigType)} for path aliases. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}`
+			`Missing ${highlight("paths")} field in your ${highlight(tsconfigFilename)} for path aliases. See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}`
 		);
 	}
 
-	const utilsPath = resolveImport(config.aliases.utils, pathAliases);
-	const componentsPath = resolveImport(config.aliases.components, pathAliases);
 	const aliasError = (type: string, alias: string) =>
 		new ConfigError(
 			`Invalid import alias found: (${highlight(`"${type}": "${alias}"`)}) in ${highlight("components.json")}.
-   - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigType)} (e.g. "${type}": "$lib/${type}").
-   - See: ${color.underline("https://www.shadcn-svelte.com/docs/installation/manual#configure-path-aliases")}.`
+   - Import aliases ${color.underline("must use")} existing path aliases defined in your ${highlight(tsconfigFilename)} (e.g. "${type}": "$lib/${type}").
+   - See: ${color.underline(`${SITE_BASE_URL}/docs/installation/manual#configure-path-aliases`)}.`
 		);
 
-	if (utilsPath === undefined) throw aliasError("utils", config.aliases.utils);
-	if (componentsPath === undefined) throw aliasError("components", config.aliases.components);
+	const resolvedPaths: Record<string, string> = {
+		cwd,
+		tailwindCss: path.resolve(cwd, config.tailwind.css),
+	};
 
-	return v.parse(configSchema, {
-		...config,
-		resolvedPaths: {
-			tailwindConfig: path.resolve(cwd, config.tailwind.config),
-			tailwindCss: path.resolve(cwd, config.tailwind.css),
-			utils: utilsPath,
-			components: componentsPath,
-		},
-	});
-}
-
-export function getTSConfig(cwd: string, tsconfigName: "tsconfig.json" | "jsconfig.json") {
-	const parsedConfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigName);
-	if (parsedConfig === null) {
-		throw error(
-			`Failed to find ${highlight(tsconfigName)}. See: ${color.underline("https://www.shadcn-svelte.com/docs/installation#opt-out-of-typescript")}`
-		);
+	for (const [alias, aliasPath] of Object.entries(config.aliases)) {
+		const resolvedPath = resolveImportAlias({ cwd, importPath: aliasPath, tsconfig });
+		if (!resolvedPath) throw aliasError(alias, aliasPath);
+		resolvedPaths[alias] = path.normalize(resolvedPath);
 	}
 
-	return parsedConfig;
+	const sveltekit = isUsingSvelteKit(cwd);
+
+	return resolvedConfigSchema.parse({ ...config, sveltekit, resolvedPaths });
 }
 
-export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
+export function loadConfig(cwd: string): RawConfig | undefined {
 	const configPath = path.resolve(cwd, "components.json");
-	if (!fs.existsSync(configPath)) return null;
+	if (!fs.existsSync(configPath)) return;
 
 	try {
 		const configResult = fs.readFileSync(configPath, { encoding: "utf8" });
 		const config = JSON.parse(configResult);
-		return v.parse(rawConfigSchema, config);
-	} catch {
-		throw new ConfigError(`Invalid configuration found in ${highlight(configPath)}.`);
+		return rawConfigSchema.parse(config);
+	} catch (e) {
+		if (!(e instanceof z.ZodError)) throw e;
+		const formatted = z.prettifyError(e);
+		throw new ConfigError(
+			`Invalid configuration found in ${highlight(configPath)}.\n\n${formatted}`
+		);
 	}
+}
+
+export function writeConfig(cwd: string, config: RawConfig): void {
+	const targetPath = path.resolve(cwd, "components.json");
+	const conf = newConfigSchema.parse(config, { jitless: true }); // `jitless` to retain the property order
+	fs.writeFileSync(targetPath, JSON.stringify(conf, null, "\t") + "\n", "utf8");
+}
+
+type TSConfigName = "tsconfig.json" | "jsconfig.json" | (string & {});
+export function resolveTSConfig(cwd: string, config: RawConfig) {
+	let tsconfig;
+	let tsconfigType: TSConfigName;
+	if (typeof config.typescript === "object") {
+		const tsconfigPath = path.resolve(cwd, config.typescript.config);
+		tsconfigType = path.basename(tsconfigPath);
+		tsconfig = getTsconfig(tsconfigPath, tsconfigType);
+	} else {
+		tsconfigType = config.typescript ? "tsconfig.json" : "jsconfig.json";
+		tsconfig = getTsconfig(path.resolve(cwd, "package.json"), tsconfigType);
+	}
+
+	if (!tsconfig) {
+		let msg = `Failed to find a ${highlight(tsconfigType)} file. `;
+
+		if (config.typescript)
+			msg += `See: ${color.underline(`${SITE_BASE_URL}/docs/components-json#typescript`)}`;
+		else
+			msg += `See: ${color.underline(`${SITE_BASE_URL}/docs/installation#opt-out-of-typescript`)}`;
+
+		throw error(msg);
+	}
+
+	return tsconfig;
 }

@@ -2,12 +2,14 @@
 title: Menubar
 description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/menubar
-bits: https://www.bits-ui.com/docs/components/menubar
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/menubar
+  doc: https://bits-ui.com/docs/components/menubar
+  api: https://bits-ui.com/docs/components/menubar#api-reference
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="menubar-demo">
@@ -16,23 +18,28 @@ bits: https://www.bits-ui.com/docs/components/menubar
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="menubar" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as Menubar from "$lib/components/ui/menubar";
+  import * as Menubar from "$lib/components/ui/menubar/index.js";
 </script>
 
 <Menubar.Root>
