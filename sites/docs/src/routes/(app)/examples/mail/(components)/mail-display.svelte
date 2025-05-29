@@ -125,7 +125,7 @@
 							</div>
 						</div>
 						<div class="p-2">
-							<Calendar type="single" bind:value={todayDate} />
+							<Calendar type="single" bind:value={todayDate} preventDeselect />
 						</div>
 					</Popover.Content>
 				</Popover.Root>
