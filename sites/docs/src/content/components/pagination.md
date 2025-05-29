@@ -56,7 +56,7 @@ links:
             <Pagination.Ellipsis />
           </Pagination.Item>
         {:else}
-          <Pagination.Item isVisible={currentPage === page.value}>
+          <Pagination.Item>
             <Pagination.Link {page} isActive={currentPage === page.value}>
               {page.value}
             </Pagination.Link>
