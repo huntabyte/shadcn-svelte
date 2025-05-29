@@ -11,7 +11,7 @@
 		value = $bindable(""),
 		title = "Command Palette",
 		description = "Search for a command to run",
-		portalProps,
+		portalProps = undefined,
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<DialogPrimitive.RootProps> &
