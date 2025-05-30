@@ -10,7 +10,6 @@ import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { u } from "unist-builder";
-import { getHighlighter } from "shiki";
 import { defineConfig } from "mdsx";
 import { Index } from "./src/__registry__/index.js";
 
@@ -48,27 +47,32 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
  * @type {import('rehype-pretty-code').Options}
  */
 const prettyCodeOptions = {
-	theme: "github-dark-default",
-	getHighlighter: (options) =>
-		getHighlighter({
-			...options,
-			langs: [
-				"plaintext",
-				import("shiki/langs/javascript.mjs"),
-				import("shiki/langs/typescript.mjs"),
-				import("shiki/langs/css.mjs"),
-				import("shiki/langs/svelte.mjs"),
-				import("shiki/langs/shellscript.mjs"),
-				import("shiki/langs/markdown.mjs"),
-				import("shiki/langs/json.mjs"),
-			],
-		}),
+	theme: {
+		dark: "github-dark",
+		light: "github-light-default",
+	},
 	keepBackground: false,
 	onVisitLine(node) {
 		// Prevent lines from collapsing in `display: grid` mode, and allow empty
 		// lines to be copy/pasted
 		if (node.children.length === 0) {
+			// Check if this is the first or last line in the parent
+			console.log(node);
+			// const parent = node.parent;
+			// if (parent && parent.children) {
+			// 	const siblings = parent.children;
+			// 	const nodeIndex = siblings.indexOf(node);
+			// 	const isFirstLine = nodeIndex === 0;
+			// 	const isLastLine = nodeIndex === siblings.length - 1;
+
+			// 	// Don't add content to first or last empty lines
+			// 	if (!isFirstLine && !isLastLine) {
+			// 		node.children = [{ type: "text", value: " " }];
+			// 	}
+			// } else {
+			// Fallback to original behavior if we can't determine position
 			node.children = [{ type: "text", value: " " }];
+			// }
 		}
 	},
 	onVisitHighlightedLine(node) {
@@ -87,6 +91,7 @@ export const mdsxConfig = defineConfig({
 		rehypeComponentExample,
 		rehypePreData,
 		[rehypePrettyCode, prettyCodeOptions],
+
 		rehypeHandleMetadata,
 	],
 	blueprints: {
@@ -203,7 +208,7 @@ export function rehypeComponentExample() {
 								children: [
 									{
 										type: "text",
-										value: sourceCode,
+										value: sourceCode.replace(/^\n+/, ""),
 									},
 								],
 							}),
@@ -255,18 +260,15 @@ function rehypeHandleMetadata() {
 }
 
 function getComponentSourceFileContent(src = "") {
-	console.log("SRC", src);
 	const newSrc = src.replace("../", "./");
 	if (!newSrc) return null;
 
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
-	console.log(filePath);
 
-	const formattedSource = prettier.format(
-		readFileSync(filePath, "utf-8"),
-		codeBlockPrettierConfig
-	);
+	const formattedSource = prettier
+		.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig)
+		.replace(/^\n+|\n+$/g, "");
 
-	return formattedSource;
+	return formattedSource.trim();
 }

@@ -6,6 +6,8 @@ import { useCookie } from "./hooks/use-cookie.svelte.js";
 
 export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
 
+export type PackageManager = (typeof PACKAGE_MANAGERS)[number];
+
 export const PackageManagerContext = new Context<PersistedState<Agent>>("PackageManagerContext");
 
 export type PackageManagerCommand = Command | "create";

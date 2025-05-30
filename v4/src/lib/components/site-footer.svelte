@@ -1,5 +1,5 @@
 <script>
-	import { siteConfig } from "$lib/config";
+	import { siteConfig } from "$lib/config.js";
 </script>
 
 <footer class="group-has-[.section-soft]/body:bg-surface/40 dark:bg-transparent">

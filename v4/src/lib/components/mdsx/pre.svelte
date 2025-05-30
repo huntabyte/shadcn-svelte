@@ -16,13 +16,14 @@
 	});
 </script>
 
+<!--
+We cannot have a newline between the pre and children or we will get a newline in the code block
+-->
 <pre
 	bind:this={preNode}
 	class={cn(
-		"mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-xl bg-zinc-950 py-4 dark:bg-zinc-900",
+		"no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0",
 		className
 	)}
-	{...restProps}>
-	{@render children?.()}
-</pre>
-<CopyButton text={code} class={cn("pre-copy-btn absolute right-4 top-4")} />
+	{...restProps}>{@render children?.()}</pre>
+<CopyButton text={code} class={cn("pre-copy-btn absolute size-4")} />

@@ -1,7 +1,18 @@
 <script lang="ts">
 	import type { Command } from "package-manager-detector";
-	import CopyButton from "./copy-button.svelte";
-	import { getCommand, PACKAGE_MANAGERS, PackageManagerContext } from "$lib/package-manager.js";
+	import * as Tabs from "$lib/registry/ui/tabs/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import {
+		getCommand,
+		PACKAGE_MANAGERS,
+		PackageManagerContext,
+		type PackageManager,
+	} from "$lib/package-manager.js";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
+	import CheckIcon from "@lucide/svelte/icons/check";
+	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 
 	const {
 		type,
@@ -13,44 +24,68 @@
 
 	const pm = PackageManagerContext.get();
 
-	const cmd = $derived(getCommand(pm.current, type, command));
+	function getCommandText(agent: PackageManager) {
+		const cmd = getCommand(agent, type, command);
+		return `${cmd.command} ${cmd.args.join(" ")}`.trim();
+	}
 
-	const commandText = $derived(`${cmd.command} ${cmd.args.join(" ")}`);
+	const commandText = $derived(getCommandText(pm.current));
+
+	const clipboard = new UseClipboard();
 </script>
 
 <figure data-rehype-pretty-code-figure>
-	<div class="mt-6 w-full rounded-lg border bg-zinc-950 dark:bg-zinc-900">
-		<div
-			class="relative flex place-items-end justify-between rounded-lg border-b border-zinc-800 bg-zinc-900 px-3 pt-3"
-		>
-			<div class="flex place-items-center gap-3 pl-1">
-				{#each PACKAGE_MANAGERS as packageManager (packageManager)}
-					<button
-						type="button"
-						class={{
-							"-mb-0.25 border-b pb-2 font-mono text-sm": true,
-							"border-b-zinc-50 text-zinc-50": pm.current === packageManager,
-							"border-transparent text-zinc-400": pm.current !== packageManager,
-						}}
-						onclick={() => (pm.current = packageManager)}
-					>
-						{packageManager}
-					</button>
+	<div class="overflow-x-auto">
+		<Tabs.Root bind:value={pm.current} class="gap-0">
+			<div class="border-border/50 flex items-center gap-2 border-b px-3 py-1">
+				<div
+					class="bg-foreground flex size-4 items-center justify-center rounded-[1px] opacity-70"
+				>
+					<TerminalIcon class="text-code size-3" />
+				</div>
+				<Tabs.List class="rounded-none bg-transparent p-0">
+					{#each PACKAGE_MANAGERS as pm (pm)}
+						<Tabs.Trigger
+							value={pm}
+							class="data-[state=active]:bg-accent data-[state=active]:border-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
+						>
+							{pm}
+						</Tabs.Trigger>
+					{/each}
+				</Tabs.List>
+			</div>
+			<div class="no-scrollbar overflow-x-auto">
+				{#each PACKAGE_MANAGERS as pm (pm)}
+					<Tabs.Content value={pm} class="mt-0 px-4 py-3.5">
+						<pre><code class="font-mono text-sm leading-none" data-language="bash"
+								>{getCommandText(pm)}</code
+							></pre>
+					</Tabs.Content>
 				{/each}
 			</div>
-			<CopyButton text={commandText} class="absolute right-2 top-2" />
-		</div>
-		<div class="no-scrollbar overflow-x-auto px-4 py-5">
-			<span class="text-nowrap font-mono text-sm text-white">
-				{commandText}
-			</span>
-		</div>
+		</Tabs.Root>
+		<Tooltip.Root disableCloseOnTriggerClick>
+			<Tooltip.Trigger onclick={() => clipboard.copy(commandText)}>
+				{#snippet child({ props })}
+					<Button
+						{...props}
+						data-slot="copy-button"
+						size="icon"
+						variant="ghost"
+						class="absolute right-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+					>
+						<span class="sr-only">Copy</span>
+						{#if clipboard.copied}
+							<CheckIcon />
+						{:else}
+							<ClipboardIcon />
+						{/if}
+					</Button>
+				{/snippet}
+			</Tooltip.Trigger>
+			<Tooltip.Content>
+				{clipboard.copied ? "Copied" : "Copy to Clipboard"}
+			</Tooltip.Content>
+		</Tooltip.Root>
 	</div>
 </figure>
-
-<style lang="postcss">
-	:global(.no-scrollbar) {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-	}
-</style>

@@ -1,13 +1,14 @@
-@import "./app.css";
+/* @import "./app.css";
 
-.mdsx code {
+.mdsx code:not(pre code) {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
 	font-size: 0.875rem;
 	padding: 0.2rem 0.3rem;
 	border-radius: 0.25rem;
-}
+} */
 
+/*
 [data-theme*="github-dark"] {
 	display: flex !important;
 	flex-direction: column;
@@ -118,4 +119,4 @@ code[data-theme*="github-dark"],
 code[data-theme*="github-dark"] span {
 	color: var(--shiki-light);
 	/* background-color: var(--shiki-light-bg); */
-}
+/* } */

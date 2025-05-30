@@ -30,7 +30,6 @@ export default defineConfig({
 			strict: false,
 		},
 	},
-	resolve: { noExternal: true },
 });
 
 async function buildRegistry() {

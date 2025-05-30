@@ -242,6 +242,7 @@
 		}
 	}
 
+
 	[data-rehype-pretty-code-figure] {
 		background-color: var(--color-code);
 		color: var(--color-code-foreground);
@@ -322,6 +323,7 @@
 		background-color: var(--color-code-highlight);
 	}
 
+
 	[data-highlighted-line] {
 		&:after {
 			position: absolute;
@@ -343,4 +345,44 @@
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
 	}
+
+
+	.super-debug {
+		background-color: var(--color-zinc-950) !important;
+		color: #fff8 !important;
+	}
+
+	.super-debug--pre {
+		background-color: transparent !important;
+		color: #fff8 !important;
+	}
+
+	.super-debug--code {
+		background-color: transparent !important;
+	}
+
+	.super-debug--code .key {
+		color: #fff8 !important;
+	}
+
+	.super-debug--code .undefined {
+		color: #fff8 !important;
+	}
+
+	.super-debug--code .string {
+		color: #fff8 !important;
+	}
+
+	.super-debug--code .number {
+		color: #fff8 !important;
+	}
+
+	.super-debug--code .boolean {
+		color: #fff8 !important;
+	}
+
+	.super-debug--code .boolean {
+		color: #fff8 !important;
+	}
+
 }
