@@ -1,6 +1,7 @@
 <script lang="ts" module>
-	function useActiveItem(itemIds: () => string[]) {
+	function useActiveItem(getItemIds: () => string[]) {
 		let activeId = $state<string | null>(null);
+		const itemIds = $derived(getItemIds().map((id) => id.replace("#", "")));
 
 		$effect(() => {
 			const observer = new IntersectionObserver((entries) => {
@@ -11,7 +12,7 @@
 				}
 			});
 
-			for (const id of itemIds() ?? []) {
+			for (const id of itemIds ?? []) {
 				const element = document.getElementById(id);
 				if (element) {
 					observer.observe(element);
@@ -19,7 +20,7 @@
 			}
 
 			return () => {
-				for (const id of itemIds() ?? []) {
+				for (const id of itemIds ?? []) {
 					const element = document.getElementById(id);
 					if (element) {
 						observer.unobserve(element);
@@ -83,6 +84,10 @@
 	const itemIds = $derived(flattenedToc.map((item) => item.url));
 	const activeHeading = useActiveItem(() => itemIds);
 	let open = $state(false);
+
+	$effect(() => {
+		console.log(flattenedToc);
+	});
 </script>
 
 {#if flattenedToc.length}
@@ -105,7 +110,7 @@
 					<DropdownMenu.Item
 						onSelect={() => (open = false)}
 						data-depth={item.depth}
-						class="data-[depth=3]:pl-6 data-[depth=4]:pl-8"
+						class="data-[depth=1]:pl-6 data-[depth=2]:pl-8"
 					>
 						{#snippet child({ props })}
 							<a href={item.url} {...props}>{item.title}</a>
@@ -120,7 +125,7 @@
 			{#each flattenedToc as item (item.url)}
 				<a
 					href={item.url}
-					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=1]:pl-4 data-[depth=2]:pl-6"
 					data-active={item.url === `#${activeHeading.current}`}
 					data-depth={item.depth}
 				>

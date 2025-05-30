@@ -5,6 +5,7 @@
 	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+	import DocsToc from "$lib/components/docs-toc.svelte";
 
 	let { data } = $props();
 
@@ -108,16 +109,11 @@
 		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
 	>
 		<div class="h-(--top-spacing) shrink-0"></div>
-		<!-- {/* @ts-expect-error - revisit fumadocs types. */}
-        {doc.toc?.length ? (
-          <div class="no-scrollbar overflow-y-auto px-8">
-            {/* @ts-expect-error - revisit fumadocs types. */}
-            <DocsTableOfContents toc={doc.toc} />
-            <div class="h-12" />
-          </div>
-        ) : null} -->
-		<div class="flex flex-1 flex-col gap-12 px-6">
-			<!-- <OpenInV0Cta /> -->
-		</div>
+		{#if doc.toc.length}
+			<div class="no-scrollbar overflow-y-auto px-8">
+				<DocsToc toc={{ items: doc.toc }} />
+				<div class="h-12"></div>
+			</div>
+		{/if}
 	</div>
 </div>
