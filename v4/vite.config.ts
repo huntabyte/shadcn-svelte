@@ -24,6 +24,13 @@ export default defineConfig({
 			},
 		},
 	],
+	assetsInclude: ["**/*.md"],
+	server: {
+		fs: {
+			strict: false,
+		},
+	},
+	resolve: { noExternal: true },
 });
 
 async function buildRegistry() {
