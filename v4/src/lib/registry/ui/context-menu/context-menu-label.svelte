@@ -5,16 +5,20 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		inset,
 		children,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+		inset?: boolean;
+	} = $props();
 </script>
 
-<tbody
+<div
 	bind:this={ref}
-	data-slot="table-body"
-	class={cn("[&_tr:last-child]:border-0", className)}
+	data-slot="context-menu-label"
+	data-inset={inset}
+	class={cn("text-foreground px-2 py-1.5 text-sm font-medium data-[inset]:pl-8", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</tbody>
+</div>

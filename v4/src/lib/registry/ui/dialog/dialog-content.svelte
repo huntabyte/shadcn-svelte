@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Dialog as DialogPrimitive, type WithoutChildrenOrChild } from "bits-ui";
+	import { Dialog as DialogPrimitive } from "bits-ui";
 	import XIcon from "@lucide/svelte/icons/x";
 	import type { Snippet } from "svelte";
 	import * as Dialog from "./index.js";
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -30,7 +30,7 @@
 	>
 		{@render children?.()}
 		<DialogPrimitive.Close
-			class="ring-offset-background focus:ring-ring rounded-xs focus:outline-hidden bg-background absolute right-4 top-4 opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+			class="ring-offset-background focus:ring-ring rounded-xs focus:outline-hidden absolute right-4 top-4 opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
 		>
 			<XIcon />
 			<span class="sr-only">Close</span>
