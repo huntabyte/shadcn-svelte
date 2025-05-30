@@ -39,6 +39,6 @@
 	darkClassNames={["dark", ...themeClassNames]}
 	lightClassNames={["light", ...themeClassNames]}
 />
-<Sonner theme={mode.current} />
+<Sonner theme={mode.current} position="top-center" />
 
 {@render children()}

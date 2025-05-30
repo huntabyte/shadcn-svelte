@@ -1126,6 +1126,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/select/select-group-heading.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/select/select-group.svelte"
 				},
 				{
