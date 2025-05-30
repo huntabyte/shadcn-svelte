@@ -97,6 +97,8 @@ function componentPreviews() {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
 				}
 
+				console.log("import statement", importStatement);
+
 				ms.appendLeft(importIndex, importStatement);
 			}
 

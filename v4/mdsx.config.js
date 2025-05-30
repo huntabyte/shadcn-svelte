@@ -255,11 +255,13 @@ function rehypeHandleMetadata() {
 }
 
 function getComponentSourceFileContent(src = "") {
+	console.log("SRC", src);
 	const newSrc = src.replace("../", "./");
 	if (!newSrc) return null;
 
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
+	console.log(filePath);
 
 	const formattedSource = prettier.format(
 		readFileSync(filePath, "utf-8"),

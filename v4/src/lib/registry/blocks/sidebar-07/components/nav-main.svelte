@@ -2,7 +2,6 @@
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import type { Component } from "svelte";
 
 	let {
 		items,
@@ -10,7 +9,9 @@
 		items: {
 			title: string;
 			url: string;
-			icon?: Component;
+			// this should be `Component` after @lucide/svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			icon?: any;
 			isActive?: boolean;
 			items?: {
 				title: string;
@@ -23,20 +24,17 @@
 <Sidebar.Group>
 	<Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
 	<Sidebar.Menu>
-		{#each items as mainItem (mainItem.title)}
-			<Collapsible.Root open={mainItem.isActive} class="group/collapsible">
+		{#each items as item (item.title)}
+			<Collapsible.Root open={item.isActive} class="group/collapsible">
 				{#snippet child({ props })}
 					<Sidebar.MenuItem {...props}>
 						<Collapsible.Trigger>
 							{#snippet child({ props })}
-								<Sidebar.MenuButton {...props}>
-									{#snippet tooltipContent()}
-										{mainItem.title}
-									{/snippet}
-									{#if mainItem.icon}
-										<mainItem.icon />
+								<Sidebar.MenuButton {...props} tooltipContent={item.title}>
+									{#if item.icon}
+										<item.icon />
 									{/if}
-									<span>{mainItem.title}</span>
+									<span>{item.title}</span>
 									<ChevronRightIcon
 										class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
 									/>
@@ -44,21 +42,19 @@
 							{/snippet}
 						</Collapsible.Trigger>
 						<Collapsible.Content>
-							{#if mainItem.items}
-								<Sidebar.MenuSub>
-									{#each mainItem.items as subItem (subItem.title)}
-										<Sidebar.MenuSubItem>
-											<Sidebar.MenuSubButton>
-												{#snippet child({ props })}
-													<a href={subItem.url} {...props}>
-														<span>{subItem.title}</span>
-													</a>
-												{/snippet}
-											</Sidebar.MenuSubButton>
-										</Sidebar.MenuSubItem>
-									{/each}
-								</Sidebar.MenuSub>
-							{/if}
+							<Sidebar.MenuSub>
+								{#each item.items ?? [] as subItem (subItem.title)}
+									<Sidebar.MenuSubItem>
+										<Sidebar.MenuSubButton>
+											{#snippet child({ props })}
+												<a href={subItem.url} {...props}>
+													<span>{subItem.title}</span>
+												</a>
+											{/snippet}
+										</Sidebar.MenuSubButton>
+									</Sidebar.MenuSubItem>
+								{/each}
+							</Sidebar.MenuSub>
 						</Collapsible.Content>
 					</Sidebar.MenuItem>
 				{/snippet}

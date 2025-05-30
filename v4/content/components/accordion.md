@@ -9,10 +9,14 @@ links:
 ---
 
 <script>
-    import { ComponentPreview, PMAddComp, PMInstall, InstallTabs, Steps } from '$lib/components/docs';
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
-<ComponentPreview name="accordion-demo" class="[&_[data-melt-accordion]]:sm:max-w-[70%]">
+<ComponentPreview name="accordion-demo" class="[&_.preview>[data-orientation=vertical]]:sm:max-w-[80%] **:[.preview]:min-h-[400px]" description="An accordion with three items" align="start">
 
 <div></div>
 
