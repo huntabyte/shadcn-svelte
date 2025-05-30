@@ -501,6 +501,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/context-menu/context-menu-label.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/context-menu/context-menu-radio-group.svelte"
 				},
 				{
@@ -662,6 +666,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-group-heading.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -847,11 +855,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-group-heading.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-group.svelte"
 				},
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/menubar/menubar-item.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/menubar/menubar-label.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1529,15 +1545,7 @@
 				},
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/tooltip/tooltip-provider.svelte"
-				},
-				{
-					"type": "registry:file",
 					"path": "src/lib/registry/ui/tooltip/tooltip-trigger.svelte"
-				},
-				{
-					"type": "registry:file",
-					"path": "src/lib/registry/ui/tooltip/tooltip.svelte"
 				}
 			]
 		},
