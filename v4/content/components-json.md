@@ -4,7 +4,9 @@ description: Configuration for your project.
 ---
 
 <script>
-    import { Callout, ComponentPreview, PMExecute } from '$lib/components/docs'
+	import Callout from "$lib/components/callout.svelte";
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMExecute from "$lib/components/pm-execute.svelte";
 </script>
 
 The `components.json` file holds configuration for your project.

@@ -4,7 +4,11 @@ description: How to setup shadcn-svelte manually.
 ---
 
 <script>
-	import { Steps, Step, PMAddComp, PMInstall, PMExecute } from '$lib/components/docs'
+	import Steps from "$lib/components/steps.svelte";
+	import Step from "$lib/components/step.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import PMExecute from "$lib/components/pm-execute.svelte";
 </script>
 
 ## Setup your project

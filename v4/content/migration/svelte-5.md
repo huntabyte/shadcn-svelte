@@ -4,7 +4,11 @@ description: How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.
 ---
 
 <script>
-    import { Steps, PMExecute, PMInstall, PMRemove, Callout } from "$lib/components/docs";
+	import Steps from "$lib/components/steps.svelte";
+	import PMExecute from "$lib/components/pm-execute.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import PMRemove from "$lib/components/pm-remove.svelte";
+	import Callout from "$lib/components/callout.svelte";
 </script>
 
 <Callout>

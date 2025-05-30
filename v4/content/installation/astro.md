@@ -4,8 +4,13 @@ description: How to setup shadcn-svelte in an Astro project.
 ---
 
 <script>
-  import { Alert, AlertDescription } from "$lib/registry/ui/alert";
-  import { Steps, Callout, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
+	import * as Alert from "$lib/registry/ui/alert/index.js";
+	import Steps from "$lib/components/steps.svelte";
+	import Callout from "$lib/components/callout.svelte";
+	import PMCreate from "$lib/components/pm-create.svelte";
+	import PMExecute from "$lib/components/pm-execute.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 </script>
 
 ## Setup your project

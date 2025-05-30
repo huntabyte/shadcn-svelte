@@ -4,7 +4,7 @@ description: Every component recreated in Figma. With customizable props, typogr
 ---
 
 <script>
-  import { AspectRatio } from '$lib/registry/ui/aspect-ratio';
+  import { AspectRatio } from '$lib/registry/ui/aspect-ratio/index.js';
 </script>
 
 The Figma UI Kit is open sourced by [Pietro Schirano](https://twitter.com/skirano).

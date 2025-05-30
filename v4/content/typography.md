@@ -5,7 +5,7 @@ component: true
 ---
 
 <script>
-  import { ComponentPreview } from "$lib/components/docs"
+	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
 <ComponentPreview name="typography-demo">

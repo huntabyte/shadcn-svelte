@@ -9,8 +9,12 @@ links:
 <script>
 	import ComponentPreviewManual from '$lib/components/docs/component-preview-manual.svelte';
 	import DocsFigure from '$lib/components/docs/docs-figure.svelte';
-	import { PMAddComp, PMInstall, ManualInstall, Steps, Step, Callout, InstallTabs } from '$lib/components/docs';
-	import * as Tabs from '$lib/components/docs/tabs';
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import Step from "$lib/components/step.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import * as Tabs from "$lib/components/docs/tabs";
 </script>
 
 <DocsFigure caption="A sidebar that collapses to icons.">

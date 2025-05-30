@@ -4,7 +4,7 @@ description: Schema for running your own component registry.
 ---
 
 <script>
-	import { Callout } from "$lib/components/docs/index.js";
+	import Callout from "$lib/components/callout.svelte";
 </script>
 
 The `registry.json` schema is used to define your custom component registry.

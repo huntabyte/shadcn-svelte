@@ -4,8 +4,8 @@ description: Adding dark mode to your site.
 ---
 
 <script>
-	import { LinkedCard } from '$lib/components/docs'
-	import SvelteWhite from '$lib/components/docs/icons/svelte-white.svelte'
+	import LinkedCard from "$lib/components/linked-card.svelte";
+	import SvelteWhite from "$lib/components/svelte-white.svelte";
 </script>
 
 <div class="grid sm:grid-cols-2 gap-4 mt-8 sm:gap-6">

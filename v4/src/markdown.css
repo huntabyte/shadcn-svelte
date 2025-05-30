@@ -1,6 +1,6 @@
 @import "./app.css";
 
-.markdown code {
+.mdsx code {
 	background-color: var(--muted);
 	font-family: var(--font-mono);
 	font-size: 0.875rem;

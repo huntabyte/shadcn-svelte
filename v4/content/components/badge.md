@@ -6,8 +6,11 @@ links:
 ---
 
 <script>
-  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
-  import { BadgeDemo, BadgeDestructive, BadgeOutline, BadgeSecondary } from '$lib/registry/examples'
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
 <ComponentPreview name="badge-demo">

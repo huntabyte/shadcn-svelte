@@ -7,7 +7,11 @@ links:
 ---
 
 <script>
- 	import { Steps, ComponentPreview, FormPreview, PMAddComp, PMInstall } from '$lib/components/docs';
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import FormPreview from "$lib/components/form-preview.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
 
 	export let form;
 </script>

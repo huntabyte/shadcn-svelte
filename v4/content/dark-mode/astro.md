@@ -4,7 +4,11 @@ description: Adding dark mode to your Astro site.
 ---
 
 <script>
-  import { Steps, ComponentPreview, PMInstall } from "$lib/components/docs";
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
 Just like in regular Svelte, we use the `class` strategy from Tailwind CSS to support dark mode toggling. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) for more information.

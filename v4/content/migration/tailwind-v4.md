@@ -4,8 +4,15 @@ description: How to use shadcn-svelte with Tailwind v4 and Svelte 5.
 ---
 
 <script>
-	import { Button } from "$lib/registry/ui/button/index.js";
-	import { InstallCards, Callout, PMExecute, Step, Steps, PMRemove, PMInstall, PMRun } from "$lib/components/docs";
+	import { Button }from "$lib/registry/ui/button/index.js";
+	import InstallCards from "$lib/components/install-cards.svelte";
+	import Callout from "$lib/components/callout.svelte";
+	import PMExecute from "$lib/components/pm-execute.svelte";
+	import Step from "$lib/components/step.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import PMRemove from "$lib/components/pm-remove.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import PMRun from "$lib/components/pm-run.svelte";
 </script>
 
 It's here! Tailwind v4 and Svelte 5. Ready for you to try out. You can start using it today.

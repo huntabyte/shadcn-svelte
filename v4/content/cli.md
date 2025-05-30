@@ -4,7 +4,7 @@ description: Use the CLI to add components to your project.
 ---
 
 <script>
-	import { PMExecute } from '$lib/components/docs'
+	import PMExecute from "$lib/components/pm-execute.svelte";
 </script>
 
 ## init

@@ -10,7 +10,12 @@ links:
 <script>
 	import * as Alert from "$lib/registry/ui/alert/index.js";
 	import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
-	import { ComponentPreview, InstallTabs, Steps, PMAddComp, PMInstall, Callout } from "$lib/components/docs";
+	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import Callout from "$lib/components/callout.svelte";
+	import PMAddComp from "$lib/components/pm-add-comp.svelte";
+	import PMInstall from "$lib/components/pm-install.svelte";
+	import Steps from "$lib/components/steps.svelte";
+	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
 <ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0" hideCode>
