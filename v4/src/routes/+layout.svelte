@@ -3,6 +3,8 @@
 	import { mode, ModeWatcher, setTheme } from "mode-watcher";
 	import { untrack } from "svelte";
 	import Sonner from "$lib/registry/ui/sonner/sonner.svelte";
+	import { setPackageManagerContext } from "$lib/package-manager.js";
+	import { setInstallationTypeContext } from "$lib/installation-type.js";
 
 	let { children, data } = $props();
 
@@ -29,6 +31,9 @@
 			document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${window.location.protocol === "https:" ? "Secure;" : ""}`;
 		});
 	});
+
+	setPackageManagerContext(() => data.packageManager);
+	setInstallationTypeContext(() => data.installationType);
 </script>
 
 <ModeWatcher

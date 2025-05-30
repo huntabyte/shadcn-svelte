@@ -4,7 +4,7 @@
 
 	let {
 		name,
-		type,
+		type = "example",
 		class: className,
 		align = "center",
 		hideCode = false,

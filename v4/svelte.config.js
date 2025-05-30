@@ -87,7 +87,7 @@ function componentPreviews() {
 				components.add(name);
 			}
 
-			const importIndex = content.search("import {");
+			const importIndex = content.search("import ComponentPreview");
 			for (const name of components) {
 				const identifier = camelize(name);
 				let importStatement = "";
