@@ -84,10 +84,6 @@
 	const itemIds = $derived(flattenedToc.map((item) => item.url));
 	const activeHeading = useActiveItem(() => itemIds);
 	let open = $state(false);
-
-	$effect(() => {
-		console.log(flattenedToc);
-	});
 </script>
 
 {#if flattenedToc.length}

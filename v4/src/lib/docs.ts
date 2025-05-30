@@ -35,7 +35,6 @@ export async function getDoc(slug: string) {
 	let match: { path?: string; resolver?: DocResolver } = {};
 
 	for (const [path, resolver] of Object.entries(modules)) {
-		console.log("path", transformPath(path), "slug", slug);
 		if (transformPath(path) === slug) {
 			match = { path, resolver: resolver as unknown as DocResolver };
 			break;
@@ -44,8 +43,6 @@ export async function getDoc(slug: string) {
 
 	const doc = await match?.resolver?.();
 	const metadata = getDocMetadata(slug);
-
-	console.log(doc, metadata);
 
 	if (!doc || !metadata) {
 		error(404, "Could not find the documentation page.");
