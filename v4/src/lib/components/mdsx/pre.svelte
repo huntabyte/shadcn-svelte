@@ -26,4 +26,4 @@ We cannot have a newline between the pre and children or we will get a newline i
 		className
 	)}
 	{...restProps}>{@render children?.()}</pre>
-<CopyButton text={code} class={cn("pre-copy-btn absolute size-4")} />
+<CopyButton text={code} />

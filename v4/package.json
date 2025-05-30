@@ -64,7 +64,7 @@
 		"svelte-check": "^4.2.1",
 		"sveltekit-superforms": "^2.25.0",
 		"tailwind-merge": "^3.0.2",
-		"tailwind-variants": "^0.2.1",
+		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^4.1.8",
 		"tsx": "^4.19.4",
 		"tw-animate-css": "^1.2.4",

@@ -21,6 +21,7 @@
 		th,
 		tr,
 		ul,
+		figcaption,
 	} from "./index.js";
 </script>
 

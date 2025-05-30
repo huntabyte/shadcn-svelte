@@ -17,27 +17,27 @@
 	} = $props();
 
 	const clipboard = new UseClipboard();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const rp = $derived(restProps as any);
 </script>
 
 <Tooltip.Root disableCloseOnTriggerClick>
 	<!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -->
-	<Tooltip.Trigger onclick={() => clipboard.copy(text)} {...restProps as any}>
+	<Tooltip.Trigger
+		{...rp}
+		class={cn(
+			"bg-code absolute right-2 top-3 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
+			className
+		)}
+		onclick={() => clipboard.copy(text)}
+	>
 		{#snippet child({ props })}
-			<Button
-				data-slot="copy-button"
-				size="icon"
-				{variant}
-				class={cn(
-					"bg-code absolute !right-2 !top-3 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
-					className
-				)}
-				{...props}
-			>
+			<Button {...props} data-slot="copy-button" size="icon" {variant}>
 				<span class="sr-only">Copy</span>
 				{#if clipboard.copied}
-					<CheckIcon class="size-4" />
+					<CheckIcon />
 				{:else}
-					<ClipboardIcon class="size-4" />
+					<ClipboardIcon />
 				{/if}
 			</Button>
 		{/snippet}
