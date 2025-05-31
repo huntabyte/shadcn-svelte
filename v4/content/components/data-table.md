@@ -13,7 +13,7 @@ links:
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
-	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Step from "$lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="data-table-demo">

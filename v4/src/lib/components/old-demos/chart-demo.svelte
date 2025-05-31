@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ChartAreaDefault from "$lib/registry/charts/chart-area-default.svelte";
-	import ChartBarMultiple from "$lib/registry/charts/chart-bar-multiple.svelte";
-	import ChartLineDefault from "$lib/registry/charts/chart-line-default.svelte";
-	import ChartBarMixed from "$lib/registry/charts/chart-bar-mixed.svelte";
+	import ChartAreaDefault from "$lib/registry/charts-old/chart-area-default.svelte";
+	import ChartBarMultiple from "$lib/registry/charts-old/chart-bar-multiple.svelte";
+	import ChartLineDefault from "$lib/registry/charts-old/chart-line-default.svelte";
+	import ChartBarMixed from "$lib/registry/charts-old/chart-bar-mixed.svelte";
 </script>
 
 <div

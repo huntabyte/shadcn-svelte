@@ -14,6 +14,7 @@ links:
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Step from "$lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="range-calendar-demo">
@@ -35,11 +36,19 @@ The `<RangeCalendar />` component is built on top of the [Bits Range Calendar](h
 {#snippet manual()}
 <Steps>
 
-### Install `bits-ui` and `@internationalized/date`:
+<Step>
+
+Install `bits-ui` and `@internationalized/date`:
+
+</Step>
 
 <PMInstall command="bits-ui @internationalized/date -D" />
 
-### Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </Steps>
 {/snippet}

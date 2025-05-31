@@ -5,9 +5,11 @@
 	let { children, class: className, ...props }: HTMLAttributes<HTMLElement> = $props();
 </script>
 
-<h3
+<div
+	role="heading"
+	aria-level="3"
 	class={cn("font-heading mt-8 scroll-m-32 text-xl font-medium tracking-tight", className)}
 	{...props}
 >
 	{@render children?.()}
-</h3>
+</div>

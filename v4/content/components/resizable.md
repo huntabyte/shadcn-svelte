@@ -13,6 +13,7 @@ links:
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Step from "$lib/components/step.svelte";
 </script>
 
 <ComponentPreview name="resizable-demo">
@@ -34,11 +35,19 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 {#snippet manual()}
 <Steps>
 
-### Install `paneforge`:
+<Step>
+
+Install `paneforge`:
+
+</Step>
 
 <PMInstall command="paneforge@next -D" />
 
-### Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </Steps>
 {/snippet}

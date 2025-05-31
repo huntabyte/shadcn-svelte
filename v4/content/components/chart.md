@@ -11,14 +11,16 @@ links:
 	import * as Alert from "$lib/registry/ui/alert/index.js";
 	import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import Callout from "$lib/components/callout.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
+	import Step from "$lib/components/step.svelte";
 </script>
 
-<ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0" hideCode>
+<ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" hideCode>
 
 <div></div>
 
@@ -76,11 +78,19 @@ We do not wrap LayerChart. This means you're not locked into an abstraction. Whe
 {#snippet manual()}
 <Steps>
 
-### Install `layerchart`:
+<Step>
+
+Install `layerchart`:
+
+</Step>
 
 <PMInstall command="layerchart@next -D" />
 
-### Add the following colors to your CSS file
+<Step>
+
+Add the following colors to your CSS file
+
+</Step>
 
 ```css
 :root {
@@ -108,7 +118,11 @@ We do not wrap LayerChart. This means you're not locked into an abstraction. Whe
 }
 ```
 
-### Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </Steps>
 {/snippet}
@@ -130,7 +144,7 @@ The following data represents the number of desktop and mobile users for each mo
 
 </Callout>
 
-```svelte
+```svelte title="lib/components/example-chart.svelte" showLineNumbers
 <script lang="ts">
   const chartData = [
     { month: "January", desktop: 186, mobile: 80 },
@@ -147,7 +161,7 @@ The following data represents the number of desktop and mobile users for each mo
 
 The chart config holds configuration for the chart. This is where you place human-readable strings, such as labels, icons, and color tokens for theming.
 
-```svelte
+```svelte title="lib/components/example-chart.svelte" showLineNumbers
 <script lang="ts">
   import * as Chart from "$lib/components/ui/chart/index.js";
 
@@ -169,6 +183,12 @@ The chart config holds configuration for the chart. This is where you place huma
 You can now build your chart using LayerChart components. We're using the `BarChart` component in this example, which is one of LayerChart's "Simplified Charts".
 
 These components handle a lot of the common chart scaffolding for you, while allowing you to customize them to your liking.
+
+<ComponentSource name="chart-bar-demo" title="lib/components/example-chart.svelte">
+
+<div></div>
+
+</ComponentSource>
 
 <ComponentPreview name="chart-bar-demo" class="[&_.preview]:p-4">
 
@@ -375,7 +395,7 @@ Charts has built-in support for theming. You can use css variables (recommended)
 
 ### Define your colors in your css file
 
-```css {5-6,13-14} title="app.css"
+```css {5-6,13-14} title="src/app.css" showLineNumbers
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -395,7 +415,7 @@ Charts has built-in support for theming. You can use css variables (recommended)
 
 ### Add the color to your `chartConfig`
 
-```svelte {5,9}
+```svelte {5,9} showLineNumbers
 <script lang="ts">
   const chartConfig = {
     desktop: {
@@ -416,7 +436,7 @@ Charts has built-in support for theming. You can use css variables (recommended)
 
 You can also define your colors directly in the chart config. Use the color format you prefer.
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   const chartConfig = {
     desktop: {
@@ -439,7 +459,7 @@ To use the theme colors in your chart, reference the colors using the format `va
 
 #### Chart Data
 
-```ts
+```ts showLineNumbers
 const chartData = [
   { browser: "chrome", visitors: 275, color: "var(--color-chrome)" },
   { browser: "safari", visitors: 200, color: "var(--color-safari)" },
@@ -491,7 +511,7 @@ Colors are automatically referenced from the chart config.
 
 To use a custom key for tooltip label and names, use the `labelKey` and `nameKey` props.
 
-```svelte /browser/
+```svelte showLineNumbers /browser/
 <script lang="ts">
   const chartData = [
     { browser: "chrome", visitors: 187, color: "var(--color-chrome)" },

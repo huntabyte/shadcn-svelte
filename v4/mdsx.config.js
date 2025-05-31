@@ -155,10 +155,17 @@ function rehypePreData() {
 export function rehypeComponentExample() {
 	return (tree) => {
 		const nameRegex = /name="([^"]+)"/;
+		const titleRegex = /title="([^"]+)"/;
 		visit(tree, (node, index, parent) => {
-			if (node?.type === "raw" && node?.value?.startsWith("<ComponentPreview")) {
+			if (
+				node?.type === "raw" &&
+				(node?.value?.startsWith("<ComponentPreview") ||
+					node?.value?.startsWith("<ComponentSource"))
+			) {
 				const match = node.value.match(nameRegex);
 				const name = match ? match[1] : null;
+				const titleMatch = node.value.match(titleRegex);
+				const title = titleMatch ? titleMatch[1] : null;
 
 				if (!name) return null;
 
@@ -176,6 +183,12 @@ export function rehypeComponentExample() {
 					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
 					sourceCode = sourceCode.replaceAll("$lib/registry/", "$lib/components/");
 
+					const meta = title
+						? {
+								meta: `title="${title}" showLineNumbers`,
+							}
+						: {};
+
 					const sourceCodeNode = u("element", {
 						tagName: "pre",
 						properties: {
@@ -189,6 +202,7 @@ export function rehypeComponentExample() {
 									className: [`language-svelte`],
 								},
 								attributes: {},
+								data: meta,
 								children: [
 									{
 										type: "text",

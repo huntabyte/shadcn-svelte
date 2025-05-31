@@ -98,6 +98,7 @@ function generateComponentsNav() {
 	const componentsNavItems: SidebarNavItem[] = [];
 
 	for (const doc of components) {
+		if (doc.title === "Components") continue;
 		componentsNavItems.push({
 			title: doc.title,
 			href: `/docs/components/${doc.slug}`,

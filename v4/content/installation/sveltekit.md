@@ -12,8 +12,6 @@ description: How to setup shadcn-svelte in a SvelteKit project.
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 </script>
 
-## Setup your project
-
 <Steps>
 
 ### Create project
@@ -32,7 +30,7 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
-```js title="svelte.config.js" {6}
+```js title="svelte.config.js" {6} showLineNumbers
 const config = {
   // ... other config
   kit: {

@@ -11,8 +11,6 @@ description: How to setup shadcn-svelte manually.
 	import PMExecute from "$lib/components/pm-execute.svelte";
 </script>
 
-## Setup your project
-
 <Steps>
 
 ### Add Tailwind
@@ -37,7 +35,7 @@ Install `@lucide/svelte`:
 
 If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
-```js title="svelte.config.js" {6}
+```js title="svelte.config.js" {6} showLineNumbers
 const config = {
   // ... other config
   kit: {
@@ -51,7 +49,7 @@ const config = {
 
 If you are _not_ using SvelteKit, then you'll need to update your path aliases in your `tsconfig.json` and `vite.config.ts`.
 
-```json title="tsconfig.json" {4-7}
+```json title="tsconfig.json" {4-7} showLineNumbers
 {
   "compilerOptions": {
     // ... other options
@@ -63,7 +61,7 @@ If you are _not_ using SvelteKit, then you'll need to update your path aliases i
 }
 ```
 
-```js title="vite.config.ts" {1, 5-9}
+```js title="vite.config.ts" {1, 5-9} showLineNumbers
 import path from "path";
 
 export default defineConfig({
@@ -80,7 +78,7 @@ export default defineConfig({
 
 Add the following to your global CSS file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
 
-```css title="src/app.css"
+```css title="src/app.css" showLineNumbers
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
@@ -209,7 +207,7 @@ Feel free to add or modify as needed to suit your project.
 
 You'll want to create a `cn` helper to make it easier to conditionally add and merge Tailwind CSS classes.
 
-```ts title="src/lib/utils.ts"
+```ts title="src/lib/utils.ts" showLineNumbers
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -222,7 +220,7 @@ export function cn(...inputs: ClassValue[]) {
 
 Create `src/routes/+layout.svelte` and import the styles:
 
-```svelte title="src/routes/+layout.svelte"
+```svelte title="src/routes/+layout.svelte" showLineNumbers
 <script lang="ts">
   import "../app.css";
   let { children } = $props();

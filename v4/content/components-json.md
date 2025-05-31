@@ -35,24 +35,6 @@ You can see the JSON Schema for `components.json` [here](https://next.shadcn-sve
 }
 ```
 
-## style
-
-_Deprecated in Tailwind v4 as all projects use `new-york`_
-
-The style for your components. **This cannot be changed after initialization.**
-
-```json title="components.json"
-{
-  "style": "default" | "new-york"
-}
-```
-
-<ComponentPreview name="card-with-form">
-
-<div></div>
-
-</ComponentPreview>
-
 ## tailwind
 
 Configuration to help the CLI understand how Tailwind CSS is set up in your project.

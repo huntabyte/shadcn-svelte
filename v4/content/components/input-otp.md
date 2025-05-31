@@ -13,6 +13,7 @@ links:
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
+	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
@@ -35,11 +36,19 @@ Input OTP is built on top of Bits UI's [PinInput](https://bits-ui.com/docs/compo
 {#snippet manual()}
 <Steps>
 
-### Install `bits-ui`:
+<Step>
+
+Install `bits-ui`:
+
+</Step>
 
 <PMInstall command="bits-ui -D" />
 
-### Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </Steps>
 {/snippet}

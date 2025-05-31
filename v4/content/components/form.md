@@ -1,5 +1,5 @@
 ---
-title: Formsnap & Superforms
+title: Formsnap
 description: Building forms with Formsnap, Superforms, & Zod.
 links:
   doc: https://formsnap.dev
@@ -8,7 +8,6 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import FormPreview from "$lib/components/form-preview.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
@@ -42,7 +41,7 @@ If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](
 
 ## Anatomy
 
-```svelte
+```svelte showLineNumbers
 <form>
   <Form.Field>
     <Form.Control>
@@ -57,7 +56,7 @@ If you aren't familiar with [Superforms](https://superforms.rocks) & [Formsnap](
 
 ## Example
 
-```svelte
+```svelte showLineNumbers
 <form method="POST" use:enhance>
   <Form.Field {form} name="email">
     <Form.Control>
@@ -94,7 +93,7 @@ export const formSchema = z.object({
 export type FormSchema = typeof formSchema;
 ```
 
-### Return the form from the route's load function
+### Setup the load function
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers
 import type { PageServerLoad } from "./$types.js";
@@ -109,7 +108,7 @@ export const load: PageServerLoad = async () => {
 };
 ```
 
-### Create a form component
+### Create form component
 
 For this example, we'll be passing the `form` returned from the load function as a prop to this component. To ensure it's typed properly, we'll use the `SuperValidated` type from `sveltekit-superforms`, and pass in the type of our form schema.
 
@@ -152,7 +151,7 @@ For this example, we'll be passing the `form` returned from the load function as
 
 The `name`, `id`, and all accessibility attributes are applied to the input by spreading the `attrs` object from the `Form.Control` component. The `Form.Label` will automatically be associated with the input using the `for` attribute, so you don't have to worry about that.
 
-### Create a page component that uses the form
+### Use the component
 
 We'll pass the `form` from the data returned from the load function to the form component we created above.
 
@@ -166,7 +165,7 @@ We'll pass the `form` from the data returned from the load function to the form 
 <SettingsForm {data} />
 ```
 
-### Create an Action that handles the form submission
+### Create an Action
 
 ```ts title="src/routes/settings/+page.server.ts" showLineNumbers {1-2,13-25}
 import type { PageServerLoad, Actions } from "./$types.js";
@@ -200,7 +199,11 @@ export const actions: Actions = {
 
 That's it. You now have a fully accessible form that is type-safe and has client & server side validation.
 
-<FormPreview {form} />
+<ComponentPreview name="form-demo" >
+
+<div></div>
+
+</ComponentPreview>
 
 </Steps>
 

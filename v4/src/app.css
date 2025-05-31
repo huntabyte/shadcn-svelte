@@ -346,6 +346,9 @@
 		font-size: 0.8rem;
 	}
 
+	.mdsx code:not(pre code) {
+		@apply bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none;
+	}
 
 	.super-debug {
 		background-color: var(--color-zinc-950) !important;

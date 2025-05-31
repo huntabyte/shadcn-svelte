@@ -13,6 +13,7 @@ links:
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
+	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
@@ -67,11 +68,19 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 
 <ManualInstall>
 
-1. Install `svelte-sonner`:
+<Step>
+
+Install `svelte-sonner`:
+
+</Step>
 
 <PMInstall command="svelte-sonner -D" />
 
-2. Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </ManualInstall>
 

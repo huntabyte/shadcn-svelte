@@ -11,9 +11,10 @@ links:
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
+	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 
-  export let form;
+	export let form;
 </script>
 
 <ComponentPreview name="input-demo">
@@ -31,7 +32,11 @@ links:
 {#snippet manual()}
 <Steps>
 
-### Copy and paste the component source files linked at the top of this page into your project.
+<Step>
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+</Step>
 
 </Steps>
 {/snippet}

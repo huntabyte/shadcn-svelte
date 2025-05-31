@@ -11,8 +11,6 @@ description: How to setup shadcn-svelte in a Vite project.
 	import PMExecute from "$lib/components/pm-execute.svelte";
 </script>
 
-## Setup your project
-
 <Steps>
 
 ### Add TailwindCSS
@@ -27,7 +25,7 @@ The current version of Vite splits TypeScript configuration into three files, tw
 Add the `baseUrl` and `paths` properties to the `compilerOptions` section of the `tsconfig.json` and
 `tsconfig.app.json` files:
 
-```ts title="tsconfig.json" {7-13}
+```json title="tsconfig.json" {7-13} showLineNumbers
 {
   "files": [],
   "references": [
@@ -48,7 +46,7 @@ Add the `baseUrl` and `paths` properties to the `compilerOptions` section of the
 
 Add the following code to the `tsconfig.app.json` file to resolve paths, for your IDE:
 
-```json title="tsconfig.app.json" {4-8}
+```json title="tsconfig.app.json" {4-8} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -65,7 +63,7 @@ Add the following code to the `tsconfig.app.json` file to resolve paths, for you
 
 Add the following code to the vite.config.ts so your app can resolve paths without error:
 
-```js title="vite.config.ts" {1, 5-9}
+```js title="vite.config.ts" {1, 5-9} showLineNumbers
 import path from "path";
 
 export default defineConfig({

@@ -13,8 +13,6 @@ description: How to setup shadcn-svelte in an Astro project.
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 </script>
 
-## Setup your project
-
 <Steps>
 
 ### Create project
@@ -27,7 +25,7 @@ Start by creating a new Astro project:
 
 You will be asked a few questions to configure your project:
 
-```bash
+```bash showLineNumbers
 - Where should we create your new project?
 ./your-app-name
 - How would you like to start your new project?
@@ -70,17 +68,17 @@ Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```jsonc title="tsconfig.json" {2-10} showLineNumbers
+```json title="tsconfig.json" {2-10} showLineNumbers
 {
   "compilerOptions": {
     // ...
     "baseUrl": ".",
     "paths": {
       "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"],
-    },
+      "$lib/*": ["./src/lib/*"]
+    }
     // ...
-  },
+  }
 }
 ```
 
@@ -104,7 +102,7 @@ Create the global stylesheet in `src/styles/app.css`:
 
 Import the `app.css` file in the `src/pages/index.astro` file:
 
-```ts title="src/pages/index.astro" {2} showLineNumbers
+```astro title="src/pages/index.astro" {2} showLineNumbers
 ---
 import "$lib/styles/app.css";
 ---
