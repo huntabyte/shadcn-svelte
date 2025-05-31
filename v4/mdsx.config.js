@@ -56,23 +56,7 @@ const prettyCodeOptions = {
 		// Prevent lines from collapsing in `display: grid` mode, and allow empty
 		// lines to be copy/pasted
 		if (node.children.length === 0) {
-			// Check if this is the first or last line in the parent
-			console.log(node);
-			// const parent = node.parent;
-			// if (parent && parent.children) {
-			// 	const siblings = parent.children;
-			// 	const nodeIndex = siblings.indexOf(node);
-			// 	const isFirstLine = nodeIndex === 0;
-			// 	const isLastLine = nodeIndex === siblings.length - 1;
-
-			// 	// Don't add content to first or last empty lines
-			// 	if (!isFirstLine && !isLastLine) {
-			// 		node.children = [{ type: "text", value: " " }];
-			// 	}
-			// } else {
-			// Fallback to original behavior if we can't determine position
 			node.children = [{ type: "text", value: " " }];
-			// }
 		}
 	},
 	onVisitHighlightedLine(node) {

@@ -55,11 +55,11 @@ function generateGettingStartedNav() {
 			href: "/docs/javascript",
 			items: [],
 		},
-		{
-			title: "Blocks",
-			href: "/docs/blocks",
-			items: [],
-		},
+		// {
+		// 	title: "Blocks",
+		// 	href: "/docs/blocks",
+		// 	items: [],
+		// },
 		{
 			title: "Figma",
 			href: "/docs/figma",
