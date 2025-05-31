@@ -7,21 +7,23 @@ links:
 ---
 
 <script>
-	import ComponentPreview from '$lib/components/docs/component-preview.svelte';
-	import DocsFigure from '$lib/components/docs/docs-figure.svelte';
+	import ComponentPreview from '$lib/components/component-preview.svelte';
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
-	import * as Tabs from "$lib/components/docs/tabs";
+	import DocsFigure from "$lib/components/docs-figure.svelte";
+	import Callout from "$lib/components/callout.svelte";
 </script>
 
-<ComponentPreview type="block" name="sidebar-07" title="Sidebar">
+<DocsFigure caption="A sidebar that collapses to icons.">
+<ComponentPreview type="block" name="sidebar-07" title="Sidebar" class="w-full">
 
 <div></div>
 
 </ComponentPreview>
+</DocsFigure>
 
 Sidebars are one of the most complex components to build. They are central to any application and often contain a lot of moving parts.
 
@@ -285,7 +287,11 @@ We'll use the `Sidebar.Menu` component in a `Sidebar.Group`.
 <Step>You've created your first sidebar.</Step>
 
 <DocsFigure caption="Your first sidebar.">
-	<ComponentPreviewManual type="block" name="demo-sidebar" title="Sidebar"  class="w-full" />
+<ComponentPreview type="block" name="demo-sidebar" title="Sidebar" description="Your first sidebar." class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 </Steps>
@@ -450,7 +456,11 @@ Use the `Sidebar.Header` component to add a sticky header to the sidebar.
 The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
 
 <DocsFigure caption="A sidebar header with a dropdown menu.">
-<ComponentPreviewManual name="demo-sidebar-header" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-header" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
@@ -489,7 +499,11 @@ Use the `Sidebar.Footer` component to add a sticky footer to the sidebar.
 The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
 
 <DocsFigure caption="A sidebar footer with a dropdown menu.">
-<ComponentPreviewManual name="demo-sidebar-footer" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-footer" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers title="src/lib/components/app-sidebar.svelte"
@@ -559,7 +573,11 @@ Use the `Sidebar.Group` component to create a section within the sidebar.
 A `Sidebar.Group` has a `Sidebar.GroupLabel`, a `Sidebar.GroupContent` and an optional `Sidebar.GroupAction`.
 
 <DocsFigure caption="A sidebar group.">
-	<ComponentPreviewManual name="demo-sidebar-group" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-group" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -581,7 +599,11 @@ A `Sidebar.Group` has a `Sidebar.GroupLabel`, a `Sidebar.GroupContent` and an op
 To make a `Sidebar.Group` collapsible, wrap it in a `Collapsible`.
 
 <DocsFigure caption="A collapsible sidebar group.">
-	<ComponentPreviewManual name="demo-sidebar-group-collapsible" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-group-collapsible" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -626,7 +648,11 @@ Use the `Sidebar.GroupAction` component to add an action to a `Sidebar.Group`.
 ```
 
 <DocsFigure caption="A sidebar group with an action button.">
-	<ComponentPreviewManual name="demo-sidebar-group-action" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-group-action" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ## Sidebar.Menu
@@ -642,7 +668,11 @@ A `Sidebar.Menu` is composed of `Sidebar.MenuItem`, `Sidebar.MenuButton`, `Sideb
 Here's an example of a `Sidebar.Menu` component rendering a list of projects.
 
 <DocsFigure caption="A sidebar menu with a list of projects.">
-	<ComponentPreviewManual name="demo-sidebar-menu" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-menu" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -744,7 +774,11 @@ This button works independently of the `Sidebar.MenuButton`, i.e. you can have t
 Here's an example of a `Sidebar.MenuAction` that renders a `DropdownMenu`.
 
 <DocsFigure caption="A sidebar menu action with a dropdown menu.">
-	<ComponentPreviewManual name="demo-sidebar-menu-action" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-menu-action" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -784,7 +818,11 @@ The `Sidebar.MenuSub` component is used to render a submenu within a `Sidebar.Me
 Use `Sidebar.MenuSubItem` and `Sidebar.MenuSubButton` to render a submenu item.
 
 <DocsFigure caption="A sidebar menu sub.">
-	<ComponentPreviewManual name="demo-sidebar-menu-sub" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-menu-sub" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -806,7 +844,11 @@ Use `Sidebar.MenuSubItem` and `Sidebar.MenuSubButton` to render a submenu item.
 To make a `Sidebar.Menu` collapsible, wrap it and the `Sidebar.MenuSub` components in a `Collapsible`.
 
 <DocsFigure caption="A collapsible sidebar menu.">
-	<ComponentPreviewManual name="demo-sidebar-menu-collapsible" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-menu-collapsible" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -833,7 +875,11 @@ To make a `Sidebar.Menu` collapsible, wrap it and the `Sidebar.MenuSub` componen
 The `Sidebar.MenuBadge` component is used to render a badge within a `Sidebar.MenuItem`.
 
 <DocsFigure caption="A sidebar menu badge.">
-	<ComponentPreviewManual name="demo-sidebar-menu-badge" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-menu-badge" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers
@@ -921,7 +967,11 @@ The `Sidebar.Rail` component is used to render a rail within a `Sidebar.Root`. T
 Use Svelte's [Function Binding](https://svelte.dev/docs/svelte/bind#Function-bindings) to control the sidebar state.
 
 <DocsFigure caption="A controlled sidebar.">
-	<ComponentPreviewManual name="demo-sidebar-controlled" title="Sidebar" type="block" class="w-full" />
+<ComponentPreview name="demo-sidebar-controlled" title="Sidebar" type="block" class="w-full">
+
+<div></div>
+
+</ComponentPreview>
 </DocsFigure>
 
 ```svelte showLineNumbers

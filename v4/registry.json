@@ -1551,6 +1551,776 @@
 			]
 		},
 		{
+			"name": "chart-area-axes",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-axes.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-default.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-gradient",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-gradient.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-icons",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-icons.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card", "select"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-interactive.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-legend.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-linear",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-linear.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-stacked-expand",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-stacked-expand.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-stacked.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-area-step",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-area-step.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-active",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-active.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-default.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-horizontal",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-horizontal.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-interactive.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-label-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-label.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-mixed",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-mixed.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-multiple.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-negative",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-negative.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-bar-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-bar-stacked.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-default.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots-colors",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-dots-colors.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-dots-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-dots",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-dots.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-interactive.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-label-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-label.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-linear",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-linear.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-multiple.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-line-step",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-line-step.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut-active",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-donut-active.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut-text",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-donut-text.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-donut",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-donut.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-interactive",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card", "select"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-interactive.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-label-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label-list",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-label-list.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-label",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-label.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-legend.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-separator-none",
+			"type": "registry:block",
+			"registryDependencies": ["card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-separator-none.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-simple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-simple.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-pie-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-pie-stacked.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-default",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-default.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-dots",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-dots.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle-fill",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle-fill.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle-no-lines",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle-no-lines.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-circle",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-circle.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-fill",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-fill.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-grid-none",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-grid-none.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-icons",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-icons.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-label-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-legend",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-legend.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-lines-only",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-lines-only.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-multiple",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-multiple.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radar-radius",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radar-radius.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-grid",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-grid.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-label",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-label.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-shape",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-shape.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-simple",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-simple.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-stacked",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-stacked.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-radial-text",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-radial-text.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-advanced",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-advanced.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-default",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-default.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-formatter",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-formatter.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-icons",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-icons.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-indicator-line",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-indicator-line.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-indicator-none",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-indicator-none.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-custom",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-label-custom.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-formatter",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-label-formatter.svelte"
+				}
+			]
+		},
+		{
+			"name": "chart-tooltip-label-none",
+			"type": "registry:block",
+			"registryDependencies": ["card", "chart"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/chart-tooltip-label-none.svelte"
+				}
+			]
+		},
+		{
 			"name": "dashboard-01",
 			"type": "registry:block",
 			"registryDependencies": [
@@ -1579,7 +2349,7 @@
 					"path": "src/lib/registry/blocks/dashboard-01/+page.svelte"
 				},
 				{
-					"type": "registry:file",
+					"type": "registry:page",
 					"path": "src/lib/registry/blocks/dashboard-01/data.ts"
 				},
 				{
@@ -1633,6 +2403,138 @@
 				{
 					"type": "registry:component",
 					"path": "src/lib/registry/blocks/dashboard-01/components/site-header.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-controlled",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "button"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-controlled.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-footer",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-footer.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group-action",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "sonner"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-group-action.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group-collapsible",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "collapsible"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-group-collapsible.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-group",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-group.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-header",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-header.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-action",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "dropdown-menu"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-action.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-badge",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-badge.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-collapsible",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar", "collapsible"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-collapsible.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu-sub",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-menu-sub.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar-menu",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar-menu.svelte"
+				}
+			]
+		},
+		{
+			"name": "demo-sidebar",
+			"type": "registry:block",
+			"registryDependencies": ["sidebar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/demo-sidebar.svelte"
 				}
 			]
 		},

@@ -81,6 +81,7 @@ function componentPreviews() {
 				const [, name] = exec;
 				const insertIndex = exec.index + TARGET.length;
 				const identifier = camelize(name);
+				if (name.includes("sidebar")) continue;
 				const prop = ` component={${identifier}}`;
 				ms.appendRight(insertIndex, prop);
 
@@ -93,6 +94,8 @@ function componentPreviews() {
 				let importStatement = "";
 				if (name.startsWith("chart") && !name.includes("demo")) {
 					importStatement = `import ${identifier} from "$lib/registry/charts/${name}.svelte";`;
+				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
+					continue;
 				} else {
 					importStatement = `import ${identifier} from "$lib/registry/examples/${name}.svelte";`;
 				}
