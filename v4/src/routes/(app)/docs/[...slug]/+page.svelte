@@ -6,6 +6,8 @@
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
+	import { findNeighbors } from "$lib/navigation.js";
+	import { page } from "$app/state";
 
 	let { data } = $props();
 
@@ -14,6 +16,8 @@
 	const componentSource = $derived(data.metadata.links?.source);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
+
+	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
 
 <div data-slot="docs" class="flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full">
@@ -31,24 +35,28 @@
 							{doc.title}
 						</h1>
 						<div class="flex items-center gap-2">
-							<Button
-								variant="secondary"
-								size="icon"
-								class="extend-touch-target size-8 shadow-none md:size-7"
-								href="#"
-							>
-								<ArrowLeftIcon />
-								<span class="sr-only">Previous</span>
-							</Button>
-							<Button
-								variant="secondary"
-								size="icon"
-								class="extend-touch-target size-8 shadow-none md:size-7"
-								href="#"
-							>
-								<span class="sr-only">Next</span>
-								<ArrowRightIcon />
-							</Button>
+							{#if neighbors.previous}
+								<Button
+									variant="secondary"
+									size="icon"
+									class="extend-touch-target size-8 shadow-none md:size-7"
+									href={neighbors.previous.href}
+								>
+									<ArrowLeftIcon />
+									<span class="sr-only">Previous</span>
+								</Button>
+							{/if}
+							{#if neighbors.next}
+								<Button
+									variant="secondary"
+									size="icon"
+									class="extend-touch-target size-8 shadow-none md:size-7"
+									href={neighbors.next.href}
+								>
+									<span class="sr-only">Next</span>
+									<ArrowRightIcon />
+								</Button>
+							{/if}
 						</div>
 					</div>
 					{#if data.metadata.description}
@@ -97,12 +105,23 @@
 			</div>
 		</div>
 		<div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
-			<Button variant="secondary" size="sm" class="shadow-none">
-				Previous <ArrowLeftIcon />
-			</Button>
-			<Button variant="secondary" size="sm" class="ml-auto shadow-none" href="#">
-				Next <ArrowRightIcon />
-			</Button>
+			{#if neighbors.previous}
+				<Button variant="secondary" size="sm" class="shadow-none">
+					<ArrowLeftIcon />
+					{neighbors.previous.title}
+				</Button>
+			{/if}
+			{#if neighbors.next}
+				<Button
+					variant="secondary"
+					size="sm"
+					class="ml-auto shadow-none"
+					href={neighbors.next.href}
+				>
+					{neighbors.next.title}
+					<ArrowRightIcon />
+				</Button>
+			{/if}
 		</div>
 	</div>
 	<div

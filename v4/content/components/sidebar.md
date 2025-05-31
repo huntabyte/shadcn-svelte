@@ -7,7 +7,7 @@ links:
 ---
 
 <script>
-	import ComponentPreviewManual from '$lib/components/docs/component-preview-manual.svelte';
+	import ComponentPreview from '$lib/components/docs/component-preview.svelte';
 	import DocsFigure from '$lib/components/docs/docs-figure.svelte';
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
@@ -17,9 +17,11 @@ links:
 	import * as Tabs from "$lib/components/docs/tabs";
 </script>
 
-<DocsFigure caption="A sidebar that collapses to icons.">
-	<ComponentPreviewManual type="block" name="sidebar-07" title="Sidebar" />
-</DocsFigure>
+<ComponentPreview type="block" name="sidebar-07" title="Sidebar">
+
+<div></div>
+
+</ComponentPreview>
 
 Sidebars are one of the most complex components to build. They are central to any application and often contain a lot of moving parts.
 

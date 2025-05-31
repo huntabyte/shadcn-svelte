@@ -1,4 +1,4 @@
-import { components, installation, registry } from "$content/index.js";
+import { components, installation } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -96,6 +96,14 @@ function generateInstallationNav() {
 
 function generateComponentsNav() {
 	const componentsNavItems: SidebarNavItem[] = [];
+	const index = components.find((doc) => doc.title === "Components");
+	if (index) {
+		componentsNavItems.push({
+			title: index.title,
+			href: `/docs/components`,
+			items: [],
+		});
+	}
 
 	for (const doc of components) {
 		if (doc.title === "Components") continue;
@@ -132,15 +140,38 @@ function generateDarkModeNav() {
 }
 
 function generateRegistryNav() {
-	const registryNavItems: SidebarNavItem[] = [];
-
-	for (const doc of registry) {
-		registryNavItems.push({
-			title: doc.title,
-			href: `/docs/registry/${doc.slug}`,
+	const registryNavItems: SidebarNavItem[] = [
+		{
+			title: "Registry",
+			href: "/docs/registry",
 			items: [],
-		});
-	}
+		},
+		{
+			title: "Getting Started",
+			href: "/docs/registry/getting-started",
+			items: [],
+		},
+		{
+			title: "FAQ",
+			href: "/docs/registry/faq",
+			items: [],
+		},
+		{
+			title: "Examples",
+			href: "/docs/registry/examples",
+			items: [],
+		},
+		{
+			title: "registry.json",
+			href: "/docs/registry/registry-json",
+			items: [],
+		},
+		{
+			title: "registry-item.json",
+			href: "/docs/registry/registry-item-json",
+			items: [],
+		},
+	];
 
 	return registryNavItems;
 }
@@ -152,7 +183,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	},
 	{
 		title: "Components",
-		items: generateComponentsNav(),
+		items: generateComponentsNav().filter((item) => item.title !== "Components"),
 	},
 	{
 		title: "Installation",
@@ -167,3 +198,26 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: generateRegistryNav(),
 	},
 ];
+
+export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
+	return [
+		...generateGettingStartedNav(),
+		...generateComponentsNav(),
+		...generateInstallationNav(),
+		...generateDarkModeNav(),
+		...generateRegistryNav(),
+	].map((item, index) => ({
+		...item,
+		index,
+	}));
+}
+
+const fullNavItems = getFullNavItems();
+
+export function findNeighbors(pathName: string) {
+	const path = pathName.split("?")[0].split("#")[0];
+	const index = fullNavItems.findIndex((item) => item.href === path);
+	const previous = fullNavItems[index - 1] ?? null;
+	const next = fullNavItems[index + 1] ?? null;
+	return { previous, next };
+}
