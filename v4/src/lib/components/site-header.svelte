@@ -2,7 +2,7 @@
 	import Logo from "./logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
-	import { siteConfig } from "$lib/config";
+	import { siteConfig } from "$lib/config.js";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
