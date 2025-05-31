@@ -1,4 +1,4 @@
-import { components, installation } from "$content/index.js";
+import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 export type NavItem = {
@@ -176,36 +176,72 @@ function generateRegistryNav() {
 	return registryNavItems;
 }
 
+function generateMigrationNav() {
+	const migrationNavItems: SidebarNavItem[] = [];
+
+	const index = migration.find((doc) => doc.title === "Migration");
+	if (index) {
+		migrationNavItems.push({
+			title: index.title,
+			href: `/docs/migration`,
+			items: [],
+		});
+	}
+
+	for (const doc of migration) {
+		if (doc.title === "Migration") continue;
+		migrationNavItems.push({
+			title: doc.title,
+			href: `/docs/migration/${doc.slug}`,
+			items: [],
+		});
+	}
+
+	return migrationNavItems;
+}
+
+const gettingStartedNav = generateGettingStartedNav();
+const migrationNav = generateMigrationNav();
+const componentsNav = generateComponentsNav();
+const installationNav = generateInstallationNav();
+const darkModeNav = generateDarkModeNav();
+const registryNav = generateRegistryNav();
+
 export const sidebarNavItems: SidebarNavItem[] = [
 	{
 		title: "Getting Started",
-		items: generateGettingStartedNav(),
+		items: gettingStartedNav,
+	},
+	{
+		title: "Migration",
+		items: migrationNav.filter((item) => item.title !== "Migration"),
 	},
 	{
 		title: "Components",
-		items: generateComponentsNav().filter((item) => item.title !== "Components"),
+		items: componentsNav.filter((item) => item.title !== "Components"),
 	},
 	{
 		title: "Installation",
-		items: generateInstallationNav(),
+		items: installationNav,
 	},
 	{
 		title: "Dark Mode",
-		items: generateDarkModeNav(),
+		items: darkModeNav,
 	},
 	{
 		title: "Registry",
-		items: generateRegistryNav(),
+		items: registryNav,
 	},
 ];
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
-		...generateGettingStartedNav(),
-		...generateComponentsNav(),
-		...generateInstallationNav(),
-		...generateDarkModeNav(),
-		...generateRegistryNav(),
+		...gettingStartedNav,
+		...migrationNav,
+		...componentsNav,
+		...installationNav,
+		...darkModeNav,
+		...registryNav,
 	].map((item, index) => ({
 		...item,
 		index,

@@ -15,13 +15,6 @@ description: How to use shadcn-svelte with Tailwind v4 and Svelte 5.
 	import PMRun from "$lib/components/pm-run.svelte";
 </script>
 
-It's here! Tailwind v4 and Svelte 5. Ready for you to try out. You can start using it today.
-
-<div class="flex gap-2 mt-6">
-<Button size="sm" href="/docs/installation">Get Started</Button>
-<Button variant="outline" size="sm" target="_blank" href="https://v4.shadcn-svelte.com">See Demo</Button>
-</div>
-
 This documentation site is now running Tailwind v4. If you're looking for the old Tailwind v3 docs, you can find them here: [https://tw3.shadcn-svelte.com](https://tw3.shadcn-svelte.com).
 
 ## What's New

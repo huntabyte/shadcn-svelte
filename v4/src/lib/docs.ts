@@ -26,6 +26,8 @@ function transformPath(path: string) {
 }
 
 function getDocMetadata(slug: string): DocMetadata | undefined {
+	console.log(slug);
+	console.log(allDocs);
 	return allDocs.find((doc) => doc.path === slug);
 }
 
