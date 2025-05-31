@@ -11,32 +11,23 @@
 		<Card.Description>Manage your cookie settings here.</Card.Description>
 	</Card.Header>
 	<Card.Content class="grid gap-6">
-		<div class="flex items-center justify-between space-x-4">
-			<Label for="necessary" class="flex flex-col items-start space-y-1 text-left">
+		<div class="flex items-center justify-between gap-4">
+			<Label for="necessary" class="flex flex-col items-start">
 				<span>Strictly Necessary</span>
-				<span class="text-muted-foreground text-xs font-normal leading-snug">
+				<span class="text-muted-foreground font-normal leading-snug">
 					These cookies are essential in order to use the website and use its features.
 				</span>
 			</Label>
 			<Switch id="necessary" checked aria-label="Necessary" />
 		</div>
-		<div class="flex items-center justify-between space-x-4">
-			<Label for="functional" class="flex flex-col items-start space-y-1">
+		<div class="flex items-center justify-between gap-4">
+			<Label for="functional" class="flex flex-col items-start">
 				<span>Functional Cookies</span>
-				<span class="text-muted-foreground text-xs font-normal leading-snug">
+				<span class="text-muted-foreground font-normal leading-snug">
 					These cookies allow the website to provide personalized functionality.
 				</span>
 			</Label>
 			<Switch id="functional" aria-label="Functional" />
-		</div>
-		<div class="flex items-center justify-between space-x-4">
-			<Label for="performance" class="flex flex-col items-start space-y-1">
-				<span>Performance Cookies</span>
-				<span class="text-muted-foreground text-xs font-normal leading-snug">
-					These cookies help to improve the performance of the website.
-				</span>
-			</Label>
-			<Switch id="performance" aria-label="Performance" />
 		</div>
 	</Card.Content>
 	<Card.Footer>

@@ -66,31 +66,33 @@
 	let context = $state<ChartContextValue>();
 </script>
 
-<Card.Root class="w-full gap-3">
+<Card.Root class="w-full gap-5">
 	<Card.Header>
 		<Card.Title>Move Goal</Card.Title>
 		<Card.Description>Set your daily activity goal.</Card.Description>
 	</Card.Header>
-	<Card.Content>
-		<div class="flex items-center justify-center space-x-2">
+	<Card.Content class="flex flex-1 flex-col">
+		<div class="flex items-center justify-center gap-4">
 			<Button
 				variant="outline"
 				size="icon"
-				class="h-8 w-8 shrink-0 rounded-full"
+				class="size-7 rounded-full"
 				onclick={() => onClick(-10)}
 				disabled={goal <= 200}
 			>
 				<MinusIcon />
 				<span class="sr-only">Decrease</span>
 			</Button>
-			<div class="flex-1 text-center">
-				<div class="text-5xl font-bold tracking-tighter">{goal}</div>
-				<div class="text-muted-foreground text-[0.70rem] uppercase">Calories/day</div>
+			<div class="text-center">
+				<div class="text-4xl font-bold tabular-nums tracking-tighter">
+					{goal}
+				</div>
+				<div class="text-muted-foreground text-xs uppercase">Calories/day</div>
 			</div>
 			<Button
 				variant="outline"
 				size="icon"
-				class="h-8 w-8 shrink-0 rounded-full"
+				class="size-7 rounded-full"
 				onclick={() => onClick(10)}
 				disabled={goal >= 400}
 			>
@@ -98,8 +100,8 @@
 				<span class="sr-only">Increase</span>
 			</Button>
 		</div>
-		<div class="my-3 h-[60px]">
-			<Chart.Container config={chartConfig} class="aspect-auto h-full w-full">
+		<div class="flex-1">
+			<Chart.Container config={chartConfig} class="aspect-auto h-[76px] w-full">
 				<BarChart
 					bind:context
 					data={data.map((d, i) => ({ goal: d.goal, index: i }))}
@@ -131,6 +133,6 @@
 		</div>
 	</Card.Content>
 	<Card.Footer>
-		<Button class="w-full">Set Goal</Button>
+		<Button class="w-full" variant="secondary">Set Goal</Button>
 	</Card.Footer>
 </Card.Root>

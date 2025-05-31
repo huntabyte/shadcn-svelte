@@ -3,14 +3,16 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
+
+	const id = $props.id();
 </script>
 
 <Card.Root>
-	<Card.Header class="space-y-1">
+	<Card.Header>
 		<Card.Title class="text-2xl">Create an account</Card.Title>
 		<Card.Description>Enter your email below to create your account</Card.Description>
 	</Card.Header>
-	<Card.Content class="grid gap-4">
+	<Card.Content class="flex flex-col gap-4">
 		<div class="grid grid-cols-2 gap-6">
 			<Button variant="outline">
 				<svg viewBox="0 0 438.549 438.549">
@@ -39,13 +41,13 @@
 				<span class="bg-card text-muted-foreground px-2"> Or continue with </span>
 			</div>
 		</div>
-		<div class="grid gap-2">
-			<Label for="email">Email</Label>
-			<Input id="email" type="email" placeholder="m@example.com" />
+		<div class="flex flex-col gap-3">
+			<Label for="email-create-account-{id}">Email</Label>
+			<Input id="email-create-account-{id}" type="email" placeholder="m@example.com" />
 		</div>
-		<div class="grid gap-2">
-			<Label for="password">Password</Label>
-			<Input id="password" type="password" />
+		<div class="flex flex-col gap-3">
+			<Label for="password-create-account-{id}">Password</Label>
+			<Input id="password-create-account-{id}" type="password" />
 		</div>
 	</Card.Content>
 	<Card.Footer>

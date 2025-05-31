@@ -8,6 +8,8 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
+
+	const id = $props.id();
 </script>
 
 <div class="flex flex-col items-start gap-4">
@@ -20,12 +22,12 @@
 			<form>
 				<div class="flex flex-col gap-6">
 					<div class="grid gap-2">
-						<Label for="email">Email</Label>
-						<Input id="email" type="email" placeholder="m@example.com" required />
+						<Label for="email-{id}">Email</Label>
+						<Input id="email-{id}" type="email" placeholder="m@example.com" required />
 					</div>
 					<div class="grid gap-2">
 						<div class="flex items-center">
-							<Label for="password">Password</Label>
+							<Label for="password-{id}">Password</Label>
 							<a
 								href="##"
 								class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -33,7 +35,7 @@
 								Forgot your password?
 							</a>
 						</div>
-						<Input id="password" type="password" required />
+						<Input id="password-{id}" type="password" required />
 					</div>
 				</div>
 			</form>

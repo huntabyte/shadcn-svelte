@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { BarChart, LineChart } from "layerchart";
+	import { AreaChart, LineChart } from "layerchart";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import { curveNatural } from "d3-shape";
-	import { scaleBand } from "d3-scale";
 
 	const data = [
 		{
 			revenue: 10400,
-			subscription: 240,
+			subscription: 40,
 		},
 		{
 			revenue: 14405,
-			subscription: 300,
+			subscription: 90,
 		},
 		{
 			revenue: 9400,
@@ -24,7 +24,7 @@
 		},
 		{
 			revenue: 7000,
-			subscription: 189,
+			subscription: 89,
 		},
 		{
 			revenue: 9600,
@@ -32,11 +32,11 @@
 		},
 		{
 			revenue: 11244,
-			subscription: 278,
+			subscription: 78,
 		},
 		{
 			revenue: 26475,
-			subscription: 189,
+			subscription: 89,
 		},
 	];
 
@@ -52,15 +52,15 @@
 	} satisfies Chart.ChartConfig;
 </script>
 
-<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
-	<Card.Root class="gap-2">
-		<Card.Header class="flex flex-row items-center justify-between space-y-0">
-			<Card.Title class="text-sm font-normal">Total Revenue</Card.Title>
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+	<Card.Root>
+		<Card.Header>
+			<Card.Description>Total Revenue</Card.Description>
+			<Card.Title class="text-3xl">$15,231.89</Card.Title>
+			<Card.Description>+20.1% from last month</Card.Description>
 		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">$15,231.89</div>
-			<p class="text-muted-foreground text-xs">+20.1% from last month</p>
-			<Chart.Container config={chartConfig} class="mt-4 h-[80px] w-full">
+		<Card.Content class="pb-0">
+			<Chart.Container config={chartConfig} class="h-[80px] w-full">
 				<LineChart
 					axis={false}
 					data={data.map((d, i) => ({ ...d, index: i }))}
@@ -87,31 +87,37 @@
 			</Chart.Container>
 		</Card.Content>
 	</Card.Root>
-	<Card.Root class="gap-2">
-		<Card.Header class="flex flex-row items-center justify-between space-y-0">
-			<Card.Title class="text-sm font-normal">Subscriptions</Card.Title>
+	<Card.Root class="pb-0 lg:hidden xl:flex">
+		<Card.Header>
+			<Card.Description>Subscriptions</Card.Description>
+			<Card.Title class="text-3xl">+2,350</Card.Title>
+			<Card.Description>+180.1% from last month</Card.Description>
+			<Card.Action>
+				<Button variant="ghost" size="sm">View More</Button>
+			</Card.Action>
 		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">+2350</div>
-			<p class="text-muted-foreground text-xs">+180.1% from last month</p>
-			<Chart.Container config={chartConfig} class="mt-4 h-[80px] w-full">
-				<BarChart
+		<Card.Content class="mt-auto max-h-[124px] flex-1 overflow-hidden p-0">
+			<Chart.Container config={chartConfig} class="-mb-4 h-full w-full overflow-hidden">
+				<AreaChart
 					data={data.map((d, i) => ({ ...d, index: i }))}
 					x="index"
-					xScale={scaleBand().padding(0.25)}
 					y="subscription"
 					axis={false}
+					grid={false}
 					tooltip={false}
+					yPadding={[0, 8]}
 					props={{
-						bars: {
-							stroke: "none",
-							rounded: "all",
-							fill: "var(--color-revenue)",
+						area: {
+							curve: curveNatural,
+							fill: "var(--color-subscription)",
+							fillOpacity: 0.05,
+						},
+						line: {
+							stroke: "var(--color-subscription)",
+							strokeWidth: 2,
 						},
 					}}
 				/>
-				<!-- <Bar dataKey="subscription" fill="var(--color-subscription)" radius={4} /> -->
-				<!-- </BarChart> -->
 			</Chart.Container>
 		</Card.Content>
 	</Card.Root>

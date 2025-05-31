@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import SendIcon from "@lucide/svelte/icons/send";
+	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import { cn } from "$lib/utils.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -69,12 +69,12 @@
 
 <Card.Root>
 	<Card.Header class="flex flex-row items-center">
-		<div class="flex items-center space-x-4">
-			<Avatar.Root>
+		<div class="flex items-center gap-4">
+			<Avatar.Root class="border">
 				<Avatar.Image src="/avatars/01.png" alt="Image" />
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
-			<div>
+			<div class="flex flex-col gap-0.5">
 				<p class="text-sm font-medium leading-none">Sofia Davis</p>
 				<p class="text-muted-foreground text-sm">m@example.com</p>
 			</div>
@@ -86,8 +86,8 @@
 						<Button
 							{...props}
 							size="icon"
-							variant="outline"
-							class="ml-auto rounded-full"
+							variant="secondary"
+							class="ml-auto size-8 rounded-full"
 							onclick={() => (open = true)}
 						>
 							<PlusIcon />
@@ -100,7 +100,7 @@
 		</Tooltip.Provider>
 	</Card.Header>
 	<Card.Content>
-		<div class="space-y-4">
+		<div class="flex flex-col gap-4">
 			{#each messages as message, index (index)}
 				<div
 					class={cn(
@@ -126,17 +126,22 @@
 				});
 				input = "";
 			}}
-			class="flex w-full items-center space-x-2"
+			class="relative w-full"
 		>
 			<Input
 				id="message"
 				placeholder="Type your message..."
-				class="flex-1"
+				class="flex-1 pr-10"
 				autocomplete="off"
 				bind:value={input}
 			/>
-			<Button type="submit" size="icon" disabled={inputLength === 0}>
-				<SendIcon />
+			<Button
+				type="submit"
+				size="icon"
+				disabled={inputLength === 0}
+				class="absolute right-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
+			>
+				<ArrowUpIcon class="size-3.5" />
 				<span class="sr-only">Send</span>
 			</Button>
 		</form>
@@ -157,7 +162,7 @@
 				<Command.Group class="p-2">
 					{#each users as user (user.email)}
 						<Command.Item
-							class="flex items-center px-2"
+							class="data-[active=true]:opacity-50"
 							onSelect={() => {
 								if (selectedUsers.includes(user)) {
 									selectedUsers = selectedUsers.filter(
@@ -170,7 +175,7 @@
 								}
 							}}
 						>
-							<Avatar.Root>
+							<Avatar.Root class="border">
 								<Avatar.Image src={user.avatar} alt="Image" />
 								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
@@ -183,7 +188,7 @@
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<CheckIcon class="text-primary ml-auto flex h-5 w-5" />
+								<CheckIcon class="text-primary ml-auto flex size-4" />
 							{/if}
 						</Command.Item>
 					{/each}
@@ -194,7 +199,7 @@
 			{#if selectedUsers.length > 0}
 				<div class="flex -space-x-2 overflow-hidden">
 					{#each selectedUsers as user (user.email)}
-						<Avatar.Root class="border-background inline-block border-2">
+						<Avatar.Root class="inline-block border">
 							<Avatar.Image src={user.avatar} />
 							<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 						</Avatar.Root>

@@ -6,8 +6,8 @@
 	const start = new CalendarDate(2023, 5, 5);
 </script>
 
-<Card.Root class="max-w-[260px] p-0">
-	<Card.Content class="p-1">
+<Card.Root class="hidden max-w-[260px] p-0 sm:flex">
+	<Card.Content class="p-0">
 		<RangeCalendar placeholder={start} value={{ start, end: start.add({ days: 8 }) }} />
 	</Card.Content>
 </Card.Root>

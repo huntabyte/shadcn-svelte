@@ -10,6 +10,8 @@
 		class: className,
 		...restProps
 	}: WithElementRef<HTMLFormAttributes> = $props();
+
+	const id = $props.id();
 </script>
 
 <form class={cn("flex flex-col gap-6", className)} bind:this={ref} {...restProps}>
@@ -21,17 +23,17 @@
 	</div>
 	<div class="grid gap-6">
 		<div class="grid gap-3">
-			<Label for="email">Email</Label>
-			<Input id="email" type="email" placeholder="m@example.com" required />
+			<Label for="email-{id}">Email</Label>
+			<Input id="email-{id}" type="email" placeholder="m@example.com" required />
 		</div>
 		<div class="grid gap-3">
 			<div class="flex items-center">
-				<Label for="password">Password</Label>
+				<Label for="password-{id}">Password</Label>
 				<a href="##" class="ml-auto text-sm underline-offset-4 hover:underline">
 					Forgot your password?
 				</a>
 			</div>
-			<Input id="password" type="password" required />
+			<Input id="password-{id}" type="password" required />
 		</div>
 		<Button type="submit" class="w-full">Login</Button>
 		<div

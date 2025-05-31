@@ -7,13 +7,13 @@
 	import { theme as activeTheme } from "mode-watcher";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
 
-	let { class: className, ...restProps }: ComponentProps<typeof Button> = $props();
+	let { class: className, variant, size }: ComponentProps<typeof Button> = $props();
 </script>
 
 <Drawer.Root>
-	<Drawer.Trigger>
+	<Drawer.Trigger class={cn("sm:!hidden", className)}>
 		{#snippet child({ props })}
-			<Button {...props} {...restProps} class={cn("sm:hidden", className)}>Copy Code</Button>
+			<Button {variant} {size} {...props}>Copy Code</Button>
 		{/snippet}
 	</Drawer.Trigger>
 	<Drawer.Content class="h-auto">
@@ -29,11 +29,9 @@
 	</Drawer.Content>
 </Drawer.Root>
 <Dialog.Root>
-	<Dialog.Trigger>
+	<Dialog.Trigger class={cn("hidden sm:!flex", className)}>
 		{#snippet child({ props })}
-			<Button {...props} {...restProps} class={cn("hidden sm:flex", className)}
-				>Copy Code</Button
-			>
+			<Button {variant} {size} {...props}>Copy Code</Button>
 		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content class="outline-none md:max-w-3xl">

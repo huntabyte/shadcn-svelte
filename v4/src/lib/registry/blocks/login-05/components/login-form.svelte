@@ -11,6 +11,8 @@
 		class: className,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+
+	const id = $props.id();
 </script>
 
 <div class={cn("flex flex-col gap-6", className)} bind:this={ref} {...restProps}>
@@ -31,8 +33,8 @@
 			</div>
 			<div class="flex flex-col gap-6">
 				<div class="grid gap-3">
-					<Label for="email">Email</Label>
-					<Input id="email" type="email" placeholder="m@example.com" required />
+					<Label for="email-{id}">Email</Label>
+					<Input id="email-{id}" type="email" placeholder="m@example.com" required />
 				</div>
 				<Button type="submit" class="w-full">Login</Button>
 			</div>

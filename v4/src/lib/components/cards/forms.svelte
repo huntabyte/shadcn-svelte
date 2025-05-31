@@ -21,6 +21,8 @@
 			price: "$20",
 		},
 	] as const;
+
+	const id = $props.id();
 </script>
 
 <Card.Root>
@@ -35,24 +37,24 @@
 		<div class="flex flex-col gap-6">
 			<div class="flex flex-col gap-3 md:flex-row">
 				<div class="flex flex-1 flex-col gap-2">
-					<Label for="name">Name</Label>
-					<Input id="name" placeholder="Evil Rabbit" />
+					<Label for="name-{id}">Name</Label>
+					<Input id="name-{id}" placeholder="Evil Rabbit" />
 				</div>
 				<div class="flex flex-1 flex-col gap-2">
-					<Label for="email">Email</Label>
-					<Input id="email" placeholder="example@acme.com" />
+					<Label for="email-{id}">Email</Label>
+					<Input id="email-{id}" placeholder="example@acme.com" />
 				</div>
 			</div>
 			<div class="flex flex-col gap-2">
-				<Label for="card-number">Card Number</Label>
+				<Label for="card-number-{id}">Card Number</Label>
 				<div class="grid grid-cols-2 gap-3 md:grid-cols-[1fr_80px_60px]">
 					<Input
-						id="card-number"
+						id="card-number-{id}"
 						placeholder="1234 1234 1234 1234"
 						class="col-span-2 md:col-span-1"
 					/>
-					<Input id="card-number-expiry" placeholder="MM/YY" />
-					<Input id="card-number-cvc" placeholder="CVC" />
+					<Input id="card-number-expiry-{id}" placeholder="MM/YY" />
+					<Input id="card-number-cvc-{id}" placeholder="CVC" />
 				</div>
 			</div>
 			<fieldset class="flex flex-col gap-3">
