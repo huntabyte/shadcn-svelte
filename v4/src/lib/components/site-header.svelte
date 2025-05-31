@@ -6,16 +6,13 @@
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
+	import MobileNav from "./mobile-nav.svelte";
 </script>
 
 <header class="bg-background sticky top-0 z-50 w-full">
 	<div class="container-wrapper px-6">
 		<div class="h-(--header-height) **:data-[slot=separator]:!h-4 flex items-center gap-2">
-			<!-- <MobileNav
-		  tree={pageTree}
-		  items={siteConfig.navItems}
-		  class="flex lg:hidden"
-		/> -->
+			<MobileNav class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
 				<Logo class="size-5" />
 				<span class="sr-only">shadcn-svelte</span>

@@ -234,6 +234,33 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	},
 ];
 
+export const mainNavItems: NavItem[] = [
+	{
+		title: "Docs",
+		href: "/docs",
+	},
+	{
+		title: "Components",
+		href: "/docs/components",
+	},
+	{
+		title: "Blocks",
+		href: "/docs/blocks",
+	},
+	{
+		title: "Charts",
+		href: "/docs/charts",
+	},
+	{
+		title: "Themes",
+		href: "/docs/themes",
+	},
+	{
+		title: "Colors",
+		href: "/docs/colors",
+	},
+];
+
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
 		...gettingStartedNav,
