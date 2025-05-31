@@ -5,6 +5,7 @@
 	import Sonner from "$lib/registry/ui/sonner/sonner.svelte";
 	import { setPackageManagerContext } from "$lib/package-manager.js";
 	import { setInstallationTypeContext } from "$lib/installation-type.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
 	let { children, data } = $props();
 
@@ -45,5 +46,6 @@
 	lightClassNames={["light", ...themeClassNames]}
 />
 <Sonner theme={mode.current} position="top-center" />
-
-{@render children()}
+<Tooltip.Provider>
+	{@render children()}
+</Tooltip.Provider>

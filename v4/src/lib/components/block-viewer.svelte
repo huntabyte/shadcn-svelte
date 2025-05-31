@@ -87,7 +87,7 @@
 <div
 	id={item.name}
 	data-view={view}
-	class="group/block-view-wrapper flex min-w-0 flex-col items-stretch gap-4"
+	class="group/block-view-wrapper flex min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden md:flex-col"
 	style="--height: {item.meta?.iframeHeight ?? '930px'}"
 >
 	<BlockViewerToolbar />

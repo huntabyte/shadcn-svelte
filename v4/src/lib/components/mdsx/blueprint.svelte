@@ -1,5 +1,4 @@
 <script module>
-	import "../../../markdown.css";
 	export {
 		a,
 		blockquote,

@@ -7,19 +7,17 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<div>
+<div class="flex flex-col gap-12 md:gap-24">
 	{#each data.blocks as block (block.name)}
-		<div class="border-grid container border-b py-8 first:pt-6 last:border-b-0 md:py-12">
-			<BlockViewer
-				item={block}
-				tree={createFileTreeForRegistryItemFiles(block.files)}
-				highlightedFiles={block.files}
-			/>
-		</div>
+		<BlockViewer
+			item={block}
+			tree={createFileTreeForRegistryItemFiles(block.files)}
+			highlightedFiles={block.files}
+		/>
 	{/each}
 	<div class="container-wrapper">
 		<div class="container flex justify-center py-6">
-			<Button href="/blocks/sidebar" variant="outline">Browse all blocks</Button>
+			<Button href="/blocks/sidebar" variant="outline">Browse more blocks</Button>
 		</div>
 	</div>
 </div>

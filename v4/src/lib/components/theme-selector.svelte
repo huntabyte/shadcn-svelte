@@ -3,7 +3,7 @@
 	import { setTheme, theme } from "mode-watcher";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
 
 	const label = $derived(THEMES.find((t) => t.value === theme.current)?.name ?? "Select a theme");

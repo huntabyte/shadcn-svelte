@@ -7,12 +7,13 @@
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
+	import PageNav from "$lib/components/page-nav.svelte";
 
 	let { children } = $props();
 
 	const title = "Building Blocks for the Web";
 	const description =
-		"Clean, modern building blocks. Copy and paste into your apps. Open Source. Free forever.";
+		"Clean, modern building blocks. Works with all Svelte projects. Copy and paste into your apps. Open Source. Free forever.";
 </script>
 
 <PageHeader>
@@ -24,11 +25,17 @@
 		<Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button>
 	</PageActions>
 </PageHeader>
-<div id="blocks" class="border-grid scroll-mt-24 border-b">
-	<div class="container-wrapper">
-		<div class="container flex items-center py-4">
-			<BlocksNav />
-		</div>
-	</div>
+<PageNav>
+	<BlocksNav />
+	<Button
+		size="sm"
+		variant="secondary"
+		href="/blocks/sidebar"
+		class="mr-7 hidden shadow-none lg:flex"
+	>
+		Browse all blocks
+	</Button>
+</PageNav>
+<div class="container-wrapper section-soft flex-1 md:py-12">
+	<div class="container">{@render children?.()}</div>
 </div>
-<div class="container-wrapper flex-1">{@render children()}</div>

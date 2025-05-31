@@ -79,7 +79,7 @@
 		</div>
 		<Separator orientation="vertical" class="mx-1 hidden !h-4 lg:flex" />
 		<Button
-			variant="ghost"
+			variant="outline"
 			class="hidden w-fit gap-1 px-2 shadow-none md:flex"
 			size="sm"
 			onclick={() => clipboard.copy(command)}
