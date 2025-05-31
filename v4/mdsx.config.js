@@ -187,7 +187,9 @@ export function rehypeComponentExample() {
 						? {
 								meta: `title="${title}" showLineNumbers`,
 							}
-						: {};
+						: {
+								meta: `showLineNumbers`,
+							};
 
 					const sourceCodeNode = u("element", {
 						tagName: "pre",
