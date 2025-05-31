@@ -243,11 +243,11 @@
 </script>
 
 <script lang="ts">
-	import NavFavorites from "$lib/registry/blocks/sidebar-10/components/nav-favorites.svelte";
-	import NavMain from "$lib/registry/blocks/sidebar-10/components/nav-main.svelte";
-	import NavSecondary from "$lib/registry/blocks/sidebar-10/components/nav-secondary.svelte";
-	import NavWorkspaces from "$lib/registry/blocks/sidebar-10/components/nav-workspaces.svelte";
-	import TeamSwitcher from "$lib/registry/blocks/sidebar-10/components/team-switcher.svelte";
+	import NavFavorites from "./nav-favorites.svelte";
+	import NavMain from "./nav-main.svelte";
+	import NavSecondary from "./nav-secondary.svelte";
+	import NavWorkspaces from "./nav-workspaces.svelte";
+	import TeamSwitcher from "./team-switcher.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 

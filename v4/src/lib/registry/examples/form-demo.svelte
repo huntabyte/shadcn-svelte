@@ -16,7 +16,7 @@
 	import { Input } from "$lib/registry/ui/input/index.js";
 	import { page } from "$app/state";
 
-	let { form: data = page.data.username }: { form: SuperValidated<Infer<FormSchema>> } = $props();
+	let { form: data = page.data.form }: { form: SuperValidated<Infer<FormSchema>> } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),

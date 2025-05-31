@@ -72,7 +72,7 @@
 		{/each}
 		<Sidebar.MenuItem>
 			<Sidebar.MenuButton class="text-sidebar-foreground/70">
-				<EllipsisIcon class="text-muted-foreground" />
+				<EllipsisIcon />
 				<span>More</span>
 			</Sidebar.MenuButton>
 		</Sidebar.MenuItem>

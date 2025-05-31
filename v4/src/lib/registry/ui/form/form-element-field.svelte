@@ -1,9 +1,8 @@
 <script lang="ts" generics="T extends Record<string, unknown>, U extends FormPathLeaves<T>">
 	import * as FormPrimitive from "formsnap";
-	import type { HTMLAttributes } from "svelte/elements";
 	import type { FormPathLeaves } from "sveltekit-superforms";
-	import type { WithElementRef, WithoutChildren } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import type { HTMLAttributes } from "svelte/elements";
+	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),

@@ -3,6 +3,6 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Button variant="outline" size="icon">
+<Button variant="secondary" size="icon" class="size-8">
 	<ChevronRightIcon />
 </Button>

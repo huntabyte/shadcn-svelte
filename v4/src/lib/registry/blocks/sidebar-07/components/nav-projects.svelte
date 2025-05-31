@@ -6,7 +6,6 @@
 	import FolderIcon from "@lucide/svelte/icons/folder";
 	import ForwardIcon from "@lucide/svelte/icons/forward";
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
-	import type { Component } from "svelte";
 
 	let {
 		projects,
@@ -14,7 +13,9 @@
 		projects: {
 			name: string;
 			url: string;
-			icon: Component;
+			// This should be `Component` after @lucide/svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			icon: any;
 		}[];
 	} = $props();
 

@@ -11,6 +11,6 @@
 
 <RangeCalendarPrimitive.Grid
 	bind:ref
-	class={cn("w-full border-collapse space-x-1", className)}
+	class={cn("w-full border-collapse space-y-1", className)}
 	{...restProps}
 />

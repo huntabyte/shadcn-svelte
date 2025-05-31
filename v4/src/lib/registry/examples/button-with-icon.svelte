@@ -1,9 +1,9 @@
 <script lang="ts">
-	import MailIcon from "@lucide/svelte/icons/mail";
+	import GitBranchIcon from "@lucide/svelte/icons/git-branch";
 	import { Button } from "$lib/registry/ui/button/index.js";
 </script>
 
-<Button>
-	<MailIcon class="mr-2 size-4" />
+<Button variant="outline" size="sm">
+	<GitBranchIcon />
 	Login with Email
 </Button>

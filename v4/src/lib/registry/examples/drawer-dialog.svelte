@@ -6,8 +6,10 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 
-	let open = false;
+	let open = $state(false);
 	const isDesktop = new MediaQuery("(min-width: 768px)");
+
+	const id = $props.id();
 </script>
 
 {#if isDesktop.current}
@@ -22,12 +24,12 @@
 			</Dialog.Header>
 			<form class="grid items-start gap-4">
 				<div class="grid gap-2">
-					<Label for="email">Email</Label>
-					<Input type="email" id="email" value="shadcn@example.com" />
+					<Label for="email-{id}">Email</Label>
+					<Input type="email" id="email-{id}" value="shadcn@example.com" />
 				</div>
 				<div class="grid gap-2">
-					<Label for="username">Username</Label>
-					<Input id="username" value="@shadcn" />
+					<Label for="username-{id}">Username</Label>
+					<Input id="username-{id}" value="@shadcn" />
 				</div>
 				<Button type="submit">Save changes</Button>
 			</form>
@@ -45,12 +47,12 @@
 			</Drawer.Header>
 			<form class="grid items-start gap-4 px-4">
 				<div class="grid gap-2">
-					<Label for="email">Email</Label>
-					<Input type="email" id="email" value="shadcn@example.com" />
+					<Label for="email-{id}">Email</Label>
+					<Input type="email" id="email-{id}" value="shadcn@example.com" />
 				</div>
 				<div class="grid gap-2">
-					<Label for="username">Username</Label>
-					<Input id="username" value="@shadcn" />
+					<Label for="username-{id}">Username</Label>
+					<Input id="username-{id}" value="@shadcn" />
 				</div>
 				<Button type="submit">Save changes</Button>
 			</form>

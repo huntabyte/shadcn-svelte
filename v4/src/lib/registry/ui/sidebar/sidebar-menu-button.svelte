@@ -7,7 +7,7 @@
 			variant: {
 				default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
 				outline:
-					"bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+					"bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
 			},
 			size: {
 				default: "h-8 text-sm",
@@ -29,8 +29,8 @@
 
 <script lang="ts">
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { cn } from "$lib/utils.js";
-	import { mergeProps, type WithElementRef, type WithoutChildrenOrChild } from "bits-ui";
+	import { cn, type WithElementRef, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import { mergeProps } from "bits-ui";
 	import type { ComponentProps, Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { useSidebar } from "./context.svelte.js";
@@ -53,7 +53,6 @@
 		tooltipContent?: Snippet | string;
 		tooltipContentProps?: WithoutChildrenOrChild<ComponentProps<typeof Tooltip.Content>>;
 		child?: Snippet<[{ props: Record<string, unknown> }]>;
-		disabled?: boolean;
 	} = $props();
 
 	const sidebar = useSidebar();

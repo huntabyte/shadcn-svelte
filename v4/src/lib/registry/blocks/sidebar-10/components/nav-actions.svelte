@@ -96,7 +96,7 @@
 
 <div class="flex items-center gap-2 text-sm">
 	<div class="text-muted-foreground hidden font-medium md:inline-block">Edit Oct 08</div>
-	<Button variant="ghost" size="icon" class="h-7 w-7">
+	<Button variant="ghost" size="icon" class="size-7">
 		<StarIcon />
 	</Button>
 	<Popover.Root bind:open>
@@ -106,7 +106,7 @@
 					{...props}
 					variant="ghost"
 					size="icon"
-					class="data-[state=open]:bg-accent h-7 w-7"
+					class="data-[state=open]:bg-accent size-7"
 				>
 					<EllipsisIcon />
 				</Button>
@@ -121,7 +121,9 @@
 								<Sidebar.Menu>
 									{#each group as item, index (index)}
 										<Sidebar.MenuItem>
-											<Sidebar.MenuButton>
+											<Sidebar.MenuButton
+												class="hover:bg-accent hover:text-accent-foreground"
+											>
 												<item.icon /> <span>{item.label}</span>
 											</Sidebar.MenuButton>
 										</Sidebar.MenuItem>

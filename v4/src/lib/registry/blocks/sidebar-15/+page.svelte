@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SidebarLeft from "$lib/registry/blocks/sidebar-15/components/sidebar-left.svelte";
-	import SidebarRight from "$lib/registry/blocks/sidebar-15/components/sidebar-right.svelte";
+	import SidebarLeft from "./components/sidebar-left.svelte";
+	import SidebarRight from "./components/sidebar-right.svelte";
 	import * as Breadcrumb from "$lib/registry/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
@@ -12,7 +12,7 @@
 		<header class="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
 			<div class="flex flex-1 items-center gap-2 px-3">
 				<Sidebar.Trigger />
-				<Separator orientation="vertical" class="mr-2 h-4" />
+				<Separator orientation="vertical" class="mr-2 data-[orientation=vertical]:h-4" />
 				<Breadcrumb.Root>
 					<Breadcrumb.List>
 						<Breadcrumb.Item>

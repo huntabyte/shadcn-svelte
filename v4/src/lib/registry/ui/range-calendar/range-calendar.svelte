@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { RangeCalendar as RangeCalendarPrimitive, type WithoutChildrenOrChild } from "bits-ui";
+	import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import * as RangeCalendar from "./index.js";
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -18,7 +18,7 @@
 	bind:value
 	bind:placeholder
 	{weekdayFormat}
-	class={cn("flex flex-col gap-4 p-3", className)}
+	class={cn("p-3", className)}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}

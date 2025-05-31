@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import type { WithElementRef, WithoutChildren } from "bits-ui";
+	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getPayloadConfigFromPayload, useChart, type TooltipPayload } from "./chart-utils.js";
 	import { getTooltipContext, Tooltip as TooltipPrimitive } from "layerchart";
 	import type { Snippet } from "svelte";
-	import { format } from "@layerstack/utils";
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	function defaultFormatter(value: any, _payload: TooltipPayload[]) {
-		return format(value);
+		return `${value}`;
 	}
 
 	let {
@@ -88,7 +86,7 @@
 <TooltipPrimitive.Root variant="none">
 	<div
 		class={cn(
-			"border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
+			"border-border/50 bg-background grid min-w-[9rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
 			className
 		)}
 		{...restProps}
@@ -103,7 +101,7 @@
 				{@const indicatorColor = color || item.payload?.color || item.color}
 				<div
 					class={cn(
-						"[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5",
+						"[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:size-2.5",
 						indicator === "dot" && "items-center"
 					)}
 				>
@@ -122,9 +120,9 @@
 							<div
 								style="--color-bg: {indicatorColor}; --color-border: {indicatorColor};"
 								class={cn(
-									"shrink-0 rounded-[2px] border-[var(--color-border)] bg-[var(--color-bg)]",
+									"border-(--color-border) bg-(--color-bg) shrink-0 rounded-[2px]",
 									{
-										"h-2.5 w-2.5": indicator === "dot",
+										"size-2.5": indicator === "dot",
 										"h-full w-1": indicator === "line",
 										"w-0 border-[1.5px] border-dashed bg-transparent":
 											indicator === "dashed",
@@ -135,7 +133,7 @@
 						{/if}
 						<div
 							class={cn(
-								"flex flex-1 justify-between leading-none",
+								"flex flex-1 shrink-0 justify-between leading-none",
 								nestLabel ? "items-end" : "items-center"
 							)}
 						>

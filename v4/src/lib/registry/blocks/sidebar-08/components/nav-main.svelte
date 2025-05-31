@@ -2,7 +2,6 @@
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import type { Component } from "svelte";
 
 	let {
 		items,
@@ -10,7 +9,9 @@
 		items: {
 			title: string;
 			url: string;
-			icon: Component;
+			// This should be `Component` after @lucide/svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			icon: any;
 			isActive?: boolean;
 			items?: {
 				title: string;
@@ -27,10 +28,7 @@
 			<Collapsible.Root open={mainItem.isActive}>
 				{#snippet child({ props })}
 					<Sidebar.MenuItem {...props}>
-						<Sidebar.MenuButton>
-							{#snippet tooltipContent()}
-								{mainItem.title}
-							{/snippet}
+						<Sidebar.MenuButton tooltipContent={mainItem.title}>
 							{#snippet child({ props })}
 								<a href={mainItem.url} {...props}>
 									<mainItem.icon />

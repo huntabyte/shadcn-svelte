@@ -29,7 +29,7 @@
 						>
 							<activeTeam.logo class="size-3" />
 						</div>
-						<span class="truncate font-semibold">{activeTeam.name}</span>
+						<span class="truncate font-medium">{activeTeam.name}</span>
 						<ChevronDownIcon class="opacity-50" />
 					</Sidebar.MenuButton>
 				{/snippet}
@@ -43,7 +43,7 @@
 				<DropdownMenu.Label class="text-muted-foreground text-xs">Teams</DropdownMenu.Label>
 				{#each teams as team, index (team.name)}
 					<DropdownMenu.Item onSelect={() => (activeTeam = team)} class="gap-2 p-2">
-						<div class="flex size-6 items-center justify-center rounded-sm border">
+						<div class="rounded-xs flex size-6 items-center justify-center border">
 							<team.logo class="size-4 shrink-0" />
 						</div>
 						{team.name}

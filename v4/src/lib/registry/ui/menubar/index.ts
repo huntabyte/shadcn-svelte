@@ -10,6 +10,8 @@ import Shortcut from "./menubar-shortcut.svelte";
 import SubContent from "./menubar-sub-content.svelte";
 import SubTrigger from "./menubar-sub-trigger.svelte";
 import Trigger from "./menubar-trigger.svelte";
+import Label from "./menubar-label.svelte";
+import GroupHeading from "./menubar-group-heading.svelte";
 
 const Menu = MenubarPrimitive.Menu;
 const Sub = MenubarPrimitive.Sub;
@@ -30,6 +32,8 @@ export {
 	Group,
 	Sub,
 	RadioGroup,
+	Label,
+	GroupHeading,
 	//
 	Root as Menubar,
 	CheckboxItem as MenubarCheckboxItem,
@@ -45,4 +49,6 @@ export {
 	Group as MenubarGroup,
 	Sub as MenubarSub,
 	RadioGroup as MenubarRadioGroup,
+	Label as MenubarLabel,
+	GroupHeading as MenubarGroupHeading,
 };

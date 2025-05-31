@@ -1,7 +1,8 @@
 <script lang="ts" module>
 	// sample data
+
+	// This is sample data.
 	const data = {
-		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
 		navMain: [
 			{
 				title: "Getting Started",
@@ -115,7 +116,7 @@
 						url: "#",
 					},
 					{
-						title: "Svelte Compiler",
+						title: "Next.js Compiler",
 						url: "#",
 					},
 					{
@@ -123,7 +124,17 @@
 						url: "#",
 					},
 					{
-						title: "Rollup",
+						title: "Turbopack",
+						url: "#",
+					},
+				],
+			},
+			{
+				title: "Community",
+				url: "#",
+				items: [
+					{
+						title: "Contribution Guide",
 						url: "#",
 					},
 				],
@@ -133,7 +144,7 @@
 </script>
 
 <script lang="ts">
-	import SearchForm from "$lib/registry/blocks/sidebar-05/components/search-form.svelte";
+	import SearchForm from "./search-form.svelte";
 	import * as Collapsible from "$lib/registry/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
@@ -157,7 +168,7 @@
 								<GalleryVerticalEndIcon class="size-4" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
-								<span class="font-semibold">Documentation</span>
+								<span class="font-medium">Documentation</span>
 								<span class="">v1.0.0</span>
 							</div>
 						</a>
@@ -170,13 +181,13 @@
 	<Sidebar.Content>
 		<Sidebar.Group>
 			<Sidebar.Menu>
-				{#each data.navMain as mainItem, index (mainItem.title)}
+				{#each data.navMain as item, index (item.title)}
 					<Collapsible.Root open={index === 1} class="group/collapsible">
 						<Sidebar.MenuItem>
 							<Collapsible.Trigger>
 								{#snippet child({ props })}
 									<Sidebar.MenuButton {...props}>
-										{mainItem.title}
+										{item.title}
 										<PlusIcon
 											class="ml-auto group-data-[state=open]/collapsible:hidden"
 										/>
@@ -186,15 +197,15 @@
 									</Sidebar.MenuButton>
 								{/snippet}
 							</Collapsible.Trigger>
-							{#if mainItem.items?.length}
+							{#if item.items?.length}
 								<Collapsible.Content>
 									<Sidebar.MenuSub>
-										{#each mainItem.items as item (item.title)}
+										{#each item.items as subItem (subItem.title)}
 											<Sidebar.MenuSubItem>
-												<Sidebar.MenuSubButton isActive={item.isActive}>
+												<Sidebar.MenuSubButton isActive={subItem.isActive}>
 													{#snippet child({ props })}
-														<a href={item.url} {...props}
-															>{item.title}</a
+														<a href={subItem.url} {...props}
+															>{subItem.title}</a
 														>
 													{/snippet}
 												</Sidebar.MenuSubButton>

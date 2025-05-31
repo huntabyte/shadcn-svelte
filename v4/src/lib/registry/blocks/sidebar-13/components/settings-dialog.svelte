@@ -33,7 +33,7 @@
 		],
 	};
 
-	let open = $state(false);
+	let open = $state(true);
 </script>
 
 <Dialog.Root bind:open>
@@ -42,7 +42,10 @@
 			<Button size="sm" {...props}>Open Dialog</Button>
 		{/snippet}
 	</Dialog.Trigger>
-	<Dialog.Content class="overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
+	<Dialog.Content
+		class="overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]"
+		trapFocus={false}
+	>
 		<Dialog.Title class="sr-only">Settings</Dialog.Title>
 		<Dialog.Description class="sr-only">Customize your settings here.</Dialog.Description>
 		<Sidebar.Provider class="items-start">

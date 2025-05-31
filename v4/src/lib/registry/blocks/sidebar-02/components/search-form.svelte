@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import type { WithElementRef } from "bits-ui";
+	import type { WithElementRef } from "$lib/utils.js";
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import type { HTMLFormAttributes } from "svelte/elements";
 

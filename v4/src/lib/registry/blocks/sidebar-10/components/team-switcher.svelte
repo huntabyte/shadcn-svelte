@@ -3,14 +3,15 @@
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import type { Component } from "svelte";
 
 	let {
 		teams,
 	}: {
 		teams: {
 			name: string;
-			logo: Component;
+			// This should be `Component` after @lucide/svelte updates types
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			logo: any;
 			plan: string;
 		}[];
 	} = $props();
@@ -29,7 +30,7 @@
 						>
 							<activeTeam.logo class="size-3" />
 						</div>
-						<span class="truncate font-semibold">{activeTeam.name}</span>
+						<span class="truncate font-medium">{activeTeam.name}</span>
 						<ChevronDownIcon class="opacity-50" />
 					</Sidebar.MenuButton>
 				{/snippet}

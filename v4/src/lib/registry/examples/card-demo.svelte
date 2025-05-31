@@ -1,59 +1,42 @@
 <script lang="ts">
-	import BellRingIcon from "@lucide/svelte/icons/bell-ring";
-	import CheckIcon from "@lucide/svelte/icons/check";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
-	import { Switch } from "$lib/registry/ui/switch/index.js";
-
-	const notifications = [
-		{
-			title: "Your call has been confirmed.",
-			description: "1 hour ago",
-		},
-		{
-			title: "You have a new message!",
-			description: "1 hour ago",
-		},
-		{
-			title: "Your subscription is expiring soon!",
-			description: "2 hours ago",
-		},
-	];
 </script>
 
-<Card.Root class="w-[380px]">
+<Card.Root class="w-full max-w-sm">
 	<Card.Header>
-		<Card.Title>Notifications</Card.Title>
-		<Card.Description>You have 3 unread messages.</Card.Description>
+		<Card.Title>Login to your account</Card.Title>
+		<Card.Description>Enter your email below to login to your account</Card.Description>
+		<Card.Action>
+			<Button variant="link">Sign Up</Button>
+		</Card.Action>
 	</Card.Header>
-	<Card.Content class="grid gap-4">
-		<div class=" flex items-center space-x-4 rounded-md border p-4">
-			<BellRingIcon />
-			<div class="flex-1 space-y-1">
-				<p class="text-sm font-medium leading-none">Push Notifications</p>
-				<p class="text-muted-foreground text-sm">Send notifications to device.</p>
-			</div>
-			<Switch />
-		</div>
-		<div>
-			{#each notifications as notification, idx (idx)}
-				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-					<span class="flex size-2 translate-y-1 rounded-full bg-sky-500"></span>
-					<div class="space-y-1">
-						<p class="text-sm font-medium leading-none">
-							{notification.title}
-						</p>
-						<p class="text-muted-foreground text-sm">
-							{notification.description}
-						</p>
-					</div>
+	<Card.Content>
+		<form>
+			<div class="flex flex-col gap-6">
+				<div class="grid gap-2">
+					<Label for="email">Email</Label>
+					<Input id="email" type="email" placeholder="m@example.com" required />
 				</div>
-			{/each}
-		</div>
+				<div class="grid gap-2">
+					<div class="flex items-center">
+						<Label for="password">Password</Label>
+						<a
+							href="##"
+							class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+						>
+							Forgot your password?
+						</a>
+					</div>
+					<Input id="password" type="password" required />
+				</div>
+			</div>
+		</form>
 	</Card.Content>
-	<Card.Footer>
-		<Button class="w-full">
-			<CheckIcon class="mr-2 size-4" /> Mark all as read
-		</Button>
+	<Card.Footer class="flex-col gap-2">
+		<Button type="submit" class="w-full">Login</Button>
+		<Button variant="outline" class="w-full">Login with Google</Button>
 	</Card.Footer>
 </Card.Root>
