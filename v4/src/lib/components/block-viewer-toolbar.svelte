@@ -26,25 +26,24 @@
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 </script>
 
-<div class="flex w-full items-center gap-2 md:pr-[14px]">
+<div class="flex w-full items-center gap-2 pl-2 md:pr-[14px]">
 	<Tabs.Root bind:value={ctx.view} class="hidden lg:flex">
 		<Tabs.List
-			class="h-7 items-center rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)]"
+			class="grid h-8 grid-cols-2 items-center rounded-md p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
 		>
-			<Tabs.Trigger value="preview" class="h-[1.45rem] rounded-sm px-2 text-xs">
-				Preview
-			</Tabs.Trigger>
-			<Tabs.Trigger value="code" class="h-[1.45rem] rounded-sm px-2 text-xs">
-				Code
-			</Tabs.Trigger>
+			<Tabs.Trigger value="preview">Preview</Tabs.Trigger>
+			<Tabs.Trigger value="code">Code</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
 	<Separator orientation="vertical" class="mx-2 hidden !h-4 lg:flex" />
-	<a href="#{ctx.item.name}" class="text-sm font-medium underline-offset-2 hover:underline">
+	<a
+		href="#{ctx.item.name}"
+		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-left"
+	>
 		{ctx.item.description}
 	</a>
 	<div class="ml-auto hidden items-center gap-2 md:flex">
-		<div class="hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
+		<div class="hidden h-8 items-center gap-1.5 rounded-md border p-1 shadow-none lg:flex">
 			<ToggleGroup.Root
 				type="single"
 				value="100"
@@ -53,57 +52,44 @@
 						ctx.resizablePaneRef.resize(parseInt(value));
 					}
 				}}
+				class="gap-1 *:data-[slot=toggle-group-item]:!size-6 *:data-[slot=toggle-group-item]:!rounded-sm"
 			>
-				<ToggleGroup.Item
-					value="100"
-					class="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
-					title="Desktop"
-				>
-					<MonitorIcon class="size-3.5" />
+				<ToggleGroup.Item value="100" title="Desktop">
+					<MonitorIcon />
 				</ToggleGroup.Item>
-				<ToggleGroup.Item
-					value="60"
-					class="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
-					title="Tablet"
-				>
-					<TabletIcon class="size-3.5" />
+				<ToggleGroup.Item value="60" title="Tablet">
+					<TabletIcon />
 				</ToggleGroup.Item>
-				<ToggleGroup.Item
-					value="30"
-					class="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
-					title="Mobile"
-				>
-					<SmartphoneIcon class="size-3.5" />
+				<ToggleGroup.Item value="30" title="Mobile">
+					<SmartphoneIcon />
 				</ToggleGroup.Item>
-				<Separator orientation="vertical" class="!h-4 w-px" />
+				<Separator orientation="vertical" class="!h-4" />
 				<Button
 					size="icon"
 					variant="ghost"
-					class="h-[22px] w-[22px] rounded-sm p-0"
+					class="size-6 rounded-sm p-0"
 					title="Open in New Tab"
 					href="/view/{ctx.item.name}"
 					target="_blank"
 				>
 					<span class="sr-only">Open in New Tab</span>
-					<FullscreenIcon class="size-3.5" />
+					<FullscreenIcon />
 				</Button>
 			</ToggleGroup.Root>
 		</div>
 		<Separator orientation="vertical" class="mx-1 hidden !h-4 lg:flex" />
-		<div class="flex h-7 items-center gap-1 rounded-md border p-[2px]">
-			<Button
-				variant="ghost"
-				class="hidden h-[22px] w-auto gap-1 rounded-sm px-2 text-xs md:flex lg:w-auto"
-				size="sm"
-				onclick={() => clipboard.copy(command)}
-			>
-				{#if clipboard.copied}
-					<CheckIcon class="size-3" />
-				{:else}
-					<TerminalIcon class="size-3" />
-				{/if}
-				<span class="hidden lg:inline">{command}</span>
-			</Button>
-		</div>
+		<Button
+			variant="ghost"
+			class="hidden w-fit gap-1 px-2 shadow-none md:flex"
+			size="sm"
+			onclick={() => clipboard.copy(command)}
+		>
+			{#if clipboard.copied}
+				<CheckIcon />
+			{:else}
+				<TerminalIcon />
+			{/if}
+			<span class="hidden lg:inline">{command}</span>
+		</Button>
 	</div>
 </div>

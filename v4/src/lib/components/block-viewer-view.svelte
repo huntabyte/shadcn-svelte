@@ -5,12 +5,12 @@
 	const ctx = BlockViewerContext.get();
 </script>
 
-<div class="md:h-(--height) group-data-[view=code]/block-view-wrapper:hidden">
+<div class="group-data-[view=code]/block-view-wrapper:hidden md:h-[calc(var(--height)+10px)]">
 	<div class="grid w-full gap-4">
 		<Resizable.PaneGroup direction="horizontal" class="relative z-10">
 			<Resizable.Pane
 				bind:this={ctx.resizablePaneRef}
-				class="bg-background relative aspect-[4/2.5] rounded-xl border md:aspect-auto"
+				class="bg-background relative aspect-[4/2.5] overflow-hidden rounded-lg border md:aspect-auto md:rounded-xl"
 				defaultSize={100}
 				minSize={30}
 			>
@@ -34,7 +34,7 @@
 					title={ctx.item.name}
 					src="/view/{ctx.item.name}"
 					height={930}
-					class="bg-background relative z-20 hidden w-full md:block"
+					class="bg-background no-scrollbar relative z-20 hidden w-full md:block"
 				></iframe>
 			</Resizable.Pane>
 			<Resizable.Handle
