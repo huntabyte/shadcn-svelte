@@ -448,6 +448,18 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(svelte@5.33.3)
     devDependencies:
+      '@dnd-kit-svelte/core':
+        specifier: ^0.0.8
+        version: 0.0.8(svelte@5.33.3)
+      '@dnd-kit-svelte/modifiers':
+        specifier: ^0.0.8
+        version: 0.0.8(svelte@5.33.3)
+      '@dnd-kit-svelte/sortable':
+        specifier: ^0.0.8
+        version: 0.0.8(svelte@5.33.3)
+      '@dnd-kit-svelte/utilities':
+        specifier: ^0.0.8
+        version: 0.0.8(svelte@5.33.3)
       '@layerstack/utils':
         specifier: ^1.0.0
         version: 1.0.0

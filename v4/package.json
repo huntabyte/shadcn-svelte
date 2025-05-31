@@ -18,6 +18,10 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@dnd-kit-svelte/core": "^0.0.8",
+		"@dnd-kit-svelte/modifiers": "^0.0.8",
+		"@dnd-kit-svelte/sortable": "^0.0.8",
+		"@dnd-kit-svelte/utilities": "^0.0.8",
 		"@layerstack/utils": "^1.0.0",
 		"@lucide/svelte": "^0.482.0",
 		"@shadcn-svelte/registry": "workspace:*",
