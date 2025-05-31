@@ -38,30 +38,27 @@
 </script>
 
 <Card.Root>
-	<Card.Header class="pb-3">
+	<Card.Header>
 		<Card.Title>Share this document</Card.Title>
 		<Card.Description>Anyone with the link can view this document.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<div class="flex space-x-2">
+		<div class="flex items-center gap-2">
 			<Label for="link" class="sr-only">Link</Label>
-			<Input id="link" value="http://example.com/link/to/document" readonly />
-			<Button class="shrink-0">Copy Link</Button>
+			<Input id="link" value="http://example.com/link/to/document" readonly class="h-8" />
+			<Button class="shadow-none">Copy Link</Button>
 		</div>
 		<Separator class="my-4" />
-		<div class="space-y-4">
+		<div class="flex flex-col gap-4">
 			<div class="text-sm font-medium">People with access</div>
 			<div class="grid gap-6">
 				{#each people as person (person.email)}
-					<div class="flex items-center justify-between space-x-4">
-						<div class="flex items-center space-x-4">
+					<div class="flex items-center justify-between gap-4">
+						<div class="flex items-center gap-4">
 							<Avatar.Root>
 								<Avatar.Image src="/avatars/03.png" alt="Image" />
 								<Avatar.Fallback>
-									{person.name
-										.split(" ")
-										.map((n) => n[0])
-										.join("")}
+									{person.name.charAt(0)}
 								</Avatar.Fallback>
 							</Avatar.Root>
 							<div>
@@ -70,11 +67,11 @@
 							</div>
 						</div>
 						<Select.Root type="single" bind:value={person.permission}>
-							<Select.Trigger class="ml-auto w-[110px]" aria-label="Edit">
+							<Select.Trigger class="ml-auto pr-2" size="sm" aria-label="Edit">
 								{permissions.find((p) => p.value === person.permission)?.label ??
 									"Select"}
 							</Select.Trigger>
-							<Select.Content>
+							<Select.Content align="end">
 								{#each permissions as permission (permission.value)}
 									<Select.Item value={permission.value}
 										>{permission.label}</Select.Item

@@ -9,13 +9,11 @@
 
 <script lang="ts">
 	import ArrowUpDownIcon from "@lucide/svelte/icons/arrow-up-down";
-	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { Input } from "$lib/registry/ui/input/index.js";
 	import * as Table from "$lib/registry/ui/table/index.js";
 	import {
 		getCoreRowModel,
@@ -60,6 +58,18 @@
 			amount: 721,
 			status: "failed",
 			email: "carmella@example.com",
+		},
+		{
+			id: "k9f2m3n4",
+			amount: 450,
+			status: "pending",
+			email: "jason78@example.com",
+		},
+		{
+			id: "p5q6r7s8",
+			amount: 1280,
+			status: "success",
+			email: "sarah23@example.com",
 		},
 	];
 
@@ -212,7 +222,7 @@
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
-				<Button variant="ghost" class="h-8 w-8 p-0" {...props}>
+				<Button variant="ghost" class="size-8 p-0" {...props}>
 					<span class="sr-only">Open menu</span>
 					<EllipsisIcon />
 				</Button>
@@ -241,46 +251,21 @@
 	<Card.Header>
 		<Card.Title class="text-xl">Payments</Card.Title>
 		<Card.Description>Manage your payments.</Card.Description>
+		<Card.Action>
+			<Button variant="secondary" size="sm" class="shadow-none">Add Payment</Button>
+		</Card.Action>
 	</Card.Header>
-	<Card.Content>
-		<div class="mb-4 flex items-center gap-4">
-			<Input
-				placeholder="Filter emails..."
-				value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-				oninput={(event) =>
-					table.getColumn("email")?.setFilterValue(event.currentTarget.value)}
-				class="max-w-sm"
-			/>
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger>
-					{#snippet child({ props })}
-						<Button variant="outline" class="ml-auto" {...props}>
-							Columns <ChevronDownIcon />
-						</Button>
-					{/snippet}
-				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="end">
-					{#each table
-						.getAllColumns()
-						.filter((column) => column.getCanHide()) as column (column.id)}
-						<DropdownMenu.CheckboxItem
-							class="capitalize"
-							checked={column.getIsVisible()}
-							onCheckedChange={(value) => column.toggleVisibility(!!value)}
-						>
-							{column.id}
-						</DropdownMenu.CheckboxItem>
-					{/each}
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
-		</div>
+	<Card.Content class="flex flex-col gap-4">
 		<div class="rounded-md border">
 			<Table.Root>
 				<Table.Header>
 					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 						<Table.Row>
 							{#each headerGroup.headers as header (header.id)}
-								<Table.Head class="[&:has([role=checkbox])]:pl-3">
+								<Table.Head
+									class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:pl-3"
+									data-name={header.id}
+								>
 									{#if !header.isPlaceholder}
 										<FlexRender
 											context={header.getContext()}
@@ -297,7 +282,10 @@
 						{#each table.getRowModel().rows as row (row.id)}
 							<Table.Row data-state={row.getIsSelected() && "selected"}>
 								{#each row.getVisibleCells() as cell (cell.id)}
-									<Table.Cell class="[&:has([role=checkbox])]:pl-3">
+									<Table.Cell
+										class="data-[name=actions]:w-10 data-[name=amount]:w-24 data-[name=select]:w-10 data-[name=status]:w-24 [&:has([role=checkbox])]:pl-3"
+										data-name={cell.column.id}
+									>
 										<FlexRender
 											context={cell.getContext()}
 											content={cell.column.columnDef.cell}
@@ -316,12 +304,12 @@
 				</Table.Body>
 			</Table.Root>
 		</div>
-		<div class="flex items-center justify-end space-x-2 pt-4">
+		<div class="flex items-center justify-end gap-2">
 			<div class="text-muted-foreground flex-1 text-sm">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>
-			<div class="space-x-2">
+			<div class="flex gap-2">
 				<Button
 					variant="outline"
 					size="sm"

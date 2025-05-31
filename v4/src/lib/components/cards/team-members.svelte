@@ -26,6 +26,25 @@
 			avatar: "/avatars/03.png",
 		},
 	]);
+
+	const roles = [
+		{
+			name: "Viewer",
+			description: "Can view and comment.",
+		},
+		{
+			name: "Developer",
+			description: "Can view, comment and edit.",
+		},
+		{
+			name: "Billing",
+			description: "Can view, comment and manage billing.",
+		},
+		{
+			name: "Owner",
+			description: "Admin-level access to all resources.",
+		},
+	];
 </script>
 
 <Card.Root>
@@ -35,9 +54,9 @@
 	</Card.Header>
 	<Card.Content class="grid gap-6">
 		{#each members as member (member.name)}
-			<div class="flex items-center justify-between space-x-4">
-				<div class="flex items-center space-x-4">
-					<Avatar.Root class="size-8">
+			<div class="flex items-center justify-between gap-4">
+				<div class="flex items-center gap-4">
+					<Avatar.Root class="border">
 						<Avatar.Image src={member.avatar} alt="Image" />
 						<Avatar.Fallback>
 							{member.name
@@ -46,60 +65,38 @@
 								.join("")}
 						</Avatar.Fallback>
 					</Avatar.Root>
-					<div>
+					<div class="flex flex-col gap-0.5">
 						<p class="text-sm font-medium leading-none">{member.name}</p>
-						<p class="text-muted-foreground text-sm">{member.email}</p>
+						<p class="text-muted-foreground text-xs">{member.email}</p>
 					</div>
 				</div>
 				<Popover.Root>
 					<Popover.Trigger
-						class={buttonVariants({ variant: "outline", size: "sm", class: "ml-auto" })}
+						class={buttonVariants({
+							variant: "outline",
+							size: "sm",
+							class: "ml-auto shadow-none",
+						})}
 					>
 						{member.role}
-						<ChevronDownIcon class="text-muted-foreground ml-2 size-4" />
+						<ChevronDownIcon />
 					</Popover.Trigger>
 					<Popover.Content class="p-0" align="end">
 						<Command.Root>
-							<Command.Input placeholder="Select new role..." />
+							<Command.Input placeholder="Select role..." />
 							<Command.List>
 								<Command.Empty>No roles found.</Command.Empty>
 								<Command.Group>
-									<Command.Item
-										class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
-										onSelect={() => (member.role = "Viewer")}
-									>
-										<p>Viewer</p>
-										<p class="text-muted-foreground text-sm">
-											Can view and comment.
-										</p>
-									</Command.Item>
-									<Command.Item
-										class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
-										onSelect={() => (member.role = "Developer")}
-									>
-										<p>Developer</p>
-										<p class="text-muted-foreground text-sm">
-											Can view, comment and edit.
-										</p>
-									</Command.Item>
-									<Command.Item
-										class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
-										onSelect={() => (member.role = "Billing")}
-									>
-										<p>Billing</p>
-										<p class="text-muted-foreground text-sm">
-											Can view, comment and manage billing.
-										</p>
-									</Command.Item>
-									<Command.Item
-										class="teamaspace-y-1 flex flex-col items-start px-4 py-2"
-										onSelect={() => (member.role = "Owner")}
-									>
-										<p>Owner</p>
-										<p class="text-muted-foreground text-sm">
-											Admin-level access to all resources.
-										</p>
-									</Command.Item>
+									{#each roles as role (role.name)}
+										<Command.Item onSelect={() => (member.role = role.name)}>
+											<div class="flex flex-col">
+												<p class="text-sm font-medium">{role.name}</p>
+												<p class="text-muted-foreground">
+													{role.description}
+												</p>
+											</div>
+										</Command.Item>
+									{/each}
 								</Command.Group>
 							</Command.List>
 						</Command.Root>

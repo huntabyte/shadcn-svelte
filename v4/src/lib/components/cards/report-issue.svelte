@@ -62,9 +62,9 @@
 		<Card.Title>Report an issue</Card.Title>
 		<Card.Description>What area are you having problems with?</Card.Description>
 	</Card.Header>
-	<Card.Content class="grid gap-6">
+	<Card.Content class="flex flex-col gap-6">
 		<div class="grid gap-4 sm:grid-cols-2">
-			<div class="grid gap-2">
+			<div class="flex flex-col gap-3">
 				<Label for="area-{id}">Area</Label>
 				<Select.Root type="single" bind:value={area}>
 					<Select.Trigger id="area-{id}" aria-label="Area" class="w-full">
@@ -77,15 +77,17 @@
 					</Select.Content>
 				</Select.Root>
 			</div>
-			<div class="grid gap-2">
+			<div class="flex flex-col gap-3">
 				<Label for="level-{id}">Security Level</Label>
 				<Select.Root type="single" bind:value={level}>
 					<Select.Trigger
 						id="level-{id}"
-						class="w-full truncate text-left"
+						class="w-full [&_span]:!block [&_span]:truncate"
 						aria-label="Security Level"
 					>
-						{levelLabel}
+						<span>
+							{levelLabel}
+						</span>
 					</Select.Trigger>
 					<Select.Content>
 						{#each levels as level (level.value)}
@@ -95,19 +97,20 @@
 				</Select.Root>
 			</div>
 		</div>
-		<div class="grid gap-2">
+		<div class="flex flex-col gap-3">
 			<Label for="subject-{id}">Subject</Label>
 			<Input id="subject-{id}" placeholder="I need help with..." />
 		</div>
-		<div class="grid gap-2">
+		<div class="flex flex-col gap-3">
 			<Label for="description-{id}">Description</Label>
 			<Textarea
 				id="description-{id}"
 				placeholder="Please include all information relevant to your issue."
+				class="min-h-28"
 			/>
 		</div>
 	</Card.Content>
-	<Card.Footer class="justify-between space-x-2">
+	<Card.Footer class="justify-end gap-2">
 		<Button variant="ghost" size="sm">Cancel</Button>
 		<Button size="sm">Submit</Button>
 	</Card.Footer>
