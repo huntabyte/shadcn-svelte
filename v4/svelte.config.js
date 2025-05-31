@@ -93,7 +93,7 @@ function componentPreviews() {
 				const identifier = camelize(name);
 				let importStatement = "";
 				if (name.startsWith("chart") && !name.includes("demo")) {
-					importStatement = `import ${identifier} from "$lib/registry/charts/${name}.svelte";`;
+					importStatement = `import ${identifier} from "$lib/registry/blocks/${name}.svelte";`;
 				} else if (name.includes("sidebar") || name.includes("Sidebar")) {
 					continue;
 				} else {

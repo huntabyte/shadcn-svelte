@@ -2,7 +2,7 @@
 	import * as Accordion from "$lib/registry/ui/accordion/index.js";
 </script>
 
-<Accordion.Root type="single" class="w-full sm:max-w-[70%]">
+<Accordion.Root type="single" class="w-full sm:max-w-[70%]" value="item-1">
 	<Accordion.Item value="item-1">
 		<Accordion.Trigger>Product Information</Accordion.Trigger>
 		<Accordion.Content class="flex flex-col gap-4 text-balance">

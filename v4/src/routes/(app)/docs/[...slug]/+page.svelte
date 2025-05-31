@@ -28,13 +28,13 @@
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-col gap-2">
-					<div class="flex items-center justify-between">
+					<div class="flex items-start justify-between">
 						<h1
 							class="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl"
 						>
 							{doc.title}
 						</h1>
-						<div class="flex items-center gap-2">
+						<div class="flex items-center gap-2 pt-1.5">
 							{#if neighbors.previous}
 								<Button
 									variant="secondary"
