@@ -64,29 +64,7 @@ Copy and paste the component source files linked at the top of this page into yo
 
 ## Examples
 
-### With Text
-
-<ComponentPreview name="checkbox-with-text">
-
-<div></div>
-
-</ComponentPreview>
-
-### Disabled
-
-<ComponentPreview name="checkbox-disabled">
-
-<div></div>
-
-</ComponentPreview>
-
 ### Form
-
-<ComponentPreview name="checkbox-form-single">
-
-<div></div>
-
-</ComponentPreview>
 
 <ComponentPreview name="checkbox-form-multiple">
 

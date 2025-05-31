@@ -15,7 +15,7 @@ links:
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
-<ComponentPreview name="card-with-form">
+<ComponentPreview name="card-demo">
 
 <div></div>
 

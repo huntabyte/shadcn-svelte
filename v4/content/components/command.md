@@ -18,7 +18,7 @@ links:
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 </script>
 
-<ComponentPreview name="command-demo" align="start" >
+<ComponentPreview name="command-demo" align="start" class="[&_.preview>div]:max-w-[450px]">
 
 <div></div>
 
