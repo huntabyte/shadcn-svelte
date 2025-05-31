@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
+	import { LineChart, Points } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import GitCommitVerticalIcon from "@lucide/svelte/icons/git-commit-vertical";
 	import { scaleUtc } from "d3-scale";
-	import { curveStep } from "d3-shape";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -22,7 +24,7 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Line Chart - Step</Card.Title>
+		<Card.Title>Line Chart - Dots Custom</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -40,15 +42,37 @@
 					},
 				]}
 				props={{
-					spline: { curve: curveStep, motion: "tween", strokeWidth: 2 },
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
+					highlight: {
+						points: {
+							motion: "none",
+							r: 3,
+						},
 					},
-					highlight: { points: { r: 4 } },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
+				{/snippet}
+				{#snippet points({ visibleSeries, getPointsProps })}
+					{#each visibleSeries as s, i (i)}
+						<Points {...getPointsProps(s, i)}>
+							{#snippet children({ points })}
+								{#each points as p, i (i)}
+									{@const r = 24}
+									<GitCommitVerticalIcon
+										x={p.x - r / 2}
+										y={p.y - r / 2}
+										width={r}
+										height={r}
+										fill="var(--background)"
+										color="var(--color-desktop)"
+									/>
+								{/each}
+							{/snippet}
+						</Points>
+					{/each}
 				{/snippet}
 			</LineChart>
 		</Chart.Container>

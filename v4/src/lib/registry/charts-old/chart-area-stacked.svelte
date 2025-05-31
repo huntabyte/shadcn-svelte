@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { PeriodType } from "@layerstack/utils";
+	import { scaleUtc } from "d3-scale";
+	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import TrendingDownIcon from "@lucide/svelte/icons/trending-down";
-	import { curveNatural } from "d3-shape";
-	import { scaleUtc } from "d3-scale";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
@@ -17,33 +17,34 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "var(--chart-1)", icon: TrendingDownIcon },
-		mobile: { label: "Mobile", color: "var(--chart-2)", icon: TrendingUpIcon },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Area Chart - Icons</Card.Title>
+		<Card.Title>Area Chart - Stacked</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<AreaChart
-				legend
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
+				yPadding={[0, 25]}
+				axis="x"
 				series={[
 					{
 						key: "mobile",
 						label: "Mobile",
-						color: chartConfig.mobile.color,
+						color: "var(--color-mobile)",
 					},
 					{
 						key: "desktop",
 						label: "Desktop",
-						color: chartConfig.desktop.color,
+						color: "var(--color-desktop)",
 					},
 				]}
 				seriesLayout="stack"
@@ -54,14 +55,12 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
-					yAxis: { format: () => "" },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip
+						indicator="dot"
 						labelFormatter={(v: Date) => {
 							return v.toLocaleDateString("en-US", {
 								month: "long",

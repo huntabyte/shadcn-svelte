@@ -1,10 +1,11 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { scaleUtc } from "d3-scale";
-	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveNatural } from "d3-shape";
+	import { scaleUtc } from "d3-scale";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const chartData = [
 		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
@@ -23,27 +24,27 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Area Chart - Stacked</Card.Title>
+		<Card.Title>Area Chart - Legend</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<AreaChart
+				legend
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
 				yPadding={[0, 25]}
-				axis="x"
 				series={[
 					{
 						key: "mobile",
 						label: "Mobile",
-						color: "var(--color-mobile)",
+						color: chartConfig.mobile.color,
 					},
 					{
 						key: "desktop",
 						label: "Desktop",
-						color: "var(--color-desktop)",
+						color: chartConfig.desktop.color,
 					},
 				]}
 				seriesLayout="stack"
@@ -54,19 +55,18 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
+					xAxis: { format: PeriodType.Month },
+					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip
-						indicator="dot"
 						labelFormatter={(v: Date) => {
 							return v.toLocaleDateString("en-US", {
 								month: "long",
 							});
 						}}
+						indicator="line"
 					/>
 				{/snippet}
 			</AreaChart>

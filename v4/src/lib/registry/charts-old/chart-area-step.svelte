@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { LineChart } from "layerchart";
+	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveStep } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
-	import { curveNatural } from "d3-shape";
+	import ActivityIcon from "@lucide/svelte/icons/activity";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -16,23 +18,21 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		desktop: { label: "Desktop", color: "var(--chart-1)", icon: ActivityIcon },
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Line Chart - Dots</Card.Title>
+		<Card.Title>Area Chart - Step</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
-			<LineChart
-				points={{ r: 4 }}
+			<AreaChart
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
-				axis="x"
 				series={[
 					{
 						key: "desktop",
@@ -40,23 +40,22 @@
 						color: chartConfig.desktop.color,
 					},
 				]}
+				seriesLayout="stack"
 				props={{
-					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
-					highlight: {
-						points: {
-							motion: "none",
-							r: 6,
-						},
+					area: {
+						curve: curveStep,
+						"fill-opacity": 0.4,
+						line: { class: "stroke-1" },
+						motion: "tween",
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
+					xAxis: { format: PeriodType.Month },
+					yAxis: { format: () => "" },
 				}}
 			>
 				{#snippet tooltip()}
 					<Chart.Tooltip hideLabel />
 				{/snippet}
-			</LineChart>
+			</AreaChart>
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer>

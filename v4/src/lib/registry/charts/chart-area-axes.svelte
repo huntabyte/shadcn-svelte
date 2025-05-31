@@ -53,7 +53,9 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: { format: (v) => v.toLocaleDateString("en-US", { month: "short" }) },
+					xAxis: {
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+					},
 					yAxis: { ticks: [0, 300, 600] },
 				}}
 			>

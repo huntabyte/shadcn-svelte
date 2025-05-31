@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { AreaChart } from "layerchart";
+	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { curveLinear } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -22,14 +23,17 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Area Chart - Linear</Card.Title>
+		<Card.Title>Line Chart - Label</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
-			<AreaChart
+			<LineChart
+				points={{ r: 4 }}
+				labels={{ offset: 12 }}
 				data={chartData}
 				x="date"
+				axis="x"
 				xScale={scaleUtc()}
 				series={[
 					{
@@ -38,24 +42,28 @@
 						color: chartConfig.desktop.color,
 					},
 				]}
-				seriesLayout="stack"
 				props={{
-					area: {
-						curve: curveLinear,
-						"fill-opacity": 0.4,
-						line: { class: "stroke-1" },
-						motion: "tween",
+					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
+					highlight: {
+						points: {
+							motion: "none",
+							r: 6,
+						},
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
-					yAxis: { format: () => "" },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
+					<Chart.Tooltip
+						labelFormatter={(v: Date) => {
+							return v.toLocaleDateString("en-US", {
+								month: "long",
+							});
+						}}
+						indicator="line"
+					/>
 				{/snippet}
-			</AreaChart>
+			</LineChart>
 		</Chart.Container>
 	</Card.Content>
 	<Card.Footer>

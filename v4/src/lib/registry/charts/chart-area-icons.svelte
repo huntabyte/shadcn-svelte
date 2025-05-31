@@ -2,7 +2,6 @@
 	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import TrendingDownIcon from "@lucide/svelte/icons/trending-down";
-	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
@@ -55,7 +54,9 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: { format: PeriodType.Month },
+					xAxis: {
+						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
+					},
 					yAxis: { format: () => "" },
 				}}
 			>

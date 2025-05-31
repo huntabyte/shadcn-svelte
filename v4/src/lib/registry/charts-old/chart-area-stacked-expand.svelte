@@ -1,29 +1,31 @@
 <script lang="ts">
-	import * as Card from "$lib/registry/ui/card/index.js";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
-	import { scaleUtc } from "d3-scale";
-	import { curveNatural } from "d3-shape";
 	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveNatural } from "d3-shape";
+	import { scaleUtc } from "d3-scale";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const chartData = [
-		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
-		{ date: new Date("2024-02-01"), desktop: 305, mobile: 200 },
-		{ date: new Date("2024-03-01"), desktop: 237, mobile: 120 },
-		{ date: new Date("2024-04-01"), desktop: 73, mobile: 190 },
-		{ date: new Date("2024-05-01"), desktop: 209, mobile: 130 },
-		{ date: new Date("2024-06-01"), desktop: 214, mobile: 140 },
+		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80, other: 45 },
+		{ date: new Date("2024-02-01"), desktop: 305, mobile: 200, other: 100 },
+		{ date: new Date("2024-03-01"), desktop: 237, mobile: 120, other: 150 },
+		{ date: new Date("2024-04-01"), desktop: 73, mobile: 190, other: 50 },
+		{ date: new Date("2024-05-01"), desktop: 209, mobile: 130, other: 100 },
+		{ date: new Date("2024-06-01"), desktop: 214, mobile: 140, other: 160 },
 	];
 
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
 		mobile: { label: "Mobile", color: "var(--chart-2)" },
+		other: { label: "Other", color: "var(--chart-3)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Area Chart - Axes</Card.Title>
+		<Card.Title>Area Chart - Stacked Expanded</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -32,8 +34,15 @@
 				data={chartData}
 				x="date"
 				xScale={scaleUtc()}
-				yDomain={[0, 600]}
+				seriesLayout="stackExpand"
+				axis="x"
 				series={[
+					{
+						key: "other",
+						label: "Other",
+						color: chartConfig.other.color,
+						props: { opacity: 0.1 },
+					},
 					{
 						key: "mobile",
 						label: "Mobile",
@@ -45,7 +54,6 @@
 						color: chartConfig.desktop.color,
 					},
 				]}
-				seriesLayout="stack"
 				props={{
 					area: {
 						curve: curveNatural,
@@ -53,10 +61,7 @@
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
-					yAxis: { ticks: [0, 300, 600] },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}
@@ -66,7 +71,7 @@
 								month: "long",
 							});
 						}}
-						indicator="dot"
+						indicator="line"
 					/>
 				{/snippet}
 			</AreaChart>

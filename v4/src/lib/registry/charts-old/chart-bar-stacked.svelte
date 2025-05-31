@@ -1,22 +1,23 @@
 <script lang="ts">
-	import { scaleBand } from "d3-scale";
-	import { BarChart, type ChartContextValue } from "layerchart";
-	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
+	import * as Chart from "$lib/registry/ui/chart/index.js";
+	import { scaleBand } from "d3-scale";
+	import { BarChart, Highlight, type ChartContextValue } from "layerchart";
+	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
-		{ month: "January", desktop: 186 },
-		{ month: "February", desktop: 305 },
-		{ month: "March", desktop: 237 },
-		{ month: "April", desktop: 73 },
-		{ month: "May", desktop: 209 },
-		{ month: "June", desktop: 214 },
+		{ month: "January", desktop: 186, mobile: 80 },
+		{ month: "February", desktop: 305, mobile: 200 },
+		{ month: "March", desktop: 237, mobile: 120 },
+		{ month: "April", desktop: 73, mobile: 190 },
+		{ month: "May", desktop: 209, mobile: 130 },
+		{ month: "June", desktop: 214, mobile: 140 },
 	];
 
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
+		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 
 	let context = $state<ChartContextValue>();
@@ -24,38 +25,53 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Bar Chart - Label</Card.Title>
+		<Card.Title>Bar Chart - Stacked + Legend</Card.Title>
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Chart.Container config={chartConfig}>
 			<BarChart
-				labels={{ offset: 12 }}
+				bind:context
 				data={chartData}
 				xScale={scaleBand().padding(0.25)}
 				x="month"
-				series={[{ key: "desktop", label: "Desktop", color: chartConfig.desktop.color }]}
 				axis="x"
 				rule={false}
+				series={[
+					{
+						key: "desktop",
+						label: chartConfig.desktop.label,
+						color: chartConfig.desktop.color,
+						props: { rounded: "bottom" },
+					},
+					{
+						key: "mobile",
+						label: chartConfig.mobile.label,
+						color: chartConfig.mobile.color,
+					},
+				]}
+				seriesLayout="stack"
 				props={{
 					bars: {
 						stroke: "none",
-						radius: 8,
-						rounded: "all",
-						// use the height of the chart to animate the bars
-						initialY: (context?.height ?? 0) + 180,
+						initialY: context?.height,
 						initialHeight: 0,
 						motion: {
 							y: { type: "tween", duration: 500, easing: cubicInOut },
 							height: { type: "tween", duration: 500, easing: cubicInOut },
 						},
 					},
-					highlight: { area: { fill: "none" } },
+					highlight: { area: false },
 					xAxis: { format: (d) => d.slice(0, 3) },
 				}}
+				legend
 			>
+				{#snippet belowMarks()}
+					<Highlight area={{ class: "fill-muted" }} />
+				{/snippet}
+
 				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
+					<Chart.Tooltip />
 				{/snippet}
 			</BarChart>
 		</Chart.Container>

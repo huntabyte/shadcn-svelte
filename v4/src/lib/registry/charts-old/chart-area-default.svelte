@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AreaChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
-	import { curveStep } from "d3-shape";
+	import { PeriodType } from "@layerstack/utils";
+	import { curveNatural } from "d3-shape";
 	import { scaleUtc } from "d3-scale";
-	import ActivityIcon from "@lucide/svelte/icons/activity";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
@@ -17,13 +17,13 @@
 	];
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "var(--chart-1)", icon: ActivityIcon },
+		desktop: { label: "Desktop", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Area Chart - Step</Card.Title>
+		<Card.Title>Area Chart</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -39,22 +39,23 @@
 						color: chartConfig.desktop.color,
 					},
 				]}
-				seriesLayout="stack"
+				axis="x"
 				props={{
 					area: {
-						curve: curveStep,
+						curve: curveNatural,
 						"fill-opacity": 0.4,
 						line: { class: "stroke-1" },
 						motion: "tween",
 					},
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
-					yAxis: { format: () => "" },
+					xAxis: { format: PeriodType.Month },
 				}}
 			>
 				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
+					<Chart.Tooltip
+						labelFormatter={(v: Date) =>
+							v.toLocaleDateString("en-US", { month: "long" })}
+						indicator="line"
+					/>
 				{/snippet}
 			</AreaChart>
 		</Chart.Container>

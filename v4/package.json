@@ -36,7 +36,7 @@
 		"@types/mdast": "^4.0.4",
 		"@unovis/svelte": "1.4.3",
 		"acorn": "^8.13.0",
-		"bits-ui": "^2.1.0",
+		"bits-ui": "^2.4.0",
 		"clsx": "^2.1.1",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",
@@ -45,7 +45,7 @@
 		"estree-walker": "^3.0.3",
 		"formsnap": "^2.0.1",
 		"hast-util-to-html": "^9.0.1",
-		"layerchart": "https://pkg.pr.new/techniq/layerchart/layerchart@5ca5943",
+		"layerchart": "2.0.0-next.14",
 		"lodash.template": "^4.5.0",
 		"magic-string": "^0.30.12",
 		"mdsx": "^0.0.7",
@@ -78,7 +78,7 @@
 		"zod": "^3.25.17"
 	},
 	"dependencies": {
-		"@internationalized/date": "^3.5.6",
-		"svelte-sonner": "^1.0.1"
+		"@internationalized/date": "^3.8.1",
+		"svelte-sonner": "^1.0.3"
 	}
 }

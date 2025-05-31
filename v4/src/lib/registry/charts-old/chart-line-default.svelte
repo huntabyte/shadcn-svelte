@@ -2,28 +2,28 @@
 	import { LineChart } from "layerchart";
 	import TrendingUpIcon from "@lucide/svelte/icons/trending-up";
 	import { scaleUtc } from "d3-scale";
+	import { PeriodType } from "@layerstack/utils";
 	import { curveNatural } from "d3-shape";
 	import * as Chart from "$lib/registry/ui/chart/index.js";
 	import * as Card from "$lib/registry/ui/card/index.js";
 
 	const chartData = [
-		{ date: new Date("2024-01-01"), desktop: 186, mobile: 80 },
-		{ date: new Date("2024-02-01"), desktop: 305, mobile: 200 },
-		{ date: new Date("2024-03-01"), desktop: 237, mobile: 120 },
-		{ date: new Date("2024-04-01"), desktop: 73, mobile: 190 },
-		{ date: new Date("2024-05-01"), desktop: 209, mobile: 130 },
-		{ date: new Date("2024-06-01"), desktop: 214, mobile: 140 },
+		{ date: new Date("2024-01-01"), desktop: 186 },
+		{ date: new Date("2024-02-01"), desktop: 305 },
+		{ date: new Date("2024-03-01"), desktop: 237 },
+		{ date: new Date("2024-04-01"), desktop: 73 },
+		{ date: new Date("2024-05-01"), desktop: 209 },
+		{ date: new Date("2024-06-01"), desktop: 214 },
 	];
 
 	const chartConfig = {
 		desktop: { label: "Desktop", color: "var(--chart-1)" },
-		mobile: { label: "Mobile", color: "var(--chart-2)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Line Chart - Multiple</Card.Title>
+		<Card.Title>Line Chart</Card.Title>
 		<Card.Description>Showing total visitors for the last 6 months</Card.Description>
 	</Card.Header>
 	<Card.Content>
@@ -39,17 +39,10 @@
 						label: "Desktop",
 						color: chartConfig.desktop.color,
 					},
-					{
-						key: "mobile",
-						label: "Mobile",
-						color: chartConfig.mobile.color,
-					},
 				]}
 				props={{
 					spline: { curve: curveNatural, motion: "tween", strokeWidth: 2 },
-					xAxis: {
-						format: (v: Date) => v.toLocaleDateString("en-US", { month: "short" }),
-					},
+					xAxis: { format: PeriodType.Month },
 					highlight: { points: { r: 4 } },
 				}}
 			>
