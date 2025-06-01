@@ -8,7 +8,7 @@
 <a
 	{href}
 	class={cn(
-		"bg-card text-card-foreground hover:bg-border flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
+		"bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10",
 		className
 	)}
 	{...restProps}
