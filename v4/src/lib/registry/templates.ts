@@ -31,14 +31,19 @@ export const BASE_STYLES_WITH_VARIABLES = `@import "tailwindcss";
   --border: <%- colors.light["border"] %>;
   --input: <%- colors.light["input"] %>;
   --ring: <%- colors.light["ring"] %>;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: <%- colors.light["chart-1"] %>;
+  --chart-2: <%- colors.light["chart-2"] %>;
+  --chart-3: <%- colors.light["chart-3"] %>;
+  --chart-4: <%- colors.light["chart-4"] %>;
+  --chart-5: <%- colors.light["chart-5"] %>;
+  --sidebar: <%- colors.light["sidebar"] %>;
+  --sidebar-foreground: <%- colors.light["sidebar-foreground"] %>;
+  --sidebar-primary: <%- colors.light["sidebar-primary"] %>;
+  --sidebar-primary-foreground: <%- colors.light["sidebar-primary-foreground"] %>;
+  --sidebar-accent: <%- colors.light["sidebar-accent"] %>;
+  --sidebar-accent-foreground: <%- colors.light["sidebar-accent-foreground"] %>;
+  --sidebar-border: <%- colors.light["sidebar-border"] %>;
+  --sidebar-ring: <%- colors.light["sidebar-ring"] %>;
 }
 
 .dark {
@@ -60,14 +65,19 @@ export const BASE_STYLES_WITH_VARIABLES = `@import "tailwindcss";
   --border: <%- colors.dark["border"] %>;
   --input: <%- colors.dark["input"] %>;
   --ring: <%- colors.dark["ring"] %>;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: <%- colors.dark["chart-1"] %>;
+  --chart-2: <%- colors.dark["chart-2"] %>;
+  --chart-3: <%- colors.dark["chart-3"] %>;
+  --chart-4: <%- colors.dark["chart-4"] %>;
+  --chart-5: <%- colors.dark["chart-5"] %>;
+  --sidebar: <%- colors.dark["sidebar"] %>;
+  --sidebar-foreground: <%- colors.dark["sidebar-foreground"] %>;
+  --sidebar-primary: <%- colors.dark["sidebar-primary"] %>;
+  --sidebar-primary-foreground: <%- colors.dark["sidebar-primary-foreground"] %>;
+  --sidebar-accent: <%- colors.dark["sidebar-accent"] %>;
+  --sidebar-accent-foreground: <%- colors.dark["sidebar-accent-foreground"] %>;
+  --sidebar-border: <%- colors.dark["sidebar-border"] %>;
+  --sidebar-ring: <%- colors.dark["sidebar-ring"] %>;
 }
 
 @theme inline {
@@ -118,6 +128,7 @@ export const BASE_STYLES_WITH_VARIABLES = `@import "tailwindcss";
 }`;
 
 export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
+  --radius: 0.5rem;
   --background: <%- colors.light["background"] %>;
   --foreground: <%- colors.light["foreground"] %>;
   --muted: <%- colors.light["muted"] %>;
@@ -135,17 +146,20 @@ export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
   --accent: <%- colors.light["accent"] %>;
   --accent-foreground: <%- colors.light["accent-foreground"] %>;
   --destructive: <%- colors.light["destructive"] %>;
-  --destructive-foreground: <%- colors.light["destructive-foreground"] %>;
   --ring: <%- colors.light["ring"] %>;
-  --radius: 0.5rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: <%- colors.light["chart-1"] %>;
+  --chart-2: <%- colors.light["chart-2"] %>;
+  --chart-3: <%- colors.light["chart-3"] %>;
+  --chart-4: <%- colors.light["chart-4"] %>;
+  --chart-5: <%- colors.light["chart-5"] %>;
+  --sidebar: <%- colors.light["sidebar"] %>;
+  --sidebar-foreground: <%- colors.light["sidebar-foreground"] %>;
+  --sidebar-primary: <%- colors.light["sidebar-primary"] %>;
+  --sidebar-primary-foreground: <%- colors.light["sidebar-primary-foreground"] %>;
+  --sidebar-accent: <%- colors.light["sidebar-accent"] %>;
+  --sidebar-accent-foreground: <%- colors.light["sidebar-accent-foreground"] %>;
+  --sidebar-border: <%- colors.light["sidebar-border"] %>;
+  --sidebar-ring: <%- colors.light["sidebar-ring"] %>;
 }
 
 .dark .theme-<%- theme %> {
@@ -166,14 +180,18 @@ export const THEME_STYLES_WITH_VARIABLES = `.theme-<%- theme %> {
   --accent: <%- colors.dark["accent"] %>;
   --accent-foreground: <%- colors.dark["accent-foreground"] %>;
   --destructive: <%- colors.dark["destructive"] %>;
-  --destructive-foreground: <%- colors.dark["destructive-foreground"] %>;
   --ring: <%- colors.dark["ring"] %>;
+  --chart-1: <%- colors.dark["chart-1"] %>;
+  --chart-2: <%- colors.dark["chart-2"] %>;
+  --chart-3: <%- colors.dark["chart-3"] %>;
+  --chart-4: <%- colors.dark["chart-4"] %>;
+  --chart-5: <%- colors.dark["chart-5"] %>;
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-foreground: <%- colors.dark["sidebar-foreground"] %>;
+  --sidebar-primary: <%- colors.dark["sidebar-primary"] %>;
+  --sidebar-primary-foreground: <%- colors.dark["sidebar-primary-foreground"] %>;
+  --sidebar-accent: <%- colors.dark["sidebar-accent"] %>;
+  --sidebar-accent-foreground: <%- colors.dark["sidebar-accent-foreground"] %>;
+  --sidebar-border: <%- colors.dark["sidebar-border"] %>;
+  --sidebar-ring: <%- colors.dark["sidebar-ring"] %>;
 }`;
