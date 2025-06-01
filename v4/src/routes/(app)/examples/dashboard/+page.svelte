@@ -13,14 +13,14 @@
 		src="/examples/dashboard-light.png"
 		width={1280}
 		height={843}
-		alt="Authentication"
+		alt="Dashboard"
 		class="block dark:hidden"
 	/>
 	<img
 		src="/examples/dashboard-dark.png"
 		width={1280}
 		height={843}
-		alt="Authentication"
+		alt="Dashboard"
 		class="hidden dark:block"
 	/>
 </div>
