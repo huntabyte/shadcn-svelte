@@ -227,19 +227,18 @@
 			@apply !mt-0;
 		}
 
-		&:first-child>*[aria-level="3"]:first-child {
+		&:first-child > *[aria-level="3"]:first-child {
 			@apply !mt-0;
 		}
 
-		>*[aria-level="3"] {
+		> *[aria-level="3"] {
 			@apply !mt-16;
 		}
 
-		>*[aria-level="3"]+p {
+		> *[aria-level="3"] + p {
 			@apply !mt-2;
 		}
 	}
-
 
 	[data-rehype-pretty-code-figure] {
 		background-color: var(--color-code);
@@ -321,7 +320,6 @@
 		background-color: var(--color-code-highlight);
 	}
 
-
 	[data-highlighted-line] {
 		&:after {
 			position: absolute;
@@ -330,9 +328,7 @@
 			width: 2px;
 			height: 100%;
 			content: "";
-			background-color: color-mix(in oklab,
-					var(--muted-foreground) 50%,
-					transparent);
+			background-color: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
 		}
 	}
 
@@ -385,5 +381,4 @@
 	.super-debug--code .boolean {
 		color: #fff8 !important;
 	}
-
 }
