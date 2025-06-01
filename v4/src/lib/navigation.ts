@@ -80,10 +80,22 @@ function generateGetStartedNav() {
 	return getStartedNavItems;
 }
 
+const INSTALL_ORDER = ["SvelteKit", "Vite", "Astro", "Manual Installation"];
+
 function generateInstallationNav() {
 	const installationNavItems: SidebarNavItem[] = [];
 
+	const index = installation.find((doc) => doc.title === "Installation");
+	if (index) {
+		installationNavItems.push({
+			title: index.title,
+			href: `/docs/installation`,
+			items: [],
+		});
+	}
+
 	for (const doc of installation) {
+		if (doc.title === "Installation") continue;
 		installationNavItems.push({
 			title: doc.title,
 			href: `/docs/installation/${doc.slug}`,
@@ -91,7 +103,11 @@ function generateInstallationNav() {
 		});
 	}
 
-	return installationNavItems;
+	return installationNavItems.sort((a, b) => {
+		const aIndex = INSTALL_ORDER.indexOf(a.title);
+		const bIndex = INSTALL_ORDER.indexOf(b.title);
+		return aIndex - bIndex;
+	});
 }
 
 function generateComponentsNav() {
@@ -222,7 +238,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
 	},
 	{
 		title: "Installation",
-		items: installationNav,
+		items: installationNav.filter((item) => item.title !== "Installation"),
 	},
 	{
 		title: "Dark Mode",
