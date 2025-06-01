@@ -1,0 +1,21 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "aspect-ratio",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.4.0",
+		"@internationalized/date@^3.8.1"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { AspectRatio as AspectRatioPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: AspectRatioPrimitive.RootProps = $props();\n</script>\n\n<AspectRatioPrimitive.Root bind:ref data-slot=\"aspect-ratio\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "aspect-ratio/aspect-ratio.svelte"
+		},
+		{
+			"content": "import Root from \"./aspect-ratio.svelte\";\n\nexport { Root, Root as AspectRatio };\n",
+			"type": "registry:file",
+			"target": "aspect-ratio/index.ts"
+		}
+	]
+}

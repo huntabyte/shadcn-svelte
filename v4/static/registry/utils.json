@@ -1,0 +1,16 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "utils",
+	"type": "registry:lib",
+	"devDependencies": [
+		"clsx@^2.1.1",
+		"tailwind-merge@^3.0.2"
+	],
+	"files": [
+		{
+			"content": "import { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n\treturn twMerge(clsx(inputs));\n}\n",
+			"type": "registry:lib",
+			"target": "utils.ts"
+		}
+	]
+}

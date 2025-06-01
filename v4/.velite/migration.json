@@ -1,0 +1,222 @@
+[
+  {
+    "title": "Migration",
+    "description": "Learn how to update your project to the latest version of shadcn-svelte.",
+    "path": "migration",
+    "component": false,
+    "toc": [],
+    "slug": "",
+    "slugFull": "/migration"
+  },
+  {
+    "title": "Svelte 5",
+    "description": "How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.",
+    "path": "migration/svelte-5",
+    "component": false,
+    "toc": [
+      {
+        "title": "Svelte 4 to Svelte 5",
+        "url": "#svelte-4-to-svelte-5",
+        "items": []
+      },
+      {
+        "title": "Prerequisites",
+        "url": "#prerequisites",
+        "items": []
+      },
+      {
+        "title": "Update Configs",
+        "url": "#update-configs",
+        "items": [
+          {
+            "title": "Update components.json",
+            "url": "#update-componentsjson",
+            "items": []
+          },
+          {
+            "title": "Update tailwind.config.js",
+            "url": "#update-tailwindconfigjs",
+            "items": []
+          },
+          {
+            "title": "Update utils.ts",
+            "url": "#update-utilsts",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Upgrade Components",
+        "url": "#upgrade-components",
+        "items": [
+          {
+            "title": "Alias Dependencies (optional)",
+            "url": "#alias-dependencies-optional",
+            "items": []
+          },
+          {
+            "title": "Update Dependencies",
+            "url": "#update-dependencies",
+            "items": []
+          },
+          {
+            "title": "Start Migrating Components",
+            "url": "#start-migrating-components",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Remove Unused Dependencies",
+        "url": "#remove-unused-dependencies",
+        "items": [
+          {
+            "title": "cmdk-sv",
+            "url": "#cmdk-sv",
+            "items": []
+          },
+          {
+            "title": "svelte-headless-table",
+            "url": "#svelte-headless-table",
+            "items": []
+          },
+          {
+            "title": "svelte-radix",
+            "url": "#svelte-radix",
+            "items": []
+          },
+          {
+            "title": "lucide-svelte",
+            "url": "#lucide-svelte",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Next Steps",
+        "url": "#next-steps",
+        "items": []
+      }
+    ],
+    "slug": "svelte-5",
+    "slugFull": "/migration/svelte-5"
+  },
+  {
+    "title": "Tailwind v4",
+    "description": "How to use shadcn-svelte with Tailwind v4 and Svelte 5.",
+    "path": "migration/tailwind-v4",
+    "component": false,
+    "toc": [
+      {
+        "title": "What's New",
+        "url": "#whats-new",
+        "items": []
+      },
+      {
+        "title": "See it Live",
+        "url": "#see-it-live",
+        "items": []
+      },
+      {
+        "title": "Try It Out",
+        "url": "#try-it-out",
+        "items": []
+      },
+      {
+        "title": "Upgrade Your Project",
+        "url": "#upgrade-your-project",
+        "items": [
+          {
+            "title": "1. Follow the Tailwind v4 Upgrade Guide",
+            "url": "#1-follow-the-tailwind-v4-upgrade-guide",
+            "items": []
+          },
+          {
+            "title": "2. Replace PostCSS with Vite",
+            "url": "#2-replace-postcss-with-vite",
+            "items": [
+              {
+                "title": "Delete postcss.config.js",
+                "url": "#delete-postcssconfigjs",
+                "items": []
+              },
+              {
+                "title": "Uninstall @tailwindcss/postcss",
+                "url": "#uninstall-tailwindcsspostcss",
+                "items": []
+              },
+              {
+                "title": "Install @tailwindcss/vite",
+                "url": "#install-tailwindcssvite",
+                "items": []
+              },
+              {
+                "title": "Update vite.config.ts",
+                "url": "#update-viteconfigts",
+                "items": []
+              },
+              {
+                "title": "Verify the upgrade",
+                "url": "#verify-the-upgrade",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "2. Update your app.css file",
+            "url": "#2-update-your-appcss-file",
+            "items": [
+              {
+                "title": "Replace tailwind-css-animate with tw-animate-css",
+                "url": "#replace-tailwind-css-animate-with-tw-animate-css",
+                "items": []
+              },
+              {
+                "title": "Import tw-animate-css",
+                "url": "#import-tw-animate-css",
+                "items": []
+              },
+              {
+                "title": "CSS Variables and Theme Config",
+                "url": "#css-variables-and-theme-config",
+                "items": []
+              },
+              {
+                "title": "Verify the update",
+                "url": "#verify-the-update",
+                "items": []
+              },
+              {
+                "title": "Remove the tailwind.config file",
+                "url": "#remove-the-tailwindconfig-file",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "3. Use new size-* utility",
+            "url": "#3-use-new-size--utility",
+            "items": []
+          },
+          {
+            "title": "4. Update your dependencies",
+            "url": "#4-update-your-dependencies",
+            "items": []
+          },
+          {
+            "title": "5. Update your utils (optional)",
+            "url": "#5-update-your-utils-optional",
+            "items": []
+          },
+          {
+            "title": "6. Update Your Colors (optional)",
+            "url": "#6-update-your-colors-optional",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "tailwind-v4",
+    "slugFull": "/migration/tailwind-v4"
+  }
+]

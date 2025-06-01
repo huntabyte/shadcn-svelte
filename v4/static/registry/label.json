@@ -1,0 +1,21 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "label",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.4.0",
+		"@internationalized/date@^3.8.1"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./label.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Label,\n};\n",
+			"type": "registry:file",
+			"target": "label/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: LabelPrimitive.RootProps = $props();\n</script>\n\n<LabelPrimitive.Root\n\tbind:ref\n\tdata-slot=\"label\"\n\tclass={cn(\n\t\t\"flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "label/label.svelte"
+		}
+	]
+}

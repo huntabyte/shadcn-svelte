@@ -1,0 +1,70 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "command",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.1.0",
+		"@internationalized/date@^3.5.6",
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"dialog"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport type { Command as CommandPrimitive, Dialog as DialogPrimitive } from \"bits-ui\";\n\timport type { Snippet } from \"svelte\";\n\timport Command from \"./command.svelte\";\n\timport * as Dialog from \"$UI$/dialog/index.js\";\n\timport type { WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\topen = $bindable(false),\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(\"\"),\n\t\ttitle = \"Command Palette\",\n\t\tdescription = \"Search for a command to run\",\n\t\tportalProps,\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<DialogPrimitive.RootProps> &\n\t\tWithoutChildrenOrChild<CommandPrimitive.RootProps> & {\n\t\t\tportalProps?: DialogPrimitive.PortalProps;\n\t\t\tchildren: Snippet;\n\t\t\ttitle?: string;\n\t\t\tdescription?: string;\n\t\t} = $props();\n</script>\n\n<Dialog.Root bind:open {...restProps}>\n\t<Dialog.Header class=\"sr-only\">\n\t\t<Dialog.Title>{title}</Dialog.Title>\n\t\t<Dialog.Description>{description}</Dialog.Description>\n\t</Dialog.Header>\n\t<Dialog.Content class=\"overflow-hidden p-0\" {portalProps}>\n\t\t<Command\n\t\t\tclass=\"**:data-[slot=command-input-wrapper]:h-12 [&_[data-command-group]:not([hidden])_~[data-command-group]]:pt-0 [&_[data-command-group]]:px-2 [&_[data-command-input-wrapper]_svg]:h-5 [&_[data-command-input-wrapper]_svg]:w-5 [&_[data-command-input]]:h-12 [&_[data-command-item]]:px-2 [&_[data-command-item]]:py-3 [&_[data-command-item]_svg]:h-5 [&_[data-command-item]_svg]:w-5\"\n\t\t\t{...restProps}\n\t\t\tbind:value\n\t\t\tbind:ref\n\t\t\t{children}\n\t\t/>\n\t</Dialog.Content>\n</Dialog.Root>\n",
+			"type": "registry:file",
+			"target": "command/command-dialog.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.EmptyProps = $props();\n</script>\n\n<CommandPrimitive.Empty\n\tbind:ref\n\tdata-slot=\"command-empty\"\n\tclass={cn(\"py-6 text-center text-sm\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command-empty.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive, useId } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\theading,\n\t\tvalue,\n\t\t...restProps\n\t}: CommandPrimitive.GroupProps & {\n\t\theading?: string;\n\t} = $props();\n</script>\n\n<CommandPrimitive.Group\n\tbind:ref\n\tdata-slot=\"command-group\"\n\tclass={cn(\"text-foreground overflow-hidden p-1\", className)}\n\tvalue={value ?? heading ?? `----${useId()}`}\n\t{...restProps}\n>\n\t{#if heading}\n\t\t<CommandPrimitive.GroupHeading\n\t\t\tclass=\"text-muted-foreground px-2 py-1.5 text-xs font-medium\"\n\t\t>\n\t\t\t{heading}\n\t\t</CommandPrimitive.GroupHeading>\n\t{/if}\n\t<CommandPrimitive.GroupItems {children} />\n</CommandPrimitive.Group>\n",
+			"type": "registry:file",
+			"target": "command/command-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport SearchIcon from \"@lucide/svelte/icons/search\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: CommandPrimitive.InputProps = $props();\n</script>\n\n<div class=\"flex h-9 items-center gap-2 border-b px-3\" data-slot=\"command-input-wrapper\">\n\t<SearchIcon class=\"size-4 shrink-0 opacity-50\" />\n\t<CommandPrimitive.Input\n\t\tdata-slot=\"command-input\"\n\t\tclass={cn(\n\t\t\t\"placeholder:text-muted-foreground outline-hidden flex h-10 w-full rounded-md bg-transparent py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\tbind:ref\n\t\t{...restProps}\n\t\tbind:value\n\t/>\n</div>\n",
+			"type": "registry:file",
+			"target": "command/command-input.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.ItemProps = $props();\n</script>\n\n<CommandPrimitive.Item\n\tbind:ref\n\tdata-slot=\"command-item\"\n\tclass={cn(\n\t\t\"aria-selected:bg-accent aria-selected:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.LinkItemProps = $props();\n</script>\n\n<CommandPrimitive.LinkItem\n\tbind:ref\n\tdata-slot=\"command-item\"\n\tclass={cn(\n\t\t\"aria-selected:bg-accent aria-selected:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command-link-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.ListProps = $props();\n</script>\n\n<CommandPrimitive.List\n\tbind:ref\n\tdata-slot=\"command-list\"\n\tclass={cn(\"max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command-list.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.SeparatorProps = $props();\n</script>\n\n<CommandPrimitive.Separator\n\tbind:ref\n\tdata-slot=\"command-separator\"\n\tclass={cn(\"bg-border -mx-1 h-px\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command-separator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"command-shortcut\"\n\tclass={cn(\"text-muted-foreground ml-auto text-xs tracking-widest\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:file",
+			"target": "command/command-shortcut.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Command as CommandPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(\"\"),\n\t\tclass: className,\n\t\t...restProps\n\t}: CommandPrimitive.RootProps = $props();\n</script>\n\n<CommandPrimitive.Root\n\tbind:value\n\tbind:ref\n\tdata-slot=\"command\"\n\tclass={cn(\n\t\t\"bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "command/command.svelte"
+		},
+		{
+			"content": "import { Command as CommandPrimitive } from \"bits-ui\";\n\nimport Root from \"./command.svelte\";\nimport Dialog from \"./command-dialog.svelte\";\nimport Empty from \"./command-empty.svelte\";\nimport Group from \"./command-group.svelte\";\nimport Item from \"./command-item.svelte\";\nimport Input from \"./command-input.svelte\";\nimport List from \"./command-list.svelte\";\nimport Separator from \"./command-separator.svelte\";\nimport Shortcut from \"./command-shortcut.svelte\";\nimport LinkItem from \"./command-link-item.svelte\";\n\nconst Loading = CommandPrimitive.Loading;\n\nexport {\n\tRoot,\n\tDialog,\n\tEmpty,\n\tGroup,\n\tItem,\n\tLinkItem,\n\tInput,\n\tList,\n\tSeparator,\n\tShortcut,\n\tLoading,\n\t//\n\tRoot as Command,\n\tDialog as CommandDialog,\n\tEmpty as CommandEmpty,\n\tGroup as CommandGroup,\n\tItem as CommandItem,\n\tLinkItem as CommandLinkItem,\n\tInput as CommandInput,\n\tList as CommandList,\n\tSeparator as CommandSeparator,\n\tShortcut as CommandShortcut,\n\tLoading as CommandLoading,\n};\n",
+			"type": "registry:file",
+			"target": "command/index.ts"
+		}
+	]
+}

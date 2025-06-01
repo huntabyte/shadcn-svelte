@@ -1,0 +1,22 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "checkbox",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.1.0",
+		"@internationalized/date@^3.5.6",
+		"@lucide/svelte@^0.482.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Checkbox as CheckboxPrimitive } from \"bits-ui\";\n\timport CheckIcon from \"@lucide/svelte/icons/check\";\n\timport MinusIcon from \"@lucide/svelte/icons/minus\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tchecked = $bindable(false),\n\t\tindeterminate = $bindable(false),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<CheckboxPrimitive.RootProps> = $props();\n</script>\n\n<CheckboxPrimitive.Root\n\tbind:ref\n\tdata-slot=\"checkbox\"\n\tclass={cn(\n\t\t\"border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-[4px] border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\tbind:checked\n\tbind:indeterminate\n\t{...restProps}\n>\n\t{#snippet children({ checked, indeterminate })}\n\t\t<div data-slot=\"checkbox-indicator\" class=\"text-current transition-none\">\n\t\t\t{#if checked}\n\t\t\t\t<CheckIcon class=\"size-3.5\" />\n\t\t\t{:else if indeterminate}\n\t\t\t\t<MinusIcon class=\"size-3.5\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</CheckboxPrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "checkbox/checkbox.svelte"
+		},
+		{
+			"content": "import Root from \"./checkbox.svelte\";\nexport {\n\tRoot,\n\t//\n\tRoot as Checkbox,\n};\n",
+			"type": "registry:file",
+			"target": "checkbox/index.ts"
+		}
+	]
+}

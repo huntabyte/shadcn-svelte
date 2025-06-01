@@ -1,0 +1,20 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "chart-pie-donut-active",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.482.0",
+		"layerchart@2.0.0-next.14"
+	],
+	"registryDependencies": [
+		"chart",
+		"card"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport TrendingUpIcon from \"@lucide/svelte/icons/trending-up\";\n\timport * as Chart from \"$UI$/chart/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { Arc, PieChart } from \"layerchart\";\n\n\tconst chartData = [\n\t\t{ browser: \"chrome\", visitors: 275, color: \"var(--color-chrome)\" },\n\t\t{ browser: \"safari\", visitors: 200, color: \"var(--color-safari)\" },\n\t\t{ browser: \"firefox\", visitors: 287, color: \"var(--color-firefox)\" },\n\t\t{ browser: \"edge\", visitors: 173, color: \"var(--color-edge)\" },\n\t\t{ browser: \"other\", visitors: 190, color: \"var(--color-other)\" },\n\t];\n\n\tconst chartConfig = {\n\t\tvisitors: {\n\t\t\tlabel: \"Visitors\",\n\t\t},\n\t\tchrome: {\n\t\t\tlabel: \"Chrome\",\n\t\t\tcolor: \"var(--chart-1)\",\n\t\t},\n\t\tsafari: {\n\t\t\tlabel: \"Safari\",\n\t\t\tcolor: \"var(--chart-2)\",\n\t\t},\n\t\tfirefox: {\n\t\t\tlabel: \"Firefox\",\n\t\t\tcolor: \"var(--chart-3)\",\n\t\t},\n\t\tedge: {\n\t\t\tlabel: \"Edge\",\n\t\t\tcolor: \"var(--chart-4)\",\n\t\t},\n\t\tother: {\n\t\t\tlabel: \"Other\",\n\t\t\tcolor: \"var(--chart-5)\",\n\t\t},\n\t} satisfies Chart.ChartConfig;\n</script>\n\n<Card.Root class=\"flex flex-col\">\n\t<Card.Header class=\"items-center\">\n\t\t<Card.Title>Pie Chart - Donut Active</Card.Title>\n\t\t<Card.Description>January - June 2024</Card.Description>\n\t</Card.Header>\n\t<Card.Content class=\"flex-1\">\n\t\t<Chart.Container config={chartConfig} class=\"mx-auto aspect-square max-h-[250px]\">\n\t\t\t<PieChart\n\t\t\t\tdata={chartData}\n\t\t\t\tkey=\"browser\"\n\t\t\t\tvalue=\"visitors\"\n\t\t\t\tc=\"color\"\n\t\t\t\tinnerRadius={60}\n\t\t\t\tprops={{\n\t\t\t\t\tpie: { motion: \"tween\" },\n\t\t\t\t\tarc: {\n\t\t\t\t\t\tstrokeWidth: 5,\n\t\t\t\t\t},\n\t\t\t\t}}\n\t\t\t\tpadding={29}\n\t\t\t>\n\t\t\t\t{#snippet tooltip()}\n\t\t\t\t\t<Chart.Tooltip hideLabel />\n\t\t\t\t{/snippet}\n\t\t\t\t{#snippet arc({ props, index })}\n\t\t\t\t\t{@const arcProps =\n\t\t\t\t\t\tindex === 0 ? { ...props, outerRadius: 60, innerRadius: 105 } : props}\n\t\t\t\t\t<Arc {...arcProps} />\n\t\t\t\t{/snippet}\n\t\t\t</PieChart>\n\t\t</Chart.Container>\n\t</Card.Content>\n\t<Card.Footer class=\"flex-col gap-2 text-sm\">\n\t\t<div class=\"flex items-center gap-2 font-medium leading-none\">\n\t\t\tTrending up by 5.2% this month <TrendingUpIcon class=\"size-4\" />\n\t\t</div>\n\t\t<div class=\"text-muted-foreground leading-none\">\n\t\t\tShowing total visitors for the last 6 months\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "chart-pie-donut-active.svelte"
+		}
+	]
+}

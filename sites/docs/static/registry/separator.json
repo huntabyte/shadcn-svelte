@@ -1,0 +1,21 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "separator",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.1.0",
+		"@internationalized/date@^3.5.6"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./separator.svelte\";\n\nexport {\n\tRoot,\n\t//\n\tRoot as Separator,\n};\n",
+			"type": "registry:file",
+			"target": "separator/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Separator as SeparatorPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: SeparatorPrimitive.RootProps = $props();\n</script>\n\n<SeparatorPrimitive.Root\n\tbind:ref\n\tdata-slot=\"separator-root\"\n\tclass={cn(\n\t\t\"bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "separator/separator.svelte"
+		}
+	]
+}

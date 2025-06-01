@@ -1,0 +1,16 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "utils",
+	"type": "registry:lib",
+	"devDependencies": [
+		"clsx@^2.1.1",
+		"tailwind-merge@^3.0.2"
+	],
+	"files": [
+		{
+			"content": "import { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n\treturn twMerge(clsx(inputs));\n}\n\n// eslint-disable-next-line @typescript-eslint/no-explicit-any\nexport type WithoutChild<T> = T extends { child?: any } ? Omit<T, \"child\"> : T;\n// eslint-disable-next-line @typescript-eslint/no-explicit-any\nexport type WithoutChildren<T> = T extends { children?: any } ? Omit<T, \"children\"> : T;\nexport type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;\nexport type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };\n",
+			"type": "registry:lib",
+			"target": "utils.ts"
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "chart-bar-label-custom",
+	"type": "registry:block",
+	"devDependencies": [
+		"@lucide/svelte@^0.482.0",
+		"layerchart@2.0.0-next.10",
+		"d3-scale@^4.0.2",
+		"@types/d3-scale@^4.0.8"
+	],
+	"registryDependencies": [
+		"chart",
+		"card"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport TrendingUpIcon from \"@lucide/svelte/icons/trending-up\";\n\timport * as Chart from \"$UI$/chart/index.js\";\n\timport * as Card from \"$UI$/card/index.js\";\n\timport { BarChart } from \"layerchart\";\n\timport { scaleBand } from \"d3-scale\";\n\timport { cubicInOut } from \"svelte/easing\";\n\n\tconst chartData = [\n\t\t{ month: \"January\", desktop: 186, mobile: 80 },\n\t\t{ month: \"February\", desktop: 305, mobile: 200 },\n\t\t{ month: \"March\", desktop: 237, mobile: 120 },\n\t\t{ month: \"April\", desktop: 73, mobile: 190 },\n\t\t{ month: \"May\", desktop: 209, mobile: 130 },\n\t\t{ month: \"June\", desktop: 214, mobile: 140 },\n\t];\n\n\tconst chartConfig = {\n\t\tdesktop: { label: \"Desktop\", color: \"var(--chart-1)\" },\n\t\tmobile: { label: \"Mobile\", color: \"var(--chart-2)\" },\n\t\tlabel: { color: \"var(--background)\" },\n\t} satisfies Chart.ChartConfig;\n</script>\n\n<Card.Root>\n\t<Card.Header>\n\t\t<Card.Title>Bar Chart - Custom Label</Card.Title>\n\t\t<Card.Description>January - June 2024</Card.Description>\n\t</Card.Header>\n\t<Card.Content>\n\t\t<Chart.Container config={chartConfig}>\n\t\t\t<BarChart\n\t\t\t\tlabels={{ offset: 12 }}\n\t\t\t\tdata={chartData}\n\t\t\t\torientation=\"horizontal\"\n\t\t\t\tyScale={scaleBand().padding(0.25)}\n\t\t\t\ty=\"month\"\n\t\t\t\taxis=\"y\"\n\t\t\t\trule={false}\n\t\t\t\tseries={[{ key: \"desktop\", label: \"Desktop\", color: chartConfig.desktop.color }]}\n\t\t\t\tpadding={{ right: 16 }}\n\t\t\t\tprops={{\n\t\t\t\t\tbars: {\n\t\t\t\t\t\tstroke: \"none\",\n\t\t\t\t\t\tradius: 5,\n\t\t\t\t\t\trounded: \"all\",\n\t\t\t\t\t\tinitialWidth: 0,\n\t\t\t\t\t\tinitialX: 0,\n\t\t\t\t\t\tmotion: {\n\t\t\t\t\t\t\tx: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t\twidth: { type: \"tween\", duration: 500, easing: cubicInOut },\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\thighlight: { area: { fill: \"none\" } },\n\t\t\t\t\tyAxis: {\n\t\t\t\t\t\ttickLabelProps: {\n\t\t\t\t\t\t\ttextAnchor: \"start\",\n\t\t\t\t\t\t\tdx: 6,\n\t\t\t\t\t\t\tclass: \"stroke-none fill-background!\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\ttickLength: 0,\n\t\t\t\t\t},\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t{#snippet tooltip()}\n\t\t\t\t\t<Chart.Tooltip hideLabel />\n\t\t\t\t{/snippet}\n\t\t\t</BarChart>\n\t\t</Chart.Container>\n\t</Card.Content>\n\t<Card.Footer>\n\t\t<div class=\"flex w-full items-start gap-2 text-sm\">\n\t\t\t<div class=\"grid gap-2\">\n\t\t\t\t<div class=\"flex items-center gap-2 font-medium leading-none\">\n\t\t\t\t\tTrending up by 5.2% this month <TrendingUpIcon class=\"size-4\" />\n\t\t\t\t</div>\n\t\t\t\t<div class=\"text-muted-foreground flex items-center gap-2 leading-none\">\n\t\t\t\t\tShowing total visitors for the last 6 months\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</Card.Footer>\n</Card.Root>\n",
+			"type": "registry:component",
+			"target": "chart-bar-label-custom.svelte"
+		}
+	]
+}

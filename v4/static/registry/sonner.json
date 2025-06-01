@@ -1,0 +1,23 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "sonner",
+	"type": "registry:ui",
+	"dependencies": [
+		"svelte-sonner@^1.0.3"
+	],
+	"devDependencies": [
+		"mode-watcher@^1.0.6"
+	],
+	"files": [
+		{
+			"content": "export { default as Toaster } from \"./sonner.svelte\";\n",
+			"type": "registry:file",
+			"target": "sonner/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Toaster as Sonner, type ToasterProps as SonnerProps } from \"svelte-sonner\";\n\timport { mode } from \"mode-watcher\";\n\n\tlet { ...restProps }: SonnerProps = $props();\n</script>\n\n<Sonner\n\ttheme={mode.current}\n\tclass=\"toaster group\"\n\tstyle=\"--normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border);\"\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "sonner/sonner.svelte"
+		}
+	]
+}

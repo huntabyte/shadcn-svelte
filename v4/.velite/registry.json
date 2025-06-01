@@ -1,0 +1,416 @@
+[
+  {
+    "title": "Examples",
+    "description": "Examples of registry items: styles, components, css vars, etc.",
+    "path": "registry/examples",
+    "component": false,
+    "toc": [
+      {
+        "title": "registry:style",
+        "url": "#registrystyle",
+        "items": [
+          {
+            "title": "Custom style that extends shadcn-svelte",
+            "url": "#custom-style-that-extends-shadcn-svelte",
+            "items": []
+          },
+          {
+            "title": "Custom style from scratch",
+            "url": "#custom-style-from-scratch",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "registry:theme",
+        "url": "#registrytheme",
+        "items": [
+          {
+            "title": "Custom theme",
+            "url": "#custom-theme",
+            "items": []
+          },
+          {
+            "title": "Custom colors",
+            "url": "#custom-colors",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "registry:block",
+        "url": "#registryblock",
+        "items": [
+          {
+            "title": "Custom block",
+            "url": "#custom-block",
+            "items": []
+          },
+          {
+            "title": "Install a block and override primitives",
+            "url": "#install-a-block-and-override-primitives",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "CSS Variables",
+        "url": "#css-variables",
+        "items": [
+          {
+            "title": "Custom Theme Variables",
+            "url": "#custom-theme-variables",
+            "items": []
+          },
+          {
+            "title": "Override Tailwind CSS variables",
+            "url": "#override-tailwind-css-variables",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Add custom CSS",
+        "url": "#add-custom-css",
+        "items": [
+          {
+            "title": "Base styles",
+            "url": "#base-styles",
+            "items": []
+          },
+          {
+            "title": "Components",
+            "url": "#components",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Add custom utilities",
+        "url": "#add-custom-utilities",
+        "items": [
+          {
+            "title": "Simple utility",
+            "url": "#simple-utility",
+            "items": []
+          },
+          {
+            "title": "Complex utility",
+            "url": "#complex-utility",
+            "items": []
+          },
+          {
+            "title": "Functional utilities",
+            "url": "#functional-utilities",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Add custom animations",
+        "url": "#add-custom-animations",
+        "items": []
+      }
+    ],
+    "slug": "examples",
+    "slugFull": "/registry/examples"
+  },
+  {
+    "title": "FAQ",
+    "description": "Frequently asked questions about running a registry.",
+    "path": "registry/faq",
+    "component": false,
+    "toc": [
+      {
+        "title": "Frequently asked questions",
+        "url": "#frequently-asked-questions",
+        "items": [
+          {
+            "title": "What does a complex component look like?",
+            "url": "#what-does-a-complex-component-look-like",
+            "items": []
+          },
+          {
+            "title": "How do I add a new Tailwind color?",
+            "url": "#how-do-i-add-a-new-tailwind-color",
+            "items": []
+          },
+          {
+            "title": "How do I add or override a Tailwind theme variable?",
+            "url": "#how-do-i-add-or-override-a-tailwind-theme-variable",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "faq",
+    "slugFull": "/registry/faq"
+  },
+  {
+    "title": "Getting Started",
+    "description": "Learn how to get setup and run your own component registry.",
+    "path": "registry/getting-started",
+    "component": false,
+    "toc": [
+      {
+        "title": "registry.json",
+        "url": "#registryjson",
+        "items": [
+          {
+            "title": "Add a registry.json file",
+            "url": "#add-a-registryjson-file",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Add a registry item",
+        "url": "#add-a-registry-item",
+        "items": [
+          {
+            "title": "Create your component",
+            "url": "#create-your-component",
+            "items": []
+          },
+          {
+            "title": "Add your component to the registry",
+            "url": "#add-your-component-to-the-registry",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Build your registry",
+        "url": "#build-your-registry",
+        "items": [
+          {
+            "title": "Install the shadcn-svelte CLI",
+            "url": "#install-the-shadcn-svelte-cli",
+            "items": []
+          },
+          {
+            "title": "Add a build script",
+            "url": "#add-a-build-script",
+            "items": []
+          },
+          {
+            "title": "Run the build script",
+            "url": "#run-the-build-script",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Serve your registry",
+        "url": "#serve-your-registry",
+        "items": []
+      },
+      {
+        "title": "Publish your registry",
+        "url": "#publish-your-registry",
+        "items": []
+      },
+      {
+        "title": "Adding Auth",
+        "url": "#adding-auth",
+        "items": []
+      },
+      {
+        "title": "Guidelines",
+        "url": "#guidelines",
+        "items": []
+      },
+      {
+        "title": "Install using the CLI",
+        "url": "#install-using-the-cli",
+        "items": []
+      }
+    ],
+    "slug": "getting-started",
+    "slugFull": "/registry/getting-started"
+  },
+  {
+    "title": "Registry",
+    "description": "Run your own component registry.",
+    "path": "registry",
+    "component": false,
+    "toc": [
+      {
+        "title": "Requirements",
+        "url": "#requirements",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/registry"
+  },
+  {
+    "title": "registry-item.json",
+    "description": "Specification for registry items.",
+    "path": "registry/registry-item-json",
+    "component": false,
+    "toc": [
+      {
+        "title": "Definitions",
+        "url": "#definitions",
+        "items": [
+          {
+            "title": "$schema",
+            "url": "#schema",
+            "items": []
+          },
+          {
+            "title": "name",
+            "url": "#name",
+            "items": []
+          },
+          {
+            "title": "title",
+            "url": "#title",
+            "items": []
+          },
+          {
+            "title": "description",
+            "url": "#description",
+            "items": []
+          },
+          {
+            "title": "type",
+            "url": "#type",
+            "items": []
+          },
+          {
+            "title": "author",
+            "url": "#author",
+            "items": []
+          },
+          {
+            "title": "dependencies",
+            "url": "#dependencies",
+            "items": []
+          },
+          {
+            "title": "registryDependencies",
+            "url": "#registrydependencies",
+            "items": [
+              {
+                "title": "shadcn-svelte Registry Item",
+                "url": "#shadcn-svelte-registry-item",
+                "items": []
+              },
+              {
+                "title": "Remote URL",
+                "url": "#remote-url",
+                "items": []
+              },
+              {
+                "title": "Local alias (when building with the CLI)",
+                "url": "#local-alias-when-building-with-the-cli",
+                "items": []
+              },
+              {
+                "title": "Relative Path",
+                "url": "#relative-path",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "files",
+            "url": "#files",
+            "items": [
+              {
+                "title": "path",
+                "url": "#path",
+                "items": []
+              },
+              {
+                "title": "type",
+                "url": "#type-1",
+                "items": []
+              },
+              {
+                "title": "target",
+                "url": "#target",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "cssVars",
+            "url": "#cssvars",
+            "items": []
+          },
+          {
+            "title": "css",
+            "url": "#css",
+            "items": []
+          },
+          {
+            "title": "docs",
+            "url": "#docs",
+            "items": []
+          },
+          {
+            "title": "categories",
+            "url": "#categories",
+            "items": []
+          },
+          {
+            "title": "meta",
+            "url": "#meta",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "registry-item-json",
+    "slugFull": "/registry/registry-item-json"
+  },
+  {
+    "title": "registry.json",
+    "description": "Schema for running your own component registry.",
+    "path": "registry/registry-json",
+    "component": false,
+    "toc": [
+      {
+        "title": "Definitions",
+        "url": "#definitions",
+        "items": [
+          {
+            "title": "$schema",
+            "url": "#schema",
+            "items": []
+          },
+          {
+            "title": "name",
+            "url": "#name",
+            "items": []
+          },
+          {
+            "title": "homepage",
+            "url": "#homepage",
+            "items": []
+          },
+          {
+            "title": "items",
+            "url": "#items",
+            "items": []
+          },
+          {
+            "title": "aliases",
+            "url": "#aliases",
+            "items": []
+          },
+          {
+            "title": "overrideDependencies",
+            "url": "#overridedependencies",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "registry-json",
+    "slugFull": "/registry/registry-json"
+  }
+]

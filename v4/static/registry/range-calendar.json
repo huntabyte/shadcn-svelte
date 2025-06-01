@@ -1,0 +1,75 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "range-calendar",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.4.0",
+		"@internationalized/date@^3.8.1",
+		"@lucide/svelte@^0.482.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "import { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\nimport Root from \"./range-calendar.svelte\";\nimport Cell from \"./range-calendar-cell.svelte\";\nimport Day from \"./range-calendar-day.svelte\";\nimport Grid from \"./range-calendar-grid.svelte\";\nimport Header from \"./range-calendar-header.svelte\";\nimport Months from \"./range-calendar-months.svelte\";\nimport GridRow from \"./range-calendar-grid-row.svelte\";\nimport Heading from \"./range-calendar-heading.svelte\";\nimport HeadCell from \"./range-calendar-head-cell.svelte\";\nimport NextButton from \"./range-calendar-next-button.svelte\";\nimport PrevButton from \"./range-calendar-prev-button.svelte\";\n\nconst GridHead = RangeCalendarPrimitive.GridHead;\nconst GridBody = RangeCalendarPrimitive.GridBody;\n\nexport {\n\tDay,\n\tCell,\n\tGrid,\n\tHeader,\n\tMonths,\n\tGridRow,\n\tHeading,\n\tGridBody,\n\tGridHead,\n\tHeadCell,\n\tNextButton,\n\tPrevButton,\n\t//\n\tRoot as RangeCalendar,\n};\n",
+			"type": "registry:file",
+			"target": "range-calendar/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.CellProps = $props();\n</script>\n\n<RangeCalendarPrimitive.Cell\n\tbind:ref\n\tclass={cn(\n\t\t\"[&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50 data-highlighted:rounded-r-md relative size-8 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md [&:has([data-selected][data-selection-end])]:rounded-r-md [&:has([data-selected][data-selection-start])]:rounded-l-md\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-cell.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.DayProps = $props();\n\n\texport { className as class };\n</script>\n\n<RangeCalendarPrimitive.Day\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"ghost\" }),\n\t\t\"size-8 select-none p-0 font-normal data-[selected]:opacity-100\",\n\t\t\"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground\",\n\t\t// Selection Start\n\t\t\"data-[selection-start]:bg-primary data-[selection-start]:text-primary-foreground data-[selection-start]:hover:bg-primary data-[selection-start]:hover:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground dark:data-[selection-start]:hover:bg-primary dark:data-[selection-start]:focus:bg-primary\",\n\t\t// Selection End\n\t\t\"data-[selection-end]:bg-primary data-[selection-end]:text-primary-foreground data-[selection-end]:hover:bg-primary data-[selection-end]:hover:text-primary-foreground data-[selection-end]:focus:bg-primary data-[selection-end]:focus:text-primary-foreground dark:data-[selection-end]:hover:bg-primary dark:data-[selection-end]:focus:bg-primary\",\n\t\t// Outside months\n\t\t\"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:pointer-events-none data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30\",\n\t\t// Disabled\n\t\t\"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50\",\n\t\t// Unavailable\n\t\t\"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-day.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.GridRowProps = $props();\n</script>\n\n<RangeCalendarPrimitive.GridRow bind:ref class={cn(\"flex\", className)} {...restProps} />\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-grid-row.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.GridProps = $props();\n</script>\n\n<RangeCalendarPrimitive.Grid\n\tbind:ref\n\tclass={cn(\"w-full border-collapse space-y-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-grid.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.HeadCellProps = $props();\n</script>\n\n<RangeCalendarPrimitive.HeadCell\n\tbind:ref\n\tclass={cn(\"text-muted-foreground w-8 rounded-md text-[0.8rem] font-normal\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-head-cell.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.HeaderProps = $props();\n</script>\n\n<RangeCalendarPrimitive.Header\n\tbind:ref\n\tclass={cn(\"relative flex w-full items-center justify-between pt-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.HeadingProps = $props();\n</script>\n\n<RangeCalendarPrimitive.Heading\n\tbind:ref\n\tclass={cn(\"text-sm font-medium\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-heading.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$UTILS$.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tclass={cn(\"mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-months.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport ChevronRightIcon from \"@lucide/svelte/icons/chevron-right\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.NextButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronRightIcon class=\"size-4\" />\n{/snippet}\n\n<RangeCalendarPrimitive.NextButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-next-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport ChevronLeftIcon from \"@lucide/svelte/icons/chevron-left\";\n\timport { buttonVariants } from \"$UI$/button/index.js\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: RangeCalendarPrimitive.PrevButtonProps = $props();\n</script>\n\n{#snippet Fallback()}\n\t<ChevronLeftIcon class=\"size-4\" />\n{/snippet}\n\n<RangeCalendarPrimitive.PrevButton\n\tbind:ref\n\tclass={cn(\n\t\tbuttonVariants({ variant: \"outline\" }),\n\t\t\"size-7 bg-transparent p-0 opacity-50 hover:opacity-100\",\n\t\tclassName\n\t)}\n\tchildren={children || Fallback}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar-prev-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { RangeCalendar as RangeCalendarPrimitive } from \"bits-ui\";\n\timport * as RangeCalendar from \"./index.js\";\n\timport { cn, type WithoutChildrenOrChild } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tplaceholder = $bindable(),\n\t\tweekdayFormat = \"short\",\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> = $props();\n</script>\n\n<RangeCalendarPrimitive.Root\n\tbind:ref\n\tbind:value\n\tbind:placeholder\n\t{weekdayFormat}\n\tclass={cn(\"p-3\", className)}\n\t{...restProps}\n>\n\t{#snippet children({ months, weekdays })}\n\t\t<RangeCalendar.Header>\n\t\t\t<RangeCalendar.PrevButton />\n\t\t\t<RangeCalendar.Heading />\n\t\t\t<RangeCalendar.NextButton />\n\t\t</RangeCalendar.Header>\n\t\t<RangeCalendar.Months>\n\t\t\t{#each months as month (month)}\n\t\t\t\t<RangeCalendar.Grid>\n\t\t\t\t\t<RangeCalendar.GridHead>\n\t\t\t\t\t\t<RangeCalendar.GridRow class=\"flex\">\n\t\t\t\t\t\t\t{#each weekdays as weekday (weekday)}\n\t\t\t\t\t\t\t\t<RangeCalendar.HeadCell>\n\t\t\t\t\t\t\t\t\t{weekday.slice(0, 2)}\n\t\t\t\t\t\t\t\t</RangeCalendar.HeadCell>\n\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t</RangeCalendar.GridRow>\n\t\t\t\t\t</RangeCalendar.GridHead>\n\t\t\t\t\t<RangeCalendar.GridBody>\n\t\t\t\t\t\t{#each month.weeks as weekDates (weekDates)}\n\t\t\t\t\t\t\t<RangeCalendar.GridRow class=\"mt-2 w-full\">\n\t\t\t\t\t\t\t\t{#each weekDates as date (date)}\n\t\t\t\t\t\t\t\t\t<RangeCalendar.Cell {date} month={month.value}>\n\t\t\t\t\t\t\t\t\t\t<RangeCalendar.Day />\n\t\t\t\t\t\t\t\t\t</RangeCalendar.Cell>\n\t\t\t\t\t\t\t\t{/each}\n\t\t\t\t\t\t\t</RangeCalendar.GridRow>\n\t\t\t\t\t\t{/each}\n\t\t\t\t\t</RangeCalendar.GridBody>\n\t\t\t\t</RangeCalendar.Grid>\n\t\t\t{/each}\n\t\t</RangeCalendar.Months>\n\t{/snippet}\n</RangeCalendarPrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "range-calendar/range-calendar.svelte"
+		}
+	]
+}

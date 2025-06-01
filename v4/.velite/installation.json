@@ -1,0 +1,232 @@
+[
+  {
+    "title": "Astro",
+    "description": "How to setup shadcn-svelte in an Astro project.",
+    "path": "installation/astro",
+    "component": false,
+    "toc": [
+      {
+        "title": "Create project",
+        "url": "#create-project",
+        "items": []
+      },
+      {
+        "title": "Configure your Astro project",
+        "url": "#configure-your-astro-project",
+        "items": []
+      },
+      {
+        "title": "Add Svelte to your project",
+        "url": "#add-svelte-to-your-project",
+        "items": []
+      },
+      {
+        "title": "Add TailwindCSS to your project",
+        "url": "#add-tailwindcss-to-your-project",
+        "items": []
+      },
+      {
+        "title": "Setup path aliases",
+        "url": "#setup-path-aliases",
+        "items": []
+      },
+      {
+        "title": "Create a global CSS file",
+        "url": "#create-a-global-css-file",
+        "items": []
+      },
+      {
+        "title": "Import the global CSS file",
+        "url": "#import-the-global-css-file",
+        "items": []
+      },
+      {
+        "title": "Run the CLI",
+        "url": "#run-the-cli",
+        "items": []
+      },
+      {
+        "title": "Configure components.json",
+        "url": "#configure-componentsjson",
+        "items": []
+      },
+      {
+        "title": "Update Astro's Tailwind config",
+        "url": "#update-astros-tailwind-config",
+        "items": []
+      },
+      {
+        "title": "That's it",
+        "url": "#thats-it",
+        "items": []
+      }
+    ],
+    "slug": "astro",
+    "slugFull": "/installation/astro"
+  },
+  {
+    "title": "Installation",
+    "description": "How to install dependencies and structure your app.",
+    "path": "installation",
+    "component": false,
+    "toc": [
+      {
+        "title": "Guides",
+        "url": "#guides",
+        "items": []
+      },
+      {
+        "title": "Imports",
+        "url": "#imports",
+        "items": []
+      },
+      {
+        "title": "VSCode extension",
+        "url": "#vscode-extension",
+        "items": []
+      },
+      {
+        "title": "JetBrains IDEs extension",
+        "url": "#jetbrains-ides-extension",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/installation"
+  },
+  {
+    "title": "Manual Installation",
+    "description": "How to setup shadcn-svelte manually.",
+    "path": "installation/manual",
+    "component": false,
+    "toc": [
+      {
+        "title": "Add Tailwind",
+        "url": "#add-tailwind",
+        "items": []
+      },
+      {
+        "title": "Add dependencies",
+        "url": "#add-dependencies",
+        "items": []
+      },
+      {
+        "title": "Add icon library",
+        "url": "#add-icon-library",
+        "items": []
+      },
+      {
+        "title": "Configure path aliases",
+        "url": "#configure-path-aliases",
+        "items": []
+      },
+      {
+        "title": "Configure styles",
+        "url": "#configure-styles",
+        "items": []
+      },
+      {
+        "title": "Configure utils",
+        "url": "#configure-utils",
+        "items": []
+      },
+      {
+        "title": "Import styles to your app",
+        "url": "#import-styles-to-your-app",
+        "items": []
+      },
+      {
+        "title": "That's it",
+        "url": "#thats-it",
+        "items": []
+      }
+    ],
+    "slug": "manual",
+    "slugFull": "/installation/manual"
+  },
+  {
+    "title": "SvelteKit",
+    "description": "How to setup shadcn-svelte in a SvelteKit project.",
+    "path": "installation/sveltekit",
+    "component": false,
+    "toc": [
+      {
+        "title": "Create project",
+        "url": "#create-project",
+        "items": []
+      },
+      {
+        "title": "Add TailwindCSS",
+        "url": "#add-tailwindcss",
+        "items": []
+      },
+      {
+        "title": "Setup path aliases",
+        "url": "#setup-path-aliases",
+        "items": []
+      },
+      {
+        "title": "Run the CLI",
+        "url": "#run-the-cli",
+        "items": []
+      },
+      {
+        "title": "Configure components.json",
+        "url": "#configure-componentsjson",
+        "items": []
+      },
+      {
+        "title": "That's it",
+        "url": "#thats-it",
+        "items": []
+      }
+    ],
+    "slug": "sveltekit",
+    "slugFull": "/installation/sveltekit"
+  },
+  {
+    "title": "Vite",
+    "description": "How to setup shadcn-svelte in a Vite project.",
+    "path": "installation/vite",
+    "component": false,
+    "toc": [
+      {
+        "title": "Add TailwindCSS",
+        "url": "#add-tailwindcss",
+        "items": []
+      },
+      {
+        "title": "Edit tsconfig.json file",
+        "url": "#edit-tsconfigjson-file",
+        "items": []
+      },
+      {
+        "title": "Edit tsconfig.app.json file",
+        "url": "#edit-tsconfigappjson-file",
+        "items": []
+      },
+      {
+        "title": "Update vite.config.ts",
+        "url": "#update-viteconfigts",
+        "items": []
+      },
+      {
+        "title": "Run the CLI",
+        "url": "#run-the-cli",
+        "items": []
+      },
+      {
+        "title": "Configure components.json",
+        "url": "#configure-componentsjson",
+        "items": []
+      },
+      {
+        "title": "That's it",
+        "url": "#thats-it",
+        "items": []
+      }
+    ],
+    "slug": "vite",
+    "slugFull": "/installation/vite"
+  }
+]

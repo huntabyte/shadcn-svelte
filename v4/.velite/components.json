@@ -1,0 +1,2431 @@
+[
+  {
+    "title": "Accordion",
+    "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+    "path": "components/accordion",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/accordion",
+      "api": "https://bits-ui.com/docs/components/accordion#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/accordion"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "accordion",
+    "slugFull": "/components/accordion"
+  },
+  {
+    "title": "Alert Dialog",
+    "description": "A modal dialog that interrupts the user with important content and expects a response.",
+    "path": "components/alert-dialog",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/alert-dialog",
+      "api": "https://bits-ui.com/docs/components/alert-dialog#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert-dialog"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "alert-dialog",
+    "slugFull": "/components/alert-dialog"
+  },
+  {
+    "title": "Alert",
+    "description": "Displays a callout for user attention.",
+    "path": "components/alert",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Default",
+            "url": "#default",
+            "items": []
+          },
+          {
+            "title": "Destructive",
+            "url": "#destructive",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "alert",
+    "slugFull": "/components/alert"
+  },
+  {
+    "title": "Aspect Ratio",
+    "description": "Displays content within a desired ratio.",
+    "path": "components/aspect-ratio",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/aspect-ratio",
+      "api": "https://bits-ui.com/docs/components/aspect-ratio#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/aspect-ratio"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "aspect-ratio",
+    "slugFull": "/components/aspect-ratio"
+  },
+  {
+    "title": "Avatar",
+    "description": "An image element with a fallback for representing the user.",
+    "path": "components/avatar",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/avatar",
+      "api": "https://bits-ui.com/docs/components/avatar#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/avatar"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "avatar",
+    "slugFull": "/components/avatar"
+  },
+  {
+    "title": "Badge",
+    "description": "Displays a badge or a component that looks like a badge.",
+    "path": "components/badge",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/badge"
+    },
+    "component": false,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": [
+          {
+            "title": "Link",
+            "url": "#link",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "badge",
+    "slugFull": "/components/badge"
+  },
+  {
+    "title": "Breadcrumb",
+    "description": "Displays the path to the current resource using a hierarchy of links.",
+    "path": "components/breadcrumb",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/breadcrumb"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Custom separator",
+            "url": "#custom-separator",
+            "items": []
+          },
+          {
+            "title": "Dropdown",
+            "url": "#dropdown",
+            "items": []
+          },
+          {
+            "title": "Collapsed",
+            "url": "#collapsed",
+            "items": []
+          },
+          {
+            "title": "Link component",
+            "url": "#link-component",
+            "items": []
+          },
+          {
+            "title": "Responsive",
+            "url": "#responsive",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "breadcrumb",
+    "slugFull": "/components/breadcrumb"
+  },
+  {
+    "title": "Button",
+    "description": "Displays a button or a component that looks like a button.",
+    "path": "components/button",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/button",
+      "api": "https://bits-ui.com/docs/components/button#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": [
+          {
+            "title": "Link",
+            "url": "#link",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Primary",
+            "url": "#primary",
+            "items": []
+          },
+          {
+            "title": "Secondary",
+            "url": "#secondary",
+            "items": []
+          },
+          {
+            "title": "Destructive",
+            "url": "#destructive",
+            "items": []
+          },
+          {
+            "title": "Outline",
+            "url": "#outline",
+            "items": []
+          },
+          {
+            "title": "Ghost",
+            "url": "#ghost",
+            "items": []
+          },
+          {
+            "title": "Link",
+            "url": "#link-1",
+            "items": []
+          },
+          {
+            "title": "With Icon",
+            "url": "#with-icon",
+            "items": []
+          },
+          {
+            "title": "Icon",
+            "url": "#icon",
+            "items": []
+          },
+          {
+            "title": "Loading",
+            "url": "#loading",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "button",
+    "slugFull": "/components/button"
+  },
+  {
+    "title": "Calendar",
+    "description": "A calendar component that allows users to select dates.",
+    "path": "components/calendar",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/calendar",
+      "api": "https://bits-ui.com/docs/components/calendar#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/calendar"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Date Picker",
+        "url": "#date-picker",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Advanced Customization",
+        "url": "#advanced-customization",
+        "items": [
+          {
+            "title": "Month & Year Selects",
+            "url": "#month--year-selects",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "calendar",
+    "slugFull": "/components/calendar"
+  },
+  {
+    "title": "Card",
+    "description": "Displays a card with header, content, and footer.",
+    "path": "components/card",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/card"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": []
+      }
+    ],
+    "slug": "card",
+    "slugFull": "/components/card"
+  },
+  {
+    "title": "Carousel",
+    "description": "A carousel with motion and swipe built using Embla.",
+    "path": "components/carousel",
+    "links": {
+      "doc": "https://www.embla-carousel.com/get-started/svelte",
+      "api": "https://www.embla-carousel.com/api",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/carousel"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Sizes",
+            "url": "#sizes",
+            "items": []
+          },
+          {
+            "title": "Spacing",
+            "url": "#spacing",
+            "items": []
+          },
+          {
+            "title": "Orientation",
+            "url": "#orientation",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Options",
+        "url": "#options",
+        "items": []
+      },
+      {
+        "title": "API",
+        "url": "#api",
+        "items": []
+      },
+      {
+        "title": "Events",
+        "url": "#events",
+        "items": []
+      },
+      {
+        "title": "Plugins",
+        "url": "#plugins",
+        "items": []
+      }
+    ],
+    "slug": "carousel",
+    "slugFull": "/components/carousel"
+  },
+  {
+    "title": "Chart",
+    "description": "Beautiful charts. Built using LayerChart. Copy and paste into your apps.",
+    "path": "components/chart",
+    "links": {
+      "doc": "https://next.layerchart.com",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Component",
+        "url": "#component",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Your First Chart",
+        "url": "#your-first-chart",
+        "items": [
+          {
+            "title": "Start by defining your data",
+            "url": "#start-by-defining-your-data",
+            "items": []
+          },
+          {
+            "title": "Define your chart config",
+            "url": "#define-your-chart-config",
+            "items": []
+          },
+          {
+            "title": "Build your chart",
+            "url": "#build-your-chart",
+            "items": []
+          },
+          {
+            "title": "Adjusting the Axis Ticks",
+            "url": "#adjusting-the-axis-ticks",
+            "items": []
+          },
+          {
+            "title": "Add a custom formatter to the x axis",
+            "url": "#add-a-custom-formatter-to-the-x-axis",
+            "items": []
+          },
+          {
+            "title": "Add Tooltip",
+            "url": "#add-tooltip",
+            "items": []
+          },
+          {
+            "title": "Add the Chart.Tooltip component to the chart",
+            "url": "#add-the-charttooltip-component-to-the-chart",
+            "items": []
+          },
+          {
+            "title": "Add Legend",
+            "url": "#add-legend",
+            "items": []
+          },
+          {
+            "title": "Set the legend prop to true",
+            "url": "#set-the-legend-prop-to-true",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Chart Config",
+        "url": "#chart-config",
+        "items": []
+      },
+      {
+        "title": "Theming",
+        "url": "#theming",
+        "items": [
+          {
+            "title": "CSS Variables",
+            "url": "#css-variables",
+            "items": []
+          },
+          {
+            "title": "Define your colors in your css file",
+            "url": "#define-your-colors-in-your-css-file",
+            "items": []
+          },
+          {
+            "title": "Add the color to your chartConfig",
+            "url": "#add-the-color-to-your-chartconfig",
+            "items": []
+          },
+          {
+            "title": "hex, hsl or oklch",
+            "url": "#hex-hsl-or-oklch",
+            "items": []
+          },
+          {
+            "title": "Using Colors",
+            "url": "#using-colors",
+            "items": [
+              {
+                "title": "Components",
+                "url": "#components",
+                "items": []
+              },
+              {
+                "title": "Chart Data",
+                "url": "#chart-data",
+                "items": []
+              },
+              {
+                "title": "Tailwind",
+                "url": "#tailwind",
+                "items": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Tooltip",
+        "url": "#tooltip",
+        "items": [
+          {
+            "title": "Props",
+            "url": "#props",
+            "items": []
+          },
+          {
+            "title": "Colors",
+            "url": "#colors",
+            "items": []
+          },
+          {
+            "title": "Custom",
+            "url": "#custom",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "chart",
+    "slugFull": "/components/chart"
+  },
+  {
+    "title": "Checkbox",
+    "description": "A control that allows the user to toggle between checked and not checked.",
+    "path": "components/checkbox",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/checkbox",
+      "api": "https://bits-ui.com/docs/components/checkbox#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/checkbox"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "checkbox",
+    "slugFull": "/components/checkbox"
+  },
+  {
+    "title": "Collapsible",
+    "description": "An interactive component which expands/collapses a panel.",
+    "path": "components/collapsible",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/collapsible",
+      "api": "https://bits-ui.com/docs/components/collapsible#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/collapsible"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "collapsible",
+    "slugFull": "/components/collapsible"
+  },
+  {
+    "title": "Combobox",
+    "description": "Autocomplete input and command palette with a list of suggestions.",
+    "path": "components/combobox",
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Combobox",
+            "url": "#combobox",
+            "items": []
+          },
+          {
+            "title": "Popover",
+            "url": "#popover",
+            "items": []
+          },
+          {
+            "title": "Dropdown menu",
+            "url": "#dropdown-menu",
+            "items": []
+          },
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "combobox",
+    "slugFull": "/components/combobox"
+  },
+  {
+    "title": "Command",
+    "description": "Fast, composable, unstyled command menu for Svelte.",
+    "path": "components/command",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/command",
+      "api": "https://bits-ui.com/docs/components/command#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Dialog",
+            "url": "#dialog",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Changelog",
+        "url": "#changelog",
+        "items": [
+          {
+            "title": "2024-10-30 Classes for icons",
+            "url": "#2024-10-30-classes-for-icons",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "command",
+    "slugFull": "/components/command"
+  },
+  {
+    "title": "Context Menu",
+    "description": "Displays a menu to the user — such as a set of actions or functions — triggered by right click.",
+    "path": "components/context-menu",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/context-menu",
+      "api": "https://bits-ui.com/docs/components/context-menu#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/context-menu"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "context-menu",
+    "slugFull": "/components/context-menu"
+  },
+  {
+    "title": "Data Table",
+    "description": "Powerful table and datagrids built using TanStack Table.",
+    "path": "components/data-table",
+    "links": {
+      "doc": "https://tanstack.com/table/v8/docs/introduction",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/data-table"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Introduction",
+        "url": "#introduction",
+        "items": []
+      },
+      {
+        "title": "Table of Contents",
+        "url": "#table-of-contents",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Prerequisites",
+        "url": "#prerequisites",
+        "items": []
+      },
+      {
+        "title": "Project Structure",
+        "url": "#project-structure",
+        "items": []
+      },
+      {
+        "title": "Basic Table",
+        "url": "#basic-table",
+        "items": [
+          {
+            "title": "Column Definitions",
+            "url": "#column-definitions",
+            "items": []
+          },
+          {
+            "title": "<DataTable /> Component",
+            "url": "#datatable--component",
+            "items": []
+          },
+          {
+            "title": "Render the table",
+            "url": "#render-the-table",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Cell Formatting",
+        "url": "#cell-formatting",
+        "items": [
+          {
+            "title": "Update columns definition",
+            "url": "#update-columns-definition",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Row Actions",
+        "url": "#row-actions",
+        "items": [
+          {
+            "title": "Create actions component",
+            "url": "#create-actions-component",
+            "items": []
+          },
+          {
+            "title": "Update columns definition",
+            "url": "#update-columns-definition-1",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Pagination",
+        "url": "#pagination",
+        "items": [
+          {
+            "title": "Update <DataTable />",
+            "url": "#update-datatable-",
+            "items": []
+          },
+          {
+            "title": "Adding pagination controls",
+            "url": "#adding-pagination-controls",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Sorting",
+        "url": "#sorting",
+        "items": [
+          {
+            "title": "Define <DataTableEmailButton /> component",
+            "url": "#define-datatableemailbutton--component",
+            "items": []
+          },
+          {
+            "title": "Update <DataTable />",
+            "url": "#update-datatable--1",
+            "items": []
+          },
+          {
+            "title": "Make header cell sortable",
+            "url": "#make-header-cell-sortable",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Filtering",
+        "url": "#filtering",
+        "items": [
+          {
+            "title": "Update <DataTable />",
+            "url": "#update-datatable--2",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Visibility",
+        "url": "#visibility",
+        "items": [
+          {
+            "title": "Update <DataTable />",
+            "url": "#update-datatable--3",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Row Selection",
+        "url": "#row-selection",
+        "items": [
+          {
+            "title": "Define <DataTableCheckbox /> component",
+            "url": "#define-datatablecheckbox--component",
+            "items": []
+          },
+          {
+            "title": "Update columns definition",
+            "url": "#update-columns-definition-2",
+            "items": []
+          },
+          {
+            "title": "Update <DataTable />",
+            "url": "#update-datatable--4",
+            "items": []
+          },
+          {
+            "title": "Show selected rows",
+            "url": "#show-selected-rows",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Reusable Components",
+        "url": "#reusable-components",
+        "items": []
+      }
+    ],
+    "slug": "data-table",
+    "slugFull": "/components/data-table"
+  },
+  {
+    "title": "Date Picker",
+    "description": "A date picker component with range and presets.",
+    "path": "components/date-picker",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/examples/date-picker-demo.svelte"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Date Picker",
+            "url": "#date-picker",
+            "items": []
+          },
+          {
+            "title": "Date Range Picker",
+            "url": "#date-range-picker",
+            "items": []
+          },
+          {
+            "title": "With Presets",
+            "url": "#with-presets",
+            "items": []
+          },
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "date-picker",
+    "slugFull": "/components/date-picker"
+  },
+  {
+    "title": "Dialog",
+    "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
+    "path": "components/dialog",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/dialog",
+      "api": "https://bits-ui.com/docs/components/dialog#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/dialog"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "dialog",
+    "slugFull": "/components/dialog"
+  },
+  {
+    "title": "Drawer",
+    "description": "A drawer component for Svelte.",
+    "path": "components/drawer",
+    "links": {
+      "doc": "https://github.com/huntabyte/vaul-svelte",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/drawer"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Responsive Dialog",
+            "url": "#responsive-dialog",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "drawer",
+    "slugFull": "/components/drawer"
+  },
+  {
+    "title": "Dropdown Menu",
+    "description": "Displays a menu to the user — such as a set of actions or functions — triggered by a button.",
+    "path": "components/dropdown-menu",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/dropdown-menu",
+      "api": "https://bits-ui.com/docs/components/dropdown-menu#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/dropdown-menu"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Checkboxes",
+            "url": "#checkboxes",
+            "items": []
+          },
+          {
+            "title": "Radio Group",
+            "url": "#radio-group",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Changelog",
+        "url": "#changelog",
+        "items": [
+          {
+            "title": "2024-10-30 Classes for DropdownMenu.SubTrigger",
+            "url": "#2024-10-30-classes-for-dropdownmenusubtrigger",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "dropdown-menu",
+    "slugFull": "/components/dropdown-menu"
+  },
+  {
+    "title": "Formsnap",
+    "description": "Building forms with Formsnap, Superforms, & Zod.",
+    "path": "components/form",
+    "links": {
+      "doc": "https://formsnap.dev",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/form"
+    },
+    "component": false,
+    "toc": [
+      {
+        "title": "Features",
+        "url": "#features",
+        "items": []
+      },
+      {
+        "title": "Anatomy",
+        "url": "#anatomy",
+        "items": []
+      },
+      {
+        "title": "Example",
+        "url": "#example",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": [
+          {
+            "title": "Create a form schema",
+            "url": "#create-a-form-schema",
+            "items": []
+          },
+          {
+            "title": "Setup the load function",
+            "url": "#setup-the-load-function",
+            "items": []
+          },
+          {
+            "title": "Create form component",
+            "url": "#create-form-component",
+            "items": []
+          },
+          {
+            "title": "Use the component",
+            "url": "#use-the-component",
+            "items": []
+          },
+          {
+            "title": "Create an Action",
+            "url": "#create-an-action",
+            "items": []
+          },
+          {
+            "title": "Done",
+            "url": "#done",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Next Steps",
+        "url": "#next-steps",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": []
+      }
+    ],
+    "slug": "form",
+    "slugFull": "/components/form"
+  },
+  {
+    "title": "Hover Card",
+    "description": "For sighted users to preview content available behind a link.",
+    "path": "components/hover-card",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/link-preview",
+      "api": "https://bits-ui.com/docs/components/link-preview#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/link-preview"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "hover-card",
+    "slugFull": "/components/hover-card"
+  },
+  {
+    "title": "Components",
+    "description": "Here you can find all the components available in the library. We are working on adding more components.",
+    "path": "components",
+    "component": false,
+    "toc": [],
+    "slug": "",
+    "slugFull": "/components"
+  },
+  {
+    "title": "Input OTP",
+    "description": "Accessible one-time password component with copy paste functionality.",
+    "path": "components/input-otp",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/pin-input",
+      "api": "https://bits-ui.com/docs/components/pin-input#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input-otp"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Pattern",
+            "url": "#pattern",
+            "items": []
+          },
+          {
+            "title": "Separator",
+            "url": "#separator",
+            "items": []
+          },
+          {
+            "title": "Invalid",
+            "url": "#invalid",
+            "items": []
+          },
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "input-otp",
+    "slugFull": "/components/input-otp"
+  },
+  {
+    "title": "Input",
+    "description": "Displays a form input field or a component that looks like an input field.",
+    "path": "components/input",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/input"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Default",
+            "url": "#default",
+            "items": []
+          },
+          {
+            "title": "Disabled",
+            "url": "#disabled",
+            "items": []
+          },
+          {
+            "title": "With Label",
+            "url": "#with-label",
+            "items": []
+          },
+          {
+            "title": "With Text",
+            "url": "#with-text",
+            "items": []
+          },
+          {
+            "title": "With Button",
+            "url": "#with-button",
+            "items": []
+          },
+          {
+            "title": "Invalid",
+            "url": "#invalid",
+            "items": []
+          },
+          {
+            "title": "File",
+            "url": "#file",
+            "items": []
+          },
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "input",
+    "slugFull": "/components/input"
+  },
+  {
+    "title": "Label",
+    "description": "Renders an accessible label associated with controls.",
+    "path": "components/label",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/label",
+      "api": "https://bits-ui.com/docs/components/label#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/label"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "label",
+    "slugFull": "/components/label"
+  },
+  {
+    "title": "Menubar",
+    "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
+    "path": "components/menubar",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/menubar",
+      "api": "https://bits-ui.com/docs/components/menubar#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/menubar"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "menubar",
+    "slugFull": "/components/menubar"
+  },
+  {
+    "title": "Navigation Menu",
+    "description": "A collection of links for navigating websites.",
+    "path": "components/navigation-menu",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/navigation-menu",
+      "api": "https://bits-ui.com/docs/components/navigation-menu#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/navigation-menu"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "navigation-menu",
+    "slugFull": "/components/navigation-menu"
+  },
+  {
+    "title": "Pagination",
+    "description": "Pagination with page navigation, next and previous links.",
+    "path": "components/pagination",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/pagination",
+      "api": "https://bits-ui.com/docs/components/pagination#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/pagination"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "pagination",
+    "slugFull": "/components/pagination"
+  },
+  {
+    "title": "Popover",
+    "description": "Displays rich content in a portal, triggered by a button.",
+    "path": "components/popover",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/popover",
+      "api": "https://bits-ui.com/docs/components/popover#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/popover"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "popover",
+    "slugFull": "/components/popover"
+  },
+  {
+    "title": "Progress",
+    "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    "path": "components/progress",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/progress",
+      "api": "https://bits-ui.com/docs/components/progress#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/progress"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "progress",
+    "slugFull": "/components/progress"
+  },
+  {
+    "title": "Radio Group",
+    "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+    "path": "components/radio-group",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/radio-group",
+      "api": "https://bits-ui.com/docs/components/radio-group#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/radio-group"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "radio-group",
+    "slugFull": "/components/radio-group"
+  },
+  {
+    "title": "Range Calendar",
+    "description": "A calendar component that allows users to select a range of dates.",
+    "path": "components/range-calendar",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/range-calendar",
+      "api": "https://bits-ui.com/docs/components/range-calendar#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/range-calendar"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      }
+    ],
+    "slug": "range-calendar",
+    "slugFull": "/components/range-calendar"
+  },
+  {
+    "title": "Resizable",
+    "description": "Accessible resizable panel groups and layouts with keyboard support.",
+    "path": "components/resizable",
+    "links": {
+      "doc": "https://www.paneforge.com",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/resizable"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Vertical",
+            "url": "#vertical",
+            "items": []
+          },
+          {
+            "title": "Handle",
+            "url": "#handle",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "resizable",
+    "slugFull": "/components/resizable"
+  },
+  {
+    "title": "Scroll Area",
+    "description": "Augments native scroll functionality for custom, cross-browser styling.",
+    "path": "components/scroll-area",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/scroll-area",
+      "api": "https://bits-ui.com/docs/components/scroll-area#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/scroll-area"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Horizontal Scrolling",
+            "url": "#horizontal-scrolling",
+            "items": []
+          },
+          {
+            "title": "Horizontal and Vertical Scrolling",
+            "url": "#horizontal-and-vertical-scrolling",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "scroll-area",
+    "slugFull": "/components/scroll-area"
+  },
+  {
+    "title": "Select",
+    "description": "Displays a list of options for the user to pick from—triggered by a button.",
+    "path": "components/select",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/select",
+      "api": "https://bits-ui.com/docs/components/select#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/select"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "select",
+    "slugFull": "/components/select"
+  },
+  {
+    "title": "Separator",
+    "description": "Visually or semantically separates content.",
+    "path": "components/separator",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/separator",
+      "api": "https://bits-ui.com/docs/components/separator#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/separator"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "separator",
+    "slugFull": "/components/separator"
+  },
+  {
+    "title": "Sheet",
+    "description": "Extends the Dialog component to display content that complements the main content of the screen.",
+    "path": "components/sheet",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/dialog",
+      "api": "https://bits-ui.com/docs/components/dialog#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sheet"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Side",
+            "url": "#side",
+            "items": []
+          },
+          {
+            "title": "Size",
+            "url": "#size",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "sheet",
+    "slugFull": "/components/sheet"
+  },
+  {
+    "title": "Sidebar",
+    "description": "A composable, themeable and customizable sidebar component.",
+    "path": "components/sidebar",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sidebar"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Structure",
+        "url": "#structure",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Your First Sidebar",
+        "url": "#your-first-sidebar",
+        "items": []
+      },
+      {
+        "title": "Components",
+        "url": "#components",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Provider",
+        "url": "#sidebarprovider",
+        "items": [
+          {
+            "title": "Props",
+            "url": "#props",
+            "items": []
+          },
+          {
+            "title": "Width",
+            "url": "#width",
+            "items": []
+          },
+          {
+            "title": "Keyboard Shortcut",
+            "url": "#keyboard-shortcut",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Sidebar.Root",
+        "url": "#sidebarroot",
+        "items": [
+          {
+            "title": "Props",
+            "url": "#props-1",
+            "items": []
+          },
+          {
+            "title": "side",
+            "url": "#side",
+            "items": []
+          },
+          {
+            "title": "variant",
+            "url": "#variant",
+            "items": []
+          },
+          {
+            "title": "collapsible",
+            "url": "#collapsible",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "useSidebar",
+        "url": "#usesidebar",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Header",
+        "url": "#sidebarheader",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Footer",
+        "url": "#sidebarfooter",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Content",
+        "url": "#sidebarcontent",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Group",
+        "url": "#sidebargroup",
+        "items": []
+      },
+      {
+        "title": "Collapsible Sidebar.Group",
+        "url": "#collapsible-sidebargroup",
+        "items": []
+      },
+      {
+        "title": "Sidebar.GroupAction",
+        "url": "#sidebargroupaction",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Menu",
+        "url": "#sidebarmenu",
+        "items": []
+      },
+      {
+        "title": "Sidebar.MenuButton",
+        "url": "#sidebarmenubutton",
+        "items": [
+          {
+            "title": "Link or Anchor",
+            "url": "#link-or-anchor",
+            "items": []
+          },
+          {
+            "title": "Icon and Label",
+            "url": "#icon-and-label",
+            "items": []
+          },
+          {
+            "title": "isActive",
+            "url": "#isactive",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Sidebar.MenuAction",
+        "url": "#sidebarmenuaction",
+        "items": [
+          {
+            "title": "DropdownMenu",
+            "url": "#dropdownmenu",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Sidebar.MenuSub",
+        "url": "#sidebarmenusub",
+        "items": []
+      },
+      {
+        "title": "Collapsible Sidebar.Menu",
+        "url": "#collapsible-sidebarmenu",
+        "items": []
+      },
+      {
+        "title": "Sidebar.MenuBadge",
+        "url": "#sidebarmenubadge",
+        "items": []
+      },
+      {
+        "title": "Sidebar.MenuSkeleton",
+        "url": "#sidebarmenuskeleton",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Separator",
+        "url": "#sidebarseparator",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Trigger",
+        "url": "#sidebartrigger",
+        "items": []
+      },
+      {
+        "title": "Custom Trigger",
+        "url": "#custom-trigger",
+        "items": []
+      },
+      {
+        "title": "Sidebar.Rail",
+        "url": "#sidebarrail",
+        "items": []
+      },
+      {
+        "title": "Controlled Sidebar",
+        "url": "#controlled-sidebar",
+        "items": []
+      },
+      {
+        "title": "Theming",
+        "url": "#theming",
+        "items": []
+      },
+      {
+        "title": "Styling",
+        "url": "#styling",
+        "items": []
+      }
+    ],
+    "slug": "sidebar",
+    "slugFull": "/components/sidebar"
+  },
+  {
+    "title": "Skeleton",
+    "description": "Use to show a placeholder while content is loading.",
+    "path": "components/skeleton",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/skeleton"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "skeleton",
+    "slugFull": "/components/skeleton"
+  },
+  {
+    "title": "Slider",
+    "description": "An input where the user selects a value from within a given range.",
+    "path": "components/slider",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/slider",
+      "api": "https://bits-ui.com/docs/components/slider#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/slider"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Multiple Thumbs",
+            "url": "#multiple-thumbs",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "slider",
+    "slugFull": "/components/slider"
+  },
+  {
+    "title": "Sonner",
+    "description": "An opinionated toast component for Svelte.",
+    "path": "components/sonner",
+    "links": {
+      "doc": "https://svelte-sonner.vercel.app/",
+      "api": "https://github.com/wobsoriano/svelte-sonner",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/sonner"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "sonner",
+    "slugFull": "/components/sonner"
+  },
+  {
+    "title": "Switch",
+    "description": "A control that allows the user to toggle between checked and not checked.",
+    "path": "components/switch",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/switch",
+      "api": "https://bits-ui.com/docs/components/switch#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/switch"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "switch",
+    "slugFull": "/components/switch"
+  },
+  {
+    "title": "Table",
+    "description": "A responsive table component.",
+    "path": "components/table",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/table"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "table",
+    "slugFull": "/components/table"
+  },
+  {
+    "title": "Tabs",
+    "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    "path": "components/tabs",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/tabs",
+      "api": "https://bits-ui.com/docs/components/tabs#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tabs"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "tabs",
+    "slugFull": "/components/tabs"
+  },
+  {
+    "title": "Textarea",
+    "description": "Displays a form textarea or a component that looks like a textarea.",
+    "path": "components/textarea",
+    "links": {
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/textarea"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Default",
+            "url": "#default",
+            "items": []
+          },
+          {
+            "title": "Disabled",
+            "url": "#disabled",
+            "items": []
+          },
+          {
+            "title": "With Label",
+            "url": "#with-label",
+            "items": []
+          },
+          {
+            "title": "With Text",
+            "url": "#with-text",
+            "items": []
+          },
+          {
+            "title": "With Button",
+            "url": "#with-button",
+            "items": []
+          },
+          {
+            "title": "Form",
+            "url": "#form",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "textarea",
+    "slugFull": "/components/textarea"
+  },
+  {
+    "title": "Toggle Group",
+    "description": "A set of two-state buttons that can be toggled on or off.",
+    "path": "components/toggle-group",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/toggle-group",
+      "api": "https://bits-ui.com/docs/components/toggle-group#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/toggle-group"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Default",
+            "url": "#default",
+            "items": []
+          },
+          {
+            "title": "Outline",
+            "url": "#outline",
+            "items": []
+          },
+          {
+            "title": "Single",
+            "url": "#single",
+            "items": []
+          },
+          {
+            "title": "Small",
+            "url": "#small",
+            "items": []
+          },
+          {
+            "title": "Large",
+            "url": "#large",
+            "items": []
+          },
+          {
+            "title": "Disabled",
+            "url": "#disabled",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "toggle-group",
+    "slugFull": "/components/toggle-group"
+  },
+  {
+    "title": "Toggle",
+    "description": "A two-state button that can be either on or off.",
+    "path": "components/toggle",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/toggle",
+      "api": "https://bits-ui.com/docs/components/toggle#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/toggle"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      },
+      {
+        "title": "Examples",
+        "url": "#examples",
+        "items": [
+          {
+            "title": "Default",
+            "url": "#default",
+            "items": []
+          },
+          {
+            "title": "Outline",
+            "url": "#outline",
+            "items": []
+          },
+          {
+            "title": "With Text",
+            "url": "#with-text",
+            "items": []
+          },
+          {
+            "title": "Small",
+            "url": "#small",
+            "items": []
+          },
+          {
+            "title": "Large",
+            "url": "#large",
+            "items": []
+          },
+          {
+            "title": "Disabled",
+            "url": "#disabled",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "toggle",
+    "slugFull": "/components/toggle"
+  },
+  {
+    "title": "Tooltip",
+    "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    "path": "components/tooltip",
+    "links": {
+      "doc": "https://bits-ui.com/docs/components/tooltip",
+      "api": "https://bits-ui.com/docs/components/tooltip#api-reference",
+      "source": "https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/tooltip"
+    },
+    "component": true,
+    "toc": [
+      {
+        "title": "Installation",
+        "url": "#installation",
+        "items": []
+      },
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": []
+      }
+    ],
+    "slug": "tooltip",
+    "slugFull": "/components/tooltip"
+  },
+  {
+    "title": "Typography",
+    "description": "Styles for headings, paragraphs, lists...etc",
+    "path": "components/typography",
+    "component": true,
+    "toc": [
+      {
+        "title": "h1",
+        "url": "#h1",
+        "items": []
+      },
+      {
+        "title": "h2",
+        "url": "#h2",
+        "items": []
+      },
+      {
+        "title": "h3",
+        "url": "#h3",
+        "items": []
+      },
+      {
+        "title": "h4",
+        "url": "#h4",
+        "items": []
+      },
+      {
+        "title": "p",
+        "url": "#p",
+        "items": []
+      },
+      {
+        "title": "blockquote",
+        "url": "#blockquote",
+        "items": []
+      },
+      {
+        "title": "table",
+        "url": "#table",
+        "items": []
+      },
+      {
+        "title": "list",
+        "url": "#list",
+        "items": []
+      },
+      {
+        "title": "Inline code",
+        "url": "#inline-code",
+        "items": []
+      },
+      {
+        "title": "Lead",
+        "url": "#lead",
+        "items": []
+      },
+      {
+        "title": "Large",
+        "url": "#large",
+        "items": []
+      },
+      {
+        "title": "Small",
+        "url": "#small",
+        "items": []
+      },
+      {
+        "title": "Muted",
+        "url": "#muted",
+        "items": []
+      }
+    ],
+    "slug": "typography",
+    "slugFull": "/components/typography"
+  }
+]

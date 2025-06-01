@@ -1,0 +1,479 @@
+[
+  {
+    "title": "About",
+    "description": "Powered by amazing open source projects.",
+    "path": "about",
+    "component": false,
+    "toc": [
+      {
+        "title": "About",
+        "url": "#about",
+        "items": []
+      },
+      {
+        "title": "Credits",
+        "url": "#credits",
+        "items": []
+      },
+      {
+        "title": "License",
+        "url": "#license",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/about"
+  },
+  {
+    "title": "Changelog",
+    "description": "Latest updates and announcements.",
+    "path": "changelog",
+    "component": false,
+    "toc": [
+      {
+        "title": "May 2025",
+        "url": "#may-2025",
+        "items": [
+          {
+            "title": "Tailwind v4 Support",
+            "url": "#tailwind-v4-support",
+            "items": []
+          },
+          {
+            "title": "Charts",
+            "url": "#charts",
+            "items": []
+          },
+          {
+            "title": "Custom Registry Support",
+            "url": "#custom-registry-support",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "March 2024",
+        "url": "#march-2024",
+        "items": [
+          {
+            "title": "Introducing Blocks",
+            "url": "#introducing-blocks",
+            "items": []
+          },
+          {
+            "title": "New Component: Breadcrumb",
+            "url": "#new-component-breadcrumb",
+            "items": []
+          },
+          {
+            "title": "New Component: Scroll Area",
+            "url": "#new-component-scroll-area",
+            "items": [
+              {
+                "title": "Examples",
+                "url": "#examples",
+                "items": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "February 2024",
+        "url": "#february-2024",
+        "items": [
+          {
+            "title": "New Component: Resizable",
+            "url": "#new-component-resizable",
+            "items": []
+          },
+          {
+            "title": "Updated Icon Imports",
+            "url": "#updated-icon-imports",
+            "items": []
+          },
+          {
+            "title": "Major Forms Update",
+            "url": "#major-forms-update",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "January 2024",
+        "url": "#january-2024",
+        "items": [
+          {
+            "title": "New Component: Carousel",
+            "url": "#new-component-carousel",
+            "items": []
+          },
+          {
+            "title": "New Component: Drawer",
+            "url": "#new-component-drawer",
+            "items": []
+          },
+          {
+            "title": "New Component: Sonner",
+            "url": "#new-component-sonner",
+            "items": []
+          },
+          {
+            "title": "New Component: Pagination",
+            "url": "#new-component-pagination",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "December 2023",
+        "url": "#december-2023",
+        "items": [
+          {
+            "title": "New Component: Calendar",
+            "url": "#new-component-calendar",
+            "items": []
+          },
+          {
+            "title": "New Component: Range Calendar",
+            "url": "#new-component-range-calendar",
+            "items": []
+          },
+          {
+            "title": "New Component: Date Picker",
+            "url": "#new-component-date-picker",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "November 2023",
+        "url": "#november-2023",
+        "items": [
+          {
+            "title": "New Component: Toggle Group",
+            "url": "#new-component-toggle-group",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "October 2023",
+        "url": "#october-2023",
+        "items": [
+          {
+            "title": "New Component: Command",
+            "url": "#new-component-command",
+            "items": []
+          },
+          {
+            "title": "New Component: Combobox",
+            "url": "#new-component-combobox",
+            "items": []
+          },
+          {
+            "title": "Updates to Form",
+            "url": "#updates-to-form",
+            "items": [
+              {
+                "title": "Form.Label Changes",
+                "url": "#formlabel-changes",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "Form.Control",
+            "url": "#formcontrol",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "August 2023 - Transitions & More",
+        "url": "#august-2023---transitions--more",
+        "items": [
+          {
+            "title": "Transitions",
+            "url": "#transitions",
+            "items": [
+              {
+                "title": "Migration",
+                "url": "#migration",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "Events",
+            "url": "#events",
+            "items": [
+              {
+                "title": "Migration",
+                "url": "#migration-1",
+                "items": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "slug": "",
+    "slugFull": "/changelog"
+  },
+  {
+    "title": "CLI",
+    "description": "Use the CLI to add components to your project.",
+    "path": "cli",
+    "component": false,
+    "toc": [
+      {
+        "title": "init",
+        "url": "#init",
+        "items": [
+          {
+            "title": "Options",
+            "url": "#options",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "add",
+        "url": "#add",
+        "items": [
+          {
+            "title": "Options",
+            "url": "#options-1",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "registry build",
+        "url": "#registry-build",
+        "items": [
+          {
+            "title": "Options",
+            "url": "#options-2",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Outgoing Requests",
+        "url": "#outgoing-requests",
+        "items": [
+          {
+            "title": "Proxy",
+            "url": "#proxy",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "",
+    "slugFull": "/cli"
+  },
+  {
+    "title": "components.json",
+    "description": "Configuration for your project.",
+    "path": "components-json",
+    "component": false,
+    "toc": [
+      {
+        "title": "$schema",
+        "url": "#schema",
+        "items": []
+      },
+      {
+        "title": "tailwind",
+        "url": "#tailwind",
+        "items": [
+          {
+            "title": "tailwind.css",
+            "url": "#tailwindcss",
+            "items": []
+          },
+          {
+            "title": "tailwind.baseColor",
+            "url": "#tailwindbasecolor",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "aliases",
+        "url": "#aliases",
+        "items": [
+          {
+            "title": "aliases.lib",
+            "url": "#aliaseslib",
+            "items": []
+          },
+          {
+            "title": "aliases.utils",
+            "url": "#aliasesutils",
+            "items": []
+          },
+          {
+            "title": "aliases.components",
+            "url": "#aliasescomponents",
+            "items": []
+          },
+          {
+            "title": "aliases.ui",
+            "url": "#aliasesui",
+            "items": []
+          },
+          {
+            "title": "aliases.hooks",
+            "url": "#aliaseshooks",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Typescript",
+        "url": "#typescript",
+        "items": []
+      },
+      {
+        "title": "Registry",
+        "url": "#registry",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/components-json"
+  },
+  {
+    "title": "Figma",
+    "description": "Every component recreated in Figma. With customizable props, typography and icons.",
+    "path": "figma",
+    "component": false,
+    "toc": [
+      {
+        "title": "Grab a copy",
+        "url": "#grab-a-copy",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/figma"
+  },
+  {
+    "title": "Introduction",
+    "description": "Re-usable components built with Bits UI and Tailwind CSS.",
+    "path": "index",
+    "component": false,
+    "toc": [
+      {
+        "title": "Open Code",
+        "url": "#open-code",
+        "items": []
+      },
+      {
+        "title": "Composition",
+        "url": "#composition",
+        "items": []
+      },
+      {
+        "title": "Distribution",
+        "url": "#distribution",
+        "items": []
+      },
+      {
+        "title": "Beautiful Defaults",
+        "url": "#beautiful-defaults",
+        "items": []
+      },
+      {
+        "title": "AI-Ready",
+        "url": "#ai-ready",
+        "items": []
+      }
+    ],
+    "slug": "",
+    "slugFull": "/index"
+  },
+  {
+    "title": "JavaScript",
+    "description": "How to use shadcn-svelte with JavaScript.",
+    "path": "javascript",
+    "component": false,
+    "toc": [],
+    "slug": "",
+    "slugFull": "/javascript"
+  },
+  {
+    "title": "Legacy Docs",
+    "description": "View the legacy docs for shadcn-svelte and Tailwind v3.",
+    "path": "legacy",
+    "component": false,
+    "toc": [],
+    "slug": "",
+    "slugFull": "/legacy"
+  },
+  {
+    "title": "Theming",
+    "description": "Use CSS Variables to customize the look and feel of your application.",
+    "path": "theming",
+    "component": false,
+    "toc": [
+      {
+        "title": "Convention",
+        "url": "#convention",
+        "items": []
+      },
+      {
+        "title": "List of variables",
+        "url": "#list-of-variables",
+        "items": []
+      },
+      {
+        "title": "Adding new colors",
+        "url": "#adding-new-colors",
+        "items": []
+      },
+      {
+        "title": "Other color formats",
+        "url": "#other-color-formats",
+        "items": []
+      },
+      {
+        "title": "Base Colors",
+        "url": "#base-colors",
+        "items": [
+          {
+            "title": "Neutral",
+            "url": "#neutral",
+            "items": []
+          },
+          {
+            "title": "Stone",
+            "url": "#stone",
+            "items": []
+          },
+          {
+            "title": "Zinc",
+            "url": "#zinc",
+            "items": []
+          },
+          {
+            "title": "Gray",
+            "url": "#gray",
+            "items": []
+          },
+          {
+            "title": "Slate",
+            "url": "#slate",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "",
+    "slugFull": "/theming"
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "title": "Astro",
+    "description": "Adding dark mode to your Astro site.",
+    "path": "dark-mode/astro",
+    "component": false,
+    "toc": [
+      {
+        "title": "Usage",
+        "url": "#usage",
+        "items": [
+          {
+            "title": "Create an inline theme script",
+            "url": "#create-an-inline-theme-script",
+            "items": []
+          },
+          {
+            "title": "Install mode-watcher",
+            "url": "#install-mode-watcher",
+            "items": []
+          },
+          {
+            "title": "Add the ModeWatcher component",
+            "url": "#add-the-modewatcher-component",
+            "items": []
+          },
+          {
+            "title": "Create a mode toggle",
+            "url": "#create-a-mode-toggle",
+            "items": [
+              {
+                "title": "Light switch",
+                "url": "#light-switch",
+                "items": []
+              },
+              {
+                "title": "Dropdown menu",
+                "url": "#dropdown-menu",
+                "items": []
+              }
+            ]
+          },
+          {
+            "title": "Add mode toggle to page",
+            "url": "#add-mode-toggle-to-page",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "slug": "astro",
+    "slugFull": "/dark-mode/astro"
+  },
+  {
+    "title": "Dark Mode",
+    "description": "Adding dark mode to your site.",
+    "path": "dark-mode",
+    "component": false,
+    "toc": [],
+    "slug": "",
+    "slugFull": "/dark-mode"
+  },
+  {
+    "title": "Svelte",
+    "description": "Adding dark mode to your Svelte site.",
+    "path": "dark-mode/svelte",
+    "component": false,
+    "toc": [
+      {
+        "title": "Install mode-watcher",
+        "url": "#install-mode-watcher",
+        "items": []
+      },
+      {
+        "title": "Add the ModeWatcher component",
+        "url": "#add-the-modewatcher-component",
+        "items": []
+      },
+      {
+        "title": "Add a mode toggle",
+        "url": "#add-a-mode-toggle",
+        "items": []
+      }
+    ],
+    "slug": "svelte",
+    "slugFull": "/dark-mode/svelte"
+  }
+]

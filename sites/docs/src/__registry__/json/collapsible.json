@@ -1,0 +1,31 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "collapsible",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.1.0",
+		"@internationalized/date@^3.5.6"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: CollapsiblePrimitive.ContentProps = $props();\n</script>\n\n<CollapsiblePrimitive.Content bind:ref data-slot=\"collapsible-content\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "collapsible/collapsible-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: CollapsiblePrimitive.TriggerProps = $props();\n</script>\n\n<CollapsiblePrimitive.Trigger bind:ref data-slot=\"collapsible-trigger\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "collapsible/collapsible-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\topen = $bindable(false),\n\t\t...restProps\n\t}: CollapsiblePrimitive.RootProps = $props();\n</script>\n\n<CollapsiblePrimitive.Root bind:ref data-slot=\"collapsible\" {...restProps} />\n",
+			"type": "registry:file",
+			"target": "collapsible/collapsible.svelte"
+		},
+		{
+			"content": "import { Collapsible as CollapsiblePrimitive } from \"bits-ui\";\n\nconst Root = CollapsiblePrimitive.Root;\nconst Trigger = CollapsiblePrimitive.Trigger;\nconst Content = CollapsiblePrimitive.Content;\n\nexport {\n\tRoot,\n\tContent,\n\tTrigger,\n\t//\n\tRoot as Collapsible,\n\tContent as CollapsibleContent,\n\tTrigger as CollapsibleTrigger,\n};\n",
+			"type": "registry:file",
+			"target": "collapsible/index.ts"
+		}
+	]
+}

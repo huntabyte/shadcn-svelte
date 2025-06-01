@@ -1,0 +1,58 @@
+{
+	"$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+	"name": "navigation-menu",
+	"type": "registry:ui",
+	"devDependencies": [
+		"bits-ui@^2.1.0",
+		"@internationalized/date@^3.5.6",
+		"@lucide/svelte@^0.482.0",
+		"tailwind-variants@^1.0.0"
+	],
+	"files": [
+		{
+			"content": "import Root from \"./navigation-menu.svelte\";\nimport Content from \"./navigation-menu-content.svelte\";\nimport Indicator from \"./navigation-menu-indicator.svelte\";\nimport Item from \"./navigation-menu-item.svelte\";\nimport Link from \"./navigation-menu-link.svelte\";\nimport List from \"./navigation-menu-list.svelte\";\nimport Trigger from \"./navigation-menu-trigger.svelte\";\nimport Viewport from \"./navigation-menu-viewport.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tIndicator,\n\tItem,\n\tLink,\n\tList,\n\tTrigger,\n\tViewport,\n\t//\n\tRoot as NavigationMenuRoot,\n\tContent as NavigationMenuContent,\n\tIndicator as NavigationMenuIndicator,\n\tItem as NavigationMenuItem,\n\tLink as NavigationMenuLink,\n\tList as NavigationMenuList,\n\tTrigger as NavigationMenuTrigger,\n\tViewport as NavigationMenuViewport,\n};\n",
+			"type": "registry:file",
+			"target": "navigation-menu/index.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.ContentProps = $props();\n</script>\n\n<NavigationMenuPrimitive.Content\n\tbind:ref\n\tdata-slot=\"navigation-menu-content\"\n\tclass={cn(\n\t\t\"data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 left-0 top-0 w-full md:absolute md:w-auto\",\n\t\t\"group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-md group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:shadow group-data-[viewport=false]/navigation-menu:duration-200\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.IndicatorProps = $props();\n</script>\n\n<NavigationMenuPrimitive.Indicator\n\tbind:ref\n\tdata-slot=\"navigation-menu-indicator\"\n\tclass={cn(\n\t\t\"data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t<div class=\"bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md\"></div>\n</NavigationMenuPrimitive.Indicator>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-indicator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.ItemProps = $props();\n</script>\n\n<NavigationMenuPrimitive.Item\n\tbind:ref\n\tdata-slot=\"navigation-menu-item\"\n\tclass={cn(\"relative\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.LinkProps = $props();\n</script>\n\n<NavigationMenuPrimitive.Link\n\tbind:ref\n\tdata-slot=\"navigation-menu-link\"\n\tclass={cn(\n\t\t\"data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all focus-visible:outline-1 focus-visible:ring-[3px] [&_svg:not([class*='size-'])]:size-4\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-link.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.ListProps = $props();\n</script>\n\n<NavigationMenuPrimitive.List\n\tbind:ref\n\tdata-slot=\"navigation-menu-list\"\n\tclass={cn(\"group flex flex-1 list-none items-center justify-center gap-1\", className)}\n\t{...restProps}\n/>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-list.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { cn } from \"$UTILS$.js\";\n\timport { tv } from \"tailwind-variants\";\n\n\texport const navigationMenuTriggerStyle = tv({\n\t\tbase: \"bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium outline-none transition-[color,box-shadow] focus-visible:outline-1 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50\",\n\t});\n</script>\n\n<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport ChevronDownIcon from \"@lucide/svelte/icons/chevron-down\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.TriggerProps = $props();\n</script>\n\n<NavigationMenuPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"navigation-menu-trigger\"\n\tclass={cn(navigationMenuTriggerStyle(), \"group\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\n\t<ChevronDownIcon\n\t\tclass=\"relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180\"\n\t\taria-hidden=\"true\"\n\t/>\n</NavigationMenuPrimitive.Trigger>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.ViewportProps = $props();\n</script>\n\n<div class={cn(\"absolute left-0 top-full isolate z-50 flex justify-center\")}>\n\t<NavigationMenuPrimitive.Viewport\n\t\tbind:ref\n\t\tdata-slot=\"navigation-menu-viewport\"\n\t\tclass={cn(\n\t\t\t\"origin-top-center bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--bits-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--bits-navigation-menu-viewport-width)]\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</div>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu-viewport.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\n\timport { NavigationMenu as NavigationMenuPrimitive } from \"bits-ui\";\n\timport { cn } from \"$UTILS$.js\";\n\timport NavigationMenuViewport from \"./navigation-menu-viewport.svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tviewport = true,\n\t\tchildren,\n\t\t...restProps\n\t}: NavigationMenuPrimitive.RootProps & {\n\t\tviewport?: boolean;\n\t} = $props();\n</script>\n\n<NavigationMenuPrimitive.Root\n\tbind:ref\n\tdata-slot=\"navigation-menu\"\n\tdata-viewport={viewport}\n\tclass={cn(\n\t\t\"group/navigation-menu relative flex max-w-max flex-1 items-center justify-center\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\n\t{#if viewport}\n\t\t<NavigationMenuViewport />\n\t{/if}\n</NavigationMenuPrimitive.Root>\n",
+			"type": "registry:file",
+			"target": "navigation-menu/navigation-menu.svelte"
+		}
+	]
+}
