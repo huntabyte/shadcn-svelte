@@ -1,6 +1,8 @@
 type Options = {
 	/** The time before the copied status is reset. */
 	delay: number;
+	/** Whether to reset the copied status after a delay. */
+	reset: boolean;
 };
 
 /** Use this hook to copy text to the clipboard and show a copied state.
@@ -28,9 +30,12 @@ type Options = {
 export class UseClipboard {
 	#copiedStatus = $state<"success" | "failure">();
 	delay: number;
+	reset: boolean;
 	timeout: ReturnType<typeof setTimeout> | undefined = undefined;
-	constructor({ delay = 2000 }: Partial<Options> = {}) {
+	#lastCopied = $state<string | undefined>(undefined);
+	constructor({ delay = 2000, reset = true }: Partial<Options> = {}) {
 		this.delay = delay;
+		this.reset = reset;
 	}
 
 	/** Copies the given text to the users clipboard.
@@ -43,7 +48,8 @@ export class UseClipboard {
 	 * @param text
 	 * @returns
 	 */
-	async copy(text: string) {
+	async copy(_text: string | number) {
+		const text = typeof _text === "number" ? _text.toString() : _text;
 		if (this.timeout) {
 			this.#copiedStatus = undefined;
 			clearTimeout(this.timeout);
@@ -53,17 +59,22 @@ export class UseClipboard {
 			await navigator.clipboard.writeText(text);
 
 			this.#copiedStatus = "success";
+			this.#lastCopied = text;
 
-			this.timeout = setTimeout(() => {
-				this.#copiedStatus = undefined;
-			}, this.delay);
+			if (this.reset) {
+				this.timeout = setTimeout(() => {
+					this.#copiedStatus = undefined;
+				}, this.delay);
+			}
 		} catch {
 			// an error can occur when not in the browser or if the user hasn't given clipboard access
 			this.#copiedStatus = "failure";
 
-			this.timeout = setTimeout(() => {
-				this.#copiedStatus = undefined;
-			}, this.delay);
+			if (this.reset) {
+				this.timeout = setTimeout(() => {
+					this.#copiedStatus = undefined;
+				}, this.delay);
+			}
 		}
 
 		return this.#copiedStatus;
@@ -78,5 +89,12 @@ export class UseClipboard {
 	 * and gives a status of either `success` or `failure`. */
 	get status() {
 		return this.#copiedStatus;
+	}
+
+	/**
+	 * The last copied text.
+	 */
+	get lastCopied() {
+		return this.#lastCopied;
 	}
 }

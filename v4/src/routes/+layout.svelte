@@ -8,6 +8,7 @@
 	import { setLayoutContext } from "$lib/layout.js";
 	import { useCookie } from "$lib/hooks/use-cookie.svelte.js";
 	import { watch } from "runed";
+	import { setColorFormatContext } from "$lib/color-format.js";
 
 	let { children, data } = $props();
 
@@ -27,6 +28,7 @@
 
 	setPackageManagerContext(() => data.packageManager);
 	setInstallationTypeContext(() => data.installationType);
+	setColorFormatContext(() => data.colorFormat);
 	const layout = setLayoutContext(() => data.layout);
 
 	useCookie({

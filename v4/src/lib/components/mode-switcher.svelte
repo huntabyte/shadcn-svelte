@@ -8,6 +8,7 @@
 	size="icon"
 	class="group/toggle extend-touch-target size-8"
 	onclick={toggleMode}
+	title="Toggle theme"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"

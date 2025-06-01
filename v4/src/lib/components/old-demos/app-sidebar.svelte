@@ -15,7 +15,7 @@
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 
-	import { UI } from "../../__registry__/ui.js";
+	import { UI } from "../../../__registry__/ui.js";
 	import type { ComponentProps } from "svelte";
 	import { getComponentName } from "$lib/utils.js";
 

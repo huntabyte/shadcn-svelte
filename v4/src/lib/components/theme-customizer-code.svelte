@@ -42,10 +42,6 @@
 		baseColorsOKLCH[trueActiveTheme as keyof typeof baseColorsOKLCH]
 	);
 
-	$effect(() => {
-		console.log(activeThemeOKLCH);
-	});
-
 	const clipboard = new UseClipboard();
 </script>
 
