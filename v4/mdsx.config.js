@@ -266,9 +266,10 @@ function getComponentSourceFileContent(src = "") {
 	// Read the source file.
 	const filePath = join(process.cwd(), newSrc);
 
-	const formattedSource = prettier
-		.format(readFileSync(filePath, "utf-8"), codeBlockPrettierConfig)
-		.replace(/^\n+|\n+$/g, "");
+	const formattedSource = prettier.format(
+		readFileSync(filePath, "utf-8"),
+		codeBlockPrettierConfig
+	);
 
 	return formattedSource.trim();
 }

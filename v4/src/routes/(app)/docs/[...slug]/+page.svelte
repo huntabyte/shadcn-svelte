@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import CodeIcon from "@lucide/svelte/icons/code";
 	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
@@ -9,14 +8,15 @@
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
+	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 
 	let { data } = $props();
 
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
-	const componentSource = $derived(data.metadata.links?.source);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
+	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -66,7 +66,7 @@
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || componentSource || docLink}
+				{#if apiLink || source || docLink}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge
@@ -88,21 +88,16 @@
 								API Reference <ExternalLinkIcon />
 							</Badge>
 						{/if}
-						{#if componentSource}
-							<Badge
-								href={componentSource}
-								variant="secondary"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Component Source <CodeIcon />
-							</Badge>
+						{#if source}
+							{#key page.url.pathname}
+								<ComponentCodeViewer item={source} />
+							{/key}
 						{/if}
 					</div>
 				{/if}
 			</div>
 			<div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
-				<Markdown form={data.form} />
+				<Markdown form={data.form} viewerData={data.viewerData} />
 			</div>
 		</div>
 		<div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">

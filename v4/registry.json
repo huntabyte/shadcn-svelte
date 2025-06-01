@@ -33,11 +33,11 @@
 				},
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/accordion/accordion-root.svelte"
+					"path": "src/lib/registry/ui/accordion/accordion-trigger.svelte"
 				},
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/accordion/accordion-trigger.svelte"
+					"path": "src/lib/registry/ui/accordion/accordion.svelte"
 				},
 				{
 					"type": "registry:file",

@@ -6,7 +6,7 @@ export async function highlightCode(code: string, language: string = "svelte") {
 	const cachedCode = highlightCodeCache.get(code);
 	if (cachedCode) return cachedCode;
 
-	const html = await codeToHtml(code, {
+	const html = await codeToHtml(formatCode(code), {
 		lang: language,
 		themes: {
 			dark: "github-dark",
@@ -31,4 +31,9 @@ export async function highlightCode(code: string, language: string = "svelte") {
 	highlightCodeCache.set(code, html);
 
 	return html;
+}
+
+function formatCode(code: string) {
+	// replaces tabs with 2 spaces
+	return code.replace(/\t/g, "  ");
 }
