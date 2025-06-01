@@ -18,8 +18,8 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-function generateGettingStartedNav() {
-	const gettingStartedNavItems: SidebarNavItem[] = [
+function generateGetStartedNav() {
+	const getStartedNavItems: SidebarNavItem[] = [
 		{
 			title: "Introduction",
 			href: "/docs",
@@ -77,7 +77,7 @@ function generateGettingStartedNav() {
 		},
 	];
 
-	return gettingStartedNavItems;
+	return getStartedNavItems;
 }
 
 function generateInstallationNav() {
@@ -200,7 +200,7 @@ function generateMigrationNav() {
 	return migrationNavItems;
 }
 
-const gettingStartedNav = generateGettingStartedNav();
+const getStartedNav = generateGetStartedNav();
 const migrationNav = generateMigrationNav();
 const componentsNav = generateComponentsNav();
 const installationNav = generateInstallationNav();
@@ -209,8 +209,8 @@ const registryNav = generateRegistryNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
 	{
-		title: "Getting Started",
-		items: gettingStartedNav,
+		title: "Get Started",
+		items: getStartedNav,
 	},
 	{
 		title: "Migration",
@@ -263,7 +263,7 @@ export const mainNavItems: NavItem[] = [
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
-		...gettingStartedNav,
+		...getStartedNav,
 		...migrationNav,
 		...componentsNav,
 		...installationNav,
