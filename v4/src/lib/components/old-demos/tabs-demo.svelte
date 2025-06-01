@@ -25,11 +25,11 @@
 				<Card.Content class="grid gap-6">
 					<div class="grid gap-3">
 						<Label for="tabs-demo-name">Name</Label>
-						<Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
+						<Input id="tabs-demo-name" value="Pedro Duarte" />
 					</div>
 					<div class="grid gap-3">
 						<Label for="tabs-demo-username">Username</Label>
-						<Input id="tabs-demo-username" defaultValue="@peduarte" />
+						<Input id="tabs-demo-username" value="@peduarte" />
 					</div>
 				</Card.Content>
 				<Card.Footer>

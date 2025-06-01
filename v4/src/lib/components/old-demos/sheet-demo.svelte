@@ -24,11 +24,11 @@
 			<div class="grid flex-1 auto-rows-min gap-6 px-4">
 				<div class="grid gap-3">
 					<Label for="sheet-demo-name">Name</Label>
-					<Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+					<Input id="sheet-demo-name" value="Pedro Duarte" />
 				</div>
 				<div class="grid gap-3">
 					<Label for="sheet-demo-username">Username</Label>
-					<Input id="sheet-demo-username" defaultValue="@peduarte" />
+					<Input id="sheet-demo-username" value="@peduarte" />
 				</div>
 			</div>
 			<Sheet.Footer>
