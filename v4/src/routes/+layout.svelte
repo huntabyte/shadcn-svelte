@@ -9,6 +9,7 @@
 	import { useCookie } from "$lib/hooks/use-cookie.svelte.js";
 	import { watch } from "runed";
 	import { setColorFormatContext } from "$lib/color-format.js";
+	import { ActiveThemeContext } from "$lib/active-theme.js";
 
 	let { children, data } = $props();
 
@@ -29,12 +30,21 @@
 	setPackageManagerContext(() => data.packageManager);
 	setInstallationTypeContext(() => data.installationType);
 	setColorFormatContext(() => data.colorFormat);
+	let activeThemeValue = $state({ current: data.activeTheme ?? "default" });
+	const ctxActiveTheme = ActiveThemeContext.set(activeThemeValue);
 	const layout = setLayoutContext(() => data.layout);
 
 	useCookie({
 		value: () => theme.current ?? data.activeTheme,
 		name: "active_theme",
 	});
+
+	watch.pre(
+		() => ctxActiveTheme.current,
+		() => {
+			setTheme(ctxActiveTheme.current ?? "default");
+		}
+	);
 
 	watch.pre(
 		() => layout.current,

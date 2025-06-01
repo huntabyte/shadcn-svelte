@@ -102,7 +102,7 @@
 						},
 					},
 					xAxis: {
-						format: (d) => data[d].day.slice(0, 3),
+						format: (d) => data[d]?.day?.slice(0, 3),
 					},
 				}}
 			>

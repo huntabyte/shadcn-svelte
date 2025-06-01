@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { baseColors } from "$lib/registry/registry-base-colors.js";
-	import { theme as activeTheme, setTheme } from "mode-watcher";
+	import { setTheme } from "mode-watcher";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -8,8 +8,11 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import ThemeCustomizerCopyCodeButton from "./theme-customizer-copy-code-button.svelte";
+	import { ActiveThemeContext } from "$lib/active-theme.js";
 
 	let { class: className }: HTMLAttributes<HTMLElement> = $props();
+
+	const activeTheme = ActiveThemeContext.get();
 
 	const THEMES = baseColors.filter(
 		(theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name)
@@ -33,7 +36,10 @@
 					size="sm"
 					data-active={activeTheme.current === theme.name}
 					class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
-					onclick={() => setTheme(theme.name)}
+					onclick={() => {
+						activeTheme.current = theme.name;
+						setTheme(theme.name);
+					}}
 				>
 					{theme.name === "neutral" ? "Default" : theme.name}
 				</Button>
@@ -45,8 +51,13 @@
 		<Select.Root
 			type="single"
 			allowDeselect={false}
-			value={activeTheme.current === "default" ? "neutral" : activeTheme.current}
-			onValueChange={(v) => setTheme(v)}
+			bind:value={
+				() => activeTheme.current,
+				(v) => {
+					activeTheme.current = v ?? "default";
+					setTheme(v ?? "default");
+				}
+			}
 		>
 			<Select.Trigger
 				id="theme-selector"

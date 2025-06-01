@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { setTheme, theme } from "mode-watcher";
+	import { setTheme } from "mode-watcher";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
+	import { ActiveThemeContext } from "$lib/active-theme.js";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
@@ -53,15 +54,27 @@
 		},
 	];
 
+	const activeTheme = ActiveThemeContext.get();
+
 	const label = $derived(
-		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === theme.current)?.name
+		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === activeTheme.current)?.name ??
+			"Default"
 	);
 </script>
 
 <div class={cn("flex items-center gap-2", className)} {...restProps}>
 	<Label for="theme-selector" class="sr-only">Theme</Label>
 
-	<Select.Root type="single" bind:value={() => theme.current, (v) => setTheme(v ?? "default")}>
+	<Select.Root
+		type="single"
+		bind:value={
+			() => activeTheme.current,
+			(v) => {
+				activeTheme.current = v ?? "default";
+				setTheme(v ?? "default");
+			}
+		}
+	>
 		<Select.Trigger
 			size="sm"
 			class="bg-secondary text-secondary-foreground border-secondary justify-start shadow-none"
