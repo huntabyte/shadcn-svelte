@@ -7,7 +7,7 @@ bits: https://www.vaul-svelte.com
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="drawer-demo">
@@ -22,17 +22,13 @@ Drawer is built on top of [Vaul Svelte](https://vaul-svelte.com), which is a Sve
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add drawer
-```
+<PMAddComp name="drawer" />
 
 <ManualInstall>
 
 1. Install `vaul-svelte`:
 
-```bash
-npm install vaul-svelte
-```
+<PMInstall command="vaul-svelte" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

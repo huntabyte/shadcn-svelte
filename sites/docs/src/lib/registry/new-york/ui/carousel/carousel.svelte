@@ -41,6 +41,7 @@
 		if (!api) return;
 		canScrollPrev.set(api.canScrollPrev());
 		canScrollNext.set(api.canScrollNext());
+		selectedIndexStore.set(api.selectedScrollSnap());
 	}
 
 	$: if (api) {

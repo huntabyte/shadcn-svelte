@@ -1,6 +1,6 @@
 name: Report Docs Issue
 description: Suggest an addition or modification to the documentation
-labels: ["type: documentation"]
+labels: [triage]
 body:
   - type: dropdown
     attributes:

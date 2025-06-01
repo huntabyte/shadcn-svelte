@@ -102,6 +102,6 @@
 </script>
 
 <div class="space-y-2">
-	<p class="font-medium">On This Page</p>
+	<p class="inline-flex font-medium">On This Page</p>
 	<Tree tree={filteredHeadingsList} activeItem={$activeItem} />
 </div>

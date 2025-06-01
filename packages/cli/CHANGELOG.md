@@ -1,5 +1,23 @@
 # shadcn-svelte
 
+## 0.14.2
+
+### Patch Changes
+
+- 9f96ae1: chore: remove `exports` and `main` fields
+
+## 0.14.1
+
+### Patch Changes
+
+- 283c5dc: chore: update `package-manager-detector`
+
+## 0.14.0
+
+### Minor Changes
+
+- bc787f3: Install all dependencies as dev dependencies
+
 ## 0.13.0
 
 ### Minor Changes

@@ -21,7 +21,7 @@
 		},
 		{
 			"name": "table-footer.svelte",
-			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<tfoot class={cn(\"bg-primary text-primary-foreground font-medium\", className)} {...$$restProps}>\n\t<slot />\n</tfoot>\n"
+			"content": "<script>\n\timport { cn } from \"$lib/utils.js\";\n\tlet className = undefined;\n\texport { className as class };\n</script>\n\n<tfoot class={cn(\"bg-muted/50 text-primary-foreground font-medium\", className)} {...$$restProps}>\n\t<slot />\n</tfoot>\n"
 		},
 		{
 			"name": "table-head.svelte",

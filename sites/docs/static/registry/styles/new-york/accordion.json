@@ -1,8 +1,7 @@
 {
 	"name": "accordion",
 	"dependencies": [
-		"bits-ui",
-		"svelte-radix"
+		"bits-ui"
 	],
 	"registryDependencies": [],
 	"files": [

@@ -107,3 +107,6 @@ packages/cli/dist
 dist/
 dist
 generated-assets
+
+# JetBrains IDEs
+.idea/

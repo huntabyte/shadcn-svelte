@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, Steps, Step } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, Steps, Step, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="sonner-demo">
@@ -37,9 +37,7 @@ If you wish to opt out of Dark Mode support, you can uninstall `mode-watcher` an
 	Run the following command:
 </Step>
 
-```bash
-npx shadcn-svelte@latest add sonner
-```
+<PMAddComp name="sonner" />
 
 <Step>
 	Add the Toaster component
@@ -63,9 +61,7 @@ Note: Make sure you are adding the import from the path `"$lib/components/ui/son
 
 1. Install `svelte-sonner`:
 
-```bash
-npm install svelte-sonner
-```
+<PMInstall command="svelte-sonner" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

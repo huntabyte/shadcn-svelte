@@ -1,0 +1,36 @@
+name: Build Preview Tailwind 4
+
+# cancel in-progress runs on new commits to same PR (github.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build-preview-tw-4:
+    if: github.head_ref == 'next-tailwind-4' || github.base_ref == 'next-tailwind-4'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build site
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: "pnpm build:v4"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-build-tailwind-4
+          path: v4/.svelte-kit/cloudflare
