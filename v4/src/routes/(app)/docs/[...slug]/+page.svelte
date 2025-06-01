@@ -106,7 +106,12 @@
 		</div>
 		<div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
 			{#if neighbors.previous}
-				<Button variant="secondary" size="sm" class="shadow-none">
+				<Button
+					variant="secondary"
+					size="sm"
+					class="shadow-none"
+					href={neighbors.previous.href}
+				>
 					<ArrowLeftIcon />
 					{neighbors.previous.title}
 				</Button>

@@ -95,7 +95,6 @@ function generateInstallationNav() {
 	}
 
 	for (const doc of installation) {
-		if (doc.title === "Installation") continue;
 		installationNavItems.push({
 			title: doc.title,
 			href: `/docs/installation/${doc.slug}`,
@@ -135,11 +134,6 @@ function generateComponentsNav() {
 
 function generateDarkModeNav() {
 	const darkModeNavItems: SidebarNavItem[] = [
-		{
-			title: "Dark Mode",
-			href: "/docs/dark-mode",
-			items: [],
-		},
 		{
 			title: "Svelte",
 			href: "/docs/dark-mode/svelte",
@@ -282,8 +276,8 @@ export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 		...getStartedNav,
 		...migrationNav,
 		...componentsNav,
-		...installationNav,
-		...darkModeNav,
+		...installationNav.filter((item) => item.title !== "Installation"),
+		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
 		...registryNav,
 	].map((item, index) => ({
 		...item,

@@ -8,7 +8,9 @@ component: true
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="typography-demo">
+We do not ship any typography styles by default. This page is an example of how you can use utility classes to style your text.
+
+<ComponentPreview name="typography-demo" class="[&_.preview]:!h-auto">
 
 <div></div>
 
