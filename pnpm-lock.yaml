@@ -460,9 +460,6 @@ importers:
       '@dnd-kit-svelte/utilities':
         specifier: ^0.0.8
         version: 0.0.8(svelte@5.33.3)
-      '@layerstack/utils':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@lucide/svelte':
         specifier: ^0.482.0
         version: 0.482.0(svelte@5.33.3)
@@ -1690,9 +1687,6 @@ packages:
 
   '@layerstack/tailwind@2.0.0-next.6':
     resolution: {integrity: sha512-JoaGGKKmvGNBH3O0xp6XLeVN/z3csPW8vyBJcn4ZyLMXEVyciszRw2qZRrm5Kk4Uw+HHtb37Gjb4KKkfie4Avg==}
-
-  '@layerstack/utils@1.0.0':
-    resolution: {integrity: sha512-kIH8lo4MEzPGtdxQRacy8RsSVhMQwe62ckuev62xQDE5QcUJ4wB9EMaRWaQK8CfEOpUERGPgkMPMbMqPhdp0gw==}
 
   '@layerstack/utils@1.1.0-next.2':
     resolution: {integrity: sha512-9Y4TOAE0iIVvnrf1mkft79rF/vTO84bZuc4hjhJB7XguFjy2f00pEfrDjF+IqleWImMFfRu31K2IMM6wRWEBXQ==}
@@ -6506,12 +6500,6 @@ snapshots:
       lodash-es: 4.17.21
       tailwind-merge: 3.3.0
       tailwindcss: 4.1.8
-
-  '@layerstack/utils@1.0.0':
-    dependencies:
-      d3-array: 3.2.4
-      date-fns: 4.1.0
-      lodash-es: 4.17.21
 
   '@layerstack/utils@1.1.0-next.2':
     dependencies:
