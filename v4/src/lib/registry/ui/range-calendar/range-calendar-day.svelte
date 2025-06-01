@@ -8,8 +8,6 @@
 		class: className,
 		...restProps
 	}: RangeCalendarPrimitive.DayProps = $props();
-
-	export { className as class };
 </script>
 
 <RangeCalendarPrimitive.Day
