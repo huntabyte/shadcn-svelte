@@ -8,6 +8,7 @@
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
+	import Cta from "$lib/components/cta.svelte";
 
 	let { data } = $props();
 
@@ -139,5 +140,8 @@
 				<div class="h-12"></div>
 			</div>
 		{/if}
+		<div class="flex flex-1 flex-col gap-12 px-6">
+			<Cta />
+		</div>
 	</div>
 </div>
