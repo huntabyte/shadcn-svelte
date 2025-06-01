@@ -31,7 +31,6 @@
 	data-chart={chartId}
 	data-slot="chart"
 	class={cn(
-		// "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none",
 		"flex aspect-video justify-center overflow-visible text-xs",
 		// Overrides
 		//
@@ -42,6 +41,9 @@
 
 		// by default, layerchart shows a line intersecting the point when hovering, this hides that
 		"[&_.lc-highlight-line]:stroke-0",
+
+		// prevent text from being cut off
+		"[&_.lc-text-svg]:overflow-visible",
 
 		// by default, when you hover a point on a stacked series chart, it will drop the opacity
 		// of the other series, this overrides that
