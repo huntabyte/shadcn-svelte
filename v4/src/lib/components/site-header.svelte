@@ -8,6 +8,9 @@
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import MobileNav from "./mobile-nav.svelte";
 	import LayoutToggle from "./layout-toggle.svelte";
+	import CommandMenu from "./command-menu/command-menu.svelte";
+	import { getColors } from "$lib/colors.js";
+	const colors = getColors();
 </script>
 
 <header class="bg-background sticky top-0 z-50 w-full">
@@ -23,7 +26,7 @@
 			<MainNav items={siteConfig.navItems} class="hidden lg:flex" />
 			<div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
 				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
-					<!-- <CommandMenu tree={pageTree} colors={colors} /> -->
+					<CommandMenu {colors} />
 				</div>
 				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
