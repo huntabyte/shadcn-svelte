@@ -255,19 +255,19 @@ export const mainNavItems: NavItem[] = [
 	},
 	{
 		title: "Blocks",
-		href: "/docs/blocks",
+		href: "/blocks",
 	},
 	{
 		title: "Charts",
-		href: "/docs/charts",
+		href: "/charts",
 	},
 	{
 		title: "Themes",
-		href: "/docs/themes",
+		href: "/themes",
 	},
 	{
 		title: "Colors",
-		href: "/docs/colors",
+		href: "/colors",
 	},
 ];
 
