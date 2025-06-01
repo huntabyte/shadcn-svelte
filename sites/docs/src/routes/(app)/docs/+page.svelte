@@ -2,6 +2,7 @@
 	import type { ComponentType } from "svelte";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { PageData } from "./$types.js";
+	import Carbon from "$lib/components/docs/carbon.svelte";
 	import { page } from "$app/stores";
 	import { DocsPager, TableOfContents } from "$lib/components/docs/index.js";
 	import { cn } from "$lib/utils.js";
@@ -42,6 +43,9 @@
 			{#key $page.url.pathname}
 				<TableOfContents />
 			{/key}
+			<div class="z-10 pt-4">
+				<Carbon />
+			</div>
 		</div>
 	</div>
 </main>

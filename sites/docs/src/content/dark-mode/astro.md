@@ -4,7 +4,7 @@ description: Adding dark mode to your Astro site.
 ---
 
 <script>
-  import { Steps, ComponentPreview } from "$lib/components/docs";
+  import { Steps, ComponentPreview, PMInstall } from "$lib/components/docs";
 </script>
 
 Just like in regular Svelte, we use the `class` strategy from Tailwind CSS to support dark mode toggling. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) for more information.
@@ -58,9 +58,7 @@ import "$lib/styles/app.css";
 
 ### Install mode-watcher
 
-```bash
-npm install mode-watcher
-```
+<PMInstall command="mode-watcher@0.5.1" />
 
 ### Add the ModeWatcher component
 

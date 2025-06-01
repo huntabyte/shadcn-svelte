@@ -6,7 +6,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, Callout, Steps } from '$lib/components/docs'
+    import { ComponentPreview, ManualInstall, Callout, Steps, PMAddComp, PMInstall } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="data-table-demo">
@@ -46,15 +46,11 @@ This guide will show you how to use [Svelte Headless Table](https://svelte-headl
 
 1. Add the `<Table />` component to your project:
 
-```bash
-npx shadcn-svelte@latest add table
-```
+<PMAddComp name="table" />
 
 2. Add `svelte-headless-table` as a dependency:
 
-```bash
-npm install -D svelte-headless-table
-```
+<PMInstall command="svelte-headless-table" />
 
 ## Prerequisites
 

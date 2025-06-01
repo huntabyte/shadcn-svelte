@@ -5,7 +5,7 @@ description: How to setup shadcn-svelte in a Vite project.
 
 <script>
   import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
-  import { Steps } from "$lib/components/docs";
+  import { Steps, PMAddComp, PMInstall, PMExecute } from "$lib/components/docs";
 </script>
 
 ## Setup your project
@@ -14,17 +14,9 @@ description: How to setup shadcn-svelte in a Vite project.
 
 ### Add TailwindCSS
 
-Use the `svelte-add` CLI to add Tailwind CSS to your project.
+Use the Svelte CLI to add Tailwind CSS to your project.
 
-```bash
-npx svelte-add@latest tailwindcss
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
+<PMExecute command="sv@0.6.18 add tailwindcss" />
 
 ### Setup path aliases
 
@@ -57,9 +49,7 @@ export default defineConfig({
 
 ### Run the CLI
 
-```bash
-npx shadcn-svelte@latest init
-```
+<PMExecute command="shadcn-svelte@latest init" />
 
 ### Configure components.json
 
@@ -79,9 +69,7 @@ Configure the import alias for utils: › $lib/utils
 
 You can now start adding components to your project.
 
-```bash
-npx shadcn-svelte@latest add button
-```
+<PMAddComp name="button" />
 
 The command above will add the `Button` component to your project. You can then import it like this:
 

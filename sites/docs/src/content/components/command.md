@@ -7,7 +7,7 @@ bits: https://github.com/huntabyte/cmdk-sv
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, Callout } from '$lib/components/docs';
+  import { ComponentPreview, ManualInstall, Callout, PMAddComp, PMInstall } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="command-demo" align="start" >
@@ -28,17 +28,13 @@ The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add command
-```
+<PMAddComp name="command" />
 
 <ManualInstall>
 
-1. Install `cmdk-sv`:
+1. Install `cmdk-sv` and `bits-ui`:
 
-```bash
-npm install cmdk-sv bits-ui
-```
+<PMInstall command="cmdk-sv bits-ui" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

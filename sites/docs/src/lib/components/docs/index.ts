@@ -23,6 +23,10 @@ export { default as CommandMenu } from "./command-menu.svelte";
 export { default as ModeToggle } from "./mode-toggle.svelte";
 export { default as Announcement } from "./announcement.svelte";
 export { default as LinkedCard } from "./linked-card.svelte";
+export { default as PMExecute } from "./pm-execute.svelte";
+export { default as PMAddComp } from "./pm-add-comp.svelte";
+export { default as PMCreate } from "./pm-create.svelte";
+export { default as PMInstall } from "./pm-install.svelte";
 
 export * from "./icons/index.js";
 export * from "./page-header/index.js";

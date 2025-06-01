@@ -7,7 +7,7 @@ bits: https://paneforge.com
 ---
 
 <script>
-	import { ComponentPreview, ManualInstall } from '$lib/components/docs'
+	import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="resizable-demo">
@@ -22,17 +22,13 @@ The `Resizable` component is built on top of [PaneForge](https://github.com/svec
 
 ## Installation
 
-```bash
-npx shadcn-svelte@latest add resizable
-```
+<PMAddComp name="resizable" />
 
 <ManualInstall>
 
 1. Install `paneforge`:
 
-```bash
-npm install paneforge
-```
+<PMInstall command="paneforge" />
 
 2. Copy and paste the component source files linked at the top of this page into your project.
 

@@ -51,7 +51,8 @@
 		"pretty-quick": "^4.0.0",
 		"simple-git-hooks": "^2.10.0",
 		"svelte": "^4.2.12",
-		"svelte-eslint-parser": "^0.41.0"
+		"svelte-eslint-parser": "^0.41.0",
+		"wrangler": "^3.95.0"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm -r format:staged --staged"
