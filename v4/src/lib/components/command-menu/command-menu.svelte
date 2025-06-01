@@ -29,11 +29,8 @@
 		if (isComponent) {
 			const componentName = item.href.split("/").pop();
 			selectedType = "component";
-			copyPayload = getCommand(
-				pm.current,
-				"execute",
-				`shadcn-svelte add ${componentName}`
-			).command;
+			const cmd = getCommand(pm.current, "execute", `shadcn-svelte add ${componentName}`);
+			copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
 		} else {
 			selectedType = "page";
 			copyPayload = "";
