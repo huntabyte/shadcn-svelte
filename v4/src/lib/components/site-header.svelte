@@ -7,11 +7,14 @@
 	import GithubLink from "./github-link.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
 	import MobileNav from "./mobile-nav.svelte";
+	import LayoutToggle from "./layout-toggle.svelte";
 </script>
 
 <header class="bg-background sticky top-0 z-50 w-full">
-	<div class="container-wrapper px-6">
-		<div class="h-(--header-height) **:data-[slot=separator]:!h-4 flex items-center gap-2">
+	<div class="container-wrapper 3xl:fixed:px-0 px-6">
+		<div
+			class="3xl:fixed:container h-(--header-height) **:data-[slot=separator]:!h-4 flex items-center gap-2"
+		>
 			<MobileNav class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
 				<Logo class="size-5" />
@@ -24,6 +27,8 @@
 				</div>
 				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
+				<Separator orientation="vertical" class="3xl:flex hidden" />
+				<LayoutToggle class="3xl:flex hidden" />
 				<Separator orientation="vertical" />
 				<ModeSwitcher />
 			</div>

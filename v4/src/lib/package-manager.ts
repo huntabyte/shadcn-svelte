@@ -1,14 +1,19 @@
-import type { Cookies } from "@sveltejs/kit";
-import { Context, PersistedState, watch } from "runed";
+import { createConfig } from "./config.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
-import { useCookie } from "./hooks/use-cookie.svelte.js";
 
 export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
-
 export type PackageManager = (typeof PACKAGE_MANAGERS)[number];
 
-export const PackageManagerContext = new Context<PersistedState<Agent>>("PackageManagerContext");
+const packageManagerConfig = createConfig({
+	key: "scn-package-manager",
+	values: PACKAGE_MANAGERS,
+	defaultValue: "npm",
+});
+
+export const PackageManagerContext = packageManagerConfig.context;
+export const parsePackageManagerCookie = packageManagerConfig.parseFromCookie;
+export const setPackageManagerContext = packageManagerConfig.setContext;
 
 export type PackageManagerCommand = Command | "create";
 
@@ -33,30 +38,4 @@ export function getCommand(
 	if (cmd === null) throw new Error("Could not resolve command!");
 
 	return cmd;
-}
-
-export function parsePackageManagerCookie(cookies: Cookies): Agent {
-	const pm = cookies.get("scn_package_manager");
-	if (!pm) return "npm";
-	return pm as Agent;
-}
-
-export function setPackageManagerContext(pm: () => Agent) {
-	const packageManager = PackageManagerContext.set(
-		new PersistedState<Agent>("scn-package-manager", pm())
-	);
-
-	watch.pre(
-		() => pm(),
-		() => {
-			packageManager.current = pm();
-		}
-	);
-
-	useCookie({
-		value: () => packageManager.current,
-		name: "scn_package_manager",
-	});
-
-	return packageManager;
 }

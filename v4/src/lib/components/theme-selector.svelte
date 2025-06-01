@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { THEMES } from "$lib/themes.js";
 	import { setTheme, theme } from "mode-watcher";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
-
-	const label = $derived(THEMES.find((t) => t.value === theme.current)?.name ?? "Select a theme");
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
@@ -55,6 +52,10 @@
 			value: "teal",
 		},
 	];
+
+	const label = $derived(
+		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === theme.current)?.name
+	);
 </script>
 
 <div class={cn("flex items-center gap-2", className)} {...restProps}>

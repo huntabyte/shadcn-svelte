@@ -2,7 +2,9 @@
 	import { siteConfig } from "$lib/config.js";
 </script>
 
-<footer class="group-has-[.section-soft]/body:bg-surface/40 dark:bg-transparent">
+<footer
+	class="group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent dark:bg-transparent"
+>
 	<div class="container-wrapper px-4 xl:px-6">
 		<div class="h-(--footer-height) flex items-center justify-between">
 			<div class="text-muted-foreground w-full text-center text-xs leading-loose sm:text-sm">

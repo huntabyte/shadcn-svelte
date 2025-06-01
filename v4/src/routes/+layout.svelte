@@ -1,11 +1,13 @@
 <script lang="ts">
 	import "../app.css";
-	import { mode, ModeWatcher, setTheme } from "mode-watcher";
-	import { untrack } from "svelte";
+	import { mode, ModeWatcher, setTheme, theme } from "mode-watcher";
 	import Sonner from "$lib/registry/ui/sonner/sonner.svelte";
 	import { setPackageManagerContext } from "$lib/package-manager.js";
 	import { setInstallationTypeContext } from "$lib/installation-type.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
+	import { setLayoutContext } from "$lib/layout.js";
+	import { useCookie } from "$lib/hooks/use-cookie.svelte.js";
+	import { watch } from "runed";
 
 	let { children, data } = $props();
 
@@ -21,29 +23,35 @@
 		isScaled ? "theme-scaled" : "",
 	]);
 
-	const COOKIE_NAME = "active_theme";
-
 	setTheme(data.activeTheme ?? "default");
-
-	$effect.pre(() => {
-		const theme = data.activeTheme ?? "default";
-		untrack(() => {
-			setTheme(theme);
-			document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${window.location.protocol === "https:" ? "Secure;" : ""}`;
-		});
-	});
 
 	setPackageManagerContext(() => data.packageManager);
 	setInstallationTypeContext(() => data.installationType);
+	const layout = setLayoutContext(() => data.layout);
+
+	useCookie({
+		value: () => theme.current ?? data.activeTheme,
+		name: "active_theme",
+	});
+
+	watch.pre(
+		() => layout.current,
+		(curr, prev) => {
+			if (document.documentElement.classList.contains(`layout-${prev}`)) {
+				document.documentElement.classList.remove(`layout-${prev}`);
+			}
+			document.documentElement.classList.add(`layout-${curr}`);
+		}
+	);
 </script>
 
 <ModeWatcher
 	defaultMode="system"
 	disableTransitions
-	defaultTheme={data.activeTheme ?? "default"}
+	defaultTheme={data.activeTheme}
 	{themeColors}
-	darkClassNames={["dark", ...themeClassNames]}
-	lightClassNames={["light", ...themeClassNames]}
+	darkClassNames={["dark", `layout-${layout.current}`, ...themeClassNames]}
+	lightClassNames={["light", `layout-${layout.current}`, ...themeClassNames]}
 />
 <Sonner theme={mode.current} position="top-center" />
 <Tooltip.Provider>
