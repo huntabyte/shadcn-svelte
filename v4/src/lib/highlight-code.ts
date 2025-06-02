@@ -1,4 +1,5 @@
-import { codeToHtml } from "shiki";
+import { createHighlighterCore } from "shiki/core";
+import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 
 const highlightCodeCache = new Map<string, string>();
 
@@ -6,11 +7,29 @@ export async function highlightCode(code: string, language: string = "svelte") {
 	const cachedCode = highlightCodeCache.get(code);
 	if (cachedCode) return cachedCode;
 
-	const html = await codeToHtml(formatCode(code), {
+	if (!globalThis.__shikiHighlighter) {
+		globalThis.__shikiHighlighter = await createHighlighterCore({
+			themes: [
+				import("@shikijs/themes/github-dark"),
+				import("@shikijs/themes/github-light-default"),
+			],
+			langs: [
+				import("@shikijs/langs/typescript"),
+				import("@shikijs/langs/svelte"),
+				import("@shikijs/langs/css"),
+				import("@shikijs/langs/json"),
+				import("@shikijs/langs/bash"),
+				import("@shikijs/langs/markdown"),
+			],
+			engine: createOnigurumaEngine(import("shiki/wasm")),
+		});
+	}
+
+	const html = globalThis.__shikiHighlighter.codeToHtml(formatCode(code), {
 		lang: language,
 		themes: {
 			dark: "github-dark",
-			light: "github-light",
+			light: "github-light-default",
 		},
 		transformers: [
 			{
