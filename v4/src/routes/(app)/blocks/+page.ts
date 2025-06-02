@@ -4,7 +4,7 @@ import {
 	type RegistryItemFile,
 } from "@shadcn-svelte/registry";
 import type { PageLoad } from "./$types.js";
-import { highlightCode } from "$lib/highlight-code.js";
+import { createHighlighter, highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
@@ -20,6 +20,7 @@ type CachedItem = Omit<RegistryItem, "files"> & {
 const FEATURED_BLOCKS = ["dashboard-01", "sidebar-07", "sidebar-03", "login-03", "login-04"];
 
 export const load: PageLoad = async () => {
+	await createHighlighter();
 	const registryJsonItems = import.meta.glob([
 		"../../../__registry__/json/dashboard-*.json",
 		"../../../__registry__/json/sidebar-*.json",

@@ -3,10 +3,7 @@ import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 
 const highlightCodeCache = new Map<string, string>();
 
-export async function highlightCode(code: string, language: string = "svelte") {
-	const cachedCode = highlightCodeCache.get(code);
-	if (cachedCode) return cachedCode;
-
+export async function createHighlighter() {
 	if (!globalThis.__shikiHighlighter) {
 		globalThis.__shikiHighlighter = await createHighlighterCore({
 			themes: [
@@ -23,8 +20,16 @@ export async function highlightCode(code: string, language: string = "svelte") {
 			engine: createOnigurumaEngine(import("shiki/wasm")),
 		});
 	}
+	return globalThis.__shikiHighlighter;
+}
 
-	const html = globalThis.__shikiHighlighter.codeToHtml(formatCode(code), {
+export async function highlightCode(code: string, language: string = "svelte") {
+	const cachedCode = highlightCodeCache.get(code);
+	if (cachedCode) return cachedCode;
+
+	const highlighter = await createHighlighter();
+
+	const html = highlighter.codeToHtml(formatCode(code), {
 		lang: language,
 		themes: {
 			dark: "github-dark",
