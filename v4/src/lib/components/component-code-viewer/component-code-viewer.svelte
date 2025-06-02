@@ -93,7 +93,7 @@
 	</Dialog.Trigger>
 	<Dialog.Content
 		bind:ref={contentRef}
-		class="rounded-xl p-0 sm:max-w-[calc(100%-2rem)]"
+		class="rounded-xl p-0 sm:max-w-[calc(100%-2rem)] 2xl:max-w-[60%]"
 		showCloseButton={false}
 		onOpenAutoFocus={(e) => {
 			if (!contentRef) return;
