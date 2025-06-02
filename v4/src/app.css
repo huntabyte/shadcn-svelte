@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -10,8 +11,8 @@
 @theme inline {
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: var(--font-sans);
-	--font-mono: var(--font-mono);
+	--font-sans: "Geist", sans-serif;
+	--font-mono: "Geist Mono", monospace;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
