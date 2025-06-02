@@ -56,9 +56,7 @@ Copy and paste the component source files linked at the top of this page into yo
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
 </script>
-```
 
-```svelte
 <Button variant="outline">Button</Button>
 ```
 

@@ -56,9 +56,7 @@ Copy and paste the component source files linked at the top of this page into yo
 <script lang="ts">
   import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 </script>
-```
 
-```svelte
 <Checkbox />
 ```
 
