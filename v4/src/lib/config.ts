@@ -31,7 +31,7 @@ export function createConfig<T extends readonly string[]>(
 	}
 
 	function setContext(getValue: () => Value): PersistedState<Value> {
-		const state = context.set(new PersistedState<Value>(key, getValue()));
+		const state = context.set(new PersistedState(key, getValue()));
 
 		watch.pre(
 			() => getValue(),
