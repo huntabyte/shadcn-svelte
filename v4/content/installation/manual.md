@@ -35,7 +35,7 @@ Install `@lucide/svelte`:
 
 If you are using SvelteKit and are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
-```js title="svelte.config.js" {6} showLineNumbers
+```ts title="svelte.config.js" {6} showLineNumbers
 const config = {
   // ... other config
   kit: {
@@ -61,7 +61,7 @@ If you are _not_ using SvelteKit, then you'll need to update your path aliases i
 }
 ```
 
-```js title="vite.config.ts" {1, 5-9} showLineNumbers
+```ts title="vite.config.ts" {1, 5-9} showLineNumbers
 import path from "path";
 
 export default defineConfig({

@@ -19,7 +19,6 @@ export async function highlightCode(code: string, language: string = "svelte") {
 				import("@shikijs/langs/css"),
 				import("@shikijs/langs/json"),
 				import("@shikijs/langs/bash"),
-				import("@shikijs/langs/markdown"),
 			],
 			engine: createOnigurumaEngine(import("shiki/wasm")),
 		});

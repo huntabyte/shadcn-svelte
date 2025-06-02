@@ -63,7 +63,7 @@ Add the following code to the `tsconfig.app.json` file to resolve paths, for you
 
 Add the following code to the vite.config.ts so your app can resolve paths without error:
 
-```js title="vite.config.ts" {1, 5-9} showLineNumbers
+```ts title="vite.config.ts" {1, 5-9} showLineNumbers
 import path from "path";
 
 export default defineConfig({
