@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { registrySchema, registryItemSchema, componentsJsonSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
-// import { visualizer } from "rollup-plugin-visualizer";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
@@ -26,10 +26,10 @@ export const contentDirPath = path.join(__dirname, "content");
 
 export default defineConfig({
 	plugins: [
-		// visualizer({
-		// 	emitFile: true,
-		// 	filename: "stats.html",
-		// }),
+		visualizer({
+			emitFile: true,
+			filename: "stats.html",
+		}),
 		tailwindcss(),
 		sveltekit(),
 		{
