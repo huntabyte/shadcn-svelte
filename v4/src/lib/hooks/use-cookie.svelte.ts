@@ -16,7 +16,7 @@ export function useCookie<T>(_options: UseCookieOptions<T>) {
 	watch.pre(
 		() => value,
 		() => {
-			document.cookie = `${options.name}=${value}; path=/; max-age=31536000; SameSite=Lax; ${window.location.protocol === "https:" ? "Secure;" : ""}`;
+			document.cookie = `${options.name}=${value}; path=/; max-age=31536000; SameSite=Lax;`;
 		}
 	);
 }
