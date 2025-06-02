@@ -6,7 +6,7 @@ import type { PageLoad } from "./$types.js";
 const chartTypes = ["area", "bar", "line", "pie", "radar", "radial", "tooltip"] as const;
 type ChartType = (typeof chartTypes)[number];
 
-// export const prerender = true;
+export const prerender = true;
 
 type CachedItem = RegistryItem & { highlightedCode: string };
 const registryCache = new Map<string, CachedItem>();

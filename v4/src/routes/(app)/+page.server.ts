@@ -26,6 +26,13 @@ export const actions: Actions = {
 	combobox: async (e) => handleForm(e, comboboxFormSchema),
 	datePicker: async (e) => handleForm(e, datePickerFormSchema),
 	inputOtp: async (e) => handleForm(e, inputOtpSchema),
+	layout: async ({ request, cookies }) => {
+		const layout = (await request.formData()).get("layout");
+		if (layout) cookies.set("layout", layout.toString(), { path: "/" });
+		else cookies.set("layout", "full", { path: "/" });
+
+		return layout;
+	},
 };
 
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {
