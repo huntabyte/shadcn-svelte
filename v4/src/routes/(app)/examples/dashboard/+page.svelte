@@ -10,14 +10,14 @@
 
 <div class="md:hidden">
 	<img
-		src="/examples/dashboard-light.png"
+		src="/img/examples/dashboard-light.png"
 		width={1280}
 		height={843}
 		alt="Dashboard"
 		class="block dark:hidden"
 	/>
 	<img
-		src="/examples/dashboard-dark.png"
+		src="/img/examples/dashboard-dark.png"
 		width={1280}
 		height={843}
 		alt="Dashboard"
