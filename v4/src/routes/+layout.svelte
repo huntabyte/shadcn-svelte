@@ -32,7 +32,14 @@
 	setColorFormatContext(() => data.colorFormat);
 	let activeThemeValue = $state({ current: data.activeTheme ?? "default" });
 	const ctxActiveTheme = ActiveThemeContext.set(activeThemeValue);
-	const layout = setLayoutContext(() => data.layout);
+	// TODO: fix me before mergy
+	const layout = setLayoutContext(() =>
+		typeof document !== "undefined"
+			? document.cookie.includes("full")
+				? "full"
+				: "fixed"
+			: data.layout
+	);
 
 	useCookie({
 		value: () => theme.current ?? data.activeTheme,
