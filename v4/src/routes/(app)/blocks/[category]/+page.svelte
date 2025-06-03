@@ -6,12 +6,12 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-{#each data.blocks as block (block.name)}
-	<div class="flex flex-col gap-12 md:gap-24">
+<div class="flex flex-col gap-12 md:gap-24">
+	{#each data.blocks as block (block.name)}
 		<BlockViewer
 			item={block}
 			tree={createFileTreeForRegistryItemFiles(block.files)}
 			highlightedFiles={block.files}
 		/>
-	</div>
-{/each}
+	{/each}
+</div>
