@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css";
-	import { mode, ModeWatcher, setTheme, theme } from "mode-watcher";
-	import Sonner from "$lib/registry/ui/sonner/sonner.svelte";
+	import { ModeWatcher, setTheme, theme } from "mode-watcher";
+	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 	import { setPackageManagerContext } from "$lib/package-manager.js";
 	import { setInstallationTypeContext } from "$lib/installation-type.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
@@ -72,7 +72,7 @@
 	darkClassNames={["dark", `layout-${layout.current}`, ...themeClassNames]}
 	lightClassNames={["light", `layout-${layout.current}`, ...themeClassNames]}
 />
-<Sonner theme={mode.current} position="top-center" />
+<Toaster position="top-center" />
 <Tooltip.Provider>
 	{@render children()}
 </Tooltip.Provider>

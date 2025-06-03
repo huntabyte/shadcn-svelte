@@ -66,8 +66,9 @@
 		"runed": "^0.28.0",
 		"shadcn-svelte": "workspace:*",
 		"shiki": "^3.4.2",
-		"svelte": "^5.33.3",
+		"svelte": "^5.33.14",
 		"svelte-check": "^4.2.1",
+		"svelte-sonner": "^1.0.4",
 		"sveltekit-superforms": "^2.25.0",
 		"tailwind-merge": "^3.0.2",
 		"tailwind-variants": "^1.0.0",
@@ -84,7 +85,6 @@
 		"zod": "^3.25.17"
 	},
 	"dependencies": {
-		"@internationalized/date": "^3.8.1",
-		"svelte-sonner": "^1.0.3"
+		"@internationalized/date": "^3.8.1"
 	}
 }
