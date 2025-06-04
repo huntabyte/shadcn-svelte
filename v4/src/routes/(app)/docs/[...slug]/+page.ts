@@ -9,14 +9,20 @@ import { highlightCode } from "$lib/highlight-code.js";
 import { transformImportPaths } from "$lib/registry/registry-utils.js";
 
 export async function load({ params }) {
-	const [doc, viewerData] = await Promise.all([
-		getDoc(params.slug),
-		getComponentViewerData(params.slug.replaceAll("components/", "")),
-	]);
+	// const [doc, viewerData] = await Promise.all([
+	// 	getDoc(params.slug),
+	// 	getComponentViewerData(params.slug.replaceAll("components/", "")),
+	// ]);
+	const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
+
+	const doc = await getDoc(params.slug);
 
 	return {
 		...doc,
-		viewerData,
+		viewerData: getComponentViewerData(
+			params.slug.replaceAll("components/", ""),
+			registryJsonItems
+		),
 	};
 }
 
@@ -40,8 +46,10 @@ type CachedItem = Omit<RegistryItem, "files"> & {
 	})[];
 };
 
-async function getComponentViewerData(componentName: string) {
-	const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
+async function getComponentViewerData(
+	componentName: string,
+	registryJsonItems: Record<string, () => Promise<unknown>>
+) {
 	let promise: Promise<CachedItem | null> | null = null;
 
 	for (const path in registryJsonItems) {
@@ -50,9 +58,10 @@ async function getComponentViewerData(componentName: string) {
 		if (filename !== componentName) continue;
 
 		promise = registryJsonItems[path]().then(async (m: unknown) => {
-			const res = registryItemSchema.parse((m as { default: unknown }).default);
+			const res = registryItemSchema.safeParse((m as { default: unknown }).default);
+			if (res.error) return null;
 			const files = await Promise.all(
-				res.files.map(async (v) => {
+				res.data.files.map(async (v) => {
 					let lang: "svelte" | "ts" | "json" = "svelte";
 					if (v.target && v.target.endsWith(".ts")) {
 						lang = "ts";
@@ -74,7 +83,7 @@ async function getComponentViewerData(componentName: string) {
 			);
 
 			const processedItem = {
-				...res,
+				...res.data,
 				files: files,
 			};
 			return processedItem;

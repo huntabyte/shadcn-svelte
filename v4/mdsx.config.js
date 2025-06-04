@@ -10,6 +10,8 @@ import { codeImport } from "remark-code-import";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import { u } from "unist-builder";
+import { createHighlighterCore } from "shiki/core";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import { defineConfig } from "mdsx";
 import { Index } from "./src/__registry__/index.js";
 
@@ -35,6 +37,27 @@ const codeBlockPrettierConfig = {
 };
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const jsEngine = createJavaScriptRegexEngine();
+
+export async function createHighlighter() {
+	if (!globalThis.__shikiHighlighter) {
+		globalThis.__shikiHighlighter = await createHighlighterCore({
+			themes: [
+				import("@shikijs/themes/github-dark"),
+				import("@shikijs/themes/github-light-default"),
+			],
+			langs: [
+				import("@shikijs/langs/typescript"),
+				import("@shikijs/langs/svelte"),
+				import("@shikijs/langs/css"),
+				import("@shikijs/langs/json"),
+				import("@shikijs/langs/bash"),
+			],
+			engine: jsEngine,
+		});
+	}
+	return globalThis.__shikiHighlighter;
+}
 
 /**
  * @typedef {import('mdast').Root} MdastRoot
@@ -52,6 +75,8 @@ const prettyCodeOptions = {
 		light: "github-light-default",
 	},
 	keepBackground: false,
+	// @ts-expect-error - shh
+	getHighlighter: createHighlighter,
 	onVisitLine(node) {
 		// Prevent lines from collapsing in `display: grid` mode, and allow empty
 		// lines to be copy/pasted

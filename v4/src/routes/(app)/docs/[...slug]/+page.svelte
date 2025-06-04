@@ -4,6 +4,7 @@
 	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
+	import CodeIcon from "@lucide/svelte/icons/code";
 	import DocsToc from "$lib/components/docs-toc.svelte";
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
@@ -90,7 +91,15 @@
 						{/if}
 						{#if source}
 							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} />
+								{#await source}
+									<Badge variant="secondary">
+										Component Source <CodeIcon />
+									</Badge>
+								{:then item}
+									{#if item}
+										<ComponentCodeViewer {item} />
+									{/if}
+								{/await}
 							{/key}
 						{/if}
 					</div>
