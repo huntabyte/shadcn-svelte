@@ -14,42 +14,14 @@
 		)
 	);
 
-	const isScaled = $derived(userConfig.current.activeTheme.endsWith("scaled"));
+	const themeColors = { light: "#ffffff", dark: "#09090b" };
 
-	const themeColors = {
-		light: "#ffffff",
-		dark: "#09090b",
-	};
-
-	const themeClassNames = $derived([
-		userConfig.current.activeTheme ? `theme-${userConfig.current.activeTheme}` : "",
-		isScaled ? "theme-scaled" : "",
-	]);
-
-	function updateLayoutClass(newLayout: string) {
-		// Remove any existing layout classes
-		document.documentElement.classList.remove("layout-fixed", "layout-full");
-		// Add the new layout class
-		document.documentElement.classList.add(`layout-${newLayout}`);
-	}
-
-	if (typeof document !== "undefined") {
-		updateLayoutClass(userConfig.current.layout);
-	}
-
-	setTheme(userConfig.current.activeTheme);
+	const themeClassName = $derived(`theme-${userConfig.current.activeTheme}`);
 
 	watch.pre(
 		() => userConfig.current.activeTheme,
 		() => {
 			setTheme(userConfig.current.activeTheme);
-		}
-	);
-
-	watch.pre(
-		() => userConfig.current.layout,
-		(curr) => {
-			updateLayoutClass(curr);
 		}
 	);
 </script>
@@ -59,8 +31,8 @@
 	disableTransitions
 	defaultTheme={userConfig.current.activeTheme}
 	{themeColors}
-	darkClassNames={["dark", `layout-${userConfig.current.layout}`, ...themeClassNames]}
-	lightClassNames={["light", `layout-${userConfig.current.layout}`, ...themeClassNames]}
+	darkClassNames={["dark", `layout-${userConfig.current.layout}`, themeClassName]}
+	lightClassNames={["light", `layout-${userConfig.current.layout}`, themeClassName]}
 />
 <Toaster position="top-center" />
 <Tooltip.Provider>

@@ -6,9 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
 			const USER_CONFIG_COOKIE_NAME = "scn_user_config";
-			const cookie = document.cookie;
 			const cookieMap = {};
-			cookie.split(";").forEach((pair) => {
+			document.cookie.split(";").forEach((pair) => {
 				const [key, value] = pair.trim().split("=");
 				cookieMap[key] = value;
 			});
@@ -18,9 +17,7 @@
 					const userConfig = JSON.parse(userConfigCookie);
 					if (userConfig.activeTheme) {
 						document.documentElement.classList.add(`theme-${userConfig.activeTheme}`);
-						if (userConfig.activeTheme.endsWith("scaled")) {
-							document.documentElement.classList.add("theme-scaled");
-						}
+						document.documentElement.setAttribute("data-theme", userConfig.activeTheme);
 					}
 					if (userConfig.layout) {
 						document.documentElement.classList.add(`layout-${userConfig.layout}`);
