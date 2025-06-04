@@ -1,4 +1,4 @@
-export function useIsMac() {
+export function useIsMac(): { readonly current: boolean } {
 	let isMac = $state(false);
 
 	$effect(() => {
@@ -6,7 +6,7 @@ export function useIsMac() {
 	});
 
 	return {
-		get current() {
+		get current(): boolean {
 			return isMac;
 		},
 	};

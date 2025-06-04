@@ -7,7 +7,7 @@ export function useMutationObserver(
 		childList: true,
 		subtree: true,
 	}
-) {
+): void {
 	const element = $derived(ref());
 	$effect(() => {
 		if (!element) return;

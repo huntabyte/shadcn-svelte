@@ -25,7 +25,7 @@ function writeFileWithDirs(
 	filePath: string,
 	data: string,
 	options: Parameters<typeof fs.writeFileSync>[2] = {}
-) {
+): void {
 	// Create directory path if it doesn't exist
 	const dirname = path.dirname(filePath);
 	fs.mkdirSync(dirname, { recursive: true });
@@ -34,7 +34,7 @@ function writeFileWithDirs(
 	fs.writeFileSync(filePath, data, options);
 }
 
-export async function build() {
+export async function build(): Promise<void> {
 	const registry = await buildRegistry();
 
 	const selfReferenced = registry.filter((item) => item.registryDependencies.includes(item.name));

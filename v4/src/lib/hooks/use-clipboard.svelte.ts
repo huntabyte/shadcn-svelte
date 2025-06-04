@@ -48,7 +48,7 @@ export class UseClipboard {
 	 * @param text
 	 * @returns
 	 */
-	async copy(_text: string | number) {
+	async copy(_text: string | number): Promise<"success" | "failure"> {
 		const text = typeof _text === "number" ? _text.toString() : _text;
 		if (this.timeout) {
 			this.#copiedStatus = undefined;
@@ -81,20 +81,20 @@ export class UseClipboard {
 	}
 
 	/** True when the user has just copied to the clipboard. */
-	get copied() {
+	get copied(): boolean {
 		return this.#copiedStatus === "success";
 	}
 
 	/**	Indicates whether a copy has occurred
 	 * and gives a status of either `success` or `failure`. */
-	get status() {
+	get status(): "success" | "failure" | undefined {
 		return this.#copiedStatus;
 	}
 
 	/**
 	 * The last copied text.
 	 */
-	get lastCopied() {
+	get lastCopied(): string | undefined {
 		return this.#lastCopied;
 	}
 }
