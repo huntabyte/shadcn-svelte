@@ -78,7 +78,7 @@ export class UserConfig {
 		this.#config = { ...this.#config, ...config };
 		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
 
-		if (config.activeTheme) updateLayoutClass(this.#config.layout);
+		if (config.layout) updateLayoutClass(this.#config.layout);
 	}
 }
 
