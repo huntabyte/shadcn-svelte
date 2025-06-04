@@ -4,7 +4,7 @@
 	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 	import Label from "$lib/registry/ui/label/label.svelte";
-	import { ActiveThemeContext } from "$lib/active-theme.js";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
@@ -54,10 +54,10 @@
 		},
 	];
 
-	const activeTheme = ActiveThemeContext.get();
+	const userConfig = UserConfigContext.get();
 
 	const label = $derived(
-		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === activeTheme.current)?.name ??
+		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === userConfig.current.activeTheme)?.name ??
 			"Default"
 	);
 </script>
@@ -68,9 +68,9 @@
 	<Select.Root
 		type="single"
 		bind:value={
-			() => activeTheme.current,
+			() => userConfig.current.activeTheme,
 			(v) => {
-				activeTheme.current = v ?? "default";
+				userConfig.setConfig({ activeTheme: v ?? "default" });
 				setTheme(v ?? "default");
 			}
 		}

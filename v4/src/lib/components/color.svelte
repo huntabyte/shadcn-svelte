@@ -4,20 +4,20 @@
 	import { toast } from "svelte-sonner";
 	import type { Color } from "$lib/colors.js";
 	import type { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { ColorFormatContext } from "$lib/color-format.js";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { color, clipboard }: { color: Color; clipboard: UseClipboard } = $props();
 
-	const formatConfig = ColorFormatContext.get();
+	const userConfig = UserConfigContext.get();
 </script>
 
 <button
 	class="text-(--text) group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 sm:aspect-[2/3] sm:h-auto sm:w-auto [&>svg]:absolute [&>svg]:right-4 [&>svg]:top-4 [&>svg]:z-10 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:opacity-0 [&>svg]:transition-opacity"
-	data-last-copied={clipboard.lastCopied === color[formatConfig.current]}
+	data-last-copied={clipboard.lastCopied === color[userConfig.current.colorFormat]}
 	style="--bg: {color.oklch}; --text: {color.foreground};"
 	onclick={() => {
-		clipboard.copy(color[formatConfig.current]);
-		toast.success(`Copied ${color[formatConfig.current]} to clipboard.`);
+		clipboard.copy(color[userConfig.current.colorFormat]);
+		toast.success(`Copied ${color[userConfig.current.colorFormat]} to clipboard.`);
 	}}
 >
 	{#if clipboard.copied}

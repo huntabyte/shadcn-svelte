@@ -3,16 +3,12 @@
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import {
-		getCommand,
-		PACKAGE_MANAGERS,
-		PackageManagerContext,
-		type PackageManager,
-	} from "$lib/package-manager.js";
+	import { getCommand, PACKAGE_MANAGERS, type PackageManager } from "$lib/package-manager.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
 	const {
 		type,
@@ -22,21 +18,29 @@
 		command: string | string[];
 	} = $props();
 
-	const pm = PackageManagerContext.get();
+	const userConfig = UserConfigContext.get();
 
 	function getCommandText(agent: PackageManager) {
 		const cmd = getCommand(agent, type, command);
 		return `${cmd.command} ${cmd.args.join(" ")}`.trim();
 	}
 
-	const commandText = $derived(getCommandText(pm.current));
+	const commandText = $derived(getCommandText(userConfig.current.packageManager));
 
 	const clipboard = new UseClipboard();
 </script>
 
 <figure data-rehype-pretty-code-figure>
 	<div class="overflow-x-auto">
-		<Tabs.Root bind:value={pm.current} class="gap-0">
+		<Tabs.Root
+			bind:value={
+				() => userConfig.current.packageManager,
+				(v) => {
+					userConfig.setConfig({ packageManager: v });
+				}
+			}
+			class="gap-0"
+		>
 			<div class="border-border/50 flex items-center gap-2 border-b px-3 py-1">
 				<div
 					class="bg-foreground flex size-4 items-center justify-center rounded-[1px] opacity-70"

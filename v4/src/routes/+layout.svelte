@@ -1,19 +1,20 @@
 <script lang="ts">
 	import "../app.css";
-	import { ModeWatcher, setTheme, theme } from "mode-watcher";
+	import { ModeWatcher, setTheme } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
-	import { setPackageManagerContext } from "$lib/package-manager.js";
-	import { setInstallationTypeContext } from "$lib/installation-type.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { setLayoutContext } from "$lib/layout.js";
-	import { useCookie } from "$lib/hooks/use-cookie.svelte.js";
 	import { watch } from "runed";
-	import { setColorFormatContext } from "$lib/color-format.js";
-	import { ActiveThemeContext } from "$lib/active-theme.js";
+	import { parseUserConfig, UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { children, data } = $props();
 
-	const isScaled = $derived(data.activeTheme?.endsWith("scaled"));
+	const userConfig = UserConfigContext.set(
+		new UserConfig(
+			typeof document !== "undefined" ? parseUserConfig(document.cookie) : data.userConfig
+		)
+	);
+
+	const isScaled = $derived(userConfig.current.activeTheme.endsWith("scaled"));
 
 	const themeColors = {
 		light: "#ffffff",
@@ -21,40 +22,21 @@
 	};
 
 	const themeClassNames = $derived([
-		data.activeTheme ? `theme-${data.activeTheme}` : "",
+		userConfig.current.activeTheme ? `theme-${userConfig.current.activeTheme}` : "",
 		isScaled ? "theme-scaled" : "",
 	]);
 
-	setTheme(data.activeTheme ?? "default");
-
-	setPackageManagerContext(() => data.packageManager);
-	setInstallationTypeContext(() => data.installationType);
-	setColorFormatContext(() => data.colorFormat);
-	let activeThemeValue = $state({ current: data.activeTheme ?? "default" });
-	const ctxActiveTheme = ActiveThemeContext.set(activeThemeValue);
-	// TODO: fix me before mergy
-	const layout = setLayoutContext(() =>
-		typeof document !== "undefined"
-			? document.cookie.includes("full")
-				? "full"
-				: "fixed"
-			: data.layout
-	);
-
-	useCookie({
-		value: () => theme.current ?? data.activeTheme,
-		name: "active_theme",
-	});
+	setTheme(userConfig.current.activeTheme);
 
 	watch.pre(
-		() => ctxActiveTheme.current,
+		() => userConfig.current.activeTheme,
 		() => {
-			setTheme(ctxActiveTheme.current ?? "default");
+			setTheme(userConfig.current.activeTheme);
 		}
 	);
 
 	watch.pre(
-		() => layout.current,
+		() => userConfig.current.layout,
 		(curr, prev) => {
 			if (document.documentElement.classList.contains(`layout-${prev}`)) {
 				document.documentElement.classList.remove(`layout-${prev}`);
@@ -67,10 +49,10 @@
 <ModeWatcher
 	defaultMode="system"
 	disableTransitions
-	defaultTheme={data.activeTheme}
+	defaultTheme={userConfig.current.activeTheme}
 	{themeColors}
-	darkClassNames={["dark", `layout-${layout.current}`, ...themeClassNames]}
-	lightClassNames={["light", `layout-${layout.current}`, ...themeClassNames]}
+	darkClassNames={["dark", `layout-${userConfig.current.layout}`, ...themeClassNames]}
+	lightClassNames={["light", `layout-${userConfig.current.layout}`, ...themeClassNames]}
 />
 <Toaster position="top-center" />
 <Tooltip.Provider>

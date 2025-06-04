@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ColorFormatContext } from "$lib/color-format.js";
 	import { getColorFormat, type Color } from "$lib/colors.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 
@@ -13,19 +13,27 @@
 		color: Color;
 	} = $props();
 
-	const formatConfig = ColorFormatContext.get();
+	const userConfig = UserConfigContext.get();
 
 	const formats = $derived(getColorFormat(color));
 </script>
 
-<Select.Root type="single" bind:value={formatConfig.current}>
+<Select.Root
+	type="single"
+	bind:value={
+		() => userConfig.current.colorFormat,
+		(v) => {
+			userConfig.setConfig({ colorFormat: v });
+		}
+	}
+>
 	<Select.Trigger
 		size="sm"
 		class={cn("bg-secondary text-secondary-foreground border-secondary shadow-none", className)}
 		{...restProps}
 	>
 		<span class="font-medium">Format: </span>
-		<span class="text-muted-foreground font-mono">{formatConfig.current}</span>
+		<span class="text-muted-foreground font-mono">{userConfig.current.colorFormat}</span>
 	</Select.Trigger>
 	<Select.Content align="end" class="rounded-xl">
 		{#each Object.entries(formats) as [format, value] (format)}

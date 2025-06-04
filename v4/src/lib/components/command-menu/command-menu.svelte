@@ -2,7 +2,7 @@
 	import type { Color, ColorPalette } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
-	import { getCommand, PackageManagerContext } from "$lib/package-manager.js";
+	import { getCommand } from "$lib/package-manager.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
@@ -15,6 +15,7 @@
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import CommandMenuItem from "./command-menu-item.svelte";
 	import { goto } from "$app/navigation";
+	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { colors }: { colors: ColorPalette[] } = $props();
 
@@ -22,14 +23,19 @@
 	let open = $state(false);
 	let selectedType = $state<"color" | "page" | "component" | null>(null);
 	let copyPayload = $state("");
-	const pm = PackageManagerContext.get();
+
+	const userConfig = UserConfigContext.get();
 	const clipboard = new UseClipboard();
 
 	function handlePageHighlight(isComponent: boolean, item: { href: string; title?: string }) {
 		if (isComponent) {
 			const componentName = item.href.split("/").pop();
 			selectedType = "component";
-			const cmd = getCommand(pm.current, "execute", `shadcn-svelte add ${componentName}`);
+			const cmd = getCommand(
+				userConfig.current.packageManager,
+				"execute",
+				`shadcn-svelte add ${componentName}`
+			);
 			copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
 		} else {
 			selectedType = "page";

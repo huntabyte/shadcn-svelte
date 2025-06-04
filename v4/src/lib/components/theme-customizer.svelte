@@ -8,18 +8,18 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import ThemeCustomizerCopyCodeButton from "./theme-customizer-copy-code-button.svelte";
-	import { ActiveThemeContext } from "$lib/active-theme.js";
+	import { UserConfigContext, type ActiveTheme } from "$lib/user-config.svelte.js";
 
 	let { class: className }: HTMLAttributes<HTMLElement> = $props();
 
-	const activeTheme = ActiveThemeContext.get();
+	const userConfig = UserConfigContext.get();
 
 	const THEMES = baseColors.filter(
 		(theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name)
 	);
 
 	const themeSelectLabel = $derived(
-		activeTheme.current === "default" ? "neutral" : activeTheme.current
+		userConfig.current.activeTheme === "default" ? "neutral" : userConfig.current.activeTheme
 	);
 </script>
 
@@ -34,10 +34,10 @@
 				<Button
 					variant="link"
 					size="sm"
-					data-active={activeTheme.current === theme.name}
+					data-active={userConfig.current.activeTheme === theme.name}
 					class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
 					onclick={() => {
-						activeTheme.current = theme.name;
+						userConfig.setConfig({ activeTheme: theme.name as ActiveTheme });
 						setTheme(theme.name);
 					}}
 				>
@@ -52,9 +52,9 @@
 			type="single"
 			allowDeselect={false}
 			bind:value={
-				() => activeTheme.current,
+				() => userConfig.current.activeTheme,
 				(v) => {
-					activeTheme.current = v ?? "default";
+					userConfig.setConfig({ activeTheme: v ?? "default" });
 					setTheme(v ?? "default");
 				}
 			}

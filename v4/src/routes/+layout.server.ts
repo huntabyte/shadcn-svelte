@@ -1,21 +1,10 @@
-import { parseInstallationTypeCookie } from "$lib/installation-type.js";
-import { parseLayoutCookie } from "$lib/layout.js";
-import { parsePackageManagerCookie } from "$lib/package-manager.js";
-import { parseColorFormatCookie } from "$lib/color-format.js";
 import type { LayoutServerLoad } from "./$types.js";
+import { parseUserConfig, USER_CONFIG_COOKIE_NAME } from "$lib/user-config.svelte.js";
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
-	const activeTheme = cookies.get("active_theme");
-	const packageManager = parsePackageManagerCookie(cookies);
-	const installationType = parseInstallationTypeCookie(cookies);
-	const layout = parseLayoutCookie(cookies);
-	const colorFormat = parseColorFormatCookie(cookies);
+	const userConfig = parseUserConfig(cookies.get(USER_CONFIG_COOKIE_NAME) ?? "");
 
 	return {
-		activeTheme,
-		packageManager,
-		installationType,
-		layout,
-		colorFormat,
+		userConfig,
 	};
 };
