@@ -22,6 +22,10 @@
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
 
+<!-- 
+The TOC needs to come first in the DOM order to prevent CLS, so we flex-row-reverse
+the docs container. The issue this resolves is prominent on slow connections (3G).
+  -->
 <div
 	data-slot="docs"
 	class="flex flex-row-reverse items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
