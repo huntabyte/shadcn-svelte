@@ -15,7 +15,7 @@
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
 		highlightedFiles:
 			| (RegistryItemFile & {
-					highlightedContent: string;
+					highlightedContent: Promise<string>;
 			  })[]
 			| null;
 	};

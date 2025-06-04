@@ -14,7 +14,7 @@ export const prerender = true;
 type CachedItem = Omit<RegistryItem, "files"> & {
 	files: Array<
 		RegistryItemFile & {
-			highlightedContent: string;
+			highlightedContent: Promise<string>;
 			target: string;
 		}
 	>;
@@ -54,7 +54,7 @@ export const load: PageLoad = async ({ params }) => {
 							lang = "json";
 						}
 
-						const highlightedContent = await highlightCode(
+						const highlightedContent = highlightCode(
 							transformImportPaths(v.content),
 							lang
 						);

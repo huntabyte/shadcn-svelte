@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Skeleton from "$lib/registry/ui/skeleton/skeleton.svelte";
 	import BlockViewerCopyCodeButton from "./block-viewer-copy-code-button.svelte";
 	import BlockViewerFileTree from "./block-viewer-file-tree.svelte";
 	import { BlockViewerContext } from "./block-viewer.svelte";
@@ -34,8 +35,14 @@
 				</div>
 			</figcaption>
 			<div class="no-scrollbar overflow-y-auto">
-				<!--  eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html file?.highlightedContent ?? ""}
+				{#if file.highlightedContent}
+					{#await file.highlightedContent}
+						<Skeleton class="h-full w-full" />
+					{:then highlightedContent}
+						<!--  eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html highlightedContent ?? ""}
+					{/await}
+				{/if}
 			</div>
 		</figure>
 	</div>
