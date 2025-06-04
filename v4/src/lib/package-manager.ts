@@ -1,19 +1,8 @@
-import { createConfig } from "./config.js";
 import { resolveCommand } from "package-manager-detector/commands";
 import type { Agent, Command, ResolvedCommand } from "package-manager-detector";
 
 export const PACKAGE_MANAGERS: Agent[] = ["pnpm", "npm", "bun", "yarn"] as const;
 export type PackageManager = (typeof PACKAGE_MANAGERS)[number];
-
-const packageManagerConfig = createConfig({
-	key: "scn-package-manager",
-	values: PACKAGE_MANAGERS,
-	defaultValue: "npm",
-});
-
-export const PackageManagerContext = packageManagerConfig.context;
-export const parsePackageManagerCookie = packageManagerConfig.parseFromCookie;
-export const setPackageManagerContext = packageManagerConfig.setContext;
 
 export type PackageManagerCommand = Command | "create";
 

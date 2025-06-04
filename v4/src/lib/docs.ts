@@ -21,7 +21,7 @@ const allDocs = [
 type DocResolver = () => Promise<{ default: Component; metadata: components }>;
 type DocMetadata = (typeof allDocs)[number];
 
-function transformPath(path: string) {
+function transformPath(path: string): string {
 	return path.replace("/content/", "").replace(".md", "").replace("/index", "").trim();
 }
 
@@ -29,7 +29,9 @@ function getDocMetadata(slug: string): DocMetadata | undefined {
 	return allDocs.find((doc) => doc.path === slug);
 }
 
-export async function getDoc(_slug: string) {
+export async function getDoc(
+	_slug: string
+): Promise<{ component: Component; metadata: DocMetadata }> {
 	const modules = import.meta.glob("/content/**/*.md");
 	const slug = _slug === "" ? "index" : _slug;
 

@@ -18,7 +18,7 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-function generateGetStartedNav() {
+function generateGetStartedNav(): SidebarNavItem[] {
 	const getStartedNavItems: SidebarNavItem[] = [
 		{
 			title: "Introduction",
@@ -82,7 +82,7 @@ function generateGetStartedNav() {
 
 const INSTALL_ORDER = ["SvelteKit", "Vite", "Astro", "Manual Installation"];
 
-function generateInstallationNav() {
+function generateInstallationNav(): SidebarNavItem[] {
 	const installationNavItems: SidebarNavItem[] = [];
 
 	const index = installation.find((doc) => doc.title === "Installation");
@@ -109,7 +109,7 @@ function generateInstallationNav() {
 	});
 }
 
-function generateComponentsNav() {
+function generateComponentsNav(): SidebarNavItem[] {
 	const componentsNavItems: SidebarNavItem[] = [];
 	const index = components.find((doc) => doc.title === "Components");
 	if (index) {
@@ -132,7 +132,7 @@ function generateComponentsNav() {
 	return componentsNavItems;
 }
 
-function generateDarkModeNav() {
+function generateDarkModeNav(): SidebarNavItem[] {
 	const darkModeNavItems: SidebarNavItem[] = [
 		{
 			title: "Svelte",
@@ -149,7 +149,7 @@ function generateDarkModeNav() {
 	return darkModeNavItems;
 }
 
-function generateRegistryNav() {
+function generateRegistryNav(): SidebarNavItem[] {
 	const registryNavItems: SidebarNavItem[] = [
 		{
 			title: "Registry",
@@ -186,7 +186,7 @@ function generateRegistryNav() {
 	return registryNavItems;
 }
 
-function generateMigrationNav() {
+function generateMigrationNav(): SidebarNavItem[] {
 	const migrationNavItems: SidebarNavItem[] = [];
 
 	const index = migration.find((doc) => doc.title === "Migration");
@@ -287,7 +287,10 @@ export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 
 const fullNavItems = getFullNavItems();
 
-export function findNeighbors(pathName: string) {
+export function findNeighbors(pathName: string): {
+	previous: SidebarNavItem | null;
+	next: SidebarNavItem | null;
+} {
 	const path = pathName.split("?")[0].split("#")[0];
 	const index = fullNavItems.findIndex((item) => item.href === path);
 	const previous = fullNavItems[index - 1] ?? null;

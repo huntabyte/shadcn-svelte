@@ -22,7 +22,16 @@ const colorPaletteSchema = z.object({
 
 export type ColorPalette = z.infer<typeof colorPaletteSchema>;
 
-export function getColorFormat(color: Color) {
+type ColorFormat = {
+	class: string;
+	hex: string;
+	rgb: string;
+	hsl: string;
+	oklch: string;
+	var: string;
+};
+
+export function getColorFormat(color: Color): ColorFormat {
 	return {
 		class: `bg-${color.name}-100`,
 		hex: color.hex,
@@ -33,9 +42,7 @@ export function getColorFormat(color: Color) {
 	};
 }
 
-export type ColorFormat = keyof ReturnType<typeof getColorFormat>;
-
-export function getColors() {
+export function getColors(): ColorPalette[] {
 	const tailwindColors = colorPaletteSchema.array().parse(
 		Object.entries(colors)
 			.map(([name, color]) => {
@@ -76,7 +83,7 @@ export function getColors() {
 
 export type Color = ReturnType<typeof getColors>[number]["colors"][number];
 
-function getForegroundFromBackground(rgb: string) {
+function getForegroundFromBackground(rgb: string): string {
 	const [r, g, b] = rgb.split(" ").map(Number);
 
 	function toLinear(number: number): number {

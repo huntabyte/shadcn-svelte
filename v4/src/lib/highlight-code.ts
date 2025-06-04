@@ -1,10 +1,11 @@
+import type { HighlighterCore } from "shiki";
 import { createHighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const highlightCodeCache = new Map<string, string>();
 const jsEngine = createJavaScriptRegexEngine();
 
-export async function createHighlighter() {
+export async function createHighlighter(): Promise<HighlighterCore> {
 	if (!globalThis.__shikiHighlighter) {
 		globalThis.__shikiHighlighter = await createHighlighterCore({
 			themes: [
@@ -18,7 +19,7 @@ export async function createHighlighter() {
 	return globalThis.__shikiHighlighter;
 }
 
-export async function highlightCode(code: string, language: string = "svelte") {
+export async function highlightCode(code: string, language: string = "svelte"): Promise<string> {
 	const cachedCode = highlightCodeCache.get(code);
 	if (cachedCode) return cachedCode;
 
@@ -51,7 +52,6 @@ export async function highlightCode(code: string, language: string = "svelte") {
 	return html;
 }
 
-function formatCode(code: string) {
-	// replaces tabs with 2 spaces
+function formatCode(code: string): string {
 	return code.replace(/\t/g, "  ");
 }

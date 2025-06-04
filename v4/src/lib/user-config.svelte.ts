@@ -56,7 +56,7 @@ function parseCookie(cookie: string): Record<string, string> {
 	return cookieMap;
 }
 
-export function parseUserConfig(cookie: string) {
+export function parseUserConfig(cookie: string): UserConfigType {
 	const cookieMap = parseCookie(cookie);
 	const userConfig = cookieMap[USER_CONFIG_COOKIE_NAME];
 	if (!userConfig) return userConfigSchema.parse({});
@@ -70,11 +70,11 @@ export class UserConfig {
 		this.#config = $state.raw(config);
 	}
 
-	get current() {
+	get current(): UserConfigType {
 		return this.#config;
 	}
 
-	setConfig(config: Partial<UserConfigType>) {
+	setConfig(config: Partial<UserConfigType>): void {
 		this.#config = { ...this.#config, ...config };
 		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
 
@@ -82,7 +82,7 @@ export class UserConfig {
 	}
 }
 
-function updateLayoutClass(newLayout: Layout) {
+function updateLayoutClass(newLayout: Layout): void {
 	if (typeof document === "undefined") return;
 
 	// Remove any existing layout classes
