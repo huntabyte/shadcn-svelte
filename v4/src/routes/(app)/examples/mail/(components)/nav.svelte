@@ -5,8 +5,7 @@
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
 
-	export let isCollapsed: boolean;
-	export let routes: Route[];
+	let { isCollapsed, routes }: { isCollapsed: boolean; routes: Route[] } = $props();
 </script>
 
 <div data-collapsed={isCollapsed} class="group flex flex-col gap-4 py-2 data-[collapsed=true]:py-2">
@@ -27,7 +26,7 @@
 								"dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
 						)}
 					>
-						<svelte:component this={route.icon} class="size-4" aria-hidden="true" />
+						<route.icon class="size-4" aria-hidden="true" />
 						<span class="sr-only">{route.title}</span>
 					</Tooltip.Trigger>
 					<Tooltip.Content side="right" class="flex items-center gap-4">
@@ -49,7 +48,7 @@
 							route.variant === "default",
 					})}
 				>
-					<svelte:component this={route.icon} class="mr-2 size-4" aria-hidden="true" />
+					<route.icon class="mr-2 size-4" aria-hidden="true" />
 					{route.title}
 					{#if route.label}
 						<span

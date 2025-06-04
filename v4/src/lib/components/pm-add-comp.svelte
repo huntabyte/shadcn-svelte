@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PMExecute from "./pm-execute.svelte";
-	export let name: string;
+
+	let { name }: { name: string } = $props();
 </script>
 
 <PMExecute command={`shadcn-svelte@next add ${name}`} />

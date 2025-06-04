@@ -12,7 +12,7 @@ links:
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 
-	export let form;
+	let { form } = $props();
 </script>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
