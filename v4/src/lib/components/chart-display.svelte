@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import type { RegistryItem } from "@shadcn-svelte/registry";
-	export type Chart = RegistryItem & { highlightedCode: string };
+	export type Chart = RegistryItem & { highlightedCode: Promise<string> };
 </script>
 
 <script lang="ts">
@@ -15,7 +15,7 @@
 		chartData,
 	}: HTMLAttributes<HTMLDivElement> & {
 		name: string;
-		chartData: (RegistryItem & { highlightedCode: string })[];
+		chartData: (RegistryItem & { highlightedCode: Promise<string> })[];
 	} = $props();
 
 	const chart = $derived(chartData.find((c) => c.name === name));
