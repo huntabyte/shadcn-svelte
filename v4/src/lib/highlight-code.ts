@@ -1,7 +1,8 @@
 import { createHighlighterCore } from "shiki/core";
-import { createOnigurumaEngine } from "shiki/engine/oniguruma";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const highlightCodeCache = new Map<string, string>();
+const jsEngine = createJavaScriptRegexEngine();
 
 export async function createHighlighter() {
 	if (!globalThis.__shikiHighlighter) {
@@ -17,7 +18,7 @@ export async function createHighlighter() {
 				import("@shikijs/langs/json"),
 				import("@shikijs/langs/bash"),
 			],
-			engine: createOnigurumaEngine(import("shiki/wasm")),
+			engine: jsEngine,
 		});
 	}
 	return globalThis.__shikiHighlighter;
