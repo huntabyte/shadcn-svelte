@@ -70,7 +70,7 @@
 							>
 								<pre><code
 										class="font-mono text-sm leading-none"
-										data-language="bash">{getCommandText(pm)} {hidden}</code
+										data-language="bash">{getCommandText(pm)}</code
 									></pre>
 							</div>
 						{/snippet}
