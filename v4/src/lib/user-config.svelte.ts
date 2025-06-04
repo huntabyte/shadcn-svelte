@@ -77,7 +77,18 @@ export class UserConfig {
 	setConfig(config: Partial<UserConfigType>) {
 		this.#config = { ...this.#config, ...config };
 		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
+
+		if (config.layout) updateLayoutClass(this.#config.layout);
 	}
+}
+
+function updateLayoutClass(newLayout: Layout) {
+	if (typeof document === "undefined") return;
+
+	// Remove any existing layout classes
+	document.documentElement.classList.remove("layout-fixed", "layout-full");
+	// Add the new layout class
+	document.documentElement.classList.add(`layout-${newLayout}`);
 }
 
 export const UserConfigContext = new Context<UserConfig>("UserConfigContext");
