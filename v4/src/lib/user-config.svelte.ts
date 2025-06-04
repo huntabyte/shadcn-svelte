@@ -5,7 +5,7 @@ export const USER_CONFIG_COOKIE_NAME = "scn_user_config";
 
 const layoutSchema = z.enum(["fixed", "full"]).default("full");
 const installationTypeSchema = z.enum(["cli", "manual"]).default("cli");
-const packageManagerSchema = z.enum(["npm", "yarn", "pnpm", "bun"]).default("npm");
+const packageManagerSchema = z.enum(["npm", "yarn", "pnpm", "bun"]).default("pnpm");
 const colorFormatSchema = z.enum(["class", "hex", "rgb", "hsl", "oklch", "var"]).default("oklch");
 const activeTheme = z
 	.enum([
