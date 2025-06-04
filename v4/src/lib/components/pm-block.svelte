@@ -63,9 +63,9 @@
 				{#each PACKAGE_MANAGERS as pm (pm)}
 					<Tabs.Content value={pm} class="mt-0 px-4 py-3.5">
 						{#snippet child({ props })}
-							{@const { hidden, class: className, ...rp } = props}
+							{@const { hidden, class: className, ...rest } = props}
 							<div
-								{...rp}
+								{...rest}
 								class={cn(className as string, (hidden as boolean) && "hidden")}
 							>
 								<pre><code
