@@ -27,5 +27,3 @@ export const load: LayoutServerLoad = async () => {
 		inputOtp: await superValidate(zod(inputOtpSchema)),
 	};
 };
-
-export const prerender = true;

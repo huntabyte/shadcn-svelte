@@ -8,8 +8,6 @@ import { createHighlighter, highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
-export const prerender = true;
-
 type CachedItem = Omit<RegistryItem, "files"> & {
 	files: (RegistryItemFile & {
 		highlightedContent: string;
