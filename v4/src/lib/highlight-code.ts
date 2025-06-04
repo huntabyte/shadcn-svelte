@@ -11,13 +11,7 @@ export async function createHighlighter() {
 				import("@shikijs/themes/github-dark"),
 				import("@shikijs/themes/github-light-default"),
 			],
-			langs: [
-				import("@shikijs/langs/typescript"),
-				import("@shikijs/langs/svelte"),
-				import("@shikijs/langs/css"),
-				import("@shikijs/langs/json"),
-				import("@shikijs/langs/bash"),
-			],
+			langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
 			engine: jsEngine,
 		});
 	}
