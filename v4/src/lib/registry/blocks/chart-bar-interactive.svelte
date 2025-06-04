@@ -102,8 +102,8 @@
 
 	const chartConfig = {
 		views: { label: "Page Views", color: "" },
-		desktop: { label: "Desktop", color: "var(--chart-1)" },
-		mobile: { label: "Mobile", color: "var(--chart-2)" },
+		desktop: { label: "Desktop", color: "var(--chart-2)" },
+		mobile: { label: "Mobile", color: "var(--chart-1)" },
 	} satisfies Chart.ChartConfig;
 	let context = $state<ChartContextValue>();
 
