@@ -9,6 +9,7 @@
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import { cn } from "$lib/utils.js";
 
 	const {
 		type,
@@ -61,9 +62,18 @@
 			<div class="no-scrollbar overflow-x-auto">
 				{#each PACKAGE_MANAGERS as pm (pm)}
 					<Tabs.Content value={pm} class="mt-0 px-4 py-3.5">
-						<pre><code class="font-mono text-sm leading-none" data-language="bash"
-								>{getCommandText(pm)}</code
-							></pre>
+						{#snippet child({ props })}
+							{@const { hidden, class: className, ...rp } = props}
+							<div
+								{...rp}
+								class={cn(className as string, (hidden as boolean) && "hidden")}
+							>
+								<pre><code
+										class="font-mono text-sm leading-none"
+										data-language="bash">{getCommandText(pm)} {hidden}</code
+									></pre>
+							</div>
+						{/snippet}
 					</Tabs.Content>
 				{/each}
 			</div>
