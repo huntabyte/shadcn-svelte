@@ -22,7 +22,24 @@
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
 
-<div data-slot="docs" class="flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full">
+<div
+	data-slot="docs"
+	class="flex flex-row-reverse items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
+>
+	<div
+		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+	>
+		<div class="h-(--top-spacing) shrink-0"></div>
+		{#if doc.toc.length}
+			<div class="no-scrollbar overflow-y-auto px-8">
+				<DocsToc toc={{ items: doc.toc }} />
+				<div class="h-12"></div>
+			</div>
+		{/if}
+		<div class="flex flex-1 flex-col gap-12 px-6">
+			<Cta />
+		</div>
+	</div>
 	<div class="flex min-w-0 flex-1 flex-col">
 		<div class="h-(--top-spacing) shrink-0"></div>
 		<div
@@ -132,20 +149,6 @@
 					<ArrowRightIcon />
 				</Button>
 			{/if}
-		</div>
-	</div>
-	<div
-		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
-	>
-		<div class="h-(--top-spacing) shrink-0"></div>
-		{#if doc.toc.length}
-			<div class="no-scrollbar overflow-y-auto px-8">
-				<DocsToc toc={{ items: doc.toc }} />
-				<div class="h-12"></div>
-			</div>
-		{/if}
-		<div class="flex flex-1 flex-col gap-12 px-6">
-			<Cta />
 		</div>
 	</div>
 </div>
