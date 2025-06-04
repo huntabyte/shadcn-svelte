@@ -26,6 +26,17 @@
 		isScaled ? "theme-scaled" : "",
 	]);
 
+	function updateLayoutClass(newLayout: string) {
+		// Remove any existing layout classes
+		document.documentElement.classList.remove("layout-fixed", "layout-full");
+		// Add the new layout class
+		document.documentElement.classList.add(`layout-${newLayout}`);
+	}
+
+	if (typeof document !== "undefined") {
+		updateLayoutClass(userConfig.current.layout);
+	}
+
 	setTheme(userConfig.current.activeTheme);
 
 	watch.pre(
@@ -37,11 +48,8 @@
 
 	watch.pre(
 		() => userConfig.current.layout,
-		(curr, prev) => {
-			if (document.documentElement.classList.contains(`layout-${prev}`)) {
-				document.documentElement.classList.remove(`layout-${prev}`);
-			}
-			document.documentElement.classList.add(`layout-${curr}`);
+		(curr) => {
+			updateLayoutClass(curr);
 		}
 	);
 </script>

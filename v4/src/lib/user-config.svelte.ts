@@ -28,7 +28,7 @@ export type PackageManager = z.infer<typeof packageManagerSchema>;
 export type ColorFormat = z.infer<typeof colorFormatSchema>;
 export type ActiveTheme = z.infer<typeof activeTheme>;
 
-const userConfigSchema = z
+export const userConfigSchema = z
 	.object({
 		layout: layoutSchema,
 		installationType: installationTypeSchema,
@@ -57,21 +57,28 @@ function parseCookie(cookie: string): Record<string, string> {
 }
 
 export function parseUserConfig(cookie: string) {
+	console.log("cookie", cookie);
 	const cookieMap = parseCookie(cookie);
 	const userConfig = cookieMap[USER_CONFIG_COOKIE_NAME];
+	console.log("userConfig", userConfig);
 	if (!userConfig) return userConfigSchema.parse({});
+	const parsedUserConfig = JSON.parse(userConfig);
+	console.log("parsedUserConfig", parsedUserConfig);
 	return userConfigSchema.parse(JSON.parse(userConfig));
 }
 
 export class UserConfig {
-	#config = $state.raw(userConfigSchema.parse({}));
-	#cookieValue = $derived(JSON.stringify(this.#config));
+	#config: UserConfigType = $state.raw(null!);
 
 	constructor(config: UserConfigType) {
+		console.log("config inside constructor", config);
 		this.#config = config;
 
-		$effect.pre(() => {
-			document.cookie = `${USER_CONFIG_COOKIE_NAME}=${this.#cookieValue}; path=/; max-age=31536000; SameSite=Lax;`;
+		$effect(() => {
+			if (this.#config) {
+				console.log("setting cookie", this.#config);
+				document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
+			}
 		});
 	}
 
