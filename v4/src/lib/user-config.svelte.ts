@@ -64,16 +64,10 @@ export function parseUserConfig(cookie: string) {
 }
 
 export class UserConfig {
-	#config: UserConfigType = $state.raw(null!);
+	#config: UserConfigType;
 
 	constructor(config: UserConfigType) {
-		this.#config = config;
-
-		$effect(() => {
-			if (this.#config) {
-				document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
-			}
-		});
+		this.#config = $state.raw(config);
 	}
 
 	get current() {
@@ -82,6 +76,7 @@ export class UserConfig {
 
 	setConfig(config: Partial<UserConfigType>) {
 		this.#config = { ...this.#config, ...config };
+		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
 	}
 }
 
