@@ -14,7 +14,7 @@ links:
 	import Step from "$lib/components/step.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 
-	export let form;
+	let { form } = $props();
 </script>
 
 <ComponentPreview name="input-demo">
