@@ -1,22 +1,20 @@
 <script lang="ts">
 	import "../app.css";
+	import { watch } from "runed";
 	import { ModeWatcher, setTheme } from "mode-watcher";
 	import { Toaster } from "$lib/registry/ui/sonner/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
-	import { watch } from "runed";
-	import { parseUserConfig, UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
+	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
 
 	let { children, data } = $props();
 
-	const userConfig = UserConfigContext.set(
-		new UserConfig(
-			typeof document !== "undefined" ? parseUserConfig(document.cookie) : data.userConfig
-		)
-	);
+	const userConfig = UserConfigContext.set(new UserConfig(data.userConfig));
 
 	const themeColors = { light: "#ffffff", dark: "#09090b" };
-
-	const themeClassName = $derived(`theme-${userConfig.current.activeTheme}`);
+	const modeClasses = $derived([
+		`layout-${userConfig.current.layout}`,
+		`theme-${userConfig.current.activeTheme}`,
+	]);
 
 	watch.pre(
 		() => userConfig.current.activeTheme,
@@ -31,8 +29,8 @@
 	disableTransitions
 	defaultTheme={userConfig.current.activeTheme}
 	{themeColors}
-	darkClassNames={["dark", `layout-${userConfig.current.layout}`, themeClassName]}
-	lightClassNames={["light", `layout-${userConfig.current.layout}`, themeClassName]}
+	darkClassNames={["dark", ...modeClasses]}
+	lightClassNames={["light", ...modeClasses]}
 />
 <Toaster position="top-center" />
 <Tooltip.Provider>
