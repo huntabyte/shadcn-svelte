@@ -79,15 +79,14 @@ The upgrade script will automatically migrate your project to the latest PostCSS
 ```diff title="postcss.config.js"
 - export default {
 - 	plugins: {
-- 		tailwindcss: {},
-- 		autoprefixer: {}
+- 		@tailwindcss/postcss: {},
 - 	}
 - };
 ```
 
-#### Uninstall `autoprefixer`
+#### Uninstall `@tailwindcss/postcss`
 
-<PMRemove command="autoprefixer" />
+<PMRemove command="@tailwindcss/postcss" />
 
 #### Install `@tailwindcss/vite`
 
