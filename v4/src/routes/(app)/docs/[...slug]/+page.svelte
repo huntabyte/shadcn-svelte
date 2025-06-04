@@ -23,7 +23,7 @@
 </script>
 
 <!-- 
-The TOC needs to come first in the DOM order to prevent CLS, so we flex-row-reverse
+NOTE: The TOC needs to come first in the DOM order to prevent CLS, so we flex-row-reverse
 the docs container. The issue this resolves is prominent on slow connections (3G).
   -->
 <div
