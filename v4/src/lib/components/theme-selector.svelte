@@ -57,8 +57,8 @@
 	const userConfig = UserConfigContext.get();
 
 	const label = $derived(
-		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === userConfig.current.activeTheme)?.name ??
-			"Default"
+		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === userConfig.current.activeTheme)
+			?.name ?? "Default"
 	);
 </script>
 
