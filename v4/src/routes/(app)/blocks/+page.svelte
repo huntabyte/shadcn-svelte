@@ -8,11 +8,12 @@
 </script>
 
 <div class="flex flex-col gap-12 md:gap-24">
-	{#each data.blocks as block (block.name)}
+	{#each data.blocks as block, index (block.name)}
 		<BlockViewer
 			item={block}
 			tree={createFileTreeForRegistryItemFiles(block.files)}
 			highlightedFiles={block.files}
+			lazy={index !== 0}
 		/>
 	{/each}
 	<div class="container-wrapper">
