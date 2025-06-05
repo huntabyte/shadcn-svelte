@@ -1,29 +1,19 @@
-import type { HighlighterCore } from "shiki";
 import { createHighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const highlightCodeCache = new Map<string, string>();
 const jsEngine = createJavaScriptRegexEngine();
-
-export async function createHighlighter(): Promise<HighlighterCore> {
-	if (!globalThis.__shikiHighlighter) {
-		globalThis.__shikiHighlighter = await createHighlighterCore({
-			themes: [
-				import("@shikijs/themes/github-dark"),
-				import("@shikijs/themes/github-light-default"),
-			],
-			langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
-			engine: jsEngine,
-		});
-	}
-	return globalThis.__shikiHighlighter;
-}
+const highlighterPromise = createHighlighterCore({
+	themes: [import("@shikijs/themes/github-dark"), import("@shikijs/themes/github-light-default")],
+	langs: [import("@shikijs/langs/typescript"), import("@shikijs/langs/svelte")],
+	engine: jsEngine,
+});
 
 export async function highlightCode(code: string, language: string = "svelte"): Promise<string> {
 	const cachedCode = highlightCodeCache.get(code);
 	if (cachedCode) return cachedCode;
 
-	const highlighter = await createHighlighter();
+	const highlighter = await highlighterPromise;
 
 	const html = highlighter.codeToHtml(formatCode(code), {
 		lang: language,
