@@ -1,7 +1,7 @@
 import { z } from "zod";
-import type { LayoutServerLoad } from "../$types.js";
 import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
 import { USER_CONFIG_COOKIE_NAME, userConfigSchema } from "$lib/user-config.svelte.js";
+import type { LayoutServerLoad } from "./$types.js";
 
 const githubRepoSchema = z
 	.object({
