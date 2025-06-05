@@ -18,16 +18,16 @@ export async function load({ params }) {
 		modules = import.meta.glob("/src/lib/registry/blocks/**/+page.svelte");
 	}
 
-	let match: { path?: string; resolver?: ViewResolver } = {};
+	let match: ViewResolver | undefined;
 
 	for (const [path, resolver] of Object.entries(modules)) {
 		if (path.includes(params.view)) {
-			match = { path, resolver: resolver as unknown as ViewResolver };
+			match = resolver as unknown as ViewResolver;
 			break;
 		}
 	}
 
-	const comp = await match?.resolver?.();
+	const comp = await match?.();
 
 	if (!comp) error(404, "Block not found");
 
