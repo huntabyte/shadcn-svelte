@@ -18,48 +18,67 @@
 		...restProps
 	}: WithElementRef<CarouselProps> = $props();
 
+	let scrollSnaps = $state.raw<number[]>([]);
+	let selectedIndex = $state<number>(0);
+	let canScrollNext = $state<boolean>(false);
+	let canScrollPrev = $state<boolean>(false);
+	let api = $state.raw<CarouselAPI | undefined>(undefined);
+
 	let carouselState = $state<EmblaContext>({
-		api: undefined,
+		get api() {
+			return api;
+		},
 		scrollPrev,
 		scrollNext,
-		orientation,
-		canScrollNext: false,
-		canScrollPrev: false,
+		get orientation() {
+			return orientation;
+		},
+		get canScrollNext() {
+			return canScrollNext;
+		},
+		get canScrollPrev() {
+			return canScrollPrev;
+		},
 		handleKeyDown,
-		options: opts,
-		plugins,
+		get options() {
+			return opts;
+		},
+		get plugins() {
+			return plugins;
+		},
 		onInit,
-		scrollSnaps: [],
-		selectedIndex: 0,
+		get scrollSnaps() {
+			return scrollSnaps;
+		},
+		get selectedIndex() {
+			return selectedIndex;
+		},
 		scrollTo,
 	});
 
 	setEmblaContext(carouselState);
 
 	function scrollPrev() {
-		carouselState.api?.scrollPrev();
+		api?.scrollPrev();
 	}
+
 	function scrollNext() {
-		carouselState.api?.scrollNext();
+		api?.scrollNext();
 	}
+
 	function scrollTo(index: number, jump?: boolean) {
-		carouselState.api?.scrollTo(index, jump);
+		api?.scrollTo(index, jump);
 	}
 
-	function onSelect(api: CarouselAPI) {
+	function onSelect() {
 		if (!api) return;
-		carouselState.canScrollPrev = api.canScrollPrev();
-		carouselState.canScrollNext = api.canScrollNext();
-		carouselState.selectedIndex = api.selectedScrollSnap();
+		selectedIndex = api.selectedScrollSnap();
 	}
 
-	$effect(() => {
-		if (carouselState.api) {
-			onSelect(carouselState.api);
-			carouselState.api.on("select", onSelect);
-			carouselState.api.on("reInit", onSelect);
-		}
-	});
+	function onReInit() {
+		if (!api) return;
+		selectedIndex = api.selectedScrollSnap();
+	}
 
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === "ArrowLeft") {
@@ -71,19 +90,20 @@
 		}
 	}
 
-	$effect(() => {
-		setApi(carouselState.api);
-	});
-
 	function onInit(event: CustomEvent<CarouselAPI>) {
-		carouselState.api = event.detail;
+		api = event.detail;
+		setApi(api);
 
-		carouselState.scrollSnaps = carouselState.api.scrollSnapList();
+		onSelect();
+		api.on("select", onSelect);
+		api.on("reInit", onReInit);
+		scrollSnaps = api.scrollSnapList();
 	}
 
 	$effect(() => {
 		return () => {
-			carouselState.api?.off("select", onSelect);
+			api?.off("select", onSelect);
+			api?.off("reInit", onReInit);
 		};
 	});
 </script>
