@@ -20,6 +20,7 @@
 					data-block={ctx.item.name}
 					width={1440}
 					height={900}
+					loading="lazy"
 					class="object-cover md:hidden dark:hidden md:dark:hidden"
 				/>
 				<img
@@ -28,12 +29,14 @@
 					data-block={ctx.item.name}
 					width={1440}
 					height={900}
+					loading="lazy"
 					class="hidden object-cover md:hidden dark:block md:dark:hidden"
 				/>
 				<iframe
 					title={ctx.item.name}
 					src="/view/{ctx.item.name}"
 					height={930}
+					loading="lazy"
 					class="bg-background no-scrollbar relative z-20 hidden w-full md:block"
 				></iframe>
 			</Resizable.Pane>

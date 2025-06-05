@@ -48,6 +48,15 @@ export default defineConfig({
 			allow: [veliteDirPath, staticDirPath, contentDirPath],
 		},
 	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+				},
+			},
+		},
+	},
 });
 
 function writeJsonSchemas() {
