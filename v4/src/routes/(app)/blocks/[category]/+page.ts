@@ -6,8 +6,8 @@ import {
 import type { PageLoad } from "./$types.js";
 import { highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
-import { isBlock } from "$lib/blocks.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
+import { isBlock } from "$lib/blocks.js";
 
 export const prerender = true;
 
@@ -24,8 +24,6 @@ export const load: PageLoad = async ({ params }) => {
 	const category = params.category;
 
 	let registryJsonItems: Record<string, () => Promise<unknown>> = {};
-
-	// remove the items that don't match the category from the object.
 
 	if (category === "sidebar") {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/sidebar-*.json");
