@@ -1,11 +1,22 @@
 <script lang="ts">
 	import { BlockViewerContext } from "./block-viewer.svelte";
 	import * as Resizable from "$lib/registry/ui/resizable/index.js";
-	import { IsMounted } from "runed";
+	import { onMount } from "svelte";
 
 	const ctx = BlockViewerContext.get();
 
-	const mounted = new IsMounted();
+	let shouldRender = $state(false);
+	let timer: number | undefined;
+
+	onMount(() => {
+		if (ctx.lazy) {
+			timer = window.setTimeout(() => (shouldRender = true), 50);
+		} else {
+			shouldRender = true;
+		}
+
+		return () => window.clearTimeout(timer);
+	});
 </script>
 
 <div class="group-data-[view=code]/block-view-wrapper:hidden md:h-[calc(var(--height)+10px)]">
@@ -35,12 +46,12 @@
 					loading="lazy"
 					class="hidden object-cover md:hidden dark:block md:dark:hidden"
 				/>
-				{#if !ctx.lazy || mounted.current}
+				{#if shouldRender}
 					<iframe
 						title={ctx.item.name}
 						src="/view/{ctx.item.name}"
 						height={930}
-						loading="lazy"
+						loading="eager"
 						class="bg-background no-scrollbar relative z-20 hidden w-full md:block"
 					></iframe>
 				{:else}

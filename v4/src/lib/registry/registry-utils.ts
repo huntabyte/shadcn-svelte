@@ -26,7 +26,7 @@ export function transformBlockPath(target: string, type: RegistryItemFile["type"
 
 export function createFileTreeForRegistryItemFiles(
 	files: Array<{ target: string; type: RegistryItemFile["type"] }>
-) {
+): FileTree[] {
 	const root: FileTree[] = [];
 
 	for (const file of files) {
