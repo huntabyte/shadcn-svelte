@@ -18,65 +18,43 @@
 		...restProps
 	}: WithElementRef<CarouselProps> = $props();
 
-	let scrollSnaps = $state.raw<number[]>([]);
-	let selectedIndex = $state<number>(0);
-	const canScrollNext = $derived.by(() => {
-		return selectedIndex < scrollSnaps.length - 1;
-	});
-	const canScrollPrev = $derived.by(() => {
-		return selectedIndex > 0;
-	});
-	let api = $state.raw<CarouselAPI | undefined>(undefined);
-
 	let carouselState = $state<EmblaContext>({
-		get api() {
-			return api;
-		},
+		api: undefined,
 		scrollPrev,
 		scrollNext,
-		get orientation() {
-			return orientation;
-		},
+		orientation,
 		get canScrollNext() {
-			return canScrollNext;
+			return this.selectedIndex < this.scrollSnaps.length - 1;
 		},
 		get canScrollPrev() {
-			return canScrollPrev;
+			return this.selectedIndex > 0;
 		},
 		handleKeyDown,
-		get options() {
-			return opts;
-		},
-		get plugins() {
-			return plugins;
-		},
+		options: opts,
+		plugins,
 		onInit,
-		get scrollSnaps() {
-			return scrollSnaps;
-		},
-		get selectedIndex() {
-			return selectedIndex;
-		},
+		scrollSnaps: [],
+		selectedIndex: 0,
 		scrollTo,
 	});
 
 	setEmblaContext(carouselState);
 
 	function scrollPrev() {
-		api?.scrollPrev();
+		carouselState.api?.scrollPrev();
 	}
 
 	function scrollNext() {
-		api?.scrollNext();
+		carouselState.api?.scrollNext();
 	}
 
 	function scrollTo(index: number, jump?: boolean) {
-		api?.scrollTo(index, jump);
+		carouselState.api?.scrollTo(index, jump);
 	}
 
 	function onSettle() {
-		if (!api) return;
-		selectedIndex = api.selectedScrollSnap();
+		if (!carouselState.api) return;
+		carouselState.selectedIndex = carouselState.api.selectedScrollSnap();
 	}
 
 	function handleKeyDown(e: KeyboardEvent) {
@@ -90,16 +68,16 @@
 	}
 
 	function onInit(event: CustomEvent<CarouselAPI>) {
-		api = event.detail;
-		setApi(api);
+		carouselState.api = event.detail;
+		setApi(carouselState.api);
 
-		scrollSnaps = api.scrollSnapList();
-		api.on("settle", onSettle);
+		carouselState.scrollSnaps = carouselState.api.scrollSnapList();
+		carouselState.api.on("select", onSettle);
 	}
 
 	$effect(() => {
 		return () => {
-			api?.off("settle", onSettle);
+			carouselState.api?.off("select", onSettle);
 		};
 	});
 </script>
