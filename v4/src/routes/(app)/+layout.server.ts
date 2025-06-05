@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { LayoutServerLoad } from "../$types.js";
 import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
+import { USER_CONFIG_COOKIE_NAME, userConfigSchema } from "$lib/user-config.svelte.js";
 
 const githubRepoSchema = z
 	.object({
@@ -24,8 +25,13 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 		}
 	}
 
+	const userConfigCookie = cookies.get(USER_CONFIG_COOKIE_NAME);
+	const parsedUserConfig = userConfigCookie ? JSON.parse(userConfigCookie) : {};
+	const userConfig = userConfigSchema.parse(parsedUserConfig);
+
 	return {
 		sidebarState,
 		stars: await getGithubStarCount(),
+		userConfig,
 	};
 };
