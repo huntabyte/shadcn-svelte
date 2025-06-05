@@ -16,6 +16,7 @@
 			href="/blocks/{category.slug}"
 			class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 items-center justify-center px-4 text-center text-base font-medium transition-colors"
 			data-active={isActive}
+			data-sveltekit-preload-data="off"
 		>
 			{category.name}
 		</a>
