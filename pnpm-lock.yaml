@@ -509,8 +509,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4
       '@unovis/svelte':
-        specifier: 1.4.3
-        version: 1.4.3(@unovis/ts@1.5.2)(svelte@5.33.14)
+        specifier: ^1.5.2
+        version: 1.5.2(@unovis/ts@1.5.2)(svelte@5.33.14)
       acorn:
         specifier: ^8.13.0
         version: 8.14.1
@@ -527,10 +527,10 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       embla-carousel-autoplay:
-        specifier: 8.6.0
+        specifier: ^8.1.6
         version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-svelte:
-        specifier: 8.6.0
+        specifier: ^8.1.6
         version: 8.6.0(svelte@5.33.14)
       estree-walker:
         specifier: ^3.0.3
@@ -2367,11 +2367,11 @@ packages:
   '@unovis/graphlibrary@2.2.0-2':
     resolution: {integrity: sha512-HeEzpd/vDyWiIJt0rnh+2ICXUIuF2N0+Z9OJJiKg0DB+eFUcD+bk+9QPhYHwkFwfxdjDA9fHi1DZ/O/bbV58Nw==}
 
-  '@unovis/svelte@1.4.3':
-    resolution: {integrity: sha512-gF6VLldjWpe948JOlaZxVCKvh0L65Be0fNasZW+Kckej91CUKfJ/7xWKJ69Eq8bPAPrvL21t7606QIjpqKretQ==}
+  '@unovis/svelte@1.5.2':
+    resolution: {integrity: sha512-TSqJFvbBnkHAZ4Wjt6qBcsza+bGGAjlXORCQJ1nN1PuVNAxlnnwJsx80fd9jpK6lHsp/IovqPt6fcUHBQwpLkw==}
     peerDependencies:
-      '@unovis/ts': 1.4.3
-      svelte: ^3.48.0 || ^4.0.0
+      '@unovis/ts': 1.5.2
+      svelte: '^3.48.0 || ^4.0.0 '
 
   '@unovis/ts@1.5.2':
     resolution: {integrity: sha512-gpg81cr1z/Q9N45wFUkYCGN8o3GbW9U1qx2iQr+xTgyPFoKR9y9+b/savitxzaMGulHAF7cKlm0Nz/pBbQsFoA==}
@@ -7121,7 +7121,7 @@ snapshots:
     dependencies:
       lodash-es: 4.17.21
 
-  '@unovis/svelte@1.4.3(@unovis/ts@1.5.2)(svelte@5.33.14)':
+  '@unovis/svelte@1.5.2(@unovis/ts@1.5.2)(svelte@5.33.14)':
     dependencies:
       '@unovis/ts': 1.5.2
       svelte: 5.33.14
