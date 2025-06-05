@@ -93,8 +93,8 @@
 		api = event.detail;
 		setApi(api);
 
-		api.on("settle", onSettle);
 		scrollSnaps = api.scrollSnapList();
+		api.on("settle", onSettle);
 	}
 
 	$effect(() => {
