@@ -27,8 +27,10 @@ body:
       description: |
         Provide a minimal reproduction of the problem. Include a StackBlitz or link to a GitHub repository that we can easily run to recreate the issue. If a report is vague and does not have a reproduction, it will be closed without warning.
 
-        To get started, you can use the following StackBlitz template:
+        To get started, you can use the following StackBlitz template for Svelte 4:
         https://shadcn-svelte.com/repro
+        or for Svelte 5:
+        https://shadcn-svelte.com/repro5
 
         ***Do not simply add a code snippet or a screenshot. We need a reproduction that we can easily run to recreate the issue.***
       placeholder: Reproduction
