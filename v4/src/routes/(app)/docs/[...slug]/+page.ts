@@ -13,17 +13,25 @@ export async function load({ params }) {
 	// 	getDoc(params.slug),
 	// 	getComponentViewerData(params.slug.replaceAll("components/", "")),
 	// ]);
-	const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
 
-	const doc = await getDoc(params.slug);
+	if (params.slug.includes("components/")) {
+		const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
 
-	return {
-		...doc,
-		viewerData: getComponentViewerData(
-			params.slug.replaceAll("components/", ""),
-			registryJsonItems
-		),
-	};
+		const doc = await getDoc(params.slug);
+
+		return {
+			...doc,
+			viewerData: getComponentViewerData(
+				params.slug.replaceAll("components/", ""),
+				registryJsonItems
+			),
+		};
+	} else {
+		return {
+			...(await getDoc(params.slug)),
+			viewerData: null,
+		};
+	}
 }
 
 export const entries: EntryGenerator = () => {
