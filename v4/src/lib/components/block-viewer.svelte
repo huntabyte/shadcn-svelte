@@ -18,7 +18,6 @@
 					highlightedContent: Promise<string>;
 			  })[]
 			| null;
-		lazy: boolean;
 	};
 
 	export const BlockViewerContext = new Context<BlockViewerContextType>("BlockViewer");
@@ -29,10 +28,7 @@
 		item,
 		tree,
 		highlightedFiles,
-		lazy = false,
-	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> & {
-		lazy?: boolean;
-	} = $props();
+	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> = $props();
 
 	let view = $state<BlockViewerContextType["view"]>("preview");
 
@@ -84,9 +80,6 @@
 		},
 		set highlightedFiles(value) {
 			highlightedFiles = value;
-		},
-		get lazy() {
-			return lazy;
 		},
 	});
 </script>

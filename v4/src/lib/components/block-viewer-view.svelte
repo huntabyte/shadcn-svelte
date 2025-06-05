@@ -1,22 +1,8 @@
 <script lang="ts">
 	import { BlockViewerContext } from "./block-viewer.svelte";
 	import * as Resizable from "$lib/registry/ui/resizable/index.js";
-	import { onMount } from "svelte";
 
 	const ctx = BlockViewerContext.get();
-
-	let shouldRender = $state(false);
-	let timer: number | undefined;
-
-	onMount(() => {
-		if (ctx.lazy) {
-			timer = window.setTimeout(() => (shouldRender = true), 50);
-		} else {
-			shouldRender = true;
-		}
-
-		return () => window.clearTimeout(timer);
-	});
 </script>
 
 <div class="group-data-[view=code]/block-view-wrapper:hidden md:h-[calc(var(--height)+10px)]">
@@ -46,19 +32,13 @@
 					loading="lazy"
 					class="hidden object-cover md:hidden dark:block md:dark:hidden"
 				/>
-				{#if shouldRender}
-					<iframe
-						title={ctx.item.name}
-						src="/view/{ctx.item.name}"
-						height={930}
-						loading="eager"
-						class="bg-background no-scrollbar relative z-20 hidden w-full md:block"
-					></iframe>
-				{:else}
-					<div
-						class="bg-background no-scrollbar relative z-20 hidden h-[930px] w-full md:block"
-					></div>
-				{/if}
+				<iframe
+					title={ctx.item.name}
+					src="/view/{ctx.item.name}"
+					height={930}
+					loading="lazy"
+					class="bg-background no-scrollbar relative z-20 hidden w-full md:block"
+				></iframe>
 			</Resizable.Pane>
 			<Resizable.Handle
 				class="after:bg-border relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:transition-all after:hover:h-10 md:block"

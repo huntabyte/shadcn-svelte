@@ -16,13 +16,11 @@
 
 <nav class={cn("items-center gap-0.5", className)} {...restProps}>
 	{#each items as item (item.href)}
-		{@const isBlock = item.href.includes("blocks")}
 		<Button
 			href={item.href}
 			variant="ghost"
 			size="sm"
 			class={cn(page.url.pathname === item.href && "text-primary")}
-			data-sveltekit-preload-data={isBlock ? "off" : true}
 		>
 			{item.label}
 		</Button>
