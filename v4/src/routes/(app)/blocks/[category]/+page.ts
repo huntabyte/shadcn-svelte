@@ -9,7 +9,7 @@ import { transformBlockPath, transformImportPaths } from "$lib/registry/registry
 import { isBlock } from "$lib/blocks.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 
-// export const prerender = true;
+export const prerender = true;
 
 type CachedItem = Omit<RegistryItem, "files"> & {
 	files: Array<
