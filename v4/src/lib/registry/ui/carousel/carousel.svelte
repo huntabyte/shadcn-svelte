@@ -20,8 +20,12 @@
 
 	let scrollSnaps = $state.raw<number[]>([]);
 	let selectedIndex = $state<number>(0);
-	let canScrollNext = $state<boolean>(false);
-	let canScrollPrev = $state<boolean>(false);
+	const canScrollNext = $derived.by(() => {
+		return selectedIndex < scrollSnaps.length - 1;
+	});
+	const canScrollPrev = $derived.by(() => {
+		return selectedIndex > 0;
+	});
 	let api = $state.raw<CarouselAPI | undefined>(undefined);
 
 	let carouselState = $state<EmblaContext>({
@@ -70,12 +74,7 @@
 		api?.scrollTo(index, jump);
 	}
 
-	function onSelect() {
-		if (!api) return;
-		selectedIndex = api.selectedScrollSnap();
-	}
-
-	function onReInit() {
+	function onSettle() {
 		if (!api) return;
 		selectedIndex = api.selectedScrollSnap();
 	}
@@ -94,16 +93,13 @@
 		api = event.detail;
 		setApi(api);
 
-		onSelect();
-		api.on("select", onSelect);
-		api.on("reInit", onReInit);
+		api.on("settle", onSettle);
 		scrollSnaps = api.scrollSnapList();
 	}
 
 	$effect(() => {
 		return () => {
-			api?.off("select", onSelect);
-			api?.off("reInit", onReInit);
+			api?.off("settle", onSettle);
 		};
 	});
 </script>
