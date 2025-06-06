@@ -28,7 +28,7 @@ Use the Svelte CLI to add Tailwind CSS to your project.
 
 If you are not using the default alias `$lib`, you'll need to update your `svelte.config.js` file to include those aliases.
 
-```js title="svelte.config.js" {6}
+```ts title="svelte.config.js" {6}
 const config = {
   // ... other config
   kit: {

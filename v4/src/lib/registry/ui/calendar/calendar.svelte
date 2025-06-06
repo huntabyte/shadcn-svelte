@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Calendar as CalendarPrimitive, type WithoutChildrenOrChild } from "bits-ui";
+	import { Calendar as CalendarPrimitive } from "bits-ui";
 	import * as Calendar from "./index.js";
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -22,7 +22,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 	bind:ref
 	bind:placeholder
 	{weekdayFormat}
-	class={cn("flex flex-col gap-4 p-3", className)}
+	class={cn("p-3", className)}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}

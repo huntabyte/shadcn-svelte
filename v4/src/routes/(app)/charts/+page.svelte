@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import ComponentWrapper from "$lib/components/component-wrapper.svelte";
 	import * as Charts from "./charts.js";
 	import * as Alert from "$lib/registry/ui/alert/index.js";
@@ -35,4 +35,4 @@
 			</ComponentWrapper>
 		{/each}
 	</div>
-</div>
+</div> -->

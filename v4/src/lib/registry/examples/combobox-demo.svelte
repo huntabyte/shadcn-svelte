@@ -51,9 +51,9 @@
 	<Popover.Trigger bind:ref={triggerRef}>
 		{#snippet child({ props })}
 			<Button
+				{...props}
 				variant="outline"
 				class="w-[200px] justify-between"
-				{...props}
 				role="combobox"
 				aria-expanded={open}
 			>

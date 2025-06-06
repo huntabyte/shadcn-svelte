@@ -13,12 +13,12 @@
 	>
 		Right click here
 	</ContextMenu.Trigger>
-	<ContextMenu.Content class="w-64">
+	<ContextMenu.Content class="w-52">
 		<ContextMenu.Item inset>
 			Back
 			<ContextMenu.Shortcut>⌘[</ContextMenu.Shortcut>
 		</ContextMenu.Item>
-		<ContextMenu.Item inset>
+		<ContextMenu.Item inset disabled>
 			Forward
 			<ContextMenu.Shortcut>⌘]</ContextMenu.Shortcut>
 		</ContextMenu.Item>
@@ -41,8 +41,7 @@
 		</ContextMenu.Sub>
 		<ContextMenu.Separator />
 		<ContextMenu.CheckboxItem bind:checked={showBookmarks}>
-			Show Bookmarks Bar
-			<ContextMenu.Shortcut>⌘⇧B</ContextMenu.Shortcut>
+			Show Bookmarks
 		</ContextMenu.CheckboxItem>
 		<ContextMenu.CheckboxItem bind:checked={showFullURLs}>
 			Show Full URLs
@@ -51,7 +50,6 @@
 		<ContextMenu.RadioGroup bind:value>
 			<ContextMenu.Group>
 				<ContextMenu.GroupHeading inset>People</ContextMenu.GroupHeading>
-				<ContextMenu.Separator />
 				<ContextMenu.RadioItem value="pedro">Pedro Duarte</ContextMenu.RadioItem>
 				<ContextMenu.RadioItem value="colm">Colm Tuite</ContextMenu.RadioItem>
 			</ContextMenu.Group>

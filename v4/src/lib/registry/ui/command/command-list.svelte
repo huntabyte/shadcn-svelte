@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Command as CommandPrimitive, type WithoutChild } from "bits-ui";
+	import { Command as CommandPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		...restProps
-	}: WithoutChild<CommandPrimitive.ListProps> = $props();
+	}: CommandPrimitive.ListProps = $props();
 </script>
 
 <CommandPrimitive.List

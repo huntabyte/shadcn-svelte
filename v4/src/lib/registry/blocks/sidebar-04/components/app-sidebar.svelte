@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	// sample data
 	const data = {
-		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
 		navMain: [
 			{
 				title: "Getting Started",
@@ -115,7 +114,7 @@
 						url: "#",
 					},
 					{
-						title: "Svelte Compiler",
+						title: "Next.js Compiler",
 						url: "#",
 					},
 					{
@@ -123,7 +122,17 @@
 						url: "#",
 					},
 					{
-						title: "Rollup",
+						title: "Turbopack",
+						url: "#",
+					},
+				],
+			},
+			{
+				title: "Community",
+				url: "#",
+				items: [
+					{
+						title: "Contribution Guide",
 						url: "#",
 					},
 				],
@@ -153,7 +162,7 @@
 								<GalleryVerticalEndIcon class="size-4" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
-								<span class="font-semibold">Documentation</span>
+								<span class="font-medium">Documentation</span>
 								<span class="">v1.0.0</span>
 							</div>
 						</a>
@@ -165,22 +174,22 @@
 	<Sidebar.Content>
 		<Sidebar.Group>
 			<Sidebar.Menu class="gap-2">
-				{#each data.navMain as mainItem (mainItem.title)}
+				{#each data.navMain as item (item.title)}
 					<Sidebar.MenuItem>
-						<Sidebar.MenuButton class="font-medium">
+						<Sidebar.MenuButton>
 							{#snippet child({ props })}
-								<a href={mainItem.url} {...props}>
-									{mainItem.title}
+								<a href={item.url} class="font-medium" {...props}>
+									{item.title}
 								</a>
 							{/snippet}
 						</Sidebar.MenuButton>
-						{#if mainItem.items?.length}
+						{#if item.items?.length}
 							<Sidebar.MenuSub class="ml-0 border-l-0 px-1.5">
-								{#each mainItem.items as item (item.title)}
+								{#each item.items as subItem (subItem.title)}
 									<Sidebar.MenuSubItem>
-										<Sidebar.MenuSubButton isActive={item.isActive}>
+										<Sidebar.MenuSubButton isActive={subItem.isActive}>
 											{#snippet child({ props })}
-												<a href={item.url} {...props}>{item.title}</a>
+												<a href={subItem.url} {...props}>{subItem.title}</a>
 											{/snippet}
 										</Sidebar.MenuSubButton>
 									</Sidebar.MenuSubItem>

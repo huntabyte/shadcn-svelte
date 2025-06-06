@@ -1,30 +1,46 @@
 <script lang="ts">
-	import AppSidebar from "$lib/components/app-sidebar.svelte";
-	import ModeSwitcher from "$lib/components/mode-switcher.svelte";
-	import NavHeader from "$lib/components/nav-header.svelte";
-	import ThemeSelector from "$lib/components/theme-selector.svelte";
-	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
+	import { watch } from "runed";
+	import SiteFooter from "$lib/components/site-footer.svelte";
+	import SiteHeader from "$lib/components/site-header.svelte";
+	import { UserConfig, UserConfigContext } from "$lib/user-config.svelte.js";
+	import { ModeWatcher, setTheme } from "mode-watcher";
+	import { Toaster } from "$lib/registry/ui/sonner/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 
-	let { data, children } = $props();
+	let { children, data } = $props();
+
+	const userConfig = UserConfigContext.set(new UserConfig(data.userConfig));
+
+	const themeColors = { light: "#ffffff", dark: "#09090b" };
+	const modeClasses = $derived([
+		`layout-${userConfig.current.layout}`,
+		`theme-${userConfig.current.activeTheme}`,
+	]);
+
+	watch.pre(
+		() => userConfig.current.activeTheme,
+		() => {
+			setTheme(userConfig.current.activeTheme);
+		}
+	);
 </script>
 
-<Sidebar.Provider open={data.sidebarState}>
-	<AppSidebar />
-	<Sidebar.Inset>
-		<header
-			class="bg-background sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2 border-b"
-		>
-			<div class="flex h-14 w-full items-center gap-2 px-4">
-				<Sidebar.Trigger class="-ml-1.5" />
-				<Separator orientation="vertical" class="mr-2 data-[orientation=vertical]:h-4" />
-				<NavHeader />
-				<div class="ml-auto flex items-center gap-2">
-					<ThemeSelector />
-					<ModeSwitcher />
-				</div>
-			</div>
-		</header>
-		{@render children?.()}
-	</Sidebar.Inset>
-</Sidebar.Provider>
+<ModeWatcher
+	defaultMode="system"
+	disableTransitions
+	defaultTheme={userConfig.current.activeTheme}
+	{themeColors}
+	darkClassNames={["dark", ...modeClasses]}
+	lightClassNames={["light", ...modeClasses]}
+/>
+<Toaster position="top-center" />
+
+<div class="bg-background relative z-10 flex min-h-svh flex-col">
+	<SiteHeader />
+	<main class="flex flex-1 flex-col">
+		<Tooltip.Provider>
+			{@render children()}
+		</Tooltip.Provider>
+	</main>
+	<SiteFooter />
+</div>
