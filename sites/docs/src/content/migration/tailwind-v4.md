@@ -232,7 +232,7 @@ We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`, which has s
 
 #### CSS Variables and Theme Config
 
-We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and setup an `@theme inline` directive to replace our Tailwind v3 config.
+We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and set up an `@theme inline` directive to replace our Tailwind v3 config.
 
 Once complete, your `app.css` file should look something like this (the color values will differ depending on your theme):
 

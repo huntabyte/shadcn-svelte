@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Learn how to get setup and run your own component registry.
+description: Learn how to get set up and run your own component registry.
 ---
 
 <script>
