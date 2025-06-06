@@ -466,9 +466,6 @@ importers:
       '@shikijs/langs':
         specifier: ^3.4.2
         version: 3.4.2
-      '@shikijs/rehype':
-        specifier: ^3.4.2
-        version: 3.4.2
       '@shikijs/themes':
         specifier: ^3.4.2
         version: 3.4.2
@@ -1893,9 +1890,6 @@ packages:
 
   '@shikijs/langs@3.4.2':
     resolution: {integrity: sha512-H6azIAM+OXD98yztIfs/KH5H4PU39t+SREhmM8LaNXyUrqj2mx+zVkr8MWYqjceSjDw9I1jawm1WdFqU806rMA==}
-
-  '@shikijs/rehype@3.4.2':
-    resolution: {integrity: sha512-atbsrT3UKs25OdKVbNoHyKO9ZP7KEBPlo1oanPGMkvUL0fLictpxMPz6vPE2YTeHhpwz7EMrA4K4FHRY8XAReg==}
 
   '@shikijs/themes@3.4.2':
     resolution: {integrity: sha512-qAEuAQh+brd8Jyej2UDDf+b4V2g1Rm8aBIdvt32XhDPrHvDkEnpb7Kzc9hSuHUxz0Iuflmq7elaDuQAP9bHIhg==}
@@ -6527,15 +6521,6 @@ snapshots:
   '@shikijs/langs@3.4.2':
     dependencies:
       '@shikijs/types': 3.4.2
-
-  '@shikijs/rehype@3.4.2':
-    dependencies:
-      '@shikijs/types': 3.4.2
-      '@types/hast': 3.0.4
-      hast-util-to-string: 3.0.1
-      shiki: 3.4.2
-      unified: 11.0.5
-      unist-util-visit: 5.0.0
 
   '@shikijs/themes@3.4.2':
     dependencies:

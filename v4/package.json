@@ -25,7 +25,6 @@
 		"@lucide/svelte": "^0.482.0",
 		"@shadcn-svelte/registry": "workspace:*",
 		"@shikijs/langs": "^3.4.2",
-		"@shikijs/rehype": "^3.4.2",
 		"@shikijs/themes": "^3.4.2",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@sveltejs/adapter-cloudflare": "^4.7.4",
