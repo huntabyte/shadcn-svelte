@@ -6,6 +6,8 @@
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
 	import BlockViewerView from "./block-viewer-view.svelte";
 	import BlockViewerCode from "./block-viewer-code.svelte";
+	import type { Snippet } from "svelte";
+	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
 
 	type BlockViewerContextType = {
 		item: RegistryItem;
@@ -28,7 +30,10 @@
 		item,
 		tree,
 		highlightedFiles,
-	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> = $props();
+		children,
+	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> & {
+		children?: Snippet;
+	} = $props();
 
 	let view = $state<BlockViewerContextType["view"]>("preview");
 
@@ -93,4 +98,5 @@
 	<BlockViewerToolbar />
 	<BlockViewerView />
 	<BlockViewerCode />
+	<BlockViewerViewMobile>{@render children?.()}</BlockViewerViewMobile>
 </div>

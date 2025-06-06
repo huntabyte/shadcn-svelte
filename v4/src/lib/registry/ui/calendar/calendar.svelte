@@ -2,6 +2,7 @@
 	import { Calendar as CalendarPrimitive } from "bits-ui";
 	import * as Calendar from "./index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import type { ButtonVariant } from "../button/button.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -9,8 +10,11 @@
 		placeholder = $bindable(),
 		class: className,
 		weekdayFormat = "short",
+		buttonVariant = "ghost",
 		...restProps
-	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> = $props();
+	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
+		buttonVariant?: ButtonVariant;
+	} = $props();
 </script>
 
 <!--
@@ -22,20 +26,23 @@ get along, so we shut typescript up by casting `value` to `never`.
 	bind:ref
 	bind:placeholder
 	{weekdayFormat}
-	class={cn("p-3", className)}
+	class={cn(
+		"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+		className
+	)}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
-			<Calendar.PrevButton />
+			<Calendar.PrevButton variant={buttonVariant} />
 			<Calendar.Heading />
-			<Calendar.NextButton />
+			<Calendar.NextButton variant={buttonVariant} />
 		</Calendar.Header>
 		<Calendar.Months>
 			{#each months as month (month)}
 				<Calendar.Grid>
 					<Calendar.GridHead>
-						<Calendar.GridRow class="flex">
+						<Calendar.GridRow class="flex select-none">
 							{#each weekdays as weekday (weekday)}
 								<Calendar.HeadCell>
 									{weekday.slice(0, 2)}
