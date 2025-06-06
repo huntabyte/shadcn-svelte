@@ -24,10 +24,10 @@
 		scrollNext,
 		orientation,
 		get canScrollNext() {
-			return this.selectedIndex < this.scrollSnaps.length - 1;
+			return this.api?.canScrollNext();
 		},
 		get canScrollPrev() {
-			return this.selectedIndex > 0;
+			return this.api?.canScrollPrev();
 		},
 		handleKeyDown,
 		options: opts,
@@ -52,7 +52,7 @@
 		carouselState.api?.scrollTo(index, jump);
 	}
 
-	function onSettle() {
+	function onSelect() {
 		if (!carouselState.api) return;
 		carouselState.selectedIndex = carouselState.api.selectedScrollSnap();
 	}
@@ -72,12 +72,12 @@
 		setApi(carouselState.api);
 
 		carouselState.scrollSnaps = carouselState.api.scrollSnapList();
-		carouselState.api.on("select", onSettle);
+		carouselState.api.on("select", onSelect);
 	}
 
 	$effect(() => {
 		return () => {
-			carouselState.api?.off("select", onSettle);
+			carouselState.api?.off("select", onSelect);
 		};
 	});
 </script>
