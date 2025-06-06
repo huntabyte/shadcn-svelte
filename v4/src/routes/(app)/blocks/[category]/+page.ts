@@ -11,7 +11,7 @@ import { isBlock } from "$lib/blocks.js";
 
 export const prerender = true;
 
-type CachedItem = Omit<RegistryItem, "files"> & {
+type Item = Omit<RegistryItem, "files"> & {
 	files: Array<
 		RegistryItemFile & {
 			highlightedContent: Promise<string>;
@@ -20,10 +20,32 @@ type CachedItem = Omit<RegistryItem, "files"> & {
 	>;
 };
 
+type Lang = "svelte" | "ts" | "json";
+
+let registryJsonItems: Record<string, () => Promise<unknown>>;
+
+async function loadItem(path: string): Promise<Item> {
+	const { default: mod } = (await registryJsonItems[path]()) as { default: unknown };
+	const item = registryItemSchema.parse(mod);
+	const description = blockMeta[item.name as keyof typeof blockMeta]?.description;
+	const files = item.files.map((file) => {
+		let lang: Lang = "svelte";
+		if (file.target.endsWith(".ts")) {
+			lang = "ts";
+		} else if (file.target.endsWith(".json")) {
+			lang = "json";
+		}
+
+		const highlightedContent = highlightCode(transformImportPaths(file.content), lang);
+		const target = file.target ? transformBlockPath(file.target, file.type) : "";
+		return { ...file, highlightedContent, target };
+	});
+
+	return { ...item, files: files, description };
+}
+
 export const load: PageLoad = async ({ params }) => {
 	const category = params.category;
-
-	let registryJsonItems: Record<string, () => Promise<unknown>> = {};
 
 	if (category === "sidebar") {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/sidebar-*.json");
@@ -33,53 +55,19 @@ export const load: PageLoad = async ({ params }) => {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/login-*.json");
 	}
 
-	const promises: Promise<CachedItem | null>[] = [];
+	const promises: Promise<Item>[] = [];
 
 	for (const path in registryJsonItems) {
 		const filename = path.split("/").pop()?.split(".")[0];
-		if (!filename) continue;
-		if (!isBlock(filename)) continue;
+		if (!filename || !isBlock(filename)) continue;
 
-		promises.push(
-			registryJsonItems[path]().then(async (m: unknown) => {
-				const res = registryItemSchema.parse((m as { default: unknown }).default);
-				const files = await Promise.all(
-					res.files.map(async (v) => {
-						let lang: "svelte" | "ts" | "json" = "svelte";
-						if (v.target && v.target.endsWith(".ts")) {
-							lang = "ts";
-						} else if (v.target && v.target.endsWith(".json")) {
-							lang = "json";
-						}
-
-						const highlightedContent = highlightCode(
-							transformImportPaths(v.content),
-							lang
-						);
-						const target = v.target ? transformBlockPath(v.target, v.type) : "";
-						return {
-							...v,
-							highlightedContent,
-							target,
-						};
-					})
-				);
-
-				const description = blockMeta?.[res.name as keyof typeof blockMeta]?.description;
-
-				const processedItem = {
-					...res,
-					files: files,
-					description,
-				};
-				return processedItem;
-			})
-		);
+		const processedItem = loadItem(path);
+		promises.push(processedItem);
 	}
 
 	const result = await Promise.all(promises);
 
 	return {
-		blocks: result.filter((block): block is CachedItem => block !== null),
+		blocks: result.filter((block): block is Item => block !== null),
 	};
 };
