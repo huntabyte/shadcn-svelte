@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Icons } from "$lib/components/docs/icons/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import { Label } from "$lib/registry/new-york/ui/label/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Label } from "$lib/registry/ui/label/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import GitHubIcon from "$lib/components/docs/icons/github.svelte";
+	import GoogleIcon from "$lib/components/docs/icons/google.svelte";
 </script>
 
 <Card.Root>
@@ -14,17 +15,17 @@
 	<Card.Content class="grid gap-4">
 		<div class="grid grid-cols-2 gap-6">
 			<Button variant="outline">
-				<Icons.gitHub class="mr-2 h-4 w-4" />
+				<GitHubIcon class="mr-2 size-4" />
 				GitHub
 			</Button>
 			<Button variant="outline">
-				<Icons.google class="mr-2 h-4 w-4" />
+				<GoogleIcon class="mr-2 size-4" />
 				Google
 			</Button>
 		</div>
 		<div class="relative">
 			<div class="absolute inset-0 flex items-center">
-				<span class="w-full border-t" />
+				<span class="w-full border-t"></span>
 			</div>
 			<div class="relative flex justify-center text-xs uppercase">
 				<span class="bg-card text-muted-foreground px-2"> Or continue with </span>

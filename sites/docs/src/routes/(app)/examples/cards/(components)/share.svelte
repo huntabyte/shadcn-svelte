@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Avatar from "$lib/registry/new-york/ui/avatar/index.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as Card from "$lib/registry/new-york/ui/card/index.js";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
-	import * as Select from "$lib/registry/new-york/ui/select/index.js";
-	import { Separator } from "$lib/registry/new-york/ui/separator/index.js";
+	import * as Avatar from "$lib/registry/ui/avatar/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
+	import * as Card from "$lib/registry/ui/card/index.js";
+	import { Input } from "$lib/registry/ui/input/index.js";
+	import * as Select from "$lib/registry/ui/select/index.js";
+	import { Separator } from "$lib/registry/ui/separator/index.js";
 
 	const permissions = [
 		{
@@ -53,7 +53,7 @@
 		<div class="space-y-4">
 			<h4 class="text-sm font-medium">People with access</h4>
 			<div class="grid gap-6">
-				{#each people as person}
+				{#each people as person (person)}
 					{@const name = person.name.split(" ")}
 					<div class="flex items-center justify-between space-x-4">
 						<div class="flex items-center space-x-4">
@@ -70,15 +70,16 @@
 								</p>
 							</div>
 						</div>
-						<Select.Root selected={person.permission}>
+						<Select.Root type="single" value={person.permission.value}>
 							<Select.Trigger class="ml-auto w-[110px]">
-								<Select.Value placeholder="Select" />
+								{person.permission.label}
 							</Select.Trigger>
 							<Select.Content>
-								{#each permissions as permission}
-									<Select.Item value={permission.value} label={permission.label}
-										>{permission.label}</Select.Item
-									>
+								{#each permissions as permission (permission)}
+									<Select.Item
+										value={permission.value}
+										label={permission.label}
+									/>
 								{/each}
 							</Select.Content>
 						</Select.Root>

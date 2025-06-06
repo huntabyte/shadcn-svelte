@@ -2,39 +2,46 @@
 title: Context Menu
 description: Displays a menu to the user — such as a set of actions or functions — triggered by right click.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/context-menu
-bits: https://www.bits-ui.com/docs/components/context-menu
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/context-menu
+  doc: https://bits-ui.com/docs/components/context-menu
+  api: https://bits-ui.com/docs/components/context-menu#api-reference
 ---
 
 <script>
-    import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs'
+    import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs'
 </script>
 
 <ComponentPreview name="context-menu-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="context-menu" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as ContextMenu from "$lib/components/ui/context-menu";
+  import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
 </script>
 
 <ContextMenu.Root>

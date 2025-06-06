@@ -2,34 +2,40 @@
 title: Alert
 description: Displays a callout for user attention.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/alert
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/alert
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="alert" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Copy and paste the component source files linked at the top of this page into your project.
 
-1. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as Alert from "$lib/components/ui/alert";
+  import * as Alert from "$lib/components/ui/alert/index.js";
 </script>
 
 <Alert.Root>
@@ -46,7 +52,7 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -54,6 +60,6 @@ source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/
 
 <ComponentPreview name="alert-destructive">
 
-<div />
+<div></div>
 
 </ComponentPreview>

@@ -2,49 +2,46 @@
 title: Command
 description: Fast, composable, unstyled command menu for Svelte.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/command
-bits: https://github.com/huntabyte/cmdk-sv
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/command
+  doc: https://bits-ui.com/docs/components/command
+  api: https://bits-ui.com/docs/components/command#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, Callout, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, Callout, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="command-demo" align="start" >
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
-## About
-
-The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to provide a fast, composable, unstyled command menu for Svelte.
-
-<Callout>
-
-**Note:** `cmdk-sv` is a new library and is still in alpha. While I don't anticipate a ton of breaking changes, as the API aligns with the original, I want to bring this to your awareness. If you find any bugs, please [open an issue](https://github.com/huntabyte/cmdk-sv) with the library, rather than this project.
-
-</Callout>
-
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="command" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `cmdk-sv` and `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="cmdk-sv bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import * as Command from "$lib/components/ui/command";
+  import * as Command from "$lib/components/ui/command/index.js";
 </script>
 
 <Command.Root>
@@ -72,7 +69,7 @@ The `<Command />` component uses the [`cmdk-sv`](https://cmdk-sv.com) library to
 
 <ComponentPreview name="command-dialog">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -80,26 +77,20 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
 
 ```svelte
 <script lang="ts">
-  import * as Command from "$lib/components/ui/command";
+  import * as Command from "$lib/components/ui/command/index.js";
   import { onMount } from "svelte";
 
-  let open = false;
+  let open = $state(false);
 
-  onMount(() => {
-    function handleKeydown(e: KeyboardEvent) {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        open = !open;
-      }
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      open = !open;
     }
-
-    document.addEventListener("keydown", handleKeydown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  });
+  }
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 <Command.Dialog bind:open>
   <Command.Input placeholder="Type a command or search..." />
@@ -113,3 +104,9 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
   </Command.List>
 </Command.Dialog>
 ```
+
+## Changelog
+
+### 2024-10-30 Classes for icons
+
+- Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the `<Command.Item>` component to automatically style the icons inside.

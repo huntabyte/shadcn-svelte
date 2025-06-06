@@ -4,25 +4,13 @@ description: How to install dependencies and structure your app.
 ---
 
 <script>
-	import { LinkedCard } from '$lib/components/docs'
+	import { InstallCards } from '$lib/components/docs'
+	import SvelteWhite from '$lib/components/docs/icons/svelte-white.svelte'
 </script>
 
 ## Guides
 
-<div class="grid sm:grid-cols-2 gap-4 mt-8 sm:gap-6">
-  <LinkedCard href="/docs/installation/sveltekit">
-    <p class="font-medium text-xl">SvelteKit</p>
-  </LinkedCard>
-  <LinkedCard href="/docs/installation/astro">
-    <p class="font-medium text-xl">Astro</p>
-  </LinkedCard>
-  <LinkedCard href="/docs/installation/vite">
-    <p class="font-medium text-xl">Vite</p>
-  </LinkedCard>
-  <LinkedCard href="/docs/installation/manual">
-    <p class="font-medium text-xl">Manual</p>
-  </LinkedCard>
-</div>
+<InstallCards />
 
 ## Imports
 
@@ -32,10 +20,10 @@ The CLI will create a folder for _each_ component, which will sometimes just con
 
 For example, the Accordion component is split into four `.svelte` files:
 
-- `Accordion.svelte`
-- `AccordionContent.svelte`
-- `AccordionItem.svelte`
-- `AccordionTrigger.svelte`
+- `accordion.svelte`
+- `accordion-content.svelte`
+- `accordion-item.svelte`
+- `accordion-trigger.svelte`
 
 They can then be imported from the `accordion/index.ts` file like so:
 
@@ -62,18 +50,20 @@ However, we provide a JavaScript version of the components as well. The JavaScri
 
 To opt out of TypeScript, set the `typescript` flag to `false` in your `components.json` file.
 
-```json {7} title="components.json"
+```json {6} title="components.json"
 {
   "style": "default",
   "tailwind": {
-    "config": "tailwind.config.js",
-    "css": "src/app/globals.css"
+    "css": "src/app.css"
   },
   "typescript": false,
   "aliases": {
     "utils": "$lib/utils",
-    "components": "$lib/components"
-  }
+    "components": "$lib/components",
+    "hooks": "$lib/hooks",
+    "ui": "$lib/components/ui"
+  },
+  "registry": "https://next.shadcn-svelte.com/registry"
 }
 ```
 
@@ -117,7 +107,7 @@ If this is not important to you, then another option is to use a similar rule ov
 
 If your global ESLint configuration is using the [flat config format](https://eslint.org/docs/latest/use/configure/configuration-files) or you would like to migrate to the flat config format [Configuration Migration Guide](https://eslint.org/docs/latest/use/configure/migration-guide) you could add another rule block in your `eslint.config.js` for example:
 
-```js title="src/eslint.config.js"
+```ts title="src/eslint.config.js"
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   /* ... */

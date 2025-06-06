@@ -1,19 +1,12 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { type PrimitiveElementAttributes, cn } from "$lib/utils.js";
 
-	export let balanced = true;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let { class: className, children, ...restProps }: PrimitiveElementAttributes = $props();
 </script>
 
 <p
-	class={cn(
-		"text-muted-foreground max-w-[750px] text-center text-lg sm:text-xl",
-		balanced && "text-balance",
-		className
-	)}
-	{...$$restProps}
+	class={cn("text-foreground max-w-2xl text-balance text-base font-light sm:text-lg", className)}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </p>

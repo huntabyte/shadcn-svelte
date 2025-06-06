@@ -4,7 +4,7 @@ description: How to setup shadcn-svelte in an Astro project.
 ---
 
 <script>
-  import { Alert, AlertDescription } from "$lib/registry/new-york/ui/alert";
+  import { Alert, AlertDescription } from "$lib/registry/ui/alert";
   import { Steps, Callout, PMCreate, PMExecute, PMInstall, PMAddComp } from "$lib/components/docs";
 </script>
 
@@ -27,12 +27,12 @@ You will be asked a few questions to configure your project:
 ./your-app-name
 - How would you like to start your new project?
 Choose a starter template (or Empty)
-- Install dependencies?
-Yes
 - Do you plan to write TypeScript?
 Yes
 - How strict should TypeScript be?
 Strict
+- Install dependencies?
+Yes
 - Initialize a new git repository? (optional)
 Yes/No
 ```
@@ -57,7 +57,7 @@ Add Tailwind CSS using the Astro CLI:
 
 <Callout className="mt-4">
 
-Answer `Yes` to all the question prompted by the CLI when installing Svelte.
+Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS.
 
 </Callout>
 
@@ -65,13 +65,14 @@ Answer `Yes` to all the question prompted by the CLI when installing Svelte.
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```jsonc title="tsconfig.json" {2-9} showLineNumbers
+```jsonc title="tsconfig.json" {2-10} showLineNumbers
 {
   "compilerOptions": {
     // ...
     "baseUrl": ".",
     "paths": {
-      "$lib/*": ["./src/*"],
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"],
     },
     // ...
   },
@@ -108,20 +109,20 @@ import "$lib/styles/app.css";
 
 Run the `shadcn-svelte` init command to setup your project:
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@next init" />
 
 ### Configure components.json
 
 You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
-Would you like to use TypeScript (recommended)? › Yes
-Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
-Where is your global CSS file? › src/styles/app.css
-Where is your tailwind.config.[cjs|mjs|js|ts] located? › tailwind.config.mjs
+Which base color would you like to use? › Slate
+Where is your global CSS file? (this file will be overwritten) › src/app.css
+Configure the import alias for lib: › $lib
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
+Configure the import alias for hooks: › $lib/hooks
+Configure the import alias for ui: › $lib/components/ui
 ```
 
 ### Update Astro's Tailwind config
@@ -139,19 +140,6 @@ export default defineConfig({
 });
 ```
 
-### Update tailwind.config.mjs
-
-When running `shadcn-svelte@latest init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
-
-```js title="tailwind.config.mjs" {1-4} showLineNumbers
-const config = {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  // ...
-};
-// ...
-export default config;
-```
-
 ### That's it
 
 You can now start adding components to your project.
@@ -162,7 +150,7 @@ The command above will add the `Button` component to your project. You can then 
 
 ```astro title="index.astro" {2,10} showLineNumbers
 ---
-import { Button } from "$lib/components/ui/button";
+import { Button } from "$lib/components/ui/button/index.js";
 ---
 
 <html lang="en">

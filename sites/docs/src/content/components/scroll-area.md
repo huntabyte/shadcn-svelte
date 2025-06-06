@@ -2,33 +2,40 @@
 title: Scroll Area
 description: Augments native scroll functionality for custom, cross-browser styling.
 component: true
-source: https://github.com/huntabyte/shadcn-svelte/tree/main/sites/docs/src/lib/registry/default/ui/scroll-area
-bits: https://bits-ui.com/docs/components/scroll-area
+links:
+  source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/scroll-area
+  doc: https://bits-ui.com/docs/components/scroll-area
+  api: https://bits-ui.com/docs/components/scroll-area#api-reference
 ---
 
 <script>
-  import { ComponentPreview, ManualInstall, PMAddComp, PMInstall } from '$lib/components/docs';
+  import { ComponentPreview, PMAddComp, PMInstall, Step, Steps, InstallTabs } from '$lib/components/docs';
 </script>
 
 <ComponentPreview name="scroll-area-demo">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
 ## Installation
 
+<InstallTabs>
+{#snippet cli()}
 <PMAddComp name="scroll-area" />
+{/snippet}
+{#snippet manual()}
+<Steps>
 
-<ManualInstall>
+### Install `bits-ui`:
 
-1. Install `bits-ui`:
+<PMInstall command="bits-ui -D" />
 
-<PMInstall command="bits-ui" />
+### Copy and paste the component source files linked at the top of this page into your project.
 
-2. Copy and paste the component source files linked at the top of this page into your project.
-
-</ManualInstall>
+</Steps>
+{/snippet}
+</InstallTabs>
 
 ## Usage
 
@@ -55,7 +62,7 @@ Set the `orientation` prop to `"horizontal"` to enable horizontal scrolling.
 
 <ComponentPreview name="scroll-area-horizontal">
 
-<div />
+<div></div>
 
 </ComponentPreview>
 
@@ -65,6 +72,6 @@ Set the `orientation` prop to `"both"` to enable both horizontal and vertical sc
 
 <ComponentPreview name="scroll-area-both">
 
-<div />
+<div></div>
 
 </ComponentPreview>

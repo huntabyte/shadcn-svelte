@@ -1,17 +1,32 @@
 <script lang="ts">
-	import * as Alert from "$lib/registry/new-york/ui/alert/index.js";
+	import type { ComponentProps, Snippet } from "svelte";
+	import * as Alert from "$lib/registry/ui/alert/index.js";
+	import { cn } from "$lib/utils.js";
+
+	let {
+		icon,
+		title,
+		children,
+		class: className,
+		...restProps
+	}: ComponentProps<(typeof Alert)["Root"]> & {
+		icon?: Snippet;
+		title?: Snippet;
+	} = $props();
 </script>
 
-<Alert.Root {...$$restProps} class="mt-2">
-	{#if $$slots.icon}
+<Alert.Root {...restProps} class={cn("mt-2", className)}>
+	{#if icon}
 		<span class="mr-4 text-2xl">
-			<slot name="icon" />
+			{@render icon?.()}
 		</span>
 	{/if}
-	<Alert.Title>
-		<slot name="title" />
-	</Alert.Title>
-	<Alert.Description>
-		<slot />
+	{#if title}
+		<Alert.Title>
+			{@render title?.()}
+		</Alert.Title>
+	{/if}
+	<Alert.Description class="text-foreground">
+		{@render children?.()}
 	</Alert.Description>
 </Alert.Root>
