@@ -23,12 +23,8 @@
 		scrollPrev,
 		scrollNext,
 		orientation,
-		get canScrollNext() {
-			return this.api?.canScrollNext();
-		},
-		get canScrollPrev() {
-			return this.api?.canScrollPrev();
-		},
+		canScrollNext: false,
+		canScrollPrev: false,
 		handleKeyDown,
 		options: opts,
 		plugins,
@@ -55,6 +51,8 @@
 	function onSelect() {
 		if (!carouselState.api) return;
 		carouselState.selectedIndex = carouselState.api.selectedScrollSnap();
+		carouselState.canScrollNext = carouselState.api.canScrollNext();
+		carouselState.canScrollPrev = carouselState.api.canScrollPrev();
 	}
 
 	function handleKeyDown(e: KeyboardEvent) {
@@ -73,6 +71,7 @@
 
 		carouselState.scrollSnaps = carouselState.api.scrollSnapList();
 		carouselState.api.on("select", onSelect);
+		onSelect();
 	}
 
 	$effect(() => {
