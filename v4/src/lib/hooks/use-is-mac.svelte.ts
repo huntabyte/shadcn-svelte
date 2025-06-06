@@ -1,9 +1,5 @@
 export function useIsMac(): { readonly current: boolean } {
-	let isMac = $state(false);
-
-	$effect(() => {
-		isMac = navigator.platform.includes("MAC");
-	});
+	const isMac = $derived(navigator.platform.includes("MAC"));
 
 	return {
 		get current(): boolean {
