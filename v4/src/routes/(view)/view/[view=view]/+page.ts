@@ -7,31 +7,16 @@ export const prerender = true;
 
 export const entries: EntryGenerator = () => blocks.map((view) => ({ view }));
 
-type ViewResolver = () => Promise<{ default: Component }>;
-
 export async function load({ params }) {
-	let modules: Record<string, () => Promise<unknown>>;
+	let comp: { default: Component } | undefined;
 
 	if (params.view.startsWith("demo-")) {
-		modules = import.meta.glob("/src/lib/registry/blocks/demo-*.svelte");
+		comp = await import(`../../../../lib/registry/blocks/${params.view}.svelte`);
 	} else {
-		modules = import.meta.glob("/src/lib/registry/blocks/**/+page.svelte");
+		comp = await import(`../../../../lib/registry/blocks/${params.view}/+page.svelte`);
 	}
-
-	let match: ViewResolver | undefined;
-
-	for (const [path, resolver] of Object.entries(modules)) {
-		if (path.includes(params.view)) {
-			match = resolver as unknown as ViewResolver;
-			break;
-		}
-	}
-
-	const comp = await match?.();
 
 	if (!comp) error(404, "Block not found");
 
-	return {
-		component: comp.default,
-	};
+	return { component: comp.default };
 }
