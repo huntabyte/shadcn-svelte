@@ -1,4 +1,4 @@
-import { isBlockName, type BlockName } from "./schema.js";
+import { isBlock, type BlockName } from "$lib/blocks.js";
 
 type BlockMeta = {
 	iframeHeight: string;
@@ -7,7 +7,7 @@ type BlockMeta = {
 	target: string;
 };
 
-export const blockMeta: Record<BlockName, BlockMeta> = {
+export const blockMeta = {
 	"sidebar-01": {
 		iframeHeight: "800px",
 		description: "A simple sidebar with navigation grouped by section.",
@@ -98,11 +98,26 @@ export const blockMeta: Record<BlockName, BlockMeta> = {
 		description: "A left and right sidebar.",
 		target: "sidebar-page.svelte",
 	},
+	"sidebar-16": {
+		description: "A sidebar with a sticky site header.",
+	},
 	"login-01": {
 		iframeHeight: "870px",
 		className: "w-full h-full",
 		description: "A simple login form.",
 		target: "login-page.svelte",
+	},
+	"login-02": {
+		description: "A login page with a muted background color.",
+	},
+	"login-03": {
+		description: "A login page with a background image.",
+	},
+	"login-04": {
+		description: "A login page with form and image.",
+	},
+	"dashboard-01": {
+		description: "A dashboard with sidebar, charts and data table.",
 	},
 	"demo-sidebar": {
 		iframeHeight: "",
@@ -176,10 +191,10 @@ export const blockMeta: Record<BlockName, BlockMeta> = {
 		description: "A controlled sidebar.",
 		target: "sidebar-page.svelte",
 	},
-};
+} as Record<BlockName, BlockMeta>;
 
 export function getPageBlockTarget(blockName: string) {
-	if (isBlockName(blockName)) {
+	if (isBlock(blockName)) {
 		return blockMeta[blockName].target;
 	} else {
 		throw new Error("Not a valid block name with a target.");

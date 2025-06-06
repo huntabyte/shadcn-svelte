@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	// sample data
 	const data = {
-		versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
 		navMain: [
 			{
 				title: "Getting Started",
@@ -115,7 +114,7 @@
 						url: "#",
 					},
 					{
-						title: "Svelte Compiler",
+						title: "Next.js Compiler",
 						url: "#",
 					},
 					{
@@ -123,7 +122,7 @@
 						url: "#",
 					},
 					{
-						title: "Rollup",
+						title: "Turbopack",
 						url: "#",
 					},
 				],
@@ -133,8 +132,8 @@
 </script>
 
 <script lang="ts">
-	import NavMain from "$lib/registry/blocks/sidebar-06/components/nav-main.svelte";
-	import SidebarOptInForm from "$lib/registry/blocks/sidebar-06/components/sidebar-opt-in-form.svelte";
+	import NavMain from "./nav-main.svelte";
+	import SidebarOptInForm from "./sidebar-opt-in-form.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import type { ComponentProps } from "svelte";
@@ -155,7 +154,7 @@
 								<GalleryVerticalEndIcon class="size-4" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
-								<span class="font-semibold">Documentation</span>
+								<span class="font-medium">Documentation</span>
 								<span class="">v1.0.0</span>
 							</div>
 						</a>

@@ -1,76 +1,198 @@
-export { default as ChartAreaDefault } from "$lib/registry/charts/chart-area-default.svelte";
-export { default as ChartAreaLinear } from "$lib/registry/charts/chart-area-linear.svelte";
-export { default as ChartAreaStep } from "$lib/registry/charts/chart-area-step.svelte";
-export { default as ChartAreaLegend } from "$lib/registry/charts/chart-area-legend.svelte";
-export { default as ChartAreaStacked } from "$lib/registry/charts/chart-area-stacked.svelte";
-export { default as ChartAreaStackedExpand } from "$lib/registry/charts/chart-area-stacked-expand.svelte";
-export { default as ChartAreaIcons } from "$lib/registry/charts/chart-area-icons.svelte";
-export { default as ChartAreaGradient } from "$lib/registry/charts/chart-area-gradient.svelte";
-export { default as ChartAreaAxes } from "$lib/registry/charts/chart-area-axes.svelte";
-export { default as ChartAreaInteractive } from "$lib/registry/charts/chart-area-interactive.svelte";
+import ChartAreaAxes from "$lib/registry/blocks/chart-area-axes.svelte";
+import ChartAreaDefault from "$lib/registry/blocks/chart-area-default.svelte";
+import ChartAreaGradient from "$lib/registry/blocks/chart-area-gradient.svelte";
+import ChartAreaIcons from "$lib/registry/blocks/chart-area-icons.svelte";
+import ChartAreaInteractive from "$lib/registry/blocks/chart-area-interactive.svelte";
+import ChartAreaLegend from "$lib/registry/blocks/chart-area-legend.svelte";
+import ChartAreaLinear from "$lib/registry/blocks/chart-area-linear.svelte";
+import ChartAreaStackedExpand from "$lib/registry/blocks/chart-area-stacked-expand.svelte";
+import ChartAreaStacked from "$lib/registry/blocks/chart-area-stacked.svelte";
+import ChartAreaStep from "$lib/registry/blocks/chart-area-step.svelte";
+import ChartBarActive from "$lib/registry/blocks/chart-bar-active.svelte";
+import ChartBarDefault from "$lib/registry/blocks/chart-bar-default.svelte";
+import ChartBarHorizontal from "$lib/registry/blocks/chart-bar-horizontal.svelte";
+import ChartBarInteractive from "$lib/registry/blocks/chart-bar-interactive.svelte";
+import ChartBarLabelCustom from "$lib/registry/blocks/chart-bar-label-custom.svelte";
+import ChartBarLabel from "$lib/registry/blocks/chart-bar-label.svelte";
+import ChartBarMixed from "$lib/registry/blocks/chart-bar-mixed.svelte";
+import ChartBarMultiple from "$lib/registry/blocks/chart-bar-multiple.svelte";
+import ChartBarNegative from "$lib/registry/blocks/chart-bar-negative.svelte";
+import ChartBarStacked from "$lib/registry/blocks/chart-bar-stacked.svelte";
+import ChartLineDefault from "$lib/registry/blocks/chart-line-default.svelte";
+import ChartLineDotsColors from "$lib/registry/blocks/chart-line-dots-colors.svelte";
+import ChartLineDotsCustom from "$lib/registry/blocks/chart-line-dots-custom.svelte";
+import ChartLineDots from "$lib/registry/blocks/chart-line-dots.svelte";
+import ChartLineInteractive from "$lib/registry/blocks/chart-line-interactive.svelte";
+import ChartLineLabelCustom from "$lib/registry/blocks/chart-line-label-custom.svelte";
+import ChartLineLabel from "$lib/registry/blocks/chart-line-label.svelte";
+import ChartLineLinear from "$lib/registry/blocks/chart-line-linear.svelte";
+import ChartLineMultiple from "$lib/registry/blocks/chart-line-multiple.svelte";
+import ChartLineStep from "$lib/registry/blocks/chart-line-step.svelte";
+import ChartPieDonutActive from "$lib/registry/blocks/chart-pie-donut-active.svelte";
+import ChartPieDonutText from "$lib/registry/blocks/chart-pie-donut-text.svelte";
+import ChartPieDonut from "$lib/registry/blocks/chart-pie-donut.svelte";
+import ChartPieInteractive from "$lib/registry/blocks/chart-pie-interactive.svelte";
+import ChartPieLabelCustom from "$lib/registry/blocks/chart-pie-label-custom.svelte";
+import ChartPieLabelList from "$lib/registry/blocks/chart-pie-label-list.svelte";
+import ChartPieLabel from "$lib/registry/blocks/chart-pie-label.svelte";
+import ChartPieLegend from "$lib/registry/blocks/chart-pie-legend.svelte";
+// import ChartPieSeparatorNone from "$lib/registry/blocks/chart-pie-separator-none.svelte";
+import ChartPieSimple from "$lib/registry/blocks/chart-pie-simple.svelte";
+import ChartPieStacked from "$lib/registry/blocks/chart-pie-stacked.svelte";
+import ChartRadarDefault from "$lib/registry/blocks/chart-radar-default.svelte";
+import ChartRadarDots from "$lib/registry/blocks/chart-radar-dots.svelte";
+import ChartRadarGridCircleFill from "$lib/registry/blocks/chart-radar-grid-circle-fill.svelte";
+import ChartRadarGridCircleNoLines from "$lib/registry/blocks/chart-radar-grid-circle-no-lines.svelte";
+import ChartRadarGridCircle from "$lib/registry/blocks/chart-radar-grid-circle.svelte";
+import ChartRadarGridCustom from "$lib/registry/blocks/chart-radar-grid-custom.svelte";
+import ChartRadarGridFill from "$lib/registry/blocks/chart-radar-grid-fill.svelte";
+import ChartRadarGridNone from "$lib/registry/blocks/chart-radar-grid-none.svelte";
+import ChartRadarIcons from "$lib/registry/blocks/chart-radar-icons.svelte";
+import ChartRadarLabelCustom from "$lib/registry/blocks/chart-radar-label-custom.svelte";
+import ChartRadarLegend from "$lib/registry/blocks/chart-radar-legend.svelte";
+import ChartRadarLinesOnly from "$lib/registry/blocks/chart-radar-lines-only.svelte";
+import ChartRadarMultiple from "$lib/registry/blocks/chart-radar-multiple.svelte";
+import ChartRadarRadius from "$lib/registry/blocks/chart-radar-radius.svelte";
+// import ChartRadialGrid from "$lib/registry/blocks/chart-radial-grid.svelte";
+import ChartRadialLabel from "$lib/registry/blocks/chart-radial-label.svelte";
+import ChartRadialShape from "$lib/registry/blocks/chart-radial-shape.svelte";
+import ChartRadialSimple from "$lib/registry/blocks/chart-radial-simple.svelte";
+import ChartRadialStacked from "$lib/registry/blocks/chart-radial-stacked.svelte";
+import ChartRadialText from "$lib/registry/blocks/chart-radial-text.svelte";
+import ChartTooltipAdvanced from "$lib/registry/blocks/chart-tooltip-advanced.svelte";
+import ChartTooltipDefault from "$lib/registry/blocks/chart-tooltip-default.svelte";
+import ChartTooltipFormatter from "$lib/registry/blocks/chart-tooltip-formatter.svelte";
+import ChartTooltipIcons from "$lib/registry/blocks/chart-tooltip-icons.svelte";
+import ChartTooltipIndicatorLine from "$lib/registry/blocks/chart-tooltip-indicator-line.svelte";
+import ChartTooltipIndicatorNone from "$lib/registry/blocks/chart-tooltip-indicator-none.svelte";
+import ChartTooltipLabelCustom from "$lib/registry/blocks/chart-tooltip-label-custom.svelte";
+import ChartTooltipLabelFormatter from "$lib/registry/blocks/chart-tooltip-label-formatter.svelte";
+import ChartTooltipLabelNone from "$lib/registry/blocks/chart-tooltip-label-none.svelte";
+import type { Component } from "svelte";
 
-export { default as ChartBarDefault } from "$lib/registry/charts/chart-bar-default.svelte";
-export { default as ChartBarHorizontal } from "$lib/registry/charts/chart-bar-horizontal.svelte";
-export { default as ChartBarMultiple } from "$lib/registry/charts/chart-bar-multiple.svelte";
-export { default as ChartBarStacked } from "$lib/registry/charts/chart-bar-stacked.svelte";
-export { default as ChartBarLabel } from "$lib/registry/charts/chart-bar-label.svelte";
-export { default as ChartBarLabelCustom } from "$lib/registry/charts/chart-bar-label-custom.svelte";
-export { default as ChartBarMixed } from "$lib/registry/charts/chart-bar-mixed.svelte";
-export { default as ChartBarActive } from "$lib/registry/charts/chart-bar-active.svelte";
-export { default as ChartBarNegative } from "$lib/registry/charts/chart-bar-negative.svelte";
-export { default as ChartBarInteractive } from "$lib/registry/charts/chart-bar-interactive.svelte";
+interface ChartItem {
+	id: string;
+	component: Component;
+	fullWidth?: boolean;
+}
 
-export { default as ChartLineDefault } from "$lib/registry/charts/chart-line-default.svelte";
-export { default as ChartLineLinear } from "$lib/registry/charts/chart-line-linear.svelte";
-export { default as ChartLineStep } from "$lib/registry/charts/chart-line-step.svelte";
-export { default as ChartLineMultiple } from "$lib/registry/charts/chart-line-multiple.svelte";
-export { default as ChartLineDots } from "$lib/registry/charts/chart-line-dots.svelte";
-export { default as ChartLineDotsCustom } from "$lib/registry/charts/chart-line-dots-custom.svelte";
-// export { default as ChartLineDotsColors } from "$lib/registry/charts/chart-line-dots-colors.svelte";
-export { default as ChartLineLabel } from "$lib/registry/charts/chart-line-label.svelte";
-export { default as ChartLineLabelCustom } from "$lib/registry/charts/chart-line-label-custom.svelte";
-export { default as ChartLineInteractive } from "$lib/registry/charts/chart-line-interactive.svelte";
+interface ChartGroups {
+	area: ChartItem[];
+	bar: ChartItem[];
+	line: ChartItem[];
+	pie: ChartItem[];
+	radar: ChartItem[];
+	radial: ChartItem[];
+	tooltip: ChartItem[];
+}
 
-export { default as ChartPieSimple } from "$lib/registry/charts/chart-pie-simple.svelte";
-export { default as ChartPieSeparatorNone } from "$lib/registry/charts/chart-pie-separator-none.svelte";
-export { default as ChartPieLabel } from "$lib/registry/charts/chart-pie-label.svelte";
-export { default as ChartPieLabelCustom } from "$lib/registry/charts/chart-pie-label-custom.svelte";
-export { default as ChartPieLabelList } from "$lib/registry/charts/chart-pie-label-list.svelte";
-export { default as ChartPieLegend } from "$lib/registry/charts/chart-pie-legend.svelte";
-export { default as ChartPieDonut } from "$lib/registry/charts/chart-pie-donut.svelte";
-export { default as ChartPieDonutActive } from "$lib/registry/charts/chart-pie-donut-active.svelte";
-export { default as ChartPieDonutText } from "$lib/registry/charts/chart-pie-donut-text.svelte";
-export { default as ChartPieStacked } from "$lib/registry/charts/chart-pie-stacked.svelte";
-export { default as ChartPieInteractive } from "$lib/registry/charts/chart-pie-interactive.svelte";
-
-export { default as ChartRadarDefault } from "$lib/registry/charts/chart-radar-default.svelte";
-export { default as ChartRadarDots } from "$lib/registry/charts/chart-radar-dots.svelte";
-export { default as ChartRadarLinesOnly } from "$lib/registry/charts/chart-radar-lines-only.svelte";
-export { default as ChartRadarLabelCustom } from "$lib/registry/charts/chart-radar-label-custom.svelte";
-export { default as ChartRadarGridCustom } from "$lib/registry/charts/chart-radar-grid-custom.svelte";
-export { default as ChartRadarGridNone } from "$lib/registry/charts/chart-radar-grid-none.svelte";
-export { default as ChartRadarGridCircle } from "$lib/registry/charts/chart-radar-grid-circle.svelte";
-export { default as ChartRadarGridCircleNoLines } from "$lib/registry/charts/chart-radar-grid-circle-no-lines.svelte";
-export { default as ChartRadarGridCircleFill } from "$lib/registry/charts/chart-radar-grid-circle-fill.svelte";
-export { default as ChartRadarGridFill } from "$lib/registry/charts/chart-radar-grid-fill.svelte";
-export { default as ChartRadarMultiple } from "$lib/registry/charts/chart-radar-multiple.svelte";
-export { default as ChartRadarLegend } from "$lib/registry/charts/chart-radar-legend.svelte";
-export { default as ChartRadarIcons } from "$lib/registry/charts/chart-radar-icons.svelte";
-export { default as ChartRadarRadius } from "$lib/registry/charts/chart-radar-radius.svelte";
-
-export { default as ChartRadialSimple } from "$lib/registry/charts/chart-radial-simple.svelte";
-export { default as ChartRadialLabel } from "$lib/registry/charts/chart-radial-label.svelte";
-export { default as ChartRadialGrid } from "$lib/registry/charts/chart-radial-grid.svelte";
-export { default as ChartRadialText } from "$lib/registry/charts/chart-radial-text.svelte";
-export { default as ChartRadialShape } from "$lib/registry/charts/chart-radial-shape.svelte";
-export { default as ChartRadialStacked } from "$lib/registry/charts/chart-radial-stacked.svelte";
-
-export { default as ChartTooltipDefault } from "$lib/registry/charts/chart-tooltip-default.svelte";
-export { default as ChartTooltipIndicatorLine } from "$lib/registry/charts/chart-tooltip-indicator-line.svelte";
-export { default as ChartTooltipIndicatorNone } from "$lib/registry/charts/chart-tooltip-indicator-none.svelte";
-export { default as ChartTooltipLabelCustom } from "$lib/registry/charts/chart-tooltip-label-custom.svelte";
-export { default as ChartTooltipLabelFormatter } from "$lib/registry/charts/chart-tooltip-label-formatter.svelte";
-export { default as ChartTooltipLabelNone } from "$lib/registry/charts/chart-tooltip-label-none.svelte";
-export { default as ChartTooltipFormatter } from "$lib/registry/charts/chart-tooltip-formatter.svelte";
-export { default as ChartTooltipIcons } from "$lib/registry/charts/chart-tooltip-icons.svelte";
-export { default as ChartTooltipAdvanced } from "$lib/registry/charts/chart-tooltip-advanced.svelte";
+export const charts: ChartGroups = {
+	area: [
+		{
+			id: "chart-area-interactive",
+			component: ChartAreaInteractive,
+			fullWidth: true,
+		},
+		{ id: "chart-area-default", component: ChartAreaDefault },
+		{ id: "chart-area-linear", component: ChartAreaLinear },
+		{ id: "chart-area-step", component: ChartAreaStep },
+		{ id: "chart-area-legend", component: ChartAreaLegend },
+		{ id: "chart-area-stacked", component: ChartAreaStacked },
+		{ id: "chart-area-stacked-expand", component: ChartAreaStackedExpand },
+		{ id: "chart-area-icons", component: ChartAreaIcons },
+		{ id: "chart-area-gradient", component: ChartAreaGradient },
+		{ id: "chart-area-axes", component: ChartAreaAxes },
+	],
+	bar: [
+		{
+			id: "chart-bar-interactive",
+			component: ChartBarInteractive,
+			fullWidth: true,
+		},
+		{ id: "chart-bar-default", component: ChartBarDefault },
+		{ id: "chart-bar-horizontal", component: ChartBarHorizontal },
+		{ id: "chart-bar-multiple", component: ChartBarMultiple },
+		{ id: "chart-bar-stacked", component: ChartBarStacked },
+		{ id: "chart-bar-label", component: ChartBarLabel },
+		{ id: "chart-bar-label-custom", component: ChartBarLabelCustom },
+		{ id: "chart-bar-mixed", component: ChartBarMixed },
+		{ id: "chart-bar-active", component: ChartBarActive },
+		{ id: "chart-bar-negative", component: ChartBarNegative },
+	],
+	line: [
+		{
+			id: "chart-line-interactive",
+			component: ChartLineInteractive,
+			fullWidth: true,
+		},
+		{ id: "chart-line-default", component: ChartLineDefault },
+		{ id: "chart-line-linear", component: ChartLineLinear },
+		{ id: "chart-line-step", component: ChartLineStep },
+		{ id: "chart-line-multiple", component: ChartLineMultiple },
+		{ id: "chart-line-dots", component: ChartLineDots },
+		{ id: "chart-line-dots-custom", component: ChartLineDotsCustom },
+		{ id: "chart-line-dots-colors", component: ChartLineDotsColors },
+		{ id: "chart-line-label", component: ChartLineLabel },
+		{ id: "chart-line-label-custom", component: ChartLineLabelCustom },
+	],
+	pie: [
+		{ id: "chart-pie-simple", component: ChartPieSimple },
+		// { id: "chart-pie-separator-none", component: ChartPieSeparatorNone },
+		{ id: "chart-pie-label", component: ChartPieLabel },
+		{ id: "chart-pie-label-custom", component: ChartPieLabelCustom },
+		{ id: "chart-pie-label-list", component: ChartPieLabelList },
+		{ id: "chart-pie-legend", component: ChartPieLegend },
+		{ id: "chart-pie-donut", component: ChartPieDonut },
+		{ id: "chart-pie-donut-active", component: ChartPieDonutActive },
+		{ id: "chart-pie-donut-text", component: ChartPieDonutText },
+		{ id: "chart-pie-stacked", component: ChartPieStacked },
+		{ id: "chart-pie-interactive", component: ChartPieInteractive },
+	],
+	radar: [
+		{ id: "chart-radar-default", component: ChartRadarDefault },
+		{ id: "chart-radar-dots", component: ChartRadarDots },
+		{ id: "chart-radar-lines-only", component: ChartRadarLinesOnly },
+		{ id: "chart-radar-label-custom", component: ChartRadarLabelCustom },
+		{ id: "chart-radar-grid-custom", component: ChartRadarGridCustom },
+		{ id: "chart-radar-grid-none", component: ChartRadarGridNone },
+		{ id: "chart-radar-grid-circle", component: ChartRadarGridCircle },
+		{
+			id: "chart-radar-grid-circle-no-lines",
+			component: ChartRadarGridCircleNoLines,
+		},
+		{ id: "chart-radar-grid-circle-fill", component: ChartRadarGridCircleFill },
+		{ id: "chart-radar-grid-fill", component: ChartRadarGridFill },
+		{ id: "chart-radar-multiple", component: ChartRadarMultiple },
+		{ id: "chart-radar-legend", component: ChartRadarLegend },
+		{ id: "chart-radar-icons", component: ChartRadarIcons },
+		{ id: "chart-radar-radius", component: ChartRadarRadius },
+	],
+	radial: [
+		{ id: "chart-radial-simple", component: ChartRadialSimple },
+		{ id: "chart-radial-label", component: ChartRadialLabel },
+		// { id: "chart-radial-grid", component: ChartRadialGrid },
+		{ id: "chart-radial-text", component: ChartRadialText },
+		{ id: "chart-radial-shape", component: ChartRadialShape },
+		{ id: "chart-radial-stacked", component: ChartRadialStacked },
+	],
+	tooltip: [
+		{ id: "chart-tooltip-default", component: ChartTooltipDefault },
+		{
+			id: "chart-tooltip-indicator-line",
+			component: ChartTooltipIndicatorLine,
+		},
+		{
+			id: "chart-tooltip-indicator-none",
+			component: ChartTooltipIndicatorNone,
+		},
+		{ id: "chart-tooltip-label-custom", component: ChartTooltipLabelCustom },
+		{
+			id: "chart-tooltip-label-formatter",
+			component: ChartTooltipLabelFormatter,
+		},
+		{ id: "chart-tooltip-label-none", component: ChartTooltipLabelNone },
+		{ id: "chart-tooltip-formatter", component: ChartTooltipFormatter },
+		{ id: "chart-tooltip-icons", component: ChartTooltipIcons },
+		{ id: "chart-tooltip-advanced", component: ChartTooltipAdvanced },
+	],
+};

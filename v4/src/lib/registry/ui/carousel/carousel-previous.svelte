@@ -20,6 +20,7 @@
 	data-slot="carousel-previous"
 	{variant}
 	{size}
+	aria-disabled={!emblaCtx.canScrollPrev}
 	class={cn(
 		"absolute size-8 rounded-full",
 		emblaCtx.orientation === "horizontal"
@@ -27,7 +28,6 @@
 			: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
 		className
 	)}
-	disabled={!emblaCtx.canScrollPrev}
 	onclick={emblaCtx.scrollPrev}
 	onkeydown={emblaCtx.handleKeyDown}
 	{...restProps}

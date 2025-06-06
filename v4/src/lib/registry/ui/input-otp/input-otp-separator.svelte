@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { WithElementRef } from "bits-ui";
-	import MinusIcon from "@lucide/svelte/icons/minus";
+	import type { WithElementRef } from "$lib/utils.js";
+	import DotIcon from "@lucide/svelte/icons/dot";
 
 	let {
 		ref = $bindable(null),
@@ -14,6 +14,6 @@
 	{#if children}
 		{@render children?.()}
 	{:else}
-		<MinusIcon />
+		<DotIcon />
 	{/if}
 </div>
