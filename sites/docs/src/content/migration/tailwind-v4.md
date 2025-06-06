@@ -79,7 +79,7 @@ The upgrade script will automatically migrate your project to the latest PostCSS
 ```diff title="postcss.config.js"
 - export default {
 - 	plugins: {
-- 		@tailwindcss/postcss: {},
+- 		'@tailwindcss/postcss': {},
 - 	}
 - };
 ```
