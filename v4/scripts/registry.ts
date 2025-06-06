@@ -14,7 +14,7 @@ const tsParser = acorn.Parser.extend(tsPlugin());
 type RegistryItems = Registry["items"];
 type RegistryItemFiles = Registry["items"][number]["files"];
 
-export async function buildRegistry() {
+export async function buildRegistry(): Promise<RegistryItems> {
 	const registryRootPath = path.resolve("src", "lib", "registry");
 	const items: RegistryItems = [];
 
@@ -39,7 +39,7 @@ export async function buildRegistry() {
 	return items;
 }
 
-async function crawlUI(rootPath: string) {
+async function crawlUI(rootPath: string): Promise<RegistryItems> {
 	const dir = fs.readdirSync(rootPath, { recursive: true, withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -54,7 +54,10 @@ async function crawlUI(rootPath: string) {
 	return items;
 }
 
-async function buildUIRegistry(componentPath: string, componentName: string) {
+async function buildUIRegistry(
+	componentPath: string,
+	componentName: string
+): Promise<RegistryItems[number]> {
 	const dir = fs.readdirSync(componentPath, {
 		withFileTypes: true,
 	});
@@ -92,7 +95,7 @@ async function buildUIRegistry(componentPath: string, componentName: string) {
 	} satisfies RegistryItems[number];
 }
 
-async function crawlExamples(rootPath: string) {
+async function crawlExamples(rootPath: string): Promise<RegistryItems> {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -118,7 +121,10 @@ async function crawlExamples(rootPath: string) {
 	return items;
 }
 
-async function buildBlockRegistry(blockPath: string, blockName: string) {
+async function buildBlockRegistry(
+	blockPath: string,
+	blockName: string
+): Promise<RegistryItems[number]> {
 	const dir = fs.readdirSync(blockPath, { withFileTypes: true, recursive: true });
 	const files: RegistryItemFiles = [];
 	const registryDependencies = new Set<string>();
@@ -130,7 +136,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 		const isPage = pagesNames.includes(dirent.name);
 		const isFile = fileNames.includes(dirent.name);
 
-		const type = isPage ? "registry:page" : isFile ? "registry:file" : "registry:component";
+		const type = isPage || isFile ? "registry:page" : "registry:component";
 
 		// TODO: fix
 		const compPath =
@@ -157,7 +163,7 @@ async function buildBlockRegistry(blockPath: string, blockName: string) {
 	} satisfies RegistryItems[number];
 }
 
-async function crawlBlocks(rootPath: string) {
+async function crawlBlocks(rootPath: string): Promise<RegistryItems> {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -188,7 +194,7 @@ async function crawlBlocks(rootPath: string) {
 	return items;
 }
 
-async function crawlLib(rootPath: string) {
+async function crawlLib(rootPath: string): Promise<RegistryItems> {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 	for (const dirent of dir) {
@@ -213,7 +219,7 @@ async function crawlLib(rootPath: string) {
 	return items;
 }
 
-async function crawlHooks(rootPath: string) {
+async function crawlHooks(rootPath: string): Promise<RegistryItems> {
 	const dir = fs.readdirSync(rootPath, { withFileTypes: true });
 	const items: RegistryItems = [];
 
@@ -239,7 +245,10 @@ async function crawlHooks(rootPath: string) {
 	return items;
 }
 
-async function getFileDependencies(filename: string, content: string) {
+async function getFileDependencies(
+	filename: string,
+	content: string
+): Promise<{ registryDependencies: Set<string> }> {
 	let ast: unknown;
 	let moduleAst: unknown;
 

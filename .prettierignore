@@ -26,6 +26,7 @@ sites/docs/static
 sites/docs/.velite
 sites/docs/src/__registry__
 v4/src/__registry__
+v4/static
 packages/cli/test/fixtures
 playgrounds
 .svelte-kit

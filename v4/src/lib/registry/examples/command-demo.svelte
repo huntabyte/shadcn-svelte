@@ -8,7 +8,7 @@
 	import * as Command from "$lib/registry/ui/command/index.js";
 </script>
 
-<Command.Root class="max-w-[450px] rounded-lg border shadow-md">
+<Command.Root class="rounded-lg border shadow-md md:min-w-[450px]">
 	<Command.Input placeholder="Type a command or search..." />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>

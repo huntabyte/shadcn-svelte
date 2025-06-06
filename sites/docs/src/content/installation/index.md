@@ -107,7 +107,7 @@ If this is not important to you, then another option is to use a similar rule ov
 
 If your global ESLint configuration is using the [flat config format](https://eslint.org/docs/latest/use/configure/configuration-files) or you would like to migrate to the flat config format [Configuration Migration Guide](https://eslint.org/docs/latest/use/configure/migration-guide) you could add another rule block in your `eslint.config.js` for example:
 
-```js title="src/eslint.config.js"
+```ts title="src/eslint.config.js"
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   /* ... */

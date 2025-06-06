@@ -20,6 +20,7 @@
 	data-slot="carousel-next"
 	{variant}
 	{size}
+	aria-disabled={!emblaCtx.canScrollNext}
 	class={cn(
 		"absolute size-8 rounded-full",
 		emblaCtx.orientation === "horizontal"
@@ -27,7 +28,6 @@
 			: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 		className
 	)}
-	disabled={!emblaCtx.canScrollNext}
 	onclick={emblaCtx.scrollNext}
 	onkeydown={emblaCtx.handleKeyDown}
 	bind:ref

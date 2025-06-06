@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
-	import type { ComponentProps } from "svelte";
-	import type { Component } from "svelte";
+	import type { Component, ComponentProps } from "svelte";
+
 	let {
 		ref = $bindable(null),
 		items,

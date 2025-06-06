@@ -120,7 +120,7 @@
 </script>
 
 <script lang="ts">
-	import NavUser from "$lib/registry/blocks/sidebar-09/components/nav-user.svelte";
+	import NavUser from "./nav-user.svelte";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import { useSidebar } from "$lib/registry/ui/sidebar/context.svelte.js";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
@@ -157,7 +157,7 @@
 									<CommandIcon class="size-4" />
 								</div>
 								<div class="grid flex-1 text-left text-sm leading-tight">
-									<span class="truncate font-semibold">Acme Inc</span>
+									<span class="truncate font-medium">Acme Inc</span>
 									<span class="truncate text-xs">Enterprise</span>
 								</div>
 							</a>

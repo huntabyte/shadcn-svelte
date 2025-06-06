@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
-	import { buttonVariants } from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let showStatusBar = $state(true);
 	let showActivityBar = $state(false);
@@ -8,7 +8,11 @@
 </script>
 
 <DropdownMenu.Root>
-	<DropdownMenu.Trigger class={buttonVariants({ variant: "outline" })}>Open</DropdownMenu.Trigger>
+	<DropdownMenu.Trigger>
+		{#snippet child({ props })}
+			<Button {...props} variant="outline">Open</Button>
+		{/snippet}
+	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-56">
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Appearance</DropdownMenu.Label>
