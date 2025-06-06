@@ -3,13 +3,17 @@ import {
 	type RegistryItem,
 	type RegistryItemFile,
 } from "@shadcn-svelte/registry";
-import type { PageLoad } from "./$types.js";
+import type { EntryGenerator, PageLoad } from "./$types.js";
 import { highlightCode } from "$lib/highlight-code.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { isBlock } from "$lib/blocks.js";
+import { registryCategories } from "$lib/registry/registry-categories.js";
 
 export const prerender = true;
+
+export const entries: EntryGenerator = () =>
+	registryCategories.filter((c) => !c.hidden).map(({ slug }) => ({ category: slug }));
 
 type Item = Omit<RegistryItem, "files"> & {
 	files: Array<
