@@ -29,8 +29,12 @@
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Form from "$lib/registry/ui/form/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = page.data.datePicker;
-	export { data as form };
+
+	let {
+		form: data = page.data.datePicker,
+	}: {
+		form?: SuperValidated<Infer<FormSchema>>;
+	} = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -50,9 +54,7 @@
 		dateStyle: "long",
 	});
 
-	let value = $derived<DateValue | undefined>(
-		$formData.dob ? parseDate($formData.dob) : undefined
-	);
+	let value = $derived($formData.dob ? parseDate($formData.dob) : undefined);
 
 	let placeholder = $state<DateValue>(today(getLocalTimeZone()));
 </script>
