@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"type": "object",
 	"properties": {
 		"$schema": {
@@ -27,7 +28,8 @@
 			"required": [
 				"css",
 				"baseColor"
-			]
+			],
+			"additionalProperties": false
 		},
 		"aliases": {
 			"description": "The CLI uses these values and the `alias` config from your `svelte.config.js` file to place generated components in the correct location.",
@@ -57,7 +59,8 @@
 			"required": [
 				"components",
 				"utils"
-			]
+			],
+			"additionalProperties": false
 		},
 		"registry": {
 			"description": "The registry URL tells the CLI where to fetch the shadcn-svelte components/registry from. You can pin this to a specific preview release or your own fork of the registry.",
@@ -79,7 +82,8 @@
 					},
 					"required": [
 						"config"
-					]
+					],
+					"additionalProperties": false
 				}
 			]
 		}
@@ -88,5 +92,5 @@
 		"tailwind",
 		"aliases"
 	],
-	"$schema": "https://json-schema.org/draft-2020-12/schema"
+	"additionalProperties": false
 }
