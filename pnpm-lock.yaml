@@ -539,8 +539,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.5
       layerchart:
-        specifier: 2.0.0-next.14
-        version: 2.0.0-next.14(svelte@5.33.14)
+        specifier: 2.0.0-next.16
+        version: 2.0.0-next.16(svelte@5.33.14)
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
@@ -3702,8 +3702,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  layerchart@2.0.0-next.14:
-    resolution: {integrity: sha512-FHTeLMzogYDlrueneBjy1fJ/kKrXKrWSG+/nZ6VAMUGKnzSlMM9ibrfts+P/WrJMZ8L2rWD8wosa3ivNNGlwPw==}
+  layerchart@2.0.0-next.16:
+    resolution: {integrity: sha512-cZyBP9l/3Ym8rOHq1UkqqVyWVSxkfLg1V834XvRNwIAwQUYBdb0JRuleq0CfH5kk0n7B57gfDZ9bm0AUJJB76w==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -8747,7 +8747,7 @@ snapshots:
       runed: 0.28.0(svelte@5.33.14)
       svelte: 5.33.14
 
-  layerchart@2.0.0-next.14(svelte@5.33.14):
+  layerchart@2.0.0-next.16(svelte@5.33.14):
     dependencies:
       '@dagrejs/dagre': 1.1.4
       '@layerstack/svelte-actions': 1.0.1-next.4
