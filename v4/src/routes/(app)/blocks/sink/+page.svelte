@@ -22,9 +22,17 @@
 	import Calendar_21 from "$lib/registry/blocks/calendar-21.svelte";
 	import Calendar_22 from "$lib/registry/blocks/calendar-22.svelte";
 	import Calendar_23 from "$lib/registry/blocks/calendar-23.svelte";
+	import Calendar_24 from "$lib/registry/blocks/calendar-24.svelte";
+	import Calendar_25 from "$lib/registry/blocks/calendar-25.svelte";
+	import Calendar_26 from "$lib/registry/blocks/calendar-26.svelte";
+	import Calendar_27 from "$lib/registry/blocks/calendar-27.svelte";
 </script>
 
 <div class="mx-auto flex flex-col items-center gap-12">
+	<Calendar_27 />
+	<Calendar_26 />
+	<Calendar_25 />
+	<Calendar_24 />
 	<Calendar_23 />
 	<Calendar_22 />
 	<Calendar_21 />
