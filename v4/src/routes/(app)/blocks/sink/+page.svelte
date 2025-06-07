@@ -20,9 +20,13 @@
 	import Calendar_19 from "$lib/registry/blocks/calendar-19.svelte";
 	import Calendar_20 from "$lib/registry/blocks/calendar-20.svelte";
 	import Calendar_21 from "$lib/registry/blocks/calendar-21.svelte";
+	import Calendar_22 from "$lib/registry/blocks/calendar-22.svelte";
+	import Calendar_23 from "$lib/registry/blocks/calendar-23.svelte";
 </script>
 
 <div class="mx-auto flex flex-col items-center gap-12">
+	<Calendar_23 />
+	<Calendar_22 />
 	<Calendar_21 />
 	<Calendar_20 />
 	<Calendar_19 />

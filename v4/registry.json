@@ -1798,6 +1798,28 @@
 			]
 		},
 		{
+			"name": "calendar-22",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "popover", "button", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-22.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-23",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar", "popover", "button", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-23.svelte"
+				}
+			]
+		},
+		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],
