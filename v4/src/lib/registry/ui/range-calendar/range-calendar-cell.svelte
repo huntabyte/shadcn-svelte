@@ -12,7 +12,7 @@
 <RangeCalendarPrimitive.Cell
 	bind:ref
 	class={cn(
-		"min-w-(--cell-size) dark:[&:has([data-selection-start])]:hover:bg-accent dark:[&:has([data-selection-end])]:hover:bg-accent [&:has([data-selection-middle])]:bg-accent [&:has([data-selection-middle])]:hover:bg-accent/50 [&:has([data-selected])]:bg-accent relative h-auto w-full p-0 text-center text-sm focus-within:z-20 data-[selection-middle]:rounded-r-md [&:has([data-selection-end])]:rounded-r-md [&:has([data-selection-middle])]:rounded-none first:[&:has([data-selection-middle])]:rounded-l-md last:[&:has([data-selection-middle])]:rounded-r-md [&:has([data-selection-start])]:rounded-l-md ",
+		"min-w-(--cell-size) dark:[&:has([data-range-start])]:hover:bg-accent dark:[&:has([data-range-end])]:hover:bg-accent [&:has([data-range-middle])]:bg-accent [&:has([data-range-middle])]:hover:bg-accent/50 [&:has([data-selected])]:bg-accent relative h-auto w-full p-0 text-center text-sm focus-within:z-20 data-[range-middle]:rounded-r-md [&:has([data-range-end])]:rounded-r-md [&:has([data-range-middle])]:rounded-none first:[&:has([data-range-middle])]:rounded-l-md last:[&:has([data-range-middle])]:rounded-r-md [&:has([data-range-start])]:rounded-l-md ",
 		className
 	)}
 	{...restProps}
