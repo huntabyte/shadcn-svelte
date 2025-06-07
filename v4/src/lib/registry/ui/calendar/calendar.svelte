@@ -25,6 +25,7 @@
 		monthFormat = "short",
 		yearFormat = "numeric",
 		day,
+		disableDaysOutsideMonth = false,
 		...restProps
 	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
 		buttonVariant?: ButtonVariant;
@@ -49,6 +50,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 	bind:ref
 	bind:placeholder
 	{weekdayFormat}
+	{disableDaysOutsideMonth}
 	class={cn(
 		"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 		className
@@ -59,19 +61,25 @@ get along, so we shut typescript up by casting `value` to `never`.
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
 			<Calendar.PrevButton variant={buttonVariant} />
-			{#if captionLayout === "dropdown"}
-				<Calendar.MonthSelect months={monthsProp} {monthFormat} />
-				<Calendar.YearSelect {years} {yearFormat} />
-			{:else if captionLayout === "dropdown-months"}
-				<Calendar.MonthSelect months={monthsProp} {monthFormat} />
-				{#if placeholder}
-					{yearFormatter.format(placeholder.toDate(getLocalTimeZone()))}
-				{/if}
-			{:else if captionLayout === "dropdown-years"}
-				{#if placeholder}
-					{monthFormatter.format(placeholder.toDate(getLocalTimeZone()))}
-				{/if}
-				<Calendar.YearSelect {years} {yearFormat} />
+			{#if captionLayout.includes("dropdown")}
+				<div
+					class="h-(--cell-size) flex w-full items-center justify-center gap-1.5 text-sm font-medium"
+				>
+					{#if captionLayout === "dropdown"}
+						<Calendar.MonthSelect months={monthsProp} {monthFormat} />
+						<Calendar.YearSelect {years} {yearFormat} />
+					{:else if captionLayout === "dropdown-months"}
+						<Calendar.MonthSelect months={monthsProp} {monthFormat} />
+						{#if placeholder}
+							{yearFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+						{/if}
+					{:else if captionLayout === "dropdown-years"}
+						{#if placeholder}
+							{monthFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+						{/if}
+						<Calendar.YearSelect {years} {yearFormat} />
+					{/if}
+				</div>
 			{:else}
 				<Calendar.Heading />
 			{/if}

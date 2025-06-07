@@ -40,7 +40,7 @@
 		"@types/mdast": "^4.0.4",
 		"@unovis/svelte": "^1.5.2",
 		"acorn": "^8.13.0",
-		"bits-ui": "https://pkg.pr.new/bits-ui@3197472",
+		"bits-ui": "https://pkg.pr.new/bits-ui@2957ed6",
 		"clsx": "^2.1.1",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",

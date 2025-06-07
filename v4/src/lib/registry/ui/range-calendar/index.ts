@@ -10,6 +10,8 @@ import Heading from "./range-calendar-heading.svelte";
 import HeadCell from "./range-calendar-head-cell.svelte";
 import NextButton from "./range-calendar-next-button.svelte";
 import PrevButton from "./range-calendar-prev-button.svelte";
+import MonthSelect from "./range-calendar-month-select.svelte";
+import YearSelect from "./range-calendar-year-select.svelte";
 
 const GridHead = RangeCalendarPrimitive.GridHead;
 const GridBody = RangeCalendarPrimitive.GridBody;
@@ -27,6 +29,8 @@ export {
 	HeadCell,
 	NextButton,
 	PrevButton,
+	MonthSelect,
+	YearSelect,
 	//
 	Root as RangeCalendar,
 };

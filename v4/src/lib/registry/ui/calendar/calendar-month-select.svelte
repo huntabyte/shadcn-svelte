@@ -1,0 +1,37 @@
+<script lang="ts">
+	import { Calendar as CalendarPrimitive } from "bits-ui";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
+
+	let {
+		ref = $bindable(null),
+		class: className,
+		...restProps
+	}: WithoutChildrenOrChild<CalendarPrimitive.MonthSelectProps> = $props();
+</script>
+
+<span
+	class={cn(
+		"has-focus:border-ring border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] relative flex rounded-md border",
+		className
+	)}
+>
+	<CalendarPrimitive.MonthSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
+		{#snippet child({ props, months, selectedMonth })}
+			<select {...props}>
+				{#each months as month (month.value)}
+					<option value={month.value} selected={month.value === selectedMonth.value}>
+						{month.label}
+					</option>
+				{/each}
+			</select>
+			<span
+				class="[&>svg]:text-muted-foreground flex h-8 select-none items-center gap-1 rounded-md pl-2 pr-1 text-sm font-medium [&>svg]:size-3.5"
+				aria-hidden="true"
+			>
+				{selectedMonth.label}
+				<ChevronDownIcon class="size-4" />
+			</span>
+		{/snippet}
+	</CalendarPrimitive.MonthSelect>
+</span>

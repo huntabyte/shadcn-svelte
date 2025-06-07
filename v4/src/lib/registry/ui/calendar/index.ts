@@ -1,4 +1,3 @@
-import { Calendar as CalendarPrimitive } from "bits-ui";
 import Root from "./calendar.svelte";
 import Cell from "./calendar-cell.svelte";
 import Day from "./calendar-day.svelte";
@@ -12,9 +11,8 @@ import GridHead from "./calendar-grid-head.svelte";
 import HeadCell from "./calendar-head-cell.svelte";
 import NextButton from "./calendar-next-button.svelte";
 import PrevButton from "./calendar-prev-button.svelte";
-
-const MonthSelect = CalendarPrimitive.MonthSelect;
-const YearSelect = CalendarPrimitive.YearSelect;
+import MonthSelect from "./calendar-month-select.svelte";
+import YearSelect from "./calendar-year-select.svelte";
 
 export {
 	Day,
@@ -31,6 +29,8 @@ export {
 	PrevButton,
 	MonthSelect,
 	YearSelect,
+	MonthSelect as MonthSelectPrimitive,
+	YearSelect as YearSelectPrimitive,
 	//
 	Root as Calendar,
 };

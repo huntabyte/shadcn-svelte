@@ -265,6 +265,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-month-select.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-months.svelte"
 				},
 				{
@@ -274,6 +278,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-prev-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-year-select.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1074,6 +1082,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-month-select.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-months.svelte"
 				},
 				{
@@ -1083,6 +1095,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-prev-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-year-select.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1773,7 +1789,7 @@
 		{
 			"name": "calendar-21",
 			"type": "registry:block",
-			"registryDependencies": ["calendar"],
+			"registryDependencies": ["range-calendar"],
 			"files": [
 				{
 					"type": "registry:component",
