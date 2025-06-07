@@ -514,6 +514,9 @@ importers:
       bits-ui:
         specifier: https://pkg.pr.new/bits-ui@b8c4397
         version: https://pkg.pr.new/bits-ui@b8c4397(@internationalized/date@3.8.2)(svelte@5.33.14)
+      chrono-node:
+        specifier: ^2.8.2
+        version: 2.8.2
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -541,6 +544,9 @@ importers:
       layerchart:
         specifier: 2.0.0-next.14
         version: 2.0.0-next.14(svelte@5.33.14)
+      little-date:
+        specifier: ^1.0.0
+        version: 1.0.0
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2697,6 +2703,10 @@ packages:
     peerDependencies:
       devtools-protocol: '*'
 
+  chrono-node@2.8.2:
+    resolution: {integrity: sha512-7BJ6TRHs4sFtOSsTISWXGKjg7C70wD+NU+44uA6euGnbvZnECvgzUv+5TS9sICta2sBQWej4UYy8XAg4W9E7rQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
     engines: {node: '>=8'}
@@ -2975,6 +2985,10 @@ packages:
   data-uri-to-buffer@6.0.2:
     resolution: {integrity: sha512-7hvf7/GW8e86rW0ptuwS3OcBGDjIi6SZva7hCyWC0yYry2cOPmLIjXAUHI6DK2HsnwJd9ifmt57i8eV2n4YNpw==}
     engines: {node: '>= 14'}
+
+  date-fns@2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
 
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
@@ -3799,6 +3813,10 @@ packages:
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+
+  little-date@1.0.0:
+    resolution: {integrity: sha512-41T/ktcwPzxC0OJ8E3wmaK0E1DL/QNR3n30kB9Dw6Ni6Eud24It8LZm70jK8lvDd+Mg+961fzKDcF6SQRL25cQ==}
+    engines: {node: '>=10'}
 
   load-tsconfig@0.2.5:
     resolution: {integrity: sha512-IXO6OCs9yg8tMKzfPZ1YmheJbZCiEsnBdcB03l0OcfK9prKnJb96siuHCr5Fl37/yo9DnKU+TLpxzTUspw9shg==}
@@ -7575,6 +7593,10 @@ snapshots:
       mitt: 3.0.1
       zod: 3.23.8
 
+  chrono-node@2.8.2:
+    dependencies:
+      dayjs: 1.11.13
+
   ci-info@3.9.0: {}
 
   class-validator@0.14.2:
@@ -7864,10 +7886,13 @@ snapshots:
 
   data-uri-to-buffer@6.0.2: {}
 
+  date-fns@2.30.0:
+    dependencies:
+      '@babel/runtime': 7.27.6
+
   date-fns@4.1.0: {}
 
-  dayjs@1.11.13:
-    optional: true
+  dayjs@1.11.13: {}
 
   debug@4.4.1:
     dependencies:
@@ -8858,6 +8883,10 @@ snapshots:
   lilconfig@3.1.1: {}
 
   lines-and-columns@1.2.4: {}
+
+  little-date@1.0.0:
+    dependencies:
+      date-fns: 2.30.0
 
   load-tsconfig@0.2.5: {}
 

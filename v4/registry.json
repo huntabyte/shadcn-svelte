@@ -1875,6 +1875,50 @@
 			]
 		},
 		{
+			"name": "calendar-29",
+			"type": "registry:block",
+			"registryDependencies": ["label", "popover", "button", "calendar", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-29.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-30",
+			"type": "registry:block",
+			"registryDependencies": ["popover", "button", "range-calendar", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-30.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-31",
+			"type": "registry:block",
+			"registryDependencies": ["button", "calendar", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-31.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-32",
+			"type": "registry:block",
+			"registryDependencies": ["button", "calendar", "drawer", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-32.svelte"
+				}
+			]
+		},
+		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],
