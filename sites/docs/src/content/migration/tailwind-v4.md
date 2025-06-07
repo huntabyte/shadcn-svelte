@@ -111,7 +111,7 @@ Start your dev server and verify that all your styles are working as expected.
 
 <PMRun command="dev" />
 
-### 2. Update your `app.css` file
+### 3. Update your `app.css` file
 
 The codemod will update your `app.css` file to look something like this, where it's defining the colors as CSS variables and importing your existing `tailwind.config.ts` file:
 
@@ -381,7 +381,7 @@ Restart your dev server and verify that all your styles are working as expected.
 
 Once you've verified that your styles are working as expected, you can remove the `tailwind.config.ts` file.
 
-### 3. Use new `size-*` utility
+### 4. Use new `size-*` utility
 
 The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `tailwind-merge`. You can replace `w-* h-*` with the new `size-*` utility:
 
@@ -390,11 +390,11 @@ The new `size-*` utility (added in Tailwind v3.4), is now fully supported by `ta
 + size-4
 ```
 
-### 4. Update your dependencies
+### 5. Update your dependencies
 
 <PMInstall command="bits-ui@latest @lucide/svelte@latest tailwind-variants@latest tailwind-merge@latest clsx@latest svelte-sonner@latest paneforge@next vaul-svelte@next formsnap@latest" />
 
-### 5. Update your utils (optional)
+### 6. Update your utils (optional)
 
 If you're planning on adding additional components in the future or plan to update your existing components to the latest versions, you'll need to update your `utils.ts` file.
 
@@ -427,7 +427,7 @@ And then you can incrementally replace these imports in your existing components
 </script>
 ```
 
-### 6. Update Your Colors (optional)
+### 7. Update Your Colors (optional)
 
 The dark mode colors have been revisited and updated to be more accessible, as you can see in these docs as well as the [v4.shadcn-svelte.com](https://v4.shadcn-svelte.com) demo site.
 
