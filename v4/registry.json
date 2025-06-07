@@ -1694,6 +1694,17 @@
 			]
 		},
 		{
+			"name": "calendar-14",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-14.svelte"
+				}
+			]
+		},
+		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],
