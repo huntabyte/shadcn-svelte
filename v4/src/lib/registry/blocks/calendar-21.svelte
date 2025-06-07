@@ -12,7 +12,7 @@
 
 <RangeCalendar
 	bind:value
-	class="rounded-lg border shadow-sm [--cell-size:2.75rem] md:[--cell-size:3rem]"
+	class="rounded-lg border shadow-sm [--cell-size:--spacing(11)] md:[--cell-size:--spacing(13)]"
 	monthFormat="long"
 	captionLayout="dropdown"
 >
