@@ -2,7 +2,7 @@
 	import Calendar from "$lib/registry/ui/calendar/calendar.svelte";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
-	import { CalendarDate, isWeekend } from "@internationalized/date";
+	import { CalendarDate } from "@internationalized/date";
 	import type { ComponentProps } from "svelte";
 
 	let value = $state<CalendarDate>(new CalendarDate(2025, 6, 12));
@@ -34,7 +34,6 @@
 	<Calendar
 		type="single"
 		bind:value
-		isDateDisabled={(date) => isWeekend(date, "en-US")}
 		class="rounded-lg border shadow-sm"
 		captionLayout={dropdown}
 	/>
