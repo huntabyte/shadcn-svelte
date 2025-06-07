@@ -512,8 +512,8 @@ importers:
         specifier: ^8.13.0
         version: 8.14.1
       bits-ui:
-        specifier: https://pkg.pr.new/bits-ui@b8c4397
-        version: https://pkg.pr.new/bits-ui@b8c4397(@internationalized/date@3.8.2)(svelte@5.33.14)
+        specifier: https://pkg.pr.new/bits-ui@8e06d7f
+        version: https://pkg.pr.new/bits-ui@8e06d7f(@internationalized/date@3.8.2)(svelte@5.33.14)
       chrono-node:
         specifier: ^2.8.2
         version: 2.8.2
@@ -2608,8 +2608,8 @@ packages:
       '@internationalized/date': ^3.8.1
       svelte: ^5.33.0
 
-  bits-ui@https://pkg.pr.new/bits-ui@b8c4397:
-    resolution: {tarball: https://pkg.pr.new/bits-ui@b8c4397}
+  bits-ui@https://pkg.pr.new/bits-ui@8e06d7f:
+    resolution: {tarball: https://pkg.pr.new/bits-ui@8e06d7f}
     version: 2.4.1
     engines: {node: '>=20', pnpm: '>=8.7.0'}
     peerDependencies:
@@ -7504,7 +7504,7 @@ snapshots:
       svelte-toolbelt: 0.9.1(svelte@5.33.14)
       tabbable: 6.2.0
 
-  bits-ui@https://pkg.pr.new/bits-ui@b8c4397(@internationalized/date@3.8.2)(svelte@5.33.14):
+  bits-ui@https://pkg.pr.new/bits-ui@8e06d7f(@internationalized/date@3.8.2)(svelte@5.33.14):
     dependencies:
       '@floating-ui/core': 1.7.1
       '@floating-ui/dom': 1.7.1
