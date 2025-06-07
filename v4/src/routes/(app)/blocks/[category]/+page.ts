@@ -31,6 +31,8 @@ export const load: PageLoad = async ({ params }) => {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/dashboard-*.json");
 	} else if (category === "login" || category === "authentication") {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/login-*.json");
+	} else if (category === "calendar") {
+		registryJsonItems = import.meta.glob("../../../../__registry__/json/calendar-*.json");
 	}
 
 	const promises: Promise<CachedItem | null>[] = [];

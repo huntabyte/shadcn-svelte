@@ -1,111 +1,63 @@
-import { isBlock, type BlockName } from "$lib/blocks.js";
+import { type BlockName } from "$lib/blocks.js";
 
 type BlockMeta = {
-	iframeHeight: string;
-	className: string;
+	iframeHeight?: string;
+	className?: string;
 	description: string;
-	target: string;
+	mobile?: "component";
 };
 
 export const blockMeta = {
 	"sidebar-01": {
-		iframeHeight: "800px",
 		description: "A simple sidebar with navigation grouped by section.",
-		className: "",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-02": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with collapsible sections.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-03": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with submenus.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-04": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A floating sidebar with submenus.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-05": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with collapsible submenus.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-06": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with submenus as dropdowns.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-07": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar that collapses to icons",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-08": {
-		iframeHeight: "800px",
-		className: "",
 		description: "An inset sidebar with secondary navigation.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-09": {
-		iframeHeight: "800px",
-		className: "",
 		description: "Collapsible nested sidebars.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-10": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar in a popover.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-11": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with a collapsible file tree.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-12": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar with a calendar.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-13": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar in a dialog.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-14": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A sidebar on the right.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-15": {
-		iframeHeight: "800px",
-		className: "",
 		description: "A left and right sidebar.",
-		target: "sidebar-page.svelte",
 	},
 	"sidebar-16": {
 		description: "A sidebar with a sticky site header.",
 	},
 	"login-01": {
-		iframeHeight: "870px",
-		className: "w-full h-full",
 		description: "A simple login form.",
-		target: "login-page.svelte",
 	},
 	"login-02": {
 		description: "A login page with a muted background color.",
@@ -120,83 +72,226 @@ export const blockMeta = {
 		description: "A dashboard with sidebar, charts and data table.",
 	},
 	"demo-sidebar": {
-		iframeHeight: "",
-		className: "",
 		description: "Your first sidebar.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-header": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar header with a dropdown menu.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-footer": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar footer with a dropdown menu.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-group": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar group.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-group-collapsible": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar with a collapsible group.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-group-action": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar with a group action.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-menu": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar menu with a list of projects.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-menu-action": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar menu action with a dropdown menu.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-menu-sub": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar menu sub.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-menu-collapsible": {
-		iframeHeight: "",
-		className: "",
 		description: "A collapsible sidebar menu.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-menu-badge": {
-		iframeHeight: "",
-		className: "",
 		description: "A sidebar menu badge.",
-		target: "sidebar-page.svelte",
 	},
 	"demo-sidebar-controlled": {
-		iframeHeight: "",
-		className: "",
 		description: "A controlled sidebar.",
-		target: "sidebar-page.svelte",
+	},
+	"calendar-01": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-02": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-03": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-04": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0 xl:pt-28",
+		mobile: "component",
+	},
+	"calendar-05": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-06": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-07": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-08": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-09": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-10": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-11": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-12": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-13": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-14": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-15": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-16": {
+		iframeHeight: "600px",
+		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-17": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-18": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-19": {
+		iframeHeight: "600px",
+		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-20": {
+		iframeHeight: "600px",
+		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-21": {
+		iframeHeight: "600px",
+		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-22": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-23": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-24": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-25": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-26": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-27": {
+		iframeHeight: "600px",
+		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-28": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-29": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-30": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
+	},
+	"calendar-31": {
+		iframeHeight: "700px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0",
+		mobile: "component",
+	},
+	"calendar-32": {
+		iframeHeight: "600px",
+		className:
+			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
+		mobile: "component",
 	},
 } as Record<BlockName, BlockMeta>;
-
-export function getPageBlockTarget(blockName: string) {
-	if (isBlock(blockName)) {
-		return blockMeta[blockName].target;
-	} else {
-		throw new Error("Not a valid block name with a target.");
-	}
-}
