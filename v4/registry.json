@@ -1672,6 +1672,28 @@
 			]
 		},
 		{
+			"name": "calendar-12",
+			"type": "registry:block",
+			"registryDependencies": ["card", "select"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-12.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-13",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "select", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-13.svelte"
+				}
+			]
+		},
+		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],

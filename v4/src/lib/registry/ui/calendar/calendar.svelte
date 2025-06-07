@@ -3,6 +3,7 @@
 	import * as Calendar from "./index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ButtonVariant } from "../button/button.svelte";
+	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
 
 	let {
 		ref = $bindable(null),
@@ -11,10 +12,24 @@
 		class: className,
 		weekdayFormat = "short",
 		buttonVariant = "ghost",
+		captionLayout = "label",
+		locale = "en-US",
+		months: monthsProp,
+		years,
+		monthFormat = "short",
+		yearFormat = "numeric",
 		...restProps
 	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
 		buttonVariant?: ButtonVariant;
+		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
+		months?: CalendarPrimitive.MonthSelectProps["months"];
+		years?: CalendarPrimitive.YearSelectProps["years"];
+		monthFormat?: CalendarPrimitive.MonthSelectProps["monthFormat"];
+		yearFormat?: CalendarPrimitive.YearSelectProps["yearFormat"];
 	} = $props();
+
+	const yearFormatter = $derived(new DateFormatter(locale, { year: yearFormat }));
+	const monthFormatter = $derived(new DateFormatter(locale, { month: monthFormat }));
 </script>
 
 <!--
@@ -30,12 +45,28 @@ get along, so we shut typescript up by casting `value` to `never`.
 		"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 		className
 	)}
+	{locale}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<Calendar.Header>
 			<Calendar.PrevButton variant={buttonVariant} />
-			<Calendar.Heading />
+			{#if captionLayout === "dropdown"}
+				<Calendar.MonthSelect months={monthsProp} {monthFormat} />
+				<Calendar.YearSelect {years} {yearFormat} />
+			{:else if captionLayout === "dropdown-months"}
+				<Calendar.MonthSelect months={monthsProp} {monthFormat} />
+				{#if placeholder}
+					{yearFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+				{/if}
+			{:else if captionLayout === "dropdown-years"}
+				{#if placeholder}
+					{monthFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+				{/if}
+				<Calendar.YearSelect {years} {yearFormat} />
+			{:else}
+				<Calendar.Heading />
+			{/if}
 			<Calendar.NextButton variant={buttonVariant} />
 		</Calendar.Header>
 		<Calendar.Months>

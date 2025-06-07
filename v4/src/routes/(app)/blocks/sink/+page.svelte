@@ -10,9 +10,13 @@
 	import Calendar_09 from "$lib/registry/blocks/calendar-09.svelte";
 	import Calendar_10 from "$lib/registry/blocks/calendar-10.svelte";
 	import Calendar_11 from "$lib/registry/blocks/calendar-11.svelte";
+	import Calendar_12 from "$lib/registry/blocks/calendar-12.svelte";
+	import Calendar_13 from "$lib/registry/blocks/calendar-13.svelte";
 </script>
 
 <div class="mx-auto flex flex-col items-center gap-12">
+	<Calendar_13 />
+	<Calendar_12 />
 	<Calendar_11 />
 	<Calendar_10 />
 	<Calendar_09 />
