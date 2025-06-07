@@ -3,7 +3,13 @@
 	import * as Calendar from "./index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ButtonVariant } from "../button/button.svelte";
-	import { DateFormatter, getLocalTimeZone } from "@internationalized/date";
+	import {
+		DateFormatter,
+		getLocalTimeZone,
+		isEqualMonth,
+		type DateValue,
+	} from "@internationalized/date";
+	import type { Snippet } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -18,6 +24,7 @@
 		years,
 		monthFormat = "short",
 		yearFormat = "numeric",
+		day,
 		...restProps
 	}: WithoutChildrenOrChild<CalendarPrimitive.RootProps> & {
 		buttonVariant?: ButtonVariant;
@@ -26,6 +33,7 @@
 		years?: CalendarPrimitive.YearSelectProps["years"];
 		monthFormat?: CalendarPrimitive.MonthSelectProps["monthFormat"];
 		yearFormat?: CalendarPrimitive.YearSelectProps["yearFormat"];
+		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	} = $props();
 
 	const yearFormatter = $derived(new DateFormatter(locale, { year: yearFormat }));
@@ -86,7 +94,14 @@ get along, so we shut typescript up by casting `value` to `never`.
 							<Calendar.GridRow class="mt-2 w-full">
 								{#each weekDates as date (date)}
 									<Calendar.Cell {date} month={month.value}>
-										<Calendar.Day />
+										{#if day}
+											{@render day({
+												day: date,
+												outsideMonth: !isEqualMonth(date, month.value),
+											})}
+										{:else}
+											<Calendar.Day />
+										{/if}
 									</Calendar.Cell>
 								{/each}
 							</Calendar.GridRow>

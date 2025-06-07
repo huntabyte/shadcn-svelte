@@ -3,13 +3,10 @@
 	import { CalendarDate } from "@internationalized/date";
 
 	let value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));
-
-	const bookedDates = Array.from({ length: 12 }, (_, i) => new CalendarDate(2025, 6, 15 + i));
 </script>
 
 <Calendar
 	type="single"
 	bind:value
-	class="rounded-lg border shadow-sm"
-	isDateUnavailable={(date) => bookedDates.some((d) => d.compare(date) === 0)}
+	class="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
 />

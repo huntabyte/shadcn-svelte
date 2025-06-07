@@ -13,9 +13,23 @@
 	import Calendar_12 from "$lib/registry/blocks/calendar-12.svelte";
 	import Calendar_13 from "$lib/registry/blocks/calendar-13.svelte";
 	import Calendar_14 from "$lib/registry/blocks/calendar-14.svelte";
+	import Calendar_15 from "$lib/registry/blocks/calendar-15.svelte";
+	import Calendar_16 from "$lib/registry/blocks/calendar-16.svelte";
+	import Calendar_17 from "$lib/registry/blocks/calendar-17.svelte";
+	import Calendar_18 from "$lib/registry/blocks/calendar-18.svelte";
+	import Calendar_19 from "$lib/registry/blocks/calendar-19.svelte";
+	import Calendar_20 from "$lib/registry/blocks/calendar-20.svelte";
+	import Calendar_21 from "$lib/registry/blocks/calendar-21.svelte";
 </script>
 
 <div class="mx-auto flex flex-col items-center gap-12">
+	<Calendar_21 />
+	<Calendar_20 />
+	<Calendar_19 />
+	<Calendar_18 />
+	<Calendar_17 />
+	<Calendar_16 />
+	<Calendar_15 />
 	<Calendar_14 />
 	<Calendar_13 />
 	<Calendar_12 />
