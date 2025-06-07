@@ -14,18 +14,21 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant: "ghost" }),
-		"size-(--cell-size) flex select-none flex-col items-center justify-center gap-1 whitespace-nowrap p-0 font-normal leading-none data-[selected]:opacity-100",
-		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground min-w-(--cell-size)",
+		"size-(--cell-size) flex select-none flex-col items-center justify-center gap-1 whitespace-nowrap p-0 font-normal leading-none",
+		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground min-w-(--cell-size) data-[selection-middle]:rounded-none",
 		// Selection Start
-		"data-[selection-start]:bg-primary data-[selection-start]:text-primary-foreground data-[selection-start]:hover:bg-primary data-[selection-start]:hover:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground dark:data-[selection-start]:hover:bg-primary dark:data-[selection-start]:focus:bg-primary",
+		"data-[selection-start]:bg-primary dark:data-[selection-start]:hover:bg-accent data-[selection-start]:text-primary-foreground data-[selection-start]:focus:bg-primary data-[selection-start]:focus:text-primary-foreground dark:data-[selection-start]:focus:bg-primary dark:data-[selection-start]:hover:text-foreground",
 		// Selection End
-		"data-[selection-end]:bg-primary data-[selection-end]:text-primary-foreground data-[selection-end]:hover:bg-primary data-[selection-end]:hover:text-primary-foreground data-[selection-end]:focus:bg-primary data-[selection-end]:focus:text-primary-foreground dark:data-[selection-end]:hover:bg-primary dark:data-[selection-end]:focus:bg-primary",
+		"data-[selection-end]:bg-primary data-[selection-end]:text-primary-foreground data-[selection-end]:focus:bg-primary data-[selection-end]:focus:text-primary-foreground dark:data-[selection-end]:focus:bg-primary dark:data-[selection-end]:hover:bg-accent",
 		// Outside months
-		"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30",
+		"[&[data-outside-month]:not([data-selected])]:text-muted-foreground",
 		// Disabled
 		"data-[disabled]:text-muted-foreground data-[disabled]:opacity-50",
 		// Unavailable
 		"data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through",
+		"dark:data-[selection-middle]:hover:bg-accent/0",
+		// hover
+		"dark:hover:text-accent-foreground",
 		className
 	)}
 	{...restProps}

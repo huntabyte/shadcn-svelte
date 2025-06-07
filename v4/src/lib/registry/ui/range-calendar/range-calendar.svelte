@@ -90,7 +90,7 @@
 		</RangeCalendar.Header>
 		<RangeCalendar.Months>
 			{#each months as month (month)}
-				<RangeCalendar.Grid>
+				<RangeCalendar.Grid class="group">
 					<RangeCalendar.GridHead>
 						<RangeCalendar.GridRow class="flex select-none">
 							{#each weekdays as weekday (weekday)}
@@ -102,7 +102,7 @@
 					</RangeCalendar.GridHead>
 					<RangeCalendar.GridBody>
 						{#each month.weeks as weekDates (weekDates)}
-							<RangeCalendar.GridRow class="mt-2 w-full">
+							<RangeCalendar.GridRow class="group mt-2 w-full">
 								{#each weekDates as date (date)}
 									<RangeCalendar.Cell {date} month={month.value}>
 										{#if day}

@@ -12,7 +12,7 @@
 <RangeCalendarPrimitive.Cell
 	bind:ref
 	class={cn(
-		"[&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-month])]:bg-accent/50 data-highlighted:rounded-r-md min-w-(--cell-size) relative h-auto w-full p-0 text-center text-sm focus-within:z-20 first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md [&:has([data-selected][data-selection-end])]:rounded-r-md [&:has([data-selected][data-selection-start])]:rounded-l-md",
+		"min-w-(--cell-size) dark:[&:has([data-selection-start])]:hover:bg-accent dark:[&:has([data-selection-end])]:hover:bg-accent [&:has([data-selection-middle])]:bg-accent [&:has([data-selection-middle])]:hover:bg-accent/50 [&:has([data-selected])]:bg-accent relative h-auto w-full p-0 text-center text-sm focus-within:z-20 data-[selection-middle]:rounded-r-md [&:has([data-selection-end])]:rounded-r-md [&:has([data-selection-middle])]:rounded-none first:[&:has([data-selection-middle])]:rounded-l-md last:[&:has([data-selection-middle])]:rounded-r-md [&:has([data-selection-start])]:rounded-l-md ",
 		className
 	)}
 	{...restProps}
