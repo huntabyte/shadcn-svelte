@@ -15,14 +15,9 @@
 <div class="flex flex-col gap-3">
 	<Label for="{id}-date" class="px-1">Date of birth</Label>
 	<Popover.Root bind:open>
-		<Popover.Trigger>
+		<Popover.Trigger id="{id}-date">
 			{#snippet child({ props })}
-				<Button
-					{...props}
-					variant="outline"
-					id="{id}-date"
-					class="w-48 justify-between font-normal"
-				>
+				<Button {...props} variant="outline" class="w-48 justify-between font-normal">
 					{value ? value.toDate(getLocalTimeZone()).toLocaleDateString() : "Select date"}
 					<ChevronDownIcon />
 				</Button>

@@ -1864,6 +1864,17 @@
 			]
 		},
 		{
+			"name": "calendar-28",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "input", "label", "popover", "button"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-28.svelte"
+				}
+			]
+		},
+		{
 			"name": "chart-area-axes",
 			"type": "registry:block",
 			"registryDependencies": ["card", "chart"],

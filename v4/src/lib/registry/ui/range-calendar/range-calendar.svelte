@@ -37,8 +37,16 @@
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	} = $props();
 
-	const yearFormatter = $derived(new DateFormatter(locale, { year: yearFormat }));
-	const monthFormatter = $derived(new DateFormatter(locale, { month: monthFormat }));
+	const yearFormatter = $derived.by(() => {
+		if (typeof yearFormat === "function") return (date: Date) => yearFormat(date.getFullYear());
+		return new DateFormatter(locale, { year: yearFormat }).format;
+	});
+
+	const monthFormatter = $derived.by(() => {
+		if (typeof monthFormat === "function")
+			return (date: Date) => monthFormat(date.getMonth() + 1);
+		return new DateFormatter(locale, { month: monthFormat }).format;
+	});
 </script>
 
 <RangeCalendarPrimitive.Root
@@ -66,11 +74,11 @@
 					{:else if captionLayout === "dropdown-months"}
 						<RangeCalendar.MonthSelect months={monthsProp} {monthFormat} />
 						{#if placeholder}
-							{yearFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+							{yearFormatter(placeholder.toDate(getLocalTimeZone()))}
 						{/if}
 					{:else if captionLayout === "dropdown-years"}
 						{#if placeholder}
-							{monthFormatter.format(placeholder.toDate(getLocalTimeZone()))}
+							{monthFormatter(placeholder.toDate(getLocalTimeZone()))}
 						{/if}
 						<RangeCalendar.YearSelect {years} {yearFormat} />
 					{/if}

@@ -21,12 +21,11 @@
 		<div class="flex flex-1 flex-col gap-3">
 			<Label for="{id}-date-from" class="px-1">Check-in</Label>
 			<Popover.Root bind:open={openFrom}>
-				<Popover.Trigger>
+				<Popover.Trigger id="{id}-date-from">
 					{#snippet child({ props })}
 						<Button
 							{...props}
 							variant="outline"
-							id="{id}-date-from"
 							class="w-full justify-between font-normal"
 						>
 							{valueFrom
@@ -67,12 +66,11 @@
 		<div class="flex flex-1 flex-col gap-3">
 			<Label for="{id}-date-to" class="px-1">Check-out</Label>
 			<Popover.Root bind:open={openTo}>
-				<Popover.Trigger>
+				<Popover.Trigger id="{id}-date-to">
 					{#snippet child({ props })}
 						<Button
 							{...props}
 							variant="outline"
-							id="{id}-date-to"
 							class="w-full justify-between font-normal"
 						>
 							{valueTo

@@ -16,14 +16,9 @@
 <div class="flex flex-col gap-3">
 	<Label for="{id}-dates" class="px-1">Select your stay</Label>
 	<Popover.Root bind:open>
-		<Popover.Trigger>
+		<Popover.Trigger id="{id}-dates">
 			{#snippet child({ props })}
-				<Button
-					{...props}
-					variant="outline"
-					id="{id}-dates"
-					class="w-56 justify-between font-normal"
-				>
+				<Button {...props} variant="outline" class="w-56 justify-between font-normal">
 					{value?.start && value?.end
 						? `${value.start.toDate(getLocalTimeZone()).toLocaleDateString()} - ${value.end.toDate(getLocalTimeZone()).toLocaleDateString()}`
 						: "Select date"}

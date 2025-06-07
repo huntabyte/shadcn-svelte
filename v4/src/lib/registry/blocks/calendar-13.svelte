@@ -26,6 +26,8 @@
 	const selectedDropdown = $derived(
 		dropdownOptions.find((option) => option.value === dropdown)?.label ?? "Dropdown"
 	);
+
+	const id = $props.id();
 </script>
 
 <div class="flex flex-col gap-4">
@@ -37,9 +39,9 @@
 		captionLayout={dropdown}
 	/>
 	<div class="flex flex-col gap-3">
-		<Label for="dropdown" class="px-1">Dropdown</Label>
+		<Label for="{id}-dropdown" class="px-1">Dropdown</Label>
 		<Select.Root type="single" bind:value={dropdown}>
-			<Select.Trigger id="dropdown" size="sm" class="bg-background w-full">
+			<Select.Trigger id="{id}-dropdown" size="sm" class="bg-background w-full">
 				{selectedDropdown}
 			</Select.Trigger>
 			<Select.Content align="center">

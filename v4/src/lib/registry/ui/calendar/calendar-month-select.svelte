@@ -17,11 +17,14 @@
 	)}
 >
 	<CalendarPrimitive.MonthSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
-		{#snippet child({ props, months, selectedMonth })}
+		{#snippet child({ props, monthItems, selectedMonthItem })}
 			<select {...props}>
-				{#each months as month (month.value)}
-					<option value={month.value} selected={month.value === selectedMonth.value}>
-						{month.label}
+				{#each monthItems as monthItem (monthItem.value)}
+					<option
+						value={monthItem.value}
+						selected={monthItem.value === selectedMonthItem.value}
+					>
+						{monthItem.label}
 					</option>
 				{/each}
 			</select>
@@ -29,7 +32,7 @@
 				class="[&>svg]:text-muted-foreground flex h-8 select-none items-center gap-1 rounded-md pl-2 pr-1 text-sm font-medium [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
-				{selectedMonth.label}
+				{selectedMonthItem.label}
 				<ChevronDownIcon class="size-4" />
 			</span>
 		{/snippet}

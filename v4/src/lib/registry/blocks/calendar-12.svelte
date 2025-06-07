@@ -45,7 +45,7 @@
 		<Card.Description>{localizedStrings[locale].description}</Card.Description>
 		<Card.Action>
 			<Select.Root type="single" bind:value={locale}>
-				<Select.Trigger class="w-[100px]">
+				<Select.Trigger class="w-[100px]" aria-label="Select language">
 					{selectedLanguage}
 				</Select.Trigger>
 				<Select.Content align="end">
