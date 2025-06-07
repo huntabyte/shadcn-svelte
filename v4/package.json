@@ -39,7 +39,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"acorn": "^8.13.0",
-		"bits-ui": "^2.4.1",
+		"bits-ui": "https://pkg.pr.new/bits-ui@b8c4397",
 		"clsx": "^2.1.1",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",

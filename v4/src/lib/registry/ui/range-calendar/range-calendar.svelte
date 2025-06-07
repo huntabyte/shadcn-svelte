@@ -2,6 +2,14 @@
 	import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import * as RangeCalendar from "./index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import type { ButtonVariant } from "$lib/registry/ui/button/index.js";
+	import type { Snippet } from "svelte";
+	import {
+		DateFormatter,
+		getLocalTimeZone,
+		isEqualMonth,
+		type DateValue,
+	} from "@internationalized/date";
 
 	let {
 		ref = $bindable(null),
@@ -9,8 +17,36 @@
 		placeholder = $bindable(),
 		weekdayFormat = "short",
 		class: className,
+		buttonVariant = "ghost",
+		captionLayout = "label",
+		locale = "en-US",
+		months: monthsProp,
+		years,
+		monthFormat = "short",
+		yearFormat = "numeric",
+		day,
+		disableDaysOutsideMonth = false,
 		...restProps
-	}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> = $props();
+	}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> & {
+		buttonVariant?: ButtonVariant;
+		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
+		months?: RangeCalendarPrimitive.MonthSelectProps["months"];
+		years?: RangeCalendarPrimitive.YearSelectProps["years"];
+		monthFormat?: RangeCalendarPrimitive.MonthSelectProps["monthFormat"];
+		yearFormat?: RangeCalendarPrimitive.YearSelectProps["yearFormat"];
+		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
+	} = $props();
+
+	const yearFormatter = $derived.by(() => {
+		if (typeof yearFormat === "function") return (date: Date) => yearFormat(date.getFullYear());
+		return new DateFormatter(locale, { year: yearFormat }).format;
+	});
+
+	const monthFormatter = $derived.by(() => {
+		if (typeof monthFormat === "function")
+			return (date: Date) => monthFormat(date.getMonth() + 1);
+		return new DateFormatter(locale, { month: monthFormat }).format;
+	});
 </script>
 
 <RangeCalendarPrimitive.Root
@@ -18,20 +54,45 @@
 	bind:value
 	bind:placeholder
 	{weekdayFormat}
-	class={cn("p-3", className)}
+	{disableDaysOutsideMonth}
+	class={cn(
+		"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+		className
+	)}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<RangeCalendar.Header>
-			<RangeCalendar.PrevButton />
-			<RangeCalendar.Heading />
-			<RangeCalendar.NextButton />
+			<RangeCalendar.PrevButton variant={buttonVariant} />
+			{#if captionLayout.includes("dropdown")}
+				<div
+					class="h-(--cell-size) flex w-full items-center justify-center gap-1.5 text-sm font-medium"
+				>
+					{#if captionLayout === "dropdown"}
+						<RangeCalendar.MonthSelect months={monthsProp} {monthFormat} />
+						<RangeCalendar.YearSelect {years} {yearFormat} />
+					{:else if captionLayout === "dropdown-months"}
+						<RangeCalendar.MonthSelect months={monthsProp} {monthFormat} />
+						{#if placeholder}
+							{yearFormatter(placeholder.toDate(getLocalTimeZone()))}
+						{/if}
+					{:else if captionLayout === "dropdown-years"}
+						{#if placeholder}
+							{monthFormatter(placeholder.toDate(getLocalTimeZone()))}
+						{/if}
+						<RangeCalendar.YearSelect {years} {yearFormat} />
+					{/if}
+				</div>
+			{:else}
+				<RangeCalendar.Heading />
+			{/if}
+			<RangeCalendar.NextButton variant={buttonVariant} />
 		</RangeCalendar.Header>
 		<RangeCalendar.Months>
 			{#each months as month (month)}
 				<RangeCalendar.Grid>
 					<RangeCalendar.GridHead>
-						<RangeCalendar.GridRow class="flex">
+						<RangeCalendar.GridRow class="flex select-none">
 							{#each weekdays as weekday (weekday)}
 								<RangeCalendar.HeadCell>
 									{weekday.slice(0, 2)}
@@ -44,7 +105,14 @@
 							<RangeCalendar.GridRow class="mt-2 w-full">
 								{#each weekDates as date (date)}
 									<RangeCalendar.Cell {date} month={month.value}>
-										<RangeCalendar.Day />
+										{#if day}
+											{@render day({
+												day: date,
+												outsideMonth: !isEqualMonth(date, month.value),
+											})}
+										{:else}
+											<RangeCalendar.Day />
+										{/if}
 									</RangeCalendar.Cell>
 								{/each}
 							</RangeCalendar.GridRow>

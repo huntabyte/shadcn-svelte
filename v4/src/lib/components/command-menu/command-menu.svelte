@@ -13,15 +13,22 @@
 	import type { Component } from "svelte";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
+	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
 	import CommandMenuItem from "./command-menu-item.svelte";
 	import { goto } from "$app/navigation";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
-	let { colors }: { colors: ColorPalette[] } = $props();
+	let {
+		colors,
+		blocks,
+	}: {
+		colors: ColorPalette[];
+		blocks?: { name: string; description: string; categories: string[] }[];
+	} = $props();
 
 	const isMac = useIsMac();
 	let open = $state(false);
-	let selectedType = $state<"color" | "page" | "component" | null>(null);
+	let selectedType = $state<"color" | "page" | "component" | "block" | null>(null);
 	let copyPayload = $state("");
 
 	const userConfig = UserConfigContext.get();
@@ -41,6 +48,20 @@
 			selectedType = "page";
 			copyPayload = "";
 		}
+	}
+
+	function handleBlockHighlight(block: {
+		name: string;
+		description: string;
+		categories: string[];
+	}) {
+		selectedType = "block";
+		const cmd = getCommand(
+			userConfig.current.packageManager,
+			"execute",
+			`shadcn-svelte add ${block.name}`
+		);
+		copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
 	}
 
 	function handleColorHighlight(color: Color) {
@@ -71,6 +92,10 @@
 		if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
 			runCommand(() => {
 				if (selectedType === "color") {
+					clipboard.copy(copyPayload);
+				}
+
+				if (selectedType === "block") {
 					clipboard.copy(copyPayload);
 				}
 
@@ -144,7 +169,7 @@
 				{#each sidebarNavItems as group (group.title)}
 					<Command.Group
 						heading={group.title}
-						class="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
+						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
 					>
 						{#each group.items as item, i (i)}
 							{@const isComponent = item.href?.includes("/components/") ?? false}
@@ -181,7 +206,7 @@
 					<Command.Group
 						heading={colorPalette.name.charAt(0).toUpperCase() +
 							colorPalette.name.slice(1)}
-						class="!p-0 [&_[cmdk-group-heading]]:!p-3"
+						class="!p-0 [&_[data-command-group-heading]]:!p-3"
 					>
 						{#each colorPalette.colors as color (color.hex)}
 							<CommandMenuItem
@@ -206,6 +231,38 @@
 						{/each}
 					</Command.Group>
 				{/each}
+				{#if blocks?.length}
+					<Command.Group
+						heading="Blocks"
+						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+					>
+						{#each blocks as block (block.name)}
+							<CommandMenuItem
+								value={block.name}
+								onHighlight={() => handleBlockHighlight(block)}
+								keywords={[
+									"block",
+									block.name,
+									block.description,
+									...block.categories,
+								]}
+								onSelect={() => {
+									runCommand(() => {
+										goto(`/blocks/${block.categories[0]}#${block.name}`);
+									});
+								}}
+							>
+								<SquareDashedIcon />
+								{block.description}
+								<span
+									class="text-muted-foreground ml-auto font-mono text-xs font-normal tabular-nums"
+								>
+									{block.name}
+								</span>
+							</CommandMenuItem>
+						{/each}
+					</Command.Group>
+				{/if}
 			</Command.List>
 		</Command.Root>
 		<div
