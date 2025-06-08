@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - sites/docs/**
+      - docs/**
   workflow_dispatch:
 
 
@@ -39,5 +39,5 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: shadcn-svelte
           directory: ./.svelte-kit/cloudflare
-          workingDirectory: sites/docs
+          workingDirectory: docs
           deploymentName: Production

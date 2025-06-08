@@ -110,17 +110,12 @@ generated-assets
 .idea/
 
 .velite
-sites/docs/static/registry
-sites/docs/static/themes.css
-sites/docs/static/schema/registry.json
-sites/docs/static/schema/registry-item.json
-sites/docs/src/__registry__/json
+docs/static/registry
+docs/static/themes.css
+docs/static/schema/registry.json
+docs/static/schema/registry-item.json
+docs/src/__registry__
 
-v4/static/registry
-v4/static/themes.css
-v4/src/__registry__
-v4/static/schema/registry.json
-v4/static/schema/registry-item.json
 
 
 registry-template/static/r

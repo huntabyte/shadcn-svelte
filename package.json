@@ -11,10 +11,8 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"build:v4": "pnpm -F v4 build",
 		"dev": "pnpm -F docs dev",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
-		"dev:v4": "pnpm -F v4 dev",
 		"preview": "pnpm -F docs preview",
 		"test": "pnpm -F shadcn-svelte test",
 		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
@@ -22,14 +20,14 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm -r sync && pnpm build:cli",
+		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
 	},
 	"engines": {
 		"pnpm": ">=9",
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"packageManager": "pnpm@9.7.1",
 	"repository": {
@@ -52,7 +50,7 @@
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.6.12",
 		"pretty-quick": "^4.2.2",
-		"svelte": "^5.33.14",
+		"svelte": "^5.33.17",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.33.1"
 	},
