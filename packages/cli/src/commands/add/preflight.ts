@@ -51,7 +51,16 @@ function checkAddDependencies(
 	const isTailwind3 = semver.satisfies(semver.coerce(dependencies.tailwindcss) || "", "^3.0.0");
 
 	// this is the happy path
-	if (isTailwind4 && isSvelte5) return;
+	if (isTailwind4 && isSvelte5) {
+		const host = new URL(config.registry).host;
+		if (host === "next.shadcn-svelte.com") {
+			// update `next` registry and schema urls
+			config.$schema = cliConfig.DEFAULT_CONFIG.$schema;
+			config.registry = cliConfig.DEFAULT_CONFIG.registry;
+			cliConfig.writeConfig(cwd, config);
+		}
+		return;
+	}
 
 	if (isTailwind3 && isSvelte5) {
 		// if no `style` field, then we can assume their components.json is already updated
