@@ -15,7 +15,7 @@ description: Latest updates and announcements.
 
 We've completely overhauled the `Calendar` and `RangeCalendar` components to support dropdowns for the month and year selectors, and have added 30+ Calendar blocks to help you get started building your own calendar components.
 
-Check out the [Calendar](/docs/components/calendar) docs page and the [Calendar Blocks](/docs/blocks/calendar) page for more.
+Check out the [Calendar](/docs/components/calendar) docs page and the [Calendar Blocks](/blocks/calendar) page for more.
 
 ## May 2025
 

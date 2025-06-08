@@ -28,7 +28,7 @@ links:
 
 We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
 
-See call calendar blocks in the [Blocks Library](/docs/blocks/calendar) page.
+See call calendar blocks in the [Blocks Library](/blocks/calendar) page.
 
 ## About
 

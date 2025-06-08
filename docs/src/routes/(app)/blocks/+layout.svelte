@@ -40,7 +40,7 @@
 	<PageHeaderDescription>{description}</PageHeaderDescription>
 	<PageActions>
 		<Button href="#blocks" size="sm">Browse Blocks</Button>
-		<Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button>
+		<!-- <Button href="/docs/blocks" variant="ghost" size="sm">Add a block</Button> -->
 	</PageActions>
 </PageHeader>
 <PageNav>
