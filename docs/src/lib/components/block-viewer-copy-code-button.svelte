@@ -4,10 +4,11 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
 	import CheckIcon from "@lucide/svelte/icons/check";
+	import { transformImportPaths } from "$lib/registry/registry-utils.js";
 
 	const ctx = BlockViewerContext.get();
 	const file = $derived(ctx.item.files?.find((f) => f.target === ctx.activeFile));
-	const content = $derived(file?.content);
+	const content = $derived(file?.content ? transformImportPaths(file.content) : undefined);
 
 	const clipboard = new UseClipboard();
 </script>
