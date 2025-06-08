@@ -4,7 +4,7 @@
 	import type { DateRange } from "bits-ui";
 
 	let value = $state<DateRange>({
-		start: new CalendarDate(2025, 6, 12),
+		start: new CalendarDate(2025, 6, 9),
 		end: new CalendarDate(2025, 6, 26),
 	});
 </script>

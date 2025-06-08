@@ -5,6 +5,6 @@
 	let { data }: PageProps = $props();
 </script>
 
-<div class={cn("bg-background")}>
+<div class={cn("bg-background", data.meta?.className)}>
 	<data.component />
 </div>

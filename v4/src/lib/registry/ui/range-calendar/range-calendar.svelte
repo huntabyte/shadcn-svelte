@@ -37,16 +37,17 @@
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	} = $props();
 
-	const yearFormatter = $derived.by(() => {
-		if (typeof yearFormat === "function") return (date: Date) => yearFormat(date.getFullYear());
-		return new DateFormatter(locale, { year: yearFormat }).format;
-	});
+	function formatYear(date: DateValue) {
+		const dateObj = date.toDate(getLocalTimeZone());
+		if (typeof yearFormat === "function") return yearFormat(dateObj.getFullYear());
+		return new DateFormatter(locale, { year: yearFormat }).format(dateObj);
+	}
 
-	const monthFormatter = $derived.by(() => {
-		if (typeof monthFormat === "function")
-			return (date: Date) => monthFormat(date.getMonth() + 1);
-		return new DateFormatter(locale, { month: monthFormat }).format;
-	});
+	function formatMonth(date: DateValue) {
+		const dateObj = date.toDate(getLocalTimeZone());
+		if (typeof monthFormat === "function") return monthFormat(dateObj.getMonth() + 1);
+		return new DateFormatter(locale, { month: monthFormat }).format(dateObj);
+	}
 </script>
 
 <RangeCalendarPrimitive.Root
@@ -59,6 +60,9 @@
 		"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 		className
 	)}
+	{locale}
+	{monthFormat}
+	{yearFormat}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
@@ -74,11 +78,11 @@
 					{:else if captionLayout === "dropdown-months"}
 						<RangeCalendar.MonthSelect months={monthsProp} {monthFormat} />
 						{#if placeholder}
-							{yearFormatter(placeholder.toDate(getLocalTimeZone()))}
+							{formatYear(placeholder)}
 						{/if}
 					{:else if captionLayout === "dropdown-years"}
 						{#if placeholder}
-							{monthFormatter(placeholder.toDate(getLocalTimeZone()))}
+							{formatMonth(placeholder)}
 						{/if}
 						<RangeCalendar.YearSelect {years} {yearFormat} />
 					{/if}

@@ -15,6 +15,7 @@
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
+		iframeKey: number;
 		highlightedFiles:
 			| (RegistryItemFile & {
 					highlightedContent: Promise<string>;
@@ -54,10 +55,17 @@
 		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
+	let iframeKey = $state<number>(0);
 
 	BlockViewerContext.set({
 		get item() {
 			return item;
+		},
+		get iframeKey() {
+			return iframeKey;
+		},
+		set iframeKey(value) {
+			iframeKey = value;
 		},
 		get view() {
 			return view;
@@ -92,7 +100,7 @@
 <div
 	id={item.name}
 	data-view={view}
-	class="group/block-view-wrapper flex min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden md:flex-col"
+	class="group/block-view-wrapper flex min-w-0 scroll-mt-24 flex-col-reverse items-stretch gap-4 overflow-hidden md:flex-col"
 	style="--height: {item.meta?.iframeHeight ?? '930px'}"
 >
 	<BlockViewerToolbar />

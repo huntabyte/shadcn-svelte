@@ -11,6 +11,7 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
 	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
@@ -78,6 +79,19 @@
 				>
 					<span class="sr-only">Open in New Tab</span>
 					<FullscreenIcon />
+				</Button>
+				<Separator orientation="vertical" class="!h-4" />
+				<Button
+					size="icon"
+					variant="ghost"
+					class="size-6 rounded-sm p-0"
+					title="Refresh Preview"
+					onclick={() => {
+						ctx.iframeKey = ctx.iframeKey + 1;
+					}}
+				>
+					<RotateCcwIcon />
+					<span class="sr-only">Refresh Preview</span>
 				</Button>
 			</ToggleGroup.Root>
 		</div>

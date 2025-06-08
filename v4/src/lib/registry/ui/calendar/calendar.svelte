@@ -37,16 +37,17 @@
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	} = $props();
 
-	const yearFormatter = $derived.by(() => {
-		if (typeof yearFormat === "function") return (date: Date) => yearFormat(date.getFullYear());
-		return new DateFormatter(locale, { year: yearFormat }).format;
-	});
+	function formatYear(date: DateValue) {
+		const dateObj = date.toDate(getLocalTimeZone());
+		if (typeof yearFormat === "function") return yearFormat(dateObj.getFullYear());
+		return new DateFormatter(locale, { year: yearFormat }).format(dateObj);
+	}
 
-	const monthFormatter = $derived.by(() => {
-		if (typeof monthFormat === "function")
-			return (date: Date) => monthFormat(date.getMonth() + 1);
-		return new DateFormatter(locale, { month: monthFormat }).format;
-	});
+	function formatMonth(date: DateValue) {
+		const dateObj = date.toDate(getLocalTimeZone());
+		if (typeof monthFormat === "function") return monthFormat(dateObj.getMonth() + 1);
+		return new DateFormatter(locale, { month: monthFormat }).format(dateObj);
+	}
 </script>
 
 <!--
@@ -64,6 +65,8 @@ get along, so we shut typescript up by casting `value` to `never`.
 		className
 	)}
 	{locale}
+	{monthFormat}
+	{yearFormat}
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
@@ -79,11 +82,11 @@ get along, so we shut typescript up by casting `value` to `never`.
 					{:else if captionLayout === "dropdown-months"}
 						<Calendar.MonthSelect months={monthsProp} {monthFormat} />
 						{#if placeholder}
-							{yearFormatter(placeholder.toDate(getLocalTimeZone()))}
+							{formatYear(placeholder)}
 						{/if}
 					{:else if captionLayout === "dropdown-years"}
 						{#if placeholder}
-							{monthFormatter(placeholder.toDate(getLocalTimeZone()))}
+							{formatMonth(placeholder)}
 						{/if}
 						<Calendar.YearSelect {years} {yearFormat} />
 					{/if}

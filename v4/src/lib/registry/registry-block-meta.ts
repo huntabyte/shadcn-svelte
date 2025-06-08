@@ -108,187 +108,219 @@ export const blockMeta = {
 		description: "A controlled sidebar.",
 	},
 	"calendar-01": {
+		description: "A simple calendar.",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-02": {
+		description: "Multiple months with single selection.",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-03": {
+		description: "Multiple months with multiple selection.",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-04": {
+		description: "Single month with range selection",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-4 py-12 items-start md:py-20 justify-center min-w-0 xl:pt-28",
 		mobile: "component",
 	},
 	"calendar-05": {
+		description: "Multiple months with range selection",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-06": {
+		description: "Range selection with minimum days",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-07": {
+		description: "Range selection with minimum and maximum days",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-08": {
+		description: "Calendar with disabled days",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-09": {
+		description: "Calendar with disabled weekends",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-10": {
+		description: "Today button",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-11": {
+		description: "Start and end of month",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-12": {
+		description: "Localized calendar",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-13": {
+		description: "With Month and Year Dropdown",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-14": {
+		description: "With Booked/Unavailable Days",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-15": {
+		description: "With Week Numbers",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-16": {
+		description: "With time picker",
 		iframeHeight: "600px",
 		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-17": {
+		description: "With time picker inline",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-18": {
+		description: "Variable size",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-19": {
+		description: "With presets",
 		iframeHeight: "600px",
 		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-20": {
+		description: "With time presets",
 		iframeHeight: "600px",
 		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-21": {
+		description: "Custom days and formatters",
 		iframeHeight: "600px",
 		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-22": {
+		description: "Date picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-23": {
+		description: "Date range picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-24": {
+		description: "Date and Time picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-25": {
+		description: "Date and Time range picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-26": {
+		description: "Date range picker with time",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-27": {
+		description: "Chart filter",
 		iframeHeight: "600px",
 		className: "w-full bg-surface min-h-svh flex px-6 py-12 items-start justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-28": {
+		description: "Input with date picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-29": {
+		description: "Natural language date picker",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-30": {
+		description: "With little-date",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",
 	},
 	"calendar-31": {
+		description: "With event slots",
 		iframeHeight: "700px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0",
 		mobile: "component",
 	},
 	"calendar-32": {
+		description: "Date picker in a drawer",
 		iframeHeight: "600px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",

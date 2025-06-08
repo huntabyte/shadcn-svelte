@@ -18,6 +18,6 @@
 		excludeDisabled
 	/>
 	<div class="text-muted-foreground text-center text-xs">
-		Your stay must be between 2 and 20 nights
+		Your stay cannot extend through the weekend
 	</div>
 </div>

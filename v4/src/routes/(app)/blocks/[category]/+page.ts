@@ -31,7 +31,7 @@ let registryJsonItems: Record<string, () => Promise<unknown>>;
 async function loadItem(path: string): Promise<Item> {
 	const { default: mod } = (await registryJsonItems[path]()) as { default: unknown };
 	const item = registryItemSchema.parse(mod);
-	const description = blockMeta[item.name as keyof typeof blockMeta]?.description;
+	const meta = blockMeta[item.name as keyof typeof blockMeta];
 	const files = item.files.map((file) => {
 		let lang: Lang = "svelte";
 		if (file.target.endsWith(".ts")) {
@@ -45,7 +45,7 @@ async function loadItem(path: string): Promise<Item> {
 		return { ...file, highlightedContent, target };
 	});
 
-	return { ...item, files: files, description };
+	return { ...item, files: files, description: meta?.description, meta };
 }
 
 export const load: PageLoad = async ({ params }) => {

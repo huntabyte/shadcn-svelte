@@ -22,7 +22,7 @@
 		// Disabled
 		"data-[disabled]:text-muted-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		// Unavailable
-		"data-[unavailable]:line-through",
+		"data-[unavailable]:text-muted-foreground data-[unavailable]:line-through",
 		// hover
 		"dark:hover:text-accent-foreground",
 		// focus
