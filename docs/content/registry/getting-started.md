@@ -28,7 +28,7 @@ If you're using a different build system, you can skip this step as long as your
 
 ### Add a registry.json file
 
-Create a `registry.json` file in the root of your project. Your project can be a Next.js, Remix, Vite, or any other project that supports React.
+Create a `registry.json` file in the root of your project.
 
 ```json title="registry.json" showLineNumbers
 {
@@ -92,7 +92,7 @@ To add your component to the registry, you need to add your component definition
 
 ```json title="registry.json" showLineNumbers {6-17}
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "acme",
   "homepage": "https://acme.com",
   "items": [
@@ -126,9 +126,7 @@ You can read more about the registry item schema and file types in the [registry
 
 ### Install the shadcn-svelte CLI
 
-Note: the `registry build` command is currently only available in the `shadcn@next` version of the CLI.
-
-<PMInstall command="shadcn-svelte@next" />
+<PMInstall command="shadcn-svelte@latest" />
 
 ### Add a build script
 
@@ -196,4 +194,4 @@ Here are some guidelines to follow when building components for a registry.
 
 To install a registry item using the `shadcn-svelte` CLI, use the `add` command followed by the URL of the registry item.
 
-<PMExecute command="shadcn-svelte@next add http://localhost:5173/r/hello-world.json" />
+<PMExecute command="shadcn-svelte@latest add http://localhost:5173/r/hello-world.json" />

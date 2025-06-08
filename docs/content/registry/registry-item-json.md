@@ -7,7 +7,7 @@ The `registry-item.json` schema is used to define your custom registry items.
 
 ```json title="registry-item.json" showLineNumbers
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "hello-world",
   "title": "Hello World",
   "type": "registry:block",
@@ -52,7 +52,7 @@ The `$schema` property is used to specify the schema for the `registry-item.json
 
 ```json title="registry-item.json" showLineNumbers
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json"
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json"
 }
 ```
 

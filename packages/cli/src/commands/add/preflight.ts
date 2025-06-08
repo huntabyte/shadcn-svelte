@@ -2,7 +2,7 @@ import color from "chalk";
 import * as semver from "semver";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
-import { TW3_SITE_BASE_URL } from "../../constants.js";
+import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../constants.js";
 import { highlight } from "../../utils/utils.js";
 import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get-package-info.js";
 
@@ -51,7 +51,16 @@ function checkAddDependencies(
 	const isTailwind3 = semver.satisfies(semver.coerce(dependencies.tailwindcss) || "", "^3.0.0");
 
 	// this is the happy path
-	if (isTailwind4 && isSvelte5) return;
+	if (isTailwind4 && isSvelte5) {
+		const host = new URL(config.registry).host;
+		if (host === "next.shadcn-svelte.com") {
+			// update `next` registry and schema urls
+			config.$schema = cliConfig.DEFAULT_CONFIG.$schema;
+			config.registry = cliConfig.DEFAULT_CONFIG.registry;
+			cliConfig.writeConfig(cwd, config);
+		}
+		return;
+	}
 
 	if (isTailwind3 && isSvelte5) {
 		// if no `style` field, then we can assume their components.json is already updated
@@ -62,7 +71,10 @@ function checkAddDependencies(
 	}
 
 	// if incompatible, throw error
-	throw error(`This CLI version requires Tailwind CSS (v3 or v4) and Svelte v5.\n`);
+	throw error(
+		`This CLI version requires Tailwind CSS (v3 or v4) and Svelte v5.\n\n` +
+			`If you are on Svelte v4, use ${highlight("shadcn-svelte@0.14 add")} instead, or consider migrating to Svelte 5: ${SITE_BASE_URL}/docs/migration/svelte-5`
+	);
 }
 
 /**

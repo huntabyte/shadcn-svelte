@@ -4,4 +4,4 @@
 	let { name }: { name: string } = $props();
 </script>
 
-<PMExecute command={`shadcn-svelte@next add ${name}`} />
+<PMExecute command={`shadcn-svelte@latest add ${name}`} />

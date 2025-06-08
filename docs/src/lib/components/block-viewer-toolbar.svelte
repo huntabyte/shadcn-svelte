@@ -24,7 +24,7 @@
 		getCommand(
 			userConfig.current.packageManager,
 			"execute",
-			`shadcn-svelte@next add ${ctx.item.name}`
+			`shadcn-svelte@latest add ${ctx.item.name}`
 		)
 	);
 

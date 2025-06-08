@@ -78,7 +78,7 @@ export default defineConfig({
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@next init" />
+<PMExecute command="shadcn-svelte@latest init" />
 
 ### Configure components.json
 

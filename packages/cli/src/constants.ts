@@ -1,4 +1,4 @@
-export const SITE_BASE_URL = "https://next.shadcn-svelte.com";
+export const SITE_BASE_URL = "https://shadcn-svelte.com";
 export const TW3_SITE_BASE_URL = "https://tw3.shadcn-svelte.com";
 
 export const ALIASES = ["components", "ui", "hooks", "lib", "utils"] as const;

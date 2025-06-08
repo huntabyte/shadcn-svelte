@@ -19,7 +19,7 @@ description: How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.
 
 ## Svelte 4 to Svelte 5
 
-This first guide will take your project from Svelte 4 with Tailwind 3 to Svelte 5 and Tailwind 3. Tailwind 3 is still supported by the `@next` CLI.
+This first guide will take your project from Svelte 4 with Tailwind 3 to Svelte 5 and Tailwind 3.
 
 Once you've completed this guide and you're comfortable everything is working, you can move on to the next guide to migrate to Tailwind 4.
 
@@ -40,7 +40,7 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
 
 ```diff
 {
-  "$schema": "https://next.shadcn-svelte.com/schema.json",
+  "$schema": "https://shadcn-svelte.com/schema.json",
   "style": "default",
   "tailwind": {
     "css": "src/app.css",
@@ -54,7 +54,7 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
 +   "lib": "$lib"
   },
   "typescript": true,
-+ "registry": "https://next.shadcn-svelte.com/registry"
++ "registry": "https://shadcn-svelte.com/registry"
 }
 ```
 
@@ -211,7 +211,7 @@ git commit -m 'before migration'
 
 Now you can run the `add` command to start migrating your components.
 
-<PMExecute command="shadcn-svelte@next add dialog --overwrite" />
+<PMExecute command="shadcn-svelte@latest add dialog --overwrite" />
 
 Review the diff to see what was updated and make any necessary adjustments. Rinse and repeat for each component you want to migrate.
 
