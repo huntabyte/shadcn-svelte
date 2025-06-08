@@ -78,6 +78,9 @@ importers:
       '@lucide/svelte':
         specifier: ^0.513.0
         version: 0.513.0(svelte@5.33.14)
+      '@prettier/sync':
+        specifier: 0.3.0
+        version: 0.3.0(prettier@3.5.3)
       '@shadcn-svelte/registry':
         specifier: workspace:*
         version: link:../packages/registry
@@ -142,10 +145,10 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       embla-carousel-autoplay:
-        specifier: ^8.1.6
+        specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-svelte:
-        specifier: ^8.1.6
+        specifier: ^8.6.0
         version: 8.6.0(svelte@5.33.14)
       estree-walker:
         specifier: ^3.0.3
@@ -232,7 +235,7 @@ importers:
         specifier: ^4.19.4
         version: 4.19.4
       tw-animate-css:
-        specifier: ^1.3.3
+        specifier: ^1.3.4
         version: 1.3.4
       typescript:
         specifier: ^5.8.3
@@ -1325,6 +1328,11 @@ packages:
   '@poppinss/macroable@1.0.4':
     resolution: {integrity: sha512-ct43jurbe7lsUX5eIrj4ijO3j/6zIPp7CDnFWXDs7UPAbw1Pu1iH3oAmFdP4jcskKJBURH5M9oTtyeiUXyHX8Q==}
     engines: {node: '>=18.16.0'}
+
+  '@prettier/sync@0.3.0':
+    resolution: {integrity: sha512-3dcmCyAxIcxy036h1I7MQU/uEEBq8oLwf1CE3xeze+MPlgkdlb/+w6rGR/1dhp6Hqi17fRS6nvwnOzkESxEkOw==}
+    peerDependencies:
+      prettier: ^3.0.0
 
   '@rollup/rollup-android-arm-eabi@4.41.1':
     resolution: {integrity: sha512-NELNvyEWZ6R9QMkiytB4/L4zSEaBC03KIXEghptLGLZWJ6VPrL63ooZQCOnlx36aQPGhzuOMwDerC1Eb2VmrLw==}
@@ -5100,6 +5108,10 @@ snapshots:
 
   '@poppinss/macroable@1.0.4':
     optional: true
+
+  '@prettier/sync@0.3.0(prettier@3.5.3)':
+    dependencies:
+      prettier: 3.5.3
 
   '@rollup/rollup-android-arm-eabi@4.41.1':
     optional: true
