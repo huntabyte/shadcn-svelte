@@ -108,7 +108,7 @@ import "$lib/styles/app.css";
 
 Run the `shadcn-svelte` init command to setup your project:
 
-<PMExecute command="shadcn-svelte@0.14.3 init" />
+<PMExecute command="shadcn-svelte@0.14 init" />
 
 ### Configure components.json
 
@@ -141,7 +141,7 @@ export default defineConfig({
 
 ### Update tailwind.config.mjs
 
-When running `shadcn-svelte@0.14.3 init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
+When running `shadcn-svelte@0.14 init`, your Tailwind config for content will be overwritten. To fix this, add `astro` as one of the options inside of `content`:
 
 ```js title="tailwind.config.mjs" {1-4} showLineNumbers
 const config = {

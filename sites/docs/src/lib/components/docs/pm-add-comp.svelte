@@ -3,4 +3,4 @@
 	export let name: string;
 </script>
 
-<PMExecute command={`shadcn-svelte@0.14.3 add ${name}`} />
+<PMExecute command={`shadcn-svelte@0.14 add ${name}`} />
