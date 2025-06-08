@@ -31,7 +31,7 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"shadcn-svelte": "workspace:*",
-		"svelte": "^5.33.14",
+		"svelte": "^5.33.18",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.3.0",
 		"tailwind-variants": "^1.0.0",
@@ -40,7 +40,7 @@
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.6",
-		"zod": "^3.25.17"
+		"zod": "^3.25.56"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
