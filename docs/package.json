@@ -67,7 +67,7 @@
 		"runed": "^0.28.0",
 		"shadcn-svelte": "workspace:*",
 		"shiki": "^3.4.2",
-		"svelte": "^5.33.14",
+		"svelte": "^5.33.17",
 		"svelte-check": "^4.2.1",
 		"svelte-sonner": "^1.0.4",
 		"sveltekit-superforms": "^2.25.0",
