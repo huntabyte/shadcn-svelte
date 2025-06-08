@@ -19,6 +19,10 @@ const activeTheme = z
 		"purple",
 		"orange",
 		"teal",
+		"violet",
+		"red",
+		"yellow",
+		"neutral",
 	])
 	.default("default");
 

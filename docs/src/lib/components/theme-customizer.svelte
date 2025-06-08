@@ -18,7 +18,7 @@
 		(theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name)
 	);
 
-	const themeSelectLabel = $derived(
+	const coercedActiveTheme = $derived(
 		userConfig.current.activeTheme === "default" ? "neutral" : userConfig.current.activeTheme
 	);
 </script>
@@ -34,7 +34,7 @@
 				<Button
 					variant="link"
 					size="sm"
-					data-active={userConfig.current.activeTheme === theme.name}
+					data-active={coercedActiveTheme === theme.name}
 					class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
 					onclick={() => {
 						userConfig.setConfig({ activeTheme: theme.name as ActiveTheme });
@@ -65,7 +65,7 @@
 				class="justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
 			>
 				<span class="font-medium">Theme:</span>
-				<span data-slot="select-value">{themeSelectLabel ?? "Select a theme"}</span>
+				<span data-slot="select-value">{coercedActiveTheme ?? "Select a theme"}</span>
 			</Select.Trigger>
 			<Select.Content align="end">
 				<Select.Group>
