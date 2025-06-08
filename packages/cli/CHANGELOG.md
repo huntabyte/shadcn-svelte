@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.1
+
+### Patch Changes
+
+- 6c4acfd: fix: `update` failing in Node 24+
+
 ## 1.0.0
 
 ### Major Changes
