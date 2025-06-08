@@ -229,6 +229,10 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-caption.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-cell.svelte"
 				},
 				{
@@ -265,7 +269,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-month-select.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-month.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-months.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-nav.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -274,6 +290,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-prev-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-year-select.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1046,6 +1066,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-caption.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-cell.svelte"
 				},
 				{
@@ -1074,7 +1098,19 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-month-select.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-month.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-months.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-nav.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1083,6 +1119,10 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-prev-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-year-select.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1547,6 +1587,358 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/tooltip/tooltip-trigger.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-01",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-01.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-02",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-02.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-03",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-03.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-04",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-04.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-05",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-05.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-06",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-06.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-07",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-07.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-08",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-08.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-09",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-09.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-10",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "card", "button"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-10.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-11",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-11.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-12",
+			"type": "registry:block",
+			"registryDependencies": ["card", "select"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-12.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-13",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "select", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-13.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-14",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-14.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-15",
+			"type": "registry:block",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-15.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-16",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "card", "label", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-16.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-17",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "card", "label", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-17.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-18",
+			"type": "registry:block",
+			"registryDependencies": ["calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-18.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-19",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "button", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-19.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-20",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-20.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-21",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-21.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-22",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "popover", "button", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-22.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-23",
+			"type": "registry:block",
+			"registryDependencies": ["range-calendar", "popover", "button", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-23.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-24",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "popover", "button", "label", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-24.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-25",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "popover", "button", "label", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-25.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-26",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "popover", "button", "label", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-26.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-27",
+			"type": "registry:block",
+			"registryDependencies": ["chart", "card", "popover", "button", "range-calendar"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-27.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-28",
+			"type": "registry:block",
+			"registryDependencies": ["calendar", "input", "label", "popover", "button"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-28.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-29",
+			"type": "registry:block",
+			"registryDependencies": ["label", "popover", "button", "calendar", "input"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-29.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-30",
+			"type": "registry:block",
+			"registryDependencies": ["popover", "button", "range-calendar", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-30.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-31",
+			"type": "registry:block",
+			"registryDependencies": ["button", "calendar", "card"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-31.svelte"
+				}
+			]
+		},
+		{
+			"name": "calendar-32",
+			"type": "registry:block",
+			"registryDependencies": ["button", "calendar", "drawer", "label"],
+			"files": [
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/calendar-32.svelte"
 				}
 			]
 		},

@@ -14,16 +14,21 @@
 	bind:ref
 	class={cn(
 		buttonVariants({ variant: "ghost" }),
-		"size-8 select-none p-0 font-normal",
-		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground",
-		// Selected
-		"data-selected:bg-primary data-selected:text-primary-foreground data-selected:hover:bg-primary data-selected:hover:text-primary-foreground data-selected:focus:bg-primary data-selected:focus:text-primary-foreground data-selected:opacity-100 dark:data-selected:hover:bg-primary dark:data-selected:focus:bg-primary",
-		// Disabled
-		"data-disabled:text-muted-foreground data-disabled:opacity-50",
-		// Unavailable
-		"data-unavailable:text-destructive-foreground data-unavailable:line-through",
+		"size-(--cell-size) flex select-none flex-col items-center justify-center gap-1 whitespace-nowrap p-0 font-normal leading-none",
+		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground [&[data-today][data-disabled]]:text-muted-foreground",
+		"data-[selected]:bg-primary dark:data-[selected]:hover:bg-accent/50 data-[selected]:text-primary-foreground",
 		// Outside months
-		"data-[outside-month]:text-muted-foreground [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground data-[outside-month]:pointer-events-none data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:opacity-30",
+		"[&[data-outside-month]:not([data-selected])]:text-muted-foreground [&[data-outside-month]:not([data-selected])]:hover:text-accent-foreground",
+		// Disabled
+		"data-[disabled]:text-muted-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		// Unavailable
+		"data-[unavailable]:text-muted-foreground data-[unavailable]:line-through",
+		// hover
+		"dark:hover:text-accent-foreground",
+		// focus
+		"focus:border-ring focus:ring-ring/50 focus:relative",
+		// inner spans
+		"[&>span]:text-xs [&>span]:opacity-70",
 		className
 	)}
 	{...restProps}

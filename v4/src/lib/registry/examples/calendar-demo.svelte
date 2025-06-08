@@ -5,4 +5,4 @@
 	let value = today(getLocalTimeZone());
 </script>
 
-<Calendar type="single" bind:value class="rounded-md border" />
+<Calendar type="single" bind:value class="rounded-md border shadow-sm" captionLayout="dropdown" />

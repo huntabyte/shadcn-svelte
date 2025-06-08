@@ -41,7 +41,7 @@
 	{/if}
 {/snippet}
 
-<div class={cn("group relative my-4 flex flex-col gap-2", className)} {...restProps}>
+<div class={cn("group relative mb-12 mt-4 flex flex-col gap-2", className)} {...restProps}>
 	<Tabs.Root class="relative mr-auto w-full" bind:value>
 		<div class="flex items-center justify-between">
 			{#if !hideCode}

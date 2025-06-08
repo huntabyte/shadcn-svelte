@@ -4,7 +4,7 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { AreaChart } from "layerchart";
+	import { Area, AreaChart } from "layerchart";
 	import { curveNatural } from "d3-shape";
 
 	const chartData = [
@@ -132,8 +132,8 @@
 	);
 
 	const chartConfig = {
-		desktop: { label: "Desktop", color: "var(--chart-1)" },
-		mobile: { label: "Mobile", color: "var(--chart-2)" },
+		desktop: { label: "Desktop", color: "var(--primary)" },
+		mobile: { label: "Mobile", color: "var(--primary)" },
 	} satisfies Chart.ChartConfig;
 </script>
 
@@ -213,6 +213,36 @@
 					yAxis: { format: () => "" },
 				}}
 			>
+				{#snippet marks({ series, getAreaProps })}
+					<defs>
+						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+							<stop
+								offset="5%"
+								stop-color="var(--color-desktop)"
+								stop-opacity={1.0}
+							/>
+							<stop
+								offset="95%"
+								stop-color="var(--color-desktop)"
+								stop-opacity={0.1}
+							/>
+						</linearGradient>
+						<linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="5%" stop-color="var(--color-mobile)" stop-opacity={0.8} />
+							<stop
+								offset="95%"
+								stop-color="var(--color-mobile)"
+								stop-opacity={0.1}
+							/>
+						</linearGradient>
+					</defs>
+					{#each series as s, i (s.key)}
+						<Area
+							{...getAreaProps(s, i)}
+							fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
+						/>
+					{/each}
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {

@@ -6,6 +6,8 @@
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
 	import BlockViewerView from "./block-viewer-view.svelte";
 	import BlockViewerCode from "./block-viewer-code.svelte";
+	import type { Snippet } from "svelte";
+	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
 
 	type BlockViewerContextType = {
 		item: RegistryItem;
@@ -13,6 +15,7 @@
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
+		iframeKey: number;
 		highlightedFiles:
 			| (RegistryItemFile & {
 					highlightedContent: Promise<string>;
@@ -28,7 +31,10 @@
 		item,
 		tree,
 		highlightedFiles,
-	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> = $props();
+		children,
+	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> & {
+		children?: Snippet;
+	} = $props();
 
 	let view = $state<BlockViewerContextType["view"]>("preview");
 
@@ -49,10 +55,17 @@
 		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
+	let iframeKey = $state<number>(0);
 
 	BlockViewerContext.set({
 		get item() {
 			return item;
+		},
+		get iframeKey() {
+			return iframeKey;
+		},
+		set iframeKey(value) {
+			iframeKey = value;
 		},
 		get view() {
 			return view;
@@ -87,10 +100,11 @@
 <div
 	id={item.name}
 	data-view={view}
-	class="group/block-view-wrapper flex min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden md:flex-col"
+	class="group/block-view-wrapper flex min-w-0 scroll-mt-24 flex-col-reverse items-stretch gap-4 overflow-hidden md:flex-col"
 	style="--height: {item.meta?.iframeHeight ?? '930px'}"
 >
 	<BlockViewerToolbar />
 	<BlockViewerView />
 	<BlockViewerCode />
+	<BlockViewerViewMobile>{@render children?.()}</BlockViewerViewMobile>
 </div>

@@ -11,6 +11,7 @@
 	import FullscreenIcon from "@lucide/svelte/icons/fullscreen";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
+	import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
 	import { getCommand } from "$lib/package-manager.js";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 
@@ -30,7 +31,7 @@
 	const command = $derived(addCommand.command + " " + addCommand.args.join(" "));
 </script>
 
-<div class="flex w-full items-center gap-2 pl-2 md:pr-[14px]">
+<div class="hidden w-full items-center gap-2 pl-2 md:pr-6 lg:flex">
 	<Tabs.Root bind:value={ctx.view} class="hidden lg:flex">
 		<Tabs.List
 			class="grid h-8 grid-cols-2 items-center rounded-md p-1 *:data-[slot=tabs-trigger]:h-6 *:data-[slot=tabs-trigger]:rounded-sm *:data-[slot=tabs-trigger]:px-2 *:data-[slot=tabs-trigger]:text-xs"
@@ -39,15 +40,15 @@
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-	<Separator orientation="vertical" class="mx-2 hidden !h-4 lg:flex" />
+	<Separator orientation="vertical" class="mx-2 !h-4" />
 	<a
 		href="#{ctx.item.name}"
 		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-left"
 	>
-		{ctx.item.description}
+		{ctx.item.description?.replace(/\.$/, "")}
 	</a>
-	<div class="ml-auto hidden items-center gap-2 md:flex">
-		<div class="hidden h-8 items-center gap-1.5 rounded-md border p-1 shadow-none lg:flex">
+	<div class="ml-auto flex items-center gap-2">
+		<div class="h-8 items-center gap-1.5 rounded-md border p-1 shadow-none">
 			<ToggleGroup.Root
 				type="single"
 				value="100"
@@ -79,12 +80,25 @@
 					<span class="sr-only">Open in New Tab</span>
 					<FullscreenIcon />
 				</Button>
+				<Separator orientation="vertical" class="!h-4" />
+				<Button
+					size="icon"
+					variant="ghost"
+					class="size-6 rounded-sm p-0"
+					title="Refresh Preview"
+					onclick={() => {
+						ctx.iframeKey = ctx.iframeKey + 1;
+					}}
+				>
+					<RotateCcwIcon />
+					<span class="sr-only">Refresh Preview</span>
+				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator orientation="vertical" class="mx-1 hidden !h-4 lg:flex" />
+		<Separator orientation="vertical" class="mx-1 !h-4" />
 		<Button
 			variant="outline"
-			class="hidden w-fit gap-1 px-2 shadow-none md:flex"
+			class="w-fit gap-1 px-2 shadow-none"
 			size="sm"
 			onclick={() => clipboard.copy(command)}
 		>
