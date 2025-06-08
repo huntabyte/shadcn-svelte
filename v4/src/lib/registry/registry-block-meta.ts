@@ -220,7 +220,7 @@ export const blockMeta = {
 	},
 	"calendar-17": {
 		description: "With time picker inline",
-		iframeHeight: "600px",
+		iframeHeight: "650px",
 		className:
 			"w-full bg-surface min-h-svh flex px-6 py-12 items-start md:pt-20 justify-center min-w-0 xl:py-24",
 		mobile: "component",

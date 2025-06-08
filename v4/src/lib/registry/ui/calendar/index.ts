@@ -13,6 +13,9 @@ import NextButton from "./calendar-next-button.svelte";
 import PrevButton from "./calendar-prev-button.svelte";
 import MonthSelect from "./calendar-month-select.svelte";
 import YearSelect from "./calendar-year-select.svelte";
+import Month from "./calendar-month.svelte";
+import Nav from "./calendar-nav.svelte";
+import Caption from "./calendar-caption.svelte";
 
 export {
 	Day,
@@ -27,10 +30,11 @@ export {
 	HeadCell,
 	NextButton,
 	PrevButton,
-	MonthSelect,
+	Nav,
+	Month,
 	YearSelect,
-	MonthSelect as MonthSelectPrimitive,
-	YearSelect as YearSelectPrimitive,
+	MonthSelect,
+	Caption,
 	//
 	Root as Calendar,
 };

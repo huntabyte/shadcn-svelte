@@ -229,6 +229,10 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-caption.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-cell.svelte"
 				},
 				{
@@ -269,7 +273,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-month.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/calendar/calendar-months.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/calendar/calendar-nav.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -1054,6 +1066,10 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-caption.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-cell.svelte"
 				},
 				{
@@ -1086,7 +1102,15 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-month.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/range-calendar/range-calendar-months.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/range-calendar/range-calendar-nav.svelte"
 				},
 				{
 					"type": "registry:file",

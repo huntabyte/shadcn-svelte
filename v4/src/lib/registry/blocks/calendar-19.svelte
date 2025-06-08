@@ -5,7 +5,7 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 
 	let todayDate = today(getLocalTimeZone());
-	let value = $state<CalendarDate | undefined>(todayDate.add({ days: 3 }));
+	let value = $state<CalendarDate | undefined>(new CalendarDate(2025, 6, 12));
 </script>
 
 <Card.Root class="max-w-[300px] py-4">

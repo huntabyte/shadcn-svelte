@@ -6,6 +6,8 @@
 	let {
 		ref = $bindable(null),
 		class: className,
+		value,
+		onchange,
 		...restProps
 	}: WithoutChildrenOrChild<CalendarPrimitive.MonthSelectProps> = $props();
 </script>
@@ -18,11 +20,13 @@
 >
 	<CalendarPrimitive.MonthSelect bind:ref class="absolute inset-0 opacity-0" {...restProps}>
 		{#snippet child({ props, monthItems, selectedMonthItem })}
-			<select {...props}>
+			<select {...props} {value} {onchange}>
 				{#each monthItems as monthItem (monthItem.value)}
 					<option
 						value={monthItem.value}
-						selected={monthItem.value === selectedMonthItem.value}
+						selected={value !== undefined
+							? monthItem.value === value
+							: monthItem.value === selectedMonthItem.value}
 					>
 						{monthItem.label}
 					</option>
@@ -32,7 +36,7 @@
 				class="[&>svg]:text-muted-foreground flex h-8 select-none items-center gap-1 rounded-md pl-2 pr-1 text-sm font-medium [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
-				{selectedMonthItem.label}
+				{monthItems.find((item) => item.value === value)?.label || selectedMonthItem.label}
 				<ChevronDownIcon class="size-4" />
 			</span>
 		{/snippet}

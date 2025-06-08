@@ -34,7 +34,7 @@
 				id="time-to"
 				type="time"
 				step="1"
-				defaultValue="12:30:00"
+				value="12:30:00"
 				class="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>

@@ -3,12 +3,7 @@
 	import * as Calendar from "./index.js";
 	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 	import type { ButtonVariant } from "../button/button.svelte";
-	import {
-		DateFormatter,
-		getLocalTimeZone,
-		isEqualMonth,
-		type DateValue,
-	} from "@internationalized/date";
+	import { isEqualMonth, type DateValue } from "@internationalized/date";
 	import type { Snippet } from "svelte";
 
 	let {
@@ -42,18 +37,6 @@
 		if (captionLayout.startsWith("dropdown")) return "short";
 		return "long";
 	});
-
-	function formatYear(date: DateValue) {
-		const dateObj = date.toDate(getLocalTimeZone());
-		if (typeof yearFormat === "function") return yearFormat(dateObj.getFullYear());
-		return new DateFormatter(locale, { year: yearFormat }).format(dateObj);
-	}
-
-	function formatMonth(date: DateValue) {
-		const dateObj = date.toDate(getLocalTimeZone());
-		if (typeof monthFormat === "function") return monthFormat(dateObj.getMonth() + 1);
-		return new DateFormatter(locale, { month: monthFormat }).format(dateObj);
-	}
 </script>
 
 <!--
@@ -76,63 +59,56 @@ get along, so we shut typescript up by casting `value` to `never`.
 	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
-		<Calendar.Header>
-			<Calendar.PrevButton variant={buttonVariant} />
-			{#if captionLayout.includes("dropdown")}
-				<div
-					class="h-(--cell-size) flex w-full items-center justify-center gap-1.5 text-sm font-medium"
-				>
-					{#if captionLayout === "dropdown"}
-						<Calendar.MonthSelect months={monthsProp} {monthFormat} />
-						<Calendar.YearSelect {years} {yearFormat} />
-					{:else if captionLayout === "dropdown-months"}
-						<Calendar.MonthSelect months={monthsProp} {monthFormat} />
-						{#if placeholder}
-							{formatYear(placeholder)}
-						{/if}
-					{:else if captionLayout === "dropdown-years"}
-						{#if placeholder}
-							{formatMonth(placeholder)}
-						{/if}
-						<Calendar.YearSelect {years} {yearFormat} />
-					{/if}
-				</div>
-			{:else}
-				<Calendar.Heading />
-			{/if}
-			<Calendar.NextButton variant={buttonVariant} />
-		</Calendar.Header>
 		<Calendar.Months>
-			{#each months as month (month)}
-				<Calendar.Grid>
-					<Calendar.GridHead>
-						<Calendar.GridRow class="flex select-none">
-							{#each weekdays as weekday (weekday)}
-								<Calendar.HeadCell>
-									{weekday.slice(0, 2)}
-								</Calendar.HeadCell>
-							{/each}
-						</Calendar.GridRow>
-					</Calendar.GridHead>
-					<Calendar.GridBody>
-						{#each month.weeks as weekDates (weekDates)}
-							<Calendar.GridRow class="mt-2 w-full">
-								{#each weekDates as date (date)}
-									<Calendar.Cell {date} month={month.value}>
-										{#if day}
-											{@render day({
-												day: date,
-												outsideMonth: !isEqualMonth(date, month.value),
-											})}
-										{:else}
-											<Calendar.Day />
-										{/if}
-									</Calendar.Cell>
+			<Calendar.Nav>
+				<Calendar.PrevButton variant={buttonVariant} />
+				<Calendar.NextButton variant={buttonVariant} />
+			</Calendar.Nav>
+			{#each months as month, monthIndex (month)}
+				<Calendar.Month>
+					<Calendar.Header>
+						<Calendar.Caption
+							{captionLayout}
+							months={monthsProp}
+							{monthFormat}
+							{years}
+							{yearFormat}
+							month={month.value}
+							bind:placeholder
+							{locale}
+							{monthIndex}
+						/>
+					</Calendar.Header>
+					<Calendar.Grid>
+						<Calendar.GridHead>
+							<Calendar.GridRow class="select-none">
+								{#each weekdays as weekday (weekday)}
+									<Calendar.HeadCell>
+										{weekday.slice(0, 2)}
+									</Calendar.HeadCell>
 								{/each}
 							</Calendar.GridRow>
-						{/each}
-					</Calendar.GridBody>
-				</Calendar.Grid>
+						</Calendar.GridHead>
+						<Calendar.GridBody>
+							{#each month.weeks as weekDates (weekDates)}
+								<Calendar.GridRow class="mt-2 w-full">
+									{#each weekDates as date (date)}
+										<Calendar.Cell {date} month={month.value}>
+											{#if day}
+												{@render day({
+													day: date,
+													outsideMonth: !isEqualMonth(date, month.value),
+												})}
+											{:else}
+												<Calendar.Day />
+											{/if}
+										</Calendar.Cell>
+									{/each}
+								</Calendar.GridRow>
+							{/each}
+						</Calendar.GridBody>
+					</Calendar.Grid>
+				</Calendar.Month>
 			{/each}
 		</Calendar.Months>
 	{/snippet}
