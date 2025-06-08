@@ -2,7 +2,7 @@ import color from "chalk";
 import * as semver from "semver";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";
-import { TW3_SITE_BASE_URL } from "../../constants.js";
+import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../constants.js";
 import { highlight } from "../../utils/utils.js";
 import { getDependencyPackageInfo, getProjectPackageInfo } from "../../utils/get-package-info.js";
 
@@ -64,7 +64,7 @@ function checkAddDependencies(
 	// if incompatible, throw error
 	throw error(
 		`This CLI version requires Tailwind CSS (v3 or v4) and Svelte v5.\n\n` +
-			`If you are on Svelte v4, use ${highlight("shadcn-svelte@0.14 add")} instead, or consider migrating to Svelte 5: https://shadcn-svelte.com/docs/migration/svelte-5`
+			`If you are on Svelte v4, use ${highlight("shadcn-svelte@0.14 add")} instead, or consider migrating to Svelte 5: ${SITE_BASE_URL}/docs/migration/svelte-5`
 	);
 }
 
