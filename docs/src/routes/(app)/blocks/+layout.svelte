@@ -20,7 +20,7 @@
 
 	afterNavigate(async (nav) => {
 		// don't preload when on mobile
-		if (mobile.current) return
+		if (mobile.current) return;
 
 		const slug = nav.to?.params?.["category"];
 		const href = slug ? `/blocks/${slug}` : "/blocks";
