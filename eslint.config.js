@@ -55,7 +55,7 @@ export default ts.config(
 			".svelte-kit/",
 			"dist/",
 			".svelte-kit/**/*",
-			"sites/docs/.svelte-kit/**/*",
+			"docs/.svelte-kit/**/*",
 			".svelte-kit",
 			"playgrounds/**/*",
 			"packages/cli/dist/**/*",

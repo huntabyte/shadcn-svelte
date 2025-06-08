@@ -1,5 +1,4 @@
 packages:
-    - "sites/*"
     - "packages/*"
-    - "v4"
+    - "docs"
     - "registry-template"
