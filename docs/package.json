@@ -10,12 +10,14 @@
 		"build": "pnpm build:content && pnpm build:svelte",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
+		"build:registry": "tsx scripts/build-registry.ts build-registry",
 		"build:screenshots": "tsx scripts/capture-registry.ts",
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
+		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"check": "pnpm build:content && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"prepare": "pnpm sync || echo ''",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
 		"@dnd-kit-svelte/core": "^0.0.8",

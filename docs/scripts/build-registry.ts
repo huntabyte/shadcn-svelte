@@ -192,3 +192,7 @@ export const Index = {`;
 
 	writeFileWithDirs(path.join(THEMES_CSS_PATH, `themes.css`), themeCSS.join("\n\n"), "utf-8");
 }
+
+if (process.argv.includes("build-registry")) {
+	build();
+}
