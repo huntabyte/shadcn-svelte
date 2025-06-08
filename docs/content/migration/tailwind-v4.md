@@ -78,9 +78,9 @@ The upgrade script will automatically migrate your project to the latest PostCSS
 
 ```diff title="postcss.config.js"
 - export default {
--   plugins: {
--     '@tailwindcss/postcss': {},
--   }
+- 	plugins: {
+- 		'@tailwindcss/postcss': {},
+- 	}
 - };
 ```
 
@@ -271,7 +271,7 @@ We override the styles applied here so this is just dead code.
 
 #### CSS Variables and Theme Config
 
-We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and setup an `@theme inline` directive to replace our Tailwind v3 config.
+We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and set up an `@theme inline` directive to replace our Tailwind v3 config.
 
 Once complete, your `app.css` file should look something like this (the color values will differ depending on your theme):
 
