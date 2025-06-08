@@ -71,4 +71,5 @@ export default defineConfig({
 		darkMode,
 		registry,
 	},
+	output: { assets: "static" },
 });
