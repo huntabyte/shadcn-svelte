@@ -1,0 +1,43 @@
+name: Svelte 4 Deployment
+on:
+  push:
+    branches:
+      - svelte-4
+    paths:
+      - sites/docs/**
+  workflow_dispatch:
+
+
+jobs:
+  deploy-production:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy Production Site to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build site
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: pnpm build
+
+      - name: Deploy to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: shadcn-svelte
+          directory: ./.svelte-kit/cloudflare
+          workingDirectory: sites/docs
+          branch: ${{ github.ref_name }}
