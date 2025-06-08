@@ -42,7 +42,7 @@ const config = {
 
 ### Run the CLI
 
-<PMExecute command="shadcn-svelte@latest init" />
+<PMExecute command="shadcn-svelte@0.14.3 init" />
 
 ### Configure components.json
 
