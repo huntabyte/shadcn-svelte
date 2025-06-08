@@ -4,8 +4,9 @@
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import * as ToggleGroup from "$lib/registry/ui/toggle-group/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { Area, AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -235,12 +236,21 @@
 							/>
 						</linearGradient>
 					</defs>
-					{#each series as s, i (s.key)}
-						<Area
-							{...getAreaProps(s, i)}
-							fill={s.key === "desktop" ? "url(#fillDesktop)" : "url(#fillMobile)"}
-						/>
-					{/each}
+					<ChartClipPath
+						initialWidth={0}
+						motion={{
+							width: { type: "tween", duration: 1000, easing: cubicInOut },
+						}}
+					>
+						{#each series as s, i (s.key)}
+							<Area
+								{...getAreaProps(s, i)}
+								fill={s.key === "desktop"
+									? "url(#fillDesktop)"
+									: "url(#fillMobile)"}
+							/>
+						{/each}
+					</ChartClipPath>
 				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip

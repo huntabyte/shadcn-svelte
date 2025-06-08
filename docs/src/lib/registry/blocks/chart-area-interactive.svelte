@@ -4,9 +4,10 @@
 	import * as Card from "$lib/registry/ui/card/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 	import { scaleUtc } from "d3-scale";
-	import { AreaChart } from "layerchart";
+	import { Area, AreaChart, ChartClipPath } from "layerchart";
 	import { curveNatural } from "d3-shape";
 	import ChartContainer from "../ui/chart/chart-container.svelte";
+	import { cubicInOut } from "svelte/easing";
 
 	const chartData = [
 		{ date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
@@ -195,6 +196,45 @@
 					yAxis: { format: () => "" },
 				}}
 			>
+				{#snippet marks({ series, getAreaProps })}
+					<defs>
+						<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+							<stop
+								offset="5%"
+								stop-color="var(--color-desktop)"
+								stop-opacity={1.0}
+							/>
+							<stop
+								offset="95%"
+								stop-color="var(--color-desktop)"
+								stop-opacity={0.1}
+							/>
+						</linearGradient>
+						<linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="5%" stop-color="var(--color-mobile)" stop-opacity={0.8} />
+							<stop
+								offset="95%"
+								stop-color="var(--color-mobile)"
+								stop-opacity={0.1}
+							/>
+						</linearGradient>
+					</defs>
+					<ChartClipPath
+						initialWidth={0}
+						motion={{
+							width: { type: "tween", duration: 1000, easing: cubicInOut },
+						}}
+					>
+						{#each series as s, i (s.key)}
+							<Area
+								{...getAreaProps(s, i)}
+								fill={s.key === "desktop"
+									? "url(#fillDesktop)"
+									: "url(#fillMobile)"}
+							/>
+						{/each}
+					</ChartClipPath>
+				{/snippet}
 				{#snippet tooltip()}
 					<Chart.Tooltip
 						labelFormatter={(v: Date) => {
