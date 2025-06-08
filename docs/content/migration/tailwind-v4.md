@@ -19,7 +19,7 @@ This documentation site is now running Tailwind v4. If you're looking for the ol
 
 ## What's New
 
-- The `@next` CLI can now initialize projects with Tailwind v4 and Svelte 5.
+- The `@latest` CLI can now initialize projects with Tailwind v4 and Svelte 5.
 - Full support for the new `@theme` directive and `@theme inline` option.
 - All components are updated for Tailwind v4 and Svelte 5.
 - Every primitive that renders an element now has a `data-slot` attribute for styling.
@@ -38,7 +38,7 @@ If you find any bugs, please us know on [GitHub](https://github.com/huntabyte/sh
 
 ## Try It Out
 
-You can start using Tailwind v4 and Svelte 5 today using the `@next` CLI. See the specific install docs
+You can start using Tailwind v4 and Svelte 5 today using the `@latest` CLI. See the specific install docs
 
 <InstallCards />
 

@@ -126,8 +126,6 @@ You can read more about the registry item schema and file types in the [registry
 
 ### Install the shadcn-svelte CLI
 
-Note: the `registry build` command is currently only available in the `shadcn@next` version of the CLI.
-
 <PMInstall command="shadcn-svelte@latest" />
 
 ### Add a build script

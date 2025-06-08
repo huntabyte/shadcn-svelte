@@ -19,7 +19,7 @@ description: How to migrate from Svelte 4 and Tailwind 3 to Svelte 5.
 
 ## Svelte 4 to Svelte 5
 
-This first guide will take your project from Svelte 4 with Tailwind 3 to Svelte 5 and Tailwind 3. Tailwind 3 is still supported by the `@next` CLI.
+This first guide will take your project from Svelte 4 with Tailwind 3 to Svelte 5 and Tailwind 3.
 
 Once you've completed this guide and you're comfortable everything is working, you can move on to the next guide to migrate to Tailwind 4.
 
