@@ -15,7 +15,6 @@
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",
-		"prepare": "pnpm sync || echo ''",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
