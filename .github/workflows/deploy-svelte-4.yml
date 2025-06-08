@@ -40,4 +40,4 @@ jobs:
           projectName: shadcn-svelte
           directory: ./.svelte-kit/cloudflare
           workingDirectory: sites/docs
-          branch: svelte-4
+          branch: ${{ github.ref_name }}
