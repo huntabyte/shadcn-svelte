@@ -24,9 +24,15 @@ links:
 
 </ComponentPreview>
 
+## Blocks
+
+We have built a collection of 30+ calendar blocks that you can use to build your own calendar components.
+
+See call calendar blocks in the [Blocks Library](/docs/blocks/calendar) page.
+
 ## About
 
-The `<Calendar />` component is built on top of the [Bits Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
 
 If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
 
@@ -63,28 +69,60 @@ You can use the `<Calendar />` component to build a date picker. See the [Date P
 
 ## Examples
 
-### Form
+### Range Calendar
 
-<ComponentPreview name="date-picker-demo">
+<ComponentPreview name="calendar-02" class="**:[.preview]:h-auto lg:**:[.preview]:h-[450px]">
+
+<div></div>
+
+</ComponentPreview>
+
+### Month and Year Selector
+
+<ComponentPreview name="calendar-13">
 
 <div></div>
 
 </ComponentPreview>
 
-## Advanced Customization
+### Date of Birth Picker
 
-The `<Calendar />` component can be combined with other components to create a more complex calendar.
-
-<Callout>
-    By default, we export the combined Calendar component as <code>Calendar</code> as there are quite a few pieces that need to be combined to create it. We're modifying that component in the examples below.
-</Callout>
-
-### Month & Year Selects
-
-Here's an example of how you could create a calendar with month and year select dropdowns instead of the previous and next buttons.
-
-<ComponentPreview name="calendar-with-selects">
+<ComponentPreview name="calendar-22">
 
 <div></div>
 
 </ComponentPreview>
+
+### Date and Time Picker
+
+<ComponentPreview name="calendar-24">
+
+<div></div>
+
+</ComponentPreview>
+
+### Natural Language Picker
+
+This component uses the `chrono-node` library to parse natural language dates.
+
+<ComponentPreview name="calendar-29">
+
+<div></div>
+
+</ComponentPreview>
+
+## Upgrade Guide
+
+You can upgrade to the latest version of the `<Calendar />` component by running the following command:
+
+<PMAddComp name="calendar" />
+
+When you're prompted to overwrite the existing files, select `Yes`. **If you have made any changes to the `Calendar` component, you will need to merge your changes with the new version.**
+
+#### Installing Blocks
+
+After upgrading the `Calendar` component, you can add the new blocks with the following:
+
+<PMAddComp name="calendar-02" />
+
+This will add the latest version of the calendar blocks.

@@ -12,7 +12,7 @@
 	)}
 >
 	<div class="text-balance text-base font-semibold leading-tight group-hover:underline">
-		Special sponsor spot
+		Special sponsor
 	</div>
 	<div class="text-muted-foreground">We're looking for one partner to be featured here.</div>
 	<div class="text-muted-foreground">Support the project and reach thousands of developers.</div>
