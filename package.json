@@ -1,5 +1,5 @@
 {
-	"name": "shadcn-svelte",
+	"name": "@shadcn-svelte/monorepo",
 	"version": "0.0.1",
 	"description": "monorepo for shadcn-svelte",
 	"author": {
@@ -8,29 +8,26 @@
 	},
 	"private": true,
 	"scripts": {
-		"build": "pnpm build:registry && pnpm build:site",
-		"build:cli": "pnpm -F shadcn-svelte build",
-		"build:registry": "pnpm -F docs build:registry",
-		"build:site": "pnpm -F docs build",
-		"dev": "pnpm build:registry && pnpm -F docs dev",
-		"dev:cli": "pnpm -F shadcn-svelte dev",
+		"build": "pnpm build:docs",
+		"build:cli": "pnpm -r -F \"./packages/**\" build",
+		"build:docs": "pnpm -F docs build",
+		"dev": "pnpm -F docs dev",
+		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
-		"test": "pnpm -F docs test",
-		"check": "pnpm -F docs check",
-		"check:watch": "pnpm -F docs check:watch",
-		"test:unit": "pnpm -F docs test:unit",
+		"test": "pnpm -F shadcn-svelte test",
+		"build:registry-template": "pnpm build:cli && pnpm -F registry-template build:registry",
+		"check": "pnpm -F docs check && pnpm -F \"./packages/**\" check",
 		"lint": "prettier --check . && eslint .",
-		"lint:fix": "eslint --fix .",
 		"format": "prettier --write .",
 		"preinstall": "npx only-allow pnpm",
-		"postinstall": "pnpm -r sync",
+		"postinstall": "pnpm build:cli && pnpm -r sync",
 		"ci:publish": "changeset publish",
 		"ci:build": "pnpm build:cli",
 		"ci:release": "pnpm ci:build && pnpm ci:publish"
 	},
 	"engines": {
 		"pnpm": ">=9",
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"packageManager": "pnpm@9.7.1",
 	"repository": {
@@ -40,21 +37,26 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@changesets/cli": "^2.27.1",
-		"@huntabyte/eslint-config": "^0.3.2",
-		"@huntabyte/eslint-plugin": "^0.1.0",
-		"eslint": "^9.0.0",
-		"eslint-plugin-svelte": "^2.37.0",
-		"prettier": "^3.2.5",
-		"prettier-plugin-svelte": "^3.2.2",
-		"prettier-plugin-tailwindcss": "0.5.13",
-		"pretty-quick": "^4.0.0",
-		"simple-git-hooks": "^2.10.0",
-		"svelte": "^4.2.12",
-		"svelte-eslint-parser": "^0.41.0",
-		"wrangler": "^3.95.0"
+		"@changesets/cli": "^2.29.4",
+		"@eslint/compat": "^1.2.9",
+		"@eslint/js": "^9.28.0",
+		"@types/node": "^22.15.30",
+		"eslint": "^9.28.0",
+		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-svelte": "^3.9.1",
+		"globals": "^16.2.0",
+		"minimatch": "^10.0.1",
+		"prettier": "^3.5.3",
+		"prettier-plugin-svelte": "^3.4.0",
+		"prettier-plugin-tailwindcss": "^0.6.12",
+		"pretty-quick": "^4.2.2",
+		"svelte": "^5.33.17",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.33.1"
 	},
-	"simple-git-hooks": {
-		"pre-commit": "pnpm -r format:staged --staged"
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
 	}
 }

@@ -1,10 +1,10 @@
 import process from "node:process";
 import color from "chalk";
-import * as p from "./prompts.js";
-import { getPackageInfo } from "./get-package-info.js";
+import * as p from "@clack/prompts";
+import { getCLIPackageInfo } from "./get-package-info.js";
 
 export function intro() {
-	const packageInfo = getPackageInfo();
+	const packageInfo = getCLIPackageInfo();
 	const title = color.bgHex("#FF5500").black(" shadcn-svelte ");
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
@@ -12,13 +12,13 @@ export function intro() {
 	// @ts-expect-error types for these globals are not defined
 	if (typeof Bun !== "undefined" || typeof Deno !== "undefined") {
 		p.log.warn(
-			`You are currently using an unsupported runtime. Only Node.js v18 or higher is officially supported. Continue at your own risk.`
+			`You are currently using an unsupported runtime. Only Node.js v22 or higher is officially supported. Continue at your own risk.`
 		);
 	}
 }
 
-export function cancel(): never {
-	p.cancel("Operation cancelled.");
+export function cancel(msg = "Operation cancelled."): never {
+	p.cancel(msg);
 	process.exit(0);
 }
 
@@ -31,4 +31,9 @@ export function prettifyList(arr: string[], max: number = 9): string {
 		if (i % max === 0) return `${pre},\n${curr}`;
 		return `${pre}, ${curr}`;
 	});
+}
+
+export function getPadding(lines: string[]) {
+	const lengths = lines.map((s) => s.length);
+	return Math.max(...lengths);
 }

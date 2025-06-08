@@ -1,11 +1,13 @@
 {
 	// Enable the ESlint flat config support
-	"eslint.experimental.useFlatConfig": true,
+	"eslint.useFlatConfig": true,
 
 	// Auto fix
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",
-		"source.organizeImports": "never"
+		"source.organizeImports": "never",
+		"source.removeUnusedImports": "never",
+		"source.removeUnused.ts": "never"
 	},
 
 	// Enable eslint for all supported languages

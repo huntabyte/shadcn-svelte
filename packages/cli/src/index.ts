@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import process from "node:process";
 import { Command } from "commander";
-import { add, init, update } from "./commands";
-import { getPackageInfo } from "./utils/get-package-info.js";
+import * as commands from "./commands/index.js";
+import { getCLIPackageInfo } from "./utils/get-package-info.js";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -20,14 +20,17 @@ if (currentMajorVersion < minimumMajorVersion) {
 async function main() {
 	console.clear();
 
-	const packageInfo = getPackageInfo();
+	const packageInfo = getCLIPackageInfo();
 
 	const program = new Command()
 		.name("shadcn-svelte")
 		.description("Add shadcn-svelte components to your project")
 		.version(packageInfo.version || "0.0.0", "-v, --version", "display the version number");
 
-	program.addCommand(init).addCommand(add).addCommand(update);
+	// register commands
+	for (const cmd of Object.values(commands)) {
+		program.addCommand(cmd);
+	}
 
 	program.parse();
 }

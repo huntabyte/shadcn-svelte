@@ -1,5 +1,128 @@
 # shadcn-svelte
 
+## 1.0.0-next.19
+
+### Patch Changes
+
+- 9c94564: feat: add support for registry-item type `registry:style`
+
+## 1.0.0-next.18
+
+### Patch Changes
+
+- 670a3e4: fix: respect `utils` path-alias
+
+## 1.0.0-next.17
+
+### Patch Changes
+
+- 44b2445: feat: allow import maps to be used as path aliases
+- 425edb7: fix: disable ES transformations when stripping types
+
+## 1.0.0-next.16
+
+### Patch Changes
+
+- 9488a61: feat: add customizable `typescript.config` path option to `components.json`
+
+## 1.0.0-next.15
+
+### Patch Changes
+
+- 6c54fae: fix: always strip trailing slashes from path aliases
+
+## 1.0.0-next.14
+
+### Patch Changes
+
+- 633a6de: fix: ensure path aliases resolve to the correct path
+
+## 1.0.0-next.13
+
+### Patch Changes
+
+- ea9f77c: fix: remove dangling comma in 'components to install' list
+
+## 1.0.0-next.12
+
+### Patch Changes
+
+- 5bddbc6: fix: resolve deps from node_modules when evaluating their versions
+- 34d0a9f: chore: display the output of a package manager's `install` process during dependency installation
+
+## 1.0.0-next.11
+
+### Patch Changes
+
+- ad4cd6b: breaking: svelte 5 + tailwindcss v4
+
+## 1.0.0-next.10
+
+### Patch Changes
+
+- dc196c3: chore: point to `tw3.shadcn-svelte.com` subdomain on `init`
+
+## 1.0.0-next.9
+
+### Patch Changes
+
+- 962d8be: fix: Improve error message when failing to fetch base colors.
+
+## 1.0.0-next.8
+
+### Patch Changes
+
+- d764bdf: fix(cli)(next): Add missing ui alias option
+
+## 1.0.0-next.7
+
+### Patch Changes
+
+- 8826014: feat: Improved error message when fetching the registry fails
+
+## 1.0.0-next.6
+
+### Patch Changes
+
+- 7669720: fix: workaround caching issue preventing the correct registry from being fetched
+
+## 1.0.0-next.5
+
+### Patch Changes
+
+- 61d98fd: chore: Add warning for incompatible dependency
+
+## 1.0.0-next.4
+
+### Patch Changes
+
+- f932494: fix: ensure `ui` and `hooks` paths are normalized
+
+## 1.0.0-next.3
+
+### Patch Changes
+
+- 11d0ff3: fix: Ensure `svelte-kit sync` executes locally
+
+## 1.0.0-next.2
+
+### Patch Changes
+
+- fb7c683: fix(next): add newline to end of `components.json`
+
+## 1.0.0-next.1
+
+### Patch Changes
+
+- e29f8f5: fix: Ensure `utils.(js|ts)` is not fetched from the registry on `update` command
+- e29f8f5: fix: `update` command now properly updates components
+
+## 1.0.0-next.0
+
+### Major Changes
+
+- b479077: Svelte 5
+
 ## 0.14.3
 
 ### Patch Changes

@@ -1,4 +1,4 @@
 packages:
-    - "sites/*"
     - "packages/*"
-    - "playgrounds/*"
+    - "docs"
+    - "registry-template"

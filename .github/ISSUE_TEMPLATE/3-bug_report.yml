@@ -44,7 +44,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,tailwindcss,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap,cmdk-sv,svelte-radix,lucide-svelte,svelte-sonner --binaries --browsers`
+      description: Output of `npx envinfo --system --npmPackages svelte,shadcn-svelte,tailwindcss,bits-ui,vaul-svelte,sveltekit-superforms,@sveltejs/kit,mode-watcher,formsnap,cmdk-sv,svelte-radix,@lucide/svelte,svelte-sonner --binaries --browsers`
       render: bash
       placeholder: System, Binaries, Browsers
     validations:

@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-preview:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -19,13 +19,6 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-
-      # Image cache setup
-      - name: Setup Image cache
-        uses: actions/cache@v4
-        with:
-          path: "**/node_modules/.cache/imagetools"
-          key: ${{ runner.os }}-image-cache-${{ hashFiles('**/src/lib/img') }}
 
       - name: Install dependencies
         run: pnpm install
@@ -39,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: preview-build
-          path: sites/docs/.svelte-kit/cloudflare
+          path: docs/.svelte-kit/cloudflare

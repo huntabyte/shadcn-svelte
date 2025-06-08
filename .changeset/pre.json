@@ -1,0 +1,36 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "shadcn-svelte": "0.14.0",
+    "docs": "0.1.0",
+    "@shadcn-svelte/registry": "0.0.0",
+    "@shadcn-svelte/registry-template": "0.0.0",
+    "v4": "0.0.0"
+  },
+  "changesets": [
+    "blue-drinks-rush",
+    "chilly-planes-begin",
+    "fair-beans-collect",
+    "flat-sloths-learn",
+    "good-turtles-hope",
+    "hot-weeks-spend",
+    "loud-flies-smoke",
+    "metal-streets-argue",
+    "new-turkeys-breathe",
+    "sixty-lizards-end",
+    "small-words-jog",
+    "smooth-candies-shake",
+    "sweet-steaks-teach",
+    "swift-tips-share",
+    "ten-bats-beg",
+    "ten-spiders-do",
+    "thin-pens-tie",
+    "three-hounds-write",
+    "tired-squids-dance",
+    "tricky-trains-suffer",
+    "wicked-terms-give",
+    "yellow-oranges-invite",
+    "young-wombats-prove"
+  ]
+}

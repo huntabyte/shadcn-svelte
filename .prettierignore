@@ -17,10 +17,13 @@ CHANGELOG.md
 
 .github/
 
-
-
 # docs site specific
-sites/docs/src/__registry__/*
-sites/docs/other/themes/dark.json
-sites/docs/other/themes/light.json
-sites/docs/static
+docs/other/themes/dark.json
+docs/other/themes/light.json
+docs/static
+docs/.velite
+docs/src/__registry__
+packages/cli/test/fixtures
+playgrounds
+registry-template/static
+.svelte-kit
