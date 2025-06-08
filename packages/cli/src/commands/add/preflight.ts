@@ -62,7 +62,10 @@ function checkAddDependencies(
 	}
 
 	// if incompatible, throw error
-	throw error(`This CLI version requires Tailwind CSS (v3 or v4) and Svelte v5.\n`);
+	throw error(
+		`This CLI version requires Tailwind CSS (v3 or v4) and Svelte v5.\n\n` +
+			`If you are on Svelte v4, use ${highlight("shadcn-svelte@0.14 add")} instead, or consider migrating to Svelte 5: https://shadcn-svelte.com/docs/migration/svelte-5`
+	);
 }
 
 /**
