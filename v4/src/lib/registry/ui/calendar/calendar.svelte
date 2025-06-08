@@ -22,7 +22,7 @@
 		locale = "en-US",
 		months: monthsProp,
 		years,
-		monthFormat = "short",
+		monthFormat: monthFormatProp,
 		yearFormat = "numeric",
 		day,
 		disableDaysOutsideMonth = false,
@@ -36,6 +36,12 @@
 		yearFormat?: CalendarPrimitive.YearSelectProps["yearFormat"];
 		day?: Snippet<[{ day: DateValue; outsideMonth: boolean }]>;
 	} = $props();
+
+	const monthFormat = $derived.by(() => {
+		if (monthFormatProp) return monthFormatProp;
+		if (captionLayout.startsWith("dropdown")) return "short";
+		return "long";
+	});
 
 	function formatYear(date: DateValue) {
 		const dateObj = date.toDate(getLocalTimeZone());

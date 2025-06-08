@@ -21,7 +21,7 @@
 		<RangeCalendarDay class="flex flex-col items-center">
 			{day.day}
 			{#if !outsideMonth}
-				<span class="text-xs opacity-70">
+				<span>
 					{dayIsWeekend ? "$220" : "$100"}
 				</span>
 			{/if}

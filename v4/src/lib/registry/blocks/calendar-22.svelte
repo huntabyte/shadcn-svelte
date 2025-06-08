@@ -4,7 +4,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Label } from "$lib/registry/ui/label/index.js";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-	import { getLocalTimeZone, type CalendarDate } from "@internationalized/date";
+	import { getLocalTimeZone, today, type CalendarDate } from "@internationalized/date";
 
 	const id = $props.id();
 
@@ -31,6 +31,7 @@
 				onValueChange={() => {
 					open = false;
 				}}
+				maxValue={today(getLocalTimeZone())}
 			/>
 		</Popover.Content>
 	</Popover.Root>

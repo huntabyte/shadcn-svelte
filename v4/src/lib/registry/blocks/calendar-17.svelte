@@ -23,7 +23,7 @@
 				id="time-from"
 				type="time"
 				step="1"
-				defaultValue="10:30:00"
+				value="10:30:00"
 				class="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>
