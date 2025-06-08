@@ -1,5 +1,36 @@
 # shadcn-svelte
 
+## 1.0.0
+
+### Major Changes
+
+- b479077: Svelte 5
+
+### Patch Changes
+
+- 61d98fd: chore: Add warning for incompatible dependency
+- 633a6de: fix: ensure path aliases resolve to the correct path
+- 8826014: feat: Improved error message when fetching the registry fails
+- d764bdf: fix(cli)(next): Add missing ui alias option
+- 44b2445: feat: allow import maps to be used as path aliases
+- 962d8be: fix: Improve error message when failing to fetch base colors.
+- e29f8f5: fix: Ensure `utils.(js|ts)` is not fetched from the registry on `update` command
+- 670a3e4: fix: respect `utils` path-alias
+- ad4cd6b: breaking: svelte 5 + tailwindcss v4
+- 9488a61: feat: add customizable `typescript.config` path option to `components.json`
+- ea9f77c: fix: remove dangling comma in 'components to install' list
+- 7669720: fix: workaround caching issue preventing the correct registry from being fetched
+- f932494: fix: ensure `ui` and `hooks` paths are normalized
+- dc196c3: chore: point to `tw3.shadcn-svelte.com` subdomain on `init`
+- 11d0ff3: fix: Ensure `svelte-kit sync` executes locally
+- 425edb7: fix: disable ES transformations when stripping types
+- 9c94564: feat: add support for registry-item type `registry:style`
+- 6c54fae: fix: always strip trailing slashes from path aliases
+- e29f8f5: fix: `update` command now properly updates components
+- 5bddbc6: fix: resolve deps from node_modules when evaluating their versions
+- 34d0a9f: chore: display the output of a package manager's `install` process during dependency installation
+- fb7c683: fix(next): add newline to end of `components.json`
+
 ## 1.0.0-next.19
 
 ### Patch Changes
