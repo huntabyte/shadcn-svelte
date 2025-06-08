@@ -20,7 +20,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-offline
+        run: pnpm install
 
       - name: Run svelte-check
         run: pnpm check
@@ -37,7 +37,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-offline
+        run: pnpm install
 
       - run: pnpm lint
 
@@ -56,7 +56,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-offline
+        run: pnpm install
 
       - name: Build packages
         run: pnpm build:cli
