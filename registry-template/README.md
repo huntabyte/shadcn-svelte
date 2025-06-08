@@ -19,4 +19,4 @@ This is a template for creating a custom registry using SvelteKit.
 
 ## Documentation
 
-Visit the [shadcn-svelte documentation](https://next.shadcn-svelte.com/docs/registry) to view the full documentation.
+Visit the [shadcn-svelte documentation](https://shadcn-svelte.com/docs/registry) to view the full documentation.

@@ -102,7 +102,7 @@ it("should accurately build the registry template", async () => {
 
 	expect(checkoutSteps).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A checkout steps component.",
 		  "files": [
 		    {
@@ -132,7 +132,7 @@ it("should accurately build the registry template", async () => {
 
 	expect(complexComponent).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A complex component showing hooks, libs and components.",
 		  "devDependencies": [
 		    "zod@^3.25.17",
@@ -279,7 +279,7 @@ it("should accurately build the registry template", async () => {
 	`);
 	expect(exampleForm).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "dependencies": [
 		    "zod",
 		  ],
@@ -440,7 +440,7 @@ it("should accurately build the registry template", async () => {
 	`);
 	expect(exampleWithCss).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A login form with a CSS file.",
 		  "files": [
 		    {
@@ -620,7 +620,7 @@ it("should accurately build the registry template", async () => {
 	`);
 	expect(helloWorld).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "description": "A simple hello world component",
 		  "files": [
 		    {
@@ -640,7 +640,7 @@ it("should accurately build the registry template", async () => {
 	`);
 	expect(stepper).toMatchInlineSnapshot(`
 		{
-		  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+		  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
 		  "files": [
 		    {
 		      "content": "<!--

@@ -28,7 +28,7 @@ If you're using a different build system, you can skip this step as long as your
 
 ### Add a registry.json file
 
-Create a `registry.json` file in the root of your project. Your project can be a Next.js, Remix, Vite, or any other project that supports React.
+Create a `registry.json` file in the root of your project.
 
 ```json title="registry.json" showLineNumbers
 {
@@ -92,7 +92,7 @@ To add your component to the registry, you need to add your component definition
 
 ```json title="registry.json" showLineNumbers {6-17}
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "acme",
   "homepage": "https://acme.com",
   "items": [

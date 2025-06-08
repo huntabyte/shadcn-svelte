@@ -13,5 +13,5 @@
 	"typescript": {
 		"config": "tsconfig.base.json"
 	},
-	"registry": "https://next.shadcn-svelte.com/registry"
+	"registry": "https://shadcn-svelte.com/registry"
 }

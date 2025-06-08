@@ -27,11 +27,11 @@ See the [CLI section](/docs/cli) for more information.
 
 ## $schema
 
-You can see the JSON Schema for `components.json` [here](https://next.shadcn-svelte.com/schema.json).
+You can see the JSON Schema for `components.json` [here](https://shadcn-svelte.com/schema.json).
 
 ```json title="components.json"
 {
-  "$schema": "https://next.shadcn-svelte.com/schema.json"
+  "$schema": "https://shadcn-svelte.com/schema.json"
 }
 ```
 
@@ -157,6 +157,6 @@ The registry URL tells the CLI where to fetch the shadcn-svelte components/regis
 
 ```json title="components.json"
 {
-  "registry": "https://next.shadcn-svelte.com/registry"
+  "registry": "https://shadcn-svelte.com/registry"
 }
 ```

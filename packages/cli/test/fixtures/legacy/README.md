@@ -34,7 +34,7 @@ These users will have a `components.json` file that looks like this:
 		"hooks": "$lib/hooks"
 	},
 	"typescript": true,
-	"registry": "https://next.shadcn-svelte.com/registry"
+	"registry": "https://shadcn-svelte.com/registry"
 }
 ```
 

@@ -40,7 +40,7 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
 
 ```diff
 {
-  "$schema": "https://next.shadcn-svelte.com/schema.json",
+  "$schema": "https://shadcn-svelte.com/schema.json",
   "style": "default",
   "tailwind": {
     "css": "src/app.css",
@@ -54,7 +54,7 @@ Add the `registry` to the root object, and add `hooks`, `ui`, and `lib` keys und
 +   "lib": "$lib"
   },
   "typescript": true,
-+ "registry": "https://next.shadcn-svelte.com/registry"
++ "registry": "https://shadcn-svelte.com/registry"
 }
 ```
 

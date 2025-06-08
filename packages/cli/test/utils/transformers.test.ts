@@ -30,7 +30,7 @@ const mockConfig: ResolvedConfig = {
 	},
 	sveltekit: true,
 	typescript: true,
-	registry: "https://next.shadcn-svelte.com/registry",
+	registry: "https://shadcn-svelte.com/registry",
 };
 
 describe("transformImports", () => {
@@ -177,7 +177,7 @@ describe("transformImports with more custom paths", () => {
 		},
 		sveltekit: true,
 		typescript: true,
-		registry: "https://next.shadcn-svelte.com/registry",
+		registry: "https://shadcn-svelte.com/registry",
 	};
 
 	it("transforms component imports with custom paths", () => {

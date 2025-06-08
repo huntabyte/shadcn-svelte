@@ -11,7 +11,7 @@ Here's an example of a complex component that installs a page, two components, a
 
 ```json showLineNumbers
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "hello-world",
   "title": "Hello World",
   "type": "registry:block",
@@ -53,7 +53,7 @@ To add a new color you need to add it to `cssVars` under `light` and `dark` keys
 
 ```json showLineNumbers {10-18}
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "hello-world",
   "title": "Hello World",
   "type": "registry:block",
@@ -82,7 +82,7 @@ To add or override a theme variable you add it to `cssVars.theme` under the key 
 
 ```json showLineNumbers {10-15}
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry-item.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "hello-world",
   "title": "Hello World",
   "type": "registry:block",

@@ -33,7 +33,7 @@ const configFull = {
 	},
 	resolvedPaths,
 	typescript: true,
-	registry: "https://next.shadcn-svelte.com/registry",
+	registry: "https://shadcn-svelte.com/registry",
 };
 
 const configLegacy = {
@@ -51,7 +51,7 @@ const configLegacy = {
 	},
 	resolvedPaths,
 	typescript: true,
-	registry: "https://next.shadcn-svelte.com/registry",
+	registry: "https://shadcn-svelte.com/registry",
 };
 
 const configLegacyUpdated = {

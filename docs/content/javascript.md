@@ -22,7 +22,7 @@ To opt-out of TypeScript, you can use the `tsx` flag in your `components.json` f
     "hooks": "$lib/hooks",
     "ui": "$lib/components/ui"
   },
-  "registry": "https://next.shadcn-svelte.com/registry"
+  "registry": "https://shadcn-svelte.com/registry"
 }
 ```
 

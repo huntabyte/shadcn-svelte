@@ -11,9 +11,9 @@ The `registry.json` schema is used to define your custom component registry.
 
 ```json title="registry.json" showLineNumbers
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry.json",
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "shadcn-svelte",
-  "homepage": "https://next.shadcn-svelte.com",
+  "homepage": "https://shadcn-svelte.com",
   "items": [
     {
       "name": "hello-world",
@@ -41,7 +41,7 @@ The `$schema` property is used to specify the schema for the `registry.json` fil
 
 ```json title="registry.json" showLineNumbers
 {
-  "$schema": "https://next.shadcn-svelte.com/schema/registry.json"
+  "$schema": "https://shadcn-svelte.com/schema/registry.json"
 }
 ```
 
