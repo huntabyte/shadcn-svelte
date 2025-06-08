@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   check:
-    name: Svelte Check
+    name: Type Check
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +26,8 @@ jobs:
         run: pnpm check
 
   lint:
-    runs-on: macos-latest
     name: Lint
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

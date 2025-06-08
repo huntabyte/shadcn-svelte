@@ -7,7 +7,7 @@
 		ref = $bindable(null),
 		class: className,
 		size = "icon",
-		isActive = false,
+		isActive,
 		page,
 		children,
 		...restProps
