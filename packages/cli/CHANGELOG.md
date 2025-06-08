@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 0.14.3
+
+### Patch Changes
+
+- b36c8f8: chore: update default registry url
+
 ## 0.14.2
 
 ### Patch Changes
