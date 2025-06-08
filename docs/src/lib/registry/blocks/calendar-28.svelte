@@ -41,7 +41,6 @@
 					const date = new Date(v);
 					inputValue = v;
 					if (isValidDate(date)) {
-						console.log("setting value");
 						value = new CalendarDate(
 							date.getFullYear(),
 							date.getMonth(),

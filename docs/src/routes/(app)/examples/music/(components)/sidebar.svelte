@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { Playlist } from "../(data)/playlists.js";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import {  cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { ScrollArea } from "$lib/registry/ui/scroll-area/index.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		playlists,
 		class: className,
 		..._restProps
-	}: { playlists: Playlist[] } & PrimitiveDivAttributes = $props();
+	}: { playlists: Playlist[] } & HTMLAttributes<HTMLElement> = $props();
 </script>
 
 <div class={cn("pb-12", className)}>

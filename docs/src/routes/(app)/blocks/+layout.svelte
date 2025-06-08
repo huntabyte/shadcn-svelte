@@ -20,18 +20,13 @@
 
 	afterNavigate(async (nav) => {
 		// don't preload when on mobile
-		if (mobile.current) {
-			return;
-		}
+		if (mobile.current) return
 
 		const slug = nav.to?.params?.["category"];
 		const href = slug ? `/blocks/${slug}` : "/blocks";
-		console.log("waiting for nav: ", href);
 		await nav.complete;
 		const preload = routes.filter((r) => r !== href);
-		console.log("preloading data: ", preload);
 		await Promise.all(preload.map((href) => preloadData(href)));
-		console.log("done preloading");
 	});
 
 	const title = "Building Blocks for the Web";

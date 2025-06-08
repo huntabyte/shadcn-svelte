@@ -9,11 +9,6 @@ import { highlightCode } from "$lib/highlight-code.js";
 import { transformImportPaths } from "$lib/registry/registry-utils.js";
 
 export async function load({ params }) {
-	// const [doc, viewerData] = await Promise.all([
-	// 	getDoc(params.slug),
-	// 	getComponentViewerData(params.slug.replaceAll("components/", "")),
-	// ]);
-
 	if (params.slug.includes("components/")) {
 		const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
 

@@ -2,8 +2,9 @@
 	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
 	import type { Album } from "../(data)/albums.js";
 	import { playlists } from "../(data)/playlists.js";
-	import { type PrimitiveDivAttributes, cn } from "$lib/utils.js";
+	import {  cn } from "$lib/utils.js";
 	import * as ContextMenu from "$lib/registry/ui/context-menu/index.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
 		album,
@@ -17,7 +18,7 @@
 		aspectRatio?: "portrait" | "square";
 		width: number;
 		height: number;
-	} & PrimitiveDivAttributes = $props();
+	} & HTMLAttributes<HTMLElement> = $props();
 </script>
 
 <div class={cn("space-y-3", className)} {...restProps}>
