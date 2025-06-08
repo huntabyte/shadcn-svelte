@@ -27,3 +27,4 @@ packages/cli/test/fixtures
 playgrounds
 registry-template/static
 .svelte-kit
+docs/src/routes/og/*-otf.json

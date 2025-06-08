@@ -87,6 +87,8 @@
 		"zod": "^3.25.56"
 	},
 	"dependencies": {
-		"@internationalized/date": "^3.8.1"
+		"@internationalized/date": "^3.8.1",
+		"@vercel/og": "^0.6.8",
+		"satori-html": "^0.3.2"
 	}
 }
