@@ -211,7 +211,7 @@ git commit -m 'before migration'
 
 Now you can run the `add` command to start migrating your components.
 
-<PMExecute command="shadcn-svelte@next add dialog --overwrite" />
+<PMExecute command="shadcn-svelte@latest add dialog --overwrite" />
 
 Review the diff to see what was updated and make any necessary adjustments. Rinse and repeat for each component you want to migrate.
 

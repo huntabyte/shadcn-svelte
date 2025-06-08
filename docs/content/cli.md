@@ -13,7 +13,7 @@ Use the `init` command to initialize dependencies for a new project.
 
 The `init` command installs dependencies, adds the `cn` util, and creates CSS variables for the project.
 
-<PMExecute command="shadcn-svelte@next init" />
+<PMExecute command="shadcn-svelte@latest init" />
 
 You will be asked a few questions to configure `components.json`:
 
@@ -53,7 +53,7 @@ Options:
 
 Use the `add` command to add components and dependencies to your project.
 
-<PMExecute command="shadcn-svelte@next add [component]" />
+<PMExecute command="shadcn-svelte@latest add [component]" />
 
 You will be presented with a list of components to choose from:
 
@@ -96,7 +96,7 @@ Options:
 
 Use the `registry build` command to generate the registry JSON files.
 
-<PMExecute command="shadcn-svelte@next registry build [registry.json]" />
+<PMExecute command="shadcn-svelte@latest registry build [registry.json]" />
 
 This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
 
@@ -123,5 +123,5 @@ Options:
 This enables the use of a proxy when sending out requests to fetch from the `shadcn-svelte` registry. If the `HTTP_PROXY` or `http_proxy` environment variables have been set, the request library underneath will respect the proxy settings.
 
 ```bash
-HTTP_PROXY="<proxy-url>" npx shadcn-svelte@next init
+HTTP_PROXY="<proxy-url>" npx shadcn-svelte@latest init
 ```
