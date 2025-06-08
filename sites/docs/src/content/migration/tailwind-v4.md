@@ -78,9 +78,9 @@ The upgrade script will automatically migrate your project to the latest PostCSS
 
 ```diff title="postcss.config.js"
 - export default {
--   plugins: {
--     '@tailwindcss/postcss': {},
--   }
+- 	plugins: {
+- 		'@tailwindcss/postcss': {},
+- 	}
 - };
 ```
 
@@ -230,6 +230,45 @@ We've deprecated `tailwindcss-animate` in favor of `tw-animate-css`, which has s
 /* ... */
 ```
 
+#### Add the custom variant for dark mode
+
+```diff title="app.css"
+@import "tailwindcss";
+@import "tw-animate-css";
+
++@custom-variant dark (&:is(.dark *));
+/* ... */
+```
+
+#### Remove the compatibility styles
+
+We override the styles applied here so this is just dead code.
+
+```diff title="app.css"
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+- /*
+-   The default border color has changed to `currentcolor` in Tailwind CSS v4,
+-   so we've added these compatibility styles to make sure everything still
+-   looks the same as it did with Tailwind CSS v3.
+-
+-   If we ever want to remove these styles, we need to add an explicit border
+-   color utility to any element that depends on these defaults.
+- */
+- @layer base {
+-   *,
+-   ::after,
+-   ::before,
+-   ::backdrop,
+-   ::file-selector-button {
+-     border-color: var(--color-gray-200, currentcolor);
+-   }
+- }
+```
+
 #### CSS Variables and Theme Config
 
 We'll move the CSS variables to the `:root` and `.dark` selectors, wrap the colors values in `hsl()`, and set up an `@theme inline` directive to replace our Tailwind v3 config.
@@ -241,24 +280,6 @@ Once complete, your `app.css` file should look something like this (the color va
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
-}
 
 :root {
   --background: hsl(0 0% 100%) /* <- Wrap in HSL */;
