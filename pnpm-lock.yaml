@@ -410,22 +410,22 @@ importers:
         specifier: workspace:*
         version: link:../packages/cli
       svelte:
-        specifier: latest
+        specifier: ^5.33.14
         version: 5.33.17
       svelte-check:
-        specifier: latest
+        specifier: ^4.0.0
         version: 4.2.1(picomatch@4.0.2)(svelte@5.33.17)(typescript@5.8.3)
       tailwind-merge:
-        specifier: latest
+        specifier: ^3.3.0
         version: 3.3.0
       tailwind-variants:
-        specifier: latest
+        specifier: ^1.0.0
         version: 1.0.0(tailwindcss@4.1.8)
       tailwindcss:
-        specifier: latest
+        specifier: ^4.0.0
         version: 4.1.8
       tw-animate-css:
-        specifier: latest
+        specifier: ^1.3.3
         version: 1.3.4
       typescript:
         specifier: ^5.0.0
