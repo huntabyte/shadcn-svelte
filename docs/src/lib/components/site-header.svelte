@@ -2,7 +2,6 @@
 	import Logo from "./logo.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import MainNav from "./main-nav.svelte";
-	import { siteConfig } from "$lib/config.js";
 	import Separator from "$lib/registry/ui/separator/separator.svelte";
 	import GithubLink from "./github-link.svelte";
 	import ModeSwitcher from "./mode-switcher.svelte";
@@ -10,6 +9,7 @@
 	import LayoutToggle from "./layout-toggle.svelte";
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
+	import { mainNavItems } from "$lib/navigation.js";
 	const colors = getColors();
 </script>
 
@@ -23,7 +23,7 @@
 				<Logo class="size-5" />
 				<span class="sr-only">shadcn-svelte</span>
 			</Button>
-			<MainNav items={siteConfig.navItems} class="hidden lg:flex" />
+			<MainNav items={mainNavItems} class="hidden lg:flex" />
 			<div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
 				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
 					<CommandMenu {colors} />

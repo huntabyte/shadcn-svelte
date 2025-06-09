@@ -1,42 +1,42 @@
 export const siteConfig = {
 	name: "shadcn-svelte",
 	url: "https://shadcn-svelte.com",
-	ogImage: "https://shadcn-svelte.com/og.png",
+	ogImage: {
+		url: "https://shadcn-svelte.com/opengraph-image.png",
+		width: "1200",
+		height: "630",
+	},
 	description:
 		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.",
+	keywords: [
+		"shadcn-svelte",
+		"svelte components",
+		"svelte ui library",
+		"svelte design system",
+		"tailwindcss components",
+		"headless ui svelte",
+		"accessible svelte components",
+		"copy paste components",
+		"svelte component library",
+		"sveltekit components",
+		"svelte 5 components",
+		"svelte runes",
+		"bits-ui",
+		"radix svelte",
+		"shadcn svelte",
+		"free ui components",
+		"open source components",
+		"modern ui svelte",
+		"typescript svelte components",
+		"responsive components",
+		"dark mode components",
+		"form components svelte",
+		"dashboard components",
+		"chart components svelte",
+		"svelte chart components",
+	],
 	links: {
-		twitter: "https://x.com/huntabyte",
+		x: "https://x.com/huntabyte",
 		github: "https://github.com/huntabyte/shadcn-svelte",
 	},
-	navItems: [
-		{
-			href: "/docs/installation",
-			label: "Docs",
-		},
-		{
-			href: "/docs/components",
-			label: "Components",
-		},
-		{
-			href: "/blocks",
-			label: "Blocks",
-		},
-		{
-			href: "/charts/area",
-			label: "Charts",
-		},
-		{
-			href: "/themes",
-			label: "Themes",
-		},
-		{
-			href: "/colors",
-			label: "Colors",
-		},
-	],
-};
-
-export const META_THEME_COLORS = {
-	light: "#ffffff",
-	dark: "#09090b",
 };

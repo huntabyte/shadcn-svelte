@@ -3,13 +3,14 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { page } from "$app/state";
+	import type { NavItem } from "$lib/navigation.js";
 
 	let {
 		items,
 		class: className,
 		...restProps
 	}: {
-		items: { href: string; label: string }[];
+		items: NavItem[];
 		class?: string;
 	} & HTMLAttributes<HTMLElement> = $props();
 </script>
@@ -22,7 +23,7 @@
 			size="sm"
 			class={cn(page.url.pathname === item.href && "text-primary")}
 		>
-			{item.label}
+			{item.title}
 		</Button>
 	{/each}
 </nav>

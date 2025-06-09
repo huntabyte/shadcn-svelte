@@ -11,6 +11,7 @@
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageNav from "$lib/components/page-nav.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 
 	let { children } = $props();
 	const routes = registryCategories.filter((c) => !c.hidden).map((c) => `/blocks/${c.slug}`);
@@ -33,6 +34,14 @@
 	const description =
 		"Clean, modern building blocks. Works with all Svelte projects. Copy and paste into your apps. Open Source. Free forever.";
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <PageHeader>
 	<Announcement />

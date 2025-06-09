@@ -19,7 +19,19 @@
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Textarea } from "$lib/registry/ui/textarea/index.js";
 	import * as HoverCard from "$lib/registry/ui/hover-card/index.js";
+	import Metadata from "$lib/components/metadata.svelte";
+
+	const title = "Playground";
+	const description = "The OpenAI Playground build using the components.";
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <div class="md:hidden">
 	<img src="/img/examples/playground-light.png" alt="Playground" class="block dark:hidden" />

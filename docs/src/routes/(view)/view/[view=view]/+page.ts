@@ -21,5 +21,5 @@ export async function load({ params }) {
 
 	const meta = blockMeta[params.view as keyof typeof blockMeta];
 
-	return { component: comp.default, meta };
+	return { component: comp.default, meta: { ...meta, name: params.view } };
 }

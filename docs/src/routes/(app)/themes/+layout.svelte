@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
@@ -12,6 +13,14 @@
 	const description =
 		"Try our hand-picked themes. Copy and paste them into your project. New theme editor coming soon.";
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <div>
 	<PageHeader>

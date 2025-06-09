@@ -9,11 +9,14 @@
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/components/cards/demo.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 
 	const title = "Build your Component Library";
 	const description =
 		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
 </script>
+
+<Metadata {title} {description} />
 
 <div class="flex flex-1 flex-col">
 	<PageHeader>

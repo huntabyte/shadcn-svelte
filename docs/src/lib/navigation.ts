@@ -259,7 +259,7 @@ export const mainNavItems: NavItem[] = [
 	},
 	{
 		title: "Charts",
-		href: "/charts",
+		href: "/charts/area",
 	},
 	{
 		title: "Themes",

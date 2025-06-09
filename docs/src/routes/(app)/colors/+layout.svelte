@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
 	import ColorsNav from "$lib/components/colors-nav.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
@@ -13,6 +14,14 @@
 
 	let { children } = $props();
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <div>
 	<PageHeader>
