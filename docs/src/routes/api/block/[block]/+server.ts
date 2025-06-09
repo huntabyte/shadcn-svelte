@@ -33,7 +33,12 @@ async function loadItem(block: string): Promise<HighlightedBlock> {
 
 		file.content = transformImportPaths(file.content);
 		const highlightedContent = await highlightCode(file.content, lang);
-		const target = file.target ? transformBlockPath(file.target, file.type) : "";
+		let target = "";
+		if (item.type === "registry:ui") {
+			target = file.target;
+		} else {
+			target = transformBlockPath(file.target, file.type);
+		}
 		return { ...file, highlightedContent, target };
 	});
 
