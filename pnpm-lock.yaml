@@ -59,6 +59,9 @@ importers:
 
   docs:
     dependencies:
+      '@cloudflare/pages-plugin-vercel-og':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@internationalized/date':
         specifier: ^3.8.1
         version: 3.8.2
@@ -530,6 +533,9 @@ packages:
   '@cloudflare/kv-asset-handler@0.4.0':
     resolution: {integrity: sha512-+tv3z+SPp+gqTIcImN9o0hqE9xyfQjI1XD9pL6NuKjua9B1y7mNYv0S9cP+QEbA4ppVgGZEmKOvHX5G5Ei1CVA==}
     engines: {node: '>=18.0.0'}
+
+  '@cloudflare/pages-plugin-vercel-og@0.1.2':
+    resolution: {integrity: sha512-aWA2pHu1R2UbOJIcSASCuViyYVEhYkZ3tWTrTnr+yLosBfksOzjecHQkCkPv/jy75hGPrn1BbtsQR+oWVFkp1g==}
 
   '@cloudflare/unenv-preset@2.3.2':
     resolution: {integrity: sha512-MtUgNl+QkQyhQvv5bbWP+BpBC1N0me4CHHuP2H4ktmOMKdB/6kkz/lo+zqiA4mEazb4y+1cwyNjVrQ2DWeE4mg==}
@@ -4557,6 +4563,8 @@ snapshots:
   '@cloudflare/kv-asset-handler@0.4.0':
     dependencies:
       mime: 3.0.0
+
+  '@cloudflare/pages-plugin-vercel-og@0.1.2': {}
 
   '@cloudflare/unenv-preset@2.3.2(unenv@2.0.0-rc.17)(workerd@1.20250525.0)':
     dependencies:

@@ -1,4 +1,4 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
 import { html } from "satori-html";
 import normal from "./geist-regular-otf.json" with { type: "json" };
 import mono from "./geist-mono-otf.json" with { type: "json" };
