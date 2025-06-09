@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { RegistryItem, RegistryItemFile } from "@shadcn-svelte/registry";
 	import type { Pane } from "paneforge";
 	import { Context } from "runed";
 	import ComponentCodeViewerCode from "./component-code-viewer-code.svelte";
@@ -9,24 +8,14 @@
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { MediaQuery } from "svelte/reactivity";
 	import { badgeVariants } from "$lib/registry/ui/badge/badge.svelte";
-
-	type CachedItem = Omit<RegistryItem, "files"> & {
-		files: (RegistryItemFile & {
-			highlightedContent: string;
-			target: string;
-		})[];
-	};
+	import type { HighlightedBlock } from "../../../routes/api/block/[block]/+server.js";
 
 	type ComponentCodeViewerContextType = {
-		item: CachedItem;
+		item: HighlightedBlock;
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
-		highlightedFiles:
-			| (RegistryItemFile & {
-					highlightedContent: string;
-			  })[]
-			| null;
+		highlightedFiles: HighlightedBlock["files"];
 	};
 
 	export const ComponentCodeViewerContext = new Context<ComponentCodeViewerContextType>(
