@@ -20,7 +20,7 @@ export const entries: EntryGenerator = () => {
 /**
  * Any components / blocks that won't have a .json file associated with them.
  */
-const ITEMS_TO_IGNORE = ["combobox", "date-picker"];
+const ITEMS_TO_IGNORE = ["combobox", "date-picker", "typography"];
 
 export const load: PageLoad = async ({ params, fetch }) => {
 	const doc = await getDoc(params.slug);
