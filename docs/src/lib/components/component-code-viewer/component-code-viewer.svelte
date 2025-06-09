@@ -16,6 +16,7 @@
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
 		highlightedFiles: HighlightedBlock["files"];
+		activeFileCodeToCopy: string;
 	};
 
 	export const ComponentCodeViewerContext = new Context<ComponentCodeViewerContextType>(
@@ -46,6 +47,7 @@
 		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
+	let activeFileCodeToCopy = $state<ComponentCodeViewerContextType["activeFileCodeToCopy"]>("");
 
 	ComponentCodeViewerContext.set({
 		get item() {
@@ -68,6 +70,12 @@
 		},
 		get highlightedFiles() {
 			return highlightedFiles;
+		},
+		get activeFileCodeToCopy() {
+			return activeFileCodeToCopy;
+		},
+		set activeFileCodeToCopy(value) {
+			activeFileCodeToCopy = value;
 		},
 	});
 

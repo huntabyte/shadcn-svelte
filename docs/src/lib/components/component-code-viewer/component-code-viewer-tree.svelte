@@ -8,9 +8,9 @@
 	import FileIcon from "@lucide/svelte/icons/file";
 	import FolderIcon from "@lucide/svelte/icons/folder";
 
-	const ctx = ComponentCodeViewerContext.get();
-
 	let { item, index }: { item: FileTree; index: number } = $props();
+
+	const ctx = ComponentCodeViewerContext.get();
 </script>
 
 {#if !item.children}
