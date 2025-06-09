@@ -124,7 +124,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							</Badge>
 						{/if}
 						{#if source}
-							<ComponentCodeViewer item={source} />
+							{#key page.url.pathname}
+								<ComponentCodeViewer item={source} />
+							{/key}
 						{/if}
 					</div>
 				{/if}
