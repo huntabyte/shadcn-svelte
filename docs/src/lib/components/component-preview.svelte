@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Component } from "svelte";
 	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -15,6 +16,7 @@
 		description?: string;
 		hideCode?: boolean;
 		type?: "block" | "component" | "example";
+		component?: Component;
 	} = $props();
 </script>
 
