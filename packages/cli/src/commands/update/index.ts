@@ -212,7 +212,7 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 					const installedFiles = await fs.readdir(itemDir, { withFileTypes: true });
 					const filesToDelete = installedFiles
-						.map((file) => path.resolve(file.path, file.name))
+						.map((file) => path.resolve(file.parentPath, file.name))
 						.filter((filepath) => !remoteFiles.includes(filepath));
 
 					if (filesToDelete.length > 0) {
