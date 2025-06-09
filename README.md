@@ -1,5 +1,5 @@
 <p align="center">
- <img align="center" src="https://raw.githubusercontent.com/huntabyte/shadcn-svelte/main/sites/docs/static/android-chrome-192x192.png" height="96" />
+ <img align="center" src="https://raw.githubusercontent.com/huntabyte/shadcn-svelte/main/docs/static/android-chrome-192x192.png" height="96" />
  <h1 align="center">
   shadcn-svelte
  </h1>
@@ -13,7 +13,7 @@
 
 Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. **Use this to build your own component library**.
 
-![hero](sites/docs/static/og.png)
+![hero](docs/static/opengraph-image.png)
 
 ## Documentation
 
