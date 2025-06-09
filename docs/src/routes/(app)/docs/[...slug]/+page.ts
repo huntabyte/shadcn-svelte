@@ -22,7 +22,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	if (params.slug.includes("components/")) {
 		const name = params.slug.replaceAll("components/", "");
 		const res = await fetch(`/api/block/${name}`);
-		const item = (await res.json()) as HighlightedBlock;
+		const item = (await res.json().catch(() => null)) as HighlightedBlock | null;
 
 		return { ...doc, viewerData: item };
 	}
