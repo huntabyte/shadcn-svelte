@@ -41,8 +41,6 @@ async function loadItem(path: string, componentPath?: string): Promise<Item> {
 	let componentMod: { default: Component | undefined } = { default: undefined };
 
 	if (componentPath && components[componentPath]) {
-		console.log(componentPath);
-
 		[jsonMod, componentMod] = await Promise.all([
 			registryJsonItems[path]() as Promise<{ default: unknown }>,
 			components[componentPath]() as Promise<{ default: Component }>,
