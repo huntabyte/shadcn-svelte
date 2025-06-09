@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
-	import { registryCategories } from "$lib/registry/registry-categories.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	import BlocksNav from "$lib/components/blocks-nav.svelte";
@@ -12,8 +11,6 @@
 	import Metadata from "$lib/components/metadata.svelte";
 
 	let { children } = $props();
-	const routes = registryCategories.filter((c) => !c.hidden).map((c) => `/blocks/${c.slug}`);
-	routes.push("/blocks");
 
 	const title = "Building Blocks for the Web";
 	const description =

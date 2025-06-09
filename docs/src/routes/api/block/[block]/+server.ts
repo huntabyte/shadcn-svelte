@@ -1,11 +1,13 @@
 import path from "node:path";
+import { z } from "zod/v4";
 import { json } from "@sveltejs/kit";
 import { registryItemFileSchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { highlightCode } from "$lib/highlight-code.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import type { RequestHandler } from "./$types.js";
-import { z } from "zod/v4";
+
+export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
 
 const highlightedBlockSchema = registryItemSchema
 	.pick({
@@ -21,8 +23,6 @@ const highlightedBlockSchema = registryItemSchema
 			})
 		),
 	});
-
-export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
 
 async function loadItem(block: string): Promise<HighlightedBlock> {
 	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);

@@ -11,7 +11,6 @@
 		"build": "pnpm build:docs",
 		"build:cli": "pnpm -r -F \"./packages/**\" build",
 		"build:docs": "pnpm -F docs build",
-		"build:registry": "pnpm -F @shadcn-svelte/registry build",
 		"dev": "pnpm -F docs dev",
 		"dev:cli": "pnpm -F  \"./packages/**\" --parallel --reporter append-only --color dev",
 		"preview": "pnpm -F docs preview",
