@@ -24,7 +24,13 @@ const highlightedBlockSchema = registryItemSchema
 		),
 	});
 
-async function loadItem(block: string): Promise<HighlightedBlock> {
+/**
+ * Any components / blocks that won't have a .json file associated with them.
+ */
+const ITEMS_TO_IGNORE = ["combobox"];
+
+async function loadItem(block: string): Promise<HighlightedBlock | null> {
+	if (ITEMS_TO_IGNORE.includes(block)) return null;
 	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);
 	const item = registryItemSchema.parse(mod);
 	const meta = blockMeta[item.name as keyof typeof blockMeta];
