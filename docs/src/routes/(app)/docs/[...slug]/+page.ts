@@ -19,10 +19,11 @@ export const entries: EntryGenerator = () => {
 
 export const load: PageLoad = async ({ params, fetch }) => {
 	const doc = await getDoc(params.slug);
+	// doc.metadata.
 	if (params.slug.includes("components/")) {
 		const name = params.slug.replaceAll("components/", "");
 		const res = await fetch(`/api/block/${name}`);
-		const item = (await res.json().catch(() => null)) as HighlightedBlock | null;
+		const item: HighlightedBlock | null = await res.json().catch(() => null);
 
 		return { ...doc, viewerData: item };
 	}
