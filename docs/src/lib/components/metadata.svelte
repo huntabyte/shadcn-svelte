@@ -3,9 +3,9 @@
 	import { siteConfig } from "$lib/config.js";
 
 	let {
-		title = siteConfig.name,
-		ogImage = siteConfig.ogImage,
-		description = siteConfig.description,
+		title,
+		ogImage,
+		description,
 		keywords = siteConfig.keywords,
 		ogType = "website",
 	}: {
@@ -17,18 +17,18 @@
 	} = $props();
 
 	const ogUrl = $derived.by(() => {
-		if (!ogImage.url) return siteConfig.url;
+		if (!ogImage?.url) return siteConfig.ogImage.url;
 		if (ogImage.url.startsWith("/")) return siteConfig.url + ogImage.url;
 		return ogImage.url;
 	});
 
 	const ogWidth = $derived.by(() => {
-		if (ogImage.width) return ogImage.width;
+		if (ogImage?.width) return ogImage.width;
 		return siteConfig.ogImage.width;
 	});
 
 	const ogHeight = $derived.by(() => {
-		if (ogImage.height) return ogImage.height;
+		if (ogImage?.height) return ogImage.height;
 		return siteConfig.ogImage.height;
 	});
 

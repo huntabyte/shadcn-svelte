@@ -23,7 +23,7 @@
 			size="sm"
 			class={cn(page.url.pathname === item.href && "text-primary")}
 		>
-			{item.label}
+			{item.title}
 		</Button>
 	{/each}
 </nav>
