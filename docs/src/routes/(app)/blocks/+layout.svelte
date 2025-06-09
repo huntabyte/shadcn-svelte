@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { afterNavigate, preloadData } from "$app/navigation";
 	import Announcement from "$lib/components/announcement.svelte";
 	import { registryCategories } from "$lib/registry/registry-categories.js";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	import BlocksNav from "$lib/components/blocks-nav.svelte";
@@ -16,19 +14,6 @@
 	let { children } = $props();
 	const routes = registryCategories.filter((c) => !c.hidden).map((c) => `/blocks/${c.slug}`);
 	routes.push("/blocks");
-
-	const mobile = new IsMobile();
-
-	afterNavigate(async (nav) => {
-		// don't preload when on mobile
-		if (mobile.current) return;
-
-		const slug = nav.to?.params?.["category"];
-		const href = slug ? `/blocks/${slug}` : "/blocks";
-		await nav.complete;
-		const preload = routes.filter((r) => r !== href);
-		await Promise.all(preload.map((href) => preloadData(href)));
-	});
 
 	const title = "Building Blocks for the Web";
 	const description =
