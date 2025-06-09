@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Metadata from "$lib/components/metadata.svelte";
 	import * as Sidebar from "$lib/registry/ui/sidebar/index.js";
 	import AppSidebar from "./components/app-sidebar.svelte";
 	import ChartAreaInteractive from "./components/chart-area-interactive.svelte";
@@ -6,7 +7,18 @@
 	import SectionCards from "./components/section-cards.svelte";
 	import SiteHeader from "./components/site-header.svelte";
 	import { data } from "./data.js";
+
+	const title = "Dashboard";
+	const description = "A dashboard built using the components.";
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <div class="md:hidden">
 	<img

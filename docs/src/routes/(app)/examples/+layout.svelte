@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
 	import ExamplesNav from "$lib/components/examples-nav.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageHeaderDescription from "$lib/components/page-header/page-header-description.svelte";
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
@@ -10,7 +11,18 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let { children } = $props();
+
+	const title = "Examples";
+	const description = "Check out some example apps build using the components.";
 </script>
+
+<Metadata
+	{title}
+	{description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+	}}
+/>
 
 <PageHeader>
 	<Announcement />

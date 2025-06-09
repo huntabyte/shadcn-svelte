@@ -10,6 +10,7 @@
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
+	import Metadata from "$lib/components/metadata.svelte";
 
 	let { data } = $props();
 
@@ -22,7 +23,16 @@
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
 
-<!-- 
+<Metadata
+	title={doc.title}
+	description={doc.description}
+	ogImage={{
+		url: `/og?title=${encodeURIComponent(doc.title)}&description=${encodeURIComponent(doc.description)}`,
+	}}
+	ogType="article"
+/>
+
+<!--
 NOTE: The TOC needs to come first in the DOM order to prevent CLS, so we flex-row-reverse
 the docs container. The issue this resolves is prominent on slow connections (3G).
   -->
