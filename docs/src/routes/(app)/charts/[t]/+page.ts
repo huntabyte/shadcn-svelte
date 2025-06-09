@@ -8,7 +8,7 @@ type ChartType = (typeof chartTypes)[number];
 
 export const prerender = true;
 
-type CachedItem = RegistryItem & { highlightedCode: Promise<string> };
+type CachedItem = RegistryItem & { highlightedCode: string };
 const registryCache = new Map<string, CachedItem>();
 
 export const load: PageLoad = async ({ params }) => {
@@ -28,7 +28,7 @@ export const load: PageLoad = async ({ params }) => {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				registryJsonItems[path]().then(async (m: any) => {
 					const parsed = registryItemSchema.parse(m.default);
-					const highlightedCode = highlightCode(parsed.files?.[0]?.content ?? "");
+					const highlightedCode = await highlightCode(parsed.files?.[0]?.content ?? "");
 					const item = { ...parsed, highlightedCode };
 					registryCache.set(filename, item);
 					return item;

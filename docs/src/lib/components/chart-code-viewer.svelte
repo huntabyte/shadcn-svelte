@@ -43,12 +43,8 @@
 					</div>
 				</figcaption>
 				<div class="no-scrollbar overflow-y-auto">
-					{#await chart.highlightedCode}
-						<div class="bg-muted h-12 w-12 animate-pulse rounded-md"></div>
-					{:then highlightedCode}
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html highlightedCode}
-					{/await}
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html chart.highlightedCode}
 				</div>
 			</figure>
 		</div>
