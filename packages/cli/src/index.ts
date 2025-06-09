@@ -32,7 +32,7 @@ async function main() {
 	const program = new Command()
 		.name("shadcn-svelte")
 		.description("Add shadcn-svelte components to your project")
-		.version(packageInfo.version ?? "0.0.0", "-v, --version", "display the version number");
+		.version(packageInfo.version || "0.0.0", "-v, --version", "display the version number");
 
 	// register commands
 	for (const cmd of Object.values(commands)) {
