@@ -8,13 +8,20 @@ process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
 const currentVersion = process.versions.node;
-const currentMajorVersion = Number.parseInt(currentVersion.split(".")[0]!, 10);
-const minimumMajorVersion = 18;
+const [currentMajor, currentMinor] = currentVersion.split(".");
+const currentMajorVersion = Number.parseInt(currentMajor!);
+const currentMinorVersion = Number.parseInt(currentMinor!);
 
-if (currentMajorVersion < minimumMajorVersion) {
-	console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
-	console.error(`Please use Node.js v${minimumMajorVersion} or higher.`);
-	process.exit(1);
+const minimumMajorVersion = 20;
+const minimumMinorVersion = 12;
+
+if (
+    currentMajorVersion < minimumMajorVersion ||
+    (currentMajorVersion === minimumMajorVersion && currentMinorVersion < minimumMinorVersion)
+) {
+    console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
+    console.error(`Please use Node.js v${minimumMajorVersion}.${minimumMinorVersion}.x or higher.`);
+    process.exit(1);
 }
 
 async function main() {
@@ -25,7 +32,7 @@ async function main() {
 	const program = new Command()
 		.name("shadcn-svelte")
 		.description("Add shadcn-svelte components to your project")
-		.version(packageInfo.version || "0.0.0", "-v, --version", "display the version number");
+		.version(packageInfo.version ?? "0.0.0", "-v, --version", "display the version number");
 
 	// register commands
 	for (const cmd of Object.values(commands)) {
