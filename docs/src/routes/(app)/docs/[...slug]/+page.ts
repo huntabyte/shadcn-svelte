@@ -17,13 +17,17 @@ export const entries: EntryGenerator = () => {
 	return entries;
 };
 
+/**
+ * Any components / blocks that won't have a .json file associated with them.
+ */
+const ITEMS_TO_IGNORE = ["combobox"];
+
 export const load: PageLoad = async ({ params, fetch }) => {
 	const doc = await getDoc(params.slug);
-	// doc.metadata.
-	if (params.slug.includes("components/")) {
-		const name = params.slug.replaceAll("components/", "");
+	const name = doc.metadata.slug;
+	if (params.slug.includes("components/") && !ITEMS_TO_IGNORE.includes(name)) {
 		const res = await fetch(`/api/block/${name}`);
-		const item: HighlightedBlock | null = await res.json().catch(() => null);
+		const item: HighlightedBlock = await res.json();
 
 		return { ...doc, viewerData: item };
 	}
