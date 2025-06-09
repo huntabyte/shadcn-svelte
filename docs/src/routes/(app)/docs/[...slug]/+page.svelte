@@ -11,6 +11,7 @@
 	import Cta from "$lib/components/cta.svelte";
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import Carbon from "$lib/components/carbon.svelte";
 
 	let { data } = $props();
 
@@ -52,6 +53,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 		{/if}
 		<div class="flex flex-1 flex-col gap-12 px-6">
 			<Cta />
+		</div>
+		<div class="flex flex-col gap-12 px-6">
+			<Carbon />
 		</div>
 	</div>
 	<div class="flex min-w-0 flex-1 flex-col">
