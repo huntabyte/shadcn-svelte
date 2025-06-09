@@ -1,22 +1,15 @@
-import type { RegistryItem, RegistryItemFile } from "@shadcn-svelte/registry";
 import type { EntryGenerator, PageLoad } from "./$types.js";
 import { registryCategories } from "$lib/registry/registry-categories.js";
 import type { Component } from "svelte";
 import { error } from "@sveltejs/kit";
+import type { HighlightedBlock } from "../../../api/block/[block]/+server.js";
 
 export const prerender = true;
 
 export const entries: EntryGenerator = () =>
 	registryCategories.filter((c) => !c.hidden).map(({ slug }) => ({ category: slug }));
 
-type Item = Omit<RegistryItem, "files"> & {
-	files: Array<
-		RegistryItemFile & {
-			highlightedContent: Promise<string>;
-			target: string;
-		}
-	>;
-} & {
+type Item = HighlightedBlock & {
 	component?: Promise<Component>;
 };
 

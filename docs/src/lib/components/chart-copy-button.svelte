@@ -5,13 +5,15 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import type { ComponentProps } from "svelte";
+	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 
 	let {
 		class: className,
 		code,
 		...restProps
 	}: ComponentProps<typeof Button> & { code: string } = $props();
-	let hasCopied = $state(false);
+
+	const clipboard = new UseClipboard();
 </script>
 
 <Tooltip.Root>
@@ -23,13 +25,12 @@
 				{...props}
 				class={cn("[&_svg]-h-3.5 h-7 w-7 rounded-[6px] [&_svg]:w-3.5", className)}
 				onclick={() => {
-					navigator.clipboard.writeText(code);
-					hasCopied = true;
+					clipboard.copy(code);
 				}}
 				{...restProps}
 			>
 				<span class="sr-only">Copy</span>
-				{#if hasCopied}
+				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}
 					<ClipboardIcon />

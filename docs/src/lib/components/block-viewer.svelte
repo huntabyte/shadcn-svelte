@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import type { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { RegistryItemFile, RegistryItem } from "@shadcn-svelte/registry";
 	import { Pane } from "paneforge";
 	import { Context } from "runed";
 	import BlockViewerToolbar from "./block-viewer-toolbar.svelte";
@@ -8,19 +7,16 @@
 	import BlockViewerCode from "./block-viewer-code.svelte";
 	import type { Snippet } from "svelte";
 	import BlockViewerViewMobile from "./block-viewer-view-mobile.svelte";
+	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 
 	type BlockViewerContextType = {
-		item: RegistryItem;
+		item: HighlightedBlock;
 		view: "code" | "preview";
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
 		iframeKey: number;
-		highlightedFiles:
-			| (RegistryItemFile & {
-					highlightedContent: Promise<string>;
-			  })[]
-			| null;
+		activeFileCodeToCopy: string;
 	};
 
 	export const BlockViewerContext = new Context<BlockViewerContextType>("BlockViewer");
@@ -30,9 +26,8 @@
 	let {
 		item,
 		tree,
-		highlightedFiles,
 		children,
-	}: Pick<BlockViewerContextType, "item" | "tree" | "highlightedFiles"> & {
+	}: Pick<BlockViewerContextType, "item" | "tree"> & {
 		children?: Snippet;
 	} = $props();
 
@@ -56,6 +51,7 @@
 	);
 	let resizablePaneRef = $state<Pane>(null!);
 	let iframeKey = $state<number>(0);
+	let activeFileCodeToCopy = $state<string>("");
 
 	BlockViewerContext.set({
 		get item() {
@@ -88,11 +84,11 @@
 		get tree() {
 			return tree;
 		},
-		get highlightedFiles() {
-			return highlightedFiles;
+		get activeFileCodeToCopy() {
+			return activeFileCodeToCopy;
 		},
-		set highlightedFiles(value) {
-			highlightedFiles = value;
+		set activeFileCodeToCopy(value) {
+			activeFileCodeToCopy = value;
 		},
 	});
 </script>

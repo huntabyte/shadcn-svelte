@@ -1,17 +1,6 @@
-<script lang="ts" module>
-	import type { RegistryItem, RegistryItemFile } from "@shadcn-svelte/registry";
-	export type Chart = Omit<RegistryItem, "files"> & {
-		files: Array<
-			RegistryItemFile & {
-				highlightedContent: Promise<string>;
-				target: string;
-			}
-		>;
-	};
-</script>
-
 <script lang="ts">
 	import { cn } from "$lib/utils.js";
+	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import ChartToolbar from "./chart-toolbar.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
@@ -22,7 +11,7 @@
 		chartData,
 	}: HTMLAttributes<HTMLDivElement> & {
 		name: string;
-		chartData: Chart[];
+		chartData: HighlightedBlock[];
 	} = $props();
 
 	const chart = $derived(chartData.find((c) => c.name === name));

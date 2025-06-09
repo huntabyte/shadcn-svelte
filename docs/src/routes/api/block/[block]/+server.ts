@@ -1,24 +1,30 @@
 import path from "node:path";
 import { json } from "@sveltejs/kit";
-import {
-	registryItemSchema,
-	type RegistryItem,
-	type RegistryItemFile,
-} from "@shadcn-svelte/registry";
+import { registryItemFileSchema, registryItemSchema } from "@shadcn-svelte/registry";
 import { highlightCode } from "$lib/highlight-code.js";
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { transformBlockPath, transformImportPaths } from "$lib/registry/registry-utils.js";
 import type { RequestHandler } from "./$types.js";
+import { z } from "zod/v4";
 
-// TODO: remove unnecessary fields from this object
-type Item = Omit<RegistryItem, "files"> & {
-	files: (RegistryItemFile & {
-		highlightedContent: string;
-		target: string;
-	})[];
-};
+const highlightedBlockSchema = registryItemSchema
+	.pick({
+		name: true,
+		description: true,
+		meta: true,
+		type: true,
+	})
+	.extend({
+		files: z.array(
+			registryItemFileSchema.omit({ content: true }).extend({
+				highlightedContent: z.string(),
+			})
+		),
+	});
 
-async function loadItem(block: string): Promise<Item> {
+export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
+
+async function loadItem(block: string): Promise<HighlightedBlock> {
 	const { default: mod } = await import(`../../../../__registry__/json/${block}.json`);
 	const item = registryItemSchema.parse(mod);
 	const meta = blockMeta[item.name as keyof typeof blockMeta];
@@ -31,7 +37,12 @@ async function loadItem(block: string): Promise<Item> {
 		return { ...file, highlightedContent, target };
 	});
 
-	return { ...item, files: await Promise.all(files), description: meta?.description, meta };
+	return highlightedBlockSchema.parse({
+		...item,
+		files: await Promise.all(files),
+		description: meta?.description,
+		meta,
+	});
 }
 
 export const GET: RequestHandler = async ({ params }) => {
