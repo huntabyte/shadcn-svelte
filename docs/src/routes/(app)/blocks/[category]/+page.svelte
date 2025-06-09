@@ -4,11 +4,18 @@
 	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
+	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 
 	let { data }: { data: PageData } = $props();
 
 	const mobile = new IsMobile(1024);
 </script>
+
+{#snippet Placeholder()}
+	<div class="mt-2 flex min-h-[331px] w-full items-center justify-center rounded-md border p-4">
+		<Skeleton class="h-[297px] w-[250px]" />
+	</div>
+{/snippet}
 
 <div class="flex flex-col gap-12 md:gap-24">
 	{#each data.blocks as block (block.name)}
@@ -19,7 +26,7 @@
 		>
 			{#if mobile.current}
 				{#await block.component}
-					loading
+					{@render Placeholder()}
 				{:then component}
 					<ComponentPreview
 						name={block.name}
@@ -28,6 +35,8 @@
 						class="**:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0 my-0"
 					/>
 				{/await}
+			{:else}
+				{@render Placeholder()}
 			{/if}
 		</BlockViewer>
 	{/each}
