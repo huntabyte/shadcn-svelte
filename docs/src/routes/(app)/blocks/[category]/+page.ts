@@ -9,6 +9,7 @@ import { transformBlockPath, transformImportPaths } from "$lib/registry/registry
 import { blockMeta } from "$lib/registry/registry-block-meta.js";
 import { isBlock } from "$lib/blocks.js";
 import { registryCategories } from "$lib/registry/registry-categories.js";
+import type { Component } from "svelte";
 
 export const prerender = true;
 
@@ -22,15 +23,35 @@ type Item = Omit<RegistryItem, "files"> & {
 			target: string;
 		}
 	>;
+} & {
+	component?: Component;
 };
 
 type Lang = "svelte" | "ts" | "json";
 
 let registryJsonItems: Record<string, () => Promise<unknown>>;
+let components: Record<string, () => Promise<unknown>>;
 
-async function loadItem(path: string): Promise<Item> {
-	const { default: mod } = (await registryJsonItems[path]()) as { default: unknown };
-	const item = registryItemSchema.parse(mod);
+function getComponentPath(filename: string) {
+	return `../../../../lib/registry/blocks/${filename}.svelte`;
+}
+
+async function loadItem(path: string, componentPath?: string): Promise<Item> {
+	let jsonMod: { default: unknown };
+	let componentMod: { default: Component | undefined } = { default: undefined };
+
+	if (componentPath && components[componentPath]) {
+		console.log(componentPath);
+
+		[jsonMod, componentMod] = await Promise.all([
+			registryJsonItems[path]() as Promise<{ default: unknown }>,
+			components[componentPath]() as Promise<{ default: Component }>,
+		]);
+	} else {
+		jsonMod = (await registryJsonItems[path]()) as { default: unknown };
+	}
+
+	const item = registryItemSchema.parse(jsonMod.default);
 	const meta = blockMeta[item.name as keyof typeof blockMeta];
 	const files = item.files.map((file) => {
 		let lang: Lang = "svelte";
@@ -45,7 +66,13 @@ async function loadItem(path: string): Promise<Item> {
 		return { ...file, highlightedContent, target };
 	});
 
-	return { ...item, files: files, description: meta?.description, meta };
+	return {
+		...item,
+		files: files,
+		description: meta?.description,
+		meta,
+		component: componentMod.default,
+	};
 }
 
 export const load: PageLoad = async ({ params }) => {
@@ -59,6 +86,7 @@ export const load: PageLoad = async ({ params }) => {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/login-*.json");
 	} else if (category === "calendar") {
 		registryJsonItems = import.meta.glob("../../../../__registry__/json/calendar-*.json");
+		components = import.meta.glob("../../../../lib/registry/blocks/calendar-*.svelte");
 	}
 
 	const promises: Promise<Item>[] = [];
@@ -67,7 +95,10 @@ export const load: PageLoad = async ({ params }) => {
 		const filename = path.split("/").pop()?.split(".")[0];
 		if (!filename || !isBlock(filename)) continue;
 
-		const processedItem = loadItem(path);
+		const processedItem = loadItem(
+			path,
+			category === "calendar" ? getComponentPath(filename) : undefined
+		);
 		promises.push(processedItem);
 	}
 

@@ -16,6 +16,7 @@
 		>
 			<ComponentPreview
 				name={block.name}
+				component={block.component}
 				hideCode
 				class="**:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0 my-0"
 			/>
