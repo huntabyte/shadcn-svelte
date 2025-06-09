@@ -1,6 +1,13 @@
 <script lang="ts" module>
-	import type { RegistryItem } from "@shadcn-svelte/registry";
-	export type Chart = RegistryItem & { highlightedCode: string };
+	import type { RegistryItem, RegistryItemFile } from "@shadcn-svelte/registry";
+	export type Chart = Omit<RegistryItem, "files"> & {
+		files: Array<
+			RegistryItemFile & {
+				highlightedContent: Promise<string>;
+				target: string;
+			}
+		>;
+	};
 </script>
 
 <script lang="ts">

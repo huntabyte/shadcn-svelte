@@ -1,45 +1,24 @@
-import { highlightCode } from "$lib/highlight-code.js";
-import { registryItemSchema, type RegistryItem } from "@shadcn-svelte/registry";
-import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types.js";
+import type { EntryGenerator, PageLoad } from "./$types.js";
+import type { Chart } from "$lib/components/chart-display.svelte";
 
 const chartTypes = ["area", "bar", "line", "pie", "radar", "radial", "tooltip"] as const;
 type ChartType = (typeof chartTypes)[number];
 
 export const prerender = true;
 
-type CachedItem = RegistryItem & { highlightedCode: string };
-const registryCache = new Map<string, CachedItem>();
+export const entries: EntryGenerator = () => {
+	return chartTypes.map((type) => ({ t: type }));
+};
 
-export const load: PageLoad = async ({ params }) => {
-	if (!chartTypes.includes(params.t as ChartType)) {
-		error(404, "Not found.");
-	}
-	const registryJsonItems = import.meta.glob("../../../../__registry__/json/chart-*.json");
-	const promises: Promise<CachedItem | null>[] = [];
+export const load: PageLoad = async ({ params, data, fetch }) => {
+	const loadItems = data.charts.map(async (chart) => {
+		const res = await fetch(`/api/block/${chart}`);
+		const item = (await res.json()) as Chart;
+		return item;
+	});
 
-	for (const path in registryJsonItems) {
-		const filename = path.split("/").pop()?.split(".")[0];
-		if (!filename) continue;
-		if (registryCache.has(filename)) {
-			promises.push(Promise.resolve(registryCache.get(filename)!));
-		} else {
-			promises.push(
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				registryJsonItems[path]().then(async (m: any) => {
-					const parsed = registryItemSchema.parse(m.default);
-					const highlightedCode = await highlightCode(parsed.files?.[0]?.content ?? "");
-					const item = { ...parsed, highlightedCode };
-					registryCache.set(filename, item);
-					return item;
-				})
-			);
-		}
-	}
-
-	const charts = await Promise.all(promises);
 	return {
-		chartData: charts.filter((chart): chart is CachedItem => chart !== null),
+		charts: await Promise.all(loadItems),
 		type: params.t as ChartType,
 	};
 };

@@ -21,7 +21,7 @@
 				<ChartDisplay
 					name={chart.id}
 					class={cn(chart.fullWidth && "md:col-span-2 lg:col-span-3")}
-					chartData={data.chartData}
+					chartData={data.charts}
 				>
 					<chart.component />
 				</ChartDisplay>

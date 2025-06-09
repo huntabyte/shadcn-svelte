@@ -13,7 +13,6 @@ export const entries: EntryGenerator = () =>
 	registryCategories.filter((c) => !c.hidden).map(({ slug }) => ({ category: slug }));
 
 export const load: PageServerLoad = async () => {
-	path;
 	return {
 		calendars: getBlockNames(calendars),
 		dashboards: getBlockNames(dashboards),
