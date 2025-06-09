@@ -21,7 +21,7 @@
 			tree={createFileTreeForRegistryItemFiles(block.files)}
 			highlightedFiles={block.files}
 		>
-			{#await block.component?.()}
+			{#await block.component}
 				{@render Placeholder()}
 			{:then component}
 				<ComponentPreview

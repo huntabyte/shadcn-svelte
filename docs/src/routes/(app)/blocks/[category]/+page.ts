@@ -17,7 +17,7 @@ type Item = Omit<RegistryItem, "files"> & {
 		}
 	>;
 } & {
-	component?: () => Promise<Component>;
+	component?: Promise<Component>;
 };
 
 const components = import.meta.glob("/src/lib/registry/blocks/calendar-*.svelte", {
@@ -49,8 +49,7 @@ export const load: PageLoad = async ({ params, data, fetch }) => {
 			const resp = await fetch(`/api/block/${block}`);
 			const item = (await resp.json()) as Item;
 			const path = `/src/lib/registry/blocks/${block}.svelte`;
-			// item.component = (await components[path]()) as Component;
-			item.component = components[path] as () => Promise<Component>;
+			item.component = components[path]() as Promise<Component>;
 			return item;
 		});
 	} else {
