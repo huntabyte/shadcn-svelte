@@ -3,12 +3,9 @@
 	import BlockViewer from "$lib/components/block-viewer.svelte";
 	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
 	import ComponentPreview from "$lib/components/component-preview.svelte";
-	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 	import { Skeleton } from "$lib/registry/ui/skeleton/index.js";
 
 	let { data }: { data: PageData } = $props();
-
-	const mobile = new IsMobile(1024);
 </script>
 
 {#snippet Placeholder()}
@@ -24,20 +21,16 @@
 			tree={createFileTreeForRegistryItemFiles(block.files)}
 			highlightedFiles={block.files}
 		>
-			{#if mobile.current}
-				{#await block.component}
-					{@render Placeholder()}
-				{:then component}
-					<ComponentPreview
-						name={block.name}
-						{component}
-						hideCode
-						class="**:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0 my-0"
-					/>
-				{/await}
-			{:else}
+			{#await block.component?.()}
 				{@render Placeholder()}
-			{/if}
+			{:then component}
+				<ComponentPreview
+					name={block.name}
+					{component}
+					hideCode
+					class="**:[.preview]:h-auto **:[.preview]:p-4 **:[.preview>.p-6]:p-0 my-0"
+				/>
+			{/await}
 		</BlockViewer>
 	{/each}
 </div>
