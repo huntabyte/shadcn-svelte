@@ -1,4 +1,6 @@
-<script>
+<svelte:options runes />
+
+<script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
 	import ExamplesNav from "$lib/components/examples-nav.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
@@ -40,8 +42,20 @@
 	<div class="container-wrapper section-soft flex-1 pb-6">
 		<div class="container overflow-hidden">
 			<section
-				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
+				class="border-border/50 -mx-4 overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
+				<enhanced:img
+					class="block object-cover dark:hidden"
+					fetchpriority="high"
+					src="../../../static/img/registry/dashboard-01-light.png?w=1440"
+					alt="Dashboard"
+				/>
+				<enhanced:img
+					class="hidden object-cover dark:block"
+					fetchpriority="high"
+					src="../../../static/img/registry/dashboard-01-dark.png?w=1440"
+					alt="Dashboard"
+				/>
 				<!-- <img
 					src="/img/registry/dashboard-01-light.png"
 					width={1400}

@@ -30,6 +30,7 @@
 		"@shikijs/themes": "^3.4.2",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@sveltejs/adapter-cloudflare": "^4.7.4",
+		"@sveltejs/enhanced-img": "^0.6.0",
 		"@sveltejs/kit": "^2.21.2",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@tabler/icons-svelte": "^3.31.0",

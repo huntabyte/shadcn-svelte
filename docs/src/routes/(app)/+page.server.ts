@@ -38,13 +38,9 @@ export const actions: Actions = {
 async function handleForm(event: RequestEvent, schema: AnyZodObject) {
 	const form = await superValidate(event, zod(schema));
 	if (!form.valid) {
-		return fail(400, {
-			form,
-		});
+		return fail(400, { form });
 	}
-	return {
-		form,
-	};
+	return { form };
 }
 
 export const load: PageServerLoad = async (event) => {
