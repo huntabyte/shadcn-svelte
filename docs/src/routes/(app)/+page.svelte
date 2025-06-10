@@ -42,36 +42,22 @@
 	<div class="container-wrapper section-soft flex-1 pb-6">
 		<div class="container overflow-hidden">
 			<section
-				class="border-border/50 -mx-4 overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
+				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
 				<enhanced:img
 					class="block object-cover dark:hidden"
-					fetchpriority="high"
-					src="../../../static/img/registry/dashboard-01-light.png?w=1440"
+					src="../../../static/img/registry/dashboard-01-light.png?w=1220px;840px"
+					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
+					fetchpriority="high"
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
-					fetchpriority="high"
-					src="../../../static/img/registry/dashboard-01-dark.png?w=1440"
+					src="../../../static/img/registry/dashboard-01-dark.png?w=1220px;840px"
+					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
-				/>
-				<!-- <img
-					src="/img/registry/dashboard-01-light.png"
-					width={1400}
-					height={875}
-					alt="Dashboard"
-					class="block dark:hidden"
 					fetchpriority="high"
 				/>
-				<img
-					src="/img/registry/dashboard-01-dark.png"
-					width={1400}
-					height={875}
-					alt="Dashboard"
-					class="hidden dark:block"
-					fetchpriority="high"
-				/> -->
 			</section>
 			{#if !mobile.current}
 				<section class="theme-container hidden md:block">
