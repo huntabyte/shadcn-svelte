@@ -2,7 +2,7 @@ import { fail } from "@sveltejs/kit";
 import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
 import type { AnyZodObject } from "zod";
-import type { Actions, PageServerLoad, RequestEvent } from "./$types.js";
+import type { Actions, RequestEvent } from "./$types.js";
 
 import { formSchema } from "$lib/registry/examples/form-demo.svelte";
 import { formSchema as checkboxSingleSchema } from "$lib/registry/examples/checkbox-form-single.svelte";
@@ -42,13 +42,3 @@ async function handleForm(event: RequestEvent, schema: AnyZodObject) {
 	}
 	return { form };
 }
-
-export const load: PageServerLoad = async (event) => {
-	const collapsedCookie = event.cookies.get("PaneForge:collapsed");
-
-	let collapsed: boolean | undefined;
-
-	if (collapsedCookie) collapsed = JSON.parse(collapsedCookie);
-
-	return { collapsed };
-};

@@ -33,7 +33,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="/?/select" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" action="/api/forms?/select" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="email">
 		<Form.Control>
 			{#snippet children({ props })}

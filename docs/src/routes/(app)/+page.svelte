@@ -49,14 +49,16 @@
 					src="../../../static/img/registry/dashboard-01-light.png?w=1220;840"
 					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
-					fetchpriority="high"
+					fetchpriority={mobile.current ? "high" : undefined}
+					loading={mobile.current ? undefined : "lazy"}
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
 					src="../../../static/img/registry/dashboard-01-dark.png?w=1220;840"
 					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
-					fetchpriority="high"
+					fetchpriority={mobile.current ? "high" : undefined}
+					loading={mobile.current ? undefined : "lazy"}
 				/>
 			</section>
 			{#if !mobile.current}

@@ -33,7 +33,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form action="/?/inputOtp" method="POST" class="w-2/3 space-y-6" use:enhance>
+<form action="/api/forms?/inputOtp" method="POST" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="pin">
 		<Form.Control>
 			{#snippet children({ props })}

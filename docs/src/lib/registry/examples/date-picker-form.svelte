@@ -59,7 +59,7 @@
 	let placeholder = $state<DateValue>(today(getLocalTimeZone()));
 </script>
 
-<form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
+<form method="POST" action="/api/forms?/datePicker" class="space-y-8" use:enhance>
 	<Form.Field {form} name="dob" class="flex flex-col">
 		<Form.Control>
 			{#snippet children({ props })}

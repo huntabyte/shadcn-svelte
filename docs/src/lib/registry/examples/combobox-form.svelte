@@ -69,7 +69,7 @@
 	const triggerId = useId();
 </script>
 
-<form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
+<form method="POST" action="/api/forms?/combobox" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
 		<Popover.Root bind:open>
 			<Form.Control id={triggerId}>

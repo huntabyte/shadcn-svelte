@@ -32,7 +32,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="/?/switch" class="w-full space-y-6" use:enhance>
+<form method="POST" action="/api/forms?/switch" class="w-full space-y-6" use:enhance>
 	<fieldset>
 		<legend class="mb-4 text-lg font-medium"> Email Notifications </legend>
 		<div class="space-y-4">
