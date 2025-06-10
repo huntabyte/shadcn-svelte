@@ -1,5 +1,13 @@
 # shadcn-svelte
 
+## 1.0.2
+
+### Patch Changes
+
+- chore: update minimum supported Node version to v20 ([#2097](https://github.com/huntabyte/shadcn-svelte/pull/2097))
+
+- fix: don't throw on missing directories ([#2088](https://github.com/huntabyte/shadcn-svelte/pull/2088))
+
 ## 1.0.1
 
 ### Patch Changes
