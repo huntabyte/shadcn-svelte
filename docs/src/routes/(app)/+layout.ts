@@ -3,7 +3,7 @@ import { parseUserConfig } from "$lib/user-config.svelte.js";
 import type { LayoutLoad } from "./$types.js";
 
 export const load: LayoutLoad = ({ data }) => {
-	if (!browser) return { userConfig: data.userConfig };
+	if (!browser) return data;
 
-	return { userConfig: parseUserConfig(document.cookie) };
+	return { ...data, userConfig: parseUserConfig(document.cookie) };
 };
