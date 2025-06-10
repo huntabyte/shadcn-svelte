@@ -1,3 +1,5 @@
+<svelte:options runes />
+
 <script lang="ts">
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { Button } from "$lib/registry/ui/button/index.js";

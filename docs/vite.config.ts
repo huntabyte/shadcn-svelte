@@ -10,6 +10,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { registrySchema, registryItemSchema, componentsJsonSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 import { visualizer } from "rollup-plugin-visualizer";
+import { enhancedImages } from "@sveltejs/enhanced-img";
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
@@ -32,6 +33,7 @@ export default defineConfig({
 			filename: "stats.html",
 		}),
 		tailwindcss(),
+		enhancedImages(),
 		sveltekit(),
 		{
 			name: "registry-builder",
@@ -50,6 +52,7 @@ export default defineConfig({
 		},
 	},
 	build: {
+		// minify: false,
 		rollupOptions: {
 			output: {
 				manualChunks: {

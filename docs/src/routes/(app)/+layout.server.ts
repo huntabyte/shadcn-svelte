@@ -8,8 +8,5 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	const parsedUserConfig = userConfigCookie ? JSON.parse(userConfigCookie) : {};
 	const userConfig = userConfigSchema.parse(parsedUserConfig);
 
-	return {
-		sidebarState,
-		userConfig,
-	};
+	return { sidebarState, userConfig };
 };
