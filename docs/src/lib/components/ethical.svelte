@@ -3,21 +3,21 @@
 	import { beforeNavigate } from "$app/navigation";
 	import { dev, browser } from "$app/environment";
 
-	const src =
-		"//cdn.carbonads.com/carbon.js?serve=CW7DK27L&placement=shadcn-sveltecom&format=cover";
+	const src = "https://media.ethicalads.io/media/client/ethicalads.min.js";
 	const localId = $props.id();
+	const ethicalId = `${localId}-ethical`;
 
 	let container: HTMLElement | null = null;
 
 	onMount(() => {
 		if (!dev) {
-			refreshCarbonAds();
+			refreshEthicalAds();
 
 			return () => {
 				const scriptNode = container?.querySelector(`[data-id="${localId}"]`);
-				const carbonNode = container?.querySelector(`#carbonads`);
+				const ethicalNode = container?.querySelector(`#${ethicalId}`);
 				scriptNode?.remove();
-				carbonNode?.remove();
+				ethicalNode?.remove();
 			};
 		}
 	});
@@ -27,33 +27,44 @@
 		if (isDocIndex) return;
 		const goingToDocIndex = navigation.to?.route.id === "/(app)/docs";
 		if (goingToDocIndex) return;
-		refreshCarbonAds();
+		refreshEthicalAds();
 	});
 
-	function createCarbonScript() {
+	function createEthicalScript() {
 		const script = document.createElement("script");
 		script.async = true;
-		script.id = "_carbonads_js";
+		script.id = "_ethicalads_js";
 		script.src = src;
-		script.type = "text/javascript";
-		script.dataset.id = localId;
+		script.dataset.id = "_ethicalads_js";
 		return script;
 	}
 
-	function refreshCarbonAds() {
+	function createEthicalDiv() {
+		const div = document.createElement("div");
+		div.id = ethicalId;
+		div.setAttribute("data-ea-publisher", "shadcn-sveltecom");
+		div.setAttribute("data-ea-type", "image");
+		const container = document.getElementById(localId);
+		if (container) {
+			container.appendChild(div);
+		}
+	}
+
+	function refreshEthicalAds() {
 		if (!dev) {
 			if (!browser) return;
 
-			const scriptNode = container?.querySelector("[data-id='_carbonads_js']");
-			const carbonAdsNode = container?.querySelector("#carbonads");
+			const scriptNode = container?.querySelector("[data-id='_ethicalads_js']");
+			const ethicalNode = container?.querySelector(`#${ethicalId}`);
 
-			carbonAdsNode?.remove();
+			ethicalNode?.remove();
 			scriptNode?.remove();
 
-			const script = createCarbonScript();
+			const script = createEthicalScript();
 			container = document.getElementById(localId);
 			if (container) {
 				container.appendChild(script);
+				createEthicalDiv();
 			}
 		}
 	}
