@@ -1,4 +1,4 @@
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
 import type { AnyZodObject } from "zod";
@@ -47,12 +47,14 @@ async function handleForm(event: RequestEvent, schema: AnyZodObject) {
 	};
 }
 
-export const load: PageServerLoad = async (event) => {
-	const collapsedCookie = event.cookies.get("PaneForge:collapsed");
+export const load: PageServerLoad = async (_event) => {
+	redirect(302, "/docs");
 
-	let collapsed: boolean | undefined;
+	// const collapsedCookie = event.cookies.get("PaneForge:collapsed");
 
-	if (collapsedCookie) collapsed = JSON.parse(collapsedCookie);
+	// let collapsed: boolean | undefined;
 
-	return { collapsed };
+	// if (collapsedCookie) collapsed = JSON.parse(collapsedCookie);
+
+	// return { collapsed };
 };
