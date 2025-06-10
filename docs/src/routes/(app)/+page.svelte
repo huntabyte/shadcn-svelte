@@ -46,19 +46,23 @@
 			>
 				<enhanced:img
 					class="block object-cover dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light.webp?w=1220;840"
-					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
+					src="../../../static/img/registry/dashboard-01-light.png?w=1200;750"
+					srcset="(min-width:532px) 1200px, (max-width:532px) 750px"
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
 					loading={mobile.current ? "eager" : "lazy"}
+					width={1200}
+					height={750}
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
-					src="../../../static/img/registry/dashboard-01-dark.webp?w=1220;840"
-					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
+					src="../../../static/img/registry/dashboard-01-dark.png?w=1200;750"
+					srcset="(min-width:532px) 1200px, (max-width:532px) 750px"
 					alt="Dashboard"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
+					width={1200}
+					height={750}
 				/>
 			</section>
 			{#if !mobile.current}
