@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-chore: update minimum Node version to v20.12
+chore: update minimum supported Node version to v20
