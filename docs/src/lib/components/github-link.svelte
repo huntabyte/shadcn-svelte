@@ -3,6 +3,24 @@
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import GithubIcon from "./github.svelte";
 	import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
+	import { onMount } from "svelte";
+
+	async function getGithubStarCount() {
+		try {
+			const res = await fetch("https://ungh.cc/repos/huntabyte/shadcn-svelte");
+			const data = await res.json();
+			return data.repo?.stars ?? FALLBACK_STAR_COUNT;
+		} catch (error) {
+			console.error(error);
+			return FALLBACK_STAR_COUNT;
+		}
+	}
+
+	let stars = $state(FALLBACK_STAR_COUNT);
+
+	onMount(async () => {
+		stars = await getGithubStarCount();
+	});
 </script>
 
 <Button
@@ -15,6 +33,6 @@
 >
 	<GithubIcon />
 	<span class="text-muted-foreground w-8 text-xs tabular-nums">
-		{`${(FALLBACK_STAR_COUNT / 1000).toFixed(1)}k`}
+		{stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toLocaleString()}
 	</span>
 </Button>
