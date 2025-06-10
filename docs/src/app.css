@@ -1,8 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @import "./themes.css";
+
+@font-face {
+	font-family: "Geist";
+	src: url("/fonts/geist.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geist Mono";
+	src: url("/fonts/geist-mono.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -228,15 +243,15 @@
 			@apply !mt-0;
 		}
 
-		&:first-child > *[aria-level="3"]:first-child {
+		&:first-child>*[aria-level="3"]:first-child {
 			@apply !mt-0;
 		}
 
-		> *[aria-level="3"] {
+		>*[aria-level="3"] {
 			@apply !mt-16;
 		}
 
-		> *[aria-level="3"] + p {
+		>*[aria-level="3"]+p {
 			@apply !mt-2;
 		}
 	}
