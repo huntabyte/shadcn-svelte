@@ -56,9 +56,9 @@ export default defineConfig({
 					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
 				},
 			},
+			external: [/node:.*/],
 		},
 	},
-	resolve: { noExternal: [/(?:node:)/] },
 });
 
 function writeJsonSchemas() {
