@@ -46,7 +46,7 @@
 			>
 				<enhanced:img
 					class="block object-cover dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light.png?w=1220;840"
+					src="../../../static/img/registry/dashboard-01-light.webp?w=1220;840"
 					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
@@ -54,7 +54,7 @@
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
-					src="../../../static/img/registry/dashboard-01-dark.png?w=1220;840"
+					src="../../../static/img/registry/dashboard-01-dark.webp?w=1220;840"
 					srcset="(min-width:532px) 1220px, (max-width:532px) 840px"
 					alt="Dashboard"
 					fetchpriority="high"
