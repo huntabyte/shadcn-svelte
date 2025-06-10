@@ -163,8 +163,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.5
       layerchart:
-        specifier: 2.0.0-next.14
-        version: 2.0.0-next.14(svelte@5.33.18)
+        specifier: https://pkg.pr.new/layerchart@554
+        version: https://pkg.pr.new/layerchart@554(svelte@5.33.18)
       little-date:
         specifier: ^1.0.0
         version: 1.0.0
@@ -2786,8 +2786,9 @@ packages:
   known-css-properties@0.36.0:
     resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
 
-  layerchart@2.0.0-next.14:
-    resolution: {integrity: sha512-FHTeLMzogYDlrueneBjy1fJ/kKrXKrWSG+/nZ6VAMUGKnzSlMM9ibrfts+P/WrJMZ8L2rWD8wosa3ivNNGlwPw==}
+  layerchart@https://pkg.pr.new/layerchart@554:
+    resolution: {tarball: https://pkg.pr.new/layerchart@554}
+    version: 2.0.0-next.17
     peerDependencies:
       svelte: ^5.0.0
 
@@ -6677,7 +6678,7 @@ snapshots:
 
   known-css-properties@0.36.0: {}
 
-  layerchart@2.0.0-next.14(svelte@5.33.18):
+  layerchart@https://pkg.pr.new/layerchart@554(svelte@5.33.18):
     dependencies:
       '@dagrejs/dagre': 1.1.4
       '@layerstack/svelte-actions': 1.0.1-next.4
@@ -6703,7 +6704,6 @@ snapshots:
       d3-shape: 3.2.0
       d3-tile: 1.0.0
       d3-time: 3.1.0
-      date-fns: 4.1.0
       lodash-es: 4.17.21
       runed: 0.28.0(svelte@5.33.18)
       svelte: 5.33.18
