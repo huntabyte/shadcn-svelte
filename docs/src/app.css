@@ -6,7 +6,6 @@
 @font-face {
 	font-family: "Geist";
 	src: url("/fonts/Geist/geist.woff2") format("woff2");
-	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
@@ -14,7 +13,6 @@
 @font-face {
 	font-family: "Geist Mono";
 	src: url("/fonts/Geist/geist-mono.woff2") format("woff2");
-	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
