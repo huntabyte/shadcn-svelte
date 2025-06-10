@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import * as semver from "semver";
 import { getProjectPackageInfo } from "./get-package-info.js";
 import { log } from "@clack/prompts";
@@ -31,8 +31,8 @@ function checkDependencies(dependencies: Partial<Record<string, string>>) {
 
 		if (!semver.satisfies(currentVersion, targetVersion)) {
 			incompatible.push([
-				`${color.bold(`${name}@`)}${color.greenBright.bold(targetVersion)}`,
-				color.yellowBright.bold(currentVersion),
+				`${color.bold(`${name}@`)}${color.greenBright(color.bold(targetVersion))}`,
+				color.yellowBright(color.bold(currentVersion.toString())),
 			]);
 		}
 	}
@@ -45,7 +45,7 @@ function checkDependencies(dependencies: Partial<Record<string, string>>) {
 			.join("\n");
 
 		log.warn(
-			`Incompatible dependency versions detected:\n\n${lines}\n\n${color.white.bold("Use at your own risk!")}`
+			`Incompatible dependency versions detected:\n\n${lines}\n\n${color.white(color.bold("Use at your own risk!"))}`
 		);
 	}
 }

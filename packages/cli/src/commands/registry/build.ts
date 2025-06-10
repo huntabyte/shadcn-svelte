@@ -1,7 +1,7 @@
 import path from "node:path";
 import process from "node:process";
 import { existsSync, promises as fs } from "node:fs";
-import color from "chalk";
+import color from "picocolors";
 import { z } from "zod/v4";
 import { Command } from "commander";
 import * as schema from "@shadcn-svelte/registry";

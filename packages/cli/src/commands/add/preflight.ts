@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import * as semver from "semver";
 import { ConfigError, error } from "../../utils/errors.js";
 import * as cliConfig from "../../utils/get-config.js";

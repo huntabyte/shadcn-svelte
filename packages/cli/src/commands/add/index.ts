@@ -1,7 +1,7 @@
 import path from "node:path";
 import process from "node:process";
 import { existsSync } from "node:fs";
-import color from "chalk";
+import color from "picocolors";
 import { z } from "zod/v4";
 import { Command } from "commander";
 import { ConfigError, error, handleError } from "../../utils/errors.js";
@@ -130,7 +130,7 @@ async function runAdd(cwd: string, config: cliConfig.ResolvedConfig, options: Ad
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
 		p.log.warn(
-			`Components have been installed ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
+			`Components have been installed ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
 	}
 }

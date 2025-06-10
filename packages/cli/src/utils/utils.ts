@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import { z } from "zod/v4";
 import { error } from "./errors.js";
 
@@ -7,7 +7,7 @@ export function isUrl(path: string) {
 	return result.success;
 }
 
-export const highlight = (...args: unknown[]) => color.bold.cyan(...args);
+export const highlight = (str: string) => color.bold(color.cyan(str));
 
 export const stripTrailingSlash = (s: string) => (s.endsWith("/") ? s.slice(0, -1) : s);
 

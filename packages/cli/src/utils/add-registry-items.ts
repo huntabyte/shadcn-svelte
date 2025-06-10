@@ -1,6 +1,6 @@
 import path from "node:path";
 import { existsSync, promises as fs } from "node:fs";
-import color from "chalk";
+import color from "picocolors";
 import merge from "deepmerge";
 import * as p from "@clack/prompts";
 import * as registry from "./registry/index.js";
@@ -64,11 +64,11 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	if (opts.overwrite === false && existingItems.length > 0) {
 		const prettyList = prettifyList(existingItems);
 		p.log.warn(
-			`The following items ${color.bold.yellow("already exist")}:\n${color.gray(prettyList)}`
+			`The following items ${color.bold(color.yellow("already exist"))}:\n${color.gray(prettyList)}`
 		);
 
 		const overwrite = await p.confirm({
-			message: `Would you like to ${color.bold.red("overwrite")} all existing files?`,
+			message: `Would you like to ${color.bold(color.red("overwrite"))} all existing files?`,
 			active: "Yes, overwrite everything",
 			inactive: "No, let me decide individually",
 			initialValue: false,
@@ -96,7 +96,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 					);
 
 					const overwrite = await p.confirm({
-						message: `Would you like to ${color.bold.red("overwrite")} your existing ${highlight(item.name)} ${item.type}?`,
+						message: `Would you like to ${color.bold(color.red("overwrite"))} your existing ${highlight(item.name)} ${item.type}?`,
 					});
 					if (p.isCancel(overwrite)) cancel();
 					if (overwrite === false) continue;
@@ -164,7 +164,7 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 		if (!opts.overwrite) {
 			const overwrite = await p.confirm({
-				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold.red("overwritten")} in ${highlight(relative)}. Continue?`,
+				message: `A new ${highlight("style")} is ready to be installed. Existing CSS variables may be ${color.bold(color.red("overwritten"))} in ${highlight(relative)}. Continue?`,
 				initialValue: false,
 			});
 			if (p.isCancel(overwrite)) cancel();

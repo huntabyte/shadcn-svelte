@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import { Command, Option } from "commander";
 import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
@@ -320,7 +320,7 @@ export async function runInit(cwd: string, config: ResolvedConfig, options: Init
 	} else if (result.skippedDeps.size) {
 		const prettyList = prettifyList([...result.skippedDeps], 7);
 		p.log.warn(
-			`shadcn-svelte has been initialized ${color.bold.red("without")} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
+			`shadcn-svelte has been initialized ${color.bold(color.red("without"))} the following ${highlight("dependencies")}:\n${color.gray(prettyList)}`
 		);
 	}
 }
