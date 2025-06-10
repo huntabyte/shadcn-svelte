@@ -32,4 +32,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: preview-build
-          path: docs/.svelte-kit/cloudflare
+          path: docs/.svelte-kit
+          include-hidden-files: true

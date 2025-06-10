@@ -29,7 +29,7 @@
 		"@shikijs/langs": "^3.4.2",
 		"@shikijs/themes": "^3.4.2",
 		"@sveltejs/acorn-typescript": "^1.0.5",
-		"@sveltejs/adapter-cloudflare": "^4.7.4",
+		"@sveltejs/adapter-cloudflare": "^7.0.4",
 		"@sveltejs/enhanced-img": "^0.6.0",
 		"@sveltejs/kit": "^2.21.2",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",

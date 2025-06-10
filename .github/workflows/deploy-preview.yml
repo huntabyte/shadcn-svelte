@@ -34,4 +34,4 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: shadcn-svelte
           deploymentName: Preview
-          directory: ${{ steps.preview-build-artifact.outputs.download-path }}
+          directory: ${{ steps.preview-build-artifact.outputs.download-path }}/cloudflare
