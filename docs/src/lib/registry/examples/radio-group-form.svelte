@@ -1,29 +1,22 @@
 <script lang="ts" module>
-	import { z } from "zod";
+	import { z } from "zod/v4";
 
-	export const formSchema = z.object({
-		type: z.enum(["all", "mentions", "none"], {
-			required_error: "You need to select a notification type",
-		}),
+	const formSchema = z.object({
+		type: z.enum(["all", "mentions", "none"]),
 	});
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
-	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
-	import { page } from "$app/state";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as RadioGroup from "$lib/registry/ui/radio-group/index.js";
 
-	let { form: data = page.data.radioGroup }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		validators: zod4(formSchema),
+		SPA: true,
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -35,7 +28,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="/?/radioGroup" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" class="w-2/3 space-y-6" use:enhance>
 	<Form.Fieldset {form} name="type" class="space-y-3">
 		<Form.Legend>Notify me about...</Form.Legend>
 		<RadioGroup.Root bind:value={$formData.type} class="flex flex-col space-y-1" name="type">
@@ -67,7 +60,4 @@
 		<Form.FieldErrors />
 	</Form.Fieldset>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

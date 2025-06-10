@@ -12,14 +12,12 @@
 		example,
 		children,
 		name,
-		form,
 		...restProps
 	}: HTMLAttributes<HTMLElement> & {
 		align?: "center" | "start" | "end";
 		hideCode?: boolean;
 		example?: Snippet;
 		component?: Component;
-		form?: unknown;
 		name: string;
 	} = $props();
 
@@ -29,7 +27,7 @@
 {#snippet ExampleFallback()}
 	{#if component}
 		{@const Component = component}
-		<Component {form} />
+		<Component />
 	{:else}
 		<p class="text-muted-foreground text-sm">
 			Component

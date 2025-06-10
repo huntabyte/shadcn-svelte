@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod";
+	import { z } from "zod/v4";
 
 	const items = [
 		{
@@ -28,29 +28,24 @@
 		},
 	] as const;
 
-	export const formSchema = z.object({
+	const formSchema = z.object({
 		items: z.array(z.string()).refine((value) => value.some((item) => item), {
 			message: "You have to select at least one item.",
 		}),
 	});
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
-	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
-	import { page } from "$app/state";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
-	let { form: data = page.data.checkboxMultiple }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		SPA: true,
+		validators: zod4(formSchema),
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -70,7 +65,7 @@
 	}
 </script>
 
-<form action="/?/checkboxMultiple" method="POST" class="space-y-8" use:enhance>
+<form method="POST" class="space-y-8" use:enhance>
 	<Form.Fieldset {form} name="items" class="space-y-0">
 		<div class="mb-4">
 			<Form.Legend class="text-base">Sidebar</Form.Legend>
@@ -107,7 +102,4 @@
 		</div>
 	</Form.Fieldset>
 	<Form.Button>Update display</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

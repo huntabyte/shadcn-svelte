@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { z } from "zod";
+	import { z } from "zod/v4";
 
 	const languages = [
 		{ label: "English", value: "en" },
@@ -13,38 +13,29 @@
 		{ label: "Chinese", value: "zh" },
 	] as const;
 
-	type Language = (typeof languages)[number]["value"];
-
-	export const formSchema = z.object({
-		language: z.enum(languages.map((f) => f.value) as [Language, ...Language[]], {
-			errorMap: () => ({ message: "Please select a valid language." }),
-		}),
+	const formSchema = z.object({
+		language: z.enum(["en", "fr", "de", "es", "pt", "ru", "ja", "ko", "zh"]),
 	});
-
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
-	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
+	import { defaults, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
-	import { browser } from "$app/environment";
-	import { page } from "$app/state";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import { cn } from "$lib/utils.js";
 	import { buttonVariants } from "$lib/registry/ui/button/index.js";
-	let data: SuperValidated<Infer<FormSchema>> = page.data.combobox;
-	export { data as form };
 
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		validators: zod4(formSchema),
+		SPA: true,
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -69,7 +60,7 @@
 	const triggerId = useId();
 </script>
 
-<form method="POST" action="/?/combobox" class="space-y-6" use:enhance>
+<form method="POST" class="space-y-6" use:enhance>
 	<Form.Field {form} name="language" class="flex flex-col">
 		<Popover.Root bind:open>
 			<Form.Control id={triggerId}>
@@ -123,7 +114,4 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>
