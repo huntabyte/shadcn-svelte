@@ -43,6 +43,7 @@
 					height={875}
 					alt="Dashboard"
 					class="block dark:hidden"
+					fetchpriority="high"
 				/>
 				<img
 					src="/img/registry/dashboard-01-dark.png"
@@ -50,6 +51,7 @@
 					height={875}
 					alt="Dashboard"
 					class="hidden dark:block"
+					fetchpriority="high"
 				/>
 			</section>
 			<section class="theme-container hidden md:block">
