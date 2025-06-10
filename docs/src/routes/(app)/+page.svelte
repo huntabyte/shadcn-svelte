@@ -51,8 +51,6 @@
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
 					loading={mobile.current ? "eager" : "lazy"}
-					width={1200}
-					height={750}
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
@@ -61,8 +59,6 @@
 					alt="Dashboard"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
-					width={1200}
-					height={750}
 				/>
 			</section>
 			{#if !mobile.current}
