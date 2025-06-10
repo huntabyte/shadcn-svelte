@@ -51,16 +51,14 @@ export default defineConfig({
 	},
 	build: {
 		rollupOptions: {
-			// prevents `clsx` from being built as a side-effect
-			treeshake: { moduleSideEffects: "no-external" },
 			output: {
 				manualChunks: {
 					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
 				},
 			},
-			external: [/^node:.*/],
 		},
 	},
+	resolve: { external: ["node:dns"] },
 });
 
 function writeJsonSchemas() {
