@@ -10,10 +10,13 @@
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/components/cards/demo.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	const title = "Build your Component Library";
 	const description =
 		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
+
+	const mobile = new IsMobile();
 </script>
 
 <Metadata {title} {description} />
@@ -28,10 +31,12 @@
 			<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
 		</PageActions>
 	</PageHeader>
-	<PageNav class="hidden md:flex">
-		<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
-		<ThemeSelector class="mr-4 hidden md:flex" />
-	</PageNav>
+	{#if !mobile.current}
+		<PageNav class="hidden md:flex">
+			<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
+			<ThemeSelector class="mr-4 hidden md:flex" />
+		</PageNav>
+	{/if}
 	<div class="container-wrapper section-soft flex-1 pb-6">
 		<div class="container overflow-hidden">
 			<section
@@ -54,9 +59,11 @@
 					fetchpriority="high"
 				/> -->
 			</section>
-			<section class="theme-container hidden md:block">
-				<CardsDemo />
-			</section>
+			{#if !mobile.current}
+				<section class="theme-container hidden md:block">
+					<CardsDemo />
+				</section>
+			{/if}
 		</div>
 	</div>
 </div>
