@@ -6,6 +6,7 @@ on:
     paths:
       - docs/**
       - packages/registry/**
+  workflow_dispatch:
 
 jobs:
   deploy-production:
