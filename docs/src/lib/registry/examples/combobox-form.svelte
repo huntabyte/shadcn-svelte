@@ -19,14 +19,13 @@
 </script>
 
 <script lang="ts">
-	import SuperDebug, { defaults, superForm } from "sveltekit-superforms";
+	import { defaults, superForm } from "sveltekit-superforms";
 	import { tick } from "svelte";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
 	import { useId } from "bits-ui";
-	import { browser } from "$app/environment";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
@@ -115,7 +114,4 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

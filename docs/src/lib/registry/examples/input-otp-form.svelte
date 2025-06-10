@@ -8,10 +8,9 @@
 </script>
 
 <script lang="ts">
-	import SuperDebug, { defaults, superForm } from "sveltekit-superforms";
+	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
 	import * as InputOTP from "$lib/registry/ui/input-otp/index.js";
 	import * as Form from "$lib/registry/ui/form/index.js";
 
@@ -49,7 +48,4 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

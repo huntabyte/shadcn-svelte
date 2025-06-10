@@ -16,10 +16,9 @@
 		parseDate,
 		today,
 	} from "@internationalized/date";
-	import SuperDebug, { defaults, superForm } from "sveltekit-superforms";
+	import { defaults, superForm } from "sveltekit-superforms";
 	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
 	import { cn } from "$lib/utils.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
@@ -92,7 +91,4 @@
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>
