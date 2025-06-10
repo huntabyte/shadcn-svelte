@@ -241,15 +241,15 @@
 			@apply !mt-0;
 		}
 
-		&:first-child>*[aria-level="3"]:first-child {
+		&:first-child > *[aria-level="3"]:first-child {
 			@apply !mt-0;
 		}
 
-		>*[aria-level="3"] {
+		> *[aria-level="3"] {
 			@apply !mt-16;
 		}
 
-		>*[aria-level="3"]+p {
+		> *[aria-level="3"] + p {
 			@apply !mt-2;
 		}
 	}
