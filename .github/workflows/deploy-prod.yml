@@ -1,35 +1,35 @@
 name: Production Deployment
 on:
-    push:
-        branches:
-            - main
-        paths:
-            - docs/**
-            - packages/registry/**
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
+      - packages/registry/**
 
 jobs:
-    deploy-production:
-        runs-on: macos-latest
-        permissions:
-            contents: read
-            deployments: write
-        name: Deploy Production Site to Cloudflare Pages
-        steps:
-            - uses: actions/checkout@v4
-            - uses: pnpm/action-setup@v4
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: pnpm
+  deploy-production:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy Production Site to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
-            - name: Install dependencies
-              run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-            - name: Build site
-              run: pnpm build
+      - name: Build site
+        run: pnpm build
 
-            - name: Deploy to Cloudflare
-              run: pnpm -F docs exec wrangler deploy
-              env:
-                  CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      - name: Deploy to Cloudflare
+        run: pnpm -F docs exec wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
