@@ -1,7 +1,3 @@
-<script>
-	import { siteConfig } from "$lib/config.js";
-</script>
-
 <footer
 	class="group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent dark:bg-transparent"
 >
@@ -17,23 +13,22 @@
 				>
 					shadcn
 				</a>
-				. Ported to svelte by
+				. Ported to Svelte by
 				<a
 					href="https://x.com/huntabyte"
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4">Huntabyte</a
 				>
-				The source code is available on
+				&
 				<a
-					href={siteConfig.links.github}
+					href="https://github.com/adriangonz97"
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium underline underline-offset-4"
 				>
-					GitHub
-				</a>
-				.
+					CokaKoala
+				</a>.
 			</div>
 		</div>
 	</div>
