@@ -12,7 +12,7 @@ const MINIMUM_MAJOR = 20;
 const version = process.versions.node;
 const major = Number.parseInt(version.split(".").at(0)!);
 
-if (major! < MINIMUM_MAJOR) {
+if (major < MINIMUM_MAJOR) {
 	console.error(`Node.js v${version} is out of date and unsupported!`);
 	console.error(`Please use Node.js v${MINIMUM_MAJOR} or higher.`);
 	process.exit(1);
