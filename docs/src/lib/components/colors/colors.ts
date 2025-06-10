@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { colorMapping, colors, type BaseColor } from "../../registry/registry-colors.js";
 import template from "lodash.template";
