@@ -80,7 +80,7 @@
 	});
 
 	const isMobile = new MediaQuery("(max-width: 768px)");
-	const height = $derived(isMobile.current ? "60dvh" : "calc(100svh - 2rem)");
+	const height = $derived(isMobile.current ? "75dvh" : "calc(100svh - 5rem)");
 	let contentRef = $state<HTMLElement | null>(null);
 </script>
 
@@ -90,7 +90,7 @@
 	</Dialog.Trigger>
 	<Dialog.Content
 		bind:ref={contentRef}
-		class="rounded-xl p-0 sm:max-w-[calc(100%-2rem)]"
+		class="rounded-xl p-0 sm:max-w-[calc(100%-5rem)]"
 		showCloseButton={false}
 		onOpenAutoFocus={(e) => {
 			if (!contentRef) return;

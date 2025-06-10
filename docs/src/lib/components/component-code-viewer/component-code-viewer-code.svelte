@@ -27,7 +27,7 @@
 					}
 				}}
 			>
-				<!--  eslint-disable-next-line svelte/no-at-html-tags -->
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html file?.highlightedContent ?? ""}
 			</div>
 		</figure>
