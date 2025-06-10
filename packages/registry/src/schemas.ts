@@ -29,7 +29,7 @@ const registryItemFileTypeSchema = z
 	.describe("The type of the file. Used to resolve the file's path for a project.");
 
 export type RegistryItemFile = z.infer<typeof registryItemFileSchema>;
-const registryItemFileSchema = z
+export const registryItemFileSchema = z
 	.object({
 		content: z.string().describe("The content of the file."),
 		type: registryItemFileTypeSchema,

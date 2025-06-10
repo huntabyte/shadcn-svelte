@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import { createFileTreeForRegistryItemFiles } from "$lib/registry/registry-utils.js";
-	import type { RegistryItem, RegistryItemFile } from "@shadcn-svelte/registry";
 	import type { Pane } from "paneforge";
 	import { Context } from "runed";
 	import ComponentCodeViewerCode from "./component-code-viewer-code.svelte";
@@ -9,24 +8,15 @@
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { MediaQuery } from "svelte/reactivity";
 	import { badgeVariants } from "$lib/registry/ui/badge/badge.svelte";
-
-	type CachedItem = Omit<RegistryItem, "files"> & {
-		files: (RegistryItemFile & {
-			highlightedContent: string;
-			target: string;
-		})[];
-	};
+	import type { HighlightedBlock } from "../../../routes/api/block/[block]/+server.js";
 
 	type ComponentCodeViewerContextType = {
-		item: CachedItem;
+		item: HighlightedBlock;
 		activeFile: string | null;
 		resizablePaneRef: Pane | null;
 		tree: ReturnType<typeof createFileTreeForRegistryItemFiles> | null;
-		highlightedFiles:
-			| (RegistryItemFile & {
-					highlightedContent: string;
-			  })[]
-			| null;
+		highlightedFiles: HighlightedBlock["files"];
+		activeFileCodeToCopy: string;
 	};
 
 	export const ComponentCodeViewerContext = new Context<ComponentCodeViewerContextType>(
@@ -57,6 +47,7 @@
 		getFirstFileTargetInTree() ?? null
 	);
 	let resizablePaneRef = $state<Pane>(null!);
+	let activeFileCodeToCopy = $state<ComponentCodeViewerContextType["activeFileCodeToCopy"]>("");
 
 	ComponentCodeViewerContext.set({
 		get item() {
@@ -80,10 +71,18 @@
 		get highlightedFiles() {
 			return highlightedFiles;
 		},
+		get activeFileCodeToCopy() {
+			return activeFileCodeToCopy;
+		},
+		set activeFileCodeToCopy(value) {
+			activeFileCodeToCopy = value;
+		},
 	});
 
 	const isMobile = new MediaQuery("(max-width: 768px)");
-	const height = $derived(isMobile.current ? "60dvh" : "930px");
+	const height = $derived(
+		isMobile.current ? "75dvh" : "calc(100svh - (var(--header-height) * 2))"
+	);
 	let contentRef = $state<HTMLElement | null>(null);
 </script>
 
@@ -93,7 +92,7 @@
 	</Dialog.Trigger>
 	<Dialog.Content
 		bind:ref={contentRef}
-		class="rounded-xl p-0 sm:max-w-[calc(100%-2rem)] 2xl:max-w-[60%]"
+		class="rounded-xl p-0 2xl:max-w-[90%]"
 		showCloseButton={false}
 		onOpenAutoFocus={(e) => {
 			if (!contentRef) return;

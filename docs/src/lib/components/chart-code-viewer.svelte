@@ -2,12 +2,12 @@
 	import { cn } from "$lib/utils.js";
 	import { MediaQuery } from "svelte/reactivity";
 	import ChartCopyButton from "./chart-copy-button.svelte";
-	import type { Chart } from "./chart-display.svelte";
 	import * as Drawer from "$lib/registry/ui/drawer/index.js";
 	import * as Sheet from "$lib/registry/ui/sheet/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getIconForLanguageExtension } from "./icons/icons.js";
+	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 
 	const isDesktop = new MediaQuery("min-width: 768px");
 
@@ -15,7 +15,8 @@
 		chart,
 		class: className,
 		children,
-	}: HTMLAttributes<HTMLDivElement> & { chart: Chart } = $props();
+		code,
+	}: HTMLAttributes<HTMLDivElement> & { chart: HighlightedBlock; code: string } = $props();
 
 	const Icon = getIconForLanguageExtension("svelte");
 </script>
@@ -39,12 +40,12 @@
 					<Icon />
 					{chart.name}
 					<div class="ml-auto flex items-center gap-2">
-						<ChartCopyButton name={chart.name} code={chart.files?.[0]?.content ?? ""} />
+						<ChartCopyButton name={chart.name} {code} />
 					</div>
 				</figcaption>
 				<div class="no-scrollbar overflow-y-auto">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html chart.highlightedCode}
+					{@html chart.files?.[0]?.highlightedContent}
 				</div>
 			</figure>
 		</div>

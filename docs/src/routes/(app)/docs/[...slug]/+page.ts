@@ -1,33 +1,8 @@
 import { getDoc } from "$lib/docs.js";
-import {
-	registryItemSchema,
-	type RegistryItem,
-	type RegistryItemFile,
-} from "@shadcn-svelte/registry";
-import type { EntryGenerator } from "./$types.js";
-import { highlightCode } from "$lib/highlight-code.js";
-import { transformImportPaths } from "$lib/registry/registry-utils.js";
+import type { HighlightedBlock } from "../../../api/block/[block]/+server.js";
+import type { EntryGenerator, PageLoad } from "./$types.js";
 
-export async function load({ params }) {
-	if (params.slug.includes("components/")) {
-		const registryJsonItems = import.meta.glob("../../../../__registry__/json/*.json");
-
-		const doc = await getDoc(params.slug);
-
-		return {
-			...doc,
-			viewerData: getComponentViewerData(
-				params.slug.replaceAll("components/", ""),
-				registryJsonItems
-			),
-		};
-	} else {
-		return {
-			...(await getDoc(params.slug)),
-			viewerData: null,
-		};
-	}
-}
+export const prerender = true;
 
 export const entries: EntryGenerator = () => {
 	console.info("Prerendering /docs");
@@ -42,56 +17,20 @@ export const entries: EntryGenerator = () => {
 	return entries;
 };
 
-type CachedItem = Omit<RegistryItem, "files"> & {
-	files: (RegistryItemFile & {
-		highlightedContent: string;
-		target: string;
-	})[];
-};
+/**
+ * Any components / blocks that won't have a .json file associated with them.
+ */
+const ITEMS_TO_IGNORE = ["combobox", "date-picker", "typography"];
 
-async function getComponentViewerData(
-	componentName: string,
-	registryJsonItems: Record<string, () => Promise<unknown>>
-) {
-	let promise: Promise<CachedItem | null> | null = null;
+export const load: PageLoad = async ({ params, fetch }) => {
+	const doc = await getDoc(params.slug);
+	const name = doc.metadata.slug;
+	if (params.slug.includes("components/") && !ITEMS_TO_IGNORE.includes(name)) {
+		const res = await fetch(`/api/block/${name}`);
+		const item: HighlightedBlock = await res.json();
 
-	for (const path in registryJsonItems) {
-		const filename = path.split("/").pop()?.split(".")[0];
-		if (!filename) continue;
-		if (filename !== componentName) continue;
-
-		promise = registryJsonItems[path]().then(async (m: unknown) => {
-			const res = registryItemSchema.safeParse((m as { default: unknown }).default);
-			if (res.error) return null;
-			const files = await Promise.all(
-				res.data.files.map(async (v) => {
-					let lang: "svelte" | "ts" | "json" = "svelte";
-					if (v.target && v.target.endsWith(".ts")) {
-						lang = "ts";
-					} else if (v.target && v.target.endsWith(".json")) {
-						lang = "json";
-					}
-
-					const highlightedContent = await highlightCode(
-						transformImportPaths(v.content),
-						lang
-					);
-					const target = v.target;
-					return {
-						...v,
-						highlightedContent,
-						target,
-					};
-				})
-			);
-
-			const processedItem = {
-				...res.data,
-				files: files,
-			};
-			return processedItem;
-		});
+		return { ...doc, viewerData: item };
 	}
 
-	return await promise;
-}
+	return { ...doc, viewerData: null };
+};

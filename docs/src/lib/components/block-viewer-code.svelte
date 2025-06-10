@@ -6,7 +6,7 @@
 	import { getIconForLanguageExtension } from "./icons/icons.js";
 	const ctx = BlockViewerContext.get();
 
-	const file = $derived(ctx.highlightedFiles?.find((f) => f.target === ctx.activeFile));
+	const file = $derived(ctx.item.files?.find((f) => f.target === ctx.activeFile));
 
 	const language = $derived(file?.target?.split(".").pop() ?? "svelte");
 
@@ -34,7 +34,14 @@
 					<BlockViewerCopyCodeButton />
 				</div>
 			</figcaption>
-			<div class="no-scrollbar overflow-y-auto">
+			<div
+				class="no-scrollbar overflow-y-auto"
+				{@attach (node) => {
+					if (file.highlightedContent) {
+						ctx.activeFileCodeToCopy = node.innerText;
+					}
+				}}
+			>
 				{#if file.highlightedContent}
 					{#await file.highlightedContent}
 						<Skeleton class="h-full w-full" />

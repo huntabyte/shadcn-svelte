@@ -10,17 +10,26 @@
 	import PieChartIcon from "@lucide/svelte/icons/pie-chart";
 	import RadarIcon from "@lucide/svelte/icons/radar";
 	import ChartCopyButton from "./chart-copy-button.svelte";
-	import type { Chart } from "./chart-display.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
+	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
+	import { onMount } from "svelte";
 
 	let {
 		chart,
 		class: className,
 		children,
-	}: HTMLAttributes<HTMLDivElement> & { chart: Chart } = $props();
+	}: HTMLAttributes<HTMLDivElement> & { chart: HighlightedBlock } = $props();
+
+	let code = $state("");
+
+	onMount(() => {
+		const pre = document.createElement("pre");
+		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
+		code = pre.innerText;
+	});
 </script>
 
-{#snippet ChartTitle(chart: Chart)}
+{#snippet ChartTitle(chart: HighlightedBlock)}
 	{#if chart.name.includes("chart-line")}
 		<LineChartIcon /> Chart
 	{:else if chart.name.includes("chart-bar")}
@@ -48,10 +57,10 @@
 	</div>
 	<div class="ml-auto flex items-center gap-2 [&>form]:flex">
 		<ChartCopyButton
-			code={chart.files?.[0]?.content ?? ""}
+			{code}
 			class="text-foreground hover:bg-muted dark:text-foreground h-6 w-6 rounded-[6px] bg-transparent shadow-none [&_svg]:h-3 [&_svg]:w-3"
 		/>
 		<Separator orientation="vertical" class="mx-0 hidden !h-4 md:flex" />
-		<ChartCodeViewer {chart}>{@render children?.()}</ChartCodeViewer>
+		<ChartCodeViewer {chart} {code}>{@render children?.()}</ChartCodeViewer>
 	</div>
 </div>
