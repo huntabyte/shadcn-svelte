@@ -89,10 +89,8 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 
 	// Retrieve existing items in the user's project
 	const existingComponents: typeof registryIndex = [];
-	for (const [name, dir] of Object.entries(dirs)) {
-		if (!existsSync(dir)) {
-			throw error(`'${name}' directory ${color.cyan(dir)} does not exist.`);
-		}
+	for (const dir of Object.values(dirs)) {
+		if (!existsSync(dir)) continue;
 
 		const files = await fs.readdir(dir, { withFileTypes: true });
 		for (const file of files) {
