@@ -59,6 +59,7 @@ export default ts.config(
 			".svelte-kit",
 			"playgrounds/**/*",
 			"packages/cli/dist/**/*",
+			"registry-template/**/*",
 		],
 	}
 );
