@@ -184,8 +184,8 @@ importers:
         specifier: ^0.0.7
         version: 0.0.7(svelte@5.33.18)
       mode-watcher:
-        specifier: https://pkg.pr.new/mode-watcher@15507f8
-        version: https://pkg.pr.new/mode-watcher@15507f8(svelte@5.33.18)
+        specifier: ^1.0.8
+        version: 1.0.8(svelte@5.33.18)
       package-manager-detector:
         specifier: ^1.3.0
         version: 1.3.0
@@ -3030,9 +3030,8 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
-  mode-watcher@https://pkg.pr.new/mode-watcher@15507f8:
-    resolution: {tarball: https://pkg.pr.new/mode-watcher@15507f8}
-    version: 1.0.7
+  mode-watcher@1.0.8:
+    resolution: {integrity: sha512-1YIgYymrae0lhcG9zPS/YWOvcKsUbM4bLGIh+eXTUIput5+dEJifcmUgp8NSehSXGSwITH6jbSjNhGEIhE3k5Q==}
     peerDependencies:
       svelte: ^5.27.0
 
@@ -7135,7 +7134,7 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  mode-watcher@https://pkg.pr.new/mode-watcher@15507f8(svelte@5.33.18):
+  mode-watcher@1.0.8(svelte@5.33.18):
     dependencies:
       runed: 0.25.0(svelte@5.33.18)
       svelte: 5.33.18
