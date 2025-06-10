@@ -49,15 +49,16 @@ export default defineConfig({
 			allow: [veliteDirPath, staticDirPath, contentDirPath, ogDirPath],
 		},
 	},
-	build: {
-		rollupOptions: {
-			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
-				},
-			},
-		},
-	},
+	// build: {
+	// minify: true,
+	// 	rollupOptions: {
+	// 		output: {
+	// 			manualChunks: {
+	// 				icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+	// 			},
+	// 		},
+	// 	},
+	// },
 });
 
 function writeJsonSchemas() {
