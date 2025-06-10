@@ -58,7 +58,7 @@ export default defineConfig({
 			},
 		},
 	},
-	resolve: { external: ["node:dns"], noExternal: true },
+	resolve: { external: ["node:dns/promises"], noExternal: true },
 });
 
 function writeJsonSchemas() {
