@@ -7,26 +7,18 @@ import { getCLIPackageInfo } from "./utils/get-package-info.js";
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
-const currentVersion = process.versions.node;
-const [currentMajor, currentMinor] = currentVersion.split(".");
-const currentMajorVersion = Number.parseInt(currentMajor!);
-const currentMinorVersion = Number.parseInt(currentMinor!);
+const MINIMUM_MAJOR = 20;
 
-const minimumMajorVersion = 20;
-const minimumMinorVersion = 12;
+const version = process.versions.node;
+const major = Number.parseInt(version.split(".").at(0)!);
 
-if (
-    currentMajorVersion < minimumMajorVersion ||
-    (currentMajorVersion === minimumMajorVersion && currentMinorVersion < minimumMinorVersion)
-) {
-    console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
-    console.error(`Please use Node.js v${minimumMajorVersion}.${minimumMinorVersion}.x or higher.`);
-    process.exit(1);
+if (major! < MINIMUM_MAJOR) {
+	console.error(`Node.js v${version} is out of date and unsupported!`);
+	console.error(`Please use Node.js v${MINIMUM_MAJOR} or higher.`);
+	process.exit(1);
 }
 
 async function main() {
-	console.clear();
-
 	const packageInfo = getCLIPackageInfo();
 
 	const program = new Command()
