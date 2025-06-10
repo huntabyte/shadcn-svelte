@@ -46,16 +46,14 @@
 			>
 				<enhanced:img
 					class="block object-cover dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light-landing.png?w=716;750"
-					srcset="(min-width:532px) 716px, (max-width:532px) 750px"
+					src="../../../static/img/registry/dashboard-01-light-landing.png?w=716"
 					alt="Dashboard"
 					fetchpriority={mobile.current ? "high" : undefined}
 					loading={mobile.current ? "eager" : "lazy"}
 				/>
 				<enhanced:img
 					class="hidden object-cover dark:block"
-					src="../../../static/img/registry/dashboard-01-dark-landing.png?w=716;750"
-					srcset="(min-width:532px) 716px, (max-width:532px) 750px"
+					src="../../../static/img/registry/dashboard-01-dark-landing.png?w=716"
 					alt="Dashboard"
 					fetchpriority="high"
 					loading={mobile.current ? "eager" : "lazy"}
