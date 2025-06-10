@@ -37,7 +37,7 @@
 			<section
 				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
-				<img
+				<!-- <img
 					src="/img/registry/dashboard-01-light.png"
 					width={1400}
 					height={875}
@@ -52,7 +52,7 @@
 					alt="Dashboard"
 					class="hidden dark:block"
 					fetchpriority="high"
-				/>
+				/> -->
 			</section>
 			<section class="theme-container hidden md:block">
 				<CardsDemo />
