@@ -7,7 +7,7 @@ This project and the components are written in TypeScript. We recommend using Ty
 
 However, we provide a JavaScript version of the components as well. The JavaScript version is _only_ available via the [CLI](/docs/cli).
 
-To opt-out of TypeScript, you can use the `tsx` flag in your `components.json` file.
+To opt-out of TypeScript, you can use the `typescript` flag in your `components.json` file.
 
 ```json {6} title="components.json" showLineNumbers
 {
