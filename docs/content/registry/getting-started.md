@@ -16,7 +16,7 @@ This guide will walk you through the process of setting up your own component re
 
 It assumes you already have a project with components and would like to turn it into a registry.
 
-If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/tree/next-tailwind-4/registry-template) as a starting point. It's already configured for you.
+If you're starting a new registry project, you can use the [registry template](https://github.com/huntabyte/shadcn-svelte/tree/main/registry-template) as a starting point. It's already configured for you.
 
 ## registry.json
 
