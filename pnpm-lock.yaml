@@ -226,8 +226,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1(picomatch@4.0.2)(svelte@5.33.18)(typescript@5.8.3)
       svelte-sonner:
-        specifier: ^1.0.4
-        version: 1.0.4(svelte@5.33.18)
+        specifier: ^1.0.5
+        version: 1.0.5(svelte@5.33.18)
       sveltekit-superforms:
         specifier: ^2.26.1
         version: 2.26.1(@sveltejs/kit@2.21.2(@sveltejs/vite-plugin-svelte@5.1.0(svelte@5.33.18)(vite@6.3.5(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.41.0)(tsx@4.19.4)))(svelte@5.33.18)(vite@6.3.5(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.41.0)(tsx@4.19.4)))(@types/json-schema@7.0.15)(svelte@5.33.18)(typescript@5.8.3)
@@ -3494,11 +3494,6 @@ packages:
     peerDependencies:
       svelte: ^5.7.0
 
-  runed@0.26.0:
-    resolution: {integrity: sha512-qWFv0cvLVRd8pdl/AslqzvtQyEn5KaIugEernwg9G98uJVSZcs/ygvPBvF80LA46V8pwRvSKnaVLDI3+i2wubw==}
-    peerDependencies:
-      svelte: ^5.7.0
-
   runed@0.28.0:
     resolution: {integrity: sha512-k2xx7RuO9hWcdd9f+8JoBeqWtYrm5CALfgpkg2YDB80ds/QE4w0qqu34A7fqiAwiBBSBQOid7TLxwxVC27ymWQ==}
     peerDependencies:
@@ -3675,8 +3670,8 @@ packages:
     peerDependencies:
       svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
 
-  svelte-sonner@1.0.4:
-    resolution: {integrity: sha512-ctm9jeV0Rf3im2J6RU1emccrJFjRSdNSPsLlxaF62TLZw9bB1D40U/U7+wqEgohJY/X7FBdghdj0BFQF/IqKPQ==}
+  svelte-sonner@1.0.5:
+    resolution: {integrity: sha512-9dpGPFqKb/QWudYqGnEz93vuY+NgCEvyNvxoCLMVGw6sDN/3oVeKV1xiEirW2E1N3vJEyj5imSBNOGltQHA7mg==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -7563,11 +7558,6 @@ snapshots:
       esm-env: 1.2.2
       svelte: 5.33.18
 
-  runed@0.26.0(svelte@5.33.18):
-    dependencies:
-      esm-env: 1.2.2
-      svelte: 5.33.18
-
   runed@0.28.0(svelte@5.33.18):
     dependencies:
       esm-env: 1.2.2
@@ -7794,9 +7784,9 @@ snapshots:
     dependencies:
       svelte: 5.33.18
 
-  svelte-sonner@1.0.4(svelte@5.33.18):
+  svelte-sonner@1.0.5(svelte@5.33.18):
     dependencies:
-      runed: 0.26.0(svelte@5.33.18)
+      runed: 0.28.0(svelte@5.33.18)
       svelte: 5.33.18
 
   svelte-toolbelt@0.5.0(svelte@5.33.18):
