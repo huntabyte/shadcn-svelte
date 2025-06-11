@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-Use picocolors for terminal colour rendering.
+chore: use `picocolors` for terminal color rendering
