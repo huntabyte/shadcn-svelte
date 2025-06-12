@@ -11,6 +11,7 @@ import { registrySchema, registryItemSchema, componentsJsonSchema } from "@shadc
 import { build } from "./scripts/build-registry.js";
 import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
+import packageJson from "./package.json" with { type: "json" };
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
@@ -61,7 +62,9 @@ export default defineConfig({
 			},
 		},
 	},
-	ssr: { noExternal: /(?:node:)/ },
+	ssr: {
+		noExternal: Object.keys(packageJson.devDependencies),
+	},
 });
 
 function writeJsonSchemas() {
