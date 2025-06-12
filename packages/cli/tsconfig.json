@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"module": "NodeNext",
+		"module": "Node18",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
