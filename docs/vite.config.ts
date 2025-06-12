@@ -2,20 +2,18 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { toJSONSchema } from "zod/v4";
 import { minimatch } from "minimatch";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
-import { registrySchema, registryItemSchema, componentsJsonSchema } from "@shadcn-svelte/registry";
 import { build } from "./scripts/build-registry.js";
 import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
+import packageJson from "./package.json" with { type: "json" };
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
 	console.log("Building registry...");
-	writeJsonSchemas();
 	await buildRegistry();
 	console.log("Registry built.");
 }
@@ -61,33 +59,10 @@ export default defineConfig({
 			},
 		},
 	},
-	resolve: { external: ["node:dns/promises"], noExternal: true },
+	ssr: {
+		noExternal: Object.keys(packageJson.devDependencies),
+	},
 });
-
-function writeJsonSchemas() {
-	const schemaDir = path.resolve("static", "schema");
-	if (!fs.existsSync(schemaDir)) {
-		fs.mkdirSync(schemaDir, { recursive: true });
-	}
-
-	const componentsJSON = toJSONSchema(componentsJsonSchema);
-	fs.writeFileSync(
-		path.resolve("static", "schema.json"),
-		JSON.stringify(componentsJSON, null, "\t")
-	);
-
-	const registry = toJSONSchema(registrySchema);
-	fs.writeFileSync(
-		path.resolve(schemaDir, "registry.json"),
-		JSON.stringify(registry, null, "\t")
-	);
-
-	const registryItem = toJSONSchema(registryItemSchema);
-	fs.writeFileSync(
-		path.resolve(schemaDir, "registry-item.json"),
-		JSON.stringify(registryItem, null, "\t")
-	);
-}
 
 async function buildRegistry() {
 	await build();
