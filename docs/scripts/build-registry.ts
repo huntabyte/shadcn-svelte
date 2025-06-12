@@ -204,11 +204,10 @@ export const Index = {`;
 		JSON.stringify(componentsJSON, null, "\t")
 	);
 
-	const SCHEMA_DIR = path.resolve("static", "schema");
-
 	// ----------------------------------------------------------------------------
 	// Build static/schema/registry.json
 	// ----------------------------------------------------------------------------
+	const SCHEMA_DIR = path.resolve("static", "schema");
 	writeFileWithDirs(
 		path.resolve(SCHEMA_DIR, "registry.json"),
 		JSON.stringify(toJSONSchema(registrySchema), null, "\t")
