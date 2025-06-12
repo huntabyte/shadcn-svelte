@@ -23,6 +23,7 @@
 		"@dnd-kit-svelte/modifiers": "^0.0.8",
 		"@dnd-kit-svelte/sortable": "^0.0.8",
 		"@dnd-kit-svelte/utilities": "^0.0.8",
+		"@internationalized/date": "^3.8.1",
 		"@lucide/svelte": "^0.513.0",
 		"@prettier/sync": "0.6.1",
 		"@shadcn-svelte/registry": "workspace:*",
@@ -86,8 +87,5 @@
 		"velite": "^0.2.4",
 		"vite": "^6.3.5",
 		"zod": "^3.25.56"
-	},
-	"dependencies": {
-		"@internationalized/date": "^3.8.1"
 	}
 }

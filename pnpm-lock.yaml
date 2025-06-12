@@ -64,10 +64,6 @@ importers:
         version: 4.19.1(@cloudflare/workers-types@4.20250610.0)
 
   docs:
-    dependencies:
-      '@internationalized/date':
-        specifier: ^3.8.1
-        version: 3.8.2
     devDependencies:
       '@dnd-kit-svelte/core':
         specifier: ^0.0.8
@@ -81,6 +77,9 @@ importers:
       '@dnd-kit-svelte/utilities':
         specifier: ^0.0.8
         version: 0.0.8(svelte@5.33.18)
+      '@internationalized/date':
+        specifier: ^3.8.1
+        version: 3.8.2
       '@lucide/svelte':
         specifier: ^0.513.0
         version: 0.513.0(svelte@5.33.18)
