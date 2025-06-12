@@ -56,9 +56,10 @@ export const update = new Command()
 				);
 			}
 
-			checkPreconditions(cwd);
+			const updatedConfig = checkPreconditions({ config, cwd });
+			if (!updatedConfig) return;
 
-			await runUpdate(cwd, config, options);
+			await runUpdate(cwd, updatedConfig, options);
 
 			p.note(
 				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions.\n\nConsider updating them as well.`

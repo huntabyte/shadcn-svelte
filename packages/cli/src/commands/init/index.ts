@@ -14,12 +14,13 @@ import * as registry from "../../utils/registry/index.js";
 import { resolveImportAlias } from "../../utils/resolve-imports.js";
 import { syncSvelteKit } from "../../utils/sveltekit.js";
 import { SITE_BASE_URL } from "../../constants.js";
-import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { highlight, stripTrailingSlash } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
 import type { TsConfigResult } from "get-tsconfig";
+import { checkPreconditions } from "../../utils/preconditions.js";
+import { preflightInit } from "./preflight.js";
 
 const baseColors = registry.getBaseColors();
 
@@ -70,8 +71,7 @@ export const init = new Command()
 
 			preflightInit(cwd);
 
-			// Read config.
-			const existingConfig = cliConfig.loadConfig(cwd);
+			const existingConfig = checkPreconditions({ cwd, config: cliConfig.loadConfig(cwd) });
 			const config = await promptForConfig(cwd, existingConfig, options);
 
 			await runInit(cwd, config, options);
@@ -103,7 +103,7 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 
 async function promptForConfig(
 	cwd: string,
-	existingConfig: cliConfig.RawConfig | undefined,
+	existingConfig: cliConfig.RawConfig | null,
 	options: InitOptions
 ) {
 	const config: cliConfig.RawConfig = existingConfig ?? structuredClone(cliConfig.DEFAULT_CONFIG);
