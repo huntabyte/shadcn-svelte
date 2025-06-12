@@ -57,8 +57,6 @@ export const update = new Command()
 			}
 
 			const updatedConfig = checkPreconditions({ config, cwd });
-			if (!updatedConfig) return;
-
 			await runUpdate(cwd, updatedConfig, options);
 
 			p.note(

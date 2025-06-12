@@ -56,7 +56,6 @@ export const add = new Command()
 			}
 
 			const updatedConfig = checkPreconditions({ config, cwd });
-			if (!updatedConfig) return;
 
 			await runAdd(cwd, updatedConfig, options);
 

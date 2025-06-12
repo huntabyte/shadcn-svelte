@@ -6,16 +6,16 @@ import { highlight } from "./utils.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../constants.js";
 
 // we use this generic to allow passing either RawConfig or ResolvedConfig and getting the correct type back
-type Options<Config extends cliConfig.RawConfig> = {
+type Options<Config extends cliConfig.RawConfig | undefined> = {
 	cwd: string;
-	config: Config | undefined;
+	config: Config;
 };
 
 /** Checks preconditions and updates the config if necessary. Returns updated config or null (if the config was not provided) */
-export function checkPreconditions<Config extends cliConfig.RawConfig>({
+export function checkPreconditions<Config extends cliConfig.RawConfig | undefined>({
 	cwd,
 	config,
-}: Options<Config>): Config | null {
+}: Options<Config>): Config {
 	const sveltePkg = getDependencyPackageInfo(cwd, "svelte")?.pkg;
 	const tailwindPkg = getDependencyPackageInfo(cwd, "tailwindcss")?.pkg;
 
@@ -29,11 +29,11 @@ export function checkPreconditions<Config extends cliConfig.RawConfig>({
 }
 
 /** Checks dependencies and updates config if necessary. */
-function checkDependencies<Config extends cliConfig.RawConfig>(
+function checkDependencies<Config extends cliConfig.RawConfig | undefined>(
 	dependencies: Partial<Record<string, string>>,
 	cwd: string,
-	config: Config | undefined
-): Config | null {
+	config: Config
+): Config {
 	if (!dependencies.tailwindcss || !dependencies.svelte) {
 		throw error(`This CLI version requires Tailwind and Svelte to initialize a project.\n`);
 	}
@@ -45,7 +45,7 @@ function checkDependencies<Config extends cliConfig.RawConfig>(
 	// supported versions (tailwind v4 + svelte v5)
 	if (isTailwind4 && isSvelte5) {
 		// no config to update
-		if (!config) return null;
+		if (!config) return config;
 
 		const host = new URL(config.registry).host;
 		if (host === "next.shadcn-svelte.com") {
@@ -60,7 +60,7 @@ function checkDependencies<Config extends cliConfig.RawConfig>(
 	// legacy (tailwind v3 + svelte v5)
 	if (isTailwind3 && isSvelte5) {
 		// no config to update
-		if (!config) return null;
+		if (!config) return config;
 
 		// if no `style` field, then we can assume their components.json is already updated
 		if (!config.style) return config;

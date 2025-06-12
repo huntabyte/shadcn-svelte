@@ -103,7 +103,7 @@ function validateOptions(cwd: string, options: InitOptions, tsconfig: TsConfigRe
 
 async function promptForConfig(
 	cwd: string,
-	existingConfig: cliConfig.RawConfig | null,
+	existingConfig: cliConfig.RawConfig | undefined,
 	options: InitOptions
 ) {
 	const config: cliConfig.RawConfig = existingConfig ?? structuredClone(cliConfig.DEFAULT_CONFIG);
