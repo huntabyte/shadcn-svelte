@@ -104,14 +104,17 @@ describe("checkPreconditions", () => {
 			devDependencies: {},
 		});
 
-		checkPreconditions({ cwd: mockCwd, config: await getConfig(mockCwd) });
+		const updatedConfig = checkPreconditions({
+			cwd: mockCwd,
+			config: await getConfig(mockCwd),
+		});
 
 		const expectedConfig = {
 			...configLegacy,
 			registry: `${TW3_SITE_BASE_URL}/registry/default`,
 		};
 
-		expect(writeConfig).toHaveBeenCalledWith(mockCwd, expectedConfig);
+		expect(updatedConfig).toStrictEqual(expectedConfig);
 	});
 
 	it("should not update config for Tailwind v3 + Svelte v5 if no style field", async () => {
