@@ -1,5 +1,5 @@
 import { Context } from "runed";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export const USER_CONFIG_COOKIE_NAME = "scn_user_config";
 

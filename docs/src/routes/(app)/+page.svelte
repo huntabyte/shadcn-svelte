@@ -1,4 +1,6 @@
-<script>
+<svelte:options runes />
+
+<script lang="ts">
 	import Announcement from "$lib/components/announcement.svelte";
 	import ExamplesNav from "$lib/components/examples-nav.svelte";
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
@@ -10,10 +12,13 @@
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/components/cards/demo.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
 	const title = "Build your Component Library";
 	const description =
 		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
+
+	const mobile = new IsMobile();
 </script>
 
 <Metadata {title} {description} />
@@ -28,33 +33,37 @@
 			<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
 		</PageActions>
 	</PageHeader>
-	<PageNav class="hidden md:flex">
-		<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
-		<ThemeSelector class="mr-4 hidden md:flex" />
-	</PageNav>
+	{#if !mobile.current}
+		<PageNav class="hidden md:flex">
+			<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
+			<ThemeSelector class="mr-4 hidden md:flex" />
+		</PageNav>
+	{/if}
 	<div class="container-wrapper section-soft flex-1 pb-6">
 		<div class="container overflow-hidden">
 			<section
 				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
 			>
-				<img
-					src="/img/registry/dashboard-01-light.png"
-					width={1400}
-					height={875}
+				<enhanced:img
+					class="block object-cover dark:hidden"
+					src="../../../static/img/registry/dashboard-01-light-landing.png?w=716"
 					alt="Dashboard"
-					class="block dark:hidden"
+					fetchpriority={mobile.current ? "high" : undefined}
+					loading={mobile.current ? "eager" : "lazy"}
 				/>
-				<img
-					src="/img/registry/dashboard-01-dark.png"
-					width={1400}
-					height={875}
+				<enhanced:img
+					class="hidden object-cover dark:block"
+					src="../../../static/img/registry/dashboard-01-dark-landing.png?w=716"
 					alt="Dashboard"
-					class="hidden dark:block"
+					fetchpriority="high"
+					loading={mobile.current ? "eager" : "lazy"}
 				/>
 			</section>
-			<section class="theme-container hidden md:block">
-				<CardsDemo />
-			</section>
+			{#if !mobile.current}
+				<section class="theme-container hidden md:block">
+					<CardsDemo />
+				</section>
+			{/if}
 		</div>
 	</div>
 </div>

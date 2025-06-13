@@ -2,10 +2,25 @@
 	import { siteConfig } from "$lib/config.js";
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import GithubIcon from "./github.svelte";
-	import { page } from "$app/state";
 	import { FALLBACK_STAR_COUNT } from "$lib/constants.js";
+	import { onMount } from "svelte";
 
-	const stars = $derived(page.data?.stars ?? FALLBACK_STAR_COUNT);
+	async function getGithubStarCount() {
+		try {
+			const res = await fetch("https://ungh.cc/repos/huntabyte/shadcn-svelte");
+			const data = await res.json();
+			return data.repo?.stars ?? FALLBACK_STAR_COUNT;
+		} catch (error) {
+			console.error(error);
+			return FALLBACK_STAR_COUNT;
+		}
+	}
+
+	let stars = $state(FALLBACK_STAR_COUNT);
+
+	onMount(async () => {
+		stars = await getGithubStarCount();
+	});
 </script>
 
 <Button

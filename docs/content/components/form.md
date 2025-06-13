@@ -11,8 +11,6 @@ links:
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
-
-	let { form } = $props();
 </script>
 
 Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
@@ -199,7 +197,7 @@ export const actions: Actions = {
 
 That's it. You now have a fully accessible form that is type-safe and has client & server side validation.
 
-<ComponentPreview name="form-demo" >
+<ComponentPreview name="form-demo">
 
 <div></div>
 

@@ -1,27 +1,22 @@
 <script lang="ts" module>
-	import { z } from "zod";
+	import { z } from "zod/v4";
 
-	export const formSchema = z.object({
-		email: z.string({ required_error: "Please select an email to display" }).email(),
+	const formSchema = z.object({
+		email: z.email({ message: "Please select an email to display" }),
 	});
-
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
-	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
-	import { page } from "$app/state";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import * as Select from "$lib/registry/ui/select/index.js";
 
-	let { form: data = page.data.select }: { form: SuperValidated<Infer<FormSchema>> } = $props();
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		validators: zod4(formSchema),
+		SPA: true,
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -33,7 +28,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" action="/?/select" class="w-2/3 space-y-6" use:enhance>
+<form method="POST" class="w-2/3 space-y-6" use:enhance>
 	<Form.Field {form} name="email">
 		<Form.Control>
 			{#snippet children({ props })}
@@ -56,7 +51,4 @@
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

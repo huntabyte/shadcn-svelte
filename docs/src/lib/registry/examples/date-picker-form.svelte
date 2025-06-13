@@ -1,11 +1,9 @@
 <script lang="ts" module>
-	import { z } from "zod";
+	import { z } from "zod/v4";
 
-	export const formSchema = z.object({
+	const formSchema = z.object({
 		dob: z.string().refine((v) => v, { message: "A date of birth is required." }),
 	});
-
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
@@ -18,28 +16,19 @@
 		parseDate,
 		today,
 	} from "@internationalized/date";
-	import type { Infer, SuperValidated } from "sveltekit-superforms";
-	import SuperDebug, { superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
-	import { page } from "$app/state";
 	import { cn } from "$lib/utils.js";
 	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import { Calendar } from "$lib/registry/ui/calendar/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import * as Form from "$lib/registry/ui/form/index.js";
 
-	let {
-		form: data = page.data.datePicker,
-	}: {
-		form?: SuperValidated<Infer<FormSchema>>;
-	} = $props();
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		taintedMessage: null,
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		validators: zod4(formSchema),
+		SPA: true,
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -59,7 +48,7 @@
 	let placeholder = $state<DateValue>(today(getLocalTimeZone()));
 </script>
 
-<form method="POST" action="/?/datePicker" class="space-y-8" use:enhance>
+<form method="POST" class="space-y-8" use:enhance>
 	<Form.Field {form} name="dob" class="flex flex-col">
 		<Form.Control>
 			{#snippet children({ props })}
@@ -102,7 +91,4 @@
 		</Form.Control>
 	</Form.Field>
 	<Button type="submit">Submit</Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>

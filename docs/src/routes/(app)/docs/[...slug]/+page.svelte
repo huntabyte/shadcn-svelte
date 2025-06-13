@@ -132,7 +132,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 				{/if}
 			</div>
 			<div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
-				<Markdown form={data.form} viewerData={data.viewerData} />
+				<Markdown viewerData={data.viewerData} />
 			</div>
 		</div>
 		<div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">

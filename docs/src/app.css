@@ -1,8 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @import "./themes.css";
+
+@font-face {
+	font-family: "Geist";
+	src: url("/fonts/Geist/geist.woff2") format("woff2");
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geist Mono";
+	src: url("/fonts/Geist/geist-mono.woff2") format("woff2");
+	font-style: normal;
+	font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -381,33 +394,5 @@
 
 	.super-debug--code .boolean {
 		color: #fff8 !important;
-	}
-
-	.carbon-responsive-wrap {
-		@apply !bg-background;
-	}
-
-	#carbon-responsive .carbon-responsive-wrap {
-		@apply !bg-background !grid !grid-cols-[auto_1fr] !items-center !gap-4 !border-0 !p-0;
-	}
-
-	#carbon-responsive {
-		@apply !gap-1;
-	}
-
-	#carbonads .carbon-poweredby {
-		@apply !bg-background !text-muted-foreground !block !text-right !text-[0.5em] !uppercase !no-underline;
-	}
-
-	#carbonads .carbon-text {
-		@apply !text-muted-foreground !text-[13px];
-	}
-
-	.carbon-share-icon {
-		@apply !bg-background;
-	}
-
-	#carbon-refresh {
-		@apply !bg-background;
 	}
 }

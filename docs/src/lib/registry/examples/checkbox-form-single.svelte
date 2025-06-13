@@ -1,26 +1,21 @@
 <script lang="ts" module>
-	import { z } from "zod";
-	export const formSchema = z.object({
+	import { z } from "zod/v4";
+	const formSchema = z.object({
 		mobile: z.boolean().default(false),
 	});
-	export type FormSchema = typeof formSchema;
 </script>
 
 <script lang="ts">
-	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
-	import { zodClient } from "sveltekit-superforms/adapters";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod4 } from "sveltekit-superforms/adapters";
 	import { toast } from "svelte-sonner";
-	import { browser } from "$app/environment";
-	import { page } from "$app/stores";
 	import * as Form from "$lib/registry/ui/form/index.js";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 
-	let { form: data = $page.data.checkboxSingle }: { form: SuperValidated<Infer<FormSchema>> } =
-		$props();
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema),
-		onUpdated: ({ form: f }) => {
+	const form = superForm(defaults(zod4(formSchema)), {
+		validators: zod4(formSchema),
+		SPA: true,
+		onUpdate: ({ form: f }) => {
 			if (f.valid) {
 				toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
 			} else {
@@ -32,7 +27,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<form action="/?/checkboxSingle" method="POST" class="space-y-6" use:enhance>
+<form method="POST" class="space-y-6" use:enhance>
 	<Form.Field
 		{form}
 		name="mobile"
@@ -53,7 +48,4 @@
 		</Form.Control>
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>
-	{#if browser}
-		<SuperDebug data={$formData} />
-	{/if}
 </form>
