@@ -10,10 +10,10 @@ import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { cancel, intro, prettifyList } from "../../utils/prompt-helpers.js";
 import * as p from "@clack/prompts";
 import * as registry from "../../utils/registry/index.js";
-import { preflightAdd } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { highlight } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
+import { checkPreconditions } from "../../utils/preconditions.js";
 
 const addOptionsSchema = z.object({
 	components: z.string().array().optional(),
@@ -48,8 +48,6 @@ export const add = new Command()
 				throw error(`The path ${color.cyan(cwd)} does not exist. Please try again.`);
 			}
 
-			await preflightAdd(cwd);
-
 			const config = await cliConfig.getConfig(cwd);
 			if (!config) {
 				throw new ConfigError(
@@ -57,7 +55,9 @@ export const add = new Command()
 				);
 			}
 
-			await runAdd(cwd, config, options);
+			const updatedConfig = checkPreconditions({ config, cwd });
+
+			await runAdd(cwd, updatedConfig, options);
 
 			p.outro(`${color.green("Success!")} Components added.`);
 		} catch (error) {

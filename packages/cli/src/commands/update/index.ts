@@ -56,9 +56,8 @@ export const update = new Command()
 				);
 			}
 
-			checkPreconditions(cwd);
-
-			await runUpdate(cwd, config, options);
+			const updatedConfig = checkPreconditions({ config, cwd });
+			await runUpdate(cwd, updatedConfig, options);
 
 			p.note(
 				`This action ${color.underline("does not")} update your ${highlight("dependencies")} to their ${color.bold("latest")} versions.\n\nConsider updating them as well.`
@@ -223,15 +222,6 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 			},
 		});
 	}
-
-	// Update the config
-	tasks.push({
-		title: "Updating config file",
-		async task() {
-			cliConfig.writeConfig(cwd, config);
-			return `Config file ${highlight("components.json")} updated`;
-		},
-	});
 
 	if (Object.keys(cssVars).length > 0) {
 		// Update the stylesheet
