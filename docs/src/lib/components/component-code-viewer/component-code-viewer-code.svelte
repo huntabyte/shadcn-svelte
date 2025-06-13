@@ -4,7 +4,7 @@
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 
 	const ctx = ComponentCodeViewerContext.get();
-	const file = $derived(ctx.highlightedFiles?.find((f) => f.target === ctx.activeFile));
+	const file = $derived(ctx.highlightedFiles.find((f) => f.target === ctx.activeFile));
 </script>
 
 {#if file}
@@ -22,13 +22,11 @@
 			<div
 				class="no-scrollbar overflow-y-auto"
 				{@attach (node) => {
-					if (file.highlightedContent) {
-						ctx.activeFileCodeToCopy = node.innerText;
-					}
+					ctx.activeFileCodeToCopy = node.innerText;
 				}}
 			>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html file?.highlightedContent ?? ""}
+				{@html file.highlightedContent}
 			</div>
 		</figure>
 	</div>

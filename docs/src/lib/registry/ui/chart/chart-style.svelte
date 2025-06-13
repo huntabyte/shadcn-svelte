@@ -7,31 +7,30 @@
 		config ? Object.entries(config).filter(([, config]) => config.theme || config.color) : null
 	);
 
-	const styleOpen = ">elyts<".split("").reverse().join("");
-	const styleClose = ">elyts/<".split("").reverse().join("");
+	const themeContents = $derived.by(() => {
+		if (!colorConfig || !colorConfig.length) return;
+
+		const themeContents = [];
+		for (let [_theme, prefix] of Object.entries(THEMES)) {
+			let content = `${prefix} [data-chart=${id}] {\n`;
+			const color = colorConfig.map(([key, itemConfig]) => {
+				const theme = _theme as keyof typeof itemConfig.theme;
+				const color = itemConfig.theme?.[theme] || itemConfig.color;
+				return color ? `\t--color-${key}: ${color};` : null;
+			});
+
+			content += color.join("\n") + "\n}";
+
+			themeContents.push(content);
+		}
+
+		return themeContents.join("\n");
+	});
 </script>
 
-{#if colorConfig && colorConfig.length}
-	{@const themeContents = Object.entries(THEMES)
-		.map(
-			([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-	.map(([key, itemConfig]) => {
-		const color =
-			itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
-		return color ? `  --color-${key}: ${color};` : null;
-	})
-	.join("\n")}
-}
-`
-		)
-		.join("\n")}
-
+{#if themeContents}
 	{#key id}
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-		{@html `${styleOpen}
-		${themeContents}
-	${styleClose}`}
+		{@html `<style>${themeContents}</style>`}
 	{/key}
 {/if}
