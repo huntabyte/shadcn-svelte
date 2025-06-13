@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import { getTsconfig } from "get-tsconfig";
 import fs from "node:fs";
 import path from "node:path";

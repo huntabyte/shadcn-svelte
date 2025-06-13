@@ -1,11 +1,14 @@
 import process from "node:process";
-import color from "chalk";
+import color from "picocolors";
 import * as p from "@clack/prompts";
 import { getCLIPackageInfo } from "./get-package-info.js";
 
+// TODO (43081j): remove once picocolors supports RGB
+const backgroundOrange = (str: string) => `\x1b[48;2;255;85;0m${str}\x1b[0m`;
+
 export function intro() {
 	const packageInfo = getCLIPackageInfo();
-	const title = color.bgHex("#FF5500").black(" shadcn-svelte ");
+	const title = backgroundOrange(color.black(" shadcn-svelte "));
 	const version = color.gray(` v${packageInfo.version} `);
 	p.intro(title + version);
 
