@@ -88,7 +88,7 @@ describe("checkPreconditions", () => {
 			devDependencies: {},
 		});
 
-		const config = await getConfig(mockCwd);
+		const config = (await getConfig(mockCwd))!;
 
 		expect(() => checkPreconditions({ cwd: mockCwd, config })).not.toThrow();
 	});
@@ -104,10 +104,8 @@ describe("checkPreconditions", () => {
 			devDependencies: {},
 		});
 
-		const updatedConfig = checkPreconditions({
-			cwd: mockCwd,
-			config: await getConfig(mockCwd),
-		});
+		const config = (await getConfig(mockCwd))!;
+		const updatedConfig = checkPreconditions({ cwd: mockCwd, config });
 
 		const expectedConfig = {
 			...configLegacy,
@@ -138,7 +136,8 @@ describe("checkPreconditions", () => {
 			devDependencies: {},
 		});
 
-		checkPreconditions({ cwd: mockCwd, config: await getConfig(mockCwd) });
+		const config = (await getConfig(mockCwd))!;
+		checkPreconditions({ cwd: mockCwd, config });
 
 		expect(writeConfig).not.toHaveBeenCalled();
 	});
@@ -159,8 +158,7 @@ describe("checkPreconditions", () => {
 				devDependencies: {},
 			});
 
-			const config = await getConfig(mockCwd);
-
+			const config = (await getConfig(mockCwd))!;
 			expect(() => checkPreconditions({ cwd: mockCwd, config })).toThrow(
 				"requires Tailwind CSS (v3 or v4) and Svelte v5"
 			);
