@@ -6,13 +6,13 @@ import { error } from "./errors.js";
 import { highlight } from "./utils.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../constants.js";
 
-// we use this generic to allow passing either RawConfig or ResolvedConfig and getting the correct type back
+// accepts either a `RawConfig` or `ResolvedConfig`
 type PreconditionOptions<Config extends cliConfig.RawConfig> = {
 	cwd: string;
 	config: Config;
 };
 
-/** Checks preconditions and updates the config if necessary. Returns updated config or null (if the config was not provided) */
+/** Checks preconditions and updates the config if necessary. */
 export function checkPreconditions<Config extends cliConfig.RawConfig>({
 	cwd,
 	config,

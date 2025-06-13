@@ -5,6 +5,7 @@ import path from "node:path";
 import process from "node:process";
 import { z } from "zod/v4";
 import * as p from "@clack/prompts";
+import type { TsConfigResult } from "get-tsconfig";
 import { detectConfigs } from "../../utils/auto-detect.js";
 import { error, handleError } from "../../utils/errors.js";
 import type { ResolvedConfig } from "../../utils/get-config.js";
@@ -14,13 +15,12 @@ import * as registry from "../../utils/registry/index.js";
 import { resolveImportAlias } from "../../utils/resolve-imports.js";
 import { syncSvelteKit } from "../../utils/sveltekit.js";
 import { SITE_BASE_URL } from "../../constants.js";
+import { preflightInit } from "./preflight.js";
 import { addRegistryItems } from "../../utils/add-registry-items.js";
 import { getEnvProxy } from "../../utils/get-env-proxy.js";
 import { highlight, stripTrailingSlash } from "../../utils/utils.js";
 import { installDependencies } from "../../utils/install-deps.js";
-import type { TsConfigResult } from "get-tsconfig";
 import { checkPreconditions } from "../../utils/preconditions.js";
-import { preflightInit } from "./preflight.js";
 
 const baseColors = registry.getBaseColors();
 
