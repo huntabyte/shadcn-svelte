@@ -144,7 +144,7 @@
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>
 				<div class="absolute right-1.5 top-1.5 hidden gap-1 sm:flex">
-					{@render CommandMenuKbd({ content: isMac ? "⌘" : "Ctrl" })}
+					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
 					{@render CommandMenuKbd({ content: "K", class: "aspect-square" })}
 				</div>
 			</Button>
@@ -280,7 +280,7 @@
 			{#if copyPayload}
 				<Separator orientation="vertical" class="!h-4" />
 				<div class="flex items-center gap-1">
-					{@render CommandMenuKbd({ content: isMac ? "⌘" : "Ctrl" })}
+					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
 					{@render CommandMenuKbd({ content: "C" })}
 					{copyPayload}
 				</div>
