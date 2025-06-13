@@ -223,15 +223,6 @@ async function runUpdate(cwd: string, config: cliConfig.ResolvedConfig, options:
 		});
 	}
 
-	// Update the config
-	tasks.push({
-		title: "Updating config file",
-		async task() {
-			cliConfig.writeConfig(cwd, config);
-			return `Config file ${highlight("components.json")} updated`;
-		},
-	});
-
 	if (Object.keys(cssVars).length > 0) {
 		// Update the stylesheet
 		tasks.push({

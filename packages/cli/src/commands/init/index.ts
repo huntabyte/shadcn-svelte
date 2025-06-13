@@ -71,7 +71,11 @@ export const init = new Command()
 
 			preflightInit(cwd);
 
-			const existingConfig = checkPreconditions({ cwd, config: cliConfig.loadConfig(cwd) });
+			let existingConfig = cliConfig.loadConfig(cwd);
+			if (existingConfig) {
+				existingConfig = checkPreconditions({ cwd, config: existingConfig });
+			}
+
 			const config = await promptForConfig(cwd, existingConfig, options);
 
 			await runInit(cwd, config, options);
