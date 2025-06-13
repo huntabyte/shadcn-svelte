@@ -28,7 +28,7 @@
 				}}
 			>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html file?.highlightedContent ?? ""}
+				{@html file.highlightedContent}
 			</div>
 		</figure>
 	</div>
