@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { preflightInit } from "../../src/commands/init/preflight.js";
 import { SITE_BASE_URL, TW3_SITE_BASE_URL } from "../../src/constants";

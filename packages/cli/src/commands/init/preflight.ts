@@ -1,4 +1,4 @@
-import color from "chalk";
+import color from "picocolors";
 import * as semver from "semver";
 import { error } from "../../utils/errors.js";
 import { highlight } from "../../utils/utils.js";
