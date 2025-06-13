@@ -1,5 +1,13 @@
 # shadcn-svelte
 
+## 1.0.3
+
+### Patch Changes
+
+- chore: use `picocolors` for terminal color rendering ([#2107](https://github.com/huntabyte/shadcn-svelte/pull/2107))
+
+- fix: Update `components.json` registry before running `init` ([#2129](https://github.com/huntabyte/shadcn-svelte/pull/2129))
+
 ## 1.0.2
 
 ### Patch Changes
