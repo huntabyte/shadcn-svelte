@@ -75,10 +75,7 @@ function componentPreviews() {
 				ms.appendLeft(importIndex, importStatement);
 			}
 
-			return {
-				code: ms.toString(),
-				map: ms.generateMap(),
-			};
+			return { code: ms.toString(), map: ms.generateMap() };
 		},
 	};
 }

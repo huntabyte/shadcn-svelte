@@ -10,12 +10,7 @@ import type { RequestHandler } from "./$types.js";
 export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
 
 const highlightedBlockSchema = registryItemSchema
-	.pick({
-		name: true,
-		description: true,
-		meta: true,
-		type: true,
-	})
+	.pick({ name: true, description: true, meta: true, type: true })
 	.extend({
 		files: z.array(
 			registryItemFileSchema.omit({ content: true }).extend({

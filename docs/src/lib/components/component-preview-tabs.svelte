@@ -21,7 +21,7 @@
 		name: string;
 	} = $props();
 
-	let value = $state("preview");
+	let value: "code" | "preview" = $state("preview");
 </script>
 
 {#snippet ExampleFallback()}
@@ -68,9 +68,7 @@
 		>
 			<div
 				data-align={align}
-				class={cn(
-					"preview flex h-[450px] w-full justify-center p-10 data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center"
-				)}
+				class="preview flex h-[450px] w-full justify-center p-10 data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center"
 			>
 				{#if example}
 					{@render example()}
