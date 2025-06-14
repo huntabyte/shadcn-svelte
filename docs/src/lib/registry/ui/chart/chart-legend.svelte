@@ -40,7 +40,7 @@
 	{@render children({ items: legendItems })}
 {:else}
 	<div class={cn("flex flex-wrap justify-center gap-2 px-4", className)} {...restProps}>
-		{#each legendItems as item}
+		{#each legendItems as item (item.key)}
 			<div class="flex items-center gap-1.5 text-xs">
 				<div
 					class="size-2.5 flex-shrink-0 rounded-[2px]"
