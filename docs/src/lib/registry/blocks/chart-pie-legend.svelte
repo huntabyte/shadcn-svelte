@@ -28,8 +28,8 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Context config={chartConfig} class="flex flex-col h-[250px]">
-			<Chart.Container class="mx-auto aspect-square flex-1 min-h-0">
+		<Chart.Context config={chartConfig} class="flex h-[250px] flex-col">
+			<Chart.Container class="mx-auto aspect-square min-h-0 flex-1">
 				<PieChart
 					data={chartData}
 					key="browser"
@@ -52,7 +52,7 @@
 					{/snippet}
 				</PieChart>
 			</Chart.Container>
-			
+
 			<!-- Custom legend positioned outside chart container to prevent overflow (issue #2038) -->
 			<!-- LayerChart's built-in legend can overflow when chart space is constrained -->
 			<Chart.Legend class="mt-2" />

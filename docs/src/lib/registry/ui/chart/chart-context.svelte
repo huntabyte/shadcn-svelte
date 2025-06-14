@@ -21,4 +21,4 @@
 
 <div class={cn(className)} {...restProps}>
 	{@render children()}
-</div> 
+</div>

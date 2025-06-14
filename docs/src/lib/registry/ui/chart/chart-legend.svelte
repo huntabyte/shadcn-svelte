@@ -15,12 +15,7 @@
 		class?: string;
 	}
 
-	let {
-		items = [],
-		children,
-		class: className,
-		...restProps
-	}: Props = $props();
+	let { items = [], children, class: className, ...restProps }: Props = $props();
 
 	const { config } = useChart();
 
@@ -44,17 +39,11 @@
 {#if children}
 	{@render children({ items: legendItems })}
 {:else}
-	<div
-		class={cn(
-			"flex flex-wrap justify-center gap-2 px-4",
-			className
-		)}
-		{...restProps}
-	>
+	<div class={cn("flex flex-wrap justify-center gap-2 px-4", className)} {...restProps}>
 		{#each legendItems as item}
 			<div class="flex items-center gap-1.5 text-xs">
-				<div 
-					class="size-2.5 rounded-[2px] flex-shrink-0" 
+				<div
+					class="size-2.5 flex-shrink-0 rounded-[2px]"
 					style="background-color: {item.color}"
 				></div>
 				<span class="text-muted-foreground whitespace-nowrap">
@@ -63,4 +52,4 @@
 			</div>
 		{/each}
 	</div>
-{/if} 
+{/if}
