@@ -28,29 +28,35 @@
 		<Card.Description>January - June 2024</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex-1">
-		<Chart.Container config={chartConfig} class="mx-auto aspect-square max-h-[250px]">
-			<PieChart
-				data={chartData}
-				key="browser"
-				value="visitors"
-				label={(d) =>
-					d.browser
-						.split("")
-						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
-						.join("")}
-				cRange={chartData.map((d) => d.color)}
-				props={{
-					pie: {
-						motion: "tween",
-					},
-				}}
-				legend
-			>
-				{#snippet tooltip()}
-					<Chart.Tooltip hideLabel />
-				{/snippet}
-			</PieChart>
-		</Chart.Container>
+		<Chart.Context config={chartConfig} class="flex flex-col h-[250px]">
+			<Chart.Container class="mx-auto aspect-square flex-1 min-h-0">
+				<PieChart
+					data={chartData}
+					key="browser"
+					value="visitors"
+					label={(d) =>
+						d.browser
+							.split("")
+							.map((c, i) => (i === 0 ? c.toUpperCase() : c))
+							.join("")}
+					cRange={chartData.map((d) => d.color)}
+					props={{
+						pie: {
+							motion: "tween",
+						},
+					}}
+					legend={false}
+				>
+					{#snippet tooltip()}
+						<Chart.Tooltip hideLabel />
+					{/snippet}
+				</PieChart>
+			</Chart.Container>
+			
+			<!-- Custom legend positioned outside chart container to prevent overflow (issue #2038) -->
+			<!-- LayerChart's built-in legend can overflow when chart space is constrained -->
+			<Chart.Legend class="mt-2" />
+		</Chart.Context>
 	</Card.Content>
 	<Card.Footer class="flex-col gap-2 text-sm">
 		<div class="flex items-center gap-2 font-medium leading-none">
