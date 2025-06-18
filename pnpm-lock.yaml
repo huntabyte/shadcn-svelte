@@ -189,7 +189,7 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0
       paneforge:
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0(svelte@5.34.1)
       rehype-pretty-code:
         specifier: ^0.14.1
