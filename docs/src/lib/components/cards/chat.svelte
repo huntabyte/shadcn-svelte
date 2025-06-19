@@ -76,7 +76,7 @@
 			</Avatar.Root>
 			<div class="flex flex-col gap-0.5">
 				<p class="text-sm font-medium leading-none">Sofia Davis</p>
-				<p class="text-muted-foreground text-sm">m@example.com</p>
+				<p class="text-muted-foreground text-xs">m@example.com</p>
 			</div>
 		</div>
 		<Tooltip.Provider delayDuration={0}>
