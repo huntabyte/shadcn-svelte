@@ -16,6 +16,7 @@ yarn.lock
 CHANGELOG.md
 
 .github/
+registry-template
 
 # docs site specific
 docs/other/themes/dark.json
