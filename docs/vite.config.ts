@@ -53,8 +53,13 @@ export default defineConfig({
 		// minify: false,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+				advancedChunks: {
+					groups: [
+						{
+							name: "icons",
+							test: /@lucide\/svelte|@tabler\/icons-svelte/,
+						},
+					],
 				},
 			},
 		},
