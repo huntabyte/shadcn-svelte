@@ -49,16 +49,16 @@ export default defineConfig({
 			allow: [veliteDirPath, staticDirPath, contentDirPath, ogDirPath],
 		},
 	},
-	build: {
-		// minify: false,
-		rollupOptions: {
-			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
-				},
-			},
-		},
-	},
+	// build: {
+	// 	// minify: false,
+	// 	rollupOptions: {
+	// 		output: {
+	// 			manualChunks: {
+	// 				icons: ["@lucide/svelte", "@tabler/icons-svelte"],
+	// 			},
+	// 		},
+	// 	},
+	// },
 	ssr: {
 		noExternal: Object.keys(packageJson.devDependencies),
 	},
