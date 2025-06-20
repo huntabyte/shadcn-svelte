@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Component } from "svelte";
-	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
+	import ComponentPreviewTabs from "./component-preview-tabs.svelte";
 
 	let {
 		name,

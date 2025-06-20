@@ -2,7 +2,7 @@
 	"$schema": "./static/schema/registry.json",
 	"name": "shadcn-svelte",
 	"homepage": "https://shadcn-svelte.com",
-	"overrideDependencies": ["paneforge@next", "vaul-svelte@next"],
+	"overrideDependencies": ["vaul-svelte@next"],
 	"aliases": {
 		"lib": "$lib/registry/lib",
 		"ui": "$lib/registry/ui",

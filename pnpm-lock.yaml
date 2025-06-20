@@ -172,8 +172,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.5
       layerchart:
-        specifier: ^2.0.0-next.18
-        version: 2.0.0-next.18(svelte@5.34.1)
+        specifier: 2.0.0-next.23
+        version: 2.0.0-next.23(svelte@5.34.1)
       little-date:
         specifier: ^1.0.0
         version: 1.0.0
@@ -193,8 +193,8 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0
       paneforge:
-        specifier: 1.0.0-next.5
-        version: 1.0.0-next.5(svelte@5.34.1)
+        specifier: ^1.0.0
+        version: 1.0.0(svelte@5.34.1)
       rehype-pretty-code:
         specifier: ^0.14.1
         version: 0.14.1(shiki@3.6.0)
@@ -1306,17 +1306,17 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@layerstack/svelte-actions@1.0.1-next.11':
-    resolution: {integrity: sha512-ciwDvfWXQ9TdfmwFLaEqzGL0eUdQJV4Zm+n4g6OOgB/s+2WQ2fHUUspyhpGFvSV8KD08NuUXOygjI0bi7HJWgQ==}
+  '@layerstack/svelte-actions@1.0.1-next.12':
+    resolution: {integrity: sha512-dndWTlYu8b1u6vw2nrO7NssccoACArGG75WoNlyVC13KuENZlWdKE9Q79/wlnbq00NeQMNKMjJwRMsrKQj2ULA==}
 
-  '@layerstack/svelte-state@0.1.0-next.16':
-    resolution: {integrity: sha512-ERUGmyCE1Gfy1UFUxS1Kmy7Jm4LGGe78iHVsP30xkV6EGEEJiE8O9sVPt3wNEYUfu4a153r7Ku16kPStoa5MrQ==}
+  '@layerstack/svelte-state@0.1.0-next.17':
+    resolution: {integrity: sha512-z7e6mPJnypD80LEI/UDuH0bI6s8/nut06MB7rEkRcEfHJekhKSJgFhMnrYzLED7Mc2gTTD0X/wcYlakauWlU8A==}
 
-  '@layerstack/tailwind@2.0.0-next.13':
-    resolution: {integrity: sha512-gCIdr5tsbEcrmncOeMJb0egPG7rl1v2bPLrCduHytAzyj7/jo+YHvIgSSF5FZESK53Dj0W0xGBmXU7tvbjPmEg==}
+  '@layerstack/tailwind@2.0.0-next.15':
+    resolution: {integrity: sha512-7tqKE3OV7/ybeDOORX++USYYCBJa7IgTya2czFpzbgXGo7CQDVyuv+0J1DggjRcEqhhXQA4MUhgnhcRaZvHxWg==}
 
-  '@layerstack/utils@2.0.0-next.11':
-    resolution: {integrity: sha512-Bkww/IfUghga0ah82P/MOSHRVE7Np4VeAl2lUXNqkCwp1M3H690CFb4twKEEsBNUTIYoTCThrM7LuepTx5Hj8g==}
+  '@layerstack/utils@2.0.0-next.12':
+    resolution: {integrity: sha512-fhGZUlSr3N+D44BYm37WKMGSEFyZBW+dwIqtGU8Cl54mR4TLQ/UwyGhdpgIHyH/x/8q1abE0fP0Dn6ZsrDE3BA==}
 
   '@lucide/svelte@0.515.0':
     resolution: {integrity: sha512-CEAyqcZmNBfYzVgaRmK2RFJP5tnbXxekRyDk0XX/eZQRfsJmkDvmQwXNX8C869BgNeryzmrRyjHhUL6g9ZOHNA==}
@@ -2196,10 +2196,6 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  culori@4.0.1:
-    resolution: {integrity: sha512-LSnjA6HuIUOlkfKVbzi2OlToZE8OjFi667JWN9qNymXVXzGDmvuP60SSgC+e92sd7B7158f7Fy3Mb6rXS5EDPw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   d3-array@2.12.1:
     resolution: {integrity: sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ==}
 
@@ -2909,8 +2905,8 @@ packages:
   known-css-properties@0.36.0:
     resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
 
-  layerchart@2.0.0-next.18:
-    resolution: {integrity: sha512-F8nmnnr/JfxRT+Ba4J8m+pdFvaDiIM5zk9a59z0zylPmNlVtm+SpXcRGIJV3oaFQyANbPiUtj2zYoAh+BZ1uFA==}
+  layerchart@2.0.0-next.23:
+    resolution: {integrity: sha512-Uf7/xMjhHcJHQqstjV4RN9GdUWSLQkmrfCKsvTneeJBVNUWs2C9djH6SQTVtv/FcT0HEyIv573RomB3m7uLSUw==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -3124,6 +3120,10 @@ packages:
   memoize-weak@1.0.2:
     resolution: {integrity: sha512-gj39xkrjEw7nCn4nJ1M5ms6+MyMlyiGmttzsqAUsAKn6bYKwuTHh/AO3cKPF8IBrTIYTxb0wWXFs3E//Y8VoWQ==}
 
+  memoize@10.1.0:
+    resolution: {integrity: sha512-MMbFhJzh4Jlg/poq1si90XRlTZRDHVqdlz2mPyGJ6kqMpyHUyVpDd5gpFAvVehW64+RA1eKE9Yt8aSLY7w2Kgg==}
+    engines: {node: '>=18'}
+
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -3241,6 +3241,10 @@ packages:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
     hasBin: true
+
+  mimic-function@5.0.1:
+    resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
+    engines: {node: '>=18'}
 
   min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
@@ -3390,10 +3394,10 @@ packages:
   package-manager-detector@1.3.0:
     resolution: {integrity: sha512-ZsEbbZORsyHuO00lY1kV3/t72yp6Ysay6Pd17ZAlNGuGwmWDLCJxFpRs0IzfXfj1o4icJOkUEioexFHzyPurSQ==}
 
-  paneforge@1.0.0-next.5:
-    resolution: {integrity: sha512-1ArDM+GMEO+o6pixEAFobhTkWkyxUDdHyw2bKruvQIXBStJmdRP7HoV4jNBZ/2i9UHDzmczxJzA3D2tKa91phw==}
+  paneforge@1.0.0:
+    resolution: {integrity: sha512-VlE5+inlTtfguYzSXCWlgFOrt92ofMkwm3/9dwwaDxABAJYYPOS6OJL+qNQbMr6RZkh7y1GSmB5sN+UG7EmVBA==}
     peerDependencies:
-      svelte: ^5.20.0
+      svelte: ^5.29.0
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -3991,6 +3995,12 @@ packages:
 
   svelte-toolbelt@0.9.1:
     resolution: {integrity: sha512-wBX6MtYw/kpht80j5zLpxJyR9soLizXPIAIWEVd9llAi17SR44ZdG291bldjB7r/K5duC0opDFcuhk2cA1hb8g==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.30.2
+
+  svelte-toolbelt@0.9.2:
+    resolution: {integrity: sha512-REb1cENGnFbhNSmIdCb1SDIpjEa3n1kXhNVHqGNEesjmPX3bG87gUZiCG8cqOt9AAarqzTzOtI2jEEWr/ZbHwA==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.30.2
@@ -5192,29 +5202,25 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@layerstack/svelte-actions@1.0.1-next.11':
+  '@layerstack/svelte-actions@1.0.1-next.12':
     dependencies:
       '@floating-ui/dom': 1.7.1
-      '@layerstack/utils': 2.0.0-next.11
-      d3-array: 3.2.4
+      '@layerstack/utils': 2.0.0-next.12
       d3-scale: 4.0.2
-      lodash-es: 4.17.21
 
-  '@layerstack/svelte-state@0.1.0-next.16':
+  '@layerstack/svelte-state@0.1.0-next.17':
     dependencies:
-      '@layerstack/utils': 2.0.0-next.11
+      '@layerstack/utils': 2.0.0-next.12
 
-  '@layerstack/tailwind@2.0.0-next.13':
+  '@layerstack/tailwind@2.0.0-next.15':
     dependencies:
-      '@layerstack/utils': 2.0.0-next.11
+      '@layerstack/utils': 2.0.0-next.12
       clsx: 2.1.1
-      culori: 4.0.1
       d3-array: 3.2.4
       lodash-es: 4.17.21
       tailwind-merge: 3.3.1
-      tailwindcss: 4.1.10
 
-  '@layerstack/utils@2.0.0-next.11':
+  '@layerstack/utils@2.0.0-next.12':
     dependencies:
       d3-array: 3.2.4
       d3-time: 3.1.0
@@ -6092,8 +6098,6 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  culori@4.0.1: {}
-
   d3-array@2.12.1:
     dependencies:
       internmap: 1.0.1
@@ -6904,13 +6908,13 @@ snapshots:
 
   known-css-properties@0.36.0: {}
 
-  layerchart@2.0.0-next.18(svelte@5.34.1):
+  layerchart@2.0.0-next.23(svelte@5.34.1):
     dependencies:
       '@dagrejs/dagre': 1.1.4
-      '@layerstack/svelte-actions': 1.0.1-next.11
-      '@layerstack/svelte-state': 0.1.0-next.16
-      '@layerstack/tailwind': 2.0.0-next.13
-      '@layerstack/utils': 2.0.0-next.11
+      '@layerstack/svelte-actions': 1.0.1-next.12
+      '@layerstack/svelte-state': 0.1.0-next.17
+      '@layerstack/tailwind': 2.0.0-next.15
+      '@layerstack/utils': 2.0.0-next.12
       d3-array: 3.2.4
       d3-color: 3.1.0
       d3-delaunay: 6.0.4
@@ -6931,6 +6935,7 @@ snapshots:
       d3-tile: 1.0.0
       d3-time: 3.1.0
       lodash-es: 4.17.21
+      memoize: 10.1.0
       runed: 0.28.0(svelte@5.34.1)
       svelte: 5.34.1
 
@@ -7235,6 +7240,10 @@ snapshots:
 
   memoize-weak@1.0.2: {}
 
+  memoize@10.1.0:
+    dependencies:
+      mimic-function: 5.0.1
+
   merge2@1.4.1: {}
 
   micromark-core-commonmark@2.0.0:
@@ -7510,6 +7519,8 @@ snapshots:
 
   mime@3.0.0: {}
 
+  mimic-function@5.0.1: {}
+
   min-indent@1.0.1: {}
 
   miniflare@4.20250604.1:
@@ -7653,11 +7664,11 @@ snapshots:
 
   package-manager-detector@1.3.0: {}
 
-  paneforge@1.0.0-next.5(svelte@5.34.1):
+  paneforge@1.0.0(svelte@5.34.1):
     dependencies:
       runed: 0.23.4(svelte@5.34.1)
       svelte: 5.34.1
-      svelte-toolbelt: 0.7.1(svelte@5.34.1)
+      svelte-toolbelt: 0.9.2(svelte@5.34.1)
 
   parent-module@1.0.1:
     dependencies:
@@ -8306,6 +8317,13 @@ snapshots:
       svelte: 5.34.1
 
   svelte-toolbelt@0.9.1(svelte@5.34.1):
+    dependencies:
+      clsx: 2.1.1
+      runed: 0.28.0(svelte@5.34.1)
+      style-to-object: 1.0.9
+      svelte: 5.34.1
+
+  svelte-toolbelt@0.9.2(svelte@5.34.1):
     dependencies:
       clsx: 2.1.1
       runed: 0.28.0(svelte@5.34.1)

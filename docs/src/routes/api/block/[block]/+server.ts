@@ -10,12 +10,7 @@ import type { RequestHandler } from "./$types.js";
 export type HighlightedBlock = z.output<typeof highlightedBlockSchema>;
 
 const highlightedBlockSchema = registryItemSchema
-	.pick({
-		name: true,
-		description: true,
-		meta: true,
-		type: true,
-	})
+	.pick({ name: true, description: true, meta: true, type: true })
 	.extend({
 		files: z.array(
 			registryItemFileSchema.omit({ content: true }).extend({
@@ -33,7 +28,7 @@ async function loadItem(block: string): Promise<HighlightedBlock> {
 
 		file.content = transformImportPaths(file.content);
 		const highlightedContent = await highlightCode(file.content, lang);
-		let target = "";
+		let target;
 		if (item.type === "registry:ui") {
 			target = file.target;
 		} else {

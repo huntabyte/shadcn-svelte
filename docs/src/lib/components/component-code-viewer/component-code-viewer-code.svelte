@@ -4,7 +4,7 @@
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 
 	const ctx = ComponentCodeViewerContext.get();
-	const file = $derived(ctx.highlightedFiles?.find((f) => f.target === ctx.activeFile));
+	const file = $derived(ctx.highlightedFiles.find((f) => f.target === ctx.activeFile));
 </script>
 
 {#if file}
@@ -28,7 +28,7 @@
 				}}
 			>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html file?.highlightedContent ?? ""}
+				{@html file.highlightedContent}
 			</div>
 		</figure>
 	</div>
