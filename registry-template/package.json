@@ -19,9 +19,9 @@
 		"@eslint/js": "^9.29.0",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/kit": "^2.21.5",
-		"@sveltejs/vite-plugin-svelte": "^5.1.0",
+		"@sveltejs/vite-plugin-svelte": "^6.0.0-next.0",
 		"@tailwindcss/vite": "^4.1.10",
-		"bits-ui": "^2.7.0",
+		"bits-ui": "^2.8.4",
 		"clsx": "^2.1.1",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -39,7 +39,7 @@
 		"tw-animate-css": "^1.3.3",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.34.0",
-		"vite": "^6.3.5",
+		"vite": "npm:rolldown-vite@latest",
 		"zod": "^3.25.64"
 	},
 	"pnpm": {
