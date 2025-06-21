@@ -2,7 +2,7 @@
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import ChartStyle from "./chart-style.svelte";
-	import { setChartContext, type ChartConfig } from "./chart-utils.js";
+	import { setChartContext, useChart, type ChartConfig } from "./chart-utils.js";
 
 	const uid = $props.id();
 
@@ -14,16 +14,29 @@
 		config,
 		...restProps
 	}: WithElementRef<HTMLAttributes<HTMLElement>> & {
-		config: ChartConfig;
+		config?: ChartConfig;
 	} = $props();
 
 	const chartId = `chart-${id || uid.replace(/:/g, "")}`;
 
-	setChartContext({
-		get config() {
-			return config;
-		},
-	});
+	// Try to get existing context, or create new one if config is provided
+	let chartConfig: ChartConfig = $state(config || {});
+	try {
+		const existingChart = useChart();
+		chartConfig = config || existingChart.config;
+	} catch {
+		// No existing context, use provided config or empty
+		chartConfig = config || {};
+	}
+
+	// Set context if we have a config
+	if (config) {
+		setChartContext({
+			get config() {
+				return config;
+			},
+		});
+	}
 </script>
 
 <div
@@ -75,6 +88,6 @@
 	)}
 	{...restProps}
 >
-	<ChartStyle id={chartId} {config} />
+	<ChartStyle id={chartId} config={chartConfig} />
 	{@render children?.()}
 </div>

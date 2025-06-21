@@ -390,6 +390,14 @@
 				},
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/chart/chart-context.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/chart/chart-legend.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/chart/chart-style.svelte"
 				},
 				{
