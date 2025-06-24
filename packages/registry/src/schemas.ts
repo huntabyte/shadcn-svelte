@@ -60,7 +60,6 @@ const baseIndexItemSchema = z.object({
 		.describe(
 			"The human-readable title for your registry item. Keep it short and descriptive."
 		),
-
 	type: registryItemTypeSchema,
 	author: z
 		.string()
@@ -82,11 +81,25 @@ const baseIndexItemSchema = z.object({
 		.optional()
 		.describe("An array of NPM dev dependencies required by the registry item."),
 	registryDependencies: z.optional(registryDependenciesSchema),
+	meta: z
+		.record(z.string(), z.any())
+		.optional()
+		.describe(
+			"Additional metadata for the registry item. This is an object with any key value pairs."
+		),
 });
 
 export type RegistryIndexItem = z.infer<typeof registryIndexItemSchema>;
 /** Schema for registry items defined in the index */
-export const registryIndexItemSchema = baseIndexItemSchema.extend({ relativeUrl: z.string() });
+export const registryIndexItemSchema = baseIndexItemSchema.extend({
+	relativeUrl: z.string(),
+	meta: z
+		.record(z.string(), z.any())
+		.optional()
+		.describe(
+			"Additional metadata for the registry item. This is an object with any key value pairs."
+		),
+});
 
 export type RegistryIndex = z.infer<typeof registryIndexSchema>;
 /** Schema for the registry's index (e.g. `https://example.com/registry/index.json`) */
@@ -153,12 +166,7 @@ export const registryItemSchema = z.object({
 		.describe("The categories of the registry item. This is an array of strings."),
 	css: z.optional(registryItemCssSchema),
 	cssVars: z.optional(registryItemCssVarsSchema),
-	meta: z
-		.record(z.string(), z.any())
-		.optional()
-		.describe(
-			"Additional metadata for the registry item. This is an object with any key value pairs."
-		),
+
 	files: z.array(registryItemFileSchema).default([]),
 });
 
@@ -206,7 +214,6 @@ export const registrySchema = z.object({
 			registryDependencies: registryDependenciesSchema,
 			cssVars: z.optional(registryItemCssVarsSchema),
 			css: z.optional(registryItemCssSchema),
-			meta: z.record(z.string(), z.any()).optional(),
 		})
 		.array()
 		.describe("Defines a custom component registry."),
