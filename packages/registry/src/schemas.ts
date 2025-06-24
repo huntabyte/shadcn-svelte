@@ -93,12 +93,6 @@ export type RegistryIndexItem = z.infer<typeof registryIndexItemSchema>;
 /** Schema for registry items defined in the index */
 export const registryIndexItemSchema = baseIndexItemSchema.extend({
 	relativeUrl: z.string(),
-	meta: z
-		.record(z.string(), z.any())
-		.optional()
-		.describe(
-			"Additional metadata for the registry item. This is an object with any key value pairs."
-		),
 });
 
 export type RegistryIndex = z.infer<typeof registryIndexSchema>;
