@@ -5,11 +5,11 @@ We appreciate your interest in contributing. This guide will help you get starte
 ## Table of Contents
 
 - [Contributing to shadcn-svelte](#contributing-to-shadcn-svelte)
-	- [Table of Contents](#table-of-contents)
-	- [Ways to contribute](#ways-to-contribute)
-	- [How to contribute](#how-to-contribute)
-	- [Questions](#questions)
-	- [License](#license)
+  - [Table of Contents](#table-of-contents)
+  - [Ways to contribute](#ways-to-contribute)
+  - [How to contribute](#how-to-contribute)
+  - [Questions](#questions)
+  - [License](#license)
 
 ## Ways to contribute
 
