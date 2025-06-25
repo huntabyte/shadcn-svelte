@@ -14,7 +14,10 @@
 					"path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
 					"type": "registry:component"
 				}
-			]
+			],
+			"meta": {
+				"author": "huntabyte"
+			}
 		},
 		{
 			"name": "example-form",
