@@ -189,7 +189,7 @@ Next, we'll create a `<DataTable />` component to render our table.
       {#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
         <Table.Row>
           {#each headerGroup.headers as header (header.id)}
-            <Table.Head>
+            <Table.Head colspan={header.colSpan}>
               {#if !header.isPlaceholder}
                 <FlexRender
                   content={header.column.columnDef.header}
