@@ -46,7 +46,7 @@ You can start using Tailwind v4 and Svelte 5 today using the `@latest` CLI. See 
 
 <Callout>
 
-**Note**: This guide assumes you are coming from a Svelte 5 and Tailwind 3 project. If you are coming from a Svelte 4 project, you should first follow the [Svelte 4 and Tailwind 3 to Svelte 5](./svelte-4-tailwind-3-to-svelte-5) guide.
+**Note**: This guide assumes you are coming from a Svelte 5 and Tailwind 3 project. If you are coming from a Svelte 4 project, you should first follow the [Svelte 4 and Tailwind 3 to Svelte 5](./svelte-5) guide.
 
 </Callout>
 
