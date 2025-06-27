@@ -289,8 +289,8 @@ importers:
         specifier: workspace:*
         version: link:../registry
       '@svecosystem/strip-types':
-        specifier: ^0.0.3
-        version: 0.0.3
+        specifier: ^0.0.4
+        version: 0.0.4
       '@sveltejs/acorn-typescript':
         specifier: ^1.0.5
         version: 1.0.5(acorn@8.15.0)
@@ -1578,8 +1578,8 @@ packages:
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
 
-  '@svecosystem/strip-types@0.0.3':
-    resolution: {integrity: sha512-8MkVQ1lIXUWgw6zTbvAmRC7Fy0T7Vm8SArYlxqSZrRLrjmHmrKAz3NrG0+/ldLLwXFmOldAvkfqPcQYnzu0jow==}
+  '@svecosystem/strip-types@0.0.4':
+    resolution: {integrity: sha512-TmIXHp09ZAjdP14xjtdwJZuF+sKF+PqZackrAdiSK6lPZ+KuQAZciV12PlcPNBMDAYQeC+dvBJ6AGPsEbJfRgQ==}
 
   '@sveltejs/acorn-typescript@1.0.5':
     resolution: {integrity: sha512-IwQk4yfwLdibDlrXVE04jTZYlLnwsTT2PIOQQGNLWfjavGifnk1JD1LcZjZaBTRcxZu2FfPfNLOE04DSu9lqtQ==}
@@ -5479,7 +5479,7 @@ snapshots:
   '@standard-schema/spec@1.0.0':
     optional: true
 
-  '@svecosystem/strip-types@0.0.3':
+  '@svecosystem/strip-types@0.0.4':
     dependencies:
       estree-walker: 3.0.3
       magic-string: 0.30.17
