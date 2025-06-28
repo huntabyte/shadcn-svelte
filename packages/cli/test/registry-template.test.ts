@@ -38,6 +38,9 @@ it("should accurately build the registry template", async () => {
 		[
 		  {
 		    "description": "A simple hello world component",
+		    "meta": {
+		      "author": "huntabyte",
+		    },
 		    "name": "hello-world",
 		    "registryDependencies": [
 		      "button",
@@ -630,6 +633,9 @@ it("should accurately build the registry template", async () => {
 		      "type": "registry:component",
 		    },
 		  ],
+		  "meta": {
+		    "author": "huntabyte",
+		  },
 		  "name": "hello-world",
 		  "registryDependencies": [
 		    "button",

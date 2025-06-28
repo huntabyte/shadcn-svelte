@@ -1,6 +1,6 @@
 {
 	"name": "shadcn-svelte",
-	"version": "1.0.3",
+	"version": "1.0.5",
 	"description": "Add components to your apps.",
 	"license": "MIT",
 	"author": {
@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"@clack/prompts": "^1.0.0-alpha.0",
 		"@shadcn-svelte/registry": "workspace:*",
-		"@svecosystem/strip-types": "^0.0.3",
+		"@svecosystem/strip-types": "^0.0.4",
 		"@sveltejs/acorn-typescript": "^1.0.5",
 		"@types/node": "^20.19.0",
 		"@types/semver": "^7.5.8",

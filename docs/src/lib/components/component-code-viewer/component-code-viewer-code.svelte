@@ -22,7 +22,9 @@
 			<div
 				class="no-scrollbar overflow-y-auto"
 				{@attach (node) => {
-					ctx.activeFileCodeToCopy = node.innerText;
+					if (file.highlightedContent) {
+						ctx.activeFileCodeToCopy = node.innerText;
+					}
 				}}
 			>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->

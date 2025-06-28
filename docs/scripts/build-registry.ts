@@ -72,7 +72,7 @@ export async function build(): Promise<void> {
 				utils: "$lib/utils",
 			},
 			// TODO: remove when moving from `next` to `latest`
-			overrideDependencies: ["paneforge@next", "vaul-svelte@next"],
+			overrideDependencies: ["vaul-svelte@next"],
 			items: [initItem, ...registry],
 		} as Registry,
 		// maintains the schema defined property order

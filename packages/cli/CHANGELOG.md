@@ -1,5 +1,17 @@
 # shadcn-svelte
 
+## 1.0.5
+
+### Patch Changes
+
+- fix: bump `@svecosystem/strip-types` to strip `?` from optional params ([#2184](https://github.com/huntabyte/shadcn-svelte/pull/2184))
+
+## 1.0.4
+
+### Patch Changes
+
+- fix: ensure `meta` property from registry.json passes through to generated json ([#2164](https://github.com/huntabyte/shadcn-svelte/pull/2164))
+
 ## 1.0.3
 
 ### Patch Changes
