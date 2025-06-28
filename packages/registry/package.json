@@ -1,6 +1,6 @@
 {
 	"name": "@shadcn-svelte/registry",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Types, schemas, and utils for the shadcn-svelte registry.",
 	"license": "MIT",
 	"author": {
