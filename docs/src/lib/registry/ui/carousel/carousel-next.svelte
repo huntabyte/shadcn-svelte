@@ -20,7 +20,7 @@
 	data-slot="carousel-next"
 	{variant}
 	{size}
-	aria-disabled={!emblaCtx.canScrollNext}
+	disabled={!emblaCtx.canScrollNext}
 	class={cn(
 		"absolute size-8 rounded-full",
 		emblaCtx.orientation === "horizontal"
