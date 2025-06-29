@@ -7,11 +7,11 @@
 >
 	shadcn-svelte for Svelte 5 has been released! -
 	<a
-		href="https://next.shadcn-svelte.com"
+		href="https://shadcn-svelte.com"
 		target="_blank"
 		class="inline-flex items-center font-semibold underline-offset-2 hover:underline"
 	>
-		Visit the preview docs
+		Visit the docs
 		<ArrowUpRight class="ml-0.5 h-3 w-3" />
 	</a>
 </p>
