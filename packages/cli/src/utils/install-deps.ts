@@ -31,7 +31,13 @@ export async function installDependencies({
 		if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
 			return undefined;
 		}
-		return `${name}@${version}`;
+		
+		// Add npm: prefix for Deno compatibility
+		// @ts-expect-error types for Deno global are not defined
+		const isDeno = typeof Deno !== "undefined";
+		const packageName = isDeno ? `npm:${name}` : name;
+		
+		return `${packageName}@${version}`;
 	};
 
 	const devDeps = devDependencies.map(validateDep).filter((d) => d !== undefined);
