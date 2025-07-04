@@ -1,1 +1,1 @@
-export const FALLBACK_STAR_COUNT = 6800;
+export const FALLBACK_STAR_COUNT = 6900;

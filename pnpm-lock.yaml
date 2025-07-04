@@ -168,8 +168,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.5
       layerchart:
-        specifier: 2.0.0-next.23
-        version: 2.0.0-next.23(svelte@5.34.1)
+        specifier: 2.0.0-next.27
+        version: 2.0.0-next.27(svelte@5.34.1)
       little-date:
         specifier: ^1.0.0
         version: 1.0.0
@@ -2908,8 +2908,8 @@ packages:
   known-css-properties@0.36.0:
     resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
 
-  layerchart@2.0.0-next.23:
-    resolution: {integrity: sha512-Uf7/xMjhHcJHQqstjV4RN9GdUWSLQkmrfCKsvTneeJBVNUWs2C9djH6SQTVtv/FcT0HEyIv573RomB3m7uLSUw==}
+  layerchart@2.0.0-next.27:
+    resolution: {integrity: sha512-yt28xU8WzXq0AliX7eiC0JKZGQtO8M9FmHvt8sESNitSc/yC+fYeTghaO9lMRwcYCmi6D1NjbFyD9mWFeazNIQ==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -6926,7 +6926,7 @@ snapshots:
 
   known-css-properties@0.36.0: {}
 
-  layerchart@2.0.0-next.23(svelte@5.34.1):
+  layerchart@2.0.0-next.27(svelte@5.34.1):
     dependencies:
       '@dagrejs/dagre': 1.1.4
       '@layerstack/svelte-actions': 1.0.1-next.12
