@@ -22,6 +22,7 @@ export async function installDependencies({
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
 
+	const isDeno = pm === "deno";
 	const pkg = getProjectPackageInfo(cwd);
 	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
@@ -32,10 +33,8 @@ export async function installDependencies({
 			return undefined;
 		}
 
-		// Add npm: prefix for Deno compatibility
-		const isDeno = pm === "deno";
+		// Deno need to add npm: prefix for compatibility
 		const packageName = isDeno ? `npm:${name}` : name;
-
 		return `${packageName}@${version}`;
 	};
 
