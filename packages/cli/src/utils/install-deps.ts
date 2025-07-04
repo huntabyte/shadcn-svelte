@@ -22,7 +22,8 @@ export async function installDependencies({
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
 
-	const isDeno = pm === "deno";
+	// Deno requires the `npm:` specifier
+	const pkgSpecifier = pm === "deno" ? "npm:" : "";
 	const pkg = getProjectPackageInfo(cwd);
 	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
