@@ -34,7 +34,6 @@ export async function installDependencies({
 			return undefined;
 		}
 
-		// Deno need to add npm: prefix for compatibility
 		const packageName = isDeno ? `npm:${name}` : name;
 		return `${packageName}@${version}`;
 	};
