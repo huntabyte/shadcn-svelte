@@ -34,8 +34,7 @@ export async function installDependencies({
 			return undefined;
 		}
 
-		const packageName = isDeno ? `npm:${name}` : name;
-		return `${packageName}@${version}`;
+		return `${pkgSpecifier}${name}@${version}`;
 	};
 
 	const devDeps = devDependencies.map(validateDep).filter((d) => d !== undefined);
