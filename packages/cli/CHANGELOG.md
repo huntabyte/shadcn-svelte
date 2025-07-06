@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.6
+
+### Patch Changes
+
+- fix: add `npm:` specifier when installing packages with Deno ([#2196](https://github.com/huntabyte/shadcn-svelte/pull/2196))
+
 ## 1.0.5
 
 ### Patch Changes

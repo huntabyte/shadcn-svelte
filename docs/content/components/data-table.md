@@ -255,7 +255,7 @@ export async function load() {
   let { data } = $props();
 </script>
 
-<DataTable {data} {columns} />
+<DataTable data={data.payments} {columns} />
 ```
 
 </Steps>

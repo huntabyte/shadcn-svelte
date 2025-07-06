@@ -22,6 +22,8 @@ export async function installDependencies({
 	const pm = await detectPM(cwd, prompt);
 	if (!pm) return;
 
+	// Deno requires the `npm:` specifier
+	const pkgSpecifier = pm === "deno" ? "npm:" : "";
 	const pkg = getProjectPackageInfo(cwd);
 	const projectDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
@@ -31,7 +33,8 @@ export async function installDependencies({
 		if (depVersion && semver.satisfies(depVersion, version, { loose: true })) {
 			return undefined;
 		}
-		return `${name}@${version}`;
+
+		return `${pkgSpecifier}${name}@${version}`;
 	};
 
 	const devDeps = devDependencies.map(validateDep).filter((d) => d !== undefined);
