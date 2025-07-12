@@ -29,9 +29,9 @@
 </script>
 
 {#if themeContents}
-    {#key id}
-        <svelte:element this={'style'}>
-            {themeContents}
-        </svelte:element>
-    {/key}
+	{#key id}
+		<svelte:element this={"style"}>
+			{themeContents}
+		</svelte:element>
+	{/key}
 {/if}
