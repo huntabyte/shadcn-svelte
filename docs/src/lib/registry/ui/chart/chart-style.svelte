@@ -29,8 +29,9 @@
 </script>
 
 {#if themeContents}
-	{#key id}
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-		{@html `<style>${themeContents}</style>`}
-	{/key}
+    {#key id}
+        <svelte:element this={'style'}>
+            {themeContents}
+        </svelte:element>
+    {/key}
 {/if}
