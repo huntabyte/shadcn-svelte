@@ -53,7 +53,7 @@ This guide will show you how to use [TanStack Table](https://tanstack.com/table)
 
 1. Add the `<Table />` component to your project along with the `data-table` helpers. These helpers enable TanStack Table v8 to work with Svelte 5 Snippets, Components, etc.
 
-<PMAddComp name="table dropdown-menu data-table" />
+<PMAddComp name="table data-table" />
 
 2. Add `@tanstack/table-core` as a dependency:
 
@@ -314,7 +314,9 @@ You can use the same approach to format other cells and headers.
 
 ## Row Actions
 
-Let's add row actions to our table. We'll use the `<DropdownMenu />` component for this.
+Let's add row actions to our table. We'll use the `<DropdownMenu />` and the `<Button />` components for this, so you have install them if not done already:
+
+<PMAddComp name="button dropdown-menu" />
 
 <Steps>
 
