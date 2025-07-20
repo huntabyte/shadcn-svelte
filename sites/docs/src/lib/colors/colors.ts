@@ -13,7 +13,7 @@ const colorSchema = z.object({
 	rgb: z.string(),
 	hsl: z.string(),
 	foreground: z.string(),
-	oklch: z.string(),
+	oklch: z.string().optional(),
 });
 
 const colorPaletteSchema = z.object({
@@ -29,7 +29,7 @@ export function getColorFormat(color: Color) {
 		hex: color.hex,
 		rgb: color.rgb,
 		hsl: color.hsl,
-		oklch: color.oklch,
+		oklch: color.oklch || "",
 	};
 }
 
@@ -58,10 +58,11 @@ export function getColors() {
 								/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/,
 								"$1 $2 $3"
 							),
-							oklch: color.oklch.replace(
-								/^oklch\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)$/,
-								"$1 $2 $3"
-							),
+							oklch:
+								color.oklch?.replace(
+									/^oklch\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)$/,
+									"$1 $2 $3"
+								) || "",
 							foreground: getForegroundFromBackground(rgb),
 						};
 					}),
@@ -112,7 +113,7 @@ export function generateBaseColorTemplate(baseColor: BaseColor) {
 						)
 					: colorsData[resolvedBase];
 				if (color) {
-					base.cssVars[mode][key] = color.oklch;
+					base.cssVars[mode][key] = color.oklch || "";
 				}
 			}
 		}
@@ -139,7 +140,7 @@ export function getColorsData() {
 		if (Array.isArray(value)) {
 			colorsData[color] = value.map((item) => ({
 				...item,
-				oklch: item.oklch,
+				oklch: item.oklch || "",
 			}));
 			continue;
 		}
@@ -147,7 +148,7 @@ export function getColorsData() {
 		if (typeof value === "object") {
 			colorsData[color] = {
 				...value,
-				oklch: value.oklch,
+				oklch: value.oklch || "",
 			};
 			continue;
 		}

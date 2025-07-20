@@ -22,6 +22,7 @@ export type RawBlock = {
 	type: string;
 	raw: () => Promise<string>;
 	component: () => Promise<Component>;
+	chunks?: RawBlockChunk[];
 };
 
 export const BLOCK_WHITELIST: BlockName[] = [

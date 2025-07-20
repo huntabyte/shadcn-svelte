@@ -44,10 +44,10 @@
 		if (!isBrowser) return;
 		tick().then(() => {
 			const components = getBlockChunks();
-			for (let i = 0; i < block.chunks.length; i++) {
-				const chunk = block.chunks[i];
+			for (let i = 0; i < (block.chunks?.length || 0); i++) {
+				const chunk = block.chunks?.[i];
 				if (!chunk) continue;
-				const chunkEl = getChunkByName(block.chunks[i].name);
+				const chunkEl = getChunkByName(block.chunks?.[i]?.name || "");
 
 				const wrapperEl = document.querySelector<HTMLElement>(
 					`[data-x-chunk-container-for="${chunk.name}"]`
