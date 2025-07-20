@@ -42,6 +42,7 @@
 	import Check from "@lucide/svelte/icons/check";
 	import SuperDebug, { type Infer, type SuperValidated, superForm } from "sveltekit-superforms";
 	import { zodClient } from "sveltekit-superforms/adapters";
+	import { SvelteDate } from "svelte/reactivity";
 	import {
 		DateFormatter,
 		type DateValue,
@@ -105,7 +106,7 @@
 							bind:value={dobValue}
 							isDateDisabled={(currDate) => {
 								const currDateObj = currDate.toDate(getLocalTimeZone());
-								const today = new Date();
+								const today = new SvelteDate();
 								today.setHours(0, 0, 0, 0);
 
 								if (currDateObj > today || currDate.year < 1900) return true;
