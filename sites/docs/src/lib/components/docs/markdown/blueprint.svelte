@@ -24,14 +24,27 @@
 </script>
 
 <script lang="ts">
+	import type { Snippet } from "svelte";
+
 	type Props = {
 		title: string;
 		description: string;
 		source: string;
 		component: string;
 		radix: string;
+		children: Snippet<
+			[
+				{
+					title: string;
+					description: string;
+					source: string;
+					component: string;
+					radix: string;
+				},
+			]
+		>;
 	};
-	let { title, description, source, component, radix }: Props = $props();
+	let { title, description, source, component, radix, children }: Props = $props();
 </script>
 
-<slot {title} {description} {source} {component} {radix} />
+{@render children?.({ title, description, source, component, radix })}

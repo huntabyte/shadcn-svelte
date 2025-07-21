@@ -13,7 +13,6 @@
 	import {
 		CalendarDate,
 		DateFormatter,
-		type DateValue,
 		getLocalTimeZone,
 		parseDate,
 		today,
@@ -51,11 +50,7 @@
 		dateStyle: "long",
 	});
 
-	let value = $state<DateValue | undefined>();
-
-	$effect(() => {
-		value = $formData.dob ? parseDate($formData.dob) : undefined;
-	});
+	let value = $derived($formData.dob ? parseDate($formData.dob) : undefined);
 
 	let placeholder = $state(today(getLocalTimeZone()));
 </script>

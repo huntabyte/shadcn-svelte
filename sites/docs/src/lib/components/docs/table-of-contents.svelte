@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { writable } from "svelte/store";
+	import { SvelteSet } from "svelte/reactivity";
 	import Tree from "./tree.svelte";
 	import type { TableOfContents, TableOfContentsItem } from "$lib/types/docs.js";
 
@@ -17,7 +18,7 @@
 		const hierarchy: TableOfContents = { items: [] };
 		let currentLevel: TableOfContentsItem | undefined = undefined;
 
-		const newIdSet: Set<string> = new Set();
+		const newIdSet = new SvelteSet<string>();
 		let count = 1;
 		for (const heading of headings) {
 			const level = Number.parseInt(heading.tagName.charAt(1));

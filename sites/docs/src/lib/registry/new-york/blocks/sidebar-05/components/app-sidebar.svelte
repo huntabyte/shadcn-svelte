@@ -176,7 +176,7 @@
 							<Collapsible.Trigger>
 								{#snippet child({ props })}
 									<Sidebar.MenuButton {...props}>
-										{mainItem.title}{" "}
+										{mainItem.title}
 										<Plus
 											class="ml-auto group-data-[state=open]/collapsible:hidden"
 										/>

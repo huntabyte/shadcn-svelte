@@ -1,4 +1,54 @@
-export const colors = {
+const _baseColors = [
+	"slate",
+	"gray",
+	"zinc",
+	"neutral",
+	"stone",
+	"red",
+	"orange",
+	"amber",
+	"yellow",
+	"lime",
+	"green",
+	"emerald",
+	"teal",
+	"cyan",
+	"sky",
+	"blue",
+	"indigo",
+	"violet",
+	"purple",
+	"fuchsia",
+	"pink",
+	"rose",
+] as const;
+
+export type BaseColor = (typeof _baseColors)[number];
+
+type ColorScale = {
+	scale: number;
+	hex: string;
+	rgb: string;
+	hsl: string;
+	oklch?: string;
+};
+
+type ColorSingle = {
+	hex: string;
+	rgb: string;
+	hsl: string;
+	oklch?: string;
+};
+
+type Colors = {
+	inherit: string;
+	current: string;
+	transparent: string;
+	black: ColorSingle;
+	white: ColorSingle;
+} & Record<BaseColor, ColorScale[]>;
+
+export const colors: Colors = {
 	inherit: "inherit",
 	current: "currentColor",
 	transparent: "transparent",

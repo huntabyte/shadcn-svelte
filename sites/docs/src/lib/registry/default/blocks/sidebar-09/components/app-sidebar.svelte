@@ -229,7 +229,7 @@
 							class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col items-start gap-2 whitespace-nowrap border-b p-4 text-sm leading-tight last:border-b-0"
 						>
 							<div class="flex w-full items-center gap-2">
-								<span>{mail.name}</span>{" "}
+								<span>{mail.name}</span>
 								<span class="ml-auto text-xs">{mail.date}</span>
 							</div>
 							<span class="font-medium">{mail.subject}</span>
