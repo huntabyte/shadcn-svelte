@@ -314,7 +314,9 @@ You can use the same approach to format other cells and headers.
 
 ## Row Actions
 
-Let's add row actions to our table. We'll use the `<DropdownMenu />` component for this.
+Let's add row actions to our table. We'll use the `<DropdownMenu />` and the `<Button />` components for this, so you have install them if not done already:
+
+<PMAddComp name="button dropdown-menu" />
 
 <Steps>
 
