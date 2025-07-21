@@ -152,7 +152,7 @@ async function diffComponent(
         const localContent = await fs.readFile(filePath, "utf8");
         if (typeof file === "string" || !file.content) continue;
 
-        const filename = (file as any).path ?? file.target;
+        const filename = file.target;
         const remoteContent = await transformContent(file.content, filename, config);
 
         const patch = diffLines(remoteContent as string, localContent);
