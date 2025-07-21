@@ -6,7 +6,7 @@ import {Command} from "commander";
 import {z} from "zod";
 import * as p from "@clack/prompts";
 import {diffLines, type Change} from "diff";
-
+import * as schemas from "@shadcn-svelte/registry";
 import * as registry from "../../utils/registry/index.js";
 import {transformContent} from "../../utils/transformers.js";
 import * as cliConfig from "../../utils/get-config.js";
@@ -127,7 +127,7 @@ async function diffComponent(
     componentName: string,
     config: cliConfig.ResolvedConfig,
     registryUrl: string,
-    registryIndex: registry.RegistryIndex
+    registryIndex: schemas.RegistryIndex
 ) {
     /* Resolve & download the remote item (plus its deps) */
     const resolved = await registry.resolveRegistryItems({
@@ -165,7 +165,7 @@ async function diffComponent(
 function printDiff(diff: Change[]) {
     diff.forEach((part) => {
         if (!part) return;
-        if (part.added) return process.sdout.write(color.green(part.value));
+        if (part.added) return process.stdout.write(color.green(part.value));
         if (part.removed) return process.stdout.write(color.red(part.value));
         process.stdout.write(part.value);
     });
