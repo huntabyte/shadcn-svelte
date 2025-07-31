@@ -12,7 +12,7 @@
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
-
+	import { browser } from "$app/environment";
 	let {
 		chart,
 		class: className,
@@ -20,6 +20,8 @@
 	}: HTMLAttributes<HTMLDivElement> & { chart: HighlightedBlock } = $props();
 
 	let code = $derived.by(() => {
+		if (!browser) return "";
+
 		const pre = document.createElement("pre");
 		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
 		return pre.innerText;
