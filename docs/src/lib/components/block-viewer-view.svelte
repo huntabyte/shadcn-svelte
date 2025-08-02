@@ -26,7 +26,7 @@
 				<BlockViewerIframe />
 			</Resizable.Pane>
 			<Resizable.Handle
-				class="after:bg-border relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:transition-all after:hover:h-10 md:block"
+				class="after:bg-border relative z-20 hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:transition-all after:hover:h-10 md:block"
 			/>
 			<Resizable.Pane defaultSize={0} minSize={0} />
 		</Resizable.PaneGroup>
