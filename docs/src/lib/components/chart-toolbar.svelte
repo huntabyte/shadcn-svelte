@@ -12,7 +12,6 @@
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
-	import { onMount } from "svelte";
 
 	let {
 		chart,
@@ -22,10 +21,27 @@
 
 	let code = $state("");
 
-	onMount(() => {
-		const pre = document.createElement("pre");
-		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
-		code = pre.innerText;
+	// Fix: Wrong code in clipboard button for charts (#2258)
+	// Reason: Previously, clipboard always copied the first chart's code due to stale state.
+	// Approach: Extract raw source from highlighted HTML for the current chart.
+	// - Client: decode HTML entities via <pre> and strip tags.
+	// - SSR: assume entities already decoded; strip tags only.
+	$effect(() => {
+		const file = chart?.files?.[0];
+		if (!file) {
+			code = "";
+			return;
+		}
+
+		const highlighted = file.highlightedContent ?? "";
+
+		if (typeof document !== "undefined") {
+			const pre = document.createElement("pre");
+			pre.innerHTML = highlighted;
+			code = pre.textContent ?? "";
+		} else {
+			code = highlighted.replace(/<[^>]+>/g, "");
+		}
 	});
 </script>
 
