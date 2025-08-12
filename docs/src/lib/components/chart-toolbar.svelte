@@ -13,18 +13,24 @@
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
 	import { browser } from "$app/environment";
+
 	let {
 		chart,
 		class: className,
 		children,
 	}: HTMLAttributes<HTMLDivElement> & { chart: HighlightedBlock } = $props();
 
-	let code = $derived.by(() => {
-		if (!browser) return "";
+	let code = $state("");
+
+	$effect(() => {
+		if (!browser || !chart.files?.[0]?.highlightedContent) {
+			code = "";
+			return;
+		}
 
 		const pre = document.createElement("pre");
-		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
-		return pre.innerText;
+		pre.innerHTML = chart.files[0].highlightedContent;
+		code = pre.innerText ?? "";
 	});
 </script>
 
