@@ -21,11 +21,6 @@
 
 	let code = $state("");
 
-	// Fix: Wrong code in clipboard button for charts (#2258)
-	// Reason: Previously, clipboard always copied the first chart's code due to stale state.
-	// Approach: Extract raw source from highlighted HTML for the current chart.
-	// - Client: decode HTML entities via <pre> and strip tags.
-	// - SSR: assume entities already decoded; strip tags only.
 	$effect(() => {
 		const file = chart?.files?.[0];
 		if (!file) {
@@ -35,13 +30,9 @@
 
 		const highlighted = file.highlightedContent ?? "";
 
-		if (typeof document !== "undefined") {
-			const pre = document.createElement("pre");
-			pre.innerHTML = highlighted;
-			code = pre.textContent ?? "";
-		} else {
-			code = highlighted.replace(/<[^>]+>/g, "");
-		}
+		const pre = document.createElement("pre");
+		pre.innerHTML = highlighted;
+		code = pre.textContent ?? "";
 	});
 </script>
 
