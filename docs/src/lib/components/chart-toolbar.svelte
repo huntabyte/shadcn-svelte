@@ -12,7 +12,6 @@
 	import ChartCopyButton from "./chart-copy-button.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { HighlightedBlock } from "../../routes/api/block/[block]/+server.js";
-	import { onMount } from "svelte";
 
 	let {
 		chart,
@@ -22,10 +21,18 @@
 
 	let code = $state("");
 
-	onMount(() => {
+	$effect(() => {
+		const file = chart?.files?.[0];
+		if (!file) {
+			code = "";
+			return;
+		}
+
+		const highlighted = file.highlightedContent ?? "";
+
 		const pre = document.createElement("pre");
-		pre.innerHTML = chart.files?.[0]?.highlightedContent ?? "";
-		code = pre.innerText;
+		pre.innerHTML = highlighted;
+		code = pre.textContent ?? "";
 	});
 </script>
 
