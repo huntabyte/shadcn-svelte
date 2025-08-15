@@ -1,7 +1,7 @@
 export const SITE_BASE_URL = "https://shadcn-svelte.com";
 export const TW3_SITE_BASE_URL = "https://tw3.shadcn-svelte.com";
 
-export const ALIASES = ["components", "ui", "hooks", "lib", "utils"] as const;
+export const ALIASES = ["components", "ui", "hooks", "utils", "lib"] as const;
 
 export const ALIAS_DEFAULTS = ALIASES.reduce(
 	(acc, a) => {
