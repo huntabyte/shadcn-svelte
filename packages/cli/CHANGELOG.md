@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.7
+
+### Patch Changes
+
+- fix: Reorder `ALIASES` so that replacements run in a more sensical order ([#2262](https://github.com/huntabyte/shadcn-svelte/pull/2262))
+
 ## 1.0.6
 
 ### Patch Changes
