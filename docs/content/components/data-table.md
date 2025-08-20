@@ -594,7 +594,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "email",
     header: ({ column }) =>
-      renderComponent(DataTableEmailButton, {
+      return renderComponent(DataTableEmailButton, {
         onclick: column.getToggleSortingHandler(),
       }),
   },
