@@ -61,7 +61,6 @@ It supports both vertical and horizontal scrolling, and is designed to provide a
 
 We've added a new component to the project, [Resizable](/docs/components/resizable), which is built on top of [PaneForge](https://paneforge.com). PaneForge is still in an early stage, so be sure to raise any issues you find with the library on the [PaneForge GitHub](https://github.com/svecosystem/paneforge).
 
-
 ### Updated Icon Imports
 
 After some feedback about dev server performance, we've updated the way we import icons. With this change, we've decided to move away from the unmaintained `radix-icons-svelte` package to [svelte-radix](https://github.com/shinokada/svelte-radix) for the `new-york` style.
@@ -131,7 +130,6 @@ Pagination leverages the [Pagination](https://bits-ui.com/docs/components/pagina
 ## December 2023
 
 We've added three new components to the project, [Calendar](/docs/components/calendar), [Range Calendar](/docs/components/range-calendar), & [Date Picker](/docs/components/date-picker).
-
 
 ## November 2023
 

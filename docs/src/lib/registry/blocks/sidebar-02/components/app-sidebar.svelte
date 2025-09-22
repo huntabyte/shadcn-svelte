@@ -164,7 +164,7 @@
 			<Collapsible.Root title={item.title} open class="group/collapsible">
 				<Sidebar.Group>
 					<Sidebar.GroupLabel
-						class="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
+						class="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
 					>
 						{#snippet child({ props })}
 							<Collapsible.Trigger {...props}>

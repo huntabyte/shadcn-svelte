@@ -35,7 +35,7 @@
 </script>
 
 <Sidebar.Root bind:ref {...restProps}>
-	<Sidebar.Header class="border-sidebar-border h-16 border-b">
+	<Sidebar.Header class="h-16 border-b border-sidebar-border">
 		<NavUser user={data.user} />
 	</Sidebar.Header>
 	<Sidebar.Content>

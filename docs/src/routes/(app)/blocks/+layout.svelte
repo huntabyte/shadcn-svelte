@@ -45,6 +45,6 @@
 		Browse all blocks
 	</Button>
 </PageNav>
-<div class="container-wrapper section-soft flex-1 md:py-12">
+<div class="container-wrapper flex-1 section-soft md:py-12">
 	<div class="container">{@render children?.()}</div>
 </div>

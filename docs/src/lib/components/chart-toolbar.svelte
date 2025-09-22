@@ -58,16 +58,16 @@
 
 <div class={cn("flex items-center gap-2", className)}>
 	<div
-		class="text-muted-foreground flex items-center gap-1.5 pl-1 text-[13px] [&>svg]:h-[0.9rem] [&>svg]:w-[0.9rem]"
+		class="flex items-center gap-1.5 pl-1 text-[13px] text-muted-foreground [&>svg]:h-[0.9rem] [&>svg]:w-[0.9rem]"
 	>
 		{@render ChartTitle(chart)}
 	</div>
 	<div class="ml-auto flex items-center gap-2 [&>form]:flex">
 		<ChartCopyButton
 			{code}
-			class="text-foreground hover:bg-muted dark:text-foreground h-6 w-6 rounded-[6px] bg-transparent shadow-none [&_svg]:h-3 [&_svg]:w-3"
+			class="h-6 w-6 rounded-[6px] bg-transparent text-foreground shadow-none hover:bg-muted dark:text-foreground [&_svg]:h-3 [&_svg]:w-3"
 		/>
-		<Separator orientation="vertical" class="h-4! mx-0 hidden md:flex" />
+		<Separator orientation="vertical" class="mx-0 hidden h-4! md:flex" />
 		<ChartCodeViewer {chart} {code}>{@render children?.()}</ChartCodeViewer>
 	</div>
 </div>

@@ -75,8 +75,8 @@
 				<Avatar.Fallback>OM</Avatar.Fallback>
 			</Avatar.Root>
 			<div class="flex flex-col gap-0.5">
-				<p class="text-sm font-medium leading-none">Sofia Davis</p>
-				<p class="text-muted-foreground text-xs">m@example.com</p>
+				<p class="text-sm leading-none font-medium">Sofia Davis</p>
+				<p class="text-xs text-muted-foreground">m@example.com</p>
 			</div>
 		</div>
 		<Tooltip.Provider delayDuration={0}>
@@ -106,7 +106,7 @@
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
 						message.role === "user"
-							? "bg-primary text-primary-foreground ml-auto"
+							? "ml-auto bg-primary text-primary-foreground"
 							: "bg-muted"
 					)}
 				>
@@ -139,7 +139,7 @@
 				type="submit"
 				size="icon"
 				disabled={inputLength === 0}
-				class="absolute right-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
+				class="absolute top-1/2 right-2 size-6 -translate-y-1/2 rounded-full"
 			>
 				<ArrowUpIcon class="size-3.5" />
 				<span class="sr-only">Send</span>
@@ -149,7 +149,7 @@
 </Card.Root>
 <Dialog.Root bind:open>
 	<Dialog.Content class="gap-0 p-0 outline-none">
-		<Dialog.Header class="px-4 pb-4 pt-5">
+		<Dialog.Header class="px-4 pt-5 pb-4">
 			<Dialog.Title>New message</Dialog.Title>
 			<Dialog.Description>
 				Invite a user to this thread. This will create a new group message.
@@ -180,15 +180,15 @@
 								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
 							<div class="ml-2">
-								<p class="text-sm font-medium leading-none">
+								<p class="text-sm leading-none font-medium">
 									{user.name}
 								</p>
-								<p class="text-muted-foreground text-sm">
+								<p class="text-sm text-muted-foreground">
 									{user.email}
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<CheckIcon class="text-primary ml-auto flex size-4" />
+								<CheckIcon class="ml-auto flex size-4 text-primary" />
 							{/if}
 						</Command.Item>
 					{/each}
@@ -206,7 +206,7 @@
 					{/each}
 				</div>
 			{:else}
-				<p class="text-muted-foreground text-sm">Select users to add to this thread.</p>
+				<p class="text-sm text-muted-foreground">Select users to add to this thread.</p>
 			{/if}
 			<Button disabled={selectedUsers.length < 2} onclick={() => (open = false)}>
 				Continue

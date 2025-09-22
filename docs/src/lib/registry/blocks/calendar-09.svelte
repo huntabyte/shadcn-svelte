@@ -17,7 +17,7 @@
 		class="rounded-lg border shadow-sm"
 		excludeDisabled
 	/>
-	<div class="text-muted-foreground text-center text-xs">
+	<div class="text-center text-xs text-muted-foreground">
 		Your stay cannot extend through the weekend
 	</div>
 </div>

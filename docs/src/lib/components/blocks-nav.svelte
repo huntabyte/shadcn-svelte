@@ -14,7 +14,7 @@
 	{#if !category.hidden}
 		<a
 			href="/blocks/{category.slug}"
-			class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 items-center justify-center px-4 text-center text-base font-medium transition-colors"
+			class="flex h-7 items-center justify-center px-4 text-center text-base font-medium text-muted-foreground transition-colors hover:text-primary data-[active=true]:text-primary"
 			data-active={isActive}
 		>
 			{category.name}

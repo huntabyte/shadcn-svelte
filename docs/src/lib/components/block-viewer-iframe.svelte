@@ -14,7 +14,7 @@
 		title={ctx.item.name}
 		src="/view/{ctx.item.name}"
 		height={ctx.item.meta?.iframeHeight ?? 930}
-		class={cn("bg-background no-scrollbar relative z-20 w-full", className)}
+		class={cn("relative z-20 no-scrollbar w-full bg-background", className)}
 		loading="lazy"
 	></iframe>
 {/key}

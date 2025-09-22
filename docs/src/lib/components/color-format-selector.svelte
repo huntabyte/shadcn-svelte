@@ -29,11 +29,11 @@
 >
 	<Select.Trigger
 		size="sm"
-		class={cn("bg-secondary text-secondary-foreground border-secondary shadow-none", className)}
+		class={cn("border-secondary bg-secondary text-secondary-foreground shadow-none", className)}
 		{...restProps}
 	>
 		<span class="font-medium">Format: </span>
-		<span class="text-muted-foreground font-mono">{userConfig.current.colorFormat}</span>
+		<span class="font-mono text-muted-foreground">{userConfig.current.colorFormat}</span>
 	</Select.Trigger>
 	<Select.Content align="end" class="rounded-xl">
 		{#each Object.entries(formats) as [format, value] (format)}
@@ -42,7 +42,7 @@
 				class="gap-2 rounded-lg [&>span]:flex [&>span]:items-center [&>span]:gap-2"
 			>
 				<span class="font-medium">{format}</span>
-				<span class="text-muted-foreground font-mono text-xs">
+				<span class="font-mono text-xs text-muted-foreground">
 					{value}
 				</span>
 			</Select.Item>

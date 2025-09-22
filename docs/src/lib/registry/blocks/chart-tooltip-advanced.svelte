@@ -80,26 +80,26 @@
 						{#snippet formatter({ name, index, value, item })}
 							<div
 								style="--color-bg: var(--color-{name.toLowerCase()})"
-								class="bg-(--color-bg) size-2.5 shrink-0 rounded-[2px]"
+								class="size-2.5 shrink-0 rounded-[2px] bg-(--color-bg)"
 							></div>
 							{chartConfig[name as keyof typeof chartConfig]?.label || name}
 							<div
-								class="text-foreground ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
+								class="ml-auto flex items-baseline gap-0.5 font-mono font-medium text-foreground tabular-nums"
 							>
 								{value}
-								<span class="text-muted-foreground font-normal"> kcal </span>
+								<span class="font-normal text-muted-foreground"> kcal </span>
 							</div>
 							<!-- Add this after the last item-->
 							{#if index === 1}
 								<div
-									class="text-foreground mt-1.5 flex basis-full items-center border-t pt-1.5 text-xs font-medium"
+									class="mt-1.5 flex basis-full items-center border-t pt-1.5 text-xs font-medium text-foreground"
 								>
 									Total
 									<div
-										class="text-foreground ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
+										class="ml-auto flex items-baseline gap-0.5 font-mono font-medium text-foreground tabular-nums"
 									>
 										{item.payload.running + item.payload.swimming}
-										<span class="text-muted-foreground font-normal">
+										<span class="font-normal text-muted-foreground">
 											kcal
 										</span>
 									</div>

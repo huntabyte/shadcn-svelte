@@ -18,7 +18,7 @@
 	<Sidebar.Group class="py-0">
 		<Collapsible.Root open={index === 0} class="group/collapsible">
 			<Sidebar.GroupLabel
-				class="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground w-full text-sm"
+				class="group/label w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
 			>
 				{#snippet child({ props })}
 					<Collapsible.Trigger {...props}>
@@ -37,7 +37,7 @@
 								<Sidebar.MenuButton>
 									<div
 										data-active={itemIndex < 2}
-										class="group/calendar-item border-sidebar-border text-sidebar-primary-foreground data-[active=true]:border-sidebar-primary data-[active=true]:bg-sidebar-primary flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border"
+										class="group/calendar-item flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border border-sidebar-border text-sidebar-primary-foreground data-[active=true]:border-sidebar-primary data-[active=true]:bg-sidebar-primary"
 									>
 										<CheckIcon
 											class="hidden size-3 group-data-[active=true]/calendar-item:block"

@@ -17,7 +17,7 @@
 <form class={cn("flex flex-col gap-6", className)} bind:this={ref} {...restProps}>
 	<div class="flex flex-col items-center gap-2 text-center">
 		<h1 class="text-2xl font-bold">Login to your account</h1>
-		<p class="text-muted-foreground text-balance text-sm">
+		<p class="text-sm text-balance text-muted-foreground">
 			Enter your email below to login to your account
 		</p>
 	</div>
@@ -37,9 +37,9 @@
 		</div>
 		<Button type="submit" class="w-full">Login</Button>
 		<div
-			class="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t"
+			class="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"
 		>
-			<span class="bg-background text-muted-foreground relative z-10 px-2">
+			<span class="relative z-10 bg-background px-2 text-muted-foreground">
 				Or continue with
 			</span>
 		</div>

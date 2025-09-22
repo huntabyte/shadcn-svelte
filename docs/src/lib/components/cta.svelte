@@ -7,11 +7,11 @@
 
 <div
 	class={cn(
-		"bg-surface text-surface-foreground group relative flex flex-col gap-2 rounded-lg p-6 text-sm",
+		"group relative flex flex-col gap-2 rounded-lg bg-surface p-6 text-sm text-surface-foreground",
 		className
 	)}
 >
-	<div class="text-balance text-base font-semibold leading-tight group-hover:underline">
+	<div class="text-base leading-tight font-semibold text-balance group-hover:underline">
 		Special sponsor
 	</div>
 	<div class="text-muted-foreground">We're looking for one partner to be featured here.</div>

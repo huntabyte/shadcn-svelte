@@ -23,12 +23,12 @@
 				type="single"
 				bind:value
 				isDateUnavailable={(date) => bookedDates.some((d) => d.compare(date) === 0)}
-				class="data-unavailable:line-through data-unavailable:opacity-100 **:data-outside-month:hidden bg-transparent p-0 [--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]"
+				class="bg-transparent p-0 [--cell-size:--spacing(10)] **:data-outside-month:hidden data-unavailable:line-through data-unavailable:opacity-100 md:[--cell-size:--spacing(12)]"
 				weekdayFormat="short"
 			/>
 		</div>
 		<div
-			class="no-scrollbar inset-y-0 right-0 flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-l md:border-t-0"
+			class="inset-y-0 right-0 no-scrollbar flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-t-0 md:border-l"
 		>
 			<div class="grid gap-2">
 				{#each timeSlots as time (time)}
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	</Card.Content>
-	<Card.Footer class="py-5! flex flex-col gap-4 border-t px-6 md:flex-row">
+	<Card.Footer class="flex flex-col gap-4 border-t px-6 py-5! md:flex-row">
 		<div class="text-sm">
 			{#if value && selectedTime}
 				Your meeting is booked for

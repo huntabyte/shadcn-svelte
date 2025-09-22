@@ -21,27 +21,27 @@
 >
 	<Collapsible.Trigger>
 		{#snippet child({ props })}
-			<div class="absolute right-9 top-1.5 z-10 flex items-center">
+			<div class="absolute top-1.5 right-9 z-10 flex items-center">
 				<Button
 					variant="ghost"
 					size="sm"
 					{...props}
-					class="text-muted-foreground h-7 rounded-md px-2"
+					class="h-7 rounded-md px-2 text-muted-foreground"
 				>
 					{open ? "Collapse" : "Expand"}
 				</Button>
-				<Separator orientation="vertical" class="h-4! mx-1.5" />
+				<Separator orientation="vertical" class="mx-1.5 h-4!" />
 			</div>
 		{/snippet}
 	</Collapsible.Trigger>
 	<Collapsible.Content
 		forceMount
-		class="[&>figure]:md:mx-0! relative mt-6 overflow-hidden data-[state=closed]:max-h-64 [&>figure]:mt-0"
+		class="relative mt-6 overflow-hidden data-[state=closed]:max-h-64 [&>figure]:mt-0 [&>figure]:md:mx-0!"
 	>
 		{@render children?.()}
 	</Collapsible.Content>
 	<Collapsible.Trigger
-		class="from-code/70 to-code text-muted-foreground bg-linear-to-b absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg text-sm group-data-[state=open]/collapsible:hidden"
+		class="absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-linear-to-b from-code/70 to-code text-sm text-muted-foreground group-data-[state=open]/collapsible:hidden"
 	>
 		{open ? "Collapse" : "Expand"}
 	</Collapsible.Trigger>

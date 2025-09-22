@@ -117,11 +117,11 @@
 		</DropdownMenu.Root>
 	{:else}
 		<div class={cn("flex flex-col gap-2 p-4 pt-0 text-sm", className)}>
-			<p class="text-muted-foreground bg-background sticky top-0 h-6 text-xs">On This Page</p>
+			<p class="sticky top-0 h-6 bg-background text-xs text-muted-foreground">On This Page</p>
 			{#each flattenedToc as item (item.url)}
 				<a
 					href={item.url}
-					class="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground text-[0.8rem] no-underline transition-colors data-[depth=1]:pl-4 data-[depth=2]:pl-6"
+					class="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:text-foreground data-[depth=1]:pl-4 data-[depth=2]:pl-6"
 					data-active={item.url === `#${activeHeading.current}`}
 					data-depth={item.depth}
 				>

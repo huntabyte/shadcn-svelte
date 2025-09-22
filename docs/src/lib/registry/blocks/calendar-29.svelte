@@ -67,7 +67,7 @@
 					<Button
 						{...props}
 						variant="ghost"
-						class="absolute right-2 top-1/2 size-6 -translate-y-1/2"
+						class="absolute top-1/2 right-2 size-6 -translate-y-1/2"
 					>
 						<CalendarIcon class="size-3.5" />
 						<span class="sr-only">Select date</span>
@@ -87,7 +87,7 @@
 			</Popover.Content>
 		</Popover.Root>
 	</div>
-	<div class="text-muted-foreground px-1 text-sm">
+	<div class="px-1 text-sm text-muted-foreground">
 		Your post will be published on
 		<span class="font-medium">{formatDate(value)}</span>.
 	</div>

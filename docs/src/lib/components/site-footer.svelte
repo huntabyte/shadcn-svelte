@@ -1,9 +1,9 @@
 <footer
-	class="group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent dark:bg-transparent"
+	class="group-has-[.section-soft]/body:bg-surface/40 dark:bg-transparent 3xl:fixed:bg-transparent"
 >
 	<div class="container-wrapper px-4 xl:px-6">
-		<div class="h-(--footer-height) flex items-center justify-between">
-			<div class="text-muted-foreground w-full text-center text-xs leading-loose sm:text-sm">
+		<div class="flex h-(--footer-height) items-center justify-between">
+			<div class="w-full text-center text-xs leading-loose text-muted-foreground sm:text-sm">
 				Built by
 				<a
 					href="https://x.com/shadcn"

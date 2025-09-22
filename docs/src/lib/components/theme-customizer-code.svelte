@@ -48,7 +48,7 @@
 <div class="min-w-0 px-4 pb-4 md:p-0">
 	<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 		<figcaption
-			class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+			class="flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 			data-rehype-pretty-code-title=""
 			data-language="css"
 			data-theme="github-dark github-light-default"
@@ -57,11 +57,11 @@
 			src/app.css
 		</figcaption>
 		<pre
-			class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]"><Button
+			class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 md:max-h-[450px]"><Button
 				data-slot="copy-button"
 				size="icon"
 				variant="ghost"
-				class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+				class="absolute top-3 right-2 z-10 size-7 bg-code text-code-foreground shadow-none hover:opacity-100 focus-visible:opacity-100"
 				onclick={() => {
 					clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 				}}

@@ -8,8 +8,8 @@
 		<ThemeCustomizer />
 	</div>
 </div>
-<div class="container-wrapper section-soft flex flex-1 flex-col pb-6">
-	<div class="theme-container container flex flex-1 flex-col">
+<div class="container-wrapper flex flex-1 flex-col section-soft pb-6">
+	<div class="container flex flex-1 flex-col theme-container">
 		<Demo />
 	</div>
 </div>

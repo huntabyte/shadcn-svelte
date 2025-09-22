@@ -985,7 +985,7 @@ This adds a checkbox to each row and a checkbox in the header to select all rows
 You can show the number of selected rows using the `table.getFilteredSelectedRowModel()` API.
 
 ```svelte
-<div class="text-muted-foreground flex-1 text-sm">
+<div class="flex-1 text-sm text-muted-foreground">
   {table.getFilteredSelectedRowModel().rows.length} of{" "}
   {table.getFilteredRowModel().rows.length} row(s) selected.
 </div>

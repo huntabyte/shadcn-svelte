@@ -25,10 +25,7 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"css",
-				"baseColor"
-			],
+			"required": ["css", "baseColor"],
 			"additionalProperties": false
 		},
 		"aliases": {
@@ -56,10 +53,7 @@
 					"type": "string"
 				}
 			},
-			"required": [
-				"components",
-				"utils"
-			],
+			"required": ["components", "utils"],
 			"additionalProperties": false
 		},
 		"registry": {
@@ -80,17 +74,12 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"config"
-					],
+					"required": ["config"],
 					"additionalProperties": false
 				}
 			]
 		}
 	},
-	"required": [
-		"tailwind",
-		"aliases"
-	],
+	"required": ["tailwind", "aliases"],
 	"additionalProperties": false
 }

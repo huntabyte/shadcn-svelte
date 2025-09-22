@@ -24,7 +24,7 @@
 {#snippet Content()}
 	<div class="flex min-h-0 flex-1 flex-col gap-0">
 		<div
-			class="chart-wrapper theme-container **:data-chart:mx-auto **:data-chart:max-h-[35vh] hidden sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
+			class="chart-wrapper hidden theme-container **:data-chart:mx-auto **:data-chart:max-h-[35vh] sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
 		>
 			{@render children?.()}
 		</div>
@@ -34,7 +34,7 @@
 				class="mt-0 flex h-auto min-w-0 flex-1 flex-col overflow-hidden"
 			>
 				<figcaption
-					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 pl-4 pr-2 [&>svg]:size-4 [&>svg]:opacity-70"
+					class="flex h-12 shrink-0 items-center gap-2 border-b py-2 pr-2 pl-4 text-foreground [&>svg]:size-4 [&>svg]:text-foreground [&>svg]:opacity-70"
 					data-language="tsx"
 				>
 					<Icon />
@@ -57,7 +57,7 @@
 		size="sm"
 		variant="outline"
 		{...props}
-		class="text-foreground hover:bg-muted dark:text-foreground h-6 rounded-[6px] border bg-transparent px-2 text-xs shadow-none"
+		class="h-6 rounded-[6px] border bg-transparent px-2 text-xs text-foreground shadow-none hover:bg-muted dark:text-foreground"
 	>
 		View Code
 	</Button>

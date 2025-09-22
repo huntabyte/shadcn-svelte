@@ -75,7 +75,7 @@
 			</Sidebar.Root>
 			<main class="flex h-[480px] flex-1 flex-col overflow-hidden">
 				<header
-					class="group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear"
+					class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
 				>
 					<div class="flex items-center gap-2 px-4">
 						<Breadcrumb.Root>
@@ -93,7 +93,7 @@
 				</header>
 				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-4 pt-0">
 					{#each Array.from({ length: 10 }) as _, i (i)}
-						<div class="bg-muted/50 aspect-video max-w-3xl rounded-xl"></div>
+						<div class="aspect-video max-w-3xl rounded-xl bg-muted/50"></div>
 					{/each}
 				</div>
 			</main>

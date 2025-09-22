@@ -48,7 +48,7 @@
 				id="{id}-time-from"
 				step="1"
 				value="10:30:00"
-				class="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+				class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>
 		<div class="flex flex-col gap-3">
@@ -58,7 +58,7 @@
 				id="{id}-time-to"
 				step="1"
 				value="12:30:00"
-				class="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+				class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 			/>
 		</div>
 	</div>

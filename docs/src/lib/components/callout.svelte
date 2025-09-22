@@ -15,7 +15,7 @@
 </script>
 
 <Alert.Root
-	class={cn("bg-surface text-surface-foreground mt-6 w-auto border-none md:-mx-4", className)}
+	class={cn("mt-6 w-auto border-none bg-surface text-surface-foreground md:-mx-4", className)}
 	{...restProps}
 >
 	{#if Icon}

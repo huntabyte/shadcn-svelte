@@ -210,7 +210,7 @@
 	{@const status = statuses.find((status) => status.value === value)}
 	{#if status}
 		<div class="flex w-[100px] items-center">
-			<status.icon class="text-muted-foreground mr-2 size-4" />
+			<status.icon class="mr-2 size-4 text-muted-foreground" />
 			<span>{status.label}</span>
 		</div>
 	{/if}
@@ -232,7 +232,7 @@
 	{@const priority = priorities.find((priority) => priority.value === value)}
 	{#if priority}
 		<div class="flex items-center">
-			<priority.icon class="text-muted-foreground mr-2 size-4" />
+			<priority.icon class="mr-2 size-4 text-muted-foreground" />
 			<span>{priority.label}</span>
 		</div>
 	{/if}
@@ -246,7 +246,7 @@
 				<Button
 					{...props}
 					variant="ghost"
-					class="data-[state=open]:bg-muted flex h-8 w-8 p-0"
+					class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
 				>
 					<EllipsisIcon />
 					<span class="sr-only">Open Menu</span>
@@ -281,7 +281,7 @@
 
 {#snippet Pagination({ table }: { table: TableType<Task> })}
 	<div class="flex items-center justify-between px-2">
-		<div class="text-muted-foreground flex-1 text-sm">
+		<div class="flex-1 text-sm text-muted-foreground">
 			{table.getFilteredSelectedRowModel().rows.length} of
 			{table.getFilteredRowModel().rows.length} row(s) selected.
 		</div>
@@ -373,7 +373,7 @@
 							{...props}
 							variant="ghost"
 							size="sm"
-							class="data-[state=open]:bg-accent -ml-3 h-8"
+							class="-ml-3 h-8 data-[state=open]:bg-accent"
 						>
 							<span>
 								{title}
@@ -390,16 +390,16 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">
 					<DropdownMenu.Item onclick={() => column.toggleSorting(false)}>
-						<ArrowUpIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<ArrowUpIcon class="mr-2 size-3.5 text-muted-foreground/70" />
 						Asc
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onclick={() => column.toggleSorting(true)}>
-						<ArrowDownIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<ArrowDownIcon class="mr-2 size-3.5 text-muted-foreground/70" />
 						Desc
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
-						<EyeOffIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<EyeOffIcon class="mr-2 size-3.5 text-muted-foreground/70" />
 						Hide
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>

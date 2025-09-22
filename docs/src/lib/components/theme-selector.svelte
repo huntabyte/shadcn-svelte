@@ -77,7 +77,7 @@
 	>
 		<Select.Trigger
 			size="sm"
-			class="bg-secondary text-secondary-foreground border-secondary justify-start shadow-none"
+			class="justify-start border-secondary bg-secondary text-secondary-foreground shadow-none"
 			id="theme-selector"
 		>
 			<span class="font-medium"> Theme: </span>

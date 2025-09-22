@@ -25,7 +25,7 @@
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props} class="w-fit px-1.5">
 						<div
-							class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-5 items-center justify-center rounded-md"
+							class="flex aspect-square size-5 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground"
 						>
 							<activeTeam.logo class="size-3" />
 						</div>
@@ -40,10 +40,10 @@
 				side="bottom"
 				sideOffset={4}
 			>
-				<DropdownMenu.Label class="text-muted-foreground text-xs">Teams</DropdownMenu.Label>
+				<DropdownMenu.Label class="text-xs text-muted-foreground">Teams</DropdownMenu.Label>
 				{#each teams as team, index (team.name)}
 					<DropdownMenu.Item onSelect={() => (activeTeam = team)} class="gap-2 p-2">
-						<div class="rounded-xs flex size-6 items-center justify-center border">
+						<div class="flex size-6 items-center justify-center rounded-xs border">
 							<team.logo class="size-4 shrink-0" />
 						</div>
 						{team.name}
@@ -53,11 +53,11 @@
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item class="gap-2 p-2">
 					<div
-						class="bg-background flex size-6 items-center justify-center rounded-md border"
+						class="flex size-6 items-center justify-center rounded-md border bg-background"
 					>
 						<PlusIcon class="size-4" />
 					</div>
-					<div class="text-muted-foreground font-medium">Add team</div>
+					<div class="font-medium text-muted-foreground">Add team</div>
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>

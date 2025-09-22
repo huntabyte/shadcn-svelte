@@ -45,5 +45,5 @@
 			/>
 		</Drawer.Content>
 	</Drawer.Root>
-	<div class="text-muted-foreground px-1 text-sm">This example works best on mobile.</div>
+	<div class="px-1 text-sm text-muted-foreground">This example works best on mobile.</div>
 </div>

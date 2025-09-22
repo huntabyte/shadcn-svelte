@@ -40,7 +40,7 @@ get along, so we shut typescript up by casting `value` to `never`.
 	data-variant={variant}
 	data-size={size}
 	class={cn(
-		"group/toggle-group data-[variant=outline]:shadow-xs flex w-fit items-center rounded-md",
+		"group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs",
 		className
 	)}
 	{...restProps}

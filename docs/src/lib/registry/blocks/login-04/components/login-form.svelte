@@ -18,7 +18,7 @@
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col items-center text-center">
 						<h1 class="text-2xl font-bold">Welcome back</h1>
-						<p class="text-muted-foreground text-balance">
+						<p class="text-balance text-muted-foreground">
 							Login to your Acme Inc account
 						</p>
 					</div>
@@ -37,9 +37,9 @@
 					</div>
 					<Button type="submit" class="w-full">Login</Button>
 					<div
-						class="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t"
+						class="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"
 					>
-						<span class="bg-card text-muted-foreground relative z-10 px-2">
+						<span class="relative z-10 bg-card px-2 text-muted-foreground">
 							Or continue with
 						</span>
 					</div>
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</form>
-			<div class="bg-muted relative hidden md:block">
+			<div class="relative hidden bg-muted md:block">
 				<img
 					src="/placeholder.svg"
 					alt="placeholder"
@@ -88,7 +88,7 @@
 		</Card.Content>
 	</Card.Root>
 	<div
-		class="text-muted-foreground *:[a]:hover:text-primary *:[a]:underline *:[a]:underline-offset-4 text-balance text-center text-xs"
+		class="text-center text-xs text-balance text-muted-foreground *:[a]:underline *:[a]:underline-offset-4 *:[a]:hover:text-primary"
 	>
 		By clicking continue, you agree to our <a href="##">Terms of Service</a> and
 		<a href="##">Privacy Policy</a>.

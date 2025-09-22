@@ -66,7 +66,7 @@
 					<Select.Trigger class="h-7 w-fit text-xs">
 						<span class="mr-2">
 							<span class="font-bold">Format:</span>
-							<span class="text-muted-foreground font-mono"
+							<span class="font-mono text-muted-foreground"
 								>{selectedFormat.current}</span
 							>
 						</span>
@@ -76,7 +76,7 @@
 							<Select.Item value={format.format}>
 								<span>
 									<span>{format.format}</span>
-									<span class="text-muted-foreground font-mono"
+									<span class="font-mono text-muted-foreground"
 										>{format.hint}</span
 									>
 								</span>
@@ -107,7 +107,7 @@
 							></div>
 
 							<div
-								class="absolute right-2 top-2 opacity-0 transition-all group-hover:opacity-100"
+								class="absolute top-2 right-2 opacity-0 transition-all group-hover:opacity-100"
 								style="color: {shade.foreground};"
 							>
 								{#if copied === shade.className}
@@ -123,12 +123,12 @@
 						</div>
 
 						<span
-							class="group-hover:text-foreground text-muted-foreground hidden text-nowrap py-1 font-mono text-sm transition-colors xl:block"
+							class="hidden py-1 font-mono text-sm text-nowrap text-muted-foreground transition-colors group-hover:text-foreground xl:block"
 						>
 							{shade.className}
 						</span>
 						<span
-							class="group-hover:text-foreground text-muted-foreground block text-nowrap py-1 font-mono text-sm transition-colors xl:hidden"
+							class="block py-1 font-mono text-sm text-nowrap text-muted-foreground transition-colors group-hover:text-foreground xl:hidden"
 						>
 							{shade.className.split("-")[1]}
 						</span>

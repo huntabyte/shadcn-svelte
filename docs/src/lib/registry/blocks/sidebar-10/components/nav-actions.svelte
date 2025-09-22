@@ -95,7 +95,7 @@
 </script>
 
 <div class="flex items-center gap-2 text-sm">
-	<div class="text-muted-foreground hidden font-medium md:inline-block">Edit Oct 08</div>
+	<div class="hidden font-medium text-muted-foreground md:inline-block">Edit Oct 08</div>
 	<Button variant="ghost" size="icon" class="size-7">
 		<StarIcon />
 	</Button>
@@ -106,7 +106,7 @@
 					{...props}
 					variant="ghost"
 					size="icon"
-					class="data-[state=open]:bg-accent size-7"
+					class="size-7 data-[state=open]:bg-accent"
 				>
 					<EllipsisIcon />
 				</Button>

@@ -22,7 +22,7 @@
 				if (!item.path) return;
 				ctx.activeFile = item.path;
 			}}
-			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 pl-(--index) whitespace-nowrap rounded-none"
+			class="rounded-none pl-(--index) whitespace-nowrap hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15"
 			data-index={index}
 		>
 			<ChevronRightIcon class="invisible" />
@@ -38,7 +38,7 @@
 		>
 			<Collapsible.Trigger
 				style="--index: {index * (index === 1 ? 1 : 1.2)}rem"
-				class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 pl-(--index) whitespace-nowrap rounded-none"
+				class="rounded-none pl-(--index) whitespace-nowrap hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15"
 			>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props}>

@@ -9,7 +9,7 @@
 
 {#if file}
 	<div
-		class="bg-code text-code-foreground h-(--height) flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
+		class="flex h-(--height) overflow-hidden rounded-xl border bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		<div class="hidden w-72 md:block">
 			<ComponentCodeViewerFileTree />

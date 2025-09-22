@@ -40,7 +40,7 @@
 			<Tabs.Trigger value="code">Code</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-	<Separator orientation="vertical" class="h-4! mx-2" />
+	<Separator orientation="vertical" class="mx-2 h-4!" />
 	<a
 		href="#{ctx.item.name}"
 		class="flex-1 text-center text-sm font-medium underline-offset-2 hover:underline md:flex-auto md:text-left"
@@ -57,7 +57,7 @@
 						ctx.resizablePaneRef.resize(parseInt(value));
 					}
 				}}
-				class="*:data-[slot=toggle-group-item]:size-6! *:data-[slot=toggle-group-item]:rounded-sm! gap-1"
+				class="gap-1 *:data-[slot=toggle-group-item]:size-6! *:data-[slot=toggle-group-item]:rounded-sm!"
 			>
 				<ToggleGroup.Item value="100" title="Desktop">
 					<MonitorIcon />
@@ -95,7 +95,7 @@
 				</Button>
 			</ToggleGroup.Root>
 		</div>
-		<Separator orientation="vertical" class="h-4! mx-1" />
+		<Separator orientation="vertical" class="mx-1 h-4!" />
 		<Button
 			variant="outline"
 			class="w-fit gap-1 px-2 shadow-none"

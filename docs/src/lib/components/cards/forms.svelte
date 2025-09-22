@@ -59,13 +59,13 @@
 			</div>
 			<fieldset class="flex flex-col gap-3">
 				<legend class="text-sm font-medium">Plan</legend>
-				<p class="text-muted-foreground text-sm">
+				<p class="text-sm text-muted-foreground">
 					Select the plan that best fits your needs.
 				</p>
 				<RadioGroup.Root value="starter" class="grid gap-3 md:grid-cols-2">
 					{#each plans as plan (plan.id)}
 						<Label
-							class="has-data-[state=checked]:border-ring has-data-[state=checked]:bg-input/20 flex items-start gap-3 rounded-lg border p-3"
+							class="flex items-start gap-3 rounded-lg border p-3 has-data-[state=checked]:border-ring has-data-[state=checked]:bg-input/20"
 						>
 							<RadioGroup.Item
 								value={plan.id}
@@ -75,7 +75,7 @@
 							<div class="grid gap-1 font-normal">
 								<div class="font-medium">{plan.name}</div>
 								<div
-									class="text-muted-foreground text-balance text-xs leading-snug"
+									class="text-xs leading-snug text-balance text-muted-foreground"
 								>
 									{plan.description}
 								</div>

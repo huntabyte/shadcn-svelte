@@ -62,8 +62,8 @@
 								</Avatar.Fallback>
 							</Avatar.Root>
 							<div>
-								<p class="text-sm font-medium leading-none">{person.name}</p>
-								<p class="text-muted-foreground text-sm">{person.email}</p>
+								<p class="text-sm leading-none font-medium">{person.name}</p>
+								<p class="text-sm text-muted-foreground">{person.email}</p>
 							</div>
 						</div>
 						<Select.Root type="single" bind:value={person.permission}>

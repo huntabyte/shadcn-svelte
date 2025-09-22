@@ -37,13 +37,13 @@
 	</PageActions>
 </PageHeader>
 <PageNav id="examples">
-	<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
+	<ExamplesNav class="flex-1 overflow-hidden [&>a:first-child]:text-primary" />
 	<ThemeSelector class="mr-4 hidden md:block" />
 </PageNav>
-<div class="container-wrapper section-soft flex flex-1 flex-col pb-6">
-	<div class="theme-container container flex flex-1 scroll-mt-20 flex-col">
+<div class="container-wrapper flex flex-1 flex-col section-soft pb-6">
+	<div class="container flex flex-1 scroll-mt-20 flex-col theme-container">
 		<div
-			class="bg-background flex flex-col overflow-hidden rounded-lg border bg-clip-padding md:flex-1 xl:rounded-xl"
+			class="flex flex-col overflow-hidden rounded-lg border bg-background bg-clip-padding md:flex-1 xl:rounded-xl"
 		>
 			{@render children()}
 		</div>

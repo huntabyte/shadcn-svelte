@@ -16,7 +16,7 @@
 
 	const attrs = $derived({
 		"data-slot": "breadcrumb-link",
-		class: cn("hover:text-foreground transition-colors", className),
+		class: cn("transition-colors hover:text-foreground", className),
 		href,
 		...restProps,
 	});

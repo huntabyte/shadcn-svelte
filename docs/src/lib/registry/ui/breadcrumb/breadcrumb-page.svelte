@@ -16,7 +16,7 @@
 	role="link"
 	aria-disabled="true"
 	aria-current="page"
-	class={cn("text-foreground font-normal", className)}
+	class={cn("font-normal text-foreground", className)}
 	{...restProps}
 >
 	{@render children?.()}

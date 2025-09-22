@@ -66,8 +66,8 @@
 						</Avatar.Fallback>
 					</Avatar.Root>
 					<div class="flex flex-col gap-0.5">
-						<p class="text-sm font-medium leading-none">{member.name}</p>
-						<p class="text-muted-foreground text-xs">{member.email}</p>
+						<p class="text-sm leading-none font-medium">{member.name}</p>
+						<p class="text-xs text-muted-foreground">{member.email}</p>
 					</div>
 				</div>
 				<Popover.Root>

@@ -13,10 +13,10 @@
 	const colors = getColors();
 </script>
 
-<header class="bg-background sticky top-0 z-50 w-full">
-	<div class="container-wrapper 3xl:fixed:px-0 px-6">
+<header class="sticky top-0 z-50 w-full bg-background">
+	<div class="container-wrapper px-6 3xl:fixed:px-0">
 		<div
-			class="3xl:fixed:container h-(--header-height) **:data-[slot=separator]:h-4! flex items-center gap-2"
+			class="flex h-(--header-height) items-center gap-2 **:data-[slot=separator]:h-4! 3xl:fixed:container"
 		>
 			<MobileNav class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
@@ -30,8 +30,8 @@
 				</div>
 				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
-				<Separator orientation="vertical" class="3xl:flex hidden" />
-				<LayoutToggle class="3xl:flex hidden" />
+				<Separator orientation="vertical" class="hidden 3xl:flex" />
+				<LayoutToggle class="hidden 3xl:flex" />
 				<Separator orientation="vertical" />
 				<ModeSwitcher />
 			</div>

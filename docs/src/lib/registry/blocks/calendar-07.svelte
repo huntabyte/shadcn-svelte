@@ -17,7 +17,7 @@
 		numberOfMonths={2}
 		class="rounded-lg border shadow-sm"
 	/>
-	<div class="text-muted-foreground text-center text-xs">
+	<div class="text-center text-xs text-muted-foreground">
 		Your stay must be between 2 and 20 nights
 	</div>
 </div>

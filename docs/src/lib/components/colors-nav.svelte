@@ -19,7 +19,7 @@
 					data-active={page.url.pathname?.startsWith(colorPalette.name) ||
 						(index === 0 && page.url.pathname === "/colors")}
 					class={cn(
-						"text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors"
+						"flex h-7 items-center justify-center px-4 text-center text-base font-medium text-muted-foreground capitalize transition-colors hover:text-primary data-[active=true]:text-primary"
 					)}
 				>
 					{colorPalette.name}

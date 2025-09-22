@@ -17,5 +17,5 @@
 		maxValue={new CalendarDate(2025, 7, 31)}
 		class="rounded-lg border shadow-sm"
 	/>
-	<div class="text-muted-foreground text-center text-xs">We are open in June and July only.</div>
+	<div class="text-center text-xs text-muted-foreground">We are open in June and July only.</div>
 </div>

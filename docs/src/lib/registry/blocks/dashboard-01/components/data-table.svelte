@@ -263,7 +263,7 @@
 	<div class="flex items-center justify-between px-4 lg:px-6">
 		<Label for="view-selector" class="sr-only">View</Label>
 		<Select.Root type="single" bind:value={view}>
-			<Select.Trigger class="@4xl/main:hidden flex w-fit" size="sm" id="view-selector">
+			<Select.Trigger class="flex w-fit @4xl/main:hidden" size="sm" id="view-selector">
 				{viewLabel}
 			</Select.Trigger>
 			<Select.Content>
@@ -273,7 +273,7 @@
 			</Select.Content>
 		</Select.Root>
 		<Tabs.List
-			class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex hidden"
+			class="hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:px-1 @4xl/main:flex"
 		>
 			{#each views as view (view.id)}
 				<Tabs.Trigger value={view.id}>
@@ -326,7 +326,7 @@
 				id={sortableId}
 			>
 				<Table.Root>
-					<Table.Header class="bg-muted sticky top-0 z-10">
+					<Table.Header class="sticky top-0 z-10 bg-muted">
 						{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 							<Table.Row>
 								{#each headerGroup.headers as header (header.id)}
@@ -361,7 +361,7 @@
 			</DndContext>
 		</div>
 		<div class="flex items-center justify-between px-4">
-			<div class="text-muted-foreground hidden flex-1 text-sm lg:flex">
+			<div class="hidden flex-1 text-sm text-muted-foreground lg:flex">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>
@@ -459,7 +459,7 @@
 	>
 		<Label for="{row.original.id}-limit" class="sr-only">Limit</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="h-8 w-16 border-transparent bg-transparent text-right shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background dark:bg-transparent dark:hover:bg-input/30 dark:focus-visible:bg-input/30"
 			value={row.original.limit}
 			id="{row.original.id}-limit"
 		/>
@@ -479,7 +479,7 @@
 	>
 		<Label for="{row.original.id}-target" class="sr-only">Target</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="h-8 w-16 border-transparent bg-transparent text-right shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background dark:bg-transparent dark:hover:bg-input/30 dark:focus-visible:bg-input/30"
 			value={row.original.target}
 			id="{row.original.id}-target"
 		/>
@@ -488,14 +488,14 @@
 
 {#snippet DataTableType({ row }: { row: Row<Schema> })}
 	<div class="w-32">
-		<Badge variant="outline" class="text-muted-foreground px-1.5">
+		<Badge variant="outline" class="px-1.5 text-muted-foreground">
 			{row.original.type}
 		</Badge>
 	</div>
 {/snippet}
 
 {#snippet DataTableStatus({ row }: { row: Row<Schema> })}
-	<Badge variant="outline" class="text-muted-foreground px-1.5">
+	<Badge variant="outline" class="px-1.5 text-muted-foreground">
 		{#if row.original.status === "Done"}
 			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
 		{:else}
@@ -507,7 +507,7 @@
 
 {#snippet DataTableActions()}
 	<DropdownMenu.Root>
-		<DropdownMenu.Trigger class="data-[state=open]:bg-muted text-muted-foreground flex size-8">
+		<DropdownMenu.Trigger class="flex size-8 text-muted-foreground data-[state=open]:bg-muted">
 			{#snippet child({ props })}
 				<Button variant="ghost" size="icon" {...props}>
 					<DotsVerticalIcon />
@@ -555,9 +555,9 @@
 		{...listeners.current}
 		variant="ghost"
 		size="icon"
-		class="text-muted-foreground size-7 hover:bg-transparent"
+		class="size-7 text-muted-foreground hover:bg-transparent"
 	>
-		<GripVerticalIcon class="text-muted-foreground size-3" />
+		<GripVerticalIcon class="size-3 text-muted-foreground" />
 		<span class="sr-only">Drag to reorder</span>
 	</Button>
 {/snippet}

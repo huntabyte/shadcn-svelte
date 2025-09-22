@@ -35,14 +35,14 @@
 	</PageHeader>
 	{#if !mobile.current}
 		<PageNav class="hidden md:flex">
-			<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
+			<ExamplesNav class="flex-1 overflow-hidden [&>a:first-child]:text-primary" />
 			<ThemeSelector class="mr-4 hidden md:flex" />
 		</PageNav>
 	{/if}
-	<div class="container-wrapper section-soft flex-1 pb-6">
+	<div class="container-wrapper flex-1 section-soft pb-6">
 		<div class="container overflow-hidden">
 			<section
-				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
+				class="-mx-4 w-[160vw] overflow-hidden rounded-lg border border-border/50 md:hidden md:w-[150vw]"
 			>
 				<enhanced:img
 					class="block object-cover dark:hidden"
@@ -60,7 +60,7 @@
 				/>
 			</section>
 			{#if !mobile.current}
-				<section class="theme-container hidden md:block">
+				<section class="hidden theme-container md:block">
 					<CardsDemo />
 				</section>
 			{/if}

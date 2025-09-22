@@ -63,7 +63,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	<p class="text-muted-foreground text-sm">Status</p>
+	<p class="text-sm text-muted-foreground">Status</p>
 	<Popover.Root bind:open>
 		<Popover.Trigger
 			id={triggerId}

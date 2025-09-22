@@ -30,7 +30,7 @@
 					<DropdownMenu.Trigger>
 						<Sidebar.MenuAction
 							showOnHover
-							class="data-[state=open]:bg-accent rounded-sm"
+							class="rounded-sm data-[state=open]:bg-accent"
 						>
 							<DotsIcon />
 							<span class="sr-only">More</span>

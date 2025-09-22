@@ -35,7 +35,7 @@
 					variant="link"
 					size="sm"
 					data-active={coercedActiveTheme === theme.name}
-					class="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
+					class="flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium text-muted-foreground capitalize transition-colors hover:text-primary hover:no-underline data-[active=true]:text-primary"
 					onclick={() => {
 						userConfig.setConfig({ activeTheme: theme.name as ActiveTheme });
 						setTheme(theme.name);
@@ -70,7 +70,7 @@
 			<Select.Content align="end">
 				<Select.Group>
 					{#each THEMES as theme (theme.name)}
-						<Select.Item value={theme.name} class="data-selected:opacity-50 capitalize">
+						<Select.Item value={theme.name} class="capitalize data-selected:opacity-50">
 							{theme.name}
 						</Select.Item>
 					{/each}

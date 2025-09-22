@@ -42,17 +42,17 @@
 			}
 			class="gap-0"
 		>
-			<div class="border-border/50 flex items-center gap-2 border-b px-3 py-1">
+			<div class="flex items-center gap-2 border-b border-border/50 px-3 py-1">
 				<div
-					class="bg-foreground flex size-4 items-center justify-center rounded-[1px] opacity-70"
+					class="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70"
 				>
-					<TerminalIcon class="text-code size-3" />
+					<TerminalIcon class="size-3 text-code" />
 				</div>
 				<Tabs.List class="rounded-none bg-transparent p-0">
 					{#each PACKAGE_MANAGERS as pm (pm)}
 						<Tabs.Trigger
 							value={pm}
-							class="data-[state=active]:bg-accent data-[state=active]:border-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
+							class="h-7 border border-transparent pt-0.5 data-[state=active]:border-input data-[state=active]:bg-accent data-[state=active]:shadow-none"
 						>
 							{pm}
 						</Tabs.Trigger>
@@ -86,7 +86,7 @@
 						data-slot="copy-button"
 						size="icon"
 						variant="ghost"
-						class="absolute right-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+						class="absolute top-2 right-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
 					>
 						<span class="sr-only">Copy</span>
 						{#if clipboard.copied}

@@ -62,7 +62,7 @@
 							<HoverCard.Trigger>
 								{#snippet child({ props })}
 									<span
-										class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+										class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 										{...props}
 									>
 										Mode
@@ -268,7 +268,7 @@
 									placeholder="We're writing to [inset]. Congrats from OpenAI!"
 									class="h-full min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]"
 								/>
-								<div class="bg-muted rounded-md border"></div>
+								<div class="rounded-md border bg-muted"></div>
 							</div>
 							<div class="flex items-center space-x-2">
 								<Button>Submit</Button>
@@ -300,7 +300,7 @@
 									</div>
 								</div>
 								<div
-									class="bg-muted mt-[21px] min-h-[400px] rounded-md border lg:min-h-[700px]"
+									class="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]"
 								></div>
 							</div>
 							<div class="flex items-center space-x-2">

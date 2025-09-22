@@ -11,7 +11,7 @@
 		<div class="line-clamp-1 text-sm font-medium">
 			{ctx.item.description}
 		</div>
-		<div class="text-muted-foreground ml-auto shrink-0 font-mono text-xs">
+		<div class="ml-auto shrink-0 font-mono text-xs text-muted-foreground">
 			{ctx.item.name}
 		</div>
 	</div>

@@ -38,7 +38,7 @@
 <Command.Item
 	bind:ref
 	class={cn(
-		"data-[selected=true]:border-input data-[selected=true]:bg-input/50 px-3! h-9 rounded-md border border-transparent font-medium",
+		"h-9 rounded-md border border-transparent px-3! font-medium data-[selected=true]:border-input data-[selected=true]:bg-input/50",
 		className
 	)}
 	{...restProps}

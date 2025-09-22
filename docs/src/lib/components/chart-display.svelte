@@ -26,7 +26,7 @@
 	>
 		<ChartToolbar
 			{chart}
-			class="bg-card text-card-foreground relative z-20 flex justify-end border-b px-3 py-2.5"
+			class="relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground"
 		>
 			{@render children?.()}
 		</ChartToolbar>

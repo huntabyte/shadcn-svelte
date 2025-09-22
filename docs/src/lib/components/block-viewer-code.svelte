@@ -14,7 +14,7 @@
 
 {#if file}
 	<div
-		class="bg-code text-code-foreground md:h-(--height) mr-[14px] flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
+		class="mr-[14px] flex overflow-hidden rounded-xl border bg-code text-code-foreground group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)"
 	>
 		<div class="w-72">
 			<BlockViewerFileTree />
@@ -24,7 +24,7 @@
 			class="mx-0! mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
 		>
 			<figcaption
-				class="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
+				class="flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70"
 				data-language={language}
 			>
 				<Icon />

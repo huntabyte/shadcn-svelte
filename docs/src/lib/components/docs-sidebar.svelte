@@ -21,7 +21,7 @@
 		<div class="h-(--top-spacing) shrink-0"></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>
-				<Sidebar.GroupLabel class="text-muted-foreground font-medium">
+				<Sidebar.GroupLabel class="font-medium text-muted-foreground">
 					{item.title}
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
@@ -32,7 +32,7 @@
 									<Sidebar.MenuItem>
 										<Sidebar.MenuButton
 											isActive={subItem.href === pathname}
-											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
+											class="relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent 3xl:fixed:w-full 3xl:fixed:max-w-48"
 										>
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>{subItem.title}</a

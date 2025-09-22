@@ -84,10 +84,10 @@
 				<span class="sr-only">Decrease</span>
 			</Button>
 			<div class="text-center">
-				<div class="text-4xl font-bold tabular-nums tracking-tighter">
+				<div class="text-4xl font-bold tracking-tighter tabular-nums">
 					{goal}
 				</div>
-				<div class="text-muted-foreground text-xs uppercase">Calories/day</div>
+				<div class="text-xs text-muted-foreground uppercase">Calories/day</div>
 			</div>
 			<Button
 				variant="outline"

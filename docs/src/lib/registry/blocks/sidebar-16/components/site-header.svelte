@@ -9,8 +9,8 @@
 	const sidebar = Sidebar.useSidebar();
 </script>
 
-<header class="bg-background sticky top-0 z-50 flex w-full items-center border-b">
-	<div class="h-(--header-height) flex w-full items-center gap-2 px-4">
+<header class="sticky top-0 z-50 flex w-full items-center border-b bg-background">
+	<div class="flex h-(--header-height) w-full items-center gap-2 px-4">
 		<Button class="size-8" variant="ghost" size="icon" onclick={sidebar.toggle}>
 			<SidebarIcon />
 		</Button>

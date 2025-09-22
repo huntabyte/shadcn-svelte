@@ -24,7 +24,7 @@
 					</Sheet.Description>
 				</Sheet.Header>
 				<div class="overflow-y-auto px-4 text-sm">
-					<h4 class="mb-4 text-lg font-medium leading-none">Lorem Ipsum</h4>
+					<h4 class="mb-4 text-lg leading-none font-medium">Lorem Ipsum</h4>
 					{#each { length: 10 } as _, index (index)}
 						<p class="mb-4 leading-normal">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod

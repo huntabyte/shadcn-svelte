@@ -37,7 +37,7 @@
 	<ChartsNav />
 	<ThemeSelector class="mr-4 hidden md:flex" />
 </PageNav>
-<div class="container-wrapper section-soft flex-1">
+<div class="container-wrapper flex-1 section-soft">
 	<div class="container pb-6">
 		<section class="theme-container">{@render children?.()}</section>
 	</div>

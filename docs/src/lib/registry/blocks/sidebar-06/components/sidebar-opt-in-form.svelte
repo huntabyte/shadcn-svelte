@@ -14,7 +14,7 @@
 			<div class="grid gap-2.5">
 				<Sidebar.Input type="email" placeholder="Email" />
 				<Button
-					class="bg-sidebar-primary text-sidebar-primary-foreground w-full shadow-none"
+					class="w-full bg-sidebar-primary text-sidebar-primary-foreground shadow-none"
 					size="sm"
 				>
 					Subscribe
