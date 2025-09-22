@@ -50,7 +50,7 @@
 						{#each projects as project (project.name)}
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton
-									class="group-has-[[data-state=open]]/menu-item:bg-sidebar-accent"
+									class="group-has-data-[state=open]/menu-item:bg-sidebar-accent"
 								>
 									{#snippet child({ props })}
 										<a href={project.url} {...props}>

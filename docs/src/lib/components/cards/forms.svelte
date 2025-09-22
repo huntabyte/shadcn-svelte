@@ -65,7 +65,7 @@
 				<RadioGroup.Root value="starter" class="grid gap-3 md:grid-cols-2">
 					{#each plans as plan (plan.id)}
 						<Label
-							class="has-[[data-state=checked]]:border-ring has-[[data-state=checked]]:bg-input/20 flex items-start gap-3 rounded-lg border p-3"
+							class="has-data-[state=checked]:border-ring has-data-[state=checked]:bg-input/20 flex items-start gap-3 rounded-lg border p-3"
 						>
 							<RadioGroup.Item
 								value={plan.id}

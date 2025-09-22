@@ -76,7 +76,7 @@ registry
     └── hello-world.svelte
 ```
 
-<Callout class="mt-6 [&_[data-rehype-pretty-code-title]]:pt-1 [&_pre]:mb-0">
+<Callout class="mt-6 **:data-rehype-pretty-code-title:pt-1 [&_pre]:mb-0">
 
 **Important:** If you're placing your component in a custom directory, make sure it can be detected by Tailwind CSS.
 

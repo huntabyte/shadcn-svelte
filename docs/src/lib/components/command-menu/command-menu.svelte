@@ -159,7 +159,7 @@
 			<Dialog.Description>Search for a command to run...</Dialog.Description>
 		</Dialog.Header>
 		<Command.Root
-			class="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input]:!h-9 **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border rounded-none bg-transparent"
+			class="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border rounded-none bg-transparent"
 		>
 			<Command.Input placeholder="Search documentation..." />
 			<Command.List class="no-scrollbar min-h-80 scroll-pb-1.5 scroll-pt-2">
@@ -169,7 +169,7 @@
 				{#each sidebarNavItems as group (group.title)}
 					<Command.Group
 						heading={group.title}
-						class="!p-0 [&_[data-command-group-heading]]:scroll-mt-16 [&_[data-command-group-heading]]:!p-3 [&_[data-command-group-heading]]:!pb-1"
+						class="p-0! **:data-command-group-heading:scroll-mt-16 **:data-command-group-heading:p-3! **:data-command-group-heading:pb-1!"
 					>
 						{#each group.items as item, i (i)}
 							{@const isComponent = item.href?.includes("/components/") ?? false}
@@ -206,7 +206,7 @@
 					<Command.Group
 						heading={colorPalette.name.charAt(0).toUpperCase() +
 							colorPalette.name.slice(1)}
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						class="p-0! **:data-command-group-heading:p-3!"
 					>
 						{#each colorPalette.colors as color (color.hex)}
 							<CommandMenuItem
@@ -234,7 +234,7 @@
 				{#if blocks?.length}
 					<Command.Group
 						heading="Blocks"
-						class="!p-0 [&_[data-command-group-heading]]:!p-3"
+						class="p-0! **:data-command-group-heading:p-3!"
 					>
 						{#each blocks as block (block.name)}
 							<CommandMenuItem
@@ -278,7 +278,7 @@
 				{/if}
 			</div>
 			{#if copyPayload}
-				<Separator orientation="vertical" class="!h-4" />
+				<Separator orientation="vertical" class="h-4!" />
 				<div class="flex items-center gap-1">
 					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
 					{@render CommandMenuKbd({ content: "C" })}

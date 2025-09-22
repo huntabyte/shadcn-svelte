@@ -33,7 +33,7 @@
 				{ name: "Desktop", value: 186, color: "var(--chart-1)" },
 				{ name: "Mobile", value: 80, color: "var(--chart-2)" },
 			]}
-			class="w-[8rem]"
+			class="w-32"
 		/>
 	</div>
 	<div class="items-end">
@@ -66,25 +66,25 @@
 				{ name: "Firefox", value: 1000, color: "var(--chart-4)" },
 			]}
 			indicator="dashed"
-			class="w-[8rem]"
+			class="w-32"
 		/>
 	</div>
-	<div class="!hidden md:!flex">
+	<div class="hidden! md:flex!">
 		<TooltipDemo
 			label="Page Views"
 			payload={[{ name: "Desktop", value: 12486, color: "var(--chart-3)" }]}
-			class="w-[9rem]"
+			class="w-36"
 			indicator="line"
 		/>
 	</div>
-	<div class="!items-start !justify-start">
+	<div class="items-start! justify-start!">
 		<div class="absolute left-[50px] top-[60px] z-10 text-sm font-medium">Indicator</div>
 		<TooltipDemo
 			label="Browser"
 			hideLabel
 			payload={[{ name: "Chrome", value: 1286, color: "var(--chart-1)" }]}
 			indicator="dot"
-			class="w-[8rem]"
+			class="w-32"
 		/>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

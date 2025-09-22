@@ -92,7 +92,7 @@
 					<Select.Item
 						value={theme.value}
 						label={theme.name}
-						class="data-[selected]:opacity-50">{theme.name}</Select.Item
+						class="data-selected:opacity-50">{theme.name}</Select.Item
 					>
 				{/each}
 			</Select.Group>
@@ -103,7 +103,7 @@
 					<Select.Item
 						value={theme.value}
 						label={theme.name}
-						class="data-[selected]:opacity-50">{theme.name}</Select.Item
+						class="data-selected:opacity-50">{theme.name}</Select.Item
 					>
 				{/each}
 			</Select.Group>

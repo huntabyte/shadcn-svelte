@@ -11,7 +11,7 @@
 </script>
 
 <Drawer.Root>
-	<Drawer.Trigger class={cn("sm:!hidden", className)}>
+	<Drawer.Trigger class={cn("sm:hidden!", className)}>
 		{#snippet child({ props })}
 			<Button {variant} {size} {...props}>Copy Code</Button>
 		{/snippet}
@@ -29,7 +29,7 @@
 	</Drawer.Content>
 </Drawer.Root>
 <Dialog.Root>
-	<Dialog.Trigger class={cn("hidden sm:!flex", className)}>
+	<Dialog.Trigger class={cn("hidden sm:flex!", className)}>
 		{#snippet child({ props })}
 			<Button {variant} {size} {...props}>Copy Code</Button>
 		{/snippet}

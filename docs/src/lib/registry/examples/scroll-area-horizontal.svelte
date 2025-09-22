@@ -30,7 +30,7 @@
 					<img
 						src={artwork.art}
 						alt="Photo by {artwork.artist}"
-						class="aspect-[3/4] h-fit w-fit object-cover"
+						class="aspect-3/4 h-fit w-fit object-cover"
 						width={300}
 						height={400}
 					/>

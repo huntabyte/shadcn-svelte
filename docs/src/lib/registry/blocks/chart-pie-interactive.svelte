@@ -96,14 +96,14 @@
 						value={desktopData[activeIndex].desktop.toLocaleString()}
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="fill-foreground !text-3xl font-bold"
+						class="fill-foreground text-3xl! font-bold"
 						dy={3}
 					/>
 					<Text
 						value="Visitors"
 						textAnchor="middle"
 						verticalAnchor="middle"
-						class="!fill-muted-foreground text-muted-foreground"
+						class="fill-muted-foreground! text-muted-foreground"
 						dy={22}
 					/>
 				{/snippet}

@@ -39,13 +39,13 @@
 						key: "desktop",
 						label: "Desktop",
 						color: chartConfig.desktop.color,
-						props: { class: "fill-none stroke-[2]" },
+						props: { class: "fill-none stroke-2" },
 					},
 					{
 						key: "mobile",
 						label: "Mobile",
 						color: chartConfig.mobile.color,
-						props: { class: "fill-none stroke-[2]" },
+						props: { class: "fill-none stroke-2" },
 					},
 				]}
 				props={{

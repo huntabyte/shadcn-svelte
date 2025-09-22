@@ -138,13 +138,13 @@
 <Sidebar.Root
 	bind:ref
 	collapsible="icon"
-	class="overflow-hidden [&>[data-sidebar=sidebar]]:flex-row"
+	class="overflow-hidden *:data-[sidebar=sidebar]:flex-row"
 	{...restProps}
 >
 	<!-- This is the first sidebar -->
 	<!-- We disable collapsible and adjust width to icon. -->
 	<!-- This will make the sidebar appear as icons. -->
-	<Sidebar.Root collapsible="none" class="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r">
+	<Sidebar.Root collapsible="none" class="w-[calc(var(--sidebar-width-icon)+1px)]! border-r">
 		<Sidebar.Header>
 			<Sidebar.Menu>
 				<Sidebar.MenuItem>

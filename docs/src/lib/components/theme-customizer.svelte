@@ -72,7 +72,7 @@
 					{#each THEMES as theme (theme.name)}
 						<Select.Item
 							value={theme.name}
-							class="capitalize data-[selected]:opacity-50"
+							class="capitalize data-selected:opacity-50"
 						>
 							{theme.name}
 						</Select.Item>

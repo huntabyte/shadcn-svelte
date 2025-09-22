@@ -86,7 +86,7 @@
 <TooltipPrimitive.Root variant="none">
 	<div
 		class={cn(
-			"border-border/50 bg-background grid min-w-[9rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
+			"border-border/50 bg-background grid min-w-36 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
 			className
 		)}
 		{...restProps}
@@ -120,7 +120,7 @@
 							<div
 								style="--color-bg: {indicatorColor}; --color-border: {indicatorColor};"
 								class={cn(
-									"border-(--color-border) bg-(--color-bg) shrink-0 rounded-[2px]",
+									"border-border bg-(--color-bg) shrink-0 rounded-[2px]",
 									{
 										"size-2.5": indicator === "dot",
 										"h-full w-1": indicator === "line",

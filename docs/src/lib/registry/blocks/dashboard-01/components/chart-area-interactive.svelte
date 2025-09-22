@@ -149,7 +149,7 @@
 				type="single"
 				bind:value={timeRange}
 				variant="outline"
-				class="@[767px]/card:flex hidden *:data-[slot=toggle-group-item]:!px-4"
+				class="@[767px]/card:flex hidden *:data-[slot=toggle-group-item]:px-4!"
 			>
 				<ToggleGroup.Item value="90d">Last 3 months</ToggleGroup.Item>
 				<ToggleGroup.Item value="30d">Last 30 days</ToggleGroup.Item>
