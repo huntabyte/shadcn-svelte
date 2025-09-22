@@ -22,7 +22,7 @@ We cannot have a newline between the pre and children or we will get a newline i
 <pre
 	bind:this={preNode}
 	class={cn(
-		"no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0",
+		"no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 min-w-0 overflow-x-auto px-4 py-3.5 outline-none",
 		className
 	)}
 	{...restProps}>{@render children?.()}</pre>

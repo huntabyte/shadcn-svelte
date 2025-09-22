@@ -24,7 +24,7 @@
 {#snippet Content()}
 	<div class="flex min-h-0 flex-1 flex-col gap-0">
 		<div
-			class="chart-wrapper theme-container hidden sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none **:data-chart:mx-auto **:data-chart:max-h-[35vh]"
+			class="chart-wrapper theme-container **:data-chart:mx-auto **:data-chart:max-h-[35vh] hidden sm:block [&>div]:rounded-none [&>div]:border-0 [&>div]:border-b [&>div]:shadow-none"
 		>
 			{@render children?.()}
 		</div>

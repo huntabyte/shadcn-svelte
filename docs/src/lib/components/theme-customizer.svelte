@@ -70,10 +70,7 @@
 			<Select.Content align="end">
 				<Select.Group>
 					{#each THEMES as theme (theme.name)}
-						<Select.Item
-							value={theme.name}
-							class="capitalize data-selected:opacity-50"
-						>
+						<Select.Item value={theme.name} class="data-selected:opacity-50 capitalize">
 							{theme.name}
 						</Select.Item>
 					{/each}

@@ -82,7 +82,7 @@
 				<Select.Root type="single" bind:value={level}>
 					<Select.Trigger
 						id="level-{id}"
-						class="w-full [&_span]:block! [&_span]:truncate"
+						class="[&_span]:block! w-full [&_span]:truncate"
 						aria-label="Security Level"
 					>
 						<span>

@@ -31,7 +31,7 @@
 	<Card.Content class="px-4">
 		<Calendar type="single" bind:value class="bg-transparent p-0" preventDeselect />
 	</Card.Content>
-	<Card.Footer class="flex flex-col items-start gap-3 border-t px-4 pt-4!">
+	<Card.Footer class="pt-4! flex flex-col items-start gap-3 border-t px-4">
 		<div class="flex w-full items-center justify-between px-1">
 			<div class="text-sm font-medium">
 				{value?.toDate(getLocalTimeZone()).toLocaleDateString("en-US", {

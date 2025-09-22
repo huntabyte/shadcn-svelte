@@ -13,7 +13,7 @@
 	<Card.Content class="px-4">
 		<Calendar type="single" bind:value class="bg-transparent p-0" />
 	</Card.Content>
-	<Card.Footer class="flex flex-col gap-6 border-t px-4 pt-4!">
+	<Card.Footer class="pt-4! flex flex-col gap-6 border-t px-4">
 		<div class="flex w-full flex-col gap-3">
 			<Label for="time-from">Start Time</Label>
 			<div class="relative flex w-full items-center gap-2">

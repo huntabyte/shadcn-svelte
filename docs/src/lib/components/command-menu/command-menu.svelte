@@ -232,10 +232,7 @@
 					</Command.Group>
 				{/each}
 				{#if blocks?.length}
-					<Command.Group
-						heading="Blocks"
-						class="p-0! **:data-command-group-heading:p-3!"
-					>
+					<Command.Group heading="Blocks" class="p-0! **:data-command-group-heading:p-3!">
 						{#each blocks as block (block.name)}
 							<CommandMenuItem
 								value={block.name}

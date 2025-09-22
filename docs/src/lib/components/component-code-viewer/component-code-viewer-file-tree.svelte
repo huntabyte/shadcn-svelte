@@ -6,7 +6,7 @@
 	const ctx = ComponentCodeViewerContext.get();
 </script>
 
-<Sidebar.Provider class="flex min-h-full! select-none flex-col">
+<Sidebar.Provider class="min-h-full! flex select-none flex-col">
 	<Sidebar.Root collapsible="none" class="w-full flex-1">
 		<Sidebar.GroupLabel class="h-12 rounded-none border-b px-4 text-sm">
 			Files

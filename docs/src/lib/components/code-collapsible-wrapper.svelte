@@ -30,18 +30,18 @@
 				>
 					{open ? "Collapse" : "Expand"}
 				</Button>
-				<Separator orientation="vertical" class="mx-1.5 h-4!" />
+				<Separator orientation="vertical" class="h-4! mx-1.5" />
 			</div>
 		{/snippet}
 	</Collapsible.Trigger>
 	<Collapsible.Content
 		forceMount
-		class="relative mt-6 overflow-hidden data-[state=closed]:max-h-64 [&>figure]:mt-0 [&>figure]:md:mx-0!"
+		class="[&>figure]:md:mx-0! relative mt-6 overflow-hidden data-[state=closed]:max-h-64 [&>figure]:mt-0"
 	>
 		{@render children?.()}
 	</Collapsible.Content>
 	<Collapsible.Trigger
-		class="from-code/70 to-code text-muted-foreground absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-linear-to-b text-sm group-data-[state=open]/collapsible:hidden"
+		class="from-code/70 to-code text-muted-foreground bg-linear-to-b absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg text-sm group-data-[state=open]/collapsible:hidden"
 	>
 		{open ? "Collapse" : "Expand"}
 	</Collapsible.Trigger>

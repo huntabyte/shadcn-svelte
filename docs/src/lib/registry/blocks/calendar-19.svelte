@@ -16,7 +16,7 @@
 			class="bg-transparent p-0 [--cell-size:--spacing(9.5)]"
 		/>
 	</Card.Content>
-	<Card.Footer class="flex flex-wrap gap-2 border-t px-4 pt-4!">
+	<Card.Footer class="pt-4! flex flex-wrap gap-2 border-t px-4">
 		{#each [{ label: "Today", value: 0 }, { label: "Tomorrow", value: 1 }, { label: "In 3 days", value: 3 }, { label: "In a week", value: 7 }, { label: "In 2 weeks", value: 14 }] as preset (preset.value)}
 			<Button
 				variant="outline"
