@@ -118,6 +118,7 @@
 
 	const filteredData = $derived(
 		chartData.filter((item) => {
+			// eslint-disable-next-line svelte/prefer-svelte-reactivity
 			const referenceDate = new Date("2024-06-30");
 			let daysToSubtract = 90;
 			if (timeRange === "30d") {

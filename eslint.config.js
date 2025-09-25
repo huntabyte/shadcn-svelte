@@ -35,6 +35,7 @@ export default ts.config(
 		},
 		rules: {
 			"svelte/no-useless-mustaches": "warn",
+			"svelte/no-navigation-without-resolve": "off",
 		},
 	},
 	{
