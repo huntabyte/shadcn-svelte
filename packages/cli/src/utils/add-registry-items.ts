@@ -43,13 +43,17 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	if (itemsWithContent.length === 0) cancel("Selected items not found.");
 
-	// build a list of existing items
-	const existingItems: string[] = [];
+	// Add all resolved dependencies to selectedItems before checking for existing items
 	for (const item of itemsWithContent) {
-		if (selectedItems.has(item.name) === false) continue;
+		selectedItems.add(item.name);
 		for (const regDep of item.registryDependencies ?? []) {
 			selectedItems.add(regDep);
 		}
+	}
+
+	// build a list of existing items
+	const existingItems: string[] = [];
+	for (const item of itemsWithContent) {
 
 		const itemExists = item.files.some((file) => {
 			const filePath = registry.resolveItemFilePath(opts.config, item, file);
