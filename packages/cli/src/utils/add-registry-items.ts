@@ -54,7 +54,6 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 	// build a list of existing items
 	const existingItems: string[] = [];
 	for (const item of itemsWithContent) {
-
 		const itemExists = item.files.some((file) => {
 			const filePath = registry.resolveItemFilePath(opts.config, item, file);
 			return existsSync(filePath);

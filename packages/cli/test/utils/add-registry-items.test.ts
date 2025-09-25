@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
 import * as registry from "../../src/utils/registry/index.js";
 import * as p from "@clack/prompts";
+import type { ResolvedConfig } from "../../src/utils/get-config.js";
 
 // Mock the dependencies
 vi.mock("node:fs", () => ({
@@ -43,14 +44,14 @@ vi.mock("../../src/utils/transformers.js", () => ({
 }));
 
 describe("addRegistryItems", () => {
-	const mockConfig = {
+	const mockConfig: ResolvedConfig = {
 		resolvedPaths: {
 			cwd: "/test",
 			ui: "/test/ui",
 			components: "/test/components",
 			tailwindCss: "/test/app.css",
 		},
-	} as any;
+	} as ResolvedConfig;
 
 	beforeEach(() => {
 		vi.clearAllMocks();
@@ -81,7 +82,10 @@ describe("addRegistryItems", () => {
 			customComponent,
 			buttonComponent,
 		]);
-		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([customComponent, buttonComponent]);
+		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([
+			customComponent,
+			buttonComponent,
+		]);
 		vi.mocked(registry.resolveItemFilePath).mockImplementation((config, item, file) => {
 			return `/path/to/${item.name}/${file.target}`;
 		});
@@ -100,16 +104,12 @@ describe("addRegistryItems", () => {
 
 		// Verify that confirm was called twice - once for global, once for individual
 		expect(p.confirm).toHaveBeenCalledTimes(2);
-		
+
 		// Verify that the warning was shown for existing items (which means dependencies were detected)
-		expect(p.log.warn).toHaveBeenCalledWith(
-			expect.stringContaining("already exist")
-		);
+		expect(p.log.warn).toHaveBeenCalledWith(expect.stringContaining("already exist"));
 
 		// Verify that the warning was shown for existing items
-		expect(p.log.warn).toHaveBeenCalledWith(
-			expect.stringContaining("already exist")
-		);
+		expect(p.log.warn).toHaveBeenCalledWith(expect.stringContaining("already exist"));
 	});
 
 	it("should include all resolved dependencies in selectedItems for custom registry", async () => {
@@ -129,7 +129,7 @@ describe("addRegistryItems", () => {
 
 		const cardComponent = {
 			name: "card",
-			type: "registry:ui", 
+			type: "registry:ui",
 			files: [{ target: "card.svelte", type: "registry:ui", content: "" }],
 			registryDependencies: [],
 		};
