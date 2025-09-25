@@ -19,10 +19,10 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@dnd-kit-svelte/core": "^0.0.8",
-		"@dnd-kit-svelte/modifiers": "^0.0.8",
-		"@dnd-kit-svelte/sortable": "^0.0.8",
-		"@dnd-kit-svelte/utilities": "^0.0.8",
+		"@dnd-kit-svelte/core": "^0.0.11",
+		"@dnd-kit-svelte/modifiers": "^0.0.11",
+		"@dnd-kit-svelte/sortable": "^0.0.11",
+		"@dnd-kit-svelte/utilities": "^0.0.11",
 		"@internationalized/date": "^3.8.1",
 		"@lucide/svelte": "^0.515.0",
 		"@prettier/sync": "0.6.1",

@@ -66,17 +66,17 @@ importers:
   docs:
     devDependencies:
       '@dnd-kit-svelte/core':
-        specifier: ^0.0.8
-        version: 0.0.8(svelte@5.34.1)
+        specifier: ^0.0.11
+        version: 0.0.11(svelte@5.34.1)
       '@dnd-kit-svelte/modifiers':
-        specifier: ^0.0.8
-        version: 0.0.8(svelte@5.34.1)
+        specifier: ^0.0.11
+        version: 0.0.11(svelte@5.34.1)
       '@dnd-kit-svelte/sortable':
-        specifier: ^0.0.8
-        version: 0.0.8(svelte@5.34.1)
+        specifier: ^0.0.11
+        version: 0.0.11(svelte@5.34.1)
       '@dnd-kit-svelte/utilities':
-        specifier: ^0.0.8
-        version: 0.0.8(svelte@5.34.1)
+        specifier: ^0.0.11
+        version: 0.0.11(svelte@5.34.1)
       '@internationalized/date':
         specifier: ^3.8.1
         version: 3.8.2
@@ -589,28 +589,28 @@ packages:
     resolution: {integrity: sha512-mepCf/e9+SKYy1d02/UkvSy6+6MoyXhVxP8lLDfA7BPE1X1d4dR0sZznmbM8/XVJ1GPM+Svnx7Xj6ZweByWUkw==}
     engines: {node: '>17.0.0'}
 
-  '@dnd-kit-svelte/accessibility@0.0.8':
-    resolution: {integrity: sha512-Dm+6jTIuorEI4fkOh9ZcbVeJfUAPQGdseT2HfG9gu30PtxHTd9offH5cGWKxsdxjKZjkr5OH2O3DVeNtFjOPxQ==}
+  '@dnd-kit-svelte/accessibility@0.0.11':
+    resolution: {integrity: sha512-YkMjzabpnwELyeOSC2COV6EIGWZM8m4kgi/wIMwG0g/ZO3WWuzkMiLRLhYZqRkrEdpoz5tZnVclw+x/kcUjQHw==}
     peerDependencies:
       svelte: ^5.0.0
 
-  '@dnd-kit-svelte/core@0.0.8':
-    resolution: {integrity: sha512-c77kG70L2DX+af9NW7EbbByKXcHF4y+8sqbZjj81N6QnAtdqrfZdQug/39qSMC3hxLkiS1UowVhSQRJgpdFWGA==}
+  '@dnd-kit-svelte/core@0.0.11':
+    resolution: {integrity: sha512-bVqutZhSOk3nQsjwJ0SveUrPeBgUO/wajfon1AiKA8mxfQhaUG97CfoQLs7tLW3YxSkHkLPhYRw9WQat7OMB7g==}
     peerDependencies:
       svelte: ^5.0.0
 
-  '@dnd-kit-svelte/modifiers@0.0.8':
-    resolution: {integrity: sha512-EZyRNNm5yVl/ws86oLt1pJGNiB1QX1/xlHusL6yqtMylk9y486cp5C/BPdpvEtd6arK8XpuhNXV1dJAyYVsNrQ==}
+  '@dnd-kit-svelte/modifiers@0.0.11':
+    resolution: {integrity: sha512-H0+uGQi8M0GAKMjEGZzC8suwj4hyqf77kp5ozyBgr2+//YZT1uvsydl1DB7dEcj2Qiz1HOz01rQsLF1nEchQaQ==}
     peerDependencies:
       svelte: ^5.0.0
 
-  '@dnd-kit-svelte/sortable@0.0.8':
-    resolution: {integrity: sha512-4lHgd7ttFqQqfuxeg2GofqnM2nHrAqtFsxqXf/Vr7/s4rEusPO8cZkQ6n2KTr08lvHGpQM2l8aLBUDyQtWtCVQ==}
+  '@dnd-kit-svelte/sortable@0.0.11':
+    resolution: {integrity: sha512-QeFvpjR9KAIVFs0/S4kGtzSNZzEmIp+d8DiNCRUeVC2E4Z5P4INzdzJl7m1EM7UjvdNayfLWcMhLpyTIHqHxQQ==}
     peerDependencies:
       svelte: ^5.0.0
 
-  '@dnd-kit-svelte/utilities@0.0.8':
-    resolution: {integrity: sha512-fiBPmbHS94cuigysqyRA7T8WpNP94uEw2DsYX9En81mOkAN9UH9RU2DlJ63luZwn4BG9k+DjYT0jt2AEaRuYIg==}
+  '@dnd-kit-svelte/utilities@0.0.11':
+    resolution: {integrity: sha512-Y9Z016gLdieHiAVoteSBa1tvrgug1/Rl5wdKw/2g1Fd4G0q9HWIyPe2evKrv8H5ePfcNegA1jN7fneDVmHd3pQ==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -4687,36 +4687,36 @@ snapshots:
 
   '@dagrejs/graphlib@2.2.4': {}
 
-  '@dnd-kit-svelte/accessibility@0.0.8(svelte@5.34.1)':
+  '@dnd-kit-svelte/accessibility@0.0.11(svelte@5.34.1)':
     dependencies:
-      '@dnd-kit-svelte/utilities': 0.0.8(svelte@5.34.1)
+      '@dnd-kit-svelte/utilities': 0.0.11(svelte@5.34.1)
       esm-env: 1.2.2
       runed: 0.23.4(svelte@5.34.1)
       svelte: 5.34.1
 
-  '@dnd-kit-svelte/core@0.0.8(svelte@5.34.1)':
+  '@dnd-kit-svelte/core@0.0.11(svelte@5.34.1)':
     dependencies:
-      '@dnd-kit-svelte/accessibility': 0.0.8(svelte@5.34.1)
-      '@dnd-kit-svelte/utilities': 0.0.8(svelte@5.34.1)
+      '@dnd-kit-svelte/accessibility': 0.0.11(svelte@5.34.1)
+      '@dnd-kit-svelte/utilities': 0.0.11(svelte@5.34.1)
       runed: 0.23.4(svelte@5.34.1)
       svelte: 5.34.1
       svelte-toolbelt: 0.7.1(svelte@5.34.1)
 
-  '@dnd-kit-svelte/modifiers@0.0.8(svelte@5.34.1)':
+  '@dnd-kit-svelte/modifiers@0.0.11(svelte@5.34.1)':
     dependencies:
-      '@dnd-kit-svelte/core': 0.0.8(svelte@5.34.1)
-      '@dnd-kit-svelte/utilities': 0.0.8(svelte@5.34.1)
+      '@dnd-kit-svelte/core': 0.0.11(svelte@5.34.1)
+      '@dnd-kit-svelte/utilities': 0.0.11(svelte@5.34.1)
       svelte: 5.34.1
 
-  '@dnd-kit-svelte/sortable@0.0.8(svelte@5.34.1)':
+  '@dnd-kit-svelte/sortable@0.0.11(svelte@5.34.1)':
     dependencies:
-      '@dnd-kit-svelte/core': 0.0.8(svelte@5.34.1)
-      '@dnd-kit-svelte/utilities': 0.0.8(svelte@5.34.1)
+      '@dnd-kit-svelte/core': 0.0.11(svelte@5.34.1)
+      '@dnd-kit-svelte/utilities': 0.0.11(svelte@5.34.1)
       runed: 0.23.4(svelte@5.34.1)
       svelte: 5.34.1
       svelte-toolbelt: 0.7.1(svelte@5.34.1)
 
-  '@dnd-kit-svelte/utilities@0.0.8(svelte@5.34.1)':
+  '@dnd-kit-svelte/utilities@0.0.11(svelte@5.34.1)':
     dependencies:
       svelte: 5.34.1
       svelte-toolbelt: 0.7.1(svelte@5.34.1)
