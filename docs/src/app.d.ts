@@ -11,7 +11,6 @@ declare global {
 		// interface Platform {}
 	}
 
-	// eslint-disable-next-line no-var
 	var __shikiHighlighter: Awaited<ReturnType<typeof createHighlighterCore>> | undefined;
 }
 
