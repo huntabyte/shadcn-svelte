@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { existsSync } from "node:fs";
-import { addRegistryItems } from "../../src/utils/add-registry-items.js";
-import * as registry from "../../src/utils/registry/index.js";
 import * as p from "@clack/prompts";
-import { ResolvedConfig } from "../../src/utils/get-config";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import * as registry from "../../src/utils/registry/index.js";
+import { addRegistryItems } from "../../src/utils/add-registry-items.js";
+import type { ResolvedConfig } from "../../src/utils/get-config";
 
 vi.mock("node:fs", () => ({
 	existsSync: vi.fn(),
