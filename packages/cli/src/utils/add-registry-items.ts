@@ -45,8 +45,9 @@ export async function addRegistryItems(opts: AddRegistryItemsProps) {
 
 	// build a list of existing items
 	const existingItems: string[] = [];
+
 	for (const item of itemsWithContent) {
-		if (selectedItems.has(item.name) === false) continue;
+		selectedItems.add(item.name);
 		for (const regDep of item.registryDependencies ?? []) {
 			selectedItems.add(regDep);
 		}
