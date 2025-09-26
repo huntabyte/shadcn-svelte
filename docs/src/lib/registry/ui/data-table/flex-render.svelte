@@ -33,7 +33,7 @@
 		<Component {...props} {attach} />
 	{:else if result instanceof RenderSnippetConfig}
 		{@const { snippet, params } = result}
-		{@render snippet({...params, attach})}
+		{@render snippet({ ...params, attach })}
 	{:else}
 		{result}
 	{/if}
