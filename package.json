@@ -51,8 +51,8 @@
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.6.14",
 		"pretty-quick": "^4.2.2",
-		"svelte": "^5.39.4",
-		"typescript": "^5.9.2",
+		"svelte": "catalog:",
+		"typescript": "catalog:",
 		"typescript-eslint": "^8.44.1",
 		"wrangler": "^4.20.0"
 	},
