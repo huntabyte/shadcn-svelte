@@ -19,6 +19,10 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@dnd-kit-svelte/svelte": "^0.1.3",
+		"@dnd-kit/abstract": "^0.1.21",
+		"@dnd-kit/collision": "^0.1.21",
+		"@dnd-kit/helpers": "^0.1.21",
 		"@internationalized/date": "^3.8.1",
 		"@lucide/svelte": "^0.544.0",
 		"@prettier/sync": "0.6.1",
@@ -84,10 +88,5 @@
 		"vite": "^6.3.5",
 		"zod": "^3.25.64"
 	},
-	"dependencies": {
-		"@dnd-kit-svelte/svelte": "^0.1.3",
-		"@dnd-kit/abstract": "^0.1.21",
-		"@dnd-kit/collision": "^0.1.21",
-		"@dnd-kit/helpers": "^0.1.21"
-	}
+	"dependencies": {}
 }

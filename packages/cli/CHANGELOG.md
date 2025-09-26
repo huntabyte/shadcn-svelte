@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.8
+
+### Patch Changes
+
+- fix: prompt users before overwriting existing components when adding from external registry ([#2302](https://github.com/huntabyte/shadcn-svelte/pull/2302))
+
 ## 1.0.7
 
 ### Patch Changes
