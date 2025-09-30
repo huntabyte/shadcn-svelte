@@ -91,13 +91,15 @@
 			accessorKey: "status",
 			header: "Status",
 			cell: ({ row }) => {
-				const statusSnippet = createRawSnippet<[string]>((getStatus) => {
-					const status = getStatus();
+				const statusSnippet = createRawSnippet<[{ status: string }]>((getStatus) => {
+					const { status } = getStatus();
 					return {
 						render: () => `<div class="capitalize">${status}</div>`,
 					};
 				});
-				return renderSnippet(statusSnippet, row.getValue("status"));
+				return renderSnippet(statusSnippet, {
+					status: row.original.status,
+				});
 			},
 		},
 		{
@@ -107,14 +109,16 @@
 					onclick: column.getToggleSortingHandler(),
 				}),
 			cell: ({ row }) => {
-				const emailSnippet = createRawSnippet<[string]>((getEmail) => {
-					const email = getEmail();
+				const emailSnippet = createRawSnippet<[{ email: string }]>((getEmail) => {
+					const { email } = getEmail();
 					return {
 						render: () => `<div class="lowercase">${email}</div>`,
 					};
 				});
 
-				return renderSnippet(emailSnippet, row.getValue("email"));
+				return renderSnippet(emailSnippet, {
+					email: row.original.email,
+				});
 			},
 		},
 		{
@@ -125,24 +129,24 @@
 						render: () => `<div class="text-right">Amount</div>`,
 					};
 				});
-				return renderSnippet(amountHeaderSnippet, "");
+				return renderSnippet(amountHeaderSnippet);
 			},
 			cell: ({ row }) => {
-				const amountCellSnippet = createRawSnippet<[string]>((getAmount) => {
-					const amount = getAmount();
-					return {
-						render: () => `<div class="text-right font-medium">${amount}</div>`,
-					};
-				});
 				const formatter = new Intl.NumberFormat("en-US", {
 					style: "currency",
 					currency: "USD",
 				});
 
-				return renderSnippet(
-					amountCellSnippet,
-					formatter.format(Number.parseFloat(row.getValue("amount")))
-				);
+				const amountCellSnippet = createRawSnippet<[{ amount: number }]>((getAmount) => {
+					const { amount } = getAmount();
+					const formatted = formatter.format(amount);
+					return {
+						render: () => `<div class="text-right font-medium">${formatted}</div>`,
+					};
+				});
+				return renderSnippet(amountCellSnippet, {
+					amount: row.original.amount,
+				});
 			},
 		},
 		{
