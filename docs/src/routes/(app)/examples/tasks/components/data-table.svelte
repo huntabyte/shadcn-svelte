@@ -78,14 +78,16 @@
 				});
 			},
 			cell: ({ row }) => {
-				const idSnippet = createRawSnippet<[string]>((getId) => {
-					const id = getId();
+				const idSnippet = createRawSnippet<[{ id: string }]>((getId) => {
+					const { id } = getId();
 					return {
 						render: () => `<div class="w-[80px]">${id}</div>`,
 					};
 				});
 
-				return renderSnippet(idSnippet, row.getValue("id"));
+				return renderSnippet(idSnippet, {
+					id: row.original.id,
+				});
 			},
 			enableSorting: false,
 			enableHiding: false,
