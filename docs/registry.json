@@ -1438,6 +1438,21 @@
 			]
 		},
 		{
+			"name": "spinner",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/spinner/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/spinner/spinner.svelte"
+				}
+			]
+		},
+		{
 			"name": "switch",
 			"type": "registry:ui",
 			"registryDependencies": [],
