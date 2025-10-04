@@ -29,14 +29,15 @@
 						<Sidebar.Menu class="gap-0.5">
 							{#each item.items as subItem (subItem.href)}
 								{#if subItem.items.length === 0}
-									<Sidebar.MenuItem>
+									<Sidebar.MenuItem class="w-full">
 										<Sidebar.MenuButton
 											isActive={subItem.href === pathname}
-											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
+											class="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit w-full overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:-inset-y-1 after:inset-x-0 after:z-0 after:rounded-md"
 										>
 											{#snippet child({ props })}
-												<a href={subItem.href} {...props}>{subItem.title}</a
-												>
+												<a href={subItem.href} {...props}>
+													{subItem.title}
+												</a>
 											{/snippet}
 										</Sidebar.MenuButton>
 									</Sidebar.MenuItem>
