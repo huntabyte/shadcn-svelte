@@ -797,6 +797,57 @@
 			]
 		},
 		{
+			"name": "field",
+			"type": "registry:ui",
+			"registryDependencies": ["label", "separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-error.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-label.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-legend.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-set.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/index.ts"
+				}
+			]
+		},
+		{
 			"name": "form",
 			"type": "registry:ui",
 			"registryDependencies": ["button", "label"],
