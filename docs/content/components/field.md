@@ -1,6 +1,6 @@
 ---
 title: Field
-description: A versatile component for building form layouts with labels, descriptions, and error handling.
+description: Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/field
@@ -14,10 +14,6 @@ links:
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 	import Step from "$lib/components/step.svelte";
 </script>
-
-The `Field` component is a flexible container for building form layouts. It provides consistent spacing, orientation options, and built-in support for labels, descriptions, and error messages. Use it with the `FieldGroup` component to create organized form sections.
-
-This component is perfect for creating consistent form layouts without having to repeat the same structure and styling patterns.
 
 <ComponentPreview name="field-demo">
 
@@ -51,46 +47,78 @@ Copy and paste the component source files linked at the top of this page into yo
   import * as Field from "$lib/components/ui/field/index.js";
 </script>
 
-<Field.Root>
-  <Field.Label>Field Label</Field.Label>
-  <Field.Content>
-    <Field.Title>Field Title</Field.Title>
-    <Field.Description>Field description text</Field.Description>
-  </Field.Content>
-</Field.Root>
+<Field.Set>
+  <Field.Legend>Profile</Field.Legend>
+  <Field.Description>This appears on invoices and emails.</Field.Description>
+  <Field.Group>
+    <Field.Field>
+      <Field.Label htmlFor="name">Full name</Field.Label>
+      <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />
+      <Field.Description
+        >This appears on invoices and emails.</Field.Description
+      >
+    </Field.Field>
+    <Field.Field>
+      <Field.Label htmlFor="username">Username</Field.Label>
+      <Input id="username" autoComplete="off" aria-invalid />
+      <Field.Error>Choose another username.</Field.Error>
+    </Field.Field>
+    <Field.Field orientation="horizontal">
+      <Switch id="newsletter" />
+      <Field.Label htmlFor="newsletter">
+        Subscribe to the newsletter
+      </Field.Label>
+    </Field.Field>
+  </Field.Group>
+</Field.Set>
 ```
 
-## Field vs Item
+## Anatomy
 
-Use Field when you need to display form inputs with labels, descriptions, and error handling.
+The `Field` family is designed for composing accessible forms. A typical field is structured as follows:
 
-If you only need to display content such as a title, description, and actions without form functionality, use `Item`.
+```svelte
+<Field>
+  <FieldLabel htmlFor="input-id">Label</FieldLabel>
+  <!-- Input, Select, Switch, etc. -->
+  <FieldDescription>Optional helper text.</FieldDescription>
+  <FieldError>Validation message.</FieldError>
+</Field>
+```
+
+- `Field` is the core wrapper for a single field.
+- `FieldContent` is a flex column that groups label and description. Not required if you have no description.
+- Wrap related fields with `FieldGroup`, and use `FieldSet` with `FieldLegend` for semantic grouping.
 
 ## Examples
 
-### Orientation
+### Input
 
-The `Field` component supports different orientations for different layouts.
-
-<ComponentPreview name="field-orientation-demo">
+<ComponentPreview name="field-input-demo">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Error
+### Textarea
 
-<ComponentPreview name="field-error-demo">
+<ComponentPreview name="field-textarea-demo">
 
 <div></div>
 
 </ComponentPreview>
 
-### Field Group
+### Select
 
-Use `FieldGroup` to organize multiple fields with consistent spacing.
+<ComponentPreview name="field-select-demo">
 
-<ComponentPreview name="field-group-demo">
+<div></div>
+
+</ComponentPreview>
+
+### Slider
+
+<ComponentPreview name="field-slider-demo">
 
 <div></div>
 
@@ -98,18 +126,85 @@ Use `FieldGroup` to organize multiple fields with consistent spacing.
 
 ### Field Set
 
-Use `FieldSet` and `FieldLegend` for grouping related form fields.
-
-<ComponentPreview name="field-set-demo">
+<ComponentPreview name="field-field-set-demo">
 
 <div></div>
 
 </ComponentPreview>
 
-### With Separator
+### Checkbox
 
-<ComponentPreview name="field-separator-demo">
+<ComponentPreview name="field-checkbox-demo">
 
 <div></div>
 
 </ComponentPreview>
+
+### Radio
+
+<ComponentPreview name="field-radio-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Switch
+
+<ComponentPreview name="field-switch-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Choice Card
+
+Wrap `Field` components inside `FieldLabel` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.
+
+<ComponentPreview name="field-choice-card">
+
+<div></div>
+
+</ComponentPreview>
+
+### Field Group
+
+Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
+
+<ComponentPreview name="field-field-group-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+### Responsive Layout
+
+- Vertical fields: Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.
+- Horizontal fields: Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `FieldContent` to keep descriptions aligned.
+- Responsive fields: Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `FieldGroup` to switch orientations at specific breakpoints.
+
+<ComponentPreview name="field-responsive-layout-demo">
+
+<div></div>
+
+</ComponentPreview>
+
+## Validation and Errors
+
+- Add `data-invalid` to `Field` to switch the entire block into an error state.
+- Add `aria-invalid` on the input itself for assistive technologies.
+- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.
+  Copy
+
+```svelte
+<Field.Field data-invalid>
+  <Field.Label htmlFor="email">Email</Field.Label>
+  <Input id="email" type="email" aria-invalid />
+  <Field.Error>Enter a valid email address.</Field.Error>
+</Field.Field>
+```
+
+## Accessibility
+
+- `FieldSet` and `FieldLegend` keep related controls grouped for keyboard and assistive tech users.
+- `Field` outputs `role="group"` so nested controls inherit labeling from `FieldLabel` and `FieldLegend` when combined.
+- Apply `FieldSeparator` sparingly to ensure screen readers encounter clear section boundaries.
