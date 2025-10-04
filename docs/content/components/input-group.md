@@ -117,7 +117,7 @@ Input groups also work with textarea components. Use `block-start` or `block-end
 
 </ComponentPreview>
 
-### Spinner 
+### Spinner
 
 Show loading indicators while processing input.
 
