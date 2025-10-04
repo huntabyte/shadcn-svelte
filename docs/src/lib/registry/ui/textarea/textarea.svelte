@@ -6,7 +6,7 @@
 		ref = $bindable(null),
 		value = $bindable(),
 		class: className,
-		'data-slot':dataSlot = 'textarea',
+		"data-slot": dataSlot = "textarea",
 		...restProps
 	}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();
 </script>
