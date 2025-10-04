@@ -2,7 +2,6 @@
 	import { cn } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
-	import { mergeProps } from "bits-ui";
 
 	let {
 		class: className,
@@ -19,11 +18,10 @@
 		)
 	);
 
-	const mergedProps = $derived(
-		mergeProps(restProps, {
-			class: classes,
-		})
-	);
+	const mergedProps = $derived({
+		...restProps,
+		class: classes,
+	});
 </script>
 
 {#if child}
