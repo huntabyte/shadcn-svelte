@@ -3,7 +3,7 @@ import Addon from "./input-group-addon.svelte";
 import Button from "./input-group-button.svelte";
 import Input from "./input-group-input.svelte";
 import Text from "./input-group-text.svelte";
-import TextArea from "./input-group-text-area.svelte";
+import Textarea from "./input-group-textarea.svelte";
 
 export {
 	Root,
@@ -11,12 +11,12 @@ export {
 	Button,
 	Input,
 	Text,
-	TextArea,
+	Textarea,
 	//
 	Root as InputGroup,
 	Addon as InputGroupAddon,
 	Button as InputGroupButton,
 	Input as InputGroupInput,
 	Text as InputGroupText,
-	TextArea as InputGroupTextArea,
+	Textarea as InputGroupTextarea,
 };

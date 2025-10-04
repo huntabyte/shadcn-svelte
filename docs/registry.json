@@ -762,6 +762,41 @@
 			]
 		},
 		{
+			"name": "empty",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-media.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/index.ts"
+				}
+			]
+		},
+		{
 			"name": "form",
 			"type": "registry:ui",
 			"registryDependencies": ["button", "label"],
@@ -861,11 +896,11 @@
 				},
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/input-group/input-group-text-area.svelte"
+					"path": "src/lib/registry/ui/input-group/input-group-text.svelte"
 				},
 				{
 					"type": "registry:file",
-					"path": "src/lib/registry/ui/input-group/input-group-text.svelte"
+					"path": "src/lib/registry/ui/input-group/input-group-textarea.svelte"
 				},
 				{
 					"type": "registry:file",
@@ -897,6 +932,57 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/input-otp/input-otp.svelte"
+				}
+			]
+		},
+		{
+			"name": "item",
+			"type": "registry:ui",
+			"registryDependencies": ["separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-actions.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-footer.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-media.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item.svelte"
 				}
 			]
 		},
