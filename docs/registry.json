@@ -223,6 +223,29 @@
 			]
 		},
 		{
+			"name": "button-group",
+			"type": "registry:ui",
+			"registryDependencies": ["separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group-text.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/index.ts"
+				}
+			]
+		},
+		{
 			"name": "calendar",
 			"type": "registry:ui",
 			"registryDependencies": ["button"],
@@ -816,6 +839,41 @@
 			]
 		},
 		{
+			"name": "input-group",
+			"type": "registry:ui",
+			"registryDependencies": ["button", "input", "textarea"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-addon.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-input.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-text-area.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-text.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group.svelte"
+				}
+			]
+		},
+		{
 			"name": "input-otp",
 			"type": "registry:ui",
 			"registryDependencies": [],
@@ -839,6 +897,25 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/input-otp/input-otp.svelte"
+				}
+			]
+		},
+		{
+			"name": "kbd",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/kbd-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/kbd.svelte"
 				}
 			]
 		},
