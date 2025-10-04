@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { components } from "$content/index.js";
+	import { NEW_COMPONENTS } from "$lib/navigation.js";
 
 	const list = components.filter((c) => {
 		if (c.title === "Components") return false;
@@ -13,9 +14,12 @@
 	{#each list as component (component.title)}
 		<a
 			href="/docs{component.slugFull}"
-			class="text-lg font-medium underline-offset-4 hover:underline md:text-base"
+			class="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline md:text-base"
 		>
 			{component.title}
+			{#if NEW_COMPONENTS.has(component.slug)}
+				<span class="flex size-2 rounded-full bg-blue-500" title="New"></span>
+			{/if}
 		</a>
 	{/each}
 </div>

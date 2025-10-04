@@ -1,6 +1,17 @@
 import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
+/** List new components here to highlight them in the sidebar */
+export const NEW_COMPONENTS = new Set([
+	"item",
+	"button-group",
+	"kbd",
+	"spinner",
+	"input-group",
+	"field",
+	"empty",
+]);
+
 export type NavItem = {
 	title: string;
 	href?: string;
@@ -8,6 +19,7 @@ export type NavItem = {
 	external?: boolean;
 	label?: string;
 	icon?: Component;
+	indicator?: "new";
 };
 
 export type SidebarNavItem = NavItem & {
@@ -124,6 +136,7 @@ function generateComponentsNav(): SidebarNavItem[] {
 		if (doc.title === "Components") continue;
 		componentsNavItems.push({
 			title: doc.title,
+			indicator: NEW_COMPONENTS.has(doc.slug) ? "new" : undefined,
 			href: `/docs/components/${doc.slug}`,
 			items: [],
 		});

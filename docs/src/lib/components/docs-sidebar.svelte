@@ -37,6 +37,12 @@
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>
 													{subItem.title}
+													{#if subItem.indicator === "new"}
+														<span
+															class="flex size-2 rounded-full bg-blue-500"
+															title="New"
+														></span>
+													{/if}
 												</a>
 											{/snippet}
 										</Sidebar.MenuButton>
