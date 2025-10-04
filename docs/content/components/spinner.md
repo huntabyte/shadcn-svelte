@@ -68,7 +68,7 @@ You can replace the default spinner icon with any other icon by editing the Spin
 
 </ComponentPreview>
 
-### Examples
+## Examples
 
 ### Size
 

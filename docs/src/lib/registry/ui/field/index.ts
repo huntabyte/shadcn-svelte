@@ -12,7 +12,7 @@ import Error from "./field-error.svelte";
 export {
 	Root,
 	Set,
-	Legend,   
+	Legend,
 	Group,
 	Content,
 	Label,
