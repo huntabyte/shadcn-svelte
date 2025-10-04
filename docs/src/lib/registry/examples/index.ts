@@ -140,3 +140,9 @@ export { default as InputGroupLabelDemo } from "./input-group-label-demo.svelte"
 export { default as InputGroupDropdownDemo } from "./input-group-dropdown-demo.svelte";
 export { default as InputGroupButtonGroupDemo } from "./input-group-button-group-demo.svelte";
 export { default as InputGroupCustomInputDemo } from "./input-group-custom-input-demo.svelte";
+export { default as EmptyDemo } from "./empty-demo.svelte";
+export { default as EmptyOutlineDemo } from "./empty-outline-demo.svelte";
+export { default as EmptyBackgroundDemo } from "./empty-background-demo.svelte";
+export { default as EmptyAvatarDemo } from "./empty-avatar-demo.svelte";
+export { default as EmptyAvatarGroupDemo } from "./empty-avatar-group-demo.svelte";
+export { default as EmptyInputGroupDemo } from "./empty-input-group-demo.svelte";
