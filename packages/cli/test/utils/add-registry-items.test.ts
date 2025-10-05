@@ -184,4 +184,59 @@ describe("addRegistryItems", () => {
 			])
 		);
 	});
+
+	it("should display correct path for utils with custom location", async () => {
+		const utilsItem = {
+			name: "utils",
+			type: "registry:lib",
+			files: [{ target: "utils.ts", type: "registry:lib", content: "export const cn = () => {}" }],
+		} satisfies ResolvedRegistryItem;
+
+		// Mock config with custom utils path
+		const customConfig = {
+			...mockConfig,
+			resolvedPaths: {
+				...mockConfig.resolvedPaths,
+				utils: "/test/custom/path/shadcn-utils",
+			},
+		};
+
+		vi.mocked(existsSync).mockReturnValue(false);
+
+		vi.mocked(registry.resolveRegistryItems).mockResolvedValue([utilsItem]);
+		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([utilsItem]);
+		
+		// Simulate the actual behavior of resolveItemFilePath for utils
+		vi.mocked(registry.resolveItemFilePath).mockImplementation((config, item, _file) => {
+			if (item.name === "utils") {
+				const utils = config.resolvedPaths.utils;
+				if (utils.match(/.*\.(ts|js)$/)) return utils;
+				else return `${utils}.ts`;
+			}
+			return "/default/path";
+		});
+		vi.mocked(registry.getItemAliasDir).mockReturnValue("/test/lib");
+
+		// Capture the task that gets executed
+		let taskResult: string | undefined;
+		vi.mocked(p.tasks).mockImplementation(async (tasks) => {
+			for (const task of tasks) {
+				if (typeof task.task === "function") {
+					taskResult = await task.task();
+				}
+			}
+		});
+
+		await addRegistryItems({
+			selectedItems: ["utils"],
+			config: customConfig,
+			overwrite: false,
+			deps: true,
+		});
+
+		// Verify that the displayed path matches the actual file path written
+		expect(taskResult).toContain("custom/path/shadcn-utils.ts");
+		// Verify it doesn't use the default lib path
+		expect(taskResult).not.toContain("lib/utils");
+	});
 });
