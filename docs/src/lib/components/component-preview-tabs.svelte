@@ -60,15 +60,18 @@
 			{/if}
 		</div>
 	</Tabs.Root>
-	<div data-tab={value} class="data-[tab=code]:border-code relative rounded-lg border md:-mx-4">
+	<div
+		data-tab={value}
+		class="data-[tab=code]:border-code relative min-h-[450px] rounded-lg border md:-mx-4"
+	>
 		<div
 			data-slot="preview"
 			data-active={value === "preview"}
-			class="invisible data-[active=true]:visible"
+			class="hidden data-[active=true]:block"
 		>
 			<div
 				data-align={align}
-				class="preview flex h-[450px] w-full justify-center p-10 data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center"
+				class="preview flex min-h-[450px] w-full justify-center p-10 data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center"
 			>
 				{#if example}
 					{@render example()}

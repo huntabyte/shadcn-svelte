@@ -35,7 +35,7 @@
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@tabler/icons-svelte": "^3.31.0",
-		"@tailwindcss/vite": "^4.1.13",
+		"@tailwindcss/vite": "^4.1.14",
 		"@tanstack/table-core": "^8.20.5",
 		"@types/d3-scale": "^4.0.8",
 		"@types/d3-shape": "^3.1.7",
@@ -76,7 +76,7 @@
 		"sveltekit-superforms": "^2.26.1",
 		"tailwind-merge": "^3.3.1",
 		"tailwind-variants": "^3.1.1",
-		"tailwindcss": "^4.1.13",
+		"tailwindcss": "^4.1.14",
 		"tsx": "^4.20.3",
 		"tw-animate-css": "^1.3.8",
 		"typescript": "catalog:",
@@ -87,6 +87,5 @@
 		"velite": "^0.2.4",
 		"vite": "catalog:",
 		"zod": "^3.25.64"
-	},
-	"dependencies": {}
+	}
 }

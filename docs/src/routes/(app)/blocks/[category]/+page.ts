@@ -13,7 +13,7 @@ type Item = HighlightedBlock & {
 	component?: Promise<Component>;
 };
 
-const components = import.meta.glob("/src/lib/registry/blocks/calendar-*.svelte", {
+const calendarComponents = import.meta.glob("/src/lib/registry/blocks/calendar-*.svelte", {
 	import: "default",
 });
 
@@ -42,8 +42,18 @@ export const load: PageLoad = async ({ params, data, fetch }) => {
 			const resp = await fetch(`/api/block/${block}`);
 			const item = (await resp.json()) as Item;
 			const path = `/src/lib/registry/blocks/${block}.svelte`;
-			item.component = components[path]() as Promise<Component>;
+			item.component = calendarComponents[path]() as Promise<Component>;
 			return item;
+		});
+	} else if (category === "otp") {
+		loadItems = data.otps.map(async (block) => {
+			const resp = await fetch(`/api/block/${block}`);
+			return (await resp.json()) as Item;
+		});
+	} else if (category === "sign-up") {
+		loadItems = data.signUps.map(async (block) => {
+			const resp = await fetch(`/api/block/${block}`);
+			return (await resp.json()) as Item;
 		});
 	} else {
 		error(404);
