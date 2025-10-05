@@ -3235,6 +3235,21 @@
 			]
 		},
 		{
+			"name": "otp-1",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-1/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-1/components/otp-form.svelte"
+				}
+			]
+		},
+		{
 			"name": "sidebar-01",
 			"type": "registry:block",
 			"registryDependencies": [
