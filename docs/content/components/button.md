@@ -34,14 +34,6 @@ links:
 
 <Step>
 
-Install `bits-ui`:
-
-</Step>
-
-<PMInstall command="bits-ui -D" />
-
-<Step>
-
 Copy and paste the component source files linked at the top of this page into your project.
 
 </Step>

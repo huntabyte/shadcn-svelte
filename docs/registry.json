@@ -223,6 +223,29 @@
 			]
 		},
 		{
+			"name": "button-group",
+			"type": "registry:ui",
+			"registryDependencies": ["separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group-text.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/button-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/button-group/index.ts"
+				}
+			]
+		},
+		{
 			"name": "calendar",
 			"type": "registry:ui",
 			"registryDependencies": ["button"],
@@ -739,6 +762,92 @@
 			]
 		},
 		{
+			"name": "empty",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-media.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/empty.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/empty/index.ts"
+				}
+			]
+		},
+		{
+			"name": "field",
+			"type": "registry:ui",
+			"registryDependencies": ["label", "separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-error.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-label.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-legend.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-set.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/field.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/field/index.ts"
+				}
+			]
+		},
+		{
 			"name": "form",
 			"type": "registry:ui",
 			"registryDependencies": ["button", "label"],
@@ -816,6 +925,41 @@
 			]
 		},
 		{
+			"name": "input-group",
+			"type": "registry:ui",
+			"registryDependencies": ["button", "input", "textarea"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-addon.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-button.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-input.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-text.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group-textarea.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/input-group/input-group.svelte"
+				}
+			]
+		},
+		{
 			"name": "input-otp",
 			"type": "registry:ui",
 			"registryDependencies": [],
@@ -839,6 +983,76 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/input-otp/input-otp.svelte"
+				}
+			]
+		},
+		{
+			"name": "item",
+			"type": "registry:ui",
+			"registryDependencies": ["separator"],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-actions.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-content.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-description.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-footer.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-header.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-media.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-separator.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item-title.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/item/item.svelte"
+				}
+			]
+		},
+		{
+			"name": "kbd",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/kbd-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/kbd/kbd.svelte"
 				}
 			]
 		},
@@ -1434,6 +1648,21 @@
 				{
 					"type": "registry:file",
 					"path": "src/lib/registry/ui/sonner/sonner.svelte"
+				}
+			]
+		},
+		{
+			"name": "spinner",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/spinner/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/spinner/spinner.svelte"
 				}
 			]
 		},
@@ -3006,6 +3235,81 @@
 			]
 		},
 		{
+			"name": "otp-01",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-01/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-02",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-02/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-02/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-03/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-03/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-04",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-04/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-04/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-05",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-05/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-05/components/otp-form.svelte"
+				}
+			]
+		},
+		{
 			"name": "sidebar-01",
 			"type": "registry:block",
 			"registryDependencies": [
@@ -3477,6 +3781,81 @@
 				{
 					"type": "registry:component",
 					"path": "src/lib/registry/blocks/sidebar-16/components/site-header.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-01",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-01/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-02",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-02/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-02/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-03/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-03/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-04",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-04/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-04/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-05",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-05/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-05/components/signup-form.svelte"
 				}
 			]
 		},
