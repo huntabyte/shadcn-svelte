@@ -3235,17 +3235,77 @@
 			]
 		},
 		{
-			"name": "otp-1",
+			"name": "otp-01",
 			"type": "registry:block",
 			"registryDependencies": ["button", "card", "field", "input-otp"],
 			"files": [
 				{
 					"type": "registry:page",
-					"path": "src/lib/registry/blocks/otp-1/+page.svelte"
+					"path": "src/lib/registry/blocks/otp-01/+page.svelte"
 				},
 				{
 					"type": "registry:component",
-					"path": "src/lib/registry/blocks/otp-1/components/otp-form.svelte"
+					"path": "src/lib/registry/blocks/otp-01/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-02",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-02/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-02/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-03/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-03/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-04",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-04/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-04/components/otp-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "otp-05",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input-otp"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/otp-05/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/otp-05/components/otp-form.svelte"
 				}
 			]
 		},
