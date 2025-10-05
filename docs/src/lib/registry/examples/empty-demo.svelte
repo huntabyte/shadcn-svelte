@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import FolderCodeIcon from "@tabler/icons-svelte/icons/folder-code";
 	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 </script>
@@ -17,13 +17,13 @@
 	</Empty.Header>
 	<Empty.Content>
 		<div class="flex gap-2">
-			<Button.Root>Create Project</Button.Root>
-			<Button.Root variant="outline">Import Project</Button.Root>
+			<Button>Create Project</Button>
+			<Button variant="outline">Import Project</Button>
 		</div>
 	</Empty.Content>
-	<Button.Root variant="link" class="text-muted-foreground" size="sm">
+	<Button variant="link" class="text-muted-foreground" size="sm">
 		<a href="#/">
 			Learn More <ArrowUpRightIcon class="inline" />
 		</a>
-	</Button.Root>
+	</Button>
 </Empty.Root>

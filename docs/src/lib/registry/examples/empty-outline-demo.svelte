@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import CloudIcon from "@tabler/icons-svelte/icons/cloud";
 </script>
 
@@ -15,6 +15,6 @@
 		</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>
-		<Button.Root variant="outline" size="sm">Upload Files</Button.Root>
+		<Button variant="outline" size="sm">Upload Files</Button>
 	</Empty.Content>
 </Empty.Root>

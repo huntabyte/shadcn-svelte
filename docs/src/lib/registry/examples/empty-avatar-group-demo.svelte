@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 	import PlusIcon from "@lucide/svelte/icons/plus";
 </script>
@@ -27,9 +27,9 @@
 		<Empty.Description>Invite your team to collaborate on this project.</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>
-		<Button.Root size="sm">
+		<Button size="sm">
 			<PlusIcon />
 			Invite Members
-		</Button.Root>
+		</Button>
 	</Empty.Content>
 </Empty.Root>
