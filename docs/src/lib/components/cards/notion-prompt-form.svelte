@@ -294,19 +294,23 @@
 					<DropdownMenu.Content side="top" align="end" class="[--radius:1rem]">
 						<DropdownMenu.Group>
 							<DropdownMenu.Item onSelect={(e) => e.preventDefault()}>
-								<label for="web-search">
-									<GlobeIcon /> Web Search
-									<Switch id="web-search" class="ml-auto" checked />
-								</label>
+								{#snippet child({ props })}
+									<label for="web-search" {...props}>
+										<GlobeIcon /> Web Search
+										<Switch id="web-search" class="ml-auto" checked />
+									</label>
+								{/snippet}
 							</DropdownMenu.Item>
 						</DropdownMenu.Group>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Group>
 							<DropdownMenu.Item onSelect={(e) => e.preventDefault()}>
-								<label for="apps">
-									<AppsIcon /> Apps and Integrations
-									<Switch id="apps" class="ml-auto" checked />
-								</label>
+								{#snippet child({ props })}
+									<label for="apps" {...props}>
+										<AppsIcon /> Apps and Integrations
+										<Switch id="apps" class="ml-auto" checked />
+									</label>
+								{/snippet}
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
 								<CirclePlusIcon /> All Sources I can access
