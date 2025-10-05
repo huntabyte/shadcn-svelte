@@ -189,7 +189,9 @@ describe("addRegistryItems", () => {
 		const utilsItem = {
 			name: "utils",
 			type: "registry:lib",
-			files: [{ target: "utils.ts", type: "registry:lib", content: "export const cn = () => {}" }],
+			files: [
+				{ target: "utils.ts", type: "registry:lib", content: "export const cn = () => {}" },
+			],
 		} satisfies ResolvedRegistryItem;
 
 		// Mock config with custom utils path
@@ -205,7 +207,7 @@ describe("addRegistryItems", () => {
 
 		vi.mocked(registry.resolveRegistryItems).mockResolvedValue([utilsItem]);
 		vi.mocked(registry.fetchRegistryItems).mockResolvedValue([utilsItem]);
-		
+
 		// Simulate the actual behavior of resolveItemFilePath for utils
 		vi.mocked(registry.resolveItemFilePath).mockImplementation((config, item, _file) => {
 			if (item.name === "utils") {
