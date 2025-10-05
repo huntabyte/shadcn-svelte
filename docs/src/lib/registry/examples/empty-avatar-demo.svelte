@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Avatar from "$lib/registry/ui/avatar/index.js";
 </script>
 
@@ -19,6 +19,6 @@
 		</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>
-		<Button.Root size="sm">Leave Message</Button.Root>
+		<Button size="sm">Leave Message</Button>
 	</Empty.Content>
 </Empty.Root>

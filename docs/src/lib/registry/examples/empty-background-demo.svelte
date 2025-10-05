@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Empty from "$lib/registry/ui/empty/index.js";
-	import * as Button from "$lib/registry/ui/button/index.js";
+	import { Button } from "$lib/registry/ui/button/index.js";
 	import BellIcon from "@tabler/icons-svelte/icons/bell";
 	import RefreshCcwIcon from "@lucide/svelte/icons/refresh-ccw";
 </script>
@@ -16,9 +16,9 @@
 		</Empty.Description>
 	</Empty.Header>
 	<Empty.Content>
-		<Button.Root variant="outline" size="sm">
+		<Button variant="outline" size="sm">
 			<RefreshCcwIcon />
 			Refresh
-		</Button.Root>
+		</Button>
 	</Empty.Content>
 </Empty.Root>
