@@ -3207,7 +3207,7 @@
 		{
 			"name": "login-04",
 			"type": "registry:block",
-			"registryDependencies": ["card", "label", "input", "button"],
+			"registryDependencies": ["card", "field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
