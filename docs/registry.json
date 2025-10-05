@@ -3192,7 +3192,7 @@
 		{
 			"name": "login-03",
 			"type": "registry:block",
-			"registryDependencies": ["button", "card", "label", "input"],
+			"registryDependencies": ["button", "card", "field", "input"],
 			"files": [
 				{
 					"type": "registry:page",
