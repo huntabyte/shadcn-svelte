@@ -9,13 +9,13 @@
 		ButtonGroupDemo,
 		SpinnerEmptyDemo,
 		ButtonGroupPopoverDemo,
-		ItemDemo,
-		InputGroupButtonDemo,
 	} from "$lib/registry/examples/index.js";
 	import { FieldSeparator } from "$lib/registry/ui/field/index.js";
 	import AppearanceSettings from "./appearance-settings.svelte";
 	import FieldCheckbox from "./field-checkbox.svelte";
 	import FieldHear from "./field-hear.svelte";
+	import InputGroupButtonDemo from "./input-group-button-demo.svelte";
+	import ItemDemo from "./item-demo.svelte";
 	import Nested from "./nested.svelte";
 	import NotionPromptForm from "./notion-prompt-form.svelte";
 </script>
