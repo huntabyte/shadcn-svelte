@@ -282,7 +282,7 @@ export const columns: ColumnDef<Payment>[] = [
       const amountHeaderSnippet = createRawSnippet(() => ({
         render: () => `<div class="text-right">Amount</div>`,
       }));
-      return renderSnippet(amountHeaderSnippet, "");
+      return renderSnippet(amountHeaderSnippet);
     },
     cell: ({ row }) => {
       const formatter = new Intl.NumberFormat("en-US", {
@@ -290,17 +290,20 @@ export const columns: ColumnDef<Payment>[] = [
         currency: "USD",
       });
 
-      const amountCellSnippet = createRawSnippet<[string]>((getAmount) => {
-        const amount = getAmount();
-        return {
-          render: () => `<div class="text-right font-medium">${amount}</div>`,
-        };
-      });
-
-      return renderSnippet(
-        amountCellSnippet,
-        formatter.format(parseFloat(row.getValue("amount")))
+      const amountCellSnippet = createRawSnippet<[{ amount: number }]>(
+        (getAmount) => {
+          const { amount } = getAmount();
+          const formatted = formatter.format(amount);
+          return {
+            render: () =>
+              `<div class="text-right font-medium">${formatted}</div>`,
+          };
+        }
       );
+
+      return renderSnippet(amountCellSnippet, {
+        amount: row.original.amount,
+      });
     },
   },
 ];
