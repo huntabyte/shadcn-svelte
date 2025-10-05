@@ -3177,7 +3177,7 @@
 		{
 			"name": "login-02",
 			"type": "registry:block",
-			"registryDependencies": ["label", "input", "button"],
+			"registryDependencies": ["field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
