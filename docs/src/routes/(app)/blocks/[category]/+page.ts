@@ -50,6 +50,11 @@ export const load: PageLoad = async ({ params, data, fetch }) => {
 			const resp = await fetch(`/api/block/${block}`);
 			return (await resp.json()) as Item;
 		});
+	} else if (category === "sign-up") {
+		loadItems = data.signUps.map(async (block) => {
+			const resp = await fetch(`/api/block/${block}`);
+			return (await resp.json()) as Item;
+		});
 	} else {
 		error(404);
 	}

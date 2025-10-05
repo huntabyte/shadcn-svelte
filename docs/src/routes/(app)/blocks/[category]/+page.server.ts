@@ -7,6 +7,7 @@ const dashboards = import.meta.glob("/src/__registry__/json/dashboard-*.json");
 const logins = import.meta.glob("/src/__registry__/json/login-*.json");
 const calendars = import.meta.glob("/src/__registry__/json/calendar-*.json");
 const otps = import.meta.glob("/src/__registry__/json/otp-*.json");
+const signUps = import.meta.glob("/src/__registry__/json/signup-*.json");
 
 export const prerender = true;
 
@@ -20,6 +21,7 @@ export const load: PageServerLoad = async () => {
 		logins: getBlockNames(logins),
 		sidebars: getBlockNames(sidebars),
 		otps: getBlockNames(otps),
+		signUps: getBlockNames(signUps),
 	};
 };
 

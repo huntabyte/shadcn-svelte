@@ -3785,6 +3785,81 @@
 			]
 		},
 		{
+			"name": "signup-01",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-01/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-02",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-02/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-02/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-03",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-03/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-03/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-04",
+			"type": "registry:block",
+			"registryDependencies": ["button", "card", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-04/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-04/components/signup-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "signup-05",
+			"type": "registry:block",
+			"registryDependencies": ["button", "field", "input"],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/signup-05/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/signup-05/components/signup-form.svelte"
+				}
+			]
+		},
+		{
 			"name": "is-mobile",
 			"type": "registry:hook",
 			"registryDependencies": [],
