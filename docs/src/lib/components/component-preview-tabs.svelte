@@ -60,11 +60,14 @@
 			{/if}
 		</div>
 	</Tabs.Root>
-	<div data-tab={value} class="data-[tab=code]:border-code relative rounded-lg border md:-mx-4">
+	<div
+		data-tab={value}
+		class="data-[tab=code]:border-code relative min-h-[450px] rounded-lg border md:-mx-4"
+	>
 		<div
 			data-slot="preview"
 			data-active={value === "preview"}
-			class="invisible data-[active=true]:visible"
+			class="hidden data-[active=true]:block"
 		>
 			<div
 				data-align={align}

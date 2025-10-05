@@ -22,7 +22,7 @@
 		</div>
 	</Empty.Content>
 	<Button.Root variant="link" class="text-muted-foreground" size="sm">
-		<a href="#">
+		<a href="#/">
 			Learn More <ArrowUpRightIcon class="inline" />
 		</a>
 	</Button.Root>
