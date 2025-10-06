@@ -3162,7 +3162,7 @@
 		{
 			"name": "login-01",
 			"type": "registry:block",
-			"registryDependencies": ["button", "card", "input", "label"],
+			"registryDependencies": ["button", "card", "input", "field"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3177,7 +3177,7 @@
 		{
 			"name": "login-02",
 			"type": "registry:block",
-			"registryDependencies": ["label", "input", "button"],
+			"registryDependencies": ["field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3192,7 +3192,7 @@
 		{
 			"name": "login-03",
 			"type": "registry:block",
-			"registryDependencies": ["button", "card", "label", "input"],
+			"registryDependencies": ["button", "card", "field", "input"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3207,7 +3207,7 @@
 		{
 			"name": "login-04",
 			"type": "registry:block",
-			"registryDependencies": ["card", "label", "input", "button"],
+			"registryDependencies": ["card", "field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3222,7 +3222,7 @@
 		{
 			"name": "login-05",
 			"type": "registry:block",
-			"registryDependencies": ["label", "input", "button"],
+			"registryDependencies": ["field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
