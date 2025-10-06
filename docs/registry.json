@@ -3235,6 +3235,21 @@
 			]
 		},
 		{
+			"name": "new-components-01",
+			"type": "registry:block",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/new-components-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/appearance-settings.svelte"
+				}
+			]
+		},
+		{
 			"name": "otp-01",
 			"type": "registry:block",
 			"registryDependencies": ["button", "card", "field", "input-otp"],
