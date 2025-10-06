@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as registry from "../../src/utils/registry/index.js";
 import { addRegistryItems } from "../../src/utils/add-registry-items.js";
 import type { ResolvedConfig } from "../../src/utils/get-config";
+import { toPosixPath } from "./test-helpers.js";
 
 vi.mock("node:fs", () => ({
 	existsSync: vi.fn(),
@@ -237,8 +238,9 @@ describe("addRegistryItems", () => {
 		});
 
 		// Verify that the displayed path matches the actual file path written
-		expect(taskResult).toContain("custom/path/shadcn-utils.ts");
+		// Normalize paths for cross-platform compatibility
+		expect(toPosixPath(taskResult ?? "")).toContain("custom/path/shadcn-utils.ts");
 		// Verify it doesn't use the default lib path
-		expect(taskResult).not.toContain("lib/utils");
+		expect(toPosixPath(taskResult ?? "")).not.toContain("lib/utils");
 	});
 });
