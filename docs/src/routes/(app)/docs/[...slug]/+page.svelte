@@ -41,7 +41,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 	class="flex flex-row-reverse items-stretch text-[1.05rem] sm:text-[15px] xl:w-full"
 >
 	<div
-		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
+		class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--footer-height)+2rem)] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex"
 	>
 		<div class="h-(--top-spacing) shrink-0"></div>
 		{#if doc.toc.length}
@@ -70,7 +70,9 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						>
 							{doc.title}
 						</h1>
-						<div class="flex items-center gap-2 pt-1.5">
+						<div
+							class="docs-nav bg-background/80 border-border/50 fixed inset-x-0 bottom-0 isolate z-50 flex items-center gap-2 border-t px-6 py-4 backdrop-blur-sm sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none"
+						>
 							{#if neighbors.previous}
 								<Button
 									variant="secondary"

@@ -3,6 +3,10 @@
 
 @import "./themes.css";
 
+@custom-variant dark (&:is(.dark *));
+
+@custom-variant fixed (&:is(.layout-fixed *));
+
 @font-face {
 	font-family: "Geist";
 	src: url("/fonts/Geist/geist.woff2") format("woff2");
@@ -16,10 +20,6 @@
 	font-style: normal;
 	font-display: swap;
 }
-
-@custom-variant dark (&:is(.dark *));
-
-@custom-variant fixed (&:is(.layout-fixed *));
 
 @theme inline {
 	--breakpoint-3xl: 1600px;

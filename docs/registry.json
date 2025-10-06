@@ -3235,6 +3235,113 @@
 			]
 		},
 		{
+			"name": "new-components-01",
+			"type": "registry:block",
+			"registryDependencies": [
+				"checkbox",
+				"field",
+				"button",
+				"button-group",
+				"input",
+				"label",
+				"radio-group",
+				"switch",
+				"dropdown-menu",
+				"input-group",
+				"tooltip",
+				"popover",
+				"separator",
+				"textarea",
+				"empty",
+				"avatar",
+				"kbd",
+				"select",
+				"slider",
+				"item",
+				"badge",
+				"command",
+				"spinner"
+			],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/new-components-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/appearance-settings.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-input-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-nested.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-popover.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/empty-avatar-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/empty-input-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-choice-card.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-slider.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-button.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-textarea.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/item-avatar.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/item-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/notion-prompt-form.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/spinner-badge.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/spinner-empty.svelte"
+				}
+			]
+		},
+		{
 			"name": "otp-01",
 			"type": "registry:block",
 			"registryDependencies": ["button", "card", "field", "input-otp"],
