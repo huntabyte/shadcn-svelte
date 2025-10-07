@@ -1,0 +1,144 @@
+# Vite
+
+How to setup shadcn-svelte in a Vite project.
+
+### Add TailwindCSS
+
+Use the Svelte CLI to add Tailwind CSS to your project.
+
+```bash
+pnpm dlx sv add tailwindcss
+```
+
+```bash
+npx sv add tailwindcss
+```
+
+```bash
+bun x sv add tailwindcss
+```
+
+```bash
+npx sv add tailwindcss
+```
+
+### Edit tsconfig.json file
+
+The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the `baseUrl` and `paths` properties to the `compilerOptions` section of the `tsconfig.json` and `tsconfig.app.json` files:
+
+tsconfig.json
+
+```json
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
+### Edit tsconfig.app.json file
+
+Add the following code to the `tsconfig.app.json` file to resolve paths, for your IDE:
+
+tsconfig.app.json
+
+```json
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
+### Update vite.config.ts
+
+Add the following code to the vite.config.ts so your app can resolve paths without error:
+
+vite.config.ts
+
+```ts
+import path from "path";
+export default defineConfig({
+  // ... other options
+  resolve: {
+    alias: {
+      $lib: path.resolve("./src/lib"),
+    },
+  },
+});
+```
+
+### Run the CLI
+
+```bash
+pnpm dlx shadcn-svelte@latest init
+```
+
+```bash
+npx shadcn-svelte@latest init
+```
+
+```bash
+bun x shadcn-svelte@latest init
+```
+
+```bash
+npx shadcn-svelte@latest init
+```
+
+### Configure components.json
+
+You will be asked a few questions to configure `components.json`:
+
+```txt
+Which base color would you like to use?  Slate
+Where is your global CSS file? (this file will be overwritten)  src/app.css
+Configure the import alias for lib:  $lib
+Configure the import alias for components:  $lib/components
+Configure the import alias for utils:  $lib/utils
+Configure the import alias for hooks:  $lib/hooks
+Configure the import alias for ui:  $lib/components/ui
+```
+
+### That's it
+
+You can now start adding components to your project.
+
+```bash
+pnpm dlx shadcn-svelte@latest add button
+```
+
+```bash
+npx shadcn-svelte@latest add button
+```
+
+```bash
+bun x shadcn-svelte@latest add button
+```
+
+```bash
+npx shadcn-svelte@latest add button
+```
+
+The command above will add the `Button` component to your project. You can then import it like this:
+
+```svelte
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button/index.js";
+</script>
+<Button>Click me</Button>
+```

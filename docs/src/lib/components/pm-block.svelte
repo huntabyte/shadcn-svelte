@@ -48,7 +48,7 @@
 				>
 					<TerminalIcon class="text-code size-3" />
 				</div>
-				<Tabs.List class="rounded-none bg-transparent p-0">
+				<Tabs.List class="rounded-none bg-transparent p-0" data-llm-ignore>
 					{#each PACKAGE_MANAGERS as pm (pm)}
 						<Tabs.Trigger
 							value={pm}

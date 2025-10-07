@@ -1,0 +1,427 @@
+# Carousel
+
+A carousel with motion and swipe built using Embla.
+
+[Docs ](https://www.embla-carousel.com/get-started/svelte)
+
+[API Reference ](https://www.embla-carousel.com/api)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root class="w-full max-w-xs">
+  <Carousel.Content>
+    {#each Array(5), i}
+      <Carousel.Item>
+        <div class="p-1">
+          <Card.Root>
+            <Card.Content
+              class="flex aspect-square items-center justify-center p-6"
+            >
+              <span class="text-4xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </div>
+      </Carousel.Item>
+    {/each}
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+## About
+
+The carousel component is built using the [Embla Carousel](https://www.embla-carousel.com/get-started/svelte/) library.
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add carousel
+```
+
+```bash
+npx shadcn-svelte@latest add carousel
+```
+
+```bash
+bun x shadcn-svelte@latest add carousel
+```
+
+```bash
+npx shadcn-svelte@latest add carousel
+```
+
+Install `embla-carousel-svelte`:
+
+```bash
+pnpm i embla-carousel-svelte -D
+```
+
+```bash
+npm i embla-carousel-svelte -D
+```
+
+```bash
+bun install embla-carousel-svelte -D
+```
+
+```bash
+yarn install embla-carousel-svelte -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root>
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+## Examples
+
+### Sizes
+
+To set the size of the items, you can use the `basis` utility class on the `<Carousel.Item />`.
+
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root
+  opts={{
+    align: "start"
+  }}
+  class="w-full max-w-sm"
+>
+  <Carousel.Content>
+    {#each Array(5) as _, i (i)}
+      <Carousel.Item class="md:basis-1/2 lg:basis-1/3">
+        <div class="p-1">
+          <Card.Root>
+            <Card.Content
+              class="flex aspect-square items-center justify-center p-6"
+            >
+              <span class="text-3xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </div>
+      </Carousel.Item>
+    {/each}
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+Example
+
+```svelte
+
+<Carousel.Root>
+  <Carousel.Content>
+    <Carousel.Item class="basis-1/3">...</Carousel.Item>
+    <Carousel.Item class="basis-1/3">...</Carousel.Item>
+    <Carousel.Item class="basis-1/3">...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+Responsive
+
+```svelte
+
+<Carousel.Root>
+  <Carousel.Content>
+    <Carousel.Item class="md:basis-1/2 lg:basis-1/3">...</Carousel.Item>
+    <Carousel.Item class="md:basis-1/2 lg:basis-1/3">...</Carousel.Item>
+    <Carousel.Item class="md:basis-1/2 lg:basis-1/3">...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+### Spacing
+
+To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ml-[VALUE]` on the `<Carousel.Content />`.
+
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root class="w-full max-w-sm">
+  <Carousel.Content class="-ml-1">
+    {#each Array(5) as _, i (i)}
+      <Carousel.Item class="pl-1 md:basis-1/2 lg:basis-1/3">
+        <div class="p-1">
+          <Card.Root>
+            <Card.Content
+              class="flex aspect-square items-center justify-center p-6"
+            >
+              <span class="text-2xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </div>
+      </Carousel.Item>
+    {/each}
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+Example
+
+```svelte
+<Carousel.Root>
+  <Carousel.Content class="-ml-4">
+    <Carousel.Item class="pl-4">...</Carousel.Item>
+    <Carousel.Item class="pl-4">...</Carousel.Item>
+    <Carousel.Item class="pl-4">...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+Responsive
+
+```svelte
+<Carousel.Root>
+  <Carousel.Content class="-ml-2 md:-ml-4">
+    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
+    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
+    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+### Orientation
+
+Use the `orientation` prop to set the orientation of the carousel.
+
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root
+  opts={{
+    align: "start"
+  }}
+  orientation="vertical"
+  class="w-full max-w-xs"
+>
+  <Carousel.Content class="-mt-1 h-[200px]">
+    {#each Array(5) as _, i (i)}
+      <Carousel.Item class="pt-1 md:basis-1/2">
+        <div class="p-1">
+          <Card.Root>
+            <Card.Content class="flex items-center justify-center p-6">
+              <span class="text-3xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </div>
+      </Carousel.Item>
+    {/each}
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+```svelte
+<Carousel.Root orientation="vertical | horizontal">
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+## Options
+
+You can pass options to the carousel using the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/api/options/) for more information.
+
+```svelte
+<Carousel.Root
+  opts={{
+    align: "start",
+    loop: true,
+  }}
+>
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+## API
+
+Use reactive state and the `setApi` callback to get an instance of the carousel API.
+
+```svelte
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  import type { CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  let api = $state<CarouselAPI>();
+  const count = $derived(api ? api.scrollSnapList().length : 0);
+  let current = $state(0);
+  $effect(() => {
+    if (api) {
+      current = api.selectedScrollSnap() + 1;
+      api.on("select", () => {
+        current = api!.selectedScrollSnap() + 1;
+      });
+    }
+  });
+</script>
+<div>
+  <Carousel.Root
+    setApi={(emblaApi) => (api = emblaApi)}
+    class="w-full max-w-xs"
+  >
+    <Carousel.Content>
+      {#each Array(5) as _, i (i)}
+        <Carousel.Item>
+          <Card.Root>
+            <Card.Content
+              class="flex aspect-square items-center justify-center p-6"
+            >
+              <span class="text-4xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </Carousel.Item>
+      {/each}
+    </Carousel.Content>
+    <Carousel.Previous />
+    <Carousel.Next />
+  </Carousel.Root>
+  <div class="text-muted-foreground py-2 text-center text-sm">
+    Slide {current} of {count}
+  </div>
+</div>
+```
+
+```svelte
+<script lang="ts">
+  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  let api = $state<CarouselAPI>();
+  let current = $state(0);
+  const count = $derived(api ? api.scrollSnapList().length : 0);
+  $effect(() => {
+    if (api) {
+      current = api.selectedScrollSnap() + 1;
+      api.on("select", () => {
+        current = api!.selectedScrollSnap() + 1;
+      });
+    }
+  });
+</script>
+<Carousel.Root setApi={(emblaApi) => (api = emblaApi)}>
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+## Events
+
+You can listen to events using the api instance from `bind:api`.
+
+```svelte
+<script lang="ts">
+  import { type CarouselAPI } from "$lib/components/ui/carousel/context.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  let api = $state<CarouselAPI>();
+  $effect(() => {
+    if (api) {
+      api.on("select", () => {
+        // do something
+      });
+    }
+  });
+</script>
+<Carousel.Root setApi={(emblaApi) => (api = emblaApi)}>
+  <Carousel.Content>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+    <Carousel.Item>...</Carousel.Item>
+  </Carousel.Content>
+</Carousel.Root>
+```
+
+## Plugins
+
+You can use the `plugins` prop to add plugins to the carousel.
+
+```svelte
+<script lang="ts">
+  import Autoplay from "embla-carousel-autoplay";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+</script>
+<Carousel.Root
+  plugins={[
+    Autoplay({
+      delay: 2000,
+    }),
+  ]}
+>
+</Carousel.Root>
+```
+
+```svelte
+<script lang="ts">
+  import Autoplay from "embla-carousel-autoplay";
+  import * as Card from "$lib/components/ui/card/index.js";
+  import * as Carousel from "$lib/components/ui/carousel/index.js";
+  const plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
+</script>
+<Carousel.Root
+  plugins={[plugin]}
+  class="w-full max-w-xs"
+  onmouseenter={plugin.stop}
+  onmouseleave={plugin.reset}
+>
+  <Carousel.Content>
+    {#each Array(5) as _, i (i)}
+      <Carousel.Item>
+        <div class="p-1">
+          <Card.Root>
+            <Card.Content
+              class="flex aspect-square items-center justify-center p-6"
+            >
+              <span class="text-4xl font-semibold">{i + 1}</span>
+            </Card.Content>
+          </Card.Root>
+        </div>
+      </Carousel.Item>
+    {/each}
+  </Carousel.Content>
+  <Carousel.Previous />
+  <Carousel.Next />
+</Carousel.Root>
+```
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.

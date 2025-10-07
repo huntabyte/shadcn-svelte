@@ -1,0 +1,69 @@
+# Label
+
+Renders an accessible label associated with controls.
+
+[Docs ](https://bits-ui.com/docs/components/label)
+
+[API Reference ](https://bits-ui.com/docs/components/label#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import { Checkbox } from "$lib/components/ui/checkbox/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
+</script>
+<div>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <Label for="terms">Accept terms and conditions</Label>
+  </div>
+</div>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add label
+```
+
+```bash
+npx shadcn-svelte@latest add label
+```
+
+```bash
+bun x shadcn-svelte@latest add label
+```
+
+```bash
+npx shadcn-svelte@latest add label
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Label } from "$lib/components/ui/label/index.js";
+</script>
+<Label for="email">Your email address</Label>
+```

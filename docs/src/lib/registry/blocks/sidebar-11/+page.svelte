@@ -14,11 +14,11 @@
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
 					<Breadcrumb.Item class="hidden md:block">
-						<Breadcrumb.Link href="#">lib</Breadcrumb.Link>
+						<Breadcrumb.Link href="##">lib</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="hidden md:block" />
 					<Breadcrumb.Item class="hidden md:block">
-						<Breadcrumb.Link href="#">components</Breadcrumb.Link>
+						<Breadcrumb.Link href="##">components</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="hidden md:block" />
 					<Breadcrumb.Item>

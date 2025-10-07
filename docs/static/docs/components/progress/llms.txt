@@ -1,0 +1,69 @@
+# Progress
+
+Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+
+[Docs ](https://bits-ui.com/docs/components/progress)
+
+[API Reference ](https://bits-ui.com/docs/components/progress#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { Progress } from "$lib/components/ui/progress/index.js";
+  let value = $state(13);
+  onMount(() => {
+    const timer = setTimeout(() => (value = 66), 500);
+    return () => clearTimeout(timer);
+  });
+</script>
+<Progress {value} max={100} class="w-[60%]" />
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add progress
+```
+
+```bash
+npx shadcn-svelte@latest add progress
+```
+
+```bash
+bun x shadcn-svelte@latest add progress
+```
+
+```bash
+npx shadcn-svelte@latest add progress
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Progress } from "$lib/components/ui/progress/index.js";
+</script>
+<Progress value={33} />
+```

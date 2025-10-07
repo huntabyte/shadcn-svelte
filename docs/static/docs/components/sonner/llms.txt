@@ -1,0 +1,115 @@
+# Sonner
+
+An opinionated toast component for Svelte.
+
+[Docs ](https://svelte-sonner.vercel.app/)
+
+[API Reference ](https://github.com/wobsoriano/svelte-sonner)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import { toast } from "svelte-sonner";
+  import { Button } from "$lib/components/ui/button/index.js";
+</script>
+<Button
+  variant="outline"
+  onclick={() =>
+    toast.success("Event has been created", {
+      description: "Sunday, December 03, 2023 at 9:00 AM",
+      action: {
+        label: "Undo",
+        onClick: () => console.info("Undo")
+      }
+    })}
+>
+  Show Toast
+</Button>
+```
+
+## About
+
+The Sonner component is provided by [svelte-sonner](https://svelte-sonner.vercel.app/), which is a Svelte port of [Sonner](https://sonner.emilkowal.ski/), originally created by [Emil Kowalski](https://twitter.com/emilkowalski_) for React.
+
+## Installation
+
+Setup theme support
+
+By default, Sonner will use the user's system preferences to determine whether to show the light or dark theme. To get around this, you can either pass in a custom `theme` prop to the component, or simply use [mode-watcher](https://github.com/svecosystem/mode-watcher) which you can hardcode to `dark` or `light` mode should you wish.
+
+You can learn more about setting up Dark Mode support [here](/docs/dark-mode).
+
+If you wish to opt out of Dark Mode support, you can uninstall `mode-watcher` and remove the `theme` prop from the component after installing via CLI, or manually install the component and don't include `mode-watcher` Run the following command:
+
+```bash
+pnpm dlx shadcn-svelte@latest add sonner
+```
+
+```bash
+npx shadcn-svelte@latest add sonner
+```
+
+```bash
+bun x shadcn-svelte@latest add sonner
+```
+
+```bash
+npx shadcn-svelte@latest add sonner
+```
+
+Add the Toaster component
+
++layout.svelte
+
+```svelte
+<script lang="ts">
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
+  let { children } = $props();
+</script>
+<Toaster />
+{@render children?.()}
+```
+
+Install `svelte-sonner`:
+
+```bash
+pnpm i svelte-sonner -D
+```
+
+```bash
+npm i svelte-sonner -D
+```
+
+```bash
+bun install svelte-sonner -D
+```
+
+```bash
+yarn install svelte-sonner -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+Add the Toaster component
+
++layout.svelte
+
+```svelte
+<script lang="ts">
+  import { Toaster } from "$lib/components/ui/sonner/index.js";
+  let { children } = $props();
+</script>
+<Toaster />
+{@render children?.()}
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { toast } from "svelte-sonner";
+  import { Button } from "$lib/components/ui/button/index.js";
+</script>
+<Button onclick={() => toast("Hello world")}>Show toast</Button>
+```

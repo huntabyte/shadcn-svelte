@@ -1,0 +1,141 @@
+# Toggle
+
+A two-state button that can be either on or off.
+
+[Docs ](https://bits-ui.com/docs/components/toggle)
+
+[API Reference ](https://bits-ui.com/docs/components/toggle#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import BoldIcon from "@lucide/svelte/icons/bold";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle aria-label="toggle bold">
+  <BoldIcon class="size-4" />
+</Toggle>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add toggle
+```
+
+```bash
+npx shadcn-svelte@latest add toggle
+```
+
+```bash
+bun x shadcn-svelte@latest add toggle
+```
+
+```bash
+npx shadcn-svelte@latest add toggle
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle>Toggle</Toggle>
+```
+
+## Examples
+
+### Default
+
+```svelte
+<script lang="ts">
+  import BoldIcon from "@lucide/svelte/icons/bold";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle aria-label="toggle bold">
+  <BoldIcon class="size-4" />
+</Toggle>
+```
+
+### Outline
+
+```svelte
+<script lang="ts">
+  import ItalicIcon from "@lucide/svelte/icons/italic";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle variant="outline" aria-label="Toggle italic">
+  <ItalicIcon class="size-4" />
+</Toggle>
+```
+
+### With Text
+
+```svelte
+<script lang="ts">
+  import ItalicIcon from "@lucide/svelte/icons/italic";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle aria-label="Toggle italic">
+  <ItalicIcon class="mr-2 size-4" />
+  Italic
+</Toggle>
+```
+
+### Small
+
+```svelte
+<script lang="ts">
+  import ItalicIcon from "@lucide/svelte/icons/italic";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle size="sm" aria-label="Toggle italic">
+  <ItalicIcon class="size-4" />
+</Toggle>
+```
+
+### Large
+
+```svelte
+<script lang="ts">
+  import ItalicIcon from "@lucide/svelte/icons/italic";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle size="lg" aria-label="Toggle italic">
+  <ItalicIcon class="size-4" />
+</Toggle>
+```
+
+### Disabled
+
+```svelte
+<script lang="ts">
+  import UnderlineIcon from "@lucide/svelte/icons/underline";
+  import { Toggle } from "$lib/components/ui/toggle/index.js";
+</script>
+<Toggle aria-label="Toggle underline" disabled>
+  <UnderlineIcon class="size-4" />
+</Toggle>
+```

@@ -1,0 +1,73 @@
+# Aspect Ratio
+
+Displays content within a desired ratio.
+
+[Docs ](https://bits-ui.com/docs/components/aspect-ratio)
+
+[API Reference ](https://bits-ui.com/docs/components/aspect-ratio#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
+</script>
+<AspectRatio ratio={16 / 9} class="bg-muted">
+  <img
+    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+    alt="Gray by Drew Beamer"
+    class="h-full w-full rounded-md object-cover"
+  />
+</AspectRatio>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add aspect-ratio
+```
+
+```bash
+npx shadcn-svelte@latest add aspect-ratio
+```
+
+```bash
+bun x shadcn-svelte@latest add aspect-ratio
+```
+
+```bash
+npx shadcn-svelte@latest add aspect-ratio
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
+</script>
+<div class="w-[450px]">
+  <AspectRatio ratio={16 / 9} class="bg-muted">
+    <img src="..." alt="..." class="rounded-md object-cover" />
+  </AspectRatio>
+</div>
+```

@@ -1,0 +1,96 @@
+# Hover Card
+
+For sighted users to preview content available behind a link.
+
+[Docs ](https://bits-ui.com/docs/components/link-preview)
+
+[API Reference ](https://bits-ui.com/docs/components/link-preview#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import CalendarDaysIcon from "@lucide/svelte/icons/calendar-days";
+  import * as Avatar from "$lib/components/ui/avatar/index.js";
+  import * as HoverCard from "$lib/components/ui/hover-card/index.js";
+</script>
+<HoverCard.Root>
+  <HoverCard.Trigger
+    href="https://github.com/sveltejs"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black"
+  >
+    @sveltejs
+  </HoverCard.Trigger>
+  <HoverCard.Content class="w-80">
+    <div class="flex justify-between space-x-4">
+      <Avatar.Root>
+        <Avatar.Image src="https://github.com/sveltejs.png" />
+        <Avatar.Fallback>SK</Avatar.Fallback>
+      </Avatar.Root>
+      <div class="space-y-1">
+        <h4 class="text-sm font-semibold">@sveltejs</h4>
+        <p class="text-sm">Cybernetically enhanced web apps.</p>
+        <div class="flex items-center pt-2">
+          <CalendarDaysIcon class="mr-2 size-4 opacity-70" />
+          <span class="text-muted-foreground text-xs">
+            Joined September 2022
+          </span>
+        </div>
+      </div>
+    </div>
+  </HoverCard.Content>
+</HoverCard.Root>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add hover-card
+```
+
+```bash
+npx shadcn-svelte@latest add hover-card
+```
+
+```bash
+bun x shadcn-svelte@latest add hover-card
+```
+
+```bash
+npx shadcn-svelte@latest add hover-card
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import * as HoverCard from "$lib/components/ui/hover-card/index.js";
+</script>
+<HoverCard.Root>
+  <HoverCard.Trigger>Hover</HoverCard.Trigger>
+  <HoverCard.Content>
+    SvelteKit - Web development, streamlined </HoverCard.Content>
+</HoverCard.Root>
+```

@@ -1,0 +1,163 @@
+# Select
+
+Displays a list of options for the user to pick fromtriggered by a button.
+
+[Docs ](https://bits-ui.com/docs/components/select)
+
+[API Reference ](https://bits-ui.com/docs/components/select#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import * as Select from "$lib/components/ui/select/index.js";
+  const fruits = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "blueberry", label: "Blueberry" },
+    { value: "grapes", label: "Grapes" },
+    { value: "pineapple", label: "Pineapple" }
+  ];
+  let value = $state("");
+  const triggerContent = $derived(
+    fruits.find((f) => f.value === value)?.label ?? "Select a fruit"
+  );
+</script>
+<Select.Root type="single" name="favoriteFruit" bind:value>
+  <Select.Trigger class="w-[180px]">
+    {triggerContent}
+  </Select.Trigger>
+  <Select.Content>
+    <Select.Group>
+      <Select.Label>Fruits</Select.Label>
+      {#each fruits as fruit (fruit.value)}
+        <Select.Item
+          value={fruit.value}
+          label={fruit.label}
+          disabled={fruit.value === "grapes"}
+        >
+          {fruit.label}
+        </Select.Item>
+      {/each}
+    </Select.Group>
+  </Select.Content>
+</Select.Root>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add select
+```
+
+```bash
+npx shadcn-svelte@latest add select
+```
+
+```bash
+bun x shadcn-svelte@latest add select
+```
+
+```bash
+npx shadcn-svelte@latest add select
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import * as Select from "$lib/components/ui/select/index.js";
+</script>
+<Select.Root type="single">
+  <Select.Trigger class="w-[180px]"></Select.Trigger>
+  <Select.Content>
+    <Select.Item value="light">Light</Select.Item>
+    <Select.Item value="dark">Dark</Select.Item>
+    <Select.Item value="system">System</Select.Item>
+  </Select.Content>
+</Select.Root>
+```
+
+## Examples
+
+### Form
+
+```svelte
+<script lang="ts" module>
+  import { z } from "zod/v4";
+  const formSchema = z.object({
+    email: z.email({ message: "Please select an email to display" })
+  });
+</script>
+<script lang="ts">
+  import { defaults, superForm } from "sveltekit-superforms";
+  import { zod4 } from "sveltekit-superforms/adapters";
+  import { toast } from "svelte-sonner";
+  import * as Form from "$lib/components/ui/form/index.js";
+  import * as Select from "$lib/components/ui/select/index.js";
+  const form = superForm(defaults(zod4(formSchema)), {
+    validators: zod4(formSchema),
+    SPA: true,
+    onUpdate: ({ form: f }) => {
+      if (f.valid) {
+        toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`);
+      } else {
+        toast.error("Please fix the errors in the form.");
+      }
+    }
+  });
+  const { form: formData, enhance } = form;
+</script>
+<form method="POST" class="w-2/3 space-y-6" use:enhance>
+  <Form.Field {form} name="email">
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Email</Form.Label>
+        <Select.Root
+          type="single"
+          bind:value={$formData.email}
+          name={props.name}
+        >
+          <Select.Trigger {...props}>
+            {$formData.email
+              ? $formData.email
+              : "Select a verified email to display"}
+          </Select.Trigger>
+          <Select.Content>
+            <Select.Item value="m@example.com" label="m@example.com" />
+            <Select.Item value="m@google.com" label="m@google.com" />
+            <Select.Item value="m@support.com" label="m@support.com" />
+          </Select.Content>
+        </Select.Root>
+      {/snippet}
+    </Form.Control>
+    <Form.Description>
+      You can manage email address in your <a href="/examples/forms"
+        >email settings</a
+      >.
+    </Form.Description>
+    <Form.FieldErrors />
+  </Form.Field>
+  <Form.Button>Submit</Form.Button>
+</form>
+```

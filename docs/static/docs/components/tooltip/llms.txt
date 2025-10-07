@@ -1,0 +1,80 @@
+# Tooltip
+
+A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+
+[Docs ](https://bits-ui.com/docs/components/tooltip)
+
+[API Reference ](https://bits-ui.com/docs/components/tooltip#api-reference)
+
+Component Source
+
+```svelte
+<script lang="ts">
+  import { buttonVariants } from "../ui/button/index.js";
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+</script>
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger class={buttonVariants({ variant: "outline" })}
+      >Hover</Tooltip.Trigger
+    >
+    <Tooltip.Content>
+      <p>Add to library</p>
+    </Tooltip.Content>
+  </Tooltip.Root>
+</Tooltip.Provider>
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn-svelte@latest add tooltip
+```
+
+```bash
+npx shadcn-svelte@latest add tooltip
+```
+
+```bash
+bun x shadcn-svelte@latest add tooltip
+```
+
+```bash
+npx shadcn-svelte@latest add tooltip
+```
+
+Install `bits-ui`:
+
+```bash
+pnpm i bits-ui -D
+```
+
+```bash
+npm i bits-ui -D
+```
+
+```bash
+bun install bits-ui -D
+```
+
+```bash
+yarn install bits-ui -D
+```
+
+Copy and paste the component source files linked at the top of this page into your project.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+</script>
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger>Hover</Tooltip.Trigger>
+    <Tooltip.Content>
+      <p>Add to library</p>
+    </Tooltip.Content>
+  </Tooltip.Root>
+</Tooltip.Provider>
+```
