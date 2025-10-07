@@ -3240,6 +3240,7 @@
 			"registryDependencies": [
 				"checkbox",
 				"field",
+				"tooltip",
 				"button",
 				"button-group",
 				"input",
@@ -3248,7 +3249,6 @@
 				"switch",
 				"dropdown-menu",
 				"input-group",
-				"tooltip",
 				"popover",
 				"separator",
 				"textarea",
