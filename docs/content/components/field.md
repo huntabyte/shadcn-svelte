@@ -65,9 +65,7 @@ Copy and paste the component source files linked at the top of this page into yo
     </Field.Field>
     <Field.Field orientation="horizontal">
       <Switch id="newsletter" />
-      <Field.Label for="newsletter">
-        Subscribe to the newsletter
-      </Field.Label>
+      <Field.Label for="newsletter">Subscribe to the newsletter</Field.Label>
     </Field.Field>
   </Field.Group>
 </Field.Set>
