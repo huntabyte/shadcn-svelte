@@ -53,14 +53,14 @@ Copy and paste the component source files linked at the top of this page into yo
   <Field.Group>
     <Field.Field>
       <Field.Label htmlFor="name">Full name</Field.Label>
-      <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />
+      <Input id="name" autocomplete="off" placeholder="Evil Rabbit" />
       <Field.Description
         >This appears on invoices and emails.</Field.Description
       >
     </Field.Field>
     <Field.Field>
       <Field.Label htmlFor="username">Username</Field.Label>
-      <Input id="username" autoComplete="off" aria-invalid />
+      <Input id="username" autocomplete="off" aria-invalid />
       <Field.Error>Choose another username.</Field.Error>
     </Field.Field>
     <Field.Field orientation="horizontal">
