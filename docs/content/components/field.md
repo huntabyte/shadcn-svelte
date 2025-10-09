@@ -52,22 +52,20 @@ Copy and paste the component source files linked at the top of this page into yo
   <Field.Description>This appears on invoices and emails.</Field.Description>
   <Field.Group>
     <Field.Field>
-      <Field.Label htmlFor="name">Full name</Field.Label>
+      <Field.Label for="name">Full name</Field.Label>
       <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />
       <Field.Description
         >This appears on invoices and emails.</Field.Description
       >
     </Field.Field>
     <Field.Field>
-      <Field.Label htmlFor="username">Username</Field.Label>
+      <Field.Label for="username">Username</Field.Label>
       <Input id="username" autoComplete="off" aria-invalid />
       <Field.Error>Choose another username.</Field.Error>
     </Field.Field>
     <Field.Field orientation="horizontal">
       <Switch id="newsletter" />
-      <Field.Label htmlFor="newsletter">
-        Subscribe to the newsletter
-      </Field.Label>
+      <Field.Label for="newsletter">Subscribe to the newsletter</Field.Label>
     </Field.Field>
   </Field.Group>
 </Field.Set>
@@ -79,7 +77,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ```svelte
 <Field>
-  <FieldLabel htmlFor="input-id">Label</FieldLabel>
+  <FieldLabel for="input-id">Label</FieldLabel>
   <!-- Input, Select, Switch, etc. -->
   <FieldDescription>Optional helper text.</FieldDescription>
   <FieldError>Validation message.</FieldError>
@@ -197,7 +195,7 @@ Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.
 
 ```svelte
 <Field.Field data-invalid>
-  <Field.Label htmlFor="email">Email</Field.Label>
+  <Field.Label for="email">Email</Field.Label>
   <Input id="email" type="email" aria-invalid />
   <Field.Error>Enter a valid email address.</Field.Error>
 </Field.Field>
