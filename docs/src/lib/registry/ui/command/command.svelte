@@ -2,6 +2,8 @@
 	import { cn } from '$lib/utils.js';
 	import { Command as CommandPrimitive } from 'bits-ui';
 
+	export type CommandRootApi = CommandPrimitive.Root;
+
 	let {
 		api = $bindable(null),
 		ref = $bindable(null),
@@ -9,7 +11,7 @@
 		class: className,
 		...restProps
 	}: CommandPrimitive.RootProps & {
-		api?: CommandPrimitive.Root | null;
+		api?: CommandRootApi | null;
 	} = $props();
 </script>
 
