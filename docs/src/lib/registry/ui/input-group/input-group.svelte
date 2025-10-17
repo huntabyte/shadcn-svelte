@@ -11,6 +11,7 @@
 </script>
 
 <div
+	bind:this={ref}
 	data-slot="input-group"
 	role="group"
 	class={cn(
