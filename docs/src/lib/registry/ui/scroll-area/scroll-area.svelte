@@ -16,7 +16,7 @@
 		orientation?: "vertical" | "horizontal" | "both" | undefined;
 		scrollbarXClasses?: string | undefined;
 		scrollbarYClasses?: string | undefined;
-		viewportRef?: HTMLElement | null | undefined;
+		viewportRef?: HTMLElement | null;
 	} = $props();
 </script>
 
