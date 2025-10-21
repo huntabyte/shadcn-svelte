@@ -7,7 +7,7 @@
 
 <h2
 	class={cn(
-		"font-heading mt-12 scroll-m-28 text-2xl font-medium tracking-tight first:mt-0 lg:mt-20 [&+p]:!mt-4",
+		"font-heading [&+]*:[code]:text-xl mt-10 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-16 [&+.steps>h3]:!mt-4 [&+.steps]:!mt-0 [&+h3]:!mt-6 [&+p]:!mt-4",
 		className
 	)}
 	{...restProps}
