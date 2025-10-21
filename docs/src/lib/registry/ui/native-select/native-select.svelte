@@ -5,6 +5,7 @@
 
 	let {
 		ref = $bindable(null),
+		value = $bindable(),
 		class: className,
 		children,
 		...restProps
@@ -16,6 +17,7 @@
 	data-slot="native-select-wrapper"
 >
 	<select
+		bind:value
 		bind:this={ref}
 		data-slot="native-select"
 		class={cn(
