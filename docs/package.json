@@ -12,6 +12,7 @@
 		"build:svelte": "vite build",
 		"build:registry": "tsx scripts/build-registry.ts build-registry",
 		"build:screenshots": "tsx scripts/capture-registry.ts",
+		"build:llms": "tsx scripts/build-llms.ts",
 		"replace:velite": "tsx scripts/velite/velite-watch-output.ts",
 		"sync": "pnpm build:registry && pnpm build:content && svelte-kit sync",
 		"preview": "vite preview",

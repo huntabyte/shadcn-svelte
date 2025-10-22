@@ -1,7 +1,0 @@
-# Dark Mode
-
-Adding dark mode to your site.
-
-[Svelte](/docs/dark-mode/svelte)
-
-[Astro](/docs/dark-mode/astro)

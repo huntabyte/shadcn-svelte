@@ -73,7 +73,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 	const targetElement = document.getElementById("main-content");
 
 	const elementsToRemove = Array.from(
-		document.querySelectorAll<HTMLElement>("[data-llm-ignore], .sr-only")
+		document.querySelectorAll<HTMLElement>("[data-llm-ignore], .sr-only, [aria-hidden='true']")
 	);
 
 	for (const element of elementsToRemove) {

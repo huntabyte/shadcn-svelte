@@ -1,9 +1,0 @@
-# Migration
-
-Learn how to update your project to the latest version of shadcn-svelte.
-
-The latest version of shadcn-svelte expects you to be using Svelte v5 and Tailwind v4. The following guides will help you update your project to the latest version.
-
-[Svelte v5](/docs/migration/svelte-5)
-
-[Tailwind v4](/docs/migration/tailwind-v4)
