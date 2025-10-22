@@ -9,7 +9,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { JSDOM } from "jsdom";
 import consola from "consola";
 import type { Plugin } from "unified";
-import type { Root, Link, Node } from "mdast";
+import type { Root, Link, Node, Paragraph, Text } from "mdast";
 
 consola.wrapConsole();
 
@@ -36,6 +36,26 @@ const remarkRelativeLinks: Plugin<[], Root> = () => {
 		};
 
 		visit(tree);
+	};
+};
+
+/**
+ * Removes paragraphs that contain only the word "Copy"
+ */
+const remarkRemoveCopyLines: Plugin<[], Root> = () => {
+	return (tree: Root) => {
+		if ("children" in tree && Array.isArray(tree.children)) {
+			tree.children = tree.children.filter((node: Node) => {
+				if (node.type === "paragraph") {
+					const paragraph = node as Paragraph;
+					if (paragraph.children.length === 1 && paragraph.children[0].type === "text") {
+						const text = paragraph.children[0] as Text;
+						return text.value.trim() !== "Copy";
+					}
+				}
+				return true;
+			});
+		}
 	};
 };
 
@@ -85,7 +105,7 @@ const REGEX_PATTERNS = {
 	trailingLinkSpaces: /\[([^\]]+)\s+\]/g,
 } as const;
 
-async function transformAndSaveMarkdown(rawHtml: string) {
+async function toMarkdown(rawHtml: string) {
 	const dom = new JSDOM(rawHtml);
 	const document = dom.window.document;
 	const codeTags = document?.querySelectorAll("code");
@@ -114,6 +134,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 		.use(rehypeRemark)
 		.use(remarkGfm)
 		.use(remarkRelativeLinks)
+		.use(remarkRemoveCopyLines)
 		.use(remarkStringify, {
 			bullet: "-",
 			listItemIndent: "one",
@@ -148,7 +169,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 
 async function main() {
 	try {
-		consola.info("Starting to build LLMS files...");
+		consola.info("Starting to build LLM files...");
 		const rootPath = join(__dirname, "../.svelte-kit/cloudflare/docs");
 		console.info("Collecting files from", rootPath);
 		const files = await collectFiles(rootPath, rootPath);
@@ -160,18 +181,25 @@ async function main() {
 			if (!fileName.endsWith(".html")) continue;
 
 			const fileContent = files[fileName];
-			const cleanedContent = await transformAndSaveMarkdown(fileContent);
+			const cleanedContent = await toMarkdown(fileContent);
 
 			const baseName = basename(fileName, ".html");
 			const dirPath = dirname(fileName);
 
-			const outputPath = join(__dirname, "../static/docs", dirPath, `${baseName}.md`);
-			const outputDir = dirname(outputPath);
-			await mkdir(outputDir, { recursive: true });
-			await writeFile(outputPath, cleanedContent);
+			const createFile = async (destinationDir: string) => {
+				const outputPath = join(__dirname, destinationDir, dirPath, `${baseName}.md`);
+				const outputDir = dirname(outputPath);
+				await mkdir(outputDir, { recursive: true });
+				await writeFile(outputPath, cleanedContent);
+			};
+
+			await Promise.all([
+				createFile("../static/docs"),
+				createFile("../.svelte-kit/cloudflare/docs"),
+			]);
 		}
 	} catch (error) {
-		console.error("Error building llms.txt files:", error);
+		console.error("Error building LLM files:", error);
 	}
 }
 
