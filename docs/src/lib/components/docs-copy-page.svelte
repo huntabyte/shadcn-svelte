@@ -2,7 +2,7 @@
 	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import ChevronDownIcon from "@tabler/icons-svelte/icons/chevron-down";
 	import CopyIcon from "@tabler/icons-svelte/icons/copy";
-	import { Button } from "$lib/registry/ui/button/index.js";
+	import { Button, buttonVariants } from "$lib/registry/ui/button/index.js";
 	import * as DropdownMenu from "$lib/registry/ui/dropdown-menu/index.js";
 	import * as Popover from "$lib/registry/ui/popover/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
@@ -11,8 +11,6 @@
 	import { page } from "$app/state";
 
 	const pageUrl = $derived(page.url.origin + page.url.pathname);
-
-	let { url }: { url: string } = $props();
 
 	function getPromptUrl(baseURL: string) {
 		return `${baseURL}?q=${encodeURIComponent(
@@ -35,7 +33,9 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 	type PropsType = Record<string, unknown>;
 
 	async function copyPage() {
-		const res = await fetch(pageUrl);
+		const res = await fetch(`${pageUrl}.md`);
+		const text = await res.text();
+		await clipboard.copy(text);
 	}
 </script>
 
@@ -54,7 +54,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 {/snippet}
 
 {#snippet Markdown({ props }: { props: PropsType })}
-	<a {...props} href={`${url}.md`} target="_blank" rel="noopener noreferrer">
+	<a {...props} href={`${pageUrl}.md`} target="_blank" rel="noopener noreferrer">
 		<svg stroke-linejoin="round" viewBox="0 0 22 16">
 			<path
 				fill-rule="evenodd"
@@ -104,13 +104,14 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 <Popover.Root>
 	<div
 		class="bg-secondary group/buttons *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10 relative flex rounded-lg"
+		data-llm-ignore
 	>
 		<div bind:this={customAnchor}></div>
 		<Button
 			variant="secondary"
 			size="sm"
-			class="h-8 shadow-none md:h-7 md:text-[0.8rem]"
-			onclick={() => clipboard.copy(page)}
+			class="h-8 select-none shadow-none md:h-7 md:text-[0.8rem]"
+			onclick={async () => await copyPage()}
 		>
 			{#if clipboard.copied}
 				<CheckIcon />
@@ -129,7 +130,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 				{#each Object.entries(menuItems) as [key, value] (key)}
 					<DropdownMenu.Item>
 						{#snippet child({ props })}
-							{@render value({ url, props })}
+							{@render value({ props })}
 						{/snippet}
 					</DropdownMenu.Item>
 				{/each}
@@ -147,17 +148,20 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		<Popover.Content
 			class="bg-background/70 dark:bg-background/60 w-52 !origin-center rounded-lg p-1 shadow-sm backdrop-blur-sm"
 			align="start"
+			{customAnchor}
 		>
 			{#each Object.entries(menuItems) as [key, value] (key)}
-				<Button
-					variant="ghost"
-					size="lg"
-					class="*:[svg]:text-muted-foreground w-full justify-start text-base font-normal"
-				>
-					{#snippet child({ props })}
-						{@render value({ url, props })}
-					{/snippet}
-				</Button>
+				{@render value({
+					props: {
+						class: cn(
+							buttonVariants({
+								variant: "ghost",
+								size: "lg",
+							}),
+							"*:[svg]:text-muted-foreground w-full justify-start text-base font-normal"
+						),
+					},
+				})}
 			{/each}
 		</Popover.Content>
 	</div>

@@ -11,6 +11,7 @@
 	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
+	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
 
 	let { data } = $props();
 
@@ -21,10 +22,6 @@
 	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
-
-	$inspect(page.url.toString());
-	$inspect(page.url.origin);
-	$inspect(page.url.pathname);
 </script>
 
 <Metadata
@@ -80,6 +77,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							class="docs-nav bg-background/80 border-border/50 fixed inset-x-0 bottom-0 isolate z-50 flex items-center gap-2 border-t px-6 py-4 backdrop-blur-sm sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none"
 							data-llm-ignore
 						>
+							<DocsCopyPage />
 							{#if neighbors.previous}
 								<Button
 									variant="secondary"
