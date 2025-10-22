@@ -21,7 +21,10 @@
 </script>
 
 {#if type === "block"}
-	<div class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4">
+	<div
+		class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border md:-mx-4"
+		data-llm-ignore
+	>
 		<img
 			src="/img/registry/{name}-light.png"
 			alt={name}

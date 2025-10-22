@@ -20,7 +20,7 @@
 	<DocTabs.Content value="cli">
 		{@render cli?.()}
 	</DocTabs.Content>
-	<DocTabs.Content value="manual" data-manual-install="">
+	<DocTabs.Content value="manual" data-manual-install="" data-llm-ignore>
 		{@render manual?.()}
 	</DocTabs.Content>
 </CodeTabs>
