@@ -2,4 +2,4 @@
 "shadcn-svelte": patch
 ---
 
-fix: Improve error message when `svelte-kit` CLI cannot be found
+fix: improve error message when `svelte-kit` CLI cannot be found

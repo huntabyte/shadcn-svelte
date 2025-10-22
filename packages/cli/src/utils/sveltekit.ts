@@ -7,25 +7,26 @@ import { CLIError } from "./errors.js";
 
 // if it's a SvelteKit project, run `svelte-kit sync` if the `.svelte-kit` dir is missing
 export async function syncSvelteKit(cwd: string) {
-	try {
-		const isSvelteKit = isUsingSvelteKit(cwd);
-		if (isSvelteKit) {
-			// we'll exit early since syncing is rather slow
-			if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
+	const isSvelteKit = isUsingSvelteKit(cwd);
+	if (isSvelteKit) {
+		// we'll exit early since syncing is rather slow
+		if (fs.existsSync(path.join(cwd, ".svelte-kit"))) return;
 
-			const agent = (await detect({ cwd }))?.agent ?? "npm";
-			const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
+		const agent = (await detect({ cwd }))?.agent ?? "npm";
+		const cmd = resolveCommand(agent, "execute-local", ["svelte-kit", "sync"])!;
 
+		try {
 			await exec(cmd.command, cmd.args, { throwOnError: true, nodeOptions: { cwd } });
-		}
-	} catch (e) {
-		if (e instanceof Error) {
-			if (e.message.includes("(254)")) {
-				throw new CLIError("Cannot find svelte-kit CLI", { cause: e });
-			}
-		}
+		} catch (e) {
+			const failedCmd = `${cmd.command} ${cmd.args.join(" ")}`;
+			const install = resolveCommand(agent, "install", [])!;
+			const installCmd = `${install.command} ${install.args.join(" ")}`;
 
-		throw e;
+			throw new CLIError(
+				`Failed to run '${failedCmd}'. Ensure that your dependencies have been installed first with '${installCmd}' and try again.`,
+				{ cause: e }
+			);
+		}
 	}
 }
 
