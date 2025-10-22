@@ -8,10 +8,36 @@ import { fileURLToPath } from "node:url";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { JSDOM } from "jsdom";
 import consola from "consola";
+import type { Plugin } from "unified";
+import type { Root, Link, Node } from "mdast";
 
 consola.wrapConsole();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Replaces relative links with complete URLs
+ */
+const remarkRelativeLinks: Plugin<[], Root> = () => {
+	return (tree: Root) => {
+		const visit = (node: Node) => {
+			if (node.type === "link" && "url" in node) {
+				const link = node as Link;
+				if (link.url.startsWith("/")) {
+					link.url = `https://shadcn-svelte.com${link.url}`;
+				}
+			}
+
+			if ("children" in node && Array.isArray(node.children)) {
+				for (const child of node.children) {
+					visit(child);
+				}
+			}
+		};
+
+		visit(tree);
+	};
+};
 
 type FileMap = Record<string, string>;
 
@@ -56,6 +82,7 @@ const REGEX_PATTERNS = {
 	escapedBackticks: /\\`([^`]+?)\\`/g,
 	codeBlockIndent: /```([a-z]*)\n\t/g,
 	htmlComments: /<!--.*?-->/gs,
+	trailingLinkSpaces: /\[([^\]]+)\s+\]/g,
 } as const;
 
 async function transformAndSaveMarkdown(rawHtml: string) {
@@ -73,7 +100,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 	const targetElement = document.getElementById("main-content");
 
 	const elementsToRemove = Array.from(
-		document.querySelectorAll<HTMLElement>("[data-llm-ignore], .sr-only, [aria-hidden='true']")
+		document.querySelectorAll<HTMLElement>("[data-llm-ignore],  [aria-hidden='true']")
 	);
 
 	for (const element of elementsToRemove) {
@@ -86,6 +113,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 		.use(rehypeParse)
 		.use(rehypeRemark)
 		.use(remarkGfm)
+		.use(remarkRelativeLinks)
 		.use(remarkStringify, {
 			bullet: "-",
 			listItemIndent: "one",
@@ -107,6 +135,7 @@ async function transformAndSaveMarkdown(rawHtml: string) {
 		.replace(REGEX_PATTERNS.parenCodeEnd, "$1)")
 		.replace(REGEX_PATTERNS.escapedBackticks, "`$1`")
 		.replace(REGEX_PATTERNS.codeBlockIndent, "```$1\n")
+		.replace(REGEX_PATTERNS.trailingLinkSpaces, "[$1]")
 		.replace(/\u00C2/g, "") // Â
 		.replace(/\u2014/g, "") // â€”
 		// eslint-disable-next-line no-control-regex
@@ -136,7 +165,7 @@ async function main() {
 			const baseName = basename(fileName, ".html");
 			const dirPath = dirname(fileName);
 
-			const outputPath = join(__dirname, "../static/docs", dirPath, baseName, "llms.txt");
+			const outputPath = join(__dirname, "../static/docs", dirPath, `${baseName}.md`);
 			const outputDir = dirname(outputPath);
 			await mkdir(outputDir, { recursive: true });
 			await writeFile(outputPath, cleanedContent);

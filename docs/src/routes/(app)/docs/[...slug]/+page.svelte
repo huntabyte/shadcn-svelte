@@ -115,7 +115,8 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								Docs <ExternalLinkIcon />
+								Docs
+								<ExternalLinkIcon aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
@@ -125,7 +126,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								API Reference <ExternalLinkIcon />
+								API Reference <ExternalLinkIcon aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if source}
