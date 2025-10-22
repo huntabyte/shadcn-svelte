@@ -20,20 +20,22 @@
 </script>
 
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		children,
 		orientation = "horizontal",
 		...restProps
-	}: HTMLAttributes<HTMLDivElement> & {
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		orientation?: ButtonGroupOrientation;
 	} = $props();
 </script>
 
 <div
+	bind:this={ref}
 	role="group"
 	data-slot="button-group"
 	data-orientation={orientation}
