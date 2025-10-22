@@ -5,7 +5,24 @@
 
 	const ctx = ComponentCodeViewerContext.get();
 	const file = $derived(ctx.highlightedFiles.find((f) => f.target === ctx.activeFile));
+	let codeContainer = $state<HTMLElement | null>(null);
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (!codeContainer) return;
+		if (event.key === "a" && (event.metaKey || event.ctrlKey)) {
+			event.preventDefault();
+			const range = document.createRange();
+			range.selectNodeContents(codeContainer);
+
+			const selection = window.getSelection();
+			if (!selection) return;
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
+	}
 </script>
+
+<svelte:document onkeydown={handleKeydown} />
 
 {#if file}
 	<div
@@ -20,6 +37,7 @@
 		>
 			<ComponentCodeViewerCodeTitle />
 			<div
+				bind:this={codeContainer}
 				class="no-scrollbar overflow-y-auto"
 				{@attach (node) => {
 					if (file.highlightedContent) {
