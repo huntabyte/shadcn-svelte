@@ -116,7 +116,7 @@ docs/static/schema/registry.json
 docs/static/schema/registry-item.json
 docs/src/__registry__
 docs/static/docs
-
+docs/static/llms.txt
 
 
 registry-template/static/r
