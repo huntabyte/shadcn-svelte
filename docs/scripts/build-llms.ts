@@ -67,7 +67,35 @@ const remarkRemoveCopyLines: Plugin<[], Root> = () => {
 	};
 };
 
-type FileMap = Record<string, string>;
+export type FileMap = Record<string, string>;
+
+export async function collectFiles(currentDir: string, baseDir: string): Promise<FileMap> {
+	try {
+		const entries = await readdir(currentDir, { withFileTypes: true });
+		const files: FileMap = {};
+
+		for (const entry of entries) {
+			const fullPath = join(currentDir, entry.name);
+			const relPath = relative(baseDir, fullPath);
+
+			if (entry.isDirectory()) {
+				const subFiles = await collectFiles(fullPath, baseDir);
+				Object.assign(files, subFiles);
+			} else if (entry.isFile()) {
+				if (fullPath.includes("figma")) continue;
+				const content = await readFile(fullPath, "utf-8");
+
+				files[relPath] = content;
+			}
+		}
+
+		return files;
+	} catch (error) {
+		throw new Error(
+			`Failed to collect files from ${currentDir}: ${error instanceof Error ? error.message : String(error)}`
+		);
+	}
+}
 
 type LinkData = {
 	name: string;
@@ -100,34 +128,6 @@ type CategorizedLinks = {
 	registry: LinkData[];
 	other: LinkData[];
 };
-
-async function collectFiles(currentDir: string, baseDir: string): Promise<FileMap> {
-	try {
-		const entries = await readdir(currentDir, { withFileTypes: true });
-		const files: FileMap = {};
-
-		for (const entry of entries) {
-			const fullPath = join(currentDir, entry.name);
-			const relPath = relative(baseDir, fullPath);
-
-			if (entry.isDirectory()) {
-				const subFiles = await collectFiles(fullPath, baseDir);
-				Object.assign(files, subFiles);
-			} else if (entry.isFile()) {
-				if (fullPath.includes("figma")) continue;
-				const content = await readFile(fullPath, "utf-8");
-
-				files[relPath] = content;
-			}
-		}
-
-		return files;
-	} catch (error) {
-		throw new Error(
-			`Failed to collect files from ${currentDir}: ${error instanceof Error ? error.message : String(error)}`
-		);
-	}
-}
 
 const REGEX_PATTERNS = {
 	multipleNewlines: /\n{3,}/g,
@@ -467,7 +467,7 @@ ${categorizedLinks.registry
 		await writeFile(outputPath, llmsContent);
 	};
 
-	await createFile("../static/llms.txt");
+	await createFile("../.svelte-kit/cloudflare/llms.txt");
 
 	consola.info("Created llms.txt index file!");
 }
@@ -485,7 +485,7 @@ async function main() {
 		const rootPath = join(__dirname, "../.svelte-kit/cloudflare/docs");
 		console.info("Collecting files from", rootPath);
 		const files = await collectFiles(rootPath, rootPath);
-		const fileNames = Object.keys(files);
+		const fileNames = Object.keys(files).filter((fileName) => fileName.endsWith(".html"));
 
 		// build individual llms.txt files and collect content
 		for (const fileName of fileNames) {
@@ -512,7 +512,7 @@ async function main() {
 				await writeFile(outputPath, cleanedContent);
 			};
 
-			await createFile("../static/docs");
+			await createFile("../.svelte-kit/cloudflare/docs");
 		}
 
 		await createLLMsIndex(files);
