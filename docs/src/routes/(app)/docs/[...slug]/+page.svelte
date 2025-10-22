@@ -82,7 +82,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								<Button
 									variant="secondary"
 									size="icon"
-									class="extend-touch-target size-8 shadow-none md:size-7"
+									class="extend-touch-target ml-auto size-8 shadow-none md:size-7"
 									href={neighbors.previous.href}
 								>
 									<ArrowLeftIcon />
