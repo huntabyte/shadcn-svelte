@@ -15,54 +15,57 @@
 	import SpinnerEmpty from "./components/spinner-empty.svelte";
 	import { Checkbox } from "$lib/registry/ui/checkbox/index.js";
 	import * as Field from "$lib/registry/ui/field/index.js";
+	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 </script>
 
-<div class="flex flex-col justify-center">
-	<div
-		class="theme-container mx-auto grid max-w-[2200px] gap-8 p-6 md:grid-cols-2 md:p-8 lg:grid-cols-3 xl:grid-cols-4"
-	>
-		<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
-			<FieldDemo />
-		</div>
-		<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
-			<div class="*:[div]:border">
-				<EmptyAvatarGroup />
-			</div>
-			<ButtonGroupInputGroup />
-			<FieldSlider />
-			<InputGroupDemo />
-		</div>
-		<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
-			<ItemDemo />
-			<Field.Separator>Appearance Settings</Field.Separator>
-			<AppearanceSettings />
-		</div>
+<Tooltip.Provider>
+	<div class="flex flex-col justify-center">
 		<div
-			class="*:[div]:w-full *:[div]:max-w-full order-first flex flex-col gap-6 min-[1400px]:order-last"
+			class="theme-container mx-auto grid max-w-[2200px] gap-8 p-6 md:grid-cols-2 md:p-8 lg:grid-cols-3 xl:grid-cols-4"
 		>
-			<div class="flex gap-2">
-				<SpinnerBadge />
+			<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
+				<FieldDemo />
 			</div>
-			<InputGroupButtonExample />
-			<NotionPromptForm />
-			<ButtonGroupDemo />
-			<div class="flex gap-6">
-				<Field.Label for="checkbox-demo">
-					<Field.Field orientation="horizontal">
-						<Checkbox id="checkbox-demo" checked />
-						<Field.Label for="checkbox-demo" class="line-clamp-1">
-							I agree to the terms and conditions
-						</Field.Label>
-					</Field.Field>
-				</Field.Label>
+			<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
+				<div class="*:[div]:border">
+					<EmptyAvatarGroup />
+				</div>
+				<ButtonGroupInputGroup />
+				<FieldSlider />
+				<InputGroupDemo />
 			</div>
-			<div class="flex gap-4">
-				<ButtonGroupNested />
-				<ButtonGroupPopover />
+			<div class="*:[div]:w-full *:[div]:max-w-full flex flex-col gap-6">
+				<ItemDemo />
+				<Field.Separator>Appearance Settings</Field.Separator>
+				<AppearanceSettings />
 			</div>
-			<div class="*:[div]:border">
-				<SpinnerEmpty />
+			<div
+				class="*:[div]:w-full *:[div]:max-w-full order-first flex flex-col gap-6 min-[1400px]:order-last"
+			>
+				<div class="flex gap-2">
+					<SpinnerBadge />
+				</div>
+				<InputGroupButtonExample />
+				<NotionPromptForm />
+				<ButtonGroupDemo />
+				<div class="flex gap-6">
+					<Field.Label for="checkbox-demo">
+						<Field.Field orientation="horizontal">
+							<Checkbox id="checkbox-demo" checked />
+							<Field.Label for="checkbox-demo" class="line-clamp-1">
+								I agree to the terms and conditions
+							</Field.Label>
+						</Field.Field>
+					</Field.Label>
+				</div>
+				<div class="flex gap-4">
+					<ButtonGroupNested />
+					<ButtonGroupPopover />
+				</div>
+				<div class="*:[div]:border">
+					<SpinnerEmpty />
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</Tooltip.Provider>

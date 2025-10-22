@@ -25,6 +25,7 @@
 	import { Button } from "$lib/registry/ui/button/index.js";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		children,
 		type = "button",
@@ -37,6 +38,7 @@
 </script>
 
 <Button
+	bind:ref
 	{type}
 	data-size={size}
 	{variant}
