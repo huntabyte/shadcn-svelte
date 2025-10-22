@@ -27,7 +27,6 @@
     "layerchart": "2.0.0-next.27",
     "mode-watcher": "^1.1.0",
     "paneforge": "^1.0.2",
-    "prettier-plugin-tailwindcss": "^0.6.14",
     "svelte": "^5.39.5",
     "svelte-check": "^4.3.2",
     "svelte-sonner": "^1.0.5",
