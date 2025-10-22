@@ -138,17 +138,17 @@
 			<NavigationMenu.Content>
 				<ul class="grid w-[300px] gap-4 p-2">
 					<li>
-						<NavigationMenu.Link href="#">
+						<NavigationMenu.Link href="##">
 							<div class="font-medium">Components</div>
 							<div class="text-muted-foreground">
 								Browse all components in the library.
 							</div>
 						</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">
+						<NavigationMenu.Link href="##">
 							<div class="font-medium">Documentation</div>
 							<div class="text-muted-foreground">Learn how to use the library.</div>
 						</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">
+						<NavigationMenu.Link href="##">
 							<div class="font-medium">Blog</div>
 							<div class="text-muted-foreground">Read our latest blog posts.</div>
 						</NavigationMenu.Link>
@@ -161,9 +161,9 @@
 			<NavigationMenu.Content>
 				<ul class="grid w-[200px] gap-4 p-2">
 					<li>
-						<NavigationMenu.Link href="#">Components</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">Documentation</NavigationMenu.Link>
-						<NavigationMenu.Link href="#">Blocks</NavigationMenu.Link>
+						<NavigationMenu.Link href="##">Components</NavigationMenu.Link>
+						<NavigationMenu.Link href="##">Documentation</NavigationMenu.Link>
+						<NavigationMenu.Link href="##">Blocks</NavigationMenu.Link>
 					</li>
 				</ul>
 			</NavigationMenu.Content>
@@ -174,17 +174,17 @@
 			<NavigationMenu.Content>
 				<ul class="grid w-[200px] gap-4 p-2">
 					<li>
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
 							<CircleHelpIcon />
 							Backlog
 						</NavigationMenu.Link>
 
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
 							<CircleIcon />
 							To Do
 						</NavigationMenu.Link>
 
-						<NavigationMenu.Link href="#" class="flex-row items-center gap-2">
+						<NavigationMenu.Link href="##" class="flex-row items-center gap-2">
 							<CircleCheckIcon />
 							Done
 						</NavigationMenu.Link>

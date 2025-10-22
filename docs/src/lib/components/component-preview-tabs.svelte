@@ -41,7 +41,7 @@
 
 <div class={cn("group relative mb-12 mt-4 flex flex-col gap-2", className)} {...restProps}>
 	<Tabs.Root class="relative mr-auto w-full" bind:value>
-		<div class="flex items-center justify-between">
+		<div class="flex items-center justify-between" data-llm-ignore>
 			{#if !hideCode}
 				<Tabs.List class="justify-start gap-4 rounded-none bg-transparent px-2 md:px-0">
 					<Tabs.Trigger
@@ -68,6 +68,7 @@
 			data-slot="preview"
 			data-active={value === "preview"}
 			class="hidden data-[active=true]:block"
+			data-llm-ignore
 		>
 			<div
 				data-align={align}

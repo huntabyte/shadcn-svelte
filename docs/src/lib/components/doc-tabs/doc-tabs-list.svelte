@@ -8,5 +8,6 @@
 
 <Tabs.List
 	class={cn("justify-start gap-4 rounded-none bg-transparent px-2 md:px-0", className)}
+	data-llm-ignore
 	{...restProps}
 />
