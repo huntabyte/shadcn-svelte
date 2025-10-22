@@ -160,7 +160,7 @@ async function toMarkdown(rawHtml: string) {
 	const targetElement = document.getElementById("main-content");
 
 	const elementsToRemove = Array.from(
-		document.querySelectorAll<HTMLElement>("[data-llm-ignore],  [aria-hidden='true']")
+		document.querySelectorAll<HTMLElement>("[data-llm-ignore], [aria-hidden='true']")
 	);
 
 	for (const element of elementsToRemove) {
