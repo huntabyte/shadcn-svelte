@@ -79,6 +79,11 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			items: [],
 		},
 		{
+			title: "llms.txt",
+			href: "/llms.txt",
+			items: [],
+		},
+		{
 			title: "Changelog",
 			href: "/docs/changelog",
 			items: [],
