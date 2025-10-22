@@ -7,7 +7,7 @@
 		"dev": "pnpm --reporter append-only --color \"/dev:/\"",
 		"dev:content": "velite dev --watch",
 		"dev:svelte": "vite dev",
-		"build": "pnpm build:content && pnpm build:svelte && pnpm build:llms",
+		"build": "pnpm build:content && pnpm build:svelte && pnpm build:llms && pnpm build:svelte",
 		"build:content": "velite && tsx scripts/velite/velite-update-json.ts",
 		"build:svelte": "vite build",
 		"build:registry": "tsx scripts/build-registry.ts build-registry",

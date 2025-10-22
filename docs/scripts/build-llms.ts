@@ -467,10 +467,7 @@ ${categorizedLinks.registry
 		await writeFile(outputPath, llmsContent);
 	};
 
-	await Promise.all([
-		createFile("../static/llms.txt"),
-		createFile("../.svelte-kit/cloudflare/llms.txt"),
-	]);
+	await createFile("../static/llms.txt");
 
 	consola.info("Created llms.txt index file!");
 }
@@ -515,10 +512,7 @@ async function main() {
 				await writeFile(outputPath, cleanedContent);
 			};
 
-			await Promise.all([
-				createFile("../static/docs"),
-				createFile("../.svelte-kit/cloudflare/docs"),
-			]);
+			await createFile("../static/docs");
 		}
 
 		await createLLMsIndex(files);
