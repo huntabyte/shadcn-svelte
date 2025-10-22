@@ -198,9 +198,9 @@ async function toMarkdown(rawHtml: string) {
 		.replace(REGEX_PATTERNS.codeBlockIndent, "```$1\n")
 		.replace(REGEX_PATTERNS.trailingLinkSpaces, "[$1]")
 		.replace(/\u00C2/g, "") // Â
-		.replace(/\u2014/g, "") // â€”
+		.replace(/\u2014/g, "") // â€"
 		// eslint-disable-next-line no-control-regex
-		.replace(/[^\u0000-\u007F]/g, "")
+		.replace(/[^\u0000-\u007F\u2019]/g, "") // preserve fancy apostrophe
 		.replaceAll("\t", " ")
 		.trim();
 
@@ -307,7 +307,10 @@ async function createLLMsIndex(files: FileMap) {
 
 		const baseName = basename(fileName, ".html");
 		const dirPath = dirname(fileName);
-		const relativePath = join(dirPath, `${baseName}.md`);
+		const outputName =
+			baseName === "index" ? (dirPath === "." ? "docs" : basename(dirPath)) : baseName;
+		const relativePath =
+			baseName === "index" ? `${outputName}.md` : join(dirPath, `${outputName}.md`);
 
 		const veliteItem =
 			findVeliteData(veliteData, baseName) ||
@@ -315,21 +318,21 @@ async function createLLMsIndex(files: FileMap) {
 			findVeliteData(veliteData, dirPath.replace(/\\/g, "/") + "/" + baseName);
 
 		const linkData: LinkData = {
-			name: baseName,
+			name: outputName,
 			path: `https://shadcn-svelte.com/docs/${relativePath}`,
 			title: veliteItem?.title,
 			description: veliteItem?.description,
 		};
 
 		if (
-			baseName === "index" ||
-			baseName === "about" ||
-			baseName === "changelog" ||
-			baseName === "cli" ||
-			baseName === "components-json" ||
-			baseName === "theming" ||
-			baseName === "javascript" ||
-			baseName === "legacy"
+			outputName === "index" ||
+			outputName === "about" ||
+			outputName === "changelog" ||
+			outputName === "cli" ||
+			outputName === "components-json" ||
+			outputName === "theming" ||
+			outputName === "javascript" ||
+			outputName === "legacy"
 		) {
 			categorizedLinks.overview.push(linkData);
 		} else if (dirPath.includes("installation")) {
@@ -342,22 +345,22 @@ async function createLLMsIndex(files: FileMap) {
 			categorizedLinks.registry.push(linkData);
 		} else if (dirPath.includes("components")) {
 			let categorized = false;
-			if (componentCategories.formInput.includes(baseName)) {
+			if (componentCategories.formInput.includes(outputName)) {
 				categorizedLinks.components.formInput.push(linkData);
 				categorized = true;
-			} else if (componentCategories.layoutNavigation.includes(baseName)) {
+			} else if (componentCategories.layoutNavigation.includes(outputName)) {
 				categorizedLinks.components.layoutNavigation.push(linkData);
 				categorized = true;
-			} else if (componentCategories.overlaysDialogs.includes(baseName)) {
+			} else if (componentCategories.overlaysDialogs.includes(outputName)) {
 				categorizedLinks.components.overlaysDialogs.push(linkData);
 				categorized = true;
-			} else if (componentCategories.feedbackStatus.includes(baseName)) {
+			} else if (componentCategories.feedbackStatus.includes(outputName)) {
 				categorizedLinks.components.feedbackStatus.push(linkData);
 				categorized = true;
-			} else if (componentCategories.displayMedia.includes(baseName)) {
+			} else if (componentCategories.displayMedia.includes(outputName)) {
 				categorizedLinks.components.displayMedia.push(linkData);
 				categorized = true;
-			} else if (componentCategories.misc.includes(baseName)) {
+			} else if (componentCategories.misc.includes(outputName)) {
 				categorizedLinks.components.misc.push(linkData);
 				categorized = true;
 			}
@@ -497,9 +500,16 @@ async function main() {
 
 			const baseName = basename(fileName, ".html");
 			const dirPath = dirname(fileName);
+			const outputName =
+				baseName === "index" ? (dirPath === "." ? "docs" : basename(dirPath)) : baseName;
 
 			const createFile = async (destinationDir: string) => {
-				const outputPath = join(__dirname, destinationDir, dirPath, `${baseName}.md`);
+				const outputPath =
+					baseName === "index" && dirPath === "."
+						? join(__dirname, destinationDir.replace("/docs", ""), `${outputName}.md`)
+						: baseName === "index"
+							? join(__dirname, destinationDir, `${outputName}.md`)
+							: join(__dirname, destinationDir, dirPath, `${outputName}.md`);
 				const outputDir = dirname(outputPath);
 				await mkdir(outputDir, { recursive: true });
 				await writeFile(outputPath, cleanedContent);

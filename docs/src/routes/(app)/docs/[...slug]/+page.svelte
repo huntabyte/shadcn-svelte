@@ -21,6 +21,10 @@
 	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
+
+	$inspect(page.url.toString());
+	$inspect(page.url.origin);
+	$inspect(page.url.pathname);
 </script>
 
 <Metadata
