@@ -5,9 +5,12 @@
 	let { class: className, children, ...restProps }: HTMLAttributes<HTMLTableElement> = $props();
 </script>
 
-<div class="my-6 w-full overflow-y-auto">
+<div class="no-scrollbar my-6 w-full overflow-y-auto rounded-lg border">
 	<table
-		class={cn("relative w-full overflow-hidden border-none text-sm", className)}
+		class={cn(
+			"relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
+			className
+		)}
 		{...restProps}
 	>
 		{@render children?.()}

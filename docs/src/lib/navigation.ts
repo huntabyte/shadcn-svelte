@@ -10,6 +10,7 @@ export const NEW_COMPONENTS = new Set([
 	"input-group",
 	"field",
 	"empty",
+	"native-select",
 ]);
 
 export type NavItem = {
