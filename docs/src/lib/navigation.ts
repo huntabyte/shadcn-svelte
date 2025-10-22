@@ -312,7 +312,22 @@ export function findNeighbors(pathName: string): {
 } {
 	const path = pathName.split("?")[0].split("#")[0];
 	const index = fullNavItems.findIndex((item) => item.href === path);
-	const previous = fullNavItems[index - 1] ?? null;
-	const next = fullNavItems[index + 1] ?? null;
+
+	let previous: SidebarNavItem | null = null;
+	for (let i = index - 1; i >= 0; i--) {
+		if (fullNavItems[i].href !== "/llms.txt") {
+			previous = fullNavItems[i];
+			break;
+		}
+	}
+
+	let next: SidebarNavItem | null = null;
+	for (let i = index + 1; i < fullNavItems.length; i++) {
+		if (fullNavItems[i].href !== "/llms.txt") {
+			next = fullNavItems[i];
+			break;
+		}
+	}
+
 	return { previous, next };
 }
