@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.9
+
+### Patch Changes
+
+- fix: improve error message when `svelte-kit` CLI cannot be found ([#2366](https://github.com/huntabyte/shadcn-svelte/pull/2366))
+
 ## 1.0.8
 
 ### Patch Changes
