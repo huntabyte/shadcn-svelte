@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
 
-	const fieldVariants = tv({
+	export const fieldVariants = tv({
 		base: "group/field data-[invalid=true]:text-destructive flex w-full gap-3",
 		variants: {
 			orientation: {
@@ -27,20 +27,22 @@
 </script>
 
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		orientation = "vertical",
 		children,
 		...restProps
-	}: HTMLAttributes<HTMLDivElement> & {
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		orientation?: FieldOrientation;
 	} = $props();
 </script>
 
 <div
+	bind:this={ref}
 	role="group"
 	data-slot="field"
 	data-orientation={orientation}

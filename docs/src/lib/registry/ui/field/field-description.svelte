@@ -1,15 +1,17 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: HTMLAttributes<HTMLParagraphElement> = $props();
+	}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();
 </script>
 
 <p
+	bind:this={ref}
 	data-slot="field-description"
 	class={cn(
 		"text-muted-foreground text-sm font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance",

@@ -785,7 +785,7 @@ Here's an example of a `Sidebar.MenuAction` that renders a `DropdownMenu`.
 <Sidebar.MenuItem>
   <Sidebar.MenuButton>
     {#snippet child({ props })}
-      <a href="#" {...props}>
+      <a href="##" {...props}>
         <House />
         <span>Home</span>
       </a>

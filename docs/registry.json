@@ -1135,6 +1135,29 @@
 			]
 		},
 		{
+			"name": "native-select",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select-opt-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select-option.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select.svelte"
+				}
+			]
+		},
+		{
 			"name": "navigation-menu",
 			"type": "registry:ui",
 			"registryDependencies": [],

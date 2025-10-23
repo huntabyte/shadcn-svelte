@@ -65,7 +65,7 @@
 				onclick={() => {
 					clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 				}}
-				><span class="sr-only">Copy</span>{#if clipboard.copied}<CheckIcon
+				><span class="sr-only" data-llm-ignore>Copy</span>{#if clipboard.copied}<CheckIcon
 					/>{:else}<ClipboardIcon />{/if}</Button
 			><code data-line-numbers data-language="css"
 				><span data-line class="line text-code-foreground">&nbsp;:root &#123;</span><span

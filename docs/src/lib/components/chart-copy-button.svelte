@@ -29,7 +29,7 @@
 				}}
 				{...restProps}
 			>
-				<span class="sr-only">Copy</span>
+				<span class="sr-only" data-llm-ignore>Copy</span>
 				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}

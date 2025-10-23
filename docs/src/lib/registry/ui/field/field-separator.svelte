@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { Separator } from "$lib/registry/ui/separator/index.js";
-	import { cn } from "$lib/utils.js";
+	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
 
 	let {
+		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: HTMLAttributes<HTMLDivElement> & {
+	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		children?: Snippet;
 	} = $props();
 
@@ -16,6 +17,7 @@
 </script>
 
 <div
+	bind:this={ref}
 	data-slot="field-separator"
 	data-content={hasContent}
 	class={cn(

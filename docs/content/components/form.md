@@ -97,11 +97,11 @@ export type FormSchema = typeof formSchema;
 import type { PageServerLoad } from "./$types.js";
 import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
-import { zod } from "sveltekit-superforms/adapters";
+import { zod4 } from "sveltekit-superforms/adapters";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(zod(formSchema)),
+    form: await superValidate(zod4(formSchema)),
   };
 };
 ```
@@ -120,13 +120,13 @@ For this example, we'll be passing the `form` returned from the load function as
     type Infer,
     superForm,
   } from "sveltekit-superforms";
-  import { zodClient } from "sveltekit-superforms/adapters";
+  import { zod4Client } from "sveltekit-superforms/adapters";
 
   let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } =
     $props();
 
   const form = superForm(data.form, {
-    validators: zodClient(formSchema),
+    validators: zod4Client(formSchema),
   });
 
   const { form: formData, enhance } = form;
@@ -169,12 +169,12 @@ We'll pass the `form` from the data returned from the load function to the form 
 import type { PageServerLoad, Actions } from "./$types.js";
 import { fail } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
-import { zod } from "sveltekit-superforms/adapters";
+import { zod4 } from "sveltekit-superforms/adapters";
 import { formSchema } from "./schema";
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(zod(formSchema)),
+    form: await superValidate(zod4(formSchema)),
   };
 };
 

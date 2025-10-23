@@ -33,7 +33,7 @@
 	>
 		{#snippet child({ props })}
 			<Button {...props} data-slot="copy-button" size="icon" {variant}>
-				<span class="sr-only">Copy</span>
+				<span class="sr-only" data-llm-ignore>Copy</span>
 				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}
