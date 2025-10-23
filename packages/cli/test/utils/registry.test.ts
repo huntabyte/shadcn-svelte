@@ -131,9 +131,7 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(
 				getRegistryBaseColor("https://example.com/registry", "slate")
-			).rejects.toThrow(
-				"Failed to fetch base color from registry."
-			);
+			).rejects.toThrow("Failed to fetch base color from registry.");
 		});
 	});
 
