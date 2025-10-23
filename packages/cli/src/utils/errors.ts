@@ -1,7 +1,7 @@
 import process from "node:process";
 import * as p from "@clack/prompts";
 
-export function handleError(error: unknown) {
+export function handleError(error: unknown, cause?: unknown) {
 	// provide a newline gap
 	p.log.message();
 
@@ -11,7 +11,7 @@ export function handleError(error: unknown) {
 	}
 
 	if (error instanceof CLIError || error instanceof ConfigError) {
-		p.cancel(`[${error.name}]: ${error.message}`);
+		p.cancel(`[${error.name}]: ${error.stack}${cause ? `\n\t[cause]: ${cause}` : ""}`);
 		process.exit(1);
 	}
 
@@ -25,8 +25,8 @@ export function handleError(error: unknown) {
 	process.exit(1);
 }
 
-export function error(msg: string) {
-	return new CLIError(msg);
+export function error(msg: string, cause?: unknown) {
+	return new CLIError(msg, { cause });
 }
 
 export class CLIError extends Error {
