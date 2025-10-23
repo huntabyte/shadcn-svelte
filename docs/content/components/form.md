@@ -120,13 +120,13 @@ For this example, we'll be passing the `form` returned from the load function as
     type Infer,
     superForm,
   } from "sveltekit-superforms";
-  import { zodClient } from "sveltekit-superforms/adapters";
+  import { zod4Client } from "sveltekit-superforms/adapters";
 
   let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } =
     $props();
 
   const form = superForm(data.form, {
-    validators: zodClient(formSchema),
+    validators: zod4Client(formSchema),
   });
 
   const { form: formData, enhance } = form;
