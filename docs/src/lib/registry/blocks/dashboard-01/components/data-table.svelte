@@ -45,7 +45,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Target</div>',
+						render: () => '<div class="w-full text-center">Target</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableTarget, { row }),
@@ -55,7 +55,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Limit</div>',
+						render: () => '<div class="w-full text-center">Limit</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
