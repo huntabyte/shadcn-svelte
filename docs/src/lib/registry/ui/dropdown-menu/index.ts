@@ -17,6 +17,7 @@ const Sub = DropdownMenuPrimitive.Sub;
 const Root = DropdownMenuPrimitive.Root;
 
 export {
+	CheckboxGroup,
 	CheckboxItem,
 	Content,
 	Root as DropdownMenu,
