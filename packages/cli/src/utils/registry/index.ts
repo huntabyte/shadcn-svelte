@@ -19,7 +19,7 @@ export async function getRegistryIndex(registryUrl: string) {
 		return schemas.registryIndexSchema.parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch components from registry.`);
+		throw error(`Failed to fetch components from registry.`, e);
 	}
 }
 
@@ -39,10 +39,8 @@ export async function getRegistryBaseColor(baseUrl: string, baseColor: string) {
 		const [result] = await fetchRegistry([url]);
 
 		return schemas.registryBaseColorSchema.parse(result);
-	} catch (err) {
-		throw error(
-			`Failed to fetch base color from registry. ${err instanceof Error ? err.message : err}`
-		);
+	} catch (e) {
+		throw error(`Failed to fetch base color from registry.`, e);
 	}
 }
 
@@ -117,7 +115,7 @@ export async function fetchRegistryItems({
 		return schemas.registryItemSchema.array().parse(result);
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch tree from registry.`);
+		throw error(`Failed to fetch tree from registry.`, e);
 	}
 }
 
@@ -145,7 +143,7 @@ async function fetchRegistry(urls: Array<URL | string>): Promise<unknown[]> {
 		return results;
 	} catch (e) {
 		if (e instanceof CLIError) throw e;
-		throw error(`Failed to fetch registry. ${e instanceof Error ? `Error: ${e.message}` : e}`);
+		throw error(`Failed to fetch registry.`, e);
 	}
 }
 

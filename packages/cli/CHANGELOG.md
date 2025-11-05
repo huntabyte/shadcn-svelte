@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.10
+
+### Patch Changes
+
+- fix: Log `error.stack` and `error.cause` to disambiguate errors ([#2374](https://github.com/huntabyte/shadcn-svelte/pull/2374))
+
 ## 1.0.9
 
 ### Patch Changes
