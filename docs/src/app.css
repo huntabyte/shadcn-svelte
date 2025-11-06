@@ -166,7 +166,7 @@
 	}
 
 	html {
-		@apply scroll-smooth overscroll-none;
+		@apply overscroll-none scroll-smooth;
 	}
 
 	body {

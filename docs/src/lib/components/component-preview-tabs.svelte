@@ -6,7 +6,6 @@
 	let {
 		class: className,
 		align = "center",
-		hideCode = false,
 		component,
 		example,
 		children,
@@ -19,8 +18,6 @@
 		component?: Component;
 		name: string;
 	} = $props();
-
-	let value: "code" | "preview" = $state("preview");
 </script>
 
 {#snippet ExampleFallback()}
@@ -45,7 +42,6 @@
 	<div>
 		<div
 			data-slot="preview"
-			data-active={value === "preview"}
 			class="preview flex w-full justify-center data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center"
 			data-llm-ignore
 		>
@@ -62,7 +58,6 @@
 		</div>
 		<div
 			data-slot="code"
-			data-active={value === "code"}
 			class="overflow-hidden [&_[data-rehype-pretty-code-figure]]:!m-0 [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t [&_pre]:max-h-[400px]"
 		>
 			{@render children?.()}
