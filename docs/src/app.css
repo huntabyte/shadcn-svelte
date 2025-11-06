@@ -33,6 +33,7 @@
 	--breakpoint-4xl: 2000px;
 	--font-sans: "Inter", sans-serif;
 	--font-mono: "Geist Mono", monospace;
+	--font-geist: "Geist", sans-serif;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);

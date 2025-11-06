@@ -20,15 +20,6 @@
 			</Label>
 			<Switch id="necessary" checked aria-label="Necessary" />
 		</div>
-		<div class="flex items-center justify-between gap-4">
-			<Label for="functional" class="flex flex-col items-start">
-				<span>Functional Cookies</span>
-				<span class="text-muted-foreground font-normal leading-snug">
-					These cookies allow the website to provide personalized functionality.
-				</span>
-			</Label>
-			<Switch id="functional" aria-label="Functional" />
-		</div>
 	</Card.Content>
 	<Card.Footer>
 		<Button variant="outline" class="w-full">Save preferences</Button>

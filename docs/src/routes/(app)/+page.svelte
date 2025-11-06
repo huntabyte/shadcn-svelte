@@ -10,7 +10,7 @@
 	import PageNav from "$lib/components/page-nav.svelte";
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
-	import CardsDemo from "$lib/components/cards/demo.svelte";
+	import RootComponents from "$lib/components/cards/root-components.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
@@ -61,7 +61,7 @@
 			</section>
 			{#if !mobile.current}
 				<section class="theme-container hidden md:block">
-					<CardsDemo />
+					<RootComponents />
 				</section>
 			{/if}
 		</div>
