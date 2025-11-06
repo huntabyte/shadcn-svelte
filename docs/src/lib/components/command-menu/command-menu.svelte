@@ -17,6 +17,7 @@
 	import CommandMenuItem from "./command-menu-item.svelte";
 	import { goto } from "$app/navigation";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
+	import * as Kbd from "$lib/registry/ui/kbd/index.js";
 
 	let {
 		colors,
@@ -137,15 +138,17 @@
 				{...props}
 				variant="secondary"
 				class={cn(
-					"bg-surface text-surface-foreground/60 dark:bg-card relative h-8 w-full justify-start pl-2.5 font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+					"bg-surface dark:bg-card relative h-8 w-full justify-start pl-2.5 font-sans font-medium shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
 				)}
 				onclick={() => (open = true)}
 			>
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>
 				<div class="absolute right-1.5 top-1.5 hidden gap-1 sm:flex">
-					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
-					{@render CommandMenuKbd({ content: "K", class: "aspect-square" })}
+					<Kbd.Group>
+						<Kbd.Root class="border">⌘</Kbd.Root>
+						<Kbd.Root class="border">K</Kbd.Root>
+					</Kbd.Group>
 				</div>
 			</Button>
 		{/snippet}

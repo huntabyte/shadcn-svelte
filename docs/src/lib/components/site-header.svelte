@@ -28,7 +28,6 @@
 				<div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
 					<CommandMenu {colors} />
 				</div>
-				<Separator orientation="vertical" class="ml-2 hidden lg:block" />
 				<GithubLink />
 				<Separator orientation="vertical" class="3xl:flex hidden" />
 				<LayoutToggle class="3xl:flex hidden" />
