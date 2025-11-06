@@ -21,10 +21,17 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/Inter/inter.woff2") format("woff2");
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme inline {
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: "Geist", sans-serif;
+	--font-sans: "Inter", sans-serif;
 	--font-mono: "Geist Mono", monospace;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
