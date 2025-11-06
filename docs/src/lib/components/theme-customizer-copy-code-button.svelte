@@ -6,6 +6,7 @@
 	import type { ComponentProps } from "svelte";
 	import { theme as activeTheme } from "mode-watcher";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
+	import IconCopy from "@lucide/svelte/icons/copy";
 
 	let { class: className, variant, size }: ComponentProps<typeof Button> = $props();
 </script>
@@ -31,7 +32,10 @@
 <Dialog.Root>
 	<Dialog.Trigger class={cn("hidden sm:!flex", className)}>
 		{#snippet child({ props })}
-			<Button {variant} {size} {...props}>Copy Code</Button>
+			<Button {variant} {size} {...props}
+				><IconCopy />
+				<span class="group-data-[size=icon-sm]/button:sr-only">Copy Code</span></Button
+			>
 		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Content class="outline-none md:max-w-3xl">
