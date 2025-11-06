@@ -14,9 +14,9 @@
 
 	const userConfig = UserConfigContext.get();
 
-	const THEMES = baseColors.filter(
-		(theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name)
-	);
+	const THEMES = baseColors
+		.filter((theme) => !["slate", "stone", "gray", "zinc"].includes(theme.name))
+		.sort((a, b) => a.name.localeCompare(b.name));
 
 	const coercedActiveTheme = $derived(
 		userConfig.current.activeTheme === "default" ? "neutral" : userConfig.current.activeTheme
