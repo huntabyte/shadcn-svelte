@@ -88,7 +88,7 @@ describe("Registry Utilities", () => {
 		it("should throw error on fetch failure", async () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(getRegistryIndex("https://example.com/registry")).rejects.toThrow(
-				"Failed to fetch registry. Error: Network error"
+				"Failed to fetch registry."
 			);
 		});
 	});
@@ -131,9 +131,7 @@ describe("Registry Utilities", () => {
 			vi.mocked(fetch).mockRejectedValueOnce(new Error("Network error"));
 			await expect(
 				getRegistryBaseColor("https://example.com/registry", "slate")
-			).rejects.toThrow(
-				"Failed to fetch base color from registry. Failed to fetch registry. Error: Network error"
-			);
+			).rejects.toThrow("Failed to fetch base color from registry.");
 		});
 	});
 
@@ -180,7 +178,7 @@ describe("Registry Utilities", () => {
 					registryIndex: mockRegistryIndex,
 					items: ["https://remote.com/button.json"],
 				})
-			).rejects.toThrow("Failed to fetch registry. Error: Network error");
+			).rejects.toThrow("Failed to fetch registry.");
 		});
 	});
 

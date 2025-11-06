@@ -1135,6 +1135,29 @@
 			]
 		},
 		{
+			"name": "native-select",
+			"type": "registry:ui",
+			"registryDependencies": [],
+			"files": [
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/index.ts"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select-opt-group.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select-option.svelte"
+				},
+				{
+					"type": "registry:file",
+					"path": "src/lib/registry/ui/native-select/native-select.svelte"
+				}
+			]
+		},
+		{
 			"name": "navigation-menu",
 			"type": "registry:ui",
 			"registryDependencies": [],
@@ -3162,7 +3185,7 @@
 		{
 			"name": "login-01",
 			"type": "registry:block",
-			"registryDependencies": ["button", "card", "input", "label"],
+			"registryDependencies": ["button", "card", "input", "field"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3177,7 +3200,7 @@
 		{
 			"name": "login-02",
 			"type": "registry:block",
-			"registryDependencies": ["label", "input", "button"],
+			"registryDependencies": ["field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3192,7 +3215,7 @@
 		{
 			"name": "login-03",
 			"type": "registry:block",
-			"registryDependencies": ["button", "card", "label", "input"],
+			"registryDependencies": ["button", "card", "field", "input"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3207,7 +3230,7 @@
 		{
 			"name": "login-04",
 			"type": "registry:block",
-			"registryDependencies": ["card", "label", "input", "button"],
+			"registryDependencies": ["card", "field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3222,7 +3245,7 @@
 		{
 			"name": "login-05",
 			"type": "registry:block",
-			"registryDependencies": ["label", "input", "button"],
+			"registryDependencies": ["field", "input", "button"],
 			"files": [
 				{
 					"type": "registry:page",
@@ -3231,6 +3254,113 @@
 				{
 					"type": "registry:component",
 					"path": "src/lib/registry/blocks/login-05/components/login-form.svelte"
+				}
+			]
+		},
+		{
+			"name": "new-components-01",
+			"type": "registry:block",
+			"registryDependencies": [
+				"checkbox",
+				"field",
+				"tooltip",
+				"button",
+				"button-group",
+				"input",
+				"label",
+				"radio-group",
+				"switch",
+				"dropdown-menu",
+				"input-group",
+				"popover",
+				"separator",
+				"textarea",
+				"empty",
+				"avatar",
+				"kbd",
+				"select",
+				"slider",
+				"item",
+				"badge",
+				"command",
+				"spinner"
+			],
+			"files": [
+				{
+					"type": "registry:page",
+					"path": "src/lib/registry/blocks/new-components-01/+page.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/appearance-settings.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-input-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-nested.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/button-group-popover.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/empty-avatar-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/empty-input-group.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-choice-card.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/field-slider.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-button.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/input-group-textarea.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/item-avatar.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/item-demo.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/notion-prompt-form.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/spinner-badge.svelte"
+				},
+				{
+					"type": "registry:component",
+					"path": "src/lib/registry/blocks/new-components-01/components/spinner-empty.svelte"
 				}
 			]
 		},

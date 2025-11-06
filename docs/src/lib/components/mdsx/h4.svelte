@@ -6,7 +6,7 @@
 </script>
 
 <h4
-	class={cn("font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight", className)}
+	class={cn("font-heading mt-8 scroll-m-28 text-base font-medium tracking-tight", className)}
 	{...restProps}
 >
 	{@render children?.()}
