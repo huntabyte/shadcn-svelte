@@ -8,7 +8,6 @@
 	import { findNeighbors } from "$lib/navigation.js";
 	import { page } from "$app/state";
 	import Cta from "$lib/components/cta.svelte";
-	import ComponentCodeViewer from "$lib/components/component-code-viewer/component-code-viewer.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
 	import Ethical from "$lib/components/ethical.svelte";
 	import DocsCopyPage from "$lib/components/docs-copy-page.svelte";
@@ -130,11 +129,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							>
 								API Reference <ExternalLinkIcon aria-hidden="true" />
 							</Badge>
-						{/if}
-						{#if source}
-							{#key page.url.pathname}
-								<ComponentCodeViewer item={source} />
-							{/key}
 						{/if}
 					</div>
 				{/if}

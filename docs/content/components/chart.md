@@ -18,6 +18,8 @@ links:
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 	import Step from "$lib/components/step.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="chart-bar-interactive" class="-mt-2 [&_.preview]:p-0 [&_.preview]:border-t [&_.preview>div]:shadow-none [&_.preview]:border-none [&_.preview>div]:w-full [&_.preview]:lg:min-h-[404px] [&_[data-slot='card-footer']]:hidden [&_[data-slot='card']]:py-0 [&_[data-slot='card-header'].border-b]:pb-0 [&_[data-slot='card']]:bg-background [&_[data-slot='card']]:border-none" hideCode>
@@ -120,7 +122,7 @@ Add the following colors to your CSS file
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
 
@@ -184,11 +186,9 @@ You can now build your chart using LayerChart components. We're using the `BarCh
 
 These components handle a lot of the common chart scaffolding for you, while allowing you to customize them to your liking.
 
-<ComponentSource name="chart-bar-demo" title="lib/components/example-chart.svelte">
-
-<div></div>
-
-</ComponentSource>
+{#if viewerData}
+	<ComponentSource item={viewerData} />
+{/if}
 
 <ComponentPreview name="chart-bar-demo" class="[&_.preview]:p-4">
 

@@ -10,11 +10,14 @@ links:
 
 <script>
 	import ComponentPreview from "$lib/components/component-preview.svelte";
+	import ComponentSource from "$lib/components/component-source.svelte";
 	import PMAddComp from "$lib/components/pm-add-comp.svelte";
 	import PMInstall from "$lib/components/pm-install.svelte";
 	import Steps from "$lib/components/steps.svelte";
 	import InstallTabs from "$lib/components/install-tabs.svelte";
 	import Step from "$lib/components/step.svelte";
+
+	let { viewerData } = $props();
 </script>
 
 <ComponentPreview name="button-demo">
@@ -34,9 +37,12 @@ links:
 
 <Step>
 
-Copy and paste the component source files linked at the top of this page into your project.
+Copy and paste the following code into your project.
 
 </Step>
+{#if viewerData}
+	<ComponentSource item={viewerData} />
+{/if}
 
 </Steps>
 {/snippet}
