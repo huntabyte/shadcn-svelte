@@ -18,7 +18,6 @@
 	const doc = $derived(data.metadata);
 	const apiLink = $derived(doc.links?.api);
 	const docLink = $derived(doc.links?.doc);
-	const source = $derived(data.viewerData);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -107,7 +106,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</p>
 					{/if}
 				</div>
-				{#if apiLink || source || docLink}
+				{#if apiLink || docLink}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
 							<Badge
