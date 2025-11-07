@@ -7,7 +7,7 @@
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import Copy from "@lucide/svelte/icons/copy";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
 
@@ -52,7 +52,7 @@
 					{#each PACKAGE_MANAGERS as pm (pm)}
 						<Tabs.Trigger
 							value={pm}
-							class="data-[state=active]:bg-accent data-[state=active]:border-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
+							class="dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 data-[state=active]:bg-accent data-[state=active]:border-input inline-flex h-7 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-transparent px-2 py-1 pt-0.5 font-mono text-sm font-medium transition-[color,box-shadow] focus-visible:outline-1 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-none"
 						>
 							{pm}
 						</Tabs.Trigger>
@@ -96,7 +96,7 @@
 						{#if clipboard.copied}
 							<CheckIcon />
 						{:else}
-							<ClipboardIcon />
+							<Copy />
 						{/if}
 					</Button>
 				{/snippet}
