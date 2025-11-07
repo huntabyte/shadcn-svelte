@@ -48,6 +48,7 @@ Options:
   --proxy <proxy>            fetch items from registry using a proxy
   -h, --help                 display help for command
 ```
+
 ---
 
 ## add
@@ -55,7 +56,6 @@ Options:
 Use the `add` command to add components and dependencies to your project.
 
 <PMExecute command="shadcn-svelte@latest add [component]" />
-
 
 ### Options
 
@@ -76,7 +76,9 @@ Options:
   --proxy <proxy>    fetch components from registry using a proxy
   -h, --help         display help for command
 ```
+
 ---
+
 ## registry build
 
 Use the `registry build` command to generate the registry JSON files.
@@ -100,7 +102,9 @@ Options:
   -o, --output <path>  destination directory for json files (default: ./static/r)
   -h, --help           display help for command
 ```
+
 ---
+
 ## Outgoing Requests
 
 ### Proxy
