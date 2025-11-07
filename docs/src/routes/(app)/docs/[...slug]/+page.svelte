@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
@@ -116,7 +116,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								rel="noreferrer"
 							>
 								Docs
-								<ExternalLinkIcon aria-hidden="true" />
+								<ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 						{#if apiLink}
@@ -126,7 +126,7 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 								target="_blank"
 								rel="noreferrer"
 							>
-								API Reference <ExternalLinkIcon aria-hidden="true" />
+								API Reference <ArrowUpRight aria-hidden="true" />
 							</Badge>
 						{/if}
 					</div>
