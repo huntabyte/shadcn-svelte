@@ -1,16 +1,15 @@
 <script lang="ts">
 	import type { Color, ColorPalette } from "$lib/colors.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import { useIsMac } from "$lib/hooks/use-is-mac.svelte.js";
 	import { getCommand } from "$lib/package-manager.js";
 	import * as Command from "$lib/registry/ui/command/index.js";
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import { Separator } from "$lib/registry/ui/separator/index.js";
 	import { cn } from "$lib/utils.js";
-	import type { HTMLAttributes } from "svelte/elements";
+
 	import { sidebarNavItems } from "$lib/navigation.js";
-	import type { Component } from "svelte";
+
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import CornerDownLeftIcon from "@lucide/svelte/icons/corner-down-left";
 	import SquareDashedIcon from "@lucide/svelte/icons/square-dashed";
@@ -27,7 +26,6 @@
 		blocks?: { name: string; description: string; categories: string[] }[];
 	} = $props();
 
-	const isMac = useIsMac();
 	let open = $state(false);
 	let selectedType = $state<"color" | "page" | "component" | "block" | null>(null);
 	let copyPayload = $state("");
@@ -109,27 +107,6 @@
 </script>
 
 <svelte:document onkeydown={handleKeydown} />
-
-{#snippet CommandMenuKbd({
-	class: className,
-	content,
-	...restProps
-}: HTMLAttributes<HTMLElement> & { content: string | Component })}
-	{@const Content = content}
-	<kbd
-		class={cn(
-			"bg-background text-muted-foreground pointer-events-none flex h-5 select-none items-center justify-center gap-1 rounded border px-1 font-sans text-[0.7rem] font-medium [&_svg:not([class*='size-'])]:size-3",
-			className
-		)}
-		{...restProps}
-	>
-		{#if typeof Content === "string"}
-			{Content}
-		{:else}
-			<Content />
-		{/if}
-	</kbd>
-{/snippet}
 
 <Dialog.Root bind:open>
 	<Dialog.Trigger>
@@ -272,7 +249,7 @@
 			class="text-muted-foreground absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800"
 		>
 			<div class="flex items-center gap-2">
-				{@render CommandMenuKbd({ content: CornerDownLeftIcon })}
+				<Kbd.Root class="bg-background border"><CornerDownLeftIcon /></Kbd.Root>
 				{#if selectedType === "page" || selectedType === "component"}
 					Go to Page
 				{/if}
@@ -283,8 +260,10 @@
 			{#if copyPayload}
 				<Separator orientation="vertical" class="!h-4" />
 				<div class="flex items-center gap-1">
-					{@render CommandMenuKbd({ content: isMac.current ? "⌘" : "Ctrl" })}
-					{@render CommandMenuKbd({ content: "C" })}
+					<Kbd.Group
+						><Kbd.Root class="bg-background border">⌘</Kbd.Root>
+						<Kbd.Root class="bg-background border">C</Kbd.Root>
+					</Kbd.Group>
 					{copyPayload}
 				</div>
 			{/if}
