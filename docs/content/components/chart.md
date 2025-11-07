@@ -187,7 +187,7 @@ You can now build your chart using LayerChart components. We're using the `BarCh
 These components handle a lot of the common chart scaffolding for you, while allowing you to customize them to your liking.
 
 {#if viewerData}
-	<ComponentSource item={viewerData} />
+<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
 <ComponentPreview name="chart-bar-demo" class="[&_.preview]:p-4">

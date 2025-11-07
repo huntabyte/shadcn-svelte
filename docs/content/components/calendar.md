@@ -62,7 +62,7 @@ Copy and paste the following code into your project.
 
 </Step>
 {#if viewerData}
-	<ComponentSource item={viewerData} />
+	<ComponentSource item={viewerData} data-llm-ignore/>
 {/if}
 
 </Steps>
