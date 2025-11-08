@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.11
+
+### Patch Changes
+
+- fix: Ensure `filename` is provided when parsing ts code ([#2399](https://github.com/huntabyte/shadcn-svelte/pull/2399))
+
 ## 1.0.10
 
 ### Patch Changes
