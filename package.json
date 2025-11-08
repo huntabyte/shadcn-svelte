@@ -29,7 +29,7 @@
 		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.12.1",
+	"packageManager": "pnpm@10.20.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/huntabyte/shadcn-svelte.git"
@@ -57,6 +57,17 @@
 		"wrangler": "^4.20.0"
 	},
 	"pnpm": {
+		"supportedArchitectures": {
+			"os": [
+				"darwin",
+				"linux",
+				"win32"
+			],
+			"cpu": [
+				"x64",
+				"arm64"
+			]
+		},
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
 			"esbuild",
