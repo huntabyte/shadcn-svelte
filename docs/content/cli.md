@@ -27,7 +27,7 @@ Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
 ```
 
-### Options
+**Options**
 
 ```bash
 Usage: shadcn-svelte init [options]
@@ -57,7 +57,7 @@ Use the `add` command to add components and dependencies to your project.
 
 <PMExecute command="shadcn-svelte@latest add [component]" />
 
-### Options
+**Options**
 
 ```bash
 Usage: shadcn-svelte add [options] [components...]
@@ -87,7 +87,7 @@ Use the `registry build` command to generate the registry JSON files.
 
 This command reads the `registry.json` file and generates the registry JSON files into the `static/r` directory.
 
-### Options
+**Options**
 
 ```bash
 Usage: shadcn-svelte registry build [options] [registry]
