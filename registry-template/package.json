@@ -39,7 +39,7 @@
 		"tw-animate-css": "^1.3.3",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.34.0",
-		"vite": "^6.3.5",
+		"vite": "^6.4.1",
 		"zod": "^3.25.64"
 	},
 	"pnpm": {
