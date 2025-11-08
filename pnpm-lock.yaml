@@ -311,10 +311,6 @@ importers:
       zod:
         specifier: ^3.25.64
         version: 3.25.64
-    optionalDependencies:
-      '@cloudflare/workerd-darwin-arm64':
-        specifier: ^1.20251107.0
-        version: 1.20251107.0
 
   packages/cli:
     dependencies:
@@ -628,12 +624,6 @@ packages:
 
   '@cloudflare/workerd-darwin-arm64@1.20251105.0':
     resolution: {integrity: sha512-WS/dvPYTW/+gs8s0UvDqDY7wcuIAg/hUpjrMNGepr+Mo38vMU39FYhJQOly99oJCXxMluQqAnRKg09b/9Gr+Rg==}
-    engines: {node: '>=16'}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@cloudflare/workerd-darwin-arm64@1.20251107.0':
-    resolution: {integrity: sha512-ptvrItc0TM5a8DlpWMeUqvrCBvtYCr0zaknaE2WSBcbVeVsD67lLHDZTZystJTSlXPNvcKRUen2AMLCyNU9+jA==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [darwin]
@@ -5355,9 +5345,6 @@ snapshots:
     optional: true
 
   '@cloudflare/workerd-darwin-arm64@1.20251105.0':
-    optional: true
-
-  '@cloudflare/workerd-darwin-arm64@1.20251107.0':
     optional: true
 
   '@cloudflare/workerd-linux-64@1.20250604.0':

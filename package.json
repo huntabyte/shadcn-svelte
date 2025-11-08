@@ -73,6 +73,7 @@
 			"esbuild",
 			"sharp",
 			"workerd"
-		]
+		],
+		"prefer-frozen-lockfile": false
 	}
 }

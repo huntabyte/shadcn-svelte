@@ -97,11 +97,5 @@
 		"velite": "^0.2.4",
 		"vite": "^7.2.2",
 		"zod": "^3.25.64"
-	},
-	"optionalDependencies": {
-		"@cloudflare/workerd-darwin-arm64": "^1.20251107.0",
-		"@cloudflare/workerd-darwin-x64": "^1.20251107.0",
-		"@cloudflare/workerd-linux-x64": "^1.20251107.0",
-		"@cloudflare/workerd-win32-x64": "^1.20251107.0"
 	}
 }
