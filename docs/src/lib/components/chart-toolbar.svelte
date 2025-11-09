@@ -28,7 +28,7 @@
 			return;
 		}
 
-		const highlighted = file.highlightedContent ?? "";
+		const highlighted = file?.highlightedContent ?? "";
 
 		const pre = document.createElement("pre");
 		pre.innerHTML = highlighted;

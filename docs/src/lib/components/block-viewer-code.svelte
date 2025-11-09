@@ -28,7 +28,7 @@
 				data-language={language}
 			>
 				<Icon />
-				{file.target}
+				{file?.target}
 				<div class="ml-auto flex items-center gap-2">
 					<BlockViewerCopyCodeButton />
 				</div>
@@ -36,14 +36,14 @@
 			<div
 				class="no-scrollbar overflow-y-auto"
 				{@attach (node) => {
-					if (file.highlightedContent) {
+					if (file?.highlightedContent) {
 						ctx.activeFileCodeToCopy = node.innerText;
 					}
 				}}
 			>
-				{#if file.highlightedContent}
+				{#if file?.highlightedContent}
 					<!--  eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html file.highlightedContent}
+					{@html file?.highlightedContent}
 				{/if}
 			</div>
 		</figure>
