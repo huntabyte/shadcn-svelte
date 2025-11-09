@@ -297,7 +297,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
 export const mainNavItems: NavItem[] = [
 	{
 		title: "Docs",
-		href: "/docs",
+		href: "/docs/installation",
 	},
 	{
 		title: "Components",

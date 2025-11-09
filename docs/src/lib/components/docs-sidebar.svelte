@@ -19,7 +19,7 @@
 >
 	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2">
 		<div
-			class="from-background via-background/80 to-background/50 blur-xs sticky -top-1 z-10 h-8 shrink-0 bg-gradient-to-b"
+			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-b sticky -top-1 z-10 h-8 shrink-0"
 		></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>
@@ -28,7 +28,7 @@
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					{#if item.items.length}
-						<Sidebar.Menu class="gap-0.5">
+						<Sidebar.Menu class="gap-1">
 							{#each item.items as subItem (subItem.href)}
 								{#if subItem.items.length === 0}
 									<Sidebar.MenuItem class="w-full">
@@ -60,7 +60,7 @@
 			</Sidebar.Group>
 		{/each}
 		<div
-			class="from-background via-background/80 to-background/50 blur-xs sticky -bottom-1 z-10 h-16 shrink-0 bg-gradient-to-t"
+			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-t sticky -bottom-1 z-10 h-16 shrink-0"
 		></div>
 	</Sidebar.Content>
 </Sidebar.Root>

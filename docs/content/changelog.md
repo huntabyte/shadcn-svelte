@@ -9,6 +9,19 @@ description: Latest updates and announcements.
 	import ComponentPreview from '$lib/components/component-preview.svelte'
 </script>
 
+## October 2025 - New Components
+For this round of components, I looked at what we build every day, the boring stuff we rebuild over and over, and made reusable abstractions you can actually use.
+
+- [Spinner](/docs/components/spinner): An indicator to show a loading state.
+- [Kbd](/docs/components/kbd): Display a keyboard key or group of keys.
+- [Button Group](/docs/components/button-group): A group of buttons for actions and split buttons.
+- [Input Group](/docs/components/input-group): Input with icons, buttons, labels and more.
+- [Field](/docs/components/field): One component. All your forms.
+- [Item](/docs/components/item): Display lists of items, cards, and more.
+- [Empty](/docs/components/empty): Use this one for empty states.
+
+---
+
 ## June 2025
 
 ### New Calendar Components
@@ -16,6 +29,8 @@ description: Latest updates and announcements.
 We've completely overhauled the `Calendar` and `RangeCalendar` components to support dropdowns for the month and year selectors, and have added 30+ Calendar blocks to help you get started building your own calendar components.
 
 Check out the [Calendar](/docs/components/calendar) docs page and the [Calendar Blocks](/blocks/calendar) page for more.
+
+---
 
 ## May 2025
 
@@ -36,6 +51,8 @@ If you're running Svelte v5 and Tailwind v4 you can add them to your project via
 We've added support for custom/remote registries - This means you can publish your own components and share them with the community via the `shadcn-svelte` CLI.
 
 See the [Registry documentation](/docs/registry) for more information.
+
+---
 
 ## March 2024
 

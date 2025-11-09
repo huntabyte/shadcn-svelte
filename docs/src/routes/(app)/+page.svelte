@@ -14,9 +14,9 @@
 	import Metadata from "$lib/components/metadata.svelte";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
-	const title = "Build your Component Library";
+	const title = "The Foundation for your Design System";
 	const description =
-		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
+		"A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.";
 
 	const mobile = new IsMobile();
 </script>
@@ -30,7 +30,7 @@
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
 			<Button href="/docs/installation" size="sm">Get Started</Button>
-			<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
+			<Button href="/docs/components" size="sm" variant="ghost">View Components</Button>
 		</PageActions>
 	</PageHeader>
 	{#if !mobile.current}
