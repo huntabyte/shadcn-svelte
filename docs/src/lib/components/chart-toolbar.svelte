@@ -38,17 +38,17 @@
 
 {#snippet ChartTitle(chart: HighlightedBlock)}
 	{#if chart.name.includes("chart-line")}
-		<LineChartIcon /> Chart
+		<LineChartIcon /> Line Chart
 	{:else if chart.name.includes("chart-bar")}
-		<BarChartBigIcon /> Chart
+		<BarChartBigIcon /> Bar Chart
 	{:else if chart.name.includes("chart-pie")}
-		<PieChartIcon /> Chart
+		<PieChartIcon /> Pie Chart
 	{:else if chart.name.includes("chart-area")}
-		<AreaChartIcon /> Chart
+		<AreaChartIcon /> Area Chart
 	{:else if chart.name.includes("chart-radar")}
-		<HexagonIcon /> Chart
+		<HexagonIcon /> Radar Chart
 	{:else if chart.name.includes("chart-radial")}
-		<RadarIcon /> Chart
+		<RadarIcon /> Radial Chart
 	{:else if chart.name.includes("chart-tooltip")}
 		<MousePointer2Icon /> Tooltip
 	{:else}
