@@ -25,7 +25,7 @@ This script will, in part, keep and track the dark mode value in `localStorage` 
 
 ```astro title="src/pages/index.astro" {5-27} showLineNumbers
 ---
-import "$lib/styles/app.css";
+import "../styles/global.css";
 ---
 
 <script is:inline>
@@ -70,7 +70,7 @@ Import the `ModeWatcher` component and use it in your page with the `client:load
 
 ```astro title="src/pages/index.astro" {3,9} showLineNumbers
 ---
-import "$lib/styles/app.css";
+import "../styles/global.css";
 import { ModeWatcher } from "mode-watcher";
 ---
 
@@ -109,7 +109,7 @@ Add the mode toggle to the page (also with the `client:load` directive):
 
 ```astro title="src/pages/index.astro" {4,12} showLineNumbers
 ---
-import "$lib/styles/app.css";
+import "../styles/global.css";
 import { ModeWatcher } from "mode-watcher";
 import ModeToggle from "$lib/components/mode-toggle.svelte";
 ---
