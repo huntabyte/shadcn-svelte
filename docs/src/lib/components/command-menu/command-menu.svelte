@@ -89,7 +89,7 @@
 			open = !open;
 		}
 
-		if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
+		if (open && e.key === "c" && (e.metaKey || e.ctrlKey)) {
 			runCommand(() => {
 				if (selectedType === "color") {
 					clipboard.copy(copyPayload);
