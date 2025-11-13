@@ -705,6 +705,10 @@
 			"files": [
 				{
 					"type": "registry:file",
+					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-checkbox-group.svelte"
+				},
+				{
+					"type": "registry:file",
 					"path": "src/lib/registry/ui/dropdown-menu/dropdown-menu-checkbox-item.svelte"
 				},
 				{
