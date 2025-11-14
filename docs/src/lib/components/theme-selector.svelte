@@ -8,22 +8,7 @@
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 
-	const DEFAULT_THEMES = [
-		{
-			name: "Default",
-			value: "default",
-		},
-		{
-			name: "Scaled",
-			value: "scaled",
-		},
-		{
-			name: "Mono",
-			value: "mono",
-		},
-	];
-
-	const COLOR_THEMES = [
+	const THEMES = [
 		{
 			name: "Blue",
 			value: "blue",
@@ -33,9 +18,10 @@
 			value: "green",
 		},
 		{
-			name: "Amber",
-			value: "amber",
+			name: "Neutral",
+			value: "neutral",
 		},
+
 		{
 			name: "Rose",
 			value: "rose",
@@ -49,16 +35,19 @@
 			value: "orange",
 		},
 		{
-			name: "Teal",
-			value: "teal",
+			name: "Violet",
+			value: "violet",
 		},
-	];
+		{
+			name: "Yellow",
+			value: "yellow",
+		},
+	].sort((a, b) => a.name.localeCompare(b.name));
 
 	const userConfig = UserConfigContext.get();
 
 	const label = $derived(
-		[...DEFAULT_THEMES, ...COLOR_THEMES].find((t) => t.value === userConfig.current.activeTheme)
-			?.name ?? "Default"
+		[...THEMES].find((t) => t.value === userConfig.current.activeTheme)?.name ?? "Neutral"
 	);
 </script>
 
@@ -70,8 +59,8 @@
 		bind:value={
 			() => userConfig.current.activeTheme,
 			(v) => {
-				userConfig.setConfig({ activeTheme: v ?? "default" });
-				setTheme(v ?? "default");
+				userConfig.setConfig({ activeTheme: v ?? "neutral" });
+				setTheme(v ?? "neutral");
 			}
 		}
 	>
@@ -87,19 +76,7 @@
 		</Select.Trigger>
 		<Select.Content align="end">
 			<Select.Group>
-				<Select.GroupHeading class="sr-only">Default</Select.GroupHeading>
-				{#each DEFAULT_THEMES as theme (theme.value)}
-					<Select.Item
-						value={theme.value}
-						label={theme.name}
-						class="data-[selected]:opacity-50">{theme.name}</Select.Item
-					>
-				{/each}
-			</Select.Group>
-			<Select.Separator />
-			<Select.Group>
-				<Select.GroupHeading>Colors</Select.GroupHeading>
-				{#each COLOR_THEMES as theme (theme.value)}
+				{#each THEMES as theme (theme.value)}
 					<Select.Item
 						value={theme.value}
 						label={theme.name}

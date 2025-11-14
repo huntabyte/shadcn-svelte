@@ -45,7 +45,7 @@
 				</figcaption>
 				<div class="no-scrollbar overflow-y-auto">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html chart.files?.[0]?.highlightedContent}
+					{@html chart.files?.[0]?.highlightedContent ?? ""}
 				</div>
 			</figure>
 		</div>

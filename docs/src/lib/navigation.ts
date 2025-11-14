@@ -31,13 +31,45 @@ export type NavItemWithChildren = NavItem & {
 	items: NavItemWithChildren[];
 };
 
-function generateGetStartedNav(): SidebarNavItem[] {
-	const getStartedNavItems: SidebarNavItem[] = [
+function generateSectionsNav(): SidebarNavItem[] {
+	const sectionsNavItems: SidebarNavItem[] = [
 		{
-			title: "Introduction",
+			title: "Get Started",
 			href: "/docs",
 			items: [],
 		},
+		{
+			title: "Components",
+			href: "/docs/components",
+			items: [],
+		} /*
+		{
+			title: "Directory",
+			href: "/docs/directory",
+			items: [],
+		},
+		{
+			title: "MCP Server",
+			href: "/docs/mcp",
+			items: [],
+		},
+		{
+			title: "Forms",
+			href: "/docs/forms",
+			items: [],
+			},*/,
+		{
+			title: "Changelog",
+			href: "/docs/changelog",
+			items: [],
+		},
+	];
+
+	return sectionsNavItems;
+}
+
+function generateGetStartedNav(): SidebarNavItem[] {
+	const getStartedNavItems: SidebarNavItem[] = [
 		{
 			title: "Installation",
 			href: "/docs/installation",
@@ -81,11 +113,6 @@ function generateGetStartedNav(): SidebarNavItem[] {
 		{
 			title: "llms.txt",
 			href: "/llms.txt",
-			items: [],
-		},
-		{
-			title: "Changelog",
-			href: "/docs/changelog",
 			items: [],
 		},
 		{
@@ -228,7 +255,7 @@ function generateMigrationNav(): SidebarNavItem[] {
 
 	return migrationNavItems;
 }
-
+const sectionsNav = generateSectionsNav();
 const getStartedNav = generateGetStartedNav();
 const migrationNav = generateMigrationNav();
 const componentsNav = generateComponentsNav();
@@ -237,6 +264,10 @@ const darkModeNav = generateDarkModeNav();
 const registryNav = generateRegistryNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
+	{
+		title: "Sections",
+		items: sectionsNav,
+	},
 	{
 		title: "Get Started",
 		items: getStartedNav,
@@ -266,7 +297,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
 export const mainNavItems: NavItem[] = [
 	{
 		title: "Docs",
-		href: "/docs",
+		href: "/docs/installation",
 	},
 	{
 		title: "Components",

@@ -17,7 +17,7 @@
 		data-language={language}
 	>
 		<Icon />
-		{file.target.split("/").pop()}
+		{file?.target.split("/").pop()}
 		<div class="ml-auto flex items-center gap-2">
 			<ComponentCodeViewerCopyCodeButton />
 		</div>
@@ -32,7 +32,7 @@
 		>
 			<Select.Trigger class="w-64 justify-start [&>svg]:ml-auto">
 				<Icon class="!ml-0" />
-				{file.target.split("/").pop()}
+				{file?.target.split("/").pop()}
 			</Select.Trigger>
 			<Select.Content>
 				{#if ctx.tree}

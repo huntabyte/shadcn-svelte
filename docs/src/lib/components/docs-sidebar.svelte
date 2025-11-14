@@ -13,12 +13,14 @@
 </script>
 
 <Sidebar.Root
-	class="sticky top-[calc(var(--header-height)+1px)] z-30 hidden h-[calc(100svh-var(--footer-height)+2rem)] bg-transparent lg:flex"
+	class="sticky top-[calc(var(--header-height)+1px)] z-30 hidden h-[calc(100svh-var(--footer-height)-4rem)] overscroll-none bg-transparent lg:flex"
 	collapsible="none"
 	{...restProps}
 >
-	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2 pb-12">
-		<div class="h-(--top-spacing) shrink-0"></div>
+	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2">
+		<div
+			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-b sticky -top-1 z-10 h-8 shrink-0"
+		></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>
 				<Sidebar.GroupLabel class="text-muted-foreground font-medium">
@@ -26,7 +28,7 @@
 				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					{#if item.items.length}
-						<Sidebar.Menu class="gap-0.5">
+						<Sidebar.Menu class="gap-1">
 							{#each item.items as subItem (subItem.href)}
 								{#if subItem.items.length === 0}
 									<Sidebar.MenuItem class="w-full">
@@ -57,5 +59,8 @@
 				</Sidebar.GroupContent>
 			</Sidebar.Group>
 		{/each}
+		<div
+			class="from-background via-background/80 to-background/50 blur-xs bg-linear-to-t sticky -bottom-1 z-10 h-16 shrink-0"
+		></div>
 	</Sidebar.Content>
 </Sidebar.Root>
