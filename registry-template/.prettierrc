@@ -1,5 +1,6 @@
 {
 	"useTabs": true,
+	"tabWidth": 4,
 	"singleQuote": false,
 	"trailingComma": "es5",
 	"printWidth": 100,
@@ -11,5 +12,7 @@
 				"parser": "svelte"
 			}
 		}
-	]
+	],
+	"tailwindFunctions": ["clsx", "cn", "tv"],
+	"tailwindStylesheet": "src/app.css"
 }
