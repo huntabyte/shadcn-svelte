@@ -30,10 +30,6 @@ You will be asked a few questions to configure your project:
 ./your-app-name
 - How would you like to start your new project?
 Choose a starter template (or Empty)
-- Do you plan to write TypeScript?
-Yes
-- How strict should TypeScript be?
-Strict
 - Install dependencies?
 Yes
 - Initialize a new git repository? (optional)
@@ -64,6 +60,16 @@ Answer `Yes` to all the question prompted by the CLI when installing TailwindCSS
 
 </Callout>
 
+### Import the global CSS file
+
+Import the `global.css` file in the `src/pages/index.astro` file:
+
+```astro title="src/pages/index.astro" {2} showLineNumbers
+---
+import "../styles/global.css";
+---
+```
+
 ### Setup path aliases
 
 Add the following code to the `tsconfig.json` file to resolve paths:
@@ -88,26 +94,6 @@ If needed, adapt the path aliases to your specific needs ([learn more about it](
 
 </Callout>
 
-### Create a global CSS file
-
-Create the global stylesheet in `src/styles/app.css`:
-
-```css title="src/styles/app.css" showLineNumbers
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-### Import the global CSS file
-
-Import the `app.css` file in the `src/pages/index.astro` file:
-
-```astro title="src/pages/index.astro" {2} showLineNumbers
----
-import "$lib/styles/app.css";
----
-```
-
 ### Run the CLI
 
 Run the `shadcn-svelte` init command to setup your project:
@@ -120,27 +106,12 @@ You will be asked a few questions to configure `components.json`:
 
 ```txt showLineNumbers
 Which base color would you like to use? › Slate
-Where is your global CSS file? (this file will be overwritten) › src/app.css
+Where is your global CSS file? (this file will be overwritten) › src/styles/global.css
 Configure the import alias for lib: › $lib
 Configure the import alias for components: › $lib/components
 Configure the import alias for utils: › $lib/utils
 Configure the import alias for hooks: › $lib/hooks
 Configure the import alias for ui: › $lib/components/ui
-```
-
-### Update Astro's Tailwind config
-
-To prevent serving the Tailwind base styles twice, we need to tell Astro not to apply the base styles, since we already include them in our own `app.css` file. To do this, set the `applyBaseStyles` config option for the tailwind plugin in `astro.config.mjs` to `false`.
-
-```ts title="astro.config.mjs" {3-5} showLineNumbers
-export default defineConfig({
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    // ...
-  ],
-});
 ```
 
 ### That's it

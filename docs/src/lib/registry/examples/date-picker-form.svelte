@@ -70,6 +70,7 @@
 							type="single"
 							value={value as DateValue}
 							bind:placeholder
+							captionLayout="dropdown"
 							minValue={new CalendarDate(1900, 1, 1)}
 							maxValue={today(getLocalTimeZone())}
 							calendarLabel="Date of birth"
