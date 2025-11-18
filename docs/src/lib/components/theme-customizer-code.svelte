@@ -54,7 +54,7 @@
 			data-theme="github-dark github-light-default"
 		>
 			<Css class="fill-foreground" />
-			src/app.css
+			src/routes/layout.css
 		</figcaption>
 		<pre
 			class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]"><Button

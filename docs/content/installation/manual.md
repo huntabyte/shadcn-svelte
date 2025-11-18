@@ -78,7 +78,7 @@ export default defineConfig({
 
 Add the following to your global CSS file. You can learn more about using CSS variables for theming in the [theming section](/docs/theming).
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
