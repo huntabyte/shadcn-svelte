@@ -80,7 +80,7 @@ export class UserConfig {
 
 	setConfig(config: Partial<UserConfigType>): void {
 		this.#config = { ...this.#config, ...config };
-		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${JSON.stringify(this.#config)}; path=/; max-age=31536000; SameSite=Lax;`;
+		document.cookie = `${USER_CONFIG_COOKIE_NAME}=${encodeURIComponent(JSON.stringify(this.#config))}; path=/; max-age=31536000; SameSite=Lax;`;
 
 		if (config.layout) updateLayoutClass(this.#config.layout);
 	}
