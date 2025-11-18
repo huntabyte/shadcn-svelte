@@ -6,7 +6,7 @@ import ignore, { type Ignore } from "ignore";
 import { AGENTS, detect, getUserAgent, type Agent, type AgentName } from "package-manager-detector";
 import { cancel } from "./prompt-helpers.js";
 
-const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css"];
+const STYLESHEETS = ["app.css", "main.css", "globals.css", "global.css", "layout.css"];
 
 // commonly ignored
 const IGNORE = ["node_modules", ".git", ".svelte-kit"];
