@@ -1,5 +1,11 @@
 # shadcn-svelte
 
+## 1.0.12
+
+### Patch Changes
+
+- fix: ensure `layout.css` is detected during initialization ([#2412](https://github.com/huntabyte/shadcn-svelte/pull/2412))
+
 ## 1.0.11
 
 ### Patch Changes
