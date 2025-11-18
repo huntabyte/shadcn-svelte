@@ -395,7 +395,7 @@ Charts has built-in support for theming. You can use css variables (recommended)
 
 ### Define your colors in your css file
 
-```css {5-6,13-14} title="src/app.css" showLineNumbers
+```css {5-6,13-14} title="src/routes/layout.css" showLineNumbers
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
