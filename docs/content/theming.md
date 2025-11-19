@@ -38,7 +38,7 @@ The `background` color of the following component will be `var(--primary)` and t
 
 Here's the list of variables available for customization:
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -113,7 +113,7 @@ Here's the list of variables available for customization:
 
 To add new colors, you need to add them to your CSS file.
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --warning: oklch(0.84 0.16 84);
   --warning-foreground: oklch(0.28 0.07 46);
@@ -148,7 +148,7 @@ For reference, here's a list of the base colors that are available.
 
 <CodeCollapsibleWrapper>
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -225,7 +225,7 @@ For reference, here's a list of the base colors that are available.
 
 <CodeCollapsibleWrapper>
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -302,7 +302,7 @@ For reference, here's a list of the base colors that are available.
 
 <CodeCollapsibleWrapper>
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -379,7 +379,7 @@ For reference, here's a list of the base colors that are available.
 
 <CodeCollapsibleWrapper>
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -456,7 +456,7 @@ For reference, here's a list of the base colors that are available.
 
 <CodeCollapsibleWrapper>
 
-```css title="src/app.css" showLineNumbers
+```css title="src/routes/layout.css" showLineNumbers
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

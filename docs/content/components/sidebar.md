@@ -50,7 +50,7 @@ We now have a solid foundation to build on top of. Composable. Themeable. Custom
 
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
-```css title="src/app.css"
+```css title="src/routes/layout.css"
 :root {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -94,7 +94,7 @@ Copy and paste the following code into your project.
 
 We'll go over the colors later in the [theming section](/docs/components/sidebar#theming).
 
-```css title="src/app.css"
+```css title="src/routes/layout.css"
 :root {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
