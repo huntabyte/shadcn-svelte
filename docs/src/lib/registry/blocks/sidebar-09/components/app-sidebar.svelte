@@ -144,7 +144,7 @@
 	<!-- This is the first sidebar -->
 	<!-- We disable collapsible and adjust width to icon. -->
 	<!-- This will make the sidebar appear as icons. -->
-	<Sidebar.Root collapsible="none" class="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-r">
+	<Sidebar.Root collapsible="none" class="!w-[calc(var(--sidebar-width-icon)_+_1px)] border-e">
 		<Sidebar.Header>
 			<Sidebar.Menu>
 				<Sidebar.MenuItem>
@@ -156,7 +156,7 @@
 								>
 									<CommandIcon class="size-4" />
 								</div>
-								<div class="grid flex-1 text-left text-sm leading-tight">
+								<div class="grid flex-1 text-start text-sm leading-tight">
 									<span class="truncate font-medium">Acme Inc</span>
 									<span class="truncate text-xs">Enterprise</span>
 								</div>
@@ -230,7 +230,7 @@
 						>
 							<div class="flex w-full items-center gap-2">
 								<span>{mail.name}</span>
-								<span class="ml-auto text-xs">{mail.date}</span>
+								<span class="ms-auto text-xs">{mail.date}</span>
 							</div>
 							<span class="font-medium">{mail.subject}</span>
 							<span class="line-clamp-2 w-[260px] whitespace-break-spaces text-xs">

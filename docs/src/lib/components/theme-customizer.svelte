@@ -81,5 +81,5 @@
 			</Select.Content>
 		</Select.Root>
 	</div>
-	<ThemeCustomizerCopyCodeButton variant="secondary" size="sm" class="ml-auto" />
+	<ThemeCustomizerCopyCodeButton variant="secondary" size="sm" class="ms-auto" />
 </div>

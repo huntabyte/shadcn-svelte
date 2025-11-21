@@ -35,7 +35,7 @@
 </PageHeader>
 <PageNav id="charts">
 	<ChartsNav />
-	<ThemeSelector class="mr-4 hidden md:flex" />
+	<ThemeSelector class="me-4 hidden md:flex" />
 </PageNav>
 <div class="container-wrapper section-soft flex-1">
 	<div class="container pb-6">

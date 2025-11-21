@@ -75,7 +75,7 @@
 						class={buttonVariants({
 							variant: "outline",
 							size: "sm",
-							class: "ml-auto shadow-none",
+							class: "ms-auto shadow-none",
 						})}
 					>
 						{member.role}

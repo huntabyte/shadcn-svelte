@@ -48,7 +48,7 @@
 		<div class="flex w-full flex-col gap-2">
 			{#each events as event (event.title)}
 				<div
-					class="bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full"
+					class="bg-muted after:bg-primary/70 relative rounded-md p-2 ps-6 text-sm after:absolute after:inset-y-2 after:start-2 after:w-1 after:rounded-full"
 				>
 					<div class="font-medium">{event.title}</div>
 					<div class="text-muted-foreground text-xs">

@@ -46,7 +46,7 @@
 		>
 			{model.name}
 			{#if isSelected}
-				<CheckIcon class={cn("ml-auto size-4")} />
+				<CheckIcon class={cn("ms-auto size-4")} />
 			{/if}
 		</div>
 	{/snippet}

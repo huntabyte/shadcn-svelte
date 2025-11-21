@@ -126,7 +126,7 @@
 			header: () => {
 				const amountHeaderSnippet = createRawSnippet(() => {
 					return {
-						render: () => `<div class="text-right">Amount</div>`,
+						render: () => `<div class="text-end">Amount</div>`,
 					};
 				});
 				return renderSnippet(amountHeaderSnippet);
@@ -141,7 +141,7 @@
 					const { amount } = getAmount();
 					const formatted = formatter.format(amount);
 					return {
-						render: () => `<div class="text-right font-medium">${formatted}</div>`,
+						render: () => `<div class="text-end font-medium">${formatted}</div>`,
 					};
 				});
 				return renderSnippet(amountCellSnippet, {
@@ -240,8 +240,8 @@
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
-					<Button {...props} variant="outline" class="ml-auto">
-						Columns <ChevronDownIcon class="ml-2 size-4" />
+					<Button {...props} variant="outline" class="ms-auto">
+						Columns <ChevronDownIcon class="ms-2 size-4" />
 					</Button>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -265,7 +265,7 @@
 				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 					<Table.Row>
 						{#each headerGroup.headers as header (header.id)}
-							<Table.Head class="[&:has([role=checkbox])]:pl-3">
+							<Table.Head class="[&:has([role=checkbox])]:ps-3">
 								{#if !header.isPlaceholder}
 									<FlexRender
 										content={header.column.columnDef.header}
@@ -281,7 +281,7 @@
 				{#each table.getRowModel().rows as row (row.id)}
 					<Table.Row data-state={row.getIsSelected() && "selected"}>
 						{#each row.getVisibleCells() as cell (cell.id)}
-							<Table.Cell class="[&:has([role=checkbox])]:pl-3">
+							<Table.Cell class="[&:has([role=checkbox])]:ps-3">
 								<FlexRender
 									content={cell.column.columnDef.cell}
 									context={cell.getContext()}

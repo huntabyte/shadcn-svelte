@@ -43,7 +43,7 @@
 										value={option.value}
 										id={option.value}
 										checked={option.value === "social-media"}
-										class="-ml-6 -translate-x-1 rounded-full transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
+										class="-ms-6 -translate-x-1 rounded-full transition-all duration-100 ease-linear data-[state=checked]:ms-0 data-[state=checked]:translate-x-0"
 									/>
 									<Field.Title class="text-nowrap">{option.label}</Field.Title>
 								</Field.Field>

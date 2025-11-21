@@ -46,7 +46,7 @@
 				<p>You should not enter any sensitive information on this site.</p>
 			</Popover.Content>
 		</Popover.Root>
-		<InputGroup.Addon class="text-muted-foreground pl-1.5">
+		<InputGroup.Addon class="text-muted-foreground ps-1.5">
 			<InputGroup.Text>https://</InputGroup.Text>
 		</InputGroup.Addon>
 		<InputGroup.Input />

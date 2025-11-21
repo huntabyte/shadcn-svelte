@@ -54,7 +54,7 @@
 							<Breadcrumb.Ellipsis class="size-4" />
 						</Drawer.Trigger>
 						<Drawer.Content>
-							<Drawer.Header class="text-left">
+							<Drawer.Header class="text-start">
 								<Drawer.Title>Navigate to</Drawer.Title>
 								<Drawer.Description>
 									Select a page to navigate to.

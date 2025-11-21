@@ -75,7 +75,7 @@
 		>
 			{#if selectedStatus}
 				{@const Icon = selectedStatus.icon}
-				<Icon class="mr-2 size-4 shrink-0" />
+				<Icon class="me-2 size-4 shrink-0" />
 				{selectedStatus.label}
 			{:else}
 				+ Set status
@@ -98,7 +98,7 @@
 								{@const Icon = status.icon}
 								<Icon
 									class={cn(
-										"mr-2 size-4",
+										"me-2 size-4",
 										status.value !== selectedStatus?.value &&
 											"text-foreground/40"
 									)}

@@ -142,12 +142,12 @@
 
 <Card.Root>
 	<Card.Header class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-		<div class="grid flex-1 gap-1 text-center sm:text-left">
+		<div class="grid flex-1 gap-1 text-center sm:text-start">
 			<Card.Title>Area Chart - Interactive</Card.Title>
 			<Card.Description>Showing total visitors for the last 3 months</Card.Description>
 		</div>
 		<Select.Root type="single" bind:value={timeRange}>
-			<Select.Trigger class="w-[160px] rounded-lg sm:ml-auto" aria-label="Select a value">
+			<Select.Trigger class="w-[160px] rounded-lg sm:ms-auto" aria-label="Select a value">
 				{selectedLabel}
 			</Select.Trigger>
 			<Select.Content class="rounded-xl">

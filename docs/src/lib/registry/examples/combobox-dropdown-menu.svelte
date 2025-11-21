@@ -38,7 +38,7 @@
 	class="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center"
 >
 	<p class="text-sm font-medium leading-none">
-		<span class="bg-primary text-primary-foreground mr-2 rounded-lg px-2 py-1 text-xs">
+		<span class="bg-primary text-primary-foreground me-2 rounded-lg px-2 py-1 text-xs">
 			{selectedLabel}
 		</span>
 		<span class="text-muted-foreground">Create a new project</span>
@@ -55,17 +55,17 @@
 			<DropdownMenu.Group>
 				<DropdownMenu.Label>Actions</DropdownMenu.Label>
 				<DropdownMenu.Item>
-					<UserIcon class="mr-2 size-4" />
+					<UserIcon class="me-2 size-4" />
 					Assign to...
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<CalendarIcon class="mr-2 size-4" />
+					<CalendarIcon class="me-2 size-4" />
 					Set due date...
 				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Sub>
 					<DropdownMenu.SubTrigger>
-						<TagsIcon class="mr-2 size-4" />
+						<TagsIcon class="me-2 size-4" />
 						Apply label
 					</DropdownMenu.SubTrigger>
 					<DropdownMenu.SubContent class="p-0">
@@ -92,7 +92,7 @@
 				</DropdownMenu.Sub>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item class="text-red-600">
-					<TrashIcon class="mr-2 size-4" />
+					<TrashIcon class="me-2 size-4" />
 					Delete
 					<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
 				</DropdownMenu.Item>

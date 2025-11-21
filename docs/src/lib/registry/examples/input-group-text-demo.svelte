@@ -16,7 +16,7 @@
 		<InputGroup.Addon>
 			<InputGroup.Text>https://</InputGroup.Text>
 		</InputGroup.Addon>
-		<InputGroup.Input placeholder="example.com" class="!pl-0.5" />
+		<InputGroup.Input placeholder="example.com" class="!ps-0.5" />
 		<InputGroup.Addon align="inline-end">
 			<InputGroup.Text>.com</InputGroup.Text>
 		</InputGroup.Addon>

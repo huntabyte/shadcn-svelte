@@ -98,7 +98,7 @@
 								{language.label}
 								<CheckIcon
 									class={cn(
-										"ml-auto",
+										"ms-auto",
 										language.value !== $formData.language && "text-transparent"
 									)}
 								/>

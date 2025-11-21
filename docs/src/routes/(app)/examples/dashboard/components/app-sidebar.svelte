@@ -141,7 +141,7 @@
 	let { ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root collapsible="none" class="h-auto border-r" {...restProps}>
+<Sidebar.Root collapsible="none" class="h-auto border-e" {...restProps}>
 	<Sidebar.Header class="border-b">
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>

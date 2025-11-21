@@ -184,7 +184,7 @@
 							{/snippet}
 						</Sidebar.MenuButton>
 						{#if item.items?.length}
-							<Sidebar.MenuSub class="ml-0 border-l-0 px-1.5">
+							<Sidebar.MenuSub class="ms-0 border-s-0 px-1.5">
 								{#each item.items as subItem (subItem.title)}
 									<Sidebar.MenuSubItem>
 										<Sidebar.MenuSubButton isActive={subItem.isActive}>

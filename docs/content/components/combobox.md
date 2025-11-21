@@ -85,7 +85,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
         aria-expanded={open}
       >
         {selectedValue || "Select a framework..."}
-        <ChevronsUpDownIcon class="ml-2 size-4 shrink-0 opacity-50" />
+        <ChevronsUpDownIcon class="ms-2 size-4 shrink-0 opacity-50" />
       </Button>
     {/snippet}
   </Popover.Trigger>
@@ -105,7 +105,7 @@ See installation instructions for the [Popover](/docs/components/popover#install
             >
               <CheckIcon
                 class={cn(
-                  "mr-2 size-4",
+                  "me-2 size-4",
                   value !== framework.value && "text-transparent"
                 )}
               />

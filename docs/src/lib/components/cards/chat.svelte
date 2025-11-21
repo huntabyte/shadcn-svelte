@@ -87,7 +87,7 @@
 							{...props}
 							size="icon"
 							variant="secondary"
-							class="ml-auto size-8 rounded-full"
+							class="ms-auto size-8 rounded-full"
 							onclick={() => (open = true)}
 						>
 							<PlusIcon />
@@ -106,7 +106,7 @@
 					class={cn(
 						"flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
 						message.role === "user"
-							? "bg-primary text-primary-foreground ml-auto"
+							? "bg-primary text-primary-foreground ms-auto"
 							: "bg-muted"
 					)}
 				>
@@ -131,7 +131,7 @@
 			<Input
 				id="message"
 				placeholder="Type your message..."
-				class="flex-1 pr-10"
+				class="flex-1 pe-10"
 				autocomplete="off"
 				bind:value={input}
 			/>
@@ -139,7 +139,7 @@
 				type="submit"
 				size="icon"
 				disabled={inputLength === 0}
-				class="absolute right-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
+				class="absolute end-2 top-1/2 size-6 -translate-y-1/2 rounded-full"
 			>
 				<ArrowUpIcon class="size-3.5" />
 				<span class="sr-only">Send</span>
@@ -179,7 +179,7 @@
 								<Avatar.Image src={user.avatar} alt="Image" />
 								<Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
 							</Avatar.Root>
-							<div class="ml-2">
+							<div class="ms-2">
 								<p class="text-sm font-medium leading-none">
 									{user.name}
 								</p>
@@ -188,7 +188,7 @@
 								</p>
 							</div>
 							{#if selectedUsers.includes(user)}
-								<CheckIcon class="text-primary ml-auto flex size-4" />
+								<CheckIcon class="text-primary ms-auto flex size-4" />
 							{/if}
 						</Command.Item>
 					{/each}

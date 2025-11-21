@@ -224,7 +224,7 @@
 	@apply relative;
 
 	&:before {
-		@apply text-muted-foreground right-0 mr-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
+		@apply text-muted-foreground end-0 me-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
 		content: counter(step);
 	}
 }

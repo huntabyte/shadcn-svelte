@@ -29,7 +29,7 @@
 		<Popover.Trigger
 			class={cn(buttonVariants({ variant: "outline" }), !value && "text-muted-foreground")}
 		>
-			<CalendarIcon class="mr-2 size-4" />
+			<CalendarIcon class="me-2 size-4" />
 			{#if value && value.start}
 				{#if value.end}
 					{df.format(value.start.toDate(getLocalTimeZone()))} - {df.format(

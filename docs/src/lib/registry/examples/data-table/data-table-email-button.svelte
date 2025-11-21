@@ -8,5 +8,5 @@
 
 <Button {variant} {...restProps}>
 	Email
-	<ArrowUpDownIcon class="ml-2 size-4" />
+	<ArrowUpDownIcon class="ms-2 size-4" />
 </Button>

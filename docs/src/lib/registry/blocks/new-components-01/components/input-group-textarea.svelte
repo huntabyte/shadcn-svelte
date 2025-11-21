@@ -30,7 +30,7 @@
 				</svg>
 				script.js
 			</InputGroup.Text>
-			<InputGroup.Button class="ml-auto" size="icon-xs">
+			<InputGroup.Button class="ms-auto" size="icon-xs">
 				<RefreshCwIcon />
 			</InputGroup.Button>
 			<InputGroup.Button variant="ghost" size="icon-xs">
@@ -40,7 +40,7 @@
 		<InputGroup.Textarea placeholder="console.log('Hello, world!');" class="min-h-[200px]" />
 		<InputGroup.Addon align="block-end" class="border-t">
 			<InputGroup.Text>Line 1, Column 1</InputGroup.Text>
-			<InputGroup.Button size="sm" class="ml-auto" variant="default">
+			<InputGroup.Button size="sm" class="ms-auto" variant="default">
 				Run <CornerDownLeftIcon />
 			</InputGroup.Button>
 		</InputGroup.Addon>

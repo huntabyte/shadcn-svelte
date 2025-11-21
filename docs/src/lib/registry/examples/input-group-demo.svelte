@@ -19,7 +19,7 @@
 		<InputGroup.Addon align="inline-end">12 results</InputGroup.Addon>
 	</InputGroup.Root>
 	<InputGroup.Root>
-		<InputGroup.Input placeholder="example.com" class="!pl-1" />
+		<InputGroup.Input placeholder="example.com" class="!ps-1" />
 		<InputGroup.Addon>
 			<InputGroup.Text>https://</InputGroup.Text>
 		</InputGroup.Addon>
@@ -54,7 +54,7 @@
 					<DropdownMenu.Item>Manual</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
-			<InputGroup.Text class="ml-auto">52% used</InputGroup.Text>
+			<InputGroup.Text class="ms-auto">52% used</InputGroup.Text>
 			<Separator orientation="vertical" class="!h-4" />
 			<InputGroup.Button variant="default" class="rounded-full" size="icon-xs" disabled>
 				<ArrowUpIcon />

@@ -46,7 +46,7 @@
 <Drawer.Root direction={isMobile.current ? "bottom" : "right"}>
 	<Drawer.Trigger>
 		{#snippet child({ props })}
-			<Button variant="link" class="text-foreground w-fit px-0 text-left" {...props}>
+			<Button variant="link" class="text-foreground w-fit px-0 text-start" {...props}>
 				{item.header}
 			</Button>
 		{/snippet}

@@ -10,7 +10,7 @@
 			placeholder="Autoresize textarea..."
 		></textarea>
 		<InputGroup.Addon align="block-end">
-			<InputGroup.Button class="ml-auto" size="sm" variant="default">
+			<InputGroup.Button class="ms-auto" size="sm" variant="default">
 				Submit
 			</InputGroup.Button>
 		</InputGroup.Addon>

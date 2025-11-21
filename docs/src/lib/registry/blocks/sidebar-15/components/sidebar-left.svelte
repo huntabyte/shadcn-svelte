@@ -253,7 +253,7 @@
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root class="border-r-0" {...restProps}>
+<Sidebar.Root class="border-e-0" {...restProps}>
 	<Sidebar.Header>
 		<TeamSwitcher teams={data.teams} />
 		<NavMain items={data.navMain} />

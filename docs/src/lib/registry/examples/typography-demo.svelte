@@ -19,7 +19,7 @@
 		</a>
 		: he would tax the jokes in the kingdom.
 	</p>
-	<blockquote class="mt-6 border-l-2 pl-6 italic">
+	<blockquote class="mt-6 border-s-2 ps-6 italic">
 		&quot;After all,&quot; he said, &quot;everyone enjoys a good joke, so it&apos;s only fair
 		that they should pay for the privilege.&quot;
 	</blockquote>
@@ -28,7 +28,7 @@
 		The king&apos;s subjects were not amused. They grumbled and complained, but the king was
 		firm:
 	</p>
-	<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+	<ul class="my-6 ms-6 list-disc [&>li]:mt-2">
 		<li>1st level of puns: 5 gold coins</li>
 		<li>2nd level of jokes: 10 gold coins</li>
 		<li>3rd level of one-liners : 20 gold coins</li>
@@ -61,12 +61,12 @@
 			<thead>
 				<tr class="even:bg-muted m-0 border-t p-0">
 					<th
-						class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start font-bold [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						King&apos;s Treasury
 					</th>
 					<th
-						class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start font-bold [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						People&apos;s happiness
 					</th>
@@ -75,36 +75,36 @@
 			<tbody>
 				<tr class="even:bg-muted m-0 border-t p-0">
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Empty
 					</td>
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Overflowing
 					</td>
 				</tr>
 				<tr class="even:bg-muted m-0 border-t p-0">
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Modest
 					</td>
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Satisfied
 					</td>
 				</tr>
 				<tr class="even:bg-muted m-0 border-t p-0">
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Full
 					</td>
 					<td
-						class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+						class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 					>
 						Ecstatic
 					</td>

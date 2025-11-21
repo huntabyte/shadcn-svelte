@@ -146,7 +146,7 @@
 											<Sidebar.MenuButton {...props}>
 												<span>{item.title}</span>
 												<ChevronRightIcon
-													class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+													class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 												/>
 											</Sidebar.MenuButton>
 										{/snippet}

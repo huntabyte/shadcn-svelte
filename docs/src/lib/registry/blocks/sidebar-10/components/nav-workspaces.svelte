@@ -38,7 +38,7 @@
 							{#snippet child({ props })}
 								<Sidebar.MenuAction
 									{...props}
-									class="bg-sidebar-accent text-sidebar-accent-foreground left-2 data-[state=open]:rotate-90"
+									class="bg-sidebar-accent text-sidebar-accent-foreground start-2 data-[state=open]:rotate-90"
 									showOnHover
 								>
 									<ChevronRightIcon />

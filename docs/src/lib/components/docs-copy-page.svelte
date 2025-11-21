@@ -45,7 +45,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		variant="secondary"
 		size="sm"
 		class={cn(
-			"peer -ml-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
+			"peer -ms-0.5 size-8 shadow-none md:size-7 md:text-[0.8rem]",
 			props.class as string
 		)}
 	>
@@ -138,7 +138,7 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 		</DropdownMenu.Root>
 		<Separator
 			orientation="vertical"
-			class="!bg-foreground/10 absolute right-8 top-0 z-0 !h-8 peer-focus-visible:opacity-0 sm:right-7 sm:!h-7"
+			class="!bg-foreground/10 absolute end-8 top-0 z-0 !h-8 peer-focus-visible:opacity-0 sm:end-7 sm:!h-7"
 		/>
 		<Popover.Trigger class="flex sm:hidden">
 			{#snippet child({ props })}

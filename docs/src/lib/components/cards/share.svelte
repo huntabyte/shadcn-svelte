@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<Select.Root type="single" bind:value={person.permission}>
-							<Select.Trigger class="ml-auto pr-2" size="sm" aria-label="Edit">
+							<Select.Trigger class="ms-auto pe-2" size="sm" aria-label="Edit">
 								{permissions.find((p) => p.value === person.permission)?.label ??
 									"Select"}
 							</Select.Trigger>

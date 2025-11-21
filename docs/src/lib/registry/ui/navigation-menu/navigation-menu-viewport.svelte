@@ -9,7 +9,7 @@
 	}: NavigationMenuPrimitive.ViewportProps = $props();
 </script>
 
-<div class={cn("absolute left-0 top-full isolate z-50 flex justify-center")}>
+<div class={cn("absolute start-0 top-full isolate z-50 flex justify-center")}>
 	<NavigationMenuPrimitive.Viewport
 		bind:ref
 		data-slot="navigation-menu-viewport"

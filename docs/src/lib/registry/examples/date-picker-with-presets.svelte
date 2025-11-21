@@ -32,12 +32,12 @@
 		class={cn(
 			buttonVariants({
 				variant: "outline",
-				class: "w-[280px] justify-start text-left font-normal",
+				class: "w-[280px] justify-start text-start font-normal",
 			}),
 			!value && "text-muted-foreground"
 		)}
 	>
-		<CalendarIcon class="mr-2 size-4" />
+		<CalendarIcon class="me-2 size-4" />
 		{value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date"}
 	</Popover.Trigger>
 	<Popover.Content class="flex w-auto flex-col space-y-2 p-2">

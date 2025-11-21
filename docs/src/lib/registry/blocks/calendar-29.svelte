@@ -53,7 +53,7 @@
 				}
 			}
 			placeholder="Tomorrow or next week"
-			class="bg-background pr-10"
+			class="bg-background pe-10"
 			onkeydown={(e) => {
 				if (e.key === "ArrowDown") {
 					e.preventDefault();
@@ -67,7 +67,7 @@
 					<Button
 						{...props}
 						variant="ghost"
-						class="absolute right-2 top-1/2 size-6 -translate-y-1/2"
+						class="absolute end-2 top-1/2 size-6 -translate-y-1/2"
 					>
 						<CalendarIcon class="size-3.5" />
 						<span class="sr-only">Select date</span>

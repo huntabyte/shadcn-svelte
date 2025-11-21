@@ -11,7 +11,7 @@
 <div class="grid w-full max-w-sm gap-6">
 	<Label for="input-secure-19" class="sr-only">Input Secure</Label>
 	<InputGroup.Root class="[--radius:9999px]">
-		<InputGroup.Input id="input-secure-19" class="!pl-0.5" />
+		<InputGroup.Input id="input-secure-19" class="!ps-0.5" />
 		<Popover.Root>
 			<Popover.Trigger>
 				{#snippet child({ props })}
@@ -36,7 +36,7 @@
 				<p>You should not enter any sensitive information on this site.</p>
 			</Popover.Content>
 		</Popover.Root>
-		<InputGroup.Addon class="text-muted-foreground !pl-1">https://</InputGroup.Addon>
+		<InputGroup.Addon class="text-muted-foreground !ps-1">https://</InputGroup.Addon>
 		<InputGroup.Addon align="inline-end">
 			<InputGroup.Button
 				onclick={() => (isFavorite = !isFavorite)}

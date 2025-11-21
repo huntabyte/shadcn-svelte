@@ -12,9 +12,9 @@
 	<Sidebar.Group class="py-0">
 		<Sidebar.GroupContent class="relative">
 			<Label for="search" class="sr-only">Search</Label>
-			<Sidebar.Input id="search" placeholder="Search the docs..." class="pl-8" />
+			<Sidebar.Input id="search" placeholder="Search the docs..." class="ps-8" />
 			<SearchIcon
-				class="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 select-none opacity-50"
+				class="pointer-events-none absolute start-2 top-1/2 size-4 -translate-y-1/2 select-none opacity-50"
 			/>
 		</Sidebar.GroupContent>
 	</Sidebar.Group>

@@ -39,7 +39,7 @@
 	<Drawer.Root bind:open>
 		<Drawer.Trigger class={buttonVariants({ variant: "outline" })}>Edit Profile</Drawer.Trigger>
 		<Drawer.Content>
-			<Drawer.Header class="text-left">
+			<Drawer.Header class="text-start">
 				<Drawer.Title>Edit profile</Drawer.Title>
 				<Drawer.Description>
 					Make changes to your profile here. Click save when you're done.

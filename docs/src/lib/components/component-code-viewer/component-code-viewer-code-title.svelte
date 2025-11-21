@@ -18,7 +18,7 @@
 	>
 		<Icon />
 		{file.target.split("/").pop()}
-		<div class="ml-auto flex items-center gap-2">
+		<div class="ms-auto flex items-center gap-2">
 			<ComponentCodeViewerCopyCodeButton />
 		</div>
 	</figcaption>
@@ -30,8 +30,8 @@
 			type="single"
 			bind:value={() => ctx.activeFile ?? "", (v) => (ctx.activeFile = v)}
 		>
-			<Select.Trigger class="w-64 justify-start [&>svg]:ml-auto">
-				<Icon class="!ml-0" />
+			<Select.Trigger class="w-64 justify-start [&>svg]:ms-auto">
+				<Icon class="!ms-0" />
 				{file.target.split("/").pop()}
 			</Select.Trigger>
 			<Select.Content>
@@ -47,8 +47,8 @@
 				{/if}
 			</Select.Content>
 		</Select.Root>
-		<div class="ml-auto flex items-center gap-2">
-			<ComponentCodeViewerCopyCodeButton class="mr-0" />
+		<div class="ms-auto flex items-center gap-2">
+			<ComponentCodeViewerCopyCodeButton class="me-0" />
 		</div>
 	</div>
 {/if}
