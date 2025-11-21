@@ -33,7 +33,7 @@ This project is supported by the following beautiful people/organizations:
 
 <!-- automd:contributors license=MIT author="huntabyte" -->
 
-Published under the [MIT](https://github.com/huntabyte/shadcn-svelte/blob/main/LICENSE) license.
+Published under the [MIT](https://github.com/huntabyte/shadcn-svelte/blob/main/LICENSE.md) license.
 Built by [@huntabyte](https://github.com/huntabyte), [CokaKoala](https://github.com/adriangonz97),and [community](https://github.com/huntabyte/shadcn-svelte/graphs/contributors) 💛
 <br><br>
 <a href="https://github.com/huntabyte/shadcn-svelte/graphs/contributors">
