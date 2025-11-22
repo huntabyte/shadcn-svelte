@@ -74,9 +74,24 @@
 	});
 
 	const isMobile = new MediaQuery("(max-width: 768px)");
-	const height = $derived(
+
+	const longestFileHeight = $derived.by(() => {
+		if (!highlightedFiles || highlightedFiles.length === 0) return "100%";
+
+		const maxLineCount = highlightedFiles.reduce((max, file) => {
+			const lineCount = file.highlightedContent.split("\n").length;
+			return Math.max(max, lineCount);
+		}, 0);
+
+		// Estimate height: ~1.5rem per line (adjust based on your font size)
+		return `${maxLineCount * 1.5}rem`;
+	});
+
+	const viewportHeight = $derived(
 		isMobile.current ? "75dvh" : "calc(100svh - (var(--header-height) * 2))"
 	);
+
+	const height = $derived(`min(${longestFileHeight}, ${viewportHeight})`);
 </script>
 
 <div
