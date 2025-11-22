@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { Drawer as DrawerPrimitive } from "vaul-svelte";
+	import DrawerPortal from "./drawer-portal.svelte";
 	import DrawerOverlay from "./drawer-overlay.svelte";
 	import { cn } from "$lib/utils.js";
+	import type { ComponentProps } from "svelte";
+	import type { WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -10,11 +13,11 @@
 		children,
 		...restProps
 	}: DrawerPrimitive.ContentProps & {
-		portalProps?: DrawerPrimitive.PortalProps;
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof DrawerPortal>>;
 	} = $props();
 </script>
 
-<DrawerPrimitive.Portal {...portalProps}>
+<DrawerPortal {...portalProps}>
 	<DrawerOverlay />
 	<DrawerPrimitive.Content
 		bind:ref
@@ -34,4 +37,4 @@
 		></div>
 		{@render children?.()}
 	</DrawerPrimitive.Content>
-</DrawerPrimitive.Portal>
+</DrawerPortal>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import MenubarPortal from "./menubar-portal.svelte";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -12,11 +14,11 @@
 		portalProps,
 		...restProps
 	}: MenubarPrimitive.ContentProps & {
-		portalProps?: MenubarPrimitive.PortalProps;
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof MenubarPortal>>;
 	} = $props();
 </script>
 
-<MenubarPrimitive.Portal {...portalProps}>
+<MenubarPortal {...portalProps}>
 	<MenubarPrimitive.Content
 		bind:ref
 		data-slot="menubar-content"
@@ -30,4 +32,4 @@
 		)}
 		{...restProps}
 	/>
-</MenubarPrimitive.Portal>
+</MenubarPortal>

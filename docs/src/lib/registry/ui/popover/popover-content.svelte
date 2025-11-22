@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
 	import { Popover as PopoverPrimitive } from "bits-ui";
+	import PopoverPortal from "./popover-portal.svelte";
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
+	import type { ComponentProps } from "svelte";
 
 	let {
 		ref = $bindable(null),
@@ -10,11 +12,11 @@
 		portalProps,
 		...restProps
 	}: PopoverPrimitive.ContentProps & {
-		portalProps?: PopoverPrimitive.PortalProps;
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof PopoverPortal>>;
 	} = $props();
 </script>
 
-<PopoverPrimitive.Portal {...portalProps}>
+<PopoverPortal {...portalProps}>
 	<PopoverPrimitive.Content
 		bind:ref
 		data-slot="popover-content"
@@ -26,4 +28,4 @@
 		)}
 		{...restProps}
 	/>
-</PopoverPrimitive.Portal>
+</PopoverPortal>
