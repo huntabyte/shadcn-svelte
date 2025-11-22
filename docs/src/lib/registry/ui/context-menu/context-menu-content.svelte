@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils.js";
+	import ContextMenuPortal from "./context-menu-portal.svelte";
+	import type { ComponentProps } from "svelte";
+	import type { WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
@@ -8,11 +11,11 @@
 		class: className,
 		...restProps
 	}: ContextMenuPrimitive.ContentProps & {
-		portalProps?: ContextMenuPrimitive.PortalProps;
+		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof ContextMenuPortal>>;
 	} = $props();
 </script>
 
-<ContextMenuPrimitive.Portal {...portalProps}>
+<ContextMenuPortal {...portalProps}>
 	<ContextMenuPrimitive.Content
 		bind:ref
 		data-slot="context-menu-content"
@@ -22,4 +25,4 @@
 		)}
 		{...restProps}
 	/>
-</ContextMenuPrimitive.Portal>
+</ContextMenuPortal>

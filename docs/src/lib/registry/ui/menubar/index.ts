@@ -14,6 +14,7 @@ import SubTrigger from "./menubar-sub-trigger.svelte";
 import Trigger from "./menubar-trigger.svelte";
 import Label from "./menubar-label.svelte";
 import GroupHeading from "./menubar-group-heading.svelte";
+import Portal from "./menubar-portal.svelte";
 
 export {
 	Root,
@@ -32,6 +33,7 @@ export {
 	RadioGroup,
 	Label,
 	GroupHeading,
+	Portal,
 	//
 	Root as Menubar,
 	CheckboxItem as MenubarCheckboxItem,
@@ -49,4 +51,5 @@ export {
 	RadioGroup as MenubarRadioGroup,
 	Label as MenubarLabel,
 	GroupHeading as MenubarGroupHeading,
+	Portal as MenubarPortal,
 };
