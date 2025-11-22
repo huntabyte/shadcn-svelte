@@ -77,7 +77,7 @@
 					defaultValue={formState.defaultValues.name}
 				/>
 				{#if formState.errors.name}
-					<p id="error-name" class="text-destructive text-sm">
+					<p id="error-name" class="text-sm text-destructive">
 						{formState.errors.name}
 					</p>
 				{/if}
@@ -97,7 +97,7 @@
 					defaultValue={formState.defaultValues.email}
 				/>
 				{#if formState.errors.email}
-					<p id="error-email" class="text-destructive text-sm">
+					<p id="error-email" class="text-sm text-destructive">
 						{formState.errors.email}
 					</p>
 				{/if}
@@ -117,7 +117,7 @@
 					defaultValue={formState.defaultValues.message}
 				/>
 				{#if formState.errors.message}
-					<p id="error-message" class="text-destructive text-sm">
+					<p id="error-message" class="text-sm text-destructive">
 						{formState.errors.message}
 					</p>
 				{/if}

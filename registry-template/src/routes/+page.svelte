@@ -18,7 +18,9 @@
 	<main class="flex flex-1 flex-col gap-8">
 		<div class="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
 			<div class="flex items-center justify-between">
-				<h2 class="text-muted-foreground text-sm sm:pl-3">A simple hello world component</h2>
+				<h2 class="text-sm text-muted-foreground sm:pl-3">
+					A simple hello world component
+				</h2>
 			</div>
 			<div class="relative flex min-h-[400px] items-center justify-center">
 				<HelloWorld />
@@ -27,7 +29,9 @@
 
 		<div class="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
 			<div class="flex items-center justify-between">
-				<h2 class="text-muted-foreground text-sm sm:pl-3">A contact form with Zod validation.</h2>
+				<h2 class="text-sm text-muted-foreground sm:pl-3">
+					A contact form with Zod validation.
+				</h2>
 			</div>
 			<div class="relative flex min-h-[500px] items-center justify-center">
 				<ExampleForm />
@@ -36,7 +40,7 @@
 
 		<div class="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
 			<div class="flex items-center justify-between">
-				<h2 class="text-muted-foreground text-sm sm:pl-3">
+				<h2 class="text-sm text-muted-foreground sm:pl-3">
 					A complex component showing hooks, libs and components.
 				</h2>
 			</div>
@@ -47,7 +51,7 @@
 
 		<div class="relative flex min-h-[450px] flex-col gap-4 rounded-lg border p-4">
 			<div class="flex items-center justify-between">
-				<h2 class="text-muted-foreground text-sm sm:pl-3">A login form with a CSS file.</h2>
+				<h2 class="text-sm text-muted-foreground sm:pl-3">A login form with a CSS file.</h2>
 			</div>
 			<div class="relative flex min-h-[400px] items-center justify-center">
 				<ExampleCard />
