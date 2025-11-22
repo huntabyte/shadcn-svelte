@@ -33,32 +33,32 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Suggestions">
 			<Command.Item>
-				<CalendarIcon class="mr-2 size-4" />
+				<CalendarIcon class="me-2 size-4" />
 				<span>Calendar</span>
 			</Command.Item>
 			<Command.Item>
-				<SmileIcon class="mr-2 size-4" />
+				<SmileIcon class="me-2 size-4" />
 				<span>Search Emoji</span>
 			</Command.Item>
 			<Command.Item>
-				<CalculatorIcon class="mr-2 size-4" />
+				<CalculatorIcon class="me-2 size-4" />
 				<span>Calculator</span>
 			</Command.Item>
 		</Command.Group>
 		<Command.Separator />
 		<Command.Group heading="Settings">
 			<Command.Item>
-				<UserIcon class="mr-2 size-4" />
+				<UserIcon class="me-2 size-4" />
 				<span>Profile</span>
 				<Command.Shortcut>⌘P</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<CreditCardIcon class="mr-2 size-4" />
+				<CreditCardIcon class="me-2 size-4" />
 				<span>Billing</span>
 				<Command.Shortcut>⌘B</Command.Shortcut>
 			</Command.Item>
 			<Command.Item>
-				<SettingsIcon class="mr-2 size-4" />
+				<SettingsIcon class="me-2 size-4" />
 				<span>Settings</span>
 				<Command.Shortcut>⌘S</Command.Shortcut>
 			</Command.Item>

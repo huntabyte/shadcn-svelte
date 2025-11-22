@@ -22,12 +22,12 @@
 				if (!item.path) return;
 				ctx.activeFile = item.path;
 			}}
-			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 pl-(--index) flex min-w-0 items-center rounded-none"
+			class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 ps-(--index) flex min-w-0 items-center rounded-none"
 			data-index={index}
 		>
 			<ChevronRightIcon class="invisible shrink-0" />
 			<FileIcon class="size-4 shrink-0" />
-			<span class="truncate pr-2">{item.name}</span>
+			<span class="truncate pe-2">{item.name}</span>
 		</Sidebar.MenuButton>
 	</Sidebar.MenuItem>
 {:else}
@@ -38,7 +38,7 @@
 		>
 			<Collapsible.Trigger
 				style="--index: {index * (index === 1 ? 1 : 1.2)}rem"
-				class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 pl-(--index) whitespace-nowrap rounded-none"
+				class="hover:bg-muted-foreground/15 focus:bg-muted-foreground/15 focus-visible:bg-muted-foreground/15 active:bg-muted-foreground/15 data-[active=true]:bg-muted-foreground/15 ps-(--index) whitespace-nowrap rounded-none"
 			>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton {...props}>

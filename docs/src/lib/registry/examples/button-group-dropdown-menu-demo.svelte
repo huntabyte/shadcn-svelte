@@ -17,7 +17,7 @@
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
-				<Button {...props} variant="outline" class="!pl-2">
+				<Button {...props} variant="outline" class="!ps-2">
 					<ChevronDown />
 				</Button>
 			{/snippet}

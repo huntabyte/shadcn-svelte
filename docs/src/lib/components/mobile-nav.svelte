@@ -43,13 +43,13 @@
 					<div class="relative size-4">
 						<span
 							class={cn(
-								"bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100",
+								"bg-foreground absolute start-0 block h-0.5 w-4 transition-all duration-100",
 								open ? "top-[0.4rem] -rotate-45" : "top-1"
 							)}
 						></span>
 						<span
 							class={cn(
-								"bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100",
+								"bg-foreground absolute start-0 block h-0.5 w-4 transition-all duration-100",
 								open ? "top-[0.4rem] rotate-45" : "top-2.5"
 							)}
 						></span>

@@ -41,7 +41,7 @@
 		</div>
 		<Select.Root type="single" bind:value={activeMonth}>
 			<Select.Trigger
-				class="ml-auto h-7 w-[130px] rounded-lg pl-2.5 text-sm"
+				class="ms-auto h-7 w-[130px] rounded-lg ps-2.5 text-sm"
 				aria-label="Select a value"
 			>
 				<span

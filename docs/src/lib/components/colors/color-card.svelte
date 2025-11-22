@@ -64,7 +64,7 @@
 				<h2>{`${color.name[0].toUpperCase()}${color.name.slice(1)}`}</h2>
 				<Select.Root type="single" bind:value={selectedFormat.current}>
 					<Select.Trigger class="h-7 w-fit text-xs">
-						<span class="mr-2">
+						<span class="me-2">
 							<span class="font-bold">Format:</span>
 							<span class="text-muted-foreground font-mono"
 								>{selectedFormat.current}</span
@@ -107,7 +107,7 @@
 							></div>
 
 							<div
-								class="absolute right-2 top-2 opacity-0 transition-all group-hover:opacity-100"
+								class="absolute end-2 top-2 opacity-0 transition-all group-hover:opacity-100"
 								style="color: {shade.foreground};"
 							>
 								{#if copied === shade.className}

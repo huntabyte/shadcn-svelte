@@ -5,6 +5,6 @@
 	let { class: className, children, ...restProps }: HTMLAttributes<HTMLOListElement> = $props();
 </script>
 
-<ol class={cn("my-6 ml-6 list-decimal", className)} {...restProps}>
+<ol class={cn("my-6 ms-6 list-decimal", className)} {...restProps}>
 	{@render children?.()}
 </ol>

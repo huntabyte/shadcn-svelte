@@ -212,7 +212,7 @@
 	{@const status = statuses.find((status) => status.value === value)}
 	{#if status}
 		<div class="flex w-[100px] items-center">
-			<status.icon class="text-muted-foreground mr-2 size-4" />
+			<status.icon class="text-muted-foreground me-2 size-4" />
 			<span>{status.label}</span>
 		</div>
 	{/if}
@@ -234,7 +234,7 @@
 	{@const priority = priorities.find((priority) => priority.value === value)}
 	{#if priority}
 		<div class="flex items-center">
-			<priority.icon class="text-muted-foreground mr-2 size-4" />
+			<priority.icon class="text-muted-foreground me-2 size-4" />
 			<span>{priority.label}</span>
 		</div>
 	{/if}
@@ -375,7 +375,7 @@
 							{...props}
 							variant="ghost"
 							size="sm"
-							class="data-[state=open]:bg-accent -ml-3 h-8"
+							class="data-[state=open]:bg-accent -ms-3 h-8"
 						>
 							<span>
 								{title}
@@ -392,16 +392,16 @@
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="start">
 					<DropdownMenu.Item onclick={() => column.toggleSorting(false)}>
-						<ArrowUpIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<ArrowUpIcon class="text-muted-foreground/70 me-2 size-3.5" />
 						Asc
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onclick={() => column.toggleSorting(true)}>
-						<ArrowDownIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<ArrowDownIcon class="text-muted-foreground/70 me-2 size-3.5" />
 						Desc
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item onclick={() => column.toggleVisibility(false)}>
-						<EyeOffIcon class="text-muted-foreground/70 mr-2 size-3.5" />
+						<EyeOffIcon class="text-muted-foreground/70 me-2 size-3.5" />
 						Hide
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>

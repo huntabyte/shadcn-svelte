@@ -25,7 +25,7 @@
 						<Label for="password">Password</Label>
 						<a
 							href="##"
-							class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+							class="ms-auto inline-block text-sm underline-offset-4 hover:underline"
 						>
 							Forgot your password?
 						</a>

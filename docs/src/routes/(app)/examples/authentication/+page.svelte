@@ -34,11 +34,11 @@
 	<Button
 		href="/examples/authentication"
 		variant="ghost"
-		class="absolute right-4 top-4 md:right-8 md:top-8"
+		class="absolute end-4 top-4 md:end-8 md:top-8"
 	>
 		Login
 	</Button>
-	<div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r">
+	<div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-e">
 		<div class="absolute inset-0 bg-zinc-900"></div>
 		<div class="relative z-20 flex items-center text-lg font-medium">
 			<svg
@@ -49,7 +49,7 @@
 				stroke-width="2"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				class="mr-2 h-6 w-6"
+				class="me-2 h-6 w-6"
 			>
 				<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
 			</svg>

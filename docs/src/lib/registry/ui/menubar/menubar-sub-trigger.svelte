@@ -19,11 +19,11 @@
 	data-slot="menubar-sub-trigger"
 	data-inset={inset}
 	class={cn(
-		"focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[inset]:pl-8",
+		"focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[inset]:ps-8",
 		className
 	)}
 	{...restProps}
 >
 	{@render children?.()}
-	<ChevronRightIcon class="ml-auto size-4" />
+	<ChevronRightIcon class="ms-auto size-4" />
 </MenubarPrimitive.SubTrigger>

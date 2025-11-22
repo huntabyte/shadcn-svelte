@@ -35,7 +35,7 @@
 					<Field>
 						<div class="flex items-center">
 							<FieldLabel for="password-{id}">Password</FieldLabel>
-							<a href="##" class="ml-auto text-sm underline-offset-2 hover:underline">
+							<a href="##" class="ms-auto text-sm underline-offset-2 hover:underline">
 								Forgot your password?
 							</a>
 						</div>

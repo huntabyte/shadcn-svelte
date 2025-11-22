@@ -206,7 +206,7 @@
 							<InputGroup.Button
 								size="sm"
 								variant="secondary"
-								class="rounded-full !pl-2"
+								class="rounded-full !ps-2"
 								onclick={() => {
 									mentions = mentions.filter((m) => m !== mention);
 								}}
@@ -267,7 +267,7 @@
 											selectedModel = model;
 										}
 									}}
-									class="*:[span:first-child]:right-2 *:[span:first-child]:left-auto pl-2"
+									class="*:[span:first-child]:end-2 *:[span:first-child]:start-auto ps-2"
 								>
 									{model.name}
 									{#if model.badge}
@@ -297,7 +297,7 @@
 								{#snippet child({ props })}
 									<label for="web-search" {...props}>
 										<GlobeIcon /> Web Search
-										<Switch id="web-search" class="ml-auto" checked />
+										<Switch id="web-search" class="ms-auto" checked />
 									</label>
 								{/snippet}
 							</DropdownMenu.Item>
@@ -308,7 +308,7 @@
 								{#snippet child({ props })}
 									<label for="apps" {...props}>
 										<AppsIcon /> Apps and Integrations
-										<Switch id="apps" class="ml-auto" checked />
+										<Switch id="apps" class="ms-auto" checked />
 									</label>
 								{/snippet}
 							</DropdownMenu.Item>
@@ -377,7 +377,7 @@
 				</DropdownMenu.Root>
 				<InputGroup.Button
 					aria-label="Send"
-					class="ml-auto rounded-full"
+					class="ms-auto rounded-full"
 					variant="default"
 					size="icon-sm"
 				>

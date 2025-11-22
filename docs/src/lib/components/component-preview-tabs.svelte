@@ -40,7 +40,7 @@
 {/snippet}
 
 <div class={cn("group relative mb-12 mt-4 flex flex-col gap-2", className)} {...restProps}>
-	<Tabs.Root class="relative mr-auto w-full" bind:value>
+	<Tabs.Root class="relative me-auto w-full" bind:value>
 		<div class="flex items-center justify-between" data-llm-ignore>
 			{#if !hideCode}
 				<Tabs.List class="justify-start gap-4 rounded-none bg-transparent px-2 md:px-0">

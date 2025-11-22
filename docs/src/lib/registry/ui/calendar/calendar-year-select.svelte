@@ -32,7 +32,7 @@
 				{/each}
 			</select>
 			<span
-				class="[&>svg]:text-muted-foreground flex h-8 select-none items-center gap-1 rounded-md pl-2 pr-1 text-sm font-medium [&>svg]:size-3.5"
+				class="[&>svg]:text-muted-foreground flex h-8 select-none items-center gap-1 rounded-md pe-1 ps-2 text-sm font-medium [&>svg]:size-3.5"
 				aria-hidden="true"
 			>
 				{yearItems.find((item) => item.value === value)?.label || selectedYearItem.label}

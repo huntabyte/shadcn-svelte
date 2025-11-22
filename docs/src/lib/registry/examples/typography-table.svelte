@@ -3,12 +3,12 @@
 		<thead>
 			<tr class="even:bg-muted m-0 border-t p-0">
 				<th
-					class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start font-bold [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					King's Treasury
 				</th>
 				<th
-					class="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start font-bold [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					People's happiness
 				</th>
@@ -17,36 +17,36 @@
 		<tbody>
 			<tr class="even:bg-muted m-0 border-t p-0">
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Empty
 				</td>
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Overflowing
 				</td>
 			</tr>
 			<tr class="even:bg-muted m-0 border-t p-0">
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Modest
 				</td>
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Satisfied
 				</td>
 			</tr>
 			<tr class="even:bg-muted m-0 border-t p-0">
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Full
 				</td>
 				<td
-					class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+					class="border px-4 py-2 text-start [&[align=center]]:text-center [&[align=right]]:text-end"
 				>
 					Ecstatic
 				</td>

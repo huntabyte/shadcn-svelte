@@ -12,7 +12,7 @@
 	<Toaster
 		position="bottom-left"
 		toastOptions={{
-			class: "ml-[160px]",
+			class: "ms-[160px]",
 		}}
 	/>
 	<Sidebar.Root>

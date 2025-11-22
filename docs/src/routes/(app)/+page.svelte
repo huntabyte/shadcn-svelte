@@ -36,7 +36,7 @@
 	{#if !mobile.current}
 		<PageNav class="hidden md:flex">
 			<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
-			<ThemeSelector class="mr-4 hidden md:flex" />
+			<ThemeSelector class="me-4 hidden md:flex" />
 		</PageNav>
 	{/if}
 	<div class="container-wrapper section-soft flex-1 pb-6">

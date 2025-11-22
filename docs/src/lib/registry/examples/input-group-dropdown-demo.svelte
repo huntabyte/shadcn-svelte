@@ -36,7 +36,7 @@
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
 					{#snippet child({ props })}
-						<InputGroup.Button {...props} variant="ghost" class="!pr-1.5 text-xs">
+						<InputGroup.Button {...props} variant="ghost" class="!pe-1.5 text-xs">
 							Search In... <ChevronDownIcon class="size-3" />
 						</InputGroup.Button>
 					{/snippet}

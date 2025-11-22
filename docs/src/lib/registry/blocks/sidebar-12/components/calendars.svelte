@@ -24,7 +24,7 @@
 					<Collapsible.Trigger {...props}>
 						{calendar.name}
 						<ChevronRightIcon
-							class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+							class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 						/>
 					</Collapsible.Trigger>
 				{/snippet}
