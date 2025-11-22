@@ -82,7 +82,7 @@
 <div
 	data-llm-ignore
 	id={item.name}
-	class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden pt-6 md:flex-col"
+	class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden pt-6"
 	style="--height: {height};"
 >
 	<ComponentCodeViewerCode />
