@@ -10,7 +10,7 @@
 
 <Sidebar.Provider>
 	<Toaster
-		position="bottom-start"
+		position="bottom-left"
 		toastOptions={{
 			class: "ms-[160px]",
 		}}
