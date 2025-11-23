@@ -95,7 +95,7 @@
 		"unist-util-visit": "^5.0.0",
 		"vaul-svelte": "1.0.0-next.7",
 		"velite": "^0.2.4",
-		"vite": "^7.2.2",
+		"vite": "^7.2.4",
 		"zod": "^4.1.12"
 	}
 }
