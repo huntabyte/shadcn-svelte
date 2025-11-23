@@ -66,7 +66,7 @@
 
 		const replaceTemplate = (
 			str: string,
-			obj: Record<string, Record<string, string> | string>
+			obj: Record<string, any>
 		) => {
 			let result = str;
 			for (const key in obj) {
@@ -261,9 +261,9 @@
 
 	<!-- Copy Code Button - Drawer for mobile -->
 	<Drawer.Root>
-		<Drawer.Trigger variant="secondary" class={cn("sm:hidden!", "ms-auto")}>
+		<Drawer.Trigger class={cn("sm:hidden!", "ms-auto")}>
 			{#snippet child({ props })}
-				<Button size="sm" {...props}>Copy Code</Button>
+				<Button size="sm" variant="secondary" {...props}>Copy Code</Button>
 			{/snippet}
 		</Drawer.Trigger>
 		<Drawer.Content class="h-auto">
