@@ -90,7 +90,7 @@
 						data-slot="copy-button"
 						size="icon"
 						variant="ghost"
-						class="absolute right-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+						class="absolute end-2 top-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
 					>
 						<span class="sr-only" data-llm-ignore>Copy</span>
 						{#if clipboard.copied}

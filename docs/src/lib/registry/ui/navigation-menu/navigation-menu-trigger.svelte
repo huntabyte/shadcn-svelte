@@ -28,7 +28,7 @@
 	{@render children?.()}
 
 	<ChevronDownIcon
-		class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+		class="relative top-[1px] ms-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
 		aria-hidden="true"
 	/>
 </NavigationMenuPrimitive.Trigger>

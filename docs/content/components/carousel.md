@@ -114,7 +114,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 
 ### Spacing
 
-To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ml-[VALUE]` on the `<Carousel.Content />`.
+To set the spacing between the items, we use a `ps-[VALUE]` utility on the `<Carousel.Item />` and a negative `-ms-[VALUE]` on the `<Carousel.Content />`.
 
 <ComponentPreview name="carousel-spacing">
 
@@ -122,22 +122,22 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 
 </ComponentPreview>
 
-```svelte title="Example" showLineNumbers /-ml-4/ /pl-4/
+```svelte title="Example" showLineNumbers /-ms-4/ /ps-4/
 <Carousel.Root>
-  <Carousel.Content class="-ml-4">
-    <Carousel.Item class="pl-4">...</Carousel.Item>
-    <Carousel.Item class="pl-4">...</Carousel.Item>
-    <Carousel.Item class="pl-4">...</Carousel.Item>
+  <Carousel.Content class="-ms-4">
+    <Carousel.Item class="ps-4">...</Carousel.Item>
+    <Carousel.Item class="ps-4">...</Carousel.Item>
+    <Carousel.Item class="ps-4">...</Carousel.Item>
   </Carousel.Content>
 </Carousel.Root>
 ```
 
-```svelte title="Responsive" showLineNumbers /-ml-2/ /pl-2/ /md:-ml-4/ /md:pl-4/
+```svelte title="Responsive" showLineNumbers /-ms-2/ /ps-2/ /md:-ms-4/ /md:ps-4/
 <Carousel.Root>
-  <Carousel.Content class="-ml-2 md:-ml-4">
-    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
-    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
-    <Carousel.Item class="pl-2 md:pl-4">...</Carousel.Item>
+  <Carousel.Content class="-ms-2 md:-ms-4">
+    <Carousel.Item class="ps-2 md:ps-4">...</Carousel.Item>
+    <Carousel.Item class="ps-2 md:ps-4">...</Carousel.Item>
+    <Carousel.Item class="ps-2 md:ps-4">...</Carousel.Item>
   </Carousel.Content>
 </Carousel.Root>
 ```

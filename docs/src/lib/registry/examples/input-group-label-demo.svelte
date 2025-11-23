@@ -23,7 +23,7 @@
 							{...props}
 							variant="ghost"
 							aria-label="Help"
-							class="ml-auto rounded-full"
+							class="ms-auto rounded-full"
 							size="icon-xs"
 						>
 							<InfoIcon />

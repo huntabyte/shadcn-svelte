@@ -45,7 +45,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Target</div>',
+						render: () => '<div class="w-full text-end">Target</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableTarget, { row }),
@@ -55,7 +55,7 @@
 			header: () =>
 				renderSnippet(
 					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Limit</div>',
+						render: () => '<div class="w-full text-end">Limit</div>',
 					}))
 				),
 			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
@@ -356,7 +356,7 @@
 					Page {table.getState().pagination.pageIndex + 1} of
 					{table.getPageCount()}
 				</div>
-				<div class="ml-auto flex items-center gap-2 lg:ml-0">
+				<div class="ms-auto flex items-center gap-2 lg:ms-0">
 					<Button
 						variant="outline"
 						class="hidden h-8 w-8 p-0 lg:flex"
@@ -424,7 +424,7 @@
 	>
 		<Label for="{row.original.id}-limit" class="sr-only">Limit</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-end shadow-none focus-visible:border dark:bg-transparent"
 			value={row.original.limit}
 			id="{row.original.id}-limit"
 		/>
@@ -444,7 +444,7 @@
 	>
 		<Label for="{row.original.id}-target" class="sr-only">Target</Label>
 		<Input
-			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+			class="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-end shadow-none focus-visible:border dark:bg-transparent"
 			value={row.original.target}
 			id="{row.original.id}-target"
 		/>

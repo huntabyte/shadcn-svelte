@@ -80,7 +80,7 @@
 						>
 							<div
 								class={cn(
-									"border-primary mr-2 flex size-4 items-center justify-center rounded-sm border",
+									"border-primary me-2 flex size-4 items-center justify-center rounded-sm border",
 									isSelected
 										? "bg-primary text-primary-foreground"
 										: "opacity-50 [&_svg]:invisible"
@@ -96,7 +96,7 @@
 							<span>{option.label}</span>
 							{#if facets?.get(option.value)}
 								<span
-									class="ml-auto flex size-4 items-center justify-center font-mono text-xs"
+									class="ms-auto flex size-4 items-center justify-center font-mono text-xs"
 								>
 									{facets.get(option.value)}
 								</span>

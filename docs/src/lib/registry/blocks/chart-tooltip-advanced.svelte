@@ -84,7 +84,7 @@
 							></div>
 							{chartConfig[name as keyof typeof chartConfig]?.label || name}
 							<div
-								class="text-foreground ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
+								class="text-foreground ms-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
 							>
 								{value}
 								<span class="text-muted-foreground font-normal"> kcal </span>
@@ -96,7 +96,7 @@
 								>
 									Total
 									<div
-										class="text-foreground ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
+										class="text-foreground ms-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums"
 									>
 										{item.payload.running + item.payload.swimming}
 										<span class="text-muted-foreground font-normal">

@@ -4,14 +4,12 @@
 
 <div class="flex h-full w-full bg-black text-white" style="font-family: 'Inter Latin'">
 	<div
-		class="absolute inset-y-0 left-16 flex w-[1px] border border-dashed border-stone-700"
+		class="absolute inset-y-0 start-16 flex w-[1px] border border-dashed border-stone-700"
 	></div>
-	<div
-		class="absolute inset-y-0 right-16 flex w-[1px] border border-dashed border-stone-700"
-	></div>
+	<div class="absolute inset-y-0 end-16 flex w-[1px] border border-dashed border-stone-700"></div>
 	<div class="absolute inset-x-0 top-16 flex h-[1px] border border-stone-700"></div>
 	<div class="absolute inset-x-0 bottom-16 flex h-[1px] border border-stone-700"></div>
-	<div class="absolute bottom-24 right-24 flex flex-row text-white">
+	<div class="absolute bottom-24 end-24 flex flex-row text-white">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width={48} height={48}>
 			<rect width="256" height="256" fill="none"></rect>
 			<line

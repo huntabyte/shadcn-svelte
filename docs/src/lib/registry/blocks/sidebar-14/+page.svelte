@@ -18,7 +18,7 @@
 					</Breadcrumb.Item>
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
-			<Sidebar.Trigger class="-mr-1 ml-auto rotate-180" />
+			<Sidebar.Trigger class="-me-1 ms-auto rotate-180" />
 		</header>
 		<div class="flex flex-1 flex-col gap-4 p-4">
 			<div class="grid auto-rows-min gap-4 md:grid-cols-3">

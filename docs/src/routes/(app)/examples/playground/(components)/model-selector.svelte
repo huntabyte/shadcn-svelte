@@ -84,7 +84,7 @@
 			<HoverCard.Root open={hoverCardIsOpen} openDelay={0}>
 				<HoverCard.Content
 					interactOutsideBehavior="ignore"
-					class="-ml-2 min-h-[280px]"
+					class="-ms-2 min-h-[280px]"
 					side="left"
 					align="start"
 				>

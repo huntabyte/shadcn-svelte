@@ -38,7 +38,7 @@
 </PageHeader>
 <PageNav id="examples">
 	<ExamplesNav class="[&>a:first-child]:text-primary flex-1 overflow-hidden" />
-	<ThemeSelector class="mr-4 hidden md:block" />
+	<ThemeSelector class="me-4 hidden md:block" />
 </PageNav>
 <div class="container-wrapper section-soft flex flex-1 flex-col pb-6">
 	<div class="theme-container container flex flex-1 scroll-mt-20 flex-col">

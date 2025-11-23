@@ -34,12 +34,12 @@
 				class="mt-0 flex h-auto min-w-0 flex-1 flex-col overflow-hidden"
 			>
 				<figcaption
-					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 pl-4 pr-2 [&>svg]:size-4 [&>svg]:opacity-70"
+					class="text-foreground [&>svg]:text-foreground flex h-12 shrink-0 items-center gap-2 border-b py-2 pe-2 ps-4 [&>svg]:size-4 [&>svg]:opacity-70"
 					data-language="tsx"
 				>
 					<Icon />
 					{chart.name}
-					<div class="ml-auto flex items-center gap-2">
+					<div class="ms-auto flex items-center gap-2">
 						<ChartCopyButton name={chart.name} {code} />
 					</div>
 				</figcaption>
@@ -88,7 +88,7 @@
 		<Sheet.Content
 			side="right"
 			class={cn(
-				"flex flex-col gap-0 border-l-0 p-0 sm:max-w-sm md:w-[700px] md:max-w-[700px] dark:border-l",
+				"flex flex-col gap-0 border-s-0 p-0 sm:max-w-sm md:w-[700px] md:max-w-[700px] dark:border-s",
 				className
 			)}
 		>

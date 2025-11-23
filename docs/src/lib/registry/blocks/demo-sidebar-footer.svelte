@@ -19,7 +19,7 @@
 									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 								>
 									Username
-									<ChevronUpIcon class="ml-auto" />
+									<ChevronUpIcon class="ms-auto" />
 								</Sidebar.MenuButton>
 							{/snippet}
 						</DropdownMenu.Trigger>

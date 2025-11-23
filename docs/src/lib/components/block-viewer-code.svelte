@@ -14,7 +14,7 @@
 
 {#if file}
 	<div
-		class="bg-code text-code-foreground md:h-(--height) mr-3.5 flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
+		class="bg-code text-code-foreground md:h-(--height) me-3.5 flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
 	>
 		<div class="w-72">
 			<BlockViewerFileTree />
@@ -29,7 +29,7 @@
 			>
 				<Icon />
 				{file?.target}
-				<div class="ml-auto flex items-center gap-2">
+				<div class="ms-auto flex items-center gap-2">
 					<BlockViewerCopyCodeButton />
 				</div>
 			</figcaption>

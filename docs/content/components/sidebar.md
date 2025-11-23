@@ -478,7 +478,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Header`.
             {#snippet child({ props })}
               <Sidebar.MenuButton {...props}>
                 Select Workspace
-                <ChevronDown class="ml-auto" />
+                <ChevronDown class="ms-auto" />
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
@@ -527,7 +527,7 @@ The following example adds a `<DropdownMenu>` to the `Sidebar.Footer`.
                   class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
                   Username
-                  <ChevronUp class="ml-auto" />
+                  <ChevronUp class="ms-auto" />
                 </Sidebar.MenuButton>
               {/snippet}
             </DropdownMenu.Trigger>
@@ -619,7 +619,7 @@ To make a `Sidebar.Group` collapsible, wrap it in a `Collapsible`.
         <Collapsible.Trigger {...props}>
           Help
           <ChevronDown
-            class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
+            class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
           />
         </Collapsible.Trigger>
       {/snippet}

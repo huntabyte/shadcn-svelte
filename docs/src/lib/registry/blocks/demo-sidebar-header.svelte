@@ -17,7 +17,7 @@
 									class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 								>
 									Select Workspace
-									<ChevronDownIcon class="ml-auto" />
+									<ChevronDownIcon class="ms-auto" />
 								</Sidebar.MenuButton>
 							{/snippet}
 						</DropdownMenu.Trigger>

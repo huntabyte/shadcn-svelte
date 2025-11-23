@@ -189,10 +189,10 @@
 									<Sidebar.MenuButton {...props}>
 										{item.title}
 										<PlusIcon
-											class="ml-auto group-data-[state=open]/collapsible:hidden"
+											class="ms-auto group-data-[state=open]/collapsible:hidden"
 										/>
 										<MinusIcon
-											class="ml-auto group-data-[state=closed]/collapsible:hidden"
+											class="ms-auto group-data-[state=closed]/collapsible:hidden"
 										/>
 									</Sidebar.MenuButton>
 								{/snippet}

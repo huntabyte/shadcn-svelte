@@ -21,7 +21,7 @@
 >
 	<Collapsible.Trigger>
 		{#snippet child({ props })}
-			<div class="absolute right-9 top-1.5 z-10 flex items-center">
+			<div class="absolute end-9 top-1.5 z-10 flex items-center">
 				<Button
 					variant="ghost"
 					size="sm"

@@ -280,7 +280,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "amount",
     header: () => {
       const amountHeaderSnippet = createRawSnippet(() => ({
-        render: () => `<div class="text-right">Amount</div>`,
+        render: () => `<div class="text-end">Amount</div>`,
       }));
       return renderSnippet(amountHeaderSnippet);
     },
@@ -296,7 +296,7 @@ export const columns: ColumnDef<Payment>[] = [
           const formatted = formatter.format(amount);
           return {
             render: () =>
-              `<div class="text-right font-medium">${formatted}</div>`,
+              `<div class="text-end font-medium">${formatted}</div>`,
           };
         }
       );
@@ -527,7 +527,7 @@ We'll start by creating a component to render a sortable email header button.
 
 <Button {variant} {...restProps}>
   Email
-  <ArrowUpDownIcon class="ml-2" />
+  <ArrowUpDownIcon class="ms-2" />
 </Button>
 ```
 
@@ -802,7 +802,7 @@ Adding column visibility is fairly simple using `@tanstack/table-core` visibilit
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         {#snippet child({ props })}
-          <Button {...props} variant="outline" class="ml-auto">Columns</Button>
+          <Button {...props} variant="outline" class="ms-auto">Columns</Button>
         {/snippet}
       </DropdownMenu.Trigger>
       <DropdownMenu.Content align="end">

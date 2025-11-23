@@ -61,7 +61,7 @@
 				data-slot="copy-button"
 				size="icon"
 				variant="ghost"
-				class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+				class="bg-code text-code-foreground absolute end-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 				onclick={() => {
 					clipboard.copy(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
 				}}

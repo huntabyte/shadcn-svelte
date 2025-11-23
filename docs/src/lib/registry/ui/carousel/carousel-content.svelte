@@ -32,7 +32,7 @@
 		bind:this={ref}
 		class={cn(
 			"flex",
-			emblaCtx.orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+			emblaCtx.orientation === "horizontal" ? "-ms-4" : "-mt-4 flex-col",
 			className
 		)}
 		data-embla-container=""

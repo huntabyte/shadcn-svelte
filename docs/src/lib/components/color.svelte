@@ -12,7 +12,7 @@
 </script>
 
 <button
-	class="text-(--text) group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 sm:aspect-[2/3] sm:h-auto sm:w-auto [&>svg]:absolute [&>svg]:right-4 [&>svg]:top-4 [&>svg]:z-10 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:opacity-0 [&>svg]:transition-opacity"
+	class="text-(--text) group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 sm:aspect-[2/3] sm:h-auto sm:w-auto [&>svg]:absolute [&>svg]:end-4 [&>svg]:top-4 [&>svg]:z-10 [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:opacity-0 [&>svg]:transition-opacity"
 	data-last-copied={clipboard.lastCopied === color[userConfig.current.colorFormat]}
 	style="--bg: {color.oklch}; --text: {color.foreground};"
 	onclick={() => {

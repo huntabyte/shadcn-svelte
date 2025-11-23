@@ -62,7 +62,7 @@ Copy and paste the following code into your project.
       <Table.Head class="w-[100px]">Invoice</Table.Head>
       <Table.Head>Status</Table.Head>
       <Table.Head>Method</Table.Head>
-      <Table.Head class="text-right">Amount</Table.Head>
+      <Table.Head class="text-end">Amount</Table.Head>
     </Table.Row>
   </Table.Header>
   <Table.Body>
@@ -70,7 +70,7 @@ Copy and paste the following code into your project.
       <Table.Cell class="font-medium">INV001</Table.Cell>
       <Table.Cell>Paid</Table.Cell>
       <Table.Cell>Credit Card</Table.Cell>
-      <Table.Cell class="text-right">$250.00</Table.Cell>
+      <Table.Cell class="text-end">$250.00</Table.Cell>
     </Table.Row>
   </Table.Body>
 </Table.Root>

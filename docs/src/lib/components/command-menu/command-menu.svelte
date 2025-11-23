@@ -115,13 +115,13 @@
 				{...props}
 				variant="secondary"
 				class={cn(
-					"bg-surface dark:bg-card relative h-8 w-full justify-start pl-2.5 font-sans font-medium shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+					"bg-surface dark:bg-card relative h-8 w-full justify-start ps-2.5 font-sans font-medium shadow-none sm:pe-12 md:w-40 lg:w-56 xl:w-64"
 				)}
 				onclick={() => (open = true)}
 			>
 				<span class="hidden lg:inline-flex">Search documentation...</span>
 				<span class="inline-flex lg:hidden">Search...</span>
-				<div class="absolute right-1.5 top-1.5 hidden gap-1 sm:flex">
+				<div class="absolute end-1.5 top-1.5 hidden gap-1 sm:flex">
 					<Kbd.Group>
 						<Kbd.Root class="border">⌘</Kbd.Root>
 						<Kbd.Root class="border">K</Kbd.Root>
@@ -203,7 +203,7 @@
 								></div>
 								{color.class}
 								<span
-									class="text-muted-foreground ml-auto font-mono text-xs font-normal tabular-nums"
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
 								>
 									{color.oklch}
 								</span>
@@ -235,7 +235,7 @@
 								<SquareDashedIcon />
 								{block.description}
 								<span
-									class="text-muted-foreground ml-auto font-mono text-xs font-normal tabular-nums"
+									class="text-muted-foreground ms-auto font-mono text-xs font-normal tabular-nums"
 								>
 									{block.name}
 								</span>
