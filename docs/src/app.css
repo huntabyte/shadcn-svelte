@@ -21,11 +21,19 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/Inter/inter.woff2") format("woff2");
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme inline {
 	--breakpoint-3xl: 1600px;
 	--breakpoint-4xl: 2000px;
-	--font-sans: "Geist", sans-serif;
+	--font-sans: "Inter", sans-serif;
 	--font-mono: "Geist Mono", monospace;
+	--font-geist: "Geist", sans-serif;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
@@ -166,7 +174,7 @@
 	}
 
 	html {
-		@apply scroll-smooth;
+		@apply overscroll-none scroll-smooth;
 	}
 
 	body {
@@ -265,7 +273,7 @@
 		font-size: var(--text-sm);
 		outline: none;
 		position: relative;
-		@apply md:-mx-4;
+		@apply md:-mx-1;
 
 		&:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
 			top: calc(var(--spacing) * 1.5) !important;

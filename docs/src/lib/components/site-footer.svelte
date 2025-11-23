@@ -12,8 +12,7 @@
 					class="font-medium underline underline-offset-4"
 				>
 					shadcn
-				</a>
-				. Ported to Svelte by
+				</a>. Ported to Svelte by
 				<a
 					href="https://x.com/huntabyte"
 					target="_blank"
