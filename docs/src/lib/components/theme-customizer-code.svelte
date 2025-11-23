@@ -48,7 +48,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
@@ -91,7 +91,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v4-hsl">
-		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -102,7 +102,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
@@ -145,7 +145,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v3">
-		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -156,7 +156,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
