@@ -1,12 +1,12 @@
 packages:
-  - packages/*
-  - docs
-  - registry-template
+    - packages/*
+    - docs
+    - registry-template
 
 catalog:
-  '@sveltejs/kit': ^2.49.0
-  '@sveltejs/vite-plugin-svelte': ^6.2.1
-  svelte: ^5.43.14
-  svelte-check: ^4.3.4
-  typescript: ^5.9.3
-  vite: ^7.2.1
+    "@sveltejs/kit": ^2.49.0
+    "@sveltejs/vite-plugin-svelte": ^6.2.1
+    svelte: ^5.43.14
+    svelte-check: ^4.3.4
+    typescript: ^5.9.3
+    vite: ^7.2.1
