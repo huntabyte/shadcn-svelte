@@ -5,9 +5,9 @@
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { getCommand, PACKAGE_MANAGERS, type PackageManager } from "$lib/package-manager.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
-	import CheckIcon from "@lucide/svelte/icons/check";
 	import TerminalIcon from "@lucide/svelte/icons/terminal";
-	import Copy from "@lucide/svelte/icons/copy";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import { UserConfigContext } from "$lib/user-config.svelte.js";
 	import { cn } from "$lib/utils.js";
 
@@ -96,7 +96,7 @@
 						{#if clipboard.copied}
 							<CheckIcon />
 						{:else}
-							<Copy />
+							<CopyIcon />
 						{/if}
 					</Button>
 				{/snippet}

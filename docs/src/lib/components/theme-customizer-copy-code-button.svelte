@@ -30,7 +30,7 @@
 	</Drawer.Content>
 </Drawer.Root>
 <Dialog.Root>
-	<Dialog.Trigger class={cn("hidden sm:!flex", className)}>
+	<Dialog.Trigger class={cn("sm:flex! hidden", className)}>
 		{#snippet child({ props })}
 			<Button {variant} {size} {...props}
 				><IconCopy />

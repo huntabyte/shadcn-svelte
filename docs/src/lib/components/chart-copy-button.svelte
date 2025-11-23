@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import Copy from "@lucide/svelte/icons/copy";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import { cn } from "$lib/utils.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
@@ -33,7 +33,7 @@
 				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}
-					<Copy />
+					<CopyIcon />
 				{/if}
 			</Button>
 		{/snippet}

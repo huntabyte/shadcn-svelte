@@ -64,16 +64,23 @@
 			return "";
 		}
 
-		const replaceTemplate = (str: string, obj: Record<string, any>) => {
+		const replaceTemplate = (
+			str: string,
+			obj: Record<string, Record<string, string> | string>
+		) => {
 			let result = str;
 			for (const key in obj) {
 				const pattern = new RegExp(`<%- ${key}\\[["']([^"']+)["']\\] %>`, "g");
 				result = result.replace(pattern, (_: string, k: string) => {
-					const val = obj[key][k];
-					return val !== undefined ? val : "";
+					const value = obj[key];
+					if (typeof value === "object") {
+						const val = value[k];
+						return val !== undefined ? val : "";
+					}
+					return "";
 				});
 				const simplePattern = new RegExp(`<%- ${key} %>`, "g");
-				result = result.replace(simplePattern, obj[key]);
+				result = result.replace(simplePattern, String(obj[key]));
 			}
 			return result;
 		};
@@ -156,9 +163,8 @@
 	import * as Dialog from "$lib/registry/ui/dialog/index.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { UserConfigContext, type ActiveTheme } from "$lib/user-config.svelte.js";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import IconCopy from "@tabler/icons-svelte/icons/copy";
 	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
-
 	interface Props extends HTMLAttributes<HTMLElement> {
 		class?: string;
 	}
@@ -255,7 +261,7 @@
 
 	<!-- Copy Code Button - Drawer for mobile -->
 	<Drawer.Root>
-		<Drawer.Trigger class={cn("sm:hidden!", "ms-auto")}>
+		<Drawer.Trigger variant="secondary" class={cn("sm:hidden!", "ms-auto")}>
 			{#snippet child({ props })}
 				<Button size="sm" {...props}>Copy Code</Button>
 			{/snippet}
@@ -281,10 +287,10 @@
 
 	<!-- Copy Code Button - Dialog for desktop -->
 	<Dialog.Root>
-		<Dialog.Trigger class={cn("hidden sm:!flex", "ms-auto")}>
+		<Dialog.Trigger class={cn("sm:flex! hidden", "ms-auto")}>
 			{#snippet child({ props })}
-				<Button size="sm" {...props}>
-					<ClipboardIcon />
+				<Button size="sm" class="ms-auto" variant="secondary" {...props}>
+					<IconCopy />
 					<span class="group-data-[size=icon-sm]/button:sr-only">Copy Code</span>
 				</Button>
 			{/snippet}

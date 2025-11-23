@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Tabs from "$lib/registry/ui/tabs/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	import CheckIcon from "@lucide/svelte/icons/check";
-	import ClipboardIcon from "@lucide/svelte/icons/clipboard";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
+	import CheckIcon from "@tabler/icons-svelte/icons/check";
 	import Css from "./icons/css.svelte";
 	import ColorIndicator from "./color-indicator.svelte";
 	import {
@@ -37,7 +37,7 @@
 	</Tabs.List>
 
 	<Tabs.Content value="v4-oklch">
-		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -48,22 +48,20 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 md:max-h-[450px]"
-			>
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeOKLCH(activeThemeOKLCH, 0.65));
-					}}
-				>
+					}}>
 					<span class="sr-only">Copy</span>
 					{#if hasCopied}
 						<CheckIcon />
 					{:else}
-						<ClipboardIcon />
+						<CopyIcon />
 					{/if}
 				</Button>
 				<code data-line-numbers data-language="css">
@@ -89,7 +87,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v4-hsl">
-		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -100,22 +98,20 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 md:max-h-[450px]"
-			>
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCodeHSLV4(activeTheme, 0.65));
-					}}
-				>
+					}}>
 					<span class="sr-only">Copy</span>
 					{#if hasCopied}
 						<CheckIcon />
 					{:else}
-						<ClipboardIcon />
+						<CopyIcon />
 					{/if}
 				</Button>
 				<code data-line-numbers data-language="css">
@@ -141,7 +137,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v3">
-		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -152,22 +148,20 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 md:max-h-[450px]"
-			>
+				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
 					variant="ghost"
-					class="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+					class="bg-code text-code-foreground absolute right-2 top-3 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
 					onclick={() => {
 						copyToClipboard(getThemeCode(activeTheme, 0.5));
-					}}
-				>
+					}}>
 					<span class="sr-only">Copy</span>
 					{#if hasCopied}
 						<CheckIcon />
 					{:else}
-						<ClipboardIcon />
+						<CopyIcon />
 					{/if}
 				</Button>
 				<code data-line-numbers data-language="css">

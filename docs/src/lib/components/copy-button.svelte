@@ -3,7 +3,7 @@
 	import * as Tooltip from "$lib/registry/ui/tooltip/index.js";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte.js";
 	import { cn } from "$lib/utils.js";
-	import Copy from "@lucide/svelte/icons/copy";
+	import CopyIcon from "@tabler/icons-svelte/icons/copy";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import type { ComponentProps } from "svelte";
 
@@ -37,7 +37,7 @@
 				{#if clipboard.copied}
 					<CheckIcon />
 				{:else}
-					<Copy />
+					<CopyIcon />
 				{/if}
 			</Button>
 		{/snippet}
