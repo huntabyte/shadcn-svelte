@@ -48,7 +48,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
@@ -68,17 +68,21 @@
 					<span data-line class="line text-code-foreground">&nbsp;:root &#123;</span>
 					<span data-line class="line text-code-foreground">&nbsp;&nbsp;&nbsp;--radius: 0.65rem;</span>
 					{#each Object.entries(activeThemeOKLCH?.light || {}) as [key, value] (key)}
-						<span data-line class="line text-code-foreground">
-							&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} /> {value};
-						</span>
+						<span data-line class="line text-code-foreground"
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
+								color={value}
+							/> {value};</span
+						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
 					<span data-line class="line text-code-foreground">&nbsp;</span>
 					<span data-line class="line text-code-foreground">&nbsp;.dark &#123;</span>
 					{#each Object.entries(activeThemeOKLCH?.dark || {}) as [key, value] (key)}
-						<span data-line class="line text-code-foreground">
-							&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} /> {value};
-						</span>
+						<span data-line class="line text-code-foreground"
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
+								color={value}
+							/> {value};</span
+						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
 				</code>
@@ -87,7 +91,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v4-hsl">
-		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -98,7 +102,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
@@ -118,17 +122,21 @@
 					<span data-line class="line text-code-foreground">&nbsp;:root &#123;</span>
 					<span data-line class="line text-code-foreground">&nbsp;&nbsp;&nbsp;--radius: 0.65rem;</span>
 					{#each Object.entries(activeTheme?.cssVars.light || {}) as [key, value] (key)}
-						<span data-line class="line text-code-foreground">
-							&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={`hsl(${value})`} /> hsl({value});
-						</span>
+						<span data-line class="line text-code-foreground"
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
+								color={`hsl(${value})`}
+							/> hsl({value});</span
+						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
 					<span data-line class="line text-code-foreground">&nbsp;</span>
 					<span data-line class="line text-code-foreground">&nbsp;.dark &#123;</span>
 					{#each Object.entries(activeTheme?.cssVars.dark || {}) as [key, value] (key)}
-						<span data-line class="line text-code-foreground">
-							&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={`hsl(${value})`} /> hsl({value});
-						</span>
+						<span data-line class="line text-code-foreground"
+							>&nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator
+								color={`hsl(${value})`}
+							/> hsl({value});</span
+						>
 					{/each}
 					<span data-line class="line text-code-foreground">&nbsp;&#125;</span>
 				</code>
@@ -137,7 +145,7 @@
 	</Tabs.Content>
 
 	<Tabs.Content value="v3">
-		<figure data-rehype-pretty-code-figure class="mx-0! mt-0 rounded-lg">
+		<figure data-rehype-pretty-code-figure class="!mx-0 mt-0 rounded-lg">
 			<figcaption
 				class="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
 				data-rehype-pretty-code-title=""
@@ -148,7 +156,7 @@
 				app/globals.css
 			</figcaption>
 			<pre
-				class="no-scrollbar has-data-[slot=tabs]:p-0 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none md:max-h-[450px]">
+				class="no-scrollbar max-h-[300px] min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 md:max-h-[450px]">
 				<Button
 					data-slot="copy-button"
 					size="icon"
@@ -167,97 +175,97 @@
 				<code data-line-numbers data-language="css">
 					<span data-line class="line">@layer base &#123;</span>
 					<span data-line class="line">&nbsp;&nbsp;:root &#123;</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--background: <ColorIndicator
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--background: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.light["background"]})`}
-						/> {activeTheme?.cssVars.light["background"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--foreground: <ColorIndicator
+						/> {activeTheme?.cssVars.light["background"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--foreground: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.light["foreground"]})`}
-						/> {activeTheme?.cssVars.light["foreground"]};
-					</span>
+						/> {activeTheme?.cssVars.light["foreground"]};</span
+					>
 					{#each ["card", "popover", "primary", "secondary", "muted", "accent", "destructive"] as prefix (prefix)}
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.light[prefix] || ""})`}
-							/> {activeTheme?.cssVars.light[prefix]};
-						</span>
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground: <ColorIndicator
+							/> {activeTheme?.cssVars.light[prefix]};</span
+						>
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.light[`${prefix}-foreground`] || ""})`}
-							/> {activeTheme?.cssVars.light[`${prefix}-foreground`]};
-						</span>
+							/> {activeTheme?.cssVars.light[`${prefix}-foreground`]};</span
+						>
 					{/each}
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--border: <ColorIndicator
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--border: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.light["border"]})`}
-						/> {activeTheme?.cssVars.light["border"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--input: <ColorIndicator
+						/> {activeTheme?.cssVars.light["border"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--input: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.light["input"]})`}
-						/> {activeTheme?.cssVars.light["input"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--ring: <ColorIndicator
+						/> {activeTheme?.cssVars.light["input"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--ring: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.light["ring"]})`}
-						/> {activeTheme?.cssVars.light["ring"]};
-					</span>
+						/> {activeTheme?.cssVars.light["ring"]};</span
+					>
 					<span data-line class="line">&nbsp;&nbsp;&nbsp;&nbsp;--radius: 0.5rem;</span>
 					{#each ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"] as prefix (prefix)}
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.light[prefix] || ""})`}
-							/> {activeTheme?.cssVars.light[prefix]};
-						</span>
+							/> {activeTheme?.cssVars.light[prefix]};</span
+						>
 					{/each}
 					<span data-line class="line">&nbsp;&nbsp;&#125;</span>
 					<span data-line class="line">&nbsp;</span>
 					<span data-line class="line">&nbsp;&nbsp;.dark &#123;</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--background: <ColorIndicator
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--background: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.dark["background"]})`}
-						/> {activeTheme?.cssVars.dark["background"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--foreground: <ColorIndicator
+						/> {activeTheme?.cssVars.dark["background"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--foreground: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.dark["foreground"]})`}
-						/> {activeTheme?.cssVars.dark["foreground"]};
-					</span>
+						/> {activeTheme?.cssVars.dark["foreground"]};</span
+					>
 					{#each ["card", "popover", "primary", "secondary", "muted", "accent", "destructive"] as prefix (prefix)}
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.dark[prefix] || ""})`}
-							/> {activeTheme?.cssVars.dark[prefix]};
-						</span>
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground: <ColorIndicator
+							/> {activeTheme?.cssVars.dark[prefix]};</span
+						>
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.dark[`${prefix}-foreground`] || ""})`}
-							/> {activeTheme?.cssVars.dark[`${prefix}-foreground`]};
-						</span>
+							/> {activeTheme?.cssVars.dark[`${prefix}-foreground`]};</span
+						>
 					{/each}
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--border: <ColorIndicator
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--border: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.dark["border"]})`}
-						/> {activeTheme?.cssVars.dark["border"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--input: <ColorIndicator
+						/> {activeTheme?.cssVars.dark["border"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--input: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.dark["input"]})`}
-						/> {activeTheme?.cssVars.dark["input"]};
-					</span>
-					<span data-line class="line">
-						&nbsp;&nbsp;&nbsp;&nbsp;--ring: <ColorIndicator
+						/> {activeTheme?.cssVars.dark["input"]};</span
+					>
+					<span data-line class="line"
+						>&nbsp;&nbsp;&nbsp;&nbsp;--ring: <ColorIndicator
 							color={`hsl(${activeTheme?.cssVars.dark["ring"]})`}
-						/> {activeTheme?.cssVars.dark["ring"]};
-					</span>
+						/> {activeTheme?.cssVars.dark["ring"]};</span
+					>
 					{#each ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"] as prefix (prefix)}
-						<span data-line class="line">
-							&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
+						<span data-line class="line"
+							>&nbsp;&nbsp;&nbsp;&nbsp;--{prefix}: <ColorIndicator
 								color={`hsl(${activeTheme?.cssVars.dark[prefix] || ""})`}
-							/> {activeTheme?.cssVars.dark[prefix]};
-						</span>
+							/> {activeTheme?.cssVars.dark[prefix]};</span
+						>
 					{/each}
 					<span data-line class="line">&nbsp;&nbsp;&#125;</span>
 					<span data-line class="line">&#125;</span>
