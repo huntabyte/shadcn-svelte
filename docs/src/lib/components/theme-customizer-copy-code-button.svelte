@@ -5,14 +5,14 @@
 	import { cn } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
 	import { theme as activeTheme } from "mode-watcher";
-	import ThemeCustomizerCode from "./theme-customizer-code.svelte";
+	import ThemeCustomizerCode from "./theme-customizer-codeOLD.svelte";
 	import IconCopy from "@lucide/svelte/icons/copy";
 
 	let { class: className, variant, size }: ComponentProps<typeof Button> = $props();
 </script>
 
 <Drawer.Root>
-	<Drawer.Trigger class={cn("sm:!hidden", className)}>
+	<Drawer.Trigger class={cn("sm:hidden!", className)}>
 		{#snippet child({ props })}
 			<Button {variant} {size} {...props}>Copy Code</Button>
 		{/snippet}

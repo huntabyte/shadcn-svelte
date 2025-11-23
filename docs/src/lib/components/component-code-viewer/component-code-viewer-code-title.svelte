@@ -31,7 +31,7 @@
 			bind:value={() => ctx.activeFile ?? "", (v) => (ctx.activeFile = v)}
 		>
 			<Select.Trigger class="w-64 justify-start [&>svg]:ml-auto">
-				<Icon class="!ms-0" />
+				<Icon class="ms-0!" />
 				{file?.target.split("/").pop()}
 			</Select.Trigger>
 			<Select.Content>
