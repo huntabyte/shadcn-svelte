@@ -21,17 +21,23 @@ export const entries: EntryGenerator = () => {
 };
 
 const fonts = [
-	new GoogleFont('Geist', {weight: 400}),
-	new GoogleFont('Geist', {weight: 600}),
-	new GoogleFont('Geist Mono', {weight: 400}),
-]
+	new GoogleFont("Geist", { weight: 400 }),
+	new GoogleFont("Geist", { weight: 600 }),
+	new GoogleFont("Geist Mono", { weight: 400 }),
+];
 
-export const GET: RequestHandler = async ({params}) => {
-	const metadata = getDocMetadata(params.slug as string)
-	return new ImageResponse(ShadcnOG, {
-		fonts: await resolveFonts(fonts)
-	}, {
-		title: metadata?.title || '',
-		description: metadata?.description || ''
-	})
-}
+export const GET: RequestHandler = async ({ params }) => {
+	const metadata = getDocMetadata(params.slug as string);
+	return new ImageResponse(
+		ShadcnOG,
+		{
+			height: 630,
+			width: 1200,
+			fonts: await resolveFonts(fonts),
+		},
+		{
+			title: metadata?.title || "",
+			description: metadata?.description || "",
+		}
+	);
+};
