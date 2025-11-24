@@ -76,9 +76,16 @@
 				const pattern = new RegExp(`<%- ${key}\\[["']([^"']+)["']\\] %>`, "g");
 				result = result.replace(pattern, (_: string, k: string) => {
 					const value = obj[key];
-					if (typeof value === "object") {
-						const val = value[k];
-						return val !== undefined ? val : "";
+					if (
+						typeof value === "object" &&
+						typeof (value as Record<string, string | Record<string, string>>)[k] ===
+							"string"
+					) {
+						return (
+							((value as Record<string, string | Record<string, string>>)[
+								k
+							] as string) ?? ""
+						);
 					}
 					return "";
 				});
