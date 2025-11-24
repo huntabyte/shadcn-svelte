@@ -66,7 +66,10 @@
 
 		const replaceTemplate = (
 			str: string,
-			obj: Record<string, Record<string, string> | string>
+			obj: Record<
+				string,
+				Record<string, Record<string, string>> | Record<string, string> | string
+			>
 		) => {
 			let result = str;
 			for (const key in obj) {
