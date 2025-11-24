@@ -111,7 +111,7 @@
 					onclick={() => {
 						copyToClipboard(getThemeCodeHSLV4(activeTheme, 0.65));
 					}}>
-					<span class="sr-only">Copy</span>
+					<span class="sr-only" data-llm-ignore>Copy</span>
 					{#if hasCopied}
 						<CheckIcon />
 					{:else}
