@@ -10,6 +10,7 @@ import { build } from "./scripts/build-registry.js";
 import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import packageJson from "./package.json" with { type: "json" };
+import { sveltekitOG } from "@ethercorps/sveltekit-og/plugin";
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
@@ -33,6 +34,7 @@ export default defineConfig({
 		tailwindcss(),
 		enhancedImages(),
 		sveltekit(),
+		sveltekitOG(),
 		{
 			name: "registry-builder",
 			enforce: "pre",

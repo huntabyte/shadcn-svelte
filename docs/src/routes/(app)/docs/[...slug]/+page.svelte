@@ -28,7 +28,7 @@
 	title={doc.title}
 	description={doc.description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(doc.title)}&description=${encodeURIComponent(doc.description)}`,
+		url: `/docs/components/${doc.slug}/og.png`,
 	}}
 	ogType="article"
 />
