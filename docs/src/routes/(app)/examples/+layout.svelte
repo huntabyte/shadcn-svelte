@@ -9,18 +9,19 @@
 	import PageNav from "$lib/components/page-nav.svelte";
 	import ThemeSelector from "$lib/components/theme-selector.svelte";
 	import { Button } from "$lib/registry/ui/button/index.js";
+	import { ogMetadata } from "./ogMetadata.js";
 
 	let { children } = $props();
 
-	const title = "Examples";
-	const description = "Check out some example apps build using the components.";
+	const {title, url, description} = ogMetadata
+
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

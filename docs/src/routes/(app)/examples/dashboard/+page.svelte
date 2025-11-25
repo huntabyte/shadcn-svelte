@@ -7,16 +7,17 @@
 	import SectionCards from "./components/section-cards.svelte";
 	import SiteHeader from "./components/site-header.svelte";
 	import { data } from "./data.js";
+	import { ogMetadata } from "./ogMetadata.js";
 
-	const title = "Dashboard";
-	const description = "A dashboard built using the components.";
+	const {title, url, description} = ogMetadata
+
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

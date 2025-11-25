@@ -9,19 +9,18 @@
 	import PageActions from "$lib/components/page-header/page-actions.svelte";
 	import PageNav from "$lib/components/page-nav.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { ogMetadata } from "./ogMetadata.js";
 
 	let { children } = $props();
 
-	const title = "Building Blocks for the Web";
-	const description =
-		"Clean, modern building blocks. Works with all Svelte projects. Copy and paste into your apps. Open Source. Free forever.";
+	const {title, url, description} = ogMetadata
 </script>
 
 <Metadata
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

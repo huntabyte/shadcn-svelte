@@ -1,9 +1,7 @@
 import type { EntryGenerator } from "./$types.js";
 import type { RequestHandler } from "@sveltejs/kit";
-import { ImageResponse } from "@ethercorps/sveltekit-og";
-import ShadcnOG from "./shadcn-og.svelte";
-import { GoogleFont, resolveFonts } from "@ethercorps/sveltekit-og/fonts";
 import { getDocMetadata } from "$lib/docs.js";
+import { generateOgImage } from "$lib/og-image.js";
 
 export const prerender = true;
 
@@ -20,24 +18,10 @@ export const entries: EntryGenerator = () => {
 	return entries;
 };
 
-const fonts = [
-	new GoogleFont("Geist", { weight: 400 }),
-	new GoogleFont("Geist", { weight: 600 }),
-	new GoogleFont("Geist Mono", { weight: 400 }),
-];
-
 export const GET: RequestHandler = async ({ params }) => {
 	const metadata = getDocMetadata(params.slug as string);
-	return new ImageResponse(
-		ShadcnOG,
-		{
-			height: 630,
-			width: 1200,
-			fonts: await resolveFonts(fonts),
-		},
-		{
-			title: metadata?.title || "",
-			description: metadata?.description || "",
-		}
-	);
+	return generateOgImage({
+		title: metadata?.title,
+		description: metadata?.description,
+	})
 };

@@ -7,10 +7,9 @@
 	import PageHeaderHeading from "$lib/components/page-header/page-header-heading.svelte";
 	import PageHeader from "$lib/components/page-header/page-header.svelte";
 	import Button from "$lib/registry/ui/button/button.svelte";
+	import { ogMetadata } from "./ogMetadata.js";
 
-	const title = "Tailwind Colors in Every Format";
-	const description =
-		"The complete Tailwind color palette in HEX, RGB, HSL, CSS variables, and classes. Ready to copy and paste into your project.";
+	const {title, url, description} = ogMetadata
 
 	let { children } = $props();
 </script>
@@ -19,7 +18,7 @@
 	{title}
 	{description}
 	ogImage={{
-		url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+		url,
 	}}
 />
 

@@ -11,6 +11,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import packageJson from "./package.json" with { type: "json" };
 import { sveltekitOG } from "@ethercorps/sveltekit-og/plugin";
+import { ogRouteGenerator } from "./vite-plugin.js";
 
 // don't build when we're running `vite preview`
 if (!process.argv.includes("preview")) {
@@ -35,6 +36,7 @@ export default defineConfig({
 		enhancedImages(),
 		sveltekit(),
 		sveltekitOG(),
+		ogRouteGenerator(),
 		{
 			name: "registry-builder",
 			enforce: "pre",
