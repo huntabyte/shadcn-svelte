@@ -60,7 +60,7 @@
 		"globby": "^16.0.0",
 		"hast-util-to-html": "^9.0.5",
 		"jsdom": "^27.2.0",
-		"layerchart": "2.0.0-next.27",
+		"layerchart": "2.0.0-next.43",
 		"little-date": "^1.0.0",
 		"lodash.template": "^4.5.0",
 		"magic-string": "^0.30.21",

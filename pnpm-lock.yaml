@@ -201,8 +201,8 @@ importers:
         specifier: ^27.2.0
         version: 27.2.0
       layerchart:
-        specifier: 2.0.0-next.27
-        version: 2.0.0-next.27(svelte@5.39.6)
+        specifier: 2.0.0-next.43
+        version: 2.0.0-next.43(svelte@5.39.6)
       little-date:
         specifier: ^1.0.0
         version: 1.0.0
@@ -1635,17 +1635,17 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@layerstack/svelte-actions@1.0.1-next.12':
-    resolution: {integrity: sha512-dndWTlYu8b1u6vw2nrO7NssccoACArGG75WoNlyVC13KuENZlWdKE9Q79/wlnbq00NeQMNKMjJwRMsrKQj2ULA==}
+  '@layerstack/svelte-actions@1.0.1-next.14':
+    resolution: {integrity: sha512-MPBmVaB+GfNHvBkg5nJkPG18smoXKvsvJRpsdWnrUBfca+TieZLoaEzNxDH+9LG11dIXP9gghsXt1mUqbbyAsA==}
 
-  '@layerstack/svelte-state@0.1.0-next.17':
-    resolution: {integrity: sha512-z7e6mPJnypD80LEI/UDuH0bI6s8/nut06MB7rEkRcEfHJekhKSJgFhMnrYzLED7Mc2gTTD0X/wcYlakauWlU8A==}
+  '@layerstack/svelte-state@0.1.0-next.19':
+    resolution: {integrity: sha512-yCYoQAIbeP8y1xmOB/r0+UundgP4JFnpNURgMki+26TotzoqrZ5oLpHvhPSVm60ks+buR3ebDBTeUFdHzxwzQQ==}
 
-  '@layerstack/tailwind@2.0.0-next.15':
-    resolution: {integrity: sha512-7tqKE3OV7/ybeDOORX++USYYCBJa7IgTya2czFpzbgXGo7CQDVyuv+0J1DggjRcEqhhXQA4MUhgnhcRaZvHxWg==}
+  '@layerstack/tailwind@2.0.0-next.17':
+    resolution: {integrity: sha512-ZSn6ouqpnzB6DKzSKLVwrUBOQsrzpDA/By2/ba9ApxgTGnaD1nyqNwrvmZ+kswdAwB4YnrGEAE4VZkKrB2+DaQ==}
 
-  '@layerstack/utils@2.0.0-next.12':
-    resolution: {integrity: sha512-fhGZUlSr3N+D44BYm37WKMGSEFyZBW+dwIqtGU8Cl54mR4TLQ/UwyGhdpgIHyH/x/8q1abE0fP0Dn6ZsrDE3BA==}
+  '@layerstack/utils@2.0.0-next.14':
+    resolution: {integrity: sha512-1I2CS0Cwgs53W35qVg1eBdYhB/CiPvL3s0XE61b8jWkTHxgjBF65yYNgXjW74kv7WI7GsJcWMNBufPd0rnu9kA==}
 
   '@lucide/svelte@0.554.0':
     resolution: {integrity: sha512-CM6wLEH8uk3WBpC42t8R0hF7SlQrsYEL6qGuXdB99xKZwKglpWmX5XgYu7FIYOCBYOyC1rm4dNhIe6uF9pOXqw==}
@@ -3611,8 +3611,8 @@ packages:
   known-css-properties@0.37.0:
     resolution: {integrity: sha512-JCDrsP4Z1Sb9JwG0aJ8Eo2r7k4Ou5MwmThS/6lcIe1ICyb7UBJKGRIUUdqc2ASdE/42lgz6zFUnzAIhtXnBVrQ==}
 
-  layerchart@2.0.0-next.27:
-    resolution: {integrity: sha512-yt28xU8WzXq0AliX7eiC0JKZGQtO8M9FmHvt8sESNitSc/yC+fYeTghaO9lMRwcYCmi6D1NjbFyD9mWFeazNIQ==}
+  layerchart@2.0.0-next.43:
+    resolution: {integrity: sha512-1Ywm38NdzHWKwgaAHq3EcqshIgsq+pylntSnVWAVazXUk/NsxPcxdpR3tMt3ySjWV0ZPBBgLs78sdVf7FTgd+g==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -6459,25 +6459,25 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@layerstack/svelte-actions@1.0.1-next.12':
+  '@layerstack/svelte-actions@1.0.1-next.14':
     dependencies:
       '@floating-ui/dom': 1.7.4
-      '@layerstack/utils': 2.0.0-next.12
+      '@layerstack/utils': 2.0.0-next.14
       d3-scale: 4.0.2
 
-  '@layerstack/svelte-state@0.1.0-next.17':
+  '@layerstack/svelte-state@0.1.0-next.19':
     dependencies:
-      '@layerstack/utils': 2.0.0-next.12
+      '@layerstack/utils': 2.0.0-next.14
 
-  '@layerstack/tailwind@2.0.0-next.15':
+  '@layerstack/tailwind@2.0.0-next.17':
     dependencies:
-      '@layerstack/utils': 2.0.0-next.12
+      '@layerstack/utils': 2.0.0-next.14
       clsx: 2.1.1
       d3-array: 3.2.4
       lodash-es: 4.17.21
       tailwind-merge: 3.4.0
 
-  '@layerstack/utils@2.0.0-next.12':
+  '@layerstack/utils@2.0.0-next.14':
     dependencies:
       d3-array: 3.2.4
       d3-time: 3.1.0
@@ -8564,13 +8564,13 @@ snapshots:
 
   known-css-properties@0.37.0: {}
 
-  layerchart@2.0.0-next.27(svelte@5.39.6):
+  layerchart@2.0.0-next.43(svelte@5.39.6):
     dependencies:
       '@dagrejs/dagre': 1.1.8
-      '@layerstack/svelte-actions': 1.0.1-next.12
-      '@layerstack/svelte-state': 0.1.0-next.17
-      '@layerstack/tailwind': 2.0.0-next.15
-      '@layerstack/utils': 2.0.0-next.12
+      '@layerstack/svelte-actions': 1.0.1-next.14
+      '@layerstack/svelte-state': 0.1.0-next.19
+      '@layerstack/tailwind': 2.0.0-next.17
+      '@layerstack/utils': 2.0.0-next.14
       d3-array: 3.2.4
       d3-color: 3.1.0
       d3-delaunay: 6.0.4
@@ -8592,7 +8592,7 @@ snapshots:
       d3-time: 3.1.0
       lodash-es: 4.17.21
       memoize: 10.2.0
-      runed: 0.28.0(svelte@5.39.6)
+      runed: 0.31.1(svelte@5.39.6)
       svelte: 5.39.6
 
   levn@0.4.1:
