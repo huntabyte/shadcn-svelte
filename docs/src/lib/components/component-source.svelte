@@ -94,11 +94,12 @@
 	const height = $derived(`min(${longestFileHeight}, ${viewportHeight})`);
 </script>
 
-<div
+<figure
+	data-rehype-pretty-code-figure
 	data-llm-ignore
 	id={item.name}
-	class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden pt-6"
+	class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden"
 	style="--height: {height};"
 >
 	<ComponentCodeViewerCode />
-</div>
+</figure>

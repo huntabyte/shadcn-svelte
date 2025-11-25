@@ -28,13 +28,7 @@
 	<div
 		class="bg-code text-code-foreground h-(--height) flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden"
 	>
-		<div class="hidden w-72">
-			<ComponentCodeViewerFileTree />
-		</div>
-		<figure
-			data-rehype-pretty-code-figure
-			class="mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
-		>
+		<div class="mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none">
 			<ComponentCodeViewerCodeTitle />
 			<div
 				bind:this={codeContainer}
@@ -48,6 +42,6 @@
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html file?.highlightedContent}
 			</div>
-		</figure>
+		</div>
 	</div>
 {/if}
