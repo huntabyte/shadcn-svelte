@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ComponentCodeViewerCodeTitle from "./component-code-viewer-code-title.svelte";
-	import ComponentCodeViewerFileTree from "./component-code-viewer-file-tree.svelte";
 	import { ComponentCodeViewerContext } from "./component-code-viewer.svelte";
 
 	const ctx = ComponentCodeViewerContext.get();
