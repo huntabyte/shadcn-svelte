@@ -12,7 +12,7 @@
 	import { ogMetadata } from "./ogMetadata.js";
 
 	let { children } = $props();
-	const {title, url, description} = ogMetadata
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata

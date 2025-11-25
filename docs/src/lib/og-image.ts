@@ -4,7 +4,7 @@ import { GoogleFont, resolveFonts } from "@ethercorps/sveltekit-og/fonts";
 import type { ComponentProps } from "svelte";
 import type { RequestHandler } from "@sveltejs/kit";
 
-type OgImageMetadata = ComponentProps<typeof ShadcnOG>
+type OgImageMetadata = ComponentProps<typeof ShadcnOG>;
 
 const fonts = [
 	new GoogleFont("Geist", { weight: 400 }),
@@ -12,7 +12,7 @@ const fonts = [
 	new GoogleFont("Geist Mono", { weight: 400 }),
 ];
 
-export const generateOgImage = async ( metadata: OgImageMetadata) => {
+export const generateOgImage = async (metadata: OgImageMetadata) => {
 	console.log("Generating OG image with metadata:", metadata);
 	return new ImageResponse(
 		ShadcnOG,
@@ -37,22 +37,26 @@ export const createOgImageHandler = (metadata: OgImageMetadata): RequestHandler 
 		} catch (error) {
 			console.error("Error generating OG image:", error);
 			// Return a simple 500 on failure (customize if you like)
-			return new Response("Failed to generate OG image", { status: 500, statusText: 'Failed to generate OG image' } );
+			return new Response("Failed to generate OG image", {
+				status: 500,
+				statusText: "Failed to generate OG image",
+			});
 		}
 	};
 };
 
 export const routesOgMetadata: Record<string, OgImageMetadata> = {
-	'colors': {
+	colors: {
 		title: "Colors",
-		description: "The complete Tailwind color palette in HEX, RGB, HSL, CSS variables, and classes. Ready to copy and paste into your project.",
+		description:
+			"The complete Tailwind color palette in HEX, RGB, HSL, CSS variables, and classes. Ready to copy and paste into your project.",
 	},
-	'examples': {
+	examples: {
 		title: "Examples",
 		description: "Check out some example apps build using the components.",
 	},
-	'examples/playground': {
+	"examples/playground": {
 		title: "Playground",
 		description: "The OpenAI Playground build using the components.",
 	},
-}
+};

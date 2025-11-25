@@ -9,8 +9,7 @@
 	import { data } from "./data.js";
 	import { ogMetadata } from "./ogMetadata.js";
 
-	const {title, url, description} = ogMetadata
-
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata

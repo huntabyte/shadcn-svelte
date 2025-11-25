@@ -4,8 +4,7 @@
 	import Metadata from "$lib/components/metadata.svelte";
 	import { ogMetadata } from "./ogMetadata.js";
 
-	const {title, url, description} = ogMetadata
-
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata

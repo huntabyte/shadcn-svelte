@@ -23,5 +23,5 @@ export const GET: RequestHandler = async ({ params }) => {
 	return generateOgImage({
 		title: metadata?.title,
 		description: metadata?.description,
-	})
+	});
 };

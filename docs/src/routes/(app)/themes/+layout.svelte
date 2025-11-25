@@ -10,8 +10,7 @@
 
 	let { children } = $props();
 
-	const {title, url, description} = ogMetadata
-
+	const { title, url, description } = ogMetadata;
 </script>
 
 <Metadata

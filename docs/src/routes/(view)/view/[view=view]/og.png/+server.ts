@@ -7,8 +7,8 @@ export const prerender = true;
 
 export const entries: EntryGenerator = () => blocks.map((view) => ({ view }));
 
-export const GET = async ({params}) => {
-	const description = blockMeta[params.view as keyof typeof blockMeta].description
+export const GET = async ({ params }) => {
+	const description = blockMeta[params.view as keyof typeof blockMeta].description;
 
-	return generateOgImage({title: params.view, description})
-}
+	return generateOgImage({ title: params.view, description });
+};

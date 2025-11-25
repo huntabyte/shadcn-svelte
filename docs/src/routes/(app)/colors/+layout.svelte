@@ -9,7 +9,7 @@
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import { ogMetadata } from "./ogMetadata.js";
 
-	const {title, url, description} = ogMetadata
+	const { title, url, description } = ogMetadata;
 
 	let { children } = $props();
 </script>

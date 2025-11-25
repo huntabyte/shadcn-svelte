@@ -1,6 +1,6 @@
-import * as fs from 'node:fs/promises';
-import * as path from 'node:path';
-import type { Plugin, ViteDevServer } from 'vite';
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
+import type { Plugin, ViteDevServer } from "vite";
 
 /**
  * This Vite plugin automates the generation of Open Graph (OG) image server routes
@@ -19,13 +19,13 @@ import type { Plugin, ViteDevServer } from 'vite';
  * */
 
 // --- Configuration Constants ---
-const PLUGIN_NAME = 'vite-plugin-og-route-generator';
+const PLUGIN_NAME = "vite-plugin-og-route-generator";
 // File to create in directories where we want to serve OG images
 const CONFIG_FILE_PATTERN = /^ogMetadata\.(ts|js)$/;
-const SERVER_ROUTE_DIR = 'og.png';
+const SERVER_ROUTE_DIR = "og.png";
 // Assumption
-const DEFAULT_ROUTES_DIR = 'src/routes';
-const MANIFEST_FILE_PATH_STRING = '.svelte-kit/generated-og-images.json';
+const DEFAULT_ROUTES_DIR = "src/routes";
+const MANIFEST_FILE_PATH_STRING = ".svelte-kit/generated-og-images.json";
 
 // --- Types ---
 interface Manifest {
@@ -34,7 +34,7 @@ interface Manifest {
 }
 interface ConfigFile {
 	fullPath: string; // Absolute path to sveltekit.og.(ts|js)
-	ext: string;      // .ts or .js
+	ext: string; // .ts or .js
 }
 
 // --- Generation Helpers ---
@@ -78,11 +78,13 @@ async function initialCleanup(root: string): Promise<void> {
 
 	// 3. Execute Deletion
 	// Delete Files
-	await Promise.all(filesToDelete.map(p => fs.rm(p, { force: true })));
+	await Promise.all(filesToDelete.map((p) => fs.rm(p, { force: true })));
 
 	// Delete Directories
 	uniqueDirectoriesToDelete.sort((a, b) => b.localeCompare(a));
-	await Promise.all(uniqueDirectoriesToDelete.map(d => fs.rm(d, { force: true, recursive: true })));
+	await Promise.all(
+		uniqueDirectoriesToDelete.map((d) => fs.rm(d, { force: true, recursive: true }))
+	);
 }
 
 // --- Discovery Helpers (used by Generation Logic) ---
@@ -92,7 +94,10 @@ async function discoverConfigFiles(root: string): Promise<ConfigFile[]> {
 	const configFiles: ConfigFile[] = [];
 
 	try {
-		const entries = await fs.readdir(sveltekitRoutesDir, { withFileTypes: true, recursive: true });
+		const entries = await fs.readdir(sveltekitRoutesDir, {
+			withFileTypes: true,
+			recursive: true,
+		});
 
 		for (const entry of entries) {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -124,15 +129,20 @@ async function generateRoutes(root: string): Promise<void> {
 		const newServerDirPath = path.join(routeDir, SERVER_ROUTE_DIR);
 		const newServerFilePath = path.join(newServerDirPath, SERVER_ROUTE_FILE_NAME);
 
-		const conflictingTsFile = path.join(newServerDirPath, '+server.ts');
-		const conflictingJsFile = path.join(newServerDirPath, '+server.js');
+		const conflictingTsFile = path.join(newServerDirPath, "+server.ts");
+		const conflictingJsFile = path.join(newServerDirPath, "+server.js");
 
 		// If the config is .ts, the conflict is .js. If config is .js, the conflict is .ts.
-		const conflictPath = configFile.ext === '.ts' ? conflictingJsFile : conflictingTsFile;
-		const conflictExists = await fs.access(conflictPath).then(() => true).catch(() => false);
-		if(conflictExists) {
+		const conflictPath = configFile.ext === ".ts" ? conflictingJsFile : conflictingTsFile;
+		const conflictExists = await fs
+			.access(conflictPath)
+			.then(() => true)
+			.catch(() => false);
+		if (conflictExists) {
 			try {
-				console.log(`[${PLUGIN_NAME}] Resolving conflict: Deleting ${path.basename(conflictPath)} in ${path.basename(newServerDirPath)}.`);
+				console.log(
+					`[${PLUGIN_NAME}] Resolving conflict: Deleting ${path.basename(conflictPath)} in ${path.basename(newServerDirPath)}.`
+				);
 				await fs.rm(conflictPath, { force: true });
 			} catch (e) {
 				console.error(e);
@@ -144,7 +154,7 @@ async function generateRoutes(root: string): Promise<void> {
 
 		const content = generateServerRouteContent();
 
-		await fs.writeFile(newServerFilePath, content, 'utf-8');
+		await fs.writeFile(newServerFilePath, content, "utf-8");
 
 		newManifest.files.push(newServerFilePath);
 		newManifest.directories.push(newServerDirPath);
@@ -154,17 +164,17 @@ async function generateRoutes(root: string): Promise<void> {
 
 	const manifestDir = path.dirname(manifestPath);
 	await fs.mkdir(manifestDir, { recursive: true });
-	await fs.writeFile(manifestPath, JSON.stringify(newManifest, null, 2), 'utf-8');
+	await fs.writeFile(manifestPath, JSON.stringify(newManifest, null, 2), "utf-8");
 
 	console.log(`[${PLUGIN_NAME}] Manifest written to ${path.relative(root, manifestPath)}`);
 }
 
 export function ogRouteGenerator(): Plugin {
-	let root = '';
+	let root = "";
 
 	return {
 		name: PLUGIN_NAME,
-		apply: 'serve',
+		apply: "serve",
 
 		configResolved(resolvedConfig) {
 			root = resolvedConfig.root;
@@ -193,11 +203,13 @@ export function ogRouteGenerator(): Plugin {
 
 			initialCleanup(root).then(reRunGeneration);
 
-			server.watcher.on('all', async (event, filePath) => {
+			server.watcher.on("all", async (event, filePath) => {
 				const fileName = path.basename(filePath);
 
 				if (filePath.startsWith(routesDir) && CONFIG_FILE_PATTERN.test(fileName)) {
-					console.log(`[${PLUGIN_NAME}] Config file modified (${event}). Regenerating...`);
+					console.log(
+						`[${PLUGIN_NAME}] Config file modified (${event}). Regenerating...`
+					);
 					await reRunGeneration();
 				}
 				if (filePath === path.resolve(root, MANIFEST_FILE_PATH_STRING)) {
@@ -205,6 +217,6 @@ export function ogRouteGenerator(): Plugin {
 					await reRunGeneration();
 				}
 			});
-		}
+		},
 	};
 }
