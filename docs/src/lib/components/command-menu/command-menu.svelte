@@ -115,7 +115,7 @@
 				{...props}
 				variant="secondary"
 				class={cn(
-					"bg-surface dark:bg-card relative h-8 w-full justify-start ps-2.5 font-sans font-medium shadow-none sm:pe-12 md:w-40 lg:w-56 xl:w-64"
+					"bg-surface text-foreground dark:bg-card relative h-8 w-full justify-start pl-3 font-medium shadow-none sm:pr-12 md:w-48 lg:w-56 xl:w-64"
 				)}
 				onclick={() => (open = true)}
 			>
