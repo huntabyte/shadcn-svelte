@@ -98,8 +98,11 @@
 	data-rehype-pretty-code-figure
 	data-llm-ignore
 	id={item.name}
-	class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden"
-	style="--height: {height};"
 >
-	<ComponentCodeViewerCode />
+	<div
+		class="group/block-view-wrapper flex w-full min-w-0 flex-col-reverse items-stretch gap-4 overflow-hidden"
+		style="--height: {height};"
+	>
+		<ComponentCodeViewerCode />
+	</div>
 </figure>
