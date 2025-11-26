@@ -48,13 +48,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Card from "$lib/components/ui/card/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Card.Root>
   <Card.Header>
     <Card.Title>Card Title</Card.Title>

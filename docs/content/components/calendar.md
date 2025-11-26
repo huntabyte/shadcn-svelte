@@ -33,12 +33,6 @@ We have built a collection of 30+ calendar blocks that you can use to build your
 
 See call calendar blocks in the [Blocks Library](/blocks/calendar) page.
 
-## About
-
-The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
-
-If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
-
 ## Installation
 
 <InstallTabs>
@@ -68,6 +62,12 @@ Copy and paste the following code into your project.
 </Steps>
 {/snippet}
 </InstallTabs>
+
+## About
+
+The `<Calendar />` component is built on top of the [Bits UI Calendar](https://www.bits-ui.com/docs/components/calendar) component, which uses the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package to handle dates.
+
+If you're looking for a range calendar, check out the [Range Calendar](/docs/components/range-calendar) component.
 
 ## Date Picker
 

@@ -67,13 +67,3 @@ Copy and paste the following code into your project.
 ```svelte
 <Checkbox />
 ```
-
-## Examples
-
-### Form
-
-<ComponentPreview name="checkbox-form-multiple">
-
-<div></div>
-
-</ComponentPreview>

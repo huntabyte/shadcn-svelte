@@ -4,7 +4,6 @@ description: Beautiful charts. Built using LayerChart. Copy and paste into your 
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/chart
-  doc: https://next.layerchart.com
 ---
 
 <script>
@@ -94,7 +93,7 @@ Add the following colors to your CSS file
 
 </Step>
 
-```css
+```css title="src/app.css" showLineNumbers
 :root {
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);

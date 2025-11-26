@@ -74,19 +74,19 @@ Copy and paste the following code into your project.
 </ComponentPreview>
 
 ```svelte
-// Small
+<!-- Small -->
 <Button size="sm" variant="outline">Small</Button>
 <Button size="icon-sm" aria-label="Submit" variant="outline">
   <ArrowUpRightIcon />
 </Button>
 
-// Medium
+<!-- Medium -->
 <Button variant="outline">Default</Button>
 <Button size="icon" aria-label="Submit" variant="outline">
   <ArrowUpRightIcon />
 </Button>
 
-// Large
+<!-- Large -->
 <Button size="lg" variant="outline">Large</Button>
 <Button size="icon-lg" aria-label="Submit" variant="outline">
   <ArrowUpRightIcon />

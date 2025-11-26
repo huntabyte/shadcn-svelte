@@ -67,7 +67,7 @@ Copy and paste the following code into your project.
 - Use `tabindex` to navigate between the buttons in the group.
 - Use `aria-label` or `aria-labelledby` to label the button group.
 
-```svelte
+```svelte showLineNumbers
 <ButtonGroup aria-label="Button group">
   <Button>Button 1</Button>
   <Button>Button 2</Button>

@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Collapsible.Root>
   <Collapsible.Trigger>Can I use this in my project?</Collapsible.Trigger>
   <Collapsible.Content>
