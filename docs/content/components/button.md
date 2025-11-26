@@ -20,11 +20,18 @@ links:
 	let { viewerData, links } = $props();
 </script>
 
-<ComponentPreview name="button-demo">
+<ComponentPreview name="button-demo" class="mb-4">
 
 <div></div>
 
 </ComponentPreview>
+
+```svelte showLineNumbers
+ <Button variant="outline">Button</Button>
+ <Button variant="outline" size="icon" aria-label="Submit">
+  <ArrowUpIcon />
+ </Button>
+```
 
 ## Installation
 
@@ -68,6 +75,26 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+```svelte
+// Small
+<Button size="sm" variant="outline">Small</Button>
+<Button size="icon-sm" aria-label="Submit" variant="outline">
+  <ArrowUpRightIcon />
+</Button>
+
+// Medium
+<Button variant="outline">Default</Button>
+<Button size="icon" aria-label="Submit" variant="outline">
+  <ArrowUpRightIcon />
+</Button>
+
+// Large
+<Button size="lg" variant="outline">Large</Button>
+<Button size="icon-lg" aria-label="Submit" variant="outline">
+  <ArrowUpRightIcon />
+</Button>
+```
+
 ### Default
 
 <ComponentPreview name="button-default" description="A primary button" class="mb-4">
@@ -75,6 +102,10 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+```svelte
+<Button>Button</Button>
+```
 
 ### Outline
 
@@ -84,6 +115,10 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+```svelte
+<Button variant="outline">Outline</Button>
+```
+
 ### Secondary
 
 <ComponentPreview name="button-secondary" description="A secondary button" class="mb-4">
@@ -91,6 +126,10 @@ Copy and paste the following code into your project.
 <div></div>
   
 </ComponentPreview>
+
+```svelte
+<Button variant="secondary">Secondary</Button>
+```
 
 ### Ghost
 
@@ -100,6 +139,10 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+```svelte
+<Button variant="ghost">Ghost</Button>
+```
+
 ### Destructive
 
 <ComponentPreview name="button-destructive" description="A destructive button" class="mb-4">
@@ -107,6 +150,10 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+```svelte
+<Button variant="destructive">Destructive</Button>
+```
 
 ### Link
 
@@ -116,6 +163,10 @@ Copy and paste the following code into your project.
 
 </ComponentPreview>
 
+```svelte
+<Button variant="link">Link</Button>
+```
+
 ### Icon
 
 <ComponentPreview name="button-icon" description="An icon button" class="mb-4">
@@ -123,6 +174,12 @@ Copy and paste the following code into your project.
 <div></div>
 
 </ComponentPreview>
+
+```svelte
+<Button variant="outline" size="icon" aria-label="Submit">
+  <CircleFadingArrowUpIcon />
+</Button>
+```
 
 ### With Icon
 
@@ -134,6 +191,12 @@ The spacing between the icon and the text is automatically adjusted based on the
 
 </ComponentPreview>
 
+```svelte
+<Button variant="outline" size="sm">
+  <IconGitBranch /> New Branch
+</Button>
+```
+
 ### Rounded
 
 Use the `rounded-full` class to make the button rounded.
@@ -144,6 +207,12 @@ Use the `rounded-full` class to make the button rounded.
 
 </ComponentPreview>
 
+```svelte
+<Button variant="outline" size="icon" className="rounded-full">
+  <ArrowUpRightIcon />
+</Button>
+```
+
 ### Spinner
 
 <ComponentPreview name="button-loading" description="A button with a loading state." class="mb-4">
@@ -151,6 +220,13 @@ Use the `rounded-full` class to make the button rounded.
 <div></div>
 
 </ComponentPreview>
+
+```svelte showLineNumbers
+<Button size="sm" variant="outline" disabled>
+  <Spinner />
+  Submit
+</Button>
+```
 
 ### Button Group
 
@@ -161,6 +237,90 @@ To create a button group, use the `ButtonGroup` component. See the [Button Group
 <div></div>
 
 </ComponentPreview>
+
+```svelte showLineNumbers
+<ButtonGroup.Root>
+  <ButtonGroup.Root class="hidden sm:flex">
+    <Button variant="outline" size="icon" aria-label="Go Back">
+      <ArrowLeft />
+    </Button>
+  </ButtonGroup.Root>
+  <ButtonGroup.Root>
+    <Button variant="outline">Archive</Button>
+    <Button variant="outline">Report</Button>
+  </ButtonGroup.Root>
+  <ButtonGroup.Root>
+    <Button variant="outline">Snooze</Button>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        {#snippet child({ props })}
+          <Button
+            {...props}
+            variant="outline"
+            size="icon"
+            aria-label="More Options"
+          >
+            <MoreHorizontal />
+          </Button>
+        {/snippet}
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="end" class="w-52">
+        <DropdownMenu.Group>
+          <DropdownMenu.Item>
+            <MailCheck />
+            Mark as Read
+          </DropdownMenu.Item>
+          <DropdownMenu.Item>
+            <Archive />
+            Archive
+          </DropdownMenu.Item>
+        </DropdownMenu.Group>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Group>
+          <DropdownMenu.Item>
+            <Clock />
+            Snooze
+          </DropdownMenu.Item>
+          <DropdownMenu.Item>
+            <CalendarPlus />
+            Add to Calendar
+          </DropdownMenu.Item>
+          <DropdownMenu.Item>
+            <ListFilter />
+            Add to List
+          </DropdownMenu.Item>
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger>
+              <Tag />
+              Label As...
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.SubContent>
+              <DropdownMenu.RadioGroup bind:value={label}>
+                <DropdownMenu.RadioItem value="personal">
+                  Personal
+                </DropdownMenu.RadioItem>
+                <DropdownMenu.RadioItem value="work"
+                  >Work</DropdownMenu.RadioItem
+                >
+                <DropdownMenu.RadioItem value="other"
+                  >Other</DropdownMenu.RadioItem
+                >
+              </DropdownMenu.RadioGroup>
+            </DropdownMenu.SubContent>
+          </DropdownMenu.Sub>
+        </DropdownMenu.Group>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Group>
+          <DropdownMenu.Item class="text-destructive focus:text-destructive">
+            <Trash2 />
+            Trash
+          </DropdownMenu.Item>
+        </DropdownMenu.Group>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  </ButtonGroup.Root>
+</ButtonGroup.Root>
+```
 
 ### Link
 
