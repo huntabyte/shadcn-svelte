@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <div class="w-[450px]">
   <AspectRatio ratio={16 / 9} class="bg-muted">
     <img src="..." alt="..." class="rounded-md object-cover" />

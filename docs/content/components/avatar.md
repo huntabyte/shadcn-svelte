@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Avatar from "$lib/components/ui/avatar/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Avatar.Root>
   <Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
   <Avatar.Fallback>CN</Avatar.Fallback>

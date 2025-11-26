@@ -67,13 +67,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Accordion.Root type="single">
   <Accordion.Item value="item-1">
     <Accordion.Trigger>Is it accessible?</Accordion.Trigger>

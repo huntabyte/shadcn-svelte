@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbersw
 <script lang="ts">
   import * as AlertDialog from "$lib/components/ui/alert-dialog/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <AlertDialog.Root>
   <AlertDialog.Trigger>Open</AlertDialog.Trigger>
   <AlertDialog.Content>
