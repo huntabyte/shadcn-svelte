@@ -4,8 +4,6 @@ description: Displays a button or a component that looks like a button.
 component: true
 links:
   source: https://github.com/huntabyte/shadcn-svelte/tree/next/sites/docs/src/lib/registry/ui/button
-  doc: https://bits-ui.com/docs/components/button
-  api: https://bits-ui.com/docs/components/button#api-reference
 ---
 
 <script>
@@ -27,10 +25,10 @@ links:
 </ComponentPreview>
 
 ```svelte showLineNumbers
- <Button variant="outline">Button</Button>
- <Button variant="outline" size="icon" aria-label="Submit">
+<Button variant="outline">Button</Button>
+<Button variant="outline" size="icon" aria-label="Submit">
   <ArrowUpIcon />
- </Button>
+</Button>
 ```
 
 ## Installation

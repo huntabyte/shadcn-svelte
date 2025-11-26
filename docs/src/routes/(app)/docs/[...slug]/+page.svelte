@@ -1,7 +1,7 @@
 <script lang="ts">
-	//import { Badge } from "$lib/registry/ui/badge/index.js";
+	import { Badge } from "$lib/registry/ui/badge/index.js";
 	import { Button } from "$lib/registry/ui/button/index.js";
-	//import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+	import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DocsToc from "$lib/components/docs-toc.svelte";
@@ -16,8 +16,8 @@
 
 	const Markdown = $derived(data.component);
 	const doc = $derived(data.metadata);
-	//const apiLink = $derived(doc.links?.api);
-	//const docLink = $derived(doc.links?.doc);
+	const apiLink = $derived(doc.links?.api);
+	const docLink = $derived(doc.links?.doc);
 
 	const neighbors = $derived(findNeighbors(page.url.pathname));
 </script>
@@ -106,7 +106,6 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 						</p>
 					{/if}
 				</div>
-				<!--
 				{#if apiLink || docLink}
 					<div class="flex items-center space-x-2 pt-4">
 						{#if docLink}
@@ -131,14 +130,14 @@ the docs container. The issue this resolves is prominent on slow connections (3G
 							</Badge>
 						{/if}
 					</div>
-				{/if}-->
+				{/if}
 			</div>
 			<div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
 				<Markdown viewerData={data.viewerData} />
 			</div>
 		</div>
 		<div
-			class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0"
+			class="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0"
 			data-llm-ignore
 		>
 			{#if neighbors.previous}

@@ -62,21 +62,3 @@ Copy and paste the following code into your project.
   </Alert.Description>
 </Alert.Root>
 ```
-
-## Examples
-
-### Default
-
-<ComponentPreview name="alert-demo">
-
-<div></div>
-
-</ComponentPreview>
-
-### Destructive
-
-<ComponentPreview name="alert-destructive">
-
-<div></div>
-
-</ComponentPreview>
