@@ -58,13 +58,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <ContextMenu.Root>
   <ContextMenu.Trigger>Right click</ContextMenu.Trigger>
   <ContextMenu.Content>

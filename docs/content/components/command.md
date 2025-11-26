@@ -59,13 +59,13 @@ Copy and paste the following code into your project.
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import * as Command from "$lib/components/ui/command/index.js";
 </script>
 ```
 
-```svelte
+```svelte showLineNumbers
 <Command.Root>
   <Command.Input placeholder="Type a command or search..." />
   <Command.List>
@@ -97,7 +97,7 @@ Copy and paste the following code into your project.
 
 To show the command menu in a dialog, use the `<Command.Dialog />` component instead of `<Command.Root />`. It accepts props for both the `<Dialog.Root />` and `<Command.Root />` components.
 
-```svelte
+```svelte title="lib/components/example-command-menu.svelte" showLineNumbers
 <script lang="ts">
   import * as Command from "$lib/components/ui/command/index.js";
   import { onMount } from "svelte";
@@ -126,6 +126,10 @@ To show the command menu in a dialog, use the `<Command.Dialog />` component ins
   </Command.List>
 </Command.Dialog>
 ```
+
+### Combobox
+
+You can use the `<Command />` component as a combobox. See the [Combobox](/docs/components/combobox) page for more information.
 
 ## Changelog
 

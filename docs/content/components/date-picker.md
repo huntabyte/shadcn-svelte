@@ -10,7 +10,7 @@ links:
 	import ComponentPreview from "$lib/components/component-preview.svelte";
 </script>
 
-<ComponentPreview name="date-picker-demo">
+<ComponentPreview name="calendar-22">
 
 <div></div>
 
@@ -24,7 +24,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
 ## Usage
 
-```svelte
+```svelte showLineNumbers
 <script lang="ts">
   import CalendarIcon from "@lucide/svelte/icons/calendar";
   import {
@@ -43,9 +43,7 @@ See installations instructions for the [Popover](/docs/components/popover#instal
 
   let value = $state<DateValue>();
 </script>
-```
 
-```svelte
 <Popover.Root>
   <Popover.Trigger>
     {#snippet child({ props })}

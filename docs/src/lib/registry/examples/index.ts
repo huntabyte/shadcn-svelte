@@ -24,6 +24,7 @@ export { default as CheckboxDemo } from "./checkbox-demo.svelte";
 export { default as CheckboxDisabled } from "./checkbox-disabled.svelte";
 export { default as CheckboxWithText } from "./checkbox-with-text.svelte";
 export { default as CollapsibleDemo } from "./collapsible-demo.svelte";
+export { default as ComboboxResponsive } from "./combobox-responsive.svelte";
 export { default as ContextMenuDemo } from "./context-menu-demo.svelte";
 export { default as DialogDemo } from "./dialog-demo.svelte";
 export { default as DropdownMenuDemo } from "./dropdown-menu-demo.svelte";
